@@ -493,6 +493,16 @@ namespace Axantum.AxCrypt
             New<FileFilter>().AddUnencryptableExtension("gdraw");
             New<FileFilter>().AddUnencryptableExtension("gtable");
             New<FileFilter>().AddUnencryptableExtension("gform");
+
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramData%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles(x86)%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%SystemRoot%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%APPDATA%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%USERPROFILE%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%windir%"));
+            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramW6432%"));
         }
 
         private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)

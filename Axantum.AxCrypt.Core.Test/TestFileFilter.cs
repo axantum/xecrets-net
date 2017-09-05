@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
@@ -104,13 +102,28 @@ namespace Axantum.AxCrypt.Core.Test
         {
             FileFilter filter = new FileFilter();
 
+            Assert.Throws<ArgumentNullException>(() => filter.AddForbiddenFolderFilters(null));
             Assert.Throws<ArgumentNullException>(() => filter.IsForbiddenFolder(null));
 
-            filter.AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramData%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles(x86)%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%SystemRoot%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%APPDATA%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%USERPROFILE%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%windir%"));
+            filter.AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramW6432%"));
 
+            Assert.That(filter.IsForbiddenFolder(@"C:\ProgramData"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files (x86)"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\WINDOWS"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files"), Is.True);
             Assert.That(filter.IsForbiddenFolder(@"C:\Temp"), Is.False);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Windows"), Is.True);
             Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Users\" + Environment.ExpandEnvironmentVariables("%USERNAME%") + @"\AppData\Roaming"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Users\" + Environment.ExpandEnvironmentVariables("%USERNAME%") + @"\AppData\Local"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Users\" + Environment.ExpandEnvironmentVariables("%USERNAME%")), Is.True);
         }
     }
 }

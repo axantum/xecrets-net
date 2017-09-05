@@ -8,10 +8,12 @@ namespace Axantum.AxCrypt.Core.IO
     public class FileFilter
     {
         private readonly List<Regex> pathFilters;
+        private readonly List<string> forbiddenFolderFilters;
 
         public FileFilter()
         {
             pathFilters = new List<Regex>();
+            forbiddenFolderFilters = new List<string>();
         }
 
         public bool IsEncryptable(IDataItem fileInfo)
@@ -37,9 +39,9 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException("folder");
             }
-            foreach (Regex filter in pathFilters)
+            foreach (string filter in forbiddenFolderFilters)
             {
-                if (filter.IsMatch(folder.NormalizeFolderPath()))
+                if (folder.NormalizeFolderPath().ToLower().StartsWith(filter.ToLower()))
                 {
                     return true;
                 }
@@ -64,6 +66,16 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException(nameof(extension));
             }
             pathFilters.Add(new Regex(@".*\." + extension + "$"));
+            return true;
+        }
+
+        public bool AddForbiddenFolderFilters(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            forbiddenFolderFilters.Add(path);
             return true;
         }
     }
