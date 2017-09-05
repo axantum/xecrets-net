@@ -20,5 +20,6 @@
         EditExistingFiles,
         InactivitySignOut,
         Viewer,
+        Business,
     }
 }

@@ -35,6 +35,7 @@ using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -54,12 +55,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.EditExistingFiles,
         });
 
-        protected static readonly HashSet<LicenseCapability> PremiumCapabilitySet = new HashSet<LicenseCapability>(new LicenseCapability[]
+        protected static readonly HashSet<LicenseCapability> PremiumCapabilitySet = new HashSet<LicenseCapability>(FreeCapabilitySet.Concat(new LicenseCapability[]
         {
-            LicenseCapability.StandardEncryption,
-            LicenseCapability.AccountKeyBackup,
-            LicenseCapability.CommunitySupport,
-
             LicenseCapability.SecureWipe,
             LicenseCapability.StrongerEncryption,
             LicenseCapability.KeySharing,
@@ -71,10 +68,13 @@ namespace Axantum.AxCrypt.Core.Runtime
             LicenseCapability.DirectSupport,
             LicenseCapability.IncludeSubfolders,
             LicenseCapability.Premium,
-            LicenseCapability.EncryptNewFiles,
-            LicenseCapability.EditExistingFiles,
             LicenseCapability.InactivitySignOut,
-        });
+        }));
+
+        protected static readonly HashSet<LicenseCapability> BusinessCapabilitySet = new HashSet<LicenseCapability>(PremiumCapabilitySet.Concat(new LicenseCapability[]
+        {
+            LicenseCapability.Business,
+        }));
 
         public LicensePolicy() : this(true)
         {
@@ -147,7 +147,28 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private async Task<LicenseCapabilities> CapabilitiesAsync(LogOnIdentity identity)
         {
-            return await SubscriptionLevelAsync(identity) == SubscriptionLevel.Premium && await TimeUntilSubscriptionExpiration(identity).Free() > TimeSpan.Zero ? PremiumCapabilities : FreeCapabilities;
+            SubscriptionLevel level = await SubscriptionLevelAsync(identity).Free();
+            switch (level)
+            {
+                case SubscriptionLevel.Business:
+                    if (await TimeUntilSubscriptionExpiration(identity).Free() > TimeSpan.Zero)
+                    {
+                        return BusinessCapabilities;
+                    }
+                    break;
+
+                case SubscriptionLevel.Premium:
+                    if (await TimeUntilSubscriptionExpiration(identity).Free() > TimeSpan.Zero)
+                    {
+                        return PremiumCapabilities;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+            return FreeCapabilities;
         }
 
         private async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
@@ -171,6 +192,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         protected virtual LicenseCapabilities FreeCapabilities { get { return new LicenseCapabilities(FreeCapabilitySet); } }
 
         protected virtual LicenseCapabilities PremiumCapabilities { get { return new LicenseCapabilities(PremiumCapabilitySet); } }
+
+        protected virtual LicenseCapabilities BusinessCapabilities { get { return new LicenseCapabilities(BusinessCapabilitySet); } }
 
         private LicenseCapabilities _currentLicenseCapabilities = null;
 

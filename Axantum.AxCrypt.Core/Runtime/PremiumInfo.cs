@@ -41,6 +41,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 case SubscriptionLevel.Free:
                     return await NoPremiumOrCanTryAsync(service);
 
+                case SubscriptionLevel.Business:
                 case SubscriptionLevel.Premium:
                     return new PremiumInfo(PremiumStatus.HasPremium, await GetDaysLeft(service));
 

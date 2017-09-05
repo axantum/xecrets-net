@@ -1,15 +1,13 @@
 ﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Core.Extensions;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Axantum.AxCrypt.Core.UI;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
@@ -22,7 +20,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ArgumentNullException(nameof(userAccount));
             }
 
-            if (userAccount.SubscriptionLevel != SubscriptionLevel.Premium)
+            if (userAccount.SubscriptionLevel <= SubscriptionLevel.Free)
             {
                 return string.Empty;
             }
@@ -40,7 +38,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 throw new ArgumentNullException(nameof(userAccount));
             }
 
-            if (userAccount.SubscriptionLevel != SubscriptionLevel.Premium)
+            if (userAccount.SubscriptionLevel <= SubscriptionLevel.Free)
             {
                 return userAccount.SubscriptionLevel;
             }
