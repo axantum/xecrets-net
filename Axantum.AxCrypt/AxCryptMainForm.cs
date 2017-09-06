@@ -476,11 +476,12 @@ namespace Axantum.AxCrypt
             New<FileFilter>().AddUnencryptable(new Regex(@"\\desktop\.ini$"));
             New<FileFilter>().AddUnencryptable(new Regex(@".*\.tmp$"));
             New<FileFilter>().AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$"));
-            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "SystemRoot");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}(?!Temp$)", "windir");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}", "ProgramFiles(x86)");
-            AddEnvironmentVariableBasedPathFilter(@"^{0}$", "SystemDrive");
+
+            AddEnvironmentVariableBasedFilePathFilter(@"^{0}(?!Temp$)", "SystemRoot");
+            AddEnvironmentVariableBasedFilePathFilter(@"^{0}(?!Temp$)", "windir");
+            AddEnvironmentVariableBasedFilePathFilter(@"^{0}", "ProgramFiles");
+            AddEnvironmentVariableBasedFilePathFilter(@"^{0}", "ProgramFiles(x86)");
+            AddEnvironmentVariableBasedFilePathFilter(@"^{0}$", "SystemDrive");
             New<FileFilter>().AddUnencryptableExtension("cloudf");
             New<FileFilter>().AddUnencryptableExtension("cloud");
             New<FileFilter>().AddUnencryptableExtension("lnk");
@@ -494,18 +495,18 @@ namespace Axantum.AxCrypt
             New<FileFilter>().AddUnencryptableExtension("gtable");
             New<FileFilter>().AddUnencryptableExtension("gform");
 
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramData%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles(x86)%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramFiles%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%SystemRoot%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%APPDATA%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%LOCALAPPDATA%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%USERPROFILE%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%windir%"));
-            New<FileFilter>().AddForbiddenFolderFilters(Environment.ExpandEnvironmentVariables("%ProgramW6432%"));
+            AddEnvironmentVariableBasedFolderPathFilter("ProgramData");
+            AddEnvironmentVariableBasedFolderPathFilter("ProgramFiles(x86)");
+            AddEnvironmentVariableBasedFolderPathFilter("ProgramFiles");
+            AddEnvironmentVariableBasedFolderPathFilter("SystemRoot");
+            AddEnvironmentVariableBasedFolderPathFilter("APPDATA");
+            AddEnvironmentVariableBasedFolderPathFilter("LOCALAPPDATA");
+            AddEnvironmentVariableBasedFolderPathFilter("USERPROFILE");
+            AddEnvironmentVariableBasedFolderPathFilter("windir");
+            AddEnvironmentVariableBasedFolderPathFilter("ProgramW6432");
         }
 
-        private static void AddEnvironmentVariableBasedPathFilter(string formatRegularExpression, string name)
+        private static void AddEnvironmentVariableBasedFilePathFilter(string formatRegularExpression, string name)
         {
             IDataContainer folder = name.FolderFromEnvironment();
             if (folder == null)
@@ -514,6 +515,16 @@ namespace Axantum.AxCrypt
             }
             string escapedPath = folder.FullName.Replace(@"\", @"\\");
             New<FileFilter>().AddUnencryptable(new Regex(formatRegularExpression.InvariantFormat(escapedPath)));
+        }
+
+        private static void AddEnvironmentVariableBasedFolderPathFilter(string name)
+        {
+            IDataContainer folder = name.FolderFromEnvironment();
+            if (folder == null)
+            {
+                return;
+            }
+            New<FileFilter>().AddForbiddenFolderFilters(folder.FullName.ToLower());
         }
 
         private void IntializeControls()

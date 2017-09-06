@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Core.IO
             }
             foreach (string filter in forbiddenFolderFilters)
             {
-                if (folder.NormalizeFolderPath().ToLower().StartsWith(filter.ToLower()))
+                if (folder.NormalizeFolderPath().ToLower().StartsWith(filter))
                 {
                     return true;
                 }
