@@ -2298,6 +2298,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SyntheticWordsSuccessUpdate" xml:space="preserve">
     <value>The culture was successfully updated.</value>
   </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value>!!{0} is a system folder and cannot be secured.</value>
+  </data>
   <data name="TargetAccountExists" xml:space="preserve">
     <value>You are trying to change your account to an account that already exists!</value>
   </data>

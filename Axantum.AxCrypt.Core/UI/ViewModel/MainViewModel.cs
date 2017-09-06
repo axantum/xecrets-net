@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -411,6 +412,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string folder in folders)
             {
+                if (New<FileFilter>().IsForbiddenFolder(folder))
+                {
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.SystemFolderForbiddenText.InvariantFormat(folder));
+                    continue;
+                }
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
             }
             await _fileSystemState.Save();
