@@ -215,7 +215,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you..
+        ///   Looks up a localized string similar to !!You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you. Please read our  &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;privacy policy&lt;/a&gt;  for details..
         /// </summary>
         public static string ActivateMailBodyIntro {
             get {

@@ -172,7 +172,7 @@
     <value>You can start trying AxCrypt Premium features for 30 days in the app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you.</value>
+    <value>!!You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you. Please read our  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt;  for details.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>To verify manually,  go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;  and enter &lt;b&gt;{1}&lt;/b&gt; and the verification code &lt;b&gt;{2}&lt;/b&gt; .</value>
