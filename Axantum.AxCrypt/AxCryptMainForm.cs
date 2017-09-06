@@ -524,7 +524,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            New<FileFilter>().AddForbiddenFolderFilters(folder.FullName.ToLower());
+            New<FileFilter>().AddForbiddenFolderFilters(folder.FullName);
         }
 
         private void IntializeControls()

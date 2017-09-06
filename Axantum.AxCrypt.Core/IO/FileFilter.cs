@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException(nameof(path));
             }
-            forbiddenFolderFilters.Add(path);
+            forbiddenFolderFilters.Add(path.NormalizeFolderPath().ToLower());
             return true;
         }
     }
