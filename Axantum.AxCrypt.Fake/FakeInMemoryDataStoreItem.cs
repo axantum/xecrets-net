@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -114,6 +113,11 @@ namespace Axantum.AxCrypt.Fake
         public void Delete()
         {
             IsAvailable = false;
+        }
+
+        public long Length()
+        {
+            return _dataStream.Length;
         }
     }
 }

@@ -93,6 +93,12 @@ namespace Axantum.AxCrypt.Core.IO
         DateTime LastWriteTimeUtc { get; set; }
 
         /// <summary>
+        /// Get the file size in bytes.
+        /// </summary>
+        /// <returns></returns>
+        long Length();
+
+        /// <summary>
         /// Sets all of the file times of the underlying file.
         /// </summary>
         /// <param name="creationTimeUtc">The creation time UTC.</param>

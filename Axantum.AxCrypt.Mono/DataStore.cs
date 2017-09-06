@@ -319,6 +319,11 @@ namespace Axantum.AxCrypt.Mono
             _file.Delete();
         }
 
+        public long Length()
+        {
+            return _file.Length;
+        }
+
         /// <summary>
         /// Gets a value indicating whether this instance is a folder that exists.
         /// </summary>

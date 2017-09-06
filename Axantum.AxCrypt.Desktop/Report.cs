@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.IO;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -41,98 +42,60 @@ namespace Axantum.AxCrypt.Desktop
     {
         private INow _now;
 
-        private string _filePath;
+        private string _currentFilePath;
+        private string _previousFilePath;
 
-        public Report(string folderPath)
+        private IDataStore _currentLogFile;
+        private IDataStore _previousLogFile;
+
+        private long _maxSizeInBytes;
+
+        public Report(string folderPath, long maxSizeInBytes)
         {
             _now = New<INow>();
-            _filePath = Path.Combine(folderPath, "ReportSnapshot.txt");
+            _currentFilePath = Path.Combine(folderPath, "ReportSnapshot.txt");
+            _previousFilePath = Path.Combine(folderPath, "ReportSnapshot.1.txt");
+            _previousLogFile = New<IDataStore>(_previousFilePath);
+            _currentLogFile = New<IDataStore>(_currentFilePath);
+            _maxSizeInBytes = maxSizeInBytes;
         }
-
-        private class Entry
-        {
-            public Exception Exception { get; set; }
-
-            public DateTime DateTime { get; set; }
-        }
-
-        private Queue<Entry> _queue = new Queue<Entry>();
 
         public void Exception(Exception ex)
         {
-            lock (_queue)
+            MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
+            using (FileLock fileLock = New<FileLocker>().Acquire(_currentLogFile))
             {
-                if (_queue.Count > 10)
+                StringBuilder sb = new StringBuilder();
+                if (!_currentLogFile.IsAvailable)
                 {
-                    _queue.Dequeue();
+                    sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
                 }
-                _queue.Enqueue(new Entry() { Exception = ex, DateTime = _now.Utc, });
-            }
-        }
 
-        public string Snapshot
-        {
-            get
-            {
-                return SnapshotInternal();
-            }
-        }
+                AxCryptException ace = ex as AxCryptException;
+                string displayContext = ace?.DisplayContext ?? string.Empty;
+                sb.AppendFormat("----------- Exception at {0} -----------", _now.Utc.ToString("u")).AppendLine();
+                sb.AppendLine(displayContext);
+                sb.AppendLine(ex?.ToString() ?? "(null)");
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public void Save()
-        {
-            try
-            {
-                string snapshot = New<IReport>().Snapshot;
-                if (snapshot.Length > 0)
+                using (StreamWriter writer = new StreamWriter(_currentLogFile.OpenUpdate(), Encoding.UTF8))
                 {
-                    File.WriteAllText(_filePath, snapshot);
+                    writer.Write(sb.ToString());
                 }
-            }
-            catch (Exception)
-            {
             }
         }
 
         public void Open()
         {
-            Process.Start(_filePath);
+            Process.Start(_currentFilePath);
         }
 
-        private string SnapshotInternal()
+        private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize()
         {
-            Stack<Entry> stack = new Stack<Entry>();
-            lock (_queue)
+            if (_currentLogFile.IsAvailable && _currentLogFile.Length() > _maxSizeInBytes)
             {
-                if (_queue.Count == 0)
-                {
-                    return string.Empty;
-                }
-
-                while (_queue.Count > 0)
-                {
-                    stack.Push(_queue.Dequeue());
-                }
+                _currentLogFile.MoveTo(_previousFilePath);
+                _currentLogFile = New<IDataStore>(_currentFilePath);
             }
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
-            while (stack.Count > 0)
-            {
-                if (sb.Length > 0)
-                {
-                    sb.AppendLine();
-                }
-
-                Entry entry = stack.Pop();
-                AxCryptException ace = entry.Exception as AxCryptException;
-                string displayContext = ace?.DisplayContext ?? string.Empty;
-                sb.AppendFormat("----------- Exception at {0} -----------", entry.DateTime.ToString("u")).AppendLine();
-                sb.AppendLine(displayContext);
-                sb.AppendLine(entry.Exception?.ToString() ?? "(null)");
-            }
-
-            return sb.ToString();
         }
     }
 }
