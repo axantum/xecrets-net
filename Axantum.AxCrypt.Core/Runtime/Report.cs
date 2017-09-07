@@ -28,7 +28,6 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
-using Axantum.AxCrypt.Core.Runtime;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ using System.Text;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
-namespace Axantum.AxCrypt.Desktop
+namespace Axantum.AxCrypt.Core.Runtime
 {
     public class Report : IReport
     {

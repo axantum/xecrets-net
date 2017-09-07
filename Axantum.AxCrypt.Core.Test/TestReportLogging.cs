@@ -1,7 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
-using Axantum.AxCrypt.Desktop;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Fake;
 using Axantum.AxCrypt.Mono.Portable;
 using AxCrypt.Content;

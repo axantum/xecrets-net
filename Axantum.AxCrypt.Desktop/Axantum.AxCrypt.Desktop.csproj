@@ -68,7 +68,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Report.cs" />
     <Compile Include="WindowsDeviceLocking.cs" />
     <Compile Include="XmlSecretsReaderWriter.cs" />
   </ItemGroup>
