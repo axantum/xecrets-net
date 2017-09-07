@@ -51,7 +51,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.Singleton<ILogging>(() => new Logging());
             TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
-            TypeMap.Register.Singleton<IPath>(() => new PortablePathImplementation());
+            TypeMap.Register.Singleton<IPath>(() => new PortablePath());
 
             TypeMap.Register.New<ISleep>(() => new Sleep());
             TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());

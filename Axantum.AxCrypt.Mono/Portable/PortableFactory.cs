@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Algorithm;
-using Axantum.AxCrypt.Core.Algorithm;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Mono.Cryptography;
 using System;
@@ -78,7 +77,7 @@ namespace Axantum.AxCrypt.Mono.Portable
 
         public IPath Path()
         {
-            return new PortablePathImplementation();
+            return new PortablePath();
         }
 
         public Core.Runtime.IThreadWorker ThreadWorker(string name, Core.UI.IProgressContext progress, bool startSerializedOnUIThread)

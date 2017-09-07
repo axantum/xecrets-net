@@ -77,7 +77,7 @@
     <Compile Include="Cryptography\HMACSHA512Wrapper.cs" />
     <Compile Include="Portable\PortableFactory.cs" />
     <Compile Include="Cryptography\CryptoTransformWrapper.cs" />
-    <Compile Include="Portable\PortablePathImplementation.cs" />
+    <Compile Include="Portable\PortablePath.cs" />
     <Compile Include="Cryptography\RandomNumberGeneratorWrapper.cs" />
     <Compile Include="Portable\PortableSemaphoreWrapper.cs" />
     <Compile Include="Portable\SingleThread.cs" />

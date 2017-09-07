@@ -25,15 +25,14 @@
 
 #endregion Coypright and License
 
-using System;
 using System.Collections.Generic;
+using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono.Portable
 {
-    internal class PortablePathImplementation : Axantum.AxCrypt.Core.Portable.IPath
+    public class PortablePath : Axantum.AxCrypt.Core.Portable.IPath
     {
         public string GetFileName(string path)
         {

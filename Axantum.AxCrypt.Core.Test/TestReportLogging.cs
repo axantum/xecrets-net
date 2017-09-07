@@ -26,6 +26,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
+            TypeMap.Register.Singleton<IPath>(() => new PortablePath());
         }
 
         [TearDown]
