@@ -41,44 +41,37 @@ namespace Axantum.AxCrypt.Desktop
 {
     public class Report : IReport
     {
-        private INow _now;
-
         private string _currentFilePath;
-        private string _previousFilePath;
 
-        private IDataStore _currentLogFile;
-        private IDataStore _previousLogFile;
+        private string _previousFilePath;
 
         private long _maxSizeInBytes;
 
         public Report(string folderPath, long maxSizeInBytes)
         {
-            _now = New<INow>();
             _currentFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.txt");
             _previousFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.1.txt");
-            _previousLogFile = New<IDataStore>(_previousFilePath);
-            _currentLogFile = New<IDataStore>(_currentFilePath);
             _maxSizeInBytes = maxSizeInBytes;
         }
 
         public void Exception(Exception ex)
         {
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
-            using (FileLock fileLock = New<FileLocker>().Acquire(_currentLogFile))
+            using (FileLock fileLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
             {
                 StringBuilder sb = new StringBuilder();
-                if (!_currentLogFile.IsAvailable)
+                if (!fileLock.DataStore.IsAvailable)
                 {
                     sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
                 }
 
                 AxCryptException ace = ex as AxCryptException;
                 string displayContext = ace?.DisplayContext ?? string.Empty;
-                sb.AppendFormat("----------- Exception at {0} -----------", _now.Utc.ToString("u")).AppendLine();
+                sb.AppendFormat("----------- Exception at {0} -----------", New<INow>().Utc.ToString("u")).AppendLine();
                 sb.AppendLine(displayContext);
                 sb.AppendLine(ex?.ToString() ?? "(null)");
 
-                using (StreamWriter writer = new StreamWriter(_currentLogFile.OpenUpdate(), Encoding.UTF8))
+                using (StreamWriter writer = new StreamWriter(fileLock.DataStore.OpenUpdate(), Encoding.UTF8))
                 {
                     writer.Write(sb.ToString());
                 }
@@ -92,10 +85,16 @@ namespace Axantum.AxCrypt.Desktop
 
         private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize()
         {
-            if (_currentLogFile.IsAvailable && _currentLogFile.Length() > _maxSizeInBytes)
+            using (FileLock currentLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
             {
-                _currentLogFile.MoveTo(_previousFilePath);
-                _currentLogFile = New<IDataStore>(_currentFilePath);
+                if (currentLock.DataStore.IsAvailable && currentLock.DataStore.Length() <= _maxSizeInBytes)
+                {
+                    return;
+                }
+                using (FileLock previousLock = New<FileLocker>().Acquire(New<IDataStore>(_previousFilePath)))
+                {
+                    currentLock.DataStore.MoveTo(previousLock.DataStore.FullName);
+                }
             }
         }
     }

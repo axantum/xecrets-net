@@ -33,13 +33,12 @@ using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Mono.Portable;
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using System.Diagnostics;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -52,6 +51,7 @@ namespace Axantum.AxCrypt.Mono
             TypeMap.Register.Singleton<ILogging>(() => new Logging());
             TypeMap.Register.Singleton<CommandService>(() => new CommandService(new HttpRequestServer(), new HttpRequestClient()));
             TypeMap.Register.Singleton<IPlatform>(() => new MonoPlatform());
+            TypeMap.Register.Singleton<IPath>(() => new PortablePathImplementation());
 
             TypeMap.Register.New<ISleep>(() => new Sleep());
             TypeMap.Register.New<IDelayTimer>(() => new DelayTimer());
@@ -232,7 +232,7 @@ namespace Axantum.AxCrypt.Mono
 
         public virtual void RunApp(string arguments)
         {
-                Process.Start(AppPath, arguments);
+            Process.Start(AppPath, arguments);
         }
     }
 }
