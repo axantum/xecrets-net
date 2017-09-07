@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using AxCrypt.Content;
 using System;
@@ -53,8 +54,8 @@ namespace Axantum.AxCrypt.Desktop
         public Report(string folderPath, long maxSizeInBytes)
         {
             _now = New<INow>();
-            _currentFilePath = Path.Combine(folderPath, "ReportSnapshot.txt");
-            _previousFilePath = Path.Combine(folderPath, "ReportSnapshot.1.txt");
+            _currentFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.txt");
+            _previousFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.1.txt");
             _previousLogFile = New<IDataStore>(_previousFilePath);
             _currentLogFile = New<IDataStore>(_currentFilePath);
             _maxSizeInBytes = maxSizeInBytes;
