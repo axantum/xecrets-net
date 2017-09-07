@@ -39,9 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoTransformUnwrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoTransformWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortablePathImplementation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\RandomNumberGeneratorWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableSemaphoreWrapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Portable\SingleThread.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortablePath.cs" />
   </ItemGroup>
 </Project>
