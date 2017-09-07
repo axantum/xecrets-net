@@ -27,10 +27,10 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -86,7 +86,7 @@ namespace Axantum.AxCrypt.Desktop
 
         public void Open()
         {
-            Process.Start(_currentFilePath);
+            New<ILauncher>().Launch(_currentFilePath);
         }
 
         private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize()
