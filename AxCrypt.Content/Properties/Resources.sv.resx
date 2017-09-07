@@ -155,7 +155,7 @@
     <value>Du kan starta en gratis 30-dagars provperiod av Premium funktionerna i AxCrypt-programmet som du laddar ned separat.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Du har tecknat dig för att använda AxCrypt. För att slutföra processen måste du verifiera din epostadress, vilket bevisar att du äger den eposten och ger oss tillstånd att sända epost till dig.</value>
+    <value>Du har tecknat dig för att använda AxCrypt. För att slutföra processen måste du verifiera din epostadress, vilket bevisar att du äger den eposten och ger oss tillstånd att sända epost till dig.  Läs vår &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;integritetspolicy&lt;/a&gt; för mer information.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>För att verifiera manuellt, gå till &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; och ange &lt;b&gt;{1}&lt;/b&gt; samt verifieringskoden &lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -1989,6 +1989,9 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
+  </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value>Det går inte att skydda systemmappen '{0}'.</value>
   </data>
   <data name="TargetAccountExists" xml:space="preserve">
     <value>Du försöker ändra e-post för ditt konto till en adress som redan finns!</value>

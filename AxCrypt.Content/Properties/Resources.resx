@@ -172,7 +172,7 @@
     <value>You can start trying AxCrypt Premium features for 30 days in the app!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>!!You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you. Please read our  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt;  for details.</value>
+    <value>You have signed up to use AxCrypt. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to send email to you. Please read our  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt;  for details.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>To verify manually,  go to &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;  and enter &lt;b&gt;{1}&lt;/b&gt; and the verification code &lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -1750,6 +1750,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Password is not strong enough to be recommended.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PasswordUpdateErrorStrength" xml:space="preserve">
+    <value>!!Password strength is not satisfied. Please try again with a strong password or Use &lt;a href="https://www.axcrypt.net/password-generator/" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt Password Generator&lt;/a&gt;  to generate a strong password.</value>
+  </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
     <value>Buy Premium for someone else</value>
   </data>
@@ -2299,7 +2302,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>The culture was successfully updated.</value>
   </data>
   <data name="SystemFolderForbiddenText" xml:space="preserve">
-    <value>!!{0} is a system folder and cannot be secured.</value>
+    <value>The system folder '{0}' cannot be secured.</value>
   </data>
   <data name="TargetAccountExists" xml:space="preserve">
     <value>You are trying to change your account to an account that already exists!</value>
