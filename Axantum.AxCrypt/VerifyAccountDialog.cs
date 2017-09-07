@@ -75,9 +75,9 @@ namespace Axantum.AxCrypt
 
         private void _buttonOk_Click(object sender, EventArgs e)
         {
-            if (IsAllValid())
+            if (!IsAllValid())
             {
-                DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.None;
             }
         }
 
