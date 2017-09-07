@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using AxCrypt.Content;
@@ -48,8 +49,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public Report(string folderPath, long maxSizeInBytes)
         {
-            _currentFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.txt");
-            _previousFilePath = New<IPath>().Combine(folderPath, "ReportSnapshot.1.txt");
+            _currentFilePath = New<IPath>().Combine(folderPath.NormalizeFilePath(), "ReportSnapshot.txt");
+            _previousFilePath = New<IPath>().Combine(folderPath.NormalizeFilePath(), "ReportSnapshot.1.txt");
             _maxSizeInBytes = maxSizeInBytes;
         }
 
@@ -86,7 +87,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             using (FileLock currentLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
             {
-                if (currentLock.DataStore.IsAvailable && currentLock.DataStore.Length() <= _maxSizeInBytes)
+                if (!currentLock.DataStore.IsAvailable || currentLock.DataStore.Length() <= _maxSizeInBytes)
                 {
                     return;
                 }
