@@ -501,7 +501,6 @@ namespace Axantum.AxCrypt
             AddEnvironmentVariableBasedFolderPathFilter("SystemRoot");
             AddEnvironmentVariableBasedFolderPathFilter("APPDATA");
             AddEnvironmentVariableBasedFolderPathFilter("LOCALAPPDATA");
-            AddEnvironmentVariableBasedFolderPathFilter("USERPROFILE");
             AddEnvironmentVariableBasedFolderPathFilter("windir");
             AddEnvironmentVariableBasedFolderPathFilter("ProgramW6432");
         }
