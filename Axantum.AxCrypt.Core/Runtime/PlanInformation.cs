@@ -11,26 +11,26 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Runtime
 {
-    public class PremiumInfo : IEquatable<PremiumInfo>
+    public class PlanInformation : IEquatable<PlanInformation>
     {
-        public static readonly PremiumInfo Empty = new PremiumInfo(PremiumStatus.Unknown, -1);
+        public static readonly PlanInformation Empty = new PlanInformation(PlanState.Unknown, -1);
 
-        public PremiumStatus PremiumStatus { get; }
+        public PlanState PlanState { get; }
 
         public int DaysLeft { get; }
 
-        public static async Task<PremiumInfo> CreateAsync(LogOnIdentity identity)
+        public static async Task<PlanInformation> CreateAsync(LogOnIdentity identity)
         {
             if (identity == LogOnIdentity.Empty)
             {
-                return new PremiumInfo(PremiumStatus.NoPremium, 0);
+                return new PlanInformation(PlanState.NoPremium, 0);
             }
 
-            PremiumInfo pi = await GetPremiumInfo(identity);
+            PlanInformation pi = await GetPlanInformationAsync(identity);
             return pi;
         }
 
-        private static async Task<PremiumInfo> GetPremiumInfo(LogOnIdentity identity)
+        private static async Task<PlanInformation> GetPlanInformationAsync(LogOnIdentity identity)
         {
             IAccountService service = New<LogOnIdentity, IAccountService>(identity);
 
@@ -43,18 +43,18 @@ namespace Axantum.AxCrypt.Core.Runtime
 
                 case SubscriptionLevel.Business:
                 case SubscriptionLevel.Premium:
-                    return new PremiumInfo(PremiumStatus.HasPremium, await GetDaysLeft(service));
+                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service));
 
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
                 default:
-                    return new PremiumInfo(PremiumStatus.NoPremium, 0);
+                    return new PlanInformation(PlanState.NoPremium, 0);
             }
         }
 
-        private PremiumInfo(PremiumStatus premiumStatus, int daysLeft)
+        private PlanInformation(PlanState planStatus, int daysLeft)
         {
-            PremiumStatus = premiumStatus;
+            PlanState = planStatus;
             DaysLeft = daysLeft;
         }
 
@@ -77,50 +77,50 @@ namespace Axantum.AxCrypt.Core.Runtime
             return totalDays > int.MaxValue ? int.MaxValue : (int)totalDays;
         }
 
-        private static async Task<PremiumInfo> NoPremiumOrCanTryAsync(IAccountService service)
+        private static async Task<PlanInformation> NoPremiumOrCanTryAsync(IAccountService service)
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return new PremiumInfo(PremiumStatus.OfflineNoPremium, 0);
+                return new PlanInformation(PlanState.OfflineNoPremium, 0);
             }
 
             if (!(await service.AccountAsync().Free()).Offers.HasFlag(Offers.AxCryptTrial))
             {
-                return new PremiumInfo(PremiumStatus.CanTryPremium, 0);
+                return new PlanInformation(PlanState.CanTryPremium, 0);
             }
 
-            return new PremiumInfo(PremiumStatus.NoPremium, 0);
+            return new PlanInformation(PlanState.NoPremium, 0);
         }
 
-        public bool Equals(PremiumInfo other)
+        public bool Equals(PlanInformation other)
         {
             if ((object)other == null)
             {
                 return false;
             }
 
-            return PremiumStatus == other.PremiumStatus && DaysLeft == other.DaysLeft;
+            return PlanState == other.PlanState && DaysLeft == other.DaysLeft;
         }
 
         public override bool Equals(object obj)
         {
-            if (obj == null || typeof(PremiumInfo) != obj.GetType())
+            if (obj == null || typeof(PlanInformation) != obj.GetType())
             {
                 return false;
             }
-            PremiumInfo other = (PremiumInfo)obj;
+            PlanInformation other = (PlanInformation)obj;
 
             return Equals(other);
         }
 
         public override int GetHashCode()
         {
-            return PremiumStatus.GetHashCode() ^ DaysLeft.GetHashCode();
+            return PlanState.GetHashCode() ^ DaysLeft.GetHashCode();
         }
 
-        public static bool operator ==(PremiumInfo left, PremiumInfo right)
+        public static bool operator ==(PlanInformation left, PlanInformation right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Runtime
             return left.Equals(right);
         }
 
-        public static bool operator !=(PremiumInfo left, PremiumInfo right)
+        public static bool operator !=(PlanInformation left, PlanInformation right)
         {
             return !(left == right);
         }

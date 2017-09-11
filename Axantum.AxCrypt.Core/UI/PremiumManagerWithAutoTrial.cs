@@ -1,43 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
-
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using AxCrypt.Content;
-using Axantum.AxCrypt.Common;
+using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public class PremiumManagerWithAutoTrial : PremiumManager
     {
-        protected override async Task<PremiumStatus> TryPremium(LogOnIdentity identity, PremiumInfo premiumInfo)
+        protected override async Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation)
         {
-            if (premiumInfo.PremiumStatus == PremiumStatus.HasPremium)
+            if (planInformation.PlanState != PlanState.CanTryPremium)
             {
-                return PremiumStatus.HasPremium;
-            }
-
-            if (premiumInfo.PremiumStatus != PremiumStatus.CanTryPremium)
-            {
-                return premiumInfo.PremiumStatus;
+                return planInformation.PlanState;
             }
 
             string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrial, DoNotShowAgainOptions.TryPremium);
             if (result != Texts.ButtonStartTrial)
             {
-                return premiumInfo.PremiumStatus;
+                return planInformation.PlanState;
             }
 
             if (!await StartTrial(identity))
             {
-                return PremiumStatus.CanTryPremium;
+                return PlanState.CanTryPremium;
             }
 
-            return PremiumStatus.HasPremium;
+            return PlanState.HasPremium;
         }
     }
 }

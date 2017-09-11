@@ -22,51 +22,51 @@ namespace Axantum.AxCrypt
     {
         private ToolTip _toolTip = new ToolTip();
 
-        private PremiumInfo _premiumInfo = PremiumInfo.Empty;
+        private PlanInformation _planInformation = PlanInformation.Empty;
 
         public async Task ConfigureAsync(LogOnIdentity identity)
         {
-            PremiumInfo premiumInfo = await PremiumInfo.CreateAsync(identity);
-            if (premiumInfo == _premiumInfo)
+            PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
+            if (planInformation == _planInformation)
             {
                 return;
             }
-            _premiumInfo = premiumInfo;
+            _planInformation = planInformation;
 
-            switch (premiumInfo.PremiumStatus)
+            switch (planInformation.PlanState)
             {
-                case PremiumStatus.Unknown:
+                case PlanState.Unknown:
                     Visible = false;
                     break;
 
-                case PremiumStatus.HasPremium:
-                    if (premiumInfo.DaysLeft > 15)
+                case PlanState.HasPremium:
+                    if (planInformation.DaysLeft > 15)
                     {
                         Visible = false;
                         break;
                     }
 
-                    Text = (premiumInfo.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(premiumInfo.DaysLeft);
+                    Text = (planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(planInformation.DaysLeft);
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
                     break;
 
-                case PremiumStatus.NoPremium:
+                case PlanState.NoPremium:
                     Text = Texts.UpgradePromptText;
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
                     Visible = true;
                     break;
 
-                case PremiumStatus.CanTryPremium:
+                case PlanState.CanTryPremium:
                     Text = Texts.TryPremiumLabel;
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
                     Visible = true;
                     break;
 
-                case PremiumStatus.OfflineNoPremium:
+                case PlanState.OfflineNoPremium:
                     Text = Texts.UpgradePromptText;
                     _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
                     LinkColor = Styling.WarningColor;
@@ -95,17 +95,17 @@ namespace Axantum.AxCrypt
 
             await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            switch (_premiumInfo.PremiumStatus)
+            switch (_planInformation.PlanState)
             {
-                case PremiumStatus.CanTryPremium:
+                case PlanState.CanTryPremium:
                     await accountService.StartPremiumTrialAsync();
                     await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
                     await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                     await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
                     break;
 
-                case PremiumStatus.NoPremium:
-                case PremiumStatus.OfflineNoPremium:
+                case PlanState.NoPremium:
+                case PlanState.OfflineNoPremium:
                     await DisplayPremiumPurchasePage(accountService);
                     break;
 

@@ -107,7 +107,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            await New<PremiumManager>().PremiumStatusWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
+            await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
 
             if (Resolve.UserSettings.IsFirstSignIn)
             {

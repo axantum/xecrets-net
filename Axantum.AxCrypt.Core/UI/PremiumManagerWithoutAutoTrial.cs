@@ -1,23 +1,22 @@
-﻿using System;
+﻿using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI
 {
     public class PremiumManagerWithoutAutoTrial : PremiumManager
     {
-        protected override Task<PremiumStatus> TryPremium(LogOnIdentity identity, PremiumInfo premiumInfo)
+        protected override Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation)
         {
-            if (premiumInfo == null)
+            if (planInformation == null)
             {
-                throw new ArgumentNullException(nameof(premiumInfo));
+                throw new ArgumentNullException(nameof(planInformation));
             }
 
-            return Task.FromResult(premiumInfo.PremiumStatus);
+            return Task.FromResult(planInformation.PlanState);
         }
     }
 }
