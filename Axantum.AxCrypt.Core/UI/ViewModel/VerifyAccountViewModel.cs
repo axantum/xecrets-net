@@ -33,7 +33,6 @@ using Axantum.AxCrypt.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -108,6 +107,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case nameof(VerificationCode):
                     return VerificationCode.Length == 6 && VerificationCode.ToCharArray().All(c => Char.IsDigit(c));
 
+                case nameof(ErrorMessage):
+                    return ErrorMessage.Length == 0;
+
                 default:
                     return true;
             }
@@ -131,7 +133,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             catch (Exception ex)
             {
                 New<IReport>().Exception(ex);
-                ErrorMessage = ex.Innermost().Message;
+                throw;
             }
         }
 
