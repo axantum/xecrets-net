@@ -40,6 +40,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case PlanState.HasPremium:
+                case PlanState.HasBusiness:
                     if (planInformation.DaysLeft > 15)
                     {
                         Visible = false;

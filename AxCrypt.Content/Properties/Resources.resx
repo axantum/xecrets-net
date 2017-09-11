@@ -323,6 +323,10 @@ You have been warned, now enjoy!</value>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} doesn't have an account with us, send an invite to register an account and continue.</value>
   </data>
+  <data name="BusinessAccountLabel" xml:space="preserve">
+    <value>Business</value>
+    <comment>The non-translated name for the Business plan</comment>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verify</value>
   </data>

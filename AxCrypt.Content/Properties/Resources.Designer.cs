@@ -589,6 +589,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business.
+        /// </summary>
+        public static string BusinessAccountLabel {
+            get {
+                return ResourceManager.GetString("BusinessAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         public static string ButtonActivateText {
