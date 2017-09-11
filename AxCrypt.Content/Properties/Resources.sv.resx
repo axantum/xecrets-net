@@ -548,7 +548,7 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>&lt; 1 Dag</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
-    <value>Ditt Premium-abonnemang går snart ut. Klicka för att förnya.</value>
+    <value>Ditt abonnemang går snart ut. Klicka för att förnya.</value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Avskydda och ta bort från listan</value>
@@ -657,7 +657,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Du kan bara läsa lösenordsposter, inte skriva. Det är bara Premium-användare som kan ändra eller radera!</value>
+    <value>Du kan bara läsa lösenordsposter, inte skriva. Endast betalande abonnenter kan ändra eller radera!</value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>Lösenordsposten hittades inte.</value>
@@ -906,7 +906,7 @@ Vissa funktioner kan då ta väldigt lång tid. Var försiktig med att välja ma
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet KRÄVS INTE för att använda AxCrypt.
 
-Internetåtkomst rekommenderas, och krävs för att starta Premium. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
+Internetåtkomst rekommenderas, och krävs för att starta betalda abonnemang. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
@@ -1380,7 +1380,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Vi kan inte kontrollera din prenumeration eftersom du inte är ansluten till Internet. Anslut så kan vi uppdatera din status.</value>
+    <value>Vi kan inte kontrollera dit abonnemang eftersom du inte är ansluten till Internet. Anslut så kan vi uppdatera din status.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Du har en gammal version. Klicka för att kontrollera om det finns en nyare.</value>
@@ -1545,13 +1545,13 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Ditt AxCrypt Premium-abonnemang löper snart ut!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
-    <value>Funktionen kräver Premium!</value>
+    <value>Funktionen kräver ett betalt abonnemang!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Nyckeldelning kräver Premium. Klicka för att uppgradera!</value>
+    <value>Nyckeldelning kräver ett betalt abonnemang. Klicka för att uppgradera!</value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>Det verkar inte som du har Premium. Uppgradera nu så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
+    <value>Tyvärr har du inte ett giltigt abonnemang. Uppgradera nu så att du kan använda funktionerna som erbjuds av AxCrypt utanför appen, som också krävs för appen.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
@@ -1814,7 +1814,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Endast Premiumanvändare kan spara lösenordsposter.</value>
+    <value>Endast betalande abonnenter kan spara lösenordsposter.</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gå till lösenordshantering.</value>
@@ -1829,7 +1829,7 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>[Ingen]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Din Premiumprenumeration har slutat gälla och därför kan du bara läsa lösenordsposter, inte uppdatera. Om du inte har använt din 30-dagars gratis provperiod för Premium, kan du starta det från  &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt-applikationen&lt;/a&gt;.</value>
+    <value>Ditt abonnemang har slutat gälla och därför kan du bara läsa lösenordsposter, inte uppdatera. Om du inte har använt din 30-dagars gratis provperiod för Premium, kan du starta det från  &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt-applikationen&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Din Premiumprenumeration går ut {0}. Därefter kan du bara läsa lösenordsposter om du inte förnyar prenumerationen.</value>
@@ -1950,10 +1950,10 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
-    <value>Visste du? Nu finns dett ett alternativ för att 'Inkludera Undermappar' som du kan slå på för att ta med alla undermappar i en mapp. Kräver Premium.</value>
+    <value>Visste du? Nu finns dett ett alternativ för att 'Inkludera Undermappar' som du kan slå på för att ta med alla undermappar i en mapp. Kräver ett betalt abonnemang.</value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Mobilappar för Android och iOS ingår nu i AxCrypt Premium. Vill du veta mer?</value>
+    <value>Mobilappar för Android och iOS ingår nu i AxCrypt betalda abonnemang. Vill du veta mer?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StepsWizardLabel" xml:space="preserve">
@@ -1985,7 +1985,7 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <value>Hjälp för Premium-användare</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>Välkommen till AxCrypt Hjälp. Vi ger våra Premium-användare prioriterad och personlig direktsupport via e-post.</value>
+    <value>Välkommen till AxCrypt Hjälp. Vi ger våra betalande användare prioriterad och personlig direktsupport via e-post.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Tyvärr så är direkthjälp bara tillgänglig för betalande Premium-användare, använd våra &lt;a href="{0}"&gt;användarforum&lt;/a&gt; istället.</value>
@@ -2048,7 +2048,7 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Premium krävs för lösenordshantering. Klicka för att uppgradera nu!</value>
+    <value>Ett betalt abonnemang krävs för lösenordshantering. Klicka för att uppgradera nu!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transaktionshistorik</value>

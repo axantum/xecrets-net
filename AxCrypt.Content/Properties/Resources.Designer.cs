@@ -1326,7 +1326,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Premium subscription is about to expire. Click to renew..
+        ///   Looks up a localized string similar to Your subscription plan is about to expire. Click to renew..
         /// </summary>
         public static string DaysLeftWarningToolTip {
             get {
@@ -1751,7 +1751,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are limited to read-only access! Only Premium users are allowed to edit or create new password entries..
+        ///   Looks up a localized string similar to You are limited to read-only access! Only users with a valid subscription plan are allowed to edit or create new password entries..
         /// </summary>
         public static string EditSecretErrorIsReadOnly {
             get {
@@ -2513,7 +2513,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Internet is NOT REQUIRED to use AxCrypt.
         ///
-        ///Internet access is recommended, and required to enable Premium. Some features work better and critical updates may not reach you otherwise.
+        ///Internet access is recommended, and required to enable paid subscription plans. Some features work better and critical updates may not reach you otherwise.
         ///
         ///Your password is not stored on our servers, and the connection is always encrypted..
         /// </summary>
@@ -3982,7 +3982,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re offline so we can&apos;t check your Premium subscription. Please go online so we can update your status!.
+        ///   Looks up a localized string similar to You&apos;re offline so we can&apos;t check your subscription plan. Please go online so we can update your status!.
         /// </summary>
         public static string OfflineNoPremiumWarning {
             get {
@@ -4336,15 +4336,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Password strength is not satisfied. Please try again with a strong password or Use &lt;a href=&quot;https://www.axcrypt.net/password-generator/&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt Password Generator&lt;/a&gt;  to generate a strong password..
-        /// </summary>
-        public static string PasswordUpdateErrorStrength {
-            get {
-                return ResourceManager.GetString("PasswordUpdateErrorStrength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Buy Premium for someone else.
         /// </summary>
         public static string PaymentOnBehalfOf {
@@ -4444,7 +4435,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This feature requires a purchase of Premium!.
+        ///   Looks up a localized string similar to This feature requires a paid subscription plan!.
         /// </summary>
         public static string PremiumFeatureToolTipText {
             get {
@@ -4453,7 +4444,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Key sharing requires Premium. Click to upgrade now!.
+        ///   Looks up a localized string similar to Key sharing requires a paid subscription plan. Click to upgrade now!.
         /// </summary>
         public static string PremiumNeededForKeyShare {
             get {
@@ -4462,7 +4453,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, but you don&apos;t have a Premium subscription. Upgrade your account now to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function..
+        ///   Looks up a localized string similar to Sorry, but you don&apos;t have valid subscription plan. Upgrade your account now to use the paid features provided by AxCrypt outside of the app, which are also required for the app to function..
         /// </summary>
         public static string PremiumNeededForMobileApp {
             get {
@@ -4480,7 +4471,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium Support Request.
+        ///   Looks up a localized string similar to Priority Support Request.
         /// </summary>
         public static string PremiumSupportRequestMailSubect {
             get {
@@ -5210,7 +5201,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Only premium users are allowed to save password entries..
+        ///   Looks up a localized string similar to Only users with a valid subscription plan are allowed to save password entries..
         /// </summary>
         public static string SaveSecretErrorIsReadOnly {
             get {
@@ -5255,7 +5246,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;https://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
+        ///   Looks up a localized string similar to You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href=&quot;https://www.axcrypt.net/Download/&quot;&gt;AxCrypt app&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
             get {
@@ -5562,7 +5553,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Did you know? You can enable the &apos;Include Subfolders&apos; option to work with folders in folders. Premium is required for this..
+        ///   Looks up a localized string similar to Did you know? You can enable the &apos;Include Subfolders&apos; option to work with folders in folders. A paid subscription plan is required for this..
         /// </summary>
         public static string StartupTipIncludeSubfoldersFeature {
             get {
@@ -5571,7 +5562,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?.
+        ///   Looks up a localized string similar to Mobile apps for Android and iOS are now included in AxCrypt paid subscription plans. Would you like to know more?.
         /// </summary>
         public static string StartupTipTryMobileApp {
             get {
@@ -5733,7 +5724,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to AxCrypt Support. We give our Premium subscribers prioritized and personal direct support via e-mail..
+        ///   Looks up a localized string similar to Welcome to AxCrypt Support. We give our paid subscribers prioritized and personal direct support via e-mail..
         /// </summary>
         public static string SupportPremiumIntro {
             get {
@@ -5949,7 +5940,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium is required for password management. Click to upgrade now!.
+        ///   Looks up a localized string similar to A paid subscription plan is required for password management. Click to upgrade now!.
         /// </summary>
         public static string ToolTipPremiumNeededForSecrets {
             get {

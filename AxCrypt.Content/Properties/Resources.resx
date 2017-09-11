@@ -586,7 +586,7 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>&lt; 1 Day</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
-    <value>Your Premium subscription is about to expire. Click to renew.</value>
+    <value>Your subscription plan is about to expire. Click to renew.</value>
   </data>
   <data name="DebugCheckVersionNowToolStripMenuItemText" xml:space="preserve">
     <value>Check Version Now</value>
@@ -735,7 +735,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>You are limited to read-only access! Only Premium users are allowed to edit or create new password entries.</value>
+    <value>You are limited to read-only access! Only users with a valid subscription plan are allowed to edit or create new password entries.</value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>The requested password entry could not be found.</value>
@@ -1019,7 +1019,7 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NOT REQUIRED to use AxCrypt.
 
-Internet access is recommended, and required to enable Premium. Some features work better and critical updates may not reach you otherwise.
+Internet access is recommended, and required to enable paid subscription plans. Some features work better and critical updates may not reach you otherwise.
 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
   </data>
@@ -1608,7 +1608,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>You're offline so we can't check your Premium subscription. Please go online so we can update your status!</value>
+    <value>You're offline so we can't check your subscription plan. Please go online so we can update your status!</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Your version is old. Please click to check for a newer version.</value>
@@ -1750,9 +1750,6 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Password is not strong enough to be recommended.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
-  <data name="PasswordUpdateErrorStrength" xml:space="preserve">
-    <value>!!Password strength is not satisfied. Please try again with a strong password or Use &lt;a href="https://www.axcrypt.net/password-generator/" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt Password Generator&lt;/a&gt;  to generate a strong password.</value>
-  </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
     <value>Buy Premium for someone else</value>
   </data>
@@ -1791,13 +1788,13 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Your AxCrypt Premium subscription expires soon!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
-    <value>This feature requires a purchase of Premium!</value>
+    <value>This feature requires a paid subscription plan!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Key sharing requires Premium. Click to upgrade now!</value>
+    <value>Key sharing requires a paid subscription plan. Click to upgrade now!</value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>Sorry, but you don't have a Premium subscription. Upgrade your account now to use the Premium features provided by AxCrypt outside of the app, which are also required for the app to function.</value>
+    <value>Sorry, but you don't have valid subscription plan. Upgrade your account now to use the paid features provided by AxCrypt outside of the app, which are also required for the app to function.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
@@ -1805,7 +1802,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
-    <value>Premium Support Request</value>
+    <value>Priority Support Request</value>
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
@@ -2082,7 +2079,7 @@ Subject: AxCrypt Report Snapshot
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Only premium users are allowed to save password entries.</value>
+    <value>Only users with a valid subscription plan are allowed to save password entries.</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
@@ -2097,7 +2094,7 @@ Subject: AxCrypt Report Snapshot
     <value>[None]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>You do not have a Premium subscription and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
+    <value>You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Your premium subscription expires soon, on {0}. Thereafter you'll have to extend your premium subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>
@@ -2222,10 +2219,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
-    <value>Did you know? You can enable the 'Include Subfolders' option to work with folders in folders. Premium is required for this.</value>
+    <value>Did you know? You can enable the 'Include Subfolders' option to work with folders in folders. A paid subscription plan is required for this.</value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Mobile apps for Android and iOS are now included in AxCrypt Premium. Would you like to know more?</value>
+    <value>Mobile apps for Android and iOS are now included in AxCrypt paid subscription plans. Would you like to know more?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StepsWizardLabel" xml:space="preserve">
@@ -2284,7 +2281,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Premium Support</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>Welcome to AxCrypt Support. We give our Premium subscribers prioritized and personal direct support via e-mail.</value>
+    <value>Welcome to AxCrypt Support. We give our paid subscribers prioritized and personal direct support via e-mail.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
@@ -2362,7 +2359,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>{0} {1} - {2}</value>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Premium is required for password management. Click to upgrade now!</value>
+    <value>A paid subscription plan is required for password management. Click to upgrade now!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transaction history</value>
