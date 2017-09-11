@@ -353,6 +353,8 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
+        private static readonly EmailAddress _licenseAuthorityEmail = EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail);
+
         public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email, LogOnIdentity identity)
         {
             UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
@@ -371,7 +373,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return key;
             }
 
-            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing) && email != _licenseAuthorityEmail)
             {
                 return key;
             }
