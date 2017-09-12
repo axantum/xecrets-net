@@ -4696,7 +4696,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Months.
+        ///   Looks up a localized string similar to x 30 days.
         /// </summary>
         public static string PromptMonths {
             get {

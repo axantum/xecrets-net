@@ -1890,7 +1890,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Are you sure want to permanently delete this file? This action cannot be undone.</value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
-    <value>Months</value>
+    <value>x 30 days</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>My AxCrypt ID</value>
