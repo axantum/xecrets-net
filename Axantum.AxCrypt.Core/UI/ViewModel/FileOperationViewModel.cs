@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
@@ -37,7 +38,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using static Axantum.AxCrypt.Common.FrameworkTypeExtensions;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -228,6 +228,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Task<FileOperationContext> DecryptFileWork(IDataStore file, IProgressContext progress)
         {
+            ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
+            if (activeFile != null && activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.FileLocked));
+            }
+
             FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;

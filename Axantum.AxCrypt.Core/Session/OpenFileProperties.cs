@@ -27,6 +27,10 @@ namespace Axantum.AxCrypt.Core.Session
 
             try
             {
+                if (!dataStore.IsAvailable)
+                {
+                    return new OpenFileProperties();
+                }
                 using (Stream stream = dataStore.OpenRead())
                 {
                     return Create(stream);

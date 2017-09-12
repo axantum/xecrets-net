@@ -122,7 +122,12 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     try
                     {
-                        return await CheckActiveFile(activeFile, progress);
+                        activeFile = await CheckActiveFile(activeFile, progress);
+                        if (activeFile.Status == ActiveFileStatus.NotDecrypted && !activeFile.EncryptedFileInfo.IsAvailable)
+                        {
+                            activeFile = null;
+                        }
+                        return activeFile;
                     }
                     finally
                     {
