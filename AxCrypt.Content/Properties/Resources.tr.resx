@@ -424,6 +424,9 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifrenizi kullanarak oturum aç
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Daha yeni sürümleri kontrol etmek için tıklayın.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>İndirmek için tıklayınız.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Şifrelenmiş klasörlerdeki açık olan veya yeni dosyaları şifrelemek için tıklayın, ama önce kullanılmadıklarından emin olun.</value>
   </data>
@@ -1159,8 +1162,8 @@ Bu program anlayşmaya göre lisanslanmıştır.
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Yeni şifreniz kaydedilmiştir.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>{0} sürümü mevcut! İndirmek için tıklayınız.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>{0} sürümü mevcut!</value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Oturumunuz kapalı. Oturum açmak için tıklayın.</value>

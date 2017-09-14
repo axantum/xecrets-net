@@ -1364,7 +1364,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
-                    _softwareStatusButton.ToolTipText = Texts.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.DownloadVersion.Version);
+                    _softwareStatusButton.ToolTipText = Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version) + ' ' + Texts.ClickToDownloadText;
                     _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
 

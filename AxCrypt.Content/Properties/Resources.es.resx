@@ -468,6 +468,9 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Haga clic para comprobar si hay una nueva versión.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Haga clic para descargar.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Haga clic para criptografar todos los archivos abiertos o archivos nuevos en carpetas protegidas, pero asegúrese de que no están en uso.</value>
   </data>
@@ -1258,8 +1261,8 @@ Este programa se licencia según el acuerdo.
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>La contraseña nueva se ha guardado.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>¡La versión {0} está disponible! Haga clic para descargar.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>¡La versión {0} está disponible!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Próximo</value>

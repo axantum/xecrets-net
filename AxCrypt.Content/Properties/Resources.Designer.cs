@@ -1133,6 +1133,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to download..
+        /// </summary>
+        public static string ClickToDownloadText {
+            get {
+                return ResourceManager.GetString("ClickToDownloadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to encrypt any opened files  or new files in secured folders, but ensure they are not in use first..
         /// </summary>
         public static string CloseAndRemoveOpenFilesToolStripButtonToolTipText {
@@ -3859,11 +3868,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version {0} is available! Click to download..
+        ///   Looks up a localized string similar to Version {0} is available!.
         /// </summary>
-        public static string NewVersionIsAvailableTooltip {
+        public static string NewVersionIsAvailableText {
             get {
-                return ResourceManager.GetString("NewVersionIsAvailableTooltip", resourceCulture);
+                return ResourceManager.GetString("NewVersionIsAvailableText", resourceCulture);
             }
         }
         

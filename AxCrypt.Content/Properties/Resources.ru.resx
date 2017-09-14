@@ -502,6 +502,9 @@
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Нажмите для проверки на наличие новой версии.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Нажмите для скачивания данной версии.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Нажмите для кодирования всех открытых файлов или новых файлов в защищённых папках. Однако вначале убедитесь, что они не в использовании. </value>
   </data>
@@ -1353,8 +1356,8 @@
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Ваш ввод нового пароля был сохранён.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Доступна версия {0}! Нажмите для скачивания данной версии.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Доступна версия {0}!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Следующий</value>

@@ -452,6 +452,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>새 버전을 보시려면 클릭하십시오.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>다운로드 실행하시려면 클릭해주십시오.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>열린 파일 또는 새 파일들을 암호화하시려면 여기를 누르시기 바랍니다. 그러나 본파일이 이미 사용중이 아닌지를 확인 해주시기 바랍니다.</value>
   </data>
@@ -1263,8 +1266,8 @@ AxCrypt 팀</value>
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>새 비밀번호가 성공적으로 저장되었습니다.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>{0} 버전은 현재 이용 가늘합니다! 다운로드 실행하시려면 클릭해주십시오.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>{0} 버전은 현재 이용 가늘합니다!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>다음</value>

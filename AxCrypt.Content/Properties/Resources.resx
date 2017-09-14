@@ -517,6 +517,9 @@ You must complete these steps to complete the process.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Click to download.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Click to encrypt any opened files  or new files in secured folders, but ensure they are not in use first.</value>
   </data>
@@ -1554,8 +1557,8 @@ Without Premium you can only view and permanently decrypt encrypted files.</valu
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Your new password entry has been saved.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} is available! Click to download.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Version {0} is available!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
