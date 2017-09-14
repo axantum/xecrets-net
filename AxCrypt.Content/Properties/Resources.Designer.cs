@@ -3859,6 +3859,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Version {0} is available!.
+        /// </summary>
+        public static string NewVersionIsAvailableText {
+            get {
+                return ResourceManager.GetString("NewVersionIsAvailableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0} is available! Click to download..
         /// </summary>
         public static string NewVersionIsAvailableTooltip {

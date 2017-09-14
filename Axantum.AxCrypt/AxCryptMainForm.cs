@@ -1384,7 +1384,7 @@ namespace Axantum.AxCrypt
 
             if (status == VersionUpdateStatus.NewerVersionIsAvailable)
             {
-                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.DownloadVersion.Version));
+                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version));
                 if (result == PopupButtons.Ok)
                 {
                     Process.Start(Resolve.UserSettings.UpdateUrl.ToString());

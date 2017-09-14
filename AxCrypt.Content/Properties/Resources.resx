@@ -1554,6 +1554,9 @@ Without Premium you can only view and permanently decrypt encrypted files.</valu
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Your new password entry has been saved.</value>
   </data>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>!!Version {0} is available!</value>
+  </data>
   <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
     <value>Version {0} is available! Click to download.</value>
   </data>
