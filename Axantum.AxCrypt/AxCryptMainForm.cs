@@ -1375,13 +1375,22 @@ namespace Axantum.AxCrypt
             }
 
             string msg = GetCriticalUpdateWarning(_mainViewModel.DownloadVersion.Level);
-            if (msg.Length == 0)
+            if (msg.Length != 0)
             {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
+                Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
                 return;
             }
 
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
-            Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
+            if (status == VersionUpdateStatus.NewerVersionIsAvailable)
+            {
+                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableTooltip.InvariantFormat(_mainViewModel.DownloadVersion.Version));
+                if (result == PopupButtons.Ok)
+                {
+                    Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
+                }
+                return;
+            }
         }
 
         private static string GetCriticalUpdateWarning(UpdateLevels level)
