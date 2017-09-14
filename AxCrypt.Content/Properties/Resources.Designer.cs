@@ -3877,6 +3877,14 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        /// </summary>
+        public static string NewVersionIsAvailableText {
+            get {
+                return ResourceManager.GetString("NewVersionIsAvailableText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string Next {
