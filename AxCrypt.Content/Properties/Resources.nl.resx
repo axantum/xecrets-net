@@ -472,6 +472,9 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klik om te zoeken naar een nieuwe versie</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Klik om te downloaden.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Klik om open bestanden of nieuwe bestanden in beveiligde mappen te encrypteren, maar wees eerst zeker dat deze niet in gebruik zijn.</value>
   </data>
@@ -1318,8 +1321,8 @@ Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypter
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Uw nieuwe wachtwoord invoer is opgeslagen.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Versie {0} is beschikbaar! Klik om te downloaden.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Versie {0} is beschikbaar!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Volgende</value>

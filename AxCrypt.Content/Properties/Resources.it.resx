@@ -489,6 +489,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Clicca qui per verificare se una nuova versione è disponibile.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Clicca per scaricarla.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Clicca qui per criptare i file aperti o nuovi file contenuti in cartelle protette, ma prima assicurati che non siano in uso.</value>
   </data>
@@ -1336,8 +1339,8 @@ Senza Premium puoi solo visualizzare e decriptare in modo permanente i file crip
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>La tua nuova password è stata salvata.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>La versione {0} è disponibile! Clicca per scaricarla.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>La versione {0} è disponibile!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Successivo</value>
@@ -2004,6 +2007,12 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Spiacente, il supporto diretto è disponibile solo per gli abbonati a pagamento, per favore visita la nostra &lt;a href="{0}"&gt;comunità di assistenza&lt;/a&gt;</value>
   </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>Stai cercando di cambiare il tuo account in uno già esistente!</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>Quando cerchi di cambiare l'indirizzo email di un account, il nuovo indirizzo email non deve avere un account già esistente associato! Come prima cosa devi eliminare quell'account.</value>
+  </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Impossibile aprire il file corrente</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
@@ -2197,6 +2206,12 @@ Per ulteriori informazioni, clicca OK per aprire il nostro sito nel browser.</va
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Primi passi con AxCrypt</value>
+  </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>Non dimenticherò la mia password!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>La tua password verrà utilizzata per proteggere i tuoi file con il criptaggio forte di AxCrypt. Se ti dimentichi la password, non potrai aprire i file. Un cambio password ti permetterà di connetterti al tuo account ma non di aprire i file criptati con la vecchia password.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Seleziona i file da eliminare in modo sicuro.</value>

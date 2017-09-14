@@ -473,6 +473,9 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Clique para ver se há uma nova versão disponível.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Clique para fazer download.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Clique para critptografar quaisquer arquivos abertos ou novos arquivos, mas primeiro certifique-se de que não estão sendo usados</value>
   </data>
@@ -1267,8 +1270,8 @@ Este programa é licenciado de acordo com a licença.
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Sua nova senha foi salva.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Versão {0} está disponível! Clique para fazer download.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Versão {0} está disponível!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Próximo</value>

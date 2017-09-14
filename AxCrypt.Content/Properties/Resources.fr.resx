@@ -469,6 +469,9 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Cliquez pour vérifier si une mise à jour est disponible.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Cliquez ici pour la télécharger.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Cliquez ici pour chiffrer des fichiers ouverts ou des nouveaux fichiers dans des dossiers sécurisés, assurez-vous auparavant qu'ils ne soient pas en cours d'utilisation.</value>
   </data>
@@ -1262,8 +1265,8 @@ Ce logiciel est livré d'après la licence.
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Votre nouvelle entrée de mot de passe a été enregistrée.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} disponible! Cliquez ici pour la télécharger.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Version {0} disponible!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Suivant</value>

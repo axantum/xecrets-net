@@ -127,9 +127,6 @@
     <value>Das Konto muss zuerst von dem Benutzer überprüft werden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
-    <value>AxCrypt Premium (unbestimmt)</value>
-  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Test </value>
   </data>
@@ -484,6 +481,9 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen. </value>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klicken Sie um nach einer neueren Version zu suchen. </value>
+  </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Klicken Sie zum downloaden. </value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicken Sie um geöffnete oder neue Dateien in gesicherten Ordner zu verschlüsseln, aber gehen Sie vorher sicher, dass diese nicht genutzt werden.</value>
@@ -1325,8 +1325,8 @@ Ohne Premium können Sie nur sehen und dauerhaft verschlüsselte Datei entschlü
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Ihr neues Passwort wurde gesichert. </value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} ist verfügbar! Klicken Sie zum downloaden. </value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Version {0} ist verfügbar!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Nächste</value>

@@ -481,6 +481,9 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
+  <data name="ClickToDownloadText" xml:space="preserve">
+    <value>Klicka för att komma till nedladdningssidan.</value>
+  </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka här för att säkra eventuella öppna filer eller nya filer i skyddade mappar, men säkerställ först att de inte används.</value>
   </data>
@@ -1322,8 +1325,8 @@ Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>
   <data name="NewSecretSuccess" xml:space="preserve">
     <value>Lösenordsposten har sparats.</value>
   </data>
-  <data name="NewVersionIsAvailableTooltip" xml:space="preserve">
-    <value>Version {0} finns tillgänglig! Klicka för att komma till nedladdningssidan.</value>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value>Version {0} finns tillgänglig!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Nästa</value>
@@ -1639,7 +1642,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Är du säker att du vill radera filen? Detta går inte att ångra.</value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
-    <value>Månader</value>
+    <value>x 30 dagar</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>Mitt AxCrypt ID</value>
