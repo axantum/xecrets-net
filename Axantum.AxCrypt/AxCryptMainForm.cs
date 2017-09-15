@@ -1401,7 +1401,7 @@ namespace Axantum.AxCrypt
 
             if (_mainViewModel.UpdateCheckInitiatedBy == UpdateCheckTypes.User)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, "You have the latest version of AxCrypt.");
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, Texts.LatestVersionAlreadyPresentText);
                 _mainViewModel.UpdateCheckInitiatedBy = UpdateCheckTypes.None;
                 return;
             }

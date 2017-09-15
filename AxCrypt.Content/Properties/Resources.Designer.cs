@@ -2948,6 +2948,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!You have the latest version of AxCrypt..
+        /// </summary>
+        public static string LatestVersionAlreadyPresentText {
+            get {
+                return ResourceManager.GetString("LatestVersionAlreadyPresentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open via:.
         /// </summary>
         public static string LauncherPromptHeader {

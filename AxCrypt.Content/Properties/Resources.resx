@@ -1185,6 +1185,9 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value>!!You have the latest version of AxCrypt.</value>
+  </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Open via:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
