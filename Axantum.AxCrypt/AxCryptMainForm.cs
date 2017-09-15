@@ -788,7 +788,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
 
-            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
+            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheckInitiatedBy = UpdateCheckTypes.User; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
@@ -1389,6 +1389,13 @@ namespace Axantum.AxCrypt
                 {
                     Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
                 }
+                return;
+            }
+
+            if (_mainViewModel.UpdateCheckInitiatedBy == UpdateCheckTypes.User)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, "You have the latest version of AxCrypt.");
+                _mainViewModel.UpdateCheckInitiatedBy = UpdateCheckTypes.None;
                 return;
             }
         }

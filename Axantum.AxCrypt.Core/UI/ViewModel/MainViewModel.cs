@@ -97,6 +97,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LicenseCapabilities License { get { return GetProperty<LicenseCapabilities>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
+        public UpdateCheckTypes UpdateCheckInitiatedBy { get { return GetProperty<UpdateCheckTypes>(nameof(UpdateCheckInitiatedBy)); } set { SetProperty(nameof(UpdateCheckInitiatedBy), value); } }
+
         public IAsyncAction RemoveRecentFiles { get; private set; }
 
         public IAsyncAction AddWatchedFolders { get; private set; }
@@ -164,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) UpdateCheckInitiatedBy = UpdateCheckTypes.System; AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
 
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
             BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
