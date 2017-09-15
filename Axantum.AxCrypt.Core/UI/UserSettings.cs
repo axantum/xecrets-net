@@ -151,6 +151,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(NewestKnownVersion), value); }
         }
 
+        public string MostRecentVersionInformed
+        {
+            get { return Load(nameof(MostRecentVersionInformed), string.Empty); }
+            set { Store(nameof(MostRecentVersionInformed), value); }
+        }
+
         public string ThisVersion
         {
             get { return Load(nameof(ThisVersion), string.Empty); }

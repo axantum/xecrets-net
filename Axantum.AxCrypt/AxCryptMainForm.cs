@@ -1382,13 +1382,20 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            if (New<UserSettings>().MostRecentVersionInformed == New<UserSettings>().NewestKnownVersion && _mainViewModel.UpdateCheckInitiatedBy != UpdateCheckTypes.User)
+            {
+                return;
+            }
+
             if (status == VersionUpdateStatus.NewerVersionIsAvailable)
             {
-                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version));
+                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, string.Empty, Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version));
                 if (result == PopupButtons.Ok)
                 {
                     Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
                 }
+                New<UserSettings>().MostRecentVersionInformed = New<UserSettings>().NewestKnownVersion;
+
                 return;
             }
 
