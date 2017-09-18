@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public void TestUpdateCheckExecutableWhenSignedIn()
+        public async Task TestUpdateCheckExecutableWhenSignedIn()
         {
             Version ourVersion = New<IVersion>().Current;
             var mockUpdateCheck = new Mock<AxCryptUpdateCheck>(ourVersion);
@@ -115,8 +115,8 @@ namespace Axantum.AxCrypt.Core.Test
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 mvm.LoggedOn = true;
-                Assert.That(mvm.AxCryptUpdateCheck.CanExecuteAsync(null), Is.True);
-                mvm.AxCryptUpdateCheck.ExecuteAsync(new DateTime(2001, 2, 3));
+                Assert.That(await mvm.AxCryptUpdateCheck.CanExecuteAsync(null), Is.True);
+                await mvm.AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.System, new DateTime(2001, 2, 3)));
             }
 
             mockUpdateCheck.Verify(x => x.CheckInBackground(It.Is<DateTime>(d => d == new DateTime(2001, 2, 3)), It.IsAny<string>(), It.IsAny<Uri>(), It.IsAny<string>()));
