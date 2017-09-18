@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, DateTime.MinValue)); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, _userSettings.LastUpdateCheckUtc)); });
 
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
             BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
