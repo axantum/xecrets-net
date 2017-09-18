@@ -97,8 +97,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public LicenseCapabilities License { get { return GetProperty<LicenseCapabilities>(nameof(License)); } set { SetProperty(nameof(License), value); } }
 
-        public UpdateCheckTypes UpdateCheckInitiatedBy { get { return GetProperty<UpdateCheckTypes>(nameof(UpdateCheckInitiatedBy)); } set { SetProperty(nameof(UpdateCheckInitiatedBy), value); } }
-
         public IAsyncAction RemoveRecentFiles { get; private set; }
 
         public IAsyncAction AddWatchedFolders { get; private set; }
@@ -111,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction OpenSelectedFolder { get; private set; }
 
-        public IAction AxCryptUpdateCheck { get; private set; }
+        public IAsyncAction AxCryptUpdateCheck { get; private set; }
 
         public IAction LicenseUpdate { get; private set; }
 
@@ -150,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new AsyncDelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
+            AxCryptUpdateCheck = new AsyncDelegateAction<UpdateCheck>((uc) => AxCryptUpdateCheckAction(uc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
 
             DecryptFileEnabled = true;
@@ -166,7 +164,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) UpdateCheckInitiatedBy = UpdateCheckTypes.System; AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
+            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, DateTime.MinValue)); });
 
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
             BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
@@ -445,9 +443,59 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
+        private async Task AxCryptUpdateCheckAction(UpdateCheck updateCheck)
         {
-            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
+            _axCryptUpdateCheck.CheckInBackground(updateCheck.LastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
+            await AxCryptUpdateNotification(updateCheck);
+        }
+
+        private async Task AxCryptUpdateNotification(UpdateCheck updateCheck)
+        {
+            VersionUpdateStatus status = VersionUpdateStatus;
+            string msg = GetCriticalUpdateWarning(DownloadVersion.Level);
+            if (msg.Length != 0)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
+                New<IBrowser>().OpenUri(new Uri(Resolve.UserSettings.UpdateUrl.ToString()));
+                return;
+            }
+
+            if (New<UserSettings>().MostRecentVersionInformed == New<UserSettings>().NewestKnownVersion && updateCheck.UpdateCheckInitiatedBy != UpdateCheckTypes.User)
+            {
+                return;
+            }
+
+            if (status == VersionUpdateStatus.NewerVersionIsAvailable)
+            {
+                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, string.Empty, Texts.NewVersionIsAvailableText.InvariantFormat(DownloadVersion.Version));
+                if (result == PopupButtons.Ok)
+                {
+                    New<IBrowser>().OpenUri(new Uri(Resolve.UserSettings.UpdateUrl.ToString()));
+                }
+                New<UserSettings>().MostRecentVersionInformed = New<UserSettings>().NewestKnownVersion;
+
+                return;
+            }
+
+            if (updateCheck.UpdateCheckInitiatedBy == UpdateCheckTypes.User)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, Texts.LatestVersionAlreadyPresentText);
+                updateCheck.UpdateCheckInitiatedBy = UpdateCheckTypes.None;
+                return;
+            }
+        }
+
+        private static string GetCriticalUpdateWarning(UpdateLevels level)
+        {
+            if (level.HasFlag(UpdateLevels.Security))
+            {
+                return Texts.SecurityUpdateAvailableWarning;
+            }
+            if (level.HasFlag(UpdateLevels.Reliability))
+            {
+                return Texts.ReliabilityUpdateAvailableWarning;
+            }
+            return string.Empty;
         }
 
         private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)

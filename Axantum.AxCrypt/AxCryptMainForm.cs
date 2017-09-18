@@ -788,8 +788,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
 
-            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.UpdateCheckInitiatedBy = UpdateCheckTypes.User; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
-            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
+            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, DateTime.MinValue)); };
+            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, DateTime.MinValue)); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
@@ -1373,51 +1373,6 @@ namespace Axantum.AxCrypt
                     _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
-
-            string msg = GetCriticalUpdateWarning(_mainViewModel.DownloadVersion.Level);
-            if (msg.Length != 0)
-            {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
-                Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
-                return;
-            }
-
-            if (New<UserSettings>().MostRecentVersionInformed == New<UserSettings>().NewestKnownVersion && _mainViewModel.UpdateCheckInitiatedBy != UpdateCheckTypes.User)
-            {
-                return;
-            }
-
-            if (status == VersionUpdateStatus.NewerVersionIsAvailable)
-            {
-                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, string.Empty, Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version));
-                if (result == PopupButtons.Ok)
-                {
-                    Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
-                }
-                New<UserSettings>().MostRecentVersionInformed = New<UserSettings>().NewestKnownVersion;
-
-                return;
-            }
-
-            if (_mainViewModel.UpdateCheckInitiatedBy == UpdateCheckTypes.User)
-            {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, Texts.LatestVersionAlreadyPresentText);
-                _mainViewModel.UpdateCheckInitiatedBy = UpdateCheckTypes.None;
-                return;
-            }
-        }
-
-        private static string GetCriticalUpdateWarning(UpdateLevels level)
-        {
-            if (level.HasFlag(UpdateLevels.Security))
-            {
-                return Texts.SecurityUpdateAvailableWarning;
-            }
-            if (level.HasFlag(UpdateLevels.Reliability))
-            {
-                return Texts.ReliabilityUpdateAvailableWarning;
-            }
-            return string.Empty;
         }
 
         private void UpdateDebugMode(bool enabled)
@@ -1704,7 +1659,7 @@ namespace Axantum.AxCrypt
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.IsUpToDate:
                 case VersionUpdateStatus.Unknown:
-                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
+                    _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(new UpdateCheck(UpdateCheckTypes.User, DateTime.MinValue));
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:

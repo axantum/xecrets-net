@@ -72,6 +72,7 @@
     <Compile Include="StartupTipUrl.cs" />
     <Compile Include="FolderOperationMode.cs" />
     <Compile Include="TaskRunner.cs" />
+    <Compile Include="UpdateCheck.cs" />
     <Compile Include="UpdateCheckTypes.cs" />
     <Compile Include="UpdateLevels.cs" />
     <Compile Include="VersionRange.cs" />
