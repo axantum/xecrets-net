@@ -3089,6 +3089,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online.
+        /// </summary>
+        public static string LocalSignInWarningPopUpText {
+            get {
+                return ResourceManager.GetString("LocalSignInWarningPopUpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Signed Out.
         /// </summary>
         public static string LoggedOffStatusText {

@@ -1240,6 +1240,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>Local</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value>!!There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online</value>
+  </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Signed Out</value>
   </data>
