@@ -160,13 +160,14 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 return;
             }
-            if (await IsAccountSourceLocal())
+            if (!await IsAccountSourceLocal())
             {
-                PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.LocalSignInWarningPopUpText);
-                if (click == PopupButtons.Ok)
-                {
-                    New<IBrowser>().OpenUri(New<UserSettings>().AccountWebUrl);
-                }
+                return;
+            }
+            PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.LocalSignInWarningPopUpText);
+            if (click == PopupButtons.Ok)
+            {
+                New<IBrowser>().OpenUri(New<UserSettings>().AccountWebUrl);
             }
         }
 
@@ -175,11 +176,7 @@ namespace Axantum.AxCrypt.Core.UI
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
             UserAccount userAccount = await accountService.AccountAsync();
 
-            if (userAccount.AccountSource == AccountSource.Local)
-            {
-                return true;
-            }
-            return false;
+            return userAccount.AccountSource == AccountSource.Local;
         }
     }
 }
