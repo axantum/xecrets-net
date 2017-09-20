@@ -154,7 +154,7 @@ namespace Axantum.AxCrypt.Core.UI
             return text;
         }
 
-        public async Task LocalSignInWarningPopUp(bool loggedOn)
+        public async Task LocalSignInWarningPopUpAsync(bool loggedOn)
         {
             if (!loggedOn)
             {
