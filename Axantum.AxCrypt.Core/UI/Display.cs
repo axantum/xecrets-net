@@ -1,16 +1,16 @@
-﻿using AxCrypt.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
+using AxCrypt.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Api.Model;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -26,6 +26,83 @@ namespace Axantum.AxCrypt.Core.UI
             text = await AddIndicatorsAsync(isLoggedOn, text);
 
             return text;
+        }
+
+        public async Task UpdateCheckPopups(bool alwaysDisplay, DownloadVersion downloadVersion)
+        {
+            if (await CriticalUpdateWarningPopupAsync(downloadVersion))
+            {
+                return;
+            }
+            if (await NewVersionAvailablePopupAsync(alwaysDisplay, downloadVersion))
+            {
+                return;
+            }
+            await NoUpdateAvailablePopupAsync(alwaysDisplay, downloadVersion);
+        }
+
+        private async Task<bool> CriticalUpdateWarningPopupAsync(DownloadVersion downloadVersion)
+        {
+            string msg = GetCriticalUpdateWarning(downloadVersion.Level);
+            if (msg.Length == 0)
+            {
+                return false;
+            }
+
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, msg);
+            New<IBrowser>().OpenUri(new Uri(Resolve.UserSettings.UpdateUrl.ToString()));
+            return true;
+        }
+
+        private static string GetCriticalUpdateWarning(UpdateLevels level)
+        {
+            if (level.HasFlag(UpdateLevels.Security))
+            {
+                return Texts.SecurityUpdateAvailableWarning;
+            }
+            if (level.HasFlag(UpdateLevels.Reliability))
+            {
+                return Texts.ReliabilityUpdateAvailableWarning;
+            }
+            return string.Empty;
+        }
+
+        private async Task<bool> NewVersionAvailablePopupAsync(bool alwaysDisplay, DownloadVersion downloadVersion)
+        {
+            Version version = downloadVersion.Version;
+            if (New<IVersion>().Current >= version)
+            {
+                return false;
+            }
+
+            if (!alwaysDisplay && New<UserSettings>().MostRecentVersionInformed == version.ToString())
+            {
+                return false;
+            }
+            New<UserSettings>().MostRecentVersionInformed = version.ToString();
+
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableText.InvariantFormat(version));
+            if (result == PopupButtons.Ok)
+            {
+                New<IBrowser>().OpenUri(Resolve.UserSettings.UpdateUrl);
+            }
+
+            return true;
+        }
+
+        private async Task<bool> NoUpdateAvailablePopupAsync(bool alwaysDisplay, DownloadVersion downloadVersion)
+        {
+            if (!alwaysDisplay)
+            {
+                return false;
+            }
+            if (New<IVersion>().Current.ToString() != downloadVersion.Version.ToString())
+            {
+                return false;
+            }
+
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.LatestVersionAlreadyPresentText);
+            return false;
         }
 
         private static string GetLicenseStatus(bool isLoggedOn)

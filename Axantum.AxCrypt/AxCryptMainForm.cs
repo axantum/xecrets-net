@@ -767,7 +767,7 @@ namespace Axantum.AxCrypt
         {
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), async (DownloadVersion dv) => { await SetSoftwareStatus(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), async (DownloadVersion dv) => { await SetSoftwareStatus(); await DisplayUpdateCheckPopups(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
@@ -788,8 +788,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
 
-            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
-            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
+            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _userInitiatedUpdateCheckPending = true; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
+            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _userInitiatedUpdateCheckPending = true; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
@@ -1373,28 +1373,14 @@ namespace Axantum.AxCrypt
                     _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
-
-            string msg = GetCriticalUpdateWarning(_mainViewModel.DownloadVersion.Level);
-            if (msg.Length == 0)
-            {
-                return;
-            }
-
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, string.Empty, msg);
-            Process.Start(Resolve.UserSettings.UpdateUrl.ToString());
         }
 
-        private static string GetCriticalUpdateWarning(UpdateLevels level)
+        private bool _userInitiatedUpdateCheckPending = false;
+
+        private async Task DisplayUpdateCheckPopups()
         {
-            if (level.HasFlag(UpdateLevels.Security))
-            {
-                return Texts.SecurityUpdateAvailableWarning;
-            }
-            if (level.HasFlag(UpdateLevels.Reliability))
-            {
-                return Texts.ReliabilityUpdateAvailableWarning;
-            }
-            return string.Empty;
+            await new Display().UpdateCheckPopups(_userInitiatedUpdateCheckPending, _mainViewModel.DownloadVersion);
+            _userInitiatedUpdateCheckPending = false;
         }
 
         private void UpdateDebugMode(bool enabled)
@@ -1681,6 +1667,7 @@ namespace Axantum.AxCrypt
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.IsUpToDate:
                 case VersionUpdateStatus.Unknown:
+                    _userInitiatedUpdateCheckPending = true;
                     _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
                     break;
 
