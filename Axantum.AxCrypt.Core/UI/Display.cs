@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
             if (await IsAccountSourceLocal())
             {
-                PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, "There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online");
+                PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.LocalSignInWarningPopUpText);
                 if (click == PopupButtons.Ok)
                 {
                     New<IBrowser>().OpenUri(New<UserSettings>().AccountWebUrl);

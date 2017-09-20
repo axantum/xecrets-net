@@ -2948,6 +2948,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!You have the latest version of AxCrypt..
+        /// </summary>
+        public static string LatestVersionAlreadyPresentText {
+            get {
+                return ResourceManager.GetString("LatestVersionAlreadyPresentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open via:.
         /// </summary>
         public static string LauncherPromptHeader {
@@ -3076,6 +3085,15 @@ namespace AxCrypt.Content.Properties {
         public static string LocalIndicatorText {
             get {
                 return ResourceManager.GetString("LocalIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online.
+        /// </summary>
+        public static string LocalSignInWarningPopUpText {
+            get {
+                return ResourceManager.GetString("LocalSignInWarningPopUpText", resourceCulture);
             }
         }
         
