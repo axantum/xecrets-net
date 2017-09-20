@@ -154,16 +154,23 @@ namespace Axantum.AxCrypt.Core.UI
             return text;
         }
 
-        public async Task LocalSignInWarningPopUpAsync(bool loggedOn)
+        public async Task LocalSignInWarningPopUpAsync(bool isLoggedOn)
         {
-            if (!loggedOn)
+            if (New<AxCryptOnlineState>().IsOffline)
             {
                 return;
             }
+
+            if (!isLoggedOn)
+            {
+                return;
+            }
+
             if (!await IsAccountSourceLocal())
             {
                 return;
             }
+
             PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.LocalSignInWarningPopUpText);
             if (click == PopupButtons.Ok)
             {
