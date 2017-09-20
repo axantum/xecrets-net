@@ -1,16 +1,16 @@
-﻿using AxCrypt.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
+using AxCrypt.Content;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Api.Model;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -70,14 +70,39 @@ namespace Axantum.AxCrypt.Core.UI
                 return text;
             }
 
+            if (await IsAccountSourceLocal())
+            {
+                return $"{text} [{Texts.LocalIndicatorText}]";
+            }
+            return text;
+        }
+
+        public async Task LocalSignInWarningPopUp(bool loggedOn)
+        {
+            if (!loggedOn)
+            {
+                return;
+            }
+            if (await IsAccountSourceLocal())
+            {
+                PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, "There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online");
+                if (click == PopupButtons.Ok)
+                {
+                    New<IBrowser>().OpenUri(New<UserSettings>().AccountWebUrl);
+                }
+            }
+        }
+
+        private static async Task<bool> IsAccountSourceLocal()
+        {
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
             UserAccount userAccount = await accountService.AccountAsync();
 
             if (userAccount.AccountSource == AccountSource.Local)
             {
-                return $"{text} [{Texts.LocalIndicatorText}]";
+                return true;
             }
-            return text;
+            return false;
         }
     }
 }
