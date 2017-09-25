@@ -537,7 +537,7 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
     <value>Algoritmo</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Dias</value>
+    <value>{0} dias</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
     <value>&lt; 1 dia</value>
