@@ -533,10 +533,10 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
     <value>Algorithme</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Jours</value>
+    <value>{0} jours</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Jour</value>
+    <value>&lt; 1 jour</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Votre abonnement Premium est sur le point de se terminer. Cliquez pour le renouveler.</value>

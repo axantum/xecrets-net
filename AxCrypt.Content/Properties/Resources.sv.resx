@@ -545,10 +545,10 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>Algoritm</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Dagar</value>
+    <value>{0} dagar</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Dag</value>
+    <value>&lt; 1 dag</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ditt abonnemang går snart ut. Klicka för att förnya.</value>

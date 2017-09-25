@@ -536,10 +536,10 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
     <value>Algoritme</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Dagen</value>
+    <value>{0} dagen</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Dag</value>
+    <value>&lt; 1 dag</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Uw Premium abonnement is bijna verlopen. Klik om te vernieuwen.</value>

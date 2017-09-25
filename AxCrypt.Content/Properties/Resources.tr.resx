@@ -488,10 +488,10 @@ Geçici oturum çerezlerimizi kabul etmediğiniz halde oturum açamazsınız ve 
     <value>Algoritma</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Gün</value>
+    <value>{0} gün</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Gün</value>
+    <value>&lt; 1 gün</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>AxCrypt Premium üyeliğiniz sona ermek üzere. Yenilemek için tıklayın.</value>

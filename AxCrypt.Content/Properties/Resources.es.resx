@@ -530,10 +530,10 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Algoritmo</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Días</value>
+    <value>{0} días</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Día</value>
+    <value>&lt; 1 día</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Su suscripción premium está a punto de expirar. Haga clic para renovar.</value>

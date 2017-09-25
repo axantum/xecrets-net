@@ -569,10 +569,10 @@
     <value>Алгоритм</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Дней</value>
+    <value>{0} дней</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 День</value>
+    <value>&lt; 1 день</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ваша подписка на Premium скоро заканчивается. Нажмите для продления.</value>
