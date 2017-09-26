@@ -295,10 +295,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.ResourceManager.GetString(_welcomeMessage.Name));
             if (result == PopupButtons.Ok)
             {
-                using (ILauncher launcher = New<ILauncher>())
-                {
-                    launcher.Launch(Texts.LinkToGettingStarted);
-                }
+                New<IBrowser>().OpenUri(new Uri(Texts.LinkToGettingStarted));
             }
             return AccountStatus.Verified;
         }
