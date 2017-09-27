@@ -2948,7 +2948,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You have the latest version of AxCrypt..
+        ///   Looks up a localized string similar to You already have the latest version!.
         /// </summary>
         public static string LatestVersionAlreadyPresentText {
             get {
@@ -3089,7 +3089,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online.
+        ///   Looks up a localized string similar to You are signing in with a local password, instead of the online account password.  This is often the result of a password reset online, but use of the old password now. Please ensure you are using the same password and account online, or contact support..
         /// </summary>
         public static string LocalSignInWarningPopUpText {
             get {

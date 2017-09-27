@@ -482,7 +482,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Klicka för att kontrollera om det finns en ny version.</value>
   </data>
   <data name="ClickToDownloadText" xml:space="preserve">
-    <value>Klicka för att komma till nedladdningssidan.</value>
+    <value>Klicka för att ladda ned.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicka här för att säkra eventuella öppna filer eller nya filer i skyddade mappar, men säkerställ först att de inte används.</value>
@@ -1039,6 +1039,9 @@ En mottagare identifieras med epostadressen för sitt AxCrypt ID, men vi skickar
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tid</value>
   </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value>Du har redan den senaste versionen!</value>
+  </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Öppna med:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
@@ -1065,6 +1068,9 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
   <data name="LocalIndicatorText" xml:space="preserve">
     <value>Lokalt</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
+  </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value>Du loggar på med ett lokalt lösenord, istället för ditt online kontolösenord. Orsaken är ofta en lösenordsåterställelse online, men nu använder du det gamla i alla fall. Använd helst ditt nya lösenord istället. Kontakta support för mer information.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Avloggad</value>

@@ -1186,7 +1186,7 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <value>Time</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
-    <value>!!You have the latest version of AxCrypt.</value>
+    <value>You already have the latest version!</value>
   </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Open via:</value>
@@ -1241,7 +1241,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LocalSignInWarningPopUpText" xml:space="preserve">
-    <value>!!There is a password or account mismatch between local and online which may cause unexpected results. Please ensure you are using the same password and account online</value>
+    <value>You are signing in with a local password, instead of the online account password.  This is often the result of a password reset online, but use of the old password now. Please ensure you are using the same password and account online, or contact support.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Signed Out</value>
