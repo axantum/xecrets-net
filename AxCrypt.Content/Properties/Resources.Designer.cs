@@ -1326,7 +1326,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Days.
+        ///   Looks up a localized string similar to {0} days.
         /// </summary>
         public static string DaysLeftPluralWarningPattern {
             get {
@@ -1335,7 +1335,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt; 1 Day.
+        ///   Looks up a localized string similar to &lt; 1 day.
         /// </summary>
         public static string DaysLeftSingularWarningPattern {
             get {

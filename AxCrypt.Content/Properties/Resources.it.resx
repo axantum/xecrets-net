@@ -553,10 +553,10 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
     <value>Algoritmo</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Giorni</value>
+    <value>{0} giorni</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Giorno</value>
+    <value>&lt; 1 giorno</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Il tuo abbonamento Premium sta per scadere. Clicca per rinnovarlo.</value>

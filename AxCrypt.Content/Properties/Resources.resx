@@ -587,10 +587,10 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>Algorithm</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
-    <value>{0} Days</value>
+    <value>{0} days</value>
   </data>
   <data name="DaysLeftSingularWarningPattern" xml:space="preserve">
-    <value>&lt; 1 Day</value>
+    <value>&lt; 1 day</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Your subscription plan is about to expire. Click to renew.</value>
