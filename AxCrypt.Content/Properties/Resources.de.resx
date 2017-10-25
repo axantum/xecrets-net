@@ -1710,7 +1710,7 @@ Leerraum und Teile die gleich zu übliche Passwörter sind werden ignoriert und 
     <value>Die gewählte Zeit des Abonnements ist ungültig. Ein gültiges Abonnement muss mindestens {0} Monat und nicht länger als {1} Monate dauern. </value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Mit &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen. Falls etwas nicht zu Ihre Zufriedenheit beschrieben ist, bitte kontaktieren Sie  &lt;a href="mailto:support@axcrypt.net". Wir werden Sie immer voll rückerstatten.</value>
+    <value>Mit &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen. Falls etwas nicht zu Ihre Zufriedenheit beschrieben ist, bitte &lt;a href="mailto:support@axcrypt.net"&gt; kontaktieren Sie uns&lt;/a&gt;. Wir werden Sie immer voll rückerstatten.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mehr über die Bezahlung]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Ihre persönlichen Zahlungsdaten werden nie versendet oder auf unserem Server gespeichert. Wir senden diese direkt von Ihnen zu unseren Zahlungsportalpartnern via einer verschlüsselten Verbindung. Unsere Partner sind Stripe und Paypal, beide erfüllen die hohen Standards der Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;
