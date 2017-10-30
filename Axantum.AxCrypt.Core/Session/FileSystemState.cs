@@ -157,39 +157,39 @@ namespace Axantum.AxCrypt.Core.Session
             WatchedFolder watchedFolder = (WatchedFolder)sender;
             foreach (string fullName in e.FullNames)
             {
-                IDataStore fileInfo = New<IDataStore>(fullName);
-                await HandleWatchedFolderChangesAsync(watchedFolder, fileInfo);
-                await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderChange, fileInfo.FullName));
+                IDataItem dataItem = New<IDataItem>(fullName);
+                await HandleWatchedFolderChangesAsync(watchedFolder, dataItem);
+                await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderChange, dataItem.FullName));
             }
         }
 
-        private async Task HandleWatchedFolderChangesAsync(WatchedFolder watchedFolder, IDataItem fileInfo)
+        private async Task HandleWatchedFolderChangesAsync(WatchedFolder watchedFolder, IDataItem dataItem)
         {
-            if (watchedFolder.Path == fileInfo.FullName && !fileInfo.IsAvailable)
+            if (watchedFolder.Path == dataItem.FullName && !dataItem.IsAvailable)
             {
-                await RemoveWatchedFolder(fileInfo);
+                await RemoveWatchedFolder(dataItem);
                 await Save();
                 return;
             }
-            if (!fileInfo.IsEncrypted())
+            if (!dataItem.IsEncrypted())
             {
                 return;
             }
-            if (IsExisting(fileInfo))
+            if (IsExisting(dataItem))
             {
                 return;
             }
-            await RemoveDeletedActiveFile(fileInfo);
+            await RemoveDeletedActiveFile(dataItem);
         }
 
-        private static bool IsExisting(IDataItem fileInfo)
+        private static bool IsExisting(IDataItem dataItem)
         {
-            return fileInfo.Type() != FileInfoTypes.NonExisting;
+            return dataItem.Type() != FileInfoTypes.NonExisting;
         }
 
-        private async Task RemoveDeletedActiveFile(IDataItem fileInfo)
+        private async Task RemoveDeletedActiveFile(IDataItem dataItem)
         {
-            ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(fileInfo.FullName);
+            ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(dataItem.FullName);
             if (removedActiveFile != null)
             {
                 RemoveActiveFile(removedActiveFile);
@@ -197,15 +197,15 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual async Task RemoveWatchedFolder(IDataItem folderInfo)
+        public virtual async Task RemoveWatchedFolder(IDataItem dataItem)
         {
-            if (folderInfo == null)
+            if (dataItem == null)
             {
                 throw new ArgumentNullException("folderInfo");
             }
 
-            RemoveWatchedFolderInternal(folderInfo.FullName);
-            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, folderInfo.FullName));
+            RemoveWatchedFolderInternal(dataItem.FullName);
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
 
         private void RemoveWatchedFolderInternal(string path)

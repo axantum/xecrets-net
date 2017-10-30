@@ -30,7 +30,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -38,9 +37,13 @@ namespace Axantum.AxCrypt.Mono
     {
         public static IDataItem Create(string location)
         {
-            if (File.GetAttributes(location).HasFlag(FileAttributes.Directory))
+            if (Directory.Exists(location))
             {
                 return new DataContainer(location);
+            }
+            if (File.Exists(location))
+            {
+                return new DataStore(location);
             }
             return new DataStore(location);
         }
