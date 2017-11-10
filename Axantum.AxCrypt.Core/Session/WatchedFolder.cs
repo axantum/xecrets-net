@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             Path = path.NormalizeFolderPath();
             Tag = publicTag;
-            Initialize(new StreamingContext());
+            Initialize();
         }
 
         public WatchedFolder(WatchedFolder watchedFolder, IEnumerable<UserPublicKey> keyShares)
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             KeyShares = keyShares.Select(ks => ks.Email).ToArray();
 
-            Initialize(new StreamingContext());
+            Initialize();
         }
 
         [JsonProperty("publicTag")]
@@ -110,7 +110,12 @@ namespace Axantum.AxCrypt.Core.Session
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
-        private void Initialize(StreamingContext context)
+        private void OnDeserialized(StreamingContext context)
+        {
+            Initialize();
+        }
+
+        private void Initialize()
         {
             if (New<IDataContainer>(Path).IsAvailable)
             {

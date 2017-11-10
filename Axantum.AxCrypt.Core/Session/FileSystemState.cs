@@ -50,13 +50,6 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonConstructor]
         public FileSystemState()
         {
-            Initialize(new StreamingContext());
-        }
-
-        private FileSystemState(IDataStore path)
-            : this()
-        {
-            _dataStore = path;
         }
 
         public IDataStore PathInfo
@@ -67,51 +60,28 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
-        [OnDeserializing]
-        private void Initialize(StreamingContext context)
-        {
-            KnownPassphrases = new List<Passphrase>();
-            _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
-            _watchedFolders = new List<WatchedFolder>();
-        }
-
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
-        private void Finalize(StreamingContext context)
+        private void OnDeserialized(StreamingContext context)
         {
-            KnownPassphrases = new List<Passphrase>(KnownPassphrases);
-            _activeFilesForSerialization = _activeFilesForSerialization.Where(af => af.EncryptedFileInfo.IsAvailable).ToList();
-            SetRangeInternal(_activeFilesForSerialization, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
-            _activeFilesForSerialization = null;
-
             foreach (WatchedFolder watchedFolder in _watchedFolders)
             {
                 watchedFolder.Changed += watchedFolder_Changed;
             }
         }
 
-        private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath;
+        private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
         [JsonProperty("knownPassphrases")]
         public virtual IList<Passphrase> KnownPassphrases
         {
             get;
             private set;
-        }
+        } = new List<Passphrase>();
 
-        private List<WatchedFolder> _watchedFolders;
-
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
         [JsonProperty("watchedFolders")]
-        private IList<WatchedFolder> WatchedFoldersForSerialization
-        {
-            get
-            {
-                return _watchedFolders;
-            }
-        }
+        private List<WatchedFolder> _watchedFolders = new List<WatchedFolder>();
 
         public IEnumerable<WatchedFolder> WatchedFolders
         {
@@ -361,8 +331,6 @@ namespace Axantum.AxCrypt.Core.Session
             New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
-        private List<ActiveFile> _activeFilesForSerialization;
-
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
         [JsonProperty("activeFiles")]
         private IList<ActiveFile> ActiveFilesForSerialization
@@ -371,7 +339,15 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 lock (_activeFilesByEncryptedPath)
                 {
-                    return _activeFilesForSerialization = _activeFilesByEncryptedPath.Values.ToList();
+                    return _activeFilesByEncryptedPath.Values.ToList();
+                }
+            }
+            set
+            {
+                lock (_activeFilesByEncryptedPath)
+                {
+                    IEnumerable<ActiveFile> availableActiveFiles = value.Where(af => af.EncryptedFileInfo.IsAvailable);
+                    SetRangeInternal(availableActiveFiles, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
                 }
             }
         }
@@ -454,7 +430,10 @@ namespace Axantum.AxCrypt.Core.Session
                 return CreateFileSystemState(path);
             }
 
-            FileSystemState fileSystemState = new FileSystemState(path);
+            FileSystemState fileSystemState = new FileSystemState()
+            {
+                _dataStore = path,
+            };
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
@@ -469,9 +448,19 @@ namespace Axantum.AxCrypt.Core.Session
             try
             {
                 fileSystemState = Resolve.Serializer.Deserialize<FileSystemState>(path);
-                if (fileSystemState == null && Resolve.Log.IsErrorEnabled)
+                if (fileSystemState == null)
                 {
-                    Resolve.Log.LogError("Empty {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                    if (Resolve.Log.IsErrorEnabled)
+                    {
+                        Resolve.Log.LogError("Empty {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName));
+                    }
+                }
+                else
+                {
+                    if (Resolve.Log.IsInfoEnabled)
+                    {
+                        Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+                    }
                 }
             }
             catch (Exception ex)
@@ -484,11 +473,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             if (fileSystemState == null)
             {
-                return new FileSystemState(path);
-            }
-            if (Resolve.Log.IsInfoEnabled)
-            {
-                Resolve.Log.LogInfo("Loaded FileSystemState from '{0}'.".InvariantFormat(path));
+                fileSystemState = new FileSystemState();
             }
             fileSystemState._dataStore = path;
             return fileSystemState;

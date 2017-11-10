@@ -30,7 +30,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Api.Implementation
 {
@@ -50,7 +49,7 @@ namespace Axantum.AxCrypt.Api.Implementation
 
         public T Deserialize<T>(string serialized)
         {
-            return JsonConvert.DeserializeObject<T>(serialized, _converters);
+            return JsonConvert.DeserializeObject<T>(serialized, new JsonSerializerSettings() { ObjectCreationHandling = ObjectCreationHandling.Replace, Converters = _converters, });
         }
 
         public string Serialize<T>(T value)
