@@ -327,6 +327,26 @@ You have been warned, now enjoy!</value>
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
   </data>
+  <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
+    <value>!!&lt;p&gt;
+Welcome to AxCrypt Business.
+&lt;/p&gt;
+&lt;p&gt;
+You were added to a business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.
+&lt;/p&gt;
+&lt;p&gt;
+If you have any questions, please contact {0} in the first place.
+&lt;/p&gt;</value>
+    <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
+  </data>
+  <data name="BusinessAddedMailSubject" xml:space="preserve">
+    <value>!!Welcome to AxCrypt Business</value>
+    <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
+    <value>!!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;br /&gt;If you have any questions, please contact the person who added you first.</value>
+    <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verify</value>
   </data>
@@ -1281,7 +1301,15 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
-  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Thanks for using AxCrypt!
+- Svante
+The AxCrypt Team</value>
+  </data>
+  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Key Sharing&lt;/li&gt;
@@ -1290,13 +1318,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
 &lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
-  <data name="MailBodySignature" xml:space="preserve">
-    <value>Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
-  </data>
-  <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Thanks for using AxCrypt!
-- Svante
-The AxCrypt Team</value>
+  <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
+    <value>As a subscriber there are a number of excellent additional features for you on top of all the regular free functionality. You're getting features like:</value>
+    <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hello {0},</value>
@@ -2495,9 +2519,6 @@ The AxCrypt Team</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>With AxCrypt Free or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!</value>
-  </data>
-  <data name="WelcomeMailBody3Html" xml:space="preserve">
-    <value>As a Premium subscriber there are a number of excellent additional features for you on top of all the regular free functionality. With Premium you're getting features like:</value>
   </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>Welcome to AxCrypt!</value>

@@ -598,6 +598,41 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!&lt;p&gt;
+        ///Welcome to AxCrypt Business.
+        ///&lt;/p&gt;
+        ///&lt;p&gt;
+        ///You were added to a business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.
+        ///&lt;/p&gt;
+        ///&lt;p&gt;
+        ///If you have any questions, please contact {0} in the first place.
+        ///&lt;/p&gt;.
+        /// </summary>
+        public static string BusinessAddedMailBodyHtml {
+            get {
+                return ResourceManager.GetString("BusinessAddedMailBodyHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Welcome to AxCrypt Business.
+        /// </summary>
+        public static string BusinessAddedMailSubject {
+            get {
+                return ResourceManager.GetString("BusinessAddedMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;br /&gt;If you have any questions, please contact the person who added you first..
+        /// </summary>
+        public static string BusinessInvitationMailBodyIntro {
+            get {
+                return ResourceManager.GetString("BusinessInvitationMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verify.
         /// </summary>
         public static string ButtonActivateText {
@@ -3206,21 +3241,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;ul&gt;
-        ///&lt;li&gt;256-bit AES&lt;/li&gt;
-        ///&lt;li&gt;Key Sharing&lt;/li&gt;
-        ///&lt;li&gt;Secured Folders&lt;/li&gt;
-        ///&lt;li&gt;Password Management&lt;/li&gt;
-        ///&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
-        ///&lt;/ul&gt;.
-        /// </summary>
-        public static string MailBodyPremiumFeaturesHtml {
-            get {
-                return ResourceManager.GetString("MailBodyPremiumFeaturesHtml", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
         /// </summary>
         public static string MailBodySignature {
@@ -3237,6 +3257,30 @@ namespace AxCrypt.Content.Properties {
         public static string MailBodySignaturePlainText {
             get {
                 return ResourceManager.GetString("MailBodySignaturePlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul&gt;
+        ///&lt;li&gt;256-bit AES&lt;/li&gt;
+        ///&lt;li&gt;Key Sharing&lt;/li&gt;
+        ///&lt;li&gt;Secured Folders&lt;/li&gt;
+        ///&lt;li&gt;Password Management&lt;/li&gt;
+        ///&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+        ///&lt;/ul&gt;.
+        /// </summary>
+        public static string MailBodySubscriptionFeaturesHtml {
+            get {
+                return ResourceManager.GetString("MailBodySubscriptionFeaturesHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a subscriber there are a number of excellent additional features for you on top of all the regular free functionality. You&apos;re getting features like:.
+        /// </summary>
+        public static string MailBodySubscriptionFeaturesIntroHtml {
+            get {
+                return ResourceManager.GetString("MailBodySubscriptionFeaturesIntroHtml", resourceCulture);
             }
         }
         
@@ -6300,15 +6344,6 @@ namespace AxCrypt.Content.Properties {
         public static string WelcomeMailBody2Html {
             get {
                 return ResourceManager.GetString("WelcomeMailBody2Html", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As a Premium subscriber there are a number of excellent additional features for you on top of all the regular free functionality. With Premium you&apos;re getting features like:.
-        /// </summary>
-        public static string WelcomeMailBody3Html {
-            get {
-                return ResourceManager.GetString("WelcomeMailBody3Html", resourceCulture);
             }
         }
         
