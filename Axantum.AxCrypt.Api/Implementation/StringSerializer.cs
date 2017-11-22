@@ -29,17 +29,26 @@ using Axantum.AxCrypt.Abstractions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Api.Implementation
 {
     public class StringSerializer : IStringSerializer
     {
-        private JsonConverter[] _converters;
+        private readonly JsonSerializerSettings _serializerSettings;
 
         public StringSerializer(IEnumerable<CustomSerializer> converters)
         {
-            _converters = converters.ToArray();
+            _serializerSettings = new JsonSerializerSettings()
+            {
+                DefaultValueHandling = DefaultValueHandling.Include,
+                Formatting = Formatting.Indented,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                NullValueHandling = NullValueHandling.Include,
+                ObjectCreationHandling = ObjectCreationHandling.Replace,
+                Converters = converters.ToArray(),
+            };
         }
 
         public StringSerializer()
@@ -49,12 +58,31 @@ namespace Axantum.AxCrypt.Api.Implementation
 
         public T Deserialize<T>(string serialized)
         {
-            return JsonConvert.DeserializeObject<T>(serialized, new JsonSerializerSettings() { ObjectCreationHandling = ObjectCreationHandling.Replace, Converters = _converters, });
+            return JsonConvert.DeserializeObject<T>(serialized, _serializerSettings);
         }
 
         public string Serialize<T>(T value)
         {
-            return JsonConvert.SerializeObject(value, Formatting.Indented, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Include, NullValueHandling = NullValueHandling.Ignore, });
+            return JsonConvert.SerializeObject(value, _serializerSettings);
+        }
+
+        public T Deserialize<T>(Stream stream) where T : class, new()
+        {
+            using (JsonReader reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                JsonSerializer serializer = JsonSerializer.Create(_serializerSettings);
+                T value = serializer.Deserialize<T>(reader) ?? new T();
+                return value;
+            }
+        }
+
+        public void Serialize<T>(T value, Stream stream)
+        {
+            using (TextWriter writer = new StreamWriter(stream))
+            {
+                JsonSerializer serializer = JsonSerializer.Create(_serializerSettings);
+                serializer.Serialize(writer, value);
+            }
         }
     }
 }

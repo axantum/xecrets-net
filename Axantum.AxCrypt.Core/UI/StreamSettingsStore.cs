@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -12,23 +13,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected void Initialize(Stream readStream)
         {
-            using (JsonReader reader = new JsonTextReader(new StreamReader(readStream)))
-            {
-                JsonSerializer serializer = CreateSerializer();
-                _settings = serializer.Deserialize<Dictionary<string, string>>(reader) ?? new Dictionary<string, string>();
-            }
-        }
-
-        private static JsonSerializer CreateSerializer()
-        {
-            JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
-            {
-                DefaultValueHandling = DefaultValueHandling.Include,
-                Formatting = Formatting.Indented,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Include,
-            };
-            return JsonSerializer.Create(serializerSettings);
+            _settings = New<IStringSerializer>().Deserialize<Dictionary<string, string>>(readStream);
         }
 
         public virtual void Clear()
@@ -62,11 +47,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected void Save(Stream saveStream)
         {
-            using (TextWriter writer = new StreamWriter(saveStream))
-            {
-                JsonSerializer serializer = CreateSerializer();
-                serializer.Serialize(writer, _settings);
-            }
+            New<IStringSerializer>().Serialize(_settings, saveStream);
         }
     }
 }

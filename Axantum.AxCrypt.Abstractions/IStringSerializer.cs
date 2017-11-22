@@ -25,8 +25,9 @@
 
 #endregion Coypright and License
 
-using System;
 using System.Collections.Generic;
+using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -36,6 +37,10 @@ namespace Axantum.AxCrypt.Abstractions
     {
         T Deserialize<T>(string serialized);
 
+        T Deserialize<T>(Stream stream) where T : class, new();
+
         string Serialize<T>(T value);
+
+        void Serialize<T>(T value, Stream stream);
     }
 }
