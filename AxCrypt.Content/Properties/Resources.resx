@@ -189,7 +189,7 @@
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
-You should only be here because clicking on the link in the AxCrypt ID verification e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get an verification e-mail)
+You should only be here because clicking on the link in the AxCrypt ID verification e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get a verification e-mail)
 
 Enter your e-mail and code manually here only if you have received the verification e-mail, but the link did not work.</value>
   </data>
@@ -280,7 +280,7 @@ Please sign in using the same password you used then.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you an verification code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we'll be removing you permanently from our system.</value>
+    <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you a verification code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we'll be removing you permanently from our system.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
     <value>We're about to delete your AxCrypt ID!</value>
@@ -335,7 +335,7 @@ Welcome to AxCrypt Business.
 You were added to a business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.
 &lt;/p&gt;
 &lt;p&gt;
-If you have any questions, please contact {0} in the first place.
+If you have any questions, please first contact {0}.
 &lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
@@ -344,8 +344,129 @@ If you have any questions, please contact {0} in the first place.
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>!!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;br /&gt;If you have any questions, please contact the person who added you first.</value>
+    <value>!!&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt;
+&lt;p&gt;If you have any questions, please contact the person who added you first.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
+    <value>!!Add</value>
+    <comment>A label or word used in a button when adding members to a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressNameLabel" xml:space="preserve">
+    <value>!!Address</value>
+    <comment>The prompt text for the address text field</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressPlaceholder" xml:space="preserve">
+    <value>!!Address</value>
+    <comment>The placeholder text for the text entry field where the administrator enters the address.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressRequiredErrorMessage" xml:space="preserve">
+    <value>!!Address is required.</value>
+    <comment>An error message if no address is given, but it's required.</comment>
+  </data>
+  <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
+    <value>!!Administrator</value>
+    <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
+    <value>!!Unused</value>
+    <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
+  </data>
+  <data name="BusinessSubscriptionCountryRequiredErrorMessage" xml:space="preserve">
+    <value>!!Country is required.</value>
+    <comment>An error message stating that providing a country is required</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateMenu" xml:space="preserve">
+    <value>!!Create</value>
+    <comment>The menu text for creation. Should be short, or one word</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateTitle" xml:space="preserve">
+    <value>!!Create Subscription</value>
+    <comment>The title for the create business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionEmailLabel" xml:space="preserve">
+    <value>!!Email</value>
+    <comment>A short, preferrably one word, label used to label a field or column containing a license member email.</comment>
+  </data>
+  <data name="BusinessSubscriptionEmailPlaceholder" xml:space="preserve">
+    <value>someone@email.example</value>
+    <comment>A placeholder used in text box to make the user understand that (s)he is to type an email address there.</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberErrorMessage" xml:space="preserve">
+    <value>!!Invalid EU VAT Number.</value>
+    <comment>An error message stating that the provided VAT number is invalid</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberLabel" xml:space="preserve">
+    <value>!!EU VAT Number</value>
+    <comment>The label used for an EU VAT Number</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberPlaceholder" xml:space="preserve">
+    <value>!!EU VAT Number</value>
+    <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
+    <value>!!Subscription expires on {0}.</value>
+    <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
+    <value>!!Import</value>
+    <comment>A word used in a button to start the multiple import process.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationMenu" xml:space="preserve">
+    <value>!!Information</value>
+    <comment>The menu txt for subscription information. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationTitle" xml:space="preserve">
+    <value>!!Subscription Information</value>
+    <comment>The title for the information page for business subscriptions</comment>
+  </data>
+  <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
+    <value>!!Manage</value>
+    <comment>The menu text for manage subscriptions. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionManageTitle" xml:space="preserve">
+    <value>!!Manage Subscriptions</value>
+    <comment>The title for the manage business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionMemberCountErrorMessage" xml:space="preserve">
+    <value>!!Too few or too many members.</value>
+    <comment>An error message if there are too few or too many members specified</comment>
+  </data>
+  <data name="BusinessSubscriptionMenu" xml:space="preserve">
+    <value>!!Business Subscription</value>
+    <comment>The top level menu texts for Business subscriptions. Should be short and just be the header for all sub menu items concerned with business subscriptions.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
+    <value>!!Organization Name</value>
+    <comment>The prompt for the an organization name</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNamePlaceholder" xml:space="preserve">
+    <value>!!Organization Name</value>
+    <comment>A placeholder text for the entry field where the administrator enters the  name of the organization.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationRequiredErrorMessage" xml:space="preserve">
+    <value>!!Organization Name is required.</value>
+    <comment>An error message stating that an organization name must be given.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
+    <value>!!Purchase</value>
+    <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
+    <value>!!Purchase Additional Member Licenses</value>
+    <comment>The title for the purchase additional members subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveButtonLabel" xml:space="preserve">
+    <value>!!Remove</value>
+    <comment>A short label or word used in a button to remove members from a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
+    <value>!!Do you really wish to remove the member from the subscription?</value>
+    <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
+    <value>!!Total</value>
+    <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verify</value>
@@ -1119,7 +1240,8 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
 Birger Jarlsgatan 58
 SE-114 29 Stockholm
 SWEDEN
-VAT Number SE 556967618101</value>
+
+EU VAT number SE556967618101</value>
   </data>
   <data name="InvoicePaidForLabel" xml:space="preserve">
     <value>Paid for</value>
@@ -1319,7 +1441,7 @@ The AxCrypt Team</value>
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
-    <value>As a subscriber there are a number of excellent additional features for you on top of all the regular free functionality. You're getting features like:</value>
+    <value>&lt;p&gt;As a subscriber there are a number of excellent additional features for you on top of all the regular free functionality. You're getting features like:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
@@ -2055,7 +2177,7 @@ A receipt of your purchase has been sent to your e-mail.</value>
     <value>New user? Sign up</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing an verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
+    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing a verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
 
 A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app.</value>
   </data>
@@ -2065,7 +2187,7 @@ A 30 day trial of AxCrypt Premium is included and you can start it at any time f
   <data name="RegisterSuccess" xml:space="preserve">
     <value>You have now signed up for an AxCrypt ID!
 
-Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for an verification link.</value>
+Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Reliability</value>
