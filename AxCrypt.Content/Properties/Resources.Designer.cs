@@ -598,15 +598,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!&lt;p&gt;
-        ///Welcome to AxCrypt Business.
-        ///&lt;/p&gt;
-        ///&lt;p&gt;
-        ///You were added to a business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.
-        ///&lt;/p&gt;
-        ///&lt;p&gt;
-        ///If you have any questions, please first contact {0}.
-        ///&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
+        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;
+        ///&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;.
         /// </summary>
         public static string BusinessAddedMailBodyHtml {
             get {
@@ -615,7 +609,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Welcome to AxCrypt Business.
+        ///   Looks up a localized string similar to Welcome to AxCrypt Business.
         /// </summary>
         public static string BusinessAddedMailSubject {
             get {
@@ -624,8 +618,8 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt;
-        ///&lt;p&gt;If you have any questions, please contact the person who added you first.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
+        ///&lt;p&gt;If you have any questions, please first contact {0].&lt;/p&gt;.
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
             get {
@@ -634,7 +628,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Add.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string BusinessSubscriptionAddButtonLabel {
             get {
@@ -643,7 +637,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Address.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string BusinessSubscriptionAddressNameLabel {
             get {
@@ -652,7 +646,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Address.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string BusinessSubscriptionAddressPlaceholder {
             get {
@@ -661,7 +655,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Address is required..
+        ///   Looks up a localized string similar to Address is required..
         /// </summary>
         public static string BusinessSubscriptionAddressRequiredErrorMessage {
             get {
@@ -670,7 +664,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Administrator.
+        ///   Looks up a localized string similar to Administrator.
         /// </summary>
         public static string BusinessSubscriptionAdministratorLabel {
             get {
@@ -679,7 +673,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Unused.
+        ///   Looks up a localized string similar to Unused.
         /// </summary>
         public static string BusinessSubscriptionAvailableMemberLicensesLabel {
             get {
@@ -688,7 +682,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Country is required..
+        ///   Looks up a localized string similar to Please read the full &lt;a href=&quot;https://www.axcrypt.net/information/license/&quot;&gt;terms of use&lt;/a&gt; and the &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;pricing schedule&lt;/a&gt; before purchase..
+        /// </summary>
+        public static string BusinessSubscriptionConditionsText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionConditionsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription Conditions.
+        /// </summary>
+        public static string BusinessSubscriptionConditionsTitle {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionConditionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country is required..
         /// </summary>
         public static string BusinessSubscriptionCountryRequiredErrorMessage {
             get {
@@ -697,7 +709,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Create.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string BusinessSubscriptionCreateMenu {
             get {
@@ -706,7 +718,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Create Subscription.
+        ///   Looks up a localized string similar to Create Subscription.
         /// </summary>
         public static string BusinessSubscriptionCreateTitle {
             get {
@@ -715,7 +727,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Email.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string BusinessSubscriptionEmailLabel {
             get {
@@ -733,7 +745,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invalid EU VAT Number..
+        ///   Looks up a localized string similar to Invalid EU VAT Number..
         /// </summary>
         public static string BusinessSubscriptionEuVatNumberErrorMessage {
             get {
@@ -742,7 +754,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!EU VAT Number.
+        ///   Looks up a localized string similar to EU VAT Number.
         /// </summary>
         public static string BusinessSubscriptionEuVatNumberLabel {
             get {
@@ -751,7 +763,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!EU VAT Number.
+        ///   Looks up a localized string similar to EU VAT Number.
         /// </summary>
         public static string BusinessSubscriptionEuVatNumberPlaceholder {
             get {
@@ -760,7 +772,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Subscription expires on {0}..
+        ///   Looks up a localized string similar to Subscription expires on {0}..
         /// </summary>
         public static string BusinessSubscriptionExpiresFormat {
             get {
@@ -769,7 +781,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Import.
+        ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string BusinessSubscriptionImportButtonLabel {
             get {
@@ -778,7 +790,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Information.
+        ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string BusinessSubscriptionInformationMenu {
             get {
@@ -787,7 +799,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Subscription Information.
+        ///   Looks up a localized string similar to Subscription Information.
         /// </summary>
         public static string BusinessSubscriptionInformationTitle {
             get {
@@ -796,7 +808,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Manage.
+        ///   Looks up a localized string similar to Read more &lt;a href=&quot;https://www.axcrypt.net/support/axcrypt-business/&quot;&gt;here&lt;/a&gt;..
+        /// </summary>
+        public static string BusinessSubscriptionInstructionsLinkText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionInstructionsLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage.
         /// </summary>
         public static string BusinessSubscriptionManageMenu {
             get {
@@ -805,7 +826,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Manage Subscriptions.
+        ///   Looks up a localized string similar to Manage Subscriptions.
         /// </summary>
         public static string BusinessSubscriptionManageTitle {
             get {
@@ -814,7 +835,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Too few or too many members..
+        ///   Looks up a localized string similar to Too few or too many members..
         /// </summary>
         public static string BusinessSubscriptionMemberCountErrorMessage {
             get {
@@ -823,7 +844,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Business Subscription.
+        ///   Looks up a localized string similar to Business Subscription.
         /// </summary>
         public static string BusinessSubscriptionMenu {
             get {
@@ -832,7 +853,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Organization Name.
+        ///   Looks up a localized string similar to Months.
+        /// </summary>
+        public static string BusinessSubscriptionMonthsLeftLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionMonthsLeftLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not administrator for any subscriptions..
+        /// </summary>
+        public static string BusinessSubscriptionNotAdministratorText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionNotAdministratorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization Name.
         /// </summary>
         public static string BusinessSubscriptionOrganizationNameLabel {
             get {
@@ -841,7 +880,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Organization Name.
+        ///   Looks up a localized string similar to Organization Name.
         /// </summary>
         public static string BusinessSubscriptionOrganizationNamePlaceholder {
             get {
@@ -850,7 +889,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Organization Name is required..
+        ///   Looks up a localized string similar to Organization Name is required..
         /// </summary>
         public static string BusinessSubscriptionOrganizationRequiredErrorMessage {
             get {
@@ -859,7 +898,61 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Purchase.
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string BusinessSubscriptionPriceCurrencyLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceCurrencyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount.
+        /// </summary>
+        public static string BusinessSubscriptionPriceDiscountLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceDiscountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EU VAT.
+        /// </summary>
+        public static string BusinessSubscriptionPriceEuVatLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceEuVatLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Price.
+        /// </summary>
+        public static string BusinessSubscriptionPriceListPriceLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceListPriceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members.
+        /// </summary>
+        public static string BusinessSubscriptionPriceMembersLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceMembersLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string BusinessSubscriptionPriceSumTotalLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionPriceSumTotalLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase.
         /// </summary>
         public static string BusinessSubscriptionPurchaseMenu {
             get {
@@ -868,7 +961,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Purchase Additional Member Licenses.
+        ///   Looks up a localized string similar to Purchase Additional Member Licenses.
         /// </summary>
         public static string BusinessSubscriptionPurchaseTitle {
             get {
@@ -877,7 +970,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Remove.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string BusinessSubscriptionRemoveButtonLabel {
             get {
@@ -886,7 +979,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Do you really wish to remove the member from the subscription?.
+        ///   Looks up a localized string similar to Do you really wish to remove the member from the subscription?.
         /// </summary>
         public static string BusinessSubscriptionRemoveMemberConfirmation {
             get {
@@ -895,7 +988,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Total.
+        ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string BusinessSubscriptionTotalMemberLicensesLabel {
             get {
@@ -3028,7 +3121,7 @@ namespace AxCrypt.Content.Properties {
         ///SE-114 29 Stockholm
         ///SWEDEN
         ///
-        ///EU VAT number SE556967618101.
+        ///EU VAT Number SE556967618101.
         /// </summary>
         public static string InvoiceOurAddress {
             get {
