@@ -112,6 +112,11 @@ namespace Axantum.AxCrypt.Core.UI
                 return string.Empty;
             }
 
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            {
+                return Texts.LicenseBusinessNameText;
+            }
+
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium))
             {
                 return Texts.LicensePremiumNameText;

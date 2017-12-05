@@ -1387,6 +1387,10 @@ You can open legacy AxCrypt 1.x files but unless they are converted you have to 
 
 Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>
+  <data name="LicenseBusinessNameText" xml:space="preserve">
+    <value>Business</value>
+    <comment>The general name for the Business plan.</comment>
+  </data>
   <data name="LicenseFreeNameText" xml:space="preserve">
     <value>Free</value>
   </data>

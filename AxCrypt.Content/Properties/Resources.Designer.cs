@@ -3399,6 +3399,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business.
+        /// </summary>
+        public static string LicenseBusinessNameText {
+            get {
+                return ResourceManager.GetString("LicenseBusinessNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Free.
         /// </summary>
         public static string LicenseFreeNameText {
