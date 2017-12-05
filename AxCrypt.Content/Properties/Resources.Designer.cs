@@ -4826,6 +4826,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Polski (Polish).
+        /// </summary>
+        public static string PolishLanguageToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("PolishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Português (Brasil).
         /// </summary>
         public static string PortugueseBrazilLanguageSelection {

@@ -283,6 +283,7 @@
   <ItemGroup>
     <Content Include="AboutThisProgram.txt" />
     <Content Include="AxCrypt.ico" />
+    <Content Include="HowToAddLanguage.txt" />
     <Content Include="resources\activefilegreen16.png" />
     <Content Include="resources\activefileknownkeygreen16.png" />
     <Content Include="resources\axcrypticon.ico" />

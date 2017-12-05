@@ -1,0 +1,14 @@
+﻿In the designer, in the language menu add another language dropdown. Add the tag xx-XX for the culture. Add
+the click event, LanguageToolStripMenuItem_ClickAsync.
+
+Name it _xxxxxxLanaguageToolStripMenuItem.
+
+Add text to Phraseapp as XxxxxxxLanguageToolStripMenuItemText, with the text:
+
+Svenska (Swedish)
+
+i.e Native language name first, then the english name in parenthesis.
+
+Add a new Resources.xx.resx file in AxCrypt.Content, and then move to Properties.
+
+Download and merge in from Phraseapp.

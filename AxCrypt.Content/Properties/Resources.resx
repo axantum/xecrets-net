@@ -1964,6 +1964,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Polski (Polish)</value>
     <comment>The Polish name for polish in a language selection menu.</comment>
   </data>
+  <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>Polski (Polish)</value>
+  </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
     <comment>The name of the Portuguese Brazil language. Do not translate.</comment>

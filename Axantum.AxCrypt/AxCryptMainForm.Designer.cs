@@ -70,10 +70,11 @@ namespace Axantum.AxCrypt
             this._francaisLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._italianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._koreanLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._polishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._portugueseBrazilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._russianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._turkishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._russianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -400,7 +401,7 @@ namespace Axantum.AxCrypt
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -532,10 +533,11 @@ namespace Axantum.AxCrypt
             this._francaisLanguageToolStripMenuItem,
             this._italianLanguageToolStripMenuItem,
             this._koreanLanguageToolStripMenuItem,
+            this._polishLanguageToolStripMenuItem,
             this._portugueseBrazilToolStripMenuItem,
+            this._russianLanguageToolStripMenuItem,
             this._swedishLanguageToolStripMenuItem,
-            this._turkishLanguageToolStripMenuItem,
-            this._russianLanguageToolStripMenuItem});
+            this._turkishLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
             this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
@@ -597,6 +599,14 @@ namespace Axantum.AxCrypt
             this._koreanLanguageToolStripMenuItem.Text = "[Korean]";
             this._koreanLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
+            // _polishLanguageToolStripMenuItem
+            // 
+            this._polishLanguageToolStripMenuItem.Name = "_polishLanguageToolStripMenuItem";
+            this._polishLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._polishLanguageToolStripMenuItem.Tag = "pl-PL";
+            this._polishLanguageToolStripMenuItem.Text = "[Polski]";
+            this._polishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
+            // 
             // _portugueseBrazilToolStripMenuItem
             // 
             this._portugueseBrazilToolStripMenuItem.Name = "_portugueseBrazilToolStripMenuItem";
@@ -604,6 +614,14 @@ namespace Axantum.AxCrypt
             this._portugueseBrazilToolStripMenuItem.Tag = "pt-BR";
             this._portugueseBrazilToolStripMenuItem.Text = "[Português (Brasil)]";
             this._portugueseBrazilToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
+            // 
+            // _russianLanguageToolStripMenuItem
+            // 
+            this._russianLanguageToolStripMenuItem.Name = "_russianLanguageToolStripMenuItem";
+            this._russianLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._russianLanguageToolStripMenuItem.Tag = "ru-RU";
+            this._russianLanguageToolStripMenuItem.Text = "[русский]";
+            this._russianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _swedishLanguageToolStripMenuItem
             // 
@@ -620,14 +638,6 @@ namespace Axantum.AxCrypt
             this._turkishLanguageToolStripMenuItem.Tag = "tr-TR";
             this._turkishLanguageToolStripMenuItem.Text = "[Türkçe]";
             this._turkishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
-            // 
-            // _russianLanguageToolStripMenuItem
-            // 
-            this._russianLanguageToolStripMenuItem.Name = "_russianLanguageToolStripMenuItem";
-            this._russianLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this._russianLanguageToolStripMenuItem.Tag = "ru-RU";
-            this._russianLanguageToolStripMenuItem.Text = "[русский]";
-            this._russianLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
@@ -1322,6 +1332,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _thirtyMinuteInactivitySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _sixtyMinuteInactivitySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _russianLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _polishLanguageToolStripMenuItem;
     }
 }
 

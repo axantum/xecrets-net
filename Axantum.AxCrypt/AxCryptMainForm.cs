@@ -276,6 +276,7 @@ namespace Axantum.AxCrypt
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
             _passwordResetToolStripMenuItem.Text = "&" + Texts.ButtonPasswordResetText;
             _passwordResetToolStripMenuItem.ToolTipText = Texts.ButtonPasswordResetToolTip;
+            _polishLanguageToolStripMenuItem.Text = "&" + Texts.PolishLanguageToolStripMenuItemText;
             _portugueseBrazilToolStripMenuItem.Text = "&" + Texts.PortugueseBrazilLanguageSelection;
             _progressContextCancelToolStripMenuItem.Text = "&" + Texts.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = "&" + Texts.RecentFilesOpenToolStripMenuItemText;
