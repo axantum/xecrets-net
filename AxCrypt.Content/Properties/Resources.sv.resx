@@ -333,7 +333,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Lediga</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
-  <data name="BusinessSubscriptionConditionsText">
+  <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
     <value>Läs de fullständiga &lt;a href="https://www.axcrypt.net/information/license/"&gt;villkoren&lt;/a&gt; och &lt;a href="https://www.axcrypt.net/pricing/"&gt;prissättning&lt;/a&gt; före köp.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
@@ -385,7 +385,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Abonnemangsinformation</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
-  <data name="BusinessSubscriptionInstructionsLinkText">
+  <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
     <value>Läs mer &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;här&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
   </data>
@@ -409,7 +409,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Månader</value>
     <comment>A label for the number of months left of a subscription.</comment>
   </data>
-  <data name="BusinessSubscriptionNotAdministratorText">
+  <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>Du är inte administratör för några abonnemang.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
   </data>
@@ -442,7 +442,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <comment>The column label for the original list price column in the purchase dialog, before discounts and VAT.</comment>
   </data>
   <data name="BusinessSubscriptionPriceMembersLabel" xml:space="preserve">
-    <value>Medlemmar</value>
+    <value>Antal</value>
     <comment>The column label for the number of members to purchase for a business subscription.</comment>
   </data>
   <data name="BusinessSubscriptionPriceSumTotalLabel" xml:space="preserve">
@@ -1887,7 +1887,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Ogiltig tidsperiod, den måste vara minst {0} månad(er) och högst {1} månader.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Med &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter. Om det är något som du inte är nöjd med,  &lt;a href="mailto:support@axcrypt.net"&gt;kontakta oss&lt;/a&gt;. Vi ger alltid full återbetalning på begäran.</value>
+    <value>Med &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; kan du använda AxCrypt fullt ut på ett obegränsat antal datorer och enheter. Om det är något som du inte är nöjd med,  &lt;a href="mailto:support@axcrypt.net"&gt;kontakta oss&lt;/a&gt;. Vi ger alltid full återbetalning på begäran.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mer om Betalningar]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Inga personliga detaljer eller kortnummer sänds till eller lagras på våra servrar. Informationen skickas direkt till våra betalningshanterare via en krypterad förbindelse. Vi har Stripe och PayPal som partners, och båda möter höga säkerhetskrav enlig Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
@@ -1917,10 +1917,11 @@ Ett kvitto på ditt köp har skickats till din epostadress.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>Momsbeloppet är preliminärt. Ingen momsfri företagsförsäjning ännu, tyvärr.</value>
+    <value>Premium är endast för privatpersoner, ingen momsfri försäljning till företag.
+ Företag och organisationer måste skapa ett &lt;a href=""&gt;AxCrypt Business&lt;/a&gt;-abonnemang. &lt;b&gt;Momsbeloppet är preliminärt&lt;/b&gt;.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>Exkl. Moms.</value>
+    <value>Premium är endast för privatpersoner. Företag och organisationer måste skapa ett &lt;a href=""&gt;AxCrypt Business&lt;/a&gt;-abonnemang. &lt;b&gt;Moms ingår ej här.&lt;/b&gt;.</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">

@@ -2180,10 +2180,10 @@ A receipt of your purchase has been sent to your e-mail.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>VAT is estimated. No support for business VAT deduction yet, sorry. </value>
+    <value>Premium is only for private individuals, no VAT deduction for businesses is possible. Companies and organizations must create an &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is not final&lt;/b&gt;. </value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>VAT excluded.</value>
+    <value>Premium is only for private individuals. Companies and organizations must create an &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is excluded here.&lt;/b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">

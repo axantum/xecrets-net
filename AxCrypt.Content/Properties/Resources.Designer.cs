@@ -5413,7 +5413,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT is estimated. No support for business VAT deduction yet, sorry. .
+        ///   Looks up a localized string similar to Premium is only for private individuals, no VAT deduction for businesses is possible. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/Business/CreateSubscription&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is not final&lt;/b&gt;. .
         /// </summary>
         public static string PurchaseVatEstimated {
             get {
@@ -5422,7 +5422,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VAT excluded..
+        ///   Looks up a localized string similar to Premium is only for private individuals. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/Business/CreateSubscription&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is excluded here.&lt;/b&gt;.
         /// </summary>
         public static string PurchaseVatExcluded {
             get {
