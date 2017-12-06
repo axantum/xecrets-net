@@ -270,7 +270,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 _fileSystemState.KnownPassphrases.Add(passphrase);
                 await _fileSystemState.Save();
             }
-            await _knownIdentities.Add(identity);
+            await _knownIdentities.AddAsync(identity);
             return identity;
         }
     }

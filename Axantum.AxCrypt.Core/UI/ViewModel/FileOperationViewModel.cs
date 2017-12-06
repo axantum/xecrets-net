@@ -255,7 +255,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>(async (FileOperationEventArgs e) =>
             {
-                await _knownIdentities.Add(e.LogOnIdentity);
+                await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
             operationsController.Completed += async (object sender, FileOperationEventArgs e) =>
@@ -309,7 +309,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>(async (FileOperationEventArgs e) =>
             {
-                await _knownIdentities.Add(e.LogOnIdentity);
+                await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
             return operationsController.UpgradeFileAsync(store);
@@ -339,7 +339,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     _fileSystemState.KnownPassphrases.Add(e.LogOnIdentity.Passphrase);
                 }
-                await _knownIdentities.Add(e.LogOnIdentity);
+                await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
             operationsController.SetConvertLegacyOptionCommandAsync = async () =>
@@ -436,7 +436,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     _fileSystemState.KnownPassphrases.Add(e.LogOnIdentity.Passphrase);
                 }
-                await _knownIdentities.Add(e.LogOnIdentity);
+                await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
@@ -579,7 +579,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.KnownKeyAdded = new AsyncDelegateAction<FileOperationEventArgs>(async (FileOperationEventArgs e) =>
             {
-                await _knownIdentities.Add(e.LogOnIdentity);
+                await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
             operationsController.Completed += async (object sender, FileOperationEventArgs e) =>

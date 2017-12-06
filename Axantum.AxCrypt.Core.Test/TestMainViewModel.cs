@@ -401,7 +401,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = new ActiveFile(New<IDataStore>(file1), New<IDataStore>(decrypted1), new LogOnIdentity("passphrase1"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
 
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("passphrase2"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("passphrase2"));
             LogOnIdentity id = new LogOnIdentity("passphrase");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);

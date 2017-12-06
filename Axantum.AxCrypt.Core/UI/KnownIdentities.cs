@@ -70,29 +70,34 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public virtual async Task Add(LogOnIdentity logOnIdentity)
+        public virtual async Task AddAsync(LogOnIdentity identity)
         {
-            if (logOnIdentity == LogOnIdentity.Empty)
+            if (!AddInternal(identity))
             {
                 return;
+            }
+            await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, identity)).Free();
+        }
+
+        private bool AddInternal(LogOnIdentity identity)
+        {
+            if (identity == LogOnIdentity.Empty)
+            {
+                return false;
             }
 
             bool changed = false;
             lock (_logOnIdentities)
             {
-                int i = _logOnIdentities.IndexOf(logOnIdentity);
+                int i = _logOnIdentities.IndexOf(identity);
                 if (i < 0)
                 {
-                    _logOnIdentities.Insert(0, logOnIdentity);
+                    _logOnIdentities.Insert(0, identity);
                     changed = true;
                 }
             }
-            changed |= AddKnownThumbprint(logOnIdentity);
-
-            if (changed)
-            {
-                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, logOnIdentity)).Free();
-            }
+            changed |= AddKnownThumbprint(identity);
+            return changed;
         }
 
         private void Clear()
@@ -138,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (Object.ReferenceEquals(value, null))
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             if (value == LogOnIdentity.Empty)
@@ -166,8 +171,12 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             _defaultEncryptionIdentity = value;
-            await Add(_defaultEncryptionIdentity).Free();
+            bool knownKeysChanged = AddInternal(_defaultEncryptionIdentity);
             await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn, _defaultEncryptionIdentity)).Free();
+            if (knownKeysChanged)
+            {
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, _defaultEncryptionIdentity)).Free();
+            }
         }
 
         private List<SymmetricKeyThumbprint> _knownThumbprints;

@@ -155,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile;
             activeFile = new ActiveFile(New<IDataStore>(_anAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            await Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.AddAsync(activeFile.Identity);
 
             IDataStore decryptedFileInfo = New<IDataStore>(_decryptedFile1);
             decryptedFileInfo.SetFileTimes(utcNow, utcNow, utcNow);
@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt.Core.Test
             activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_anAxxPath);
             Assert.That(activeFile.Identity == LogOnIdentity.Empty, "The key should be null after loading of new FileSystemState");
 
-            await Resolve.KnownIdentities.Add(passphrase);
+            await Resolve.KnownIdentities.AddAsync(passphrase);
             await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.True, "The ActiveFile should be modified because there is now a known key.");
 
@@ -240,8 +240,8 @@ namespace Axantum.AxCrypt.Core.Test
             await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("x"));
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("y"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("x"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("y"));
             await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext());
             Assert.That(changedWasRaised, Is.False, "The ActiveFile should be not be modified because the file was modified as well and thus cannot be deleted.");
 
@@ -263,7 +263,7 @@ namespace Axantum.AxCrypt.Core.Test
             New<IDataStore>(_decryptedFile1).Delete();
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             Resolve.FileSystemState.Add(activeFile);
-            await Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.AddAsync(activeFile.Identity);
 
             bool changedWasRaised = false;
             Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
@@ -287,7 +287,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_anAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.AssumedOpenAndDecrypted, new V1Aes128CryptoFactory().CryptoId);
             Resolve.FileSystemState.Add(activeFile);
-            await Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.AddAsync(activeFile.Identity);
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;
@@ -327,7 +327,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
 
-            await Resolve.KnownIdentities.Add(passphrase);
+            await Resolve.KnownIdentities.AddAsync(passphrase);
             bool changedWasRaised = false;
             Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
             {
@@ -367,7 +367,7 @@ namespace Axantum.AxCrypt.Core.Test
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
 
-            await Resolve.KnownIdentities.Add(passphrase);
+            await Resolve.KnownIdentities.AddAsync(passphrase);
 
             bool changedWasRaised = false;
             Resolve.SessionNotify.AddCommand((SessionNotification notification) =>
@@ -411,7 +411,7 @@ namespace Axantum.AxCrypt.Core.Test
             ActiveFile activeFile = new ActiveFile(New<IDataStore>(_anAxxPath), New<IDataStore>(_decryptedFile1), new LogOnIdentity("passphrase"), ActiveFileStatus.NotDecrypted, new V1Aes128CryptoFactory().CryptoId);
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
             Resolve.FileSystemState.Add(activeFile, fakeLauncher);
-            await Resolve.KnownIdentities.Add(activeFile.Identity);
+            await Resolve.KnownIdentities.AddAsync(activeFile.Identity);
 
             ((FakeNow)New<INow>()).TimeFunction = (() => { return utcNow.AddMinutes(1); });
             bool changedWasRaised = false;

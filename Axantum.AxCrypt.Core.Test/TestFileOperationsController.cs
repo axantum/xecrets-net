@@ -510,10 +510,10 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptWithKnownKey()
         {
             FileOperationsController controller = new FileOperationsController();
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("a"));
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("e"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("b"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("c"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("a"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("e"));
             bool passphraseWasQueried = false;
             controller.QueryDecryptionPassphrase = (FileOperationEventArgs e) =>
             {
@@ -794,8 +794,8 @@ namespace Axantum.AxCrypt.Core.Test
                 return Constant.CompletedTask;
             });
 
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("b"));
-            await Resolve.KnownIdentities.Add(new LogOnIdentity("c"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("b"));
+            await Resolve.KnownIdentities.AddAsync(new LogOnIdentity("c"));
 
             status = await controller.VerifyEncryptedAsync(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success));

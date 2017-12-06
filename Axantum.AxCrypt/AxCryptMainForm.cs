@@ -162,7 +162,7 @@ namespace Axantum.AxCrypt
             BindToFileOperationViewModel();
             WireUpEvents();
             SetupCommandService();
-            await SendStartSessionNotification();
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.SessionStart));
             StartupProcessMonitor();
             ExecuteCommandLine();
         }
@@ -376,11 +376,6 @@ namespace Axantum.AxCrypt
                 await new ApplicationManager().StopAndExit();
                 return;
             }
-        }
-
-        private static async Task SendStartSessionNotification()
-        {
-            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.SessionStart));
         }
 
         private static void StartupProcessMonitor()

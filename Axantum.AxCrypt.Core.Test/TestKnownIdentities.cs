@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity passphrase = new LogOnIdentity("a");
-            await knownIdentities.Add(passphrase);
+            await knownIdentities.AddAsync(passphrase);
             Assert.That(knownIdentities.Identities.First(), Is.EqualTo(passphrase), "The first and only key should be the one just added.");
         }
 
@@ -82,9 +82,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key1 = new LogOnIdentity("key1");
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             LogOnIdentity key2 = new LogOnIdentity("key2");
-            await knownIdentities.Add(key2);
+            await knownIdentities.AddAsync(key2);
             Assert.That(knownIdentities.Identities.First(), Is.EqualTo(key2), "The first key should be the last one added.");
             Assert.That(knownIdentities.Identities.Last(), Is.EqualTo(key1), "The last key should be the first one added.");
         }
@@ -94,8 +94,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key = new LogOnIdentity(String.Empty);
-            await knownIdentities.Add(key);
-            await knownIdentities.Add(key);
+            await knownIdentities.AddAsync(key);
+            await knownIdentities.AddAsync(key);
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(0), "No key should be in the collection even if added twice, since it is empty.");
         }
 
@@ -104,8 +104,8 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key = new LogOnIdentity("abc");
-            await knownIdentities.Add(key);
-            await knownIdentities.Add(key);
+            await knownIdentities.AddAsync(key);
+            await knownIdentities.AddAsync(key);
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(1), "Only one key should be in the collection even if added twice.");
             Assert.That(knownIdentities.Identities.First(), Is.EqualTo(key), "The first and only key should be the one just added.");
         }
@@ -126,9 +126,9 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key1 = new LogOnIdentity("key1");
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             LogOnIdentity key2 = new LogOnIdentity("key2");
-            await knownIdentities.Add(key2);
+            await knownIdentities.AddAsync(key2);
             Assert.That(knownIdentities.Identities.Count(), Is.EqualTo(2), "There should be two keys in the collection.");
 
             await knownIdentities.SetDefaultEncryptionIdentity(LogOnIdentity.Empty);
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
             LogOnIdentity key1 = new LogOnIdentity("a");
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             LogOnIdentity key2 = new LogOnIdentity("B");
             await knownIdentities.SetDefaultEncryptionIdentity(key2);
 
@@ -165,7 +165,7 @@ namespace Axantum.AxCrypt.Core.Test
                 return Constant.CompletedTask;
             });
             LogOnIdentity key1 = new LogOnIdentity(String.Empty);
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             Assert.That(wasChanged, Is.False, "A new key should not trigger the Changed event.");
         }
 
@@ -181,10 +181,10 @@ namespace Axantum.AxCrypt.Core.Test
                 return Constant.CompletedTask;
             });
             LogOnIdentity key1 = new LogOnIdentity("abc");
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             Assert.That(wasChanged, Is.True, "A new key should trigger the Changed event.");
             wasChanged = false;
-            await knownIdentities.Add(key1);
+            await knownIdentities.AddAsync(key1);
             Assert.That(wasChanged, Is.False, "Re-adding an existing key should not trigger the Changed event.");
         }
 
@@ -226,7 +226,7 @@ namespace Axantum.AxCrypt.Core.Test
         {
             Resolve.FileSystemState.KnownPassphrases.Add(new Passphrase("a"));
             KnownIdentities knownIdentities = new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify);
-            await knownIdentities.Add(new LogOnIdentity("a"));
+            await knownIdentities.AddAsync(new LogOnIdentity("a"));
 
             Assert.That(knownIdentities.DefaultEncryptionIdentity.Equals(LogOnIdentity.Empty), "When adding a key that is for a known identity it should not be set as the default.");
         }
