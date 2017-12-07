@@ -53,7 +53,7 @@
   <PropertyGroup>
     <_AxCryptMajor>2</_AxCryptMajor>
     <AxMinorVersion Condition =" '$(AxMinorVersion)' == '' ">1</AxMinorVersion>
-    <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">0</AxBuildNumber>
+    <AxBuildNumber Condition=" '$(AxBuildNumber)' == '' ">1</AxBuildNumber>
   </PropertyGroup>
   <PropertyGroup>
     <_AxIsAxantumDeveloper>false</_AxIsAxantumDeveloper>
