@@ -30,6 +30,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -39,13 +40,13 @@ namespace Axantum.AxCrypt.Mono
         {
             if (Directory.Exists(location))
             {
-                return new DataContainer(location);
+                return New<IDataContainer>(location);
             }
             if (File.Exists(location))
             {
-                return new DataStore(location);
+                return New<IDataStore>(location);
             }
-            return new DataStore(location);
+            return New<IDataStore>(location);
         }
 
         protected virtual string Location { get; set; }
