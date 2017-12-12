@@ -38,6 +38,7 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -64,7 +65,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestStringInvariantFormat()
+        public static void TestExtensions_StringInvariantFormat()
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("sv-SE");
             DateTime dateTime = new DateTime(2001, 2, 3, 4, 5, 6, DateTimeKind.Utc);
@@ -77,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestStringFormatWith()
+        public static void TestExtensions_StringFormatWith()
         {
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("sv-SE");
             DateTime dateTime = new DateTime(2001, 2, 3, 4, 5, 6, DateTimeKind.Utc);
@@ -90,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestByteArrayLocate()
+        public static void TestExtensions_ByteArrayLocate()
         {
             byte[] testArray = new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x09, 0x08, 0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00 };
 
@@ -126,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestByteArrayXor()
+        public static void TestExtensions_ByteArrayXor()
         {
             byte[] testArray = new byte[] { 0x01, 0x02, 0x04, 0x08, 0x00, 0xff };
 
@@ -171,7 +172,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestByteArrayAppend()
+        public static void TestExtensions_ByteArrayAppend()
         {
             byte[] one = new byte[] { 0x01 };
             byte[] two = new byte[] { 0x02, 0x02 };
@@ -192,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestByteArrayIsEquivalentTo()
+        public static void TestExtensions_ByteArrayIsEquivalentTo()
         {
             byte[] one = new byte[] { 0x01 };
             byte[] two = new byte[] { 0x02, 0x01 };
@@ -233,7 +234,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEndianOptimization()
+        public static void TestExtensions_EndianOptimization()
         {
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment(Endian.Reverse));
             OS.Current.IsLittleEndian.SetLittleEndian();
@@ -270,7 +271,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestEndianConversion()
+        public static void TestExtensions_EndianConversion()
         {
             byte[] actuallyLittleEndianBytes = 0x0102030405060708L.GetBigEndianBytes();
             Assert.That(actuallyLittleEndianBytes, Is.EqualTo(new byte[] { 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08 }), "Getting big endian long.");
@@ -283,7 +284,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateEncryptedName()
+        public static void TestExtensions_CreateEncryptedName()
         {
             string rootPath = Path.GetPathRoot(Environment.CurrentDirectory);
             string fileName = rootPath.PathCombine("Users", "Axantum", "A Documents Folder", "My Document.docx");
@@ -312,7 +313,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestTrimLogMessage()
+        public static void TestExtensions_TrimLogMessage()
         {
             string trimmed, untrimmed;
 
@@ -346,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCopyToArgumentExceptions()
+        public static void TestExtensions_CopyToArgumentExceptions()
         {
             Stream nullStream = null;
             using (Stream stream = new MemoryStream())
@@ -359,7 +360,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateUniqueFileFirstIsOk()
+        public static void TestExtensions_CreateUniqueFileFirstIsOk()
         {
             using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
@@ -368,7 +369,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateUniqueFileFirstIsNotOk()
+        public static void TestExtensions_CreateUniqueFileFirstIsNotOk()
         {
             IDataStore fileInfo = New<IDataStore>(@"C:\temp\test.txt");
             using (Stream stream = fileInfo.OpenWrite())
@@ -381,7 +382,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateUniqueFileReallyCreates()
+        public static void TestExtensions_CreateUniqueFileReallyCreates()
         {
             using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
             {
@@ -395,7 +396,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCreateUniqueFileUnexpectedAxCryptException()
+        public static void TestExtensions_CreateUniqueFileUnexpectedAxCryptException()
         {
             EventHandler handler = delegate (object sender, EventArgs e)
             {
@@ -418,7 +419,7 @@ namespace Axantum.AxCrypt.Core.Test
         [Test]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "TestIs")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable")]
-        public static void TestIsEncryptable()
+        public static void TestExtensions_IsEncryptable()
         {
             New<FileFilter>().AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
@@ -431,7 +432,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestNormalizeFolder()
+        public static void TestExtensions_NormalizeFolder()
         {
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
             Assert.That(New<IDataContainer>(@"C:\Documents\").FullName, Is.EqualTo(expected));
@@ -441,7 +442,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFolderFromEnvironment()
+        public static void TestExtensions_FolderFromEnvironment()
         {
             string nullString = null;
             Assert.Throws<ArgumentNullException>(() => nullString.FolderFromEnvironment());
@@ -455,14 +456,14 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFallbackExtension()
+        public static void TestExtensions_FallbackExtension()
         {
             Assert.That(default(int).Fallback<int>(2), Is.EqualTo(2));
             Assert.That(3.Fallback<int>(3), Is.EqualTo(3));
         }
 
         [Test]
-        public static void TestFileInfoTypeExtension()
+        public static void TestExtensions_FileInfoTypeExtension()
         {
             FakeDataStore.AddFile(@"c:\test.txt", null);
             IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
@@ -486,7 +487,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestReduceByteArrayTooShort()
+        public static void TestExtensions_ReduceByteArrayTooShort()
         {
             byte[] big = new byte[5];
             byte[] reduced = null;
@@ -496,7 +497,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFromHexBadArguments()
+        public static void TestExtensions_FromHexBadArguments()
         {
             string nullString = null;
             Assert.Throws<ArgumentNullException>(() => nullString.FromHex());
@@ -505,7 +506,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestCopyToWithBufferSize()
+        public static void TestExtensions_CopyToWithBufferSize()
         {
             using (Stream input = new MemoryStream())
             {
@@ -524,7 +525,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestDecryptToBadArgumentsCausingEarlyException(CryptoImplementation cryptoImplementation)
+        public static void TestExtensions_DecryptToBadArgumentsCausingEarlyException(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -540,7 +541,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestUserAsymmetricKeysToAccountKeyAndBack(CryptoImplementation cryptoImplementation)
+        public static void TestExtensions_UserAsymmetricKeysToAccountKeyAndBack(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -554,7 +555,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestUserAsymmetricKeysToAccountKeyAndBackUsingDataProtection(CryptoImplementation cryptoImplementation)
+        public static void TestExtensions_UserAsymmetricKeysToAccountKeyAndBackUsingDataProtection(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -569,7 +570,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestAccountKeyToUserAsymmetricKeysWithWrongPassphrase(CryptoImplementation cryptoImplementation)
+        public static void TestExtensions_AccountKeyToUserAsymmetricKeysWithWrongPassphrase(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -583,7 +584,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TestCase(CryptoImplementation.Mono)]
         [TestCase(CryptoImplementation.WindowsDesktop)]
         [TestCase(CryptoImplementation.BouncyCastle)]
-        public static void TestAccountKeyToUserAsymmericKeysWithOnlyPublicKey(CryptoImplementation cryptoImplementation)
+        public static void TestExtensions_AccountKeyToUserAsymmericKeysWithOnlyPublicKey(CryptoImplementation cryptoImplementation)
         {
             SetupAssembly.AssemblySetupCrypto(cryptoImplementation);
 
@@ -598,7 +599,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestUrlUtilityIsValidTopLevelDomain()
+        public static void TestExtensions_UrlUtilityIsValidTopLevelDomain()
         {
             string value = null;
             Assert.Throws<ArgumentNullException>(() => value.IsValidTopLevelDomain());
@@ -613,7 +614,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestBetweenDate()
+        public static void TestExtensions_BetweenDate()
         {
             DateTime utcNow = New<INow>().Utc;
             ((FakeNow)New<INow>()).TimeFunction = () => utcNow;
@@ -649,7 +650,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestFileFilter()
+        public static void TestExtensions_FileFilter()
         {
             FakeDataStore.AddFile(@"c:\test.txt", null);
             IDataStore fileInfo = New<IDataStore>(@"c:\test.txt");
@@ -661,7 +662,7 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
-        public static void TestWildcardMatch()
+        public static void TestExtensions_WildcardMatch()
         {
             Assert.That("*deux*".WildcardMatch("-@-.de"), Is.False, "'*deux*' does not match '-@-.de'");
             Assert.That("*deux*".WildcardMatch("-@-.deux"), Is.True, "'*deux*' does match '-@-.deux'");
@@ -677,6 +678,108 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That("x".WildcardMatch(""), Is.False, "'x' does not match ''");
             Assert.That("*".WildcardMatch(""), Is.True, "'*' does match ''");
             Assert.That("?".WildcardMatch(""), Is.False, "'?' does not match ''");
+        }
+
+        [Test]
+        public static void TestExtensions_UpdateList()
+        {
+            List<object> existing;
+            List<object> updated;
+
+            existing = new List<object>(new object[0]);
+            updated = new List<object>(new object[] { "A", });
+
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(1), "Update empty with single element");
+            Assert.That(existing[0], Is.EqualTo("A"), "Update empty with single element");
+
+            existing = new List<object>(new object[] { "A", });
+            updated = new List<object>(new object[] { "A", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(1), "Update single with same single element");
+            Assert.That(existing[0], Is.EqualTo("A"), "Update single with same single element");
+
+            updated = new List<object>(new object[] { "A", });
+            updated = new List<object>(new object[0]);
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(0), "Update single element with empty");
+
+            updated = new List<object>(new object[] { "A", });
+            updated = new List<object>(new object[] { "X" });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(1), "Update single element with different single element");
+            Assert.That(existing[0], Is.EqualTo("X"), "Update single element with different single element");
+
+            existing = new List<object>(new object[0]);
+            updated = new List<object>(new object[0]);
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(0), "Update empty with empty");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "A", "B", "C", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(3), "Update multiple with same multiple");
+            Assert.That(existing[0], Is.EqualTo("A"), "Update multiple with same multiple");
+            Assert.That(existing[1], Is.EqualTo("B"), "Update multiple with same multiple");
+            Assert.That(existing[2], Is.EqualTo("C"), "Update multiple with same multiple");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "X", "A", "B", "C", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(4), "Update multiple with additional first");
+            Assert.That(existing[0], Is.EqualTo("X"), "Update multiple with additional first");
+            Assert.That(existing[1], Is.EqualTo("A"), "Update multiple with additional first");
+            Assert.That(existing[2], Is.EqualTo("B"), "Update multiple with additional first");
+            Assert.That(existing[3], Is.EqualTo("C"), "Update multiple with additional first");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "A", "X", "B", "C", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(4), "Update multiple with additional between first and second");
+            Assert.That(existing[0], Is.EqualTo("A"), "Update multiple with additional between first and second");
+            Assert.That(existing[1], Is.EqualTo("X"), "Update multiple with additional between first and second");
+            Assert.That(existing[2], Is.EqualTo("B"), "Update multiple with additional between first and second");
+            Assert.That(existing[3], Is.EqualTo("C"), "Update multiple with additional between first and second");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "A", "B", "C", "X", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(4), "Update multiple with additional appended");
+            Assert.That(existing[0], Is.EqualTo("A"), "Update multiple with additional appended");
+            Assert.That(existing[1], Is.EqualTo("B"), "Update multiple with additional appended");
+            Assert.That(existing[2], Is.EqualTo("C"), "Update multiple with additional appended");
+            Assert.That(existing[3], Is.EqualTo("X"), "Update multiple with additional appended");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "X", "A", "Y", "B", "Z", "C", "+", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(7), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[0], Is.EqualTo("X"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[1], Is.EqualTo("A"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[2], Is.EqualTo("Y"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[3], Is.EqualTo("B"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[4], Is.EqualTo("Z"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[5], Is.EqualTo("C"), "Update multiple with additional first, in between, and appended");
+            Assert.That(existing[6], Is.EqualTo("+"), "Update multiple with additional first, in between, and appended");
+
+            existing = new List<object>(new object[] { "A", "B", "C", });
+            updated = new List<object>(new object[] { "X", "Y", "Z", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(3), "Update with all new elements");
+            Assert.That(existing[0], Is.EqualTo("X"), "Update with all new elements");
+            Assert.That(existing[1], Is.EqualTo("Y"), "Update with all new elements");
+            Assert.That(existing[2], Is.EqualTo("Z"), "Update with all new elements");
+
+            existing = new List<object>(new object[] { "A", "B", "C", "D", "E", "F", });
+            updated = new List<object>(new object[] { "F", "E", "D", "C", "B", "A", });
+            existing.UpdateListTo(updated);
+            Assert.That(existing.Count, Is.EqualTo(6), "Update with reversed elements");
+            Assert.That(existing[0], Is.EqualTo("F"), "Update with reversed elements");
+            Assert.That(existing[1], Is.EqualTo("E"), "Update with reversed elements");
+            Assert.That(existing[2], Is.EqualTo("D"), "Update with reversed elements");
+            Assert.That(existing[3], Is.EqualTo("C"), "Update with reversed elements");
+            Assert.That(existing[4], Is.EqualTo("B"), "Update with reversed elements");
+            Assert.That(existing[5], Is.EqualTo("A"), "Update with reversed elements");
         }
     }
 }

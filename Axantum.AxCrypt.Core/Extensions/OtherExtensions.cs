@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -30,6 +29,66 @@ namespace Axantum.AxCrypt.Core.Extensions
                 exception = exception.InnerException;
             }
             return exception;
+        }
+
+        public static void UpdateListTo(this IList<object> existing, IList<object> updated)
+        {
+            int i = 0;
+            int j = 0;
+            while (i < existing.Count && j < updated.Count)
+            {
+                if (existing[i].Equals(updated[j]))
+                {
+                    ++i;
+                    ++j;
+                    continue;
+                }
+
+                int nextExistingMatch = FindNextIn(existing, i, updated[j]);
+                if (nextExistingMatch == existing.Count)
+                {
+                    existing.Insert(i, updated[j]);
+                }
+                else
+                {
+                    while (nextExistingMatch > i)
+                    {
+                        existing.RemoveAt(i);
+                        --nextExistingMatch;
+                    }
+                }
+                ++j;
+                ++i;
+            }
+            if (i == existing.Count)
+            {
+                while (j < updated.Count)
+                {
+                    existing.Add(updated[j]);
+                    ++j;
+                    ++i;
+                }
+            }
+            if (j == updated.Count)
+            {
+                while (existing.Count > j)
+                {
+                    existing.RemoveAt(existing.Count - 1);
+                }
+            }
+        }
+
+        private static int FindNextIn(IList<object> existing, int i, object next)
+        {
+            while (i < existing.Count)
+            {
+                if (existing[i].Equals(next))
+                {
+                    return i;
+                }
+                ++i;
+            }
+            return i;
         }
     }
 }
