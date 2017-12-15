@@ -58,6 +58,14 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public IEnumerable<ILauncher> ActiveLaunchersFor(string appName)
+        {
+            lock (_lock)
+            {
+                return _processState.Values.SelectMany(v => v).Where(l => l.Name == appName).ToList();    
+            }
+        }
+
         public bool HasActiveProcess(ActiveFile activeFile)
         {
             lock (_lock)
