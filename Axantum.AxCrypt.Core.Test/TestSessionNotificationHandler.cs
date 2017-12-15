@@ -147,13 +147,14 @@ namespace Axantum.AxCrypt.Core.Test
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
+            await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
             FakeDataStore.AddFolder(@"C:\WatchedFolder");
-            LogOnIdentity key = new LogOnIdentity("passphrase");
-            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\WatchedFolder", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
 
             called = false;
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SignOut, new LogOnIdentity("passphrase")));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.EncryptPendingFiles));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.SignOut, Resolve.KnownIdentities.DefaultEncryptionIdentity));
             Assert.That(called, Is.True, nameof(AxCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync) + " should be called when a signing out.");
         }
 
