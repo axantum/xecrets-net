@@ -145,7 +145,6 @@ namespace Axantum.AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.SignOut:
-                    await EncryptWatchedFoldersIfSupportedAsync(notification.Identity, notification.Capabilities, progress);
                     New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<UserPublicKeyUpdateStatus>().Clear();
