@@ -347,10 +347,16 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static ActiveFile CheckIfTimeToDelete(ActiveFile activeFile, FileLock decryptedFileLock, IProgressContext progress)
         {
-            if (OS.Current.Platform != Platform.WindowsDesktop && OS.Current.Platform != Platform.Linux)
+            switch (OS.Current.Platform)
             {
-                return activeFile;
+                case Platform.WindowsDesktop:
+                case Platform.Linux:
+                case Platform.MacOsx:
+                    break;
+                default:
+                    return activeFile;
             }
+
             if (!activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 return activeFile;
