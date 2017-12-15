@@ -158,6 +158,9 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (_defaultEncryptionIdentity != LogOnIdentity.Empty)
             {
+                await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.EncryptPendingFiles)).Free();
+                await _notificationMonitor.SynchronizeAsync().Free();
+
                 LicenseCapabilities oldCapabilities = New<LicensePolicy>().Capabilities;
                 Clear();
                 LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
