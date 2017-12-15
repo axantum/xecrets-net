@@ -42,6 +42,14 @@ namespace Axantum.AxCrypt.Core.Session
 
         private List<Func<SessionNotification, Task>> _commands = new List<Func<SessionNotification, Task>>();
 
+        private TaskCompletionSource<bool> _queueEmpty;
+
+        public SessionNotify()
+        {
+            _queueEmpty = new TaskCompletionSource<bool>();
+            _queueEmpty.SetResult(true);
+        }
+
         public void AddPriorityCommand(Func<SessionNotification, Task> priorityCommand)
         {
             lock (_priorityCommands)
@@ -74,6 +82,11 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public async Task SynchronizeAsync()
+        {
+            await _queueEmpty.Task;
+        }
+
         private readonly Queue<SessionNotification> _notificationQueue = new Queue<SessionNotification>();
 
         public virtual async Task NotifyAsync(SessionNotification notification)
@@ -85,6 +98,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     return;
                 }
+                _queueEmpty = new TaskCompletionSource<bool>();
             }
             while (true)
             {
@@ -92,6 +106,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     if (_notificationQueue.Count == 0)
                     {
+                        _queueEmpty.SetResult(true);
                         return;
                     }
                     OptimizeQueue();

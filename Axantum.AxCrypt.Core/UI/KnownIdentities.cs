@@ -163,6 +163,7 @@ namespace Axantum.AxCrypt.Core.UI
                 LogOnIdentity oldIdentity = _defaultEncryptionIdentity;
                 _defaultEncryptionIdentity = LogOnIdentity.Empty;
                 await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignOut, oldIdentity, oldCapabilities)).Free();
+                await _notificationMonitor.SynchronizeAsync().Free();
             }
 
             if (value == LogOnIdentity.Empty)
@@ -173,6 +174,7 @@ namespace Axantum.AxCrypt.Core.UI
             _defaultEncryptionIdentity = value;
             bool knownKeysChanged = AddInternal(_defaultEncryptionIdentity);
             await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.SignIn, _defaultEncryptionIdentity)).Free();
+            await _notificationMonitor.SynchronizeAsync().Free();
             if (knownKeysChanged)
             {
                 await _notificationMonitor.NotifyAsync(new SessionNotification(SessionNotificationType.KnownKeyChange, _defaultEncryptionIdentity)).Free();
