@@ -468,6 +468,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+
             New<FileFilter>().AddUnencryptable(new Regex(@"\\\.dropbox$"));
             New<FileFilter>().AddUnencryptable(new Regex(@"\\desktop\.ini$"));
             New<FileFilter>().AddUnencryptable(new Regex(@".*\.tmp$"));
@@ -478,18 +479,8 @@ namespace Axantum.AxCrypt
             AddEnvironmentVariableBasedFilePathFilter(@"^{0}", "ProgramFiles");
             AddEnvironmentVariableBasedFilePathFilter(@"^{0}", "ProgramFiles(x86)");
             AddEnvironmentVariableBasedFilePathFilter(@"^{0}$", "SystemDrive");
-            New<FileFilter>().AddUnencryptableExtension("cloudf");
-            New<FileFilter>().AddUnencryptableExtension("cloud");
-            New<FileFilter>().AddUnencryptableExtension("lnk");
-            New<FileFilter>().AddUnencryptableExtension("website");
-            New<FileFilter>().AddUnencryptableExtension("url");
-            New<FileFilter>().AddUnencryptableExtension("pif");
-            New<FileFilter>().AddUnencryptableExtension("gsheet");
-            New<FileFilter>().AddUnencryptableExtension("gdoc");
-            New<FileFilter>().AddUnencryptableExtension("gslides");
-            New<FileFilter>().AddUnencryptableExtension("gdraw");
-            New<FileFilter>().AddUnencryptableExtension("gtable");
-            New<FileFilter>().AddUnencryptableExtension("gform");
+
+            New<FileFilter>().AddPlatformIndependent();
 
             AddEnvironmentVariableBasedFolderPathFilter("ProgramData");
             AddEnvironmentVariableBasedFolderPathFilter("ProgramFiles(x86)");

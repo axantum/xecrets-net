@@ -16,6 +16,22 @@ namespace Axantum.AxCrypt.Core.IO
             forbiddenFolderFilters = new List<string>();
         }
 
+        public void AddPlatformIndependent()
+        {
+            AddUnencryptableExtension("cloudf");
+            AddUnencryptableExtension("cloud");
+            AddUnencryptableExtension("lnk");
+            AddUnencryptableExtension("website");
+            AddUnencryptableExtension("url");
+            AddUnencryptableExtension("pif");
+            AddUnencryptableExtension("gsheet");
+            AddUnencryptableExtension("gdoc");
+            AddUnencryptableExtension("gslides");
+            AddUnencryptableExtension("gdraw");
+            AddUnencryptableExtension("gtable");
+            AddUnencryptableExtension("gform");
+        }
+
         public bool IsEncryptable(IDataItem fileInfo)
         {
             if (fileInfo == null)
