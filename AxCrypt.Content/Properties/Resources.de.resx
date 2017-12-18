@@ -155,7 +155,7 @@
     <value>Nach der Aktivierung Ihrer  AxCrypt ID können Sie während einer 30-tägigen Testphase umsonst die AxCrypt Premium Dienste nutzen.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>Sie haben sich für eine AxCrypt ID registriert. Um den Prozess abzuschliessen müssen Sie Ihre email Adresse verifizieren. Dieser Prozess beweist dass das email Ihn gehört und gibt uns eine Genehmigung Ihn emails to schicken. 
+    <value>Sie haben sich für eine AxCrypt ID registriert. Um den Prozess abzuschliessen müssen Sie Ihre email Adresse verifizieren. Dieser Prozess beweist dass das email Ihn gehört und gibt uns eine Genehmigung Ihn emails to schicken. Bitte lesen Sie unsere &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;Datenschutzrichtlinie&lt;/a&gt; für mehr Details. 
 </value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
@@ -294,6 +294,181 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>hat kein Konto bei uns, sende eine Einladung um ein Konto zu öffnen und fortsetze.</value>
+  </data>
+  <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
+    <value>&lt;p&gt;Willkommen  zu AxCrypt Business.&lt;/p&gt;
+&lt;p&gt;Sie wurden von {0} zu einem AxCrypt Business Abonnement hinzugefügt. Sie haben jetzt zu den Subscriber-Vorteilen Zugang so lange Sie gültiges Mitglied sind. &lt;/p&gt;
+&lt;p&gt; Falls Sie irgendwelche Fragen haben, bitte kontaktieren Sie {0}.&lt;/p&gt;</value>
+    <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
+  </data>
+  <data name="BusinessAddedMailSubject" xml:space="preserve">
+    <value>Willkommen zu AxCrypt Business</value>
+    <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
+    <value>&lt;p&gt;Sie wurden als ein Benutzer von AxCrypt File Security von &lt;b&gt;{0}&lt;/b&gt; hinzugefürt . Um anfangen ihre Datei zu schützen &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;laden&lt;/a&gt; and installieren Sie nur AxCrypt. Melden Sie sich bei AxCrypt mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Verifizierungscode ein und legen Sie ihr eigenes geheim-Kennwort fest.&lt;/p&gt; 
+&lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren {0].&lt;/p&gt;</value>
+    <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
+    <value>hinzufügen </value>
+    <comment>A label or word used in a button when adding members to a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressNameLabel" xml:space="preserve">
+    <value>Adresse </value>
+    <comment>The prompt text for the address text field</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressPlaceholder" xml:space="preserve">
+    <value>Adresse</value>
+    <comment>The placeholder text for the text entry field where the administrator enters the address.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressRequiredErrorMessage" xml:space="preserve">
+    <value>Adresse ist benötigt.</value>
+    <comment>An error message if no address is given, but it's required.</comment>
+  </data>
+  <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
+    <value>Administrator</value>
+    <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
+    <value>ungenutzt</value>
+    <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
+    <value>Bitte lesen sie die ganzen &lt;ahref="https://www.axcrypt.net/information/license/"&gt;Nutzungshinweise&lt;/a&gt; und den &lt;a href="https://www.axcrypt.net/pricing/"&gt;Preisschema&lt;/a&gt; vor dem Einkauf.</value>
+    <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
+    <value>Bezugsbedingungen</value>
+    <comment>The title for the text describing the conditions of sale.</comment>
+  </data>
+  <data name="BusinessSubscriptionCountryRequiredErrorMessage" xml:space="preserve">
+    <value>Land is benötigt.</value>
+    <comment>An error message stating that providing a country is required</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateMenu" xml:space="preserve">
+    <value>erstellen</value>
+    <comment>The menu text for creation. Should be short, or one word</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateTitle" xml:space="preserve">
+    <value>Abonnement erstellen</value>
+    <comment>The title for the create business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionEmailLabel" xml:space="preserve">
+    <value>Email</value>
+    <comment>A short, preferrably one word, label used to label a field or column containing a license member email.</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberErrorMessage" xml:space="preserve">
+    <value>Ungültige EU MwSt. Nummer</value>
+    <comment>An error message stating that the provided VAT number is invalid</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberLabel" xml:space="preserve">
+    <value>EU MwSt. Nummer</value>
+    <comment>The label used for an EU VAT Number</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberPlaceholder" xml:space="preserve">
+    <value>EU MwSt. Nummer</value>
+    <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
+    <value>Abonnement läuft am {0} ab.</value>
+    <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
+    <value>Importieren</value>
+    <comment>A word used in a button to start the multiple import process.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationMenu" xml:space="preserve">
+    <value>Information</value>
+    <comment>The menu txt for subscription information. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationTitle" xml:space="preserve">
+    <value>Abonnement-Information</value>
+    <comment>The title for the information page for business subscriptions</comment>
+  </data>
+  <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
+    <value> &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;Hier&lt;/a&gt;. mehr lesen.</value>
+    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
+  </data>
+  <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
+    <value>managen</value>
+    <comment>The menu text for manage subscriptions. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionManageTitle" xml:space="preserve">
+    <value>Abonnement managen</value>
+    <comment>The title for the manage business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionMemberCountErrorMessage" xml:space="preserve">
+    <value>Zu wenig oder zu viele Mitglieder.</value>
+    <comment>An error message if there are too few or too many members specified</comment>
+  </data>
+  <data name="BusinessSubscriptionMenu" xml:space="preserve">
+    <value>Business Abonnement</value>
+    <comment>The top level menu texts for Business subscriptions. Should be short and just be the header for all sub menu items concerned with business subscriptions.</comment>
+  </data>
+  <data name="BusinessSubscriptionMonthsLeftLabel" xml:space="preserve">
+    <value>Monate</value>
+    <comment>A label for the number of months left of a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
+    <value>Sie sind nicht administrator fur irgendein Abonnement.</value>
+    <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
+    <value>Name der Organisation</value>
+    <comment>The prompt for the an organization name</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNamePlaceholder" xml:space="preserve">
+    <value>Name der Organisation</value>
+    <comment>A placeholder text for the entry field where the administrator enters the  name of the organization.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationRequiredErrorMessage" xml:space="preserve">
+    <value>Name der Organisation ist benötigt.</value>
+    <comment>An error message stating that an organization name must be given.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceCurrencyLabel" xml:space="preserve">
+    <value>Währung</value>
+    <comment>The label for the currency column in the purchasing dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceDiscountLabel" xml:space="preserve">
+    <value>Rabatt</value>
+    <comment>The label for the discount column in the price dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceEuVatLabel" xml:space="preserve">
+    <value>EU MwSt.</value>
+    <comment>The column for the amount of EU VAT charged in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceListPriceLabel" xml:space="preserve">
+    <value>Listenpreis</value>
+    <comment>The column label for the original list price column in the purchase dialog, before discounts and VAT.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceMembersLabel" xml:space="preserve">
+    <value>Mitglieder</value>
+    <comment>The column label for the number of members to purchase for a business subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceSumTotalLabel" xml:space="preserve">
+    <value>Gesamtbetrag</value>
+    <comment>The label for the sum total column in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
+    <value>Kauf</value>
+    <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
+    <value>Einkauf von zusätzlichen Mitglied Lizenzen </value>
+    <comment>The title for the purchase additional members subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveButtonLabel" xml:space="preserve">
+    <value>entfernen</value>
+    <comment>A short label or word used in a button to remove members from a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
+    <value>Wollen Sie wirklich den Mitglied von dem Abonnement entfernen ?</value>
+    <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
+    <value>Gesamtbetrag</value>
+    <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Aktivieren </value>
@@ -552,7 +727,7 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
     <value>&lt; 1 Tag </value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
-    <value>Ihr Premium Abonnement läuft bald ab. Klicken Sie zum erneuern. </value>
+    <value>Ihr Abonnement-plan läuft bald ab. Klicken Sie zum erneuern. </value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Sicherung stoppen und von der Liste entfernen</value>
@@ -661,7 +836,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Sie sind auf den Lesezugriff beschränkt. Nur Premium Benutzer können Passwörter ändern, oder neue Passworteinträge erstellen. </value>
+    <value>Sie sind auf den Lesezugriff beschränkt. Nur Benutzer mit einem gültigem Abonnement-plan können Passwörter ändern, oder neue Passworteinträge erstellen. </value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>Der angefragte Passwort Eintrag konnte nicht gefunden werden.</value>
@@ -910,7 +1085,7 @@ Das führt dazu dass Operationen lange dauern können. Bitte passen Sie auf kein
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet wird NICHT BENÖTIGT zur Benutzung von AxCrypt.
 
-Ein Internetzugang wird jedoch empfohlen und ist nötig für die Aktivierung Ihres Premium Accouts. Einige Anwendungen funktionieren so besser, und wichtige Updates könnten Sie andernfalls eventuell nicht erreichen. 
+Ein Internetzugang wird jedoch empfohlen und ist nötig für die Aktivierung Ihrem bezahlter Abonnement-plan. Einige Anwendungen funktionieren so besser, und wichtige Updates könnten Sie andernfalls eventuell nicht erreichen. 
 
 Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer verschlüsselt. </value>
   </data>
@@ -1038,6 +1213,9 @@ Ein Empfänger ist von der AxCrypt ID email identifiziert aber wie schicken die 
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Zeit </value>
   </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value>Sie haben bereits die letzte Version!</value>
+  </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Öffnen via:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
@@ -1064,6 +1242,9 @@ Aktivieren Sie die automatische Konvertierung von AxCrypt 1.x Dateien (empfohlen
   <data name="LocalIndicatorText" xml:space="preserve">
     <value>Lokale</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
+  </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value>Sie loggen sich mit einem lokalem Kennwort anstatt dem online Konto Kennwort ein. Dies ist meistens das Ergebnis einer online Kennwortzurücksetzung, aber benutzen Sie das alte Kennwort jetzt. Bitte stellen Sie sicher dass Sie das gleiche Kennwort und online Konto benutzen oder kontaktieren Sie den Support.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Abmelden </value>
@@ -1103,7 +1284,15 @@ Aktivieren Sie die automatische Konvertierung von AxCrypt 1.x Dateien (empfohlen
     <value>Zögern Sie nicht, mich zu kontaktieren, falls Sie Fragen oder Feedback haben. Sehen Sie sich auch unsere FAQ und das Forum auf unserer Webseite unter &lt;a href="{0}"&gt;{0}&lt;/a&gt; an. </value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
-  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Vielen Dank, dass Sie AxCrypt nutzen! &lt;br&gt;- Svante &lt;br&gt;&lt;i&gt;Das AxCrypt Team&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Danke, dass Sie AxCrypt benutzen! 
+- Svante
+Das AxCrypt Team </value>
+  </data>
+  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Key Sharing&lt;/li&gt;
@@ -1112,13 +1301,9 @@ Aktivieren Sie die automatische Konvertierung von AxCrypt 1.x Dateien (empfohlen
 &lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
-  <data name="MailBodySignature" xml:space="preserve">
-    <value>Vielen Dank, dass Sie AxCrypt nutzen! &lt;br&gt;- Svante &lt;br&gt;&lt;i&gt;Das AxCrypt Team&lt;/i&gt;</value>
-  </data>
-  <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Danke, dass Sie AxCrypt benutzen! 
-- Svante
-Das AxCrypt Team </value>
+  <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
+    <value>&lt;p&gt;Als Premium Benutzer stehen Ihnen eine Reihe von ausgezeichneten Funktionen zusätzlich zu den regulären kostenlosen Diensten zur Verfügung. Mit Premium haben Sie Zugang zu Diensten wie: &lt;/p&gt;</value>
+    <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hallo {0},</value>
@@ -1383,7 +1568,7 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Sie sind offline wir können deshalb Ihr Premium Abonnement nicht überprüfen. Bitte gehen Sie online so das wir Status aktualisieren können!</value>
+    <value>Sie sind offline wir können deshalb Ihr Abonnement-plan nicht überprüfen. Bitte gehen Sie online so das wir Status aktualisieren können!</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Ihre Version ist veraltet. Bitte klicken Sie um nach einer neueren Version zu suchen. </value>
@@ -1556,13 +1741,13 @@ Leerraum und Teile die gleich zu übliche Passwörter sind werden ignoriert und 
     <value>Ihr AxCrypt Premium Abonnement läuft bald ab! </value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
-    <value>Diese Funktion erfordert den Kauf von Premium! </value>
+    <value>Diese Funktion erfordert einen bezahlten Abonnement-plan!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Key Sharing erfordert Premium. Klicken Sie jetzt für das Upgrade! </value>
+    <value>Key Sharing erfordert einen bezahlten Abonnement-plan. Klicken Sie jetzt für das Upgrade! </value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>Entschuldigung aber Sie haben kein Premium Abonnement. Verbessen Sie jetzt Ihr Konto um die Premium AxCrypt Funktionalitäten zu benutzen, dies sind notwendig für die Funktionsweise der App.</value>
+    <value>Entschuldigung aber Sie haben kein gültigen Abonnement-plan. Verbessen Sie jetzt Ihr Konto um die kostenpflichtigen AxCrypt Funktionalitäten zu benutzen, dies sind notwendig für die Funktionsweise der App.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
@@ -1650,7 +1835,7 @@ Leerraum und Teile die gleich zu übliche Passwörter sind werden ignoriert und 
     <value>Sind Sie sich sicher, diese Datei dauerhaft zu löschen? Diese Aktion kann nicht widerrufen werden. </value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
-    <value>Monate</value>
+    <value>x 30 Tage</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>Meine AxCrypt ID </value>
@@ -1710,7 +1895,8 @@ Leerraum und Teile die gleich zu übliche Passwörter sind werden ignoriert und 
     <value>Die gewählte Zeit des Abonnements ist ungültig. Ein gültiges Abonnement muss mindestens {0} Monat und nicht länger als {1} Monate dauern. </value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>Mit &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen. Falls etwas nicht zu Ihre Zufriedenheit beschrieben ist, bitte &lt;a href="mailto:support@axcrypt.net"&gt; kontaktieren Sie uns&lt;/a&gt;. Wir werden Sie immer voll rückerstatten.</value>
+    <value>Mit &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; können Sie AxCrypt zu seinem vollen Potential auf einer beliebigen Zahl von Computern und Geräten nutzen. 
+Falls etwas nicht zu Ihre Zufriedenheit beschrieben ist, bitte &lt;a href="mailto:support@axcrypt.net"&gt; kontaktieren Sie uns&lt;/a&gt;. Wir werden Sie immer voll rückerstatten.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mehr über die Bezahlung]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Ihre persönlichen Zahlungsdaten werden nie versendet oder auf unserem Server gespeichert. Wir senden diese direkt von Ihnen zu unseren Zahlungsportalpartnern via einer verschlüsselten Verbindung. Unsere Partner sind Stripe und Paypal, beide erfüllen die hohen Standards der Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;
@@ -1745,10 +1931,10 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>MwSt. ist bewertet. Bisher keine Absetzung der Unternehmenssteuer möglich, Tut uns leid. </value>
+    <value>Premium ist nur für private Personen, bisher keine Absetzung der Unternehmenssteuer möglich. Unternehmen und Organisationen müssen ein href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business Konto&lt;/a&gt; Abonnement erstellen. &lt;b&gt;MwSt. ist nicht endgültig&lt;/ab&gt;.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>MwSt. ausgeschlossen</value>
+    <value>Premium ist nur für private Personen. Unternehmen und Organisationen müssen ein href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business Konto&lt;/a&gt; Abonnement erstellen. &lt;b&gt;MwSt. ist hier ausgeschlossen.&lt;b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
@@ -1830,7 +2016,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können es j
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Nur Premium Benutzer können Passworteinträge speichern</value>
+    <value>Nur Premium mit einem gültigen Abonnement-plan können Passworteinträge speichern</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gehe zur Passwortverwaltung. </value>
@@ -1845,7 +2031,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können es j
     <value>[Keine]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Ihr Premium Abonnement ist nicht mehr gültig, daher können Sie keine Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn sie Ihre 30-tätige Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
+    <value>Ihr gültiger Abonnement-plan ist nicht mehr gültig, daher können Sie keine Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn sie Ihre 30-tätige Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ihr Premium Abonnement läuft bald ab, am {0}. Danach müssen Sie Ihr Premium Abonnement verlängern um weiterhin Passwort Einträge zu erstellen oder zu verändern. Andernfalls werden Sie nur noch Lesezugriff zu der Seite haben. </value>
@@ -1964,10 +2150,10 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
-    <value>Wussten Sie, Sie können die "Unterordner enthalten" Option aktivieren um mit Ordern in Ordern zu arbeiten. Premium ist für das nötig.</value>
+    <value>Wussten Sie, Sie können die "Unterordner enthalten" Option aktivieren um mit Ordern in Ordern zu arbeiten. Ein bezahlter Abonnement-plan ist für das nötig.</value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Die Handy Apps für Android und iOS sind jetzt inclusive in AxCrypt Premium. Wollen Sie mehr darüber wissen?</value>
+    <value>Die Handy Apps für Android und iOS sind jetzt inclusive in AxCrypt bezahlter Abonnement-plan. Wollen Sie mehr darüber wissen?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StepsWizardLabel" xml:space="preserve">
@@ -1999,10 +2185,19 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Premium Support</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>Willkommen beim AxCrypt Support. Wir geben unseren Premium Abonnenten eine priorisierte und direkte Unterstützung per E-Mail. </value>
+    <value>Willkommen beim AxCrypt Support. Wir geben unseren bezahlten Abonnenten eine priorisierte und direkte Unterstützung per E-Mail. </value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Sorry, direkter Support ist nur für zahlende Benutzer verfügbar, bitte besuchen Sie unseren &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
+  </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value>Der Systemordner '{0}' kann nicht gesichert werden.</value>
+  </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>Sie versuchen Ihr Konto zu wechseln zu einem Konto was bereits existiert!</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>Wenn Sie versuchen die Mailadresse von einem Konto zu ändern, darf diese Mailadresse noch kein Konto haben! Sie müssen dieses Konto erst löschen. </value>
   </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value> Aktuelle Datei kann nicht geöffnet werden</value>
@@ -2053,7 +2248,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Für die Passwort Verwaltung wird Premium benötigt. Klicken Sie um jetzt das Upgrade zu erhalten. </value>
+    <value>Für die Passwort Verwaltung wird ein bezahlter Abonnement-plan benötigt. Klicken Sie um jetzt das Upgrade zu erhalten. </value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transaktionsverlauf </value>
@@ -2167,9 +2362,6 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Mit AxCrypt Free oder AxCrypt Premium können Sie Ihre Dateien auf einfachem Wege sichern. Die Verschlüsselung Ihrer Dateien, oder gesamter Ordner ist nur einen Klick entfernt. Die Nutzung der verschlüsselten Ordner ist ebenso einfach! </value>
   </data>
-  <data name="WelcomeMailBody3Html" xml:space="preserve">
-    <value>Als Premium Benutzer stehen Ihnen eine Reihe von ausgezeichneten Funktionen zusätzlich zu den regulären kostenlosen Diensten zur Verfügung. Mit Premium haben Sie Zugang zu Diensten wie: </value>
-  </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>Willkommen bei AxCrypt </value>
   </data>
@@ -2194,6 +2386,12 @@ Für mehr Informationen, OK klicken um ein Webbrowser zu unsere Website zu öffn
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Erste Schritte mit AxCrypt </value>
+  </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>I werden mein Kennwort nicht vergessen!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>Ihr Kennwort wird benutzt um Ihre Datei mit starken AxCrypt Verschlüsselung zu sichern. Wenn sie Ihr Kennwort vergessen können Sie diese Datei nicht öffnen. Eine Kennwort Rückstellung wird Ihnen ermöglichen sich ein zu loggen, aber nicht Ihre Datei zu öffnen, die mit dem alten password gesichert sind. </value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Wählen Sie Dateien zum sicheren löschen aus</value>

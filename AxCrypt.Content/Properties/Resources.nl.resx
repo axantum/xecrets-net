@@ -136,7 +136,7 @@
     <value>U kunt gratis gebruik maken van AxCrypt Premium eigenschappen voor een proefperiode van 30 dagen in de app.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>U heeft zich geregistreerd voor een AxCrypt ID. Om het proces te voltooien moet u uw email adres verifiëren. Zo kunnen wij controleren of dit mailadres de uwe is en u geeft ons toestemming om u te mailen.</value>
+    <value>U heeft zich geregistreerd voor een AxCrypt ID. Om het proces te voltooien moet u uw email adres verifiëren. Zo kunnen wij controleren of dit uw mailadres is en geeft u ons toestemming om u te mailen.  Gelieve ons&lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacybeleid&lt;/a&gt; lezen voor meer informatie. </value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>Om hangmatig te verifiëren, ga naar &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; en voer &lt;b&gt;{1}&lt;/b&gt;  en de verificatiecode in&lt;b&gt;{2}&lt;/b&gt; .</value>
@@ -284,6 +284,181 @@ U bent gewaarschuwd! Geniet van de beta!
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} heeft geen account bij ons. Stuur een uitnodiging om een account te registreren en ga verder.</value>
+  </data>
+  <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
+    <value>&lt;p&gt;Welkom bij AxCrypt Business.&lt;/p&gt;
+&lt;p&gt;U bent toegevoegd aan een AxCrypt Business abonnement door {0}. U heeft nu toegang tot de voordelen voor AxCrypt abonnees, zolang u een geldig lid bent.&lt;/p&gt;
+&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0}.&lt;/p&gt;</value>
+    <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
+  </data>
+  <data name="BusinessAddedMailSubject" xml:space="preserve">
+    <value>Welkom bij AxCrypt Business</value>
+    <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
+    <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
+&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0].&lt;/p&gt;</value>
+    <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
+    <value>Toevoegen</value>
+    <comment>A label or word used in a button when adding members to a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressNameLabel" xml:space="preserve">
+    <value>Adres</value>
+    <comment>The prompt text for the address text field</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressPlaceholder" xml:space="preserve">
+    <value>Adres</value>
+    <comment>The placeholder text for the text entry field where the administrator enters the address.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressRequiredErrorMessage" xml:space="preserve">
+    <value>Adres is verplicht.</value>
+    <comment>An error message if no address is given, but it's required.</comment>
+  </data>
+  <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
+    <value>Beheerder</value>
+    <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
+    <value>Ongebruikt</value>
+    <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
+    <value>Gelieve de volledige &lt;a href="https://www.axcrypt.net/information/license/"&gt;gebruiksvoorwaarden&lt;/a&gt; en &lt;a href="https://www.axcrypt.net/pricing/"&gt;prijsschema&lt;/a&gt; lezen voor de aanschaf.</value>
+    <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
+    <value>Abonnementsvoorwaarden</value>
+    <comment>The title for the text describing the conditions of sale.</comment>
+  </data>
+  <data name="BusinessSubscriptionCountryRequiredErrorMessage" xml:space="preserve">
+    <value>Land is verplicht.</value>
+    <comment>An error message stating that providing a country is required</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateMenu" xml:space="preserve">
+    <value>Aanmaken</value>
+    <comment>The menu text for creation. Should be short, or one word</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateTitle" xml:space="preserve">
+    <value>Abonnement Aanmaken</value>
+    <comment>The title for the create business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionEmailLabel" xml:space="preserve">
+    <value>E-mail</value>
+    <comment>A short, preferrably one word, label used to label a field or column containing a license member email.</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberErrorMessage" xml:space="preserve">
+    <value>Ongeldig EU BTW-nummer.</value>
+    <comment>An error message stating that the provided VAT number is invalid</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberLabel" xml:space="preserve">
+    <value>EU BTW-nummer</value>
+    <comment>The label used for an EU VAT Number</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberPlaceholder" xml:space="preserve">
+    <value>EU BTW-nummer</value>
+    <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
+    <value>Abonnement verloopt op {0}.</value>
+    <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
+    <value>Importeer</value>
+    <comment>A word used in a button to start the multiple import process.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationMenu" xml:space="preserve">
+    <value>Informatie</value>
+    <comment>The menu txt for subscription information. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationTitle" xml:space="preserve">
+    <value>Abonnementsgegevens</value>
+    <comment>The title for the information page for business subscriptions</comment>
+  </data>
+  <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
+    <value>Lees &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;hier&lt;/a&gt; meer.</value>
+    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
+  </data>
+  <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
+    <value>Beheren</value>
+    <comment>The menu text for manage subscriptions. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionManageTitle" xml:space="preserve">
+    <value>Abonnementen Beheren</value>
+    <comment>The title for the manage business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionMemberCountErrorMessage" xml:space="preserve">
+    <value>Te weinig of te veel leden.</value>
+    <comment>An error message if there are too few or too many members specified</comment>
+  </data>
+  <data name="BusinessSubscriptionMenu" xml:space="preserve">
+    <value>Business Abonnement</value>
+    <comment>The top level menu texts for Business subscriptions. Should be short and just be the header for all sub menu items concerned with business subscriptions.</comment>
+  </data>
+  <data name="BusinessSubscriptionMonthsLeftLabel" xml:space="preserve">
+    <value>Maanden</value>
+    <comment>A label for the number of months left of a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
+    <value>U bent geen beheerder voor abonnementen.</value>
+    <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
+    <value>Organisatienaam</value>
+    <comment>The prompt for the an organization name</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNamePlaceholder" xml:space="preserve">
+    <value>Organisatienaam</value>
+    <comment>A placeholder text for the entry field where the administrator enters the  name of the organization.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationRequiredErrorMessage" xml:space="preserve">
+    <value>Organisatienaam is verplicht.</value>
+    <comment>An error message stating that an organization name must be given.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceCurrencyLabel" xml:space="preserve">
+    <value>Valuta</value>
+    <comment>The label for the currency column in the purchasing dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceDiscountLabel" xml:space="preserve">
+    <value>Korting</value>
+    <comment>The label for the discount column in the price dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceEuVatLabel" xml:space="preserve">
+    <value>EU BTW</value>
+    <comment>The column for the amount of EU VAT charged in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceListPriceLabel" xml:space="preserve">
+    <value>Catalogusprijs</value>
+    <comment>The column label for the original list price column in the purchase dialog, before discounts and VAT.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceMembersLabel" xml:space="preserve">
+    <value>Leden</value>
+    <comment>The column label for the number of members to purchase for a business subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceSumTotalLabel" xml:space="preserve">
+    <value>Totaal</value>
+    <comment>The label for the sum total column in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
+    <value>Aanschaffen</value>
+    <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
+    <value>Extra Lidmaatschap Aanschaffen </value>
+    <comment>The title for the purchase additional members subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveButtonLabel" xml:space="preserve">
+    <value>Verwijderen</value>
+    <comment>A short label or word used in a button to remove members from a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
+    <value>Weet u zeker dat u het lidmaatschap wilt verwijderen?</value>
+    <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
+    <value>Totaal</value>
+    <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verifieer</value>
@@ -651,7 +826,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Uw toegang is gelimiteerd tot alleen-lezen. Alleen Premium gebruikers mogen aanpassingen maken of nieuwe wachtwoorden creëren.</value>
+    <value>Uw toegang is gelimiteerd tot alleen-lezen! Alleen Premium gebruikers mogen aanpassingen maken of nieuwe wachtwoorden creëren.</value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>De opgevraagde wachtwoord invoer was niet gevonden.</value>
@@ -900,7 +1075,7 @@ Dit zorgt er mogelijk voor dat sommige acties lang duren. Zorg er voor dat u gee
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>Internet is NIET NODIG om gebruik te maken van AxCrypt.
 
-Internet toegang is aanbevolen en benodigd om Premium in te schakelen. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
+Internet toegang is aanbevolen en benodigd om betaalde abonnementen in te schakelen. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
 
 U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geëncrypteerd.</value>
   </data>
@@ -968,13 +1143,6 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel u
     <value>Referentie</value>
     <comment>The payment provider reference id of the transaction</comment>
   </data>
-  <data name="InvoiceOurAddress" xml:space="preserve">
-    <value>AxCrypt AB
-Birger Jarlsgatan 58
-SE-114 29 Stockholm
-ZWEDEN
-BTW Nummer SE 556967618101</value>
-  </data>
   <data name="InvoicePaidForLabel" xml:space="preserve">
     <value>Betaald voor</value>
     <comment>This is a label on a receipt or invoice, prefixing the user that is the benficiary of a payment made by someone else. if alice@axcrypt.net pays for bob@axcrypt.net, then it says: Paid for: bob@axcrypt.net .</comment>
@@ -1035,6 +1203,9 @@ Een ontvanger is geïdentificeerd via de AxCrypt ID aanmeld email, maar we verst
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Tijd</value>
   </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value>U heeft de nieuwste versie al!</value>
+  </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value>Open via:</value>
     <comment>Header of popup which is displayed for file opening.</comment>
@@ -1061,6 +1232,9 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
   <data name="LocalIndicatorText" xml:space="preserve">
     <value>Lokaal</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
+  </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value>U logt in met een lokaal wachtwoord in plaats van het online account wachtwoord. Dit is vaak het gevolg wanneer u gebruikt maakt van het oude wachtwoord, na een online wachtwoord reset. Zorg ervoor dat u hetzelfde wachtwoord en account online gebruikt of neem contact op met onze ondersteuning.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>Afgemeld</value>
@@ -1100,7 +1274,15 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
     <value>Heeft u vragen of feedback? Neem dan contact met mij op. Kijk ook naar onze FAQ en Forum op onze website hier &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
-  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>Bedankt voor het gebruik maken van AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;Het AxCrypt team&lt;/i&gt;</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>Bedankt voor het gebruik maken van AxCrypt!
+- Svante
+Het AxCrypt Team</value>
+  </data>
+  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Sleutel Delen&lt;/li&gt;
@@ -1109,13 +1291,9 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
 &lt;li&gt;Cloud Opslag Bewustzijn&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
-  <data name="MailBodySignature" xml:space="preserve">
-    <value>Bedankt voor het gebruik maken van AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;Het AxCrypt team&lt;/i&gt;</value>
-  </data>
-  <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Bedankt voor het gebruik maken van AxCrypt!
-- Svante
-Het AxCrypt Team</value>
+  <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
+    <value>&lt;p&gt;Als Premium abonnee zijn er enkele uitstekende aanvullende eigenschappen die u krijgt naast die in de gratis versie. Met Premium krijgt u eigenschappen zoals:&lt;/p&gt;</value>
+    <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hallo {0},</value>
@@ -1380,7 +1558,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>U bent offline dus wij kunnen uw Premium abonnement niet controleren. Ga alstublieft online zodat wij uw status kunnen updaten.</value>
+    <value>U bent offline dus wij kunnen uw abonnement niet controleren. Ga alstublieft online zodat wij uw status kunnen updaten.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Uw versie is verouderd. Klik alstublieft om te checken voor een nieuwe versie. </value>
@@ -1545,13 +1723,13 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Uw AxCrypt Premium abonnement verloopt binnenkort!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
-    <value>Deze eigenschap vereist het aanschaffen van Premium!</value>
+    <value>Deze eigenschap vereist het aanschaffen van een abonnement!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Om sleutels te delen heeft u Premium nodig. Klik hier om nu te upgraden!</value>
+    <value>Om sleutels te delen heeft u een abonnement nodig. Klik hier om nu te upgraden!</value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>Sorry, maar u heeft geen Premium abonnement. Upgrade uw account om de Premium eigenschappen buiten de AxCrypt app om te gebruiken. Deze eigenschappen zijn benodigd om de app te laten functioneren.</value>
+    <value>Sorry, maar u heeft geen geldig abonnement. Upgrade uw account om de betaalde eigenschappen buiten de AxCrypt app om te gebruiken. Deze eigenschappen zijn benodigd om de app te laten functioneren.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
@@ -1639,7 +1817,7 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Weet u zeker dat u dit bestand permanent wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.</value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
-    <value>Maanden</value>
+    <value>x 30 dagen</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>Mijn AxCrypt ID</value>
@@ -1729,10 +1907,10 @@ Een betaalbewijs van uw aankoop is naar uw email verstuurd.</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>De BTW is geschat. Geen ondersteuning voor bedrijfs BTW aftrek op dit moment, once excuses.</value>
+    <value>Premium is alleen voor particulieren, hier is geen ondersteuning voor BTW-aftrek. Bedrijven en organisaties zijn verplicht om een &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt; abonnement aan te schaffen. &lt;b&gt;BTW is niet definitief&lt;/b&gt;.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>Zonder BTW.</value>
+    <value>Premium is alleen voor particulieren. Bedrijven en organisaties zijn verplicht een and &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt; abonnement aan te schaffen. &lt;b&gt;BTW is hier niet inbegrepen.&lt;/b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
@@ -1814,7 +1992,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Alleen premium gebruikers kunnen hun ingevoerde wachtwoorden opslaan.</value>
+    <value>Alleen gebruikers met een geldig abonnement kunnen hun ingevoerde wachtwoorden opslaan.</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Ga naar wachtwoordbeheer.</value>
@@ -1830,7 +2008,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>[Geen]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>U heeft geen Premium abonnement waardoor u niet langer wachtwoord invoeren kunt maken of deze aanpassen. Echter u kunt bestaande invoeren nog steeds inkijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
+    <value>U heeft geen geldig abonnement waardoor u niet langer wachtwoord kunt aanmaken of deze aanpassen. U kunt echter bestaande wachtwoorden nog steeds bekijken. Als u uw 30 dagen durende Premium proefperiode nog niet heeft gebruikt kunt u deze vanaf de &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;starten.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Uw Premium abonnement verloopt binnenkort op {0}. U zult uw Premium abonnement moeten verlegen om wachtwoord invoeren aan te passen en te creëren. U houdt altijd alleen-lezen toegang.</value>
@@ -1951,10 +2129,10 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
-    <value>Wist u dat u de 'Inclusief Submappen' optie kan activeren om met mappen in mappen te werken? U heeft Premium nodig voor dit. </value>
+    <value>Wist u dat u de 'Inclusief Submappen' optie kan activeren om met mappen in mappen te werken? U heeft hiervoor een abonnement nodig. </value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Mobiele apps voor Android en iOS zijn nu bij AxCrypt Premium inbegrepen. Wilt u meer weten?</value>
+    <value>Mobiele apps voor Android en iOS zijn nu bij AxCrypt abonnementen inbegrepen. Wilt u meer weten?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StepsWizardLabel" xml:space="preserve">
@@ -1986,10 +2164,19 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Premium Ondersteuning</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>Welkom bij AxCrypt Ondersteuning. Wij geven onze Premium gebruikers voorrang en directe persoonlijke ondersteuning via email.</value>
+    <value>Welkom bij AxCrypt Ondersteuning. Wij geven onze betaalde gebruikers voorrang en directe persoonlijke ondersteuning via email.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Onze excuses, directe ondersteuning is alleen beschikbaar voor betalende gebruikers. Bezoek alstublieft onze &lt;a href="{0}"&gt;community ondersteuning&lt;/a&gt;</value>
+  </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value>De systeemmap '{0}' kan niet worden beveiligd.</value>
+  </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>U probeert uw account te wijzigen in een account dat al bestaat!</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>Wanneer u het e-mailadres van een account probeert te wijzigen, moet er nog geen account ingeschreven staan op dat e-mailadres! U moet dan eerst het account verwijderen.</value>
   </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Kan huidig bestand niet openen</value>
@@ -2040,7 +2227,7 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Premium is nodig voor wachtwoordbeheer. Klik om nu te upgraden!</value>
+    <value>Een betaald abonnement is nodig voor wachtwoordbeheer. Klik om nu te upgraden!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>Transactiegeschiedenis</value>
@@ -2157,9 +2344,6 @@ Het AxCrypt team</value>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Met AxCrypt Gratis of AxCrypt Premium kunt u uw bestanden makkelijk beveiligen. Uw bestanden en mappen encrypteren is maar één klik van u vandaan. Werken met geëncrypteerde bestanden is net zo makkelijk!</value>
   </data>
-  <data name="WelcomeMailBody3Html" xml:space="preserve">
-    <value>Als Premium abonnee zijn er enkele uitstekende aanvullende eigenschappen die u krijgt naast die in de gratis verise. Met Premium krijgt u eigenschappen zoals:</value>
-  </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>Welkom bij AxCrypt!</value>
   </data>
@@ -2184,6 +2368,12 @@ Voor meer informatie klik op OK om naar onze website te gaan.</value>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Beginnen met AxCrypt</value>
+  </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>Ik zal mijn wachtwoord niet vergeten!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>Uw wachtwoord wordt gebruikt voor het beveiligen van uw bestanden met AxCrypt's sterke encryptie. Als u dit wachtwoord vergeet, kunt u deze bestanden niet openen. Een wachtwoordreset maakt het mogelijk om in te loggen op uw account, maar niet om bestanden te openen die beveiligd zijn met het oude wachtwoord.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Selecteer bestanden om beveiligd te verwijderen</value>
