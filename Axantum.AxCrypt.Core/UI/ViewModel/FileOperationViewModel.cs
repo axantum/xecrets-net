@@ -153,7 +153,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            await EncryptFewOrManyFilesAsync(files.Select(f => New<IDataStore>(f)).ToList());
+            IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
+            await EncryptFewOrManyFilesAsync(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptableFile));
         }
 
         private async Task DecryptFilesActionAsync(IEnumerable<string> files)
