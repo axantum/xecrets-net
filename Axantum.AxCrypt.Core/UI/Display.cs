@@ -130,6 +130,16 @@ namespace Axantum.AxCrypt.Core.UI
             return Texts.LicenseFreeNameText;
         }
 
+        public string GetLicenseStatusAndExpiration(bool isLoggedon)
+        {
+            if (isLoggedon)
+            {
+                return GetLicenseStatus(isLoggedon) + " " + New<LicensePolicy>().Expiration.ToString("yyyy-MM-dd");
+            }
+
+            return string.Empty;
+        }
+
         private static string GetLogonStatus(bool isLoggedOn)
         {
             if (isLoggedOn)

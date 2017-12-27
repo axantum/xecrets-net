@@ -136,12 +136,13 @@ namespace Axantum.AxCrypt.Core.Runtime
         private async Task<TimeSpan> TimeUntilSubscriptionExpiration(LogOnIdentity identity)
         {
             DateTime utcNow = New<INow>().Utc;
-            if (utcNow >= await SubscriptionExpirationAsync(identity).Free())
+            _expiration = await SubscriptionExpirationAsync(identity).Free();
+            if (utcNow >= _expiration)
             {
                 return TimeSpan.Zero;
             }
 
-            TimeSpan untilExpiration = await SubscriptionExpirationAsync(identity).Free() - utcNow;
+            TimeSpan untilExpiration = _expiration - utcNow;
             return untilExpiration;
         }
 
@@ -210,6 +211,20 @@ namespace Axantum.AxCrypt.Core.Runtime
             protected set
             {
                 _currentLicenseCapabilities = value;
+            }
+        }
+
+        private DateTime _expiration;
+
+        public DateTime Expiration
+        {
+            get
+            {
+                if (_expiration == null)
+                {
+                    _expiration = DateTime.MaxValue;
+                }
+                return _expiration;
             }
         }
 

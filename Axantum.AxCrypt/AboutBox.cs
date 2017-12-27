@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -43,6 +44,7 @@ namespace Axantum.AxCrypt
         public void ShowNow()
         {
             Show();
+            this.SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration(New<KnownIdentities>().IsLoggedOn);
             Activate();
             Focus();
             BringToFront();

@@ -33,6 +33,7 @@
             this.VersionText = new System.Windows.Forms.Label();
             this.CopyrightText = new System.Windows.Forms.Label();
             this.CompanyNameText = new System.Windows.Forms.Label();
+            this.SubscriptionStatusAndExpirationText = new System.Windows.Forms.Label();
             this.Description = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -92,16 +93,27 @@
             this.CompanyNameText.Text = "[AxCrypt AB]";
             this.CompanyNameText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // SubscriptionStatusAndExpirationText
+            // 
+            this.SubscriptionStatusAndExpirationText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.SubscriptionStatusAndExpirationText.Location = new System.Drawing.Point(143, 102);
+            this.SubscriptionStatusAndExpirationText.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.SubscriptionStatusAndExpirationText.Name = "SubscriptionStatusAndExpirationText";
+            this.SubscriptionStatusAndExpirationText.Size = new System.Drawing.Size(271, 17);
+            this.SubscriptionStatusAndExpirationText.TabIndex = 30;
+            this.SubscriptionStatusAndExpirationText.Text = "[Free]";
+            this.SubscriptionStatusAndExpirationText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Description
             // 
-            this.Description.Location = new System.Drawing.Point(143, 107);
+            this.Description.Location = new System.Drawing.Point(143, 136);
             this.Description.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.Description.Multiline = true;
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
             this.Description.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.Description.Size = new System.Drawing.Size(271, 126);
-            this.Description.TabIndex = 30;
+            this.Description.TabIndex = 31;
             this.Description.TabStop = false;
             this.Description.Text = "[Description]";
             // 
@@ -110,10 +122,10 @@
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.okButton.Location = new System.Drawing.Point(339, 239);
+            this.okButton.Location = new System.Drawing.Point(339, 268);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 31;
+            this.okButton.TabIndex = 32;
             this.okButton.Text = "[&OK]";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
@@ -122,12 +134,13 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 283);
+            this.ClientSize = new System.Drawing.Size(435, 310);
             this.Controls.Add(this.logoPictureBox);
             this.Controls.Add(this.ProductNameText);
             this.Controls.Add(this.VersionText);
             this.Controls.Add(this.CopyrightText);
             this.Controls.Add(this.CompanyNameText);
+            this.Controls.Add(this.SubscriptionStatusAndExpirationText);
             this.Controls.Add(this.Description);
             this.Controls.Add(this.okButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -155,6 +168,7 @@
         internal System.Windows.Forms.Label VersionText;
         internal System.Windows.Forms.Label CopyrightText;
         internal System.Windows.Forms.Label CompanyNameText;
+        internal System.Windows.Forms.Label SubscriptionStatusAndExpirationText;
         internal System.Windows.Forms.TextBox Description;
         private System.Windows.Forms.Button okButton;
 
