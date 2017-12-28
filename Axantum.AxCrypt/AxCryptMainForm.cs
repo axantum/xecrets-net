@@ -554,12 +554,6 @@ namespace Axantum.AxCrypt
                 _alwaysOfflineToolStripMenuItem.Checked = offlineMode;
                 New<UserSettings>().OfflineMode = offlineMode;
                 New<AxCryptOnlineState>().IsOffline = offlineMode;
-
-                if (!offlineMode)
-                {
-                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
-                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
-                }
             };
             _softwareStatusButton.Click += _softwareStatusButton_Click;
 #if DEBUG
@@ -909,6 +903,11 @@ namespace Axantum.AxCrypt
                 {
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<IInternetState>().Clear();
+                    New<IUIThread>().PostTo(async () =>
+                    {
+                        await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
+                    });
+                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
                 }
                 New<IUIThread>().PostTo(async () =>
                 {
