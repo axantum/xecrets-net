@@ -548,13 +548,13 @@ namespace Axantum.AxCrypt
             _notifySignOutToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
             _notifySignInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
-            _alwaysOfflineToolStripMenuItem.Click += async (sender, e) =>
-            {
-                bool offlineMode = !New<UserSettings>().OfflineMode;
-                _alwaysOfflineToolStripMenuItem.Checked = offlineMode;
-                New<UserSettings>().OfflineMode = offlineMode;
-                New<AxCryptOnlineState>().IsOffline = offlineMode;
-            };
+            _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
+           {
+               bool offlineMode = !New<UserSettings>().OfflineMode;
+               _alwaysOfflineToolStripMenuItem.Checked = offlineMode;
+               New<UserSettings>().OfflineMode = offlineMode;
+               New<AxCryptOnlineState>().IsOffline = offlineMode;
+           };
             _softwareStatusButton.Click += _softwareStatusButton_Click;
 #if DEBUG
             _debugCryptoPolicyToolStripMenuItem.Visible = true;
