@@ -896,17 +896,15 @@ namespace Axantum.AxCrypt
                 }
             );
 
-            New<AxCryptOnlineState>().OnlineStateChanged += (sender, e) =>
+            New<AxCryptOnlineState>().OnlineStateChanged += async (sender, e) =>
             {
                 AxCryptOnlineState onLineState = (AxCryptOnlineState)sender;
                 if (onLineState.IsOnline)
                 {
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<IInternetState>().Clear();
-                    New<IUIThread>().PostTo(async () =>
-                    {
-                        await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
-                    });
+
+                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
                     _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
                 }
                 New<IUIThread>().PostTo(async () =>
