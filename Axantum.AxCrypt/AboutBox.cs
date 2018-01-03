@@ -34,6 +34,11 @@ namespace Axantum.AxCrypt
             this.VersionText.Text = New<AboutAssembly>().AboutVersionText;
             this.CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
             this.CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
+
+            if (New<KnownIdentities>().IsLoggedOn)
+            {
+                this.SubscriptionStatusAndExpirationText.Visible = true;
+            }
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -44,7 +49,6 @@ namespace Axantum.AxCrypt
         public void ShowNow()
         {
             Show();
-            this.SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration(New<KnownIdentities>().IsLoggedOn);
             Activate();
             Focus();
             BringToFront();
@@ -57,6 +61,11 @@ namespace Axantum.AxCrypt
                 e.Cancel = true;
                 Hide();
             }
+        }
+
+        private void SubscriptionStatusText_Visible(object sender, EventArgs e)
+        {
+            this.SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration();
         }
     }
 }

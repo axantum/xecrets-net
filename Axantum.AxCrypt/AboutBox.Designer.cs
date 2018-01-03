@@ -103,6 +103,7 @@
             this.SubscriptionStatusAndExpirationText.TabIndex = 30;
             this.SubscriptionStatusAndExpirationText.Text = "[Free]";
             this.SubscriptionStatusAndExpirationText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SubscriptionStatusAndExpirationText.VisibleChanged += new System.EventHandler(this.SubscriptionStatusText_Visible);
             // 
             // Description
             // 
