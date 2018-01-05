@@ -137,13 +137,22 @@ namespace Axantum.AxCrypt.Core.UI
                 return string.Empty;
             }
 
-            string subscriptionStatus = GetLicenseStatus(New<KnownIdentities>().IsLoggedOn);
-            if (subscriptionStatus == nameof(LicenseCapability.Premium) || subscriptionStatus == nameof(LicenseCapability.Business))
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
             {
-                return subscriptionStatus + " " + New<LicensePolicy>().Expiration.ToString("yyyy-MM-dd");
+                return Texts.LicenseBusinessNameText + " " + New<LicensePolicy>().Expiration.ToString("yyyy-MM-dd");
             }
 
-            return subscriptionStatus;
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium))
+            {
+                return Texts.LicensePremiumNameText + " " + New<LicensePolicy>().Expiration.ToString("yyyy-MM-dd");
+            }
+
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))
+            {
+                return Texts.LicenseViewerNameText;
+            }
+
+            return Texts.LicenseFreeNameText;
         }
 
         private static string GetLogonStatus(bool isLoggedOn)

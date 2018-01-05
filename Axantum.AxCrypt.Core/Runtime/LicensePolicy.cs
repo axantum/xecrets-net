@@ -114,6 +114,12 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task RefreshAsync(LogOnIdentity identity)
         {
+            Expiration = await SubscriptionExpirationAsync(New<KnownIdentities>().DefaultEncryptionIdentity).Free();
+            if (Expiration != _expiration)
+            {
+                _expiration = Expiration;
+            }
+
             Capabilities = await CapabilitiesAsync(identity).Free();
             if (Capabilities != _mostRecentCapabilities)
             {
@@ -213,11 +219,21 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        private DateTime _expiration = DateTime.MaxValue;
+
         public DateTime Expiration
         {
             get
             {
-                return SubscriptionExpirationAsync(New<KnownIdentities>().DefaultEncryptionIdentity).Free().GetAwaiter().GetResult();
+                if (_expiration == null)
+                {
+                    _expiration = DateTime.MaxValue;
+                }
+                return _expiration;
+            }
+            protected set
+            {
+                _expiration = value;
             }
         }
 
