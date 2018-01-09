@@ -6079,6 +6079,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!{0} valid until {1}. .
+        /// </summary>
+        public static string SubscriptionPlanValidUntilFormat {
+            get {
+                return ResourceManager.GetString("SubscriptionPlanValidUntilFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid format for field Amount. Please use decimal format, i.e. 10.50..
         /// </summary>
         public static string SubscriptionsErrorAmount {
