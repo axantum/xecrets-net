@@ -502,6 +502,14 @@ You have been warned, now enjoy!</value>
     <value>Do you really wish to remove the member from the subscription?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
   </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>!!Acting for</value>
+    <comment>A prompt heading clarifying that the information below is what the action is for.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>!!Acting as</value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
+  </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
