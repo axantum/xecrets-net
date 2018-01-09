@@ -30,15 +30,10 @@ namespace Axantum.AxCrypt
 
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            this.ProductNameText.Text = New<AboutAssembly>().AssemblyProduct;
-            this.VersionText.Text = New<AboutAssembly>().AboutVersionText;
-            this.CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
-            this.CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
-
-            if (New<KnownIdentities>().IsLoggedOn)
-            {
-                this.SubscriptionStatusAndExpirationText.Visible = true;
-            }
+            ProductNameText.Text = New<AboutAssembly>().AssemblyProduct;
+            VersionText.Text = New<AboutAssembly>().AboutVersionText;
+            CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
+            CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -63,9 +58,12 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void SubscriptionStatusText_Visible(object sender, EventArgs e)
+        private void AboutBox_VisibleChanged(object sender, EventArgs e)
         {
-            this.SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration();
+            if (Visible)
+            {
+                SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration();
+            }
         }
     }
 }

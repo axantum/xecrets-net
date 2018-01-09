@@ -103,7 +103,7 @@
             this.SubscriptionStatusAndExpirationText.TabIndex = 30;
             this.SubscriptionStatusAndExpirationText.Text = "[Free]";
             this.SubscriptionStatusAndExpirationText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SubscriptionStatusAndExpirationText.VisibleChanged += new System.EventHandler(this.SubscriptionStatusText_Visible);
+
             // 
             // Description
             // 
@@ -156,6 +156,7 @@
             this.Text = "AboutBox";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AboutBox_FormClosing);
             this.Load += new System.EventHandler(this.AboutBox_Load);
+            this.VisibleChanged += new System.EventHandler(this.AboutBox_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
