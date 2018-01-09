@@ -988,7 +988,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Acting for.
+        ///   Looks up a localized string similar to Acting on.
         /// </summary>
         public static string BusinessSubscriptionResellerCustomerSubscription {
             get {
@@ -997,7 +997,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Acting as.
+        ///   Looks up a localized string similar to Acting as.
         /// </summary>
         public static string BusinessSubscriptionResellerSubscriptionSelection {
             get {
