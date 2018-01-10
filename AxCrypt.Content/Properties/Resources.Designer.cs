@@ -6115,7 +6115,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!{0} valid until {1}. .
+        ///   Looks up a localized string similar to {0} valid until {1}. .
         /// </summary>
         public static string SubscriptionPlanValidUntilFormat {
             get {
