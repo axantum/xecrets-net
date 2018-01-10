@@ -16,9 +16,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class Display
     {
-        public object SubscriptionStatusAndExpirationText { get; private set; }
-        public bool Visible { get; private set; }
-
         public async Task<string> WindowTitleTextAsync(bool isLoggedOn)
         {
             string licenseStatus = GetLicenseStatus(isLoggedOn);
