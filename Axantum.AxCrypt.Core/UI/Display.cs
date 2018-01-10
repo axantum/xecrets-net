@@ -7,7 +7,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using AxCrypt.Content;
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -120,6 +120,31 @@ namespace Axantum.AxCrypt.Core.UI
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium))
             {
                 return Texts.LicensePremiumNameText;
+            }
+
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))
+            {
+                return Texts.LicenseViewerNameText;
+            }
+
+            return Texts.LicenseFreeNameText;
+        }
+
+        public string GetLicenseStatusAndExpiration()
+        {
+            if (!New<KnownIdentities>().IsLoggedOn)
+            {
+                return string.Empty;
+            }
+
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            {
+                return string.Format(Texts.SubscriptionPlanValidUntilFormat, Texts.LicenseBusinessNameText, New<LicensePolicy>().Expiration.ToString("d", CultureInfo.CurrentCulture));
+            }
+
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium))
+            {
+                return string.Format(Texts.SubscriptionPlanValidUntilFormat, Texts.LicensePremiumNameText, New<LicensePolicy>().Expiration.ToString("d", CultureInfo.CurrentCulture));
             }
 
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))

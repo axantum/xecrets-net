@@ -114,6 +114,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task RefreshAsync(LogOnIdentity identity)
         {
+            Expiration = await SubscriptionExpirationAsync(identity).Free();
+
             Capabilities = await CapabilitiesAsync(identity).Free();
             if (Capabilities != _mostRecentCapabilities)
             {
@@ -212,6 +214,8 @@ namespace Axantum.AxCrypt.Core.Runtime
                 _currentLicenseCapabilities = value;
             }
         }
+
+        public DateTime Expiration { get; private set; } = DateTime.MaxValue;
 
         public void Dispose()
         {

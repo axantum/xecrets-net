@@ -618,6 +618,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administrators.
+        /// </summary>
+        public static string BusinessAdministratorsLabel {
+            get {
+                return ResourceManager.GetString("BusinessAdministratorsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
         ///&lt;p&gt;If you have any questions, please first contact {0].&lt;/p&gt;.
         /// </summary>
@@ -669,6 +678,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionAdministratorLabel {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionAdministratorLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are already Business member, only create a new subscription if you are sure you want to..
+        /// </summary>
+        public static string BusinessSubscriptionAlreadyMemberCreateWarning {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionAlreadyMemberCreateWarning", resourceCulture);
             }
         }
         
@@ -6093,6 +6111,15 @@ namespace AxCrypt.Content.Properties {
         public static string SubmitFeedbackButton {
             get {
                 return ResourceManager.GetString("SubmitFeedbackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} valid until {1}. .
+        /// </summary>
+        public static string SubscriptionPlanValidUntilFormat {
+            get {
+                return ResourceManager.GetString("SubscriptionPlanValidUntilFormat", resourceCulture);
             }
         }
         

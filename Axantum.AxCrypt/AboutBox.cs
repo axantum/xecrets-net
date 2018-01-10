@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -29,10 +30,10 @@ namespace Axantum.AxCrypt
 
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            this.ProductNameText.Text = New<AboutAssembly>().AssemblyProduct;
-            this.VersionText.Text = New<AboutAssembly>().AboutVersionText;
-            this.CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
-            this.CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
+            ProductNameText.Text = New<AboutAssembly>().AssemblyProduct;
+            VersionText.Text = New<AboutAssembly>().AboutVersionText;
+            CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
+            CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -54,6 +55,14 @@ namespace Axantum.AxCrypt
             {
                 e.Cancel = true;
                 Hide();
+            }
+        }
+
+        private void AboutBox_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                SubscriptionStatusAndExpirationText.Text = new Display().GetLicenseStatusAndExpiration();
             }
         }
     }
