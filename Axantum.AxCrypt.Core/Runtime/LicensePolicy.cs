@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public async Task RefreshAsync(LogOnIdentity identity)
         {
-            Expiration = await SubscriptionExpirationAsync(New<KnownIdentities>().DefaultEncryptionIdentity).Free();
+            Expiration = await SubscriptionExpirationAsync(identity).Free();
 
             Capabilities = await CapabilitiesAsync(identity).Free();
             if (Capabilities != _mostRecentCapabilities)
