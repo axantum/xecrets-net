@@ -337,6 +337,10 @@ You have been warned, now enjoy!</value>
     <value>Welcome to AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>Administrators</value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
 &lt;p&gt;If you have any questions, please first contact {0].&lt;/p&gt;</value>
