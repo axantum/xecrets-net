@@ -988,6 +988,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acting on.
+        /// </summary>
+        public static string BusinessSubscriptionResellerCustomerSubscription {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionResellerCustomerSubscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acting as.
+        /// </summary>
+        public static string BusinessSubscriptionResellerSubscriptionSelection {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionResellerSubscriptionSelection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         public static string BusinessSubscriptionTotalMemberLicensesLabel {
