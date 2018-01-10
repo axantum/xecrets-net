@@ -366,6 +366,10 @@ You have been warned, now enjoy!</value>
     <value>Administrator</value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
   </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>You are already Business member, only create a new subscription if you are sure you want to.</value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
+  </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
     <value>Unused</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>

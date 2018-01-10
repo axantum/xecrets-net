@@ -682,6 +682,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are already Business member, only create a new subscription if you are sure you want to..
+        /// </summary>
+        public static string BusinessSubscriptionAlreadyMemberCreateWarning {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionAlreadyMemberCreateWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unused.
         /// </summary>
         public static string BusinessSubscriptionAvailableMemberLicensesLabel {
