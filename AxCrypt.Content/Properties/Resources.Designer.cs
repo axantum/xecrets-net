@@ -107,6 +107,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Business.
+        /// </summary>
+        public static string AccountStatusBusiness {
+            get {
+                return ResourceManager.GetString("AccountStatusBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Free.
         /// </summary>
         public static string AccountStatusLight {
@@ -127,9 +136,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to AxCrypt Premium (indefinite).
         /// </summary>
-        public static string AccountStatusPremiumIndefinate {
+        public static string AccountStatusPremiumIndefinite {
             get {
-                return ResourceManager.GetString("AccountStatusPremiumIndefinate", resourceCulture);
+                return ResourceManager.GetString("AccountStatusPremiumIndefinite", resourceCulture);
             }
         }
         

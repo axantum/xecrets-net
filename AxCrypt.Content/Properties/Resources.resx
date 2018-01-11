@@ -135,13 +135,17 @@
     <value>The account must be verified by the user first.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountStatusBusiness" xml:space="preserve">
+    <value>AxCrypt Business</value>
+    <comment>The full name of the business plan. Should not be translated</comment>
+  </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
   </data>
   <data name="AccountStatusPremium" xml:space="preserve">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="AccountStatusPremiumIndefinate" xml:space="preserve">
+  <data name="AccountStatusPremiumIndefinite" xml:space="preserve">
     <value>AxCrypt Premium (indefinite)</value>
   </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
