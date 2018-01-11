@@ -1461,22 +1461,23 @@ namespace Axantum.AxCrypt
 
         private async Task ShutDownAndExit()
         {
-            await new ApplicationManager().ShutdownBackgroundSafe();
-
-            await EncryptPendingFiles();
-
-            await WarnIfAnyDecryptedFiles();
+            await BackgroundSafeAndReEncryption();
 
             New<IUIThread>().ExitApplication();
         }
 
-        private async Task ApplicationRestart()
+        private async Task BackgroundSafeAndReEncryption()
         {
             await new ApplicationManager().ShutdownBackgroundSafe();
 
             await EncryptPendingFiles();
 
             await WarnIfAnyDecryptedFiles();
+        }
+
+        private async Task ApplicationRestart()
+        {
+            await BackgroundSafeAndReEncryption();
 
             New<IUIThread>().RestartApplication();
         }
