@@ -28,7 +28,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Abstractions
@@ -48,6 +47,8 @@ namespace Axantum.AxCrypt.Abstractions
         void Yield();
 
         void ExitApplication();
+
+        void RestartApplication();
 
         void SendTo(Action action);
 

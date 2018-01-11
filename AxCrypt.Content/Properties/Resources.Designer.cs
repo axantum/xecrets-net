@@ -4544,7 +4544,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Clear All Settings and Exit.
+        ///   Looks up a localized string similar to !!Clear All Settings and Restart.
         /// </summary>
         public static string OptionsClearAllSettingsAndExitToolStripMenuItemText {
             get {

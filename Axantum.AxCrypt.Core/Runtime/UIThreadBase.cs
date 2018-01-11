@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -33,6 +32,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         public abstract void Yield();
 
         public abstract void ExitApplication();
+
+        public abstract void RestartApplication();
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public void SendTo(Action action)

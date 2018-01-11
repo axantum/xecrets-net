@@ -25,13 +25,8 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
@@ -58,6 +53,11 @@ namespace Axantum.AxCrypt
         public override void ExitApplication()
         {
             Application.Exit();
+        }
+
+        public override void RestartApplication()
+        {
+            Application.Restart();
         }
     }
 }
