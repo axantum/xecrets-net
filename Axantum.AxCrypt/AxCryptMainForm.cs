@@ -783,7 +783,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
-            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ApplicationRestart(); };
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
@@ -892,7 +892,7 @@ namespace Axantum.AxCrypt
                 },
                 async () =>
                 {
-                    await ShutDownAndExit();
+                    await ShutDownAnd(New<IUIThread>().ExitApplication);
                 }
             );
 
@@ -1447,7 +1447,7 @@ namespace Axantum.AxCrypt
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            await ShutDownAndExit();
+            await ShutDownAnd(New<IUIThread>().ExitApplication);
         }
 
         private void RestoreFormConditionally()
@@ -1459,27 +1459,13 @@ namespace Axantum.AxCrypt
             Styling.RestoreWindowWithFocus(this);
         }
 
-        private async Task ShutDownAndExit()
-        {
-            await BackgroundSafeAndReEncryption();
-
-            New<IUIThread>().ExitApplication();
-        }
-
-        private async Task BackgroundSafeAndReEncryption()
+        private async Task ShutDownAnd(Action finalAction)
         {
             await new ApplicationManager().ShutdownBackgroundSafe();
-
             await EncryptPendingFiles();
-
             await WarnIfAnyDecryptedFiles();
-        }
 
-        private async Task ApplicationRestart()
-        {
-            await BackgroundSafeAndReEncryption();
-
-            New<IUIThread>().RestartApplication();
+            finalAction();
         }
 
         #region ToolStrip
