@@ -783,7 +783,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
-            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await new ApplicationManager().StopAndExit(); };
+            _optionsClearAllSettingsAndExitToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ApplicationRestart(); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
@@ -1468,6 +1468,17 @@ namespace Axantum.AxCrypt
             await WarnIfAnyDecryptedFiles();
 
             New<IUIThread>().ExitApplication();
+        }
+
+        private async Task ApplicationRestart()
+        {
+            await new ApplicationManager().ShutdownBackgroundSafe();
+
+            await EncryptPendingFiles();
+
+            await WarnIfAnyDecryptedFiles();
+
+            New<IUIThread>().RestartApplication();
         }
 
         #region ToolStrip

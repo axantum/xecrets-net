@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Linq;
 using System.Threading;
@@ -68,6 +67,11 @@ namespace Axantum.AxCrypt.Fake
         }
 
         public void ExitApplication()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RestartApplication()
         {
             throw new NotImplementedException();
         }
