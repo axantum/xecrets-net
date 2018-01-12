@@ -307,7 +307,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Sie wurden als ein Benutzer von AxCrypt File Security von &lt;b&gt;{0}&lt;/b&gt; hinzugefürt . Um anfangen ihre Datei zu schützen &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;laden&lt;/a&gt; and installieren Sie nur AxCrypt. Melden Sie sich bei AxCrypt mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Verifizierungscode ein und legen Sie ihr eigenes geheim-Kennwort fest.&lt;/p&gt; 
-&lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren {0].&lt;/p&gt;</value>
+&lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
@@ -477,7 +477,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>Alles annullieren</value>
   </data>
   <data name="ButtonCancelText" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Abbrechen</value>
   </data>
   <data name="ButtonChangePasswordText" xml:space="preserve">
     <value>Passwort ändern </value>
@@ -1038,7 +1038,7 @@ Falls Sie aus irgendeinem  Grund Ihr Kennwort nicht wissen oder vergessen haben,
     <value>Ansehen Hilfe</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
-    <value>Minuten</value>
+    <value>{0} Minuten</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
   </data>
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">

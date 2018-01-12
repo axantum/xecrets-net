@@ -1605,7 +1605,7 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Byt Lösenord</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>Rensa alla inställningar och Avsluta</value>
+    <value>Rensa alla inställningar och starta om</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Uppgradera 1.x-filer Automatiskt</value>

@@ -297,7 +297,7 @@ U bent gewaarschuwd! Geniet van de beta!
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
-&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0].&lt;/p&gt;</value>
+&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">

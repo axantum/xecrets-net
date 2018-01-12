@@ -136,7 +136,7 @@
     <value>AxCrypt Premium을 30일간 앱에서 무료 체험하실 수 있습니다.</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>AxCrypt에 가입되셨습니다. 가입을 완료하기 위해 사용자님의 이메일 주소를 인증해주세요. 이 절차를 통해 사용자님의 이메일을 인증하고, 사용자님에게 이메일을 보낼 수 있습니다.</value>
+    <value>AxCrypt에 가입되셨습니다. 가입을 완료하기 위해 사용자님의 이메일 주소를 인증해주세요. 이 절차를 통해 사용자님의 이메일을 인증하고, 사용자님에게 이메일을 보낼 수 있습니다. 자세한 내용은  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt; 를 통해 확인해주세요.</value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
     <value>수동으로 인증하실 경우, &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt;로 가셔서 &lt;b&gt;{1}&lt;/b&gt;와 인증 코드 &lt;b&gt;{2}&lt;/b&gt;를 입력해주세요.</value>
@@ -273,6 +273,196 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} 의 계정이 저희에게 존재하지 않습니다. 계정을 등록하라는 초대장을 보내고 계속하십시오. </value>
   </data>
+  <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
+    <value>AxCrypt Business에 오신것을 환영합니다.
+ {0}에 의해 AxCrypt Business에 추가되셨으며, AxCrypt의 유효 회원이실 경우에 한해 향후 구독자 혜택을 받으실 수 있습니다.
+관련 문의사항은 {0}로 연락 부탁드립니다.</value>
+    <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
+  </data>
+  <data name="BusinessAddedMailSubject" xml:space="preserve">
+    <value>AxCrypt Business에 오신것을 환영합니다.</value>
+    <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>관리자</value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
+  <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
+    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;, &lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.</value>
+    <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
+    <value>추가</value>
+    <comment>A label or word used in a button when adding members to a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressNameLabel" xml:space="preserve">
+    <value>주소</value>
+    <comment>The prompt text for the address text field</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressPlaceholder" xml:space="preserve">
+    <value>주소</value>
+    <comment>The placeholder text for the text entry field where the administrator enters the address.</comment>
+  </data>
+  <data name="BusinessSubscriptionAddressRequiredErrorMessage" xml:space="preserve">
+    <value>주소 입력 필요</value>
+    <comment>An error message if no address is given, but it's required.</comment>
+  </data>
+  <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
+    <value>관리자</value>
+    <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>이미 비즈니스 멤버이시라면 반드시 원하시는 경우에 한해서 새로운 구독을 시작하시기 바랍니다.</value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
+  </data>
+  <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
+    <value>사용되지 않음</value>
+    <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
+    <value>구매 전 &lt;a href="https://www.axcrypt.net/information/license/"&gt;terms of use&lt;/a&gt; 전체와 &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; 를 읽어 보시기 바랍니다.</value>
+    <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
+  </data>
+  <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
+    <value>구독 조건</value>
+    <comment>The title for the text describing the conditions of sale.</comment>
+  </data>
+  <data name="BusinessSubscriptionCountryRequiredErrorMessage" xml:space="preserve">
+    <value>국가 입력 필요</value>
+    <comment>An error message stating that providing a country is required</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateMenu" xml:space="preserve">
+    <value>시작</value>
+    <comment>The menu text for creation. Should be short, or one word</comment>
+  </data>
+  <data name="BusinessSubscriptionCreateTitle" xml:space="preserve">
+    <value>구독 시작</value>
+    <comment>The title for the create business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionEmailLabel" xml:space="preserve">
+    <value>이메일</value>
+    <comment>A short, preferrably one word, label used to label a field or column containing a license member email.</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberErrorMessage" xml:space="preserve">
+    <value>유효하지 않은 EU VAT 번호</value>
+    <comment>An error message stating that the provided VAT number is invalid</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberLabel" xml:space="preserve">
+    <value>유럽 부가세 번호</value>
+    <comment>The label used for an EU VAT Number</comment>
+  </data>
+  <data name="BusinessSubscriptionEuVatNumberPlaceholder" xml:space="preserve">
+    <value>유럽 부가세 번호</value>
+    <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
+    <value>{0}에 구독이 만료됩니다.</value>
+    <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
+    <value>수입</value>
+    <comment>A word used in a button to start the multiple import process.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationMenu" xml:space="preserve">
+    <value>정보</value>
+    <comment>The menu txt for subscription information. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionInformationTitle" xml:space="preserve">
+    <value>구독 정보</value>
+    <comment>The title for the information page for business subscriptions</comment>
+  </data>
+  <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
+    <value>&lt;/a&gt;에서 &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt; 관련하여 더 읽기</value>
+    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
+  </data>
+  <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
+    <value>관리</value>
+    <comment>The menu text for manage subscriptions. Should be short or one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionManageTitle" xml:space="preserve">
+    <value>구독 관리</value>
+    <comment>The title for the manage business subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionMemberCountErrorMessage" xml:space="preserve">
+    <value>멤버 부족 또는 과다</value>
+    <comment>An error message if there are too few or too many members specified</comment>
+  </data>
+  <data name="BusinessSubscriptionMenu" xml:space="preserve">
+    <value>비즈니스 구독</value>
+    <comment>The top level menu texts for Business subscriptions. Should be short and just be the header for all sub menu items concerned with business subscriptions.</comment>
+  </data>
+  <data name="BusinessSubscriptionMonthsLeftLabel" xml:space="preserve">
+    <value>개월</value>
+    <comment>A label for the number of months left of a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
+    <value>구독 관리자가 아닙니다.</value>
+    <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
+    <value>단체명</value>
+    <comment>The prompt for the an organization name</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationNamePlaceholder" xml:space="preserve">
+    <value>단체명</value>
+    <comment>A placeholder text for the entry field where the administrator enters the  name of the organization.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationRequiredErrorMessage" xml:space="preserve">
+    <value>단체명 필요</value>
+    <comment>An error message stating that an organization name must be given.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceCurrencyLabel" xml:space="preserve">
+    <value>통화</value>
+    <comment>The label for the currency column in the purchasing dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceDiscountLabel" xml:space="preserve">
+    <value>할인</value>
+    <comment>The label for the discount column in the price dialog</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceEuVatLabel" xml:space="preserve">
+    <value>유럽 부가세</value>
+    <comment>The column for the amount of EU VAT charged in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceListPriceLabel" xml:space="preserve">
+    <value>표시 가격</value>
+    <comment>The column label for the original list price column in the purchase dialog, before discounts and VAT.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceMembersLabel" xml:space="preserve">
+    <value>멤버</value>
+    <comment>The column label for the number of members to purchase for a business subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionPriceSumTotalLabel" xml:space="preserve">
+    <value>총</value>
+    <comment>The label for the sum total column in the purchase dialog.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
+    <value>구매</value>
+    <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
+  </data>
+  <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
+    <value>추가 멤버 라이센스 구매</value>
+    <comment>The title for the purchase additional members subscription page</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveButtonLabel" xml:space="preserve">
+    <value>제거</value>
+    <comment>A short label or word used in a button to remove members from a subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
+    <value>해당 멤버를 구독에서 제거하시겠습니까?</value>
+    <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>에 따라</value>
+    <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>에 따라</value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
+  </data>
+  <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
+    <value>총</value>
+    <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>활성화시키기</value>
   </data>
@@ -324,6 +514,10 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ButtonNoText" xml:space="preserve">
     <value>아니요</value>
+  </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value>다음에</value>
+    <comment>The text of a button as the alternative for for example "Try now!" for Premium. It should not have an exclamation point.</comment>
   </data>
   <data name="ButtonOkText" xml:space="preserve">
     <value>OK</value>
@@ -522,7 +716,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>&lt; 1일</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
-    <value>Premium 구독이 곧 만료 됍니다. 재구독하시려면 클릭해주시기 바랍니다. </value>
+    <value>구독이 곧 만료 됩니다. 갱신하시려면 클릭해주시기 바랍니다. </value>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>보안 정지그리고 리스트에서 추방</value>
@@ -631,7 +825,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>사용자는 읽기 전용으로만 접속이 가능합니다! Premium사용자분들께만 편집이나 비밀번호 재설정이 가능합니다.</value>
+    <value>사용자는 읽기 전용으로만 접속이 가능합니다! 유효한 구독 플랜 사용자에 한하여 편집이나 비밀번호 재설정이 가능합니다.</value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>요청하신 비밀번호 입력을 찾을수가 없었습니다.</value>
@@ -676,6 +870,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>입증이 이메일 주소와 맞지 않습니다.</value>
+  </data>
+  <data name="ErrorFieldRequired" xml:space="preserve">
+    <value>'{0}' 입력 필요</value>
   </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>비밀번호 확인과 비밀번호가 맞지 않습니다.</value>
@@ -797,6 +994,10 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>폴더 '{0}' 이미 보안.</value>
   </data>
+  <data name="FolderSelectTitle" xml:space="preserve">
+    <value>폴더 선택</value>
+    <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
+  </data>
   <data name="FollowUsTitle" xml:space="preserve">
     <value>팔로우하기</value>
     <comment>Title of panel with social links in mobile application</comment>
@@ -857,6 +1058,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>경고</value>
   </data>
+  <data name="IncludeSubfoldersDescription" xml:space="preserve">
+    <value>부속폴더 추가 옵션이 활성화되면 파일 암호화 또는 복호화 작업시 모든 부속폴더도 포함되게 됩니다.
+
+이로 인해 작업이 오래 걸리는 경우가 발생할 수 있습니다. 암호화가 필요하지 않은 부속폴더가 있는 폴더를 선택하지 않도록 주의하시기 바랍니다. </value>
+    <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
+  </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>나의 AxCrypt ID</value>
   </data>
@@ -865,9 +1072,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <comment>A dialog box title for general announcement and informative message dialog boxes</comment>
   </data>
   <data name="InternetNotRequiredInformation" xml:space="preserve">
-    <value>AxCrypt를 이용할 때 인터넷이 꼭 필요하지는 않습니다.
+    <value>AxCrypt 이용시 인터넷 접속이 필요하지 않습니다.
 
-하지만 인터넷 액세스를 권장하며, Premium 사용 시 필요합니다. 몇 가지 기능과 중요한 업데이트에는 접속이 필요할 수 있습니다.
+하지만 인터넷 접속을 권장하며, 특히 유료 구독 플랜 사용시에는 인터넷 접속이 필요합니다. 오프라인일 경우 몇 기능 및 주요 업데이트가 제한됩니다.
 
 사용자의 비밀번호가 서버에 저장되어 있지 않고, 연결이 항상 암호화되어 있습니다.
 
@@ -968,6 +1175,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="KeyManagementToolStripMenuItemText" xml:space="preserve">
     <value>관리 키</value>
   </data>
+  <data name="KeyShareDialogHeader" xml:space="preserve">
+    <value>파일을 공유하고 싶은 수신자 리스트를 추가하십시오.
+
+AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인을 하지만 파일을 보내지는 않습니다. 여기에서 수신자가 받을 파일의 키를 추가하실 수 있습니다. 이후 실제 파일을 수신자와 공유하지 않으셔도 무관합니다. </value>
+    <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>파일 키는 다른 AxCrypt 사용자분들과 공유 되고 있습니다.</value>
   </data>
@@ -991,6 +1204,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>시간</value>
   </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value>이미 최신버전입니다!</value>
+  </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
     <value> :로 열기</value>
     <comment>Header of popup which is displayed for file opening.</comment>
@@ -1012,6 +1228,13 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>메인 사이트에 가기</value>
     <comment>Menus and similar to link back to main site.</comment>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value>로컬</value>
+    <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
+  </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value>온라인 계정 비밀번호가 아닌 로컬 비밀번호로 로그인 됩니다. 온라인상 비밀번호를 재설정하였지만 기존 비밀번호를 사용하는 경우 이런 현상이 발생합니다. 온라인 상과 같은 계정 및 비밀번호를 사용하도록 하거나 고객센터로 연락을 주시기 바랍니다.</value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
     <value>로그아웃</value>
@@ -1051,7 +1274,15 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>궁금한 점이 있으시면 저희 팀한테 문의 해주시기 바랍니다. 저희 사이트에 있는 FAQ와 포럼을 &lt;a href="{0}"&gt;{0}&lt;/a&gt;에 방문해 주시기 바랍니다.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
-  <data name="MailBodyPremiumFeaturesHtml" xml:space="preserve">
+  <data name="MailBodySignature" xml:space="preserve">
+    <value>AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt; 를 사용해주셔서 감사합니다</value>
+  </data>
+  <data name="MailBodySignaturePlainText" xml:space="preserve">
+    <value>AxCrypt를 사요해주셔서 감사합니다!
+- Svante
+AxCrypt 팀</value>
+  </data>
+  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;공유 키&lt;/li&gt; 
@@ -1060,13 +1291,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
 &lt;li&gt;클라우드 스토리지 파악&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
-  <data name="MailBodySignature" xml:space="preserve">
-    <value>AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt; 를 사용해주셔서 감사합니다</value>
-  </data>
-  <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>AxCrypt를 사요해주셔서 감사합니다!
-- Svante
-AxCrypt 팀</value>
+  <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
+    <value>&lt;p&gt;구독자로서 기본 무료 기능 이외에도 많은 추가 기능을 사용하실 수 있습니다. :와 같은 기능을 사용하실 수 있습니다. &lt;/p&gt;</value>
+    <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>안녕하세요 {0},</value>
@@ -1198,7 +1425,9 @@ AxCrypt 팀</value>
     <value>열고 탐구하기</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>사용자님은 Premium을 구독하고 있지 않으십니다. 사용자님을 위해 무료 체험을 시작할 것입니다. </value>
+    <value>사용자님은 Premium을 구독하고 있지 않으십니다. 사용자님을 위해 무료 체험을 제공드립니다.
+
+Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호화만 가능합니다.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1267,7 +1496,7 @@ AxCrypt 팀</value>
     <value>새 비밀번호가 성공적으로 저장되었습니다.</value>
   </data>
   <data name="NewVersionIsAvailableText" xml:space="preserve">
-    <value>{0} 버전은 현재 이용 가늘합니다!</value>
+    <value>{0} 버전은 현재 이용 가능합니다!</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>다음</value>
@@ -1281,6 +1510,14 @@ AxCrypt 팀</value>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>업데이트를 안하셔도 됩니다.</value>
+  </data>
+  <data name="NoPasswordRequiredInformationText" xml:space="preserve">
+    <value>비밀번호 입력 없이 진행합니다!
+
+로그인 상태이기 때문에 암호화, 복호화 또는 도큐먼트 열기에 비밀번호 입력이 필요하지 않습니다.
+
+고객님의 도큐먼트는 비밀번호로 안전하게 암호화 되어있습니다.</value>
+    <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>사용자님은 Premium 을 구독하고 있지 않기 때문에, 최상의 보안 시스템 사용하고 있지 않으십니다. 업그레이드 하시려면 클릭해주세요.</value>
@@ -1318,7 +1555,7 @@ AxCrypt 팀</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>오프라인 상태이므로 Premium 구독을 확인할 수 없습니다. 사용자님의 상태를 업데이트 하기 위해 온라인을 해주세요</value>
+    <value>오프라인 상태이므로 구독 상태를 확인할 수 없습니다. 사용자님의 상태를 업데이트 할 수 있도록 온라인 상태로 전환해주세요.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>사용자는 구식 버전을 사용하고 계십니다. 새 버전을 위해서 클릭해주시기 바랍니다.</value>
@@ -1339,7 +1576,7 @@ AxCrypt 팀</value>
     <value>변경 비밀번호</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>모든 설정을 완료해서 나가기</value>
+    <value>!!Clear All Settings and Restart</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>1.x 파일 자동 업그레이드</value>
@@ -1416,6 +1653,12 @@ AxCrypt 팀</value>
 우리는 비밀번호 강도 세기에 따라 4가지 범주로 분류합니다. 가장 낮은 범주에 속하는 비밀번호는 허용하지 않습니다. 위의 예도 그 이유 때문에 허용되지 않습니다.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
+  <data name="PasswordRulesShortInfo" xml:space="preserve">
+    <value>AxCrypt는 어드밴스 다이내믹 비밀번호 강도 계산기를 활용합니다.
+
+빈칸 또는 일반적인 비밀번호와 같은 부분은 무시되며 암호 강도에 영향을 미치지 않습니다.</value>
+    <comment>A shorter description of how password strength is evaluated.</comment>
+  </data>
   <data name="PasswordStrengthBadName" xml:space="preserve">
     <value>약함</value>
     <comment>Short displayed name of "Bad" password status</comment>
@@ -1478,13 +1721,13 @@ AxCrypt 팀</value>
     <value>AxCrypt Premium 구독 만료일이 다되어갑니다!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
-    <value>이 기능은 Premium을 구입하신뒤 사용이 가능합니다.</value>
+    <value>이 기능은 유료 구독이 필요합니다!</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>공유 키는 Premium이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
+    <value>공유 키를 이용하기 위해서는 유료 구독이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>죄송합니다. 사용자님은 Premium을 구독하고 있지 않습니다. 앱 외부에서 AxCrypt가 제공하는 Premium 기능을 사용하기 위해 당신의 계정을 업그레이드하세요. 앱이 작동하기 위해서도 필요합니다.</value>
+    <value>죄송합니다. 사용자님은 유효한 구독 플랜을 사용하고 있지 않습니다. 앱 외부에서 AxCrypt가 제공하는 유료 기능을 사용하기 위해 당신의 계정을 업그레이드하세요. 앱이 작동하기 위해서도 필요합니다.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
@@ -1572,7 +1815,7 @@ AxCrypt 팀</value>
     <value>이 파일을 지속적으로 삭제 하시겠습까? 삭제하시면 되돌아 올 수 없습니다.</value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
-    <value>개월</value>
+    <value>x 30 일</value>
   </data>
   <data name="PromptMyAxCryptId" xml:space="preserve">
     <value>나의 AxCrypt ID</value>
@@ -1662,10 +1905,10 @@ AxCrypt 팀</value>
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>부가가치세가 예상됩니다. 비즈니스 부가가치세 공제에 대한 지원은 없습니다. 죄송합니다. </value>
+    <value>Premium은 개인에게만 제공되여 비즈니스 부가가치세 공제에 대한 지원이 불가합니다. 회사 및 단체는 &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt; 구독을 시작하셔야 합니다. &lt;b&gt; 부가가치세는 최종이 아닙니다. &lt;/b&gt;</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>VAT 별도.</value>
+    <value>Premium은 개인에게만 제공되여 비즈니스 부가가치세 공제에 대한 지원이 불가합니다. 회사 및 단체는&lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt;구독을 시작하셔야 합니다. &lt;b&gt; 부가가치세는 여기에서 제외됩니다. &lt;/b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
@@ -1747,13 +1990,22 @@ AxCrypt 팀</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Premium 사용자분들께서만 암호 항목을 작성하실수 있습니다.</value>
+    <value>유효한 구독 플랜 사용자분들께서만 암호 입력을 저장하실수 있습니다.</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>비밀번호 관리로 가기.</value>
   </data>
+  <data name="SecretsSortOrderLabel" xml:space="preserve">
+    <value>분류</value>
+  </data>
+  <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
+    <value>내용</value>
+  </data>
+  <data name="SecretsSortOrderOptionNone" xml:space="preserve">
+    <value>[없음]</value>
+  </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Premium을 구독하지 않으시므로 더 이상 새 비밀번호 항목을 편집하거나 만들 수 없습니다. 그러나 기존 항목을 계속 볼 수 있습니다. 30 일 Premium 무료 체험 기간을 이용하지 않았다면, &lt;a href="https://www.axcrypt.net/Download/"&gt; AxCrypt 앱 &lt;/a&gt;에서 시작할 수 있습니다.</value>
+    <value>유효 구독 플랜을 이용하지 않으시므로 더 이상 새 비밀번호 항목을 편집하거나 만들 수 없습니다. 그러나 기존 항목을 계속 볼 수 있습니다. 30 일 Premium 무료 체험 기간을 이용하지 않았다면, &lt;a href="https://www.axcrypt.net/Download/"&gt; AxCrypt 앱 &lt;/a&gt;에서 시작할 수 있습니다.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>{0}에 Premium 구독 만료일이 곧 끝납니다. 새로운 비밀번호 입력이나 비밀번호 재설정을 원하시면 Premium 구독 신청을 연장하셔야 됩니다.  읽기 전용으로만 접속이 가능합니다.</value>
@@ -1813,6 +2065,9 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
 
 '{0}'로 AxCrypt 파일 보안의 대해서 정보를 알리시기 바랍니다.</value>
   </data>
+  <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
+    <value>공유할 암호화 파일 선택</value>
+  </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>공유 키</value>
   </data>
@@ -1853,6 +2108,14 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>소셜 미디어 팔로우하기 </value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
+  <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
+    <value>최신</value>
+    <comment>Short label stating that the software is up to date.</comment>
+  </data>
+  <data name="SoftwareUpdateNowLabel" xml:space="preserve">
+    <value>지금 업데이트!</value>
+    <comment>A short label prompting the user to update AxCrypt now!</comment>
+  </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
     <value>보안 SSL 연결이 필요합니다. &lt;a href="{2}"&gt;{2}&lt;/a&gt;을 사용하여 다시 시도하십시오 .
 
@@ -1863,9 +2126,16 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>보안 연결 필요</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
+    <value>알고 계신가요? '부속 폴더 추가' 버튼 옵션을 통하여 폴더 속 부속 폴더도 관리할 수 있습니다. 유료 구독 후 사용 가능한 옵션입니다.</value>
+  </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Android 및 iOS 용 모바일 앱이 이제 AxCrypt Premium에 포함됩니다. 더 알고 싶으싶니까?</value>
+    <value>Android 및 iOS 용 모바일 앱이 이제 AxCrypt 유료 구독 플랜에 포함됩니다. 더 알고 싶으십니까?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
+  </data>
+  <data name="StepsWizardLabel" xml:space="preserve">
+    <value>{1} 단계 중 {0} 단계</value>
+    <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
     <value>보안이 더이상 불필요한 파일들은 선택하십시오.</value>
@@ -1882,6 +2152,10 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>의견 제출하기</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value>{0} 는 {1} 까지 유효.</value>
+    <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
+  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>구독이 성공적으로 저장되었습니다. </value>
   </data>
@@ -1892,10 +2166,19 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>Premium 지원</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>AxCrypt 지원부에 오신 것을 환영합니다. 저희 팀은 Premium 구독자분들께 완벽한 지원을 메일을 통해 드립니다.</value>
+    <value>AxCrypt 지원부에 오신 것을 환영합니다. 저희 팀은 유료 구독자분들께 완벽한 지원을 메일을 통해 드립니다.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>죄송합니다, 직접지원은 지불하신 사용자분들께서만 사용이 가능하십니다. &lt;a href="{0}"&gt;community support&lt;/a&gt; 를 방문해 주시기 바랍니다.</value>
+  </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value>시스템 폴더 '{0}'는 암호화가 불가합니다.</value>
+  </data>
+  <data name="TargetAccountExists" xml:space="preserve">
+    <value>현재 계정을 기존재 계정으로 전환 시도 중입니다.</value>
+  </data>
+  <data name="TargetAccountExistsErrorText" xml:space="preserve">
+    <value>계정의 이메일을 변경하실 경우, 변경하시는 이메일로 기등록된 계정이 없어야 합니다! 해당 계정을 먼저 삭제 한 후 진행해주십시오.</value>
   </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>현재 파일을 열 수 없습니다.</value>
@@ -1946,7 +2229,7 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>비밀번호 관리는 Premium을 통해 하실수 있습니다. 업그레이드를 하시려면 클릭해주십시오!</value>
+    <value>비밀번호 관리는 유료 구독을 통해 하실수 있습니다. 업그레이드를 하시려면 클릭해주십시오!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>거래 목록</value>
@@ -2061,9 +2344,6 @@ AxCrypt 팀</value>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>AxCrypt무료 또는 AxCrypt Premium으로 간편하게 파일들을 보안하실수 있습니다. 클릭 하나로 파일 또는 폴더를 암호 형태로 저장할수 있습니다.</value>
   </data>
-  <data name="WelcomeMailBody3Html" xml:space="preserve">
-    <value>Premium 구독자분들께는 많은 추가 기능을 사용하실 수 있습니다. 이와 같은 기능들을 사용:</value>
-  </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
     <value>AxCrypt에 오신것을 환영합니다!</value>
   </data>
@@ -2089,6 +2369,12 @@ AxCrypt사용은 매우 쉽습니다. 매인 윈도우 창으로 시작하거나
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>AxCrypt와 시작합니다</value>
+  </data>
+  <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
+    <value>비밀번호를 잊어버리지 않습니다!</value>
+  </data>
+  <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
+    <value>해당 비밀번호는 AxCrypt의 강한 암호화를 통해 파일을 보호하는데 사용됩니다. 만약 비밀번호를 분실하실 경우, 해당 파일을 열 수 없습니다. 비밀번호 재설정을 통해 계정에 로그인 하실 수 있지만, 기존 비밀번호를 통해 보호된 파일은 열 수 없습니다.</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>안전한 삭제를 위래 파일들을 선택하십시오</value>

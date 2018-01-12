@@ -637,7 +637,7 @@ namespace AxCrypt.Content.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
-        ///&lt;p&gt;If you have any questions, please first contact {0].&lt;/p&gt;.
+        ///&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;.
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
             get {
@@ -4544,7 +4544,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Clear All Settings and Restart.
+        ///   Looks up a localized string similar to Clear All Settings and Restart.
         /// </summary>
         public static string OptionsClearAllSettingsAndExitToolStripMenuItemText {
             get {
