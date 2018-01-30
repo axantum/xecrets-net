@@ -78,7 +78,7 @@
             this._buttonCancel.UseVisualStyleBackColor = true;
             this._buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             //
-            // resetbutton
+            // _buttonReset
             // 
             this._buttonReset.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this._buttonReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
