@@ -1156,7 +1156,7 @@ namespace Axantum.AxCrypt
 
         private static async Task ResetAllSettingsAndRestart()
         {
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, "Warning", "Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults.");
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.ResetAllSettingsWarningText);
             if (result == PopupButtons.Ok)
             {
                 new ApplicationManager().WaitForBackgroundToComplete();

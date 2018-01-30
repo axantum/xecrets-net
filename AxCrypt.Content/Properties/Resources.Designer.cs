@@ -5691,6 +5691,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults..
+        /// </summary>
+        public static string ResetAllSettingsWarningText {
+            get {
+                return ResourceManager.GetString("ResetAllSettingsWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to русский (Russian).
         /// </summary>
         public static string RussianLanguageSelection {
