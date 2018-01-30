@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
+            this._buttonReset = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
@@ -55,7 +56,7 @@
             // 
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(148, 11);
+            this._buttonOk.Location = new System.Drawing.Point(68, 11);
             this._buttonOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(112, 35);
@@ -68,7 +69,7 @@
             // 
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(280, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(200, 11);
             this._buttonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(112, 35);
@@ -76,6 +77,19 @@
             this._buttonCancel.Text = "[Cancel]";
             this._buttonCancel.UseVisualStyleBackColor = true;
             this._buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            //
+            // resetbutton
+            // 
+            this._buttonReset.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            this._buttonReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonReset.Location = new System.Drawing.Point(332, 11);
+            this._buttonReset.Margin = new System.Windows.Forms.Padding(4,5,4,5);
+            this._buttonReset.Name = "_buttonReset";
+            this._buttonReset.Size = new System.Drawing.Size(112, 35);
+            this._buttonReset.TabIndex = 2;
+            this._buttonReset.Text = "[Reset]";
+            this._buttonReset.UseVisualStyleBackColor = true;
+            this._buttonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // panel1
             // 
@@ -149,6 +163,7 @@
             this._panel1.AutoSize = true;
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
+            this._panel1.Controls.Add(this._buttonReset);
             this._panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel1.Location = new System.Drawing.Point(4, 110);
             this._panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -246,6 +261,7 @@
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
+        private System.Windows.Forms.Button _buttonReset;
         private PremiumLinkLabel _premiumLinkLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel _troubleRememberingPanel;
