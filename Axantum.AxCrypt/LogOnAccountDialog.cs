@@ -121,5 +121,10 @@ namespace Axantum.AxCrypt
             _errorProvider1.Clear();
             _errorProvider2.Clear();
         }
+
+        private async void ButtonReset_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Retry;
+        }
     }
 }
