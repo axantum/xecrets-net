@@ -1132,6 +1132,11 @@ namespace Axantum.AxCrypt
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
 
+                if (dialogResult == DialogResult.Retry)
+                {
+                    await ResetAllSettingsAndRestart();
+                }
+
                 if (dialogResult == DialogResult.Cancel)
                 {
                     await new ApplicationManager().StopAndExit();
@@ -1147,6 +1152,19 @@ namespace Axantum.AxCrypt
                 e.UserEmail = viewModel.UserEmail;
             }
             return;
+        }
+
+        private static async Task ResetAllSettingsAndRestart()
+        {
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, "Warning", "Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults.");
+            if (result == PopupButtons.Ok)
+            {
+                new ApplicationManager().WaitForBackgroundToComplete();
+                await new ApplicationManager().ClearAllSettings();
+                await new ApplicationManager().ShutdownBackgroundSafe();
+
+                New<IUIThread>().RestartApplication();
+            }
         }
 
         private void AxCryptMainForm_CommandComplete(object sender, CommandCompleteEventArgs e)
