@@ -1568,6 +1568,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Clear List.
+        /// </summary>
+        public static string ClearRecentFilesToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("ClearRecentFilesToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to check for a newer version..
         /// </summary>
         public static string ClickToCheckForNewerVersionTooltip {

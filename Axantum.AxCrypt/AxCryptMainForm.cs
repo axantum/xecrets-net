@@ -280,7 +280,7 @@ namespace Axantum.AxCrypt
             _portugueseBrazilToolStripMenuItem.Text = "&" + Texts.PortugueseBrazilLanguageSelection;
             _progressContextCancelToolStripMenuItem.Text = "&" + Texts.ButtonCancelText;
             _recentFilesOpenToolStripMenuItem.Text = "&" + Texts.RecentFilesOpenToolStripMenuItemText;
-            _clearRecentFilesToolStripMenuItem.Text = "[&Clear]";
+            _clearRecentFilesToolStripMenuItem.Text = "&" + Texts.ClearRecentFilesToolStripMenuItemText;
             _recentFilesTabPage.Text = Texts.RecentFilesTabPageText;
             _recentFilesShowInFolderToolStripMenuItem.Text = "&" + Texts.ShowInFolderText;
             _removeRecentFileToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
