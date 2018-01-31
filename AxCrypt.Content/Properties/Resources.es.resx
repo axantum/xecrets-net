@@ -303,6 +303,10 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <value>Bienvenido a AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>Administradores</value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Has sido añadido como usuario de AxCrypt File Security por &lt;b&gt;{0}&lt;/b&gt;. Para empezar a proteger tus archivos, simplemente &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;descarga&lt;/a&gt; e instala AxCrypt. Regístrate en AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, introduce el código de verificación debajo y configura tu contraseña personal secreta.&lt;/p&gt; 
 &lt;p&gt;Si tienes alguna pregunta, por favor, contáctanos antes de nada {0}.&lt;/p&gt;</value>
@@ -327,6 +331,10 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
     <value>Administrador</value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>Ya eres miembro Business, crea una nueva suscripción sólo si estás seguro de querer hacerlo.</value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
   </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
     <value>Disponible</value>
@@ -463,6 +471,14 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>¿Estás seguro de querer eliminar este miembro de la suscripción?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>Actuando sobre</value>
+    <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>Actuando como</value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
   </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Total</value>
@@ -1582,7 +1598,7 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Cambiar contraseña</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>Borrar todos los ajustes y salir</value>
+    <value>Borrar todas las configuraciones y reiniciar</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Convertir archivos 1.x automáticamente </value>
@@ -2154,6 +2170,10 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Enviar comentarios</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value>{0} válido hasta {1}.</value>
+    <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>La suscripción se ha guardado correctamente.</value>
