@@ -23,6 +23,7 @@ namespace Axantum.AxCrypt
             this._progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._recentFilesOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._clearRecentFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -175,7 +176,8 @@ namespace Axantum.AxCrypt
             this._removeRecentFileToolStripMenuItem,
             this._decryptAndRemoveFromListToolStripMenuItem,
             this._shareKeysToolStripMenuItem,
-            this._recentFilesShowInFolderToolStripMenuItem});
+            this._recentFilesShowInFolderToolStripMenuItem,
+            this._clearRecentFilesToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 114);
             // 
@@ -208,6 +210,12 @@ namespace Axantum.AxCrypt
             this._recentFilesShowInFolderToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
             this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
             this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
+            // 
+            // _clearRecentFilesToolStripMenuItem
+            // 
+            this._clearRecentFilesToolStripMenuItem.Name = "_clearRecentFilesToolStripMenuItem";
+            this._clearRecentFilesToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._clearRecentFilesToolStripMenuItem.Text = "[&Clear]";
             // 
             // _progressContextMenuStrip
             // 
@@ -1323,6 +1331,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _notifyExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _notifySignInToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _clearRecentFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _inactivitySignOutToolStripMenuItem;

@@ -713,6 +713,9 @@ You must complete these steps to complete the process.</value>
     <value>Please consider that app keeps decrypted copy of file in the local file storage. It will be removed on sign out. You can also remove it manually via cleanup button.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Clear List</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
   </data>
