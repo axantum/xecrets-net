@@ -100,7 +100,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
+
+            publicKey.IsManuallyAdded = true;
             AddOrReplace(publicKey);
+
             return true;
         }
 

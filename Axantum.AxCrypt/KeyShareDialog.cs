@@ -42,7 +42,7 @@ namespace Axantum.AxCrypt
 
             _viewModel = viewModel;
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); _notSharedWith.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); aks = FilterNotSharedContactsByCapability(aks); _notSharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetShareButtonState());
             _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.CanAddNewKey), (canAdd) => { CanAddNewContact(canAdd); });
 
@@ -63,7 +63,6 @@ namespace Axantum.AxCrypt
             {
                 await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
 
-                string newContact = _viewModel.NewKeyShare;
                 if (await ShareNewContactAsync())
                 {
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
@@ -79,6 +78,16 @@ namespace Axantum.AxCrypt
 
             SetOkButtonState();
             _notSharedWith.Focus();
+        }
+
+        private IEnumerable<UserPublicKey> FilterNotSharedContactsByCapability(IEnumerable<UserPublicKey> notSharedWithContacts)
+        {
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
+            {
+                return notSharedWithContacts.Where(nswe => nswe.IsManuallyAdded);
+            }
+
+            return notSharedWithContacts;
         }
 
         private void CanAddNewContact(bool canAdd)

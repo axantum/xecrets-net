@@ -383,6 +383,7 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             if (userPublicKey != null)
             {
+                userPublicKey.IsManuallyAdded = false;
                 knownPublicKeys.AddOrReplace(userPublicKey);
                 New<UserPublicKeyUpdateStatus>().SetStatus(userPublicKey, PublicKeyUpdateStatus.RecentlyUpdated);
             }
