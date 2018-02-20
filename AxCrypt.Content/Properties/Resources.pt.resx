@@ -673,6 +673,9 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
     <value>Considere por favor que o app mantêm descriptografado uma cópia do arquivo no armazenamento local de arquivos.  Ao finalizar a sessão, será removido.  Você também pode removê-los manualmente através do botão de limpeza.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Limpar Lista</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Clique para ver se há uma nova versão disponível.</value>
   </data>
@@ -2018,6 +2021,9 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Clique para reenviar o código de verificação para seu email.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>!!Formatar irá limpar todas as definições. Os dados não serão perdidos, mas todas as definições serão formatadas para a pré-definição de instação.</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Você já se inscreveu com esta senha!</value>
