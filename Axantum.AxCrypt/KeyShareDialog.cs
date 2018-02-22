@@ -44,7 +44,7 @@ namespace Axantum.AxCrypt
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); aks = FilterNotSharedContactsByCapability(aks); _notSharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetShareButtonState());
-            _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.CanAddNewKey), (canAdd) => { CanAddNewContact(canAdd); });
+            _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.IsOnline), (isOnline) => { SetNewContactState(isOnline); });
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
@@ -84,21 +84,23 @@ namespace Axantum.AxCrypt
         {
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
             {
-                return notSharedWithContacts.Where(nswe => nswe.IsManuallyAdded);
+                return notSharedWithContacts.Where(nswe => nswe.IsUserImported);
             }
 
             return notSharedWithContacts;
         }
 
-        private void CanAddNewContact(bool canAdd)
+        private void SetNewContactState(bool isOnline)
         {
-            if (_newContact.Enabled = canAdd) { _newContact.Text = _viewModel.NewKeyShare; } else { _newContact.Text = $"[{Texts.OfflineIndicatorText}]"; }
-
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
             {
                 _newContact.Enabled = false;
-                _newContact.Text = $"[Premium Required]";
+                _newContact.Text = $"[{Texts.PremiumFeatureToolTipText}]";
+                return;
             }
+
+            _newContact.Enabled = isOnline;
+            _newContact.Text = isOnline ? _viewModel.NewKeyShare : $"[{Texts.OfflineIndicatorText}]";
         }
 
         protected override void InitializeContentResources()

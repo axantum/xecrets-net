@@ -77,8 +77,11 @@ namespace Axantum.AxCrypt.Core.Crypto.Asymmetric
         [JsonProperty("publickey")]
         public IAsymmetricPublicKey PublicKey { get; private set; }
 
-        [JsonProperty("ismanuallyadded")]
-        public bool IsManuallyAdded { get; set; }
+        /// <summary>
+        /// Indicates if this public key was imported by the user, not from the servers
+        /// </summary>
+        [JsonProperty("user_imported")]
+        public bool IsUserImported { get; set; }
 
         public override string ToString()
         {

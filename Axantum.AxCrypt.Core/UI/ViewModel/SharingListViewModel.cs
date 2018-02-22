@@ -52,7 +52,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
-        public bool CanAddNewKey { get { return GetProperty<bool>(nameof(CanAddNewKey)); } set { SetProperty(nameof(CanAddNewKey), value); } }
+        public bool IsOnline { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
 
         public IAsyncAction AsyncAddKeyShares { get; private set; }
 
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             SetSharedAndNotSharedWith(sharedWith);
             NewKeyShare = String.Empty;
-            CanAddNewKey = New<AxCryptOnlineState>().IsOnline;
+            IsOnline = New<AxCryptOnlineState>().IsOnline;
 
             AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
             AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));

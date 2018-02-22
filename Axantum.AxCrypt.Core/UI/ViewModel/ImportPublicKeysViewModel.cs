@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 foreach (string file in files)
                 {
                     IDataStore publicKeyData = New<IDataStore>(file);
-                    if (!knownPublicKeys.AddOrReplace(publicKeyData))
+                    if (!knownPublicKeys.UserImport(publicKeyData))
                     {
                         failed.Add(file);
                     }
