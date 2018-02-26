@@ -3080,7 +3080,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Receipt.
+        ///   Looks up a localized string similar to !!Invoice.
         /// </summary>
         public static string Invoice {
             get {
@@ -3134,7 +3134,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Receipts.
+        ///   Looks up a localized string similar to !!My Invoices.
         /// </summary>
         public static string InvoiceHeadline {
             get {
@@ -4858,6 +4858,15 @@ namespace AxCrypt.Content.Properties {
         public static string PaymentOnBehalfOfLinkText {
             get {
                 return ResourceManager.GetString("PaymentOnBehalfOfLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Paid in full.
+        /// </summary>
+        public static string PaymentStatusText {
+            get {
+                return ResourceManager.GetString("PaymentStatusText", resourceCulture);
             }
         }
         
