@@ -26,9 +26,11 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -52,6 +54,18 @@ namespace Axantum.AxCrypt.Core.Runtime
             _currentFilePath = New<IPath>().Combine(folderPath.NormalizeFilePath(), "ReportSnapshot.txt");
             _previousFilePath = New<IPath>().Combine(folderPath.NormalizeFilePath(), "ReportSnapshot.1.txt");
             _maxSizeInBytes = maxSizeInBytes;
+        }
+
+        public async void Exception(AxCryptException ex)
+        {
+            if (ex.ErrorStatus == ErrorStatus.ApiOffline || ex.ErrorStatus == ErrorStatus.ApiError || ex.ErrorStatus == ErrorStatus.ApiHttpResponseError || ex.ErrorStatus == ErrorStatus.ApiUnauthorizedError || ex.ErrorStatus == ErrorStatus.BadApiRequest)
+            {
+                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning", "There seems to be problem connecting to the server. We will continue offline.");
+                if (result == PopupButtons.Ok)
+                {
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+            }
         }
 
         public void Exception(Exception ex)
