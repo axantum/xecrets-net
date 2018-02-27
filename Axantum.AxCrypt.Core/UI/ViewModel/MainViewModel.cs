@@ -189,11 +189,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return false;
             }
 
-            if (!License.Has(LicenseCapability.KeySharing))
-            {
-                return false;
-            }
-
             return true;
         }
 

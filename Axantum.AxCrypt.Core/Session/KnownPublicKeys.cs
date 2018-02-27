@@ -85,7 +85,12 @@ namespace Axantum.AxCrypt.Core.Session
             return knownPublicKeys;
         }
 
-        public bool AddOrReplace(IDataStore publicKeyStore)
+        /// <summary>
+        /// Import a public key manually by the user. The key is also marked as imported by the user.
+        /// </summary>
+        /// <param name="publicKeyStore"></param>
+        /// <returns>true if the import was successful</returns>
+        public bool UserImport(IDataStore publicKeyStore)
         {
             UserPublicKey publicKey = null;
             try
@@ -100,7 +105,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return false;
             }
+
+            publicKey.IsUserImported = true;
             AddOrReplace(publicKey);
+
             return true;
         }
 
