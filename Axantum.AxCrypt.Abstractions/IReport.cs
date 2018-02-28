@@ -35,6 +35,8 @@ namespace Axantum.AxCrypt.Abstractions
     {
         void Exception(Exception ex);
 
+        void Exception(AxCryptException ex);
+
         void Open();
     }
 }
