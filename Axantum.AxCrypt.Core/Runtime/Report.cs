@@ -59,8 +59,8 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         private void HandleApiException()
         {
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "There seems to be problem connecting to the server. We will continue offline."));
-            // await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "There seems to be problem connecting to the server. We will continue offline.");
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText));
+            // await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle,Texts.OfflineApiExceptionDialogText );
             New<AxCryptOnlineState>().IsOffline = true;
         }
 

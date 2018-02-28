@@ -4481,6 +4481,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!There seems to be problem connecting to the server. We will continue offline..
+        /// </summary>
+        public static string OfflineApiExceptionDialogText {
+            get {
+                return ResourceManager.GetString("OfflineApiExceptionDialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offline.
         /// </summary>
         public static string OfflineIndicatorText {
