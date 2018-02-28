@@ -273,7 +273,6 @@ namespace Axantum.AxCrypt.Api
             catch (OfflineApiException oaex)
             {
                 New<IReport>().Exception(oaex);
-                New<AxCryptOnlineState>().IsOffline = true;
             }
 
             return new AccountTip();
@@ -321,7 +320,6 @@ namespace Axantum.AxCrypt.Api
             catch (OfflineApiException oaex)
             {
                 New<IReport>().Exception(oaex);
-                New<AxCryptOnlineState>().IsOffline = true;
             }
             return AxCryptVersion.Empty;
         }

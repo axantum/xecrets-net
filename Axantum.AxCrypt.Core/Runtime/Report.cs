@@ -56,20 +56,26 @@ namespace Axantum.AxCrypt.Core.Runtime
             _maxSizeInBytes = maxSizeInBytes;
         }
 
-        public async void Exception(AxCryptException ex)
+        private async void HandleApiException()
         {
-            if (ex.ErrorStatus == ErrorStatus.ApiOffline || ex.ErrorStatus == ErrorStatus.ApiError || ex.ErrorStatus == ErrorStatus.ApiHttpResponseError || ex.ErrorStatus == ErrorStatus.ApiUnauthorizedError || ex.ErrorStatus == ErrorStatus.BadApiRequest)
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning", "There seems to be problem connecting to the server. We will continue offline.");
+            if (result == PopupButtons.Ok)
             {
-                PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning", "There seems to be problem connecting to the server. We will continue offline.");
-                if (result == PopupButtons.Ok)
-                {
-                    New<AxCryptOnlineState>().IsOffline = true;
-                }
+                New<AxCryptOnlineState>().IsOffline = true;
             }
         }
 
         public void Exception(Exception ex)
         {
+            if (ex.GetType().Name == nameof(OfflineApiException)
+                || ex.GetType().Name == nameof(UnauthorizedApiException)
+                || ex.GetType().Name == nameof(BadRequestApiException)
+                || ex.GetType().Name == nameof(ApiException))
+            {
+                HandleApiException();
+                return;
+            }
+
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
             using (FileLock fileLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
             {
