@@ -57,13 +57,11 @@ namespace Axantum.AxCrypt.Core.Runtime
             _maxSizeInBytes = maxSizeInBytes;
         }
 
-        private async void HandleApiException()
+        private void HandleApiException()
         {
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning", "There seems to be problem connecting to the server. We will continue offline.");
-            if (result == PopupButtons.Ok)
-            {
-                New<AxCryptOnlineState>().IsOffline = true;
-            }
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "There seems to be problem connecting to the server. We will continue offline."));
+            // await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "There seems to be problem connecting to the server. We will continue offline.");
+            New<AxCryptOnlineState>().IsOffline = true;
         }
 
         public void Exception(Exception ex)
@@ -74,7 +72,6 @@ namespace Axantum.AxCrypt.Core.Runtime
                 || ex.GetType().Name == nameof(ApiException))
             {
                 HandleApiException();
-                return;
             }
 
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
