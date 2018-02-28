@@ -53,7 +53,6 @@ namespace Axantum.AxCrypt.Core.Service
                     catch (OfflineApiException oaex)
                     {
                         New<IReport>().Exception(oaex);
-                        New<AxCryptOnlineState>().IsOffline = true;
                     }
                 }
                 return _localService.HasAccounts;
@@ -79,7 +78,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             return await _localService.OffersAsync().Free();
@@ -97,7 +95,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             await _localService.StartPremiumTrialAsync().Free();
@@ -114,7 +111,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
                 }
                 catch (UnauthorizedApiException uaex)
                 {
@@ -163,7 +159,6 @@ namespace Axantum.AxCrypt.Core.Service
             catch (OfflineApiException oaex)
             {
                 New<IReport>().Exception(oaex);
-                New<AxCryptOnlineState>().IsOffline = true;
             }
             return localAccount;
         }
@@ -216,7 +211,6 @@ namespace Axantum.AxCrypt.Core.Service
             catch (OfflineApiException oaex)
             {
                 New<IReport>().Exception(oaex);
-                // New<AxCryptOnlineState>().IsOffline = true;
             }
             return localKeys;
         }
@@ -233,7 +227,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    // New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             return await _localService.CurrentKeyPairAsync().Free();
@@ -250,7 +243,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    // New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             await _localService.PasswordResetAsync(verificationCode).Free();
@@ -276,7 +268,6 @@ namespace Axantum.AxCrypt.Core.Service
             catch (OfflineApiException oaex)
             {
                 New<IReport>().Exception(oaex);
-                //New<AxCryptOnlineState>().IsOffline = true;
                 throw;
             }
         }
@@ -301,7 +292,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    //New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             await _localService.SaveAsync(account).Free();
@@ -318,7 +308,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    //New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             await _localService.SaveAsync(keyPairs).Free();
@@ -335,7 +324,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    //New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             await _localService.SignupAsync(email, culture).Free();
@@ -352,7 +340,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    //New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
             AccountStatus status = await _localService.StatusAsync(email).Free();
@@ -375,7 +362,6 @@ namespace Axantum.AxCrypt.Core.Service
                 catch (OfflineApiException oaex)
                 {
                     New<IReport>().Exception(oaex);
-                    // New<AxCryptOnlineState>().IsOffline = true;
                 }
             }
 
