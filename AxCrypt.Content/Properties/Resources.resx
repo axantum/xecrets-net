@@ -1264,7 +1264,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="Invoice" xml:space="preserve">
-    <value>Receipt</value>
+    <value>!!Invoice</value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiary:</value>
@@ -1283,7 +1283,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Description</value>
   </data>
   <data name="InvoiceHeadline" xml:space="preserve">
-    <value>My Receipts</value>
+    <value>!!My Invoices</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Paid to</value>
@@ -1979,6 +1979,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Buy for someone else</value>
+  </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>!!Paid in full</value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
