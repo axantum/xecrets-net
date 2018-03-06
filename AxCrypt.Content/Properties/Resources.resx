@@ -2188,16 +2188,16 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>The purchase was cancelled.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>We never received your payment. This may result from manually cancelling the purchase on PayPal or due to insufficient account balance.</value>
+    <value>!!We never received your payment. This may result from manually cancelling the purchase or due to insufficient account balance.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Receipt for AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Thank you for purchasing AxCrypt Premium! Please sign out and sign in again from any app to update it to Premium.</value>
+    <value>!!Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again from any app to update it.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>You're now able to access all the premium features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
+    <value>!!You're now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
 
 A receipt of your purchase has been sent to your e-mail.</value>
   </data>

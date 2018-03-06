@@ -5429,7 +5429,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We never received your payment. This may result from manually cancelling the purchase on PayPal or due to insufficient account balance..
+        ///   Looks up a localized string similar to !!We never received your payment. This may result from manually cancelling the purchase or due to insufficient account balance..
         /// </summary>
         public static string PurchaseReceiptErrorPageBody {
             get {
@@ -5447,7 +5447,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for purchasing AxCrypt Premium! Please sign out and sign in again from any app to update it to Premium..
+        ///   Looks up a localized string similar to !!Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again from any app to update it..
         /// </summary>
         public static string PurchaseReceiptSuccess {
             get {
@@ -5456,7 +5456,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You&apos;re now able to access all the premium features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
+        ///   Looks up a localized string similar to !!You&apos;re now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
         ///
         ///A receipt of your purchase has been sent to your e-mail..
         /// </summary>
