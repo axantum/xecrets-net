@@ -60,6 +60,8 @@ namespace Axantum.AxCrypt
                 _toolTip.SetToolTip(_passphrase, _passwordStrengthMeter.StrengthTip);
             };
 
+            _passphraseVerification.ShortcutsEnabled = false;
+            _passphraseVerification.ContextMenuStrip = null;
             _passphrase.TextChanged += (sender, e) => { _viewModel.PasswordText = _passphrase.Text; ClearErrorProviders(); };
             _passphrase.TextChanged += async (sender, e) => { await _passwordStrengthMeter.MeterAsync(_passphrase.Text); };
             _passphraseVerification.TextChanged += (sender, e) => { _viewModel.Verification = _passphraseVerification.Text; ClearErrorProviders(); };
