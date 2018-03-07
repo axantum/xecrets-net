@@ -57,10 +57,10 @@ namespace Axantum.AxCrypt.Core.Runtime
             _maxSizeInBytes = maxSizeInBytes;
         }
 
-        private void HandleApiException()
+        private async void HandleApiException()
         {
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText));
-            // await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle,Texts.OfflineApiExceptionDialogText );
+            // New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText));
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText).ConfigureAwait(false);
             New<AxCryptOnlineState>().IsOffline = true;
         }
 
@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 || ex.GetType().Name == nameof(BadRequestApiException)
                 || ex.GetType().Name == nameof(ApiException))
             {
-                HandleApiException();
+                TaskRunner.WaitFor(async () => HandleApiException());
             }
 
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
