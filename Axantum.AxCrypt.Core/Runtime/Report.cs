@@ -71,7 +71,7 @@ namespace Axantum.AxCrypt.Core.Runtime
                 || ex.GetType().Name == nameof(BadRequestApiException)
                 || ex.GetType().Name == nameof(ApiException))
             {
-                TaskRunner.WaitFor(async () => HandleApiException());
+                HandleApiException();
             }
 
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
