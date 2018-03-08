@@ -714,7 +714,7 @@ You must complete these steps to complete the process.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
   <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
-    <value>!!Clear List</value>
+    <value>Clear Recent Files</value>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
@@ -1264,7 +1264,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="Invoice" xml:space="preserve">
-    <value>!!Invoice</value>
+    <value>Invoice</value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiary:</value>
@@ -1283,7 +1283,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>Description</value>
   </data>
   <data name="InvoiceHeadline" xml:space="preserve">
-    <value>!!My Invoices</value>
+    <value>My Invoices</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Paid to</value>
@@ -1827,6 +1827,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Offline AxCrypt ID Creation.</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>There seems to be problem connecting to the server, but we'll continue offline.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Offline</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1981,7 +1984,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Buy for someone else</value>
   </data>
   <data name="PaymentStatusText" xml:space="preserve">
-    <value>!!Paid in full</value>
+    <value>Paid in full</value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
@@ -2188,18 +2191,18 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>The purchase was cancelled.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>!!We never received your payment. This may result from manually cancelling the purchase or due to insufficient account balance.</value>
+    <value>We never received your payment. This may result from manually cancelling the purchase or  insufficient account balance.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Receipt for AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>!!Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again from any app to update it.</value>
+    <value>Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again to update subscription status.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>!!You're now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
+    <value>You're now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
 
-A receipt of your purchase has been sent to your e-mail.</value>
+A confirmation of your purchase will be sent to your e-mail from your payment provider. You can print an invoice from our web site.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>VAT may be adjusted during payment.</value>
@@ -2301,7 +2304,7 @@ Subject: AxCrypt Report Snapshot
     <value>Click to resend the verification code to your e-mail.</value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
-    <value>!!Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults.</value>
+    <value>This will clear all settings. No data will be lost, but the configuration will be reset to installation defaults.</value>
   </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский (Russian)</value>

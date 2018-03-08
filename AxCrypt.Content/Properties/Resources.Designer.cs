@@ -1568,7 +1568,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Clear List.
+        ///   Looks up a localized string similar to Clear Recent Files.
         /// </summary>
         public static string ClearRecentFilesToolStripMenuItemText {
             get {
@@ -3080,7 +3080,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invoice.
+        ///   Looks up a localized string similar to Invoice.
         /// </summary>
         public static string Invoice {
             get {
@@ -3134,7 +3134,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!My Invoices.
+        ///   Looks up a localized string similar to My Invoices.
         /// </summary>
         public static string InvoiceHeadline {
             get {
@@ -4481,6 +4481,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There seems to be problem connecting to the server, but we&apos;ll continue offline..
+        /// </summary>
+        public static string OfflineApiExceptionDialogText {
+            get {
+                return ResourceManager.GetString("OfflineApiExceptionDialogText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Offline.
         /// </summary>
         public static string OfflineIndicatorText {
@@ -4862,7 +4871,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Paid in full.
+        ///   Looks up a localized string similar to Paid in full.
         /// </summary>
         public static string PaymentStatusText {
             get {
@@ -5429,7 +5438,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!We never received your payment. This may result from manually cancelling the purchase or due to insufficient account balance..
+        ///   Looks up a localized string similar to We never received your payment. This may result from manually cancelling the purchase or  insufficient account balance..
         /// </summary>
         public static string PurchaseReceiptErrorPageBody {
             get {
@@ -5447,7 +5456,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again from any app to update it..
+        ///   Looks up a localized string similar to Thank you for purchasing an AxCrypt subscription! Please sign out and sign in again to update subscription status..
         /// </summary>
         public static string PurchaseReceiptSuccess {
             get {
@@ -5456,9 +5465,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You&apos;re now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
+        ///   Looks up a localized string similar to You&apos;re now able to access all the additional features of AxCrypt. You may need to sign out of the app and sign in again. If you experience any problems, please contact our support.
         ///
-        ///A receipt of your purchase has been sent to your e-mail..
+        ///A confirmation of your purchase will be sent to your e-mail from your payment provider. You can print an invoice from our web site..
         /// </summary>
         public static string PurchaseReceiptSuccessPageBody {
             get {
@@ -5709,7 +5718,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults..
+        ///   Looks up a localized string similar to This will clear all settings. No data will be lost, but the configuration will be reset to installation defaults..
         /// </summary>
         public static string ResetAllSettingsWarningText {
             get {
