@@ -5718,6 +5718,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Reset.
+        /// </summary>
+        public static string ResetButtonText {
+            get {
+                return ResourceManager.GetString("ResetButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to русский (Russian).
         /// </summary>
         public static string RussianLanguageSelection {

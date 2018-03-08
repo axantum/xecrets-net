@@ -2303,6 +2303,9 @@ Subject: AxCrypt Report Snapshot
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>!!Resetting will clear all settings. No data will be lost, but all settings will be reset to installation defaults.</value>
   </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>!!Reset</value>
+  </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский (Russian)</value>
     <comment>The name of the Russian Language in Russian. It should never be translated.</comment>
