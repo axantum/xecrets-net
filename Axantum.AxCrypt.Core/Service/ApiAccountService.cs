@@ -39,6 +39,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -292,6 +293,8 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (ApiException aex)
             {
+                New<AxCryptOnlineState>().IsOffline = true;
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning", "Key Sharing does not work when application is offline");
                 throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
             }
         }
