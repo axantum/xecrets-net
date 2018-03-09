@@ -39,6 +39,7 @@ namespace Axantum.AxCrypt
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
+            _buttonReset.Text = "&" + Texts.ResetButtonText;
             _troubleRememberingLabel.Text = "&" + Texts.TroubleRememberingLabel;
         }
 
