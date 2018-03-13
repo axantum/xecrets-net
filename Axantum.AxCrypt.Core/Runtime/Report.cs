@@ -26,12 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Api;
-using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
-using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -57,23 +54,8 @@ namespace Axantum.AxCrypt.Core.Runtime
             _maxSizeInBytes = maxSizeInBytes;
         }
 
-        private async void HandleApiException()
-        {
-            // New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText));
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText).ConfigureAwait(false);
-            New<AxCryptOnlineState>().IsOffline = true;
-        }
-
         public void Exception(Exception ex)
         {
-            if (ex.GetType().Name == nameof(OfflineApiException)
-                || ex.GetType().Name == nameof(UnauthorizedApiException)
-                || ex.GetType().Name == nameof(BadRequestApiException)
-                || ex.GetType().Name == nameof(ApiException))
-            {
-                HandleApiException();
-            }
-
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
             using (FileLock fileLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
             {
