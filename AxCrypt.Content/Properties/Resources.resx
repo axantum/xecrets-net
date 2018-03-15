@@ -2023,6 +2023,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>This feature requires a paid subscription plan!</value>
   </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>!!AxCrypt Premium {0} months.</value>
+  </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires a paid subscription plan. Click to upgrade now!</value>
   </data>
