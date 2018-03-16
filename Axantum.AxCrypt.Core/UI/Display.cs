@@ -1,5 +1,4 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -211,9 +210,8 @@ namespace Axantum.AxCrypt.Core.UI
         private static async Task<bool> IsAccountSourceLocal()
         {
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            UserAccount userAccount = await accountService.AccountAsync();
 
-            return userAccount.AccountSource == AccountSource.Local;
+            return await accountService.IsAccountSourceLocal();
         }
     }
 }

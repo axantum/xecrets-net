@@ -61,6 +61,12 @@ namespace Axantum.AxCrypt
 
             _shareButton.Click += async (sender, e) =>
             {
+                //IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                //if (await accountService.IsAccountSourceLocal())
+                //{
+                //    Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);//"Key Sharing does not work when application is offline"
+                //    SetNewContactState(New<AxCryptOnlineState>().IsOffline);
+                //}
                 await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
 
                 if (await ShareNewContactAsync())
@@ -68,6 +74,13 @@ namespace Axantum.AxCrypt
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
                 };
                 _newContact.Text = String.Empty;
+
+                if (New<AxCryptOnlineState>().IsOffline)
+                {
+                    Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);//"Key Sharing does not work when application is offline"
+                    SetNewContactState(New<AxCryptOnlineState>().IsOffline);
+                }
+
                 SetShareButtonState();
             };
             _unshareButton.Click += async (sender, e) =>

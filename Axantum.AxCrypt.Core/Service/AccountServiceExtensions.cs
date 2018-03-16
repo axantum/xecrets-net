@@ -1,13 +1,11 @@
 ﻿using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
 
 namespace Axantum.AxCrypt.Core.Service
 {
@@ -26,6 +24,13 @@ namespace Axantum.AxCrypt.Core.Service
                 return false;
             }
             return true;
+        }
+
+        public static async Task<bool> IsAccountSourceLocal(this IAccountService service)
+        {
+            UserAccount userAccount = await service.AccountAsync();
+
+            return userAccount.AccountSource == AccountSource.Local;
         }
     }
 }
