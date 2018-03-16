@@ -1760,6 +1760,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Funktionen kräver ett betalt abonnemang!</value>
   </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 dagar.</value>
+  </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Nyckeldelning kräver ett betalt abonnemang. Klicka för att uppgradera!</value>
   </data>
@@ -2025,6 +2028,9 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Rensa alla inställningar. Inget data går förlorat, men all konfiguration återställs till standardläget.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Återställ</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Du är redan inloggad med det lösenordet!</value>

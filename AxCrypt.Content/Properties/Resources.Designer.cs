@@ -4979,6 +4979,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!AxCrypt Premium {0} months..
+        /// </summary>
+        public static string PremiumItemDescriptionFormat {
+            get {
+                return ResourceManager.GetString("PremiumItemDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key sharing requires a paid subscription plan. Click to upgrade now!.
         /// </summary>
         public static string PremiumNeededForKeyShare {

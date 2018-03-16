@@ -2023,6 +2023,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>This feature requires a paid subscription plan!</value>
   </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 days.</value>
+  </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Key sharing requires a paid subscription plan. Click to upgrade now!</value>
   </data>
@@ -2307,7 +2310,7 @@ Subject: AxCrypt Report Snapshot
     <value>This will clear all settings. No data will be lost, but the configuration will be reset to installation defaults.</value>
   </data>
   <data name="ResetButtonText" xml:space="preserve">
-    <value>!!Reset</value>
+    <value>Reset</value>
   </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский (Russian)</value>
