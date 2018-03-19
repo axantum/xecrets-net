@@ -1828,7 +1828,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Offline AxCrypt ID Creation.</value>
   </data>
   <data name="OfflineApiExceptionDialogText" xml:space="preserve">
- <value>There seems to be problem connecting to the server, but we'll continue offline.</value>
+    <value>There seems to be problem connecting to the server, but we'll continue offline.</value>
   </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Offline</value>
