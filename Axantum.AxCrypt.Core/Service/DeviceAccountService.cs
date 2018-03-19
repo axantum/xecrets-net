@@ -13,7 +13,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -54,7 +53,7 @@ namespace Axantum.AxCrypt.Core.Service
                     }
                     catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                     {
-                        HandleApiExceptions(aex);
+                        HandleApiExceptionsAsync(aex);
                     }
                 }
                 return _localService.HasAccounts;
@@ -79,7 +78,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             return await _localService.OffersAsync().Free();
@@ -96,7 +95,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             await _localService.StartPremiumTrialAsync().Free();
@@ -117,7 +116,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex)
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             return await _localService.ChangePassphraseAsync(passphrase).Free();
@@ -160,7 +159,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
-                HandleApiExceptions(aex);
+                HandleApiExceptionsAsync(aex);
             }
             return localAccount;
         }
@@ -212,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
-                HandleApiExceptions(aex);
+                HandleApiExceptionsAsync(aex);
             }
             return localKeys;
         }
@@ -228,7 +227,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             return await _localService.CurrentKeyPairAsync().Free();
@@ -244,7 +243,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             await _localService.PasswordResetAsync(verificationCode).Free();
@@ -269,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
-                HandleApiExceptions(aex);
+                HandleApiExceptionsAsync(aex);
                 return NonNullPublicKey(publicKey);
             }
         }
@@ -293,7 +292,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             await _localService.SaveAsync(account).Free();
@@ -309,7 +308,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             await _localService.SaveAsync(keyPairs).Free();
@@ -325,7 +324,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             await _localService.SignupAsync(email, culture).Free();
@@ -341,7 +340,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
             AccountStatus status = await _localService.StatusAsync(email).Free();
@@ -363,24 +362,24 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
-                    HandleApiExceptions(aex);
+                    HandleApiExceptionsAsync(aex);
                 }
             }
 
             await _localService.SendFeedbackAsync(subject, message).Free();
         }
 
-        private static void HandleApiExceptions(ApiException aex)
+        public static void HandleApiExceptionsAsync(ApiException aex)
         {
             New<IReport>().Exception(aex);
             New<AxCryptOnlineState>().IsOffline = true;
             if (aex is OfflineApiException)
             {
-                return;
+                Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
+                throw aex;
             }
 
-            Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
-            throw aex;
+            return;
         }
     }
 }

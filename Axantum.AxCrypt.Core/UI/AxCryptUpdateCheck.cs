@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Service;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -149,12 +150,17 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
-            catch (Exception ex)
+            catch (ApiException aex)
             {
-                New<IReport>().Exception(ex);
+                if (aex.ErrorStatus == ErrorStatus.ApiOffline)
+                {
+                    DeviceAccountService.HandleApiExceptionsAsync(aex);
+                }
+
+                New<IReport>().Exception(aex);
                 if (Resolve.Log.IsWarningEnabled)
                 {
-                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
+                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(aex));
                 }
 
                 return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
