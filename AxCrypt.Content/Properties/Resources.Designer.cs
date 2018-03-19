@@ -4979,7 +4979,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!AxCrypt Premium {0} months...
+        ///   Looks up a localized string similar to !!AxCrypt Premium {0} months..
         /// </summary>
         public static string PremiumItemDescriptionFormat {
             get {
