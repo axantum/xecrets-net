@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
 
-            return await accountService.IsAccountSourceLocal();
+            return await accountService.IsAccountSourceLocalAsync();
         }
     }
 }

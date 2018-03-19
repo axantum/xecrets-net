@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.Service
             return true;
         }
 
-        public static async Task<bool> IsAccountSourceLocal(this IAccountService service)
+        public static async Task<bool> IsAccountSourceLocalAsync(this IAccountService service)
         {
             UserAccount userAccount = await service.AccountAsync();
 

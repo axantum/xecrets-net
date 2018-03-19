@@ -135,6 +135,9 @@
     <value>The account must be verified by the user first.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>!!There seems to be problem fetching  information from the server because application state is local.</value>
+  </data>
   <data name="AccountStatusBusiness" xml:space="preserve">
     <value>AxCrypt Business</value>
     <comment>The full name of the business plan. Should not be translated</comment>
