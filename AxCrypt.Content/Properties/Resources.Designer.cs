@@ -4979,7 +4979,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Premium {0} x 30 days..
+        ///   Looks up a localized string similar to !!AxCrypt Premium {0} months...
         /// </summary>
         public static string PremiumItemDescriptionFormat {
             get {
@@ -5736,7 +5736,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
+        ///   Looks up a localized string similar to !!Reset.
         /// </summary>
         public static string ResetButtonText {
             get {
