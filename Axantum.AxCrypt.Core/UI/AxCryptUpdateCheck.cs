@@ -150,21 +150,19 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
-            catch (ApiException aex)
+            catch (OfflineApiException oaex)
             {
-                if (aex.ErrorStatus == ErrorStatus.ApiOffline)
-                {
-                    DeviceAccountService.HandleApiExceptionsAsync(aex);
-                }
-
-                New<IReport>().Exception(aex);
+                DeviceAccountService.HandleApiExceptionsAsync(oaex);
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
                 if (Resolve.Log.IsWarningEnabled)
                 {
-                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(aex));
+                    Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
-
-                return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
             }
+            return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
         }
 
         /// <summary>
