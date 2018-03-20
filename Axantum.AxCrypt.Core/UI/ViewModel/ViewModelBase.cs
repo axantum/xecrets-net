@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
 using System;
@@ -33,9 +34,9 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
 {
@@ -179,17 +180,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     throw new ArgumentException("Non-existing property name.", columnName);
                 }
 
-                bool isValid;
+                bool isValid = false;
 
                 try
                 {
                     isValid = TaskRunner.WaitFor(() => ValidateAsync(columnName));
                 }
-                catch (AggregateException aex)
+                catch (Exception ex)
                 {
-                    Exception innerException = aex.InnerExceptions.First();
-                    ExceptionDispatchInfo.Capture(innerException).Throw();
-                    return string.Empty;
+                    if (ex is AggregateException)
+                    {
+                        ex = ((AggregateException)ex).InnerExceptions.First();
+                    }
+                    New<IReport>().Exception(ex);
                 }
 
                 return isValid ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);

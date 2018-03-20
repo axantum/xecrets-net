@@ -292,7 +292,12 @@ namespace Axantum.AxCrypt.Core.Service
             }
             catch (ApiException aex)
             {
-                throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
+                if (aex.ErrorStatus == ErrorStatus.BadUserInput)
+                {
+                    throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
+                }
+
+                throw aex;
             }
         }
     }
