@@ -36,7 +36,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -150,9 +149,9 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
-            catch (OfflineApiException oaex)
+            catch (ApiException aex)
             {
-                DeviceAccountService.HandleApiExceptionsAsync(oaex);
+                aex.HandleApiExceptions();
             }
             catch (Exception ex)
             {

@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -286,19 +285,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            try
-            {
-                return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
-            }
-            catch (ApiException aex)
-            {
-                if (aex.ErrorStatus == ErrorStatus.BadUserInput)
-                {
-                    throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
-                }
-
-                throw aex;
-            }
+            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
         }
     }
 }

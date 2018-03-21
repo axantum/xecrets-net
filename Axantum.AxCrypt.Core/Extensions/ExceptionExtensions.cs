@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
@@ -57,6 +58,19 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new FileOperationException(aex.Message, displayContext, aex.ErrorStatus, ex);
             }
             throw new FileOperationException(ex.Message, displayContext, ErrorStatus.Exception, ex);
+        }
+
+        public static void HandleApiExceptions(this ApiException aex)
+        {
+            New<IReport>().Exception(aex);
+            New<AxCryptOnlineState>().IsOffline = true;
+            if (aex is OfflineApiException)
+            {
+                Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
+                throw aex;
+            }
+
+            return;
         }
     }
 }
