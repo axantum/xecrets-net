@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Service;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -149,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
-            catch (ApiException aex)
+            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
                 aex.HandleApiExceptions();
             }

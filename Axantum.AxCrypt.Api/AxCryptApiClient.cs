@@ -320,8 +320,6 @@ namespace Axantum.AxCrypt.Api
             }
             catch (OfflineApiException oaex)
             {
-                New<IReport>().Exception(oaex);
-                New<AxCryptOnlineState>().IsOffline = true;
                 throw oaex;
             }
         }
