@@ -372,6 +372,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return key;
             }
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            if (await accountService.IsAccountSourceLocalAsync())
+            {
+                return key;
+            }
 
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing) && email != _licenseAuthorityEmail)
             {
