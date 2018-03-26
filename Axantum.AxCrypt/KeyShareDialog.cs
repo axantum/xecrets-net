@@ -62,11 +62,12 @@ namespace Axantum.AxCrypt
             _shareButton.Click += async (sender, e) =>
             {
                 IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-                if (await accountService.IsAccountSourceLocalAsync())
+                if (!string.IsNullOrEmpty(_newContact.Text) && await accountService.IsAccountSourceLocalAsync())
                 {
                     Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
                     return;
                 }
+
                 await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
 
                 if (await ShareNewContactAsync())
