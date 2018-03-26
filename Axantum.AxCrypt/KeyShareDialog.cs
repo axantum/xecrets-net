@@ -65,7 +65,6 @@ namespace Axantum.AxCrypt
                 if (!string.IsNullOrEmpty(_newContact.Text) && await accountService.IsAccountSourceLocalAsync())
                 {
                     Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
-                    SetNewContactState(New<AxCryptOnlineState>().IsOnline);
                     return;
                 }
 

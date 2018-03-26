@@ -372,7 +372,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return key;
             }
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
             if (await accountService.IsAccountSourceLocalAsync())
             {
                 return key;
