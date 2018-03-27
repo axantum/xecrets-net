@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -293,10 +292,6 @@ namespace Axantum.AxCrypt.Core.Service
             catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
                 throw aex;
-            }
-            catch (Exception aex)
-            {
-                throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
             }
         }
     }
