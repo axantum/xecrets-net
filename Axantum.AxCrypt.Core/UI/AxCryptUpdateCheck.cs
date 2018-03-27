@@ -35,7 +35,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -149,6 +148,10 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
+            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
+            {
+                aex.HandleApiExceptions();
+            }
             catch (Exception ex)
             {
                 New<IReport>().Exception(ex);
@@ -156,9 +159,8 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     Resolve.Log.LogWarning("Failed call to check for new version with exception {0}.".InvariantFormat(ex));
                 }
-
-                return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
             }
+            return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
         }
 
         /// <summary>

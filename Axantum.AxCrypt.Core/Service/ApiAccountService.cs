@@ -290,7 +290,11 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
             }
-            catch (ApiException aex)
+            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
+            {
+                throw aex;
+            }
+            catch (Exception aex)
             {
                 throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
             }
