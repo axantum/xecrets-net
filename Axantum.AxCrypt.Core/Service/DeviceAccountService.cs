@@ -113,7 +113,7 @@ namespace Axantum.AxCrypt.Core.Service
                     New<IReport>().Exception(uaex);
                     return false;
                 }
-                catch (ApiException aex)
+                catch (ApiException aex) when (!(aex is UnauthorizedApiException))
                 {
                     aex.HandleApiExceptions();
                 }
