@@ -210,16 +210,21 @@ namespace Axantum.AxCrypt
                     return true;
                 }
 
-                SetNewContactState(New<AxCryptOnlineState>().IsOnline);
-                return false;
+                if (New<AxCryptOnlineState>().IsOffline)
+                {
+                    _newContact.Enabled = !New<AxCryptOnlineState>().IsOffline;
+                    _newContact.Text = $"[{Texts.OfflineIndicatorText}]";
+                    _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
+                }
             }
             catch (BadRequestApiException braex)
             {
                 New<IReport>().Exception(braex);
                 _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
-                return false;
             }
+
+            return false;
         }
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)
