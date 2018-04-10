@@ -193,6 +193,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         ex = ((AggregateException)ex).InnerExceptions.First();
                     }
                     New<IReport>().Exception(ex);
+                    throw;
                 }
 
                 return isValid ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);

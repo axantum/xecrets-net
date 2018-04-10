@@ -285,14 +285,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            try
-            {
-                return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
-            }
-            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
-            {
-                throw aex;
-            }
+            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
         }
     }
 }

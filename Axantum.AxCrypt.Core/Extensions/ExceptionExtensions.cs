@@ -67,10 +67,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             if (aex is OfflineApiException)
             {
                 Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
-                throw aex;
             }
-
-            return;
         }
     }
 }

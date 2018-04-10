@@ -74,8 +74,8 @@ namespace Axantum.AxCrypt
                 if (await ShareNewContactAsync())
                 {
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
-                };
-                _newContact.Text = String.Empty;
+                    _newContact.Text = String.Empty;
+                }
 
                 SetShareButtonState();
             };
@@ -205,14 +205,19 @@ namespace Axantum.AxCrypt
             try
             {
                 await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
-                return true;
-            }
-            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
-            {
-                New<IReport>().Exception(aex);
-                _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
-                _errorProvider1.SetIconPadding(_newContact, 3);
+                if (_viewModel.SharedWith.Where(sw => sw.Email.ToString() == _viewModel.NewKeyShare).Any())
+                {
+                    return true;
+                }
 
+                SetNewContactState(New<AxCryptOnlineState>().IsOnline);
+                return false;
+            }
+            catch (BadRequestApiException braex)
+            {
+                New<IReport>().Exception(braex);
+                _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
+                _errorProvider1.SetIconPadding(_newContact, 3);
                 return false;
             }
         }

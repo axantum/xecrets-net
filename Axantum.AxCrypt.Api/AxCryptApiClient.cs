@@ -311,17 +311,10 @@ namespace Axantum.AxCrypt.Api
                 return AxCryptVersion.Empty;
             }
 
-            try
-            {
-                RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
-                ApiCaller.EnsureStatusOk(restResponse);
-                AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
-                return axCryptVersion;
-            }
-            catch (OfflineApiException oaex)
-            {
-                throw oaex;
-            }
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+            AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
+            return axCryptVersion;
         }
 
         private static IStringSerializer Serializer

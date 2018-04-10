@@ -263,13 +263,13 @@ namespace Axantum.AxCrypt.Core.Service
                 {
                     knownPublicKeys.AddOrReplace(publicKey);
                 }
-                return publicKey;
             }
             catch (ApiException aex) when (!(aex is UnauthorizedApiException))
             {
                 aex.HandleApiExceptions();
-                return NonNullPublicKey(publicKey);
             }
+
+            return publicKey;
         }
 
         private static UserPublicKey NonNullPublicKey(UserPublicKey publicKey)
