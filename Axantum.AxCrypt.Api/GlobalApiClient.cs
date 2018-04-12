@@ -31,7 +31,7 @@ namespace Axantum.AxCrypt.Api
             Timeout = timeout;
         }
 
-        public async Task<ApiVersion> ApiVersionAsync()
+        public async Task<ApiVersion> ApiVersionAsync(string platform, string appVersion)
         {
             Uri resource = BaseUrl.PathCombine("global/apiversion");
 
@@ -40,7 +40,11 @@ namespace Axantum.AxCrypt.Api
             {
                 try
                 {
-                    restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+                    RestRequest restRequest = new RestRequest(resource, Timeout);
+                    restRequest.Headers.Collection["Platform"] = platform;
+                    restRequest.Headers.Collection["App-Version"] = appVersion;
+
+                    restResponse = await Caller.RestAsync(new RestIdentity(), restRequest).Free();
                     ApiCaller.EnsureStatusOk(restResponse);
                     ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
                     return apiVersion;
