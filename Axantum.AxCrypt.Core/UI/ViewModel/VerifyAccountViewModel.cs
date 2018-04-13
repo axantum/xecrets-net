@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             try
             {
                 AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).Refresh().StatusAsync(EmailAddress.Parse(UserEmail));
-                if (status.HasFlag(AccountStatus.Verified))
+                if (status == AccountStatus.Verified)
                 {
                     AlreadyVerified = true;
                 }
