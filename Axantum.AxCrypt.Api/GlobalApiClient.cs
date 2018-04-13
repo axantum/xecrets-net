@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -43,6 +44,7 @@ namespace Axantum.AxCrypt.Api
                     RestRequest restRequest = new RestRequest(resource, Timeout);
                     restRequest.Headers.Collection["Platform"] = platform;
                     restRequest.Headers.Collection["App-Version"] = appVersion;
+                    restRequest.Headers.Collection["App-Culture"] = CultureInfo.CurrentUICulture.DisplayName;
 
                     restResponse = await Caller.RestAsync(new RestIdentity(), restRequest).Free();
                     ApiCaller.EnsureStatusOk(restResponse);
