@@ -34,7 +34,7 @@ namespace Axantum.AxCrypt.Api
 
         public async Task<ApiVersion> ApiVersionAsync(string platform, string appVersion)
         {
-            Uri resource = BaseUrl.PathCombine("global/apiversion");
+            Uri resource = BaseUrl.PathCombine($"global/apiversion?Platform={platform}&App-Version={appVersion}&App-Culture={CultureInfo.CurrentUICulture.DisplayName}");
 
             RestResponse restResponse;
             if (New<AxCryptOnlineState>().IsOnline)
@@ -42,10 +42,6 @@ namespace Axantum.AxCrypt.Api
                 try
                 {
                     RestRequest restRequest = new RestRequest(resource, Timeout);
-                    restRequest.Headers.Collection["Platform"] = platform;
-                    restRequest.Headers.Collection["App-Version"] = appVersion;
-                    restRequest.Headers.Collection["App-Culture"] = CultureInfo.CurrentUICulture.DisplayName;
-
                     restResponse = await Caller.RestAsync(new RestIdentity(), restRequest).Free();
                     ApiCaller.EnsureStatusOk(restResponse);
                     ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
