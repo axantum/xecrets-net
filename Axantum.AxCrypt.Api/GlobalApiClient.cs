@@ -41,8 +41,7 @@ namespace Axantum.AxCrypt.Api
             {
                 try
                 {
-                    RestRequest restRequest = new RestRequest(resource, Timeout);
-                    restResponse = await Caller.RestAsync(new RestIdentity(), restRequest).Free();
+                    restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
                     ApiCaller.EnsureStatusOk(restResponse);
                     ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
                     return apiVersion;
