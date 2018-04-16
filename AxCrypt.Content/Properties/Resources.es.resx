@@ -668,6 +668,9 @@ Debe completar estos pasos para completar el proceso.</value>
     <value>Por favor considere que la aplicación mantiene una copia del archivo descifrado en el almacenamiento local. Será eliminado cuando cierre la sesión. Asimismo, puede eliminarlo manualmente a través del botón de limpieza.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Borrar Archivos Recientes</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Haga clic para comprobar si hay una nueva versión.</value>
   </data>
@@ -1572,6 +1575,9 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Creación de AxCrypt ID desconectado.</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>Parece que hay un problema al conectar al servidor, pero continuaremos sin conexión.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Desconectado</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1718,6 +1724,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Comprar para otra persona</value>
   </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>Pagado en su totalidad</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Más información sobre PayPal]</value>
   </data>
@@ -1743,6 +1752,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>¡Esta función requiere una suscripción de pago!</value>
+  </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 días.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>El intercambio de claves requiere una suscripción de pago. ¡Haz clic aquí para obtenerla ahora!</value>
@@ -1908,18 +1920,18 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>La compra fue cancelada.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>Nunca recibimos su pago. Esto puede ser debido a una cancelación manual de la compra en PayPal o debido al saldo de la cuenta insuficiente.</value>
+    <value>Nunca recibimos su pago. Esto puede ser debido a una cancelación manual de la compra o a que el saldo de la cuenta es insuficiente.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Recibo de AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>¡Gracias por comprar AxCrypt Premium! Por favor, cierra sesión y vuelve a iniciarla en cualquier aplicación para actualizarla a Premium.</value>
+    <value>¡Gracias por adquirir una suscripción AxCrypt! Por favor, cierra sesión y vuelve a iniciarla para actualizar el estado de la suscripción.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Ahora puedes acceder a todas las funciones Premium de AxCrypt. Puede que necesites cerrar la sesión y volverla a iniciar.  Si tienes algún problema, ponte en contacto con nuestro soporte.
+    <value>Ahora puedes acceder a todas las funciones adicionales de AxCrypt. Puede que necesites cerrar sesión y volverla a iniciar.  Si tienes algún problema, ponte en contacto con nuestro equipo de soporte.
 
-Se te ha enviado por correo electrónico un recibo de tu compra.</value>
+Tu proveedor de pagos te enviará una confirmación de la compra a tu e-mail. Puedes imprimir un recibo desde nuestro sitio web.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>El IVA puede ser modificado durante el pago.</value>
@@ -2005,6 +2017,12 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Haga clic para reenviar el código de verificación a su correo electrónico.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>Esto borrará todas las configuraciones. No se perderá ningún dato, pero se restablecerá la configuración predeterminada en la instalación.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Restablecer</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Ya ha iniciado sesión con esta contraseña!</value>

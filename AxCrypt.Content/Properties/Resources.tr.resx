@@ -124,28 +124,28 @@
     <value>AxCrypt kimliğini doğrula</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Onay kodunuz &lt;b&gt;{0}&lt;/b&gt; .</value>
+    <value>Onay kodun &lt;b&gt;{0}&lt;/b&gt; .</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
-    <value>Onay kodunuz {0}.</value>
+    <value>Onay kodun {0}.</value>
   </data>
   <data name="ActivateMailBodyFreeTrial" xml:space="preserve">
-    <value>&lt;b&gt;30 gün boyunca AxCrypt Premium özellikleri&lt;/b&gt; denemeniz uygulamada hazır !</value>
+    <value>&lt;b&gt;30 gün boyunca AxCrypt Premium özellikleri&lt;/b&gt; denemen uygulamada hazır!</value>
   </data>
   <data name="ActivateMailBodyFreeTrialPlainText" xml:space="preserve">
-    <value>AxCrypt Premium özelliklerini 30 gün boyunca uygulamada deneyebilirsiniz!</value>
+    <value>AxCrypt Premium özelliklerini 30 gün boyunca uygulamada deneyebilirsin!</value>
   </data>
   <data name="ActivateMailBodyIntro" xml:space="preserve">
-    <value>AxCrypt kullanmak için kaydolma talebinde bulundunuz. İşlemi tamamlamak için e-posta adresinizi doğrulamalısınız. Bunu yaptığınızda e-posta adresinin sahibi olduğunuzu kanıtlamış ve size e-posta göndermemize izin vermiş olacaksınız. Ayrıntılar için lütfen &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt; sayfamızı okuyunuz.  </value>
+    <value>AxCrypt kullanmak için kaydolma talebinde bulundun. İşlemi tamamlamak için e-posta adresini doğrulamalısın. Bunu yaptığında e-posta adresinin sahibi olduğunu kanıtlamış ve sana e-posta göndermemize izin vermiş olacaksın. Ayrıntılar için lütfen &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;privacy policy&lt;/a&gt; sayfamızı oku.  </value>
   </data>
   <data name="ActivateMailBodyManualLink" xml:space="preserve">
-    <value>Manüel olarak onaylamak için buraya gidiniz &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; ve onay kodu &lt;b&gt;{2}&lt;/b&gt;.</value>
+    <value>Manüel olarak onaylamak için buraya git &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;{0}&lt;/a&gt; ve onay kodu &lt;b&gt;{2}&lt;/b&gt;.</value>
   </data>
   <data name="ActivateMailBodyManualLinkPlainText" xml:space="preserve">
-    <value>Manuel olarak doğrulamak için {0} a gidip {1} e basıp onay kodu {2} yi girin.</value>
+    <value>Manuel olarak doğrulamak için {0} a gidip {1} e basıp onay kodu {2} yi gir.</value>
   </data>
   <data name="ActivateMailBodyTitle" xml:space="preserve">
-    <value>Merhaba, AxCrypt'e hoşgeldiniz ! </value>
+    <value>Merhaba, AxCrypt'e hoş geldin! </value>
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt kimliği onay</value>
@@ -153,27 +153,27 @@
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Durun!&lt;/b&gt;
 
-Burada bulunma sebebiniz sadece AxCrypt kimliği onay e-postasının çalışmaması olmalı. (Tabiiki onay kodu almak için AxCrypt kimliği için kaydolmanız lazım)
+Burada bulunma sebebin sadece AxCrypt kimliği onay e-postasının çalışmaması olmalı. (Elbette onay kodu almak için AxCrypt kimliği için kaydolman lazım)
 
-E-posta adresinizi ve kodunuzu buraya yanlızca onay e-postasını almışsanız ve çalışmadıysa giriniz.</value>
+E-posta adresini ve kodunu buraya yalnızca onay e-postasını almışsan ve çalışmadıysa gir.</value>
   </data>
   <data name="ActivatePageBody" xml:space="preserve">
-    <value>AxCrypt kimliğinizi &lt;b&gt;{0}&lt;/b&gt; yaratmak için bir şifre seçmeniz gerekir.
+    <value>AxCrypt kimliğini &lt;b&gt;{0}&lt;/b&gt; yaratmak için bir şifre seçmen gerekiyor.
 
-Tahmin edilmesi zor bir tane seçin çünkü bu hem siteye erişimi sağlar hem de sanal şifre yönetimini korur. Dikkatlice ve yavaşça yazın, ve şifrenizi unutmayın!</value>
+Tahmin edilmesi zor bir tane seç çünkü bu hem siteye erişimi sağlar hem de sanal şifre yönetimini korur. Dikkatlice ve yavaşça yaz, ve şifreni unutma!</value>
   </data>
   <data name="ActivatePageTitle" xml:space="preserve">
     <value>AxCrypt kimliğini doğrula</value>
   </data>
   <data name="ActivateSuccess" xml:space="preserve">
-    <value>AxCrypt kimliğiniz doğrulanmıştır! Lütfen oturum açın.</value>
+    <value>AxCrypt kimliğin doğrulanmıştır! Lütfen oturum aç.</value>
   </data>
   <data name="ActivationCodeSentMessage" xml:space="preserve">
-    <value>Size {0} bir e-posta attık</value>
+    <value>Sana {0} bir e-posta gönderdik</value>
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Onay kodunuzu girin</value>
+    <value>Onay kodunu gir</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -187,24 +187,24 @@ Tahmin edilmesi zor bir tane seçin çünkü bu hem siteye erişimi sağlar hem 
     <comment>Tooltip for "AddFile" button in mobile application</comment>
   </data>
   <data name="AdditionalUnsubscribedConfirmation" xml:space="preserve">
-    <value>AxCrypt'in işleyişi ya da güvenliği açısından önemli olması durumunda size hala e-posta gönderebiliriz.  </value>
+    <value>AxCrypt'in işleyişi ya da güvenliği açısından önemli olması durumunda sana hala e-posta gönderebiliriz.  </value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Güvenli klasör ekle</value>
   </data>
   <data name="AddSecureFolderTitle" xml:space="preserve">
-    <value>AxCrypt ile güvene almak istediğiniz dosyayı seçiniz. Varolan dosyalar şimdi şifrelenecek. </value>
+    <value>AxCrypt ile güvene almak istediğin dosyayı seç. Varolan dosyalar şimdi şifrelenecek. </value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
-    <value>Zaten kaydoldunuz mu ? Buradan oturum açın</value>
+    <value>Zaten kaydoldun mu? Buradan oturum aç</value>
     <comment>Link to sign in page.</comment>
   </data>
   <data name="AlreadyVerifiedInfo" xml:space="preserve">
-    <value>Oops. Hesabınızı onaylamışsınız bile, harika!
+    <value>Oops. Hesabını onaylamışsın bile, harika!
 
-Lütfen aynı şifreyi kullanarak oturum açın.</value>
+Lütfen aynı şifreyi kullanarak oturum aç.</value>
     <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
   </data>
   <data name="AlwaysOffline" xml:space="preserve">
@@ -212,24 +212,24 @@ Lütfen aynı şifreyi kullanarak oturum açın.</value>
     <comment>Menu choice with checkbox indicating if we are running offline or not.</comment>
   </data>
   <data name="AlwaysOfflineToolTip" xml:space="preserve">
-    <value>Devredeyken, internet erişimi gerekli değildir ve kullanılmaz, devredışı edilene kadar.</value>
+    <value>Devredeyken internet erişimi gerekli değildir ve kullanılmaz, devredışı edilene kadar.</value>
     <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonim yeni isimlendirme</value>
   </data>
   <data name="AnonymousRenameSelectFilesDialogTitle" xml:space="preserve">
-    <value>Yeniden adlandırılacak şifreli dosyaları seçin!</value>
+    <value>Yeniden adlandırılacak şifreli dosyaları seç!</value>
   </data>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
-    <value>Korumadaki dosyanın gerçek ismini rastgele bir şeye değiştirerek saklayın.</value>
+    <value>Korumadaki dosyanın gerçek ismini rastgele bir şeye değiştirerek sakla.</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
-    <value>Güvenlik sorunları nedeniyle lütfen şifrenizi tekrar girin.</value>
+    <value>Güvenlik sorunları nedeniyle lütfen şifreni tekrar gir.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
   <data name="AppVersionLabel" xml:space="preserve">
@@ -237,33 +237,33 @@ Lütfen aynı şifreyi kullanarak oturum açın.</value>
     <comment>Text containing information about current application version.</comment>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
-    <value>Girmeye çalıştığınız site doğrulama gerektirmektedir. Devam etmek için lütfen oturum açın.</value>
+    <value>Girmeye çalıştığın site doğrulama gerektirmektedir. Devam etmek için lütfen oturum aç.</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
-    <value>Cevaplamanız veya başka birşey yapmanız gerekmemektedir. Bir şey yapmazsanız başka e-posta yollanmayacak ve AxCrypt kimliğiniz kalıcı olarak silinecektir.</value>
+    <value>Cevaplaman veya başka birşey yapman gerekmemektedir. Bir şey yapmazsan başka e-posta yollanmayacak ve AxCrypt kimliğin kalıcı olarak silinecektir.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
-    <value>Bir uygulama veya web tarayıcı üzerinden bize AxCrypt kullanmak veya yüklemek için bir e-posta  adresi verdiniz. Size e-posta yoluyla bir onay kodu yolladık fakat bunu kullanmadınız. Derhal AxCrypt kimliği hesabınızı onay koduyla onaylamazsanız sizi sistemimizden kalıcı olarak silmek zorunda kalacağız.</value>
+    <value>Bir uygulama veya web tarayıcı üzerinden AxCrypt kullanmak veya yüklemek için bize bir e-posta  adresi verdin. Sana e-posta yoluyla bir onay kodu yolladık fakat bunu kullanmadın. Derhal AxCrypt kimliği hesabını onay koduyla onaylamazsan seni sistemimizden kalıcı olarak silmek zorunda kalacağız.</value>
   </data>
   <data name="AutoDeletionMailBodyTitle" xml:space="preserve">
-    <value>AxCrypt kimliğinizi silmek üzereyiz!</value>
+    <value>AxCrypt kimliğini silmek üzereyiz!</value>
     <comment>The title of the deletion e-mail</comment>
   </data>
   <data name="AutoDeletionMailSubject" xml:space="preserve">
-    <value>AxCrypt kimliğiniz yakında silinecektir !</value>
+    <value>AxCrypt kimliğin yakında silinecektir!</value>
   </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
-    <value>AxCrypt AB tarafından siz ve ekibiniz için Dosya güvenliği 
+    <value>AxCrypt AB tarafından sen ve ekibin için Dosya güvenliği 
 
 http://www.bouncycastle.org/ tarafından yazılım içerir.</value>
   </data>
   <data name="AxCryptBetaWarning" xml:space="preserve">
     <value>Uyarı! Bu denenmemiş beta sürümüdür ve dolayısıyla bazı özelliklerden yoksun ve istikrarsız olabilir. Metinler eksik, kullanıcı arayüzü tamamlanmamış olabilir. 
 
-Dikkatlice kullanınız ve verilerinizin güncel yedeklemelerinin bulunduğundan emin olunuz. Karşılaşabileceğiniz sorunları https://bitbucket.org/axcryptab/axcrypt-xwt/issues ya da support@axcrypt.net adreslerine bildiriniz. 
+Dikkatlice kullan ve verilerinin güncel yedeklemelerinin bulunduğundan emin ol. Karşılaşabileceğin sorunları https://bitbucket.org/axcryptab/axcrypt-xwt/issues ya da support@axcrypt.net adreslerine bildirebilirsin. 
 
-Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
+Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>A text that is shown to users starting a beta version of our software.</comment>
   </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
@@ -282,24 +282,28 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>The main title when a user must be invited to be able to pay for</comment>
   </data>
   <data name="BeneficiaryIs" xml:space="preserve">
-    <value>{0} için Premium satın alıyorsunuz </value>
+    <value>{0} için Premium satın alıyorsun</value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
-    <value>{0}'ın AxCrypt hesabı bulunmamaktadır, hesap açmaları için davetiye gönderip devam edin. </value>
+    <value>{0}'ın AxCrypt hesabı bulunmamaktadır, hesap açmaları için davetiye gönderip devam et. </value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt Business'a hoş geldiniz.&lt;/p&gt; 
-&lt;p&gt;{0} tarafından AxCrypt Business üyeliğine eklendiniz, artık geçerli bir üyeliğiniz bulunduğu sürece abone ayrıcalıklarına erişiminiz bulunmaktadır.&lt;/p&gt; 
-&lt;p&gt;Sorularınız için lütfen önce {0} ile iletişime geçin.&lt;/p&gt;</value>
+    <value>&lt;p&gt;AxCrypt Business'a hoş geldin.&lt;/p&gt; 
+&lt;p&gt;{0} tarafından AxCrypt Business üyeliğine eklendin, artık geçerli bir üyeliğin bulunduğu sürece abone ayrıcalıklarına erişimin bulunmaktadır.&lt;/p&gt; 
+&lt;p&gt;Soruların için lütfen önce {0} ile iletişime geç.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
-    <value>AxCrypt Business'a hoş geldiniz </value>
+    <value>AxCrypt Business'a hoş geldin</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>Yöneticiler</value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendiniz. Dosyalarınızı korumaya başlamak için &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;indir&lt;/a&gt; AxCrypt'i kurun. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt oturumunuzu açın, aşağıdaki doğrulama kodunu girip gizli kişisel parolanızı belirleyin.&lt;/p&gt; 
-&lt;p&gt;Sorularınız için lütfen önce {0} ile iletişime geçin.&lt;/p&gt;</value>
+    <value>&lt;p&gt;&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendin. Dosyalarını korumaya başlamak için &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;indir&lt;/a&gt; AxCrypt'i kur. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt oturumunu aç, aşağıdaki doğrulama kodunu girip gizli kişisel parolanı belirle.&lt;/p&gt; 
+&lt;p&gt;Soruların için lütfen önce {0} ile iletişime geç.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
@@ -322,12 +326,16 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>Yönetici </value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
   </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>Business üyeliğin zaten var. Sadece istediğinden eminsen yeni bir üyelik oluştur. </value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
+  </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
     <value>Kullanılmamış </value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/bilgi/lisans/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/fiyatlandırma/"&gt;fiyatlandırma programı&lt;/a&gt; okuyun. </value>
+    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/bilgi/lisans/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/fiyatlandırma/"&gt;fiyatlandırma programı&lt;/a&gt; oku. </value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -363,7 +371,7 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
-    <value>Aboneliğinizin süresi  {0}'da dolacaktır.  </value>
+    <value>Aboneliğinin süresi  {0}'da dolacaktır.  </value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
@@ -403,7 +411,7 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>A label for the number of months left of a subscription.</comment>
   </data>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
-    <value>Hiçbir abonelikte yönetici değilsiniz. </value>
+    <value>Hiçbir abonelikte yönetici değilsin. </value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
@@ -455,8 +463,16 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>A short label or word used in a button to remove members from a subscription.</comment>
   </data>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
-    <value>Bu üyeyi abonelikten çıkarmak istediğinizden emin misiniz? </value>
+    <value>Bu üyeyi abonelikten çıkarmak istediğinden emin misin? </value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>Buna göre hareket edilecek </value>
+    <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>Bu sıfatla hareket edilecek </value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
   </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Toplam </value>
@@ -508,7 +524,7 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>Değiştir</value>
   </data>
   <data name="ButtonNewToolTip" xml:space="preserve">
-    <value>Oturum açmak için kullanılan AxCrypt kimliği e-postasını değiştirmek için tıklayın.</value>
+    <value>Oturum açmak için kullanılan AxCrypt kimliği e-postasını değiştirmek için tıkla.</value>
     <comment>The new AxCrypt ID button tooltip</comment>
   </data>
   <data name="ButtonNoText" xml:space="preserve">
@@ -526,7 +542,7 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>Button text for a password reset button</comment>
   </data>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
-    <value>Şifrenizi sıfırlamak için basınız.</value>
+    <value>Şifreni sıfırlamak için tıkla.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
@@ -573,13 +589,13 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>Yanlış güvenli kodu cevabı.</value>
   </data>
   <data name="CaptchaLabel" xml:space="preserve">
-    <value>Otomatik yazılım değil gerçek bir insan olduğunuzu doğrulayın!</value>
+    <value>Otomatik yazılım değil gerçek bir insan olduğunu doğrula!</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>AxCrypt e-posta adresinizi &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; olarak değiştirme talebinde bulundunuz. Bu işlemi onaylamak için lütfen aşağıdaki tuşa basın.</value>
+    <value>AxCrypt e-posta adresini &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; olarak değiştirme talebinde bulundun. Bu işlemi onaylamak için lütfen aşağıdaki tuşa bas.</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
-    <value>Güncel şifrenizle bağlanın ve eski AxCrypt kimliğiniz temelli olarak silinecektir.</value>
+    <value>Güncel şifrenle bağlan ve eski AxCrypt kimliğin temelli olarak silinecektir.</value>
   </data>
   <data name="ChangeEmailConfirmMailBodyButton" xml:space="preserve">
     <value>E-posta adresi değiştir</value>
@@ -588,37 +604,37 @@ Uyarıldınız, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>AxCrypt kimliği e-posta değişikliği</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
-    <value>AxCrypt kimliği e-posta adresi değişikliğiniz onaylandı! İşlemin tamamlanması için lütfen oturum açın.</value>
+    <value>AxCrypt kimliği e-posta adresi değişikliğin onaylandı! İşlemin tamamlanması için lütfen oturum aç.</value>
   </data>
   <data name="ChangeEmailExistMailBody1" xml:space="preserve">
     <value>Biri e-posta değişikliği talebinde bulunmuştur (açıklanmayan bir kaynaktan) &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; dan
 &lt;b&gt;{1}&lt;/b&gt; a.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
-    <value>Fakat bu e-posta adresiyle başka bir AxCrypt kimliğiniz olduğu için, talep sessizce görmezden gelinmiştir.</value>
+    <value>Fakat bu e-posta adresiyle başka bir AxCrypt kimliğin olduğu için talep sessizce görmezden gelinmiştir.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Bu e-postayı görmezden gelip veya {0} a bildirin. Hasar olmayıp hiç bilgi paylaşımı yapılmamıştır.</value>
+    <value>Bu e-postayı görmezden gel veya {0}'a bildir. Hasar olmayıp hiç bilgi paylaşımı yapılmamıştır.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt kimliği e-posta adresi değiştirme talebi</value>
   </data>
   <data name="ChangeEmailMarkError" xml:space="preserve">
-    <value>E-posta değişimi dahili bir sorundan dolayı başarısız oldu, lütfen tekrar deneyin veya destek hattımızla irtibata geçin.</value>
+    <value>E-posta değişimi dahili bir sorundan dolayı başarısız oldu, lütfen daha sonra tekrar dene veya destek hattımızla irtibata geç.</value>
   </data>
   <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
     <value>Yeni e-posta adresi eskisinden farklı olmalı !</value>
   </data>
   <data name="ChangeEmailMarkSuccess" xml:space="preserve">
-    <value>&lt;b&gt;{0}&lt;/b&gt; üzerine bir e-posta attık. Lütfen e-postayı okuyup değişikliği onaylamak için gerekli bağa tıklayın.
+    <value>&lt;b&gt;{0}&lt;/b&gt; üzerine bir e-posta gönderdik. Lütfen e-postayı okuyup değişikliği onaylamak için gerekli linke tıkla.
 
-Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifrenizi kullanarak oturum açabilirisiniz.</value>
+Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açabilirsin.</value>
   </data>
   <data name="ChangeNotificationSettingsSuccess" xml:space="preserve">
-    <value>Bildiri ayarlarınız değişmiştir.</value>
+    <value>Bildiri ayarların değişmiştir.</value>
   </data>
   <data name="ChangeOptionGenericWarning" xml:space="preserve">
-    <value>Seçenekleri değiştirmek tehlikeli olabilir. Bu değişikliği sadece bu seçeneğin ne yaptığını bildiğinizden emin olmanız durumunda yapın.  </value>
+    <value>Seçenekleri değiştirmek tehlikeli olabilir. Bu değişikliği sadece bu seçeneğin ne yaptığını bildiğinden emin olman durumunda yap.  </value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Şifre değiştir</value>
@@ -627,32 +643,35 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifrenizi kullanarak oturum aç
     <value>Şifre değiştirilemedi çünkü ya güncel şifre yanlış yada yeni şifre geçersiz.</value>
   </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
-    <value>Şifreniz değiştirilmiştir.</value>
+    <value>Şifren değiştirilmiştir.</value>
   </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>Güncelleme ara</value>
   </data>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
-    <value>Daha yeni bir sürüm var mı diye kontrol edin. Internet bağlantısı gerektirir.</value>
+    <value>Daha yeni bir sürüm var mı diye kontrol et. İnternet bağlantısı gerektirir.</value>
   </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Açık dosyaları temizle</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>Dosya açık ve temizlik gerektirebilir. Açık uygulamaları kapatıp Temizle tuşuna basınız.</value>
+    <value>Dosya açık ve temizlik gerektirebilir. Açık uygulamaları kapatıp Temizle tuşuna bas.</value>
   </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
-    <value>Uygulamanın dosyanın açılmış kopyasını yerel dosya diskinde tutacağını lütfen dikkate alın. Dosya oturum kapatıldığında silinecektir. Dilerseniz dosyayı temizleme düğmesi aracılığıyla manuel olarak da silebilirsiniz.    </value>
+    <value>Uygulamanın dosyanın açılmış kopyasını yerel dosya diskinde tutacağını lütfen dikkate al. Dosya oturum kapatıldığında silinecektir. Dilersen dosyayı temizleme düğmesi aracılığıyla manuel olarak da silebilirsin.    </value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Son Dosyaları Temizle</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
-    <value>Daha yeni sürümleri kontrol etmek için tıklayın.</value>
+    <value>Daha yeni sürümleri kontrol etmek için tıkla.</value>
   </data>
   <data name="ClickToDownloadText" xml:space="preserve">
-    <value>İndirmek için tıklayınız.</value>
+    <value>İndirmek için tıkla.</value>
   </data>
   <data name="CloseAndRemoveOpenFilesToolStripButtonToolTipText" xml:space="preserve">
-    <value>Şifrelenmiş klasörlerdeki açık olan veya yeni dosyaları şifrelemek için tıklayın, ama önce kullanılmadıklarından emin olun.</value>
+    <value>Şifrelenmiş klasörlerdeki açık olan veya yeni dosyaları şifrelemek için tıkla, ama önce kullanılmadıklarından emin ol.</value>
   </data>
   <data name="ColumnAmountPaidHeader" xml:space="preserve">
     <value>Ödenen tutar</value>
@@ -687,26 +706,26 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifrenizi kullanarak oturum aç
     <comment>Text of "Continue" button on SignUp page in mobile application</comment>
   </data>
   <data name="CookiePolicyBlockedError" xml:space="preserve">
-    <value>Tarayıcınızda çerezler etkisiz kılındığı için işlem bloke edilmiştir.</value>
+    <value>Tarayıcında çerezler etkisiz kılındığı için işlem bloke edilmiştir.</value>
   </data>
   <data name="CookiePolicyPageBody" xml:space="preserve">
-    <value>Kalıcı çerezleri hard diskinize kaydetmiyoruz. Tarayıcı kapandığında kaldırılan birkaç oturum çerezi düzenliyoruz. Bu oturumunuzu açık ve güvenli tutmaya yarar. Siteyi kullanımınızı takip etmiyoruz ve üçüncü şahıslarla paylaşmıyoruz.
+    <value>Kalıcı çerezleri hard diskine kaydetmiyoruz. Tarayıcı kapandığında kaldırılan birkaç oturum çerezi düzenliyoruz. Bu oturumunu açık ve güvenli tutmaya yarar. Siteyi kullanımını takip etmiyoruz ve üçüncü şahıslarla paylaşmıyoruz.
 
-Sunucuyla tüm iletişimin HTTP lerle şifreli olmasını gerektirdiğimizden, çerezlerinizi şifreleyerek tarayıcınızda kullanımdışı bırakıyoruz. Böylece çerezleriniz dahi koruma altında bulunur.
+Sunucuyla tüm iletişimin HTTP'lerle şifreli olmasını gerektirdiğimizden, çerezlerini şifreleyerek tarayıcında kullanımdışı bırakıyoruz. Böylece çerezlerin dahi koruma altında bulunur.
 
-Geçici oturum çerezlerimizi kabul etmediğiniz halde oturum açamazsınız ve site gerektiği gibi işlemeyebilir.</value>
+Geçici oturum çerezlerimizi kabul etmediğin halde oturum açamazsın ve site gerektiği gibi işlemeyebilir.</value>
   </data>
   <data name="CookiePolicyPageTitle" xml:space="preserve">
     <value>Çerez poliçesi</value>
   </data>
   <data name="CookiesDisabledError" xml:space="preserve">
-    <value>Tarayıcınızda çerezlerin devredışı olduğu görünüyor. Bizim tarafımızdan çerezleri kabul etmezseniz oturum açamazsınız ve site gerektiği gibi çalışmayabilir. Daha fazla bilgi almak için &lt;a href="{0}"&gt;çerez politikası&lt;/a&gt; .</value>
+    <value>Tarayıcında çerezlerin devredışı olduğu görünüyor. Bizim tarafımızdan çerezleri kabul etmezsen oturum açamazsın ve site gerektiği gibi çalışmayabilir. Daha fazla bilgi almak için &lt;a href="{0}"&gt;çerez politikası&lt;/a&gt; .</value>
   </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt kimliğini yarat</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Dosyaları güvenli bir şekilde kullanıp paylaşabilmek için, paylaşım ve erişim anahtarlarıyla bir AxCrypt ID yaratın.</value>
+    <value>Dosyaları güvenli bir şekilde kullanıp paylaşabilmek için, paylaşım ve erişim anahtarlarıyla bir AxCrypt ID yarat.</value>
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algoritma</value>
@@ -718,7 +737,7 @@ Geçici oturum çerezlerimizi kabul etmediğiniz halde oturum açamazsınız ve 
     <value>&lt; 1 gün</value>
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
-    <value>AxCrypt Premium üyeliğiniz sona ermek üzere. Üyeliğinizi yenilemek için tıklayın.</value>
+    <value>AxCrypt Premium üyeliğin sona ermek üzere. Üyeliğini yenilemek için tıkla.</value>
   </data>
   <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
     <value>Günlük oluşturma</value>
@@ -734,46 +753,46 @@ Geçici oturum çerezlerimizi kabul etmediğiniz halde oturum açamazsınız ve 
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
-    <value>Açık varsayılır. Uygulamayı kapatmayı veya Temizle fonksiyonuyla kaldırmayı deneyin. </value>
+    <value>Açık varsayılır. Uygulamayı kapatmayı veya Temizle fonksiyonuyla kaldırmayı dene. </value>
   </data>
   <data name="DecryptedSaveAsFileDialogTitle" xml:space="preserve">
-    <value>Dosya var, kaydetmek için bir isim seçin</value>
+    <value>Dosya var, kaydetmek için bir isim seç</value>
   </data>
   <data name="DecryptedUnknownKeyFileToolTip" xml:space="preserve">
-    <value>Şifre daha girilmemiştir. Şifre girip açmak için çift tıklayın, veya seçenekler için sağ tıklayın.</value>
+    <value>Şifre daha girilmemiştir. Şifre girip açmak için çift tıkla, veya seçenekler için sağ tıkla.</value>
   </data>
   <data name="DecryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Korumayı durdurmak için dosyayı seçin</value>
+    <value>Korumayı durdurmak için dosyayı seç</value>
   </data>
   <data name="DecryptToolStripMenuItemText" xml:space="preserve">
     <value>Güvenceye almayı bırak</value>
   </data>
   <data name="DefaultEncryptionKeyIsIsetToolTip" xml:space="preserve">
-    <value>Oturumunuz açık. Oturumu kapatmak için tıklayın.</value>
+    <value>Oturumun açık. Oturumu kapatmak için tıkla.</value>
   </data>
   <data name="DefaultSecureFolderToolTip" xml:space="preserve">
-    <value>Önceden tanımlanmış güvenli klasörden bir dosya açmak için tıklayınız.</value>
+    <value>Önceden tanımlanmış güvenli klasörden bir dosya açmak için tıkla.</value>
     <comment>A generic tooltip for the default secure folder created for example in Dropbox.</comment>
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>Yanlış şifre yüzünden silme operasyonu başarısız oldu.</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
-    <value>AxCrypt kimliğiniz başarıyla silinmiştir. 
+    <value>AxCrypt kimliğin başarıyla silinmiştir. 
 
-Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldığınızı umarız!</value>
+Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığını umarız!</value>
   </data>
   <data name="DeleteSecretErrorNotFound" xml:space="preserve">
     <value>Silme işlemi, istenilen şifrenin bulunmaması nedeniyle başarısız olmuştur.</value>
   </data>
   <data name="DeleteSecretSuccess" xml:space="preserve">
-    <value>Şifreniz silinmiştir.</value>
+    <value>Şifren silinmiştir.</value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt kimliği</value>
   </data>
   <data name="DialogAxCryptIdFirstTimeText" xml:space="preserve">
-    <value>AxCrypt e ilk başladığınızda gerçek bir e-posta adresi gereklidir. Daha fazla bilgi almak için Destek'e tıklayın.</value>
+    <value>AxCrypt'e ilk başladığında gerçek bir e-posta adresi gereklidir. Daha fazla bilgi almak için Destek'e tıkla.</value>
   </data>
   <data name="DialogDecryptTitle" xml:space="preserve">
     <value>Şifre gerekli</value>
@@ -797,7 +816,7 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>AxCrypt kimliği</value>
   </data>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
-    <value>AxCrypt kullanıcı kimliğini indirin</value>
+    <value>AxCrypt kullanıcı kimliğini indir</value>
   </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Paylaşıma eriş</value>
@@ -812,7 +831,7 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>AxCrypt kimliğini onayla</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
-    <value>Koruma altındaki klasörler</value>
+    <value>Koruma Altındaki Klasörler</value>
   </data>
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Devre Dışı Bırak </value>
@@ -822,10 +841,10 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>Bunu bir daha gösterme. </value>
   </data>
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
-    <value>Açmak için çift tıklayın. Gerekirse sizden şifre istenecektir.</value>
+    <value>Açmak için çift tıkla. Gerekirse senden şifre istenecektir.</value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
-    <value>Arkadaşlarınız ve meslektaşlarınız tarafından sizin için korunan dosyaları açın</value>
+    <value>Arkadaşların ve meslektaşların tarafından senin için korunan dosyaları aç</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
@@ -833,20 +852,20 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
-    <value>Sadece okuma seviyesinde erişiminiz var! Sadece geçerli bir Premium üyeliği olan kullanıcılar yeni şifre oluşturma ve değiştirme olanağına sahiptir.</value>
+    <value>Sadece okuma seviyesinde erişimin var! Sadece geçerli bir Premium üyeliği olan kullanıcılar yeni şifre oluşturma ve değiştirme olanağına sahiptir.</value>
   </data>
   <data name="EditSecretErrorNotFound" xml:space="preserve">
     <value>Talep edilen şifre bulunamamıştır.</value>
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
-    <value>Son kayıtınız güncellenmiştir.</value>
+    <value>Son kayıtın güncellenmiştir.</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>E-postaya git</value>
     <comment>Text of link for opening mail application.</comment>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
-    <value>Postala gönderimlerimizi sizin dilinizde yapmaya çalışıyoruz fakat bize e-posta atarsanız ingilizce cevap verebiliriz. Lütfen gerekirse Google Translate ve benzeri yollar kullanınız.</value>
+    <value>Postala gönderimlerimizi senin dilinde yapmaya çalışıyoruz fakat bize e-posta atarsan İngilizce cevap verebiliriz. Lütfen gerekirse Google Translate ve benzeri yollar kullanın.</value>
     <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
@@ -862,13 +881,13 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>Güvenli dosya</value>
   </data>
   <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>Korunacak dosyaları seçiniz</value>
+    <value>Korunacak dosyaları seç</value>
   </data>
   <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
-    <value>Dosya mevcut, farklı kaydet</value>
+    <value>Dosya Mevcut, Farklı Kaydet</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>Korunacak dosyaları seçmek için tıklayınız. </value>
+    <value>Korunacak dosyaları seçmek için tıkla. </value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>Koruma altına al</value>
@@ -903,22 +922,22 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <comment>The first part of "Expired in x days" label in mobile application</comment>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>AxCrypt kimliği Gizli ve Paylaşım anahtarı çiftini yollayın </value>
+    <value>AxCrypt kimliği Gizli ve Paylaşım anahtarı çiftini yolla</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Bir AxCrypt kimliğinin yerini değiştirmek için Gizli ve Paylaşım Anahtarı çiftini başka bir yere indirin.</value>
+    <value>Bir AxCrypt kimliğinin yerini değiştirmek için Gizli ve Paylaşım Anahtarı çiftini başka bir yere indir.</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>Ortak paylaşım anahtarımı paylaş</value>
   </data>
   <data name="ExportSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Verilmiş Ortak Paylaşım Anahtarını sizinle dosya paylaşımı yapabilmesini istediğiniz kişilere yollayın</value>
+    <value>Verilmiş Ortak Paylaşım Anahtarını seninle dosya paylaşımı yapabilmesini istediğin kişilere yolla</value>
   </data>
   <data name="FailedPrivateImport" xml:space="preserve">
     <value>İndirme başarısız oldu. Geçersiz bir AxCrypt kimliği dosyası olabilir.</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
-    <value>Hizmetimiz nasıl ? Lütfen bize geri dönüş yapın!</value>
+    <value>Hizmetimiz nasıl ? Lütfen bize geri dönüş yap!</value>
   </data>
   <data name="FeedbackCategoryIdea" xml:space="preserve">
     <value>Fikir</value>
@@ -937,24 +956,24 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <comment>Displayed name of "Question" feedback category in mobile application </comment>
   </data>
   <data name="FeedbackDescriptionLabel" xml:space="preserve">
-    <value>Lütfen bize düşündüklerinizi söyleyin, her türlü geri dönüş bizim için çok değerli.</value>
+    <value>Lütfen bize düşündüklerini söyle, her türlü geri dönüş bizim için çok değerli.</value>
     <comment>Text which motivates user to send feedback </comment>
   </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
-    <value>Sizin görüşleriniz</value>
+    <value>Görüşlerin</value>
     <comment>Text displayed in feedback content textbox when it is empty</comment>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
     <value>'{0}' isimli dosya zaten korumada.</value>
   </data>
   <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
-    <value>'{0}' adlı dosya zaten güvende.</value>
+    <value>'{0}' adlı dosya zaten koruma altında.</value>
   </data>
   <data name="FileAlreadyExists" xml:space="preserve">
     <value>Dosya '{0}' zaten mevcut.</value>
   </data>
   <data name="FileAssociationBrokenWarning" xml:space="preserve">
-    <value>AxCrypt dosyalarını AxCrypt dışında açmak için çift tıklama özelliği doğru biçimde işlemeyebilir. ".axx" uzantısı için işletim sistemi dosya ilişkilendirmesi  arızalıdır. Bİ destek biriminizle iletişime geçin ya da internette bir çözüm arayın.  </value>
+    <value>AxCrypt dosyalarını AxCrypt dışında açmak için çift tıklama özelliği doğru biçimde işlemeyebilir. ".axx" uzantısı için işletim sistemi dosya ilişkilendirmesi  arızalıdır. Bİ destek biriminizle iletişime geç ya da internette bir çözüm ara.  </value>
     <comment>A text that is shown to users starting the association with .axx file is broken. It should not mention "Windows", or "Mac" etc so it can be used in all environments.</comment>
   </data>
   <data name="FileDoesNotExist" xml:space="preserve">
@@ -984,7 +1003,7 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>AxCrypt Ortak Paylaşım Anahtar Dosyaları</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' başka bir uygulama açık. Lütfen kapatıp tekrar deneyin.</value>
+    <value>'{0}' başka bir uygulama açık. Lütfen kapatıp tekrar dene.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' yazı korumalıdır.</value>
@@ -996,7 +1015,7 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>'{0}' başarısız.</value>
   </data>
   <data name="FilePasswordDialogHeader" xml:space="preserve">
-    <value>Lütfen bu dosyanın orijinal şifresini verin.</value>
+    <value>Lütfen bu dosyanın orijinal şifresini ver.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
@@ -1006,15 +1025,15 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>Dosya '{0}' zaten güvenli.</value>
   </data>
   <data name="FolderSelectTitle" xml:space="preserve">
-    <value>Bir klasör seçin </value>
+    <value>Bir klasör seç</value>
     <comment>A prompt or title in a folder selection dialog, prompting the user to select a folder.</comment>
   </data>
   <data name="FollowUsTitle" xml:space="preserve">
-    <value>Bizi takip edin</value>
+    <value>Bizi takip et</value>
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
-    <value>Burası AxCrypt.net içinde AxCrypt kimlik bölümüdür, anasayfaya dönmek için &lt;a href="{0}"&gt;buraya&lt;/a&gt; tıklayınız</value>
+    <value>Burası AxCrypt.net içinde AxCrypt kimlik bölümüdür, anasayfaya dönmek için &lt;a href="{0}"&gt;buraya&lt;/a&gt; tıkla</value>
   </data>
   <data name="FooterInfoTitle" xml:space="preserve">
     <value>AxCrypt kimliği</value>
@@ -1023,9 +1042,9 @@ Yollarımızın ayrılmasına üzülsek te AxCrypt'teki vaktinizden keyif aldı�
     <value>Kim için </value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
-    <value>Harika! '{0}' için zaten bir AxCrypt kimliğine sahipsiniz. 
+    <value>Harika! '{0}' için zaten bir AxCrypt kimliğine sahipsin. 
 
-Herhangi bir nedenden dolayı şifrenizi bilmiyor veya hatırlamıyorsanız, bi şifre sıfırlaması yapmanız gerekmektedir.</value>
+Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifre sıfırlaması yapman gerekmektedir.</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
@@ -1049,22 +1068,22 @@ Herhangi bir nedenden dolayı şifrenizi bilmiyor veya hatırlamıyorsanız, bi 
     <value>AxCrypt kimliğini tüm paylaşım ve erişim şifreleriyle indir.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>Bir AxCrypt kimliğinin yerini değiştirmek için Gizli ve Paylaşım Anahtarı çiftini buraya indirin.</value>
+    <value>Bir AxCrypt kimliğinin yerini değiştirmek için Gizli ve Paylaşım Anahtarı çiftini buraya indir.</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemText" xml:space="preserve">
     <value>Birinin Ortak paylaşım anahtarını indir</value>
   </data>
   <data name="ImportOthersSharingKeyToolStripMenuItemToolTipText" xml:space="preserve">
-    <value>İlgili kişiden size Ortak Paylaşım Anahtarını yollamasını isteyin ve buraya aktarın. Sonra şifreli dosya paylaşımına başlayabilirsiniz. </value>
+    <value>İlgili kişiden sana Ortak Paylaşım Anahtarını yollamasını iste ve buraya aktar. Sonra şifreli dosya paylaşımına başlayabilirsin. </value>
   </data>
   <data name="ImportPrivateKeysFileSelectionTitle" xml:space="preserve">
-    <value>AxCrypt kimliği seçin</value>
+    <value>AxCrypt kimliği seç</value>
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
-    <value>Paylaşım anahtarı dosyalarını seçiniz</value>
+    <value>Paylaşım anahtarı dosyalarını seç</value>
   </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
-    <value>Tehlikeli bir seçeneği etkinleştirmek üzeresiniz. Eğer dikkatli olmazsanız, dilediğinizden daha fazla veriyi etkileyebilir, dolayısıyla işlemlerin çok uzun sürmesine neden olabilir ya da işletim sistemi de dahil olmak üzere diğer yazılımları aksatabilirsiniz. Emin misiniz? </value>
+    <value>Tehlikeli bir seçeneği etkinleştirmek üzeresin. Eğer dikkatli olmazsan, dilediğinden daha fazla veriyi etkileyebilir, dolayısıyla işlemlerin çok uzun sürmesine neden olabilir ya da işletim sistemi de dahil olmak üzere diğer yazılımları aksatabilirsin. Emin misin? </value>
   </data>
   <data name="IncludeSubfoldersConfirmationTitle" xml:space="preserve">
     <value>Uyarı</value>
@@ -1072,7 +1091,7 @@ Herhangi bir nedenden dolayı şifrenizi bilmiyor veya hatırlamıyorsanız, bi 
   <data name="IncludeSubfoldersDescription" xml:space="preserve">
     <value>Alt Klasörleri Dahil Et seçeneği aktif hale getirildiğinde, takip edilen klasörler ve klasör içindeki dosyaları şifreleyen ve açan diğer işlemler alt klasörleri ve aşağıdaki tüm alt klasörleri içerecektir. 
 
-Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şifrelenmesini istemediğiniz klasörler içeren bir klasör seçmemeye özen gösterin.   </value>
+Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şifrelenmesini istemediğin klasörler içeren bir klasör seçmemeye özen göster.   </value>
     <comment>A short text in a few sentences describing what the Include Subfolders option does.</comment>
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
@@ -1085,7 +1104,7 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
   <data name="InternetNotRequiredInformation" xml:space="preserve">
     <value>AxCrypt kullanımı için internet bağlantısı GEREKLİ DEĞİLDİR. 
 
-İnternet bağlantısı önerilir ve Premium'u devreye sokmak için gereklidir. Bazı özellikler daha iyi işleyebilir ve önemli yeni sürümler internet bağlantısı olmadığında size ulaşmayabilir.</value>
+İnternet bağlantısı önerilir ve Premium'u devreye sokmak için gereklidir. Bazı özellikler daha iyi işleyebilir ve önemli yeni sürümler internet bağlantısı olmadığında sana ulaşmayabilir.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>E-posta adresi için yanlış format.</value>
@@ -1097,20 +1116,20 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
     <value>Dosya veya yol '{0}' bunun için geçersizdir.</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
-    <value>Lütfen zamanı 'ss:dd:ss.mmm' şeklinde belirtin.</value>
+    <value>Lütfen zamanı 'ss:dd:ss.mmm' şeklinde belirt.</value>
   </data>
   <data name="Invalid_URL" xml:space="preserve">
     <value>Geçersiz URL.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt Dosya güvenliğine davet edildiniz. Dosyalarınızı şifrelemeye başlamak için &lt;a href="{1}" stil="renk: #86b96e; metin-dekorasyon: none;"&gt;indir&lt;/a&gt; ve AxCrypt'i indirin. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt'e bağlanın, onay kodunu girin ve gizli şifrenizi belirleyin.</value>
+    <value>&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt Dosya güvenliğine davet edildin. Dosyalarını şifrelemeye başlamak için &lt;a href="{1}" stil="renk: #86b96e; metin-dekorasyon: none;"&gt;indir&lt;/a&gt; ve AxCrypt'i indirin. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt'e bağlan, onay kodunu gir ve gizli şifreni belirle.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
-    <value>{0} tarafından AxCrypt dosya güvenliğine davet edildiniz.
+    <value>{0} tarafından AxCrypt dosya güvenliğine davet edildin.
 
-Dosyalarınızı korumaya almak için AxCrypt'i buradan {1} indirip kurun.
+Dosyalarını korumaya almak için AxCrypt'i buradan {1} indirip kur.
 
-{2} ile AxCrypt'e bağlanın, 6 haneli onay kodunu girin ve gizli şifrenizi belirleyin.</value>
+{2} ile AxCrypt'e bağlan, 6 haneli onay kodunu gir ve gizli şifreni belirle.</value>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>AxCrypt Dosya Güvenliği kullanma daveti</value>
@@ -1171,10 +1190,10 @@ Dosyalarınızı korumaya almak için AxCrypt'i buradan {1} indirip kurun.
     <value>KDV </value>
   </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
-    <value>Tarayıcınızda JavaScript bloke edilmiş görünüyor. JavaScript i geçerli kılmazsanız oturum açamazsınız ve site gerektiği gibi çalışmayabilir.</value>
+    <value>Tarayıcında JavaScript bloke edilmiş görünüyor. JavaScript'i geçerli kılmazsan oturum açamazsın ve site gerektiği gibi çalışmayabilir.</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
-    <value>Bir anahtar dosya seçin</value>
+    <value>Bir anahtar dosya seç</value>
   </data>
   <data name="KeyFilePrompt" xml:space="preserve">
     <value>Anahtar dosya</value>
@@ -1183,9 +1202,9 @@ Dosyalarınızı korumaya almak için AxCrypt'i buradan {1} indirip kurun.
     <value>Anahtar yönetimi</value>
   </data>
   <data name="KeyShareDialogHeader" xml:space="preserve">
-    <value>Bu dosyayı paylaşmak istediğiniz kişilerden oluşan listeye alıcı ekleyin. 
+    <value>Bu dosyayı paylaşmak istediğin kişilerden oluşan listeye alıcı ekle. 
 
-Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorlar, fakat onlara dosyayı göndermiyoruz! Burada alıcının anahtarını dosyaya ekliyorsunuz. Yine de daha sonra dosyanın kendisini alıcıyla paylaşmanız gerekiyor.  </value>
+Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorlar, fakat onlara dosyayı göndermiyoruz! Burada alıcının anahtarını dosyaya ekliyorsun. Yine de daha sonra dosyanın kendisini alıcıyla paylaşman gerekiyor.  </value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
@@ -1195,7 +1214,7 @@ Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorla
     <value>Yeni kişi eklemek için çevrimiçi olmak gerekmektedir!</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
-    <value>Başkalarıyla anahtar paylaşımında bulunmak için seçmek adına şifreli dosyalara tıklayın.</value>
+    <value>Başkalarıyla anahtar paylaşımında bulunmak için şifreli dosyaları seç.</value>
   </data>
   <data name="KnownFolderNameMacDocuments" xml:space="preserve">
     <value>Belgeler </value>
@@ -1212,24 +1231,24 @@ Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorla
     <value>Zaman</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
-    <value>En güncel sürümü kullanıyorsunuz!  </value>
+    <value>En güncel sürümü kullanıyorsun!  </value>
   </data>
   <data name="LauncherPromptHeader" xml:space="preserve">
-    <value>Vasıtasıyla açın</value>
+    <value>Vasıtasıyla aç</value>
     <comment>Header of popup which is displayed for file opening.</comment>
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
-    <value>AxCrypt'in ve diğer yazılımların çalışmamasına neden olabilecek, uyumsuz olması muhtemel bir yazılım tespit ettik. Bu yazılımın adı Lavasoft Web Companion. AxCrypt'in çalışmayı durdurması halinde Lavasoft'u kaldırmayı deneyin.</value>
+    <value>AxCrypt'in ve diğer yazılımların çalışmamasına neden olabilecek, uyumsuz olması muhtemel bir yazılım tespit ettik. Bu yazılımın adı Lavasoft Web Companion. AxCrypt'in çalışmayı durdurması halinde Lavasoft'u kaldırmayı dene.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Dosyalar AxCrypt 1.x formatından çıktıktan sonra, onları açmak için yeni Oturum açma şifresini girmeniz gerekir, lütfen bunu buradan kontrol edin.
+    <value>Dosyalar AxCrypt 1.x formatından çıktıktan sonra, onları açmak için yeni Oturum açma şifresini girmen gerekir, lütfen bunu buradan kontrol et.
 
-Bu şifreyi unutmayın!</value>
+Bu şifreyi unutma!</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 yeni bir dosya formatı kullanmaktadır.
 
-Legacy AxCrypt 1.x dosyaları açabilirsiniz fakat dönüştürülmüş olmadığı sürece oturum  açmış olsanız bile orijinal şifreyi girmeniz gerekir.
+Legacy AxCrypt 1.x dosyaları açabilirsiniz fakat dönüştürülmüş olmadığı sürece oturum  açmış olsan bile orijinal şifreyi girmen gerekir.
 
 AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value>
   </data>
@@ -1242,10 +1261,10 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>
   </data>
   <data name="LocalSignInWarningPopUpText" xml:space="preserve">
-    <value>Çevrimiçi hesap parolası yerine yerel bir parolayla oturum açıyorsunuz. Bu genellikle parolanın çevrimiçi olarak değiştirilmesinin, fakat şu an eski parolanın kullanılmasının sonucudur. Lütfen çevrimiçi olarak aynı parolayı ve hesabı kullandığınızdan emin olun ya da destek birimimizle iletişime geçin. </value>
+    <value>Çevrimiçi hesap parolası yerine yerel bir parolayla oturum açıyorsun. Bu genellikle parolanın çevrimiçi olarak değiştirilmesinin, fakat şu an eski parolanın kullanılmasının sonucudur. Lütfen çevrimiçi olarak aynı parolayı ve hesabı kullandığından emin ol ya da destek birimimizle iletişime geç. </value>
   </data>
   <data name="LoggedOffStatusText" xml:space="preserve">
-    <value>Oturum kapatıldı</value>
+    <value>Oturum Kapatıldı</value>
   </data>
   <data name="LoggedOnStatusText" xml:space="preserve">
     <value>Şifre</value>
@@ -1258,7 +1277,7 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value
     <value>AxCrypt e bağlan</value>
   </data>
   <data name="LoginPurchaseError" xml:space="preserve">
-    <value>Ödeme isteğinizle ilgili bir sorun çıktı. Lütfen tekrar deneyin.</value>
+    <value>Ödeme isteğinle ilgili bir sorun çıktı. Lütfen tekrar dene.</value>
   </data>
   <data name="LogOffText" xml:space="preserve">
     <value>Oturum kapatma</value>
@@ -1267,28 +1286,28 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value
     <value>Oturum aç</value>
   </data>
   <data name="LowEncryptionWorkingToolTip" xml:space="preserve">
-    <value>En yüksek korumayı sağlamak için Premium üyesi olun.</value>
+    <value>En yüksek korumayı sağlamak için Premium üyesi ol.</value>
   </data>
   <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
     <value>'{0}' bir AxCrypt dosyası değildir.</value>
   </data>
   <data name="MailBodyFooter" xml:space="preserve">
-    <value>Niye &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; tarafından bunu aldığınızı bilmiyorsanız bu e-postayı görmezden gelebilir veya buraya {1} bildirebilirsiniz.</value>
+    <value>Niye &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; tarafından bunu aldığını bilmiyorsan bu e-postayı görmezden gelebilir veya buraya {1} bildirebilirsin.</value>
   </data>
   <data name="MailBodyFooterPlainText" xml:space="preserve">
-    <value>Niye AxCrypt.net den bunu aldığınızı bilmiyorsanız bu e-postayı görmezden gelebilir veya {0} a bildirebilirsiniz.</value>
+    <value>Niye AxCrypt.net'ten bunu aldığını bilmiyorsan bu e-postayı görmezden gelebilir veya {0} a bildirebilirsin.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Herhangi bir sorunuz ve geri dönüşünüz varsa benimle iletişime geçin lütfen. Sitemizde FAQ ve Forum u ziyaret edin &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>Herhangi bir sorun ve geri dönüşün varsa benimle iletişime geç lütfen. Sitemizde FAQ ve Forum u ziyaret et &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>AxCrypt i kullandığınız için teşekkürler!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;AxCrypt Takımı&lt;/i&gt;</value>
+    <value>AxCrypt'i kullandığın için teşekkürler!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;AxCrypt takımı&lt;/i&gt;</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>AxCrypt kullandığınız için teşekkürler!
+    <value>AxCrypt kullandığın için teşekkürler!
 -Svante
-AxCrypt Takımı</value>
+AxCrypt Ekibi</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -1300,7 +1319,7 @@ AxCrypt Takımı</value>
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
-    <value>&lt;p&gt;Premium üyesi olarak, ücretsiz kullanımdakilere ilaveten yeni harika özelliklere sahip olabilirsiniz. Premium ile kullanabileceğiniz özellikler:&lt;/p&gt;</value>
+    <value>&lt;p&gt;Premium üyesi olarak, ücretsiz kullanımdakilere ilaveten yeni harika özelliklere sahip olabilirsin. Premium ile kullanabileceğin özellikler:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
@@ -1310,11 +1329,11 @@ AxCrypt Takımı</value>
     <value>Merhaba {0},</value>
   </data>
   <data name="MailClientNotFoundMessage" xml:space="preserve">
-    <value>Kullandığınız aygıtta e-posta uygulaması açılamıyor.</value>
+    <value>Kullandığın aygıtta e-posta uygulaması açılamıyor.</value>
     <comment>Error message which is displayed if mail client isn't installed on device.</comment>
   </data>
   <data name="MailClientPromptHeader" xml:space="preserve">
-    <value>Lütfen e-posta müşterisini seçiniz:</value>
+    <value>Lütfen e-posta müşterisini seçin:</value>
     <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="McErrArgument" xml:space="preserve">
@@ -1338,15 +1357,15 @@ AxCrypt Takımı</value>
     <comment>Tooltip for rename context menu</comment>
   </data>
   <data name="McHlpMenuShow" xml:space="preserve">
-    <value>İleri özellikler için esas uygulamayı açın.</value>
+    <value>İleri özellikler için esas uygulamayı aç.</value>
     <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
   </data>
   <data name="McHlpMenuSignOut" xml:space="preserve">
-    <value>Oturum kapatmak için tıklayınız.</value>
+    <value>Oturum kapatmak için tıkla.</value>
     <comment>Tooltip for sign out context menu</comment>
   </data>
   <data name="McHlpMenuUnwrap" xml:space="preserve">
-    <value>Belgeyi deşifre edip adını ve son değişiklik zamanını sıfırlayın.</value>
+    <value>Belgeyi deşifre edip adını ve son değişiklik zamanını sıfırla.</value>
     <comment>Tooltip for decryption context menu</comment>
   </data>
   <data name="McHlpMenuWipe" xml:space="preserve">
@@ -1358,12 +1377,12 @@ AxCrypt Takımı</value>
     <comment>Tooltip for the encrypt inplace context menu command</comment>
   </data>
   <data name="McHlpMenuWrapZC" xml:space="preserve">
-    <value>Dosyayı önce sıkıştırıp sonra şifreleyin. Orijinali saklayın.</value>
+    <value>Dosyayı önce sıkıştırıp sonra şifrele. Orijinali sakla.</value>
     <comment>Tooltip for the context menu for encryption</comment>
   </data>
   <data name="McInfAbout" xml:space="preserve">
     <value>Güvenli lokal veya sanal saklamak için dosya sıkıştırma, şifreleme ve açma aracı.
-Bu program anlayşmaya göre lisanslanmıştır.
+Bu program anlaşmaya göre lisanslanmıştır.
 %n%n%2
 %n%nOnaylar:
 %nThe Legion of the Bouncy Castle Inc.</value>
@@ -1446,12 +1465,12 @@ Bu program anlayşmaya göre lisanslanmıştır.
     <comment>Tooltip for "Menu" button in mobile application</comment>
   </data>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
-    <value>Explorer'ı burada açınız</value>
+    <value>Explorer'ı burada aç</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Premium üyeliğinizin bulunmadığını fark ettik, bu yüzden size 30 günlük ücretsiz bir AxCrypt Premium deneme paketi öneriyoruz.
+    <value>Premium üyeliğinin bulunmadığını fark ettik, bu yüzden sana 30 günlük ücretsiz bir AxCrypt Premium deneme paketi öneriyoruz.
 
-Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsiniz. </value>
+Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin. </value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1459,23 +1478,23 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <comment>Title of error message box for generic error</comment>
   </data>
   <data name="MessageExitConfirmation" xml:space="preserve">
-    <value>Gerçekten çıkmak istiyor musunuz?</value>
+    <value>Gerçekten çıkmak istiyor musun?</value>
     <comment>Message which is displayed in mobile application, when user tries to exit from app via back button</comment>
   </data>
   <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
-    <value>'{0}' olarak kaydolamazsınız. Lütfen gerçek bir e-posta adresi girip tekrar deneyin.</value>
+    <value>'{0}' olarak kaydolamazsın. Lütfen gerçek bir e-posta adresi girip tekrar dene.</value>
   </data>
   <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
     <value> Geçersiz e-posta adresi</value>
   </data>
   <data name="MessageServerUpdateText" xml:space="preserve">
-    <value>AxCrypt-sunucusu güncellendi. Lütfen yakında AxCrypt i güncelleyin. Diğer türlü belirsiz hatalar oluşabilir.</value>
+    <value>AxCrypt-sunucusu güncellendi. Lütfen en kısa zamanda AxCrypt'i güncelle. Diğer türlü belirsiz hatalar oluşabilir.</value>
   </data>
   <data name="MessageServerUpdateTitle" xml:space="preserve">
     <value>AxCrypt sunucusu güncellendi!</value>
   </data>
   <data name="MessageSigningUpText" xml:space="preserve">
-    <value>'{0}' olarak bağlısınız. Lütfen gelen kutunuza gelen 6 haneli onay kodunu içeren e-postayı kontrol ediniz.</value>
+    <value>'{0}' olarak bağlısın. Lütfen gelen kutuna gelen 6 haneli onay kodunu içeren e-postayı kontrol et.</value>
   </data>
   <data name="MessageSigningUpTitle" xml:space="preserve">
     <value>AxCrypt kimliği için kaydol</value>
@@ -1484,7 +1503,7 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <value>İnternet erişimi yok</value>
   </data>
   <data name="MessageSignUpUnexpectedErrorText" xml:space="preserve">
-    <value>Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin. Sorun devam ederse lütfen hatayı bildirin.</value>
+    <value>Bilinmeyen bir hata oluştu. Lütfen tekrar dene. Sorun devam ederse lütfen hatayı bildir.</value>
   </data>
   <data name="MessageSignUpUnexpectedErrorTitle" xml:space="preserve">
     <value>Beklenmedik hata</value>
@@ -1496,7 +1515,7 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <value>Beklenmedik hata!</value>
   </data>
   <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
-    <value>Duyuru ve bilgilendirme e-postalarından çıkarıldınız. </value>
+    <value>Duyuru ve bilgilendirme e-postalarından çıkarıldın. </value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
   <data name="MoreButtonText" xml:space="preserve">
@@ -1504,11 +1523,11 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <comment>A 'More...' button text</comment>
   </data>
   <data name="MoreKeyFileToolTop" xml:space="preserve">
-    <value>Bir anahtar dosyasının adını girmek için tıklayın. Sadece bir önceki AxCrypt sürümünde dosyayı koruma altına alırken anahtar dosyası kullandıysanız bunu yapın.</value>
+    <value>Bir anahtar dosyasının adını girmek için tıkla. Sadece bir önceki AxCrypt sürümünde dosyayı koruma altına alırken anahtar dosyası kullandıysan bunu yap.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
-    <value>Görüşleriniz</value>
+    <value>Görüşlerin</value>
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>Giriş</value>
@@ -1517,7 +1536,7 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <value>Yeni şifre yarat</value>
   </data>
   <data name="NewSecretSuccess" xml:space="preserve">
-    <value>Yeni şifreniz kaydedilmiştir.</value>
+    <value>Yeni şifren kaydedilmiştir.</value>
   </data>
   <data name="NewVersionIsAvailableText" xml:space="preserve">
     <value>{0} sürümü mevcut!</value>
@@ -1526,65 +1545,68 @@ Premium üyeliğiniz olmadan, şifrelenmiş dosyaları sadece görüntüleyebili
     <value>Sonraki </value>
   </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
-    <value>Oturumunuz kapalı. Oturum açmak için tıklayın.</value>
+    <value>Oturumun kapalı. Oturum açmak için tıkla.</value>
   </data>
   <data name="NoInternetErrorMessage" xml:space="preserve">
-    <value>Sunucuya şu an bağlanılamıyor, lütfen internet bağlantınızı kontrol edin.</value>
+    <value>Sunucuya şu an bağlanılamıyor, lütfen internet bağlantını kontrol et.</value>
     <comment>Message which is displayed when device doesn't have internet connection.</comment>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Yeni sürüm aramaya gerek yoktur.</value>
   </data>
   <data name="NoPasswordRequiredInformationText" xml:space="preserve">
-    <value>Bu işlemi parolanızı tekrar sormadan yapıyoruz!
+    <value>Bu işlemi parolanı tekrar sormadan yapıyoruz!
 
-Oturumunuz zaten açık, bu yüzden belgelerin şifrelenmesi ya da açılması için parolanızı sormayacağız.
+Oturumun zaten açık, bu yüzden belgelerin şifrelenmesi ya da açılması için parolanı sormayacağız.
 
-Belgeleriniz parolanızla birlikte şifrelenmiş halini korumaktadır. 
+Belgelerin parolanla birlikte şifrelenmiş halini korumaktadır. 
 </value>
     <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>Premium üyeliğiniz bulunmamakta, dolayısıyla en yüksek güvenlik seviyesini kullanmıyorsunuz. Sürüm atlamak için tıklayın!</value>
+    <value>Premium üyeliğin bulunmamakta, dolayısıyla en yüksek güvenlik seviyesini kullanmıyorsun. Sürüm atlamak için tıkla!</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
-    <value>Malesef aradığınız sayfayı gösteremiyoruz. Bunun nedenleri: var olmadığından,  bir sunucu güncellemesi oturumunuzu geçersiz kıldığından, veya talebi işleme sokmamızı önleyen başka bir hata oluştuğundan olabilir.
+    <value>Ne yazık ki aradığın sayfayı gösteremiyoruz. Bunun nedeni sayfanın var olmaması,  bir sunucu güncellemesinin oturumunu geçersiz kılması veya talebi işleme sokmamızı önleyen başka bir hata oluşmuş olması olabilir.
 
 Talep edilen sayfa:
 {2} 
 
-İsteğiniz takılmıştır. Lütfen doğru yol ile tekrar deneyin, veya bozuk ağı &lt;a href="mailto:{0}"&gt;bildirin&lt;/a&gt; .
+İsteğin kaydedilmiştir. Lütfen doğru yol ile tekrar dene veya bozuk ağı &lt;a href="mailto:{0}"&gt;bildir&lt;/a&gt; .
 
-Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
+Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
     <value>Sayfa açılamadı!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
-    <value>Malesef aradığınız sayfayı bulamadık. Bunun nedenleri bir sunucu güncellemesi oturumunuzu geçersiz kıldığından, veya talebi işleme sokmamızı önleyen başka bir hata oluştuğundan olabilir.
+    <value>Ne yazık ki aradığın sayfayı bulamadık. Bunun nedeni, bir sunucu güncellemesinin oturumunu geçersiz kılmış veya talebi işleme sokmanı önleyen başka bir hata oluşmuş olması olabilir. 
 
-İsteğiniz takılmıştır. Lütfen doğru yol ile tekrar deneyin, veya bozuk ağı &lt;a href="mailto:{0}"&gt;bildirin&lt;/a&gt; .
+İsteğin kaydedilmiştir. Lütfen doğru yol ile tekrar dene ya da bozuk ağı &lt;a href="mailto:{0}"&gt;bildir&lt;/a&gt; .
 
-Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
+Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
-    <value>İşlem birkaç dakika sürebilir. Lütfen sabredin.</value>
+    <value>İşlem birkaç dakika sürebilir. Lütfen sabret.</value>
   </data>
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Çevrimdışı AxCrypt kimliği oluşumu.</value>
+  </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>Sunucuya bağlanmada sorun yaşanıyor, fakat çevrimdışı çalışmaya devam edeceğiz.  </value>
   </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Çevrimdışı</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
   </data>
   <data name="OfflineNoPremiumWarning" xml:space="preserve">
-    <value>Çevrimdışı olduğunuz için Premium üyeliğinizi kontrol edemiyoruz. Lütfen durumunuzu güncelleyebilmemiz için çevrimiçi olun!</value>
+    <value>Çevrimdışı olduğun için Premium üyeliğini kontrol edemiyoruz. Lütfen durumunu güncelleyebilmemiz için çevrimiçi ol!</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
-    <value>Sürümünüz eski. Lütfen yeni sürümleri bulmak için tıklayınız.</value>
+    <value>Sürümün eski. Lütfen yeni sürümleri bulmak için tıkla.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
-    <value>Açmak için güvene alınmış dosyayı seçiniz</value>
+    <value>Açmak için güvene alınmış dosyayı seç</value>
   </data>
   <data name="OpenEncryptedToolStripMenuItemText" xml:space="preserve">
     <value>Güvende olanları aç</value>
@@ -1593,27 +1615,27 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>Dosya</value>
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
-    <value>Açmak için güvene alınmış dosyayı seçiniz</value>
+    <value>Açmak için koruma altına alınmış dosyayı seç</value>
   </data>
   <data name="OptionsChangePassphraseToolStripMenuItemText" xml:space="preserve">
     <value>Şifre değiştir</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>Tüm seçenekleri sıfırla ve çıkış yap</value>
+    <value>Tüm Ayarları Sıfırla ve Yeniden Başlat </value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>1.x Dosyaları otomatik yenile</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Eski AxCrypt 1.x dosyaları için otomatik güncelleme ve dönüşümü kullandıkça devreiçi veya devredışı bırakın.</value>
+    <value>Eski AxCrypt 1.x dosyaları için otomatik güncelleme ve dönüşümü kullandıkça devreiçi veya devredışı bırak.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Alt Klasörleri Dahil Et </value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Lisan</value>
+    <value>Dil</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Seçenekler</value>
@@ -1625,7 +1647,7 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>Şifreler uyuşmuyor</value>
   </data>
   <data name="PasswordManagementListPageBody" xml:space="preserve">
-    <value>Tüm şifrelerinizi online bulutta yönetin &lt;span class="text-cutoff"&gt; AxCrypt ile Şifre Yönetimi, şifre ve kodlarınız için sanal kasanız. Şifreleriniz güvende şifreli bir arşivde ve her an her yerde elinizin altında. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>Tüm şifrelerini online bulutta yönet &lt;span class="text-cutoff"&gt; AxCrypt ile Şifre Yönetimi, şifre ve kodlarınız için sanal kasanız. Şifrelerin güvende şifreli bir arşivde ve her an her yerde elinin altında. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Read more]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>Şifreler </value>
@@ -1635,10 +1657,10 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>Şifre kabul edilebilmek için yeterince güçlü değil.</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
-    <value>Şifrenizi mi unuttunuz? Buraya tıklayın.</value>
+    <value>Şifreni mi unuttun? Buraya tıkla.</value>
   </data>
   <data name="PasswordResetMailBody1" xml:space="preserve">
-    <value>AxCrypt kullanıcı şifrenizi sıfırlama talebinde bulundunuz. Bu işlem şifreli dosyalara ve kayıtlı şifrelerinize erişimi etkilemeyecektir,  sadece yeniden oturum açmanızı sağlayacaktır. İşlemi tamamlamak ve yeni bir şifre belirlemek için lütfen aşağıdaki tuşa basın.</value>
+    <value>AxCrypt kullanıcı şifrenizi sıfırlama talebinde bulundun. Bu işlem şifreli dosyalara ve kayıtlı şifrelerine erişimi etkilemeyecektir,  sadece yeniden oturum açmanı sağlayacaktır. İşlemi tamamlamak ve yeni bir şifre belirlemek için lütfen aşağıdaki tuşa bas.</value>
   </data>
   <data name="PasswordResetMailBodyButton" xml:space="preserve">
     <value>Şifreyi sıfırla</value>
@@ -1647,11 +1669,11 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>AxCrypt kimliği şifre sıfırlaması</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>Daha önce kaydolup şifrenizi unuttuysanız veya belirsiz bir nedenden dolayı onay bağlantısını almamış yada kaybetmişseniz, buradan tekrar kaydolup yeni bir  onay kodu talep edebilirsiniz.
+    <value>Daha önce kaydolup şifreni unuttuysan veya belirsiz bir nedenden dolayı onay bağlantısını almamış yada kaybetmişsen, buradan tekrar kaydolup yeni bir  onay kodu talep edebilirsin.
 
-&lt;span class="red"&gt;Şifrenizi unuttuysanız bu tekrar oturum açmanızı sağlayacaktır, ama şifreli dosyalara veya online şifre yöneticisinde kayıtlı olan bilgilere erişiminiz sağlanmayacaktır. Eski şifrenizle şifreli olarak kalacaktır, ve bunu deşifre edememekteyiz.&lt;/span&gt;
+&lt;span class="red"&gt;Şifreni unuttuysan bu tekrar oturum açmanı sağlayacaktır, ama şifreli dosyalara veya online şifre yöneticisinde kayıtlı olan bilgilere erişimin sağlanmayacaktır. Eski şifrenle şifreli olarak kalacaktır, ve bunu deşifre edememekteyiz.&lt;/span&gt;
 
-Aşağıya onay kodu ve sıfırlama bağlantısının gönderilmesi istediğiniz e-posta adresinizi girin.</value>
+Aşağıya onay kodu ve sıfırlama bağlantısının gönderilmesini istediğin e-posta adresinizi gir.</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Şifre sıfırla</value>
@@ -1661,9 +1683,9 @@ Aşağıya onay kodu ve sıfırlama bağlantısının gönderilmesi istediğiniz
     <comment>Text of link to Forgot password screen in mobile app</comment>
   </data>
   <data name="PasswordResetSuccess" xml:space="preserve">
-    <value>Onay kodunu buraya &lt;b&gt;{0}&lt;/b&gt; yollama girişiminde bulunuldu. Lütfen e-posta adresinizi kontrol edin.
+    <value>Onay kodunu buraya &lt;b&gt;{0}&lt;/b&gt; yollama girişiminde bulunuldu. Lütfen e-posta adresini kontrol et.
 
-Eğer size ulaşmadıysa lütfe istenmeyen e-posta kutularınızı, ve {0} nin doğru olduğunu kontrol edin.</value>
+Eğer sana ulaşmadıysa lütfen istenmeyen e-posta kutularını, ve {0} nin doğru olduğunu kontrol et.</value>
   </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>AxCrypt ileri bir şifre gücü değerlendirme sistemine sahiptir. Bu aynı zamanda en az 8 karakter uzunluğunda olmalıdır. 
@@ -1714,10 +1736,13 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
-    <value>Başka biri adına Premium satın alın </value>
+    <value>Başka biri adına Premium satın al</value>
   </data>
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
-    <value>Başka biri adına satın alın </value>
+    <value>Başka biri adına satın al</value>
+  </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>Tamamı ödenmiştir</value>
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal hakkında daha fazla bilgi]</value>
@@ -1727,37 +1752,40 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>AxCryptPremium üyeliğiniz yakında sona ermek üzere. Özellikleri kullanmaktan keyif alıp kullanışlı bulduğunuzu umarım.</value>
+    <value>AxCrypt Premium üyeliğin yakında sona ermek üzere. Özellikleri kullanmaktan keyif alıp kullanışlı bulduğunu umarım.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Premium özelliklerimizi kullanabilmeye devam etmenizi çok isterim. Üyeliğinizi &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; uzatın.</value>
+    <value>Premium özelliklerimizi kullanabilmeye devam etmeni çok isterim. Üyeliğini &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; uzat.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
-    <value>Premium üyeliğinizle şunlardan faydalanabileceksiniz :</value>
+    <value>Premium üyeliğinle şunlardan faydalanabileceksin:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>AxCrypt hakkında ne düşündüğünüzü benimle paylaşın - Kullanmaya devam edecek misiniz ve iyileştirildiğini görmek istediğiniz herhangi birşey var mı ?</value>
+    <value>AxCrypt hakkında ne düşündüğünü benimle paylaş - Kullanmaya devam edecek misin ve iyileştirildiğini görmek istediğin herhangi bir şey var mı?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
-    <value>AxCrypt Premium üyeliğiniz sona ermek üzere!</value>
+    <value>AxCrypt Premium üyeliğin sona ermek üzere!</value>
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Bu özellik Premium üyelik gerektirir!</value>
   </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 gün.</value>
+  </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
-    <value>Anahtar paylaşımı için Premium gereklidir. Premium'a yükselmek için tıklayın!</value>
+    <value>Anahtar paylaşımı için Premium gereklidir. Premium'a yükselmek için tıkla!</value>
   </data>
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
-    <value>Üzgünüz fakat Premium üyeliğiniz bulunmamaktadır. AxCrypt tarafından temin edilen ve uygulamanın işlemesi için de gerekli olan ücretli özellikleri uygulamanın dışında kullanmak için üyeliğinizi yükseltin. </value>
+    <value>Üzgünüz fakat Premium üyeliğin bulunmamaktadır. AxCrypt tarafından temin edilen ve uygulamanın işlemesi için de gerekli olan ücretli özellikleri uygulamanın dışında kullanmak için üyeliğini yükselt. </value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
-    <value>Bu özellik Premium abonelik gerektirmektedir! Premium satın alabileceğiniz internet sayfamızı açmamızı ister misiniz? </value>
+    <value>Bu özellik Premium abonelik gerektirmektedir! Premium satın alabileceğin internet sayfamızı açmamızı ister misin? </value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
-    <value>Daha fazlasını görmek için tıklayıp basılı tutun.</value>
+    <value>Daha fazlasını görmek için tıklayıp basılı tut.</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
   </data>
   <data name="PriceExcludingVat" xml:space="preserve">
@@ -1834,7 +1862,7 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <value>Tanınan kişiler</value>
   </data>
   <data name="PromptLabelText" xml:space="preserve">
-    <value>Bu dosyayı silmek istediğinize emin misiniz ? Bu işlem geri alınamaz.</value>
+    <value>Bu dosyayı silmek istediğine emin misin? Bu işlem geri alınamaz.</value>
   </data>
   <data name="PromptMonths" xml:space="preserve">
     <value>x 30 gün </value>
@@ -1858,7 +1886,7 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <value>Şifre yöneticisi</value>
   </data>
   <data name="PromptSetNewPassword" xml:space="preserve">
-    <value>Şifrenizi seçiniz</value>
+    <value>Şifreni Belirle</value>
   </data>
   <data name="PromptSharedWith" xml:space="preserve">
     <value>Paylaşılan kişiler</value>
@@ -1897,10 +1925,10 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <value>Kaydolma zamanı geçersiz. Geçerli bir kayıt en az {0} ay ve en fazla {1} ay arasında olmalıdır.</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>&lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; ile AxCrypt'i istediğiniz bilgisayar veya aygıtta tüm kapasiteyle kullanabilirsiniz. Memnun kalmadığınız takdirde lütfen  &lt;a href="mailto:support@axcrypt.net"&gt;contact us&lt;/a&gt;. Daima tümüyle geri ödeme yapılacaktır.  </value>
+    <value>&lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; ile AxCrypt'i istediğin bilgisayar veya aygıtta tüm kapasiteyle kullanabilirsin. Memnun kalmadığın takdirde lütfen  &lt;a href="mailto:support@axcrypt.net"&gt;contact us&lt;/a&gt;. Daima tümüyle geri ödeme yapılacaktır.  </value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Ödemeler hakkında daha fazla bilgi]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Kişisel ödeme bilgileriniz asla sunucularımıza iletilmez ve kaydedilmez. Şifreli bir bağlantı sayesinde ödeme noktası ortaklarımıza yollanıyorlar. Her ikiside Payment Card Industry Data Security Standard larına uyan Stripe ve PayPal ile çalışıyoruz. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Ödemeler hakkında daha fazla bilgi]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Kişisel ödeme bilgilerin asla sunucularımıza iletilmez ve kaydedilmez. Şifreli bir bağlantı sayesinde ödeme noktası ortaklarımıza yollanırlar. Her ikisi de Payment Card Industry Data Security Standard larına uyan Stripe ve PayPal ile çalışıyoruz. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>AxCrypt Premium satın al</value>
@@ -1909,18 +1937,18 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <value>Satın alma iptal edildi.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>Ödemeniz elimize ulaşmamıştır. Bu PayPal den bir iptal veya yetersiz bakiyeden kaynaklanabilir.</value>
+    <value>Ödemen elimize ulaşmadı. Bu, satın alımı manuel olarak iptal etmekten veya yetersiz bakiyeden kaynaklanıyor olabilir.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>AxCrypt Premium için fatura</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>AxCrypt Premium'u satın aldığınız için teşekkür ederiz! Premium'un aktif hale gelmesi için lütfen bütün uygulamalarda oturumu kapatıp tekrar açınız. </value>
+    <value>AxCrypt Premium'u satın aldığın için teşekkür ederiz! Premium'un aktif hale gelmesi için lütfen oturumu kapatıp tekrar aç. </value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Şimdi tüm AxCrypt Premium özelliklerine erişebilirsiniz. Uygulamadan çıkış yapıp tekrar oturum açmanız gerekebilir. Herhangi bir sorun yaşarsanız lütfen destek hattımızla iletişime geçin.
+    <value>Artık tüm AxCrypt Premium özelliklerine erişebilirsin. Uygulamadan çıkış yapıp tekrar oturum açman gerekebilir. Herhangi bir sorun yaşarsan lütfen destek hattımızla iletişime geç.
 
-Faturanız e-posta adresinize gönderilmiştir.</value>
+Faturan e-posta adresine ödeme hizmeti sağlayıcın tarafından gönderilecek. İnternet sayfamızdan bir makbuz yazdırabilirsin. </value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>KDV ödeme sırasında düzenlenebilir.</value>
@@ -1941,11 +1969,11 @@ Faturanız e-posta adresinize gönderilmiştir.</value>
     <comment>Link to app store in mobile application (Android)</comment>
   </data>
   <data name="RateApplicationLinkFirstPart" xml:space="preserve">
-    <value>Lütfen bizi notlandırın</value>
+    <value>Lütfen bizi notlandır</value>
     <comment>Unclickable part of "Rate us on App Store" link</comment>
   </data>
   <data name="RateApplicationLinkIos" xml:space="preserve">
-    <value>Lütfen bizi &lt;a&gt;uygulama dükkanında&lt;/a&gt; notlandırın</value>
+    <value>Lütfen bizi &lt;a&gt;uygulama dükkanında&lt;/a&gt; notlandır</value>
     <comment>Link to application store in mobile application (iOS</comment>
   </data>
   <data name="RateApplicationLinkSecondPartAndroid" xml:space="preserve">
@@ -1963,23 +1991,23 @@ Faturanız e-posta adresinize gönderilmiştir.</value>
     <value>Son eklenen dosyalar</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
-    <value>Kayıt başarısız oldu. Lütfen e-postalarınızı kontrol edip tekrar deneyin.</value>
+    <value>Kayıt başarısız oldu. Lütfen e-postalarını kontrol edip tekrar dene.</value>
   </data>
   <data name="RegisterLink" xml:space="preserve">
-    <value>Yeni kullanıcımısınız ? Üye olun</value>
+    <value>Yeni kullanıcı mısın? Üye ol</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>AxCrypt kullanmaya başlamak için, e-posta adresinizle aşağıdaki formu doldurarak bir AxCrypt kimliğine başvurmanız lazım. Onay kodu içeren bir mesaj e-posta kutunuza yollanacakve tıkladığınızda bir şifre seçmeniz istenecek. İşte bu!
+    <value>AxCrypt kullanmaya başlamak için, e-posta adresinle aşağıdaki formu doldurarak bir AxCrypt kimliğine başvurman lazım. Onay kodu içeren bir mesaj e-posta kutuna yollanacak ve tıkladığında bir şifre seçmen istenecek. İşte bu kadar!
 
-30 günlük AxCrypt Premium deneme paketi içindedir ve AxCrypt uygulamasından istediğinizde başlatabilirsiniz.</value>
+30 günlük AxCrypt Premium deneme paketi içindedir ve AxCrypt uygulamasından  istediğinde başlatabilirsin.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>AxCrypt kimliği için kaydol</value>
   </data>
   <data name="RegisterSuccess" xml:space="preserve">
-    <value>Bir AxCrypt kimliği yaratarak hesap açtınız!
+    <value>Bir AxCrypt kimliği yaratarak hesap açtın!
 
-Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
+Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Güvenilirlik </value>
@@ -1990,7 +2018,7 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <comment>Description of "Reliability" section of About Us page in mobile application.</comment>
   </data>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
-    <value>Bir güvenilirlik sorunundan dolayı yazılımınızın güncellenmesi gerekmektedir.</value>
+    <value>Bir güvenilirlik sorunundan dolayı yazılımının güncellenmesi gerekmektedir.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
@@ -2005,10 +2033,16 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
-    <value>Onay kodunu e-posta adresinize tekrar yollamak için tıklayın.</value>
+    <value>Onay kodunu e-posta adresine tekrar yollamak için tıkla.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>Bu tüm ayarları silecektir. Hiçbir veri kaybı yaşanmayacak, ancak konfigürasyon kurulum ayarlarına getirilecek. </value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Sıfırla</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Zaten bu şifreyle bağlısınız!</value>
+    <value>Zaten bu şifreyle bağlısın!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2027,11 +2061,11 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <value>[Hiçbiri] </value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Premium üyeliğiniz olmadığı için artık şifre düzenleyemiyor ya da yeni şifreler oluşturamıyorsunuz. Ancak hala var olan şifreleri görüntüleyebilirsiniz. 30 günlük Premium deneme paketinizi kullanmadıysanız buradan başlayabilirsiniz:
+    <value>Premium üyeliğin olmadığı için artık şifre düzenleyemiyor ya da yeni şifreler oluşturamıyorsun. Ancak hala var olan şifreleri görüntüleyebilirsin. 30 günlük Premium deneme paketini kullanmadıysan buradan başlayabilirsin:
  &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;. </value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
-    <value>{0} da Premium üyeliğinizin süresi dolmak üzere. Sonrasında yeni şifre girişleri yaratmak veya değişiklik yapmak için premium üyeliğinizi uzatmanız gerekmektedir. Yalnızca okumaya süresiz erişiminiz bulunmaktadır.</value>
+    <value>{0} da Premium üyeliğinin süresi dolmak üzere. Sonrasında yeni şifre girişleri yaratmak veya değişiklik yapmak için premium üyeliğini uzatman gerekmektedir. Yalnızca okumaya süresiz erişimin bulunmaktadır.</value>
   </data>
   <data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt güvenli silme</value>
@@ -2044,11 +2078,11 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <comment>Title of "Security" section of About Us page in mobile application. </comment>
   </data>
   <data name="SecuritySectionText" xml:space="preserve">
-    <value>Güvenlik bizim için çok önemli. AxCrypt'te yaptığımız herşey en yüksek güvenlik seviyesinde yapılmaktadır. Şifreniz kontrolünüz altında olduğu sürece, sizden başka kimsenin asla şifreli dosyalarınıza erişemeyeceğini garanti ediyoruz.</value>
+    <value>Güvenlik bizim için çok önemli. AxCrypt'te yaptığımız herşey en yüksek güvenlik seviyesinde yapılmaktadır. Şifren kontrolün altında olduğu sürece, senden başka kimsenin asla şifreli dosyalarınıza erişemeyeceğini garanti ediyoruz.</value>
     <comment>Description of "Security" section of About Us page in mobile application. </comment>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
-    <value>Sürümünüz bir güvenlik sorunu nedeniyle yenilenmelidir.</value>
+    <value>Sürümün bir güvenlik sorunu nedeniyle yenilenmelidir.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
   </data>
   <data name="SendInvitation" xml:space="preserve">
@@ -2059,36 +2093,36 @@ Onay bağı için e-posta kutunuzu &lt;b&gt;{0}&lt;/b&gt; kontrol edin.</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>AxCrypt kullanıcı adınızı sistemden kalıcı olarak silebilirsiniz. &lt;span class="red"&gt;AxCrypt kullanıcı adınızla bağdaştırılan tüm data, kaydedilmiş şifre girişleri dahil silinecektir.&lt;/span&gt;
+    <value>AxCrypt kullanıcı adını sistemden kalıcı olarak silebilirsin. &lt;span class="red"&gt;AxCrypt kullanıcı adınla bağdaştırılan tüm veriler, kaydedilmiş şifre girişleri dahil silinecektir.&lt;/span&gt;
 
-AxCrypt kimliğinizi silmek için şifrenizi girin.</value>
+AxCrypt kimliğini silmek için şifreni gir.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
-    <value>AxCrypt kimliğinize bağlı e-posta adresinizi değiştirmek için aşağıya yeni bir e-posta adresi girin. Bu siteye nasıl bağlandığınızı ve e-postaların nereye yollandığını belirleyecektir.
+    <value>AxCrypt kimliğine bağlı e-posta adresini değiştirmek için aşağıya yeni bir e-posta adresi gir. Bu, siteye nasıl bağlandığını ve e-postaların nereye yollandığını belirleyecektir.
 
 Yeni e-posta adresine bir onay kodu yollanacak. Değişim yürürlüğe sadece onay bağına tıklandığında ve başarıyla oturum açıldığında girecektir.</value>
   </data>
   <data name="SettingsNotificationsPageBody" xml:space="preserve">
-    <value>AxCrypt e-posta ileti tercihlerinizi aşağıdan seçiniz.</value>
+    <value>AxCrypt e-posta ileti tercihlerini aşağıdan seç.</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Seçenekler</value>
   </data>
   <data name="SettingsPasswordPageBody" xml:space="preserve">
-    <value>Şifreyi değiştirmek için, geçerli şifrenizi girip tekrar yeni şifrenizi girin.
+    <value>Şifreyi değiştirmek için geçerli şifreni girip tekrar yeni şifreni gir.
 
-Şifre hem online şifre yöneticisindeki şifrelerinizi hem de siteye erişiminizi sağlayacağı için tahmin etmesi zor bir şifre seçmeye çalışın. Yavaşça ve dikkatlice yazın, ve yeni şifrenizi unutmayın!</value>
+Şifre hem çevrimiçi şifre yöneticisindeki şifrelerini hem de siteye erişimini sağlayacağı için tahmin etmesi zor bir şifre seçmeye çalış. Yavaşça ve dikkatlice yaz ve yeni şifreni unutma!</value>
   </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Yeni AxCrypt kullanıcısı</value>
   </data>
   <data name="SharedWithUnverifiedMessagePattern" xml:space="preserve">
-    <value>AxCrypt kullanma davetini alıp cevap vermemiş biriyle güvenli paylaşım yapmak üzeresiniz.
+    <value>AxCrypt kullanma davetini alıp cevap vermemiş biriyle güvenli paylaşım yapmak üzeresin.
 
-Lütfen AxCrypt dosya güvenliği hakkında '{0}' e bildirin.</value>
+Lütfen AxCrypt dosya güvenliği hakkında '{0}' e bildir.</value>
   </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
-    <value>Paylaşılacak güvenli dosyayı seçin </value>
+    <value>Paylaşılacak güvenli dosyayı seç </value>
   </data>
   <data name="ShareKeysToolStripMenuItemText" xml:space="preserve">
     <value>Anahtarları paylaş</value>
@@ -2109,7 +2143,7 @@ Lütfen AxCrypt dosya güvenliği hakkında '{0}' e bildirin.</value>
     <value>Şifreyi göster</value>
   </data>
   <data name="SignInBeforePremiumMessage" xml:space="preserve">
-    <value>Önce oturum açın!</value>
+    <value>Önce oturum aç!</value>
     <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
   </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
@@ -2127,7 +2161,7 @@ Lütfen AxCrypt dosya güvenliği hakkında '{0}' e bildirin.</value>
     <value>Uyarı! Birkaç dakika sonrası için site yeniden başlatılması planlanmıştır. Rahatsızlıktan dolayı özür dileriz.</value>
   </data>
   <data name="SocialMediaFollowText" xml:space="preserve">
-    <value>Sosyal medya hesaplarımızı takip edin </value>
+    <value>Sosyal medya hesaplarımızı takip et</value>
     <comment>Text telling readers to follow us on social media, typically with a number of icons below.</comment>
   </data>
   <data name="SoftwareIsUpToDateLabel" xml:space="preserve">
@@ -2135,13 +2169,13 @@ Lütfen AxCrypt dosya güvenliği hakkında '{0}' e bildirin.</value>
     <comment>Short label stating that the software is up to date.</comment>
   </data>
   <data name="SoftwareUpdateNowLabel" xml:space="preserve">
-    <value>Şimdi güncelleyin! </value>
+    <value>Şimdi güncelle! </value>
     <comment>A short label prompting the user to update AxCrypt now!</comment>
   </data>
   <data name="SslRequiredPageBody" xml:space="preserve">
-    <value>Güvenli bir SSL bağlantısı gerekiyor. Lütfen &lt;a href="{2}"&gt;{2}&lt;/a&gt; ile tekrar deneyin.
+    <value>Güvenli bir SSL bağlantısı gerekiyor. Lütfen &lt;a href="{2}"&gt;{2}&lt;/a&gt; ile tekrar dene.
 
-Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
+Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
     <comment>A friendly page telling a user that SSL is required. The status code will be 403 Bad Request.</comment>
   </data>
   <data name="SslRequiredTitle" xml:space="preserve">
@@ -2149,10 +2183,10 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
-    <value>Klasör içindeki klasörlerle işlem yapmak için "Alt Klasörleri Dahil Et" seçeneğini aktif hale getirebileceğinizi biliyor muydunuz? Bunun için AxCrypt Premium gereklidir. </value>
+    <value>Klasör içindeki klasörlerle işlem yapmak için "Alt Klasörleri Dahil Et" seçeneğini aktif hale getirebileceğini biliyor muydun? Bunun için AxCrypt Premium gereklidir. </value>
   </data>
   <data name="StartupTipTryMobileApp" xml:space="preserve">
-    <value>Android ve iOS için mobil uygulamalar şimdi AxCrypt Premium'da mevcut. Daha fazla bilgi almak ister misiniz ?</value>
+    <value>Android ve iOS için mobil uygulamalar şimdi AxCrypt Premium'da mevcut. Daha fazla bilgi almak ister misin?</value>
     <comment>A startup tip displayed for the desktop app. Asking if a Yes/No question if the user would like to know more about the mobile apps.</comment>
   </data>
   <data name="StepsWizardLabel" xml:space="preserve">
@@ -2160,10 +2194,10 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <comment>A pattern for a step wizard, "Step 1 of 3" for example. Note that it's important that {0} and {1} remain exactly like that and that {0} represents the current step, and {1} represents the total number of steps (in case the translation requires then in different order).</comment>
   </data>
   <data name="StopSecuringToolTipText" xml:space="preserve">
-    <value>Güvenlemeyi bırakmak için dosyaları seçmek adına tıklayınız.</value>
+    <value>Güvenlemeyi bırakmak için dosyaları seçmek adına tıkla.</value>
   </data>
   <data name="StrongEncryptionDescription" xml:space="preserve">
-    <value>Telefonunuzda AxCrypt dosyaları açın</value>
+    <value>Telefonunda AxCrypt dosyaları aç</value>
     <comment>Text displayed on "Strong Encryption" slide in mobile app</comment>
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
@@ -2174,40 +2208,44 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <value>Düşünceyi bildir</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value>{0}, {1}'e kadar geçerli. </value>
+    <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
+  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Üyelik başarıyla kaydedilmiştir.</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
-    <value>Size nasıl yardımcı olabiliriz?</value>
+    <value>Sana nasıl yardımcı olabiliriz?</value>
   </data>
   <data name="SupportPageTitle" xml:space="preserve">
     <value>Premium Destek</value>
   </data>
   <data name="SupportPremiumIntro" xml:space="preserve">
-    <value>AxCrypt Destek'e hoş geldiniz. Premium üyelerimize öncelik tanımakta ve e-posta aracılığıyla doğrudan kişisel destek sunmaktayız.</value>
+    <value>AxCrypt Destek'e hoş geldin. Premium üyelerimize öncelik tanımakta ve e-posta aracılığıyla doğrudan kişisel destek sunmaktayız.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
-    <value>Üzgünüz, direkt destek sadece ücretli üyelerimiz içindir. Lütfen &lt;a href="{0}"&gt;Grup Destek&lt;/a&gt; ziyaret edin.</value>
+    <value>Üzgünüz, direkt destek sadece ücretli üyelerimiz içindir. Lütfen &lt;a href="{0}"&gt;Grup Destek&lt;/a&gt; ziyaret et.</value>
   </data>
   <data name="SystemFolderForbiddenText" xml:space="preserve">
     <value>Sistem klasörü '{0}' koruma altına alınamıyor.  </value>
   </data>
   <data name="TargetAccountExists" xml:space="preserve">
-    <value>Hesabınızı zaten var olan bir hesaba değiştirmeye çalışıyorsunuz! </value>
+    <value>Hesabını zaten var olan bir hesaba değiştirmeye çalışıyorsun! </value>
   </data>
   <data name="TargetAccountExistsErrorText" xml:space="preserve">
-    <value>Bir hesaba ait e-posta adresini değiştirmeye çalıştığınızda, yeni adrese kayıtlı başka bir hesabın bulunmaması gerekmektedir! Önce o hesabı silmelisiniz. </value>
+    <value>Bir hesaba ait e-posta adresini değiştirmeye çalıştığında, yeni adrese kayıtlı başka bir hesabın bulunmaması gerekmektedir! Önce o hesabı silmelisin. </value>
   </data>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Dosya açılamıyor</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
   <data name="TermsAndConditionsLink" xml:space="preserve">
-    <value>AxCrypt oturumu açarken kullanım &lt;a&gt; Şartlarımızı &amp;amp; Koşullarımızı &lt;/a&gt;  kabul ediyorsunuz</value>
+    <value>AxCrypt oturumu açarken kullanım &lt;a&gt; Şartlarımızı &amp;amp; Koşullarımızı &lt;/a&gt;  kabul ediyorsun</value>
     <comment>Text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">
-    <value>AxCrypt e kaydolarak şunları kabul ediyorsunuz</value>
+    <value>AxCrypt'e kaydolarak şunları kabul ediyorsun</value>
     <comment>Unclikable text of link to Terms And Conditions  in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
@@ -2215,7 +2253,7 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
-    <value>E-posta kutunuzu ve istenmeyen kutusunu kontrol edin!</value>
+    <value>E-posta kutunu ve istenmeyen kutusunu kontrol et!</value>
   </data>
   <data name="TextPreferenceCritical" xml:space="preserve">
     <value>Kritik - Önemli AxCrypt güncellemeleri için bildiri al</value>
@@ -2224,7 +2262,7 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <value>Reddet - Bir daha AxCrypt yeni sürümleri hakkında bilgilendirilme</value>
   </data>
   <data name="TextPreferenceUnknown" xml:space="preserve">
-    <value>Bilinmiyor - Bir tercih belirtmediniz</value>
+    <value>Bilinmiyor - Bir tercih belirtmedin</value>
   </data>
   <data name="TextPreferenceUpdate" xml:space="preserve">
     <value>Güncelle - Tüm AxCrypt güncellemeleri hakkında belirti al</value>
@@ -2239,33 +2277,33 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıklayın.</value>
     <value>{0} {1}{2}</value>
   </data>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
-    <value>AxCrypt e bağlan</value>
+    <value>AxCrypt'e bağlan</value>
     <comment>Title on the web page for signin for example.</comment>
   </data>
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
-    <value>Duyuru e-postalarından çıkarıldınız </value>
+    <value>Duyuru e-postalarından çıkarıldın</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
   </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
-    <value>Şifre idaresi için Premium gereklidir. Premium'a yükselmek için tıklayın!</value>
+    <value>Şifre idaresi için Premium gereklidir. Premium'a yükselmek için tıkla!</value>
   </data>
   <data name="TransactionHistoryTitle" xml:space="preserve">
     <value>İşlem tarihçesi</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>AxCrypt uygulama penceresini yenilemek için tıklayın.</value>
+    <value>AxCrypt uygulama penceresini yenilemek için tıkla.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Harika! Şimdi deneme süresi boyunca tüm AxCrypt özelliklerini bedavaya kullanabilirsiniz.
+    <value>Harika! Şimdi deneme süresi boyunca tüm AxCrypt özelliklerini bedavaya kullanabilirsin.
 
-İyi şanslar ve tadını çıkartın,
+İyi şanslar ve tadını çıkart,
 
-AxCrypt Takımı</value>
+AxCrypt Ekibi</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
   <data name="TroubleRememberingLabel" xml:space="preserve">
-    <value>Şifrenizi hatırlamıyor musunuz ?</value>
+    <value>Şifreni hatırlamıyor musun?</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
   <data name="TryItDescription" xml:space="preserve">
@@ -2273,15 +2311,15 @@ AxCrypt Takımı</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryItTitle" xml:space="preserve">
-    <value>Deneyin!</value>
+    <value>Dene!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="TryPremiumLabel" xml:space="preserve">
-    <value>Premium deneyin!</value>
+    <value>Premium'u dene!</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
   </data>
   <data name="TryPremiumToolTip" xml:space="preserve">
-    <value>En yüksek güvenlik seviyesini kullanmamaktasınız. Premium u bedavaya denemek için tıklayın!</value>
+    <value>En yüksek güvenlik seviyesini kullanmamaktasın. Premium'u bedavaya denemek için tıkla!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
@@ -2289,28 +2327,28 @@ AxCrypt Takımı</value>
     <comment>Displayed when an unknown CryptoId is encountered.</comment>
   </data>
   <data name="UnknownError" xml:space="preserve">
-    <value>Bilinmeyen hata. Lütfen bildirin.</value>
+    <value>Bilinmeyen hata. Lütfen bildir.</value>
   </data>
   <data name="UnknownFileStatus" xml:space="preserve">
     <value>'{0}' ile 'Bilinmeyen' statüs </value>
   </data>
   <data name="UnknownLogOn" xml:space="preserve">
-    <value>Şifre daha önceden tanınmamaktadır. Yeni bir tane yaratmak için 'Yeni' ye tıklayınız.</value>
+    <value>Şifre daha önceden tanınmamaktadır. Yeni bir tane yaratmak için 'Yeni' ye tıkla.</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>'{0}' için {1}</value>
   </data>
   <data name="UnregisterMailBody1" xml:space="preserve">
-    <value>Bu, AxCrypt kimliğinizin &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; üzerinde başarıyla silindiğinin onayıdır.</value>
+    <value>Bu, AxCrypt kimliğinin &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; üzerinde başarıyla silindiğinin onayıdır.</value>
   </data>
   <data name="UnregisterMailBody2" xml:space="preserve">
-    <value>Gidişiniz için üzgünüz ve bizimle geçen vaktinizden keyif aldığınızı umarız !</value>
+    <value>Gidişin için üzgünüz ve bizimle geçen vaktinden keyif aldığını umarız!</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt kimliği silindi</value>
   </data>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
-    <value>Abonelikten çıkmak istiyorsanız bu linki tıklayın: &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; bu link&lt;/a&gt; </value>
+    <value>Abonelikten çıkmak istiyorsan bu linki tıkla: &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; bu link&lt;/a&gt; </value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Konum yenileniyor</value>
@@ -2319,21 +2357,21 @@ AxCrypt Takımı</value>
     <value>1.x dosyalarını yenile</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x ile korunan dosyaları aramak için bir yer seçin ve onları güncelleyin.</value>
+    <value>AxCrypt 1.x ile korunan dosyaları aramak için bir yer seç ve onları güncelle.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
-    <value>Premium üye olun !</value>
+    <value>Premium'a üye ol!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
-    <value>AxCrypt i güncellemediniz. Malesef konfigürasyonunuzun tekrar yapılması gerekmektedir. Sıfırlamadan sonra ayarlarınız ya kaybolacaktır. Rahatsızlıktan dolayı özür dileriz. Şifreli dosyalarınız hala koruma altında.</value>
+    <value>AxCrypt i güncellemedin. Ne yazık ki konfigürasyonunun tekrar yapılması gerekmektedir. Sıfırlamadan sonra tercihlerin ve ayarların kaybolacaktır. Rahatsızlıktan dolayı özür dileriz. Şifreli dosyaların hala koruma altında.</value>
   </data>
   <data name="VerificationEmailSentTitle" xml:space="preserve">
     <value>Onay bağlantısı yollandı</value>
     <comment>The title of the page stating that a verification email has been sent.</comment>
   </data>
   <data name="VerifyAccountLabel" xml:space="preserve">
-    <value>Lütfen hesabınızı doğrulayın</value>
+    <value>Lütfen hesabını doğrula</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
@@ -2356,35 +2394,35 @@ AxCrypt Takımı</value>
     <value>Koruma altındaki klasörler</value>
   </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
-    <value>AxCrypt'e hoşgeldiniz !</value>
+    <value>AxCrypt'e hoş geldin!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Kaydolmanıza çok sevindim! Sizi gerçekten hoş karşılamak adına size 30 gün boyunca tüm Premium özelliklerini deneme şansı tanıyorum. Deneme sürecinizi istediğiniz zaman AxCrypt uygulamasından başlatın.</value>
+    <value>Kaydolmana çok sevindim! Seni gerçekten hoş karşılamak adına sana 30 gün boyunca tüm Premium özelliklerini deneme şansı tanıyorum. Deneme sürecini istediğin zaman AxCrypt uygulamasından başlat.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
-    <value>Ücretsiz AxCrypt veya AxCryptPremium ile gerçekten çok kolayca dosyalarınızı koruma altına alabilisiniz. Dosyalarınızı ve tüm klasörlerinizi şifrelemek bir tıklama uzakta. Şifreli dosyalarla çalışmak da bir o kadar kolay !</value>
+    <value>Ücretsiz AxCrypt veya AxCrypt Premium ile gerçekten çok kolayca dosyalarını koruma altına alabilirsin. Dosyalarını ve tüm klasörlerini şifrelemek bir tık uzakta. Şifreli dosyalarla çalışmak da bir o kadar kolay!</value>
   </data>
   <data name="WelcomeMailSubject" xml:space="preserve">
-    <value>AxCrypt'e hoşgeldiniz !</value>
+    <value>AxCrypt'e hoş geldin!</value>
   </data>
   <data name="WelcomeToAxCrypt" xml:space="preserve">
-    <value>AxCrypt'e hoşgeldiniz! 
+    <value>AxCrypt'e hoş geldin! 
 
-AxCrypt'in kullanımı çok kolaydır. Ana pencereyle başlayabilir, veya Windows Explorer'da çift tıklama ve sağ tıklama ile bütünleşmiş kullanıma erişebilirsiniz.
+AxCrypt'in kullanımı çok kolaydır. Ana pencereyle başlayabilir, veya Windows Explorer'da çift tıklama ve sağ tıklama ile bütünleşmiş kullanıma erişebilirsin.
 
-İlk dosyalarınızı şifrelemek için araç çubuğundaki + ikonuna basıp istenilen dosyaları seçin.
+İlk dosyalarını şifrelemek için araç çubuğundaki + ikonuna basıp istenilen dosyaları seç.
 
-İnternet sitemizi açıp daha fazla bilgi almak için Tamam a basın.
+İnternet sitemizi açıp daha fazla bilgi almak için Tamam'a bas.
 </value>
   </data>
   <data name="WelcomeToAxCryptForMac" xml:space="preserve">
-    <value>Mac için AxCrypt'e hoş geldiniz!
+    <value>Mac için AxCrypt'e hoş geldin!
 
-AxCrypt'i kullanmak çok kolay. Ana pencereden başlayın veya Bulucu'yu çift tıklayın. 
+AxCrypt'i kullanmak çok kolay. Ana pencereden başla veya Bulucu'yu çift tıkla. 
 
-İlk dosyanızı şifrelemek için araç çubuğundaki + simgesini tıklayıp dosyayı seçin. 
+İlk dosyanı şifrelemek için araç çubuğundaki + simgesini tıklayıp dosyayı seç. 
 
-Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve internet sayfamıza gidin. </value>
+Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı aç ve internet sayfamıza git. </value>
     <comment>A longer message for a dialog box the first time a Mac user starts AxCrypt.</comment>
   </data>
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
@@ -2394,13 +2432,13 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>Parolamı unutmayacağım! </value>
   </data>
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
-    <value>Parolanız dosyalarınızı AxCrypt'in güçlü şifreleme özelliğiyle koruma altına almak için kullanılacak. Bu parolayı unutmanız halinde bu dosyaları açamayacaksınız. Yeni bir parola belirleyerek hesabınıza erişebilirsiniz, ancak eski parolanızla korunan dosyaları açamazsınız.  </value>
+    <value>Parolan dosyalarını AxCrypt'in güçlü şifreleme özelliğiyle koruma altına almak için kullanılacak. Bu parolayı unutman halinde bu dosyaları açamayacaksın. Yeni bir parola belirleyerek hesabına erişebilirsin, ancak eski parolanla korunan dosyaları açamazsın.  </value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
-    <value>Güvenli bir şekilde silmek istediğiniz dosyaları seçin</value>
+    <value>Güvenli bir şekilde silmek istediğin dosyaları seç</value>
   </data>
   <data name="WixAxNeedUninstall" xml:space="preserve">
-    <value>Önce bu bilgisayara yüklü olan AxCrypt i silmeniz gerekiyor.</value>
+    <value>Önce bu bilgisayara yüklü olan AxCrypt i silmen gerekiyor.</value>
   </data>
   <data name="WixAxOsNotSupported" xml:space="preserve">
     <value>Bu bilgisayarın Windows sürümü kabul edilmemektedir.</value>
@@ -2410,7 +2448,7 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <comment>[WixBundlePart] should NOT be translated.</comment>
   </data>
   <data name="WixConfirmCancelMessage" xml:space="preserve">
-    <value>İptal etmek istediğinize emin misiniz?</value>
+    <value>İptal etmek istediğinden emin misin?</value>
   </data>
   <data name="WixExecuteUpgradeRelatedBundleMessage" xml:space="preserve">
     <value>Önceki örnek </value>
@@ -2422,7 +2460,7 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>Kurulum başarısız oldu</value>
   </data>
   <data name="WixFailureHyperlinkLogText" xml:space="preserve">
-    <value>Bir veya daha fazla sorun kurulumun başarısız olmasına neden olmuştur. Lütfen sorunları giderip kurulumu tekrar deneyin. Daha fazla bilgi için &amp;lt;a href="#"&amp;gt;log file&amp;lt;/a&amp;gt;.</value>
+    <value>Bir veya daha fazla sorun kurulumun başarısız olmasına neden olmuştur. Lütfen sorunları giderip kurulumu tekrar dene. Daha fazla bilgi için &amp;lt;a href="#"&amp;gt;log file&amp;lt;/a&amp;gt;.</value>
   </data>
   <data name="WixFailureInstallHeader" xml:space="preserve">
     <value>Kurulum başarısız oldu</value>
@@ -2434,7 +2472,7 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>Yeniden başlat</value>
   </data>
   <data name="WixFailureRestartText" xml:space="preserve">
-    <value>Yazılımın geridönüşünün tamamlanması için bilgisayarınızı yeniden başlatın.</value>
+    <value>Yazılımın geridönüşünün tamamlanması için bilgisayarını yeniden başlat.</value>
   </data>
   <data name="WixFailureUninstallHeader" xml:space="preserve">
     <value>Kaldırma başarısız oldu</value>
@@ -2443,10 +2481,10 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>Iptal</value>
   </data>
   <data name="WixFilesInUseCloseRadioButton" xml:space="preserve">
-    <value>Uygulamaları kapatıp yeniden başlatmayı deneyin.</value>
+    <value>Uygulamaları kapatıp yeniden başlatmayı dene.</value>
   </data>
   <data name="WixFilesInUseDontCloseRadioButton" xml:space="preserve">
-    <value>Uygulamaları kapatmayın. Sistemin yeniden yüklenmesi gerekecek.</value>
+    <value>Uygulamaları kapatma. Sistemin yeniden yüklenmesi gerekecek.</value>
   </data>
   <data name="WixFilesInUseHeader" xml:space="preserve">
     <value>Dosyalar kullanılıyor</value>
@@ -2506,10 +2544,10 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <comment>Description in MSI</comment>
   </data>
   <data name="WixMsiDoNotInstall32BitOn64Bit" xml:space="preserve">
-    <value>Bu bir 32 bit MSI kurucusu. 64-bit Windows a sahipsiniz. Dosya isminde 'Win32' yerine 'x64' olan MSI'yi kullanın.</value>
+    <value>Bu bir 32 bit MSI kurucusu. 64-bit Windows a sahipsin. Dosya isminde 'Win32' yerine 'x64' olan MSI'yi kullan.</value>
   </data>
   <data name="WixMsiExitDialogText" xml:space="preserve">
-    <value>ÇABUK BAŞLANGIÇ: Bir belgeyi şifrelemek için Windows Explorer'da bulunan belgeye sağ tıklayın ve AxCrypt | Şifrele yi seçin.</value>
+    <value>ÇABUK BAŞLANGIÇ: Bir belgeyi şifrelemek için Windows Explorer'da bulunan belgeye sağ tıkla ve AxCrypt | Şifrele yi seç.</value>
     <comment>The final message in the MSI installer</comment>
   </data>
   <data name="WixMsiExternalName" xml:space="preserve">
@@ -2521,7 +2559,7 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <comment>Start Menu tooltip to start AxCrypt</comment>
   </data>
   <data name="WixMsiLegacyAxCrypt" xml:space="preserve">
-    <value>Devam etmek için AxCrypt'in bir evvelki sürümünü kaldırmalısınız. İstendiğinde yeniden başlatmaya emin olun. </value>
+    <value>Devam etmek için AxCrypt'in bir evvelki sürümünü kaldırmalısın. İstendiğinde yeniden başlatmaya emin ol. </value>
     <comment>Error message when too old AxCrypt is already installed.</comment>
   </data>
   <data name="WixMsiMainExecutablesTitle" xml:space="preserve">
@@ -2529,11 +2567,11 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <comment>Feature name in installer</comment>
   </data>
   <data name="WixMsiNet45Required" xml:space="preserve">
-    <value>Bu uygulama .NET Framework  4.5 veya üstünü gerektirir. Lütfen .NET Framework indirip yükleyiciyi tekrar indirin.</value>
+    <value>Bu uygulama .NET Framework  4.5 veya üstünü gerektirir. Lütfen .NET Framework indirip yükleyiciyi tekrar indir.</value>
     <comment>Error message when .NET 4.5 is missing</comment>
   </data>
   <data name="WixMsiNoDowngrade" xml:space="preserve">
-    <value>Daha yeni veya aynı sürüm indirilmiş! Lütfen devam etmeden evvel o sürümü kaldırın. İstendiğinde yeniden açmaya emin olun.</value>
+    <value>Daha yeni veya aynı sürüm indirilmiş! Lütfen devam etmeden önce o sürümü kaldır. İstendiğinde yeniden açmaya emin ol.</value>
     <comment>Error message during installation when a newer version already is installed.</comment>
   </data>
   <data name="WixMsiShellExtensionTitle" xml:space="preserve">
@@ -2575,7 +2613,7 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>Yeniden başlat</value>
   </data>
   <data name="WixSuccessRestartText" xml:space="preserve">
-    <value>Yazılımı kullanabilmek için bilgisayarınızı yeniden başlatın.</value>
+    <value>Yazılımı kullanabilmek için bilgisayarını yeniden başlat.</value>
   </data>
   <data name="WixSuccessUninstallHeader" xml:space="preserve">
     <value>Kaldırma işlemi başarıyla tamamlandı</value>
@@ -2587,10 +2625,10 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı açın ve inte
     <value>'{0}' yanlış dosya adı uzantısına sahiptir. '{1}' olmalıdır !</value>
   </data>
   <data name="WrongPassphrase" xml:space="preserve">
-    <value>Yanlış şifre. Lütfen tekrar deneyin.</value>
+    <value>Yanlış şifre. Lütfen tekrar dene.</value>
   </data>
   <data name="WrongVerificationCode" xml:space="preserve">
-    <value>Yanlış onay kodu. Lütfen e-posta kutunuzu tekrar kontrol edin.</value>
+    <value>Yanlış onay kodu. Lütfen e-posta kutunu tekrar kontrol et.</value>
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>Onay kodu tam 6 karakter içermelidir.</value>
