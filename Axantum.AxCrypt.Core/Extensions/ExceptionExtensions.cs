@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             New<IReport>().Exception(aex);
             New<AxCryptOnlineState>().IsOffline = true;
-            if (aex is OfflineApiException)
+            if (aex is OfflineApiException || aex.ErrorStatus == ErrorStatus.ApiHttpResponseError)
             {
                 Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
             }

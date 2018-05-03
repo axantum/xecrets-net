@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using AxCrypt.Content;
 using System;
@@ -116,7 +115,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            AccountTip tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
+            AccountTip tip = new AccountTip();
+            try
+            {
+                tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
+            }
+            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
+            {
+                aex.HandleApiExceptions();
+            }
+
             if (!string.IsNullOrEmpty(tip.Message))
             {
                 await tip.ShowPopup();
