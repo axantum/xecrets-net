@@ -33,31 +33,28 @@ namespace Axantum.AxCrypt.Api
 
         public async Task<ApiVersion> ApiVersionAsync()
         {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return ApiVersion.Zero;
-            }
-
             Uri resource = BaseUrl.PathCombine("global/apiversion");
+
             RestResponse restResponse;
-
-            try
+            if (New<AxCryptOnlineState>().IsOnline)
             {
-                restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
-                ApiCaller.EnsureStatusOk(restResponse);
-                ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
-                return apiVersion;
+                try
+                {
+                    restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+                    ApiCaller.EnsureStatusOk(restResponse);
+                    ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
+                    return apiVersion;
+                }
+                catch (OfflineApiException oaex)
+                {
+                    New<IReport>().Exception(oaex);
+                    New<AxCryptOnlineState>().IsOffline = true;
+                }
+                catch (Exception ex)
+                {
+                    New<IReport>().Exception(ex);
+                }
             }
-            catch (OfflineApiException oaex)
-            {
-                New<IReport>().Exception(oaex);
-                New<AxCryptOnlineState>().IsOffline = true;
-            }
-            catch (Exception ex)
-            {
-                New<IReport>().Exception(ex);
-            }
-
             return ApiVersion.Zero;
         }
     }
