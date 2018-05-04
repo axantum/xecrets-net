@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -337,7 +338,15 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
+
             await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys);
+
+            IDataStore sourceFileInfo = New<IDataStore>(_eventArgs.OpenFileFullName);
+            WatchedFolder sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.Where(wf => sourceFileInfo.Container.FullName.Contains(wf.Path)).FirstOrDefault();
+            if (sourceFileWatchedFolder.KeyShares.Any())
+            {
+                await encryptionParameters.AddAsync(sourceFileWatchedFolder.KeyShares);
+            }
 
             await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
