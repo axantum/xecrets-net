@@ -124,6 +124,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 aex.HandleApiExceptions();
             }
+            catch (UnauthorizedApiException)
+            {
+                tip = new AccountTip();
+            }
 
             if (!string.IsNullOrEmpty(tip.Message))
             {
