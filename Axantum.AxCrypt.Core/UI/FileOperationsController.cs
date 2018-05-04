@@ -27,6 +27,7 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
@@ -306,9 +307,41 @@ namespace Axantum.AxCrypt.Core.UI
                 }
 
                 OnQuerySharedPublicKeys(_eventArgs);
+
+                GetSharedPublicKeysForEncryption();
             }
 
             return Task.FromResult(true);
+        }
+
+        private async void GetSharedPublicKeysForEncryption()
+        {
+            if (String.IsNullOrEmpty(_eventArgs.OpenFileFullName))
+            {
+                return;
+            }
+
+            IDataStore sourceFileInfo = New<IDataStore>(_eventArgs.OpenFileFullName);
+            WatchedFolder sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.Where(wf => sourceFileInfo.Container.FullName.Contains(wf.Path)).FirstOrDefault();
+            if (sourceFileWatchedFolder == null || !sourceFileWatchedFolder.KeyShares.Any())
+            {
+                return;
+            }
+
+            IList<UserPublicKey> publicKeys = new List<UserPublicKey>();
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                foreach (EmailAddress email in sourceFileWatchedFolder.KeyShares)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email, _eventArgs.LogOnIdentity);
+                    if (key != null)
+                    {
+                        publicKeys.Add(key);
+                    }
+                }
+            }
+
+            _eventArgs.SharedPublicKeys = publicKeys;
         }
 
         private bool IsLocked(FileLock fileLock)
@@ -338,18 +371,8 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
-
             await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys);
-
-            IDataStore sourceFileInfo = New<IDataStore>(_eventArgs.OpenFileFullName);
-            WatchedFolder sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.Where(wf => sourceFileInfo.Container.FullName.Contains(wf.Path)).FirstOrDefault();
-            if (sourceFileWatchedFolder.KeyShares.Any())
-            {
-                await encryptionParameters.AddAsync(sourceFileWatchedFolder.KeyShares);
-            }
-
             await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
-
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
         }
