@@ -32,9 +32,9 @@ namespace Axantum.AxCrypt.Api
             Timeout = timeout;
         }
 
-        public async Task<ApiVersion> ApiVersionAsync(string platform, string appVersion)
+        public async Task<ApiVersion> ApiVersionAsync(string appPlatform, string appVersion)
         {
-            Uri resource = BaseUrl.PathCombine($"global/apiversion?Platform={platform}&App-Version={appVersion}&App-Culture={CultureInfo.CurrentUICulture.DisplayName}");
+            Uri resource = BaseUrl.PathCombine($"global/apiversion?AppPlatform={appPlatform ?? ""}&AppVersion={appVersion ?? ""}&UserCulture={CultureInfo.CurrentUICulture.Name}");
 
             RestResponse restResponse;
             if (New<AxCryptOnlineState>().IsOnline)
