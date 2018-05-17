@@ -27,7 +27,6 @@
 
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -41,7 +40,6 @@ namespace Axantum.AxCrypt.Core.UI
         public FileOperationEventArgs()
         {
             Status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
-            SharedPublicKeys = new UserPublicKey[0];
         }
 
         public string SaveFileFullName { get; set; }
@@ -49,8 +47,6 @@ namespace Axantum.AxCrypt.Core.UI
         public string OpenFileFullName { get; set; }
 
         public LogOnIdentity LogOnIdentity { get; set; }
-
-        public IEnumerable<UserPublicKey> SharedPublicKeys { get; set; }
 
         public Guid CryptoId { get; set; }
 

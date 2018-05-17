@@ -293,6 +293,17 @@ namespace Axantum.AxCrypt.Core.Extensions
             return sharedWithEmailAddresses;
         }
 
+        public static WatchedFolder FindOrDefault(this IEnumerable<WatchedFolder> watchedFolders, IDataStore fileMaybeWatched)
+        {
+            string fileFolderPath = fileMaybeWatched.Container.FullName;
+            IEnumerable<WatchedFolder> candidates = watchedFolders.Where(watchedFolder => fileFolderPath.StartsWith(watchedFolder.Path)).OrderBy(watchedFolder => watchedFolder.Path.Length);
+            if (New<UserSettings>().FolderOperationMode.Policy() == FolderOperationMode.SingleFolder)
+            {
+                return candidates.FirstOrDefault();
+            }
+            return candidates.LastOrDefault();
+        }
+
         public static async Task ShowPopup(this AccountTip tip)
         {
             string title;
