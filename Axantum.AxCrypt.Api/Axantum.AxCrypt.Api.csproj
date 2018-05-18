@@ -89,7 +89,7 @@
     <Compile Include="Implementation\StringSerializer.cs" />
     <Compile Include="Response\WhatIpResponse.cs" />
     <Compile Include="SlackApiClient.cs" />
-    <Compile Include="UnauthorizedApiException.cs" />
+    <Compile Include="UnauthorizedException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />

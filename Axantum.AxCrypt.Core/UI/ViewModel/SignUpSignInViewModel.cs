@@ -120,11 +120,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
             }
-            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
+            catch (ApiException aex)
             {
-                aex.HandleApiExceptions();
+                await aex.HandleApiExceptionAsync();
             }
-            catch (UnauthorizedApiException)
+            catch (UnauthorizedException)
             {
                 tip = new AccountTip();
             }

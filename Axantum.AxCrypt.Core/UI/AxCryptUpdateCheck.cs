@@ -148,9 +148,9 @@ namespace Axantum.AxCrypt.Core.UI
 
                 return axCryptVersion.DownloadVersion;
             }
-            catch (ApiException aex) when (!(aex is UnauthorizedApiException))
+            catch (ApiException aex)
             {
-                aex.HandleApiExceptions();
+                await aex.HandleApiExceptionAsync();
             }
             catch (Exception ex)
             {

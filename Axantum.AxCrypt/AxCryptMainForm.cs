@@ -193,7 +193,15 @@ namespace Axantum.AxCrypt
 
         private async Task GetApiVersionAsync()
         {
-            _apiVersion = await New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync());
+            try
+            {
+                _apiVersion = await New<ICache>().GetItemAsync(CacheKey.RootKey.Subkey("WrapMessageDialogsAsync_ApiVersion"), () => New<GlobalApiClient>().ApiVersionAsync());
+            }
+            catch (ApiException aex)
+            {
+                await aex.HandleApiExceptionAsync();
+                _apiVersion = ApiVersion.Zero;
+            }
         }
 
         private static void SetThisVersion()
@@ -915,6 +923,7 @@ namespace Axantum.AxCrypt
                     await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                 });
             };
+            New<AxCryptOnlineState>().RaiseOnlineStateChanged();
         }
 
         private static void WireDownEvents()

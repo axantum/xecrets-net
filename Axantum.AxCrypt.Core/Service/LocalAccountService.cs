@@ -32,7 +32,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using System;
@@ -104,26 +103,23 @@ namespace Axantum.AxCrypt.Core.Service
             throw new InvalidOperationException("A premium trial cannot be started locally.");
         }
 
-        public bool HasAccounts
+        public Task<bool> HasAccountsAsync()
         {
-            get
+            if (Identity.UserEmail == EmailAddress.Empty)
             {
-                if (Identity.UserEmail == EmailAddress.Empty)
-                {
-                    throw new InvalidOperationException("The account service requires a user.");
-                }
-                if (LoadUserAccounts().Accounts.Any())
-                {
-                    return true;
-                }
-
-                if (UserKeyPairFiles().Any())
-                {
-                    return true;
-                }
-
-                return false;
+                throw new InvalidOperationException("The account service requires a user.");
             }
+            if (LoadUserAccounts().Accounts.Any())
+            {
+                return Task.FromResult(true);
+            }
+
+            if (UserKeyPairFiles().Any())
+            {
+                return Task.FromResult(true);
+            }
+
+            return Task.FromResult(false);
         }
 
         /// <summary>

@@ -52,12 +52,9 @@ namespace Axantum.AxCrypt.Core.Service
             return this;
         }
 
-        public bool HasAccounts
+        public Task<bool> HasAccountsAsync()
         {
-            get
-            {
-                return false;
-            }
+            return Task.FromResult(false);
         }
 
         public LogOnIdentity Identity

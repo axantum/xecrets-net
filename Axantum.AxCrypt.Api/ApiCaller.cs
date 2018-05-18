@@ -41,7 +41,7 @@ namespace Axantum.AxCrypt.Api
 
             if (restResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
+                throw new UnauthorizedException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }
             if (restResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
             {

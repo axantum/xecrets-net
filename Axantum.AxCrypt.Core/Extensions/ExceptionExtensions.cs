@@ -5,7 +5,7 @@ using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
 using System.IO;
-
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -60,14 +60,16 @@ namespace Axantum.AxCrypt.Core.Extensions
             throw new FileOperationException(ex.Message, displayContext, ErrorStatus.Exception, ex);
         }
 
-        public static void HandleApiExceptions(this ApiException aex)
+        public static async Task HandleApiExceptionAsync(this ApiException aex)
         {
             New<IReport>().Exception(aex);
-            New<AxCryptOnlineState>().IsOffline = true;
-            if (aex is OfflineApiException || aex.ErrorStatus == ErrorStatus.ApiHttpResponseError)
+            if (New<AxCryptOnlineState>().IsOffline)
             {
-                Texts.OfflineApiExceptionDialogText.ShowWarning(Texts.WarningTitle);
+                return;
             }
+
+            New<AxCryptOnlineState>().IsOffline = true;
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText);
         }
     }
 }
