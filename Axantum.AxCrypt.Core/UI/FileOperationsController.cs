@@ -29,9 +29,11 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -337,12 +339,25 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
-            await encryptionParameters.AddAsync(_eventArgs.SharedPublicKeys);
+            await encryptionParameters.AddAsync(await GetWatchedFolderKeyShares(_eventArgs.OpenFileFullName));
 
             await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return true;
+        }
+
+        private static async Task<IEnumerable<EmailAddress>> GetWatchedFolderKeyShares(string sourceFileName)
+        {
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
+            {
+                return new EmailAddress[0];
+            }
+
+            IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
+            WatchedFolder sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.FindOrDefault(sourceFileInfo);
+
+            return sourceFileWatchedFolder?.KeyShares ?? new EmailAddress[0];
         }
 
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)

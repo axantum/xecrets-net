@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
@@ -38,10 +38,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
-using Axantum.AxCrypt.Core.UI;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using Axantum.AxCrypt.Common;
 
 namespace Axantum.AxCrypt.Core.Extensions
 {
@@ -111,7 +108,7 @@ namespace Axantum.AxCrypt.Core.Extensions
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
         public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            return folderPath.ListOfFiles(ignoreFolders,folderOperationMode).Where(fileInfo => New<FileFilter>().IsEncryptable(fileInfo));
+            return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => New<FileFilter>().IsEncryptable(fileInfo));
         }
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
@@ -223,11 +220,10 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return files;
             }
 
-            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => { return !ignoreFolders.Any(x => x.FullName == folderInfo.FullName); });
+            IEnumerable<IDataContainer> folders = folderPath.Folders.Where(folderInfo => !ignoreFolders.Any(x => x.FullName == folderInfo.FullName));
             IEnumerable<IDataStore> subFolderFiles = folders.SelectMany(folder => folder.ListOfFiles(ignoreFolders, folderOperationMode));
 
             return files.Concat(subFolderFiles);
         }
-
     }
 }
