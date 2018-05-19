@@ -5,6 +5,7 @@ using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -49,7 +50,6 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
             _troubleRememberingPanel.Hide();
             _viewModel.TooManyTries += (s, ea) => { New<IUIThread>().PostTo(() => _troubleRememberingPanel.Show()); };
 
@@ -68,9 +68,9 @@ namespace Axantum.AxCrypt
             await _premiumLinkLabel.ConfigureAsync(identity);
         }
 
-        private void ButtonOk_Click(object sender, EventArgs e)
+        private async void ButtonOk_Click(object sender, EventArgs e)
         {
-            if (!AdHocValidationDueToMonoLimitations())
+            if (!await AdHocValidationDueToMonoLimitations())
             {
                 DialogResult = DialogResult.None;
                 return;
@@ -78,17 +78,17 @@ namespace Axantum.AxCrypt
             DialogResult = DialogResult.OK;
         }
 
-        private bool AdHocValidationDueToMonoLimitations()
+        private async Task<bool> AdHocValidationDueToMonoLimitations()
         {
-            bool validated = AdHocValidatePassphrase();
+            bool validated = await AdHocValidatePassphrase();
 
             return validated;
         }
 
-        private bool AdHocValidatePassphrase()
+        private async Task<bool> AdHocValidatePassphrase()
         {
             _errorProvider1.Clear();
-            if (_viewModel[nameof(LogOnAccountViewModel.PasswordText)].Length != 0)
+            if (!await _viewModel.ValidateItemAsync(nameof(LogOnAccountViewModel.PasswordText)))
             {
                 _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
                 return false;

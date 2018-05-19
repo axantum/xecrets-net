@@ -200,6 +200,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        public Task<bool> ValidateItemAsync(string propertyName)
+        {
+            return ValidateAsync(propertyName);
+        }
+
         protected virtual Task<bool> ValidateAsync(string columnName)
         {
             return Task.FromResult(true);
