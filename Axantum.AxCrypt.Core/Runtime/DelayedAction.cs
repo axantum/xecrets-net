@@ -45,11 +45,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         protected virtual void OnAction()
         {
-            EventHandler handler = Action;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Action?.Invoke(this, new EventArgs());
         }
 
         /// <summary>

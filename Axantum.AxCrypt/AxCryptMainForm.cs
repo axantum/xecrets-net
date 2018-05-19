@@ -785,8 +785,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
 
-            _checkForUpdateToolStripMenuItem.Click += (sender, e) => { _userInitiatedUpdateCheckPending = true; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
-            _debugCheckVersionNowToolStripMenuItem.Click += (sender, e) => { _userInitiatedUpdateCheckPending = true; _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue); };
+            _checkForUpdateToolStripMenuItem.Click += async (sender, e) => { _userInitiatedUpdateCheckPending = true; await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue); };
+            _debugCheckVersionNowToolStripMenuItem.Click += async (sender, e) => { _userInitiatedUpdateCheckPending = true; await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
@@ -915,7 +915,7 @@ namespace Axantum.AxCrypt
                     New<IInternetState>().Clear();
 
                     await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
-                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
+                    await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue);
                 }
                 New<IUIThread>().PostTo(async () =>
                 {
@@ -1677,7 +1677,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void _softwareStatusButton_Click(object sender, EventArgs e)
+        private async void _softwareStatusButton_Click(object sender, EventArgs e)
         {
             switch (_mainViewModel.VersionUpdateStatus)
             {
@@ -1686,7 +1686,7 @@ namespace Axantum.AxCrypt
                 case VersionUpdateStatus.IsUpToDate:
                 case VersionUpdateStatus.Unknown:
                     _userInitiatedUpdateCheckPending = true;
-                    _mainViewModel.AxCryptUpdateCheck.Execute(DateTime.MinValue);
+                    await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue);
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:

@@ -109,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction OpenSelectedFolder { get; private set; }
 
-        public IAction AxCryptUpdateCheck { get; private set; }
+        public IAsyncAction AxCryptUpdateCheck { get; private set; }
 
         public IAction LicenseUpdate { get; private set; }
 
@@ -148,7 +148,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ClearPassphraseMemory = new AsyncDelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
             RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-            AxCryptUpdateCheck = new DelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
+            AxCryptUpdateCheck = new AsyncDelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
 
             DecryptFileEnabled = true;
@@ -163,7 +163,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
             BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
-            BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => { if (loggedOn) AxCryptUpdateCheck.Execute(_userSettings.LastUpdateCheckUtc); });
+            BindPropertyChangedInternal(nameof(LoggedOn), async (bool loggedOn) => { if (loggedOn) await AxCryptUpdateCheck.ExecuteAsync(_userSettings.LastUpdateCheckUtc); });
 
             BindPropertyChanged(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
@@ -438,9 +438,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private void AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
+        private Task AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
-            _axCryptUpdateCheck.CheckInBackground(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
+            return _axCryptUpdateCheck.CheckInBackgroundAsync(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
         }
 
         private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
@@ -475,7 +475,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 Resolve.SessionNotify.RemoveCommand(HandleSessionChangedAsync);
 
                 _axCryptUpdateCheck.AxCryptUpdate -= Handle_VersionUpdate;
-                _axCryptUpdateCheck.Dispose();
                 _axCryptUpdateCheck = null;
             }
         }

@@ -33,13 +33,12 @@ using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Threading;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public class AxCryptUpdateCheck : IDisposable
+    public class AxCryptUpdateCheck
     {
         private Version _currentVersion;
 
@@ -50,24 +49,22 @@ namespace Axantum.AxCrypt.Core.UI
 
         public virtual event EventHandler<VersionEventArgs> AxCryptUpdate;
 
-        private ManualResetEvent _done = new ManualResetEvent(true);
-
-        private readonly object _doneLock = new object();
+        private bool _inProgress;
 
         /// <summary>
         /// Perform a background version check. The VersionUpdate event is guaranteed to be
         /// raised, regardless of response and result. If a check is already in progress, the
         /// later call is ignored and only one check is performed.
         /// </summary>
-        public virtual void CheckInBackground(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl, string cultureName)
+        public virtual async Task CheckInBackgroundAsync(DateTime lastCheckTimeUtc, string newestKnownVersion, Uri updateWebpageUrl, string cultureName)
         {
             if (newestKnownVersion == null)
             {
-                throw new ArgumentNullException("newestKnownVersion");
+                throw new ArgumentNullException(nameof(newestKnownVersion));
             }
             if (updateWebpageUrl == null)
             {
-                throw new ArgumentNullException("updateWebpageUrl");
+                throw new ArgumentNullException(nameof(updateWebpageUrl));
             }
             if (cultureName == null)
             {
@@ -76,10 +73,6 @@ namespace Axantum.AxCrypt.Core.UI
 
             Version newestKnownVersionValue = ParseVersion(newestKnownVersion);
 
-            if (_done == null)
-            {
-                throw new ObjectDisposedException("_done");
-            }
             if (lastCheckTimeUtc.AddDays(1) >= New<INow>().Utc)
             {
                 if (Resolve.Log.IsInfoEnabled)
@@ -90,29 +83,23 @@ namespace Axantum.AxCrypt.Core.UI
                 return;
             }
 
-            lock (_doneLock)
+            if (_inProgress)
             {
-                if (!_done.WaitOne(TimeSpan.Zero))
-                {
-                    return;
-                }
-                _done.Reset();
+                return;
             }
-            Task.Run(async () =>
+            _inProgress = true;
+            try
             {
-                try
+                DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, cultureName).Free();
+                if (newVersion.Url != null)
                 {
-                    DownloadVersion newVersion = await CheckWebForNewVersionAsync(updateWebpageUrl, cultureName).Free();
-                    if (newVersion.Url != null)
-                    {
-                        OnVersionUpdate(new VersionEventArgs(newVersion, lastCheckTimeUtc));
-                    }
+                    OnVersionUpdate(new VersionEventArgs(newVersion, lastCheckTimeUtc));
                 }
-                finally
-                {
-                    _done.Set();
-                }
-            });
+            }
+            finally
+            {
+                _inProgress = false;
+            }
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
@@ -163,19 +150,6 @@ namespace Axantum.AxCrypt.Core.UI
             return new DownloadVersion(updateWebpageUrl, DownloadVersion.VersionUnknown);
         }
 
-        /// <summary>
-        /// Wait for the background check (if any) to be complete. When this method returns, the
-        /// VersionUpdate event has already been raised.
-        /// </summary>
-        public void WaitForBackgroundCheckComplete()
-        {
-            if (_done == null)
-            {
-                throw new ObjectDisposedException("_done");
-            }
-            _done.WaitOne();
-        }
-
         private static bool TryParseVersion(string versionString, out Version version)
         {
             version = DownloadVersion.VersionUnknown;
@@ -218,34 +192,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void OnVersionUpdate(VersionEventArgs e)
         {
-            EventHandler<VersionEventArgs> handler = AxCryptUpdate;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            AxCryptUpdate?.Invoke(this, e);
         }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_done == null)
-            {
-                return;
-            }
-            if (disposing)
-            {
-                _done.Dispose();
-                _done = null;
-            }
-        }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion IDisposable Members
     }
 }
