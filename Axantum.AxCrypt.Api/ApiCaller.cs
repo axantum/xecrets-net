@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -42,7 +41,7 @@ namespace Axantum.AxCrypt.Api
 
             if (restResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
-                throw new UnauthorizedApiException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
+                throw new UnauthorizedException(restResponse.Content, ErrorStatus.ApiHttpResponseError);
             }
             if (restResponse.StatusCode == HttpStatusCode.ServiceUnavailable)
             {

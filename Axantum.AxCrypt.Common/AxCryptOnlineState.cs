@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Common
 {
@@ -11,6 +10,8 @@ namespace Axantum.AxCrypt.Common
         private bool? _isOnline;
 
         public event EventHandler OnlineStateChanged;
+
+        public bool IsFirstSignIn { get; set; } = true;
 
         public bool IsOnline
         {
@@ -44,6 +45,11 @@ namespace Axantum.AxCrypt.Common
                     OnOnlineStateChanged(new EventArgs());
                 }
             }
+        }
+
+        public void RaiseOnlineStateChanged()
+        {
+            OnOnlineStateChanged(new EventArgs());
         }
 
         protected virtual void OnOnlineStateChanged(EventArgs e)

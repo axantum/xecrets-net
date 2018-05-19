@@ -54,7 +54,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.
         /// </value>
-        bool HasAccounts { get; }
+        Task<bool> HasAccountsAsync();
 
         /// <summary>
         /// Gets the identity this instance works with.

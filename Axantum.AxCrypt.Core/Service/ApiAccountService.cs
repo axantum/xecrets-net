@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -71,17 +70,14 @@ namespace Axantum.AxCrypt.Core.Service
         /// <value>
         /// <c>true</c> if this instance has accounts; otherwise, <c>false</c>.
         /// </value>
-        public bool HasAccounts
+        public Task<bool> HasAccountsAsync()
         {
-            get
+            if (String.IsNullOrEmpty(_apiClient.Identity.User))
             {
-                if (String.IsNullOrEmpty(_apiClient.Identity.User))
-                {
-                    throw new InvalidOperationException("The account service requires a user.");
-                }
-
-                return true;
+                throw new InvalidOperationException("The account service requires a user.");
             }
+
+            return Task.FromResult(true);
         }
 
         /// <summary>
@@ -172,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Service
                 userAccount.AccountSource = AccountSource.Remote;
                 return userAccount;
             }
-            catch (UnauthorizedApiException)
+            catch (UnauthorizedException)
             {
                 return new UserAccount(Identity.UserEmail.Address);
             }
@@ -197,7 +193,7 @@ namespace Axantum.AxCrypt.Core.Service
                 IList<AccountKey> apiAccountKeys = (await _apiClient.MyAccountAsync().Free()).AccountKeys;
                 return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
             }
-            catch (UnauthorizedApiException uaex)
+            catch (UnauthorizedException uaex)
             {
                 throw new PasswordException("Credentials are not valid for server access.", uaex);
             }
@@ -219,7 +215,7 @@ namespace Axantum.AxCrypt.Core.Service
                 }
                 return accountKey.ToUserKeyPair(Identity.Passphrase);
             }
-            catch (UnauthorizedApiException uaex)
+            catch (UnauthorizedException uaex)
             {
                 throw new PasswordException("Credentials are not valid for server access.", uaex);
             }
@@ -236,7 +232,7 @@ namespace Axantum.AxCrypt.Core.Service
             {
                 await _apiClient.PutMyAccountAsync(account).Free();
             }
-            catch (UnauthorizedApiException uaex)
+            catch (UnauthorizedException uaex)
             {
                 throw new PasswordException("Credentials are not valid for server access.", uaex);
             }
@@ -258,7 +254,7 @@ namespace Axantum.AxCrypt.Core.Service
                 IList<AccountKey> apiAccountKeys = keyPairs.Select(k => k.ToAccountKey(Identity.Passphrase)).ToList();
                 await _apiClient.PutMyAccountKeysAsync(apiAccountKeys).Free();
             }
-            catch (UnauthorizedApiException uaex)
+            catch (UnauthorizedException uaex)
             {
                 throw new PasswordException("Credentials are not valid for server access.", uaex);
             }
@@ -286,14 +282,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            try
-            {
-                return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
-            }
-            catch (ApiException aex)
-            {
-                throw new UserInputException($"Bad request to API for {email}.", ErrorStatus.BadUserInput, aex);
-            }
+            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
         }
     }
 }

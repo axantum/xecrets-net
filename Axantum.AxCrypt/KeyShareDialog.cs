@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
@@ -73,8 +74,8 @@ namespace Axantum.AxCrypt
                 if (await ShareNewContactAsync())
                 {
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
-                };
-                _newContact.Text = String.Empty;
+                    _newContact.Text = String.Empty;
+                }
 
                 SetShareButtonState();
             };
@@ -204,22 +205,26 @@ namespace Axantum.AxCrypt
             try
             {
                 await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
-                return true;
+                if (_viewModel.SharedWith.Where(sw => sw.Email.ToString() == _viewModel.NewKeyShare).Any())
+                {
+                    return true;
+                }
+
+                if (New<AxCryptOnlineState>().IsOffline)
+                {
+                    _newContact.Enabled = !New<AxCryptOnlineState>().IsOffline;
+                    _newContact.Text = $"[{Texts.OfflineIndicatorText}]";
+                    _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
+                }
             }
-            catch (UserInputException uiex)
+            catch (BadRequestApiException braex)
             {
-                New<IReport>().Exception(uiex);
+                New<IReport>().Exception(braex);
                 _errorProvider1.SetError(_newContact, Texts.InvalidEmail);
                 _errorProvider1.SetIconPadding(_newContact, 3);
-                return false;
             }
-            catch (OfflineApiException oaex)
-            {
-                New<IReport>().Exception(oaex);
-                _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
-                _errorProvider1.SetIconPadding(_newContact, 3);
-                return false;
-            }
+
+            return false;
         }
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)

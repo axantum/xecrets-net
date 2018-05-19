@@ -26,40 +26,33 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Common;
 using System;
-using System.Net;
 
 namespace Axantum.AxCrypt.Api
 {
-    public class UnauthorizedApiException : ApiException
+    public class UnauthorizedException : AxCryptException
     {
-        public UnauthorizedApiException()
+        public UnauthorizedException()
             : base()
         {
         }
 
-        public UnauthorizedApiException(string message)
+        public UnauthorizedException(string message)
             : this(message, ErrorStatus.ApiUnauthorizedError)
         {
         }
 
-        public UnauthorizedApiException(string message, ErrorStatus errorStatus)
+        public UnauthorizedException(string message, ErrorStatus errorStatus)
             : base(message, errorStatus)
         {
         }
 
-        public UnauthorizedApiException(string message, HttpStatusCode httpStatusCode)
-            : base(message, httpStatusCode)
-        {
-        }
-
-        public UnauthorizedApiException(string message, Exception innerException)
+        public UnauthorizedException(string message, Exception innerException)
             : this(message, ErrorStatus.ApiUnauthorizedError, innerException)
         {
         }
 
-        public UnauthorizedApiException(string message, ErrorStatus errorStatus, Exception innerException)
+        public UnauthorizedException(string message, ErrorStatus errorStatus, Exception innerException)
             : base(message, errorStatus, innerException)
         {
         }

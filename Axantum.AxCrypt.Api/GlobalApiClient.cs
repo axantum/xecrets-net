@@ -38,22 +38,10 @@ namespace Axantum.AxCrypt.Api
             RestResponse restResponse;
             if (New<AxCryptOnlineState>().IsOnline)
             {
-                try
-                {
-                    restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
-                    ApiCaller.EnsureStatusOk(restResponse);
-                    ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
-                    return apiVersion;
-                }
-                catch (OfflineApiException oaex)
-                {
-                    New<IReport>().Exception(oaex);
-                    New<AxCryptOnlineState>().IsOffline = true;
-                }
-                catch (Exception ex)
-                {
-                    New<IReport>().Exception(ex);
-                }
+                restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+                ApiCaller.EnsureStatusOk(restResponse);
+                ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
+                return apiVersion;
             }
             return ApiVersion.Zero;
         }

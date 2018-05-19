@@ -37,12 +37,9 @@ namespace Axantum.AxCrypt.Core.Service
             return this;
         }
 
-        public bool HasAccounts
+        public Task<bool> HasAccountsAsync()
         {
-            get
-            {
-                return New<ICache>().GetItem(_key.Subkey(nameof(HasAccounts)), () => _service.HasAccounts);
-            }
+            return New<ICache>().GetItemAsync(_key.Subkey(nameof(HasAccountsAsync)), () => _service.HasAccountsAsync());
         }
 
         public LogOnIdentity Identity
