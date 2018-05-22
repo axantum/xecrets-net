@@ -83,6 +83,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DecryptFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => DecryptFoldersActionAsync(folders), (folders) => Task.FromResult(_knownIdentities.IsLoggedOn));
             WipeFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => WipeFilesActionAsync(files));
             RandomRenameFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RandomRenameFilesActionAsync(files));
+            RestoreRenameFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RestoreAnonymousRenameFiles(files));
             OpenFilesFromFolder = new AsyncDelegateAction<string>((folder) => OpenFilesFromFolderActionAsync(folder), (folder) => Task.FromResult(true));
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => AddRecentFilesActionAsync(files));
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
@@ -101,6 +102,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction WipeFiles { get; private set; }
 
         public IAsyncAction RandomRenameFiles { get; private set; }
+
+        public IAsyncAction RestoreRenameFiles { get; private set; }
 
         public IAsyncAction OpenFilesFromFolder { get; private set; }
 
@@ -205,6 +208,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), RandomRenameFileWorkAsync, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+        }
+
+        private async Task RestoreAnonymousRenameFiles(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Rename);
+            if (!files.Any())
+            {
+                return;
+            }
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), RestoreAnonymousRenameFilesWorkAsync, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
         private IEnumerable<string> SelectFiles(FileSelectionType fileSelectionType)
@@ -324,6 +337,31 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private Task<FileOperationContext> RandomRenameFileWorkAsync(IDataStore file, IProgressContext progress)
         {
             file.MoveTo(file.CreateRandomUniqueName().FullName);
+
+            return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+        }
+
+        private Task<FileOperationContext> RestoreAnonymousRenameFilesWorkAsync(IDataStore file, IProgressContext progress)
+        {
+            EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, IdentityViewModel.LogOnIdentity);
+            string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.Replace('.', '-') + Resolve.Portable.Path().GetExtension(file.FullName));
+            if (file.FullName == destinationFilePath)
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+            }
+
+            IDataStore destinationFileInfo = New<IDataStore>(destinationFilePath);
+            if (destinationFileInfo.IsAvailable)
+            {
+                using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
+                {
+                    file.MoveTo(lockedSave.DataStore.FullName);
+                }
+            }
+            else
+            {
+                file.MoveTo(destinationFilePath);
+            }
 
             return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
         }

@@ -27,7 +27,7 @@ namespace Axantum.AxCrypt
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._restoreAnonymousRenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recentFilesRestoreAnonymousNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +56,7 @@ namespace Axantum.AxCrypt
             this._decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._encryptedFoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._restoreRenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._restoreAnonymousNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._upgradeLegacyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt
             this._decryptAndRemoveFromListToolStripMenuItem,
             this._shareKeysToolStripMenuItem,
             this._recentFilesShowInFolderToolStripMenuItem,
-            this._restoreAnonymousRenameToolStripMenuItem,
+            this._recentFilesRestoreAnonymousNamesToolStripMenuItem,
             this._clearRecentFilesToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 114);
@@ -216,9 +216,9 @@ namespace Axantum.AxCrypt
             // 
             // _restoreAnonymousRenameToolStripMenuItem
             // 
-            this._restoreAnonymousRenameToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
-            this._restoreAnonymousRenameToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
-            this._restoreAnonymousRenameToolStripMenuItem.Text = "[Restore Anonymous Names]";
+            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
+            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Text = "[Restore Anonymous Names]";
             // 
             // _clearRecentFilesToolStripMenuItem
             // 
@@ -429,7 +429,7 @@ namespace Axantum.AxCrypt
             this._decryptToolStripMenuItem,
             this._encryptedFoldersToolStripMenuItem,
             this._renameToolStripMenuItem,
-             this._restoreRenameToolStripMenuItem,
+             this._restoreAnonymousNamesToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
             this._upgradeLegacyMenuItem,
             this._toolStripSeparator6,
@@ -485,9 +485,9 @@ namespace Axantum.AxCrypt
             // 
             // _restoreRenameToolStripMenuItem
             // 
-            this._restoreRenameToolStripMenuItem.Name = "_renameToolStripMenuItem";
-            this._restoreRenameToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._restoreRenameToolStripMenuItem.Text = "[&Restore Rename]";
+            this._restoreAnonymousNamesToolStripMenuItem.Name = "_renameToolStripMenuItem";
+            this._restoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._restoreAnonymousNamesToolStripMenuItem.Text = "[&Restore Rename]";
             // 
             // _addSecureFolderToolStripMenuItem
             // 
@@ -1264,7 +1264,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;
         private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _restoreRenameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _restoreAnonymousNamesToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.MenuStrip _mainMenuStrip;
@@ -1332,7 +1332,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _restoreAnonymousRenameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _recentFilesRestoreAnonymousNamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _germanLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _koreanLanguageToolStripMenuItem;
