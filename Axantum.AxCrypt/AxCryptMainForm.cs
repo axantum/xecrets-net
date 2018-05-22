@@ -294,8 +294,8 @@ namespace Axantum.AxCrypt
             _removeRecentFileToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
             _renameToolStripMenuItem.Text = "&" + Texts.AnonymousRenameMenuText;
             _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
-            _restoreAnonymousNamesToolStripMenuItem.Text = "&" + "Restore Anonymous Rename";
-            _restoreAnonymousNamesToolStripMenuItem.ToolTipText = "&" + "Restore Anonymous Rename";
+            _restoreAnonymousNamesToolStripMenuItem.Text = "&" + Texts.RestoreAnonymousNames;
+            _restoreAnonymousNamesToolStripMenuItem.ToolTipText = Texts.RestoreAnonymousNamesToolTip;
             _russianLanguageToolStripMenuItem.Text = "&" + Texts.RussianLanguageSelection;
             _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
             _secureDeleteToolStripMenuItem.Text = "&" + Texts.SecureDeleteToolStripMenuItemText;
@@ -632,7 +632,7 @@ namespace Axantum.AxCrypt
                 _renameToolStripMenuItem.Image = null;
                 _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
                 _restoreAnonymousNamesToolStripMenuItem.Image = null;
-                _restoreAnonymousNamesToolStripMenuItem.ToolTipText = "Restore Anonymous Rename";
+                _restoreAnonymousNamesToolStripMenuItem.ToolTipText = Texts.RestoreAnonymousNamesToolTip;
             }
             else
             {
