@@ -27,7 +27,7 @@ namespace Axantum.AxCrypt
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._recentFilesRestoreAnonymousNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recentFilesRestoreAnonymousNamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,7 +179,7 @@ namespace Axantum.AxCrypt
             this._decryptAndRemoveFromListToolStripMenuItem,
             this._shareKeysToolStripMenuItem,
             this._recentFilesShowInFolderToolStripMenuItem,
-            this._recentFilesRestoreAnonymousNamesToolStripMenuItem,
+            this._recentFilesRestoreAnonymousNamesMenuItem,
             this._clearRecentFilesToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
             this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 114);
@@ -214,11 +214,11 @@ namespace Axantum.AxCrypt
             this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
             this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
             // 
-            // _recentFilesRestoreAnonymousNamesToolStripMenuItem
+            // _recentFilesRestoreAnonymousNamesMenuItem
             // 
-            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
-            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
-            this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Text = "[Restore Anonymous Names]";
+            this._recentFilesRestoreAnonymousNamesMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
+            this._recentFilesRestoreAnonymousNamesMenuItem.Size = new System.Drawing.Size(334, 22);
+            this._recentFilesRestoreAnonymousNamesMenuItem.Text = "[Restore Anonymous Names]";
             // 
             // _clearRecentFilesToolStripMenuItem
             // 
@@ -1331,7 +1331,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _recentFilesRestoreAnonymousNamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _recentFilesRestoreAnonymousNamesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _germanLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _koreanLanguageToolStripMenuItem;

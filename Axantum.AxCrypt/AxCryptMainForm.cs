@@ -806,7 +806,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesToolStripMenuItem.Enabled = _mainViewModel.RandomRenameEnabled; };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _mainViewModel.RandomRenameEnabled; };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _clearRecentFilesToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName)); };
@@ -820,7 +820,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
-            _recentFilesRestoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
+            _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
