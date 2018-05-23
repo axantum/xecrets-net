@@ -5756,9 +5756,9 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to !!Restore Anonymous Names.
         /// </summary>
-        public static string RestoreAnonymousNames {
+        public static string RestoreAnonymousNamesMenuText {
             get {
-                return ResourceManager.GetString("RestoreAnonymousNames", resourceCulture);
+                return ResourceManager.GetString("RestoreAnonymousNamesMenuText", resourceCulture);
             }
         }
         

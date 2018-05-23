@@ -2315,7 +2315,7 @@ Subject: AxCrypt Report Snapshot
   <data name="ResetButtonText" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="RestoreAnonymousNames" xml:space="preserve">
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>!!Restore Anonymous Names</value>
   </data>
   <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
