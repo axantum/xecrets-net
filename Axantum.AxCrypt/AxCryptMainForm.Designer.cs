@@ -214,7 +214,7 @@ namespace Axantum.AxCrypt
             this._recentFilesShowInFolderToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
             this._recentFilesShowInFolderToolStripMenuItem.Text = "[Show in &Folder]";
             // 
-            // _restoreAnonymousRenameToolStripMenuItem
+            // _recentFilesRestoreAnonymousNamesToolStripMenuItem
             // 
             this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
             this._recentFilesRestoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
@@ -429,7 +429,7 @@ namespace Axantum.AxCrypt
             this._decryptToolStripMenuItem,
             this._encryptedFoldersToolStripMenuItem,
             this._renameToolStripMenuItem,
-             this._restoreAnonymousNamesToolStripMenuItem,
+            this._restoreAnonymousNamesToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
             this._upgradeLegacyMenuItem,
             this._toolStripSeparator6,
@@ -483,7 +483,7 @@ namespace Axantum.AxCrypt
             this._renameToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._renameToolStripMenuItem.Text = "[&Rename]";
             // 
-            // _restoreRenameToolStripMenuItem
+            // _restoreAnonymousNamesToolStripMenuItem
             // 
             this._restoreAnonymousNamesToolStripMenuItem.Name = "_renameToolStripMenuItem";
             this._restoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
@@ -495,7 +495,6 @@ namespace Axantum.AxCrypt
             this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
             // 
-           
             // _upgradeLegacyMenuItem
             // 
             this._upgradeLegacyMenuItem.Name = "_upgradeLegacyMenuItem";

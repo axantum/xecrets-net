@@ -294,7 +294,7 @@ namespace Axantum.AxCrypt
             _removeRecentFileToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
             _renameToolStripMenuItem.Text = "&" + Texts.AnonymousRenameMenuText;
             _renameToolStripMenuItem.ToolTipText = Texts.AnonymousRenameToolTip;
-            _restoreAnonymousNamesToolStripMenuItem.Text = "&" + Texts.RestoreAnonymousNames;
+            _restoreAnonymousNamesToolStripMenuItem.Text = "&" + Texts.RestoreAnonymousNamesMenuText;
             _restoreAnonymousNamesToolStripMenuItem.ToolTipText = Texts.RestoreAnonymousNamesToolTip;
             _russianLanguageToolStripMenuItem.Text = "&" + Texts.RussianLanguageSelection;
             _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
@@ -820,7 +820,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
-            _recentFilesRestoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
+            _recentFilesRestoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
@@ -885,7 +885,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _recentFilesOpenToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _renameToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(null); }, sender, e);
-            _restoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRenameFiles.ExecuteAsync(null); }, sender, e);
+            _restoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(null); }, sender, e);
             _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
             _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
             _tryBrokenFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.TryBrokenFiles.ExecuteAsync(null); };
