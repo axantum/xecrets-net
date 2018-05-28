@@ -295,8 +295,13 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <value>Witamy w AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>Administratorzy</value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;Zostałeś dodany przez &lt;b&gt;{0}&lt;/b&gt; jako użytkownik AxCrypt File Security. Aby zacząć zabezpieczać swoje pliki, po prostu &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;pobierz&lt;/a&gt; i  zinstaluj AxCrypt. Zaloguj się do AxCrypt używając &lt;b&gt;{2}&lt;/b&gt;, wpisz poniższy kod weryfikacyjny i ustaw swoje osobiste tajne hasło.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Zostałeś dodany przez &lt;b&gt;{0}&lt;/b&gt; jako użytkownik AxCrypt File Security. Aby zacząć zabezpieczać swoje pliki, po prostu &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;pobierz&lt;/a&gt; i  zinstaluj AxCrypt. Zaloguj się do AxCrypt używając &lt;b&gt;{2}&lt;/b&gt;, wpisz poniższy kod weryfikacyjny i ustaw swoje osobiste tajne hasło.&lt;/p&gt;
+&lt;/p&gt;Jeśli masz jakieś pytania, najpierw skontaktuj się z {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
@@ -318,6 +323,10 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
     <value>Administrator</value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>Jesteś już użytkownikiem Buisness, utwórz nową subskrypcję tylko jeśli jesteś tego pewien.</value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
   </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
     <value>Dostępny</value>
@@ -454,6 +463,14 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Czy naprawdę chcesz wykluczyć tego członka z abonamentu? </value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>Działając na</value>
+    <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>Działając jako</value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
   </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Razem</value>
@@ -642,6 +659,9 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>Pamiętaj, że aplikacja przechowuje odszyfrowaną kopię pliku w lokalnej pamięci plików. Zostanie ona usunięta po wylogowaniu. Możesz także usunąć ją ręcznie przyciskiem Cleanup.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
+  </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Wyczyść ostatnie pliki</value>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Kliknij, aby sprawdzić dostępność nowszej wersji.</value>
@@ -1132,7 +1152,7 @@ Zaloguj się do AxCrypt za pomocą {2}, wprowadź 6-cyfrowy kod weryfikacyjny i 
     <value>Zaproś użytkownika</value>
   </data>
   <data name="Invoice" xml:space="preserve">
-    <value>Pokwitowanie
+    <value>Faktura
 </value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
@@ -1152,7 +1172,7 @@ Zaloguj się do AxCrypt za pomocą {2}, wprowadź 6-cyfrowy kod weryfikacyjny i 
     <value>Opis</value>
   </data>
   <data name="InvoiceHeadline" xml:space="preserve">
-    <value>Moje rachunki</value>
+    <value>Moje faktury</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Zapłacono</value>
@@ -1597,6 +1617,9 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Tworzenie AxCrypt ID w trybie offline.</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>Wygląda na to, że jest problem z połączeniem z serwerem, ale będziemy kontynuować w trybie offline.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Offline</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1742,6 +1765,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Kup dla kogoś innego</value>
   </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>Opłacony w całości</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Więcej informacji o PayPal]</value>
   </data>
@@ -1771,6 +1797,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Ta funkcja wymaga wykupienia wersji płatnej abonamentu!</value>
+  </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCryptPremium  {0} x 30 dni.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Udostępnianie klucza wymaga wersji płatnej abonamentu. Kliknij, aby przejść do wersji Premium!</value>
@@ -1946,12 +1975,12 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Rachunek za AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Dziękujemy za zakup pakietu AxCrypt Premium! Wyloguj się i zaloguj ponownie z dowolnej aplikacji, aby ją zaktualizować do Premium.</value>
+    <value>Dziękujemy za zakup pakietu AxCrypt Premium! Wyloguj się i zaloguj ponownie  zaktualizować status Twojej subskrypcji.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Masz teraz dostęp do wszystkich funkcji Premium w AxCrypt. Może być konieczne, abyś wylogował się z aplikacji i zalogował się ponownie. W razie jakichkolwiek problemów skontaktuj się z naszym działem pomocy technicznej.
+    <value>Masz teraz dostęp do wszystkich dodatkowych funkcji AxCrypt. Może być konieczne, abyś wylogował się z aplikacji i zalogował się ponownie. W razie jakichkolwiek problemów skontaktuj się z naszym działem pomocy technicznej.
  
-Potwierdzenie zakupu zostało wysłane na Twój email.</value>
+Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę płatności. Fakturę możesz wydrukować z naszej strony internetowej.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>VAT można dostosować w trakcie płatności.</value>
@@ -2038,6 +2067,12 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Kliknij, aby wysłać ponownie email z kodem weryfikacyjnym.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>Spowoduje to wyczyszczenie wszystkich ustawień. Żadne dane nie zostaną utracone, ale konfiguracja zostanie zresetowana do domyślnych ustawień instalacji.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Resetuj</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Jesteś już zalogowany przy użyciu tego hasła!</value>
@@ -2204,6 +2239,10 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Wyślij opinię</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value>{0} ważny do {1}.</value>
+    <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Subskrypcja została pomyślnie zapisana.</value>
