@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -31,9 +32,9 @@ namespace Axantum.AxCrypt.Api
             Timeout = timeout;
         }
 
-        public async Task<ApiVersion> ApiVersionAsync()
+        public async Task<ApiVersion> ApiVersionAsync(string appPlatform, string appVersion)
         {
-            Uri resource = BaseUrl.PathCombine("global/apiversion");
+            Uri resource = BaseUrl.PathCombine($"global/apiversion?AppPlatform={appPlatform ?? ""}&AppVersion={appVersion ?? ""}&UserCulture={CultureInfo.CurrentUICulture.Name}");
 
             RestResponse restResponse;
             if (New<AxCryptOnlineState>().IsOnline)

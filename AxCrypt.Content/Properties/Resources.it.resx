@@ -677,6 +677,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
     <value>Ti preghiamo di considerare che l'app mantiene una copia decriptata del file nell'archivio locale dei file. Sarà rimossa alla disconnessione. Puoi anche rimuoverla manualmente attraverso il pulsante pulisci.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Cancella i File Recenti</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Clicca qui per verificare se una nuova versione è disponibile.</value>
   </data>
@@ -1586,6 +1589,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Creazione di AxCrypt ID non in linea</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>Sembra che ci sia un problema di connessione al server, ma continueremo offline.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Non in linea</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1732,6 +1738,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Acquista per qualcun altro</value>
   </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>Pagato per intero</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Ulteriori informazioni su PayPal]</value>
   </data>
@@ -1757,6 +1766,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Questa funzionalità richiede un piano di abbonamento a pagamento!</value>
+  </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 giorni.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>La condivisione delle chiavi richiede un piano di abbonamento a pagamento. Clicca per fare l'upgrade ora! </value>
@@ -1922,16 +1934,16 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>L'acquisto è stato annullato.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>Non abbiamo ricevuto il tuo pagamento. Potresti aver annullato manualmente l'acquisto su PayPal o potresti non avere credito sufficiente.</value>
+    <value>Non abbiamo ricevuto il tuo pagamento. Potresti aver annullato manualmente l'acquisto o potresti non avere credito sufficiente.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Ricevuta di AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Grazie per aver acquistato AxCrypt Premium! Per favore disconnettiti e riconnettiti di nuovo da tutte le app per aggiornarle a Premium.</value>
+    <value>Grazie per aver acquistato un abbonamento AxCrypt! Per favore disconnettiti e riconnettiti di nuovo per aggiornare lo stato dell'abbonamento.</value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>Ora puoi accedere a tutte le funzionalità Premium di AxCrypt. Potrebbe essere necessario disconnettersi dall'app e connettersi di nuovo. Se riscontri dei problemi, per favore contatta il nostro supporto.
+    <value>Ora puoi accedere a tutte le funzionalità aggiuntive di AxCrypt. Potrebbe essere necessario disconnettersi dall'app e connettersi di nuovo. Se riscontri dei problemi, per favore contatta il nostro supporto.
 
 La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
   </data>
@@ -2019,6 +2031,12 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Clicca per inviare di nuovo il codice di verifica al tuo indirizzo e-mail.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>Questa azione cancellerà tutte le impostazioni. Nessun dato verrà perso, ma la configurazione sarà resettata alle impostazioni predefinite di installazione.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Resetta</value>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Sei già connesso con questa password!</value>

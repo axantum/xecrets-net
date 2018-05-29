@@ -30,3 +30,4 @@ cov-int/*
 AxCrypt.NET.VC.db
 AxCrypt.NET.VC.VC.opendb
 AxCrypt.VisualState.xml
+.vs
