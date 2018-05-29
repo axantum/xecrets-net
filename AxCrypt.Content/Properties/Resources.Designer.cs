@@ -1649,6 +1649,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Status.
+        /// </summary>
+        public static string ColumnStatusHeader {
+            get {
+                return ResourceManager.GetString("ColumnStatusHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Timestamp.
         /// </summary>
         public static string ColumnTimestampHeader {

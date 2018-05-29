@@ -741,6 +741,9 @@ You must complete these steps to complete the process.</value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Product</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>!!Status</value>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Timestamp</value>
   </data>
