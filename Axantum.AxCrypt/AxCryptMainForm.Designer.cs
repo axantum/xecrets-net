@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt
             // 
             // _recentFilesRestoreAnonymousNamesMenuItem
             // 
-            this._recentFilesRestoreAnonymousNamesMenuItem.Name = "_recentFilesShowInFolderToolStripMenuItem";
+            this._recentFilesRestoreAnonymousNamesMenuItem.Name = "_recentFilesRestoreAnonymousNamesMenuItem";
             this._recentFilesRestoreAnonymousNamesMenuItem.Size = new System.Drawing.Size(334, 22);
             this._recentFilesRestoreAnonymousNamesMenuItem.Text = "[Restore Anonymous Names]";
             // 
@@ -485,7 +485,7 @@ namespace Axantum.AxCrypt
             // 
             // _restoreAnonymousNamesToolStripMenuItem
             // 
-            this._restoreAnonymousNamesToolStripMenuItem.Name = "_renameToolStripMenuItem";
+            this._restoreAnonymousNamesToolStripMenuItem.Name = "_restoreAnonymousNamesToolStripMenuItem";
             this._restoreAnonymousNamesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._restoreAnonymousNamesToolStripMenuItem.Text = "[&Restore Rename]";
             // 
