@@ -346,7 +346,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Task<FileOperationContext> RestoreRandomRenameFilesWorkAsync(IDataStore file, IProgressContext progress)
         {
-            if (file.IsEncrypted())
+            if (!file.IsEncrypted())
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+            }
+
+            FileOperationsController operationsController = new FileOperationsController(progress);
+            operationsController.QueryDecryptionPassphrase = HandleQueryOpenPassphraseEventAsync;
+
+            operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
                 EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, IdentityViewModel.LogOnIdentity);
                 string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.Replace('.', '-') + Resolve.Portable.Path().GetExtension(file.FullName));
@@ -358,9 +366,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                         file.MoveTo(lockedSave.DataStore.FullName);
                     }
                 }
-            }
+            };
 
-            return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+            return operationsController.VerifyEncryptedAsync(file);
         }
 
         private Task<FileOperationContext> OpenEncryptedWorkAsync(IDataStore file, IProgressContext progress)
