@@ -1649,7 +1649,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Status.
+        ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string ColumnStatusHeader {
             get {
@@ -6192,6 +6192,15 @@ namespace AxCrypt.Content.Properties {
         public static string SubmitFeedbackButton {
             get {
                 return ResourceManager.GetString("SubmitFeedbackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Deleted.
+        /// </summary>
+        public static string SubscriptionDeletedText {
+            get {
+                return ResourceManager.GetString("SubscriptionDeletedText", resourceCulture);
             }
         }
         

@@ -742,7 +742,8 @@ You must complete these steps to complete the process.</value>
     <value>Product</value>
   </data>
   <data name="ColumnStatusHeader" xml:space="preserve">
-    <value>!!Status</value>
+    <value>Status</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
   </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Timestamp</value>
@@ -2491,6 +2492,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Submit feedback</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>!!Deleted</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}. </value>
