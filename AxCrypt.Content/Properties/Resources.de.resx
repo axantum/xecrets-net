@@ -127,7 +127,7 @@
     <value>Das Konto muss zuerst vom Benutzer überprüft werden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
-  <data name="AccountServiceLocalExceptionDialogText&#13;&#10;" xml:space="preserve">
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
     <value>Neue Empfänger können im lokalen oder im Offlinemodus nicht hinzugefügt werden, da kein Kontakt mit dem Server besteht.</value>
     <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
   </data>
