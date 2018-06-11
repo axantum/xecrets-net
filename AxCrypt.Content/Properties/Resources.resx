@@ -136,7 +136,8 @@
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
   <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
-    <value>!!There seems to be problem fetching  information from the server because application state is local.</value>
+    <value>New recipients can't be added in local or offline state since there is no contact with the server.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
   </data>
   <data name="AccountStatusBusiness" xml:space="preserve">
     <value>AxCrypt Business</value>
@@ -1119,7 +1120,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt Public Sharing Key Files</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' is open in another application. Please close it and try again.</value>
+    <value>'{0}' has been opened in another application. Please ensure the other application is closed entirely and try again.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' is write protected.</value>
@@ -2320,10 +2321,12 @@ Subject: AxCrypt Report Snapshot
     <value>Reset</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
-    <value>!!Restore Anonymous Names</value>
+    <value>Rename to original</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
   </data>
   <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
-    <value>!!Restore the real name of a random renamed secured file.</value>
+    <value>Restore the file name based on the original file name of an encrypted file that has been renamed.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский (Russian)</value>
@@ -2500,7 +2503,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>Text of Submit feedback button</comment>
   </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
-    <value>!!Deleted</value>
+    <value>Deleted</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}. </value>

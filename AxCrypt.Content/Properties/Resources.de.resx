@@ -127,6 +127,10 @@
     <value>Das Konto muss zuerst vom Benutzer überprüft werden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText&#13;&#10;" xml:space="preserve">
+    <value>Neue Empfänger können im lokalen oder im Offlinemodus nicht hinzugefügt werden, da kein Kontakt mit dem Server besteht.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Testversion</value>
   </data>
@@ -695,6 +699,10 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen. </value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Produkt </value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Status</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Zeitstempel</value>
   </data>
@@ -1003,7 +1011,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>AxCrypt Public Sharing Key Dateien</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' ist in einer anderen Anwendung geöffnet. Bitte schließen Sie es und versuchen Sie es erneut. </value>
+    <value>'{0}' ist in einer anderen Anwendung geöffnet. Bitte stellen Sie sicher, dass die andere Anwendung komplett beendet ist und versuchen Sie es erneut. </value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' ist schreibgeschützt.</value>
@@ -2051,6 +2059,14 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können dies
   </data>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Zurücksetzen</value>
+  </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Zum Original umbenennen</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Stellen Sie den Dateinamen einer umbenannten Datei basierend auf dem ursprünglichen Namen der verschlüsselten Datei wieder her.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Sie sind mit diesem Passwort bereits angemeldet!</value>
