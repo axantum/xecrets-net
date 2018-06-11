@@ -357,8 +357,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
                 EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, IdentityViewModel.LogOnIdentity);
-                string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.Replace('.', '-') + Resolve.Portable.Path().GetExtension(file.FullName));
-
+                string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.CreateEncryptedName());
                 if (!String.Equals(file.FullName, destinationFilePath, StringComparison.OrdinalIgnoreCase))
                 {
                     using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
