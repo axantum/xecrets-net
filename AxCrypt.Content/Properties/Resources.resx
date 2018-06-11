@@ -2319,6 +2319,12 @@ Subject: AxCrypt Report Snapshot
   <data name="ResetButtonText" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>!!Restore Anonymous Names</value>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>!!Restore the real name of a random renamed secured file.</value>
+  </data>
   <data name="RussianLanguageSelection" xml:space="preserve">
     <value>русский (Russian)</value>
     <comment>The name of the Russian Language in Russian. It should never be translated.</comment>

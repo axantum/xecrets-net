@@ -5763,6 +5763,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Restore Anonymous Names.
+        /// </summary>
+        public static string RestoreAnonymousNamesMenuText {
+            get {
+                return ResourceManager.GetString("RestoreAnonymousNamesMenuText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Restore the real name of a random renamed secured file..
+        /// </summary>
+        public static string RestoreAnonymousNamesToolTip {
+            get {
+                return ResourceManager.GetString("RestoreAnonymousNamesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to русский (Russian).
         /// </summary>
         public static string RussianLanguageSelection {
