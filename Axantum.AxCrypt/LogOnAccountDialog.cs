@@ -70,9 +70,9 @@ namespace Axantum.AxCrypt
 
         private async void ButtonOk_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.None;
             if (!await AdHocValidationDueToMonoLimitations())
             {
-                DialogResult = DialogResult.None;
                 return;
             }
             DialogResult = DialogResult.OK;
