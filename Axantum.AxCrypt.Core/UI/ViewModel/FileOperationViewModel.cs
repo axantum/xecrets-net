@@ -358,12 +358,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, IdentityViewModel.LogOnIdentity);
                 string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.CreateEncryptedName());
-
-                using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
+                if (!String.Equals(file.FullName, destinationFilePath, StringComparison.OrdinalIgnoreCase))
                 {
-                    file.MoveTo(lockedSave.DataStore.FullName);
+                    using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
+                    {
+                        file.MoveTo(lockedSave.DataStore.FullName);
+                    }
                 }
-
             };
 
             return operationsController.VerifyEncryptedAsync(file);
