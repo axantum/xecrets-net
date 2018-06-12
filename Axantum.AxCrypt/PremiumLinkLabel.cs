@@ -107,6 +107,7 @@ namespace Axantum.AxCrypt
 
                 case PlanState.NoPremium:
                 case PlanState.OfflineNoPremium:
+                case PlanState.HasPremium:
                     await DisplayPremiumPurchasePage(accountService);
                     break;
 
