@@ -107,7 +107,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!There seems to be problem fetching  information from the server because application state is local..
+        ///   Looks up a localized string similar to New recipients can&apos;t be added in local or offline state since there is no contact with the server..
         /// </summary>
         public static string AccountServiceLocalExceptionDialogText {
             get {
@@ -2690,7 +2690,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is open in another application. Please close it and try again..
+        ///   Looks up a localized string similar to &apos;{0}&apos; has been opened in another application. Please ensure the other application is closed entirely and try again..
         /// </summary>
         public static string FileIsLockedWarning {
             get {
@@ -5763,7 +5763,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Restore Anonymous Names.
+        ///   Looks up a localized string similar to Rename to original.
         /// </summary>
         public static string RestoreAnonymousNamesMenuText {
             get {
@@ -5772,7 +5772,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Restore the real name of a random renamed secured file..
+        ///   Looks up a localized string similar to Restore the file name based on the original file name of an encrypted file that has been renamed..
         /// </summary>
         public static string RestoreAnonymousNamesToolTip {
             get {
@@ -6214,7 +6214,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Deleted.
+        ///   Looks up a localized string similar to Deleted.
         /// </summary>
         public static string SubscriptionDeletedText {
             get {

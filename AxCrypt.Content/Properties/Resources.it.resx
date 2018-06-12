@@ -127,6 +127,10 @@
     <value>L'account deve prima essere verificato dall'utente.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Nuovi destinatari non possono essere aggiunti in modalità locale o offline perchè non vi è un collegamento con il server.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Prova di AxCrypt Premium</value>
   </data>
@@ -702,6 +706,10 @@ Devi effettuare queste operazioni per completare il processo.</value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Prodotto</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Stato</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Ora</value>
   </data>
@@ -1010,7 +1018,7 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
     <value>File AxCrypt con Chiave Pubblica</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' è già aperto in un'altra applicazione. Per favore chiudi il file e riprova.</value>
+    <value>'{0}' è già aperto in un'altra applicazione. Per favore assicurati che l'altra applicazione sia completamente chiusa e riprova.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' è protetto da scrittura.</value>
@@ -2037,6 +2045,14 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   </data>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Resetta</value>
+  </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Rinomina come l'originale</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Ripristina il nome del file sulla base del nome originale di un file criptato che è stato rinominato.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Sei già connesso con questa password!</value>
