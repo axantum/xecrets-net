@@ -535,6 +535,13 @@ namespace Axantum.AxCrypt.Core.UI
                 return Constant.TrueTask;
             }
 
+            ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_eventArgs.SaveFileFullName);
+            if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            {
+                _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+                return Constant.TrueTask;
+            }
+
             _progress.NotifyLevelStart();
             try
             {
