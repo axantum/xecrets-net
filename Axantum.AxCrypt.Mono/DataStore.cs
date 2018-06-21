@@ -68,6 +68,10 @@ namespace Axantum.AxCrypt.Mono
             {
                 throw new FileOperationException($"Can't create {nameof(DataStore)}.", normalized, ErrorStatus.Exception, ae);
             }
+            catch (PathTooLongException ptle)
+            {
+                throw new FileOperationException($"Can't create {nameof(DataStore)}.", normalized, ErrorStatus.Exception, ptle);
+            }
         }
 
         protected override string Location
