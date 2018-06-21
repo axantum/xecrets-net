@@ -114,7 +114,10 @@ namespace Axantum.AxCrypt
 
         private void troubleRememberingLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(Texts.PasswordResetHyperLink);
+            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
+            url.Query = $"email={New<UserSettings>().UserEmail}";
+            Process.Start(url.ToString());
+            
         }
 
         private void ClearErrorProviders()
