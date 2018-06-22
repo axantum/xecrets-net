@@ -80,9 +80,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (!knownFolder.My.IsAvailable)
+                if (!knownFolder.My.IsAvailable || !_fileSystemState.WatchedFolders.Any((wf) => wf.IsCreated) )
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
+                   _fileSystemState.WatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault().IsCreated=true;
                 }
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
