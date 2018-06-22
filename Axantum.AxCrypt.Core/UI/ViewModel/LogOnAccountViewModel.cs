@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PasswordText = String.Empty;
             ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
+            PasswordResetUrl = GetPasswordResetUrl(userEmail);
         }
 
         private void BindPropertyChangedEvents()
@@ -88,6 +90,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
         public bool ShowEmail { get { return GetProperty<bool>(nameof(ShowEmail)); } private set { SetProperty(nameof(ShowEmail), value); } }
+
+        public Uri PasswordResetUrl { get { return GetProperty<Uri>(nameof(PasswordResetUrl)); } private set { SetProperty(nameof(PasswordResetUrl), value); } }
 
         protected override async Task<bool> ValidateAsync(string columnName)
         {
@@ -176,6 +180,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
             return false;
+        }
+
+        private Uri GetPasswordResetUrl(string userEmail)
+        {
+            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
+            url.Query = $"email={userEmail}";
+            return url.Uri;
         }
     }
 }
