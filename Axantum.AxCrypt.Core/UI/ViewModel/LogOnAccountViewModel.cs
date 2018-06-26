@@ -79,8 +79,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; PasswordResetUrl = GetPasswordResetUrl(userEmail); } });
-           // BindPropertyChangedInternal (nameof(PasswordResetUrl), (Uri passwordResetUrl) => {PasswordResetUrl = GetPasswordResetUrl(_userSettings.UserEmail); });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; PasswordResetUrl = UserEmail.GetPasswordResetUrl(); } });
         }
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
@@ -180,13 +179,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
             return false;
-        }
-
-        private Uri GetPasswordResetUrl(string userEmail)
-        {
-            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
-            url.Query = $"email={userEmail}";
-            return url.Uri;
-        }
+        }       
     }
 }

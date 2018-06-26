@@ -1774,7 +1774,8 @@ namespace Axantum.AxCrypt
 
         private void PasswordReset_Click(object sender, EventArgs e)
         {
-            Process.Start(new LogOnAccountViewModel(Resolve.UserSettings).PasswordResetUrl.ToString());
+            string userEmail = New<UserSettings>().UserEmail.ToString();
+            Process.Start(userEmail.GetPasswordResetUrl().ToString());
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)

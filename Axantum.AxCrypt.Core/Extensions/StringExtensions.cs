@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Properties;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -434,6 +435,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             return textIndex == text.Length;
+        }
+
+        public static Uri GetPasswordResetUrl(this string userEmail)
+        {
+            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
+            url.Query = $"email={userEmail}";
+            return url.Uri;
         }
     }
 }
