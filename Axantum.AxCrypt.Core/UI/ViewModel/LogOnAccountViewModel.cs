@@ -73,14 +73,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PasswordText = String.Empty;
             ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
-            PasswordResetUrl = GetPasswordResetUrl(userEmail);
         }
 
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; PasswordResetUrl = GetPasswordResetUrl(userEmail); } });
+           // BindPropertyChangedInternal (nameof(PasswordResetUrl), (Uri passwordResetUrl) => {PasswordResetUrl = GetPasswordResetUrl(_userSettings.UserEmail); });
         }
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
