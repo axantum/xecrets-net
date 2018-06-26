@@ -70,6 +70,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task EnsureKnownFoldersWatched(IEnumerable<KnownFolder> folders)
         {
+            if (New<UserSettings>().IsMyAxCryptFolderCreated)
+            {
+                return;
+            }
+
             foreach (KnownFolder knownFolder in folders)
             {
                 if (_fileSystemState.WatchedFolders.Any((wf) => wf.Path == knownFolder.My.FullName))
@@ -80,13 +85,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (!knownFolder.My.IsAvailable || !_fileSystemState.WatchedFolders.Any((wf) => wf.IsCreated) )
+                if (!knownFolder.My.IsAvailable)
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
-                   _fileSystemState.WatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault().IsCreated=true;
                 }
+
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
+
+            New<UserSettings>().IsMyAxCryptFolderCreated = true;
             await _fileSystemState.Save();
         }
 

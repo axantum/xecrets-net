@@ -307,6 +307,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(SecretsSortOrder), (int)value); }
         }
 
+        public bool IsMyAxCryptFolderCreated
+        {
+            get { return Load(nameof(IsMyAxCryptFolderCreated), false); }
+            set { Store(nameof(IsMyAxCryptFolderCreated), value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));

@@ -108,13 +108,6 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         }
 
-        [JsonProperty("isCreated")]
-        public bool IsCreated
-        {
-            get;
-            set;
-        }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
