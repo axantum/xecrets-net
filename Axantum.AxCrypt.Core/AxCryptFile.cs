@@ -251,9 +251,10 @@ namespace Axantum.AxCrypt.Core
                     await EncryptFileWithBackupAndWipeAsync(sourceStore, lockedDestination, encryptionParameters, progress);
                 }
             }
-            catch (Exception ae)
+            catch (AxCryptException acex)
             {
-                throw new FileOperationException(sourceStore.FullName,ae.Messages(), Abstractions.ErrorStatus.Exception);
+                New<IStatusChecker>().CheckStatusAndShowMessage(acex.ErrorStatus, acex.DisplayContext, acex.InnerException.Message + "(" + acex.Message + ")");
+                return;
             }
         }
 
