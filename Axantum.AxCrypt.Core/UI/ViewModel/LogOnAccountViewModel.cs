@@ -181,6 +181,5 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             return false;
         }
-       
     }
 }
