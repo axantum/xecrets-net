@@ -243,10 +243,18 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
-            using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
+            try
             {
-                await EncryptFileWithBackupAndWipeAsync(sourceStore, lockedDestination, encryptionParameters, progress);
+                IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
+                using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
+                {
+                    await EncryptFileWithBackupAndWipeAsync(sourceStore, lockedDestination, encryptionParameters, progress);
+                }
+            }
+            catch (AxCryptException acex)
+            {
+                New<IStatusChecker>().CheckStatusAndShowMessage(acex.ErrorStatus, acex.DisplayContext, acex.InnerException.Message + "(" + acex.Message + ")");
+                return;
             }
         }
 

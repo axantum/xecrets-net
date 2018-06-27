@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Mono
             {
                 _file = new FileInfo(normalized);
             }
-            catch (ArgumentException ae)
+            catch (Exception ae)
             {
                 throw new FileOperationException($"Can't create {nameof(DataStore)}.", normalized, ErrorStatus.Exception, ae);
             }
