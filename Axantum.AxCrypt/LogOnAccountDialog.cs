@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt
 
         private void troubleRememberingLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(Texts.PasswordResetHyperLink);
+            Process.Start(_viewModel.PasswordResetUrl.ToString());
         }
 
         private void ClearErrorProviders()

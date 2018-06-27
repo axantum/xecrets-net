@@ -1774,9 +1774,8 @@ namespace Axantum.AxCrypt
 
         private void PasswordReset_Click(object sender, EventArgs e)
         {
-            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
-            url.Query = $"email={New<UserSettings>().UserEmail}";
-            Process.Start(url.ToString());
+            string userEmail = New<UserSettings>().UserEmail.ToString();
+            Process.Start(userEmail.GetPasswordResetUrl().ToString());
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)

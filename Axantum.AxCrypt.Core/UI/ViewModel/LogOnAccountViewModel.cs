@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,13 +73,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             PasswordText = String.Empty;
             ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
+            PasswordResetUrl = userEmail.GetPasswordResetUrl();
         }
 
         private void BindPropertyChangedEvents()
         {
             BindPropertyChangedInternal(nameof(ShowPassword), (bool show) => New<UserSettings>().DisplayDecryptPassphrase = show);
             BindPropertyChangedInternal(nameof(ShowEmail), (bool show) => { if (!ShowEmail) UserEmail = String.Empty; });
-            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; } });
+            BindPropertyChangedInternal(nameof(UserEmail), async (string userEmail) => { if (await ValidateAsync(nameof(UserEmail))) { _userSettings.UserEmail = userEmail; PasswordResetUrl = userEmail.GetPasswordResetUrl(); } });
         }
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
@@ -88,6 +90,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
 
         public bool ShowEmail { get { return GetProperty<bool>(nameof(ShowEmail)); } private set { SetProperty(nameof(ShowEmail), value); } }
+
+        public Uri PasswordResetUrl { get { return GetProperty<Uri>(nameof(PasswordResetUrl)); } private set { SetProperty(nameof(PasswordResetUrl), value); } }
 
         protected override async Task<bool> ValidateAsync(string columnName)
         {
