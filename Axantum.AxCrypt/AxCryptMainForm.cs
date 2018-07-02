@@ -1946,35 +1946,16 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
-
-            IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
-            }
-
-            SharingListViewModel viewModel = new SharingListViewModel(sharedWithPublicKeys, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            SharingListViewModel viewModel = new SharingListViewModel(folderPaths, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
-                sharedWithPublicKeys = dialog.SharedWith;
             }
 
-            await Task.Run(async () =>
-            {
-                foreach (WatchedFolder watchedFolder in folderPaths.ToWatchedFolders())
-                {
-                    WatchedFolder wf = new WatchedFolder(watchedFolder, sharedWithPublicKeys);
-                    await Resolve.FileSystemState.AddWatchedFolderAsync(wf);
-                }
-                IEnumerable<IDataStore> files = folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
-
-                await files.Select(x => x.FullName).ChangeKeySharingAsync(sharedWithPublicKeys);
-            });
+            await viewModel.AsyncShareFolders.ExecuteAsync(null);
         }
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)

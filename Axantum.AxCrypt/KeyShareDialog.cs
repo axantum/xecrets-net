@@ -24,8 +24,6 @@ namespace Axantum.AxCrypt
     {
         private SharingListViewModel _viewModel;
 
-        public IEnumerable<UserPublicKey> SharedWith { get; private set; }
-
         public KeyShareDialog()
         {
             InitializeComponent();
@@ -234,7 +232,6 @@ namespace Axantum.AxCrypt
 
         private void _okButton_Click(object sender, EventArgs e)
         {
-            SharedWith = _viewModel.SharedWith;
         }
 
         private bool AdHocValidationDueToMonoLimitations()
