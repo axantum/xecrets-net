@@ -168,6 +168,18 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
+        public bool IsEncryptable()
+        {
+            FileAttributes attributes = File.GetAttributes(_file.FullName);
+
+            if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Get the Name part without the folder part of the path.
         /// </summary>
