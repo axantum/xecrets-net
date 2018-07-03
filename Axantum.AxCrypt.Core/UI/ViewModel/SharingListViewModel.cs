@@ -46,6 +46,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private LogOnIdentity _identity;
 
+        private IEnumerable<string> _folderPaths;
+
         public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value.ToList()); } }
 
         public IEnumerable<UserPublicKey> NotSharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(NotSharedWith)); } private set { SetProperty(nameof(NotSharedWith), value.ToList()); } }
@@ -59,6 +61,26 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction AsyncRemoveKeyShares { get; private set; }
 
         public IAsyncAction AsyncAddNewKeyShare { get; private set; }
+
+        public IAsyncAction AsyncShareFolders { get; private set; }
+
+        public SharingListViewModel(IEnumerable<string> folderPaths, LogOnIdentity identity)
+        {
+            _folderPaths = folderPaths ?? throw new ArgumentNullException(nameof(folderPaths));
+            _identity = identity ?? throw new ArgumentNullException(nameof(identity));
+
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
+
+            IEnumerable<UserPublicKey> sharedWithPublicKeys;
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+            }
+
+            InitializePropertyValues(sharedWithPublicKeys);
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
+        }
 
         public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
@@ -90,9 +112,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             NewKeyShare = String.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
 
-            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>(async (upks) => await AddKeySharesActionAsync(upks));
-            AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>(async (upks) => await RemoveKeySharesActionAsync(upks));
+            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
+            AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));
             AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+            AsyncShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
+        }
+
+        private async Task ShareFoldersActionAsync()
+        {
+            foreach (WatchedFolder watchedFolder in _folderPaths.ToWatchedFolders())
+            {
+                WatchedFolder wf = new WatchedFolder(watchedFolder, SharedWith);
+                await Resolve.FileSystemState.AddWatchedFolderAsync(wf).Free();
+            }
+            IEnumerable<IDataStore> files = _folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(_folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
+
+            await files.Select(x => x.FullName).ChangeKeySharingAsync(SharedWith);
         }
 
         private void SetSharedAndNotSharedWith(IEnumerable<UserPublicKey> sharedWith)
