@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// <value>
         /// <c>true</c> if the file is a system or hidden file; otherwise, <c>false</c>.
         /// </value>
-        bool IsEncryptable { get; set; }
+        bool IsEncryptable { get; }
 
         /// <summary>
         /// Gets or sets the creation time UTC.

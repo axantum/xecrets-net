@@ -168,16 +168,19 @@ namespace Axantum.AxCrypt.Mono
             }
         }
 
-        public bool IsEncryptable()
+        public bool IsEncryptable
         {
-            FileAttributes attributes = File.GetAttributes(_file.FullName);
-
-            if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+            get
             {
-                return false;
-            }
+                _file.Refresh();
+                FileAttributes attributes = File.GetAttributes(_file.FullName);
+                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+                {
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
         }
 
         /// <summary>
