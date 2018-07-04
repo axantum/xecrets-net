@@ -69,6 +69,14 @@ namespace Axantum.AxCrypt.Core.IO
         bool IsWriteProtected { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the file is a system or hidden file
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the file is a system or hidden file; otherwise, <c>false</c>.
+        /// </value>
+        bool IsEncryptable { get; }
+
+        /// <summary>
         /// Gets or sets the creation time UTC.
         /// </summary>
         /// <value>
