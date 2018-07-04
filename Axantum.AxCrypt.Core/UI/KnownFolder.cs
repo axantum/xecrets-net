@@ -97,6 +97,14 @@ namespace Axantum.AxCrypt.Core.UI
             ProviderUrl = knownFolder.ProviderUrl;
             DisplayName = knownFolder.DisplayName;
             Enabled = enabled;
-        }
+         }
+    }
+
+    public class KnownCloudFolder
+    {
+        public string Name { get; set; }
+
+        public bool IsMyAxCryptFolderCreated { get; set; }
+
     }
 }

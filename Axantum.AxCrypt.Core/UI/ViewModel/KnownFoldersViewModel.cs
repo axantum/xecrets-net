@@ -80,11 +80,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (!knownFolder.My.IsAvailable)
+                if (!_fileSystemState.KnownCloudFolders.Any(kcf => kcf.Name == knownFolder.DisplayName && kcf.IsMyAxCryptFolderCreated))
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
+                    await _fileSystemState.AddKnownFolderAsync(new KnownCloudFolder() { Name = knownFolder.DisplayName, IsMyAxCryptFolderCreated = true });
                 }
-                await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
+
+                if (knownFolder.My.IsAvailable)
+                {
+                    await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
+                }
             }
             await _fileSystemState.Save();
         }

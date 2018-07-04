@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -366,6 +367,30 @@ namespace Axantum.AxCrypt.Core.Session
                     thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask);
                 }
                 AddInternal(thisActiveFile);
+            }
+        }
+
+        [JsonProperty("knownCloudFolders")]
+        private List<KnownCloudFolder> _knownCloudFolders = new List<KnownCloudFolder>();
+
+        public IEnumerable<KnownCloudFolder> KnownCloudFolders
+        {
+            get
+            {
+                return _knownCloudFolders;
+            }
+        }
+
+        public virtual async Task AddKnownFolderAsync(KnownCloudFolder knownCloudFolder)
+        {
+            if (knownCloudFolder == null)
+            {
+                throw new ArgumentNullException("knownCloudFolder");
+            }
+
+            lock (_knownCloudFolders)
+            {
+                _knownCloudFolders.Add(knownCloudFolder);
             }
         }
 
