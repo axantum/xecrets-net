@@ -99,12 +99,4 @@ namespace Axantum.AxCrypt.Core.UI
             Enabled = enabled;
          }
     }
-
-    public class KnownCloudFolder
-    {
-        public string Name { get; set; }
-
-        public bool IsMyAxCryptFolderCreated { get; set; }
-
-    }
 }

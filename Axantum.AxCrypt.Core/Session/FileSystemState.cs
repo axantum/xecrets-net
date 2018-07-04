@@ -370,30 +370,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        [JsonProperty("knownCloudFolders")]
-        private List<KnownCloudFolder> _knownCloudFolders = new List<KnownCloudFolder>();
-
-        public IEnumerable<KnownCloudFolder> KnownCloudFolders
-        {
-            get
-            {
-                return _knownCloudFolders;
-            }
-        }
-
-        public virtual async Task AddKnownFolderAsync(KnownCloudFolder knownCloudFolder)
-        {
-            if (knownCloudFolder == null)
-            {
-                throw new ArgumentNullException("knownCloudFolder");
-            }
-
-            lock (_knownCloudFolders)
-            {
-                _knownCloudFolders.Add(knownCloudFolder);
-            }
-        }
-
         /// <summary>
         /// Iterate over all active files in the state.
         /// </summary>
