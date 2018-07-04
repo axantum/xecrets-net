@@ -97,6 +97,6 @@ namespace Axantum.AxCrypt.Core.UI
             ProviderUrl = knownFolder.ProviderUrl;
             DisplayName = knownFolder.DisplayName;
             Enabled = enabled;
-         }
+        }
     }
 }
