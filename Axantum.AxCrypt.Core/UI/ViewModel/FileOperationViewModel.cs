@@ -351,6 +351,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
             }
 
+            ActiveFile activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(file.FullName);
+            if (activeFile != null && activeFile.Status == ActiveFileStatus.AssumedOpenAndDecrypted)
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.FileLocked));
+            }
+
             FileOperationsController operationsController = new FileOperationsController(progress);
             operationsController.QueryDecryptionPassphrase = HandleQueryOpenPassphraseEventAsync;
 
