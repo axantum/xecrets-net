@@ -173,8 +173,9 @@ namespace Axantum.AxCrypt.Mono
             get
             {
                 _file.Refresh();
-                FileAttributes attributes = File.GetAttributes(_file.FullName);
-                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+                FileAttributes attributes = _file.Attributes;
+
+                if ((attributes & FileAttributes.Hidden) == FileAttributes.Hidden || (attributes & FileAttributes.System) == FileAttributes.System)
                 {
                     return false;
                 }
