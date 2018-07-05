@@ -336,38 +336,53 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Task<FileOperationContext> RandomRenameFileWorkAsync(IDataStore file, IProgressContext progress)
         {
-            if (file.IsEncrypted())
-            {
-                file.MoveTo(file.CreateRandomUniqueName().FullName);
-            }
+            return EncryptedFilePreconditions(file) ?? RandomRenameInternal(file);
+        }
+
+        private static Task<FileOperationContext> RandomRenameInternal(IDataStore file)
+        {
+            file.RandomRename();
 
             return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
         }
 
         private Task<FileOperationContext> RestoreRandomRenameFilesWorkAsync(IDataStore file, IProgressContext progress)
         {
-            if (!file.IsEncrypted())
-            {
-                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
-            }
+            return EncryptedFilePreconditions(file) ?? RestoreRandomRenameInternal(file, progress);
+        }
 
+        private Task<FileOperationContext> RestoreRandomRenameInternal(IDataStore file, IProgressContext progress)
+        {
             FileOperationsController operationsController = new FileOperationsController(progress);
             operationsController.QueryDecryptionPassphrase = HandleQueryOpenPassphraseEventAsync;
 
             operationsController.Completed += (object sender, FileOperationEventArgs e) =>
             {
-                EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, IdentityViewModel.LogOnIdentity);
-                string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(file.FullName), encryptedProperties.FileName.CreateEncryptedName());
-                if (!String.Equals(file.FullName, destinationFilePath, StringComparison.OrdinalIgnoreCase))
+                if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
-                    using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
-                    {
-                        file.MoveTo(lockedSave.DataStore.FullName);
-                    }
+                    file.RestoreRandomRename(e.LogOnIdentity);
                 }
             };
 
             return operationsController.VerifyEncryptedAsync(file);
+        }
+
+        private static Task<FileOperationContext> EncryptedFilePreconditions(IDataStore file)
+        {
+            if (!file.IsAvailable)
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.FileDoesNotExist));
+            }
+            if (!file.IsEncrypted())
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.Success));
+            }
+            if (file.IsInUse())
+            {
+                return Task.FromResult(new FileOperationContext(file.FullName, ErrorStatus.FileLocked));
+            }
+
+            return null;
         }
 
         private Task<FileOperationContext> OpenEncryptedWorkAsync(IDataStore file, IProgressContext progress)
