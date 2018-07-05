@@ -163,6 +163,47 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
+        public static void RandomRename(this IDataStore dataStore)
+        {
+            dataStore.MoveTo(dataStore.CreateRandomUniqueName().FullName);
+        }
+
+        public static void RestoreRandomRename(this IDataStore dataStore, LogOnIdentity identity)
+        {
+            EncryptedProperties encryptedProperties = EncryptedProperties.Create(dataStore, identity);
+            if (!encryptedProperties.IsValid)
+            {
+                return;
+            }
+
+            string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(dataStore.FullName), encryptedProperties.FileName.CreateEncryptedName());
+            if (string.Equals(dataStore.FullName, destinationFilePath, StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            using (FileLock lockedSave = destinationFilePath.CreateUniqueFile())
+            {
+                dataStore.MoveTo(lockedSave.DataStore.FullName);
+            }
+        }
+
+        public static bool IsInUse(this IDataStore dataStore)
+        {
+            if (dataStore.IsLocked())
+            {
+                return true;
+            }
+
+            ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(dataStore.FullName);
+            if (activeFile?.Status == ActiveFileStatus.AssumedOpenAndDecrypted)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#", Justification = "The Out pattern is used in the .NET framework.")]
         public static LogOnIdentity TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
         {
