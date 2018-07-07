@@ -110,6 +110,8 @@ namespace Axantum.AxCrypt.Fake
             get { return _fileName; }
         }
 
+        public bool IsEncryptable => true;
+
         public void Delete()
         {
             IsAvailable = false;

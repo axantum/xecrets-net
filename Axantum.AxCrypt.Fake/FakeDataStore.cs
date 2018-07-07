@@ -458,5 +458,7 @@ namespace Axantum.AxCrypt.Fake
                 return ffi.IsFolder;
             }
         }
+
+        public bool IsEncryptable => true;
     }
 }
