@@ -536,7 +536,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_eventArgs.SaveFileFullName);
-            if (activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
+            if (activeFile != null && activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.FileLocked);
                 return Constant.FalseTask;
