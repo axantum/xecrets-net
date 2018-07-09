@@ -283,6 +283,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFileAsync(file);
         }
 
+        private Task<FileOperationContext> DecryptDamageFileWork(IDataStore file, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            return EncryptedFilePreconditions(file) ?? DecryptDamageFileAsync(file, IdentityViewModel.LogOnIdentity);
+        }
+
+        private Task<FileOperationContext> DecryptDamageFileAsync(IDataStore dataStore, LogOnIdentity identity)
+        {
+
+            EncryptedProperties encryptedProperties = EncryptedProperties.Create(dataStore, identity);
+            if (encryptedProperties == null || !encryptedProperties.IsValid)
+            {
+                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.HmacValidationError));
+            }
+
+            return null;
+        }
+
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
@@ -649,6 +668,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.TryDecryptBrokenFileAsync(file);
+        }
+
+        private async Task VerfiyFilesActionAsync(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Decrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                ;
+                return;
+            }
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), DecryptDamageFileWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
     }
 }
