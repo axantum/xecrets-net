@@ -30,6 +30,8 @@ namespace Axantum.AxCrypt.Core.IO
             AddUnencryptableExtension("gdraw");
             AddUnencryptableExtension("gtable");
             AddUnencryptableExtension("gform");
+            AddUnencryptableExtension("ds_store");
+            AddUnencryptableExtension("sys");
         }
 
         public bool IsEncryptable(IDataItem fileInfo)

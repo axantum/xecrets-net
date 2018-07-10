@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
     {
         private LogOnIdentity _identity;
 
-        private IEnumerable<string> _folderPaths;
+        private IEnumerable<string> _filesOrfolderPaths;
 
         public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value.ToList()); } }
 
@@ -56,43 +56,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool IsOnline { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
 
-        public IAsyncAction AsyncAddKeyShares { get; private set; }
+        public IAsyncAction AddKeyShares { get; private set; }
 
-        public IAsyncAction AsyncRemoveKeyShares { get; private set; }
+        public IAsyncAction RemoveKeyShares { get; private set; }
 
-        public IAsyncAction AsyncAddNewKeyShare { get; private set; }
+        public IAsyncAction AddNewKeyShare { get; private set; }
 
-        public IAsyncAction AsyncShareFolders { get; private set; }
+        public IAsyncAction ShareFolders { get; private set; }
 
-        public SharingListViewModel(IEnumerable<string> folderPaths, LogOnIdentity identity)
+        public IAsyncAction ShareFiles { get; private set; }
+
+        private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
-            _folderPaths = folderPaths ?? throw new ArgumentNullException(nameof(folderPaths));
-            _identity = identity ?? throw new ArgumentNullException(nameof(identity));
-
-            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
-
-            IEnumerable<UserPublicKey> sharedWithPublicKeys;
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                sharedWithPublicKeys = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
-            }
-
-            InitializePropertyValues(sharedWithPublicKeys);
-            BindPropertyChangedEvents();
-            SubscribeToModelEvents();
-        }
-
-        public SharingListViewModel(IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
-        {
-            if (sharedWith == null)
-            {
-                throw new ArgumentNullException(nameof(sharedWith));
-            }
-            if (identity == null)
-            {
-                throw new ArgumentNullException(nameof(identity));
-            }
-
+            _filesOrfolderPaths = filesOrfolderPaths;
             _identity = identity;
 
             InitializePropertyValues(sharedWith);
@@ -100,10 +76,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SubscribeToModelEvents();
         }
 
-        public static async Task<SharingListViewModel> CreateAsync(IEnumerable<string> files, LogOnIdentity identity)
+        public static async Task<SharingListViewModel> CreateForFilesAsync(IEnumerable<string> files, LogOnIdentity identity)
         {
+            if (files == null) throw new ArgumentNullException(nameof(files));
+            if (identity == null) throw new ArgumentNullException(nameof(identity));
+
             IEnumerable<UserPublicKey> sharedWith = await GetAllPublicKeyRecipientsFromEncryptedFiles(files, identity);
-            return new SharingListViewModel(sharedWith, identity);
+            return new SharingListViewModel(files, sharedWith, identity);
+        }
+
+        public static async Task<SharingListViewModel> CreateForFoldersAsync(IEnumerable<string> folders, LogOnIdentity identity)
+        {
+            if (folders == null) throw new ArgumentNullException(nameof(folders));
+            if (identity == null) throw new ArgumentNullException(nameof(identity));
+
+            IEnumerable<UserPublicKey> sharedWith = GetAllPublicKeyRecipientsFromWatchedFolders(folders);
+            return new SharingListViewModel(folders, sharedWith, identity);
         }
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
@@ -112,22 +100,29 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             NewKeyShare = String.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
 
-            AsyncAddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
-            AsyncRemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));
-            AsyncAddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
-            AsyncShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
+            AddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
+            RemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));
+            AddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+            ShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
+            ShareFiles = new AsyncDelegateAction<object>((o) => ShareFilesActionAsync());
         }
 
         private async Task ShareFoldersActionAsync()
         {
-            foreach (WatchedFolder watchedFolder in _folderPaths.ToWatchedFolders())
+            foreach (WatchedFolder watchedFolder in _filesOrfolderPaths.ToWatchedFolders())
             {
                 WatchedFolder wf = new WatchedFolder(watchedFolder, SharedWith);
-                await Resolve.FileSystemState.AddWatchedFolderAsync(wf).Free();
+                await New<FileSystemState>().AddWatchedFolderAsync(wf).Free();
             }
-            IEnumerable<IDataStore> files = _folderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(_folderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
+            await New<FileSystemState>().Save();
+            IEnumerable<IDataStore> files = _filesOrfolderPaths.SelectMany((folder) => New<IDataContainer>(folder).ListOfFiles(_filesOrfolderPaths.Select(x => New<IDataContainer>(x)), New<UserSettings>().FolderOperationMode.Policy()));
 
             await files.Select(x => x.FullName).ChangeKeySharingAsync(SharedWith);
+        }
+
+        private async Task ShareFilesActionAsync()
+        {
+            await _filesOrfolderPaths.ChangeKeySharingAsync(SharedWith);
         }
 
         private void SetSharedAndNotSharedWith(IEnumerable<UserPublicKey> sharedWith)
@@ -231,7 +226,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
             IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
+
             UpdateKnownKeys(sharedWith);
+            return sharedWith;
+        }
+
+        private static IEnumerable<UserPublicKey> GetAllPublicKeyRecipientsFromWatchedFolders(IEnumerable<string> folderPaths)
+        {
+            IEnumerable<EmailAddress> sharedWithEmailAddresses = folderPaths.ToWatchedFolders().SharedWith();
+
+            IEnumerable<UserPublicKey> sharedWith;
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                sharedWith = knownPublicKeys.PublicKeys.Where(pk => sharedWithEmailAddresses.Any(s => s == pk.Email)).ToList();
+            }
 
             return sharedWith;
         }

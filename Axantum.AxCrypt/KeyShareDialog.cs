@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt
 
         private async Task Unshare()
         {
-            await _viewModel.AsyncRemoveKeyShares.ExecuteAsync(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
+            await _viewModel.RemoveKeyShares.ExecuteAsync(_sharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_sharedWith.Items[i]));
         }
 
         private async Task Unshare(int index)
@@ -186,7 +186,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            await _viewModel.AsyncRemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_sharedWith.Items[index] });
+            await _viewModel.RemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_sharedWith.Items[index] });
             SetUnshareButtonState();
         }
 
@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt
             }
             try
             {
-                await _viewModel.AsyncAddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
+                await _viewModel.AddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
                 if (_viewModel.SharedWith.Where(sw => sw.Email.ToString() == _viewModel.NewKeyShare).Any())
                 {
                     return true;
@@ -227,7 +227,7 @@ namespace Axantum.AxCrypt
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)
         {
-            return _viewModel.AsyncAddKeyShares.ExecuteAsync(indices.Where(i => i != ListBox.NoMatches).Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
+            return _viewModel.AddKeyShares.ExecuteAsync(indices.Where(i => i != ListBox.NoMatches).Select(i => EmailAddress.Parse(_notSharedWith.Items[i].ToString())));
         }
 
         private void _okButton_Click(object sender, EventArgs e)

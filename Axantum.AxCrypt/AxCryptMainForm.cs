@@ -1928,7 +1928,7 @@ namespace Axantum.AxCrypt
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
-            SharingListViewModel viewModel = await SharingListViewModel.CreateAsync(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            SharingListViewModel viewModel = await SharingListViewModel.CreateForFilesAsync(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -1936,7 +1936,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
             }
-            await fileNames.ChangeKeySharingAsync(viewModel.SharedWith);
+            await viewModel.ShareFiles.ExecuteAsync(null);
         }
 
         private async Task WatchedFoldersKeySharingAsync(IEnumerable<string> folderPaths)
@@ -1946,7 +1946,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            SharingListViewModel viewModel = new SharingListViewModel(folderPaths, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            SharingListViewModel viewModel = await SharingListViewModel.CreateForFoldersAsync(folderPaths, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
@@ -1955,7 +1955,7 @@ namespace Axantum.AxCrypt
                 }
             }
 
-            await viewModel.AsyncShareFolders.ExecuteAsync(null);
+            await viewModel.ShareFolders.ExecuteAsync(null);
         }
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
