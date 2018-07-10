@@ -112,6 +112,7 @@ namespace Axantum.AxCrypt
             this._debugLoggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugManageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._VerifyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOpenReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -873,6 +874,7 @@ namespace Axantum.AxCrypt
             this._debugLoggingToolStripMenuItem,
             this._debugManageAccountToolStripMenuItem,
             this._tryBrokenFileToolStripMenuItem,
+            this._VerifyFileToolStripMenuItem,
             this._debugOpenReportToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             this._debugToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
@@ -917,6 +919,12 @@ namespace Axantum.AxCrypt
             this._tryBrokenFileToolStripMenuItem.Name = "_tryBrokenFileToolStripMenuItem";
             this._tryBrokenFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._tryBrokenFileToolStripMenuItem.Text = "[&Try Broken File]";
+            // 
+            // _VerifyFileToolStripMenuItem
+            // 
+            this._VerifyFileToolStripMenuItem.Name = "_VerfiyFileToolStripMenuItem";
+            this._VerifyFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._VerifyFileToolStripMenuItem.Text = "[& Verfiy File]";
             // 
             // _debugOpenReportToolStripMenuItem
             // 
@@ -1301,6 +1309,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _debugCryptoPolicyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _debugLoggingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _debugManageAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _VerifyFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpViewHelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpAboutToolStripMenuItem;

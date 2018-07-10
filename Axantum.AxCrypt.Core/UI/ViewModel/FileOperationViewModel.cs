@@ -89,6 +89,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>((files) => ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => TryBrokenFilesActionAsync(files));
+            VerifyFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => VerifyFilesActionAsync(files));
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -114,6 +115,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShowInFolder { get; private set; }
 
         public IAsyncAction TryBrokenFiles { get; private set; }
+
+        public IAsyncAction VerifyFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -670,7 +673,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.TryDecryptBrokenFileAsync(file);
         }
 
-        private async Task VerfiyFilesActionAsync(IEnumerable<string> files)
+        private async Task VerifyFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Decrypt);
             if (!files.Any())
