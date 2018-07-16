@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 lock (_watchedFolders)
                 {
-                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable).ToList();
+                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable && !folder.IsDeleted).ToList();
                     return folders;
                 }
             }
@@ -200,7 +200,15 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         continue;
                     }
-                    _watchedFolders[i].IsDeleted = true;
+
+                    if (_watchedFolders[i].IsWellKnown)
+                    {
+                        _watchedFolders[i].IsDeleted = true;
+                        continue;
+                    }
+
+                    _watchedFolders[i].Dispose();
+                    _watchedFolders.RemoveAt(i);
                 }
             }
         }

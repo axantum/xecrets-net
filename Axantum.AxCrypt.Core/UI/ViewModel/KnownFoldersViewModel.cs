@@ -81,7 +81,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (watchedFolder == null || (!knownFolder.My.IsAvailable && !watchedFolder.IsDeleted))
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
-                    await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
+                    watchedFolder = new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag);
+                    watchedFolder.IsWellKnown = true;
+                    await _fileSystemState.AddWatchedFolderAsync(watchedFolder);
                 }
             }
             await _fileSystemState.Save();

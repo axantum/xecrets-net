@@ -60,6 +60,8 @@ namespace Axantum.AxCrypt.Core.Session
         {
             Tag = IdentityPublicTag.Empty;
             KeyShares = new List<EmailAddress>();
+            IsDeleted = false;
+            IsWellKnown = false;
         }
 
         public WatchedFolder(string path, IdentityPublicTag publicTag)
@@ -110,6 +112,13 @@ namespace Axantum.AxCrypt.Core.Session
 
         [JsonProperty("isDeleted")]
         public bool IsDeleted
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("isWellKnown")]
+        public bool IsWellKnown
         {
             get;
             set;
