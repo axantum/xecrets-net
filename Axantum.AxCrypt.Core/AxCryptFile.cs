@@ -241,40 +241,6 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public virtual async Task EncryptLocalAxCryptFoldersWithBackupAndWipeAsync(IEnumerable<IDataContainer> containers, EncryptionParameters encryptionParameters, IProgressContext progress, string activeFilePath)
-        {
-            if (containers == null)
-            {
-                throw new ArgumentNullException("containers");
-            }
-            if (progress == null)
-            {
-                throw new ArgumentNullException("progress");
-            }
-
-            progress.NotifyLevelStart();
-            try
-            {
-                IEnumerable<IEnumerable<IDataStore>> filesFiles = containers.Select((folder) => folder.ListEncryptable(containers, New<UserSettings>().FolderOperationMode.Policy()));
-                IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
-                progress.AddTotal(files.Count());
-                foreach (IDataStore file in files)
-                {
-                    string destinationFilePath = activeFilePath + file.Name;
-                    file.MoveTo(destinationFilePath);
-                    IDataStore destinationFile = New<IDataStore>(destinationFilePath);
-
-                    await EncryptFileUniqueWithBackupAndWipeAsync(destinationFile, encryptionParameters, progress);
-                    progress.AddCount(1);
-                }
-
-            }
-            finally
-            {
-                progress.NotifyLevelFinished();
-            }
-        }
-
         public virtual async Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();

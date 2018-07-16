@@ -56,6 +56,13 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             bool shouldConvertLegacy = activeFile.ShouldConvertLegacy();
+
+            EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+            if (activeFile.DecryptedFileInfo.Container.Files.Count() > 1)
+            {
+                await CleanLocalActiveFileFolderAsync(activeFile, parameters, progress);
+            }
+
             if (!shouldConvertLegacy && !activeFile.IsModified)
             {
                 return activeFile;
@@ -92,8 +99,6 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
-
-                    EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                     EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
                     await parameters.AddAsync(properties.SharedKeyHolders);
 
@@ -113,6 +118,25 @@ namespace Axantum.AxCrypt.Core.Session
                 New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
+        }
+
+        private static async Task CleanLocalActiveFileFolderAsync(ActiveFile activeFile, EncryptionParameters encryptionParameters, IProgressContext progress)
+        {
+            IEnumerable<IDataContainer> container = new IDataContainer[] { New<IDataContainer>(activeFile.DecryptedFileInfo.Container.ToString()) };
+            IEnumerable<IEnumerable<IDataStore>> filesFiles = container.Select((folder) => folder.ListEncryptable(container, New<UserSettings>().FolderOperationMode.Policy()));
+            IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
+            foreach (IDataStore file in files)
+            {
+                if (file.FullName == activeFile.DecryptedFileInfo.FullName)
+                {
+                    continue;
+                }
+
+                string destinationFilePath = activeFile.EncryptedFileInfo.Container.ToString() + file.Name;
+                file.MoveTo(destinationFilePath);
+                IDataStore destinationFile = New<IDataStore>(destinationFilePath);
+                await New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipeAsync(destinationFile, encryptionParameters, progress);
+            }
         }
 
         private static bool IsLegacy(ActiveFile activeFile)

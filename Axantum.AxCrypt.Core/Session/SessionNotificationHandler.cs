@@ -161,7 +161,6 @@ namespace Axantum.AxCrypt.Core.Session
 
                 case SessionNotificationType.UpdateActiveFiles:
                     await _fileSystemState.UpdateActiveFiles(notification.FullNames);
-                    await EncryptActiveFilesAsync(_knownIdentities.DefaultEncryptionIdentity, progress);
                     break;
 
                 case SessionNotificationType.ActiveFileChange:
@@ -198,16 +197,5 @@ namespace Axantum.AxCrypt.Core.Session
                 await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(new IDataContainer[] { folder }, encryptionParameters, progress);
             }
         }
-
-        private async Task EncryptActiveFilesAsync(LogOnIdentity identity, IProgressContext progress)
-        {
-            foreach (ActiveFile activefile in _fileSystemState.ActiveFiles)
-            {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity);
-                IDataContainer folder = New<IDataContainer>(activefile.DecryptedFileInfo.Container.ToString());
-                progress.Display = folder.Name;
-                await _axCryptFile.EncryptLocalAxCryptFoldersWithBackupAndWipeAsync(new IDataContainer[] { folder }, encryptionParameters, progress, activefile.EncryptedFileInfo.Container.ToString());
-            }
-        }
-    }
+   }
 }
