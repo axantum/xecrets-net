@@ -72,12 +72,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (KnownFolder knownFolder in folders)
             {
-                WatchedFolder watchedFolder = _fileSystemState.AllWatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault();
                 if (knownFolder.My.IsFile)
                 {
                     continue;
                 }
 
+                WatchedFolder watchedFolder = _fileSystemState.AllWatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault();
                 if (watchedFolder == null || (!knownFolder.My.IsAvailable && !watchedFolder.IsDeleted))
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
