@@ -95,6 +95,18 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public IEnumerable<WatchedFolder> AllWatchedFolders
+        {
+            get
+            {
+                lock (_watchedFolders)
+                {
+                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable || folder.IsDeleted).ToList();
+                    return folders;
+                }
+            }
+        }
+
         public virtual async Task AddWatchedFolderAsync(WatchedFolder watchedFolder)
         {
             if (watchedFolder == null)
@@ -189,8 +201,7 @@ namespace Axantum.AxCrypt.Core.Session
                         ++i;
                         continue;
                     }
-                    _watchedFolders[i].Dispose();
-                    _watchedFolders.RemoveAt(i);
+                    _watchedFolders[i].IsDeleted = true;
                 }
             }
         }

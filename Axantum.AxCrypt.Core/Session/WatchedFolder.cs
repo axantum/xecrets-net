@@ -112,7 +112,7 @@ namespace Axantum.AxCrypt.Core.Session
         public bool IsDeleted
         {
             get;
-            private set;
+            set;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
