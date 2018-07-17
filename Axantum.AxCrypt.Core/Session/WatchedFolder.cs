@@ -115,7 +115,11 @@ namespace Axantum.AxCrypt.Core.Session
             set;
         }
 
-        public bool IsWellKnown = false;
+        public bool IsWellKnown
+        {
+            get;
+            set;
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
