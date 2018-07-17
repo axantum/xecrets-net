@@ -122,9 +122,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private static async Task CleanLocalActiveFileFolderAsync(ActiveFile activeFile, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
-            IEnumerable<IDataContainer> container = new IDataContainer[] { New<IDataContainer>(activeFile.DecryptedFileInfo.Container.ToString()) };
-            IEnumerable<IEnumerable<IDataStore>> filesFiles = container.Select((folder) => folder.ListEncryptable(container, New<UserSettings>().FolderOperationMode.Policy()));
-            IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
+            IEnumerable<IDataStore> files = activeFile.DecryptedFileInfo.Container.Files;
             foreach (IDataStore file in files)
             {
                 if (file.FullName == activeFile.DecryptedFileInfo.FullName)
@@ -132,10 +130,8 @@ namespace Axantum.AxCrypt.Core.Session
                     continue;
                 }
 
-                string destinationFilePath = activeFile.EncryptedFileInfo.Container.ToString() + file.Name;
-                file.MoveTo(destinationFilePath);
-                IDataStore destinationFile = New<IDataStore>(destinationFilePath);
-                await New<AxCryptFile>().EncryptFileUniqueWithBackupAndWipeAsync(destinationFile, encryptionParameters, progress);
+                string destinationFilePath = Resolve.Portable.Path().Combine(activeFile.EncryptedFileInfo.Container.ToString(), file.Name.CreateEncryptedName());
+                await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(file.FullName, destinationFilePath, encryptionParameters, progress);
             }
         }
 
