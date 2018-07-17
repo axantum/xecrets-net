@@ -82,7 +82,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                     watchedFolder = new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag);
-                    watchedFolder.IsWellKnown = true;
+                    watchedFolder.IsWellKnown = knownFolder.IsWellKnown;
                     await _fileSystemState.AddWatchedFolderAsync(watchedFolder);
                 }
             }
@@ -95,7 +95,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             bool hasCloudStorageAwareness = New<LicensePolicy>().Capabilities.Has(LicenseCapability.CloudStorageAwareness);
             foreach (KnownFolder folder in knownFolders)
             {
-                KnownFolder updated = new KnownFolder(folder, hasCloudStorageAwareness && _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
+                KnownFolder updated = new KnownFolder(folder, hasCloudStorageAwareness && _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName), folder.IsWellKnown);
                 updatedFolders.Add(updated);
             }
             return updatedFolders;

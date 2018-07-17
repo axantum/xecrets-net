@@ -60,8 +60,6 @@ namespace Axantum.AxCrypt.Core.Session
         {
             Tag = IdentityPublicTag.Empty;
             KeyShares = new List<EmailAddress>();
-            IsDeleted = false;
-            IsWellKnown = false;
         }
 
         public WatchedFolder(string path, IdentityPublicTag publicTag)
@@ -117,12 +115,7 @@ namespace Axantum.AxCrypt.Core.Session
             set;
         }
 
-        [JsonProperty("isWellKnown")]
-        public bool IsWellKnown
-        {
-            get;
-            set;
-        }
+        public bool IsWellKnown = false;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]

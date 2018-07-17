@@ -25,10 +25,9 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using System;
 using System.Linq;
+using System;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -48,6 +47,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public Uri ProviderUrl { get; private set; }
 
+        public bool IsWellKnown { get; private set; }
+
         public object Image
         {
             get
@@ -63,11 +64,16 @@ namespace Axantum.AxCrypt.Core.UI
         private KnownFolderKind _knownFolderKind;
 
         public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl)
-            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, null)
+            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, null, false)
         {
         }
 
         public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl, string displayName)
+            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, displayName, false)
+        {
+        }
+
+        public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl, string displayName, bool isWellKnown)
         {
             if (knownFolderInfo == null)
             {
@@ -83,9 +89,15 @@ namespace Axantum.AxCrypt.Core.UI
             ProviderUrl = providerUrl;
             Enabled = false;
             DisplayName = displayName;
+            IsWellKnown = isWellKnown;
         }
 
         public KnownFolder(KnownFolder knownFolder, bool enabled)
+             : this(knownFolder, enabled, false)
+        {
+        }
+
+        public KnownFolder(KnownFolder knownFolder, bool enabled, bool isWellKnown)
         {
             if (knownFolder == null)
             {
@@ -97,6 +109,7 @@ namespace Axantum.AxCrypt.Core.UI
             ProviderUrl = knownFolder.ProviderUrl;
             DisplayName = knownFolder.DisplayName;
             Enabled = enabled;
+            IsWellKnown = isWellKnown;
         }
     }
 }

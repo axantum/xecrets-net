@@ -60,7 +60,7 @@ namespace Axantum.AxCrypt.Desktop
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null, Texts.KnownFolderNameWindowsMyDocuments);
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null, Texts.KnownFolderNameWindowsMyDocuments, true);
             knownFolders.Add(windowsDesktopFolder);
         }
 
@@ -73,7 +73,7 @@ namespace Axantum.AxCrypt.Desktop
             }
 
             IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.Dropbox, null, Texts.KnownFolderNameDropbox);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.Dropbox, null, Texts.KnownFolderNameDropbox, true);
 
             knownFolders.Add(knownFolder);
         }
@@ -88,7 +88,7 @@ namespace Axantum.AxCrypt.Desktop
 
             Uri url = new Uri("https://onedrive.live.com/");
             IDataContainer oneDriveFolderInfo = New<IDataContainer>(oneDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(oneDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.OneDrive, url, Texts.KnownFolderNameOneDrive);
+            KnownFolder knownFolder = new KnownFolder(oneDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.OneDrive, url, Texts.KnownFolderNameOneDrive, true);
 
             knownFolders.Add(knownFolder);
         }
@@ -141,7 +141,7 @@ namespace Axantum.AxCrypt.Desktop
             Uri url = new Uri("https://drive.google.com/");
 
             IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url, Texts.KnownFolderNameGoogleDrive);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url, Texts.KnownFolderNameGoogleDrive, true);
             knownFolders.Add(knownFolder);
         }
     }

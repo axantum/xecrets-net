@@ -83,18 +83,6 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("watchedFolders")]
         private List<WatchedFolder> _watchedFolders = new List<WatchedFolder>();
 
-        public IEnumerable<WatchedFolder> WatchedFolders
-        {
-            get
-            {
-                lock (_watchedFolders)
-                {
-                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable && !folder.IsDeleted).ToList();
-                    return folders;
-                }
-            }
-        }
-
         public IEnumerable<WatchedFolder> AllWatchedFolders
         {
             get
@@ -104,6 +92,14 @@ namespace Axantum.AxCrypt.Core.Session
                     IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable || folder.IsDeleted).ToList();
                     return folders;
                 }
+            }
+        }
+
+        public IEnumerable<WatchedFolder> WatchedFolders
+        {
+            get
+            {
+                return AllWatchedFolders.Where(folder => !folder.IsDeleted).ToList();
             }
         }
 
@@ -194,7 +190,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_watchedFolders)
             {
-                for (int i = 0; i < _watchedFolders.Count; i++)
+                for (int i = 0; i < _watchedFolders.Count; ++i)
                 {
                     if (!_watchedFolders[i].Matches(path))
                     {
