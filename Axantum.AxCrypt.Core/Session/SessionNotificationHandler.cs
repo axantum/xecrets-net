@@ -197,5 +197,5 @@ namespace Axantum.AxCrypt.Core.Session
                 await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(new IDataContainer[] { folder }, encryptionParameters, progress);
             }
         }
-   }
+    }
 }
