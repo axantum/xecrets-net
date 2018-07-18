@@ -413,13 +413,36 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            if (activeFile.DecryptedFileInfo.Container.IsAvailable)
+            Task.Run(async () =>
             {
-                activeFile.DecryptedFileInfo.Container.Delete();
-            }
+                if (activeFile.DecryptedFileInfo.Container.Files.Any())
+                {
+                    CleanLocalActiveFileFolderAsync(activeFile, progress);
+                }
 
+                if (activeFile.DecryptedFileInfo.Container.IsAvailable)
+                {
+                    activeFile.DecryptedFileInfo.Container.Delete();
+                }
+            });
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             return activeFile;
+        }
+
+        private static async void CleanLocalActiveFileFolderAsync(ActiveFile activeFile, IProgressContext progress)
+        {
+            IEnumerable<IDataStore> files = activeFile.DecryptedFileInfo.Container.Files.Where(f => f.Type() == FileInfoTypes.EncryptableFile && f.IsEncryptable);
+            foreach (IDataStore file in files)
+            {
+                if (file.FullName == activeFile.DecryptedFileInfo.FullName)
+                {
+                    continue;
+                }
+
+                string destinationFilePath = Resolve.Portable.Path().Combine(activeFile.EncryptedFileInfo.Container.ToString(), file.Name.CreateEncryptedName());
+                EncryptionParameters encryptionParameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(file.FullName, destinationFilePath, encryptionParameters, progress);
+            }
         }
 
         private static void WipeFile(FileLock fileLock, IProgressContext progress)
