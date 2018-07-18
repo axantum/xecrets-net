@@ -534,7 +534,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task AddRecentFilesActionAsync(IEnumerable<string> files)
         {
             IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
-            await EncryptFewOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.Type() == FileInfoTypes.EncryptableFile));
+            await EncryptFewOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.IsEncryptable && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             await ProcessEncryptedFilesDroppedInRecentListAsync(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 
