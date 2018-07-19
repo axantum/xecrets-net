@@ -373,6 +373,10 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 return activeFile;
             }
+            if (activeFile.DecryptedFileInfo.Container.Files.Any())
+            {
+                CleanLocalActiveFileFolderAsync(activeFile, progress);
+            }
 
             activeFile = TryDelete(activeFile, decryptedFileLock, progress);
             return activeFile;
@@ -415,11 +419,6 @@ namespace Axantum.AxCrypt.Core.Session
 
             Task.Run(async () =>
             {
-                if (activeFile.DecryptedFileInfo.Container.Files.Any())
-                {
-                    CleanLocalActiveFileFolderAsync(activeFile, progress);
-                }
-
                 if (activeFile.DecryptedFileInfo.Container.IsAvailable)
                 {
                     activeFile.DecryptedFileInfo.Container.Delete();
