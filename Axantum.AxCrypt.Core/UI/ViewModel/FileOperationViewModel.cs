@@ -28,12 +28,14 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -288,20 +290,28 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Task<FileOperationContext> DecryptDamageFileWork(IDataStore file, IProgressContext progress)
         {
-            FileOperationsController operationsController = new FileOperationsController(progress);
-
             return EncryptedFilePreconditions(file) ?? DecryptDamageFileAsync(file, IdentityViewModel.LogOnIdentity);
         }
 
         private Task<FileOperationContext> DecryptDamageFileAsync(IDataStore dataStore, LogOnIdentity identity)
         {
-
-            EncryptedProperties encryptedProperties = EncryptedProperties.Create(dataStore, identity);
-            if (encryptedProperties == null || !encryptedProperties.IsValid)
+            try
             {
-                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.HmacValidationError));
+                using (Stream stream = dataStore.OpenRead())
+                {
+                    Headers headers = New<AxCryptFactory>().Headers(stream);
+                }
+            }
+            catch (AxCryptException aex)
+            {
+                return Task.FromResult(new FileOperationContext(dataStore.FullName, aex.Message.ToString(), ErrorStatus.WrongFileExtensionError));
             }
 
+            EncryptedProperties encryptedProperties = EncryptedProperties.Create(dataStore, identity);
+            if (encryptedProperties.IsValid)
+            {
+                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.Success));
+            }
             return null;
         }
 
