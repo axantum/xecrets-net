@@ -417,13 +417,11 @@ namespace Axantum.AxCrypt.Core.Session
                 return activeFile;
             }
 
-            Task.Run(async () =>
+            if (activeFile.DecryptedFileInfo.Container.IsAvailable)
             {
-                if (activeFile.DecryptedFileInfo.Container.IsAvailable)
-                {
-                    activeFile.DecryptedFileInfo.Container.Delete();
-                }
-            });
+                activeFile.DecryptedFileInfo.Container.Delete();
+            }
+
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
             return activeFile;
         }
