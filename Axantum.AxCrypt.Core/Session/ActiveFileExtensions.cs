@@ -56,7 +56,6 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             bool shouldConvertLegacy = activeFile.ShouldConvertLegacy();
-
             if (!shouldConvertLegacy && !activeFile.IsModified)
             {
                 return activeFile;
