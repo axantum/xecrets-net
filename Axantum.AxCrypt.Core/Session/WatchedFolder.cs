@@ -117,8 +117,10 @@ namespace Axantum.AxCrypt.Core.Session
 
         public bool IsWellKnown
         {
-            get;
-            set;
+            get
+            {
+                return New<IKnownFoldersDiscovery>().Discover().Where(kfd => kfd.My.FullName == Path).Any();
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]

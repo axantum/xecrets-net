@@ -87,11 +87,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                lock (_watchedFolders)
-                {
-                    IEnumerable<WatchedFolder> folders = _watchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable || folder.IsDeleted).ToList();
-                    return folders;
-                }
+                return _watchedFolders;
             }
         }
 
@@ -99,7 +95,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                return AllWatchedFolders.Where(folder => !folder.IsDeleted).ToList();
+                lock (_watchedFolders)
+                {
+                    return AllWatchedFolders.Where(folder => New<IDataContainer>(folder.Path).IsAvailable && !folder.IsDeleted).ToList();
+                }
             }
         }
 
