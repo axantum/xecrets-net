@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
@@ -290,29 +291,35 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private Task<FileOperationContext> DecryptDamageFileWork(IDataStore file, IProgressContext progress)
         {
-            return EncryptedFilePreconditions(file) ?? DecryptDamageFileAsync(file, IdentityViewModel.LogOnIdentity);
+            return EncryptedFilePreconditions(file) ?? DecryptDamageFileAsync(file, IdentityViewModel.LogOnIdentity, progress);
         }
 
-        private Task<FileOperationContext> DecryptDamageFileAsync(IDataStore dataStore, LogOnIdentity identity)
+        private Task<FileOperationContext> DecryptDamageFileAsync(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
         {
             try
             {
+                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, identity.Passphrase);
+                long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
+                V2DocumentHeaders DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
+                V2HmacCalculator HmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
                 using (Stream stream = dataStore.OpenRead())
                 {
-                    Headers headers = New<AxCryptFactory>().Headers(stream);
+                    Headers headers = new Headers();
+                    AxCryptReaderBase reader1 = headers.CreateReader(new LookAheadStream(stream));
+                    IAxCryptDocument document = AxCryptReaderBase.Document(reader1);
+                    AxCryptReader reader = DocumentHeaders.Headers.CreateReader(new LookAheadStream(reader1.InputStream));
+                    DocumentHeaders.Trailers(reader);
+                    if (DocumentHeaders.HmacCalculator.Hmac != DocumentHeaders.Hmac)
+                    {
+                        throw new IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
+                    }
                 }
+                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.Success));
             }
             catch (AxCryptException aex)
             {
-                return Task.FromResult(new FileOperationContext(dataStore.FullName, aex.Message.ToString(), ErrorStatus.WrongFileExtensionError));
+                return Task.FromResult(new FileOperationContext(dataStore.FullName, aex.Message.ToString(), ErrorStatus.HmacValidationError));
             }
-
-            EncryptedProperties encryptedProperties = EncryptedProperties.Create(dataStore, identity);
-            if (encryptedProperties.IsValid)
-            {
-                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.Success));
-            }
-            return null;
         }
 
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
