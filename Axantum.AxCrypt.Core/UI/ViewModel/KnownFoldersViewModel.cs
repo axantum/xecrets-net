@@ -72,6 +72,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         {
             foreach (KnownFolder knownFolder in folders)
             {
+                if (_fileSystemState.AllWatchedFolders.Any((wf) => wf.Path == knownFolder.My.FullName))
+                {
+                    continue;
+                }
+
                 if (knownFolder.My.IsFile)
                 {
                     continue;
@@ -82,16 +87,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     continue;
                 }
 
-                WatchedFolder watchedFolder = _fileSystemState.AllWatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault();
-
-                if (watchedFolder == null)
-                {
-                    knownFolder.Folder.CreateFolder(knownFolder.My.Name);
-                    watchedFolder = new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag);
-                    await _fileSystemState.AddWatchedFolderAsync(watchedFolder);
-                }
+                knownFolder.Folder.CreateFolder(knownFolder.My.Name);
+                await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
-
             await _fileSystemState.Save();
         }
 
