@@ -77,22 +77,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     continue;
                 }
 
-                WatchedFolder watchedFolder = _fileSystemState.AllWatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault();
-
-                if (watchedFolder != null && !knownFolder.My.IsAvailable)
+                if (knownFolder.My.IsAvailable)
                 {
-                    watchedFolder.IsDeleted = true;
-                    await _fileSystemState.Save();
                     continue;
                 }
 
-                if (watchedFolder == null || (!knownFolder.My.IsAvailable && !watchedFolder.IsDeleted))
+                WatchedFolder watchedFolder = _fileSystemState.AllWatchedFolders.Where(wf => wf.Path == knownFolder.My.FullName).FirstOrDefault();
+
+                if (watchedFolder == null)
                 {
                     knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                     watchedFolder = new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag);
                     await _fileSystemState.AddWatchedFolderAsync(watchedFolder);
                 }
             }
+
             await _fileSystemState.Save();
         }
 
