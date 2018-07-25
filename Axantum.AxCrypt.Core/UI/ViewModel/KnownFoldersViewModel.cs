@@ -76,12 +76,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-
                 if (knownFolder.My.IsFile)
                 {
                     continue;
                 }
-
                 if (knownFolder.My.IsAvailable)
                 {
                     continue;
