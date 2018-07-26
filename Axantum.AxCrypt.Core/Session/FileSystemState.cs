@@ -189,16 +189,18 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_watchedFolders)
             {
-                for (int i = 0; i < _watchedFolders.Count; ++i)
+                for (int i = 0; i < _watchedFolders.Count;)
                 {
                     if (!_watchedFolders[i].Matches(path))
                     {
+                        ++i;
                         continue;
                     }
 
                     if (_watchedFolders[i].IsWellKnown)
                     {
                         _watchedFolders[i].IsDeleted = true;
+                        ++i;
                         continue;
                     }
 
