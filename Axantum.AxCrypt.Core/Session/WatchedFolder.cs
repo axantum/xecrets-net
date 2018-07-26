@@ -76,7 +76,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             Path = path.NormalizeFolderPath();
             Tag = publicTag;
-            Initialize();
+            InitializeFileWatcher();
         }
 
         public WatchedFolder(WatchedFolder watchedFolder, IEnumerable<UserPublicKey> keyShares)
@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.Session
 
             KeyShares = keyShares.Select(ks => ks.Email).ToArray();
 
-            Initialize();
+            InitializeFileWatcher();
         }
 
         [JsonProperty("publicTag")]
@@ -115,11 +115,11 @@ namespace Axantum.AxCrypt.Core.Session
             set;
         }
 
-        public bool IsWellKnown
+        public bool IsKnownFolder
         {
             get
             {
-                return New<IKnownFoldersDiscovery>().Discover().Where(kfd => kfd.My.FullName == Path).Any();
+                return New<IKnownFoldersDiscovery>().Discover().Any(kf => kf.My.FullName == Path);
             }
         }
 
@@ -127,12 +127,12 @@ namespace Axantum.AxCrypt.Core.Session
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
-            Initialize();
+            InitializeFileWatcher();
         }
 
-        private void Initialize()
+        private void InitializeFileWatcher()
         {
-            if (New<IDataContainer>(Path).IsAvailable)
+            if (!IsDeleted && New<IDataContainer>(Path).IsAvailable)
             {
                 _fileWatcher = New<IFileWatcher>(Path);
                 _fileWatcher.FileChanged += _fileWatcher_FileChanged;

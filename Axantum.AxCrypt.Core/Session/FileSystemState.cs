@@ -117,16 +117,18 @@ namespace Axantum.AxCrypt.Core.Session
         {
             lock (_watchedFolders)
             {
-                AddWatchedFolderInternalUnsafe(watchedFolder);
+                watchedFolder.Changed += watchedFolder_Changed;
+                int i = _watchedFolders.FindIndex((wf) => wf.Matches(watchedFolder.Path));
+                if (i < 0)
+                {
+                    _watchedFolders.Add(watchedFolder);
+                }
+                else
+                {
+                    _watchedFolders[i].Dispose();
+                    _watchedFolders[i] = watchedFolder;
+                }
             }
-        }
-
-        private void AddWatchedFolderInternalUnsafe(WatchedFolder watchedFolder)
-        {
-            RemoveWatchedFolderInternal(watchedFolder.Path);
-
-            watchedFolder.Changed += watchedFolder_Changed;
-            _watchedFolders.Add(watchedFolder);
         }
 
         private async void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
@@ -181,35 +183,26 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("folderInfo");
             }
 
-            RemoveWatchedFolderInternal(dataItem.FullName);
-            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
-        }
-
-        private void RemoveWatchedFolderInternal(string path)
-        {
             lock (_watchedFolders)
             {
-                for (int i = 0; i < _watchedFolders.Count;)
+                int i = _watchedFolders.FindIndex((wf) => wf.Matches(dataItem.FullName));
+                if (i < 0)
                 {
-                    if (!_watchedFolders[i].Matches(path))
-                    {
-                        ++i;
-                        continue;
-                    }
-
-                    if (_watchedFolders[i].IsWellKnown)
-                    {
-                        _watchedFolders[i].IsDeleted = true;
-                        ++i;
-                        continue;
-                    }
-
+                    return;
+                }
+                if (_watchedFolders[i].IsKnownFolder)
+                {
+                    _watchedFolders[i].IsDeleted = true;
+                }
+                else
+                {
                     _watchedFolders[i].Dispose();
                     _watchedFolders.RemoveAt(i);
                 }
             }
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
-
+        
         public IEnumerable<ActiveFile> ActiveFiles
         {
             get

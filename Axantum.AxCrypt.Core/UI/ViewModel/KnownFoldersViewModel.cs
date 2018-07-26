@@ -80,12 +80,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 {
                     continue;
                 }
-                if (knownFolder.My.IsAvailable)
+                if (!knownFolder.My.IsAvailable)
                 {
-                    continue;
+                    knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 }
 
-                knownFolder.Folder.CreateFolder(knownFolder.My.Name);
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, _knownIdentities.DefaultEncryptionIdentity.Tag));
             }
             await _fileSystemState.Save();

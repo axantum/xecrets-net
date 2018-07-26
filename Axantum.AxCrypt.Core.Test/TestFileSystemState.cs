@@ -30,6 +30,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.Test.Properties;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Fake;
 using NUnit.Framework;
 using System;
@@ -305,6 +306,36 @@ namespace Axantum.AxCrypt.Core.Test
 
                 await state.RemoveWatchedFolder(New<IDataContainer>(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
+            }
+        }
+
+        [Test]
+        public async Task TestAddRemoveKnownWatchedFolder()
+        {
+            using (FileSystemState state = FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("mystate.txt")))
+            {
+                KnownFolder knownFolder = New<IKnownFoldersDiscovery>().Discover().First();
+                FakeDataStore.AddFolder(knownFolder.My.FullName);
+
+                await state.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, IdentityPublicTag.Empty));
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
+                Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
+
+                await state.RemoveWatchedFolder(knownFolder.My);
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0));
+                Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
+
+                await state.AddWatchedFolderAsync(new WatchedFolder(knownFolder.My.FullName, IdentityPublicTag.Empty));
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
+                Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
+
+                await state.RemoveWatchedFolder(knownFolder.My);
+
+                Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0));
+                Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
             }
         }
 
