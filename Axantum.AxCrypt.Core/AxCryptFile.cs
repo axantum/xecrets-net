@@ -366,6 +366,7 @@ namespace Axantum.AxCrypt.Core
         /// </summary>
         /// <remarks>
         /// If the file is already encrypted with the appropriate parameters, nothing happens.
+        /// If the file is not encrypted, nothing happens.
         /// </remarks>
         /// <param name="from">From.</param>
         /// <param name="encryptionParameters">The encryption parameters.</param>
@@ -373,6 +374,11 @@ namespace Axantum.AxCrypt.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         public async Task ChangeEncryptionAsync(IDataStore from, LogOnIdentity identity, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
+            if (!from.IsEncrypted())
+            {
+                return;
+            }
+
             using (CancellationTokenSource tokenSource = new CancellationTokenSource())
             {
                 if (IsFileInUse(from))
