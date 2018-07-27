@@ -289,37 +289,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.DecryptFileAsync(file);
         }
 
-        private Task<FileOperationContext> DecryptDamageFileWork(IDataStore file, IProgressContext progress)
+        private Task<FileOperationContext> VerifyFileIntegrityWork(IDataStore file, IProgressContext progress)
         {
-            return EncryptedFilePreconditions(file) ?? DecryptDamageFileAsync(file, IdentityViewModel.LogOnIdentity, progress);
+            return EncryptedFilePreconditions(file) ?? VerifyFileIntegrityAsync(file, IdentityViewModel.LogOnIdentity, progress);
         }
 
-        private Task<FileOperationContext> DecryptDamageFileAsync(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
+        private Task<FileOperationContext> VerifyFileIntegrityAsync(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
         {
-            try
-            {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, identity.Passphrase);
-                long keyWrapIterations = Resolve.UserSettings.GetKeyWrapIterations(encryptionParameters.CryptoId);
-                V2DocumentHeaders DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
-                V2HmacCalculator HmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
-                using (Stream stream = dataStore.OpenRead())
-                {
-                    Headers headers = new Headers();
-                    AxCryptReaderBase reader1 = headers.CreateReader(new LookAheadStream(stream));
-                    IAxCryptDocument document = AxCryptReaderBase.Document(reader1);
-                    AxCryptReader reader = DocumentHeaders.Headers.CreateReader(new LookAheadStream(reader1.InputStream));
-                    DocumentHeaders.Trailers(reader);
-                    if (DocumentHeaders.HmacCalculator.Hmac != DocumentHeaders.Hmac)
-                    {
-                        throw new IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
-                    }
-                }
-                return Task.FromResult(new FileOperationContext(dataStore.FullName, Abstractions.ErrorStatus.Success));
-            }
-            catch (AxCryptException aex)
-            {
-                return Task.FromResult(new FileOperationContext(dataStore.FullName, aex.Message.ToString(), ErrorStatus.HmacValidationError));
-            }
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
+
+            return operationsController.VerifyFileIntegrityAsync(dataStore);
         }
 
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
@@ -703,10 +684,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!_knownIdentities.IsLoggedOn)
             {
-                ;
                 return;
             }
-            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), DecryptDamageFileWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), VerifyFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
     }
 }

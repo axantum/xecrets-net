@@ -63,5 +63,11 @@ namespace Axantum.AxCrypt.Core
         void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options);
 
         void DecryptTo(Stream outputPlaintextStream);
+
+        /// <summary>
+        /// Verifies the file HMAC
+        /// </summary>
+        /// <returns>True if the HMAC was correct, false otherwise.</returns>
+        bool VerifyHmac();
     }
 }

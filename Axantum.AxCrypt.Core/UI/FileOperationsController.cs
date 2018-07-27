@@ -202,6 +202,11 @@ namespace Axantum.AxCrypt.Core.UI
             return DoFileAsync(fileInfo, DecryptFilePreparationAsync, DecryptFileOperationAsync);
         }
 
+        public Task<FileOperationContext> VerifyFileIntegrityAsync(IDataStore dataStore)
+        {
+            return DoFileAsync(dataStore, VerifyFileIntegrityPreparationAsync, VerifyFileIntegrityOperationAsync);
+        }
+
         /// <summary>
         /// Decrypt a file, and launch the associated application raising events as required by
         /// the situation.
@@ -360,6 +365,11 @@ namespace Axantum.AxCrypt.Core.UI
             return sourceFileWatchedFolder?.KeyShares ?? new EmailAddress[0];
         }
 
+        private Task<bool> VerifyFileIntegrityPreparationAsync(IDataStore dataStore)
+        {
+            return CheckDecryptionIdentityAsync(dataStore);
+        }
+
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)
         {
             if (!await CheckDecryptionIdentityAndLockingAsync(fileInfo))
@@ -381,6 +391,22 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
+        private async Task<bool> CheckDecryptionIdentityAsync(IDataStore dataStore)
+        {
+            _eventArgs.OpenFileFullName = dataStore.FullName;
+            if (!dataStore.IsEncrypted())
+            {
+                _eventArgs.Status = new FileOperationContext(dataStore.FullName, "Wrong extension", ErrorStatus.WrongFileExtensionError);
+                return false;
+            }
+
+            if (!await OpenAxCryptDocumentAsync(dataStore, _eventArgs) || _eventArgs.Skip)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private Task<bool> UpgradeFilePreparationAsync(IDataStore store)
         {
             return CheckDecryptionIdentityAndLockingAsync(store);
@@ -388,21 +414,14 @@ namespace Axantum.AxCrypt.Core.UI
 
         private async Task<bool> CheckDecryptionIdentityAndLockingAsync(IDataStore fileInfo)
         {
-            _eventArgs.OpenFileFullName = fileInfo.FullName;
-            if (!fileInfo.IsEncrypted())
+            if (!await CheckDecryptionIdentityAsync(fileInfo))
             {
-                _eventArgs.Status = new FileOperationContext(fileInfo.FullName, "Wrong extension", ErrorStatus.WrongFileExtensionError);
                 return false;
             }
 
             using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
                 if (IsLocked(fileLock))
-                {
-                    return false;
-                }
-
-                if (!await OpenAxCryptDocumentAsync(fileInfo, _eventArgs) || _eventArgs.Skip)
                 {
                     return false;
                 }
@@ -430,6 +449,33 @@ namespace Axantum.AxCrypt.Core.UI
                         _eventArgs.AxCryptFile.IsWriteProtected = false;
                     }
                     New<AxCryptFile>().Wipe(encryptedFileLock, _progress);
+                }
+            }
+            catch (AxCryptException ace)
+            {
+                New<IReport>().Exception(ace);
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
+                return Task.FromResult(false);
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
+            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+            return Task.FromResult(true);
+        }
+
+        private Task<bool> VerifyFileIntegrityOperationAsync()
+        {
+            _progress.NotifyLevelStart();
+            try
+            {
+                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
+                {
+                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                    {
+                        New<AxCryptFile>().VerifyFileHmac(document, _progress);
+                    }
                 }
             }
             catch (AxCryptException ace)

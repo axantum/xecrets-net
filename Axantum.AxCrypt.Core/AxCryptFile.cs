@@ -786,6 +786,47 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public virtual bool VerifyFileHmac(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
+        {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException(nameof(progress));
+            }
+
+            using (FileLock sourceLock = New<FileLocker>().Acquire(dataStore))
+            {
+                using (IAxCryptDocument document = Document(dataStore, identity, new ProgressContext()))
+                {
+                    if (!document.PassphraseIsValid)
+                    {
+                        return false;
+                    }
+                    return VerifyFileHmac(document, progress);
+                }
+            }
+        }
+
+        public virtual bool VerifyFileHmac(IAxCryptDocument document, IProgressContext progress)
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+            return document.VerifyHmac();
+        }
+
         public virtual void TryDecryptBrokenFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)
         {
             if (document == null)
