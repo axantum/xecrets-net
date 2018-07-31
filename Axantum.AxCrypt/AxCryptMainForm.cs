@@ -903,6 +903,11 @@ namespace Axantum.AxCrypt
             _deviceLocking = new DeviceLocking(
                 async () =>
                 {
+                    if (New<UserSettings>().InactivitySignOutTime == TimeSpan.Zero)
+                    {
+                        return;
+                    }
+
                     await EncryptPendingFiles();
 
                     if (await _fileOperationViewModel.IdentityViewModel.LogOff.CanExecuteAsync(null))
