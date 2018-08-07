@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -32,6 +31,11 @@ namespace Axantum.AxCrypt.Core.Session
             if (!New<IUIThread>().IsOn)
             {
                 throw new InternalErrorException("Must be on UI thread to handle device locking events.");
+            }
+
+            if (New<UserSettings>().InactivitySignOutTime == TimeSpan.Zero)
+            {
+                return;
             }
 
             switch (e.Reason)
