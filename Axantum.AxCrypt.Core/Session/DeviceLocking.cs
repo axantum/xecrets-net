@@ -33,11 +33,6 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new InternalErrorException("Must be on UI thread to handle device locking events.");
             }
 
-            if (New<UserSettings>().InactivitySignOutTime == TimeSpan.Zero)
-            {
-                return;
-            }
-
             switch (e.Reason)
             {
                 case DeviceLockReason.Permanent:
@@ -61,6 +56,11 @@ namespace Axantum.AxCrypt.Core.Session
                     if (_currentLock != DeviceLockReason.None)
                     {
                         break;
+                    }
+
+                    if (New<UserSettings>().InactivitySignOutTime == TimeSpan.Zero)
+                    {
+                        return;
                     }
 
                     _currentLock = DeviceLockReason.Temporary;
