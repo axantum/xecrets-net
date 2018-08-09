@@ -41,35 +41,24 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class EncryptedProperties
     {
+        public EncryptedProperties(string fileName)
+        {
+            FileMetaData = new FileMetaData(fileName);
+        }
+
         private EncryptedProperties()
         {
-            SharedKeyHolders = new UserPublicKey[0];
-
-            DateTime utcNow = New<INow>().Utc;
-            CreationTimeUtc = utcNow;
-            LastAccessTimeUtc = utcNow;
-            LastWriteTimeUtc = utcNow;
         }
 
-        public EncryptedProperties(string fileName)
-            : this()
-        {
-            FileName = fileName;
-        }
+        private static readonly EncryptedProperties Invalid = new EncryptedProperties();
 
         public bool IsValid { get; set; }
 
-        public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; }
+        public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; } = new UserPublicKey[0];
 
-        public string FileName { get; private set; }
+        public FileMetaData FileMetaData { get; private set; }
 
         public DecryptionParameter DecryptionParameter { get; set; }
-
-        public DateTime CreationTimeUtc { get; set; }
-
-        public DateTime LastAccessTimeUtc { get; set; }
-
-        public DateTime LastWriteTimeUtc { get; set; }
 
         /// <summary>
         /// Factory method to instantiate an EncryptedProperties instance. It is required and assumed that the
@@ -99,7 +88,7 @@ namespace Axantum.AxCrypt.Core.Session
             catch (FileNotFoundException fnfex)
             {
                 New<IReport>().Exception(fnfex);
-                return new EncryptedProperties();
+                return Invalid;
             }
         }
 
@@ -109,28 +98,27 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 throw new ArgumentNullException("identity");
             }
-
             if (identity == LogOnIdentity.Empty)
             {
-                return new EncryptedProperties();
+                return Invalid;
             }
 
-            EncryptedProperties properties = new EncryptedProperties();
             IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
 
+            EncryptedProperties properties = new EncryptedProperties(null);
             using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, stream))
             {
                 if (!document.PassphraseIsValid)
                 {
-                    return properties;
+                    return Invalid;
                 }
 
+                properties = new EncryptedProperties(document.FileName);
                 properties.SharedKeyHolders = document.AsymmetricRecipients;
-                properties.FileName = document.FileName;
                 properties.DecryptionParameter = document.DecryptionParameter;
-                properties.CreationTimeUtc = document.CreationTimeUtc;
-                properties.LastWriteTimeUtc = document.LastWriteTimeUtc;
-                properties.LastAccessTimeUtc = document.LastAccessTimeUtc;
+                properties.FileMetaData.CreationTimeUtc = document.CreationTimeUtc;
+                properties.FileMetaData.LastWriteTimeUtc = document.LastWriteTimeUtc;
+                properties.FileMetaData.LastAccessTimeUtc = document.LastAccessTimeUtc;
                 properties.IsValid = true;
             }
 
@@ -144,19 +132,17 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("document");
             }
 
-            EncryptedProperties properties = new EncryptedProperties();
-
             if (!document.PassphraseIsValid)
             {
-                return properties;
+                return Invalid;
             }
 
+            EncryptedProperties properties = new EncryptedProperties(document.FileName);
             properties.DecryptionParameter = document.DecryptionParameter;
-            properties.FileName = document.FileName;
             properties.IsValid = document.PassphraseIsValid;
-            properties.CreationTimeUtc = document.CreationTimeUtc;
-            properties.LastAccessTimeUtc = document.LastAccessTimeUtc;
-            properties.LastWriteTimeUtc = document.LastWriteTimeUtc;
+            properties.FileMetaData.CreationTimeUtc = document.CreationTimeUtc;
+            properties.FileMetaData.LastAccessTimeUtc = document.LastAccessTimeUtc;
+            properties.FileMetaData.LastWriteTimeUtc = document.LastWriteTimeUtc;
 
             return properties;
         }

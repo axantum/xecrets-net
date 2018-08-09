@@ -176,10 +176,10 @@ namespace Axantum.AxCrypt.Core
 
             using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
             {
-                document.FileName = properties.FileName;
-                document.CreationTimeUtc = properties.CreationTimeUtc;
-                document.LastAccessTimeUtc = properties.LastAccessTimeUtc;
-                document.LastWriteTimeUtc = properties.LastWriteTimeUtc;
+                document.FileName = properties.FileMetaData.FileName;
+                document.CreationTimeUtc = properties.FileMetaData.CreationTimeUtc;
+                document.LastAccessTimeUtc = properties.FileMetaData.LastAccessTimeUtc;
+                document.LastWriteTimeUtc = properties.FileMetaData.LastWriteTimeUtc;
 
                 document.EncryptTo(sourceStream, destinationStream, options);
             }
