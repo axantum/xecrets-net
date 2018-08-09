@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public enum UpgradeEncryptionConversionMode
+    public enum UpgradeEncryptionMode
     {
         None,
         NotDecided,

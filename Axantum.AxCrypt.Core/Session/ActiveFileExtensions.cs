@@ -128,7 +128,7 @@ namespace Axantum.AxCrypt.Core.Session
                 return false;
             }
 
-            if (New<UserSettings>().UpgradeEncryptionConversionMode != UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles)
+            if (New<UserSettings>().UpgradeEncryptionMode != UpgradeEncryptionMode.AutoConvertUpgradeEncryptionFiles)
             {
                 return false;
             }

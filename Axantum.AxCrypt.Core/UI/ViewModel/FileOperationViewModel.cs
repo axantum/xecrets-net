@@ -402,7 +402,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.SetConvertLegacyOptionCommandAsync = async () =>
             {
-                if (Resolve.UserSettings.UpgradeEncryptionConversionMode != UpgradeEncryptionConversionMode.NotDecided)
+                if (Resolve.UserSettings.UpgradeEncryptionMode != UpgradeEncryptionMode.NotDecided)
                 {
                     return;
                 }
@@ -413,7 +413,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 bool autoConvert = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.OptionsConvertMenuItemText, Texts.LegacyOpenMessage) == PopupButtons.Ok;
                 autoConvert = autoConvert && New<IVerifySignInPassword>().Verify(Texts.LegacyConversionVerificationPrompt);
-                New<UserSettings>().UpgradeEncryptionConversionMode = autoConvert ? UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles : UpgradeEncryptionConversionMode.RetainUpgradeEncryptionFiles;
+                New<UserSettings>().UpgradeEncryptionMode = autoConvert ? UpgradeEncryptionMode.AutoConvertUpgradeEncryptionFiles : UpgradeEncryptionMode.RetainUpgradeEncryptionFiles;
             };
             return operationsController.DecryptAndLaunchAsync(file);
         }
