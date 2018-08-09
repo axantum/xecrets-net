@@ -492,7 +492,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelFinished();
             }
-           _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return Task.FromResult(true);
         }
 
