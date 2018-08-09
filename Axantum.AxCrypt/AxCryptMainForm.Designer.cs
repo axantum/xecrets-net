@@ -924,7 +924,7 @@ namespace Axantum.AxCrypt
             // 
             this._VerifyFileToolStripMenuItem.Name = "_VerfiyFileToolStripMenuItem";
             this._VerifyFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this._VerifyFileToolStripMenuItem.Text = "[& Verfiy File]";
+            this._VerifyFileToolStripMenuItem.Text = "[&Verfiy File]";
             // 
             // _debugOpenReportToolStripMenuItem
             // 

@@ -235,7 +235,7 @@ namespace Axantum.AxCrypt
             _debugOpenReportToolStripMenuItem.Text = "&" + Texts.ReportSnapshotOpenMenuItem;
             _debugOptionsToolStripMenuItem.Text = "&" + Texts.DebugOptionsToolStripMenuItemText;
             _debugToolStripMenuItem.Text = "&" + Texts.DebugToolStripMenuItemText;
-            _VerifyFileToolStripMenuItem.Text = "&" + "[ _VerifyFile ]";
+            _VerifyFileToolStripMenuItem.Text = "&" + Texts.VerifyFileToolStripMenuItem;
             _decryptAndRemoveFromListToolStripMenuItem.Text = "&" + Texts.DecryptAndRemoveFromListToolStripMenuItemText;
             _decryptedFileColumnHeader.Text = Texts.DecryptedFileColumnHeaderText;
             _decryptToolStripMenuItem.Text = "&" + Texts.DecryptToolStripMenuItemText;
