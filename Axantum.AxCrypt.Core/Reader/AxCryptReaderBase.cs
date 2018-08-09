@@ -223,7 +223,7 @@ namespace Axantum.AxCrypt.Core.Reader
             Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
             if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
             {
-                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.FileFormatError);
+                throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
             }
 
             int blockType = InputStream.ReadByte();

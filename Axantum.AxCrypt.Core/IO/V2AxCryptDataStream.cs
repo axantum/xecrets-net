@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
@@ -205,12 +206,12 @@ namespace Axantum.AxCrypt.Core.IO
         {
             if (!_reader.Read())
             {
-                throw new FileFormatException("Unexpected end of file during read of encrypted data stream.");
+                throw new FileFormatException("Unexpected end of file during read of encrypted data stream.", ErrorStatus.UnexpectedEndOfFile);
             }
 
             if (_reader.CurrentItemType != AxCryptItemType.HeaderBlock)
             {
-                throw new FileFormatException("Unexpected block type encountered during read of encrypted data stream.");
+                throw new FileFormatException("Unexpected block type encountered during read of encrypted data stream.", ErrorStatus.UnexpectedHeaderBlockType);
             }
 
             if (_reader.CurrentHeaderBlock.HeaderBlockType != HeaderBlockType.EncryptedDataPart)
