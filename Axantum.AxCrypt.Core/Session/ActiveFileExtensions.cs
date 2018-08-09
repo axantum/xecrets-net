@@ -55,11 +55,12 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            bool shouldConvertLegacy = activeFile.ShouldConvertLegacy();
-            if (!shouldConvertLegacy && !activeFile.IsModified)
+            bool shouldConvertUpgradeEncryption = activeFile.ShouldConvertUpgradeEncryption();
+            if (!shouldConvertUpgradeEncryption && !activeFile.IsModified)
             {
                 return activeFile;
             }
+
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
             {
                 return activeFile;
@@ -84,11 +85,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
-                    if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                    if (!IsLegacy(activeFile) || shouldConvertUpgradeEncryption || IsAES128(activeFile))
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
-                    if (shouldConvertLegacy || activeFile.Identity == LogOnIdentity.Empty)
+                    if (shouldConvertUpgradeEncryption || activeFile.Identity == LogOnIdentity.Empty)
                     {
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
@@ -120,14 +121,24 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
         }
 
-        public static bool ShouldConvertLegacy(this ActiveFile activeFile)
+        private static bool IsAES128(ActiveFile activeFile)
+        {
+            return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
+        }
+
+        public static bool ShouldConvertUpgradeEncryption(this ActiveFile activeFile)
         {
             if (!IsLegacy(activeFile))
             {
                 return false;
             }
 
-            if (New<UserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
+            if (!IsAES128(activeFile))
+            {
+                return false;
+            }
+
+            if (New<UserSettings>().UpgradeEncryptionConversionMode != UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles)
             {
                 return false;
             }

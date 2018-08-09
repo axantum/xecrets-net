@@ -274,8 +274,8 @@ namespace Axantum.AxCrypt
             _notifyAdvancedToolStripMenuItem.Text = "&" + Texts.McInfMenuShow;
             _openEncryptedToolStripButton.ToolTipText = Texts.OpenToolStripButtonToolTipText;
             _openEncryptedToolStripMenuItem.Text = "&" + Texts.OpenEncryptedToolStripMenuItemText;
-            _optionsAutoConvert1xFilesToolStripMenuItem.Text = "&" + Texts.OptionsConvertMenuItemText;
-            _optionsAutoConvert1xFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
+            _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Text = "&" + Texts.OptionsConvertMenuItemText;
+            _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.ToolTipText = Texts.OptionsConvertMenuToolTip;
             _optionsChangePassphraseToolStripMenuItem.Text = "&" + Texts.OptionsChangePassphraseToolStripMenuItemText;
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
@@ -307,8 +307,8 @@ namespace Axantum.AxCrypt
             _swedishLanguageToolStripMenuItem.Text = "&" + Texts.SwedishLanguageToolStripMenuItemText;
             _turkishLanguageToolStripMenuItem.Text = "&" + Texts.TurkishLanguageToolStripMenuItemText;
             _tryBrokenFileToolStripMenuItem.Text = "&" + Texts.TryBrokenFileToolStripMenuItemText;
-            _upgradeLegacyMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
-            _upgradeLegacyMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
+            _upgradeEncryptionMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
+            _upgradeEncryptionMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
             _watchedFolderColumnHeader.Text = Texts.WatchedFolderColumnHeaderText;
             _watchedFoldersAddSecureFolderMenuItem.Text = "&" + Texts.AddSecureFolderMenuItemText;
             _watchedFoldersdecryptTemporarilyMenuItem.Text = "&" + Texts.MenuDecryptTemporarilyText;
@@ -775,7 +775,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LegacyConversionMode), (LegacyConversionMode mode) => _optionsAutoConvert1xFilesToolStripMenuItem.Checked = mode == LegacyConversionMode.AutoConvertLegacyFiles);
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.UpgradeEncryptionConversionMode), (UpgradeEncryptionConversionMode mode) => _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Checked = mode == UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
@@ -791,14 +791,13 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
-
             _checkForUpdateToolStripMenuItem.Click += async (sender, e) => { _userInitiatedUpdateCheckPending = true; await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue); };
             _debugCheckVersionNowToolStripMenuItem.Click += async (sender, e) => { _userInitiatedUpdateCheckPending = true; await _mainViewModel.AxCryptUpdateCheck.ExecuteAsync(DateTime.MinValue); };
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
-            _optionsAutoConvert1xFilesToolStripMenuItem.Click += (sender, e) => ToggleLegacyConversion();
+            _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Click += (sender, e) => ToggleUpgradeEncryption();
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
@@ -878,7 +877,7 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(async () => await SetLegacyOpenMode(e));
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
-            _fileOperationViewModel.ToggleLegacyConversion += (sender, e) => New<IUIThread>().SendTo(() => ToggleLegacyConversion());
+            _fileOperationViewModel.ToggleUpgradeEncryption += (sender, e) => New<IUIThread>().SendTo(() => ToggleUpgradeEncryption());
             _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysWithFileSelectionAsync(); }, sender, e); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
@@ -890,7 +889,7 @@ namespace Axantum.AxCrypt
             _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
             _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
             _tryBrokenFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.TryBrokenFiles.ExecuteAsync(null); };
-            _upgradeLegacyMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncUpgradeFiles.ExecuteAsync(null);
+            _upgradeEncryptionMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncUpgradeEncryptionFiles.ExecuteAsync(null);
             _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
@@ -952,14 +951,14 @@ namespace Axantum.AxCrypt
             _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsAutoConvert1xFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
-            _upgradeLegacyMenuItem.Enabled = isSignedInWithAxCryptId;
+            _upgradeEncryptionMenuItem.Enabled = isSignedInWithAxCryptId;
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
@@ -984,11 +983,11 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private void ToggleLegacyConversion()
+        private void ToggleUpgradeEncryption()
         {
-            if (_mainViewModel.LegacyConversionMode == LegacyConversionMode.AutoConvertLegacyFiles)
+            if (_mainViewModel.UpgradeEncryptionConversionMode == UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles)
             {
-                _mainViewModel.LegacyConversionMode = LegacyConversionMode.RetainLegacyFiles;
+                _mainViewModel.UpgradeEncryptionConversionMode = UpgradeEncryptionConversionMode.RetainUpgradeEncryptionFiles;
                 return;
             }
 
@@ -997,7 +996,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _mainViewModel.LegacyConversionMode = LegacyConversionMode.AutoConvertLegacyFiles;
+            _mainViewModel.UpgradeEncryptionConversionMode = UpgradeEncryptionConversionMode.AutoConvertUpgradeEncryptionFiles;
         }
 
         private async Task LogOffAndLogOnAgainAsync()

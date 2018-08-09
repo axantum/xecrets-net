@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt
             this._renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._restoreAnonymousNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._upgradeLegacyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._upgradeEncryptionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._cleanDecryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -80,7 +80,7 @@ namespace Axantum.AxCrypt
             this._turkishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._optionsAutoConvert1xFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsAutoUpgradeEncryptionFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsIncludeSubfoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._inactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -431,7 +431,7 @@ namespace Axantum.AxCrypt
             this._renameToolStripMenuItem,
             this._restoreAnonymousNamesToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
-            this._upgradeLegacyMenuItem,
+            this._upgradeEncryptionMenuItem,
             this._toolStripSeparator6,
             this._cleanDecryptedToolStripMenuItem,
             this._toolStripSeparator3,
@@ -495,11 +495,11 @@ namespace Axantum.AxCrypt
             this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
             // 
-            // _upgradeLegacyMenuItem
+            // _upgradeEncryptionMenuItem
             // 
-            this._upgradeLegacyMenuItem.Name = "_upgradeLegacyMenuItem";
-            this._upgradeLegacyMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._upgradeLegacyMenuItem.Text = "[Upgrade AxCrypt 1.x Files]";
+            this._upgradeEncryptionMenuItem.Name = "_upgradeEncryptionMenuItem";
+            this._upgradeEncryptionMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._upgradeEncryptionMenuItem.Text = "[Upgrade AxCrypt 1.x Files]";
             // 
             // _toolStripSeparator6
             // 
@@ -536,7 +536,7 @@ namespace Axantum.AxCrypt
             this._optionsLanguageToolStripMenuItem,
             this._optionsChangePassphraseToolStripMenuItem,
             this._passwordResetToolStripMenuItem,
-            this._optionsAutoConvert1xFilesToolStripMenuItem,
+            this._optionsAutoUpgradeEncryptionFilesToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
             this._inactivitySignOutToolStripMenuItem,
@@ -676,11 +676,11 @@ namespace Axantum.AxCrypt
             this._passwordResetToolStripMenuItem.Text = "[&Password Reset]";
             this._passwordResetToolStripMenuItem.Click += new System.EventHandler(this.PasswordReset_Click);
             // 
-            // _optionsAutoConvert1xFilesToolStripMenuItem
+            // _optionsAutoUpgradeEncryptionFilesToolStripMenuItem
             // 
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Name = "_optionsAutoConvert1xFilesToolStripMenuItem";
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._optionsAutoConvert1xFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
+            this._optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Name = "_optionsAutoUpgradeEncryptionFilesToolStripMenuItem";
+            this._optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Text = "[Auto Convert 1.x Files]";
             // 
             // _alwaysOfflineToolStripMenuItem
             // 
@@ -1327,12 +1327,12 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _addSecureFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersKeySharingMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _spanishLanguageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _optionsAutoConvert1xFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsAutoUpgradeEncryptionFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _debugOpenReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton _openEncryptedToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem _renameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _recentFilesRestoreAnonymousNamesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _upgradeLegacyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _upgradeEncryptionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _germanLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _koreanLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _italianLanguageToolStripMenuItem;

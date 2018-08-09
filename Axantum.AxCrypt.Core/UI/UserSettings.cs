@@ -265,10 +265,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(OfflineMode), value); }
         }
 
-        public LegacyConversionMode LegacyConversionMode
+        public UpgradeEncryptionConversionMode UpgradeEncryptionConversionMode
         {
-            get { return (LegacyConversionMode)Load(nameof(LegacyConversionMode), (int)LegacyConversionMode.NotDecided); }
-            set { Store(nameof(LegacyConversionMode), (int)value); }
+            get { return (UpgradeEncryptionConversionMode)Load(nameof(UpgradeEncryptionConversionMode), (int)UpgradeEncryptionConversionMode.NotDecided); }
+            set { Store(nameof(UpgradeEncryptionConversionMode), (int)value); }
         }
 
         public bool ShouldDisplayHelpOverlayAutomatically
