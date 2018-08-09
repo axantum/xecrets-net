@@ -276,6 +276,17 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public bool VerifyHmac()
+        {
+            using (Stream encryptedDataStream = CreateEncryptedDataStream())
+            {
+                encryptedDataStream.CopyTo(Stream.Null);
+            }
+
+            DocumentHeaders.Trailers(_reader);
+            return DocumentHeaders.HmacCalculator.Hmac == DocumentHeaders.Hmac;
+        }
+
         private Stream CreateEncryptedDataStream()
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)

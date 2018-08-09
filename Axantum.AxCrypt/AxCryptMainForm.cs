@@ -235,6 +235,7 @@ namespace Axantum.AxCrypt
             _debugOpenReportToolStripMenuItem.Text = "&" + Texts.ReportSnapshotOpenMenuItem;
             _debugOptionsToolStripMenuItem.Text = "&" + Texts.DebugOptionsToolStripMenuItemText;
             _debugToolStripMenuItem.Text = "&" + Texts.DebugToolStripMenuItemText;
+            _VerifyFileToolStripMenuItem.Text = "&" + Texts.VerifyFileToolStripMenuItem;
             _decryptAndRemoveFromListToolStripMenuItem.Text = "&" + Texts.DecryptAndRemoveFromListToolStripMenuItemText;
             _decryptedFileColumnHeader.Text = Texts.DecryptedFileColumnHeaderText;
             _decryptToolStripMenuItem.Text = "&" + Texts.DecryptToolStripMenuItemText;
@@ -891,6 +892,7 @@ namespace Axantum.AxCrypt
             _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
             _tryBrokenFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.TryBrokenFiles.ExecuteAsync(null); };
             _upgradeLegacyMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncUpgradeFiles.ExecuteAsync(null);
+            _VerifyFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.VerifyFiles.ExecuteAsync(null); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };

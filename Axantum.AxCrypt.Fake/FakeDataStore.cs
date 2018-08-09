@@ -134,6 +134,14 @@ namespace Axantum.AxCrypt.Fake
             _file = new FakeFileInfo { FullName = fullName, CreationTimeUtc = utcNow, LastAccessTimeUtc = utcNow, LastWriteTimeUtc = utcNow, Stream = Stream.Null };
         }
 
+        public Stream Stream
+        {
+            get
+            {
+                return FindFileInfo().Stream;
+            }
+        }
+
         protected virtual void OnOpeningForRead()
         {
             EventHandler handler = OpeningForRead;

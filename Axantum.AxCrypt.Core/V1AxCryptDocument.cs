@@ -311,6 +311,16 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        public bool VerifyHmac()
+        {
+            using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
+            {
+                encryptedDataStream.CopyTo(Stream.Null);
+            }
+
+            return Hmac == DocumentHeaders.Headers.Hmac;
+        }
+
         private V1AxCryptDataStream CreateEncryptedDataStream(Stream inputStream, long cipherTextLength)
         {
             if (_reader.CurrentItemType != AxCryptItemType.Data)
