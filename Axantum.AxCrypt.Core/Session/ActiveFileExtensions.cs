@@ -55,8 +55,8 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            bool shouldConvertUpgradeEncryption = activeFile.ShouldConvertUpgradeEncryption();
-            if (!shouldConvertUpgradeEncryption && !activeFile.IsModified)
+            bool shouldUpgradeEncryption = activeFile.ShouldUpgradeEncryption();
+            if (!shouldUpgradeEncryption && !activeFile.IsModified)
             {
                 return activeFile;
             }
@@ -85,11 +85,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
-                    if (!IsLegacy(activeFile) || shouldConvertUpgradeEncryption || IsAES128(activeFile))
+                    if (!IsLegacy(activeFile) || shouldUpgradeEncryption)
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
-                    if (shouldConvertUpgradeEncryption || activeFile.Identity == LogOnIdentity.Empty)
+                    if (shouldUpgradeEncryption || activeFile.Identity == LogOnIdentity.Empty)
                     {
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
@@ -121,19 +121,9 @@ namespace Axantum.AxCrypt.Core.Session
             return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
         }
 
-        private static bool IsAES128(ActiveFile activeFile)
-        {
-            return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
-        }
-
-        public static bool ShouldConvertUpgradeEncryption(this ActiveFile activeFile)
+        public static bool ShouldUpgradeEncryption(this ActiveFile activeFile)
         {
             if (!IsLegacy(activeFile))
-            {
-                return false;
-            }
-
-            if (!IsAES128(activeFile))
             {
                 return false;
             }
