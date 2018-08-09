@@ -474,7 +474,11 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
                     {
-                        New<AxCryptFile>().VerifyFileHmac(document, _progress);
+                        if (!New<AxCryptFile>().VerifyFileHmac(document, _progress))
+                        {
+                            _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.HmacValidationError);
+                            return Task.FromResult(false);
+                        }
                     }
                 }
             }
@@ -488,7 +492,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelFinished();
             }
-            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+           _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return Task.FromResult(true);
         }
 
