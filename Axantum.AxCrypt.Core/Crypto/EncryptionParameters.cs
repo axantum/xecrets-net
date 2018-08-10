@@ -35,6 +35,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Axantum.AxCrypt.Core.Extensions;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using Axantum.AxCrypt.Abstractions;
 
 namespace Axantum.AxCrypt.Core.Crypto
 {
@@ -76,44 +77,19 @@ namespace Axantum.AxCrypt.Core.Crypto
             _publicKeys.AddRange(identity.PublicKeys);
         }
 
-        public async Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
+        public Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
-            await AddAsync(publicKeys.Select(x => x.Email));
-            ReplaceRange(publicKeys);
-        }
-
-        public async Task AddAsync(IEnumerable<EmailAddress> shares)
-        {
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            foreach (UserPublicKey userPublicKey in publicKeys)
             {
-                foreach (EmailAddress email in shares)
+                UserPublicKey existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
+                if (existingKey != null)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(email, _identity);
-                    if (key == null)
-                    {
-                        continue;
-                    }
-                    Replace(key);
+                    _publicKeys.Remove(existingKey);
                 }
+                _publicKeys.Add(userPublicKey);
             }
-        }
 
-        private void ReplaceRange(IEnumerable<UserPublicKey> publicKeysToAddOrReplace)
-        {
-            foreach (UserPublicKey userPublicKey in publicKeysToAddOrReplace)
-            {
-                Replace(userPublicKey);
-            }
-        }
-
-        private void Replace(UserPublicKey userPublicKey)
-        {
-            UserPublicKey existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
-            if (existingKey != null)
-            {
-                _publicKeys.Remove(existingKey);
-            }
-            _publicKeys.Add(userPublicKey);
+            return Constant.CompletedTask;
         }
 
         /// <summary>

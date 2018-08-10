@@ -279,6 +279,87 @@ namespace Axantum.AxCrypt.Core.Test
         }
 
         [Test]
+        public void TestVerifyHmacOkV1()
+        {
+            string sourceFullName = _davidCopperfieldTxtPath;
+
+            IDataStore plainStore = New<IDataStore>(sourceFullName);
+            IDataStore encryptedStore = plainStore.CreateEncryptedName();
+            LogOnIdentity identity = new LogOnIdentity("laDabled@tAmeopot33");
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, identity.Passphrase);
+
+            new AxCryptFile().Encrypt(plainStore, encryptedStore, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            bool hmacIsOk = new AxCryptFile().VerifyFileHmac(encryptedStore, identity, new ProgressContext());
+
+            Assert.That(hmacIsOk, "HMAC did not verify as expected for a V1 document.");
+        }
+
+        [Test]
+        public void TestVerifyHmacBadV1()
+        {
+            string sourceFullName = _davidCopperfieldTxtPath;
+
+            IDataStore plainStore = New<IDataStore>(sourceFullName);
+            IDataStore encryptedStore = plainStore.CreateEncryptedName();
+            LogOnIdentity identity = new LogOnIdentity("laDabled@tAmeopot33");
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V1Aes128CryptoFactory().CryptoId, identity.Passphrase);
+
+            new AxCryptFile().Encrypt(plainStore, encryptedStore, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+
+            FakeDataStore fakeEncryptedStore = encryptedStore as FakeDataStore;
+            Stream stream = fakeEncryptedStore.Stream;
+            stream.Position = stream.Length / 2;
+            int aByte = stream.ReadByte();
+            stream.Position -= 1;
+            stream.WriteByte((byte)(aByte ^ 0xff));
+
+            bool hmacIsOk = new AxCryptFile().VerifyFileHmac(encryptedStore, identity, new ProgressContext());
+
+            Assert.That(!hmacIsOk, "HMAC did not fail as expected for a V1 document.");
+        }
+
+        [Test]
+        public void TestVerifyHmacOkV2()
+        {
+            string sourceFullName = _davidCopperfieldTxtPath;
+
+            IDataStore plainStore = New<IDataStore>(sourceFullName);
+            IDataStore encryptedStore = plainStore.CreateEncryptedName();
+            LogOnIdentity identity = new LogOnIdentity("laDabled@tAmeopot33");
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, identity.Passphrase);
+
+            new AxCryptFile().Encrypt(plainStore, encryptedStore, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            bool hmacIsOk = new AxCryptFile().VerifyFileHmac(encryptedStore, identity, new ProgressContext());
+
+            Assert.That(hmacIsOk, "HMAC did not verify as expected for a V2 document.");
+        }
+
+
+        [Test]
+        public void TestVerifyHmacBadV2()
+        {
+            string sourceFullName = _davidCopperfieldTxtPath;
+
+            IDataStore plainStore = New<IDataStore>(sourceFullName);
+            IDataStore encryptedStore = plainStore.CreateEncryptedName();
+            LogOnIdentity identity = new LogOnIdentity("laDabled@tAmeopot33");
+            EncryptionParameters encryptionParameters = new EncryptionParameters(new V2Aes256CryptoFactory().CryptoId, identity.Passphrase);
+
+            new AxCryptFile().Encrypt(plainStore, encryptedStore, encryptionParameters, AxCryptOptions.SetFileTimes | AxCryptOptions.EncryptWithCompression, new ProgressContext());
+
+            FakeDataStore fakeEncryptedStore = encryptedStore as FakeDataStore;
+            Stream stream = fakeEncryptedStore.Stream;
+            stream.Position = stream.Length / 2;
+            int aByte = stream.ReadByte();
+            stream.Position -= 1;
+            stream.WriteByte((byte)(aByte ^ 0xff));
+
+            bool hmacIsOk = new AxCryptFile().VerifyFileHmac(encryptedStore, identity, new ProgressContext());
+
+            Assert.That(!hmacIsOk, "HMAC did not fail as expected for a V2 document.");
+        }
+
+        [Test]
         public void TestInvalidPassphrase()
         {
             IDataStore sourceFileInfo = New<IDataStore>(_testTextPath);

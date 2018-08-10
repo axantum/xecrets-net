@@ -193,6 +193,7 @@
     <Compile Include="Session\ActiveFileWatcher.cs" />
     <Compile Include="Session\DeviceLocking.cs" />
     <Compile Include="Session\EncryptedProperties.cs" />
+    <Compile Include="Session\FileMetaData.cs" />
     <Compile Include="Session\IdentityPublicTag.cs" />
     <Compile Include="Session\KnownPublicKeys.cs" />
     <Compile Include="Service\UserKeyPair.cs" />
@@ -225,11 +226,13 @@
     <Compile Include="UI\PremiumManagerWithoutAutoTrial.cs" />
     <Compile Include="UI\ProgressBackground.cs" />
     <Compile Include="UI\ProgressBackgroundEventArgs.cs" />
+    <Compile Include="UI\RegexEmailParser.cs" />
     <Compile Include="UI\SecretsSortOrder.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\StatusChecker.cs" />
     <Compile Include="UI\StreamSettingsStore.cs" />
+    <Compile Include="UI\TransientSettingsStore.cs" />
     <Compile Include="UI\UserSettingsVersion.cs" />
     <Compile Include="UI\VerifySignInPasswordBase.cs" />
     <Compile Include="UI\ViewModel\AccountEmailViewModel.cs" />

@@ -2720,6 +2720,9 @@ The AxCrypt Team</value>
     <value>Please verify your new account</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>!!VerifyFile</value>
+  </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verify Password</value>
   </data>

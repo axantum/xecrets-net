@@ -114,7 +114,7 @@ namespace Axantum.AxCrypt.Core.Session
                             WatchedFolder watchedFolder = _fileSystemState.WatchedFolders.First(wf => wf.Path == fullName);
 
                             encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity);
-                            await encryptionParameters.AddAsync(watchedFolder.KeyShares);
+                            await encryptionParameters.AddAsync(await watchedFolder.KeyShares.ToKnownPublicKeysAsync(notification.Identity));
 
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
@@ -191,7 +191,7 @@ namespace Axantum.AxCrypt.Core.Session
             foreach (WatchedFolder watchedFolder in _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(identity.Tag)))
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity);
-                await encryptionParameters.AddAsync(watchedFolder.KeyShares);
+                await encryptionParameters.AddAsync(await watchedFolder.KeyShares.ToKnownPublicKeysAsync(identity));
                 IDataContainer folder = New<IDataContainer>(watchedFolder.Path);
                 progress.Display = folder.Name;
                 await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(new IDataContainer[] { folder }, encryptionParameters, progress);

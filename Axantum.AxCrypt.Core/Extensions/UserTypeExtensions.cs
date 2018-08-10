@@ -4,6 +4,7 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
@@ -406,10 +407,49 @@ namespace Axantum.AxCrypt.Core.Extensions
             return userPublicKey;
         }
 
+        public static async Task<IEnumerable<UserPublicKey>> GetKnownPublicKeysAsync(this IEnumerable<UserPublicKey> publicKeys, LogOnIdentity identity)
+        {
+            List<UserPublicKey> knownKeys = new List<UserPublicKey>();
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                foreach (UserPublicKey publicKey in publicKeys)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(publicKey.Email, identity);
+                    if (key == null)
+                    {
+                        knownKeys.Add(publicKey);
+                        continue;
+                    }
+
+                    knownKeys.Add(key);
+                }
+            }
+            return knownKeys;
+        }
+
+        public static async Task<IEnumerable<UserPublicKey>> ToKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
+        {
+            List<UserPublicKey> knownKeys = new List<UserPublicKey>();
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                foreach (EmailAddress email in emails)
+                {
+                    UserPublicKey key = await knownPublicKeys.GetAsync(email, identity);
+                    if (key == null)
+                    {
+                        continue;
+                    }
+
+                    knownKeys.Add(key);
+                }
+            }
+            return knownKeys;
+        }
+
         public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
         {
             EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            await encryptionParameters.AddAsync(publicKeys.Select(pk => pk.Email));
+            await encryptionParameters.AddAsync(await publicKeys.GetKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity));
             await ChangeEncryptionAsync(files, encryptionParameters);
         }
 

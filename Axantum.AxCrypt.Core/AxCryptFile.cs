@@ -176,10 +176,10 @@ namespace Axantum.AxCrypt.Core
 
             using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
             {
-                document.FileName = properties.FileName;
-                document.CreationTimeUtc = properties.CreationTimeUtc;
-                document.LastAccessTimeUtc = properties.LastAccessTimeUtc;
-                document.LastWriteTimeUtc = properties.LastWriteTimeUtc;
+                document.FileName = properties.FileMetaData.FileName;
+                document.CreationTimeUtc = properties.FileMetaData.CreationTimeUtc;
+                document.LastAccessTimeUtc = properties.FileMetaData.LastAccessTimeUtc;
+                document.LastWriteTimeUtc = properties.FileMetaData.LastWriteTimeUtc;
 
                 document.EncryptTo(sourceStream, destinationStream, options);
             }
@@ -784,6 +784,47 @@ namespace Axantum.AxCrypt.Core
             {
                 Decrypt(document, decryptedFileLock, AxCryptOptions.SetFileTimes, progress);
             }
+        }
+
+        public virtual bool VerifyFileHmac(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
+        {
+            if (dataStore == null)
+            {
+                throw new ArgumentNullException(nameof(dataStore));
+            }
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException(nameof(progress));
+            }
+
+            using (FileLock sourceLock = New<FileLocker>().Acquire(dataStore))
+            {
+                using (IAxCryptDocument document = Document(dataStore, identity, new ProgressContext()))
+                {
+                    if (!document.PassphraseIsValid)
+                    {
+                        return false;
+                    }
+                    return VerifyFileHmac(document, progress);
+                }
+            }
+        }
+
+        public virtual bool VerifyFileHmac(IAxCryptDocument document, IProgressContext progress)
+        {
+            if (document == null)
+            {
+                throw new ArgumentNullException("document");
+            }
+            if (progress == null)
+            {
+                throw new ArgumentNullException("progress");
+            }
+            return document.VerifyHmac();
         }
 
         public virtual void TryDecryptBrokenFile(IAxCryptDocument document, string decryptedFileFullName, IProgressContext progress)

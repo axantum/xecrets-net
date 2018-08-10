@@ -28,12 +28,15 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -89,6 +92,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>((files) => ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => TryBrokenFilesActionAsync(files));
+            VerifyFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => VerifyFilesActionAsync(files));
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -114,6 +118,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShowInFolder { get; private set; }
 
         public IAsyncAction TryBrokenFiles { get; private set; }
+
+        public IAsyncAction VerifyFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -281,6 +287,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.DecryptFileAsync(file);
+        }
+
+        private Task<FileOperationContext> VerifyFileIntegrityWork(IDataStore file, IProgressContext progress)
+        {
+            return EncryptedFilePreconditions(file) ?? VerifyFileIntegrityAsync(file, IdentityViewModel.LogOnIdentity, progress);
+        }
+
+        private Task<FileOperationContext> VerifyFileIntegrityAsync(IDataStore dataStore, LogOnIdentity identity, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
+
+            return operationsController.VerifyFileIntegrityAsync(dataStore);
         }
 
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)
@@ -649,6 +669,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             };
 
             return operationsController.TryDecryptBrokenFileAsync(file);
+        }
+
+        private async Task VerifyFilesActionAsync(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Decrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
+            }
+            if (!_knownIdentities.IsLoggedOn)
+            {
+                return;
+            }
+
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), VerifyFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
     }
 }

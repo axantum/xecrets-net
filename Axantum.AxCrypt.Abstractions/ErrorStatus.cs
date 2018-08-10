@@ -65,5 +65,8 @@ namespace Axantum.AxCrypt.Abstractions
         BadApiRequest,
         FileWriteProtected,
         WrongFileExtensionError,
+        InvalidBlockLength,
+        UnexpectedEndOfFile,
+        UnexpectedHeaderBlockType,
     }
 }

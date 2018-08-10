@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return;
             }
 
-            string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(dataStore.FullName), encryptedProperties.FileName.CreateEncryptedName());
+            string destinationFilePath = Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(dataStore.FullName), encryptedProperties.FileMetaData.FileName.CreateEncryptedName());
             if (string.Equals(dataStore.FullName, destinationFilePath, StringComparison.OrdinalIgnoreCase))
             {
                 return;
