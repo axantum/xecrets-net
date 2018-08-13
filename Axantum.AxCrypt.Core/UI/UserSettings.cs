@@ -267,8 +267,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public UpgradeFileEncryptionMode UpgradeFileEncryptionMode
         {
-            get { return (UpgradeFileEncryptionMode)Load("LegacyConversionMode and UpgradeAES128Files", (int)UpgradeFileEncryptionMode.NotDecided); }
-            set { Store("LegacyConversionMode and UpgradeAES128Files", (int)value); }
+            get { return (UpgradeFileEncryptionMode)Load("LegacyConversionMode", (int)UpgradeFileEncryptionMode.NotDecided); }
+            set { Store("LegacyConversionMode", (int)value); }
         }
 
         public bool ShouldDisplayHelpOverlayAutomatically

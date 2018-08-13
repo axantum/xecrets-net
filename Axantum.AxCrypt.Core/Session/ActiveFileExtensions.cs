@@ -55,7 +55,7 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            bool shouldUpgradeEncryption = activeFile.ShouldUpgradeEncryption();
+            bool shouldUpgradeEncryption = activeFile.Properties.CryptoId.ShouldUpgradeEncryption();
             if (!shouldUpgradeEncryption && !activeFile.IsModified)
             {
                 return activeFile;
@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
-                    if (!IsLegacy(activeFile) || shouldUpgradeEncryption)
+                    if (shouldUpgradeEncryption)
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
@@ -114,31 +114,6 @@ namespace Axantum.AxCrypt.Core.Session
                 New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
-        }
-
-        private static bool IsLegacy(ActiveFile activeFile)
-        {
-            return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
-        }
-
-        public static bool ShouldUpgradeEncryption(this ActiveFile activeFile)
-        {
-            if (!IsLegacy(activeFile))
-            {
-                return false;
-            }
-
-            if (New<UserSettings>().UpgradeFileEncryptionMode != UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles)
-            {
-                return false;
-            }
-
-            if (!New<KnownIdentities>().IsLoggedOn)
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }
