@@ -776,7 +776,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.UpgradeEncryptionMode), (UpgradeEncryptionMode mode) => _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Checked = mode == UpgradeEncryptionMode.AutoConvertUpgradeEncryptionFiles);
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.UpgradeFileEncryptionMode), (UpgradeFileEncryptionMode mode) => _optionsAutoUpgradeEncryptionFilesToolStripMenuItem.Checked = mode == UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
@@ -987,9 +987,9 @@ namespace Axantum.AxCrypt
 
         private void ToggleUpgradeEncryption()
         {
-            if (_mainViewModel.UpgradeEncryptionMode == UpgradeEncryptionMode.AutoConvertUpgradeEncryptionFiles)
+            if (_mainViewModel.UpgradeFileEncryptionMode == UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles)
             {
-                _mainViewModel.UpgradeEncryptionMode = UpgradeEncryptionMode.RetainUpgradeEncryptionFiles;
+                _mainViewModel.UpgradeFileEncryptionMode = UpgradeFileEncryptionMode.RetainUpgradeEncryptionFiles;
                 return;
             }
 
@@ -998,7 +998,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            _mainViewModel.UpgradeEncryptionMode = UpgradeEncryptionMode.AutoConvertUpgradeEncryptionFiles;
+            _mainViewModel.UpgradeFileEncryptionMode = UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles;
         }
 
         private async Task LogOffAndLogOnAgainAsync()
