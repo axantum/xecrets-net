@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase)));
             if (await store.IsIdentityValidAsync())
             {
-                return new LogOnIdentity(await store.ActiveKeyPairAsync(), passphrase);
+                return new LogOnIdentity(await store.AllKeyPairsAsync(), passphrase);
             }
             return LogOnIdentity.Empty;
         }
