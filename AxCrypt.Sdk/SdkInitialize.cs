@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Algorithm;
+using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Mono;
+using Axantum.AxCrypt.Mono.Portable;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
@@ -19,11 +29,52 @@ namespace AxCrypt.Sdk
 
         private static void InitializeTypeFactories()
         {
-            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+            RuntimeEnvironment.RegisterTypeFactories();
+
+            IEnumerable<Assembly> assemblies = LoadFromFiles(GetExecutingDirectory().GetFiles("*.dll"));
+            Resolve.RegisterTypeFactories(assemblies);
+
             TypeMap.Register.Singleton<IEmailParser>(() => new RegexEmailParser());
             TypeMap.Register.Singleton<ISettingsStore>(() => new TransientSettingsStore());
-            TypeMap.Register.Singleton<UserSettings>(() => new UserSettings(New<ISettingsStore>(), New<IterationCalculator>()));
             TypeMap.Register.Singleton<INow>(() => new Now());
+            TypeMap.Register.Singleton<IInternetState>(() => new AlwaysOnInternetState());
+
+            TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
+            TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+            TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+            TypeMap.Register.New<Aes>(() => new Axantum.AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+            TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+            TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+            TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
+        }
+
+        public static DirectoryInfo GetExecutingDirectory()
+        {
+            var location = new Uri(Assembly.GetEntryAssembly().GetName().CodeBase);
+            return new FileInfo(location.AbsolutePath).Directory;
+        }
+
+        private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
+        {
+            List<Assembly> assemblies = new List<Assembly>();
+            foreach (FileInfo file in files)
+            {
+                try
+                {
+                    assemblies.Add(Assembly.LoadFrom(file.FullName));
+                }
+                catch (BadImageFormatException bifex)
+                {
+                    New<IReport>().Exception(bifex);
+                    continue;
+                }
+                catch (FileLoadException flex)
+                {
+                    New<IReport>().Exception(flex);
+                    continue;
+                }
+            }
+            return assemblies;
         }
     }
 }

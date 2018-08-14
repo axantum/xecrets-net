@@ -55,15 +55,22 @@ namespace Axantum.AxCrypt.Core
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "This is not really complex.")]
         public static void RegisterTypeFactories(string workFolderPath, IEnumerable<Assembly> assemblies)
         {
+            RegisterTypeFactories(assemblies);
+
+            TypeMap.Register.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
+            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => New<WorkFolderWatcher>());
+            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
+            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
+        }
+
+        public static void RegisterTypeFactories(IEnumerable<Assembly> assemblies)
+        {
             TypeMap.Register.Singleton<KnownIdentities>(() => new KnownIdentities(Resolve.FileSystemState, Resolve.SessionNotify));
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new ParallelFileOperation());
-            TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<ProcessState>(() => new ProcessState());
             TypeMap.Register.Singleton<UserSettingsVersion>(() => new UserSettingsVersion());
             TypeMap.Register.Singleton<UserSettings>(() => new UserSettings(New<ISettingsStore>(), New<IterationCalculator>()));
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
-            TypeMap.Register.Singleton<WorkFolderWatcher>(() => new WorkFolderWatcher());
-            TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(workFolderPath), () => New<WorkFolderWatcher>());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new RandomGenerator());
             TypeMap.Register.Singleton<CommandHandler>(() => new CommandHandler());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
@@ -82,7 +89,6 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
-            TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(Resolve.WorkFolder.FileInfo.FileItemInfo("UserPublicKeys.txt"), New<IStringSerializer>()));
         }
 
         public static KnownIdentities KnownIdentities

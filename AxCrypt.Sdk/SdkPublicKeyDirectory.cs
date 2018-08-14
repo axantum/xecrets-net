@@ -28,8 +28,6 @@ namespace AxCrypt.Sdk
 
         public async Task<string> PublicKeyAsync(string email)
         {
-            EmailAddress emailAddress = EmailAddress.Parse(email);
-
             AccountKey accountKey = await _client.GetAllAccountsOtherUserPublicKeyAsync(email);
 
             return accountKey.KeyPair.PublicPem;

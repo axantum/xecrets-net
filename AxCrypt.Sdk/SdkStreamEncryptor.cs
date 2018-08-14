@@ -9,6 +9,10 @@ using System.IO;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Session;
+using System.Threading;
+using Axantum.AxCrypt.Core.IO;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 
 namespace AxCrypt.Sdk
 {
@@ -52,6 +56,47 @@ namespace AxCrypt.Sdk
             EncryptedProperties properties = new EncryptedProperties(fileName);
 
             AxCryptFile.Encrypt(clearIn, encryptedOut, properties, parameters, _options, new ProgressContext());
+        }
+
+        public void Encrypt(Stream clearIn, string fileName, Action<Stream> processAction)
+        {
+            using (CancellationTokenSource tokenSource = new CancellationTokenSource())
+            {
+                using (PipelineStream pipeline = new PipelineStream(tokenSource.Token))
+                {
+                    Task encryption = Task.Run(async () =>
+                    {
+                        await EncryptAsync(clearIn, pipeline, fileName);
+                        pipeline.Complete();
+                    }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+
+                    Task process = Task.Run(() =>
+                    {
+                        processAction(pipeline);
+                    }).ContinueWith((t) => { if (t.IsFaulted) tokenSource.Cancel(); }, tokenSource.Token, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Current);
+
+                    try
+                    {
+                        Task.WaitAll(encryption, process);
+                    }
+                    catch (AggregateException ae)
+                    {
+                        IEnumerable<Exception> exceptions = ae.InnerExceptions.Where(ex1 => ex1.GetType() != typeof(OperationCanceledException));
+                        if (!exceptions.Any())
+                        {
+                            return;
+                        }
+
+                        IEnumerable<Exception> axCryptExceptions = exceptions.Where(ex2 => ex2 is AxCryptException);
+                        if (axCryptExceptions.Any())
+                        {
+                            ExceptionDispatchInfo.Capture(axCryptExceptions.First()).Throw();
+                        }
+
+                        throw exceptions.First();
+                    }
+                }
+            }
         }
     }
 }
