@@ -317,7 +317,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.QueryDecryptionPassphrase = HandleQueryDecryptionPassphraseEventAsync;
 
-            return operationsController.VerifyFileIntegrityAsync(dataStore);
+            return operationsController.AnalysisAxcryptFileIntegrityAsync(dataStore);
         }
 
         private Task<FileOperationContext> WipeFileWorkAsync(IDataStore file, IProgressContext progress)

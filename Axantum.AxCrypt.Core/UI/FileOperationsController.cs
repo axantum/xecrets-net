@@ -28,7 +28,9 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
@@ -206,6 +208,14 @@ namespace Axantum.AxCrypt.Core.UI
         {
             return DoFileAsync(dataStore, VerifyFileIntegrityPreparationAsync, VerifyFileIntegrityOperationAsync);
         }
+        public LookAheadStream InputStream { get; set; }
+
+        public virtual AxCryptItemType CurrentItemType { get; protected set; }
+
+        public Task<FileOperationContext> AnalysisAxcryptFileIntegrityAsync(IDataStore dataStore)
+        {
+            return DoFileAsync(dataStore, AnalysisAxcryptFileIntegrityPreparationAsync, AnalysisAxcryptFileIntegrityOperationAsync);
+        }
 
         /// <summary>
         /// Decrypt a file, and launch the associated application raising events as required by
@@ -370,6 +380,11 @@ namespace Axantum.AxCrypt.Core.UI
             return CheckDecryptionIdentityAsync(dataStore);
         }
 
+        private Task<bool> AnalysisAxcryptFileIntegrityPreparationAsync(IDataStore dataStore)
+        {
+            return CheckDecryptionIdentityAsync(dataStore);
+        }
+
         private async Task<bool> DecryptFilePreparationAsync(IDataStore fileInfo)
         {
             if (!await CheckDecryptionIdentityAndLockingAsync(fileInfo))
@@ -478,6 +493,63 @@ namespace Axantum.AxCrypt.Core.UI
                         {
                             _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.HmacValidationError);
                             return Task.FromResult(false);
+                        }
+                    }
+                }
+            }
+            catch (AxCryptException ace)
+            {
+                New<IReport>().Exception(ace);
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
+                return Task.FromResult(false);
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
+            _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
+            return Task.FromResult(true);
+        }
+
+        private Task<bool> AnalysisAxcryptFileIntegrityOperationAsync()
+        {
+            _progress.NotifyLevelStart();
+            try
+            {
+                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
+                {
+                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                    {
+                        byte[] buffer = new byte[OS.Current.StreamBufferSize];
+                        int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
+
+                        if (bytesRead < AxCrypt1Guid.Length)
+                        {
+                            InputStream.Pushback(buffer, 0, bytesRead);
+                            CurrentItemType = AxCryptItemType.EndOfStream;
+                            return;
+                        }
+
+                        byte[] lengthBytes = new byte[sizeof(Int32)];
+                        Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
+                        if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
+                        {
+                            throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
+                        }
+
+                        int blockType = InputStream.ReadByte();
+                        if (blockType > 127)
+                        {
+                            throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
+                        }
+
+                        HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
+
+                        byte[] dataBlock = new byte[headerBlockLength];
+                        if (!InputStream.ReadExact(dataBlock))
+                        {
+                            CurrentItemType = AxCryptItemType.EndOfStream;
+                            return;
                         }
                     }
                 }
