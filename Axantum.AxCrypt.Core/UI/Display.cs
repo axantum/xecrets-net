@@ -158,8 +158,8 @@ namespace Axantum.AxCrypt.Core.UI
         {
             if (isLoggedOn)
             {
-                UserKeyPair userKeys = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-                return userKeys != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(userKeys.UserEmail) : Texts.LoggedOnStatusText;
+                UserKeyPair activeKeyPair = Resolve.KnownIdentities.DefaultEncryptionIdentity.ActiveEncryptionKeyPair;
+                return activeKeyPair != UserKeyPair.Empty ? Texts.AccountLoggedOnStatusText.InvariantFormat(activeKeyPair.UserEmail) : Texts.LoggedOnStatusText;
             }
             return Texts.LoggedOffStatusText;
         }

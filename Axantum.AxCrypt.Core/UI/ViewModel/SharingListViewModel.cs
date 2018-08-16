@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void SetSharedAndNotSharedWith(IEnumerable<UserPublicKey> sharedWith)
         {
-            EmailAddress userEmail = _identity.UserKeys.UserEmail;
+            EmailAddress userEmail = _identity.ActiveEncryptionKeyPair.UserEmail;
             SharedWith = sharedWith.Where(sw => sw.Email != userEmail).OrderBy(e => e.Email.Address).ToList();
 
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())

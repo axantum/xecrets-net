@@ -945,7 +945,7 @@ namespace Axantum.AxCrypt
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
-            bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys != null;
+            bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
 
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
             _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
@@ -1865,9 +1865,9 @@ namespace Axantum.AxCrypt
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserKeyPair keyPair = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-            EmailAddress userEmail = keyPair.UserEmail;
-            IAsymmetricPublicKey publicKey = keyPair.KeyPair.PublicKey;
+            UserKeyPair activeKeyPair = Resolve.KnownIdentities.DefaultEncryptionIdentity.ActiveEncryptionKeyPair;
+            EmailAddress userEmail = activeKeyPair.UserEmail;
+            IAsymmetricPublicKey publicKey = activeKeyPair.KeyPair.PublicKey;
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
@@ -1961,8 +1961,8 @@ namespace Axantum.AxCrypt
 
         private void ExportMyPrivateKeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserKeyPair userKeyPair = Resolve.KnownIdentities.DefaultEncryptionIdentity.UserKeys;
-            IAsymmetricPublicKey publicKey = userKeyPair.KeyPair.PublicKey;
+            UserKeyPair activeKeyPair = Resolve.KnownIdentities.DefaultEncryptionIdentity.ActiveEncryptionKeyPair;
+            IAsymmetricPublicKey publicKey = activeKeyPair.KeyPair.PublicKey;
 
             string fileName;
             using (SaveFileDialog sfd = new SaveFileDialog())
@@ -1972,7 +1972,7 @@ namespace Axantum.AxCrypt
                 sfd.AddExtension = true;
                 sfd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + sfd.DefaultExt, Texts.FileFilterFileTypeAxCryptIdFiles, Texts.FileFilterFileTypeAllFiles);
                 sfd.CheckPathExists = true;
-                sfd.FileName = Texts.DialogExportAxCryptIdFileName.InvariantFormat(userKeyPair.UserEmail, publicKey.Tag);
+                sfd.FileName = Texts.DialogExportAxCryptIdFileName.InvariantFormat(activeKeyPair.UserEmail, publicKey.Tag);
                 sfd.ValidateNames = true;
                 sfd.OverwritePrompt = true;
                 sfd.RestoreDirectory = false;
@@ -1984,7 +1984,7 @@ namespace Axantum.AxCrypt
                 fileName = sfd.FileName;
             }
 
-            byte[] export = userKeyPair.ToArray(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
+            byte[] export = activeKeyPair.ToArray(Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase);
             File.WriteAllBytes(fileName, export);
         }
 

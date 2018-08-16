@@ -137,7 +137,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ImportSuccessful = true;
 
             _userSettings.UserEmail = keyPair.UserEmail.Address;
-            await _knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity(await store.ActiveKeyPairAsync(), passphrase));
+            await _knownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity(await store.AllKeyPairsAsync(), passphrase));
         }
     }
 }

@@ -90,11 +90,6 @@ namespace Axantum.AxCrypt.Core.Session
             return (await _service.ListAsync().Free()).OrderByDescending(uk => uk.Timestamp);
         }
 
-        public async Task<UserKeyPair> ActiveKeyPairAsync()
-        {
-            return (await AllKeyPairsAsync().Free()).First();
-        }
-
         public EmailAddress UserEmail
         {
             get
