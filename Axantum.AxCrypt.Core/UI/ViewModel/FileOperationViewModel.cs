@@ -430,7 +430,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 bool autoConvert = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.OptionsConvertMenuItemText, Texts.LegacyOpenMessage) == PopupButtons.Ok;
                 autoConvert = autoConvert && New<IVerifySignInPassword>().Verify(Texts.LegacyConversionVerificationPrompt);
-                New<UserSettings>().UpgradeFileEncryptionMode = autoConvert ? UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles : UpgradeFileEncryptionMode.RetainUpgradeEncryptionFiles;
+                New<UserSettings>().UpgradeFileEncryptionMode = autoConvert ? UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles : UpgradeFileEncryptionMode.RetainWithoutUpgrade;
             };
             return operationsController.DecryptAndLaunchAsync(file);
         }

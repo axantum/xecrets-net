@@ -989,7 +989,7 @@ namespace Axantum.AxCrypt
         {
             if (_mainViewModel.UpgradeFileEncryptionMode == UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles)
             {
-                _mainViewModel.UpgradeFileEncryptionMode = UpgradeFileEncryptionMode.RetainUpgradeEncryptionFiles;
+                _mainViewModel.UpgradeFileEncryptionMode = UpgradeFileEncryptionMode.RetainWithoutUpgrade;
                 return;
             }
 

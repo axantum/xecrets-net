@@ -9,6 +9,6 @@ namespace Axantum.AxCrypt.Core.UI
         None,
         NotDecided,
         AutoUpgradeEncryptionFiles,
-        RetainUpgradeEncryptionFiles,
+        RetainWithoutUpgrade,
     }
 }
