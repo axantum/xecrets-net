@@ -185,7 +185,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static bool IsLegacy(Guid cryptoId)
+        private static bool IsLegacy(Guid cryptoId)
         {
             return cryptoId == new V1Aes128CryptoFactory().CryptoId;
         }
