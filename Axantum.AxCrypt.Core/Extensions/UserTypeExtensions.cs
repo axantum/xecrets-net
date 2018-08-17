@@ -75,7 +75,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
 
             KeyPair keyPair = new KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
-            AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp);
+            AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp, PrivateKeyStatus.PassphraseKnown);
 
             return accountKey;
         }
@@ -167,7 +167,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(userPublicKey));
             }
 
-            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc);
+            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc, PrivateKeyStatus.Empty);
             return accountKey;
         }
 

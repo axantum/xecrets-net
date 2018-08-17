@@ -8,27 +8,27 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class AccountKey : IEquatable<AccountKey>
     {
-        public static readonly AccountKey Empty = new AccountKey(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue);
+        public static readonly AccountKey Empty = new AccountKey(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue, PrivateKeyStatus.PassphraseUnknown);
 
-        public AccountKey(string user, string thumbprint, KeyPair keyPair, DateTime timestamp)
+        public AccountKey(string user, string thumbprint, KeyPair keyPair, DateTime timestamp, PrivateKeyStatus status)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-            if (thumbprint == null)
-            {
-                throw new ArgumentNullException("thumbprint");
-            }
-            if (keyPair == null)
-            {
-                throw new ArgumentNullException("keyPair");
-            }
+            User = user ?? throw new ArgumentNullException("user");
+            Thumbprint = thumbprint ?? throw new ArgumentNullException("thumbprint");
+            KeyPair = keyPair ?? throw new ArgumentNullException("keyPair");
 
-            User = user;
-            Thumbprint = thumbprint;
-            KeyPair = keyPair;
             Timestamp = timestamp;
+            Status = status;
+        }
+
+        /// <summary>
+        /// Sets the private key status.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <returns>A new instance with the status set to the provided value.</returns>
+        public AccountKey SetStatus(PrivateKeyStatus status)
+        {
+            AccountKey newKey = new AccountKey(User, Thumbprint, KeyPair, Timestamp, status);
+            return newKey;
         }
 
         /// <summary>
@@ -61,6 +61,15 @@ namespace Axantum.AxCrypt.Api.Model
         public KeyPair KeyPair { get; }
 
         /// <summary>
+        /// Gets the status of this key pair
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        [JsonProperty("keypair_status")]
+        public PrivateKeyStatus Status { get; } 
+
+        /// <summary>
         /// Gets the user name, typically the email address.
         /// </summary>
         /// <value>
@@ -90,7 +99,7 @@ namespace Axantum.AxCrypt.Api.Model
                 return false;
             }
 
-            return Timestamp == other.Timestamp && User == other.User && Thumbprint == other.Thumbprint && KeyPair == other.KeyPair;
+            return Timestamp == other.Timestamp && User == other.User && Status == other.Status && Thumbprint == other.Thumbprint && KeyPair == other.KeyPair;
         }
 
         public override bool Equals(object obj)
@@ -106,7 +115,7 @@ namespace Axantum.AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return Timestamp.GetHashCode() ^ User.GetHashCode() ^ Thumbprint.GetHashCode() ^ KeyPair.GetHashCode();
+            return Timestamp.GetHashCode() ^ User.GetHashCode() ^ Status.GetHashCode() ^ Thumbprint.GetHashCode() ^ KeyPair.GetHashCode();
         }
 
         public static bool operator ==(AccountKey left, AccountKey right)
