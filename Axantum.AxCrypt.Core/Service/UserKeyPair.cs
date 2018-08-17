@@ -203,7 +203,7 @@ namespace Axantum.AxCrypt.Core.Service
                 return true;
             }
 
-            return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair.Equals(KeyPair);
+            return Timestamp == other.Timestamp && UserEmail == other.UserEmail && KeyPair.Equals(other.KeyPair);
         }
     }
 }
