@@ -419,13 +419,6 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.Status = new FileOperationContext(store.FullName, ErrorStatus.Success);
                 return false;
             }
-
-            if (New<UserSettings>().UpgradeFileEncryptionMode != UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles)
-            {
-                _eventArgs.Status = new FileOperationContext(store.FullName, ErrorStatus.Success);
-                return false;
-            }
-
             return true;
         }
 

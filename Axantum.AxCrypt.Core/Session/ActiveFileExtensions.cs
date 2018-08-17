@@ -85,7 +85,7 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
-                    if (shouldUpgradeEncryption)
+                    if (shouldUpgradeEncryption || !PrimitiveTypeExtensions.IsLegacy(activeFile.Properties.CryptoId))
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
