@@ -88,5 +88,10 @@ namespace Axantum.AxCrypt.Core.Session
             }
             return _thumbprint == other._thumbprint;
         }
+
+        public override string ToString()
+        {
+            return _email.Tag + "-" + _thumbprint.ToString();
+        }
     }
 }

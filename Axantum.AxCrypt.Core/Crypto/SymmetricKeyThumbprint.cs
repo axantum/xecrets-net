@@ -29,6 +29,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Axantum.AxCrypt.Core.Crypto
@@ -130,6 +131,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         public static bool operator !=(SymmetricKeyThumbprint left, SymmetricKeyThumbprint right)
         {
             return !(left == right);
+        }
+
+        public override string ToString()
+        {
+            byte[] bytesExtended = new byte[8];
+            Array.Copy(_bytes, bytesExtended, _bytes.Length);
+            UInt64 thumbprint = BitConverter.ToUInt64(bytesExtended, 0);
+            return thumbprint.ToString("x12", CultureInfo.InvariantCulture);
         }
     }
 }

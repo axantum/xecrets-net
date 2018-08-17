@@ -28,7 +28,7 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             _service = service;
-            _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address).Subkey(service.Identity.GetHashCode().ToString(CultureInfo.InvariantCulture));
+            _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address).Subkey(service.Identity.Tag.ToString());
         }
 
         public IAccountService Refresh()
