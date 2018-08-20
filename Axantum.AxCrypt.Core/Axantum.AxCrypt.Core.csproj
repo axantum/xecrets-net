@@ -214,7 +214,7 @@
     <Compile Include="UI\ISignInState.cs" />
     <Compile Include="UI\IVerifySignInPassword.cs" />
     <Compile Include="UI\KnownFolderKind.cs" />
-    <Compile Include="UI\LegacyConversionMode.cs" />
+    <Compile Include="UI\UpgradeFileEncryptionMode.cs" />
     <Compile Include="UI\EmailAddress.cs" />
     <Compile Include="UI\FileOperationContext.cs" />
     <Compile Include="UI\IEmailParser.cs" />
