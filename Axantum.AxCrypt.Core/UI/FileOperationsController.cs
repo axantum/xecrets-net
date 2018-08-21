@@ -258,9 +258,9 @@ namespace Axantum.AxCrypt.Core.UI
             return DoFileAsync(fileInfo, WipeFilePreparationAsync, WipeFileOperationAsync);
         }
 
-        public Task<FileOperationContext> UpgradeEncryptionFileAsync(IDataStore store)
+        public Task<FileOperationContext> EncryptionUpgradeAsync(IDataStore store)
         {
-            return DoFileAsync(store, UpgradeEncryptionFilePreparationAsync, UpgradeEncryptionFileOperationAsync);
+            return DoFileAsync(store, EncryptionUpgradePreparationAsync, EncryptionUpgradeOperationAsync);
         }
 
         #endregion Public Methods
@@ -407,7 +407,7 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private async Task<bool> UpgradeEncryptionFilePreparationAsync(IDataStore store)
+        private async Task<bool> EncryptionUpgradePreparationAsync(IDataStore store)
         {
             if (!await CheckDecryptionIdentityAndLockingAsync(store))
             {
@@ -619,7 +619,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Constant.TrueTask;
         }
 
-        private async Task<bool> UpgradeEncryptionFileOperationAsync()
+        private async Task<bool> EncryptionUpgradeOperationAsync()
         {
             if (_eventArgs.Skip)
             {

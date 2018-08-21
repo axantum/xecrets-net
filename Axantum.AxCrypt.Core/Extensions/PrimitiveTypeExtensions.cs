@@ -211,7 +211,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return false;
             }
 
-            if (New<UserSettings>().UpgradeFileEncryptionMode != UpgradeFileEncryptionMode.AutoUpgradeEncryptionFiles)
+            if (New<UserSettings>().EncryptionUpgradeMode != EncryptionUpgradeMode.AutoUpgrade)
             {
                 return false;
             }

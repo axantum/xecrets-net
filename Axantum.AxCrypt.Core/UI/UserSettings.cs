@@ -265,9 +265,9 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(OfflineMode), value); }
         }
 
-        public UpgradeFileEncryptionMode UpgradeFileEncryptionMode
+        public EncryptionUpgradeMode EncryptionUpgradeMode
         {
-            get { return (UpgradeFileEncryptionMode)Load("LegacyConversionMode", (int)UpgradeFileEncryptionMode.NotDecided); }
+            get { return (EncryptionUpgradeMode)Load("LegacyConversionMode", (int)EncryptionUpgradeMode.NotDecided); }
             set { Store("LegacyConversionMode", (int)value); }
         }
 

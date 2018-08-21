@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Axantum.AxCrypt.Core.UI
 {
-    public enum UpgradeFileEncryptionMode
+    public enum EncryptionUpgradeMode
     {
         None,
         NotDecided,
-        AutoUpgradeEncryptionFiles,
+        AutoUpgrade,
         RetainWithoutUpgrade,
     }
 }
