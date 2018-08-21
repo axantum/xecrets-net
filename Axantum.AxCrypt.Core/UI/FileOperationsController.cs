@@ -258,9 +258,9 @@ namespace Axantum.AxCrypt.Core.UI
             return DoFileAsync(fileInfo, WipeFilePreparationAsync, WipeFileOperationAsync);
         }
 
-        public Task<FileOperationContext> UpgradeFileAsync(IDataStore store)
+        public Task<FileOperationContext> EncryptionUpgradeAsync(IDataStore store)
         {
-            return DoFileAsync(store, UpgradeFilePreparationAsync, UpgradeFileOperationAsync);
+            return DoFileAsync(store, EncryptionUpgradePreparationAsync, EncryptionUpgradeOperationAsync);
         }
 
         #endregion Public Methods
@@ -407,9 +407,19 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private Task<bool> UpgradeFilePreparationAsync(IDataStore store)
+        private async Task<bool> EncryptionUpgradePreparationAsync(IDataStore store)
         {
-            return CheckDecryptionIdentityAndLockingAsync(store);
+            if (!await CheckDecryptionIdentityAndLockingAsync(store))
+            {
+                return false;
+            }
+
+            if (_eventArgs.CryptoId != new V2Aes128CryptoFactory().CryptoId && _eventArgs.CryptoId != new V1Aes128CryptoFactory().CryptoId)
+            {
+                _eventArgs.Status = new FileOperationContext(store.FullName, ErrorStatus.Success);
+                return false;
+            }
+            return true;
         }
 
         private async Task<bool> CheckDecryptionIdentityAndLockingAsync(IDataStore fileInfo)
@@ -609,7 +619,7 @@ namespace Axantum.AxCrypt.Core.UI
             return Constant.TrueTask;
         }
 
-        private async Task<bool> UpgradeFileOperationAsync()
+        private async Task<bool> EncryptionUpgradeOperationAsync()
         {
             if (_eventArgs.Skip)
             {

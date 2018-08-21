@@ -26,6 +26,9 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Content;
 using System;
@@ -180,6 +183,45 @@ namespace Axantum.AxCrypt.Core.Extensions
                 default:
                     return "Unexpected Validation Error";
             }
+        }
+
+        private static bool IsLegacy(Guid cryptoId)
+        {
+            return cryptoId == new V1Aes128CryptoFactory().CryptoId;
+        }
+
+        private static bool IsStandardAndHasStrongerCapability(Guid cryptoId)
+        {
+            if (cryptoId != new V2Aes128CryptoFactory().CryptoId)
+            {
+                return false;
+            }
+            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.StrongerEncryption))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool ShouldUpgradeEncryption(this Guid cryptoId)
+        {
+            if (!IsLegacy(cryptoId) && !IsStandardAndHasStrongerCapability(cryptoId))
+            {
+                return false;
+            }
+
+            if (New<UserSettings>().EncryptionUpgradeMode != EncryptionUpgradeMode.AutoUpgrade)
+            {
+                return false;
+            }
+
+            if (!New<KnownIdentities>().IsLoggedOn)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

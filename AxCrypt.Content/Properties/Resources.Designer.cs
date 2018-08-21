@@ -3447,7 +3447,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to After files are converted from AxCrypt 1.x format, you must use the new Sign In password to open them, so please verify it here.
+        ///   Looks up a localized string similar to !!After files are converted from AxCrypt 1.x and AES-128 format, you must use the new Sign In password to open them, so please verify it here.
         ///
         ///Do not forget this password!.
         /// </summary>
@@ -4589,7 +4589,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Upgrade 1.x Files.
+        ///   Looks up a localized string similar to !!Auto Upgrade 1.x and AES-128 Files.
         /// </summary>
         public static string OptionsConvertMenuItemText {
             get {
@@ -4598,7 +4598,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x files as they are used..
+        ///   Looks up a localized string similar to !!Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x and AES-128 files as they are used..
         /// </summary>
         public static string OptionsConvertMenuToolTip {
             get {
@@ -6749,7 +6749,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade 1.x Files.
+        ///   Looks up a localized string similar to !!Upgrade 1.x and AES-128 Files.
         /// </summary>
         public static string UpgradeLegacyFilesMenuItemText {
             get {
@@ -6758,7 +6758,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a place to search for files secured with AxCrypt 1.x and upgrade them..
+        ///   Looks up a localized string similar to !!Select a place to search for files secured with AxCrypt 1.x and AES-128 and upgrade them..
         /// </summary>
         public static string UpgradeLegacyFilesMenuToolTip {
             get {

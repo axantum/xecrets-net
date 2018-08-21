@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public bool WatchedFoldersEnabled { get { return GetProperty<bool>(nameof(WatchedFoldersEnabled)); } set { SetProperty(nameof(WatchedFoldersEnabled), value); } }
 
-        public LegacyConversionMode LegacyConversionMode { get { return GetProperty<LegacyConversionMode>(nameof(LegacyConversionMode)); } set { SetProperty(nameof(LegacyConversionMode), value); } }
+        public EncryptionUpgradeMode EncryptionUpgradeMode { get { return GetProperty<EncryptionUpgradeMode>(nameof(EncryptionUpgradeMode)); } set { SetProperty(nameof(EncryptionUpgradeMode), value); } }
 
         public IEnumerable<string> WatchedFolders { get { return GetProperty<IEnumerable<string>>(nameof(WatchedFolders)); } set { SetProperty(nameof(WatchedFolders), value.ToList()); } }
 
@@ -140,8 +140,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             DownloadVersion = DownloadVersion.Empty;
             VersionUpdateStatus = DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, _userSettings.LastUpdateCheckUtc);
             License = New<LicensePolicy>().Capabilities;
-            LegacyConversionMode = _userSettings.LegacyConversionMode;
-
+            EncryptionUpgradeMode = _userSettings.EncryptionUpgradeMode;
             AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => AddWatchedFoldersActionAsync(folders), (folders) => Task.FromResult(LoggedOn));
             RemoveRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
             EncryptPendingFiles = new AsyncDelegateAction<object>((parameter) => EncryptPendingFilesAction());
@@ -168,7 +167,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             BindPropertyChanged(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
             BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
-            BindPropertyChanged(nameof(LegacyConversionMode), (LegacyConversionMode mode) => Resolve.UserSettings.LegacyConversionMode = mode);
+            BindPropertyChanged(nameof(EncryptionUpgradeMode), (EncryptionUpgradeMode mode) => Resolve.UserSettings.EncryptionUpgradeMode = mode);
             BindPropertyChanged(nameof(FolderOperationMode), async (FolderOperationMode mode) => await SetFolderOperationMode(mode));
         }
 
