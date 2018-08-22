@@ -28,15 +28,12 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -89,7 +86,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RestoreRandomRenameFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RestoreRandomRenameFilesActionAsync(files));
             OpenFilesFromFolder = new AsyncDelegateAction<string>((folder) => OpenFilesFromFolderActionAsync(folder), (folder) => Task.FromResult(true));
             AddRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => AddRecentFilesActionAsync(files));
-            AsyncUpgradeFiles = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => UpgradeFilesActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
+            AsyncEncryptionUpgrade = new AsyncDelegateAction<IEnumerable<IDataContainer>>((containers) => EncryptionUpgradeActionAsync(containers), (containers) => Task.FromResult(_knownIdentities.IsLoggedOn));
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>((files) => ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => TryBrokenFilesActionAsync(files));
             VerifyFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => VerifyFilesActionAsync(files));
@@ -114,7 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AddRecentFiles { get; private set; }
 
-        public IAsyncAction AsyncUpgradeFiles { get; private set; }
+        public IAsyncAction AsyncEncryptionUpgrade { get; private set; }
 
         public IAsyncAction ShowInFolder { get; private set; }
 
@@ -138,11 +135,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             FirstLegacyOpen?.Invoke(this, e);
         }
 
-        public event EventHandler<FileOperationEventArgs> ToggleLegacyConversion;
+        public event EventHandler<FileOperationEventArgs> ToggleEncryptionUpgradeMode;
 
-        protected virtual void OnToggleLegacyConversion(FileOperationEventArgs e)
+        protected virtual void OnToggleEncryptionUpgradeMode(FileOperationEventArgs e)
         {
-            ToggleLegacyConversion?.Invoke(this, e);
+            ToggleEncryptionUpgradeMode?.Invoke(this, e);
         }
 
         private async Task DecryptFoldersActionAsync(IEnumerable<string> folders)
@@ -197,7 +194,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), WipeFileWorkAsync, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
-        private Task UpgradeFilesActionAsync(IEnumerable<IDataContainer> containers)
+        private Task EncryptionUpgradeActionAsync(IEnumerable<IDataContainer> containers)
         {
             containers = containers ?? SelectFiles(FileSelectionType.Folder).Select((fn) => New<IDataContainer>(fn));
 
@@ -206,7 +203,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return CompletedTask;
             }
 
-            return _fileOperation.DoFilesAsync(new DataContainerCollection(containers).Where((ds) => ds.IsLegacyV1()), UpgradeFilesWorkAsync, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+            return _fileOperation.DoFilesAsync(new DataContainerCollection(containers).Where((ds) => ds.IsEncrypted()), EncryptionUpgradeWorkAsync, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
         private async Task RandomRenameFilesActionAsync(IEnumerable<string> files)
@@ -352,7 +349,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return operationsController.WipeFileAsync(file);
         }
 
-        private Task<FileOperationContext> UpgradeFilesWorkAsync(IDataStore store, IProgressContext progress)
+        private Task<FileOperationContext> EncryptionUpgradeWorkAsync(IDataStore store, IProgressContext progress)
         {
             FileOperationsController operationsController = new FileOperationsController(progress);
 
@@ -363,7 +360,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 await _knownIdentities.AddAsync(e.LogOnIdentity);
             });
 
-            return operationsController.UpgradeFileAsync(store);
+            return operationsController.EncryptionUpgradeAsync(store);
         }
 
         private static bool CheckStatusAndShowMessage(FileOperationContext context, string fallbackName)
@@ -439,7 +436,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             operationsController.SetConvertLegacyOptionCommandAsync = async () =>
             {
-                if (Resolve.UserSettings.LegacyConversionMode != LegacyConversionMode.NotDecided)
+                if (Resolve.UserSettings.EncryptionUpgradeMode != EncryptionUpgradeMode.NotDecided)
                 {
                     return;
                 }
@@ -450,7 +447,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 bool autoConvert = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.OptionsConvertMenuItemText, Texts.LegacyOpenMessage) == PopupButtons.Ok;
                 autoConvert = autoConvert && New<IVerifySignInPassword>().Verify(Texts.LegacyConversionVerificationPrompt);
-                New<UserSettings>().LegacyConversionMode = autoConvert ? LegacyConversionMode.AutoConvertLegacyFiles : LegacyConversionMode.RetainLegacyFiles;
+                New<UserSettings>().EncryptionUpgradeMode = autoConvert ? EncryptionUpgradeMode.AutoUpgrade : EncryptionUpgradeMode.RetainWithoutUpgrade;
             };
             return operationsController.DecryptAndLaunchAsync(file);
         }

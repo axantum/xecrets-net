@@ -55,11 +55,12 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("activeFile");
             }
 
-            bool shouldConvertLegacy = activeFile.ShouldConvertLegacy();
-            if (!shouldConvertLegacy && !activeFile.IsModified)
+            bool shouldUpgradeEncryption = activeFile.Properties.CryptoId.ShouldUpgradeEncryption();
+            if (!shouldUpgradeEncryption && !activeFile.IsModified)
             {
                 return activeFile;
             }
+
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
             {
                 return activeFile;
@@ -84,11 +85,11 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 await New<AxCryptFile>().EncryptToFileWithBackupAsync(encryptedFileLock, async (Stream destination) =>
                 {
-                    if (!IsLegacy(activeFile) || shouldConvertLegacy)
+                    if (shouldUpgradeEncryption)
                     {
                         activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
                     }
-                    if (shouldConvertLegacy || activeFile.Identity == LogOnIdentity.Empty)
+                    if (shouldUpgradeEncryption || activeFile.Identity == LogOnIdentity.Empty)
                     {
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
@@ -113,31 +114,6 @@ namespace Axantum.AxCrypt.Core.Session
                 New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
-        }
-
-        private static bool IsLegacy(ActiveFile activeFile)
-        {
-            return activeFile.Properties.CryptoId == new V1Aes128CryptoFactory().CryptoId;
-        }
-
-        public static bool ShouldConvertLegacy(this ActiveFile activeFile)
-        {
-            if (!IsLegacy(activeFile))
-            {
-                return false;
-            }
-
-            if (New<UserSettings>().LegacyConversionMode != LegacyConversionMode.AutoConvertLegacyFiles)
-            {
-                return false;
-            }
-
-            if (!New<KnownIdentities>().IsLoggedOn)
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }
