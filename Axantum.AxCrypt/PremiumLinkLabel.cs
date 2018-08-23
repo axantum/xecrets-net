@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core;
+﻿using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
@@ -108,6 +109,15 @@ namespace Axantum.AxCrypt
                 case PlanState.NoPremium:
                 case PlanState.OfflineNoPremium:
                 case PlanState.HasPremium:
+                    accountService.Refresh();
+                    await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
+
+                    if (_planInformation.PlanState == PlanState.CanTryPremium || _planInformation.DaysLeft > 15)
+                    {
+                        break;
+                    }
+
                     await DisplayPremiumPurchasePage(accountService);
                     break;
 
