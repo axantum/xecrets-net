@@ -95,13 +95,17 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            accountService.Refresh();
+            await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+
             switch (_planInformation.PlanState)
             {
                 case PlanState.CanTryPremium:
                     await accountService.StartPremiumTrialAsync();
                     await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+
+                    accountService.Refresh();
                     await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                     await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
                     break;
@@ -109,8 +113,6 @@ namespace Axantum.AxCrypt
                 case PlanState.NoPremium:
                 case PlanState.OfflineNoPremium:
                 case PlanState.HasPremium:
-                    accountService.Refresh();
-                    await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
                     await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
 
                     if (_planInformation.PlanState == PlanState.CanTryPremium || _planInformation.DaysLeft > 15)
