@@ -18,17 +18,17 @@ namespace AxCrypt.Sdk
 
         private AxCryptApiClient _client;
 
-        public SdkPublicKeyDirectory(string email, string passphrase, SdkConfiguration configuration)
+        public SdkPublicKeyDirectory(string email, Guid apiKey, SdkConfiguration configuration)
         {
             _email = EmailAddress.Parse(email);
-            _passphrase = new Passphrase(passphrase);
+            _passphrase = new Passphrase(apiKey.ToString());
 
-            _client = new AxCryptApiClient(new RestIdentity(email, passphrase), configuration.ApiBaseUrl, configuration.ApiTimeout);
+            _client = new AxCryptApiClient(new RestIdentity(email, _passphrase.Text), configuration.ApiBaseUrl, configuration.ApiTimeout);
         }
 
         public async Task<string> PublicKeyAsync(string email)
         {
-            AccountKey accountKey = await _client.GetAllAccountsOtherUserPublicKeyAsync(email);
+            AccountKey accountKey = await _client.GetPublicApiKeyAllAccountsOtherUserPublicKeyAsync(email);
 
             return accountKey.KeyPair.PublicPem;
         }
