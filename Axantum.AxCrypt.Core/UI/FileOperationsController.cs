@@ -538,13 +538,23 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     byte[] buffer = new byte[OS.Current.StreamBufferSize];
                     int bytesRead = encryptedInputStream.Read(buffer, 0, buffer.Length);
-
                     LookAheadStream inputStream = new LookAheadStream(new ProgressStream(encryptedInputStream, _progress));
                     Headers headers = new Headers();
-                    AxCryptReaderBase reader = headers.CreateReader(inputStream);
-
-                    //reader.Read();
-
+                    long streamLength = encryptedInputStream.Length;
+                    if (streamLength > 0x7fffffffL)
+                    {
+                        throw new InvalidOperationException("unable to allocate more than 0x7fffffffL bytes" + "of memory to read the file");
+                    }
+                    int bytesToRead = (int)encryptedInputStream.Length;
+                    byte[] bufferToReturn = new byte[bytesToRead];
+                    while (bytesToRead > 0)
+                    {
+                        if (bytesRead == 0)
+                        {
+                            throw new InvalidOperationException("we reached the end of file");
+                        }
+                        bytesToRead -= bytesRead;
+                    }
                     currentItemType = AxCryptItemType.MagicGuid;
                     if (bytesRead < AxCrypt1Guid.Length)
                     {
@@ -552,37 +562,17 @@ namespace Axantum.AxCrypt.Core.UI
                         AxCryptFileIntegrityCheckResults = "Guid error! File is not start with a valid Guid.";
                     }
 
-                    buffer = new byte[OS.Current.StreamBufferSize];
-                    currentItemType = AxCryptItemType.MagicGuid;
-                    while (true)
+                    int i = buffer.Locate(AxCrypt1Guid.GetBytes(), 0, AxCrypt1Guid.Length);
+                    if (i < 0)
                     {
-                        bytesRead = inputStream.Read(buffer, 0, buffer.Length);
-                        if (bytesRead < AxCrypt1Guid.Length)
-                        {
-                            inputStream.Pushback(buffer, 0, bytesRead);
-                            AxCryptFileIntegrityCheckResults = "Guid error! File is not start with a valid Guid.";
-                            break;
-                        }
-
-                        int i = buffer.Locate(AxCrypt1Guid.GetBytes(), 0, bytesRead);
-                        if (i < 0)
-                        {
-                            int offsetToBytesToKeep = bytesRead - AxCrypt1Guid.Length + 1;
-                            inputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
-                            continue;
-                        }
-                        int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
-                        inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
-                        break;
+                        AxCryptFileIntegrityCheckResults = "Guid error! File is not start with a valid Guid.";
                     }
 
                     AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " Length :" + bytesRead);
-
-
                     byte[] lengthBytes = new byte[sizeof(Int32)];
                     if (!inputStream.ReadExact(lengthBytes))
                     {
-                        currentItemType = AxCryptItemType.HeaderBlock;
+                        currentItemType = AxCryptItemType.EndOfStream;
                     }
                     Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
                     if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
@@ -595,15 +585,15 @@ namespace Axantum.AxCrypt.Core.UI
                     {
                         throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
                     }
-
                     HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
                     byte[] dataBlock = new byte[headerBlockLength];
                     if (!inputStream.ReadExact(dataBlock))
                     {
-                        // CurrentItemType = AxCryptItemType.EndOfStream;
+                        currentItemType = AxCryptItemType.EndOfStream;
                     }
                 }
+
                 using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
                 {
                     using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
