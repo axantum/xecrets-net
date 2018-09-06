@@ -566,7 +566,11 @@ namespace Axantum.AxCrypt.Core.UI
                     if (i < 0)
                     {
                         AxCryptFileIntegrityCheckResults = "Guid error! File is not start with a valid Guid.";
+                        //throw new FileFormatException("Guid error! File is not start with a valid Guid{0}".InvariantFormat(AxCrypt1Guid.Length) ,ErrorStatus.FileFormatError);
                     }
+                    int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
+                    inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
+                    currentItemType = AxCryptItemType.MagicGuid;
 
                     AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " Length :" + bytesRead);
                     byte[] lengthBytes = new byte[sizeof(Int32)];
@@ -577,12 +581,14 @@ namespace Axantum.AxCrypt.Core.UI
                     Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
                     if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
                     {
-                        throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
+                        AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " InvalidHeaderLength :" + bytesRead);
+                        //throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
                     }
 
                     int blockType = inputStream.ReadByte();
                     if (blockType > 127)
                     {
+
                         throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
                     }
                     HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
@@ -592,19 +598,37 @@ namespace Axantum.AxCrypt.Core.UI
                     {
                         currentItemType = AxCryptItemType.EndOfStream;
                     }
-                }
 
-                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
-                {
-                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
+                    bool isFirst = currentItemType == AxCryptItemType.MagicGuid;
+                    switch (headerBlockType)
                     {
-                        if (!New<AxCryptFile>().VerifyFileHmac(document, _progress))
-                        {
-                            _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.HmacValidationError);
-                            return false;
-                        }
+                        case HeaderBlockType.Preamble:
+                            if (!isFirst)
+                            {
+                                throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
+                            }
+                            break;
+
+                        case HeaderBlockType.Encrypted:
+                        case HeaderBlockType.None:
+                        case HeaderBlockType.Any:
+                            throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
+                        default:
+                            if (isFirst)
+                            {
+                                throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
+                            }
+                            break;
+                    }
+
+                    DataHeaderBlock dataHeaderBlock = new CurrentHeaderBlock as DataHeaderBlock; 
+                    if (dataHeaderBlock != null)
+                    {
+                        currentItemType = AxCryptItemType.Data;
                     }
                 }
+                await VerifyFileIntegrityOperationAsync();
+               
             }
             catch (AxCryptException ace)
             {
@@ -616,7 +640,6 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 _progress.NotifyLevelFinished();
             }
-
 
             if (AxCryptFileIntegrityAnalysisSummary.Any())
             {
