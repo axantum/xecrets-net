@@ -541,10 +541,12 @@ namespace Axantum.AxCrypt.Core.UI
                     LookAheadStream inputStream = new LookAheadStream(new ProgressStream(encryptedInputStream, _progress));
                     Headers headers = new Headers();
                     long streamLength = encryptedInputStream.Length;
+
                     if (streamLength > 0x7fffffffL)
                     {
                         throw new InvalidOperationException("unable to allocate more than 0x7fffffffL bytes" + "of memory to read the file");
                     }
+
                     int bytesToRead = (int)encryptedInputStream.Length;
                     byte[] bufferToReturn = new byte[bytesToRead];
                     while (bytesToRead > 0)
@@ -566,23 +568,23 @@ namespace Axantum.AxCrypt.Core.UI
                     if (i < 0)
                     {
                         AxCryptFileIntegrityCheckResults = "Guid error! File is not start with a valid Guid.";
-                        //throw new FileFormatException("Guid error! File is not start with a valid Guid{0}".InvariantFormat(AxCrypt1Guid.Length) ,ErrorStatus.FileFormatError);
                     }
+
                     int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
                     inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
                     currentItemType = AxCryptItemType.MagicGuid;
-
                     AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " Length :" + bytesRead);
+
                     byte[] lengthBytes = new byte[sizeof(Int32)];
                     if (!inputStream.ReadExact(lengthBytes))
                     {
                         currentItemType = AxCryptItemType.EndOfStream;
                     }
+
                     Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
                     if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
                     {
                         AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " InvalidHeaderLength :" + bytesRead);
-                        //throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
                     }
 
                     int blockType = inputStream.ReadByte();
@@ -591,44 +593,21 @@ namespace Axantum.AxCrypt.Core.UI
 
                         throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
                     }
+
+                    if (blockType != (int)HeaderBlockType.Preamble) 
+                    {
+                        AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " PreambleHeaderBlock  :" + bytesRead);
+                    }
+
                     HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
 
                     byte[] dataBlock = new byte[headerBlockLength];
-                    if (!inputStream.ReadExact(dataBlock))
+                    if (dataBlock.Length > 256 )
                     {
-                        currentItemType = AxCryptItemType.EndOfStream;
-                    }
-
-                    bool isFirst = currentItemType == AxCryptItemType.MagicGuid;
-                    switch (headerBlockType)
-                    {
-                        case HeaderBlockType.Preamble:
-                            if (!isFirst)
-                            {
-                                throw new FileFormatException("Preamble can only be first.", ErrorStatus.FileFormatError);
-                            }
-                            break;
-
-                        case HeaderBlockType.Encrypted:
-                        case HeaderBlockType.None:
-                        case HeaderBlockType.Any:
-                            throw new FileFormatException("Illegal header block type.", ErrorStatus.FileFormatError);
-                        default:
-                            if (isFirst)
-                            {
-                                throw new FileFormatException("Preamble must be first.", ErrorStatus.FileFormatError);
-                            }
-                            break;
-                    }
-
-                    DataHeaderBlock dataHeaderBlock = new CurrentHeaderBlock as DataHeaderBlock; 
-                    if (dataHeaderBlock != null)
-                    {
-                        currentItemType = AxCryptItemType.Data;
+                        AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " DataBlock  :" + bytesRead);
                     }
                 }
-                await VerifyFileIntegrityOperationAsync();
-               
+                 
             }
             catch (AxCryptException ace)
             {
@@ -649,8 +628,6 @@ namespace Axantum.AxCrypt.Core.UI
                 _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, template, ErrorStatus.Success);
                 return true;
             }
-
-            // _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return false;
         }
 
