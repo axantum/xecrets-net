@@ -1,13 +1,11 @@
-﻿using Axantum.AxCrypt.Abstractions.Algorithm;
+﻿using System;
+using Axantum.AxCrypt.Abstractions.Algorithm;
 using Axantum.AxCrypt.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {
-    public static class SdkExtensions
+    public static class AxSdkExtensions
     {
         /// <summary>
         /// Creates a random password with the strength as specified by the bits.
