@@ -422,6 +422,9 @@ You have been warned, now enjoy!</value>
     <value>EU VAT Number</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>!!Your subscription was expired on {0}.Please renew the subscription to resume the business features.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Subscription expires on {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
@@ -517,6 +520,19 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Do you really wish to remove the member from the subscription?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>!!Business subscription renewal must be for at least as many members as are used at the time of the renewal.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>!! AxCrypt will allow the users to renewal their AxCrypt Business subscription at a lower number of slots than are actually used, we won't be able to automatically pick what members should be kicked out.&lt;br/&gt;&lt;br/&gt;AxCrypt business subscription renewal must be for at least as many members as are used at the time of the renewal. If a subscription is renewed at a lower number of subscriptions than current, the subscription is reduced to that level, and the remaining time for the extra slots is lost.
+</value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>!!Renew</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>!!Business Subscription Renewal</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Acting on</value>
