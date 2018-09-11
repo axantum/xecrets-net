@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Algorithm;
-using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Portable;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Mono.Portable;
+using AxCrypt.Sdk.Internal;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {
-    public static class SdkInitialize
+    public static class AxSdkInitialize
     {
         public static void Initialize()
         {
