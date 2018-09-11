@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions.Algorithm;
+using Axantum.AxCrypt.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,19 +7,15 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {
-    /// <summary>
-    /// Random helpers
-    /// </summary>
-    public class SdkRandom
+    public static class SdkExtensions
     {
-        private RandomNumberGenerator _rng;
-
-        public SdkRandom()
-        {
-            _rng = New<RandomNumberGenerator>();
-        }
-
-        public string Password(int bits)
+        /// <summary>
+        /// Creates a random password with the strength as specified by the bits.
+        /// </summary>
+        /// <param name="bits">The bits.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">bits</exception>
+        public static string RandomPassword(this int bits)
         {
             if (bits < 1)
             {
@@ -27,7 +24,7 @@ namespace AxCrypt.Sdk
             int bytes = (bits - 1) / 8 + 1;
 
             byte[] data = new byte[bytes];
-            _rng.GetBytes(data);
+            New<RandomNumberGenerator>().GetBytes(data);
 
             string password = Convert.ToBase64String(data);
             while (password.EndsWith("="))
@@ -36,6 +33,12 @@ namespace AxCrypt.Sdk
             }
 
             return password;
+        }
+
+        public static string EncryptedFileName(this string fileName)
+        {
+            string encryptedFileName = AxCryptFile.MakeAxCryptFileName(fileName);
+            return encryptedFileName;
         }
     }
 }
