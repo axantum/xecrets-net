@@ -5,12 +5,11 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AxCrypt.Sdk
 {
-    public class SdkPublicKeyDirectory
+    public class AxSdkPublicKeyDirectory
     {
         private EmailAddress _email;
 
@@ -18,7 +17,7 @@ namespace AxCrypt.Sdk
 
         private AxCryptApiClient _client;
 
-        public SdkPublicKeyDirectory(string email, Guid apiKey, SdkConfiguration configuration)
+        public AxSdkPublicKeyDirectory(string email, Guid apiKey, AxSdkConfiguration configuration)
         {
             _email = EmailAddress.Parse(email);
             _passphrase = new Passphrase(apiKey.ToString());

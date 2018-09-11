@@ -1,9 +1,8 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace AxCrypt.Sdk
+namespace AxCrypt.Sdk.Internal
 {
     internal class AlwaysOnInternetState : IInternetState
     {

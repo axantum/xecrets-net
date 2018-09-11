@@ -1,7 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions.Algorithm;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
@@ -9,11 +8,11 @@ namespace AxCrypt.Sdk
     /// <summary>
     /// Random helpers
     /// </summary>
-    public class SdkRandom
+    public class AxSdkRandom
     {
         private RandomNumberGenerator _rng;
 
-        public SdkRandom()
+        public AxSdkRandom()
         {
             _rng = New<RandomNumberGenerator>();
         }
