@@ -808,6 +808,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Your subscription was expired on {0}.Please renew the subscription to resume the business features..
+        /// </summary>
+        public static string BusinessSubscriptionExpiredWarningText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionExpiredWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subscription expires on {0}..
         /// </summary>
         public static string BusinessSubscriptionExpiresFormat {
@@ -1020,6 +1029,43 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionRemoveMemberConfirmation {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionRemoveMemberConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Business subscription renewal must be for at least as many members as are used at the time of the renewal..
+        /// </summary>
+        public static string BusinessSubscriptionRenewalMemberCountErrorMessage {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionRenewalMemberCountErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !! AxCrypt will allow the users to renewal their AxCrypt Business subscription at a lower number of slots than are actually used, we won&apos;t be able to automatically pick what members should be kicked out.&lt;br/&gt;&lt;br/&gt;AxCrypt business subscription renewal must be for at least as many members as are used at the time of the renewal. If a subscription is renewed at a lower number of subscriptions than current, the subscription is reduced to that level, and the remaining time for the extra slots is lost.
+        ///.
+        /// </summary>
+        public static string BusinessSubscriptionRenewalPageBody {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionRenewalPageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Renew.
+        /// </summary>
+        public static string BusinessSubscriptionRenewMenu {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionRenewMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Business Subscription Renewal.
+        /// </summary>
+        public static string BusinessSubscriptionRenewTitle {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionRenewTitle", resourceCulture);
             }
         }
         
