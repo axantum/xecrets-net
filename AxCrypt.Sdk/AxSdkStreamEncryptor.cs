@@ -1,22 +1,22 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.UI;
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.IO;
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Session;
-using System.Threading;
-using Axantum.AxCrypt.Core.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {
-    public class SdkStreamEncryptor
+    public class AxSdkStreamEncryptor
     {
         private List<UserPublicKey> _publicKeys = new List<UserPublicKey>();
 
@@ -26,21 +26,21 @@ namespace AxCrypt.Sdk
 
         private AxCryptOptions _options;
 
-        public SdkStreamEncryptor(SdkConfiguration configuration)
+        public AxSdkStreamEncryptor(AxSdkConfiguration configuration)
         {
             _cryptoId = configuration.CryptoId;
             _options = configuration.Copmress ? AxCryptOptions.EncryptWithCompression : AxCryptOptions.EncryptWithoutCompression;
             _options |= AxCryptOptions.SetFileTimes;
         }
 
-        public SdkStreamEncryptor SetPassphrase(string passphrase)
+        public AxSdkStreamEncryptor SetPassphrase(string passphrase)
         {
             _passphrase = new Passphrase(passphrase);
 
             return this;
         }
 
-        public SdkStreamEncryptor AddPublicKey(string email, string pem)
+        public AxSdkStreamEncryptor AddPublicKey(string email, string pem)
         {
             UserPublicKey publicKey = new UserPublicKey(EmailAddress.Parse(email), New<IAsymmetricFactory>().CreatePublicKey(pem));
             _publicKeys.Add(publicKey);

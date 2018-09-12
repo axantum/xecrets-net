@@ -1,11 +1,10 @@
 ﻿using Axantum.AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AxCrypt.Sdk
 {
-    public class SdkConfiguration
+    public class AxSdkConfiguration
     {
         public Uri ApiBaseUrl { get; set; } = new Uri("https://account.axcrypt.net/api/");
 
