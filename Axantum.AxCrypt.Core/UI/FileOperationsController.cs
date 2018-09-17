@@ -542,6 +542,10 @@ namespace Axantum.AxCrypt.Core.UI
                     Headers headers = new Headers();
                     long streamLength = encryptedInputStream.Length;
 
+                    V1AxCryptReader axCryptReader = new V1AxCryptReader(new LookAheadStream(encryptedInputStream));
+                    HeaderBlockType last = default(HeaderBlockType);
+                    IList<HeaderBlock> headerBlocks = new List<HeaderBlock>();
+                    DataHeaderBlock CurrentHeaderBlock = new DataHeaderBlock();
                     if (streamLength > 0x7fffffffL)
                     {
                         throw new InvalidOperationException("unable to allocate more than 0x7fffffffL bytes" + "of memory to read the file");
@@ -574,7 +578,7 @@ namespace Axantum.AxCrypt.Core.UI
                     inputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
                     currentItemType = AxCryptItemType.MagicGuid;
                     AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " Length :" + bytesRead);
-
+                   
                     byte[] lengthBytes = new byte[sizeof(Int32)];
                     if (!inputStream.ReadExact(lengthBytes))
                     {
@@ -589,25 +593,38 @@ namespace Axantum.AxCrypt.Core.UI
 
                     int blockType = inputStream.ReadByte();
                     if (blockType > 127)
-                    {
-
+                    {                      
                         throw new FileFormatException("Invalid block type {0}".InvariantFormat(blockType), ErrorStatus.FileFormatError);
                     }
 
-                    if (blockType != (int)HeaderBlockType.Preamble) 
+                    if (blockType != (int)HeaderBlockType.Preamble)
                     {
                         AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " PreambleHeaderBlock  :" + bytesRead);
                     }
 
-                    HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
-
-                    byte[] dataBlock = new byte[headerBlockLength];
-                    if (dataBlock.Length > 256 )
+                    while (axCryptReader.Read())
                     {
-                        AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " DataBlock  :" + bytesRead);
+                        headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
+
+                        if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == last)
+                        {
+                            AxCryptFileIntegrityAnalysisSummary.Add(currentItemType, AxCryptFileIntegrityCheckResults + " PreambleHeaderBlock  :" + bytesRead);
+                        }
+                    }
+                                        
+                    byte[] dataBlock = new byte[headerBlockLength];
+                    if (!inputStream.ReadExact(dataBlock))
+                    {
+                        currentItemType = AxCryptItemType.EndOfStream;
+
+                    }
+
+                    DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
+                    if (dataHeaderBlock != null)
+                    {
+                        currentItemType = AxCryptItemType.Data;
                     }
                 }
-                 
             }
             catch (AxCryptException ace)
             {
