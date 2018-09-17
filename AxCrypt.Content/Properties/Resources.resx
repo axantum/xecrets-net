@@ -423,7 +423,7 @@ You have been warned, now enjoy!</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
   <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
-    <value>!!Your subscription was expired on {0}.Please renew the subscription to resume the business features.</value>
+    <value>!!Your subscription has expired since {0}. Please renew to restore full business functionality.</value>
   </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Subscription expires on {0}.</value>
@@ -522,10 +522,10 @@ You have been warned, now enjoy!</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
   </data>
   <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
-    <value>!!Business subscription renewal must be for at least as many members as are used at the time of the renewal.</value>
+    <value>!!Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription.</value>
   </data>
   <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
-    <value>!! AxCrypt will allow the users to renewal their AxCrypt Business subscription at a lower number of slots than are actually used, we won't be able to automatically pick what members should be kicked out.&lt;br/&gt;&lt;br/&gt;AxCrypt business subscription renewal must be for at least as many members as are used at the time of the renewal. If a subscription is renewed at a lower number of subscriptions than current, the subscription is reduced to that level, and the remaining time for the extra slots is lost.
+    <value>!!Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
 </value>
   </data>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
@@ -1423,7 +1423,7 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <value>We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>!!After files are converted from AxCrypt 1.x and AES-128 format, you must use the new Sign In password to open them, so please verify it here.
+    <value>!!After files are converted they will only open with the current AxCrypt password. Please verify your password.
 
 Do not forget this password!</value>
   </data>
@@ -1887,7 +1887,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>!!Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x and AES-128 files as they are used.</value>
+    <value>!!Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -2719,7 +2719,7 @@ The AxCrypt Team</value>
     <value>!!Upgrade 1.x and AES-128 Files</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>!!Select a place to search for files secured with AxCrypt 1.x and AES-128 and upgrade them.</value>
+    <value>!!Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Get Premium!</value>

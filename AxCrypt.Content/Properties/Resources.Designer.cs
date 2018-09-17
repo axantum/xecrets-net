@@ -808,7 +808,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription was expired on {0}.Please renew the subscription to resume the business features..
+        ///   Looks up a localized string similar to !!Your subscription has expired since {0}. Please renew to restore full business functionality..
         /// </summary>
         public static string BusinessSubscriptionExpiredWarningText {
             get {
@@ -1033,7 +1033,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Business subscription renewal must be for at least as many members as are used at the time of the renewal..
+        ///   Looks up a localized string similar to !!Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription..
         /// </summary>
         public static string BusinessSubscriptionRenewalMemberCountErrorMessage {
             get {
@@ -1042,7 +1042,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !! AxCrypt will allow the users to renewal their AxCrypt Business subscription at a lower number of slots than are actually used, we won&apos;t be able to automatically pick what members should be kicked out.&lt;br/&gt;&lt;br/&gt;AxCrypt business subscription renewal must be for at least as many members as are used at the time of the renewal. If a subscription is renewed at a lower number of subscriptions than current, the subscription is reduced to that level, and the remaining time for the extra slots is lost.
+        ///   Looks up a localized string similar to !!Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
         ///.
         /// </summary>
         public static string BusinessSubscriptionRenewalPageBody {
@@ -3493,7 +3493,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!After files are converted from AxCrypt 1.x and AES-128 format, you must use the new Sign In password to open them, so please verify it here.
+        ///   Looks up a localized string similar to !!After files are converted they will only open with the current AxCrypt password. Please verify your password.
         ///
         ///Do not forget this password!.
         /// </summary>
@@ -4644,7 +4644,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Enable or disable the automatic upgrade and conversion of older AxCrypt 1.x and AES-128 files as they are used..
+        ///   Looks up a localized string similar to !!Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files..
         /// </summary>
         public static string OptionsConvertMenuToolTip {
             get {
@@ -6804,7 +6804,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Select a place to search for files secured with AxCrypt 1.x and AES-128 and upgrade them..
+        ///   Looks up a localized string similar to !!Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them..
         /// </summary>
         public static string UpgradeLegacyFilesMenuToolTip {
             get {
