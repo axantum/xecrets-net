@@ -32,6 +32,7 @@ namespace Axantum.AxCrypt.Forms
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonExit.Text = "&" + Texts.ButtonExitText;
+            _buttonMore.Text = "&" + "More";
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
@@ -45,6 +46,13 @@ namespace Axantum.AxCrypt.Forms
         public MessageDialog HideCancel()
         {
             _buttonCancel.Visible = false;
+            ReSizeButtonsPanel();
+            return this;
+        }
+
+        public MessageDialog HideMore()
+        {
+            _buttonMore.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
@@ -69,6 +77,7 @@ namespace Axantum.AxCrypt.Forms
             {
                 messageDialog.HideExit();
                 messageDialog.HideCancel();
+                messageDialog.HideMore();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -82,6 +91,7 @@ namespace Axantum.AxCrypt.Forms
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
                 messageDialog.HideExit();
+                messageDialog.HideMore();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -94,6 +104,7 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
+                messageDialog.HideMore();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -107,6 +118,21 @@ namespace Axantum.AxCrypt.Forms
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
                 messageDialog.HideCancel();
+                messageDialog.HideMore();
+                messageDialog.Text = caption;
+                messageDialog.Message.Text = message;
+
+                return messageDialog.ShowDialog(parent);
+            }
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        public static DialogResult ShowOkMore(Form parent, string caption, string message)
+        {
+            using (MessageDialog messageDialog = new MessageDialog(parent))
+            {
+                messageDialog.HideCancel();
+                messageDialog.HideExit();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 

@@ -59,6 +59,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 {
                     dialog.HideExit();
                 }
+                if (!buttons.HasFlag(PopupButtons.More))
+                {
+                    dialog.HideMore();
+                }
                 if (dontShowAgainFlag == DoNotShowAgainOptions.None)
                 {
                     dialog.HideDontShowAgain();
@@ -85,6 +89,9 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 case DialogResult.Abort:
                     return PopupButtons.Exit;
+
+                case DialogResult.Ignore:
+                    return PopupButtons.More;
 
                 default:
                     throw new InvalidOperationException($"Unexpected result from dialog: {result}");

@@ -4,7 +4,9 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
+using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.ComponentModel;
@@ -106,7 +108,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
+            PlanState planState = await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
+
+            if (planState == PlanState.CanTryPremium)
+            {
+                await EnableTrialModeImmediately();
+            }
 
             if (Resolve.UserSettings.IsFirstSignIn)
             {
@@ -132,6 +139,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (!string.IsNullOrEmpty(tip.Message))
             {
                 await tip.ShowPopup();
+            }
+        }
+
+        public async Task EnableTrialModeImmediately()
+        {
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return;
+            }
+
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            await accountService.StartPremiumTrialAsync();
+
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
+
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkMore, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+            if (result == PopupButtons.More)
+            {
+                New<IBrowser>().OpenUri(new Uri(Texts.LinkToGettingStarted));
             }
         }
 

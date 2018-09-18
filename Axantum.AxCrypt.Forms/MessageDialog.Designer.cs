@@ -35,6 +35,7 @@
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
             this._buttonExit = new System.Windows.Forms.Button();
+            this._buttonMore = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +93,7 @@
             this.flowLayoutPanel1.Controls.Add(this._buttonOk);
             this.flowLayoutPanel1.Controls.Add(this._buttonCancel);
             this.flowLayoutPanel1.Controls.Add(this._buttonExit);
+            this.flowLayoutPanel1.Controls.Add(this._buttonMore);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 41);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 29);
@@ -130,6 +132,17 @@
             this._buttonExit.Text = "[Exit]";
             this._buttonExit.UseVisualStyleBackColor = true;
             // 
+            // _buttonMore
+            // 
+            this._buttonMore.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._buttonMore.DialogResult = System.Windows.Forms.DialogResult.Ignore;
+            this._buttonMore.Location = new System.Drawing.Point(246, 3);
+            this._buttonMore.Name = "_buttonMore";
+            this._buttonMore.Size = new System.Drawing.Size(75, 23);
+            this._buttonMore.TabIndex = 3;
+            this._buttonMore.Text = "[More]";
+            this._buttonMore.UseVisualStyleBackColor = true;
+            // 
             // MessageDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +171,7 @@
         private System.Windows.Forms.Button _buttonOk;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonExit;
+        private System.Windows.Forms.Button _buttonMore;
         internal System.Windows.Forms.Label Message;
         internal System.Windows.Forms.CheckBox dontShowThisAgain;
     }
