@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -711,15 +712,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            if (!_knownIdentities.IsLoggedOn)
+
+            try
             {
-                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
+                IEnumerable<IDataStore> dataStores = files.Select(f => New<IDataStore>(f)).ToList();
+                using (Stream stream = dataStores.FirstOrDefault().OpenRead())
+                {
+                    FormatIntergrityChecker intergrityChecker = new FormatIntergrityChecker(stream);
+                    await intergrityChecker.Verify();
+                }
             }
-            if (!_knownIdentities.IsLoggedOn)
+            catch (Exception e)
             {
-                return;
+                throw new UnauthorizedAccessException("The file could not be read:" + e.Message);
             }
-            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), AnalysisAxcryptFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
     }
 }
