@@ -24,19 +24,13 @@ namespace Axantum.AxCrypt.Core
 
         public IDictionary<string, string> StatusReport = new Dictionary<string, string>();
 
-        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
-
         private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
 
         private bool _disposed = false;
 
         public FormatIntergrityChecker(Stream inputStream)
         {
-            if (inputStream == null)
-            {
-                throw new ArgumentNullException("inputStream");
-            }
-            _inputStream = inputStream;
+            _inputStream = inputStream ?? throw new ArgumentNullException("inputStream");
         }
 
         public async Task<bool> Verify()
@@ -47,16 +41,15 @@ namespace Axantum.AxCrypt.Core
             if (bytesRead < AxCrypt1Guid.Length)
             {
                 StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "Not an AxCrypt file, No magic Guid was found.");
-                GetStatusReport();
-                return false;
+                return ShowStatusReport();
             }
 
+            byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
             int i = buffer.Locate(_axCrypt1GuidBytes, 0, AxCrypt1Guid.Length);
             if (i < 0)
             {
                 StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "No magic Guid was found.");
-                GetStatusReport();
-                return false;
+                return ShowStatusReport();
             }
             StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Ok with the length {0}".InvariantFormat(AxCrypt1Guid.Length));
 
@@ -73,15 +66,13 @@ namespace Axantum.AxCrypt.Core
                 if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
                 {
                     StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "End of File");
-                    GetStatusReport();
-                    return false;
+                    return ShowStatusReport();
                 }
                 int blockType = ReadByte();
                 if (blockType > 127)
                 {
                     StatusReport.Add(nameof(AxCryptItemType.Undefined), "Invalid block type {0}".InvariantFormat(blockType));
-                    GetStatusReport();
-                    return false;
+                    return ShowStatusReport();
                 }
 
                 HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
@@ -112,11 +103,11 @@ namespace Axantum.AxCrypt.Core
                         case HeaderBlockType.EncryptedDataPart:
                             currentHeaderBlock = new EncryptedDataPartBlock(dataBlock);
                             break;
-                        case HeaderBlockType.EncryptionInfo:
-                            currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
-                            break;
                         case HeaderBlockType.V2Hmac:
                             currentHeaderBlock = new V2HmacHeaderBlock(dataBlock);
+                            break;
+                        case HeaderBlockType.EncryptionInfo:
+                            currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
                             break;
                         default:
                             currentHeaderBlock = null;
@@ -131,8 +122,7 @@ namespace Axantum.AxCrypt.Core
                 catch (AxCryptException aex)
                 {
                     StatusReport.Add(headerBlockType.ToString(), aex.InnerException.Message);
-                    GetStatusReport();
-                    return false;
+                    return ShowStatusReport();
                 }
             }
         }
@@ -172,7 +162,7 @@ namespace Axantum.AxCrypt.Core
             return bytesRead;
         }
 
-        private void GetStatusReport()
+        private bool ShowStatusReport()
         {
             if (StatusReport.Any())
             {
@@ -184,7 +174,9 @@ namespace Axantum.AxCrypt.Core
                 }
 
                 New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
+                return true;
             }
+            return false;
         }
 
         public void Dispose()
