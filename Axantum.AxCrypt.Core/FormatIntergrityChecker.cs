@@ -22,7 +22,7 @@ namespace Axantum.AxCrypt.Core
     {
         private Stream _inputStream;
 
-        public IDictionary<AxCryptItemType, string> StatusReport = new Dictionary<AxCryptItemType, string>();
+        public IDictionary<string, string> StatusReport = new Dictionary<string, string>();
 
         public string ErrorMessage;
 
@@ -48,7 +48,7 @@ namespace Axantum.AxCrypt.Core
 
             if (bytesRead < AxCrypt1Guid.Length)
             {
-                StatusReport.Add(AxCryptItemType.EndOfStream, "Not an AxCrypt file, No magic Guid was found.");
+                StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "Not an AxCrypt file, No magic Guid was found.");
                 GetStatusReport();
                 return false;
             }
@@ -56,14 +56,14 @@ namespace Axantum.AxCrypt.Core
             int i = buffer.Locate(_axCrypt1GuidBytes, 0, AxCrypt1Guid.Length);
             if (i < 0)
             {
-                StatusReport.Add(AxCryptItemType.MagicGuid, "No magic Guid was found.");
+                StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "No magic Guid was found.");
                 GetStatusReport();
                 return false;
             }
-            StatusReport.Add(AxCryptItemType.MagicGuid, "Ok");
+            StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Ok with the length {0}".InvariantFormat(AxCrypt1Guid.Length));
 
             int offset = AxCrypt1Guid.Length + i;
-            Pushback(buffer, offset, (bytesRead - AxCrypt1Guid.Length));
+            Pushback(buffer, offset, (bytesRead - offset));
             List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
             while (true)
             {
@@ -74,24 +74,16 @@ namespace Axantum.AxCrypt.Core
                 Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
                 if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
                 {
-                    StatusReport.Add(AxCryptItemType.HeaderBlock, "Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength));
+                    StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "End of File");
                     GetStatusReport();
                     return false;
                 }
-
                 int blockType = ReadByte();
                 if (blockType > 127)
                 {
-                    StatusReport.Add(AxCryptItemType.HeaderBlock, "Invalid block type {0}".InvariantFormat(blockType));
+                    StatusReport.Add(nameof(AxCryptItemType.Undefined), "Invalid block type {0}".InvariantFormat(blockType));
                     GetStatusReport();
                     return false;
-                }
-
-                if ((AxCryptItemType)blockType == AxCryptItemType.EndOfStream)
-                {
-                    StatusReport.Add(AxCryptItemType.EndOfStream, "File ended...".InvariantFormat(blockType));
-                    GetStatusReport();
-                    return true;
                 }
 
                 HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
@@ -116,16 +108,31 @@ namespace Axantum.AxCrypt.Core
                         case HeaderBlockType.FileInfo:
                             currentHeaderBlock = new FileInfoEncryptedHeaderBlock(dataBlock);
                             break;
+                        case HeaderBlockType.PlaintextLengths:
+                            currentHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
+                            break;
+                        case HeaderBlockType.EncryptedDataPart:
+                            currentHeaderBlock = new EncryptedDataPartBlock(dataBlock);
+                            break;
+                        case HeaderBlockType.EncryptionInfo:
+                            currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
+                            break;
+                        case HeaderBlockType.V2Hmac:
+                            currentHeaderBlock = new V2HmacHeaderBlock(dataBlock);
+                            break;
                         default:
-                            currentHeaderBlock = new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
+                            currentHeaderBlock = null;
                             break;
                     }
-                    headerBlocks.Add(currentHeaderBlock);
-                    //DataHeaderBlock dataHeaderBlock = currentHeaderBlock as DataHeaderBlock;
+
+                    if (currentHeaderBlock != null && !StatusReport.ContainsKey(headerBlockType.ToString()))
+                    {
+                        StatusReport.Add(headerBlockType.ToString(), string.Format(@"Ok with the length {0}", headerBlockLength));
+                    }
                 }
                 catch (AxCryptException aex)
                 {
-                    StatusReport.Add(AxCryptItemType.HeaderBlock, string.Format(@"{0} - {1}", headerBlockType, aex.InnerException.Message).InvariantFormat(blockType));
+                    StatusReport.Add(headerBlockType.ToString(), aex.InnerException.Message);
                     GetStatusReport();
                     return false;
                 }
@@ -142,10 +149,10 @@ namespace Axantum.AxCrypt.Core
 
         public int ReadByte()
         {
-            byte[] lengthBytes = new byte[sizeof(Int32)];
+            byte[] lengthBytes = new byte[sizeof(byte)];
             Read(lengthBytes, 0, lengthBytes.Length);
 
-            return BitConverter.ToInt32(lengthBytes, 0);
+            return lengthBytes[0];
         }
 
         public int Read(byte[] buffer, int offset, int count)
