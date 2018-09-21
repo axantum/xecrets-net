@@ -24,8 +24,6 @@ namespace Axantum.AxCrypt.Core
 
         public IDictionary<string, string> StatusReport = new Dictionary<string, string>();
 
-        public string ErrorMessage;
-
         private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
 
         private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
@@ -151,7 +149,6 @@ namespace Axantum.AxCrypt.Core
         {
             byte[] lengthBytes = new byte[sizeof(byte)];
             Read(lengthBytes, 0, lengthBytes.Length);
-
             return lengthBytes[0];
         }
 
@@ -175,30 +172,6 @@ namespace Axantum.AxCrypt.Core
             return bytesRead;
         }
 
-        private static void ReadHeadersToLast(IList<HeaderBlock> headerBlocks, AxCryptReaderBase axCryptReader, HeaderBlockType last)
-        {
-            while (axCryptReader.Read())
-            {
-                switch (axCryptReader.CurrentItemType)
-                {
-                    case AxCryptItemType.Data:
-                    case AxCryptItemType.HeaderBlock:
-                        break;
-
-                    default:
-                        throw new InternalErrorException("The reader returned an item type it should not be possible for it to return.");
-                }
-
-                headerBlocks.Add(axCryptReader.CurrentHeaderBlock);
-
-                if (axCryptReader.CurrentHeaderBlock.HeaderBlockType == last)
-                {
-                    return;
-                }
-            }
-            throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
-        }
-
         private void GetStatusReport()
         {
             if (StatusReport.Any())
@@ -210,7 +183,6 @@ namespace Axantum.AxCrypt.Core
                     template += Environment.NewLine;
                 }
 
-                // System.Console.WriteLine(template);
                 New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
             }
         }
