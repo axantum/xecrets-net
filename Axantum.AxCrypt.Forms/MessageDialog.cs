@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt.Forms
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonExit.Text = "&" + Texts.ButtonExitText;
-            _buttonMore.Text = "&" + "More";
+            _buttonMore.Text = "&" + Texts.MoreButtonText;
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
