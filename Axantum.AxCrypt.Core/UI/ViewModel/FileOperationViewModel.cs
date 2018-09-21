@@ -702,9 +702,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             try
             {
                 IEnumerable<IDataStore> dataStores = files.Select(f => New<IDataStore>(f)).ToList();
-                using (Stream stream = dataStores.FirstOrDefault().OpenRead())
+                Stream stream = dataStores.FirstOrDefault().OpenRead();
+                using (FormatIntergrityChecker intergrityChecker = new FormatIntergrityChecker(stream))
                 {
-                    FormatIntergrityChecker intergrityChecker = new FormatIntergrityChecker(stream);
                     await intergrityChecker.Verify();
                 }
             }
