@@ -206,4 +206,3 @@ namespace Axantum.AxCrypt.Core
         }
     }
 }
-
