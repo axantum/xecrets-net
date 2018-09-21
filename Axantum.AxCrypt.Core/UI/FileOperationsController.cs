@@ -28,9 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Reader;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
