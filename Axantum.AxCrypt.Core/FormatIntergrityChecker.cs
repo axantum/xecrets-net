@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt.Core
                 }
 
                 New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
-                
+                return true;
             }
             return false;
         }
