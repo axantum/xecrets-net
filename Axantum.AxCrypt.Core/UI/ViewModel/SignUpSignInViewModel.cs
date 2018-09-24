@@ -110,7 +110,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             PlanState planState = await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
 
+            PopupButtons result = PopupButtons.None;
             if (planState == PlanState.CanTryPremium)
+            {
+                result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrialPremium.InvariantFormat(nameof(PopupButtons.Ok)));
+            }
+
+            if (result == PopupButtons.Ok)
             {
                 await EnableTrialModeImmediately();
             }

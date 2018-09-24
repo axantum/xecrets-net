@@ -4233,6 +4233,19 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trail for you!
+        ///
+        ///After the trial period, AxCrypt does not auto-subscribe the Premium subscription instead, Premium Trial will be reverted back to Free subscription.
+        ///
+        ///Click {0} to start the Free Premium Trial..
+        /// </summary>
+        public static string MessageAskAboutStartTrialPremium {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string MessageErrorTitle {
@@ -6629,7 +6642,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Great! Now you can use all features of AxCrypt for free during the trial period.
+        ///   Looks up a localized string similar to !!Great! We&apos;ve enabled a free trial of Premium for you, Now you can use all features of AxCrypt for free during the trial period.
+        ///
+        ///Don&apos;t worry - you&apos;ll still have access to all your files if you choose not to purchase a subscription after the trial period is over.
         ///
         ///Good Luck and Enjoy,
         ///
