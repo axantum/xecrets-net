@@ -703,7 +703,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 IEnumerable<IDataStore> dataStores = files.Select(f => New<IDataStore>(f)).ToList();
                 Stream stream = dataStores.FirstOrDefault().OpenRead();
-                using (FormatIntergrityChecker intergrityChecker = new FormatIntergrityChecker(stream))
+                string fileName = dataStores.FirstOrDefault().Name;
+                using (FormatIntergrityChecker intergrityChecker = new FormatIntergrityChecker(stream, fileName))
                 {
                     await intergrityChecker.Verify();
                 }

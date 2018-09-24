@@ -22,15 +22,18 @@ namespace Axantum.AxCrypt.Core
     {
         private Stream _inputStream;
 
+        private string _fileName;
+
         public IDictionary<string, string> StatusReport = new Dictionary<string, string>();
 
         private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
 
         private bool _disposed = false;
 
-        public FormatIntergrityChecker(Stream inputStream)
+        public FormatIntergrityChecker(Stream inputStream, string fileName)
         {
             _inputStream = inputStream ?? throw new ArgumentNullException("inputStream");
+            _fileName = fileName ?? throw new ArgumentNullException("fileName");
         }
 
         public async Task<bool> Verify()
@@ -48,7 +51,7 @@ namespace Axantum.AxCrypt.Core
             int i = buffer.Locate(_axCrypt1GuidBytes, 0, AxCrypt1Guid.Length);
             if (i < 0)
             {
-                StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "No magic Guid was found.");
+                StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Not found.");
                 return ShowStatusReport();
             }
             StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Ok with the length {0}".InvariantFormat(AxCrypt1Guid.Length));
@@ -166,11 +169,11 @@ namespace Axantum.AxCrypt.Core
         {
             if (StatusReport.Any())
             {
-                string template = "";
+                string template = "Structural integrity check of '{0}'".InvariantFormat(_fileName);
                 foreach (var report in StatusReport)
                 {
-                    template += report.Key + ":" + report.Value;
                     template += Environment.NewLine;
+                    template += report.Key + ":" + report.Value;
                 }
 
                 New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
