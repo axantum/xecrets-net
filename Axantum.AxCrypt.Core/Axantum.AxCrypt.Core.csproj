@@ -64,7 +64,7 @@
     <Compile Include="Crypto\ISystemCryptoPolicy.cs" />
     <Compile Include="Crypto\LogOnIdentity.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
-    <Compile Include="FormatIntergrityChecker.cs" />
+    <Compile Include="FormatIntegrityChecker.cs" />
     <Compile Include="IO\FileFilter.cs" />
     <Compile Include="Extensions\OtherExtensions.cs" />
     <Compile Include="Extensions\UserTypeExtensions.cs" />
