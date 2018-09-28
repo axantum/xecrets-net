@@ -18,7 +18,7 @@ using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core
 {
-    public class FormatIntergrityChecker : IDisposable
+    public class FormatIntegrityChecker : IDisposable
     {
         private Stream _inputStream;
 
@@ -30,18 +30,18 @@ namespace Axantum.AxCrypt.Core
 
         private bool _disposed = false;
 
-        public FormatIntergrityChecker(Stream inputStream, string fileName)
+        public FormatIntegrityChecker(Stream inputStream, string fileName)
         {
-            _inputStream = inputStream ?? throw new ArgumentNullException("inputStream");
-            _fileName = fileName ?? throw new ArgumentNullException("fileName");
+            _inputStream = inputStream ?? throw new ArgumentNullException(nameof(inputStream), "inputStream");
+            _fileName = fileName ?? throw new ArgumentNullException(nameof(fileName), "fileName");
         }
 
         public async Task<bool> Verify()
         {
-            byte[] buffer = new byte[OS.Current.StreamBufferSize];
+            byte[] buffer = new byte[_inputStream.Length];
             int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
 
-            if (bytesRead < AxCrypt1Guid.Length)
+            if (bytesRead < 0 && bytesRead > AxCrypt1Guid.Length)
             {
                 StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "Not an AxCrypt file, No magic Guid was found.");
                 return ShowStatusReport();
@@ -66,9 +66,9 @@ namespace Axantum.AxCrypt.Core
                 Read(lengthBytes, 0, lengthBytes.Length);
 
                 Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
-                if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
+                if (headerBlockLength < 0)
                 {
-                    StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "End of File");
+                    StatusReport.Add(nameof(AxCryptItemType.HeaderBlock), "This is a Format Error with an Invalid Block Length");
                     return ShowStatusReport();
                 }
                 int blockType = ReadByte();
