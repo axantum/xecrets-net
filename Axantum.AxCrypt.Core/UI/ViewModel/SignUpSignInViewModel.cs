@@ -6,7 +6,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.ComponentModel;
@@ -110,17 +109,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             PlanState planState = await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
 
-            PopupButtons result = PopupButtons.None;
-            if (planState == PlanState.CanTryPremium)
-            {
-                result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrialPremium.InvariantFormat(nameof(PopupButtons.Ok)));
-            }
-
-            if (result == PopupButtons.Ok)
-            {
-                await EnableTrialModeImmediately();
-            }
-
             if (Resolve.UserSettings.IsFirstSignIn)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
@@ -145,25 +133,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             if (!string.IsNullOrEmpty(tip.Message))
             {
                 await tip.ShowPopup();
-            }
-        }
-
-        public async Task EnableTrialModeImmediately()
-        {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return;
-            }
-
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            await accountService.StartPremiumTrialAsync();
-
-            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
-
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkMore, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
-            if (result == PopupButtons.More)
-            {
-                New<IBrowser>().OpenUri(new Uri(Texts.LinkToGettingStarted));
             }
         }
 

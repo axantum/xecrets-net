@@ -4233,11 +4233,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trail for you!
+        ///   Looks up a localized string similar to !!We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!
         ///
-        ///After the trial period, AxCrypt does not auto-subscribe the Premium subscription instead, Premium Trial will be reverted back to Free subscription.
-        ///
-        ///Click {0} to start the Free Premium Trial..
+        ///When the trial period ends, you&apos;ll automatically continue with AxCrypt Free unless you choose to purchase a subscription..
         /// </summary>
         public static string MessageAskAboutStartTrialPremium {
             get {

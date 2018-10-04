@@ -1730,11 +1730,9 @@ Without Premium you can only view and permanently decrypt encrypted files.</valu
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialPremium" xml:space="preserve">
-    <value>!!We noticed you don't have a Premium subscription, so we'd like to start a free Trail for you!
+    <value>!!We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!
 
-After the trial period, AxCrypt does not auto-subscribe the Premium subscription instead, Premium Trial will be reverted back to Free subscription.
-
-Click {0} to start the Free Premium Trial.</value>
+When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
