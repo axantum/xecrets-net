@@ -1,18 +1,13 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -28,15 +23,13 @@ namespace Axantum.AxCrypt.Core
 
         private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
 
-        private bool _disposed = false;
-
         public FormatIntegrityChecker(Stream inputStream, string fileName)
         {
             _inputStream = inputStream ?? throw new ArgumentNullException(nameof(inputStream), "inputStream");
             _fileName = fileName ?? throw new ArgumentNullException(nameof(fileName), "fileName");
         }
 
-        public async Task<bool> Verify()
+        public bool Verify()
         {
             byte[] buffer = new byte[_inputStream.Length];
             int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
@@ -84,48 +77,65 @@ namespace Axantum.AxCrypt.Core
                 Read(dataBlock, 0, dataBlock.Length);
 
                 HeaderBlock currentHeaderBlock;
-                try
-                {
-                    switch (headerBlockType)
-                    {
-                        case HeaderBlockType.Preamble:
-                            currentHeaderBlock = new PreambleHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.Version:
-                            currentHeaderBlock = new VersionHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.Data:
-                            currentHeaderBlock = new DataHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.FileInfo:
-                            currentHeaderBlock = new FileInfoEncryptedHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.PlaintextLengths:
-                            currentHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.EncryptedDataPart:
-                            currentHeaderBlock = new EncryptedDataPartBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.V2Hmac:
-                            currentHeaderBlock = new V2HmacHeaderBlock(dataBlock);
-                            break;
-                        case HeaderBlockType.EncryptionInfo:
-                            currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
-                            break;
-                        default:
-                            currentHeaderBlock = null;
-                            break;
-                    }
 
-                    if (currentHeaderBlock != null && !StatusReport.ContainsKey(headerBlockType.ToString()))
-                    {
-                        StatusReport.Add(headerBlockType.ToString(), string.Format(@"Ok with the length {0}", headerBlockLength));
-                    }
-                }
-                catch (AxCryptException aex)
+                KeyValuePair<string, string> reportHeaderBlock = new KeyValuePair<string, string>();
+
+                switch (headerBlockType)
                 {
-                    StatusReport.Add(headerBlockType.ToString(), aex.InnerException.Message);
-                    return ShowStatusReport();
+                    case HeaderBlockType.Preamble:
+                        currentHeaderBlock = new PreambleHeaderBlock(dataBlock);
+                        break;
+
+                    case HeaderBlockType.Version:
+                        VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(dataBlock);
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Version", versionHeaderBlock.FileVersionMajor + "." + versionHeaderBlock.FileVersionMinor);
+                        currentHeaderBlock = versionHeaderBlock;
+                        break;
+
+                    case HeaderBlockType.Data:
+                        DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(dataBlock);
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Text Length", dataHeaderBlock.CipherTextLength.ToString());
+                        currentHeaderBlock = dataHeaderBlock;
+                        break;
+
+                    case HeaderBlockType.FileInfo:
+                        FileInfoEncryptedHeaderBlock fileInfoEncryptedHeaderBlock = new FileInfoEncryptedHeaderBlock(dataBlock);
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt Header", fileInfoEncryptedHeaderBlock.HeaderCrypto.ToString());
+                        currentHeaderBlock = fileInfoEncryptedHeaderBlock;
+
+                        break;
+
+                    case HeaderBlockType.PlaintextLengths:
+                        V2PlaintextLengthsEncryptedHeaderBlock v2PlaintextLengthsEncryptedHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
+                        reportHeaderBlock = new KeyValuePair<string, string>("", v2PlaintextLengthsEncryptedHeaderBlock.CompressedPlaintextLength.ToString());
+                        currentHeaderBlock = v2PlaintextLengthsEncryptedHeaderBlock;
+                        break;
+
+                    case HeaderBlockType.EncryptedDataPart:
+                        currentHeaderBlock = new EncryptedDataPartBlock(dataBlock);
+                        break;
+
+                    case HeaderBlockType.V2Hmac:
+                        currentHeaderBlock = new V2HmacHeaderBlock(dataBlock);
+                        break;
+
+                    case HeaderBlockType.EncryptionInfo:
+                        currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
+                        break;
+
+                    default:
+                        currentHeaderBlock = null;
+                        break;
+                }
+
+                if (string.IsNullOrEmpty(reportHeaderBlock.Key))
+                {
+                    StatusReport.Add(reportHeaderBlock);
+                }
+
+                if (currentHeaderBlock != null && !StatusReport.ContainsKey(headerBlockType.ToString()))
+                {
+                    StatusReport.Add(headerBlockType.ToString(), string.Format(@"Ok with the length {0}", headerBlockLength));
                 }
             }
         }
@@ -182,15 +192,7 @@ namespace Axantum.AxCrypt.Core
             return false;
         }
 
-        public void Dispose()
-        {
-            if (_inputStream != null)
-            {
-                _inputStream.Dispose();
-                _inputStream = null;
-            }
-            _disposed = true;
-        }
+        private bool _disposed = false;
 
         private void EnsureNotDisposed()
         {
@@ -198,6 +200,31 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ObjectDisposedException(GetType().FullName);
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                if (_inputStream != null)
+                {
+                    _inputStream.Dispose();
+                    _inputStream = null;
+                }
+            }
+
+            _disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

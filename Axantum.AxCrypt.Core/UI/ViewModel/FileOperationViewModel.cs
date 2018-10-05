@@ -691,7 +691,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), VerifyFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
-        private async Task AnalysisAxCryptFileActionAsync(IEnumerable<string>files)
+        private async Task AnalysisAxCryptFileActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Decrypt);
             if (!files.Any())
@@ -706,7 +706,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 string fileName = dataStores.FirstOrDefault().Name;
                 using (FormatIntegrityChecker intergrityChecker = new FormatIntegrityChecker(stream, fileName))
                 {
-                    await intergrityChecker.Verify();
+                    intergrityChecker.Verify();
                 }
             }
             catch (Exception e)
