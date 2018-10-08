@@ -75,17 +75,5 @@ namespace Axantum.AxCrypt.Forms
             flowLayoutPanel1.PerformLayout();
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
         }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        //public static DialogResult CustomButtons(Form parent, string caption, string message)
-        //{
-        //    using (CustomMessageDialog CustomMessageDialog = new CustomMessageDialog(parent))
-        //    {
-        //        CustomMessageDialog.Text = caption;
-        //        CustomMessageDialog.Message.Text = message;
-
-        //        return CustomMessageDialog.ShowDialog(parent);
-        //    }
-        //}
     }
 }
