@@ -12,14 +12,14 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class PremiumManagerWithAutoTrial : PremiumManager
     {
-        protected override async Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation)
+        protected override async Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation, NameOf startTrialMessage)
         {
             if (planInformation.PlanState != PlanState.CanTryPremium)
             {
                 return planInformation.PlanState;
             }
 
-            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, Texts.MessageAskAboutStartTrialPremium, DoNotShowAgainOptions.TryPremium);
+            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, Texts.ResourceManager.GetString(startTrialMessage.Name), DoNotShowAgainOptions.TryPremium);
             if (result != Texts.ButtonStartTrial)
             {
                 return planInformation.PlanState;

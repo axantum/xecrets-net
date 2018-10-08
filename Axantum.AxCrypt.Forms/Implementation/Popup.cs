@@ -115,7 +115,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private string ShowSyncInternal(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
-            string result = "";
+            string result = string.Empty;
             if (buttons.Length > 3)
             {
                 return result;
