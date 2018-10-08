@@ -11,10 +11,8 @@ namespace Axantum.AxCrypt.Core.UI
         Ok = 1,
         Cancel = 2,
         Exit = 4,
-        More = 8,
         OkCancel = Ok | Cancel,
         OkExit = Ok | Exit,
         OkCancelExit = Ok | Cancel | Exit,
-        OkMore = Ok | More,
     }
 }
