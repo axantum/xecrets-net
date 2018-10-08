@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.dontShowThisAgain = new System.Windows.Forms.CheckBox();
             this.Message = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this._customButton1 = new System.Windows.Forms.Button();
-            this._customButton2 = new System.Windows.Forms.Button();
-            this._customButton3 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._customOkButton = new System.Windows.Forms.Button();
+            this._customCancelButton = new System.Windows.Forms.Button();
+            this._customAbortButton = new System.Windows.Forms.Button();
+            this.tableLayoutPanel.SuspendLayout();
+            this.flowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.dontShowThisAgain, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.Message, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(389, 139);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel.AutoSize = true;
+            this.tableLayoutPanel.ColumnCount = 1;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Controls.Add(this.dontShowThisAgain, 0, 2);
+            this.tableLayoutPanel.Controls.Add(this.Message, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel, 0, 1);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 3;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(389, 139);
+            this.tableLayoutPanel.TabIndex = 2;
             // 
             // dontShowThisAgain
             // 
@@ -86,55 +86,55 @@
             this.Message.Text = "[Text]";
             this.Message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel
             // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this._customButton1);
-            this.flowLayoutPanel1.Controls.Add(this._customButton2);
-            this.flowLayoutPanel1.Controls.Add(this._customButton3);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(32, 62);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(324, 36);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.flowLayoutPanel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.flowLayoutPanel.AutoSize = true;
+            this.flowLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel.Controls.Add(this._customOkButton);
+            this.flowLayoutPanel.Controls.Add(this._customCancelButton);
+            this.flowLayoutPanel.Controls.Add(this._customAbortButton);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(32, 62);
+            this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel.Size = new System.Drawing.Size(324, 36);
+            this.flowLayoutPanel.TabIndex = 2;
             // 
-            // _customButton1
+            // _customOkButton
             // 
-            this._customButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._customButton1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._customButton1.Location = new System.Drawing.Point(4, 4);
-            this._customButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this._customButton1.Name = "_customButton1";
-            this._customButton1.Size = new System.Drawing.Size(100, 28);
-            this._customButton1.TabIndex = 0;
-            this._customButton1.Text = "[Custom Button]";
-            this._customButton1.UseVisualStyleBackColor = true;
+            this._customOkButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._customOkButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._customOkButton.Location = new System.Drawing.Point(4, 4);
+            this._customOkButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._customOkButton.Name = "_customOkButton";
+            this._customOkButton.Size = new System.Drawing.Size(100, 28);
+            this._customOkButton.TabIndex = 0;
+            this._customOkButton.Text = "[Ok]";
+            this._customOkButton.UseVisualStyleBackColor = true;
             // 
-            // _customButton2
+            // _customCancelButton
             // 
-            this._customButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._customButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._customButton2.Location = new System.Drawing.Point(112, 4);
-            this._customButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this._customButton2.Name = "_customButton2";
-            this._customButton2.Size = new System.Drawing.Size(100, 28);
-            this._customButton2.TabIndex = 1;
-            this._customButton2.Text = "[Custom Button]";
-            this._customButton2.UseVisualStyleBackColor = true;
+            this._customCancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._customCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._customCancelButton.Location = new System.Drawing.Point(112, 4);
+            this._customCancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._customCancelButton.Name = "_customCancelButton";
+            this._customCancelButton.Size = new System.Drawing.Size(100, 28);
+            this._customCancelButton.TabIndex = 1;
+            this._customCancelButton.Text = "[Cancel]";
+            this._customCancelButton.UseVisualStyleBackColor = true;
             // 
-            // _customButton3
+            // _customAbortButton
             // 
-            this._customButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._customButton3.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this._customButton3.Location = new System.Drawing.Point(220, 4);
-            this._customButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this._customButton3.Name = "_customButton3";
-            this._customButton3.Size = new System.Drawing.Size(100, 28);
-            this._customButton3.TabIndex = 2;
-            this._customButton3.Text = "[Custom Button]";
-            this._customButton3.UseVisualStyleBackColor = true;
+            this._customAbortButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._customAbortButton.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this._customAbortButton.Location = new System.Drawing.Point(220, 4);
+            this._customAbortButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._customAbortButton.Name = "_customAbortButton";
+            this._customAbortButton.Size = new System.Drawing.Size(100, 28);
+            this._customAbortButton.TabIndex = 2;
+            this._customAbortButton.Text = "[Abort]";
+            this._customAbortButton.UseVisualStyleBackColor = true;
             // 
             // CustomMessageDialog
             // 
@@ -143,16 +143,16 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(389, 139);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CustomMessageDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "[Custom Message Dialog]";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
+            this.flowLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,11 +160,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button _customButton1;
-        private System.Windows.Forms.Button _customButton2;
-        private System.Windows.Forms.Button _customButton3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private System.Windows.Forms.Button _customOkButton;
+        private System.Windows.Forms.Button _customCancelButton;
+        private System.Windows.Forms.Button _customAbortButton;
         internal System.Windows.Forms.Label Message;
         internal System.Windows.Forms.CheckBox dontShowThisAgain;
     }

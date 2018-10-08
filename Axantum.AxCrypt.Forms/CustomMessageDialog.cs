@@ -14,9 +14,9 @@ namespace Axantum.AxCrypt.Forms
         {
             InitializeComponent();
 
-            _customButton1.Visible = false;
-            _customButton2.Visible = false;
-            _customButton3.Visible = false;
+            _customOkButton.Visible = false;
+            _customCancelButton.Visible = false;
+            _customAbortButton.Visible = false;
         }
 
         public CustomMessageDialog(Form parent)
@@ -24,40 +24,40 @@ namespace Axantum.AxCrypt.Forms
         {
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1)
-            : this(parent, doNotShowAgainCustomText, button1, null)
+        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text)
+            : this(parent, doNotShowAgainCustomText, button1Text, null)
         {
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1, string button2)
-           : this(parent, doNotShowAgainCustomText, button1, button2, null)
+        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text, string button2Text)
+           : this(parent, doNotShowAgainCustomText, button1Text, button2Text, null)
         {
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1, string button2, string button3)
+        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text, string button2Text, string button3Text)
            : this()
         {
             InitializeStyle(parent);
             _doNotShowAgainCustomText = doNotShowAgainCustomText;
-            InitializeDialogResources(button1, button2, button3);
+            InitializeDialogResources(button1Text, button2Text, button3Text);
         }
 
         public void InitializeDialogResources(string customButton1Text, string customButton2Text, string customButton3Text)
         {
             if (!string.IsNullOrEmpty(customButton1Text))
             {
-                _customButton1.Text = "&" + customButton1Text;
-                _customButton1.Visible = true;
+                _customOkButton.Text = "&" + customButton1Text;
+                _customOkButton.Visible = true;
             }
             if (!string.IsNullOrEmpty(customButton2Text))
             {
-                _customButton2.Text = "&" + customButton2Text;
-                _customButton2.Visible = true;
+                _customCancelButton.Text = "&" + customButton2Text;
+                _customCancelButton.Visible = true;
             }
             if (!string.IsNullOrEmpty(customButton3Text))
             {
-                _customButton3.Text = "&" + customButton3Text;
-                _customButton3.Visible = true;
+                _customAbortButton.Text = "&" + customButton3Text;
+                _customAbortButton.Visible = true;
             }
 
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
@@ -66,14 +66,14 @@ namespace Axantum.AxCrypt.Forms
         public CustomMessageDialog HideDontShowAgain()
         {
             dontShowThisAgain.Visible = false;
-            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel.RowCount = 2;
             return this;
         }
 
         private void ReSizeButtonsPanel()
         {
-            flowLayoutPanel1.PerformLayout();
-            flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
+            flowLayoutPanel.PerformLayout();
+            flowLayoutPanel.Left = (flowLayoutPanel.Parent.ClientRectangle.Width - flowLayoutPanel.Width) / 2;
         }
     }
 }
