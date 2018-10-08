@@ -88,27 +88,22 @@ namespace Axantum.AxCrypt.Core
 
                     case HeaderBlockType.Version:
                         VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Version", versionHeaderBlock.FileVersionMajor + "." + versionHeaderBlock.FileVersionMinor);
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt version", versionHeaderBlock.VersionMajor.ToString());
                         currentHeaderBlock = versionHeaderBlock;
                         break;
 
                     case HeaderBlockType.Data:
-                        DataHeaderBlock dataHeaderBlock = new DataHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Text Length", dataHeaderBlock.CipherTextLength.ToString());
-                        currentHeaderBlock = dataHeaderBlock;
+                        currentHeaderBlock = new DataHeaderBlock(dataBlock);
                         break;
 
                     case HeaderBlockType.FileInfo:
                         FileInfoEncryptedHeaderBlock fileInfoEncryptedHeaderBlock = new FileInfoEncryptedHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt Header", fileInfoEncryptedHeaderBlock.HeaderCrypto.ToString());
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Last Access Time", fileInfoEncryptedHeaderBlock.CreationTimeUtc.ToString());
                         currentHeaderBlock = fileInfoEncryptedHeaderBlock;
-
                         break;
 
                     case HeaderBlockType.PlaintextLengths:
-                        V2PlaintextLengthsEncryptedHeaderBlock v2PlaintextLengthsEncryptedHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("", v2PlaintextLengthsEncryptedHeaderBlock.CompressedPlaintextLength.ToString());
-                        currentHeaderBlock = v2PlaintextLengthsEncryptedHeaderBlock;
+                        currentHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
                         break;
 
                     case HeaderBlockType.EncryptedDataPart:
@@ -124,11 +119,19 @@ namespace Axantum.AxCrypt.Core
                         break;
 
                     default:
+                        string key = $"UnexpectedHeaderBlockType:{headerBlockType.ToString()}";
+                        int count = 1;
+                        if (StatusReport.ContainsKey(key))
+                        {
+                            count = int.Parse(StatusReport[key]);
+                            count++;
+                        }
+                        StatusReport[key] = count.ToString();
                         currentHeaderBlock = null;
                         break;
                 }
 
-                if (string.IsNullOrEmpty(reportHeaderBlock.Key))
+                if (!string.IsNullOrEmpty(reportHeaderBlock.Key) && !StatusReport.ContainsKey(headerBlockType.ToString()))
                 {
                     StatusReport.Add(reportHeaderBlock);
                 }
