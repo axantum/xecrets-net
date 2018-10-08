@@ -146,6 +146,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
             DialogResult result;
             using (customMessageDialog)
             {
+                if (dontShowAgainFlag == DoNotShowAgainOptions.None)
+                {
+                    customMessageDialog.HideDontShowAgain();
+                }
+
                 customMessageDialog.Text = title;
                 customMessageDialog.Message.Text = message;
 

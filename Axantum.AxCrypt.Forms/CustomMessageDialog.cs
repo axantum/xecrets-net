@@ -47,20 +47,41 @@ namespace Axantum.AxCrypt.Forms
             if (!string.IsNullOrEmpty(customButton1Text))
             {
                 _customOkButton.Text = "&" + customButton1Text;
-                _customOkButton.Visible = true;
+                ShowCustomOkButton();
             }
             if (!string.IsNullOrEmpty(customButton2Text))
             {
                 _customCancelButton.Text = "&" + customButton2Text;
-                _customCancelButton.Visible = true;
+                ShowCustomCancelButton();
             }
             if (!string.IsNullOrEmpty(customButton3Text))
             {
                 _customAbortButton.Text = "&" + customButton3Text;
-                _customAbortButton.Visible = true;
+                ShowCustomExitButton();
             }
 
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
+        }
+
+        public CustomMessageDialog ShowCustomOkButton()
+        {
+            _customOkButton.Visible = true;
+            ReSizeButtonsPanel();
+            return this;
+        }
+
+        public CustomMessageDialog ShowCustomCancelButton()
+        {
+            _customCancelButton.Visible = true;
+            ReSizeButtonsPanel();
+            return this;
+        }
+
+        public CustomMessageDialog ShowCustomExitButton()
+        {
+            _customAbortButton.Visible = true;
+            ReSizeButtonsPanel();
+            return this;
         }
 
         public CustomMessageDialog HideDontShowAgain()
