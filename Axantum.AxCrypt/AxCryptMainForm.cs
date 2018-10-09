@@ -893,7 +893,7 @@ namespace Axantum.AxCrypt
             _tryBrokenFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.TryBrokenFiles.ExecuteAsync(null); };
             _encryptionUpgradeMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncEncryptionUpgrade.ExecuteAsync(null);
             _VerifyFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.VerifyFiles.ExecuteAsync(null); };
-            _analysisAxcryptFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.AnaysisFiles.ExecuteAsync(null); };
+            _analysisAxcryptFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.IntegrityCheckFiles.ExecuteAsync(null); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };

@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>((files) => ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => TryBrokenFilesActionAsync(files));
             VerifyFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => VerifyFilesActionAsync(files));
-            AnaysisFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => AnalysisAxCryptFileActionAsync(files));
+            IntegrityCheckFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => IntegrityCheckFilesActionAsync(files));
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -120,7 +120,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction VerifyFiles { get; private set; }
 
-        public IAsyncAction AnaysisFiles { get; private set; }
+        public IAsyncAction IntegrityCheckFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -691,7 +691,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), VerifyFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
-        private async Task AnalysisAxCryptFileActionAsync(IEnumerable<string> files)
+        private async Task IntegrityCheckFilesActionAsync(IEnumerable<string> files)
         {
             files = files ?? SelectFiles(FileSelectionType.Decrypt);
             if (!files.Any())
@@ -699,19 +699,21 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
+            string fileName = string.Empty;
             try
             {
                 IEnumerable<IDataStore> dataStores = files.Select(f => New<IDataStore>(f)).ToList();
                 Stream stream = dataStores.FirstOrDefault().OpenRead();
-                string fileName = dataStores.FirstOrDefault().Name;
-                using (FormatIntegrityChecker intergrityChecker = new FormatIntegrityChecker(stream, fileName))
+                fileName = dataStores.FirstOrDefault().Name;
+                using (FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, fileName))
                 {
-                    intergrityChecker.Verify();
+                    integrityChecker.Verify();
+                    throw new InvalidOperationException("Oops");
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new UnauthorizedAccessException("The file could not be read:" + e.Message);
+                new FileOperationException(ex.Message, fileName, ErrorStatus.Exception, ex).ReportAndDisplay();
             }
         }
     }
