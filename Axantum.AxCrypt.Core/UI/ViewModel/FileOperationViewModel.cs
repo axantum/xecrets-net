@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -699,21 +698,19 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            string fileName = string.Empty;
-            try
-            {
-                IEnumerable<IDataStore> dataStores = files.Select(f => New<IDataStore>(f)).ToList();
-                Stream stream = dataStores.FirstOrDefault().OpenRead();
-                fileName = dataStores.FirstOrDefault().Name;
-                using (FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, fileName))
-                {
-                    integrityChecker.Verify();
-                }
-            }
-            catch (Exception ex)
-            {
-                new FileOperationException(ex.Message, fileName, ErrorStatus.Exception, ex).ReportAndDisplay();
-            }
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), IntegrityCheckWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+        }
+
+        private Task<FileOperationContext> IntegrityCheckWork(IDataStore file, IProgressContext progress)
+        {
+            return IntegrityCheckAsync(file, progress);
+        }
+
+        private Task<FileOperationContext> IntegrityCheckAsync(IDataStore dataStore, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            return operationsController.IntegrityCheckAsync(dataStore);
         }
     }
 }

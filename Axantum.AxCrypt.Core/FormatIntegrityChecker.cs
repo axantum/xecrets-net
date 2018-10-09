@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Reader;
+using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,18 @@ namespace Axantum.AxCrypt.Core
         }
 
         public bool Verify()
+        {
+            try
+            {
+                return VerifyInternalUnsafe();
+            }
+            catch (Exception ex) when (!(ex is AxCryptException))
+            {
+                throw new FileOperationException("Format integrity check failed", _fileName, ErrorStatus.Exception, ex);
+            }
+        }
+
+        private bool VerifyInternalUnsafe()
         {
             byte[] buffer = new byte[_inputStream.Length];
             int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
