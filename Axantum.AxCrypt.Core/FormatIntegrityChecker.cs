@@ -67,7 +67,7 @@ namespace Axantum.AxCrypt.Core
                 int blockType = ReadByte();
                 if (blockType > 127)
                 {
-                    StatusReport.Add(nameof(AxCryptItemType.Undefined), "Invalid block type {0}".InvariantFormat(blockType));
+                    StatusReport.Add(nameof(AxCryptItemType.Undefined), "UnExpected Header Block type {0}".InvariantFormat(blockType));
                     return ShowStatusReport();
                 }
 
@@ -88,38 +88,12 @@ namespace Axantum.AxCrypt.Core
 
                     case HeaderBlockType.Version:
                         VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt version", versionHeaderBlock.VersionMajor.ToString());
+                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt version", versionHeaderBlock.VersionMajor.ToString() + "." + versionHeaderBlock.FileVersionMajor.ToString());
                         currentHeaderBlock = versionHeaderBlock;
                         break;
 
-                    case HeaderBlockType.Data:
-                        currentHeaderBlock = new DataHeaderBlock(dataBlock);
-                        break;
-
-                    case HeaderBlockType.FileInfo:
-                        FileInfoEncryptedHeaderBlock fileInfoEncryptedHeaderBlock = new FileInfoEncryptedHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt File Last Access Time", fileInfoEncryptedHeaderBlock.CreationTimeUtc.ToString());
-                        currentHeaderBlock = fileInfoEncryptedHeaderBlock;
-                        break;
-
-                    case HeaderBlockType.PlaintextLengths:
-                        currentHeaderBlock = new V2PlaintextLengthsEncryptedHeaderBlock(dataBlock);
-                        break;
-
-                    case HeaderBlockType.EncryptedDataPart:
-                        currentHeaderBlock = new EncryptedDataPartBlock(dataBlock);
-                        break;
-
-                    case HeaderBlockType.V2Hmac:
-                        currentHeaderBlock = new V2HmacHeaderBlock(dataBlock);
-                        break;
-
-                    case HeaderBlockType.EncryptionInfo:
-                        currentHeaderBlock = new V1EncryptionInfoEncryptedHeaderBlock(dataBlock);
-                        break;
-
                     default:
-                        string key = $"UnexpectedHeaderBlockType:{headerBlockType.ToString()}";
+                        string key = headerBlockType.ToString();
                         int count = 1;
                         if (StatusReport.ContainsKey(key))
                         {
@@ -129,11 +103,6 @@ namespace Axantum.AxCrypt.Core
                         StatusReport[key] = count.ToString();
                         currentHeaderBlock = null;
                         break;
-                }
-
-                if (!string.IsNullOrEmpty(reportHeaderBlock.Key) && !StatusReport.ContainsKey(headerBlockType.ToString()))
-                {
-                    StatusReport.Add(reportHeaderBlock);
                 }
 
                 if (currentHeaderBlock != null && !StatusReport.ContainsKey(headerBlockType.ToString()))
