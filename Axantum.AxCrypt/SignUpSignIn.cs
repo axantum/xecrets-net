@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt
 
         public async Task DialogsAsync(Form parent, ISignIn signingInState)
         {
-            SignupSignInViewModel viewModel = new SignupSignInViewModel(signingInState, new NameOf(nameof(Texts.WelcomeToAxCrypt)), new NameOf(nameof(Texts.MessageAskAboutStartTrialPremium)))
+            SignupSignInViewModel viewModel = new SignupSignInViewModel(signingInState, new NameOf(nameof(Texts.WelcomeToAxCrypt)), new NameOf(nameof(Texts.MessageAskAboutStartTrialForWindows)))
             {
                 UserEmail = UserEmail,
                 Version = Version,
