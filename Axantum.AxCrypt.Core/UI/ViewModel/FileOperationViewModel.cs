@@ -708,7 +708,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 using (FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, fileName))
                 {
                     integrityChecker.Verify();
-                    throw new InvalidOperationException("Oops");
                 }
             }
             catch (Exception ex)
