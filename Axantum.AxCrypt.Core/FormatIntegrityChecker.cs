@@ -60,11 +60,13 @@ namespace Axantum.AxCrypt.Core
                 StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Not found.");
                 return ShowStatusReport();
             }
-            StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Ok with the length {0}".InvariantFormat(AxCrypt1Guid.Length));
+            StatusReport.Add(nameof(AxCryptItemType.MagicGuid), $"Ok, with {AxCrypt1Guid.Length} bytes.");
 
             int offset = AxCrypt1Guid.Length + i;
             Pushback(buffer, offset, (bytesRead - offset));
             List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
+            int totalHeaderBlocks = 0;
+
             while (true)
             {
                 byte[] lengthBytes = new byte[sizeof(Int32)];
@@ -74,13 +76,17 @@ namespace Axantum.AxCrypt.Core
                 Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
                 if (headerBlockLength < 0)
                 {
-                    StatusReport.Add(nameof(AxCryptItemType.HeaderBlock), "This is a Format Error with an Invalid Block Length");
+                    StatusReport.Add(nameof(AxCryptItemType.HeaderBlock), "This is a format error with an Invalid block length or End of File.");
+                    StatusReport.Add("Total Header blocks", totalHeaderBlocks.ToString());
+
                     return ShowStatusReport();
                 }
                 int blockType = ReadByte();
                 if (blockType > 127)
                 {
-                    StatusReport.Add(nameof(AxCryptItemType.Undefined), "UnExpected Header Block type {0}".InvariantFormat(blockType));
+                    StatusReport.Add("Unexpected header block type", blockType.ToString());
+                    StatusReport.Add("Total Header blocks", totalHeaderBlocks.ToString());
+
                     return ShowStatusReport();
                 }
 
@@ -89,38 +95,32 @@ namespace Axantum.AxCrypt.Core
 
                 Read(dataBlock, 0, dataBlock.Length);
 
-                HeaderBlock currentHeaderBlock;
-
-                KeyValuePair<string, string> reportHeaderBlock = new KeyValuePair<string, string>();
+                KeyValuePair<string, string> headerBlockStatus = new KeyValuePair<string, string>();
 
                 switch (headerBlockType)
                 {
-                    case HeaderBlockType.Preamble:
-                        currentHeaderBlock = new PreambleHeaderBlock(dataBlock);
-                        break;
-
                     case HeaderBlockType.Version:
                         VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(dataBlock);
-                        reportHeaderBlock = new KeyValuePair<string, string>("AxCrypt version", versionHeaderBlock.VersionMajor.ToString() + "." + versionHeaderBlock.FileVersionMajor.ToString());
-                        currentHeaderBlock = versionHeaderBlock;
+                        headerBlockStatus = new KeyValuePair<string, string>("Encrypted by", $"v{versionHeaderBlock.VersionMajor}.{versionHeaderBlock.FileVersionMajor}.");
+                        break;
+
+                    case HeaderBlockType.Data:
+                        headerBlockStatus = new KeyValuePair<string, string>("End of header blocks", "***");
+                        break;
+
+                    case HeaderBlockType.EncryptedDataPart:
+                        headerBlockStatus = new KeyValuePair<string, string>("Encrypted Data size", $"{dataBlock.Length} bytes.");
                         break;
 
                     default:
-                        string key = headerBlockType.ToString();
-                        int count = 1;
-                        if (StatusReport.ContainsKey(key))
-                        {
-                            count = int.Parse(StatusReport[key]);
-                            count++;
-                        }
-                        StatusReport[key] = count.ToString();
-                        currentHeaderBlock = null;
+                        headerBlockStatus = new KeyValuePair<string, string>(((HeaderBlockType)headerBlockType).ToString(), $"Ok, with {dataBlock.Length} bytes.");
                         break;
                 }
 
-                if (currentHeaderBlock != null && !StatusReport.ContainsKey(headerBlockType.ToString()))
+                if (!string.IsNullOrEmpty(headerBlockStatus.Key) && !StatusReport.ContainsKey(headerBlockStatus.Key))
                 {
-                    StatusReport.Add(headerBlockType.ToString(), string.Format(@"Ok with the length {0}", headerBlockLength));
+                    StatusReport.Add(headerBlockStatus);
+                    totalHeaderBlocks++;
                 }
             }
         }
@@ -165,10 +165,11 @@ namespace Axantum.AxCrypt.Core
             if (StatusReport.Any())
             {
                 string template = "Structural integrity check of '{0}'".InvariantFormat(_fileName);
+                template += Environment.NewLine;
                 foreach (var report in StatusReport)
                 {
                     template += Environment.NewLine;
-                    template += report.Key + ":" + report.Value;
+                    template += report.Key + ": " + report.Value;
                 }
 
                 New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
