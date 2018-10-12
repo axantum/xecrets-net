@@ -25,6 +25,7 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -103,6 +104,45 @@ namespace Axantum.AxCrypt.Core.IO
             _pushBack.Push(new ByteBuffer(pushbackBuffer));
         }
 
+        /// <summary>
+        /// Locates the specified buffer content in the stream, if there.
+        /// </summary>
+        /// <param name="buffer">The buffer to find.</param>
+        /// <returns>True if found, and then positioned just after. False if not found and positioned at end of file or just before it.</returns>
+        public bool Locate(byte[] pattern)
+        {
+            byte[] buffer = new byte[OS.Current.StreamBufferSize];
+            while (true)
+            {
+                int bytesRead = Read(buffer, 0, buffer.Length);
+                if (bytesRead < pattern.Length)
+                {
+                    Pushback(buffer, 0, bytesRead);
+                    return false;
+                }
+
+                int i = buffer.Locate(pattern, 0, bytesRead);
+                if (i < 0)
+                {
+                    int offsetToBytesToKeep = bytesRead - pattern.Length + 1;
+                    Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
+                    continue;
+                }
+                int offsetJustAfterTheGuid = i + pattern.Length;
+                Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+        /// </summary>
+        /// <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset" /> and (<paramref name="offset" /> + <paramref name="count" /> - 1) replaced by the bytes read from the current source.</param>
+        /// <param name="offset">The zero-based byte offset in <paramref name="buffer" /> at which to begin storing the data read from the current stream.</param>
+        /// <param name="count">The maximum number of bytes to be read from the current stream.</param>
+        /// <returns>
+        /// The total number of bytes read into the buffer.
+        /// </returns>
         public override int Read(byte[] buffer, int offset, int count)
         {
             EnsureNotDisposed();
@@ -119,6 +159,7 @@ namespace Axantum.AxCrypt.Core.IO
                     _pushBack.Push(byteBuffer);
                 }
             }
+
             bytesRead += _inputStream.Read(buffer, offset, count);
             return bytesRead;
         }
@@ -130,9 +171,23 @@ namespace Axantum.AxCrypt.Core.IO
                 throw new ArgumentNullException("buffer");
             }
 
-            int bytesRead = Read(buffer, 0, buffer.Length);
+            if (buffer.Length == 0)
+            {
+                return true;
+            }
 
-            return bytesRead == buffer.Length;
+            int read = 0;
+            do
+            {
+                int bytesRead = Read(buffer, read, buffer.Length - read);
+                if (bytesRead <= 0)
+                {
+                    return false;
+                }
+                read += bytesRead;
+            } while (read < buffer.Length);
+
+            return true;
         }
 
         /// <summary>

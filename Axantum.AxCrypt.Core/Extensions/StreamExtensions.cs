@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions.Algorithm;
-using Axantum.AxCrypt.Core.Algorithm;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -174,6 +173,21 @@ namespace Axantum.AxCrypt.Core.Extensions
                 stream.CopyTo(memStream);
                 return memStream.ToArray();
             }
+        }
+
+        public static bool Skip(this Stream stream, long bytesToSkip)
+        {
+            byte[] buffer = new byte[bytesToSkip > 1024 * 1024 ? 1024 * 1024 : bytesToSkip];
+            while (bytesToSkip > 0)
+            {
+                int bytesRead = stream.Read(buffer, 0, (int)(buffer.Length > bytesToSkip ? bytesToSkip : buffer.Length));
+                if (bytesRead <= 0)
+                {
+                    return false;
+                }
+                bytesToSkip -= bytesRead;
+            }
+            return true;
         }
     }
 }

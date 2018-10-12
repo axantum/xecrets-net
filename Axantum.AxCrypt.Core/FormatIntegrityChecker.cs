@@ -16,17 +16,17 @@ namespace Axantum.AxCrypt.Core
 {
     public class FormatIntegrityChecker : IDisposable
     {
-        private Stream _inputStream;
+        private LookAheadStream _inputStream;
 
         private string _fileName;
 
-        public IDictionary<string, string> StatusReport = new Dictionary<string, string>();
+        private List<string> _statusReport = new List<string>();
 
-        private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
+        private bool _isOk = true;
 
         public FormatIntegrityChecker(Stream inputStream, string fileName)
         {
-            _inputStream = inputStream ?? throw new ArgumentNullException(nameof(inputStream), "inputStream");
+            _inputStream = new LookAheadStream(inputStream ?? throw new ArgumentNullException(nameof(inputStream), "inputStream"));
             _fileName = fileName ?? throw new ArgumentNullException(nameof(fileName), "fileName");
         }
 
@@ -42,140 +42,135 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
+        private static readonly byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
+
+        private enum AxCryptVersion
+        {
+            Unknown,
+            Version1,
+            Version2,
+        }
+
         private bool VerifyInternalUnsafe()
         {
-            byte[] buffer = new byte[_inputStream.Length];
-            int bytesRead = _inputStream.Read(buffer, 0, buffer.Length);
-
-            if (bytesRead < 0 && bytesRead > AxCrypt1Guid.Length)
+            if (!_inputStream.Locate(_axCrypt1GuidBytes))
             {
-                StatusReport.Add(nameof(AxCryptItemType.EndOfStream), "Not an AxCrypt file, No magic Guid was found.");
+                _statusReport.Add("Not an AxCrypt file, No magic Guid was found.");
                 return ShowStatusReport();
             }
 
-            byte[] _axCrypt1GuidBytes = AxCrypt1Guid.GetBytes();
-            int i = buffer.Locate(_axCrypt1GuidBytes, 0, AxCrypt1Guid.Length);
-            if (i < 0)
-            {
-                StatusReport.Add(nameof(AxCryptItemType.MagicGuid), "Not found.");
-                return ShowStatusReport();
-            }
-            StatusReport.Add(nameof(AxCryptItemType.MagicGuid), $"Ok, with {AxCrypt1Guid.Length} bytes.");
+            _statusReport.Add($"{nameof(AxCryptItemType.MagicGuid)} Ok with length {0}".InvariantFormat(AxCrypt1Guid.Length));
 
-            int offset = AxCrypt1Guid.Length + i;
-            Pushback(buffer, offset, (bytesRead - offset));
-            List<HeaderBlock> headerBlocks = new List<HeaderBlock>();
-            int totalHeaderBlocks = 0;
-
+            AxCryptVersion version = AxCryptVersion.Unknown;
+            ulong encryptedDataLength = 0;
+            int dataBlocks = 0;
             while (true)
             {
                 byte[] lengthBytes = new byte[sizeof(Int32)];
 
-                Read(lengthBytes, 0, lengthBytes.Length);
+                if (_inputStream.Read(lengthBytes, 0, lengthBytes.Length) != lengthBytes.Length)
+                {
+                    return FailWithStatusReport("End of stream reading header block length.");
+                }
 
-                Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
+                int headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
+                int blockType = _inputStream.ReadByte();
+                if (blockType > 127 || blockType < 0)
+                {
+                    return FailWithStatusReport($"Unexpected header block type {blockType}");
+                }
+
                 if (headerBlockLength < 0)
                 {
-                    StatusReport.Add(nameof(AxCryptItemType.HeaderBlock), "This is a format error with an Invalid block length or End of File.");
-                    StatusReport.Add("Total Header blocks", totalHeaderBlocks.ToString());
-
-                    return ShowStatusReport();
+                    return FailWithStatusReport($"Invalid block length {headerBlockLength}.");
                 }
-                int blockType = ReadByte();
-                if (blockType > 127)
-                {
-                    StatusReport.Add("Unexpected header block type", blockType.ToString());
-                    StatusReport.Add("Total Header blocks", totalHeaderBlocks.ToString());
 
-                    return ShowStatusReport();
+                byte[] dataBlock = new byte[headerBlockLength];
+
+                if (_inputStream.Read(dataBlock, 0, headerBlockLength) != dataBlock.Length)
+                {
+                    return FailWithStatusReport($"End of stream reading block type {blockType}");
                 }
 
                 HeaderBlockType headerBlockType = (HeaderBlockType)blockType;
-                byte[] dataBlock = new byte[headerBlockLength];
+                if (headerBlockType == HeaderBlockType.Data && version == AxCryptVersion.Version1)
+                {
+                    return ProcessVersion1DataBlock(dataBlock);
+                }
 
-                Read(dataBlock, 0, dataBlock.Length);
-
-                KeyValuePair<string, string> headerBlockStatus = new KeyValuePair<string, string>();
+                if (headerBlockType != HeaderBlockType.EncryptedDataPart && dataBlocks > 0)
+                {
+                    _statusReport.Add($"{HeaderBlockType.EncryptedDataPart} Ok with {dataBlocks} blocks and the total length {encryptedDataLength}.");
+                    dataBlocks = 0;
+                    encryptedDataLength = 0;
+                }
 
                 switch (headerBlockType)
                 {
                     case HeaderBlockType.Version:
                         VersionHeaderBlock versionHeaderBlock = new VersionHeaderBlock(dataBlock);
-                        headerBlockStatus = new KeyValuePair<string, string>("Encrypted by", $"v{versionHeaderBlock.VersionMajor}.{versionHeaderBlock.FileVersionMajor}.");
-                        break;
-
-                    case HeaderBlockType.Data:
-                        headerBlockStatus = new KeyValuePair<string, string>("End of header blocks", "***");
+                        _statusReport.Add($"AxCrypt version {versionHeaderBlock.VersionMajor}.{versionHeaderBlock.VersionMinor}.{versionHeaderBlock.VersionMinuscule}. File format version {versionHeaderBlock.FileVersionMajor}.{versionHeaderBlock.FileVersionMinor}.");
+                        version = versionHeaderBlock.VersionMajor >= 2 ? AxCryptVersion.Version2 : AxCryptVersion.Version1;
                         break;
 
                     case HeaderBlockType.EncryptedDataPart:
-                        headerBlockStatus = new KeyValuePair<string, string>("Encrypted Data size", $"{dataBlock.Length} bytes.");
+                        switch (version)
+                        {
+                            case AxCryptVersion.Version2:
+                                ++dataBlocks;
+                                encryptedDataLength += (uint)dataBlock.Length;
+                                break;
+
+                            case AxCryptVersion.Unknown:
+                            default:
+                                return FailWithStatusReport($"{blockType} found but no {HeaderBlockType.Version} seen.");
+                        }
                         break;
 
                     default:
-                        headerBlockStatus = new KeyValuePair<string, string>(((HeaderBlockType)headerBlockType).ToString(), $"Ok, with {dataBlock.Length} bytes.");
+                        _statusReport.Add($"{headerBlockType} Ok with length {headerBlockLength}");
                         break;
                 }
 
-                if (!string.IsNullOrEmpty(headerBlockStatus.Key) && !StatusReport.ContainsKey(headerBlockStatus.Key))
+                if (headerBlockType == HeaderBlockType.V2Hmac)
                 {
-                    StatusReport.Add(headerBlockStatus);
-                    totalHeaderBlocks++;
+                    return ShowStatusReport();
                 }
             }
         }
 
-        public void Pushback(byte[] buffer, int offset, int length)
+        private bool FailWithStatusReport(string report)
         {
-            EnsureNotDisposed();
-            byte[] pushbackBuffer = new byte[length];
-            Array.Copy(buffer, offset, pushbackBuffer, 0, length);
-            _pushBack.Push(new ByteBuffer(pushbackBuffer));
+            _isOk = false;
+            _statusReport.Add(report);
+            return ShowStatusReport();
         }
 
-        public int ReadByte()
+        private bool ProcessVersion1DataBlock(byte[] dataBlock)
         {
-            byte[] lengthBytes = new byte[sizeof(byte)];
-            Read(lengthBytes, 0, lengthBytes.Length);
-            return lengthBytes[0];
-        }
-
-        public int Read(byte[] buffer, int offset, int count)
-        {
-            EnsureNotDisposed();
-            int bytesRead = 0;
-            while (count > 0 && _pushBack.Count > 0)
+            long headerBlockLength = BitConverter.ToInt64(dataBlock, 0);
+            if (headerBlockLength < 0)
             {
-                ByteBuffer byteBuffer = _pushBack.Pop();
-                int length = byteBuffer.Read(buffer, offset, count);
-                offset += length;
-                count -= length;
-                bytesRead += length;
-                if (byteBuffer.AvailableForRead > 0)
-                {
-                    _pushBack.Push(byteBuffer);
-                }
+                return FailWithStatusReport($"{HeaderBlockType.Data} found but length is tool large to fit a long: {headerBlockLength}.");
             }
-            bytesRead += _inputStream.Read(buffer, offset, count);
-            return bytesRead;
+            if (!_inputStream.Skip(headerBlockLength))
+            {
+                return FailWithStatusReport($"{HeaderBlockType.Data} found but end of file was reached before reading all data: {headerBlockLength}.");
+            }
+            return ShowStatusReport();
         }
 
         private bool ShowStatusReport()
         {
-            if (StatusReport.Any())
+            string template = "Structural integrity check of:\n'{0}'\n".InvariantFormat(_fileName);
+            foreach (string report in _statusReport)
             {
-                string template = "Structural integrity check of '{0}'".InvariantFormat(_fileName);
                 template += Environment.NewLine;
-                foreach (var report in StatusReport)
-                {
-                    template += Environment.NewLine;
-                    template += report.Key + ": " + report.Value;
-                }
-
-                New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
-                return true;
+                template += report;
             }
-            return false;
+
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
+            return _isOk;
         }
 
         private bool _disposed = false;
