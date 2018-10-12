@@ -55,8 +55,7 @@ namespace Axantum.AxCrypt.Core
         {
             if (!_inputStream.Locate(_axCrypt1GuidBytes))
             {
-                _statusReport.Add("Not an AxCrypt file, No magic Guid was found.");
-                return ShowStatusReport();
+                return FailWithStatusReport("Not an AxCrypt file, No magic Guid was found.");
             }
 
             _statusReport.Add($"{nameof(AxCryptItemType.MagicGuid)} Ok with length {0}".InvariantFormat(AxCrypt1Guid.Length));
