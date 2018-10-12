@@ -54,7 +54,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 73);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(292, 113);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // dontShowThisAgain
@@ -62,10 +62,10 @@
             this.dontShowThisAgain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dontShowThisAgain.AutoSize = true;
             this.dontShowThisAgain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dontShowThisAgain.Location = new System.Drawing.Point(4, 104);
-            this.dontShowThisAgain.Padding = new System.Windows.Forms.Padding(4,0,0,0);
+            this.dontShowThisAgain.Location = new System.Drawing.Point(3, 89);
             this.dontShowThisAgain.Name = "dontShowThisAgain";
-            this.dontShowThisAgain.Size = new System.Drawing.Size(381, 21);
+            this.dontShowThisAgain.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.dontShowThisAgain.Size = new System.Drawing.Size(286, 17);
             this.dontShowThisAgain.TabIndex = 3;
             this.dontShowThisAgain.Text = "[Don\'t show this again]";
             this.dontShowThisAgain.UseVisualStyleBackColor = true;
@@ -74,9 +74,9 @@
             // 
             this.Message.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Message.AutoSize = true;
-            this.Message.Location = new System.Drawing.Point(21, 12);
+            this.Message.Location = new System.Drawing.Point(21, 15);
             this.Message.Margin = new System.Windows.Forms.Padding(5);
-            this.Message.MaximumSize = new System.Drawing.Size(250, 0);
+            this.Message.MaximumSize = new System.Drawing.Size(500, 0);
             this.Message.MinimumSize = new System.Drawing.Size(250, 0);
             this.Message.Name = "Message";
             this.Message.Size = new System.Drawing.Size(250, 13);
@@ -92,7 +92,7 @@
             this.flowLayoutPanel1.Controls.Add(this._buttonOk);
             this.flowLayoutPanel1.Controls.Add(this._buttonCancel);
             this.flowLayoutPanel1.Controls.Add(this._buttonExit);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 41);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 29);
             this.flowLayoutPanel1.TabIndex = 2;
