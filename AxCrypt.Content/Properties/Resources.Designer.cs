@@ -1888,6 +1888,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check File.
+        /// </summary>
+        public static string DebugFileFormatCheckToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("DebugFileFormatCheckToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logging.
         /// </summary>
         public static string DebugLoggingToolStripMenuItemText {

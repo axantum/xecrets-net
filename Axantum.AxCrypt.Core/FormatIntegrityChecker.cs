@@ -161,14 +161,14 @@ namespace Axantum.AxCrypt.Core
 
         private bool ShowStatusReport()
         {
-            string template = "Structural integrity check of:\n'{0}'\n".InvariantFormat(_fileName);
+            string template = "{0}\n".InvariantFormat(_fileName);
             foreach (string report in _statusReport)
             {
                 template += Environment.NewLine;
                 template += report;
             }
 
-            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, "Warning!", template));
+            New<IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, $"Integrity check {(_isOk ? "passed." : "failed!")}", template));
             return _isOk;
         }
 
