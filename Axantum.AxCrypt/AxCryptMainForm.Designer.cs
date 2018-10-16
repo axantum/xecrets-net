@@ -23,12 +23,12 @@ namespace Axantum.AxCrypt
             this._progressTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._recentFilesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._recentFilesOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._clearRecentFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._removeRecentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._decryptAndRemoveFromListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._shareKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._recentFilesRestoreAnonymousNamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recentFilesShowInFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recentFilesRestoreAnonymousNamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._clearRecentFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._progressContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -113,6 +113,7 @@ namespace Axantum.AxCrypt
             this._debugManageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._tryBrokenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._VerifyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._axcryptFileFormatCheckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._debugOpenReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpViewHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,7 +184,7 @@ namespace Axantum.AxCrypt
             this._recentFilesRestoreAnonymousNamesMenuItem,
             this._clearRecentFilesToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
-            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 114);
+            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 158);
             // 
             // _recentFilesOpenToolStripMenuItem
             // 
@@ -419,7 +420,7 @@ namespace Axantum.AxCrypt
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(259, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(287, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -564,7 +565,7 @@ namespace Axantum.AxCrypt
             this._swedishLanguageToolStripMenuItem,
             this._turkishLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
-            this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
             this._optionsLanguageToolStripMenuItem.DropDownOpening += new System.EventHandler(this.OptionsLanguageToolStripMenuItem_DropDownOpening);
             // 
@@ -667,32 +668,32 @@ namespace Axantum.AxCrypt
             // _optionsChangePassphraseToolStripMenuItem
             // 
             this._optionsChangePassphraseToolStripMenuItem.Name = "_optionsChangePassphraseToolStripMenuItem";
-            this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsChangePassphraseToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsChangePassphraseToolStripMenuItem.Text = "[Change &Password]";
             // 
             // _passwordResetToolStripMenuItem
             // 
             this._passwordResetToolStripMenuItem.Name = "_passwordResetToolStripMenuItem";
-            this._passwordResetToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._passwordResetToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._passwordResetToolStripMenuItem.Text = "[&Password Reset]";
             this._passwordResetToolStripMenuItem.Click += new System.EventHandler(this.PasswordReset_Click);
             // 
             // _optionsEncryptionUpgradeModeToolStripMenuItem
             // 
             this._optionsEncryptionUpgradeModeToolStripMenuItem.Name = "_optionsEncryptionUpgradeModeToolStripMenuItem";
-            this._optionsEncryptionUpgradeModeToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsEncryptionUpgradeModeToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsEncryptionUpgradeModeToolStripMenuItem.Text = "[Auto Upgrade Encryption]";
             // 
             // _alwaysOfflineToolStripMenuItem
             // 
             this._alwaysOfflineToolStripMenuItem.Name = "_alwaysOfflineToolStripMenuItem";
-            this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._alwaysOfflineToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._alwaysOfflineToolStripMenuItem.Text = "[Always Offline]";
             // 
             // _optionsIncludeSubfoldersToolStripMenuItem
             // 
             this._optionsIncludeSubfoldersToolStripMenuItem.Name = "_optionsIncludeSubfoldersToolStripMenuItem";
-            this._optionsIncludeSubfoldersToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsIncludeSubfoldersToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsIncludeSubfoldersToolStripMenuItem.Text = "[Include Subfolders]";
             // 
             // _inactivitySignOutToolStripMenuItem
@@ -704,7 +705,7 @@ namespace Axantum.AxCrypt
             this._thirtyMinuteInactivitySignOutToolStripMenuItem,
             this._sixtyMinuteInactivitySignOutToolStripMenuItem});
             this._inactivitySignOutToolStripMenuItem.Name = "_inactivitySignOutToolStripMenuItem";
-            this._inactivitySignOutToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._inactivitySignOutToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._inactivitySignOutToolStripMenuItem.Text = "[&Idle Sign Out]";
             this._inactivitySignOutToolStripMenuItem.DropDownOpening += new System.EventHandler(this.IdleSignOutToolStripMenuItem_DropDownOpening);
             // 
@@ -751,13 +752,13 @@ namespace Axantum.AxCrypt
             // _optionsDebugToolStripMenuItem
             // 
             this._optionsDebugToolStripMenuItem.Name = "_optionsDebugToolStripMenuItem";
-            this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsDebugToolStripMenuItem.Text = "[&Debug]";
             // 
             // _optionsClearAllSettingsAndRestartToolStripMenuItem
             // 
             this._optionsClearAllSettingsAndRestartToolStripMenuItem.Name = "_optionsClearAllSettingsAndRestartToolStripMenuItem";
-            this._optionsClearAllSettingsAndRestartToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._optionsClearAllSettingsAndRestartToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsClearAllSettingsAndRestartToolStripMenuItem.Text = "[&Clear All Settings and Exit]";
             // 
             // toolStripSeparator1
@@ -875,6 +876,7 @@ namespace Axantum.AxCrypt
             this._debugManageAccountToolStripMenuItem,
             this._tryBrokenFileToolStripMenuItem,
             this._VerifyFileToolStripMenuItem,
+            this._axcryptFileFormatCheckToolStripMenuItem,
             this._debugOpenReportToolStripMenuItem});
             this._debugToolStripMenuItem.Name = "_debugToolStripMenuItem";
             this._debugToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
@@ -922,9 +924,15 @@ namespace Axantum.AxCrypt
             // 
             // _VerifyFileToolStripMenuItem
             // 
-            this._VerifyFileToolStripMenuItem.Name = "_VerfiyFileToolStripMenuItem";
+            this._VerifyFileToolStripMenuItem.Name = "_VerifyFileToolStripMenuItem";
             this._VerifyFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._VerifyFileToolStripMenuItem.Text = "[&Verfiy File]";
+            // 
+            // _analysisAxcryptFileToolStripMenuItem
+            // 
+            this._axcryptFileFormatCheckToolStripMenuItem.Name = "_analysisAxcryptFileToolStripMenuItem";
+            this._axcryptFileFormatCheckToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._axcryptFileFormatCheckToolStripMenuItem.Text = "[&AxCrypt File Format Check]";
             // 
             // _debugOpenReportToolStripMenuItem
             // 
@@ -1310,6 +1318,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _debugLoggingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _debugManageAccountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _VerifyFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _axcryptFileFormatCheckToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpViewHelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _helpAboutToolStripMenuItem;

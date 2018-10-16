@@ -207,6 +207,44 @@ namespace Axantum.AxCrypt.Core.UI
             return DoFileAsync(dataStore, VerifyFileIntegrityPreparationAsync, VerifyFileIntegrityOperationAsync);
         }
 
+        public Task<FileOperationContext> IntegrityCheckAsync(IDataStore dataStore)
+        {
+            return DoFileAsync(dataStore, IntegrityCheckPreparationAsync, IntegrityCheckOperationAsync);
+        }
+
+        private Task<bool> IntegrityCheckPreparationAsync(IDataStore dataStore)
+        {
+            _eventArgs.AxCryptFile = dataStore;
+            _eventArgs.OpenFileFullName = dataStore.FullName;
+
+            return Task.FromResult<bool>(true);
+        }
+
+        private Task<bool> IntegrityCheckOperationAsync()
+        {
+            _progress.NotifyLevelStart();
+            try
+            {
+                Stream stream = _eventArgs.AxCryptFile.OpenRead();
+                using (FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, _eventArgs.OpenFileFullName))
+                {
+                    integrityChecker.Verify();
+                }
+            }
+            catch (AxCryptException ace)
+            {
+                New<IReport>().Exception(ace);
+                _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ace.ErrorStatus);
+                return Task.FromResult(false);
+            }
+            finally
+            {
+                _progress.NotifyLevelFinished();
+            }
+            _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.Success);
+            return Task.FromResult(true);
+        }
+
         /// <summary>
         /// Decrypt a file, and launch the associated application raising events as required by
         /// the situation.
