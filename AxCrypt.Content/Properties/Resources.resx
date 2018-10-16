@@ -827,6 +827,10 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DebugCryptoPolicyToolStripMenuItemText" xml:space="preserve">
     <value>License Policy</value>
   </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Check File</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
+  </data>
   <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
     <value>Logging</value>
   </data>

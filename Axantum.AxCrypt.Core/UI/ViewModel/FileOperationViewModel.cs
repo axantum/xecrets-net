@@ -90,6 +90,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             ShowInFolder = new AsyncDelegateAction<IEnumerable<string>>((files) => ShowInFolderActionAsync(files));
             TryBrokenFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => TryBrokenFilesActionAsync(files));
             VerifyFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => VerifyFilesActionAsync(files));
+            IntegrityCheckFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => IntegrityCheckFilesActionAsync(files));
         }
 
         public IAsyncAction DecryptFiles { get; private set; }
@@ -117,6 +118,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction TryBrokenFiles { get; private set; }
 
         public IAsyncAction VerifyFiles { get; private set; }
+
+        public IAsyncAction IntegrityCheckFiles { get; private set; }
 
         public event EventHandler<FileSelectionEventArgs> SelectingFiles;
 
@@ -685,6 +688,29 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
 
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), VerifyFileIntegrityWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+        }
+
+        private async Task IntegrityCheckFilesActionAsync(IEnumerable<string> files)
+        {
+            files = files ?? SelectFiles(FileSelectionType.Decrypt);
+            if (!files.Any())
+            {
+                return;
+            }
+
+            await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), IntegrityCheckWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
+        }
+
+        private Task<FileOperationContext> IntegrityCheckWork(IDataStore file, IProgressContext progress)
+        {
+            return IntegrityCheckAsync(file, progress);
+        }
+
+        private Task<FileOperationContext> IntegrityCheckAsync(IDataStore dataStore, IProgressContext progress)
+        {
+            FileOperationsController operationsController = new FileOperationsController(progress);
+
+            return operationsController.IntegrityCheckAsync(dataStore);
         }
     }
 }

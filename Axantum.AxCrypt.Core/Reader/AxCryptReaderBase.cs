@@ -187,29 +187,7 @@ namespace Axantum.AxCrypt.Core.Reader
 
         private void LookForMagicGuid()
         {
-            byte[] buffer = new byte[OS.Current.StreamBufferSize];
-            while (true)
-            {
-                int bytesRead = InputStream.Read(buffer, 0, buffer.Length);
-                if (bytesRead < AxCrypt1Guid.Length)
-                {
-                    InputStream.Pushback(buffer, 0, bytesRead);
-                    CurrentItemType = AxCryptItemType.EndOfStream;
-                    return;
-                }
-
-                int i = buffer.Locate(_axCrypt1GuidBytes, 0, bytesRead);
-                if (i < 0)
-                {
-                    int offsetToBytesToKeep = bytesRead - AxCrypt1Guid.Length + 1;
-                    InputStream.Pushback(buffer, offsetToBytesToKeep, bytesRead - offsetToBytesToKeep);
-                    continue;
-                }
-                int offsetJustAfterTheGuid = i + AxCrypt1Guid.Length;
-                InputStream.Pushback(buffer, offsetJustAfterTheGuid, bytesRead - offsetJustAfterTheGuid);
-                CurrentItemType = AxCryptItemType.MagicGuid;
-                return;
-            }
+            CurrentItemType = InputStream.Locate(_axCrypt1GuidBytes) ? AxCryptItemType.MagicGuid : AxCryptItemType.EndOfStream;
         }
 
         private void LookForHeaderBlock()
