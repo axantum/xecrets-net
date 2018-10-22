@@ -1,100 +1,51 @@
-﻿using AxCrypt.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace Axantum.AxCrypt.Forms
 {
-    internal partial class CustomMessageDialog : StyledMessageBase
+    internal class CustomMessageDialog : MessageDialog
     {
-        private string _doNotShowAgainCustomText;
+        private string _customButton1Text = "";
+        private string _customButton2Text = "";
+        private string _customButton3Text = "";
 
         public CustomMessageDialog()
+            : base()
         {
-            InitializeComponent();
-
-            _customOkButton.Visible = false;
-            _customCancelButton.Visible = false;
-            _customAbortButton.Visible = false;
         }
 
         public CustomMessageDialog(Form parent)
-            : this(parent, null, null)
+            : this(parent, null)
         {
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text)
-            : this(parent, doNotShowAgainCustomText, button1Text, null)
+        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText)
+            : base(parent, doNotShowAgainCustomText)
         {
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text, string button2Text)
-           : this(parent, doNotShowAgainCustomText, button1Text, button2Text, null)
+        public void InitializeCustomButtons(string button1Text)
         {
+            InitializeCustomButtons(button1Text, null);
         }
 
-        public CustomMessageDialog(Form parent, string doNotShowAgainCustomText, string button1Text, string button2Text, string button3Text)
-           : this()
+        public void InitializeCustomButtons(string button1Text, string button2Text)
         {
-            InitializeStyle(parent);
-            _doNotShowAgainCustomText = doNotShowAgainCustomText;
-            InitializeDialogResources(button1Text, button2Text, button3Text);
+            InitializeCustomButtons(button1Text, button2Text, null);
         }
 
-        public void InitializeDialogResources(string customButton1Text, string customButton2Text, string customButton3Text)
+        public void InitializeCustomButtons(string customButton1Text, string customButton2Text, string customButton3Text)
         {
-            if (!string.IsNullOrEmpty(customButton1Text))
-            {
-                _customOkButton.Text = "&" + customButton1Text;
-                ShowCustomOkButton();
-            }
-            if (!string.IsNullOrEmpty(customButton2Text))
-            {
-                _customCancelButton.Text = "&" + customButton2Text;
-                ShowCustomCancelButton();
-            }
-            if (!string.IsNullOrEmpty(customButton3Text))
-            {
-                _customAbortButton.Text = "&" + customButton3Text;
-                ShowCustomExitButton();
-            }
-
-            dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
+            _customButton1Text = customButton1Text;
+            _customButton2Text = customButton2Text;
+            _customButton3Text = customButton3Text;
         }
 
-        public CustomMessageDialog ShowCustomOkButton()
+        protected override void InitializeContentResources()
         {
-            _customOkButton.Visible = true;
-            ReSizeButtonsPanel();
-            return this;
-        }
-
-        public CustomMessageDialog ShowCustomCancelButton()
-        {
-            _customCancelButton.Visible = true;
-            ReSizeButtonsPanel();
-            return this;
-        }
-
-        public CustomMessageDialog ShowCustomExitButton()
-        {
-            _customAbortButton.Visible = true;
-            ReSizeButtonsPanel();
-            return this;
-        }
-
-        public CustomMessageDialog HideDontShowAgain()
-        {
-            dontShowThisAgain.Visible = false;
-            tableLayoutPanel.RowCount = 2;
-            return this;
-        }
-
-        private void ReSizeButtonsPanel()
-        {
-            flowLayoutPanel.PerformLayout();
-            flowLayoutPanel.Left = (flowLayoutPanel.Parent.ClientRectangle.Width - flowLayoutPanel.Width) / 2;
+            InitializeCustomButtonTexts(_customButton1Text, _customButton2Text, _customButton3Text);
         }
     }
 }

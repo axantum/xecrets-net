@@ -124,28 +124,30 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private string ShowSyncInternalAssumingUiThread(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
-            CustomMessageDialog customMessageDialog;
-            switch (buttons.Length)
-            {
-                case 1:
-                    customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText, buttons[0]);
-                    break;
-
-                case 2:
-                    customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText, buttons[0], buttons[1]);
-                    break;
-
-                case 3:
-                    customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText, buttons[0], buttons[1], buttons[2]);
-                    break;
-
-                default:
-                    throw new NotSupportedException("Can display alerts with 1 to 3 buttons only");
-            }
-
             DialogResult result;
-            using (customMessageDialog)
+            using (CustomMessageDialog customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText))
             {
+                switch (buttons.Length)
+                {
+                    case 1:
+                        customMessageDialog.InitializeCustomButtons(buttons[0]);
+                        customMessageDialog.HideCancel();
+                        customMessageDialog.HideExit();
+                        break;
+
+                    case 2:
+                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1]);
+                        customMessageDialog.HideExit();
+                        break;
+
+                    case 3:
+                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1], buttons[2]);
+                        break;
+
+                    default:
+                        throw new NotSupportedException("Can display alerts with 1 to 3 buttons only");
+                }
+
                 if (dontShowAgainFlag == DoNotShowAgainOptions.None)
                 {
                     customMessageDialog.HideDontShowAgain();

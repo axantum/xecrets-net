@@ -35,6 +35,14 @@ namespace Axantum.AxCrypt.Forms
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
+        protected void InitializeCustomButtonTexts(string customButton1Text, string customButton2Text, string customButton3Text)
+        {
+            _buttonOk.Text = "&" + customButton1Text;
+            _buttonCancel.Text = "&" + customButton2Text;
+            _buttonExit.Text = "&" + customButton3Text;
+            dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
+        }
+
         public MessageDialog HideExit()
         {
             _buttonExit.Visible = false;
@@ -56,7 +64,7 @@ namespace Axantum.AxCrypt.Forms
             return this;
         }
 
-        private void ReSizeButtonsPanel()
+        public void ReSizeButtonsPanel()
         {
             flowLayoutPanel1.PerformLayout();
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;
