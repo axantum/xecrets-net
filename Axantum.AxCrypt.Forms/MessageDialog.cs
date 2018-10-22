@@ -64,7 +64,7 @@ namespace Axantum.AxCrypt.Forms
             return this;
         }
 
-        public void ReSizeButtonsPanel()
+        private void ReSizeButtonsPanel()
         {
             flowLayoutPanel1.PerformLayout();
             flowLayoutPanel1.Left = (flowLayoutPanel1.Parent.ClientRectangle.Width - flowLayoutPanel1.Width) / 2;

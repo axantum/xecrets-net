@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using AxCrypt.Content;
 using System;
@@ -110,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            PlanState planState = await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity, _startTrialMessage);
+            await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity, _startTrialMessage);
 
             if (Resolve.UserSettings.IsFirstSignIn)
             {

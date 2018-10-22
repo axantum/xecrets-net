@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Axantum.AxCrypt.Common;
+﻿using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using AxCrypt.Content;
+using System;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -19,7 +17,8 @@ namespace Axantum.AxCrypt.Core.UI
                 return planInformation.PlanState;
             }
 
-            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, (Texts.MessageAskAboutStartTrial + Texts.ResourceManager.GetString(startTrialMessage.Name)), DoNotShowAgainOptions.TryPremium);
+            string messageText = Texts.MessageAskAboutStartTrial + Environment.NewLine + Texts.ResourceManager.GetString(startTrialMessage.Name);
+            string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, messageText, DoNotShowAgainOptions.TryPremium);
             if (result != Texts.ButtonStartTrial)
             {
                 return planInformation.PlanState;
