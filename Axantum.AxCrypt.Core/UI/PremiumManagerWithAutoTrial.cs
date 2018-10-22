@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return planInformation.PlanState;
             }
 
-            string messageText = Texts.MessageAskAboutStartTrial + Environment.NewLine + Texts.ResourceManager.GetString(startTrialMessage.Name);
+            string messageText = Texts.MessageAskAboutStartTrial + Environment.NewLine + Environment.NewLine + Texts.ResourceManager.GetString(startTrialMessage.Name);
             string result = await New<IPopup>().ShowAsync(new string[] { Texts.ButtonStartTrial, Texts.ButtonNotNow }, Texts.WelcomeMailSubject, messageText, DoNotShowAgainOptions.TryPremium);
             if (result != Texts.ButtonStartTrial)
             {

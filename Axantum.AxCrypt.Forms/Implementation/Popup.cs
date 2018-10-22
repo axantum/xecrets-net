@@ -145,7 +145,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                         break;
 
                     default:
-                        throw new NotSupportedException("Can display alerts with 1 to 3 buttons only");
+                        throw new NotSupportedException("Can't display alert dialog(s) with more than 3 buttons!");
                 }
 
                 if (dontShowAgainFlag == DoNotShowAgainOptions.None)
