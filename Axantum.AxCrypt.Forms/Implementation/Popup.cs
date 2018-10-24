@@ -93,12 +93,91 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public Task<string> ShowAsync(string[] buttons, string title, string message)
         {
-            throw new NotImplementedException("Popup doesn't support custom buttons.");
+            return ShowAsync(buttons, title, message, DoNotShowAgainOptions.None);
         }
 
         public Task<string> ShowAsync(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgain)
         {
-            throw new NotImplementedException("Popup doesn't support custom buttons.");
+            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgain, null));
+        }
+
+        public Task<string> ShowAsync(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        {
+            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
+        }
+
+        private string ShowSyncInternal(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        {
+            string result = string.Empty;
+            if (buttons.Length > 3)
+            {
+                return result;
+            }
+            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
+            {
+                return result;
+            }
+
+            New<IUIThread>().SendTo(() => result = ShowSyncInternalAssumingUiThread(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
+            return result;
+        }
+
+        private string ShowSyncInternalAssumingUiThread(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        {
+            DialogResult result;
+            using (CustomMessageDialog customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText))
+            {
+                switch (buttons.Length)
+                {
+                    case 1:
+                        customMessageDialog.InitializeCustomButtons(buttons[0]);
+                        customMessageDialog.HideCancel();
+                        customMessageDialog.HideExit();
+                        break;
+
+                    case 2:
+                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1]);
+                        customMessageDialog.HideExit();
+                        break;
+
+                    case 3:
+                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1], buttons[2]);
+                        break;
+
+                    default:
+                        throw new NotSupportedException("Can't display alert dialog(s) with more than 3 buttons!");
+                }
+
+                if (dontShowAgainFlag == DoNotShowAgainOptions.None)
+                {
+                    customMessageDialog.HideDontShowAgain();
+                }
+
+                customMessageDialog.Text = title;
+                customMessageDialog.Message.Text = message;
+
+                result = customMessageDialog.ShowDialog(_parent);
+
+                if (dontShowAgainFlag != DoNotShowAgainOptions.None && customMessageDialog.dontShowThisAgain.Checked)
+                {
+                    New<UserSettings>().DoNotShowAgain = New<UserSettings>().DoNotShowAgain | dontShowAgainFlag;
+                }
+            }
+
+            switch (result)
+            {
+                case DialogResult.OK:
+                    return buttons[0];
+
+                case DialogResult.Cancel:
+                    return buttons[1];
+
+                case DialogResult.Abort:
+                    return buttons[2];
+
+                default:
+                    throw new InvalidOperationException($"Unexpected result from dialog: {result}");
+            }
         }
     }
 }

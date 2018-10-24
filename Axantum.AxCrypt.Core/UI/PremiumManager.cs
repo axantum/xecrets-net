@@ -42,13 +42,13 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        public async Task<PlanState> PlanStateWithTryPremium(LogOnIdentity identity)
+        public async Task<PlanState> PlanStateWithTryPremium(LogOnIdentity identity, NameOf startTrialMessage)
         {
             PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
-            return await TryPremium(identity, planInformation);
+            return await TryPremium(identity, planInformation, startTrialMessage);
         }
 
-        protected abstract Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation);
+        protected abstract Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation, NameOf startTrialMessage);
 
         public async Task BuyPremium(LogOnIdentity identity)
         {

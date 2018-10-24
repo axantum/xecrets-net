@@ -177,9 +177,10 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IKnownFoldersDiscovery>(() => new KnownFoldersDiscovery());
             TypeMap.Register.Singleton<IBrowser>(() => new Browser());
             TypeMap.Register.Singleton<ILicenseAuthority>(() => new PublicLicenseAuthority());
-            TypeMap.Register.Singleton<PremiumManager>(() => new PremiumManagerWithoutAutoTrial());
+            TypeMap.Register.Singleton<PremiumManager>(() => new PremiumManagerWithAutoTrial());
             TypeMap.Register.Singleton<AboutAssembly>(() => new AboutAssembly(Assembly.GetExecutingAssembly()));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
+            TypeMap.Register.Singleton<IProgressDialog>(() => new ProgressDialog());
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)
