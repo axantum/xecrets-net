@@ -48,6 +48,7 @@ namespace Axantum.AxCrypt.Api.Implementation
                 NullValueHandling = NullValueHandling.Include,
                 ObjectCreationHandling = ObjectCreationHandling.Replace,
                 Converters = converters.ToArray(),
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
         }
 
