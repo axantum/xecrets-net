@@ -1,6 +1,4 @@
 ﻿using AxCrypt.Content;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,6 +6,9 @@ namespace Axantum.AxCrypt.Forms
 {
     internal partial class MessageDialog : StyledMessageBase
     {
+        private string _button1Text;
+        private string _button2Text;
+        private string _button3Text;
         private string _doNotShowAgainCustomText;
 
         public MessageDialog()
@@ -29,18 +30,27 @@ namespace Axantum.AxCrypt.Forms
 
         protected override void InitializeContentResources()
         {
-            _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
-            _buttonExit.Text = "&" + Texts.ButtonExitText;
+            _buttonOk.Text = "&" + _button1Text ?? Texts.ButtonOkText;
+            _buttonCancel.Text = "&" + _button2Text ?? Texts.ButtonCancelText;
+            _buttonExit.Text = "&" + _button3Text ?? Texts.ButtonExitText;
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
-        protected void InitializeCustomButtonTexts(string customButton1Text, string customButton2Text, string customButton3Text)
+        public void InitializeButtonTexts(string button1Text)
         {
-            _buttonOk.Text = "&" + customButton1Text;
-            _buttonCancel.Text = "&" + customButton2Text;
-            _buttonExit.Text = "&" + customButton3Text;
-            dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
+            InitializeButtonTexts(button1Text, null);
+        }
+
+        public void InitializeButtonTexts(string button1Text, string button2Text)
+        {
+            InitializeButtonTexts(button1Text, button2Text, null);
+        }
+
+        public void InitializeButtonTexts(string customButton1Text, string customButton2Text, string customButton3Text)
+        {
+            _button1Text = customButton1Text;
+            _button2Text = customButton2Text;
+            _button3Text = customButton3Text;
         }
 
         public MessageDialog HideExit()

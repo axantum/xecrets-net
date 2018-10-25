@@ -2,7 +2,6 @@
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,69 +25,65 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag)
         {
-            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag, null));
+            return ShowAsync(buttons, title, message, dontShowAgainFlag, null);
         }
 
         public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
-            return Task.FromResult(ShowSyncInternal(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
+            string[] stringButtons = GetStringButtons(buttons);
+            string popupResult = ShowAsync(stringButtons, title, message, dontShowAgainFlag, doNotShowAgainCustomText).Result;
+
+            return Task.FromResult(GetPopupResult(popupResult));
         }
 
-        private PopupButtons ShowSyncInternal(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        private string[] GetStringButtons(PopupButtons buttons)
         {
-            PopupButtons result = PopupButtons.None;
-            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
+            string[] stringButtons = null;
+
+            if (buttons == PopupButtons.Ok)
             {
-                return result;
+                stringButtons = new string[] { nameof(PopupButtons.Ok) };
+            }
+            if (buttons == PopupButtons.Cancel)
+            {
+                stringButtons = new string[] { nameof(PopupButtons.Cancel) };
+            }
+            if (buttons == PopupButtons.Exit)
+            {
+                stringButtons = new string[] { nameof(PopupButtons.Exit) };
+            }
+            if (buttons == PopupButtons.OkCancel)
+            {
+                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
+            }
+            if (buttons == PopupButtons.OkExit)
+            {
+                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
+            }
+            if (buttons == PopupButtons.OkCancelExit)
+            {
+                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel), nameof(PopupButtons.Exit) };
             }
 
-            New<IUIThread>().SendTo(() => result = ShowSyncInternalAssumingUiThread(buttons, title, message, dontShowAgainFlag, doNotShowAgainCustomText));
-            return result;
+            return stringButtons;
         }
 
-        private PopupButtons ShowSyncInternalAssumingUiThread(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        private PopupButtons GetPopupResult(string popupResult)
         {
-            DialogResult result;
-            using (MessageDialog dialog = new MessageDialog(_parent, doNotShowAgainCustomText))
+            if (popupResult == nameof(PopupButtons.Ok))
             {
-                if (!buttons.HasFlag(PopupButtons.Cancel))
-                {
-                    dialog.HideCancel();
-                }
-                if (!buttons.HasFlag(PopupButtons.Exit))
-                {
-                    dialog.HideExit();
-                }
-                if (dontShowAgainFlag == DoNotShowAgainOptions.None)
-                {
-                    dialog.HideDontShowAgain();
-                }
-
-                dialog.Text = title;
-                dialog.Message.Text = message;
-
-                result = dialog.ShowDialog(_parent);
-
-                if (dontShowAgainFlag != DoNotShowAgainOptions.None && dialog.dontShowThisAgain.Checked)
-                {
-                    New<UserSettings>().DoNotShowAgain = New<UserSettings>().DoNotShowAgain | dontShowAgainFlag;
-                }
+                return PopupButtons.Ok;
+            }
+            if (popupResult == nameof(PopupButtons.Cancel))
+            {
+                return PopupButtons.Cancel;
+            }
+            if (popupResult == nameof(PopupButtons.Exit))
+            {
+                return PopupButtons.Exit;
             }
 
-            switch (result)
-            {
-                case DialogResult.OK:
-                    return PopupButtons.Ok;
-
-                case DialogResult.Cancel:
-                    return PopupButtons.Cancel;
-
-                case DialogResult.Abort:
-                    return PopupButtons.Exit;
-
-                default:
-                    throw new InvalidOperationException($"Unexpected result from dialog: {result}");
-            }
+            return PopupButtons.None;
         }
 
         public Task<string> ShowAsync(string[] buttons, string title, string message)
@@ -109,11 +104,11 @@ namespace Axantum.AxCrypt.Forms.Implementation
         private string ShowSyncInternal(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
             string result = string.Empty;
-            if (buttons.Length > 3)
+            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
             {
                 return result;
             }
-            if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
+            if (buttons.Length > 3)
             {
                 return result;
             }
@@ -125,23 +120,23 @@ namespace Axantum.AxCrypt.Forms.Implementation
         private string ShowSyncInternalAssumingUiThread(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
             DialogResult result;
-            using (CustomMessageDialog customMessageDialog = new CustomMessageDialog(_parent, doNotShowAgainCustomText))
+            using (MessageDialog messageDialog = new MessageDialog(_parent, doNotShowAgainCustomText))
             {
                 switch (buttons.Length)
                 {
                     case 1:
-                        customMessageDialog.InitializeCustomButtons(buttons[0]);
-                        customMessageDialog.HideCancel();
-                        customMessageDialog.HideExit();
+                        messageDialog.InitializeButtonTexts(buttons[0]);
+                        messageDialog.HideCancel();
+                        messageDialog.HideExit();
                         break;
 
                     case 2:
-                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1]);
-                        customMessageDialog.HideExit();
+                        messageDialog.InitializeButtonTexts(buttons[0], buttons[1]);
+                        messageDialog.HideExit();
                         break;
 
                     case 3:
-                        customMessageDialog.InitializeCustomButtons(buttons[0], buttons[1], buttons[2]);
+                        messageDialog.InitializeButtonTexts(buttons[0], buttons[1], buttons[2]);
                         break;
 
                     default:
@@ -150,15 +145,15 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
                 if (dontShowAgainFlag == DoNotShowAgainOptions.None)
                 {
-                    customMessageDialog.HideDontShowAgain();
+                    messageDialog.HideDontShowAgain();
                 }
 
-                customMessageDialog.Text = title;
-                customMessageDialog.Message.Text = message;
+                messageDialog.Text = title;
+                messageDialog.Message.Text = message;
 
-                result = customMessageDialog.ShowDialog(_parent);
+                result = messageDialog.ShowDialog(_parent);
 
-                if (dontShowAgainFlag != DoNotShowAgainOptions.None && customMessageDialog.dontShowThisAgain.Checked)
+                if (dontShowAgainFlag != DoNotShowAgainOptions.None && messageDialog.dontShowThisAgain.Checked)
                 {
                     New<UserSettings>().DoNotShowAgain = New<UserSettings>().DoNotShowAgain | dontShowAgainFlag;
                 }
