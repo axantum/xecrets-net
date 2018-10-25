@@ -1469,7 +1469,7 @@ Dieses Programm ist entsprechend der Vereinbarung lizensiert.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value> Explorer hier öffnen</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Wir haben bemerkt dass Sie kein Premium Abonnement haben. Deshalb wir möchten eine kostenlose Testversion für Sie starten. 
 
 Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entschlüsseln. 
@@ -2236,6 +2236,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Feedback einreichen</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Gelöscht</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>gültig bis</value>

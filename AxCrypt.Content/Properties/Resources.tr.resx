@@ -1467,7 +1467,7 @@ Bu program anlaşmaya göre lisanslanmıştır.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Explorer'ı burada aç</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Premium üyeliğinin bulunmadığını fark ettik, bu yüzden sana 30 günlük ücretsiz bir AxCrypt Premium deneme paketi öneriyoruz.
 
 Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin. </value>

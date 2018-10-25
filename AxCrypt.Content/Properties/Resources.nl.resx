@@ -108,6 +108,10 @@
     <value>Het account moet eerst door de gebruiker bevestigd worden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Nieuwe ontvangers kunnen niet in lokale of offline status worden toegevoegd omdat er geen contact is met de server.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Proefversie</value>
   </data>
@@ -685,6 +689,10 @@ U moet deze stappen volgen om het proces te voltooien.</value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Product</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Status</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Tijdstempel</value>
   </data>
@@ -993,7 +1001,8 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>AxCrypt Openbaar Sleutel Bestanden Delen</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' is open in een andere applicatie. Sluit het en probeer het nog eens.</value>
+    <value>'{0}' is geopend in een andere applicatie. Zorg ervoor dat de andere applicatie volledig is gesloten en probeer het opnieuw.
+</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' is alleen-lezen</value>
@@ -1447,7 +1456,7 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Verkenner Hier</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Wij zagen dat u nog geen Premium abonnement had, dus daarom zouden wij graag voor u een gratis proefversie starten!
 
 Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypteren.</value>
@@ -2024,6 +2033,16 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Hernoem tot origineel
+</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Herstel de bestandsnaam op basis van de originele bestandsnaam van een gecodeerd bestand waarvan de naam is gewijzigd.
+</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>U bent al aangemeld met dit wachtwoord!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
@@ -2190,6 +2209,9 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Verstuur feedback</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Verwijderd</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} geldig tot {1}. </value>

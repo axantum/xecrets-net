@@ -1455,7 +1455,7 @@ Ce logiciel est livré d'après la licence.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Ouvrir Explorer Ici </value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Nous avons remarqué que vous n'aviez pas d'abonnement Premium,  alors nous aimerions bien commencer un essai gratuit avec vous !
 
 Sans Premium, vous pouvez seulement visionner et décrypter de façon permanente les fichiers cryptés.</value>

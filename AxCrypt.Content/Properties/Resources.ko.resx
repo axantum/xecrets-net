@@ -1419,7 +1419,7 @@ AxCrypt 팀</value>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>열고 탐구하기</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>사용자님은 Premium을 구독하고 있지 않으십니다. 사용자님을 위해 무료 체험을 제공드립니다.
 
 Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호화만 가능합니다.</value>

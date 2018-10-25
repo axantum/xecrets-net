@@ -1473,7 +1473,7 @@ Questo programma è autorizzato secondo l'accordo.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Apri Explorer Qui</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Abbiamo notato che non hai un abbonamento Premium, così vorremmo iniziare una prova gratuita per te!
 
 Senza Premium puoi solo visualizzare e decriptare in modo permanente i file criptati.</value>
@@ -2219,6 +2219,9 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Invia la tua opinione</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Eliminato</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valido fino a {1}.</value>

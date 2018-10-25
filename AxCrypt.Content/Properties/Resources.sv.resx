@@ -1458,7 +1458,7 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Öppna Utforskaren Här</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Det verkar inte som du har Premium, så vi startar gärna en provperiod åt dig!
 
 Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>

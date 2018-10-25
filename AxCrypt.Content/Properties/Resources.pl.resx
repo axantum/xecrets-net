@@ -1494,7 +1494,7 @@ Ten program jest licencjonowany zgodnie z umową.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Otwórz Explorator tutaj</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy rozpocząć dla Ciebie bezpłatny okres próbny!
 
 Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.

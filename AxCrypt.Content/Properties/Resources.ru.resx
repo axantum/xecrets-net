@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AaaUtfDummy" xml:space="preserve">
-    <value>Två Öâr är Brà.</value>
-    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
-  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>Статус 'Прерван'</value>
   </data>
@@ -130,6 +126,10 @@
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>Данный аккаунт должен быть вначале подтверждён пользователем.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
+  </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Новые пользователи не могут быть добавлены в локальном или оффлайн режиме, так как соединение с сервером отсутствует.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
   </data>
   <data name="AccountStatusLight" xml:space="preserve">
     <value>AxCrypt Free</value>
@@ -321,9 +321,13 @@
     <value>Добро пожаловать на AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
+  <data name="BusinessAdministratorsLabel" xml:space="preserve">
+    <value>Администраторы </value>
+    <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt; Вы были добавлены аккаунтом  &lt;b&gt;{0}&lt;/b&gt;  в пользователи AxCrypt File Security. Чтобы начать обеспечивать защиту Вашим  файлам, просто &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; и установите AxCrypt. Выполните вход в систему AxCrypt с помощью &lt;b&gt;{2}&lt;/b&gt;, ниже введите верификационный код и установите Ваш персональный пароль.&lt;/p&gt;
-&lt;p&gt;В случае возникновения вопросов, пожалуйста, соединитесь в первую очередь с {0}.&lt;/p&gt;</value>
+    <value>&lt;p&gt; Вы были добавлены аккаунтом &lt;b&gt;{0}&lt;/b&gt; в пользователи AxCrypt File Security. Чтобы начать защиту файлов, просто &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;загрузите&lt;/a&gt; и установите AxCrypt. Войдите в AxCrypt с помощью &lt;b&gt; {2} &lt;/ b&gt;, &lt;p&gt;, ниже введите верификационный код и установите персональный пароль.&lt;/p&gt;
+&lt;p&gt; Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь в первую очередь с с {0}. &lt;/ p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
@@ -345,6 +349,10 @@
   <data name="BusinessSubscriptionAdministratorLabel" xml:space="preserve">
     <value>Администратор</value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
+  </data>
+  <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
+    <value>Вы уже являетесь Business пользователем. Можете оформить новую подписку, если уверены в собственном желании.</value>
+    <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
   </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
     <value>Неиспользованное</value>
@@ -481,6 +489,15 @@
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Вы уверены, что хотите удалить данного члена из подписки?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
+    <value>Действовать согласно</value>
+    <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
+  </data>
+  <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
+    <value>Действовать в качестве
+</value>
+    <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
   </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Итого</value>
@@ -674,6 +691,9 @@
     <value>Пожалуйста, примите во внимание, что приложение хранит зашифрованную копию файла в локальном хранилище файлов. Вы можете удалить её мануально через кнопку очистки.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Очистить последние файлы</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Нажмите для проверки на наличие новой версии.</value>
   </data>
@@ -695,6 +715,10 @@
   </data>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Продукт</value>
+  </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Статус</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
   </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Дата/Время</value>
@@ -1013,7 +1037,7 @@
     <value>AxCrypt Публичные Файлы с Ключом Совместного Использования</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' открыт в другом приложении. Пожалуйста, закройте его и попробуйте ещё раз.</value>
+    <value>'{0}' открыт в другом приложении. Убедитесь, что другое приложение полностью закрыто и повторите попытку.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' имеет защиту от записи.</value>
@@ -1172,7 +1196,7 @@
     <value>Описание </value>
   </data>
   <data name="InvoiceHeadline" xml:space="preserve">
-    <value>Мои Квитанции</value>
+    <value>Мои квитанции</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>Оплачено </value>
@@ -1473,7 +1497,7 @@
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Открыть Explorer Здесь</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Мы заметили, что Вы не подписаны на Premium, поэтому мы хотели бы запустить бесплатную 30-дневную Пробную Версию для Вас!
 
 Без подписки на Premium Вы можете только просматривать и   перманентно кодировать файлы.</value>
@@ -1595,6 +1619,9 @@
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>Создание оффлайновой версии AxCrypt ID.</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>Кажется, что проблема связана с сервером, но мы продолжим офлайн.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Оффлайн</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1621,7 +1648,7 @@
     <value>Поменять Пароль</value>
   </data>
   <data name="OptionsClearAllSettingsAndExitToolStripMenuItemText" xml:space="preserve">
-    <value>Очистить Все Настройки и Выйти Из Системы </value>
+    <value>Очистить все настройки и перезагрузить. </value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
     <value>Автоматически Обновить 1.x Файлы</value>
@@ -1632,7 +1659,7 @@
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
-    <value>Включить Подпапки</value>
+    <value>Присоединить Подпапки</value>
   </data>
   <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Язык</value>
@@ -1742,6 +1769,9 @@
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>Купить для кого-нибудь другого</value>
   </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>Оплаченный в полном объеме</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Больше информации о PayPal]</value>
   </data>
@@ -1767,6 +1797,9 @@
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>Данная функция требует оплаченной подписки!</value>
+  </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt Premium {0} x 30 дней</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Совместное пользование ключом требует оплаченной подписки. Нажмите для обновления прямо сейчас!</value>
@@ -1932,18 +1965,18 @@
     <value>Покупка была отменена.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>Мы не получали Вашего платежа. Причиной может быть мануальная отмена покупки в PayPal или недостаток средств на балансе.</value>
+    <value>Мы не получили Ваш платеж. Причиной может быть мануальная отмена покупки или недостаток средств на балансе.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>Квитанция за AxCrypt Premium</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>Благородим за Вашу покупку AxCrypt Premium! Пожалуйста, выполните выход из системы и войдите опять в систему через любое приложение для обновления приложения до Premium.</value>
+    <value>Благодарим вас за покупку подписки AxCrypt! Пожалуйста, выполните выход из системы и войдите опять в систему для обновления статуса подписки. </value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>У Вас теперь есть доступ ко всем функциям Premium от AxCrypt. Вам возможно понадобится выйти из системы приложения и выполнить заново вход. В случае каких-либо проблем, пожалуйста, свяжитесь с нашей службой поддержки.
+    <value>Теперь у вас есть доступ ко всем дополнительным функциям AxCrypt. Вам возможно понадобится выйти из системы приложения и выполнить заново вход. В случае каких-либо проблем, пожалуйста, свяжитесь с нашей службой поддержки.
 
-Квитанция Вашей покупки была отправлена на Ваш адрес электронной почты.</value>
+Подтверждение покупки будет отправлено на ваш адрес электронной почты от вашего поставщика платежей. Вы можете распечатать квитанцию на нашем веб-сайте.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>НДС может быть добавлен к сумме во время оплаты.</value>
@@ -2029,6 +2062,20 @@
   </data>
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>Нажмите, чтобы ещё раз отправить верификационный код на Вашу электронную почту.</value>
+  </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>Это очистит все настройки. Данные не будут потеряны, но конфигурация будет сброшена до установок по умолчанию.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Измените имя на оригинал</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Восстановить имя файла на основе исходного имени файла (зашифрованного файла), который был переименован.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Вы уже выполнили вход в систему с данным паролем!</value>
@@ -2195,6 +2242,13 @@
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Оставить отзыв</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Удален</value>
+  </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value>{0} действителен до {1}.</value>
+    <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Регистрация подписки была успешно сохранена.</value>

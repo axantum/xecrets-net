@@ -1451,7 +1451,7 @@ Este programa se licencia según el acuerdo.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Abrir el explorador aquí</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Hemos notado que no tienes una suscripción Premium, ¡por lo que te proponemos iniciar una prueba gratuita! 
 
 Sin una cuenta Premium sólo puedes ver y desencriptar permanentemente archivos encriptados.</value>

@@ -1457,7 +1457,7 @@ Este programa é licenciado de acordo com a licença.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Abrir o Explorer aqui.</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Reparámos que você não possui uma assinatura Premium, por isso gostaríamos de lhe oferecer um trial gratuito!
 
 Sem o Premium, você só pode ver e decriptar permanentemente ficheiros encriptados.</value>
