@@ -40,29 +40,31 @@ namespace Axantum.AxCrypt.Forms.Implementation
         {
             string[] stringButtons = null;
 
-            if (buttons == PopupButtons.Ok)
+            switch (buttons)
             {
-                stringButtons = new string[] { nameof(PopupButtons.Ok) };
-            }
-            if (buttons == PopupButtons.Cancel)
-            {
-                stringButtons = new string[] { nameof(PopupButtons.Cancel) };
-            }
-            if (buttons == PopupButtons.Exit)
-            {
-                stringButtons = new string[] { nameof(PopupButtons.Exit) };
-            }
-            if (buttons == PopupButtons.OkCancel)
-            {
-                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
-            }
-            if (buttons == PopupButtons.OkExit)
-            {
-                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
-            }
-            if (buttons == PopupButtons.OkCancelExit)
-            {
-                stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel), nameof(PopupButtons.Exit) };
+                case PopupButtons.Ok:
+                    stringButtons = new string[] { nameof(PopupButtons.Ok) };
+                    break;
+
+                case PopupButtons.Cancel:
+                    stringButtons = new string[] { nameof(PopupButtons.Cancel) };
+                    break;
+
+                case PopupButtons.Exit:
+                    stringButtons = new string[] { nameof(PopupButtons.Exit) };
+                    break;
+
+                case PopupButtons.OkCancel:
+                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
+                    break;
+
+                case PopupButtons.OkExit:
+                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Exit) };
+                    break;
+
+                case PopupButtons.OkCancelExit:
+                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel), nameof(PopupButtons.Exit) };
+                    break;
             }
 
             return stringButtons;
@@ -70,20 +72,23 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private PopupButtons GetPopupResult(string popupResult)
         {
-            if (popupResult == nameof(PopupButtons.Ok))
+            PopupButtons popupButtonResults = PopupButtons.None;
+            switch (popupResult)
             {
-                return PopupButtons.Ok;
-            }
-            if (popupResult == nameof(PopupButtons.Cancel))
-            {
-                return PopupButtons.Cancel;
-            }
-            if (popupResult == nameof(PopupButtons.Exit))
-            {
-                return PopupButtons.Exit;
+                case nameof(PopupButtons.Ok):
+                    popupButtonResults = PopupButtons.Ok;
+                    break;
+
+                case nameof(PopupButtons.Cancel):
+                    popupButtonResults = PopupButtons.Cancel;
+                    break;
+
+                case nameof(PopupButtons.Exit):
+                    popupButtonResults = PopupButtons.Exit;
+                    break;
             }
 
-            return PopupButtons.None;
+            return popupButtonResults;
         }
 
         public Task<string> ShowAsync(string[] buttons, string title, string message)

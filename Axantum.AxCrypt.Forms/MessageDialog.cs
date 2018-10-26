@@ -30,9 +30,9 @@ namespace Axantum.AxCrypt.Forms
 
         protected override void InitializeContentResources()
         {
-            _buttonOk.Text = "&" + _button1Text ?? Texts.ButtonOkText;
-            _buttonCancel.Text = "&" + _button2Text ?? Texts.ButtonCancelText;
-            _buttonExit.Text = "&" + _button3Text ?? Texts.ButtonExitText;
+            _button0.Text = "&" + _button1Text ?? Texts.ButtonOkText;
+            _button1.Text = "&" + _button2Text ?? Texts.ButtonCancelText;
+            _button2.Text = "&" + _button3Text ?? Texts.ButtonExitText;
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
@@ -46,23 +46,23 @@ namespace Axantum.AxCrypt.Forms
             InitializeButtonTexts(button1Text, button2Text, null);
         }
 
-        public void InitializeButtonTexts(string customButton1Text, string customButton2Text, string customButton3Text)
+        public void InitializeButtonTexts(string button1Text, string button2Text, string button3Text)
         {
-            _button1Text = customButton1Text;
-            _button2Text = customButton2Text;
-            _button3Text = customButton3Text;
+            _button1Text = button1Text;
+            _button2Text = button2Text;
+            _button3Text = button3Text;
         }
 
         public MessageDialog HideExit()
         {
-            _buttonExit.Visible = false;
+            _button2.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
 
         public MessageDialog HideCancel()
         {
-            _buttonCancel.Visible = false;
+            _button1.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
