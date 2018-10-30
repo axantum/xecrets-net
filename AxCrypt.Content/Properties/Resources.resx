@@ -1728,17 +1728,19 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>!!We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!</value>
+    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>!!Without Premium you can only view and permanently decrypt encrypted files.</value>
+    <value>Without Premium you can only view and permanently decrypt encrypted files.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>!!When the trial period ends, AxCrypt mobile apps does not allow users to sign in. A paid subscription is required to use the iOS and Android versions of AxCrypt.</value>
+    <value>When the trial period ends, you can't use the AxCrypt mobile apps. A paid subscription is required for the iOS and Android versions of AxCrypt.
+
+You can always open encrypted files with a free desktop version of  AxCrypt.</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
-    <value>!!When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
+    <value>When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
