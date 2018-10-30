@@ -809,6 +809,7 @@ namespace Axantum.AxCrypt
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
             _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
             _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _mainViewModel.RandomRenameEnabled; };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) DisableRecentFilesContextMenuItems(e.Location); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _clearRecentFilesToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName)); };
@@ -863,6 +864,22 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
+        }
+
+        private void DisableRecentFilesContextMenuItems(Point location)
+        {
+            foreach (ToolStripItem contextMenuStrip in _recentFilesContextMenuStrip.Items)
+            {
+                if (_closeAndRemoveOpenFilesToolStripButton.Enabled && contextMenuStrip != _recentFilesShowInFolderToolStripMenuItem)
+                {
+                    contextMenuStrip.Enabled = false;
+                }
+
+                if (!_closeAndRemoveOpenFilesToolStripButton.Enabled)
+                {
+                    contextMenuStrip.Enabled = true;
+                }
+            }
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
