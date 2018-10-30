@@ -1,6 +1,7 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,67 +29,61 @@ namespace Axantum.AxCrypt.Forms.Implementation
             return ShowAsync(buttons, title, message, dontShowAgainFlag, null);
         }
 
-        public Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
+        public async Task<PopupButtons> ShowAsync(PopupButtons buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
             string[] stringButtons = GetStringButtons(buttons);
-            string popupResult = ShowAsync(stringButtons, title, message, dontShowAgainFlag, doNotShowAgainCustomText).Result;
+            string popupResult = await ShowAsync(stringButtons, title, message, dontShowAgainFlag, doNotShowAgainCustomText);
 
-            return Task.FromResult(GetPopupResult(popupResult));
+            return GetPopupResult(popupResult);
         }
 
         private string[] GetStringButtons(PopupButtons buttons)
         {
-            string[] stringButtons = null;
-
             switch (buttons)
             {
                 case PopupButtons.Ok:
-                    stringButtons = new string[] { nameof(PopupButtons.Ok) };
-                    break;
+                    return new string[] { Texts.ButtonOkText };
 
                 case PopupButtons.Cancel:
-                    stringButtons = new string[] { nameof(PopupButtons.Cancel) };
-                    break;
+                    return new string[] { Texts.ButtonCancelText };
 
                 case PopupButtons.Exit:
-                    stringButtons = new string[] { nameof(PopupButtons.Exit) };
-                    break;
+                    return new string[] { Texts.ButtonExitText };
 
                 case PopupButtons.OkCancel:
-                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel) };
-                    break;
+                    return new string[] { Texts.ButtonOkText, Texts.ButtonCancelText };
 
                 case PopupButtons.OkExit:
-                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Exit) };
-                    break;
+                    return new string[] { Texts.ButtonOkText, Texts.ButtonExitText };
 
                 case PopupButtons.OkCancelExit:
-                    stringButtons = new string[] { nameof(PopupButtons.Ok), nameof(PopupButtons.Cancel), nameof(PopupButtons.Exit) };
-                    break;
-            }
+                    return new string[] { Texts.ButtonOkText, Texts.ButtonCancelText, Texts.ButtonExitText };
 
-            return stringButtons;
+                default:
+                    throw new InvalidOperationException($"Unexpected popup buttons {buttons}.");
+            }
         }
 
         private PopupButtons GetPopupResult(string popupResult)
         {
-            PopupButtons popupButtonResults = PopupButtons.None;
-            switch (popupResult)
+            if (popupResult == Texts.ButtonOkText)
             {
-                case nameof(PopupButtons.Ok):
-                    popupButtonResults = PopupButtons.Ok;
-                    break;
-
-                case nameof(PopupButtons.Cancel):
-                    popupButtonResults = PopupButtons.Cancel;
-                    break;
-
-                case nameof(PopupButtons.Exit):
-                    popupButtonResults = PopupButtons.Exit;
-                    break;
+                return PopupButtons.Ok;
+            }
+            if (popupResult == Texts.ButtonCancelText)
+            {
+                return PopupButtons.Cancel;
+            }
+            if (popupResult == Texts.ButtonExitText)
+            {
+                return PopupButtons.Exit;
+            }
+            if (popupResult == string.Empty)
+            {
+                return PopupButtons.None;
             }
 
-            return popupButtonResults;
+            throw new InvalidOperationException($"Unexpected popup button {popupResult} clicked.");
         }
 
         public Task<string> ShowAsync(string[] buttons, string title, string message)
@@ -108,12 +103,13 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         private string ShowSyncInternal(string[] buttons, string title, string message, DoNotShowAgainOptions dontShowAgainFlag, string doNotShowAgainCustomText)
         {
+            if (buttons.Length > 3)
+            {
+                throw new InvalidOperationException($"More than 3 buttons are not supported in a popup dialog.");
+            }
+
             string result = string.Empty;
             if (dontShowAgainFlag != DoNotShowAgainOptions.None && New<UserSettings>().DoNotShowAgain.HasFlag(dontShowAgainFlag))
-            {
-                return result;
-            }
-            if (buttons.Length > 3)
             {
                 return result;
             }
@@ -130,14 +126,14 @@ namespace Axantum.AxCrypt.Forms.Implementation
                 switch (buttons.Length)
                 {
                     case 1:
-                        messageDialog.InitializeButtonTexts(buttons[0]);
-                        messageDialog.HideCancel();
-                        messageDialog.HideExit();
+                        messageDialog.InitializeButtonTexts(buttons[0], null, null);
+                        messageDialog.HideButton1();
+                        messageDialog.HideButton2();
                         break;
 
                     case 2:
-                        messageDialog.InitializeButtonTexts(buttons[0], buttons[1]);
-                        messageDialog.HideExit();
+                        messageDialog.InitializeButtonTexts(buttons[0], buttons[1], null);
+                        messageDialog.HideButton2();
                         break;
 
                     case 3:

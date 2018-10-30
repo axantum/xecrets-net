@@ -36,16 +36,6 @@ namespace Axantum.AxCrypt.Forms
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
-        public void InitializeButtonTexts(string button1Text)
-        {
-            InitializeButtonTexts(button1Text, null);
-        }
-
-        public void InitializeButtonTexts(string button1Text, string button2Text)
-        {
-            InitializeButtonTexts(button1Text, button2Text, null);
-        }
-
         public void InitializeButtonTexts(string button1Text, string button2Text, string button3Text)
         {
             _button1Text = button1Text;
@@ -53,14 +43,14 @@ namespace Axantum.AxCrypt.Forms
             _button3Text = button3Text;
         }
 
-        public MessageDialog HideExit()
+        public MessageDialog HideButton2()
         {
             _button2.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
 
-        public MessageDialog HideCancel()
+        public MessageDialog HideButton1()
         {
             _button1.Visible = false;
             ReSizeButtonsPanel();
@@ -85,8 +75,8 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideExit();
-                messageDialog.HideCancel();
+                messageDialog.HideButton2();
+                messageDialog.HideButton1();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -99,7 +89,7 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideExit();
+                messageDialog.HideButton2();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -124,7 +114,7 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideCancel();
+                messageDialog.HideButton1();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
