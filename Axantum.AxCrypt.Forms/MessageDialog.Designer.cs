@@ -32,9 +32,9 @@
             this.dontShowThisAgain = new System.Windows.Forms.CheckBox();
             this.Message = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this._buttonOk = new System.Windows.Forms.Button();
-            this._buttonCancel = new System.Windows.Forms.Button();
-            this._buttonExit = new System.Windows.Forms.Button();
+            this._button0 = new System.Windows.Forms.Button();
+            this._button1 = new System.Windows.Forms.Button();
+            this._button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,46 +89,46 @@
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.Controls.Add(this._buttonOk);
-            this.flowLayoutPanel1.Controls.Add(this._buttonCancel);
-            this.flowLayoutPanel1.Controls.Add(this._buttonExit);
+            this.flowLayoutPanel1.Controls.Add(this._button0);
+            this.flowLayoutPanel1.Controls.Add(this._button1);
+            this.flowLayoutPanel1.Controls.Add(this._button2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(243, 29);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // _buttonOk
+            // _button0
             // 
-            this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._buttonOk.Location = new System.Drawing.Point(3, 3);
-            this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.Size = new System.Drawing.Size(75, 23);
-            this._buttonOk.TabIndex = 0;
-            this._buttonOk.Text = "[OK]";
-            this._buttonOk.UseVisualStyleBackColor = true;
+            this._button0.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._button0.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._button0.Location = new System.Drawing.Point(3, 3);
+            this._button0.Name = "_button0";
+            this._button0.Size = new System.Drawing.Size(75, 23);
+            this._button0.TabIndex = 0;
+            this._button0.Text = "[OK]";
+            this._button0.UseVisualStyleBackColor = true;
             // 
-            // _buttonCancel
+            // _button1
             // 
-            this._buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._buttonCancel.Location = new System.Drawing.Point(84, 3);
-            this._buttonCancel.Name = "_buttonCancel";
-            this._buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this._buttonCancel.TabIndex = 1;
-            this._buttonCancel.Text = "[Cancel]";
-            this._buttonCancel.UseVisualStyleBackColor = true;
+            this._button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._button1.Location = new System.Drawing.Point(84, 3);
+            this._button1.Name = "_button1";
+            this._button1.Size = new System.Drawing.Size(75, 23);
+            this._button1.TabIndex = 1;
+            this._button1.Text = "[Cancel]";
+            this._button1.UseVisualStyleBackColor = true;
             // 
-            // _buttonExit
+            // _button2
             // 
-            this._buttonExit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._buttonExit.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this._buttonExit.Location = new System.Drawing.Point(165, 3);
-            this._buttonExit.Name = "_buttonExit";
-            this._buttonExit.Size = new System.Drawing.Size(75, 23);
-            this._buttonExit.TabIndex = 2;
-            this._buttonExit.Text = "[Exit]";
-            this._buttonExit.UseVisualStyleBackColor = true;
+            this._button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._button2.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this._button2.Location = new System.Drawing.Point(165, 3);
+            this._button2.Name = "_button2";
+            this._button2.Size = new System.Drawing.Size(75, 23);
+            this._button2.TabIndex = 2;
+            this._button2.Text = "[Exit]";
+            this._button2.UseVisualStyleBackColor = true;
             // 
             // MessageDialog
             // 
@@ -155,9 +155,9 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button _buttonOk;
-        private System.Windows.Forms.Button _buttonCancel;
-        private System.Windows.Forms.Button _buttonExit;
+        private System.Windows.Forms.Button _button0;
+        private System.Windows.Forms.Button _button1;
+        private System.Windows.Forms.Button _button2;
         internal System.Windows.Forms.Label Message;
         internal System.Windows.Forms.CheckBox dontShowThisAgain;
     }

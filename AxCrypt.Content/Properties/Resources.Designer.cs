@@ -4231,13 +4231,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!
-        ///
-        ///Without Premium you can only view and permanently decrypt encrypted files..
+        ///   Looks up a localized string similar to !!We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
                 return ResourceManager.GetString("MessageAskAboutStartTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Without Premium you can only view and permanently decrypt encrypted files..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForMac {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForMac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!When the trial period ends, AxCrypt mobile apps does not allow users to sign in. A paid subscription is required to use the iOS and Android versions of AxCrypt..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForMobileApps {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForMobileApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!When the trial period ends, you&apos;ll automatically continue with AxCrypt Free unless you choose to purchase a subscription..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForWindows {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForWindows", resourceCulture);
             }
         }
         
@@ -6638,7 +6663,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Great! Now you can use all features of AxCrypt for free during the trial period.
+        ///   Looks up a localized string similar to !!Great! We&apos;ve enabled a free trial of Premium for you, Now you can use all features of AxCrypt for free during the trial period.
+        ///
+        ///Don&apos;t worry - you&apos;ll still have access to all your files if you choose not to purchase a subscription after the trial period is over.
         ///
         ///Good Luck and Enjoy,
         ///

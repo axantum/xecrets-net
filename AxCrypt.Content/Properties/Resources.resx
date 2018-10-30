@@ -1728,10 +1728,17 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!
-
-Without Premium you can only view and permanently decrypt encrypted files.</value>
+    <value>!!We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
+    <value>!!Without Premium you can only view and permanently decrypt encrypted files.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>!!When the trial period ends, AxCrypt mobile apps does not allow users to sign in. A paid subscription is required to use the iOS and Android versions of AxCrypt.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>!!When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
@@ -2654,7 +2661,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Great! Now you can use all features of AxCrypt for free during the trial period.
+    <value>!!Great! We've enabled a free trial of Premium for you, Now you can use all features of AxCrypt for free during the trial period.
+
+Don't worry - you'll still have access to all your files if you choose not to purchase a subscription after the trial period is over.
 
 Good Luck and Enjoy,
 
