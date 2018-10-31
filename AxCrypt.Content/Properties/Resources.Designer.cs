@@ -808,7 +808,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription has expired since {0}. Please renew to restore full business functionality..
+        ///   Looks up a localized string similar to Your subscription has expired since {0}. Please renew to restore full business functionality..
         /// </summary>
         public static string BusinessSubscriptionExpiredWarningText {
             get {
@@ -1033,7 +1033,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription..
+        ///   Looks up a localized string similar to Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription..
         /// </summary>
         public static string BusinessSubscriptionRenewalMemberCountErrorMessage {
             get {
@@ -1042,7 +1042,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
+        ///   Looks up a localized string similar to Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
         ///.
         /// </summary>
         public static string BusinessSubscriptionRenewalPageBody {
@@ -1052,7 +1052,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Renew.
+        ///   Looks up a localized string similar to Renew.
         /// </summary>
         public static string BusinessSubscriptionRenewMenu {
             get {
@@ -1061,7 +1061,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Business Subscription Renewal.
+        ///   Looks up a localized string similar to Business Subscription Renewal.
         /// </summary>
         public static string BusinessSubscriptionRenewTitle {
             get {
@@ -3502,7 +3502,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!After files are converted they will only open with the current AxCrypt password. Please verify your password.
+        ///   Looks up a localized string similar to After files are converted they will only open with the current AxCrypt password. Please verify your password.
         ///
         ///Do not forget this password!.
         /// </summary>
@@ -4231,13 +4231,40 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!
-        ///
-        ///Without Premium you can only view and permanently decrypt encrypted files..
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
                 return ResourceManager.GetString("MessageAskAboutStartTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Without Premium you can only view and permanently decrypt encrypted files..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForMac {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForMac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When the trial period ends, you can&apos;t use the AxCrypt mobile apps. A paid subscription is required for the iOS and Android versions of AxCrypt.
+        ///
+        ///You can always open encrypted files with a free desktop version of  AxCrypt..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForMobileApps {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForMobileApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When the trial period ends, you&apos;ll automatically continue with AxCrypt Free unless you choose to purchase a subscription..
+        /// </summary>
+        public static string MessageAskAboutStartTrialForWindows {
+            get {
+                return ResourceManager.GetString("MessageAskAboutStartTrialForWindows", resourceCulture);
             }
         }
         
@@ -4644,7 +4671,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Auto Upgrade 1.x and AES-128 Files.
+        ///   Looks up a localized string similar to Auto Upgrade 1.x and AES-128 Files.
         /// </summary>
         public static string OptionsConvertMenuItemText {
             get {
@@ -4653,7 +4680,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files..
+        ///   Looks up a localized string similar to Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files..
         /// </summary>
         public static string OptionsConvertMenuToolTip {
             get {
@@ -6638,7 +6665,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Great! Now you can use all features of AxCrypt for free during the trial period.
+        ///   Looks up a localized string similar to Great! We&apos;ve enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
+        ///
+        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
         ///
         ///Good Luck and Enjoy,
         ///
@@ -6804,7 +6833,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Upgrade 1.x and AES-128 Files.
+        ///   Looks up a localized string similar to Upgrade 1.x and AES-128 Files.
         /// </summary>
         public static string UpgradeLegacyFilesMenuItemText {
             get {
@@ -6813,7 +6842,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them..
+        ///   Looks up a localized string similar to Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them..
         /// </summary>
         public static string UpgradeLegacyFilesMenuToolTip {
             get {
@@ -6858,7 +6887,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!VerifyFile.
+        ///   Looks up a localized string similar to Check and Verify File.
         /// </summary>
         public static string VerifyFileToolStripMenuItem {
             get {

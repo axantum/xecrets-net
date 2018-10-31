@@ -423,7 +423,7 @@ You have been warned, now enjoy!</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
   <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
-    <value>!!Your subscription has expired since {0}. Please renew to restore full business functionality.</value>
+    <value>Your subscription has expired since {0}. Please renew to restore full business functionality.</value>
   </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Subscription expires on {0}.</value>
@@ -522,17 +522,17 @@ You have been warned, now enjoy!</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
   </data>
   <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
-    <value>!!Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription.</value>
+    <value>Too few members! Renewal must be for at least as many members as are currently used. To renew for fewer, remove some members from the subscription.</value>
   </data>
   <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
-    <value>!!Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
+    <value>Renewal must be for at least as many members as are currently used. To renew for  fewer members, please remove members first. If the renewal is for fewer than current, the subscription is reduced to that level and the remaining time for the unused members is lost.
 </value>
   </data>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
-    <value>!!Renew</value>
+    <value>Renew</value>
   </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
-    <value>!!Business Subscription Renewal</value>
+    <value>Business Subscription Renewal</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Acting on</value>
@@ -1427,7 +1427,7 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <value>We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>!!After files are converted they will only open with the current AxCrypt password. Please verify your password.
+    <value>After files are converted they will only open with the current AxCrypt password. Please verify your password.
 
 Do not forget this password!</value>
   </data>
@@ -1728,10 +1728,19 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!
-
-Without Premium you can only view and permanently decrypt encrypted files.</value>
+    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
+    <value>Without Premium you can only view and permanently decrypt encrypted files.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>When the trial period ends, you can't use the AxCrypt mobile apps. A paid subscription is required for the iOS and Android versions of AxCrypt.
+
+You can always open encrypted files with a free desktop version of  AxCrypt.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
@@ -1887,11 +1896,11 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Clear All Settings and Restart</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>!!Auto Upgrade 1.x and AES-128 Files</value>
+    <value>Auto Upgrade 1.x and AES-128 Files</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>!!Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files.</value>
+    <value>Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -2654,7 +2663,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Great! Now you can use all features of AxCrypt for free during the trial period.
+    <value>Great! We've enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
+
+Don't worry - you'll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
 
 Good Luck and Enjoy,
 
@@ -2720,10 +2731,10 @@ The AxCrypt Team</value>
     <value>Updating Status</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>!!Upgrade 1.x and AES-128 Files</value>
+    <value>Upgrade 1.x and AES-128 Files</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>!!Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them.</value>
+    <value>Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Get Premium!</value>
@@ -2741,7 +2752,7 @@ The AxCrypt Team</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
-    <value>!!VerifyFile</value>
+    <value>Check and Verify File</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verify Password</value>
