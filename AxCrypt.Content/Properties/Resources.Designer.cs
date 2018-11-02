@@ -6667,8 +6667,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Great! We&apos;ve enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
         ///
-        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
-        ///
+        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.        ///
         ///Good Luck and Enjoy,
         ///
         ///The AxCrypt Team.

@@ -372,9 +372,6 @@ U bent gewaarschuwd! Geniet van de beta!
     <value>EU BTW-nummer</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
-  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
-    <value>Uw abonnement is verlopen sinds {0}. Vernieuw om de volledige Business functionaliteit te herstellen.</value>
-  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Abonnement verloopt op {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
@@ -470,18 +467,6 @@ U bent gewaarschuwd! Geniet van de beta!
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Weet u zeker dat u het lidmaatschap wilt verwijderen?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
-  </data>
-  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
-    <value>Te weinig leden! Vernieuwing moet voor minstens evenveel leden zijn als momenteel in gebruik. Om voor minder leden te vernieuwen, verwijder dan enkele leden uit het abonnement.</value>
-  </data>
-  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
-    <value>Vernieuwing moet voor minstens evenveel leden zijn als momenteel in gebruik. Om voor minder leden te vernieuwen, verwijder dan enkele leden. Als de vernieuwing voor minder dan de huidige is, wordt het abonnement verlaagd tot dat niveau en is de resterende tijd voor de ongebruikte leden verloren.</value>
-  </data>
-  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
-    <value>Vernieuwen</value>
-  </data>
-  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
-    <value>Business Abonnementsverlenging</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Opereren op</value>
@@ -760,10 +745,6 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Uw Premium abonnement is bijna verlopen. Klik om te vernieuwen.</value>
-  </data>
-  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
-    <value>Controleer Bestand</value>
-    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Stop beveiligen en verwijder van lijst</value>
@@ -1261,7 +1242,7 @@ Een ontvanger is geïdentificeerd via de AxCrypt ID aanmeld email, maar we verst
     <value>We hebben software gedetecteerd die mogelijk AxCrypt en andere software niet goed kan laten functioneren. Deze sofware heet Lavasoft Web Companion. Probeer Lavasoft te desinstalleren als AxCrypt niet goed werkt.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Nadat bestanden geconverteerd zijn zullen ze alleen openen met het huidige AxCrypt wachtwoord. Verifieer alstublieft ur wachtwoord. .
+    <value>Nadat bestanden geconverteerd zijn van het AxCrypt 1.x bestandstype, moet u het nieuwe aanmeld wachtwoord gebruiken om ze te openen. Verifieer alstublieft hier.
 
 Vergeet dit wachtwoord niet!</value>
   </data>
@@ -1475,22 +1456,11 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Open Verkenner Hier</value>
   </data>
-  <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We hebben gemerkt dat u geen Premium-abonnement heeft, dus we willen graag een gratis proefversie voor u starten!
-</value>
-  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypteren.</value>
-    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
-  </data>
-  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Wanneer de proefperiode verloopt, kunt u de mobiele AxCrypt-apps niet gebruiken. Een betaald abonnement is vereist voor de iOS- en Android-versies van AxCrypt.
+    <value>Wij zagen dat u nog geen Premium abonnement had, dus daarom zouden wij graag voor u een gratis proefversie starten!
 
-U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxCrypt.</value>
-  </data>
-  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
-    <value>Wanneer de proefperiode verloopt, gaat u automatisch verder met AxCrypt Free, tenzij u ervoor kiest om een abonnement aan te schaffen.
-</value>
+Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypteren.</value>
+    <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fout</value>
@@ -1644,11 +1614,11 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>Wis Alle Instellingen en Herstart</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Automatisch 1.x en AES-128 Bestanden Upgraden</value>
+    <value>Automatisch 1.x Bestanden Upgraden</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Schakel het automatisch upgraden en converteren van AxCrypt 1.x en AES-128 bestanden in of uit.</value>
+    <value>Schakel het automatisch upgraden en converteren van oude AxCrypt 1.x bestanden wanneer ze gebruikt worden in of uit.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -2330,9 +2300,7 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Geweldig! We hebben een gratis proefversie van Premium voor u ingeschakeld. U kunt nu gratis gebruik maken van alle AxCrypt eigenschappen tijdens de proefperiode.
-
-Gen zorgen - u hebt nog altijd toegang tot al uw bestanden met AxCrypt Free, zelfs als u ervoor kiest om geen abonnement te nemen na de proefperiode.
+    <value>Geweldig! U kunt nu gratis gebruik maken van alle AxCrypt eigenschappen tijdens de proefperiode.
 
 Veel succes en geniet er van,
 
@@ -2391,10 +2359,10 @@ Het AxCrypt team</value>
     <value>Status Updaten</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>1.x  en AES-128 Bestanden Upgraden</value>
+    <value>1.x Bestanden Upgraden</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Kies een map met AxCrypt 1.x en AES-128-bestanden en upgrade ze.</value>
+    <value>Selecteer een plek om te zoeken naar bestanden die beveiligd zijn met AxCrypt 1.x en om ze te upgraden.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Koop Premium!</value>
@@ -2410,10 +2378,6 @@ Het AxCrypt team</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Verifieer uw nieuwe account alstublieft</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
-  </data>
-  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
-    <value>Controleer en Verifieer Bestand
-</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifieer Wachtwoord</value>

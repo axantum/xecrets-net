@@ -1,4 +1,5 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class PremiumManagerWithoutAutoTrial : PremiumManager
     {
-        protected override Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation)
+        protected override Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation, NameOf startTrialMessage)
         {
             if (planInformation == null)
             {

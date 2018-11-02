@@ -1,6 +1,4 @@
 ﻿using AxCrypt.Content;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,6 +6,9 @@ namespace Axantum.AxCrypt.Forms
 {
     internal partial class MessageDialog : StyledMessageBase
     {
+        private string _button1Text;
+        private string _button2Text;
+        private string _button3Text;
         private string _doNotShowAgainCustomText;
 
         public MessageDialog()
@@ -29,22 +30,29 @@ namespace Axantum.AxCrypt.Forms
 
         protected override void InitializeContentResources()
         {
-            _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonCancel.Text = "&" + Texts.ButtonCancelText;
-            _buttonExit.Text = "&" + Texts.ButtonExitText;
+            _button0.Text = "&" + _button1Text ?? Texts.ButtonOkText;
+            _button1.Text = "&" + _button2Text ?? Texts.ButtonCancelText;
+            _button2.Text = "&" + _button3Text ?? Texts.ButtonExitText;
             dontShowThisAgain.Text = _doNotShowAgainCustomText ?? Texts.DontShowAgainCheckBoxText;
         }
 
-        public MessageDialog HideExit()
+        public void InitializeButtonTexts(string button1Text, string button2Text, string button3Text)
         {
-            _buttonExit.Visible = false;
+            _button1Text = button1Text;
+            _button2Text = button2Text;
+            _button3Text = button3Text;
+        }
+
+        public MessageDialog HideButton2()
+        {
+            _button2.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
 
-        public MessageDialog HideCancel()
+        public MessageDialog HideButton1()
         {
-            _buttonCancel.Visible = false;
+            _button1.Visible = false;
             ReSizeButtonsPanel();
             return this;
         }
@@ -67,8 +75,8 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideExit();
-                messageDialog.HideCancel();
+                messageDialog.HideButton2();
+                messageDialog.HideButton1();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -81,7 +89,7 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideExit();
+                messageDialog.HideButton2();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 
@@ -106,7 +114,7 @@ namespace Axantum.AxCrypt.Forms
         {
             using (MessageDialog messageDialog = new MessageDialog(parent))
             {
-                messageDialog.HideCancel();
+                messageDialog.HideButton1();
                 messageDialog.Text = caption;
                 messageDialog.Message.Text = message;
 

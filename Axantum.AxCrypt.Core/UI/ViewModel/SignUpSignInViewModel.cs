@@ -43,10 +43,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private NameOf _welcomeMessage;
 
-        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMessage)
+        private NameOf _startTrialMessage;
+
+        public SignupSignInViewModel(ISignIn signIn, NameOf welcomeMessage, NameOf startTrialMessage)
         {
             _signinState = signIn;
             _welcomeMessage = welcomeMessage;
+            _startTrialMessage = startTrialMessage;
 
             InitializePropertyValues();
             BindPropertyChangedEvents();
@@ -106,7 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
+            await New<PremiumManager>().PlanStateWithTryPremium(New<KnownIdentities>().DefaultEncryptionIdentity, _startTrialMessage);
 
             if (Resolve.UserSettings.IsFirstSignIn)
             {
