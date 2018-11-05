@@ -394,6 +394,9 @@
     <value>Регистрационный номер плательщика НДС ЕС (EU VAT).</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Срок действия вашей подписки истек с {0}.  Пожалуйста, обновите для восстановления полной  бизнес функциональности. </value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Подписка заканчивается {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
@@ -489,6 +492,18 @@
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Вы уверены, что хотите удалить данного члена из подписки?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Слишком мало подписчиков! Oбновление должно быть минимум как число подписчиков, которые в настоящее время активные пользователи. Чтобы обновить на меньшее количество подписчиков, удалите некоторых пользователей из подписки. </value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Обновление должно быть как минимум для числа подписчиков, которые в настоящее время являются пользователями.  Чтобы обновить меньшее количество подписчиков , сначала удалите пользователей. Если обновление будет для меньшего количества подписчиков, чем в настоящее время, подписка будет уменьшена до этого уровня, а оставшееся время для неиспользуемых подписчиков будет потеряно. </value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Обновление бизнес-подписки</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Действовать согласно</value>
@@ -775,6 +790,10 @@
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ваша подписка скоро заканчивается. Нажмите для продления.</value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Проверить файл</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Прекратить протекцию и удалить из списка</value>
@@ -1497,11 +1516,22 @@
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Открыть Explorer Здесь</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Мы заметили, что у вас нет Premium подписки, поэтому мы хотели бы предложить бесплатную пробную версию!</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Мы заметили, что Вы не подписаны на Premium, поэтому мы хотели бы запустить бесплатную 30-дневную Пробную Версию для Вас!
 
 Без подписки на Premium Вы можете только просматривать и   перманентно кодировать файлы.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Когда пробный период заканчивается, вы не можете использовать мобильные приложения AxCrypt. Платная подписка требуется для iOS и Android версий AxCrypt.
+
+Вы всегда можете открыть зашифрованные файлы с помощью бесплатной версии AxCrypt на вашем компьютере. </value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>Когда пробный период будет завершен, вы автоматически продолжите использование AxCrypt Free, если вы не решите приобрести подписку.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Ошибка</value>
@@ -1655,7 +1685,7 @@
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Включить или отключить автоматическое обновление и конвертацию старых AxCrypt 1.x файлов во время их использования.</value>
+    <value>Включить или отключить автоматическое обновление и конвертацию AxCrypt 1.x и AES-128. </value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -2411,6 +2441,9 @@
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Пожалуйста, подтвердите Ваш новый аккаунт</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Пожалуйста, проверьте и подтвердите файл</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Подтвердить Пароль</value>

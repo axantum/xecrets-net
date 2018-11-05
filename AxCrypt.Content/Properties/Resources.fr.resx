@@ -473,6 +473,12 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>Souhaitez-vous vraiment retirer le membre de l'abonnement?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
   </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Renouveler</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Renouveler un abonnement Business</value>
+  </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Modifier l'abonnement</value>
     <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
@@ -694,6 +700,10 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Produit</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Statut</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Date/Heure</value>
   </data>
@@ -746,6 +756,10 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Votre abonnement est sur le point de se terminer. Cliquez ici pour le renouveler.</value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Vérifier le document</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Arrêter de protéger et retirer de la liste</value>
@@ -1002,7 +1016,7 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Fichiers AxCrypt Public Sharing Key</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' est déjà ouvert dans une autre application. Fermez-le, puis essayez à nouveau.</value>
+    <value>'{0}' est déjà ouvert dans une autre application. Veuillez vous assurer que l'autre application est entièrement fermée, puis essayez à nouveau. </value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' est noté protégé. </value>
@@ -1242,9 +1256,9 @@ Un destinataire est nommé par l'e-mail associé à son identifiant AxCrypt ID, 
     <value>Nous avons détecté des logiciels potentiellement incompatibles qui pourraient entraîner un dysfonctionnement d'AxCrypt et d'autres logiciels. Ce logiciel s'appelle Lavasoft Web Companion. Si vous notifiez des dysfonctionnements d'AxCrypt, essayez de désinstaller Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Une fois les fichiers convertis du format AxCrypt 1.x, vous devez utiliser le nouveau mot de passe de connexion pour les ouvrir, s'il vous plaît vérifiez le ici.
+    <value>Une fois les fichiers convertis, ils s'ouvriront uniquement avec votre mot de passe AxCrypt actuel. Veuillez confirmer votre mot de passe.
 
-Ne pas oublier ce mot de passe!</value>
+N'oubliez pas ce mot de passe !</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 utilise un nouveau format de fichier. 
@@ -1455,10 +1469,11 @@ Ce logiciel est livré d'après la licence.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Ouvrir Explorer Ici </value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Nous avons remarqué que vous n'aviez pas d'abonnement Premium, alors nous aimerions commencer un essai gratuit avec vous !</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Nous avons remarqué que vous n'aviez pas d'abonnement Premium,  alors nous aimerions bien commencer un essai gratuit avec vous !
-
-Sans Premium, vous pouvez seulement visionner et décrypter de façon permanente les fichiers cryptés.</value>
+    <value>Sans Premium, vous pouvez seulement visionner et décrypter de façon permanente les fichiers cryptés.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
@@ -1611,11 +1626,11 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Effacer tous les paramètres et redémarrer</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Auto Mise à niveau des fichiers 1.x </value>
+    <value>Mise à jour automatique des fichiers 1.x et AES-128.</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Activer ou désactiver la mise à jour automatique et la conversion des anciens fichiers AxCrypt 1.x  car ils sont utilisés.</value>
+    <value>Activer ou désactiver la mise à jour automatique et la conversion des fichiers AxCrypt 1.x et AES-128.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -2196,6 +2211,9 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
     <value>Donner votre avis</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Supprimé</value>
+  </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valide jusqu'au {1}.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
@@ -2283,9 +2301,11 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Bien! Vous pouvez maintenant utilisez toutes les caractéristiques d'AxCrypt gratuitement pendant la période d'essai. 
+    <value>Super ! Nous avons débloqué un essai gratuit de Premium pour vous. Vous pouvez maintenant utiliser toutes les caractéristiques d'AxCrypt gratuitement pendant la période d'essai. 
 
-Bonne chance, et profitez, 
+Pas d'inquiétude ! Vous aurez toujours accès à tous vos documents avec AxCrypt Free même si vous décidez de ne pas acquérir d'abonnement une fois la période d'essai terminée. 
+
+Bonne chance et profitez-en bien, 
 
 L'équipe AxCrypt </value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
@@ -2342,10 +2362,10 @@ L'équipe AxCrypt </value>
     <value>Mise à jour de l'Etat du fichier</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Mettre à niveau les fichiers AxCrypt 1.x</value>
+    <value>Mettre à jour les fichiers AxCrypt 1.x et AES-128.</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Choisissez un emplacement pour chercher des fichiers sécurisés avec AxCrypt 1.x et les mettre à niveau. </value>
+    <value>Choisissez un dossier rempli de documents AxCrypt 1.x et AES-128 et mettez-le à jour. </value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Obtenez Premium! </value>
@@ -2361,6 +2381,9 @@ L'équipe AxCrypt </value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Veuillez vérifier votre nouveau compte</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Vérifier et valider le document</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Vérifier Mot de Passe</value>
