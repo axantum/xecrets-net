@@ -127,6 +127,10 @@
     <value>Kontot måste verifieras av användaren först.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Det går inte att lägga till nya mottagare när du är i lokalt läge eller frånkopplad eftersom vi inte har kontakt med Internet.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Prov</value>
   </data>
@@ -377,6 +381,9 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>EU VAT-nummer</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Ditt abonnemang gick ut {0}. Du måste förnya för att återfå full funktionalitet.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Abonnemanget giltigt t.o.m. {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
@@ -472,6 +479,12 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Vill du verkligen ta bort medlemmen från abonnemanget?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Det är för få medlemmar! Du måste minst förnya lika många medlemmar som är aktiva. Om du vill minska antalet, ta bort några medlemmar först.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Du måste förnya med minst lika många medlemmar som är aktiva nu. Om du vill förnya för färre medlemmar, inaktivera några först. Om du förnyar för färre medlemmar, så reduceras abonnemanget omedelbart till den lägre nivån, och kvarvarande tid för de oanvända medlemmarna förloras.</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Agera på</value>
@@ -694,6 +707,10 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Produkt</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Status</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Tid</value>
   </data>
@@ -746,6 +763,10 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ditt abonnemang går snart ut. Klicka för att förnya.</value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Granska Fil</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Avskydda och ta bort från listan</value>
@@ -2032,6 +2053,10 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   <data name="ResetButtonText" xml:space="preserve">
     <value>Återställ</value>
   </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Återställ namnet</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Du är redan inloggad med det lösenordet!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
@@ -2198,6 +2223,9 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <value>Vad tycker du?</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Borttagen</value>
+  </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} giltigt till {1}.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
@@ -2363,6 +2391,9 @@ Vi på AxCrypt</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Verifiera ditt nya konto</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Verifiera</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifiera Lösenord</value>
