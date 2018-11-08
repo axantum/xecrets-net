@@ -777,7 +777,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _removeRecentFileToolStripMenuItem.Enabled = filesArePending ? false : true; _decryptAndRemoveFromListToolStripMenuItem.Enabled = filesArePending ? false : true; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; DisableRecentFilesContextMenuItems(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptionUpgradeMode), (EncryptionUpgradeMode mode) => _optionsEncryptionUpgradeModeToolStripMenuItem.Checked = mode == EncryptionUpgradeMode.AutoUpgrade);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
@@ -808,8 +808,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _mainViewModel.RandomRenameEnabled; };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : _mainViewModel.RandomRenameEnabled; };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _clearRecentFilesToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName)); };
@@ -864,6 +864,13 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
+        }
+
+        private void DisableRecentFilesContextMenuItems()
+        {
+            _recentFilesOpenToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
+            _recentFilesShowInFolderToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
+            _clearRecentFilesToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
