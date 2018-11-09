@@ -807,8 +807,8 @@ namespace Axantum.AxCrypt
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : _mainViewModel.RandomRenameEnabled; };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = _mainViewModel.FilesArePending ? false : await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
+            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _mainViewModel.FilesArePending ? false : _mainViewModel.RandomRenameEnabled; };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _clearRecentFilesToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName)); };
