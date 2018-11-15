@@ -867,10 +867,9 @@ namespace Axantum.AxCrypt
 
         private void DisableRecentFilesContextMenuItems()
         {
-            _recentFilesOpenToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
-            _removeRecentFileToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
-            _decryptAndRemoveFromListToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
-            _clearRecentFilesToolStripMenuItem.Enabled = _closeAndRemoveOpenFilesToolStripButton.Enabled ? false : true;
+            _recentFilesOpenToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
+            _recentFilesShowInFolderToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
+            _clearRecentFilesToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
