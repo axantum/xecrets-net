@@ -2206,6 +2206,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Description (related web site, user name etc)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>!!Export</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>New</value>
   </data>

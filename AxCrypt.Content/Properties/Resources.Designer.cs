@@ -5475,6 +5475,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Export.
+        /// </summary>
+        public static string PromptXecretsExport {
+            get {
+                return ResourceManager.GetString("PromptXecretsExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
         public static string PromptXecretsNew {
