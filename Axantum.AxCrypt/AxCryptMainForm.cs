@@ -868,7 +868,8 @@ namespace Axantum.AxCrypt
         private void DisableRecentFilesContextMenuItems()
         {
             _recentFilesOpenToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
-            _recentFilesShowInFolderToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
+            _removeRecentFileToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
+            _decryptAndRemoveFromListToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
             _clearRecentFilesToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
         }
 
