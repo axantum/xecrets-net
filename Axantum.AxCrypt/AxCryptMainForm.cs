@@ -776,7 +776,8 @@ namespace Axantum.AxCrypt
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; DisableRecentFilesContextMenuItems(); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _recentFilesOpenToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled; _removeRecentFileToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled; _decryptAndRemoveFromListToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled; _clearRecentFilesToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptionUpgradeMode), (EncryptionUpgradeMode mode) => _optionsEncryptionUpgradeModeToolStripMenuItem.Checked = mode == EncryptionUpgradeMode.AutoUpgrade);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
@@ -863,14 +864,6 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
-        }
-
-        private void DisableRecentFilesContextMenuItems()
-        {
-            _recentFilesOpenToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
-            _removeRecentFileToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
-            _decryptAndRemoveFromListToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
-            _clearRecentFilesToolStripMenuItem.Enabled = !_closeAndRemoveOpenFilesToolStripButton.Enabled;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
