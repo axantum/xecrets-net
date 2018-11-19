@@ -828,11 +828,6 @@ namespace Axantum.AxCrypt
 
         private void EnableOrDisableContextMenuItemsByPendingFiles()
         {
-            if (!_mainViewModel.FilesArePending)
-            {
-                return;
-            }
-
             bool isSelectedFilesPending = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Any(lvi => RecentFilesListView.IsCleanUpRequired(lvi));
 
             _recentFilesOpenToolStripMenuItem.Enabled = !isSelectedFilesPending;
