@@ -256,6 +256,16 @@ namespace Axantum.AxCrypt
             return item.SubItems[nameof(ColumnName.EncryptedPath)].Text;
         }
 
+        public static bool IsCleanUpRequired(ListViewItem item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            return item.ImageKey == nameof(ImageKey.CleanUpNeeded);
+        }
+
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
