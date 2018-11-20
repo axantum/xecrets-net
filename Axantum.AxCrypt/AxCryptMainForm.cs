@@ -956,6 +956,7 @@ namespace Axantum.AxCrypt
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
@@ -1858,8 +1859,11 @@ namespace Axantum.AxCrypt
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "To change password, provide the current password and then specify and verify your new password");
-
-                await SignInAsync();
+                await SignIn();
+            }
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return;
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
