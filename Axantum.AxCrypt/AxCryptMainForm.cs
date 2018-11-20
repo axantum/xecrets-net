@@ -1858,7 +1858,7 @@ namespace Axantum.AxCrypt
         {
             if (!Resolve.KnownIdentities.IsLoggedOn)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "To change password, provide the current password and then specify and verify your new password");
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
             }
             if (!Resolve.KnownIdentities.IsLoggedOn)
