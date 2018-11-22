@@ -32,8 +32,8 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -86,6 +86,7 @@ namespace Axantum.AxCrypt.Core.UI
 
                     result = await Task.Run(async () =>
                     {
+                        progress.NumberOfFilesProcessed = files.Count();
                         foreach (T file in files)
                         {
                             try

@@ -99,6 +99,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         public bool AllItemsConfirmed { get; set; }
 
+        public int NumberOfFilesProcessed { get; set; }
+
         private int _items;
 
         public int Items { get { return _items; } }
