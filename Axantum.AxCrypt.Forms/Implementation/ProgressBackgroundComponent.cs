@@ -32,7 +32,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
             _progressBackground.OperationCompleted += (sender, e) =>
             {
-                NumberOfFilesProcessed = _progressBackground.NumberOfFilesProcessed;
+                if (e.ProgressContext.NumberOfFilesProcessed != 0)
+                {
+                    NumberOfFilesProcessed = e.ProgressContext.NumberOfFilesProcessed;
+                }
                 ProgressBar progressBar = e.State as ProgressBar;
                 progressBar?.Dispose();
             };

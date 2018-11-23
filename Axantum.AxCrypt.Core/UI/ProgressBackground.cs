@@ -9,8 +9,6 @@ namespace Axantum.AxCrypt.Core.UI
 {
     public class ProgressBackground
     {
-        public int NumberOfFilesProcessed;
-
         private long _workerCount = 0;
 
         public event EventHandler<ProgressBackgroundEventArgs> OperationStarted;
@@ -24,7 +22,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         protected virtual void OnOperationCompleted(ProgressBackgroundEventArgs e)
         {
-            NumberOfFilesProcessed = e.ProgressContext.NumberOfFilesProcessed;
             OperationCompleted?.Invoke(this, e);
         }
 
