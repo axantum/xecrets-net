@@ -202,7 +202,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
-        
+
         public IEnumerable<ActiveFile> ActiveFiles
         {
             get
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt.Core.Session
                 List<ActiveFile> activeFiles = new List<ActiveFile>();
                 foreach (ActiveFile activeFile in ActiveFiles)
                 {
-                    if (activeFile.Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete) || activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+                    if (activeFile.IsDecrypted)
                     {
                         activeFiles.Add(activeFile);
                     }

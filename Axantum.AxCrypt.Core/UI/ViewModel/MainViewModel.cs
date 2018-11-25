@@ -191,6 +191,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return true;
         }
 
+        public IEnumerable<ActiveFile> SelectedActiveFiles()
+        {
+            return SelectedRecentFiles.Select(f => _fileSystemState.FindActiveFileFromEncryptedPath(f)).Where(af => af != null);
+        }
+
         private void UpdateDebugMode(bool enabled)
         {
             Resolve.Log.SetLevel(enabled ? LogLevel.Debug : LogLevel.Error);

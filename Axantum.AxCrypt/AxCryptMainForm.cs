@@ -807,9 +807,6 @@ namespace Axantum.AxCrypt
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
             _recentFilesListView.DragOver += (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = GetEffectsForRecentFiles(e); };
             _recentFilesListView.MouseClick += (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesContextMenuStrip.Show((Control)sender, e.Location); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _shareKeysToolStripMenuItem.Enabled = await _mainViewModel.CanShareAsync(_mainViewModel.SelectedRecentFiles.Select(srf => New<IDataStore>(srf))); };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) _recentFilesRestoreAnonymousNamesMenuItem.Enabled = _mainViewModel.RandomRenameEnabled; };
-            _recentFilesListView.MouseClick += async (sender, e) => { if (e.Button == MouseButtons.Right) EnableOrDisableContextMenuItemsByPendingFiles(); };
             _recentFilesListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedRecentFiles = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Select(lvi => RecentFilesListView.EncryptedPath(lvi)); };
             _removeRecentFileToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _clearRecentFilesToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName)); };
@@ -826,16 +823,18 @@ namespace Axantum.AxCrypt
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
         }
 
-        private void EnableOrDisableContextMenuItemsByPendingFiles()
+        private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            bool isSelectedFilesPending = _recentFilesListView.SelectedItems.Cast<ListViewItem>().Any(lvi => RecentFilesListView.IsCleanUpRequired(lvi));
+            bool noPendingDecrypted = !_mainViewModel.SelectedActiveFiles().Any(af => af.IsDecrypted);
+            bool filesSelected = _mainViewModel.SelectedRecentFiles.Any();
+            bool loggedOn = _mainViewModel.LoggedOn;
+            bool canRandomRename = _mainViewModel.RandomRenameEnabled;
 
-            _recentFilesOpenToolStripMenuItem.Enabled = !isSelectedFilesPending;
-            _removeRecentFileToolStripMenuItem.Enabled = !isSelectedFilesPending;
-            _decryptAndRemoveFromListToolStripMenuItem.Enabled = !isSelectedFilesPending;
-            _shareKeysToolStripMenuItem.Enabled = !isSelectedFilesPending;
-            _recentFilesRestoreAnonymousNamesMenuItem.Enabled = !isSelectedFilesPending;
-            _clearRecentFilesToolStripMenuItem.Enabled = !isSelectedFilesPending;
+            _removeRecentFileToolStripMenuItem.Enabled = noPendingDecrypted;
+            _decryptAndRemoveFromListToolStripMenuItem.Enabled = noPendingDecrypted;
+            _shareKeysToolStripMenuItem.Enabled = filesSelected & loggedOn & noPendingDecrypted;
+            _recentFilesRestoreAnonymousNamesMenuItem.Enabled = canRandomRename & filesSelected & loggedOn & noPendingDecrypted;
+            _clearRecentFilesToolStripMenuItem.Enabled = noPendingDecrypted;
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)

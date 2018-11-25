@@ -321,6 +321,23 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
+        public bool IsDecrypted
+        {
+            get
+            {
+                if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
+                {
+                    return true;
+                }
+                if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
         private ActiveFileVisualStates DetermineEncryptionState()
         {
             if (Status.HasMask(ActiveFileStatus.DecryptedIsPendingDelete))
@@ -328,10 +345,6 @@ namespace Axantum.AxCrypt.Core.Session
                 return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.DecryptedWithKnownKey : ActiveFileVisualStates.DecryptedWithoutKnownKey;
             }
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-            {
-                return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.DecryptedWithKnownKey : ActiveFileVisualStates.DecryptedWithoutKnownKey;
-            }
-            if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted | ActiveFileStatus.Exception))
             {
                 return Identity != LogOnIdentity.Empty ? ActiveFileVisualStates.DecryptedWithKnownKey : ActiveFileVisualStates.DecryptedWithoutKnownKey;
             }

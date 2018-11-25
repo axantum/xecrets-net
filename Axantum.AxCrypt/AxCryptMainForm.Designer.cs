@@ -184,7 +184,8 @@ namespace Axantum.AxCrypt
             this._recentFilesRestoreAnonymousNamesMenuItem,
             this._clearRecentFilesToolStripMenuItem});
             this._recentFilesContextMenuStrip.Name = "RecentFilesContextMenu";
-            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 158);
+            this._recentFilesContextMenuStrip.Size = new System.Drawing.Size(335, 180);
+            this._recentFilesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this._recentFilesContextMenuStrip_Opening);
             // 
             // _recentFilesOpenToolStripMenuItem
             // 
@@ -420,7 +421,7 @@ namespace Axantum.AxCrypt
             this._helpToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Size = new System.Drawing.Size(287, 24);
+            this._mainMenuStrip.Size = new System.Drawing.Size(167, 24);
             this._mainMenuStrip.TabIndex = 6;
             // 
             // _fileToolStripMenuItem
@@ -928,9 +929,9 @@ namespace Axantum.AxCrypt
             this._VerifyFileToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._VerifyFileToolStripMenuItem.Text = "[&Verfiy File]";
             // 
-            // _analysisAxcryptFileToolStripMenuItem
+            // _axcryptFileFormatCheckToolStripMenuItem
             // 
-            this._axcryptFileFormatCheckToolStripMenuItem.Name = "_analysisAxcryptFileToolStripMenuItem";
+            this._axcryptFileFormatCheckToolStripMenuItem.Name = "_axcryptFileFormatCheckToolStripMenuItem";
             this._axcryptFileFormatCheckToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this._axcryptFileFormatCheckToolStripMenuItem.Text = "[&AxCrypt File Format Check]";
             // 

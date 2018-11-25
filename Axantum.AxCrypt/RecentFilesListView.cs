@@ -256,16 +256,6 @@ namespace Axantum.AxCrypt
             return item.SubItems[nameof(ColumnName.EncryptedPath)].Text;
         }
 
-        public static bool IsCleanUpRequired(ListViewItem item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
-
-            return item.ImageKey == nameof(ImageKey.CleanUpNeeded);
-        }
-
         private static void UpdateListViewItem(ListViewItem item, ActiveFile activeFile)
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
@@ -295,13 +285,11 @@ namespace Axantum.AxCrypt
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, bool isShared)
         {
-            switch (activeFile.VisualState & ~(ActiveFileVisualStates.SharedKeys | ActiveFileVisualStates.LowEncryption))
+            if (activeFile.IsDecrypted)
             {
-                case ActiveFileVisualStates.DecryptedWithKnownKey:
-                case ActiveFileVisualStates.DecryptedWithoutKnownKey:
-                    item.ImageKey = nameof(ImageKey.CleanUpNeeded);
-                    item.ToolTipText = Texts.CleanUpNeededToolTip;
-                    return;
+                item.ImageKey = nameof(ImageKey.CleanUpNeeded);
+                item.ToolTipText = Texts.CleanUpNeededToolTip;
+                return;
             }
 
             if (isShared)
