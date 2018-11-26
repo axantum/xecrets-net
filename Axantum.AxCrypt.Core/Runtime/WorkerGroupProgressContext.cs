@@ -119,6 +119,18 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        public int NumberOfFilesProcessed
+        {
+            get
+            {
+                return _progress.NumberOfFilesProcessed;
+            }
+            set
+            {
+                _progress.NumberOfFilesProcessed = value;
+            }
+        }
+
         public Task EnterSingleThread()
         {
             return _singleThread.Enter();
