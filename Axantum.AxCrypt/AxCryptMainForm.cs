@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt
 
             if (_startMinimized || _commandLine.IsStartCommand)
             {
-                ShowNotifyIcon();
+                ShowNotifyIcon(string.Empty);
                 return;
             }
 
@@ -737,7 +737,7 @@ namespace Axantum.AxCrypt
                 switch (WindowState)
                 {
                     case FormWindowState.Minimized:
-                        ShowNotifyIcon();
+                        ShowNotifyIcon(string.Empty);
                         New<UserSettings>().RestoreFullWindow = false;
                         break;
 
@@ -748,9 +748,17 @@ namespace Axantum.AxCrypt
             };
         }
 
-        private void ShowNotifyIcon()
+        private void ShowNotifyIcon(string BalloonTipText)
         {
             _notifyIcon.Visible = true;
+
+            if (!string.IsNullOrEmpty(BalloonTipText))
+            {
+                _notifyIcon.BalloonTipText = BalloonTipText;
+                _notifyIcon.ShowBalloonTip(500);
+                return;
+            }
+
             if (!_balloonTipShown)
             {
                 _notifyIcon.ShowBalloonTip(500);
@@ -780,21 +788,9 @@ namespace Axantum.AxCrypt
             if (_stopwatch.Elapsed.TotalSeconds >= 50)
             {
                 _notifyIcon.BalloonTipText = $"The number of files processed is {_progressBackgroundWorker.NumberOfFilesProcessed} and Its time taken for {_stopwatch.Elapsed.ToString(@"hh\:mm\:ss")} mins";
-                FileProcessedShowNotifyIcon(_notifyIcon.BalloonTipText);
+                ShowNotifyIcon(_notifyIcon.BalloonTipText);
             }
             _stopwatch.Reset();
-        }
-
-        public void FileProcessedShowNotifyIcon(string BalloonTipText)
-        {
-            _balloonTipShown = false;
-            _notifyIcon.Visible = true;
-            if (!_balloonTipShown)
-            {
-                _notifyIcon.BalloonTipText = BalloonTipText;
-                _notifyIcon.ShowBalloonTip(500);
-                _balloonTipShown = true;
-            }
         }
 
         private void RestoreUserPreferences()
