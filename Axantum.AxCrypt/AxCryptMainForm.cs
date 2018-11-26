@@ -1856,7 +1856,9 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            bool isLoggedOn = _mainViewModel.LoggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
+
+            if (!isLoggedOn)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
