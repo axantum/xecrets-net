@@ -943,26 +943,28 @@ namespace Axantum.AxCrypt
         {
         }
 
+        private bool _isSignedInWithAxCryptId;
+
         private async Task SetSignInSignOutStatusAsync(bool isSignedIn)
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
-            bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
+            _isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
 
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
-            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _debugManageAccountToolStripMenuItem.Enabled = _isSignedInWithAxCryptId;
+            _exportMyPrivateKeyToolStripMenuItem.Enabled = _isSignedInWithAxCryptId;
+            _exportSharingKeyToolStripMenuItem.Enabled = _isSignedInWithAxCryptId;
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
-            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _importOthersSharingKeyToolStripMenuItem.Enabled = _isSignedInWithAxCryptId;
+            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = _isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
-            _encryptionUpgradeMenuItem.Enabled = isSignedInWithAxCryptId;
+            _encryptionUpgradeMenuItem.Enabled = _isSignedInWithAxCryptId;
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
@@ -1856,14 +1858,12 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool isLoggedOn = _mainViewModel.LoggedOn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
-
-            if (!isLoggedOn)
+            if (!_isSignedInWithAxCryptId)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
             }
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (!_isSignedInWithAxCryptId)
             {
                 return;
             }
