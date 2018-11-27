@@ -46,6 +46,8 @@ namespace Axantum.AxCrypt.Core.UI
 
         private SessionNotify _notificationMonitor;
 
+        private bool _isSignedInWithAxCryptId;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="KnownIdentities"/> class. Only for use by mocking frameork.
         /// </summary>
@@ -67,6 +69,18 @@ namespace Axantum.AxCrypt.Core.UI
             get
             {
                 return DefaultEncryptionIdentity != LogOnIdentity.Empty;
+            }
+        }
+
+        public bool IsSignedInWithAxCryptId
+        {
+            get
+            {
+                return _isSignedInWithAxCryptId && DefaultEncryptionIdentity.KeyPairs.Any();
+            }
+            set
+            {
+                _isSignedInWithAxCryptId = value;
             }
         }
 
