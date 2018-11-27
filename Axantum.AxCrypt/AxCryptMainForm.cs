@@ -948,7 +948,6 @@ namespace Axantum.AxCrypt
             await SetWindowTitleTextAsync(isSignedIn);
 
             New<KnownIdentities>().IsSignedInWithAxCryptId = isSignedIn;
-
             bool isSignedInWithAxCryptId = New<KnownIdentities>().IsSignedInWithAxCryptId;
 
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
@@ -1858,14 +1857,12 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool isLoggedOn = Resolve.KnownIdentities.IsSignedInWithAxCryptId;
-
-            if (!isLoggedOn)
+            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
             }
-            if (!isLoggedOn)
+            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
             {
                 return;
             }
