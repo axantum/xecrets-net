@@ -959,7 +959,8 @@ namespace Axantum.AxCrypt
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
-            bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.DefaultEncryptionIdentity.KeyPairs.Any();
+            New<KnownIdentities>().IsSignedInWithAxCryptId = isSignedIn;
+            bool isSignedInWithAxCryptId = New<KnownIdentities>().IsSignedInWithAxCryptId;
 
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
             _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
@@ -968,7 +969,7 @@ namespace Axantum.AxCrypt
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsChangePassphraseToolStripMenuItem.Enabled = isSignedInWithAxCryptId && New<AxCryptOnlineState>().IsOnline;
+            _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
@@ -1868,6 +1869,16 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
+                await SignIn();
+            }
+            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
+            {
+                return;
+            }
+
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
             ManageAccountViewModel viewModel = await ManageAccountViewModel.CreateAsync(accountStorage);
 

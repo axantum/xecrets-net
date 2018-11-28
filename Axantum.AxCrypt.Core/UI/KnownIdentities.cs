@@ -70,6 +70,20 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        private bool _isSignedInWithAxCryptId;
+
+        public bool IsSignedInWithAxCryptId
+        {
+            get
+            {
+                return _isSignedInWithAxCryptId && DefaultEncryptionIdentity.KeyPairs.Any();
+            }
+            set
+            {
+                _isSignedInWithAxCryptId = value;
+            }
+        }
+
         public virtual async Task AddAsync(LogOnIdentity identity)
         {
             if (!AddInternal(identity))
