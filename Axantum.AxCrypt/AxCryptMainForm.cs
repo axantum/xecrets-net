@@ -959,8 +959,6 @@ namespace Axantum.AxCrypt
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
-            //bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.IsSignedInWithAxCryptId;
-
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
             _debugManageAccountToolStripMenuItem.Enabled = isSignedIn;
             _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedIn;
