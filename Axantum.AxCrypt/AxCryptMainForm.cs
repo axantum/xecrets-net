@@ -959,23 +959,22 @@ namespace Axantum.AxCrypt
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
-            New<KnownIdentities>().IsSignedInWithAxCryptId = isSignedIn;
-            bool isSignedInWithAxCryptId = New<KnownIdentities>().IsSignedInWithAxCryptId;
+            //bool isSignedInWithAxCryptId = isSignedIn && Resolve.KnownIdentities.IsSignedInWithAxCryptId;
 
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
-            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _debugManageAccountToolStripMenuItem.Enabled = isSignedIn;
+            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedIn;
+            _exportSharingKeyToolStripMenuItem.Enabled = isSignedIn;
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
-            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
-            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedIn;
+            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedIn;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
-            _encryptionUpgradeMenuItem.Enabled = isSignedInWithAxCryptId;
+            _encryptionUpgradeMenuItem.Enabled = isSignedIn;
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
@@ -1869,12 +1868,12 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
+            if (!Resolve.KnownIdentities.IsLoggedOn)
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
             }
-            if (!Resolve.KnownIdentities.IsSignedInWithAxCryptId)
+            if (!Resolve.KnownIdentities.IsLoggedOn)
             {
                 return;
             }
