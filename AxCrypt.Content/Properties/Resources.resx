@@ -349,6 +349,21 @@ You have been warned, now enjoy!</value>
     <value>Administrators</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Your AxCrypt Business subscription is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>When your Business subscription is renewed you and your team can continue to enjoy:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don't forget to inform your team that you will be renewing!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Time to renew your AxCrypt Business subscription!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
 &lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;</value>
@@ -428,6 +443,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Subscription expires on {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>If your Business subscription is not renewed in time, you will fall back to one of our free plans.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Import</value>
@@ -1735,7 +1753,7 @@ This program is licensed according to the agreement.
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>When the trial period ends, you can't use the AxCrypt mobile apps. A paid subscription is required for the iOS and Android versions of AxCrypt.
+    <value>When the trial period ends, you can't use the AxCrypt mobile apps. A paid subscription is required.
 
 You can always open encrypted files with a free desktop version of  AxCrypt.</value>
   </data>
@@ -2207,7 +2225,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Description (related web site, user name etc)</value>
   </data>
   <data name="PromptXecretsExport" xml:space="preserve">
-    <value>!!Export</value>
+    <value>Export</value>
   </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>New</value>
@@ -2365,7 +2383,7 @@ Subject: AxCrypt Report Snapshot
     <comment>The name of the Russian Language in Russian. It should never be translated.</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>You are already signed in with this password!</value>
+    <value>We already tried the password you are signed in with! Try another password.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2667,6 +2685,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Great! We've enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
+
 Don't worry - you'll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
 
 Good Luck and Enjoy,

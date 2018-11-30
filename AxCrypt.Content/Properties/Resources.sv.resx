@@ -312,6 +312,21 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Administratörer</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ditt AxCrypt Business-abonnemang löper snart ut. Jag hoppas verkligen att du har haft mycket nytta och nöje av AxCrypt.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Jag hoppas verkligen du vill fortsätta med AxCrypt Business. Kontakta din AxCrypt-administratör för att få abonnemanget förnyat.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>När du förnyar ditt Business-abonnemang kan du och ditt team fortsätta använda:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Nu är det dags att förnya ditt AxCrypt Business-abonnemang!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Du har blivit tillagd som AxCrypt-användare av &lt;b&gt;{0}&lt;/b&gt;. Börja med att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt. Logga på AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange din verifikationskod nedan och sätt ditt personliga hemliga lösenord.&lt;/p&gt;
 &lt;p&gt;Om du har några frågor, kontakta {0} i första hand.&lt;/p&gt;</value>
@@ -387,6 +402,9 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Abonnemanget giltigt t.o.m. {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Om ditt Business-abonnemang inte förnyas i tid, faller ni automatiskt tillbaka till något av våra gratis-abonnemang.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importera</value>
@@ -485,6 +503,12 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
   <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
     <value>Du måste förnya med minst lika många medlemmar som är aktiva nu. Om du vill förnya för färre medlemmar, inaktivera några först. Om du förnyar för färre medlemmar, så reduceras abonnemanget omedelbart till den lägre nivån, och kvarvarande tid för de oanvända medlemmarna förloras.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Förnya</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Förnya Business</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Agera på</value>
@@ -1023,7 +1047,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>AxCrypt Delningsnyckelfiler</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' är redan öppnad. Stäng programmet och försök igen.</value>
+    <value>'{0}' är öppen i ett annat program. Kontrollera att alla fönster till det andra programmet är stängda och försök igen.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' är skrivskyddad.</value>
@@ -1265,7 +1289,7 @@ En mottagare identifieras med epostadressen för sitt AxCrypt ID, men vi skickar
     <value>Vi har hittat en potentiellt inkompatibel programvara som kan få AxCrypt och annan programvara att sluta fungera. Denna programvara heter Lavasoft Web Companion. Om AxCrypt inte fungerar, försök avinstallera Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>När filer konverterats från AxCrypt 1.x-formatet, måste du använda det nya inloggningslösenordet för att öppna dem, så bekräfta detta nu.
+    <value>Efter att filer konverterats kan de bara öppnas med det nu aktuella lösenordet till AxCrypt, därför måste du bekräfta detta nu.
 
 Kom ihåg det här lösenordet!</value>
   </data>
@@ -1479,11 +1503,20 @@ Detta program är licensierat i enlighet med avtalet.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Öppna Utforskaren Här</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Det verkar som du inte har Premium, så vi vill gärna ge dig möjligheten att prova gratis!</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Det verkar inte som du har Premium, så vi startar gärna en provperiod åt dig!
-
-Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>
+    <value>Utan Premium kan du bara visa dokument eller permanent ta bort skyddet.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>När provperiden tar slut kan du inte använda våra mobilappar. Det krävs ett betalt abonnemang.
+
+Du kan alltid dekryptera dina krypterade filer med en gratisversion av AxCrypt för din dator.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>När provperioden avslutas kommer du att automatiskt fortsätta med ett av våra gratis-abonnemang om du inte väljer att teckna ett betalt abonnemang.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fel</value>
@@ -1635,11 +1668,11 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Rensa alla inställningar och starta om</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Uppgradera 1.x-filer Automatiskt</value>
+    <value>Uppgradera 1.x och AES-128-filer automatiskt</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av äldre AxCrypt 1.x-filer allteftersom.</value>
+    <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av AxCrypt 1.x- och AES-128-filer.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -1923,6 +1956,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Beskrivning (sökväg, användarnamn etc)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Exportera</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Ny</value>
   </data>
@@ -2057,8 +2093,12 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>Återställ namnet</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
   </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Återställ originalnamnet för en krypterad fil med ändrat namn.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Du är redan inloggad med det lösenordet!</value>
+    <value>Vi har redan provat lösenordet du är inloggad med! Försök med ett annat lösenord.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2313,11 +2353,13 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Härligt! Nu kan kan du använda alla funktioner i AxCrypt gratis under provperioden.
+    <value>Härligt! Vi har aktiverat en gratis provperiod för Premium. Nu kan kan du använda alla funktioner i AxCrypt gratis under provperioden.
+
+Oroa dig inte - du har fortsatt tillgång till alla dina filer även om du väljer att inte köpa en betald prenumeration efter provperioden.
 
 Lycka till och mycket nöje!
 
-Vi på AxCrypt</value>
+AxCrypt-teamet</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
   <data name="TroubleRememberingLabel" xml:space="preserve">
@@ -2372,10 +2414,10 @@ Vi på AxCrypt</value>
     <value>Uppdaterar Status</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Uppgradera 1.x-Filer</value>
+    <value>Uppgradera 1.x- och AES-128-filer</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Välj en plats att söka efter filer skyddade med AxCrypt 1.x,  och uppgradera.</value>
+    <value>Välj en mapp med AxCrypt 1.x och AES-128-filer att uppgradera.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Skaffa Premium!</value>
