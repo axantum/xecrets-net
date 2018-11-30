@@ -25,6 +25,20 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -46,20 +60,6 @@ using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
@@ -959,20 +959,22 @@ namespace Axantum.AxCrypt
         {
             await SetWindowTitleTextAsync(isSignedIn);
 
+            bool isSignedInWithAxCryptId = New<KnownIdentities>().IsLoggedOnWithAxCryptId;
+
             _createAccountToolStripMenuItem.Enabled = !isSignedIn;
-            _debugManageAccountToolStripMenuItem.Enabled = isSignedIn;
-            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedIn;
-            _exportSharingKeyToolStripMenuItem.Enabled = isSignedIn;
+            _debugManageAccountToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportMyPrivateKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
-            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedIn;
-            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedIn;
+            _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
-            _encryptionUpgradeMenuItem.Enabled = isSignedIn;
+            _encryptionUpgradeMenuItem.Enabled = isSignedInWithAxCryptId;
         }
 
         private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
@@ -1866,12 +1868,11 @@ namespace Axantum.AxCrypt
 
         private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (!Resolve.KnownIdentities.IsLoggedOnWithAxCryptId)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.SettingsPasswordPageBody);
                 await SignIn();
             }
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (!Resolve.KnownIdentities.IsLoggedOnWithAxCryptId)
             {
                 return;
             }
