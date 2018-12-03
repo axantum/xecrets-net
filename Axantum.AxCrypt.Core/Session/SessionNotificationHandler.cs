@@ -118,6 +118,7 @@ namespace Axantum.AxCrypt.Core.Session
 
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
+                            progress.NumberOfFilesProcessed = container.Files.Count();
                             IDataContainer[] dc = new IDataContainer[] { container };
                             await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(dc, encryptionParameters, progress);
                         }

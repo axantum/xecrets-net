@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +11,8 @@ namespace Axantum.AxCrypt.Forms.Implementation
     public class ProgressBackgroundComponent : Component, IProgressBackground
     {
         private ProgressBackground _progressBackground = new ProgressBackground();
+
+        public int NumberOfFilesProcessed { get; set; }
 
         public ProgressBackgroundComponent(IContainer container)
         {
@@ -31,6 +32,10 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
             _progressBackground.OperationCompleted += (sender, e) =>
             {
+                if (e.ProgressContext.NumberOfFilesProcessed != 0)
+                {
+                    NumberOfFilesProcessed = e.ProgressContext.NumberOfFilesProcessed;
+                }
                 ProgressBar progressBar = e.State as ProgressBar;
                 progressBar?.Dispose();
             };

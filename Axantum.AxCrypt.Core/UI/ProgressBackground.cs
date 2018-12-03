@@ -1,5 +1,4 @@
 ﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Common;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
