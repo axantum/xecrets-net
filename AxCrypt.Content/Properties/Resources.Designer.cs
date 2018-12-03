@@ -645,6 +645,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
+        /// </summary>
+        public static string BusinessExpiresSoonMailBody0Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailBody0Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator..
+        /// </summary>
+        public static string BusinessExpiresSoonMailBody1Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailBody1Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When your Business subscription is renewed you and your team can continue to enjoy:.
+        /// </summary>
+        public static string BusinessExpiresSoonMailBody2Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailBody2Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don&apos;t forget to inform your team that you will be renewing!.
+        /// </summary>
+        public static string BusinessExpiresSoonMailBody3Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailBody3Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to renew your AxCrypt Business subscription!.
+        /// </summary>
+        public static string BusinessExpiresSoonMailSubject {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
         ///&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;.
         /// </summary>
@@ -822,6 +867,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionExpiresFormat {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionExpiresFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your Business subscription is not renewed in time, you will fall back to one of our free plans..
+        /// </summary>
+        public static string BusinessSubscriptionExpiresInfo {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionExpiresInfo", resourceCulture);
             }
         }
         
@@ -4249,7 +4303,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When the trial period ends, you can&apos;t use the AxCrypt mobile apps. A paid subscription is required for the iOS and Android versions of AxCrypt.
+        ///   Looks up a localized string similar to When the trial period ends, you can&apos;t use the AxCrypt mobile apps. A paid subscription is required.
         ///
         ///You can always open encrypted files with a free desktop version of  AxCrypt..
         /// </summary>
@@ -5475,7 +5529,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Export.
+        ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string PromptXecretsExport {
             get {
@@ -5881,7 +5935,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are already signed in with this password!.
+        ///   Looks up a localized string similar to We already tried the password you are signed in with! Try another password..
         /// </summary>
         public static string SameFilePasswordAsSignedInError {
             get {
@@ -6676,7 +6730,8 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Great! We&apos;ve enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
         ///
-        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.        ///
+        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
+        ///
         ///Good Luck and Enjoy,
         ///
         ///The AxCrypt Team.
