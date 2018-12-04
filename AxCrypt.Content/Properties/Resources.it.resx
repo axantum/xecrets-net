@@ -763,6 +763,10 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Il tuo piano di abbonamento sta per scadere. Clicca per rinnovarlo.</value>
   </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Controlla File</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
+  </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Interrompi la protezione e rimuovi dalla lista</value>
   </data>
@@ -1917,6 +1921,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Descrizione (sito correlato, nome utente ecc)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Nuovo</value>
   </data>
@@ -2388,6 +2395,9 @@ Il Team di AxCrypt</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Per favore verifica il tuo nuovo account</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Controlla e Verifica File</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifica la Password</value>
