@@ -127,6 +127,10 @@
     <value>Le compte doit d'abord être vérifié par l'utilisateur. </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Les nouveaux destinataires ne peuvent pas être ajoutés en mode local ou hors-ligne car il n'y a pas de connexion avec le serveur. </value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Période d'essai AxCrypt Premium</value>
   </data>
@@ -377,6 +381,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>Numéro de TVA européen</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Votre abonnement a expiré depuis {0}. Veuillez le renouveler pour restaurer l'ensemble des fonctionnalités Business.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>L'abonnement expire le {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
@@ -472,6 +479,12 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Souhaitez-vous vraiment retirer le membre de l'abonnement?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Trop peu de membres ! Le renouvellement doit se faire au minimum pour le même nombre de membres actuellement inscrits. Afin de renouveler pour moins de membres, retirez-en certains de l'abonnement. </value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Le renouvellement doit se faire au minimum pour le même nombre de membres actuellement inscrits. Afin de renouveler pour moins de membres, veuillez d'abord en supprimer. Si le renouvellement se fait pour moins de membres, l'abonnement sera réduit à ce nombre et le temps restant pour les membres non-utilisés sera perdu.</value>
   </data>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Renouveler</value>
@@ -1476,6 +1489,14 @@ Ce logiciel est livré d'après la licence.
     <value>Sans Premium, vous pouvez seulement visionner et décrypter de façon permanente les fichiers cryptés.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Lorsque la période d'essai se finira, vous ne pourrez plus utiliser les applications mobile AxCrypt. Un abonnement est requis pour accéder aux versions iOS et Android d'AxCrypt. 
+
+Vous pourrez toujours ouvrir des fichiers cryptés avec la version en ligne gratuite d'AxCrypt.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>Lorsque la période d'essai se finira, vous continuerez automatiquement avec AxCrypt Free, sauf si vous choisissez d'acquérir un abonnement. </value>
+  </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Erreur</value>
     <comment>Title of error message box for generic error</comment>
@@ -2045,8 +2066,16 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
   <data name="ResetButtonText" xml:space="preserve">
     <value>Réinitialisation</value>
   </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Revenir au nom initial</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Retourner au nom original du document.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Vous êtes déjà connecté avec ce mot de passe!</value>
+    <value>Nous avons déjà essayé le mot de passe avec lequel vous vous êtes connecté ! Essayez un autre mot de passe.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
