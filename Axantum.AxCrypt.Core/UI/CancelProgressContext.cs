@@ -116,6 +116,18 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public int NumberOfFilesProcessed
+        {
+            get
+            {
+                return _progress.NumberOfFilesProcessed;
+            }
+            set
+            {
+                _progress.NumberOfFilesProcessed = value;
+            }
+        }
+
         public event EventHandler<ProgressEventArgs> Progressing
         {
             add
