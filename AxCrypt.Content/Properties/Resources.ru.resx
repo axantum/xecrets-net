@@ -325,6 +325,18 @@
     <value>Администраторы </value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ваша подписка на AxCrypt Business скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к AxCrypt Business администратору.  </value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Когда ваша Business подписка обновляется, вы и ваша команда можете продолжать пользоваться:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Как администратор, вы должны продлить подписку для вашей команды в административном модуле веб-аккауна  AxCrypt. Используйте кнопку ниже, чтобы перейти прямо туда. Не забудьте сообщить своей команде, что вы будете обновлять!</value>
+  </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Время продлить подписку на AxCrypt Business!</value>
   </data>
@@ -403,6 +415,9 @@
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Подписка заканчивается {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Если ваша Business подписка не будет обновлена вовремя, вы вернетесь к одному из наших бесплатных планов.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Импортировать </value>
@@ -1527,7 +1542,7 @@
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Когда пробный период заканчивается, вы не можете использовать мобильные приложения AxCrypt. Платная подписка требуется для iOS и Android версий AxCrypt.
+    <value>Когда пробный период заканчивается, вы не можете использовать мобильные приложения AxCrypt. Платная подписка требуется. 
 
 Вы всегда можете открыть зашифрованные файлы с помощью бесплатной версии AxCrypt на вашем компьютере. </value>
   </data>
@@ -2112,7 +2127,7 @@
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Вы уже выполнили вход в систему с данным паролем!</value>
+    <value>Мы уже пробовали пароль, с которым вы вошли в систему! Попробуйте другой пароль.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">

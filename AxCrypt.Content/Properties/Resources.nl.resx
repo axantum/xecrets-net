@@ -303,6 +303,23 @@ U bent gewaarschuwd! Geniet van de beta!
     <value>Administrators</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Uw AxCrypt Business abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.
+</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.
+</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Wanneer uw Business abonnement wordt vernieuwd,kunt u en uw team blijven genieten van:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Tijd om uw AxCrypt Business abonnement te vernieuwen!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
 &lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0}.&lt;/p&gt;</value>
@@ -378,6 +395,10 @@ U bent gewaarschuwd! Geniet van de beta!
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Abonnement verloopt op {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Als uw Business abonnement niet op tijd wordt verlengd, valt u terug in een van onze gratis abonnementen.
+</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importeer</value>
@@ -1484,7 +1505,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Wanneer de proefperiode verloopt, kunt u de mobiele AxCrypt-apps niet gebruiken. Een betaald abonnement is vereist voor de iOS- en Android-versies van AxCrypt.
+    <value>Wanneer de proefperiode verloopt, kunt u de mobiele AxCrypt-apps niet gebruiken. Een betaald abonnement is dan vereist.
 
 U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxCrypt.</value>
   </data>
@@ -1934,6 +1955,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Beschrijving (gerelateerde website, gebruikersnaam, etc.)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Export</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Nieuw</value>
   </data>
@@ -2074,7 +2098,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>U bent al aangemeld met dit wachtwoord!</value>
+    <value>We hebben het wachtwoord waarmee u bent aangemeld al geprobeerd! Probeer een ander wachtwoord.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
