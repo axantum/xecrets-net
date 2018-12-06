@@ -17,7 +17,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public void ShowTransient(string title, string text)
         {
-            _notifyIcon.ShowBalloonTip(500, title, text, ToolTipIcon.Info);
+            _notifyIcon.ShowBalloonTip(50000, title, text, ToolTipIcon.Info);
         }
     }
 }
