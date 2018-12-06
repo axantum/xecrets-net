@@ -325,6 +325,21 @@
     <value>Администраторы </value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ваша подписка на AxCrypt Business скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
+    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к AxCrypt Business администратору.  </value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Когда ваша Business подписка обновляется, вы и ваша команда можете продолжать пользоваться:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
+    <value>Как администратор, вы должны продлить подписку для вашей команды в административном модуле веб-аккауна  AxCrypt. Используйте кнопку ниже, чтобы перейти прямо туда. Не забудьте сообщить своей команде, что вы будете обновлять!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Время продлить подписку на AxCrypt Business!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt; Вы были добавлены аккаунтом &lt;b&gt;{0}&lt;/b&gt; в пользователи AxCrypt File Security. Чтобы начать защиту файлов, просто &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;загрузите&lt;/a&gt; и установите AxCrypt. Войдите в AxCrypt с помощью &lt;b&gt; {2} &lt;/ b&gt;, &lt;p&gt;, ниже введите верификационный код и установите персональный пароль.&lt;/p&gt;
 &lt;p&gt; Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь в первую очередь с с {0}. &lt;/ p&gt;</value>
@@ -400,6 +415,9 @@
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Подписка заканчивается {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Если ваша Business подписка не будет обновлена вовремя, вы вернетесь к одному из наших бесплатных планов.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Импортировать </value>
@@ -1299,9 +1317,9 @@
     <value>Мы обнаружили потенциально несовместимое программное обеспечение, которое возможно является причиной неполадок AxCrypt и других программных обеспечений. Данное программное обеспечение называется Lavasoft Web Companion. Если AxCrypt работает неисправно, попробуйте деинсталлировать Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>После конвертирования файлов из AxCrypt 1.x формата Вы должны использовать новый пароль для Входа В Систему для их открытия. Пожалуйста, подтвердите это здесь.
+    <value>После конвертации файлов они будут открыты только с помощью текущего пароля AxCrypt. Пожалуйста, подтвердите свой пароль. 
 
-Не забудьте данный пароль!</value>
+Не забудьте этот пароль!</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 использует новый формат файла.
@@ -1520,13 +1538,11 @@
     <value>Мы заметили, что у вас нет Premium подписки, поэтому мы хотели бы предложить бесплатную пробную версию!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Мы заметили, что Вы не подписаны на Premium, поэтому мы хотели бы запустить бесплатную 30-дневную Пробную Версию для Вас!
-
-Без подписки на Premium Вы можете только просматривать и   перманентно кодировать файлы.</value>
+    <value>Без Premium Вы только можете просматривать и перманентно декодировать зашифрованные файлы.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Когда пробный период заканчивается, вы не можете использовать мобильные приложения AxCrypt. Платная подписка требуется для iOS и Android версий AxCrypt.
+    <value>Когда пробный период заканчивается, вы не можете использовать мобильные приложения AxCrypt. Платная подписка требуется. 
 
 Вы всегда можете открыть зашифрованные файлы с помощью бесплатной версии AxCrypt на вашем компьютере. </value>
   </data>
@@ -1681,7 +1697,7 @@
     <value>Очистить все настройки и перезагрузить. </value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Автоматически Обновить 1.x Файлы</value>
+    <value>Автоматически обновить файлы: 1.x  и AES-128</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
@@ -1970,6 +1986,9 @@
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Описание (сопутствующая веб страница, имя пользователя и тд)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Экспортировать</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Новое</value>
   </data>
@@ -2108,7 +2127,7 @@
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Вы уже выполнили вход в систему с данным паролем!</value>
+    <value>Мы уже пробовали пароль, с которым вы вошли в систему! Попробуйте другой пароль.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2363,7 +2382,9 @@
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Прекрасно! Теперь Вы имеете бесплатный доступ ко всем AxCrypt функциям на протяжении пробного периода.
+    <value>Прекрасно! Мы активировали бесплатную пробную версию Premium для Bас. Теперь Bы можете использовать все функции AxCrypt бесплатно в течение пробного периода.
+
+Не волнуйтесь - у Bас все равно будет доступ ко всем Bашим файлам с помощью AxCrypt Free, даже если Bы решили не покупать подписку после окончания пробного периода.
 
 Желаем удачи и приятного опыта!
 
@@ -2422,10 +2443,10 @@
     <value>Обновление Статуса</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Обновить 1.x Файлы</value>
+    <value>Обновить файлы: 1.x и AES-128</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Выберите место для поиска файлов, защищённых с AxCrypt 1.x, и обновите их.</value>
+    <value>Выберите папку с файлами AxCrypt 1.x и AES-128 и обновите их.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Приобрести Premium!</value>
