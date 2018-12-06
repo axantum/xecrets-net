@@ -32,6 +32,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -118,7 +119,6 @@ namespace Axantum.AxCrypt.Core.Session
 
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
-                            progress.NumberOfFilesProcessed = container.Files.Count();
                             IDataContainer[] dc = new IDataContainer[] { container };
                             await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(dc, encryptionParameters, progress);
                         }
@@ -127,6 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
+                    New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format("Completed {0} files and Total time taken is {1}(hh:mm:ss)", progress.Totals.NumberOfFiles, progress.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:

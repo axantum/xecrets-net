@@ -116,17 +116,7 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public int NumberOfFilesProcessed
-        {
-            get
-            {
-                return _progress.NumberOfFilesProcessed;
-            }
-            set
-            {
-                _progress.NumberOfFilesProcessed = value;
-            }
-        }
+        public ProgressTotals Totals { get; } = new ProgressTotals();
 
         public event EventHandler<ProgressEventArgs> Progressing
         {

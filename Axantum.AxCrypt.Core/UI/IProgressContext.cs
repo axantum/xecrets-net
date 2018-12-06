@@ -55,6 +55,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         void LeaveSingleThread();
 
-        int NumberOfFilesProcessed { get; set; }
+        ProgressTotals Totals { get; }
     }
 }

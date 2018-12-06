@@ -34,6 +34,7 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -233,6 +234,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     await EncryptFileUniqueWithBackupAndWipeAsync(file, encryptionParameters, progress);
                     progress.AddCount(1);
+                    progress.Totals.NumberOfFiles += 1;
                 }
             }
             finally
@@ -716,6 +718,7 @@ namespace Axantum.AxCrypt.Core
             async (status) =>
             {
                 await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
+                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format("Completed {0} files and Total time taken is {1}(hh:mm:ss)", status.Totals.NumberOfFiles, status.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             }).Free();
         }

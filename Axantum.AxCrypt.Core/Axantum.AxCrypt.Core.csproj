@@ -213,6 +213,7 @@
     <Compile Include="UI\IMainUI.cs" />
     <Compile Include="UI\IPopup.cs" />
     <Compile Include="UI\ISignInState.cs" />
+    <Compile Include="UI\IGlobalNotification.cs" />
     <Compile Include="UI\IVerifySignInPassword.cs" />
     <Compile Include="UI\KnownFolderKind.cs" />
     <Compile Include="UI\EncryptionUpgradeMode.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="UI\PremiumManagerWithoutAutoTrial.cs" />
     <Compile Include="UI\ProgressBackground.cs" />
     <Compile Include="UI\ProgressBackgroundEventArgs.cs" />
+    <Compile Include="UI\ProgressTotals.cs" />
     <Compile Include="UI\RegexEmailParser.cs" />
     <Compile Include="UI\SecretsSortOrder.cs" />
     <Compile Include="UI\SettingsStore.cs" />

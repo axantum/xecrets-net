@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Runtime;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -45,8 +44,6 @@ namespace Axantum.AxCrypt.Core.UI
         private static readonly TimeSpan ProgressTimeInterval = TimeSpan.FromMilliseconds(100);
 
         private TimeSpan _nextProgressTime;
-
-        private ITiming _stopwatch = OS.Current.StartTiming();
 
         private static readonly object _progressLock = new object();
 
@@ -98,8 +95,6 @@ namespace Axantum.AxCrypt.Core.UI
         }
 
         public bool AllItemsConfirmed { get; set; }
-
-        public int NumberOfFilesProcessed { get; set; }
 
         private int _items;
 
@@ -164,11 +159,11 @@ namespace Axantum.AxCrypt.Core.UI
             lock (_progressLock)
             {
                 _current += count;
-                if (_stopwatch.Elapsed < _nextProgressTime)
+                if (Totals.Elapsed < _nextProgressTime)
                 {
                     return;
                 }
-                _nextProgressTime = _stopwatch.Elapsed.Add(ProgressTimeInterval);
+                _nextProgressTime = Totals.Elapsed.Add(ProgressTimeInterval);
             }
             ProgressEventArgs e = new ProgressEventArgs(Percent, Display);
             OnProgressing(e);
@@ -204,6 +199,8 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
+        public ProgressTotals Totals { get; } = new ProgressTotals();
+
         /// <summary>
         /// Start a new progress tracking level. Use this to indicate the start of a (sub-)operation
         /// that tracks progress.
@@ -237,6 +234,7 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 --_progressLevel;
             }
+            Totals.Done();
             ProgressEventArgs e = new ProgressEventArgs(100, string.Empty);
             OnProgressing(e);
         }

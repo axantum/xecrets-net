@@ -86,7 +86,6 @@ namespace Axantum.AxCrypt.Core.UI
 
                     result = await Task.Run(async () =>
                     {
-                        progress.NumberOfFilesProcessed = files.Count();
                         foreach (T file in files)
                         {
                             try
@@ -112,11 +111,13 @@ namespace Axantum.AxCrypt.Core.UI
                             {
                                 return result;
                             }
+                            progress.Totals.NumberOfFiles += 1;
                         }
                         return result;
                     });
+
                     progress.NotifyLevelFinished();
-                    return result;
+                    return new FileOperationContext(progress.Totals);
                 },
                 (FileOperationContext status) => allCompleteAsync(status),
                 groupProgress).Free();

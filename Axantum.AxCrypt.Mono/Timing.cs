@@ -25,12 +25,11 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 using Axantum.AxCrypt.Core.Runtime;
+using System;
+using System.Diagnostics;
 
 namespace Axantum.AxCrypt.Mono
 {
@@ -43,6 +42,16 @@ namespace Axantum.AxCrypt.Mono
         public TimeSpan Elapsed
         {
             get { return _stopwatch.Elapsed; }
+        }
+
+        public void Stop()
+        {
+            _stopwatch.Stop();
+        }
+
+        public void Reset()
+        {
+            _stopwatch.Reset();
         }
 
         #endregion ITiming Members
