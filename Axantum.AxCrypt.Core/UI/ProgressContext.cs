@@ -234,7 +234,6 @@ namespace Axantum.AxCrypt.Core.UI
                 }
                 --_progressLevel;
             }
-            Totals.Done();
             ProgressEventArgs e = new ProgressEventArgs(100, string.Empty);
             OnProgressing(e);
         }

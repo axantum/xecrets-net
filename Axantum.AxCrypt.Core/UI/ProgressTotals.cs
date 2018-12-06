@@ -18,15 +18,5 @@ namespace Axantum.AxCrypt.Core.UI
                 return _stopwatch.Elapsed;
             }
         }
-
-        public void Done()
-        {
-            _stopwatch.Stop();
-        }
-
-        public void Reset()
-        {
-            _stopwatch.Stop();
-        }
     }
 }
