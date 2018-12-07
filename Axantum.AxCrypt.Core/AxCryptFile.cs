@@ -717,7 +717,6 @@ namespace Axantum.AxCrypt.Core
             async (status) =>
             {
                 await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
-                status.Totals.ShowNotification();
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             }).Free();
         }

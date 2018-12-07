@@ -64,7 +64,14 @@ namespace Axantum.AxCrypt.Core.UI
                 return work((TDataItem)file, progress);
             };
 
-            return InvokeAsync(files, singleFileOperation, allComplete);
+            return InvokeAsync(files, singleFileOperation, (status) =>
+            {
+                if (status.ErrorStatus == ErrorStatus.Success)
+                {
+                    status.Totals.ShowNotification();
+                }
+                return allComplete(status);
+            });
         }
 
         /// <summary>

@@ -268,8 +268,6 @@ namespace Axantum.AxCrypt
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
             _notifyExitToolStripMenuItem.Text = "&" + Texts.ExitToolStripMenuItemText;
@@ -748,11 +746,16 @@ namespace Axantum.AxCrypt
         private void ShowNotifyIcon()
         {
             _notifyIcon.Visible = true;
+
             if (!_balloonTipShown)
             {
+                _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
+                _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
                 _notifyIcon.ShowBalloonTip(500);
+
                 _balloonTipShown = true;
             }
+
             Hide();
         }
 
