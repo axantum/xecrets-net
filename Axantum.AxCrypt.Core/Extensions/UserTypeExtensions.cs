@@ -527,11 +527,11 @@ namespace Axantum.AxCrypt.Core.Extensions
             return true;
         }
 
-        public static void ShowNotification(this FileOperationContext context)
+        public static void ShowNotification(this ProgressTotals progressTotals)
         {
-            if (context.Totals.Elapsed.TotalSeconds >= 50)
+            if (progressTotals.Elapsed.TotalSeconds >= 10)
             {
-                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, context.Totals.NumberOfFiles, context.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, progressTotals.Elapsed.ToString(@"hh\:mm\:ss")));
             }
         }
     }

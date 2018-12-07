@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
-                    new FileOperationContext(progress.Totals).ShowNotification();
+                    progress.Totals.ShowNotification();
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:

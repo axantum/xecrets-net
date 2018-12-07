@@ -84,13 +84,13 @@ namespace Axantum.AxCrypt.Core.UI
 
                     FileOperationContext result = await Task.Run(async () =>
                     {
-                        result = null;
+                        FileOperationContext context = null;
 
                         foreach (T file in files)
                         {
                             try
                             {
-                                result = await workAsync(file, progress);
+                                context = await workAsync(file, progress);
                             }
                             catch (Exception ex) when (ex is OperationCanceledException)
                             {
@@ -107,9 +107,9 @@ namespace Axantum.AxCrypt.Core.UI
                                 New<IReport>().Exception(ex);
                                 return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
                             }
-                            if (result.ErrorStatus != ErrorStatus.Success)
+                            if (context.ErrorStatus != ErrorStatus.Success)
                             {
-                                return result;
+                                return context;
                             }
                             progress.Totals.NumberOfFiles += 1;
                         }
