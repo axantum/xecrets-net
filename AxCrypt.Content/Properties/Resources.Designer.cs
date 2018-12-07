@@ -5268,6 +5268,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Completed {0} files and Total time taken is {1}(hh:mm:ss).
+        /// </summary>
+        public static string ProgressTotalsInformationText {
+            get {
+                return ResourceManager.GetString("ProgressTotalsInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verification Code.
         /// </summary>
         public static string PromptActivationCode {

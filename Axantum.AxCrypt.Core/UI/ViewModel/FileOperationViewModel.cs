@@ -351,7 +351,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static bool CheckStatusAndShowMessage(FileOperationContext context, string fallbackName)
         {
-            New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format("Completed {0} files and Total time taken is {1}(hh:mm:ss)", context.Totals.NumberOfFiles, context.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+            New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, context.Totals.NumberOfFiles, context.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
             return Resolve.StatusChecker.CheckStatusAndShowMessage(context.ErrorStatus, string.IsNullOrEmpty(context.FullName) ? fallbackName : context.FullName, context.InternalMessage);
         }
 

@@ -127,7 +127,7 @@ namespace Axantum.AxCrypt.Core.Session
                     {
                         progress.NotifyLevelFinished();
                     }
-                    New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format("Completed {0} files and Total time taken is {1}(hh:mm:ss)", progress.Totals.NumberOfFiles, progress.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+                    New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progress.Totals.NumberOfFiles, progress.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
                     break;
 
                 case SessionNotificationType.WatchedFolderRemoved:

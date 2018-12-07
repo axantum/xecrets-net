@@ -82,15 +82,15 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     progress.NotifyLevelStart();
 
-                    FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
-
-                    result = await Task.Run(async () =>
+                    FileOperationContext result = await Task.Run(async () =>
                     {
+                        FileOperationContext contextResult = new FileOperationContext(string.Empty, ErrorStatus.Success);
+
                         foreach (T file in files)
                         {
                             try
                             {
-                                result = await workAsync(file, progress);
+                                contextResult = await workAsync(file, progress);
                             }
                             catch (Exception ex) when (ex is OperationCanceledException)
                             {
@@ -107,13 +107,13 @@ namespace Axantum.AxCrypt.Core.UI
                                 New<IReport>().Exception(ex);
                                 return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
                             }
-                            if (result.ErrorStatus != ErrorStatus.Success)
+                            if (contextResult.ErrorStatus != ErrorStatus.Success)
                             {
-                                return result;
+                                return contextResult;
                             }
                             progress.Totals.NumberOfFiles += 1;
                         }
-                        return result;
+                        return contextResult;
                     });
 
                     progress.NotifyLevelFinished();

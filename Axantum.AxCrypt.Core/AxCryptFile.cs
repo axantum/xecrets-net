@@ -718,7 +718,7 @@ namespace Axantum.AxCrypt.Core
             async (status) =>
             {
                 await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
-                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format("Completed {0} files and Total time taken is {1}(hh:mm:ss)", status.Totals.NumberOfFiles, status.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, status.Totals.NumberOfFiles, status.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             }).Free();
         }
