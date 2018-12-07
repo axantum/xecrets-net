@@ -526,5 +526,13 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             return true;
         }
+
+        public static void ShowNotification(this FileOperationContext context)
+        {
+            if (context.Totals.Elapsed.TotalSeconds >= 50)
+            {
+                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, context.Totals.NumberOfFiles, context.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+            }
+        }
     }
 }

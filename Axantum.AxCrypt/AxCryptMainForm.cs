@@ -748,7 +748,6 @@ namespace Axantum.AxCrypt
         private void ShowNotifyIcon()
         {
             _notifyIcon.Visible = true;
-
             if (!_balloonTipShown)
             {
                 _notifyIcon.ShowBalloonTip(500);

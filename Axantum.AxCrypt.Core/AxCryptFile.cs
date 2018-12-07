@@ -34,7 +34,6 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -718,7 +717,7 @@ namespace Axantum.AxCrypt.Core
             async (status) =>
             {
                 await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles));
-                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, status.Totals.NumberOfFiles, status.Totals.Elapsed.ToString(@"hh\:mm\:ss")));
+                status.ShowNotification();
                 statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, status.InternalMessage);
             }).Free();
         }
