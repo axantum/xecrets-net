@@ -12,7 +12,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
 
         public NotifyIconGlobalNotification(NotifyIcon notifyIcon)
         {
-            _notifyIcon = notifyIcon;
+            _notifyIcon = notifyIcon ?? throw new ArgumentNullException(nameof(notifyIcon));
         }
 
         public void ShowTransient(string title, string text)

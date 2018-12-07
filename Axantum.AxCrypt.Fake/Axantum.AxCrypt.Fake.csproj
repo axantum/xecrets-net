@@ -70,6 +70,7 @@
     <Compile Include="FakeDataStore.cs" />
     <Compile Include="FakeDelayTimer.cs" />
     <Compile Include="FakeFileWatcher.cs" />
+    <Compile Include="FakeGlobalNotification.cs" />
     <Compile Include="FakeInMemoryDataStoreItem.cs" />
     <Compile Include="FakeInternetState.cs" />
     <Compile Include="FakeIterationCalculator.cs" />
