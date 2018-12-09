@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -9,7 +10,24 @@ namespace Axantum.AxCrypt.Core.UI
     {
         private ITiming _stopwatch = OS.Current.StartTiming();
 
-        public int NumberOfFiles { get; set; }
+        private int _numberOfFiles;
+
+        public int NumberOfFiles { get { return _numberOfFiles; } set { _numberOfFiles = value; } }
+
+        public void AddFileCount(int count)
+        {
+            Interlocked.Add(ref _numberOfFiles, count);
+        }
+
+        public void Pause()
+        {
+            _stopwatch.Pause();
+        }
+
+        public void Resume()
+        {
+            _stopwatch.Resume();
+        }
 
         public TimeSpan Elapsed
         {

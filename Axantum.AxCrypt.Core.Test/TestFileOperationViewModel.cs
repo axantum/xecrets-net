@@ -404,7 +404,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptFilesAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", Stream.Null);
             FakeDataStore.AddFile(@"C:\Folder\File2.txt", Stream.Null);
 
@@ -436,7 +435,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptFileAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", Stream.Null);
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -465,7 +463,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptFilesWithSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             FakeDataStore.AddFile(@"C:\Folder\Copy of File1-txt.axx", Stream.Null);
             FakeDataStore.AddFile(@"C:\Folder\File1.txt", Stream.Null);
 
@@ -496,7 +493,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptFilesWithAlreadyEncryptedFile()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", Stream.Null);
             FakeDataStore.AddFile(@"C:\Folder\File2.txt", Stream.Null);
 
@@ -521,7 +517,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestEncryptFilesWithCanceledLoggingOnAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -543,7 +538,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptFileAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase, IProgressContext progress) =>
@@ -604,7 +598,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptFileFileSaveAsAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase, IProgressContext progress) =>
@@ -649,7 +642,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptFileFileSaveAsCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, Passphrase passphrase, IProgressContext progress) =>
@@ -687,7 +679,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptLoggingOnCanceledAction()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -713,7 +704,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestAddRecentFilesActionAddingEncryptedWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase, IProgressContext progress) =>
@@ -744,7 +734,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestAddRecentFilesActionAddingEncryptedButCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, Passphrase key, IProgressContext progress) =>
@@ -779,7 +768,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestWipeFilesWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -801,7 +789,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestWipeFilesSkippingOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -835,7 +822,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestWipeFilesCancelingAfterOneWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);
@@ -870,7 +856,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestAddRecentFilesActionWithFewEncryptableFilesNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             LogOnIdentity id = new LogOnIdentity("d");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
@@ -901,7 +886,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestAddRecentFilesActionWithManyEncryptableFilesNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
             New<UserSettings>().FewFilesThreshold = 1;
 
             LogOnIdentity id = new LogOnIdentity("d");
@@ -933,7 +917,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestAddRecentFileActionWithEncryptableFileNonInteractive()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             LogOnIdentity id = new LogOnIdentity("d");
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
@@ -959,7 +942,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestOpenFilesActionWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             axCryptFileMock.Setup<IAxCryptDocument>(m => m.Document(It.IsAny<IDataStore>(), It.IsAny<LogOnIdentity>(), It.IsAny<IProgressContext>())).Returns((IDataStore fileInfo, LogOnIdentity passphrase, IProgressContext progress) =>
@@ -1018,7 +1000,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestOpenFilesActionCancelingWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             int count = 0;
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
@@ -1075,7 +1056,6 @@ namespace Axantum.AxCrypt.Core.Test
         public async Task TestDecryptFoldersWithWork()
         {
             TypeMap.Register.Singleton<ParallelFileOperation>(() => new Mock<ParallelFileOperation>() { CallBase = true }.Object);
-            TypeMap.Register.New<IProgressContext, FileOperationsController>((progress) => new FileOperationsController(progress));
 
             Mock<AxCryptFile> axCryptFileMock = new Mock<AxCryptFile>();
             TypeMap.Register.New<AxCryptFile>(() => axCryptFileMock.Object);

@@ -44,6 +44,16 @@ namespace Axantum.AxCrypt.Mono
             get { return _stopwatch.Elapsed; }
         }
 
+        public void Pause()
+        {
+            _stopwatch.Stop();
+        }
+
+        public void Resume()
+        {
+            _stopwatch.Start();
+        }
+
         #endregion ITiming Members
     }
 }

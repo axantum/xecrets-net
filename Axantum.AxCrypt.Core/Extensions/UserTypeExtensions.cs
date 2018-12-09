@@ -12,6 +12,7 @@ using Axantum.AxCrypt.Core.UI;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -529,9 +530,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static void ShowNotification(this ProgressTotals progressTotals)
         {
-            if (progressTotals.Elapsed.TotalSeconds >= 10)
+            if (progressTotals.Elapsed >= New<UserSettings>().LongOperationThreshold)
             {
-                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, progressTotals.Elapsed.ToString(@"hh\:mm\:ss")));
+                TimeSpan wholeSeconds = TimeSpan.FromSeconds(Math.Round(progressTotals.Elapsed.TotalSeconds));
+                string formattedTime = wholeSeconds.ToString("g", CultureInfo.CurrentCulture);
+                New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, formattedTime));
             }
         }
     }

@@ -118,7 +118,7 @@ namespace Axantum.AxCrypt.Core.UI
                             {
                                 return context;
                             }
-                            progress.Totals.NumberOfFiles += 1;
+                            progress.Totals.AddFileCount(1);
                         }
                         return new FileOperationContext(progress.Totals);
                     });

@@ -27,6 +27,7 @@
 
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -48,7 +49,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public void AddCount(long count)
         {
-            _currentCount += count;
+            Interlocked.Add(ref _currentCount, count);
             _progress.AddCount(count);
 
             ThrowIfCancelled();
@@ -100,7 +101,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             ThrowIfCancelled();
 
-            _totalCount += count;
+            Interlocked.Add(ref _totalCount, count);
             _progress.AddTotal(count);
         }
 
@@ -116,7 +117,13 @@ namespace Axantum.AxCrypt.Core.UI
             }
         }
 
-        public ProgressTotals Totals { get; } = new ProgressTotals();
+        public ProgressTotals Totals
+        {
+            get
+            {
+                return _progress.Totals;
+            }
+        }
 
         public event EventHandler<ProgressEventArgs> Progressing
         {

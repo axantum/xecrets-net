@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt.Core
                 {
                     await EncryptFileUniqueWithBackupAndWipeAsync(file, encryptionParameters, progress);
                     progress.AddCount(1);
-                    progress.Totals.NumberOfFiles += 1;
+                    progress.Totals.AddFileCount(1);
                 }
             }
             finally

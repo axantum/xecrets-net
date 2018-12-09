@@ -25,11 +25,13 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
+using System.Collections.Generic;
+using System;
 using Axantum.AxCrypt.Core.Runtime;
+
+using System;
 
 namespace Axantum.AxCrypt.Fake
 {
@@ -42,6 +44,14 @@ namespace Axantum.AxCrypt.Fake
         public TimeSpan Elapsed
         {
             get { return CurrentTiming; }
+        }
+
+        public void Pause()
+        {
+        }
+
+        public void Resume()
+        {
         }
 
         #endregion ITiming Members
