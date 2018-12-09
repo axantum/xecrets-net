@@ -530,6 +530,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
         public static void ShowNotification(this ProgressTotals progressTotals)
         {
+            if (New<UserSettings>().LongOperationThreshold == TimeSpan.Zero)
+            {
+                return;
+            }
+
             if (progressTotals.Elapsed >= New<UserSettings>().LongOperationThreshold)
             {
                 TimeSpan wholeSeconds = TimeSpan.FromSeconds(Math.Round(progressTotals.Elapsed.TotalSeconds));
