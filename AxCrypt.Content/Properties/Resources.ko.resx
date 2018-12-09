@@ -108,6 +108,10 @@
     <value>사용자가 우선 계정을 인증해야 합니다.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>서버와 연결이 되지 않아 로컬 및 오프라인 신규 수령인 등록이 불가합니다.</value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium 사용해보기</value>
   </data>
@@ -287,6 +291,21 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>관리자</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>관리자는 AxCrypt 계정 웹의 관리 모듈에서 팀의 구독을 갱신해야합니다. 아래 버튼을 사용하여 바로 이동하십시오. 팀에 갱신 할 것을 알리는 것을 잊지 마십시오!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>AxCrypt Business 구독이 곧 만료됩니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>비즈니스 구독이 갱신되면 당신과 팀이 다음과 같은 경험을 즐길 수 있으십니다:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>계속해서 비즈니스 기능을 계속 사용하길 바랍니다. 구독을 갱신하려면 AxCrypt 비즈니스 관리자에게 문의하십시오.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>AxCrypt Business 구독 갱신할 시간입니다!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;, &lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
 문의사항은 {0}으로 연락 주시기 바랍니다. </value>
@@ -356,9 +375,15 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>유럽 부가세 번호</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>{0}부터 구독이 만료되었습니다. 전체 비즈니스 기능을 복원하려면 갱신하십시오.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>{0}에 구독이 만료됩니다.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>기간 내에 Business 구독이 갱신되지 않으면 무료 플랜 중 하나로 귀속됩니다.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>수입</value>
@@ -451,6 +476,18 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>해당 멤버를 구독에서 제거하시겠습니까?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>인원이 부족합니다! 최소한 기존 회원 수만큼 갱신해야합니다. 더 적은 수를 갱신하려면 구독에서 일부 회원을 삭제하십시오.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>최소한 기존 회원 수만큼 갱신해야합니다. 더 적은 수를 갱신하려면 먼저 회원을 삭제하십시오. 갱신이 현재보다 적은 경우, 구독은 해당 레벨로 축소되고 사용하지 않은 회원의 남은 시간은 손실됩니다.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>리뉴</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Business 구독 갱신</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>에 따라</value>
@@ -644,6 +681,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>앱이 로컬 파일 저장소에 해독된 파일 사본을 저장하고 있습니다. 로그아웃하시면 자동으로 삭제됩니다. 정리하기 버튼을 누르시면 수동으로 제거할 수 있습니다. </value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
   </data>
+  <data name="ClearRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>최근 파일 삭제</value>
+  </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>새 버전을 보시려면 클릭하십시오.</value>
   </data>
@@ -665,6 +705,10 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>제품</value>
+  </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>상태</value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
   </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>시간</value>
@@ -718,6 +762,10 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>구독이 곧 만료 됩니다. 갱신하시려면 클릭해주시기 바랍니다. </value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>파일 확인</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>보안 정지그리고 리스트에서 추방</value>
@@ -974,7 +1022,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>AxCrypt 공개 키 공유 키 파일</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' 이/가 다른 앱에 열려있습니다. 그 앱을 닫아주신 후, 다시한번 시도해주시기 바랍니다.</value>
+    <value>'{0}' 이/가 다른 앱에 열려있습니다. 다른 앱을 완전히 종료 후 다시한번 시도해주시기 바랍니다.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' 는 보안되어 있다고 적혀있습니다.</value>
@@ -1112,6 +1160,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Invite" xml:space="preserve">
     <value>초대할 사용자</value>
   </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>인보이스</value>
+  </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>수취인:</value>
   </data>
@@ -1127,6 +1178,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="InvoiceDescriptionHeadline" xml:space="preserve">
     <value>설명</value>
+  </data>
+  <data name="InvoiceHeadline" xml:space="preserve">
+    <value>나의 인보이스</value>
   </data>
   <data name="InvoiceIssuedByAxcrypt" xml:space="preserve">
     <value>수취인</value>
@@ -1210,8 +1264,9 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
     <value>AxCrypt와 다른 소프트웨어가 오류을 일으킬 수있고, 잠재적으로 호환되지 않는 소프트웨어를 발견했습니다. 소프트웨어의 이름은 Lavasoft Web Companion입니다. AxCrypt가 오작동하는 경우 Lavasoft를 제거하십시오.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>AxCrypt 1.x 형태로 파일들이 전환된후 파일을 열고싶으시다면 새로 작성하신 비밀번호를 사용해주시기 바랍니다.
-비밀번호를 잊지마시기 바랍니다.</value>
+    <value>파일이 변경된 이후에는 현재 AxCrypt 비밀번호로만 열 수 있습니다. 비밀번호를 확인하십시오.
+
+현재 비밀번호를 잊지마세요!</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2는 새로운 형식의 파일을 사용합니다.
@@ -1419,11 +1474,18 @@ AxCrypt 팀</value>
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>열고 탐구하기</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>프리미엄 구독 경험이 없으니 무료 체험을 시작하세요!</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>사용자님은 Premium을 구독하고 있지 않으십니다. 사용자님을 위해 무료 체험을 제공드립니다.
-
-Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호화만 가능합니다.</value>
+    <value>프리미엄 구독 없이는 암호화된 파일을 보거나 영구적으로 복호화 하는 기능만 사용 가능합니다.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>무료 체험이 끝나면 AxCrypt 모바일 앱을 사용할 수 없습니다. 유료 구독 가입이 필요합니다. 무료 데스크톱 버전의 AxCrypt로는 계속 암호화 된 파일을 열 수 있습니다.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>무료 체험이 끝나고 유료 구독을 선택하지 않으면 자동으로 AxCrypt Free가 계속됩니다.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>오류</value>
@@ -1545,6 +1607,9 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
   <data name="OfflineAccountTitle" xml:space="preserve">
     <value>AxCrypt ID 창조 접속이 끊김.</value>
   </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value>서버 연결 오류입니다. 오프라인으로 진행하세요.</value>
+  </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>오프라인</value>
     <comment>A short text, or word, used for example in the titlebar to indicate that we're operating in offline mode: [Offline]</comment>
@@ -1574,11 +1639,11 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
     <value>모든 설정 초기화 및 다시 시작</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>1.x 파일 자동 업그레이드</value>
+    <value>1.x 및 AES-128 파일 자동 업그레이드</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>자동적 업데이트와 제일 오래된 AxCrypt 1.x 파일들을 잔환 하기 혹은 안 하기.</value>
+    <value>AxCrypt 1.x 및 AES-128 파일의 자동 업그레이드 및 변경 활성화 또는 비활성화.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -1692,6 +1757,9 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
   <data name="PaymentOnBehalfOfLinkText" xml:space="preserve">
     <value>타사용자를 위한 구매</value>
   </data>
+  <data name="PaymentStatusText" xml:space="preserve">
+    <value>전체 지불 완료</value>
+  </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal에 대한 자세한 정보]</value>
   </data>
@@ -1717,6 +1785,9 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
   </data>
   <data name="PremiumFeatureToolTipText" xml:space="preserve">
     <value>이 기능은 유료 구독이 필요합니다!</value>
+  </data>
+  <data name="PremiumItemDescriptionFormat" xml:space="preserve">
+    <value>AxCrypt 프리미엄 {0} x 30일.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>공유 키를 이용하기 위해서는 유료 구독이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
@@ -1857,6 +1928,9 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>묘사 (관련된 사이트, 사용자 이름등)</value>
   </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>내보내기</value>
+  </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>새로운</value>
   </data>
@@ -1882,18 +1956,16 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
     <value>구매가 취소되었습니다.</value>
   </data>
   <data name="PurchaseReceiptErrorPageBody" xml:space="preserve">
-    <value>사용자의 지불금을 받지 않았습니다. PayPal을 통해 구매를 취소 시켰거나 계정잔액이 부족한 탓일 수 있습니다. </value>
+    <value>사용자의 지불금을받지 못했습니다. 구매가 수동으로 취소되었거나 계정 잔액이 부족한 경우에 발생할 수 있습니다.</value>
   </data>
   <data name="PurchaseReceiptPageTitle" xml:space="preserve">
     <value>AxCrypt Premium 영수증</value>
   </data>
   <data name="PurchaseReceiptSuccess" xml:space="preserve">
-    <value>AxCrypt Premium을 구입해주셔서 감사합니다! 로그아웃한 다음 다시 로그인하여 Premium으로 업데이트 하십시오. </value>
+    <value>AxCrypt 구독 구매 감사합니다. 재로그인을 통해 구독 상태를 업데이트 하세요. </value>
   </data>
   <data name="PurchaseReceiptSuccessPageBody" xml:space="preserve">
-    <value>사용자분께서는 이제 AxCrypt Premium의 모든 기능들을 사용하실수 있습니다. 다시 한번 로그아웃과 로그인을 해주십시오. 문제가 있으신 분은 지원팀에 문의해주시기 바랍니다.
-
-구입 영수증은 사용자님의 이메일 주소로 발송되었습니다.</value>
+    <value>이제 AxCrypt의 모든 추가 기능에 액세스 할 수 있습니다. 앱에서 로그아웃 후에 재로그인 하셔야 이용 가능하빈다. 문제가 발생하면 당사의 지원에 문의하십시오. 구입 확인서는 지불 서비스 제공 업체의 메일로 전송됩니다. 웹 사이트에서 인보이스를 인쇄 할 수 있습니다.</value>
   </data>
   <data name="PurchaseVatDepends" xml:space="preserve">
     <value>VAT는 지불 과정에 조정될 것입니다.</value>
@@ -1980,8 +2052,22 @@ Premium 기능 없이는 암호화된 파일을 보거나 영구적으로 복호
   <data name="ResendButtonToolTip" xml:space="preserve">
     <value>인증 코드 재발송을 위해 클릭해주시기 바랍니다.</value>
   </data>
+  <data name="ResetAllSettingsWarningText" xml:space="preserve">
+    <value>모든 설정이 초기화 됩니다. 데이터 손실은 없으나 구성은 설치 기본값으로 재설정됩니다.</value>
+  </data>
+  <data name="ResetButtonText" xml:space="preserve">
+    <value>리셋</value>
+  </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>원본으로 이름 변경</value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>이름이 변경된 암호화 파일의 기존 파일명을 토대로 파일 이름을 복원하십시오.</value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>같은 비밀번호로 가입을 이미 하셨습니다!</value>
+    <value>같은 비밀번호로 이미 가입 하셨습니다!</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2147,6 +2233,9 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <value>의견 제출하기</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>삭제 완료</value>
+  </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} 는 {1} 까지 유효.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
@@ -2234,9 +2323,7 @@ AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍�
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>AxCrypt의 모든 기능들을 무료 체험 기간동안 사용하실 수 있습니다.
- 좋은 경험을 하시기 바랍니다,
-AxCrypt 팀</value>
+    <value>프리미엄 무료 체험판이 활성화되었습니다.  무료체험 이용 기간 동안 AxCrypt의 모든 기능을 무료로 사용할 수 있습니다. 걱정하지 마세요 - 무료 체험 기간이 끝난 후에도 구독을 구입하지 않더라도 AxCrypt Free로 모든 파일에 액세스 할 수 있습니다. 즐거운 시간 되세요, AxCrypt 팀</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
   <data name="TroubleRememberingLabel" xml:space="preserve">
@@ -2291,10 +2378,10 @@ AxCrypt 팀</value>
     <value>파일 상태를 업데이트 하고 있습니다</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>파일 1.x 업그레이드</value>
+    <value>1.x 및 AES-128 파일 업그레이드</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>안정적이게 AxCrypt 1.x로 저장된 파일들을 선택할수 있는 공간을 찾아주시고 업그레이드를 해주시기 바랍니다. </value>
+    <value>AxCrypt 1.x 및 AES-128 파일로 폴더를 선택하고 업그레이드하십시오.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium 갖기!</value>
@@ -2310,6 +2397,9 @@ AxCrypt 팀</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>사용자님의 새로운 계정을 인증해주세요</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>파일 체크 및 확인</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>비밀번호를 확인해 주시기 바랍니다.</value>
