@@ -119,6 +119,14 @@ namespace Axantum.AxCrypt.Core.Runtime
             }
         }
 
+        public ProgressTotals Totals
+        {
+            get
+            {
+                return _progress.Totals;
+            }
+        }
+
         public Task EnterSingleThread()
         {
             return _singleThread.Enter();

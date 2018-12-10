@@ -307,6 +307,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(SecretsSortOrder), (int)value); }
         }
 
+        public TimeSpan LongOperationThreshold
+        {
+            get { return Load(nameof(LongOperationThreshold), TimeSpan.FromSeconds(10)); }
+            set { Store(nameof(LongOperationThreshold), value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));

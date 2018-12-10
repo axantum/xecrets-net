@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -47,10 +46,18 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        public FileOperationContext(ProgressTotals totals)
+            : this(string.Empty, ErrorStatus.Success)
+        {
+            Totals = totals;
+        }
+
         public string FullName { get; private set; }
 
         public ErrorStatus ErrorStatus { get; private set; }
 
         public string InternalMessage { get; private set; }
+
+        public ProgressTotals Totals { get; private set; } = new ProgressTotals();
     }
 }

@@ -25,9 +25,11 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Fake;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -47,6 +49,8 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
+            TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
+
             _progressMock = new Mock<IProgressContext>();
             _singleThreadMock = new Mock<ISingleThread>();
 
@@ -56,6 +60,7 @@ namespace Axantum.AxCrypt.Core.Test
         [TearDown]
         public static void Teardown()
         {
+            TypeMap.Register.Clear();
         }
 
         [Test]

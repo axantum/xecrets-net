@@ -466,7 +466,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static FileOperationsController EncryptFileWorkController(IProgressContext progress)
         {
-            FileOperationsController operationsController = New<IProgressContext, FileOperationsController>(progress);
+            FileOperationsController operationsController = new FileOperationsController(progress);
 
             operationsController.QuerySaveFileAs += (object sender, FileOperationEventArgs e) =>
             {

@@ -758,7 +758,16 @@ namespace Axantum.AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                bool ok = await RunSequentiallyAsync(fileInfo, preparation);
+                bool ok;
+                try
+                {
+                    _progress.Totals.Pause();
+                    ok = await RunSequentiallyAsync(fileInfo, preparation);
+                }
+                finally
+                {
+                    _progress.Totals.Resume();
+                }
                 if (ok)
                 {
                     await operation();

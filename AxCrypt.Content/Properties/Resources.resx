@@ -2139,6 +2139,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Working...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>!!Completed {0} files and Total time taken is {1}(hh:mm:ss)</value>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verification Code</value>
   </data>

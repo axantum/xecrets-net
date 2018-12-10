@@ -32,8 +32,8 @@ using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -64,7 +64,14 @@ namespace Axantum.AxCrypt.Core.UI
                 return work((TDataItem)file, progress);
             };
 
-            return InvokeAsync(files, singleFileOperation, allComplete);
+            return InvokeAsync(files, singleFileOperation, (status) =>
+            {
+                if (status.ErrorStatus == ErrorStatus.Success)
+                {
+                    status.Totals.ShowNotification();
+                }
+                return allComplete(status);
+            });
         }
 
         /// <summary>
@@ -82,15 +89,15 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     progress.NotifyLevelStart();
 
-                    FileOperationContext result = new FileOperationContext(string.Empty, ErrorStatus.Success);
-
-                    result = await Task.Run(async () =>
+                    FileOperationContext result = await Task.Run(async () =>
                     {
+                        FileOperationContext context = null;
+
                         foreach (T file in files)
                         {
                             try
                             {
-                                result = await workAsync(file, progress);
+                                context = await workAsync(file, progress);
                             }
                             catch (Exception ex) when (ex is OperationCanceledException)
                             {
@@ -107,12 +114,13 @@ namespace Axantum.AxCrypt.Core.UI
                                 New<IReport>().Exception(ex);
                                 return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
                             }
-                            if (result.ErrorStatus != ErrorStatus.Success)
+                            if (context.ErrorStatus != ErrorStatus.Success)
                             {
-                                return result;
+                                return context;
                             }
+                            progress.Totals.AddFileCount(1);
                         }
-                        return result;
+                        return new FileOperationContext(progress.Totals);
                     });
                     progress.NotifyLevelFinished();
                     return result;

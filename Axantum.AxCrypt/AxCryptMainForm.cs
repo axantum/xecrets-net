@@ -25,20 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -60,6 +46,20 @@ using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
@@ -268,8 +268,6 @@ namespace Axantum.AxCrypt
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
-            _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
             _notifyExitToolStripMenuItem.Text = "&" + Texts.ExitToolStripMenuItemText;
@@ -463,6 +461,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<IKnownFolderImageProvider>(() => new KnownFolderImageProvider());
             TypeMap.Register.Singleton<InactivitySignOut>(() => new InactivitySignOut(New<UserSettings>().InactivitySignOutTime));
             TypeMap.Register.Singleton<MouseDownFilter>(() => new MouseDownFilter(this));
+            TypeMap.Register.Singleton<IGlobalNotification>(() => new NotifyIconGlobalNotification(_notifyIcon));
 
             TypeMap.Register.New<SessionNotificationHandler>(() => new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), New<AxCryptFile>(), New<IStatusChecker>()));
             TypeMap.Register.New<IdentityViewModel>(() => new IdentityViewModel(Resolve.FileSystemState, Resolve.KnownIdentities, Resolve.UserSettings, Resolve.SessionNotify));
@@ -747,11 +746,16 @@ namespace Axantum.AxCrypt
         private void ShowNotifyIcon()
         {
             _notifyIcon.Visible = true;
+
             if (!_balloonTipShown)
             {
+                _notifyIcon.BalloonTipTitle = Texts.AxCryptFileEncryption;
+                _notifyIcon.BalloonTipText = Texts.TrayBalloonTooltip;
                 _notifyIcon.ShowBalloonTip(500);
+
                 _balloonTipShown = true;
             }
+
             Hide();
         }
 
@@ -885,9 +889,9 @@ namespace Axantum.AxCrypt
             _decryptAndRemoveFromListToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
             _encryptedFoldersToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
-            _encryptToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
+            _encryptToolStripButton.Click += async (sender, e) => await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null);
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
-            _encryptToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null);
+            _encryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null); };
             _fileOperationViewModel.FirstLegacyOpen += (sender, e) => New<IUIThread>().SendTo(async () => await SetLegacyOpenMode(e));
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));

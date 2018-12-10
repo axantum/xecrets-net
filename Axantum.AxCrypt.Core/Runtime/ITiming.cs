@@ -33,5 +33,9 @@ namespace Axantum.AxCrypt.Core.Runtime
     public interface ITiming
     {
         TimeSpan Elapsed { get; }
+
+        void Pause();
+
+        void Resume();
     }
 }
