@@ -654,7 +654,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
+        ///   Looks up a localized string similar to !!Your AxCrypt Business subscription {0} is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiresSoonMailBody0Html {
             get {
