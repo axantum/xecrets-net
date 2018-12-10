@@ -2137,7 +2137,8 @@ White space, and parts that are equal to common passwords are ignored and do not
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="ProgressTotalsInformationText" xml:space="preserve">
-    <value>!!Completed {0} files and Total time taken is {1}(hh:mm:ss)</value>
+    <value>{0} files processed. Time taken {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verification Code</value>

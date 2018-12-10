@@ -1868,6 +1868,10 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Arbetar...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>{0} filer bearbetade. Total tid {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Verifieringskod</value>
   </data>

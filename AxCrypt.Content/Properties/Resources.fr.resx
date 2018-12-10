@@ -312,6 +312,21 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>Administrateurs</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>En tant qu'administrateur, vous devez renouveler l'abonnement pour votre équipe dans le module d'administration de votre compte Internet AxCrypt. Cliquez sur le bouton ci-dessous pour vous y rendre directement. N'oubliez pas d'informer votre équipe que le renouvellement a été effectué !</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Votre abonnement AxCrypt Business touche bientôt à sa fin. Nous espérons sincèrement que vous avez aimé utiliser AxCrypt, et que vous avez trouvé l'application utile.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Lorsque votre abonnement Business sera renouvelé, vous et votre équipe pourrez continuer de :</value>
+  </data>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Nous espérons vraiment que vous continuerez à utiliser les fonctionnalités Business. Pour renouveler votre abonnement, veuillez contacter votre référent AxCrypt Business.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Il est temps de renouveler votre abonnement AxCrypt Business !</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Vous avez été ajouté comme utilisateur AxCrypt File Security par &lt;b&gt;{0}&lt;/b&gt;. Pour commencer à sécuriser vos fichiers &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;téléchargez&lt;/a&gt; et installez AxCrypt. Connectez vous à AxCrypt avec &lt;b&gt;{2}&lt;/b&gt;, entrez le code de vérification ci-dessous et définissez votre mot de passe personnel.&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;Si vous avez des questions, veuillez d'abord contacter {0}.&lt;/p&gt;</value>
@@ -387,6 +402,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>L'abonnement expire le {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Si votre abonnement Business n'est pas renouvelé à temps, vous retournerez vers l'une de nos options gratuites.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importer</value>
@@ -1490,7 +1508,7 @@ Ce logiciel est livré d'après la licence.
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Lorsque la période d'essai se finira, vous ne pourrez plus utiliser les applications mobile AxCrypt. Un abonnement est requis pour accéder aux versions iOS et Android d'AxCrypt. 
+    <value>Lorsque la période d'essai se finira, vous ne pourrez plus utiliser les applications mobile AxCrypt. Un abonnement est nécessaire.
 
 Vous pourrez toujours ouvrir des fichiers cryptés avec la version en ligne gratuite d'AxCrypt.</value>
   </data>
@@ -1934,6 +1952,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Description (site web, nom d'utilisateur etc)</value>
+  </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Exporter</value>
   </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Nouveau</value>

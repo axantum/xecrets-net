@@ -320,6 +320,22 @@ Sei stato avvertito, ora divertiti!</value>
     <value>Amministratori</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Come amministratore devi rinnovare l'abbonamento per il tuo team nel modulo di amministrazione dell'account web di AxCrypt. Usa il pulsante qui sotto per arrivarci direttamente. Non dimenticare di informare il tuo team che rinnoverai!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Il tuo abbonamento AxCrypt Business scadrà presto. 
+Spero sinceramente che ti sia piaciuto usare AxCrypt e che tu l'abbia trovato utile.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Quando il tuo abbonamento Business viene rinnovato, tu e il tuo team potete continuare ad utilizzare:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Spero davvero che continuerai ad utilizzare le nostre funzionalità Business. Per rinnovare il tuo abbonamento, contatta il tuo amministratore AxCrypt Business.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>è ora di rinnovare il tuo abbonamento AxCrypt Business!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Sei stato aggiunto come utente di AxCrypt File Security da &lt;b&gt;{0}&lt;/b&gt;. Per iniziare a proteggere i tuoi file &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;scarica&lt;/a&gt; e installa AxCrypt. Connettiti ad AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, inserisci il codice di verifica sotto e imposta la tua password segreta e personale.&lt;/p&gt;
 &lt;p&gt;Se hai domande, per prima cosa contatta {0}.&lt;/p&gt;</value>
@@ -389,9 +405,15 @@ Sei stato avvertito, ora divertiti!</value>
     <value>Numero di Partita IVA EU</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Il tuo abbonamento è scaduto dal {0}. Per favore rinnovalo per ripristinare per intero le funzionalità business.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>L'abbonamento scade il {0}.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Se il tuo abbonamento Business non viene rinnovato in tempo, retrocederai su uno dei nostri piani gratuiti.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importa</value>
@@ -484,6 +506,18 @@ Sei stato avvertito, ora divertiti!</value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Sei sicuro di voler rimuovere questo membro dall'abbonamento?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Troppo pochi membri! Il rinnovo deve essere almeno per un numero di membri pari a quello usato attualmente. Per rinnovare per meno membri, rimuovi alcuni membri dall'abbonamento.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Il rinnovo deve essere almeno per un numero di membri pari a quello attualmente in uso. Per rinnovare per un numero inferiore di membri, per favore rimuovi prima i membri. Se il rinnovo è per meno membri di quelli attuali, l'abbonamento sarà ridotto a quel livello e il tempo rimanente per i membri non utilizzati andrà perso.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Rinnova</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Rinnovo dell'Abbonamento Business</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Agisci su</value>
@@ -1262,7 +1296,7 @@ Un destinatario è identificato dall'email di registrazione AxCrypt ID, ma non g
     <value>Abbiamo trovato un software potenzialmente incompatibile che potrebbe portare al malfunzionamento di AxCrypt ed altri software. Il software si chiama Lavasoft Web Companion. Se AxCrypt non funziona, prova a disinstallare Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Dopo che i file vengono convertiti dal formato AxCrypt 1.x, devi usare la nuova password di Connessione per aprirli, per favore verificala qui.
+    <value>Dopo che i file vengono convertiti si aprono solamente con la password attuale di AxCrypt. Per favore verifica la tua password.
 
 Non dimenticarti questa password!</value>
   </data>
@@ -1477,11 +1511,21 @@ Questo programma è autorizzato secondo l'accordo.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Apri Explorer Qui</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Abbiamo notato che non hai un abbonamento Premium e vorremmo iniziare un periodo di Prova gratuito per te!</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Abbiamo notato che non hai un abbonamento Premium, così vorremmo iniziare una prova gratuita per te!
-
-Senza Premium puoi solo visualizzare e decriptare in modo permanente i file criptati.</value>
+    <value>Senza Premium puoi solo visualizzare e decriptare in modo permanente i file criptati.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Quando finisce il periodo di prova, non puoi più usare le app AxCrypt. è richiesto un abbonamento a pagamento.
+
+Puoi sempre aprire file criptati con una versione desktop gratuita di AxCrypt.
+</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>Quando scade il periodo di prova, continuerai automaticamente ad utilizzare AxCrypt Free a meno che tu non scelga di acquistare un abbonamento.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Errore</value>
@@ -1633,11 +1677,11 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Cancella Tutte le Impostazioni e Riavvia</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Aggiornamento Automatico dei File 1.x</value>
+    <value>Aggiornamento Automatico dei File 1.x e AES-128</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei vecchi file AxCrypt 1.x quando vengono utilizzati.</value>
+    <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei file AxCrypt 1.x e AES-128.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -2062,7 +2106,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Sei già connesso con questa password!</value>
+    <value>Abbiamo già provato la password con cui ti sei registrato. Prova un'altra password.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2317,9 +2361,11 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Ottimo! Ora puoi utilizzare tutte le funzionalità di AxCrypt gratuitamente durante il periodo di prova.
+    <value>Ottimo! Abbiamo abilitato per te una prova gratuita di Premium. Ora puoi utilizzare tutte le funzionalità di AxCrypt gratuitamente durante il periodo di prova.
 
-Buona fortuna e buon divertimento!
+Non preoccuparti - avrai ancora accesso a tutti i tuoi file con AxCrypt Free anche se sceglierai di non acquistare un abbonamento dopo che il periodo di prova sarà terminato.
+
+Buona fortuna e buon divertimento,
 
 Il Team di AxCrypt</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
@@ -2376,10 +2422,10 @@ Il Team di AxCrypt</value>
     <value>Aggiornamento dello Stato</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Aggiorna i File 1.x</value>
+    <value>Aggiorna i File 1.x e AES-128</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Seleziona dove cercare i file protetti con AxCrypt 1.x da aggiornare.</value>
+    <value>Scegli una cartella con file AxCrypt 1.x e AES-128 e aggiornali.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Ottieni Premium!</value>

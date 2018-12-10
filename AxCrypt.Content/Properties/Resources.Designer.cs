@@ -5268,7 +5268,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Completed {0} files and Total time taken is {1}(hh:mm:ss).
+        ///   Looks up a localized string similar to {0} files processed. Time taken {1}..
         /// </summary>
         public static string ProgressTotalsInformationText {
             get {
