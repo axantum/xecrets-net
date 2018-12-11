@@ -645,20 +645,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
+        ///   Looks up a localized string similar to As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don&apos;t forget to inform your team that you will be renewing!.
         /// </summary>
-        public static string BusinessExpiresSoonMailBody0Html {
+        public static string BusinessExpiresSoonMailAdministratorBodyHtml {
             get {
-                return ResourceManager.GetString("BusinessExpiresSoonMailBody0Html", resourceCulture);
+                return ResourceManager.GetString("BusinessExpiresSoonMailAdministratorBodyHtml", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator..
+        ///   Looks up a localized string similar to !!Your AxCrypt Business subscription {0} is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
-        public static string BusinessExpiresSoonMailBody1Html {
+        public static string BusinessExpiresSoonMailBody0Html {
             get {
-                return ResourceManager.GetString("BusinessExpiresSoonMailBody1Html", resourceCulture);
+                return ResourceManager.GetString("BusinessExpiresSoonMailBody0Html", resourceCulture);
             }
         }
         
@@ -672,11 +672,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don&apos;t forget to inform your team that you will be renewing!.
+        ///   Looks up a localized string similar to I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator..
         /// </summary>
-        public static string BusinessExpiresSoonMailBody3Html {
+        public static string BusinessExpiresSoonMailMemberBodyHtml {
             get {
-                return ResourceManager.GetString("BusinessExpiresSoonMailBody3Html", resourceCulture);
+                return ResourceManager.GetString("BusinessExpiresSoonMailMemberBodyHtml", resourceCulture);
             }
         }
         
@@ -686,6 +686,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessExpiresSoonMailSubject {
             get {
                 return ResourceManager.GetString("BusinessExpiresSoonMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Expiring Subscription(s) : {0}.
+        /// </summary>
+        public static string BusinessExpiresSoonMailSubscriptionInfoBodyHtml {
+            get {
+                return ResourceManager.GetString("BusinessExpiresSoonMailSubscriptionInfoBodyHtml", resourceCulture);
             }
         }
         
