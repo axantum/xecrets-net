@@ -364,9 +364,6 @@ You have been warned, now enjoy!</value>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Time to renew your AxCrypt Business subscription!</value>
   </data>
-  <data name="BusinessExpiresSoonMailSubscriptionInfoBodyHtml" xml:space="preserve">
-    <value>!!Expiring Subscription(s) : {0}</value>
-  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
 &lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;</value>
