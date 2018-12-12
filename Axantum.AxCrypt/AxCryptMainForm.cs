@@ -1131,7 +1131,11 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingLogOn(LogOnEventArgs e)
         {
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && !String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) && !Resolve.KnownIdentities.IsLoggedOn)
+            {
+                HandleExistingLogOnForEncryptedFile(e);
+            }
+            else if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
@@ -1264,6 +1268,12 @@ namespace Axantum.AxCrypt
                 }
             }
 
+            if (e.Verb == CommandVerb.Open)
+            {
+                await ShowSignedInInformationAlert();
+                await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
+            }
+
             if (!New<KnownIdentities>().IsLoggedOn)
             {
                 return;
@@ -1282,10 +1292,6 @@ namespace Axantum.AxCrypt
 
                 case CommandVerb.Decrypt:
                     await _fileOperationViewModel.DecryptFiles.ExecuteAsync(e.Arguments);
-                    break;
-
-                case CommandVerb.Open:
-                    await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
                     break;
 
                 case CommandVerb.Wipe:
@@ -1326,11 +1332,19 @@ namespace Axantum.AxCrypt
             {
                 case CommandVerb.Encrypt:
                 case CommandVerb.Decrypt:
-                case CommandVerb.Open:
-                    return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
+                    return ShowSignedInInformationAlert();
 
                 default:
                     break;
+            }
+            return Constant.CompletedTask;
+        }
+
+        private static Task ShowSignedInInformationAlert()
+        {
+            if (New<KnownIdentities>().IsLoggedOn)
+            {
+                New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
             }
             return Constant.CompletedTask;
         }
