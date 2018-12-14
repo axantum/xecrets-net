@@ -324,8 +324,7 @@ Sei stato avvertito, ora divertiti!</value>
     <value>Come amministratore devi rinnovare l'abbonamento per il tuo team nel modulo di amministrazione dell'account web di AxCrypt. Usa il pulsante qui sotto per arrivarci direttamente. Non dimenticare di informare il tuo team che rinnoverai!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Il tuo abbonamento AxCrypt Business scadrà presto. 
-Spero sinceramente che ti sia piaciuto usare AxCrypt e che tu l'abbia trovato utile.</value>
+    <value>Il tuo abbonamento AxCrypt Business {0} scadrà presto. Spero sinceramente che ti sia piaciuto usare AxCrypt e che tu l'abbia trovato utile.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Quando il tuo abbonamento Business viene rinnovato, tu e il tuo team potete continuare ad utilizzare:</value>

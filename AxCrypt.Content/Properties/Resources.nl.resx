@@ -303,19 +303,19 @@ U bent gewaarschuwd! Geniet van de beta!
     <value>Administrators</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
-  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Business abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.
-</value>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Uw AxCrypt Business {0} abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.
 </value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Wanneer uw Business abonnement wordt vernieuwd,kunt u en uw team blijven genieten van:</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.
+</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Tijd om uw AxCrypt Business abonnement te vernieuwen!</value>

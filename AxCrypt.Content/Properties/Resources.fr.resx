@@ -316,7 +316,7 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>En tant qu'administrateur, vous devez renouveler l'abonnement pour votre équipe dans le module d'administration de votre compte Internet AxCrypt. Cliquez sur le bouton ci-dessous pour vous y rendre directement. N'oubliez pas d'informer votre équipe que le renouvellement a été effectué !</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Votre abonnement AxCrypt Business touche bientôt à sa fin. Nous espérons sincèrement que vous avez aimé utiliser AxCrypt, et que vous avez trouvé l'application utile.</value>
+    <value>Votre abonnement AxCrypt Business {0} touche bientôt à sa fin. Nous espérons sincèrement que vous avez aimé utiliser AxCrypt, et que vous avez trouvé l'application utile.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Lorsque votre abonnement Business sera renouvelé, vous et votre équipe pourrez continuer de :</value>

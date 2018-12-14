@@ -312,17 +312,17 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Administratörer</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
-  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ditt AxCrypt Business-abonnemang löper snart ut. Jag hoppas verkligen att du har haft mycket nytta och nöje av AxCrypt.</value>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Jag hoppas verkligen du vill fortsätta med AxCrypt Business. Kontakta din AxCrypt-administratör för att få abonnemanget förnyat.</value>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Jag hoppas verkligen att du har haft mycket nytta och nöje av AxCrypt.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>När du förnyar ditt Business-abonnemang kan du och ditt team fortsätta använda:</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Jag hoppas verkligen du vill fortsätta med AxCrypt Business. Kontakta din AxCrypt-administratör för att få abonnemanget förnyat.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Nu är det dags att förnya ditt AxCrypt Business-abonnemang!</value>
