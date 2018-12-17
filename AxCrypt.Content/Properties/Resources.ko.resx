@@ -295,7 +295,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>관리자는 AxCrypt 계정 웹의 관리 모듈에서 팀의 구독을 갱신해야합니다. 아래 버튼을 사용하여 바로 이동하십시오. 팀에 갱신 할 것을 알리는 것을 잊지 마십시오!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>AxCrypt Business 구독이 곧 만료됩니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
+    <value>AxCrypt Business {0} 구독이 곧 만료됩니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>비즈니스 구독이 갱신되면 당신과 팀이 다음과 같은 경험을 즐길 수 있으십니다:</value>

@@ -325,17 +325,17 @@
     <value>Администраторы </value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
-  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ваша подписка на AxCrypt Business скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Как администратор, вы должны продлить подписку для вашей команды в административном модуле веб-аккауна  AxCrypt. Используйте кнопку ниже, чтобы перейти прямо туда. Не забудьте сообщить своей команде, что вы будете обновлять!</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к AxCrypt Business администратору.  </value>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ваша подписка на AxCrypt Business {0} скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Когда ваша Business подписка обновляется, вы и ваша команда можете продолжать пользоваться:</value>
   </data>
-  <data name="BusinessExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Как администратор, вы должны продлить подписку для вашей команды в административном модуле веб-аккауна  AxCrypt. Используйте кнопку ниже, чтобы перейти прямо туда. Не забудьте сообщить своей команде, что вы будете обновлять!</value>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к AxCrypt Business администратору.  </value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Время продлить подписку на AxCrypt Business!</value>
