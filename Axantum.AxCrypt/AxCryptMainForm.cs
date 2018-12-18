@@ -1168,19 +1168,19 @@ namespace Axantum.AxCrypt
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel, e.EncryptedFileFullName))
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
-
-                if (dialogResult == DialogResult.Ignore)
-                {
-                    HandleExistingLogOnForEncryptedFile(e);
-                    return;
-                }
 
                 if (dialogResult == DialogResult.Retry)
                 {
                     await ResetAllSettingsAndRestart();
+                }
+
+                if (dialogResult == DialogResult.No && !string.IsNullOrEmpty(e.EncryptedFileFullName))
+                {
+                    HandleExistingLogOnForEncryptedFile(e);
+                    return;
                 }
 
                 if (dialogResult == DialogResult.Cancel)
