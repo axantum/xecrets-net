@@ -1131,11 +1131,7 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingLogOn(LogOnEventArgs e)
         {
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && !String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) && !Resolve.KnownIdentities.IsLoggedOn)
-            {
-                HandleExistingLogOnForEncryptedFile(e);
-            }
-            else if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
+            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
@@ -1172,9 +1168,15 @@ namespace Axantum.AxCrypt
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel, e.EncryptedFileFullName))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
+
+                if (dialogResult == DialogResult.Ignore)
+                {
+                    HandleExistingLogOnForEncryptedFile(e);
+                    return;
+                }
 
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1246,9 +1248,12 @@ namespace Axantum.AxCrypt
 
                 switch (e.Verb)
                 {
+                    case CommandVerb.Open:
+                        await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
+                        break;
+
                     case CommandVerb.Encrypt:
                     case CommandVerb.Decrypt:
-                    case CommandVerb.Open:
                     case CommandVerb.Show:
                     case CommandVerb.RandomRename:
                     case CommandVerb.Wipe:
@@ -1266,12 +1271,6 @@ namespace Axantum.AxCrypt
                     case CommandVerb.ShowLogOn:
                         return;
                 }
-            }
-
-            if (e.Verb == CommandVerb.Open)
-            {
-                await ShowSignedInInformationAlert();
-                await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
             }
 
             if (!New<KnownIdentities>().IsLoggedOn)
@@ -1292,6 +1291,10 @@ namespace Axantum.AxCrypt
 
                 case CommandVerb.Decrypt:
                     await _fileOperationViewModel.DecryptFiles.ExecuteAsync(e.Arguments);
+                    break;
+
+                case CommandVerb.Open:
+                    await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
                     break;
 
                 case CommandVerb.Wipe:
@@ -1332,19 +1335,10 @@ namespace Axantum.AxCrypt
             {
                 case CommandVerb.Encrypt:
                 case CommandVerb.Decrypt:
-                    return ShowSignedInInformationAlert();
+                    return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
 
                 default:
                     break;
-            }
-            return Constant.CompletedTask;
-        }
-
-        private static Task ShowSignedInInformationAlert()
-        {
-            if (New<KnownIdentities>().IsLoggedOn)
-            {
-                New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
             }
             return Constant.CompletedTask;
         }

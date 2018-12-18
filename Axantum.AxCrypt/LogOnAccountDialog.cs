@@ -22,11 +22,14 @@ namespace Axantum.AxCrypt
 
         private LogOnAccountViewModel _viewModel;
 
-        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel)
+        private string _fileName;
+
+        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel, string encryptedFileFullName)
             : this()
         {
             InitializeStyle(owner);
             _viewModel = viewModel;
+            _fileName = encryptedFileFullName;
         }
 
         protected override void InitializeContentResources()
@@ -73,6 +76,7 @@ namespace Axantum.AxCrypt
             DialogResult = DialogResult.None;
             if (!await AdHocValidationDueToMonoLimitations())
             {
+                DialogResult = !String.IsNullOrEmpty(_fileName) ? DialogResult.Ignore : DialogResult.None;
                 return;
             }
             DialogResult = DialogResult.OK;
