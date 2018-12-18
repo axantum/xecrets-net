@@ -2241,7 +2241,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Gelöscht</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
-    <value>gültig bis</value>
+    <value>{0} gültig bis {1}.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
