@@ -30,7 +30,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -196,6 +195,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return true;
             }
             return false;
+        }
+
+        public bool CheckFilePasswordValidation(string passwordText)
+        {
+            if (!ValidateInternal(passwordText))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

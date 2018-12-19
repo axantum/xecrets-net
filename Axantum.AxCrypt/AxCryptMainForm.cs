@@ -1145,6 +1145,18 @@ namespace Axantum.AxCrypt
         {
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
+                bool filePasswordValidation = false;
+                if (!String.IsNullOrEmpty(e.Passphrase.Text))
+                {
+                    FilePasswordViewModel filePasswordViewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
+                    filePasswordViewModel.PasswordText = e.Passphrase.Text.ToString();
+                    filePasswordValidation = filePasswordViewModel.CheckFilePasswordValidation(nameof(filePasswordViewModel.PasswordText));
+                }
+                if (filePasswordValidation)
+                {
+                    return;
+                }
+
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1168,9 +1180,16 @@ namespace Axantum.AxCrypt
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel, e.EncryptedFileFullName))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
+
+                if (dialogResult == DialogResult.Ignore)
+                {
+                    e.Passphrase = new Passphrase(viewModel.PasswordText);
+                    HandleExistingLogOnForEncryptedFile(e);
+                    return;
+                }
 
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1242,9 +1261,12 @@ namespace Axantum.AxCrypt
 
                 switch (e.Verb)
                 {
+                    case CommandVerb.Open:
+                        await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
+                        break;
+
                     case CommandVerb.Encrypt:
                     case CommandVerb.Decrypt:
-                    case CommandVerb.Open:
                     case CommandVerb.Show:
                     case CommandVerb.RandomRename:
                     case CommandVerb.Wipe:
@@ -1326,7 +1348,6 @@ namespace Axantum.AxCrypt
             {
                 case CommandVerb.Encrypt:
                 case CommandVerb.Decrypt:
-                case CommandVerb.Open:
                     return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
 
                 default:
