@@ -1175,18 +1175,17 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            bool filePasswordValidation = false;
+            FilePasswordViewModel viewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
             if (!String.IsNullOrEmpty(e.Passphrase.Text))
             {
-                FilePasswordViewModel viewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
                 viewModel.PasswordText = e.Passphrase.Text.ToString();
-                filePasswordValidation = viewModel.FilePasswordValidation;
             }
-            if (filePasswordValidation)
+
+            if (!viewModel.FilePasswordValidation)
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
