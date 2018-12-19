@@ -1143,20 +1143,13 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOnForEncryptedFile(LogOnEventArgs e)
         {
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                HandleFilePasswordValidation(e);
+            }
+
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
-                bool filePasswordValidation = false;
-                if (!String.IsNullOrEmpty(e.Passphrase.Text))
-                {
-                    FilePasswordViewModel filePasswordViewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
-                    filePasswordViewModel.PasswordText = e.Passphrase.Text.ToString();
-                    filePasswordValidation = filePasswordViewModel.CheckFilePasswordValidation(nameof(filePasswordViewModel.PasswordText));
-                }
-                if (filePasswordValidation)
-                {
-                    return;
-                }
-
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1173,6 +1166,22 @@ namespace Axantum.AxCrypt
                 e.Passphrase = logOnDialog.ViewModel.Passphrase;
             }
             return;
+        }
+
+        private bool HandleFilePasswordValidation(LogOnEventArgs e)
+        {
+            bool filePasswordValidation = false;
+            if (!String.IsNullOrEmpty(e.Passphrase.Text))
+            {
+                FilePasswordViewModel viewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
+                viewModel.PasswordText = e.Passphrase.Text.ToString();
+                filePasswordValidation = viewModel.FilePasswordValidation;
+            }
+            if (filePasswordValidation)
+            {
+                return true;
+            }
+            return false;
         }
 
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)

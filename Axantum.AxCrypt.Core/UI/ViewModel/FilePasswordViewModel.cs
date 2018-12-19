@@ -98,6 +98,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
+        public bool FilePasswordValidation
+        {
+            get
+            {
+                return ValidateInternal(nameof(PasswordText));
+            }
+        }
+
         protected override Task<bool> ValidateAsync(string columnName)
         {
             return Task.FromResult(ValidateInternal(columnName));
