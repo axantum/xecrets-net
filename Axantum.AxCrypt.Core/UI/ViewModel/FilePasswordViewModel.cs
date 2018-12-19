@@ -204,14 +204,5 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             return false;
         }
-
-        public bool CheckFilePasswordValidation(string passwordText)
-        {
-            if (!ValidateInternal(passwordText))
-            {
-                return false;
-            }
-            return true;
-        }
     }
 }

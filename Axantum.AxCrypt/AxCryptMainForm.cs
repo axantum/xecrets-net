@@ -1143,9 +1143,9 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            if (!Resolve.KnownIdentities.IsLoggedOn)
+            if (HandleFilePasswordValidation(e))
             {
-                HandleFilePasswordValidation(e);
+                return;
             }
 
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
@@ -1170,6 +1170,11 @@ namespace Axantum.AxCrypt
 
         private bool HandleFilePasswordValidation(LogOnEventArgs e)
         {
+            if (Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return false;
+            }
+
             bool filePasswordValidation = false;
             if (!String.IsNullOrEmpty(e.Passphrase.Text))
             {
@@ -1272,7 +1277,7 @@ namespace Axantum.AxCrypt
                 {
                     case CommandVerb.Open:
                         await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
-                        break;
+                        return;
 
                     case CommandVerb.Encrypt:
                     case CommandVerb.Decrypt:
@@ -1357,6 +1362,7 @@ namespace Axantum.AxCrypt
             {
                 case CommandVerb.Encrypt:
                 case CommandVerb.Decrypt:
+                case CommandVerb.Open:
                     return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
 
                 default:
