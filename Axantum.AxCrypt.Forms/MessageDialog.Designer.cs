@@ -114,7 +114,7 @@
             this._button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._button1.Location = new System.Drawing.Point(84, 3);
             this._button1.Name = "_button1";
-            this._button1.Size = new System.Drawing.Size(75, 23);
+            this._button1.Size = new System.Drawing.Size(80, 23);
             this._button1.TabIndex = 1;
             this._button1.Text = "[Cancel]";
             this._button1.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             // 
             this._button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._button2.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this._button2.Location = new System.Drawing.Point(165, 3);
+            this._button2.Location = new System.Drawing.Point(170, 3);
             this._button2.Name = "_button2";
             this._button2.Size = new System.Drawing.Size(75, 23);
             this._button2.TabIndex = 2;
