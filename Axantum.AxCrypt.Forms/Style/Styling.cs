@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -20,6 +18,8 @@ namespace Axantum.AxCrypt.Forms.Style
         private static readonly Color _buttonBorderColor = Color.FromArgb(106, 157, 83);
 
         private static readonly Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
+
+        private static readonly Size _buttonSize = new Size(5, 5);
 
         public static Color WarningColor { get; } = Color.FromArgb(194, 145, 12);
 
@@ -69,6 +69,7 @@ namespace Axantum.AxCrypt.Forms.Style
                     button.FlatAppearance.BorderColor = _buttonBorderColor;
                     button.FlatAppearance.MouseOverBackColor = _buttonMouseOverColor;
                     button.FlatAppearance.BorderSize = 1;
+                    button.Size += _buttonSize;
                     break;
 
                 case "System.Windows.Forms.GroupBox":

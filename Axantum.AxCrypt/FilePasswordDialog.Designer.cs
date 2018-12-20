@@ -227,7 +227,7 @@
             this._cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._cancelButton.Location = new System.Drawing.Point(164, 9);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(80, 23);
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
             this._cancelButton.TabIndex = 1;
             this._cancelButton.Text = "[Cancel]";
             this._cancelButton.UseVisualStyleBackColor = true;
