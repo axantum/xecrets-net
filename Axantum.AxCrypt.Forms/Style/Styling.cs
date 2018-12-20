@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Forms.Style
 
         private static readonly Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
 
-        private static readonly Size _buttonSize = new Size(5, 5);
+        private static readonly Size _buttonSize = new Size(5, 0);
 
         public static Color WarningColor { get; } = Color.FromArgb(194, 145, 12);
 
