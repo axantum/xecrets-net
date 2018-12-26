@@ -1949,6 +1949,13 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password is not good enough to be acceptable.</value>
   </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>!!Password reset failed. A password reset request has not been made for this AxCrypt ID.
+
+You must complete the pending email change request to reset your AxCrypt ID Password.
+
+Please sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password to complete the pending email change process.</value>
+  </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
     <comment>The URL to a web page where a password can be reset</comment>
