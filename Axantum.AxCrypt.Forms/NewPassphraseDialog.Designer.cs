@@ -117,9 +117,9 @@
             // 
             this._buttonHelp.CausesValidation = false;
             this._buttonHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonHelp.Location = new System.Drawing.Point(173, 11);
+            this._buttonHelp.Location = new System.Drawing.Point(176, 11);
             this._buttonHelp.Name = "_buttonHelp";
-            this._buttonHelp.Size = new System.Drawing.Size(75, 23);
+            this._buttonHelp.Size = new System.Drawing.Size(80, 23);
             this._buttonHelp.TabIndex = 2;
             this._buttonHelp.Text = "[Help]";
             this._buttonHelp.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(87, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(91, 11);
             this._buttonCancel.Name = "_button1";
             this._buttonCancel.Size = new System.Drawing.Size(80, 23);
             this._buttonCancel.TabIndex = 1;
@@ -144,7 +144,7 @@
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonOk.Location = new System.Drawing.Point(6, 11);
             this._buttonOk.Name = "_button0";
-            this._buttonOk.Size = new System.Drawing.Size(75, 23);
+            this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;

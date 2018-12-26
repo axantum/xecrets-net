@@ -70,10 +70,10 @@
             // 
             this._noButton.AutoSize = true;
             this._noButton.DialogResult = System.Windows.Forms.DialogResult.No;
-            this._noButton.Location = new System.Drawing.Point(306, 116);
-            this._noButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this._noButton.Location = new System.Drawing.Point(302, 116);
+            this._noButton.MinimumSize = new System.Drawing.Size(80, 23);
             this._noButton.Name = "_noButton";
-            this._noButton.Size = new System.Drawing.Size(75, 23);
+            this._noButton.Size = new System.Drawing.Size(80, 23);
             this._noButton.TabIndex = 4;
             this._noButton.Text = "[&No]";
             this._noButton.UseVisualStyleBackColor = true;
@@ -82,10 +82,10 @@
             // 
             this._yesButton.AutoSize = true;
             this._yesButton.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this._yesButton.Location = new System.Drawing.Point(225, 116);
-            this._yesButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this._yesButton.Location = new System.Drawing.Point(217, 116);
+            this._yesButton.MinimumSize = new System.Drawing.Size(80, 23);
             this._yesButton.Name = "_yesButton";
-            this._yesButton.Size = new System.Drawing.Size(75, 23);
+            this._yesButton.Size = new System.Drawing.Size(80, 23);
             this._yesButton.TabIndex = 3;
             this._yesButton.Text = "[&Yes]";
             this._yesButton.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@
             this._cancelButton.Location = new System.Drawing.Point(387, 116);
             this._cancelButton.MinimumSize = new System.Drawing.Size(80, 23);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.Size = new System.Drawing.Size(80, 23);
             this._cancelButton.TabIndex = 5;
             this._cancelButton.Text = "[&Cancel All]";
             this._cancelButton.UseVisualStyleBackColor = true;
