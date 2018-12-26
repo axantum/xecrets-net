@@ -107,7 +107,7 @@
             this._cancelButton.Location = new System.Drawing.Point(387, 116);
             this._cancelButton.MinimumSize = new System.Drawing.Size(80, 23);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.Size = new System.Drawing.Size(80, 23);
             this._cancelButton.TabIndex = 5;
             this._cancelButton.Text = "[&Cancel All]";
             this._cancelButton.UseVisualStyleBackColor = true;
