@@ -19,8 +19,6 @@ namespace Axantum.AxCrypt.Forms.Style
 
         private static readonly Color _buttonMouseOverColor = Color.FromArgb(232, 232, 232);
 
-        private static readonly Size _buttonSize = new Size(5, 0);
-
         public static Color WarningColor { get; } = Color.FromArgb(194, 145, 12);
 
         public static Color ErrorColor { get; } = Color.FromArgb(234, 95, 76);
@@ -69,7 +67,6 @@ namespace Axantum.AxCrypt.Forms.Style
                     button.FlatAppearance.BorderColor = _buttonBorderColor;
                     button.FlatAppearance.MouseOverBackColor = _buttonMouseOverColor;
                     button.FlatAppearance.BorderSize = 1;
-                    button.Size += _buttonSize;
                     break;
 
                 case "System.Windows.Forms.GroupBox":

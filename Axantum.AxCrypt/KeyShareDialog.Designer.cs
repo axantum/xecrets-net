@@ -255,7 +255,7 @@
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.Location = new System.Drawing.Point(84, 3);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.Size = new System.Drawing.Size(80, 23);
             this._cancelButton.TabIndex = 1;
             this._cancelButton.Text = "[Cancel]";
             this._cancelButton.UseVisualStyleBackColor = true;
