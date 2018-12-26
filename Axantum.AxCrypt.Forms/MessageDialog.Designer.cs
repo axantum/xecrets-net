@@ -103,7 +103,7 @@
             this._button0.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._button0.Location = new System.Drawing.Point(3, 3);
             this._button0.Name = "_button0";
-            this._button0.Size = new System.Drawing.Size(80, 23);
+            this._button0.Size = new System.Drawing.Size(75, 23);
             this._button0.TabIndex = 0;
             this._button0.Text = "[OK]";
             this._button0.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             // 
             this._button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._button1.Location = new System.Drawing.Point(88, 3);
+            this._button1.Location = new System.Drawing.Point(84, 3);
             this._button1.Name = "_button1";
             this._button1.Size = new System.Drawing.Size(80, 23);
             this._button1.TabIndex = 1;
@@ -123,9 +123,9 @@
             // 
             this._button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._button2.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this._button2.Location = new System.Drawing.Point(173, 3);
+            this._button2.Location = new System.Drawing.Point(165, 3);
             this._button2.Name = "_button2";
-            this._button2.Size = new System.Drawing.Size(80, 23);
+            this._button2.Size = new System.Drawing.Size(75, 23);
             this._button2.TabIndex = 2;
             this._button2.Text = "[Exit]";
             this._button2.UseVisualStyleBackColor = true;

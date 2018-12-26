@@ -59,7 +59,7 @@
             this._buttonOk.Location = new System.Drawing.Point(68, 11);
             this._buttonOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.Size = new System.Drawing.Size(117, 35);
+            this._buttonOk.Size = new System.Drawing.Size(112, 35);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
@@ -82,10 +82,10 @@
             // 
             this._buttonReset.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this._buttonReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonReset.Location = new System.Drawing.Point(332, 11);
+            this._buttonReset.Location = new System.Drawing.Point(337, 11);
             this._buttonReset.Margin = new System.Windows.Forms.Padding(4,5,4,5);
             this._buttonReset.Name = "_buttonReset";
-            this._buttonReset.Size = new System.Drawing.Size(117, 35);
+            this._buttonReset.Size = new System.Drawing.Size(112, 35);
             this._buttonReset.TabIndex = 2;
             this._buttonReset.Text = "[Reset]";
             this._buttonReset.UseVisualStyleBackColor = true;

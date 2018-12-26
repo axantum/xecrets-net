@@ -46,7 +46,7 @@
             this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.Location = new System.Drawing.Point(231, 88);
             this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(80, 23);
+            this._okButton.Size = new System.Drawing.Size(75, 23);
             this._okButton.TabIndex = 2;
             this._okButton.Text = "[OK]";
             this._okButton.UseVisualStyleBackColor = true;

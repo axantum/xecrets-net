@@ -65,7 +65,7 @@
             this._okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._okButton.Location = new System.Drawing.Point(74, 9);
             this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(80, 23);
+            this._okButton.Size = new System.Drawing.Size(75, 23);
             this._okButton.TabIndex = 0;
             this._okButton.Text = "[OK]";
             this._okButton.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             // 
             this._moreButton.Location = new System.Drawing.Point(202, 42);
             this._moreButton.Name = "_moreButton";
-            this._moreButton.Size = new System.Drawing.Size(80, 23);
+            this._moreButton.Size = new System.Drawing.Size(75, 23);
             this._moreButton.TabIndex = 2;
             this._moreButton.Text = "[More...]";
             this._moreButton.UseVisualStyleBackColor = true;
