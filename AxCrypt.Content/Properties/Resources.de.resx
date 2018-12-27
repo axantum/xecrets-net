@@ -313,6 +313,21 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>Administratoren</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Als Administrator müssen Sie das Abonnement für Ihr Team im Administrationsmodul ihres AxCrypt-Web-Accounts erneuern.  Benutzen Sie die folgende Schaltfläche um direkt zu Ihrem Account zu kommen. Vergessen Sie nicht Ihr Team über die Erneuerung zu informieren!</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Ihr AxCrypt Businessabonnement {0} endet bald. Wir hoffen Ihnen hat AxCrypt gefallen.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Sobald ihr Businnesabonnement erneuert ist, können ihr Team und Sie sich zurücklegen und genießen:</value>
+  </data>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Ich hoffe Sie weren weiterhin unsers Business Funktionen benutzen. Um ihr Abonnement zu erneuern kontaktieren Sie bitte ihren AxCrypt Business Administrator.</value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>Es ist an der Zeit ihr AxCrypt Business Abonemment zu erneuern!</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Sie wurden als ein Benutzer von AxCrypt File Security von &lt;b&gt;{0}&lt;/b&gt; hinzugefürt . Um ihre Dateien zu sichern  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;laden&lt;/a&gt; and installieren Sie AxCrypt. Melden Sie sich bei AxCrypt mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Verifizierungscode ein und legen Sie ihr eigenes geheimes Passwort fest.&lt;/p&gt; 
 &lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren Sie bitte zuerst {0}.&lt;/p&gt;</value>
@@ -382,9 +397,15 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>EU MwSt. Nummer</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Ihr Abonnement ist seit {0} abgelaufen. Bitte erneuern Sie ihr Abonemment um alle Funktionen freizuschalten.</value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Abonnement läuft am {0} ab.</value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Falls Sie ihr Businessabonnement nicht rechtzeitig erneuern, wechseln Sie in einen unserer freien Pläne zurück.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importieren</value>
@@ -477,6 +498,18 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Wollen Sie das Mitglied wirklich von dem Abonnement entfernen ?</value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Zu wenig Benutzer! Die Erneuerng muss für mindestens so viele Benutzer geschehen wie Sie momentan benutzen. Falls die Erneuerung für weniger Mitglieder geschehen soll, müssen Sie zuerst Mitglieder von dem Abonemment entfernen.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Die Erneuerung muss für mindestens so viele Mitglieder geschehen wie Sie momentan benutzen. Um für weniger Mitglieder zu erneuern entfernen Sie bitte zuerst einige Mitglieder. Falls Sie für weniger Mitglieder erneuern als Sie momentan benutzen wird das Abonnement auf dieses Level reduziert und die verbleibende Zeit für die ungenutzen Mitglieder geht verloren.</value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Erneuern</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Businessabonnement Erneuerung</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Weiteres Vorgehen</value>
@@ -755,6 +788,10 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>Ihr Abonnementplan läuft bald ab. Klicken Sie zum Erneuern. </value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Überprüfe Datei</value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Sicherung stoppen und von der Liste entfernen</value>
@@ -1469,12 +1506,23 @@ Dieses Programm ist entsprechend der Vereinbarung lizensiert.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value> Explorer hier öffnen</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Es ist uns aufgefallen dass Sie kein Premium Abonnement  besitzen und möchten Ihnen deshalb eine kostenlose Probe anbieten!</value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Wir haben bemerkt dass Sie kein Premium Abonnement haben. Deshalb wir möchten eine kostenlose Testversion für Sie starten. 
 
 Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entschlüsseln. 
 </value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Wenn die Probezeit endet, können Sie die AxCrypt Smartphone Applikationen nicht mehr benutzen. Dafür ist eine bezahltes Abonnement erforderlich. 
+
+Sie können jederzeit verschlüsselte Dateien mit der kostenlosen Desktopversion von AxCrypt öffnen.</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>Sobald die kostenlose Periode endet, benutzen Sie weiterhin AxCrypt Free, solange bis Sie sich entscheiden ein Abonnement zu kaufen.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fehler</value>
@@ -1834,6 +1882,10 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>Bearbeitung...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>{0} Dateien bearbeitet. Dauer {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Aktivierungscode </value>
   </data>
@@ -1921,6 +1973,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   </data>
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Beschreibung (Website, Benutzername, etc.)</value>
+  </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Exportieren</value>
   </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Neu </value>
@@ -2404,6 +2459,9 @@ Das AxCrypt Team</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihr neues Konto</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Überprüfe und verifiziere Datei</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Passwort verifzieren </value>
