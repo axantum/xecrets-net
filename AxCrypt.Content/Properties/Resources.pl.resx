@@ -302,6 +302,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
     <value>Jako administrator musisz odnowić subskrypcję  swojego zespołu w module administracyjnym sieci internetowej AxCrypt. Użyj przycisku poniżej, aby przejść bezpośrednio do tego miejsca. Nie zapomnij poinformować swojego zespołu, że odnawiasz subskrypcję!</value>
   </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>Twoja subskrypcja AxCrypt Business wkrótce wygaśnie. Mam nadzieję, że byłeś z niej zadowolony. </value>
+  </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Po odnowieniu subskrypcji Business Ty i Twój team możecie nadal korzystać z:</value>
   </data>
@@ -1050,7 +1053,7 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
     <value>Publiczny klucz udostępniania Pliki</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' jest otwarty w innej aplikacji. Zamknij i spróbuj ponownie.</value>
+    <value>'{0}' jest otwarty w innej aplikacji. Upewnij się, że aplikacja ta jest zamknięta i spróbuj ponownie.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' jest zabezpieczony przed zapisem. </value>
@@ -1298,7 +1301,7 @@ Adresat jest identyfikowany przez AxCrypt ID w wiadomości e-mail, ale nie wysy�
     <value>Wykryliśmy potencjalnie niezgodne oprogramowanie, które może spowodować wadliwe działanie AxCrypt i innych programów. Oprogramowanie to nazywa się Lavasoft Web Companion. Jeśli AxCrypt działa nieprawidłowo, spróbuj odinstalować Lavasoft.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Po przekształceniu plików z formatu AxCrypt 1.x musisz użyć nowego hasła do logowania, aby je otworzyć, więc sprawdź je tutaj.
+    <value>Po przekształceniu plików będzie można je otworzyć tylko przy użyciu obecnego hasła AxCrypt. Proszę sprawdź swoje hasło tutaj.
  
 Nie zapomnij tego hasła!</value>
   </data>
@@ -1536,11 +1539,14 @@ Ten program jest licencjonowany zgodnie z umową.
     <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy zaproponować Ci bezpłatny okres próbny!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy rozpocząć dla Ciebie bezpłatny okres próbny!
-
-Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.
+    <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.
 </value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Po zakonńczeniu okresu testowego nie możesz korzystać z aplikacji mobilnych. Konieczna jest płatna subskrypcja. 
+
+Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt na komputer. </value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Po zakończeniu okresu próbnego automatycznie przejdziesz na subskrypcję AxCrypt Free, o ile nie wybierzesz płatnej subskrypcji. </value>
@@ -1693,11 +1699,11 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
     <value>Wyczyść wszystkie ustawienia i wyjdź</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Automatyczne rozszerzanie plików 1.x</value>
+    <value>Automatyczne rozszerzanie plików 1.x i AES-128</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Włącz lub wyłącz automatyczną aktualizację i konwertowanie starszych plików AxCrypt 1.x w miarę ich używania.</value>
+    <value>Włącz lub wyłącz automatyczną aktualizację i konwertowanie starszych plików AxCrypt 1.x i AES-128 w miarę ich używania.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -2134,7 +2140,7 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Jesteś już zalogowany przy użyciu tego hasła!</value>
+    <value>Próbowaliśmy już hasła, którego użyłeś do logowania! Wypróbuj inne hasło.</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2395,7 +2401,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Wspaniale! Teraz możesz korzystać ze wszystkich funkcji AxCrypt za darmo podczas okresu próbnego.
+    <value>Wspaniale! Włączyliśmy dla Ciebie bezpłatny okres próbny Premium. Teraz możesz korzystać ze wszystkich funkcji AxCrypt za darmo podczas okresu próbnego.
+ 
+Nie przejmuj się - nadal masz dostęp do wszystkich Twoich plików z AxCrypt Free, nawet jeśli po zakończeniu okresu próbnego nie będziesz chciał wykupić subskrypcji. 
  
 Powodzenia i przyjemności,
  
@@ -2454,10 +2462,10 @@ Zespół AxCrypt</value>
     <value>Aktualizuję status</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Uaktualnij pliki 1.x</value>
+    <value>Uaktualnij pliki 1.x i AES-128</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Wybierz miejsce do wyszukania plików zabezpieczonych AxCrypt 1.x i uaktualnij je.</value>
+    <value>Wybierz miejsce do wyszukania plików zabezpieczonych AxCrypt 1.x i AES-128, i uaktualnij je.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Pobierz Premium!</value>
