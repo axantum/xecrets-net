@@ -1131,7 +1131,7 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingLogOn(LogOnEventArgs e)
         {
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
+            if (!string.IsNullOrEmpty(e.EncryptedFileFullName) && (string.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
@@ -1143,11 +1143,6 @@ namespace Axantum.AxCrypt
 
         private void HandleExistingLogOnForEncryptedFile(LogOnEventArgs e)
         {
-            if (HandleFilePasswordValidation(e))
-            {
-                return;
-            }
-
             using (FilePasswordDialog logOnDialog = new FilePasswordDialog(this, e.EncryptedFileFullName))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
@@ -1168,41 +1163,14 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private bool HandleFilePasswordValidation(LogOnEventArgs e)
-        {
-            if (Resolve.KnownIdentities.IsLoggedOn)
-            {
-                return false;
-            }
-
-            FilePasswordViewModel viewModel = new FilePasswordViewModel(e.EncryptedFileFullName);
-            if (!String.IsNullOrEmpty(e.Passphrase.Text))
-            {
-                viewModel.PasswordText = e.Passphrase.Text.ToString();
-            }
-
-            if (!viewModel.FilePasswordValidation)
-            {
-                return false;
-            }
-            return true;
-        }
-
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
-            LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel, e.EncryptedFileFullName))
+            LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings, e.EncryptedFileFullName);
+            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
-
-                if (dialogResult == DialogResult.Ignore)
-                {
-                    e.Passphrase = new Passphrase(viewModel.PasswordText);
-                    HandleExistingLogOnForEncryptedFile(e);
-                    return;
-                }
 
                 if (dialogResult == DialogResult.Retry)
                 {
@@ -1278,8 +1246,11 @@ namespace Axantum.AxCrypt
                         await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
                         return;
 
-                    case CommandVerb.Encrypt:
                     case CommandVerb.Decrypt:
+                        await _fileOperationViewModel.DecryptFiles.ExecuteAsync(e.Arguments);
+                        return;
+
+                    case CommandVerb.Encrypt:
                     case CommandVerb.Show:
                     case CommandVerb.RandomRename:
                     case CommandVerb.Wipe:

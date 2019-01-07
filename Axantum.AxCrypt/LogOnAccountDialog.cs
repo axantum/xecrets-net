@@ -22,14 +22,11 @@ namespace Axantum.AxCrypt
 
         private LogOnAccountViewModel _viewModel;
 
-        private string _encryptedFileFullName;
-
-        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel, string encryptedFileFullName)
+        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel)
             : this()
         {
             InitializeStyle(owner);
             _viewModel = viewModel;
-            _encryptedFileFullName = encryptedFileFullName;
         }
 
         protected override void InitializeContentResources()
@@ -74,17 +71,18 @@ namespace Axantum.AxCrypt
         private async void ButtonOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.None;
+
             if (!await AdHocValidationDueToMonoLimitations())
             {
-                DialogResult = !String.IsNullOrEmpty(_encryptedFileFullName) ? DialogResult.Ignore : DialogResult.None;
                 return;
             }
+
             DialogResult = DialogResult.OK;
         }
 
         private async Task<bool> AdHocValidationDueToMonoLimitations()
         {
-            bool validated = await AdHocValidatePassphrase();
+            bool validated = await AdHocValidatePassphrase() || await AdHocValidatePassphraseForFile();
 
             return validated;
         }
@@ -93,6 +91,17 @@ namespace Axantum.AxCrypt
         {
             _errorProvider1.Clear();
             if (!await _viewModel.ValidateItemAsync(nameof(LogOnAccountViewModel.PasswordText)))
+            {
+                _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> AdHocValidatePassphraseForFile()
+        {
+            _errorProvider1.Clear();
+            if (!await _viewModel.ValidateItemAsync(nameof(LogOnAccountViewModel.EncryptedFileFullName)))
             {
                 _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
                 return false;

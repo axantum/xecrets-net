@@ -29,7 +29,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +53,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public event EventHandler TooManyTries;
 
-        public LogOnAccountViewModel(UserSettings userSettings)
+        public LogOnAccountViewModel(UserSettings userSettings, string encryptedFileFullName)
         {
             if (userSettings == null)
             {
@@ -63,13 +62,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             _userSettings = userSettings;
 
-            InitializePropertyValues(_userSettings.UserEmail);
+            InitializePropertyValues(_userSettings.UserEmail, encryptedFileFullName);
             BindPropertyChangedEvents();
         }
 
-        private void InitializePropertyValues(string userEmail)
+        private void InitializePropertyValues(string userEmail, string encryptedFileFullName)
         {
             UserEmail = userEmail;
+            EncryptedFileFullName = encryptedFileFullName;
             PasswordText = String.Empty;
             ShowPassword = New<UserSettings>().DisplayDecryptPassphrase;
             ShowEmail = true;
@@ -88,6 +88,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public string PasswordText { get { return GetProperty<string>(nameof(PasswordText)); } set { SetProperty(nameof(PasswordText), value); } }
 
         public string UserEmail { get { return GetProperty<string>(nameof(UserEmail)); } set { SetProperty(nameof(UserEmail), value); } }
+
+        public string EncryptedFileFullName { get { return GetProperty<string>(nameof(EncryptedFileFullName)); } set { SetProperty(nameof(EncryptedFileFullName), value); } }
 
         public bool ShowEmail { get { return GetProperty<bool>(nameof(ShowEmail)); } private set { SetProperty(nameof(ShowEmail), value); } }
 
@@ -112,6 +114,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 case nameof(PasswordText):
                     return await ValidatePassphraseAsync();
 
+                case nameof(EncryptedFileFullName):
+                    return ValidatePassphraseForFile();
+
                 case nameof(ShowPassword):
                 case nameof(ShowEmail):
                     return true;
@@ -119,6 +124,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 default:
                     throw new ArgumentException("Cannot validate property.", columnName);
             }
+        }
+
+        private bool ValidatePassphraseForFile()
+        {
+            if (string.IsNullOrEmpty(EncryptedFileFullName))
+            {
+                return false;
+            }
+            return New<AxCryptFactory>().IsPassphraseValid(new Passphrase(PasswordText), EncryptedFileFullName);
         }
 
         private async Task<bool> ValidatePassphraseAsync()
