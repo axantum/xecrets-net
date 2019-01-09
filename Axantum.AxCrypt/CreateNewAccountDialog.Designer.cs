@@ -117,7 +117,7 @@
             this._panel1.Controls.Add(this._buttonOk);
             this._panel1.Location = new System.Drawing.Point(2, 204);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(251, 37);
+            this._panel1.Size = new System.Drawing.Size(261, 37);
             this._panel1.TabIndex = 0;
             // 
             // _buttonCancel
@@ -125,7 +125,7 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(87, 6);
+            this._buttonCancel.Location = new System.Drawing.Point(92, 6);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(80, 23);
             this._buttonCancel.TabIndex = 1;
@@ -139,7 +139,7 @@
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonOk.Location = new System.Drawing.Point(6, 6);
             this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.Size = new System.Drawing.Size(75, 23);
+            this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
@@ -179,9 +179,9 @@
             // 
             this._helpButton.CausesValidation = false;
             this._helpButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._helpButton.Location = new System.Drawing.Point(173, 6);
+            this._helpButton.Location = new System.Drawing.Point(178, 6);
             this._helpButton.Name = "_helpButton";
-            this._helpButton.Size = new System.Drawing.Size(75, 23);
+            this._helpButton.Size = new System.Drawing.Size(80, 23);
             this._helpButton.TabIndex = 2;
             this._helpButton.Text = "[Help]";
             this._helpButton.UseVisualStyleBackColor = true;
