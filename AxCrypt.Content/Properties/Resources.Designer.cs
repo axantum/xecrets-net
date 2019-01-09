@@ -4824,6 +4824,19 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Password reset failed. A password reset request has not been made for this AxCrypt ID.
+        ///
+        ///You must complete the pending email change request to reset your AxCrypt ID Password.
+        ///
+        ///Please sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password to complete the pending email change process..
+        /// </summary>
+        public static string PasswordResetFailedWhenPendingEmailChange {
+            get {
+                return ResourceManager.GetString("PasswordResetFailedWhenPendingEmailChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://account.axcrypt.net/Home/PasswordReset.
         /// </summary>
         public static string PasswordResetHyperLink {
