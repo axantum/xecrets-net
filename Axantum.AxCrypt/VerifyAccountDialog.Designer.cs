@@ -80,9 +80,9 @@
             this._buttonOk.CausesValidation = false;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(6, 9);
+            this._buttonOk.Location = new System.Drawing.Point(5, 9);
             this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.Size = new System.Drawing.Size(75, 23);
+            this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
@@ -93,9 +93,9 @@
             this._buttonCancel.CausesValidation = false;
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(87, 9);
+            this._buttonCancel.Location = new System.Drawing.Point(91, 9);
             this._buttonCancel.Name = "_buttonCancel";
-            this._buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this._buttonCancel.Size = new System.Drawing.Size(80, 23);
             this._buttonCancel.TabIndex = 1;
             this._buttonCancel.Text = "[Cancel]";
             this._buttonCancel.UseVisualStyleBackColor = true;
@@ -178,18 +178,18 @@
             this._panel1.Controls.Add(this._resendButton);
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Location = new System.Drawing.Point(12, 267);
+            this._panel1.Location = new System.Drawing.Point(2, 267);
             this._panel1.Name = "_panel1";
-            this._panel1.Size = new System.Drawing.Size(334, 41);
+            this._panel1.Size = new System.Drawing.Size(350, 41);
             this._panel1.TabIndex = 3;
             // 
             // _helpButton
             // 
             this._helpButton.CausesValidation = false;
             this._helpButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._helpButton.Location = new System.Drawing.Point(249, 9);
+            this._helpButton.Location = new System.Drawing.Point(263, 9);
             this._helpButton.Name = "_helpButton";
-            this._helpButton.Size = new System.Drawing.Size(75, 23);
+            this._helpButton.Size = new System.Drawing.Size(80, 23);
             this._helpButton.TabIndex = 3;
             this._helpButton.Text = "[Help]";
             this._helpButton.UseVisualStyleBackColor = true;
@@ -199,9 +199,9 @@
             // 
             this._resendButton.CausesValidation = false;
             this._resendButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._resendButton.Location = new System.Drawing.Point(168, 9);
+            this._resendButton.Location = new System.Drawing.Point(177, 9);
             this._resendButton.Name = "_resendButton";
-            this._resendButton.Size = new System.Drawing.Size(75, 23);
+            this._resendButton.Size = new System.Drawing.Size(80, 23);
             this._resendButton.TabIndex = 2;
             this._resendButton.Text = "[Resend]";
             this._resendButton.UseVisualStyleBackColor = true;

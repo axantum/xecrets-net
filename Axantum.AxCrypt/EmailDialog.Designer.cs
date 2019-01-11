@@ -99,7 +99,7 @@
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonOk.Location = new System.Drawing.Point(116, 6);
             this._buttonOk.Name = "_buttonOk";
-            this._buttonOk.Size = new System.Drawing.Size(75, 23);
+            this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
