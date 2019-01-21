@@ -1898,6 +1898,11 @@
     <value>В процессе работы...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>Количество обработанных файлов {0}. Затраченное время {1}.
+</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Верификационный Код</value>
   </data>

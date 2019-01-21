@@ -108,6 +108,10 @@
     <value>Hesabın önce kullanıcı tarafından doğrulanması gerekmektedir. </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value>Sunucu ile herhangi bir bağlantı bulunmadığından, yeni alıcılar yerel ya da çevrimdışı durumda eklenemiyor. </value>
+    <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
+  </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium deneme</value>
   </data>
@@ -301,6 +305,21 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>Yöneticiler</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
+    <value>Yönetici olarak, ekibin için aboneliği AxCrypt hesap ağının yönetici modülü üzerinden yenilemen gerekiyor. Doğrudan modüle gitmek için aşağıdaki butonu kullan. Yenileme yaptığını ekibine haber vermeyi unutma!  </value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
+    <value>AxCrypt Business aboneliğin {0} yakında sona erecektir. AxCrypt'i kullanmanın tadını çıkardığını ve onu kullanışlı bulduğunu içtenlikle umuyorum.  </value>
+  </data>
+  <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
+    <value>Business aboneliğin yenilendiğinde, sen ve ekibin şunların tadını çıkarmaya devam edebilir: </value>
+  </data>
+  <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
+    <value>Gerçekten Business özelliklerimizi kullanmaya devam edeceğini umuyorum. Aboneliğini yenilemek için, lütfen AxCrypt Business yöneticinle iletişime geç. </value>
+  </data>
+  <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
+    <value>AxCrypt Business aboneliğini yenileme zamanı! </value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendin. Dosyalarını korumaya başlamak için &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;indir&lt;/a&gt; AxCrypt'i kur. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt oturumunu aç, aşağıdaki doğrulama kodunu girip gizli kişisel parolanı belirle.&lt;/p&gt; 
 &lt;p&gt;Soruların için lütfen önce {0} ile iletişime geç.&lt;/p&gt;</value>
@@ -370,9 +389,15 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <value>AB KDV Numarası</value>
     <comment>The placeholder text for the field where the administrator enters an EU VAT Number.</comment>
   </data>
+  <data name="BusinessSubscriptionExpiredWarningText" xml:space="preserve">
+    <value>Aboneliğinin {0} tarihinden itibaren süresi geçti. Bütün business işlevlerini geri almak için lütfen aboneliğini yenile.  </value>
+  </data>
   <data name="BusinessSubscriptionExpiresFormat" xml:space="preserve">
     <value>Aboneliğinin süresi  {0}'da dolacaktır.  </value>
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
+  </data>
+  <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
+    <value>Business aboneliğin zamanında yenilenmezse, ücretsiz planlarımızdan birine geçeceksin. </value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Aktar </value>
@@ -465,6 +490,18 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!    </value>
   <data name="BusinessSubscriptionRemoveMemberConfirmation" xml:space="preserve">
     <value>Bu üyeyi abonelikten çıkarmak istediğinden emin misin? </value>
     <comment>A message asking if you really want to remove the member from the subscription, typically as the result of clicking the 'Remove' button. It should be formulated as a yes/no or ok/cancel question.</comment>
+  </data>
+  <data name="BusinessSubscriptionRenewalMemberCountErrorMessage" xml:space="preserve">
+    <value>Çok az sayıda üye var! Yenileme için en az şu anki üye sayısı kadar üye olmalıdır. Daha az sayıda üyeyle yenilemek için, bazı üyeleri abonelikten çıkar.  </value>
+  </data>
+  <data name="BusinessSubscriptionRenewalPageBody" xml:space="preserve">
+    <value>Yenileme için en az şu anki üye sayısı kadar üye olmalıdır. Daha az sayıda üyeyle yenilemek için, lütfen önce bazı üyeleri çıkar. Eğer yenileme şu anki üye sayısından daha az kişi için olursa, üyelik o seviyeye düşer ve kullanılmayan üyeler için geriye kalan zaman kaybedilir.   </value>
+  </data>
+  <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
+    <value>Business Aboneliği Yenileme</value>
   </data>
   <data name="BusinessSubscriptionResellerCustomerSubscription" xml:space="preserve">
     <value>Buna göre hareket edilecek </value>
@@ -686,6 +723,10 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
   <data name="ColumnProductHeader" xml:space="preserve">
     <value>Çarpma</value>
   </data>
+  <data name="ColumnStatusHeader" xml:space="preserve">
+    <value>Durum </value>
+    <comment>In the account site, when listing subscription events (payments etc), a column is displayed where it is noted if the record is deleted or active.</comment>
+  </data>
   <data name="ColumnTimestampHeader" xml:space="preserve">
     <value>Zaman bilgisi</value>
   </data>
@@ -738,6 +779,10 @@ Geçici oturum çerezlerimizi kabul etmediğin halde oturum açamazsın ve site 
   </data>
   <data name="DaysLeftWarningToolTip" xml:space="preserve">
     <value>AxCrypt Premium üyeliğin sona ermek üzere. Üyeliğini yenilemek için tıkla.</value>
+  </data>
+  <data name="DebugFileFormatCheckToolStripMenuItemText" xml:space="preserve">
+    <value>Dosyayı Kontrol Et </value>
+    <comment>A debug menu item starting the AxCrypt File Format check function</comment>
   </data>
   <data name="DebugLoggingToolStripMenuItemText" xml:space="preserve">
     <value>Günlük oluşturma</value>
@@ -1003,7 +1048,8 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
     <value>AxCrypt Ortak Paylaşım Anahtar Dosyaları</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' başka bir uygulama açık. Lütfen kapatıp tekrar dene.</value>
+    <value>'{0}' başka bir uygulamada açık. Lütfen diğer uygulamanın tamamen kapalı olduğundan emin olup tekrar dene.
+</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' yazı korumalıdır.</value>
@@ -1241,9 +1287,8 @@ Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorla
     <value>AxCrypt'in ve diğer yazılımların çalışmamasına neden olabilecek, uyumsuz olması muhtemel bir yazılım tespit ettik. Bu yazılımın adı Lavasoft Web Companion. AxCrypt'in çalışmayı durdurması halinde Lavasoft'u kaldırmayı dene.</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
-    <value>Dosyalar AxCrypt 1.x formatından çıktıktan sonra, onları açmak için yeni Oturum açma şifresini girmen gerekir, lütfen bunu buradan kontrol et.
-
-Bu şifreyi unutma!</value>
+    <value>Dosyalar dönüştürüldükten sonra yalnızca güncel AxCrypt şifresiyle açılabilirler. Lütfen şifreni doğrula. 
+</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 yeni bir dosya formatı kullanmaktadır.
@@ -1467,11 +1512,24 @@ Bu program anlaşmaya göre lisanslanmıştır.
   <data name="MenuOpenExplorerHereText" xml:space="preserve">
     <value>Explorer'ı burada aç</value>
   </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value>Premium aboneliğin olmadığını fark ettik, o yüzden ücretsiz bir Deneme süresi başlatmanı istiyoruz! </value>
+  </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Premium üyeliğinin bulunmadığını fark ettik, bu yüzden sana 30 günlük ücretsiz bir AxCrypt Premium deneme paketi öneriyoruz.
+    <value>Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin. 
 
-Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin. </value>
+</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
+  </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Deneme süresi bittiğinde, AxCrypt mobil uygulamalarını kullanamayacaksın. Bunun için ücretli bir abonelik gerekmektedir. 
+
+Şifrelenmiş dosyalarını, AxCrypt'in ücretsiz masaüstü versiyonuyla her zaman açabilirsin. 
+
+</value>
+  </data>
+  <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
+    <value>Deneme süresi bittiğinde, üyelik satın almadığın sürece otomatik olarak AxCrypt Free ile devam edeceksin. </value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Hata</value>
@@ -1624,11 +1682,11 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>Tüm Ayarları Sıfırla ve Yeniden Başlat </value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>1.x Dosyaları otomatik yenile</value>
+    <value>1.x ve AES-128 Dosyalarını Otomatik Olarak Yükselt </value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Eski AxCrypt 1.x dosyaları için otomatik güncelleme ve dönüşümü kullandıkça devreiçi veya devredışı bırak.</value>
+    <value>AxCrypt 1.x ve AES-128 dosyalarının otomatik güncelleme ve dönüşümünü etkinleştir veya devre dışı bırak.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
@@ -1824,6 +1882,10 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
     <value>Çalışıyor...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>İşlenen dosya sayısı {0}. Toplam süre {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Onay kodu</value>
   </data>
@@ -1911,6 +1973,9 @@ Boşluklar ve yaygın parolalara denk kısımlar sayılmaz ve parolayı daha gü
   </data>
   <data name="PromptXecretsDescriptionText" xml:space="preserve">
     <value>Tanım (ilgili internet sitesi, kullanıcı adı vs)</value>
+  </data>
+  <data name="PromptXecretsExport" xml:space="preserve">
+    <value>Dışarı Aktar</value>
   </data>
   <data name="PromptXecretsNew" xml:space="preserve">
     <value>Yeni</value>
@@ -2041,8 +2106,17 @@ Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
   <data name="ResetButtonText" xml:space="preserve">
     <value>Sıfırla</value>
   </data>
+  <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
+    <value>Orijinal isme yeniden adlandır </value>
+    <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
+  </data>
+  <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
+    <value>Dosya ismini, yeniden adlandırılmış şifrelenmiş bir dosyanın orijinal dosya ismine getir. </value>
+    <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
-    <value>Zaten bu şifreyle bağlısın!</value>
+    <value>Oturum açmış olduğun şifreyi zaten denedik! Başka bir şifre dene. 
+</value>
     <comment>If a user is prompted for a password for a file, and types the same as already signed in, this indicates a misunderstanding and should be explained.</comment>
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
@@ -2208,6 +2282,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
     <value>Düşünceyi bildir</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionDeletedText" xml:space="preserve">
+    <value>Silindi </value>
+  </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0}, {1}'e kadar geçerli. </value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
@@ -2295,11 +2372,15 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Harika! Şimdi deneme süresi boyunca tüm AxCrypt özelliklerini bedavaya kullanabilirsin.
+    <value>Harika! Senin için Premium deneme süresini başlattık. Şimdi deneme süresi boyunca tüm AxCrypt özelliklerini bedavaya kullanabilirsin.
 
-İyi şanslar ve tadını çıkart,
+Merak etme, deneme süresi bittikten sonra Premium aboneliği almak istemesen bile,  AxCrypt Free ile tüm dosyalarına erişimin olacak. 
 
-AxCrypt Ekibi</value>
+İyi şanslar ve Premium'un tadını çıkart,
+
+AxCrypt Ekibi
+
+</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
   <data name="TroubleRememberingLabel" xml:space="preserve">
@@ -2354,10 +2435,11 @@ AxCrypt Ekibi</value>
     <value>Konum yenileniyor</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>1.x dosyalarını yenile</value>
+    <value>1.x ve AES-128 Dosyalarını Yükselt </value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x ile korunan dosyaları aramak için bir yer seç ve onları güncelle.</value>
+    <value>AxCrypt 1.x ve AES-128 dosyaları içeren bir klasör seç ve dosyaları güncelle.
+</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium'a üye ol!</value>
@@ -2373,6 +2455,9 @@ AxCrypt Ekibi</value>
   <data name="VerifyAccountLabel" xml:space="preserve">
     <value>Lütfen hesabını doğrula</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
+  </data>
+  <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
+    <value>Dosyayı Kontrol Et ve Doğrula </value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Şifre doğrula</value>
