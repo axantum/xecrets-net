@@ -26,8 +26,6 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -118,9 +116,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return true;
             }
-            IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
-            IEnumerable<DecryptionParameter> decryptionParameters = encryptedStore.DecryptionParameters(new Passphrase(passphrase), new IAsymmetricPrivateKey[0]);
-            return New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, encryptedStore) != null;
+            return New<AxCryptFactory>().IsPassphraseValid(new Passphrase(passphrase), encryptedFileFullName);
         }
 
         private static bool IsPassphrasePolicyValid(string passphrase)

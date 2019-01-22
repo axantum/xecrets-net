@@ -71,16 +71,18 @@ namespace Axantum.AxCrypt
         private async void ButtonOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.None;
+
             if (!await AdHocValidationDueToMonoLimitations())
             {
                 return;
             }
+
             DialogResult = DialogResult.OK;
         }
 
         private async Task<bool> AdHocValidationDueToMonoLimitations()
         {
-            bool validated = await AdHocValidatePassphrase();
+            bool validated = await AdHocValidatePassphrase() || await AdHocValidatePassphraseForFile();
 
             return validated;
         }
@@ -89,6 +91,17 @@ namespace Axantum.AxCrypt
         {
             _errorProvider1.Clear();
             if (!await _viewModel.ValidateItemAsync(nameof(LogOnAccountViewModel.PasswordText)))
+            {
+                _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> AdHocValidatePassphraseForFile()
+        {
+            _errorProvider1.Clear();
+            if (!await _viewModel.ValidateItemAsync(nameof(LogOnAccountViewModel.EncryptedFileFullName)))
             {
                 _errorProvider1.SetError(_passphrase, Texts.WrongPassphrase);
                 return false;

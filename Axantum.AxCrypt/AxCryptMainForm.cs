@@ -1131,7 +1131,7 @@ namespace Axantum.AxCrypt
 
         private async Task HandleExistingLogOn(LogOnEventArgs e)
         {
-            if (!String.IsNullOrEmpty(e.EncryptedFileFullName) && (String.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
+            if (!string.IsNullOrEmpty(e.EncryptedFileFullName) && (string.IsNullOrEmpty(Resolve.UserSettings.UserEmail) || Resolve.KnownIdentities.IsLoggedOn))
             {
                 HandleExistingLogOnForEncryptedFile(e);
             }
@@ -1167,7 +1167,7 @@ namespace Axantum.AxCrypt
         {
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
 
-            LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings);
+            LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings, e.EncryptedFileFullName);
             using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
@@ -1242,9 +1242,15 @@ namespace Axantum.AxCrypt
 
                 switch (e.Verb)
                 {
-                    case CommandVerb.Encrypt:
-                    case CommandVerb.Decrypt:
                     case CommandVerb.Open:
+                        await _fileOperationViewModel.OpenFiles.ExecuteAsync(e.Arguments);
+                        return;
+
+                    case CommandVerb.Decrypt:
+                        await _fileOperationViewModel.DecryptFiles.ExecuteAsync(e.Arguments);
+                        return;
+
+                    case CommandVerb.Encrypt:
                     case CommandVerb.Show:
                     case CommandVerb.RandomRename:
                     case CommandVerb.Wipe:

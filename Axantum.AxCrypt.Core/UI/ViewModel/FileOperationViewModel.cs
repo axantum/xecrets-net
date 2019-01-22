@@ -173,14 +173,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 return;
             }
-            if (!_knownIdentities.IsLoggedOn)
-            {
-                await IdentityViewModel.AskForDecryptPassphrase.ExecuteAsync(files.First());
-            }
-            if (!_knownIdentities.IsLoggedOn)
-            {
-                return;
-            }
             await _fileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)).ToList(), DecryptFileWork, (status) => Task.FromResult(CheckStatusAndShowMessage(status, string.Empty)));
         }
 
