@@ -369,6 +369,11 @@ namespace Axantum.AxCrypt
         public async Task SignIn()
         {
             await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
+
+            if (!_mainViewModel.LoggedOn)
+            {
+                await SetSignInSignOutStatusAsync(Resolve.KnownIdentities.IsLoggedOn);
+            }
         }
 
         private async Task SignInAsync()
