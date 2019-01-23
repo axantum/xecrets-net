@@ -125,7 +125,7 @@
             this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.okButton.Location = new System.Drawing.Point(339, 268);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.Size = new System.Drawing.Size(80, 23);
             this.okButton.TabIndex = 32;
             this.okButton.Text = "[&OK]";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
