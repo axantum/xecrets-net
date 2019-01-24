@@ -369,11 +369,6 @@ namespace Axantum.AxCrypt
         public async Task SignIn()
         {
             await _fileOperationViewModel.IdentityViewModel.LogOnAsync.ExecuteAsync(null);
-
-            if (!_mainViewModel.LoggedOn)
-            {
-                await SetSignInSignOutStatusAsync(Resolve.KnownIdentities.IsLoggedOn);
-            }
         }
 
         private async Task SignInAsync()
@@ -978,7 +973,7 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
-            _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
+            _passwordResetToolStripMenuItem.Enabled = !isSignedIn && New<AxCryptOnlineState>().IsOnline;
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
