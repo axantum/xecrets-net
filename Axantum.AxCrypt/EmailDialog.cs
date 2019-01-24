@@ -98,7 +98,7 @@ namespace Axantum.AxCrypt
 
         private void _buttonHelp_Click(object sender, EventArgs e)
         {
-            Process.Start(@"https://www.axcrypt.net/documentation/get-started/");
+            LaunchHelpPage();
         }
     }
 }
