@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Texts = AxCrypt.Content.Texts;
@@ -35,6 +33,7 @@ namespace Axantum.AxCrypt
 
             _firstTimePromptlabel.Text = Texts.DialogAxCryptIdFirstTimeText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
+            _buttonHelp.Text = "&" + Texts.ButtonHelpText;
             _emailGroupBox.Text = Texts.PromptEmailText;
         }
 
@@ -95,6 +94,11 @@ namespace Axantum.AxCrypt
         private void ClearErrorProviders()
         {
             _errorProvider1.Clear();
+        }
+
+        private void _buttonHelp_Click(object sender, EventArgs e)
+        {
+            LaunchHelpPage();
         }
     }
 }
