@@ -973,7 +973,7 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
-            _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
+            _passwordResetToolStripMenuItem.Enabled = !isSignedIn;
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
