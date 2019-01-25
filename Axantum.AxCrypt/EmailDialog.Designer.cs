@@ -99,7 +99,7 @@
             this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(60, 6);
+            this._buttonOk.Location = new System.Drawing.Point(63, 6);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
@@ -111,7 +111,7 @@
             // 
             this._buttonHelp.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._buttonHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonHelp.Location = new System.Drawing.Point(160, 6);
+            this._buttonHelp.Location = new System.Drawing.Point(163, 6);
             this._buttonHelp.Name = "_buttonHelp";
             this._buttonHelp.Size = new System.Drawing.Size(80, 23);
             this._buttonHelp.TabIndex = 0;
