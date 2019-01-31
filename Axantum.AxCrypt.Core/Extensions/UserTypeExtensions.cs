@@ -9,6 +9,7 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
+using Axantum.AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -397,7 +398,17 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+            UserPublicKey userPublicKey = null;
+
+            if (SharingListViewModel.RecipientAccountStatus == AccountStatus.NotFound && key == null)
+            {
+                userPublicKey = await accountStorage.GetInviteNewUserPublicKeyAsync(email, SharingListViewModel.InvitationCulture, SharingListViewModel.InvitationPersonalizedMessage).Free();
+            }
+
+            if (userPublicKey == null)
+            {
+                userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+            }
 
             if (userPublicKey != null)
             {

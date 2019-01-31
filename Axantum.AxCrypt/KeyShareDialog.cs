@@ -200,6 +200,20 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
+
+            await _viewModel.CheckUserAccountStatus.ExecuteAsync(_viewModel.NewKeyShare);
+
+            if (SharingListViewModel.RecipientAccountStatus == AccountStatus.NotFound)
+            {
+                using (InviteNewContactKeySharingDialog inviteDialog = new InviteNewContactKeySharingDialog(this))
+                {
+                    if (inviteDialog.ShowDialog(this) == DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
+            }
+
             try
             {
                 await _viewModel.AddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);

@@ -33,8 +33,8 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -116,6 +116,11 @@ namespace Axantum.AxCrypt.Core.Session
         public async Task<UserPublicKey> GetOtherUserPublicKeyAsync(EmailAddress email)
         {
             return await _service.OtherPublicKeyAsync(email).Free();
+        }
+
+        public async Task<UserPublicKey> GetInviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        {
+            return await _service.InviteNewUserPublicKeyAsync(email, culture, invitationPersonalizedMessage).Free();
         }
     }
 }

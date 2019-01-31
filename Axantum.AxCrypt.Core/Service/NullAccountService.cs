@@ -33,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
@@ -120,6 +119,11 @@ namespace Axantum.AxCrypt.Core.Service
         }
 
         public Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        {
+            return Task.FromResult((UserPublicKey)null);
+        }
+
+        public Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
         {
             return Task.FromResult((UserPublicKey)null);
         }

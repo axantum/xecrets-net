@@ -66,6 +66,7 @@
     <Compile Include="Model\AxCryptVersion.cs" />
     <Compile Include="Model\DesktopPlatformKind.cs" />
     <Compile Include="Model\FeedbackData.cs" />
+    <Compile Include="Model\InviteUserParameters.cs" />
     <Compile Include="Model\PrivateKeyStatus.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />

@@ -25,14 +25,17 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -66,6 +69,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareFiles { get; private set; }
 
+        public IAsyncAction CheckUserAccountStatus { get; private set; }
+
+        public static AccountStatus RecipientAccountStatus { get; private set; }
+
+        public static CultureInfo InvitationCulture { get; set; }
+
+        public static string InvitationPersonalizedMessage { get; set; }
+
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
             _filesOrfolderPaths = filesOrfolderPaths;
@@ -97,12 +108,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
         {
             SetSharedAndNotSharedWith(sharedWith);
-            NewKeyShare = String.Empty;
+            NewKeyShare = string.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
+            RecipientAccountStatus = AccountStatus.Unknown;
+            InvitationCulture = CultureInfo.InvariantCulture;
+            InvitationPersonalizedMessage = string.Empty;
 
             AddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
             RemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));
             AddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
+            CheckUserAccountStatus = new AsyncDelegateAction<string>((email) => CheckUserAccountStatusActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
             ShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
             ShareFiles = new AsyncDelegateAction<object>((o) => ShareFilesActionAsync());
         }
@@ -171,6 +186,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private async Task AddNewKeyShareActionAsync(string email)
         {
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
+        }
+
+        private async Task CheckUserAccountStatusActionAsync(string email)
+        {
+            EmailAddress recipientEmail = EmailAddress.Parse(email);
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(_identity));
+            RecipientAccountStatus = await accountStorage.StatusAsync(recipientEmail).Free();
         }
 
         private static async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysAsync(IEnumerable<EmailAddress> recipients, LogOnIdentity identity)

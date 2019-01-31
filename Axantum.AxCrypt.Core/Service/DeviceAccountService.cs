@@ -269,6 +269,30 @@ namespace Axantum.AxCrypt.Core.Service
             return publicKey;
         }
 
+        public async Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        {
+            UserPublicKey publicKey = await _localService.InviteNewUserPublicKeyAsync(email, culture, invitationPersonalizedMessage).Free();
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return NonNullPublicKey(publicKey);
+            }
+
+            try
+            {
+                publicKey = await _remoteService.InviteNewUserPublicKeyAsync(email, culture, invitationPersonalizedMessage).Free();
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.AddOrReplace(publicKey);
+                }
+            }
+            catch (ApiException aex)
+            {
+                await aex.HandleApiExceptionAsync();
+            }
+
+            return publicKey;
+        }
+
         private static UserPublicKey NonNullPublicKey(UserPublicKey publicKey)
         {
             if (publicKey != null)

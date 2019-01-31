@@ -39,7 +39,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -346,6 +345,15 @@ namespace Axantum.AxCrypt.Core.Service
                     return publicKey;
                 }
             }).Free();
+        }
+
+        public Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requires a invite user email address.");
+            }
+            return Task.FromResult((UserPublicKey)null);
         }
 
         public Task SendFeedbackAsync(string subject, string message)

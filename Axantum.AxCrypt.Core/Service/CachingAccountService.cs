@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -120,6 +119,11 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();
+        }
+
+        public async Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        {
+            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(InviteNewUserPublicKeyAsync)), async () => await _service.InviteNewUserPublicKeyAsync(email, culture, invitationPersonalizedMessage)).Free();
         }
 
         public async Task SendFeedbackAsync(string subject, string message)
