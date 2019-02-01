@@ -172,20 +172,20 @@ namespace Axantum.AxCrypt.Api
             return accountKey;
         }
 
-        public async Task<AccountKey> PostNewUserAccountPublicKeyAsync(string userName, CultureInfo culture, string invitationPersonalizedMessage)
+        public async Task<AccountKey> PostInviteUserAccountPublicKeyAsync(string userName, CultureInfo messagCulture, string personalizedMessage)
         {
             if (userName == null)
             {
                 throw new ArgumentNullException(nameof(userName));
             }
 
-            if (culture == null)
+            if (messagCulture == null)
             {
-                throw new ArgumentNullException(nameof(culture));
+                throw new ArgumentNullException(nameof(messagCulture));
             }
 
-            Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(Identity.User));
-            InviteUserParameters inviteUserParameters = new InviteUserParameters(userName, culture, invitationPersonalizedMessage);
+            Uri resource = BaseUrl.PathCombine("users/new/account/{0}/key".With(Identity.User));
+            InviteUserParameters inviteUserParameters = new InviteUserParameters(userName, messagCulture, personalizedMessage);
             RestContent content = new RestContent(Serializer.Serialize(inviteUserParameters));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);

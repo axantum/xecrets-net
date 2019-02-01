@@ -399,10 +399,11 @@ namespace Axantum.AxCrypt.Core.Extensions
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             UserPublicKey userPublicKey = null;
+            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckUserAccountStatus(email.ToString());
 
-            if (SharingListViewModel.RecipientAccountStatus == AccountStatus.NotFound && key == null)
+            if (sharedUserAccountStatus == AccountStatus.NotFound)
             {
-                userPublicKey = await accountStorage.GetInviteNewUserPublicKeyAsync(email, SharingListViewModel.InvitationCulture, SharingListViewModel.InvitationPersonalizedMessage).Free();
+                userPublicKey = await accountStorage.GetInviteUserPublicKeyAsync(email, SharingListViewModel.InvitationCulture, SharingListViewModel.InvitationPersonalizedMessage).Free();
             }
 
             if (userPublicKey == null)

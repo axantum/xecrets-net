@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Service
             }).Free();
         }
 
-        public Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        public Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string personalizedMessage)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {

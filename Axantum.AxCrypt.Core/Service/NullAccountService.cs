@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult((UserPublicKey)null);
         }
 
-        public Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string invitationPersonalizedMessage)
+        public Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string personalizedMessage)
         {
             return Task.FromResult((UserPublicKey)null);
         }

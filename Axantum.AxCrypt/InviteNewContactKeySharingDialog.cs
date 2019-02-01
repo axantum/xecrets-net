@@ -1,7 +1,7 @@
 ﻿#region Coypright and License
 
 /*
- * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
+ * AxCrypt - Copyright 2019, Svante Seleborg, All Rights Reserved
  *
  * This file is part of AxCrypt.
  *
@@ -49,10 +49,10 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
-            InitializeCulture();
+            InitializeCultureList();
         }
 
-        private void InitializeCulture()
+        private void InitializeCultureList()
         {
             _languageList = new[] {
                 new { Name = Texts.EnglishLanguageToolStripMenuItemText, Tag = "en-US" },

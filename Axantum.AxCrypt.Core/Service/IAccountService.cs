@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// create the new user public key pair, and returns the new public key of the user.
         /// </summary>
         /// <returns>The public key of the new user key pair, or null if the service can't create other users.</returns>
-        Task<UserPublicKey> InviteNewUserPublicKeyAsync(EmailAddress email, CultureInfo culture, string InvitationPersonalizedMessage);
+        Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string PersonalizedMessage);
 
         /// <summary>
         /// Saves the account, merging keys with existing keys if necessary.
