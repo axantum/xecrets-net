@@ -10,12 +10,12 @@ namespace Axantum.AxCrypt.Api.Model
     /// Information for a invite user request.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class InviteUserParameters
+    public class InviteUserAccountParameters
     {
-        public InviteUserParameters(string userName, CultureInfo messageculture, string personalizedMessage)
+        public InviteUserAccountParameters(string userName, CultureInfo messageCulture, string personalizedMessage)
         {
             UserName = userName;
-            MessageCulture = messageculture;
+            MessageCulture = messageCulture;
             PersonalizedMessage = personalizedMessage;
         }
 
@@ -29,7 +29,7 @@ namespace Axantum.AxCrypt.Api.Model
         public string UserName { get; }
 
         /// <summary>
-        /// Gets the user choose culture for sending the invite mail language
+        /// Gets the user choose culture for sending the invite mail
         /// </summary>
         /// <value>
         /// The culture.
@@ -38,7 +38,7 @@ namespace Axantum.AxCrypt.Api.Model
         public CultureInfo MessageCulture { get; }
 
         /// <summary>
-        /// Gets the invite persionalized message for add the caller information to inviter.
+        /// Gets the invite persionalized message for add the caller information to invite mail.
         /// </summary>
         /// <value>
         /// The invitation Personalized Message .

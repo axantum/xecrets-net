@@ -74,7 +74,7 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = " Invite keyShare Dialog";
+            Text = "[Invite User Message]";
 
             _languageCultureGroupBox.Text = "[Choose Language]";
             _cancelButton.Text = "&" + Texts.ButtonCancelText;

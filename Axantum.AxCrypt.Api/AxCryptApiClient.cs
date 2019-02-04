@@ -185,8 +185,8 @@ namespace Axantum.AxCrypt.Api
             }
 
             Uri resource = BaseUrl.PathCombine("users/new/account/{0}/key".With(Identity.User));
-            InviteUserParameters inviteUserParameters = new InviteUserParameters(userName, messagCulture, personalizedMessage);
-            RestContent content = new RestContent(Serializer.Serialize(inviteUserParameters));
+            InviteUserAccountParameters inviteUserAccountParameters = new InviteUserAccountParameters(userName, messagCulture, personalizedMessage);
+            RestContent content = new RestContent(Serializer.Serialize(inviteUserAccountParameters));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 

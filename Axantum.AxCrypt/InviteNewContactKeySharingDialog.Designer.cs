@@ -212,7 +212,7 @@ namespace Axantum.AxCrypt
             this.MinimizeBox = false;
             this.Name = "InviteNewContactKeySharingDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "[KeyShare Invite]";
+            this.Text = "[Invite User Message]";
             this.DialogFlowLayoutPanel.ResumeLayout(false);
             this.InviteTextPanel.ResumeLayout(false);
             this.LanguageCulturePanel.ResumeLayout(false);

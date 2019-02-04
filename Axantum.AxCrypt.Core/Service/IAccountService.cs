@@ -123,9 +123,9 @@ namespace Axantum.AxCrypt.Core.Service
         Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
 
         /// <summary>
-        /// create the new user public key pair, and returns the new public key of the user.
+        /// create the keyshare invite user public key pair, and returns the new public key of the user.
         /// </summary>
-        /// <returns>The public key of the new user key pair, or null if the service can't create other users.</returns>
+        /// <returns>The public key of the invite user key pair, or null if the service can't create other users.</returns>
         Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string PersonalizedMessage);
 
         /// <summary>
