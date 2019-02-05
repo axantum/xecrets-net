@@ -2250,6 +2250,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Invite User Message.
+        /// </summary>
+        public static string DialogKeyShareInviteUserTitle {
+            get {
+                return ResourceManager.GetString("DialogKeyShareInviteUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Sharing.
         /// </summary>
         public static string DialogKeyShareTitle {
@@ -3189,6 +3198,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!From Inviter : {0}..
+        /// </summary>
+        public static string InvitationMailBodyMessage {
+            get {
+                return ResourceManager.GetString("InvitationMailBodyMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invitation to use AxCrypt File Security.
         /// </summary>
         public static string InvitationMailSubject {
@@ -3203,6 +3221,15 @@ namespace AxCrypt.Content.Properties {
         public static string Invite {
             get {
                 return ResourceManager.GetString("Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Invitation Personalized Message.
+        /// </summary>
+        public static string InviteUserPersonalizedMessageTitle {
+            get {
+                return ResourceManager.GetString("InviteUserPersonalizedMessageTitle", resourceCulture);
             }
         }
         
@@ -3417,6 +3444,15 @@ namespace AxCrypt.Content.Properties {
         public static string KeyShareDialogHeader {
             get {
                 return ResourceManager.GetString("KeyShareDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!You are about to share securely with someone Who is not an AxCrypt user. Still would you like to share with some, Please provide the invitation user language and personalized message to proceed..
+        /// </summary>
+        public static string KeyShareInviteUserTextPrompt {
+            get {
+                return ResourceManager.GetString("KeyShareInviteUserTextPrompt", resourceCulture);
             }
         }
         

@@ -74,15 +74,13 @@ namespace Axantum.AxCrypt
 
         protected override void InitializeContentResources()
         {
-            Text = "[Invite User Message]";
+            Text = Texts.DialogKeyShareInviteUserTitle;
 
-            _languageCultureGroupBox.Text = "[Choose Language]";
+            _languageCultureGroupBox.Text = Texts.OptionsLanguageToolStripMenuItemText;
             _cancelButton.Text = "&" + Texts.ButtonCancelText;
             _okButton.Text = "&" + Texts.ButtonOkText;
-            _keyShareInvitePromptlabel.Text = "You are about to share securely with someone Who has received but not yet respond" +
-    " to an invitation to use AxCrypt ";
-
-            _personalizedMessageGroupBox.Text = "[Invitation Personalized Message]";
+            _keyShareInvitePromptlabel.Text = Texts.KeyShareInviteUserTextPrompt;
+            _personalizedMessageGroupBox.Text = Texts.InviteUserPersonalizedMessageTitle;
         }
 
         private void OkButton_Click(object sender, EventArgs e)
