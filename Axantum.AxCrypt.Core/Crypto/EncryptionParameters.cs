@@ -80,7 +80,6 @@ namespace Axantum.AxCrypt.Core.Crypto
         public Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
             AddOrRemovePublicKeys(publicKeys);
-
             return Constant.CompletedTask;
         }
 
