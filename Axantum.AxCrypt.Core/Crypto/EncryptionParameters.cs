@@ -74,10 +74,17 @@ namespace Axantum.AxCrypt.Core.Crypto
             }
 
             _identity = identity;
-            _publicKeys.AddRange(identity.PublicKeys);
+            AddOrRemovePublicKeys(identity.PublicKeys);
         }
 
         public Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
+        {
+            AddOrRemovePublicKeys(publicKeys);
+
+            return Constant.CompletedTask;
+        }
+
+        private void AddOrRemovePublicKeys(IEnumerable<UserPublicKey> publicKeys)
         {
             foreach (UserPublicKey userPublicKey in publicKeys)
             {
@@ -88,8 +95,6 @@ namespace Axantum.AxCrypt.Core.Crypto
                 }
                 _publicKeys.Add(userPublicKey);
             }
-
-            return Constant.CompletedTask;
         }
 
         /// <summary>
