@@ -120,13 +120,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// Ensures there is at least one key pair if possible, and returns the active public key of the user.
         /// </summary>
         /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
-        Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
-
-        /// <summary>
-        /// create the keyshare invite user public key pair, and returns the new public key of the user.
-        /// </summary>
-        /// <returns>The public key of the invite user key pair, or null if the service can't create other users.</returns>
-        Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string PersonalizedMessage);
+        Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters);
 
         /// <summary>
         /// Saves the account, merging keys with existing keys if necessary.

@@ -8,7 +8,6 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -245,9 +244,9 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.PasswordResetAsync(verificationCode).Free();
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
-            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email).Free();
+            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email, null).Free();
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return NonNullPublicKey(publicKey);
@@ -255,31 +254,7 @@ namespace Axantum.AxCrypt.Core.Service
 
             try
             {
-                publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
-                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-                {
-                    knownPublicKeys.AddOrReplace(publicKey);
-                }
-            }
-            catch (ApiException aex)
-            {
-                await aex.HandleApiExceptionAsync();
-            }
-
-            return publicKey;
-        }
-
-        public async Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string personalizedMessage)
-        {
-            UserPublicKey publicKey = await _localService.InviteUserPublicKeyAsync(email, messageCulture, personalizedMessage).Free();
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return NonNullPublicKey(publicKey);
-            }
-
-            try
-            {
-                publicKey = await _remoteService.InviteUserPublicKeyAsync(email, messageCulture, personalizedMessage).Free();
+                publicKey = await _remoteService.OtherPublicKeyAsync(email, invitationMessageParameters).Free();
                 using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
                 {
                     knownPublicKeys.AddOrReplace(publicKey);

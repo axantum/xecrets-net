@@ -19,7 +19,7 @@ namespace Axantum.AxCrypt.Api.Model
         }
 
         public InvitationMessageParameters()
-            : this(CultureInfo.InvariantCulture, string.Empty)
+            : this(CultureInfo.CurrentCulture, string.Empty)
         {
         }
 

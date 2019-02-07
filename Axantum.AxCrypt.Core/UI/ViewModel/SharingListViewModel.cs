@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareFiles { get; private set; }
 
-        public static CultureInfo InvitationCulture { get; set; }
+        public static CultureInfo InvitationMessageCulture { get; set; }
 
         public static string InvitationPersonalizedMessage { get; set; }
 
@@ -106,7 +106,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SetSharedAndNotSharedWith(sharedWith);
             NewKeyShare = string.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
-            InvitationCulture = CultureInfo.InvariantCulture;
+            InvitationMessageCulture = CultureInfo.CurrentCulture;
             InvitationPersonalizedMessage = string.Empty;
 
             AddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));

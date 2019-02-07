@@ -280,14 +280,9 @@ namespace Axantum.AxCrypt.Core.Service
             await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
-            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
-        }
-
-        public async Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string personalizedMessage)
-        {
-            return (await _apiClient.PostKeyShareInviteAccountPublicKeyAsync(email.Address, messageCulture, personalizedMessage).Free()).ToUserPublicKey();
+            return (await _apiClient.PostAllAccountsOtherUserPublicKeyAsync(email.Address, invitationMessageParameters).Free()).ToUserPublicKey();
         }
     }
 }

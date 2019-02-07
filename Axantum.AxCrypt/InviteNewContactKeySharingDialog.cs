@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            SharingListViewModel.InvitationCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
+            SharingListViewModel.InvitationMessageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
             SharingListViewModel.InvitationPersonalizedMessage = _personalizedMessageTextBox.Text;
         }
     }

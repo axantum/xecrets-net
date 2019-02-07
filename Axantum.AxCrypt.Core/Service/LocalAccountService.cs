@@ -330,7 +330,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
