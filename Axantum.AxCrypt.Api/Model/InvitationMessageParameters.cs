@@ -18,11 +18,6 @@ namespace Axantum.AxCrypt.Api.Model
             PersonalizedMessage = personalizedMessage;
         }
 
-        public InvitationMessageParameters()
-            : this(CultureInfo.CurrentCulture, string.Empty)
-        {
-        }
-
         /// <summary>
         /// Gets the language culture to send the invitation message in the recipient's preferred language/culture.
         /// </summary>
