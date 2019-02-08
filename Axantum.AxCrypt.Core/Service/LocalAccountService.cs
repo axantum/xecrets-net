@@ -347,15 +347,6 @@ namespace Axantum.AxCrypt.Core.Service
             }).Free();
         }
 
-        public Task<UserPublicKey> InviteUserPublicKeyAsync(EmailAddress email, CultureInfo messageCulture, string personalizedMessage)
-        {
-            if (Identity.UserEmail == EmailAddress.Empty)
-            {
-                throw new InvalidOperationException("The account service requires a invite user email address.");
-            }
-            return Task.FromResult((UserPublicKey)null);
-        }
-
         public Task SendFeedbackAsync(string subject, string message)
         {
             throw new InvalidOperationException("Feedback sending can't be performed locally.");
