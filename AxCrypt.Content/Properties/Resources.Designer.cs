@@ -2250,7 +2250,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invite User Message.
+        ///   Looks up a localized string similar to !!User Invitation.
         /// </summary>
         public static string DialogKeyShareInviteUserTitle {
             get {
@@ -3198,11 +3198,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!From Inviter : {0}..
+        ///   Looks up a localized string similar to !!From inviter,  &quot;{0}&quot;..
         /// </summary>
-        public static string InvitationMailBodyMessage {
+        public static string InvitationMailBodyPersonalizedMessageTitle {
             get {
-                return ResourceManager.GetString("InvitationMailBodyMessage", resourceCulture);
+                return ResourceManager.GetString("InvitationMailBodyPersonalizedMessageTitle", resourceCulture);
             }
         }
         
@@ -3448,7 +3448,8 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You are about to share securely with someone Who is not an AxCrypt user. Still would you like to share with some, Please provide the invitation user language and personalized message to proceed..
+        ///   Looks up a localized string similar to !!You are about to share securely with someone who is not having an AxCrypt user. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
+        ///You can customized the invitation by providing the following fields..
         /// </summary>
         public static string KeyShareInviteUserTextPrompt {
             get {

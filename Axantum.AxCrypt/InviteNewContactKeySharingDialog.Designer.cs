@@ -79,7 +79,7 @@ namespace Axantum.AxCrypt
             this.DialogFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.DialogFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DialogFlowLayoutPanel.Name = "DialogFlowLayoutPanel";
-            this.DialogFlowLayoutPanel.Size = new System.Drawing.Size(426, 402);
+            this.DialogFlowLayoutPanel.Size = new System.Drawing.Size(426, 433);
             this.DialogFlowLayoutPanel.TabIndex = 0;
             // 
             // InviteTextPanel
@@ -89,7 +89,7 @@ namespace Axantum.AxCrypt
             this.InviteTextPanel.Margin = new System.Windows.Forms.Padding(4);
             this.InviteTextPanel.Name = "InviteTextPanel";
             this.InviteTextPanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
-            this.InviteTextPanel.Size = new System.Drawing.Size(417, 110);
+            this.InviteTextPanel.Size = new System.Drawing.Size(417, 136);
             this.InviteTextPanel.TabIndex = 0;
             // 
             // _keyShareInvitePromptlabel
@@ -100,16 +100,16 @@ namespace Axantum.AxCrypt
             this._keyShareInvitePromptlabel.Location = new System.Drawing.Point(8, 11);
             this._keyShareInvitePromptlabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._keyShareInvitePromptlabel.Name = "_keyShareInvitePromptlabel";
-            this._keyShareInvitePromptlabel.Size = new System.Drawing.Size(401, 87);
+            this._keyShareInvitePromptlabel.Size = new System.Drawing.Size(401, 114);
             this._keyShareInvitePromptlabel.TabIndex = 1;
-            this._keyShareInvitePromptlabel.Text = "[You are about to share securely with someone Who is not an AxCrypt user. " +
-                "Still would you like to share with some, Please provide the invitation user language and personalized message to proceed.]";
             this._keyShareInvitePromptlabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._keyShareInvitePromptlabel.Text = "[You are about to share securely with someone who is not having an AxCrypt user.AxCrypt will send the invitation mail with instructions on how to proceed the recipient."
+             + "You can customized the invitation by providing the following fields]";
             // 
             // LanguageCulturePanel
             // 
             this.LanguageCulturePanel.Controls.Add(this._languageCultureGroupBox);
-            this.LanguageCulturePanel.Location = new System.Drawing.Point(4, 122);
+            this.LanguageCulturePanel.Location = new System.Drawing.Point(4, 148);
             this.LanguageCulturePanel.Margin = new System.Windows.Forms.Padding(4);
             this.LanguageCulturePanel.Name = "LanguageCulturePanel";
             this.LanguageCulturePanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
@@ -143,7 +143,7 @@ namespace Axantum.AxCrypt
             // PersonalizedMessagePanel
             // 
             this.PersonalizedMessagePanel.Controls.Add(this._personalizedMessageGroupBox);
-            this.PersonalizedMessagePanel.Location = new System.Drawing.Point(4, 222);
+            this.PersonalizedMessagePanel.Location = new System.Drawing.Point(4, 248);
             this.PersonalizedMessagePanel.Margin = new System.Windows.Forms.Padding(4);
             this.PersonalizedMessagePanel.Name = "PersonalizedMessagePanel";
             this.PersonalizedMessagePanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
@@ -177,7 +177,7 @@ namespace Axantum.AxCrypt
             // 
             this.ButtonPanel.Controls.Add(this._okButton);
             this.ButtonPanel.Controls.Add(this._cancelButton);
-            this.ButtonPanel.Location = new System.Drawing.Point(4, 347);
+            this.ButtonPanel.Location = new System.Drawing.Point(4, 373);
             this.ButtonPanel.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonPanel.Name = "ButtonPanel";
             this.ButtonPanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
@@ -204,7 +204,7 @@ namespace Axantum.AxCrypt
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(426, 402);
+            this.ClientSize = new System.Drawing.Size(426, 433);
             this.Controls.Add(this.DialogFlowLayoutPanel);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

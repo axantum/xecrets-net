@@ -239,7 +239,7 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            using (InviteNewContactKeySharingDialog inviteDialog = new InviteNewContactKeySharingDialog(this))
+            using (InviteNewContactKeySharingDialog inviteDialog = new InviteNewContactKeySharingDialog(this, _viewModel))
             {
                 if (inviteDialog.ShowDialog(this) == DialogResult.OK)
                 {

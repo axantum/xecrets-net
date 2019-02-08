@@ -69,9 +69,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareFiles { get; private set; }
 
-        public static CultureInfo InvitationMessageCulture { get; set; }
+        public static CultureInfo InvitationMessageCulture { get; private set; }
 
-        public static string InvitationPersonalizedMessage { get; set; }
+        public static string InvitationPersonalizedMessage { get; private set; }
 
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
@@ -81,6 +81,12 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             InitializePropertyValues(sharedWith);
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
+        }
+
+        public void SetInvitationPersonalizedMessage(CultureInfo messageCulture, string invitationPersonalizedMessage)
+        {
+            InvitationMessageCulture = messageCulture;
+            InvitationPersonalizedMessage = invitationPersonalizedMessage;
         }
 
         public static async Task<SharingListViewModel> CreateForFilesAsync(IEnumerable<string> files, LogOnIdentity identity)

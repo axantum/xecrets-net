@@ -40,14 +40,17 @@ namespace Axantum.AxCrypt
     {
         private object[] _languageList;
 
+        private SharingListViewModel _viewModel;
+
         public InviteNewContactKeySharingDialog()
         {
             InitializeComponent();
         }
 
-        public InviteNewContactKeySharingDialog(Form parent)
+        public InviteNewContactKeySharingDialog(Form parent, SharingListViewModel viewModel)
             : this()
         {
+            _viewModel = viewModel;
             InitializeStyle(parent);
             InitializeCultureList();
         }
@@ -91,8 +94,9 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            SharingListViewModel.InvitationMessageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
-            SharingListViewModel.InvitationPersonalizedMessage = _personalizedMessageTextBox.Text;
+            CultureInfo messageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
+            string invitationPersonalizedMessage = _personalizedMessageTextBox.Text;
+            _viewModel.SetInvitationPersonalizeddetails(messageCulture, invitationPersonalizedMessage);
         }
     }
 }
