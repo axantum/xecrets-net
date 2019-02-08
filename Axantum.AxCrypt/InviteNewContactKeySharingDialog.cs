@@ -96,7 +96,7 @@ namespace Axantum.AxCrypt
 
             CultureInfo messageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
             string invitationPersonalizedMessage = _personalizedMessageTextBox.Text;
-            _viewModel.SetInvitationPersonalizeddetails(messageCulture, invitationPersonalizedMessage);
+            _viewModel.SetInvitationPersonalizedMessage(messageCulture, invitationPersonalizedMessage);
         }
     }
 }
