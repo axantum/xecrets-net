@@ -253,6 +253,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(LicenseAuthorityEmail), value); }
         }
 
+        public string PersonalizedMessage
+        {
+            get { return Load(nameof(PersonalizedMessage), String.Empty); }
+            set { Store(nameof(PersonalizedMessage), value); }
+        }
+
         public bool IsFirstSignIn
         {
             get { return Load(nameof(IsFirstSignIn), true); }

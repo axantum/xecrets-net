@@ -201,7 +201,7 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            if (await CheckKeyShareContactAccount())
+            if (!await ValidKeySharingUserAccount())
             {
                 return false;
             }
@@ -231,23 +231,23 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private async Task<bool> CheckKeyShareContactAccount()
+        private async Task<bool> ValidKeySharingUserAccount()
         {
-            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckUserAccountStatus(_viewModel.NewKeyShare);
+            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckKeySharingUserAccount(_viewModel.NewKeyShare);
             if (sharedUserAccountStatus != AccountStatus.NotFound)
             {
                 return false;
             }
 
-            using (InviteNewContactKeySharingDialog inviteDialog = new InviteNewContactKeySharingDialog(this, _viewModel))
+            using (KeySharingInviteUserDialog inviteDialog = new KeySharingInviteUserDialog(this, _viewModel))
             {
                 if (inviteDialog.ShowDialog(this) == DialogResult.OK)
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)

@@ -83,10 +83,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SubscribeToModelEvents();
         }
 
-        public void SetInvitationPersonalizedMessage(CultureInfo messageCulture, string invitationPersonalizedMessage)
+        public void SetInvitationMessageParameters(CultureInfo messageCulture, string personalizedMessage)
         {
             InvitationMessageCulture = messageCulture;
-            InvitationPersonalizedMessage = invitationPersonalizedMessage;
+            InvitationPersonalizedMessage = personalizedMessage;
         }
 
         public static async Task<SharingListViewModel> CreateForFilesAsync(IEnumerable<string> files, LogOnIdentity identity)
@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        public static async Task<AccountStatus> CheckUserAccountStatus(string email)
+        public static async Task<AccountStatus> CheckKeySharingUserAccount(string email)
         {
             EmailAddress recipientEmail = EmailAddress.Parse(email);
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Axantum.AxCrypt
 {
-    partial class InviteNewContactKeySharingDialog
+    partial class KeySharingInviteUserDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -197,7 +197,7 @@ namespace Axantum.AxCrypt
             this._cancelButton.Text = "[Cancel]";
             this._cancelButton.UseVisualStyleBackColor = true;
             // 
-            // InviteNewContactKeySharingDialog
+            // KeySharingInviteUserDialog
             // 
             this.AcceptButton = this._okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -209,7 +209,7 @@ namespace Axantum.AxCrypt
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InviteNewContactKeySharingDialog";
+            this.Name = "KeySharingInviteUserDialog";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "[Invite User Message]";
             this.DialogFlowLayoutPanel.ResumeLayout(false);

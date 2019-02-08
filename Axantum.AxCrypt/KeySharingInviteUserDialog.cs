@@ -25,39 +25,44 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
 {
-    public partial class InviteNewContactKeySharingDialog : StyledMessageBase
+    public partial class KeySharingInviteUserDialog : StyledMessageBase
     {
-        private object[] _languageList;
+        private object[] _cultureList;
 
         private SharingListViewModel _viewModel;
 
-        public InviteNewContactKeySharingDialog()
+        public KeySharingInviteUserDialog()
         {
             InitializeComponent();
         }
 
-        public InviteNewContactKeySharingDialog(Form parent, SharingListViewModel viewModel)
+        public KeySharingInviteUserDialog(Form parent, SharingListViewModel viewModel)
             : this()
         {
             _viewModel = viewModel;
             InitializeStyle(parent);
             InitializeCultureList();
+
+            _languageCultureDropDown.SelectedValue = CultureInfo.CurrentUICulture.Name;
+            _personalizedMessageTextBox.Text = WebUtility.HtmlDecode(Resolve.UserSettings.PersonalizedMessage);
         }
 
         private void InitializeCultureList()
         {
-            _languageList = new[] {
+            _cultureList = new[] {
                 new { Name = Texts.EnglishLanguageToolStripMenuItemText, Tag = "en-US" },
                 new { Name = Texts.GermanLanguageSelectionText, Tag = "de-DE" },
                 new { Name = Texts.DutchLanguageSelection, Tag = "nl-NL" },
@@ -72,7 +77,7 @@ namespace Axantum.AxCrypt
                 new { Name = Texts.TurkishLanguageToolStripMenuItemText, Tag = "tr-TR" }
             };
 
-            _languageCultureDropDown.DataSource = new BindingSource(_languageList, null);
+            _languageCultureDropDown.DataSource = new BindingSource(_cultureList, null);
         }
 
         protected override void InitializeContentResources()
@@ -94,8 +99,14 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            string personalizedMessage = WebUtility.HtmlEncode(_personalizedMessageTextBox.Text);
+            if (!String.IsNullOrEmpty(personalizedMessage))
+            {
+                Resolve.UserSettings.PersonalizedMessage = personalizedMessage;
+            }
+
             CultureInfo messageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
-            _viewModel.SetInvitationPersonalizedMessage(messageCulture, _personalizedMessageTextBox.Text);
+            _viewModel.SetInvitationMessageParameters(messageCulture, personalizedMessage);
         }
     }
 }
