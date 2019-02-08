@@ -3225,7 +3225,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invitation Personalized Message.
+        ///   Looks up a localized string similar to !!Personalized Message.
         /// </summary>
         public static string InviteUserPersonalizedMessageTitle {
             get {
@@ -3448,7 +3448,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You are about to share securely with someone who is not having an AxCrypt user. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
+        ///   Looks up a localized string similar to !!You are about to share securely with someone who is not having an AxCrypt account. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
         ///You can customized the invitation by providing the following fields..
         /// </summary>
         public static string KeyShareInviteUserTextPrompt {

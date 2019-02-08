@@ -1316,7 +1316,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!Invitation Personalized Message</value>
+    <value>!!Personalized Message</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
@@ -1401,7 +1401,7 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
-    <value>!!You are about to share securely with someone who is not having an AxCrypt user. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
+    <value>!!You are about to share securely with someone who is not having an AxCrypt account. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
 You can customized the invitation by providing the following fields.</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
