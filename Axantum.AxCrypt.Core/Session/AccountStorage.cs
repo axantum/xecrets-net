@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt.Core.Session
             return await _service.OtherPublicKeyAsync(email).Free();
         }
 
-        public async Task<UserPublicKey> PostInviteUserPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> GetOtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
             return await _service.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
         }

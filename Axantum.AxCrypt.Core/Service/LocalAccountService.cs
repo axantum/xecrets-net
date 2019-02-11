@@ -349,12 +349,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
-            if (Identity.UserEmail == EmailAddress.Empty)
-            {
-                throw new InvalidOperationException("The account service requires a user.");
-            }
-
-            return await Task.FromResult((UserPublicKey)null);
+            return await OtherPublicKeyAsync(email);
         }
 
         public Task SendFeedbackAsync(string subject, string message)

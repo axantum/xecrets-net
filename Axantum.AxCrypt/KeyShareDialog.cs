@@ -233,7 +233,7 @@ namespace Axantum.AxCrypt
 
         private async Task<bool> ValidKeySharingUserAccount()
         {
-            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckKeySharingUserAccount(_viewModel.NewKeyShare);
+            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckKeySharingUserAccountAsync(_viewModel.NewKeyShare);
             if (sharedUserAccountStatus != AccountStatus.NotFound)
             {
                 return false;

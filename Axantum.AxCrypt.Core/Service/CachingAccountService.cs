@@ -123,7 +123,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
-            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters)).Free();
+            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherUserInvitePublicKeyAsync)), async () => await _service.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters)).Free();
         }
 
         public async Task SendFeedbackAsync(string subject, string message)

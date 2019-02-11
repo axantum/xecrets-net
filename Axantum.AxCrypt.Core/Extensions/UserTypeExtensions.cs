@@ -398,18 +398,8 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-
-            UserPublicKey userPublicKey = null;
-            if (await SharingListViewModel.CheckKeySharingUserAccount(email.ToString()) == AccountStatus.NotFound)
-            {
-                InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(SharingListViewModel.InvitationMessageCulture, SharingListViewModel.InvitationPersonalizedMessage);
-                userPublicKey = await accountStorage.PostInviteUserPublicKeyAsync(email, invitationMessageParameters).Free();
-            }
-
-            if (userPublicKey == null)
-            {
-                userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
-            }
+            InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(SharingListViewModel.InvitationMessageCulture, SharingListViewModel.InvitationPersonalizedMessage);
+            UserPublicKey userPublicKey = await accountStorage.GetOtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
 
             if (userPublicKey != null)
             {

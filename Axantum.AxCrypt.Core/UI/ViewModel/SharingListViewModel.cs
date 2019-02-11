@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        public static async Task<AccountStatus> CheckKeySharingUserAccount(string email)
+        public static async Task<AccountStatus> CheckKeySharingUserAccountAsync(string email)
         {
             EmailAddress recipientEmail = EmailAddress.Parse(email);
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
