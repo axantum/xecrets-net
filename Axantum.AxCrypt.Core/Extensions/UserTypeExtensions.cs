@@ -397,10 +397,19 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return key;
             }
 
-            InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(SharingListViewModel.InvitationMessageCulture, SharingListViewModel.InvitationPersonalizedMessage);
-
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email, invitationMessageParameters).Free();
+
+            UserPublicKey userPublicKey = null;
+            if (await SharingListViewModel.CheckKeySharingUserAccount(email.ToString()) == AccountStatus.NotFound)
+            {
+                InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(SharingListViewModel.InvitationMessageCulture, SharingListViewModel.InvitationPersonalizedMessage);
+                userPublicKey = await accountStorage.PostInviteUserPublicKeyAsync(email, invitationMessageParameters).Free();
+            }
+
+            if (userPublicKey == null)
+            {
+                userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+            }
 
             if (userPublicKey != null)
             {

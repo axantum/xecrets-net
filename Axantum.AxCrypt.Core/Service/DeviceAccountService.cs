@@ -244,9 +244,9 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.PasswordResetAsync(verificationCode).Free();
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email, null).Free();
+            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email).Free();
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return NonNullPublicKey(publicKey);
@@ -254,7 +254,31 @@ namespace Axantum.AxCrypt.Core.Service
 
             try
             {
-                publicKey = await _remoteService.OtherPublicKeyAsync(email, invitationMessageParameters).Free();
+                publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
+                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                {
+                    knownPublicKeys.AddOrReplace(publicKey);
+                }
+            }
+            catch (ApiException aex)
+            {
+                await aex.HandleApiExceptionAsync();
+            }
+
+            return publicKey;
+        }
+
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        {
+            UserPublicKey publicKey = await _localService.OtherUserInvitePublicKeyAsync(email, null).Free();
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return NonNullPublicKey(publicKey);
+            }
+
+            try
+            {
+                publicKey = await _remoteService.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
                 using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
                 {
                     knownPublicKeys.AddOrReplace(publicKey);

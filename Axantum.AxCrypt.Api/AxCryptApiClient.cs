@@ -153,13 +153,10 @@ namespace Axantum.AxCrypt.Api
 
         /// <summary>
         /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
-        /// The invitation is customized with the selected language/culture and personalized message.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
-        /// <param name="messageCulture">Inviter preferred culture info for the invitation.</param>
-        /// <param name="personalizedMessage">Personalized message from the inviter.</param>
         /// <returns></returns>
-        public async Task<AccountKey> PostAllAccountsOtherUserPublicKeyAsync(string userName, InvitationMessageParameters invitationMessageParameters)
+        public async Task<AccountKey> GetAllAccountsOtherUserPublicKeyAsync(string userName)
         {
             if (userName == null)
             {
@@ -167,6 +164,30 @@ namespace Axantum.AxCrypt.Api
             }
 
             Uri resource = BaseUrl.PathCombine("users/all/accounts/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            return accountKey;
+        }
+
+        /// <summary>
+        /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
+        /// The invitation is customized with the selected language/culture and personalized message.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="messageCulture">Inviter preferred culture info for the invitation.</param>
+        /// <param name="personalizedMessage">Personalized message from the inviter.</param>
+        /// <returns></returns>
+        public async Task<AccountKey> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, InvitationMessageParameters invitationMessageParameters)
+        {
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/invite/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
 
             RestContent content = new RestContent(Serializer.Serialize(invitationMessageParameters));
 

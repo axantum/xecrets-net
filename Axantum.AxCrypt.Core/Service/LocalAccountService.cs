@@ -330,7 +330,7 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -345,6 +345,16 @@ namespace Axantum.AxCrypt.Core.Service
                     return publicKey;
                 }
             }).Free();
+        }
+
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        {
+            if (Identity.UserEmail == EmailAddress.Empty)
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            return await Task.FromResult((UserPublicKey)null);
         }
 
         public Task SendFeedbackAsync(string subject, string message)
