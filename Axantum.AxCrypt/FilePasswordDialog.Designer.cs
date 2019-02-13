@@ -65,7 +65,7 @@
             this._okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._okButton.Location = new System.Drawing.Point(74, 9);
             this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(75, 23);
+            this._okButton.Size = new System.Drawing.Size(80, 23);
             this._okButton.TabIndex = 0;
             this._okButton.Text = "[OK]";
             this._okButton.UseVisualStyleBackColor = true;
@@ -140,9 +140,9 @@
             // 
             // _moreButton
             // 
-            this._moreButton.Location = new System.Drawing.Point(202, 42);
+            this._moreButton.Location = new System.Drawing.Point(207, 42);
             this._moreButton.Name = "_moreButton";
-            this._moreButton.Size = new System.Drawing.Size(75, 23);
+            this._moreButton.Size = new System.Drawing.Size(80, 23);
             this._moreButton.TabIndex = 2;
             this._moreButton.Text = "[More...]";
             this._moreButton.UseVisualStyleBackColor = true;
@@ -225,9 +225,9 @@
             this._cancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._cancelButton.Location = new System.Drawing.Point(164, 9);
+            this._cancelButton.Location = new System.Drawing.Point(169, 9);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.Size = new System.Drawing.Size(80, 23);
             this._cancelButton.TabIndex = 1;
             this._cancelButton.Text = "[Cancel]";
             this._cancelButton.UseVisualStyleBackColor = true;
