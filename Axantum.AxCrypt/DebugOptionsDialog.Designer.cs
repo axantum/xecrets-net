@@ -46,7 +46,7 @@
             this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.Location = new System.Drawing.Point(231, 88);
             this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(75, 23);
+            this._okButton.Size = new System.Drawing.Size(80, 23);
             this._okButton.TabIndex = 2;
             this._okButton.Text = "[OK]";
             this._okButton.UseVisualStyleBackColor = true;
@@ -55,9 +55,9 @@
             // 
             this._cancelButton.CausesValidation = false;
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(322, 88);
+            this._cancelButton.Location = new System.Drawing.Point(327, 88);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.Size = new System.Drawing.Size(80, 23);
             this._cancelButton.TabIndex = 3;
             this._cancelButton.Text = "[Cancel]";
             this._cancelButton.UseVisualStyleBackColor = true;
