@@ -35,6 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonOk = new System.Windows.Forms.Button();
+            this._buttonHelp = new System.Windows.Forms.Button();
             this.EmailPanel = new System.Windows.Forms.Panel();
             this._emailGroupBox = new System.Windows.Forms.GroupBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -61,8 +62,8 @@
             // 
             // _firstTimePromptlabel
             // 
-            this._firstTimePromptlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._firstTimePromptlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._firstTimePromptlabel.Location = new System.Drawing.Point(3, 7);
             this._firstTimePromptlabel.Name = "_firstTimePromptlabel";
@@ -86,6 +87,7 @@
             // 
             this._panel1.AutoSize = true;
             this._panel1.Controls.Add(this._buttonOk);
+            this._panel1.Controls.Add(this._buttonHelp);
             this._panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel1.Location = new System.Drawing.Point(0, 59);
             this._panel1.Name = "_panel1";
@@ -97,13 +99,25 @@
             this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(116, 6);
+            this._buttonOk.Location = new System.Drawing.Point(63, 6);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(80, 23);
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
             this._buttonOk.Click += new System.EventHandler(this._buttonOk_Click);
+            // 
+            // _buttonHelp
+            // 
+            this._buttonHelp.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this._buttonHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonHelp.Location = new System.Drawing.Point(163, 6);
+            this._buttonHelp.Name = "_buttonHelp";
+            this._buttonHelp.Size = new System.Drawing.Size(80, 23);
+            this._buttonHelp.TabIndex = 0;
+            this._buttonHelp.Text = "[HELP]";
+            this._buttonHelp.UseVisualStyleBackColor = true;
+            this._buttonHelp.Click += new System.EventHandler(this._buttonHelp_Click);
             // 
             // EmailPanel
             // 
@@ -117,7 +131,7 @@
             // 
             // _emailGroupBox
             // 
-            this._emailGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._emailGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._emailGroupBox.Controls.Add(this.EmailTextBox);
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
@@ -130,7 +144,7 @@
             // 
             // EmailTextBox
             // 
-            this.EmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.EmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailTextBox.Location = new System.Drawing.Point(9, 18);
             this.EmailTextBox.Name = "EmailTextBox";
@@ -172,6 +186,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonOk;
+        private System.Windows.Forms.Button _buttonHelp;
         private System.Windows.Forms.Panel EmailPanel;
         private System.Windows.Forms.GroupBox _emailGroupBox;
         internal System.Windows.Forms.TextBox EmailTextBox;
