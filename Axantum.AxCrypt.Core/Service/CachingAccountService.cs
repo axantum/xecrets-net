@@ -97,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
+            AccountStatus status = await New<ICache>().UpdateItemAsync(() => _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
@@ -129,6 +129,11 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task SendFeedbackAsync(string subject, string message)
         {
             await New<ICache>().UpdateItemAsync(async () => await _service.SendFeedbackAsync(subject, message), _key).Free();
+        }
+
+        public async Task<IList<CultureInfo>> CultureInfoListAsync()
+        {
+            return await New<ICache>().UpdateItemAsync(async () => await _service.CultureInfoListAsync(), _key).Free();
         }
     }
 }

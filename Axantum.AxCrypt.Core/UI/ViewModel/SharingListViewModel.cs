@@ -69,10 +69,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ShareFiles { get; private set; }
 
-        public static CultureInfo InvitationMessageCulture { get; private set; }
-
-        public static string InvitationPersonalizedMessage { get; private set; }
-
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
             _filesOrfolderPaths = filesOrfolderPaths;
@@ -81,12 +77,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             InitializePropertyValues(sharedWith);
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
-        }
-
-        public void SetInvitationMessageParameters(CultureInfo messageCulture, string personalizedMessage)
-        {
-            InvitationMessageCulture = messageCulture;
-            InvitationPersonalizedMessage = personalizedMessage;
         }
 
         public static async Task<SharingListViewModel> CreateForFilesAsync(IEnumerable<string> files, LogOnIdentity identity)
@@ -112,8 +102,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             SetSharedAndNotSharedWith(sharedWith);
             NewKeyShare = string.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
-            InvitationMessageCulture = CultureInfo.CurrentCulture;
-            InvitationPersonalizedMessage = string.Empty;
 
             AddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
             RemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));

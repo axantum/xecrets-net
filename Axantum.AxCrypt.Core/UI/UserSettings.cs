@@ -76,6 +76,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(CultureName), value); }
         }
 
+        public string MessageCulture
+        {
+            get { return Load(nameof(MessageCulture), CultureInfo.CurrentUICulture.Name); }
+            set { Store(nameof(MessageCulture), value); }
+        }
+
         public Uri RestApiBaseUrl
         {
             get { return Load(nameof(RestApiBaseUrl), new Uri("{0}api/".InvariantFormat(AccountWebUrl))); }

@@ -9,7 +9,6 @@ using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
@@ -398,7 +397,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(SharingListViewModel.InvitationMessageCulture, SharingListViewModel.InvitationPersonalizedMessage);
+            InvitationMessageParameters invitationMessageParameters = new InvitationMessageParameters(new CultureInfo(New<UserSettings>().MessageCulture), New<UserSettings>().PersonalizedMessage);
             UserPublicKey userPublicKey = await accountStorage.GetOtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
 
             if (userPublicKey != null)
@@ -543,6 +542,12 @@ namespace Axantum.AxCrypt.Core.Extensions
                 string formattedTime = wholeSeconds.ToString("g", CultureInfo.CurrentCulture);
                 New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, formattedTime));
             }
+        }
+
+        public static async Task<List<object>> GetCultureInfoList(this LogOnIdentity identity)
+        {
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
+            return await CultureAssistant.GetResultAsyc(async () => await accountStorage.GetCultureInfoListAsync().Free());
         }
     }
 }

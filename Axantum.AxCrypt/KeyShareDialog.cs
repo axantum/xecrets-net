@@ -216,9 +216,7 @@ namespace Axantum.AxCrypt
 
                 if (New<AxCryptOnlineState>().IsOffline)
                 {
-                    _newContact.Enabled = !New<AxCryptOnlineState>().IsOffline;
-                    _newContact.Text = $"[{Texts.OfflineIndicatorText}]";
-                    _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
+                    ShowOfflineError();
                 }
             }
             catch (BadRequestApiException braex)
@@ -231,23 +229,37 @@ namespace Axantum.AxCrypt
             return false;
         }
 
+        private void ShowOfflineError()
+        {
+            _newContact.Enabled = !New<AxCryptOnlineState>().IsOffline;
+            _newContact.Text = $"[{Texts.OfflineIndicatorText}]";
+            _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
+        }
+
         private async Task<bool> ValidKeySharingUserAccount()
         {
             AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckKeySharingUserAccountAsync(_viewModel.NewKeyShare);
-            if (sharedUserAccountStatus != AccountStatus.NotFound)
+
+            if (sharedUserAccountStatus == AccountStatus.Offline)
             {
+                ShowOfflineError();
                 return false;
             }
 
-            using (KeySharingInviteUserDialog inviteDialog = new KeySharingInviteUserDialog(this, _viewModel))
+            if (sharedUserAccountStatus != AccountStatus.NotFound)
             {
-                if (inviteDialog.ShowDialog(this) == DialogResult.OK)
+                return true;
+            }
+
+            using (KeySharingInviteUserDialog inviteDialog = new KeySharingInviteUserDialog(this))
+            {
+                if (inviteDialog.ShowDialog(this) != DialogResult.OK)
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)

@@ -33,6 +33,7 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -120,6 +121,11 @@ namespace Axantum.AxCrypt.Core.Session
         public async Task<UserPublicKey> GetOtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
         {
             return await _service.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
+        }
+
+        public async Task<IList<CultureInfo>> GetCultureInfoListAsync()
+        {
+            return await _service.CultureInfoListAsync().Free();
         }
     }
 }
