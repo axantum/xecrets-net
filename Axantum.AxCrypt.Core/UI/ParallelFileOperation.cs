@@ -120,7 +120,8 @@ namespace Axantum.AxCrypt.Core.UI
                             }
                             progress.Totals.AddFileCount(1);
                         }
-                        return new FileOperationContext(progress.Totals);
+                        context.SetProgressTotals(progress.Totals);
+                        return context;
                     });
                     progress.NotifyLevelFinished();
                     return result;
