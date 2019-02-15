@@ -382,6 +382,7 @@ namespace Axantum.AxCrypt
             await signUpSignIn.DialogsAsync(this, this);
 
             New<UserSettings>().UserEmail = signUpSignIn.UserEmail;
+            _passwordResetToolStripMenuItem.Enabled = !_mainViewModel.LoggedOn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
 
             if (signUpSignIn.StopAndExit)
             {
@@ -973,7 +974,6 @@ namespace Axantum.AxCrypt
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
-            _passwordResetToolStripMenuItem.Enabled = !isSignedIn;
             _signInToolStripMenuItem.Visible = !isSignedIn;
             _notifySignInToolStripMenuItem.Visible = !isSignedIn;
             _signOutToolStripMenuItem.Visible = isSignedIn;
