@@ -216,7 +216,7 @@ namespace Axantum.AxCrypt
 
                 if (New<AxCryptOnlineState>().IsOffline)
                 {
-                    ShowOfflineError();
+                    SetOfflineError();
                 }
             }
             catch (BadRequestApiException braex)
@@ -229,7 +229,7 @@ namespace Axantum.AxCrypt
             return false;
         }
 
-        private void ShowOfflineError()
+        private void SetOfflineError()
         {
             _newContact.Enabled = !New<AxCryptOnlineState>().IsOffline;
             _newContact.Text = $"[{Texts.OfflineIndicatorText}]";
@@ -242,7 +242,7 @@ namespace Axantum.AxCrypt
 
             if (sharedUserAccountStatus == AccountStatus.Offline)
             {
-                ShowOfflineError();
+                SetOfflineError();
                 return false;
             }
 
