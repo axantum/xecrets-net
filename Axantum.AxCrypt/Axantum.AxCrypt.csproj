@@ -314,6 +314,7 @@
     <Content Include="resources\encrypt.png" />
     <Content Include="resources\exit.png" />
     <Content Include="resources\exit_red.png" />
+    <Content Include="resources\expand_collapse_40px.png" />
     <Content Include="resources\feedback_40px.png" />
     <Content Include="resources\folder.png" />
     <Content Include="resources\folder_40px.png" />

@@ -26,12 +26,11 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.UI.ViewModel;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using Texts = AxCrypt.Content.Texts;
@@ -40,44 +39,36 @@ namespace Axantum.AxCrypt
 {
     public partial class KeySharingInviteUserDialog : StyledMessageBase
     {
-        private object[] _cultureList;
-
-        private SharingListViewModel _viewModel;
-
         public KeySharingInviteUserDialog()
         {
             InitializeComponent();
         }
 
-        public KeySharingInviteUserDialog(Form parent, SharingListViewModel viewModel)
+        public KeySharingInviteUserDialog(Form parent)
             : this()
         {
-            _viewModel = viewModel;
             InitializeStyle(parent);
-            InitializeCultureList();
-
-            _languageCultureDropDown.SelectedValue = CultureInfo.CurrentUICulture.Name;
-            _personalizedMessageTextBox.Text = WebUtility.HtmlDecode(Resolve.UserSettings.PersonalizedMessage);
         }
 
-        private void InitializeCultureList()
-        {
-            _cultureList = new[] {
-                new { Name = Texts.EnglishLanguageToolStripMenuItemText, Tag = "en-US" },
-                new { Name = Texts.GermanLanguageSelectionText, Tag = "de-DE" },
-                new { Name = Texts.DutchLanguageSelection, Tag = "nl-NL" },
-                new { Name = Texts.SpanishLanguageToolStripMenuItemText, Tag = "es-ES" },
-                new { Name = Texts.FrancaisLanguageToolStripMenuItemText, Tag = "fr-FR" },
-                new { Name = Texts.ItalianLanguageSelection, Tag = "it-IT" },
-                new { Name = Texts.KoreanLanguageSelection, Tag = "ko" },
-                new { Name = Texts.PolishLanguageToolStripMenuItemText, Tag = "pl-PL" },
-                new { Name = Texts.PortugueseBrazilLanguageSelection, Tag = "pt-BR" },
-                new { Name = Texts.RussianLanguageSelection, Tag = "ru-RU" },
-                new { Name = Texts.SwedishLanguageToolStripMenuItemText, Tag = "sv-SE" },
-                new { Name = Texts.TurkishLanguageToolStripMenuItemText, Tag = "tr-TR" }
-            };
+        public List<object> CultureList { get; set; }
 
-            _languageCultureDropDown.DataSource = new BindingSource(_cultureList, null);
+        private async void KeySharingInviteUserDialog_Load(object sender, EventArgs e)
+        {
+            CultureList = await Resolve.KnownIdentities.DefaultEncryptionIdentity.GetCultureInfoList();
+            _languageCultureDropDown.DataSource = new BindingSource(CultureList, null);
+
+            SetValuesForOptionalFields();
+        }
+
+        private void SetValuesForOptionalFields()
+        {
+            _languageCultureDropDown.SelectedValue = Resolve.UserSettings.MessageCulture;
+
+            if (!string.IsNullOrEmpty(Resolve.UserSettings.PersonalizedMessage))
+            {
+                _personalizedMessageTextGroupBox.Visible = true;
+                _personalizedMessageTextBox.Text = WebUtility.HtmlDecode(Resolve.UserSettings.PersonalizedMessage);
+            }
         }
 
         protected override void InitializeContentResources()
@@ -88,7 +79,7 @@ namespace Axantum.AxCrypt
             _cancelButton.Text = "&" + Texts.ButtonCancelText;
             _okButton.Text = "&" + Texts.ButtonOkText;
             _keyShareInvitePromptlabel.Text = Texts.KeyShareInviteUserTextPrompt;
-            _personalizedMessageGroupBox.Text = Texts.InviteUserPersonalizedMessageTitle;
+            _personalizedMessageTitleLabel.Text = Texts.InviteUserPersonalizedMessageTitle;
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -106,7 +97,12 @@ namespace Axantum.AxCrypt
             }
 
             CultureInfo messageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());
-            _viewModel.SetInvitationMessageParameters(messageCulture, personalizedMessage);
+            Resolve.UserSettings.MessageCulture = messageCulture.Name;
+        }
+
+        private void ExpandCollapseOptionalFields(object sender, EventArgs e)
+        {
+            _personalizedMessageTextGroupBox.Visible = !_personalizedMessageTextGroupBox.Visible;
         }
     }
 }
