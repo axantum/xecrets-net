@@ -46,6 +46,12 @@ namespace Axantum.AxCrypt.Core.UI
         {
         }
 
+        public FileOperationContext(string fullName, ProgressTotals totals)
+            : this(fullName, ErrorStatus.Success)
+        {
+            Totals = totals;
+        }
+
         public string FullName { get; private set; }
 
         public ErrorStatus ErrorStatus { get; private set; }
@@ -53,10 +59,5 @@ namespace Axantum.AxCrypt.Core.UI
         public string InternalMessage { get; private set; }
 
         public ProgressTotals Totals { get; private set; } = new ProgressTotals();
-
-        public void SetProgressTotals(ProgressTotals totals)
-        {
-            Totals = totals;
-        }
     }
 }
