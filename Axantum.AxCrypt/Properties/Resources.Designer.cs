@@ -383,6 +383,16 @@ namespace Axantum.AxCrypt.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap expand_collapse_40px {
+            get {
+                object obj = ResourceManager.GetObject("expand_collapse_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap feedback_40px {
             get {
                 object obj = ResourceManager.GetObject("feedback_40px", resourceCulture);
