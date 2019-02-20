@@ -468,13 +468,8 @@ namespace Axantum.AxCrypt.Core.Extensions
                         New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                         return;
                     }
-                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(foc.FullName);
-                    if (activeFile == null)
-                    {
-                        return;
-                    }
-                    New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
-                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
                 });
         }
 
