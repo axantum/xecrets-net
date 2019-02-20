@@ -100,24 +100,23 @@ namespace Axantum.AxCrypt
             // 
             // LanguageCulturePanel
             // 
-            this.LanguageCulturePanel.AutoSize = true;
             this.LanguageCulturePanel.Controls.Add(this._languageCultureGroupBox);
             this.LanguageCulturePanel.Location = new System.Drawing.Point(4, 156);
             this.LanguageCulturePanel.Margin = new System.Windows.Forms.Padding(4);
             this.LanguageCulturePanel.Name = "LanguageCulturePanel";
             this.LanguageCulturePanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
-            this.LanguageCulturePanel.Size = new System.Drawing.Size(422, 95);
+            this.LanguageCulturePanel.Size = new System.Drawing.Size(409, 95);
             this.LanguageCulturePanel.TabIndex = 1;
             // 
             // _languageCultureGroupBox
             // 
             this._languageCultureGroupBox.AutoSize = true;
             this._languageCultureGroupBox.Controls.Add(this._languageCultureDropDown);
-            this._languageCultureGroupBox.Location = new System.Drawing.Point(9, 10);
+            this._languageCultureGroupBox.Location = new System.Drawing.Point(8, 10);
             this._languageCultureGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this._languageCultureGroupBox.Name = "_languageCultureGroupBox";
             this._languageCultureGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this._languageCultureGroupBox.Size = new System.Drawing.Size(393, 81);
+            this._languageCultureGroupBox.Size = new System.Drawing.Size(394, 81);
             this._languageCultureGroupBox.TabIndex = 0;
             this._languageCultureGroupBox.TabStop = false;
             this._languageCultureGroupBox.Text = "[Choose Language]";
