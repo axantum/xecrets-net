@@ -31,7 +31,6 @@ namespace Axantum.AxCrypt
         /// </summary>
         private void InitializeComponent()
         {
-            this._okButton = new System.Windows.Forms.Button();
             this.DialogFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.InviteTextPanel = new System.Windows.Forms.Panel();
             this._keyShareInvitePromptlabel = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@ namespace Axantum.AxCrypt
             this._personalizedMessageShowHideIcon = new System.Windows.Forms.PictureBox();
             this._personalizedMessageTitleLabel = new System.Windows.Forms.Label();
             this.ButtonPanel = new System.Windows.Forms.Panel();
+            this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
             this.DialogFlowLayoutPanel.SuspendLayout();
             this.InviteTextPanel.SuspendLayout();
@@ -56,20 +56,6 @@ namespace Axantum.AxCrypt
             ((System.ComponentModel.ISupportInitialize)(this._personalizedMessageShowHideIcon)).BeginInit();
             this.ButtonPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _okButton
-            // 
-            this._okButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._okButton.Location = new System.Drawing.Point(95, 11);
-            this._okButton.Margin = new System.Windows.Forms.Padding(4);
-            this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(100, 28);
-            this._okButton.TabIndex = 0;
-            this._okButton.Text = "[OK]";
-            this._okButton.UseVisualStyleBackColor = true;
-            this._okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // DialogFlowLayoutPanel
             // 
@@ -99,8 +85,8 @@ namespace Axantum.AxCrypt
             // 
             // _keyShareInvitePromptlabel
             // 
-            this._keyShareInvitePromptlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this._keyShareInvitePromptlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._keyShareInvitePromptlabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this._keyShareInvitePromptlabel.Location = new System.Drawing.Point(8, 11);
@@ -120,18 +106,18 @@ namespace Axantum.AxCrypt
             this.LanguageCulturePanel.Margin = new System.Windows.Forms.Padding(4);
             this.LanguageCulturePanel.Name = "LanguageCulturePanel";
             this.LanguageCulturePanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
-            this.LanguageCulturePanel.Size = new System.Drawing.Size(417, 95);
+            this.LanguageCulturePanel.Size = new System.Drawing.Size(422, 95);
             this.LanguageCulturePanel.TabIndex = 1;
             // 
             // _languageCultureGroupBox
             // 
             this._languageCultureGroupBox.AutoSize = true;
             this._languageCultureGroupBox.Controls.Add(this._languageCultureDropDown);
-            this._languageCultureGroupBox.Location = new System.Drawing.Point(16, 10);
+            this._languageCultureGroupBox.Location = new System.Drawing.Point(9, 10);
             this._languageCultureGroupBox.Margin = new System.Windows.Forms.Padding(4);
             this._languageCultureGroupBox.Name = "_languageCultureGroupBox";
             this._languageCultureGroupBox.Padding = new System.Windows.Forms.Padding(4);
-            this._languageCultureGroupBox.Size = new System.Drawing.Size(381, 81);
+            this._languageCultureGroupBox.Size = new System.Drawing.Size(393, 81);
             this._languageCultureGroupBox.TabIndex = 0;
             this._languageCultureGroupBox.TabStop = false;
             this._languageCultureGroupBox.Text = "[Choose Language]";
@@ -182,9 +168,9 @@ namespace Axantum.AxCrypt
             this._personalizedMessageTitleGroupBox.AutoSize = true;
             this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageShowHideIcon);
             this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageTitleLabel);
-            this._personalizedMessageTitleGroupBox.Location = new System.Drawing.Point(9, -2);
+            this._personalizedMessageTitleGroupBox.Location = new System.Drawing.Point(9, 0);
             this._personalizedMessageTitleGroupBox.Name = "_personalizedMessageTitleGroupBox";
-            this._personalizedMessageTitleGroupBox.Size = new System.Drawing.Size(391, 56);
+            this._personalizedMessageTitleGroupBox.Size = new System.Drawing.Size(394, 56);
             this._personalizedMessageTitleGroupBox.TabIndex = 1;
             this._personalizedMessageTitleGroupBox.TabStop = false;
             this._personalizedMessageTitleGroupBox.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
@@ -221,6 +207,20 @@ namespace Axantum.AxCrypt
             this.ButtonPanel.Padding = new System.Windows.Forms.Padding(16, 15, 16, 0);
             this.ButtonPanel.Size = new System.Drawing.Size(409, 49);
             this.ButtonPanel.TabIndex = 3;
+            // 
+            // _okButton
+            // 
+            this._okButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._okButton.Location = new System.Drawing.Point(95, 11);
+            this._okButton.Margin = new System.Windows.Forms.Padding(4);
+            this._okButton.Name = "_okButton";
+            this._okButton.Size = new System.Drawing.Size(100, 28);
+            this._okButton.TabIndex = 0;
+            this._okButton.Text = "[OK]";
+            this._okButton.UseVisualStyleBackColor = true;
+            this._okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // _cancelButton
             // 
