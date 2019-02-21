@@ -468,7 +468,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                         return;
                     }
-                    
+
                     await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
                 });
         }
