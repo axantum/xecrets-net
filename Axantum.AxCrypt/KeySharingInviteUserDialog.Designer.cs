@@ -38,11 +38,11 @@ namespace Axantum.AxCrypt
             this._languageCultureGroupBox = new System.Windows.Forms.GroupBox();
             this._languageCultureDropDown = new System.Windows.Forms.ComboBox();
             this.PersonalizedMessagePanel = new System.Windows.Forms.Panel();
+            this._personalizedMessageTitleGroupBox = new System.Windows.Forms.GroupBox();
+            this._personalizedMessageTitleLabel = new System.Windows.Forms.Label();
+            this._personalizedMessageExpandCollapseIcon = new System.Windows.Forms.PictureBox();
             this._personalizedMessageTextGroupBox = new System.Windows.Forms.GroupBox();
             this._personalizedMessageTextBox = new System.Windows.Forms.TextBox();
-            this._personalizedMessageTitleGroupBox = new System.Windows.Forms.GroupBox();
-            this._personalizedMessageShowHideIcon = new System.Windows.Forms.PictureBox();
-            this._personalizedMessageTitleLabel = new System.Windows.Forms.Label();
             this.ButtonPanel = new System.Windows.Forms.Panel();
             this._okButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
@@ -51,9 +51,9 @@ namespace Axantum.AxCrypt
             this.LanguageCulturePanel.SuspendLayout();
             this._languageCultureGroupBox.SuspendLayout();
             this.PersonalizedMessagePanel.SuspendLayout();
-            this._personalizedMessageTextGroupBox.SuspendLayout();
             this._personalizedMessageTitleGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._personalizedMessageShowHideIcon)).BeginInit();
+            this._personalizedMessageTextGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._personalizedMessageExpandCollapseIcon)).BeginInit();
             this.ButtonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +119,7 @@ namespace Axantum.AxCrypt
             this._languageCultureGroupBox.Size = new System.Drawing.Size(394, 81);
             this._languageCultureGroupBox.TabIndex = 0;
             this._languageCultureGroupBox.TabStop = false;
-            this._languageCultureGroupBox.Text = "[Choose Language]";
+            this._languageCultureGroupBox.Text = "[Language]";
             // 
             // _languageCultureDropDown
             // 
@@ -141,6 +141,40 @@ namespace Axantum.AxCrypt
             this.PersonalizedMessagePanel.Size = new System.Drawing.Size(406, 165);
             this.PersonalizedMessagePanel.TabIndex = 1;
             // 
+            // _personalizedMessageTitleGroupBox
+            // 
+            this._personalizedMessageTitleGroupBox.AutoSize = true;
+            this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageExpandCollapseIcon);
+            this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageTitleLabel);
+            this._personalizedMessageTitleGroupBox.Location = new System.Drawing.Point(9, 0);
+            this._personalizedMessageTitleGroupBox.Name = "_personalizedMessageTitleGroupBox";
+            this._personalizedMessageTitleGroupBox.Size = new System.Drawing.Size(394, 56);
+            this._personalizedMessageTitleGroupBox.TabIndex = 1;
+            this._personalizedMessageTitleGroupBox.TabStop = false;
+            this._personalizedMessageTitleGroupBox.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
+            // 
+            // _personalizedMessageTitleLabel
+            // 
+            this._personalizedMessageTitleLabel.AutoSize = true;
+            this._personalizedMessageTitleLabel.Location = new System.Drawing.Point(11, 18);
+            this._personalizedMessageTitleLabel.Name = "_personalizedMessageTitleLabel";
+            this._personalizedMessageTitleLabel.Size = new System.Drawing.Size(230, 17);
+            this._personalizedMessageTitleLabel.TabIndex = 0;
+            this._personalizedMessageTitleLabel.Text = "[Personalized Message]";
+            this._personalizedMessageTitleLabel.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
+            // 
+            // _personalizedMessageExpandCollapseIcon
+            // 
+            this._personalizedMessageExpandCollapseIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this._personalizedMessageExpandCollapseIcon.Image = global::Axantum.AxCrypt.Properties.Resources.expand_collapse_40px;
+            this._personalizedMessageExpandCollapseIcon.Location = new System.Drawing.Point(354, 18);
+            this._personalizedMessageExpandCollapseIcon.Name = "_personalizedMessageExpandCollapseIcon";
+            this._personalizedMessageExpandCollapseIcon.Size = new System.Drawing.Size(23, 19);
+            this._personalizedMessageExpandCollapseIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._personalizedMessageExpandCollapseIcon.TabIndex = 1;
+            this._personalizedMessageExpandCollapseIcon.TabStop = false;
+            this._personalizedMessageExpandCollapseIcon.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
+            // 
             // _personalizedMessageTextGroupBox
             // 
             this._personalizedMessageTextGroupBox.AutoSize = true;
@@ -161,40 +195,6 @@ namespace Axantum.AxCrypt
             this._personalizedMessageTextBox.Name = "_personalizedMessageTextBox";
             this._personalizedMessageTextBox.Size = new System.Drawing.Size(377, 67);
             this._personalizedMessageTextBox.TabIndex = 1;
-            // 
-            // _personalizedMessageTitleGroupBox
-            // 
-            this._personalizedMessageTitleGroupBox.AutoSize = true;
-            this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageShowHideIcon);
-            this._personalizedMessageTitleGroupBox.Controls.Add(this._personalizedMessageTitleLabel);
-            this._personalizedMessageTitleGroupBox.Location = new System.Drawing.Point(9, 0);
-            this._personalizedMessageTitleGroupBox.Name = "_personalizedMessageTitleGroupBox";
-            this._personalizedMessageTitleGroupBox.Size = new System.Drawing.Size(394, 56);
-            this._personalizedMessageTitleGroupBox.TabIndex = 1;
-            this._personalizedMessageTitleGroupBox.TabStop = false;
-            this._personalizedMessageTitleGroupBox.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
-            // 
-            // _personalizedMessageShowHideIcon
-            // 
-            this._personalizedMessageShowHideIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this._personalizedMessageShowHideIcon.Image = global::Axantum.AxCrypt.Properties.Resources.expand_collapse_40px;
-            this._personalizedMessageShowHideIcon.Location = new System.Drawing.Point(348, 16);
-            this._personalizedMessageShowHideIcon.Name = "_personalizedMessageShowHideIcon";
-            this._personalizedMessageShowHideIcon.Size = new System.Drawing.Size(23, 19);
-            this._personalizedMessageShowHideIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this._personalizedMessageShowHideIcon.TabIndex = 1;
-            this._personalizedMessageShowHideIcon.TabStop = false;
-            this._personalizedMessageShowHideIcon.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
-            // 
-            // _personalizedMessageTitleLabel
-            // 
-            this._personalizedMessageTitleLabel.AutoSize = true;
-            this._personalizedMessageTitleLabel.Location = new System.Drawing.Point(11, 18);
-            this._personalizedMessageTitleLabel.Name = "_personalizedMessageTitleLabel";
-            this._personalizedMessageTitleLabel.Size = new System.Drawing.Size(230, 17);
-            this._personalizedMessageTitleLabel.TabIndex = 0;
-            this._personalizedMessageTitleLabel.Text = "[Show/Hide Personalized Message]";
-            this._personalizedMessageTitleLabel.Click += new System.EventHandler(this.ExpandCollapseOptionalFields);
             // 
             // ButtonPanel
             // 
@@ -258,11 +258,11 @@ namespace Axantum.AxCrypt
             this._languageCultureGroupBox.ResumeLayout(false);
             this.PersonalizedMessagePanel.ResumeLayout(false);
             this.PersonalizedMessagePanel.PerformLayout();
-            this._personalizedMessageTextGroupBox.ResumeLayout(false);
-            this._personalizedMessageTextGroupBox.PerformLayout();
             this._personalizedMessageTitleGroupBox.ResumeLayout(false);
             this._personalizedMessageTitleGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._personalizedMessageShowHideIcon)).EndInit();
+            this._personalizedMessageTextGroupBox.ResumeLayout(false);
+            this._personalizedMessageTextGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._personalizedMessageExpandCollapseIcon)).EndInit();
             this.ButtonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -270,20 +270,20 @@ namespace Axantum.AxCrypt
         }
 
         #endregion
-        private System.Windows.Forms.Panel LanguageCulturePanel;
-        private System.Windows.Forms.Panel InviteTextPanel;
         private System.Windows.Forms.FlowLayoutPanel DialogFlowLayoutPanel;
-        private System.Windows.Forms.Panel ButtonPanel;
-        private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.Button _okButton;
+        private System.Windows.Forms.Panel InviteTextPanel;
+        private System.Windows.Forms.Label _keyShareInvitePromptlabel;
+        private System.Windows.Forms.Panel LanguageCulturePanel;
         private System.Windows.Forms.GroupBox _languageCultureGroupBox;
         private System.Windows.Forms.ComboBox _languageCultureDropDown;
-        private System.Windows.Forms.Label _keyShareInvitePromptlabel;
-        private System.Windows.Forms.PictureBox _personalizedMessageShowHideIcon;
-        private System.Windows.Forms.Label _personalizedMessageTitleLabel;
         private System.Windows.Forms.Panel PersonalizedMessagePanel;
         private System.Windows.Forms.GroupBox _personalizedMessageTitleGroupBox;
-        private System.Windows.Forms.TextBox _personalizedMessageTextBox;
+        private System.Windows.Forms.Label _personalizedMessageTitleLabel;
+        private System.Windows.Forms.PictureBox _personalizedMessageExpandCollapseIcon;
         private System.Windows.Forms.GroupBox _personalizedMessageTextGroupBox;
+        private System.Windows.Forms.TextBox _personalizedMessageTextBox;
+        private System.Windows.Forms.Panel ButtonPanel;
+        private System.Windows.Forms.Button _okButton;
+        private System.Windows.Forms.Button _cancelButton;
     }
 }
