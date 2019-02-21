@@ -100,7 +100,7 @@ namespace Axantum.AxCrypt
             Resolve.UserSettings.MessageCulture = messageCulture.Name;
         }
 
-        private void ExpandCollapseOptionalFields(object sender, EventArgs e)
+        private void ExpandCollapseIcon_Click(object sender, EventArgs e)
         {
             _personalizedMessageTextGroupBox.Visible = !_personalizedMessageTextGroupBox.Visible;
         }
