@@ -61,7 +61,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             KeyShareCount = GetKeyShareCount(headers);
             IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
-            IsShared = KeyShareCount > 1;
+            IsShared = KeyShareCount > 0;
         }
 
         private int GetKeyShareCount(Headers headers)
