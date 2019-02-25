@@ -37,7 +37,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -59,13 +58,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FileInfoTypes.Folder;
             }
-            if (New<FileFilter>().IsEncryptable(fileInfo))
-            {
-                return FileInfoTypes.EncryptableFile;
-            }
             if (fileInfo.IsEncrypted())
             {
                 return FileInfoTypes.EncryptedFile;
+            }
+            if (New<FileFilter>().IsEncryptable(fileInfo))
+            {
+                return FileInfoTypes.EncryptableFile;
             }
             return FileInfoTypes.OtherFile;
         }
@@ -224,6 +223,28 @@ namespace Axantum.AxCrypt.Core.Extensions
                 }
             }
             return null;
+        }
+
+        public static bool IsFileKeyKnown(this IEnumerable<IDataStore> files)
+        {
+            foreach (IDataStore fileInfo in files)
+            {
+                try
+                {
+                    Guid cryptoId;
+                    LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
+                    if (logOnIdentity != null)
+                    {
+                        return true;
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
