@@ -5362,7 +5362,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
+        ///   Looks up a localized string similar to Change Email.
         /// </summary>
         public static string PromptEmailText {
             get {

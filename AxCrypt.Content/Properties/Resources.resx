@@ -2172,7 +2172,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Delete AxCrypt ID</value>
   </data>
   <data name="PromptEmailText" xml:space="preserve">
-    <value>Email</value>
+    <value>Change Email</value>
   </data>
   <data name="PromptFileText" xml:space="preserve">
     <value>File</value>
