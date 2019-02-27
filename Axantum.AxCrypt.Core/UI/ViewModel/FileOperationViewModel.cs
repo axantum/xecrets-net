@@ -514,7 +514,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.OpenFileFullName);
-                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
+                    EncryptedProperties encryptedProperties = EncryptedProperties.Create(encryptedInfo, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(encryptedProperties.FileMetaData.FileName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                 }
@@ -545,17 +546,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task AddRecentFilesActionAsync(IEnumerable<string> files)
         {
-            IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).Where(ef => ef.IsEncryptable && ef.Type() == FileInfoTypes.EncryptableFile).ToList();
-            if (!fileInfos.Any())
-            {
-                return;
-            }
-            if (!Resolve.KnownIdentities.IsLoggedOn)
-            {
-                return;
-            }
-
-            await EncryptFewOrManyFilesAsync(fileInfos);
+            IEnumerable<IDataStore> fileInfos = files.Select(f => New<IDataStore>(f)).ToList();
+            await EncryptFewOrManyFilesAsync(fileInfos.Where(fileInfo => Resolve.KnownIdentities.IsLoggedOn && fileInfo.IsEncryptable && fileInfo.Type() == FileInfoTypes.EncryptableFile));
             await ProcessEncryptedFilesDroppedInRecentListAsync(fileInfos.Where(fileInfo => fileInfo.Type() == FileInfoTypes.EncryptedFile));
         }
 

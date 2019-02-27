@@ -102,8 +102,8 @@ namespace Axantum.AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
             await mvm.AddRecentFiles.ExecuteAsync(new string[] { file1, file2, decrypted1 });
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Once);
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Once);
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Once);
         }
 
         [Test]
@@ -725,9 +725,9 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", null);
             await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Exactly(0));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
-            Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
+            Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(1));
         }
 
         [Test]
@@ -758,10 +758,10 @@ namespace Axantum.AxCrypt.Core.Test
             FakeDataStore.AddFile(@"C:\Folder\File2-txt.axx", null);
             await mvm.AddRecentFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx", @"C:\Folder\File2-txt.axx" });
 
-            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 0), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Exactly(0));
+            Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 2), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.False);
             Assert.That(Resolve.KnownIdentities.Identities.Count(), Is.EqualTo(0));
-            Assert.That(logonTries, Is.EqualTo(0), "There should be only one logon try, since the first one cancels.");
+            Assert.That(logonTries, Is.EqualTo(1), "There should be only one logon try, since the first one cancels.");
         }
 
         [Test]
