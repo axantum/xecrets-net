@@ -72,29 +72,15 @@ namespace Axantum.AxCrypt.Core.Session
             }
 
             LogOnIdentity identity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
-            V2DocumentHeaders documentHeaders = LoadDocumentHeaders(headers, identity.Passphrase);
-
-            V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = documentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
+            V2AxCryptDocument v2Document = new V2AxCryptDocument();
+            v2Document.Load(identity.Passphrase, Resolve.CryptoFactory.Preferred.CryptoId, headers);
+            V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = v2Document.DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
             if (headerBlock == null)
             {
                 return 0;
             }
 
             return headerBlock.Recipients.PublicKeys.Count(upk => upk.Email != identity.UserEmail);
-        }
-
-        private V2DocumentHeaders LoadDocumentHeaders(Headers headers, Passphrase passphrase)
-        {
-            ICryptoFactory cryptoFactory = Resolve.CryptoFactory.Create(Resolve.CryptoFactory.Preferred.CryptoId);
-            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
-
-            IDerivedKey key = cryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
-            keyWrap.SetDerivedKey(cryptoFactory, key);
-
-            V2DocumentHeaders documentHeaders = new V2DocumentHeaders(keyWrap);
-            documentHeaders.Load(headers);
-
-            return documentHeaders;
         }
     }
 }
