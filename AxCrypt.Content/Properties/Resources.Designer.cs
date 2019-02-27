@@ -5344,6 +5344,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Change Email.
+        /// </summary>
+        public static string PromptChangeEmailText {
+            get {
+                return ResourceManager.GetString("PromptChangeEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password.
         /// </summary>
         public static string PromptCurrentPasswordText {
@@ -5362,7 +5371,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Change Email.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string PromptEmailText {
             get {

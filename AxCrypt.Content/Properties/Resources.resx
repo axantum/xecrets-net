@@ -2165,6 +2165,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PromptChange" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>!!Change Email</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Current password</value>
   </data>
@@ -2172,7 +2175,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Delete AxCrypt ID</value>
   </data>
   <data name="PromptEmailText" xml:space="preserve">
-    <value>!!Change Email</value>
+    <value>Email</value>
   </data>
   <data name="PromptFileText" xml:space="preserve">
     <value>File</value>
