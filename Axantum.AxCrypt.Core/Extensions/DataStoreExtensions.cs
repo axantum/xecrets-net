@@ -58,13 +58,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FileInfoTypes.Folder;
             }
-            if (fileInfo.IsEncrypted())
-            {
-                return FileInfoTypes.EncryptedFile;
-            }
             if (New<FileFilter>().IsEncryptable(fileInfo))
             {
                 return FileInfoTypes.EncryptableFile;
+            }
+            if (fileInfo.IsEncrypted())
+            {
+                return FileInfoTypes.EncryptedFile;
             }
             return FileInfoTypes.OtherFile;
         }
