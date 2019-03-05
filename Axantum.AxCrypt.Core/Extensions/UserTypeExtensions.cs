@@ -469,7 +469,17 @@ namespace Axantum.AxCrypt.Core.Extensions
                         return;
                     }
 
-                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange));
+                    foreach (string fileName in files)
+                    {
+                        ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(fileName);
+                        if (activeFile == null)
+                        {
+                            return;
+                        }
+
+                        New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
+                    }
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, files));
                 });
         }
 

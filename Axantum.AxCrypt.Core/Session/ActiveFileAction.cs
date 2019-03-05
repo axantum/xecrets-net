@@ -251,7 +251,6 @@ namespace Axantum.AxCrypt.Core.Session
         private static async Task<ActiveFile> CheckActiveFileActions(ActiveFile activeFile, FileLock encryptedFileLock, FileLock decryptedFileLock, IProgressContext progress)
         {
             activeFile = CheckIfKeyIsKnown(activeFile);
-            activeFile = CheckIfKeyShared(activeFile);
             activeFile = CheckIfCreated(activeFile);
             activeFile = CheckIfProcessExited(activeFile);
             activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress).Free();
@@ -310,21 +309,6 @@ namespace Axantum.AxCrypt.Core.Session
             activeFile = new ActiveFile(activeFile, ActiveFileStatus.AssumedOpenAndDecrypted);
 
             return activeFile;
-        }
-
-        private static ActiveFile CheckIfKeyShared(ActiveFile activeFile)
-        {
-            if (activeFile.Status != ActiveFileStatus.NotDecrypted)
-            {
-                return activeFile;
-            }
-
-            if (activeFile.IsShared == OpenFileProperties.Create(activeFile.EncryptedFileInfo).IsShared)
-            {
-                return activeFile;
-            }
-            
-            return new ActiveFile(activeFile, ActiveFileStatus.NotDecrypted);
         }
 
         private static ActiveFile CheckIfProcessExited(ActiveFile activeFile)
