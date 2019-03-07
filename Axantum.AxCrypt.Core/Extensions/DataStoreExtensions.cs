@@ -31,6 +31,8 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -113,6 +115,27 @@ namespace Axantum.AxCrypt.Core.Extensions
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
             return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.IsEncrypted());
+        }
+
+        public static IEnumerable<IDataStore> ListEncryptableAndIgnoreFileWarning(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
+        {
+            return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.CheckEncryptable());
+        }
+
+        public static bool CheckEncryptable(this IDataStore fileInfo)
+        {
+            if (fileInfo.IsEncrypted())
+            {
+                return false;
+            }
+
+            if (fileInfo.IsEncryptable && fileInfo.Type() == FileInfoTypes.EncryptableFile)
+            {
+                return true;
+            }
+
+            New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "Not encrypting '{0}', because we can't encrypt such files safely. This includes certain file extensions, file locations and attributes.".InvariantFormat(fileInfo.Name), DoNotShowAgainOptions.IgnoreFileWarning);
+            return false;
         }
 
         /// <summary>

@@ -225,7 +225,7 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IEnumerable<IDataStore>> filesFiles = containers.Select((folder) => folder.ListEncryptable(containers, New<UserSettings>().FolderOperationMode.Policy()));
+                IEnumerable<IEnumerable<IDataStore>> filesFiles = containers.Select((folder) => folder.ListEncryptableAndIgnoreFileWarning(containers, New<UserSettings>().FolderOperationMode.Policy()));
                 IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
 
                 progress.AddTotal(files.Count());
