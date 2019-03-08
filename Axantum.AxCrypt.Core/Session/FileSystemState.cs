@@ -31,6 +31,7 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.UI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -339,6 +340,11 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void AddInternal(ActiveFile activeFile)
         {
+            if (New<UserSettings>().DisableRecentFilesListView)
+            {
+                return;
+            }
+
             lock (_activeFilesByEncryptedPath)
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
@@ -440,15 +446,21 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
 
+            FileSystemState fileSystemState = new FileSystemState()
+            {
+                _dataStore = path,
+            };
+
+            if (New<UserSettings>().DisableRecentFilesListView)
+            {
+                return fileSystemState;
+            }
+
             if (path.IsAvailable)
             {
                 return CreateFileSystemState(path);
             }
 
-            FileSystemState fileSystemState = new FileSystemState()
-            {
-                _dataStore = path,
-            };
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
