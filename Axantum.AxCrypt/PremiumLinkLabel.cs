@@ -25,45 +25,47 @@ namespace Axantum.AxCrypt
 
         private PlanInformation _planInformation = PlanInformation.Empty;
 
-        private string _displayTextName;
-        private string DisplayTextName
+        private async Task<bool> CreatePlanInformation(LogOnIdentity identity, bool isAppLanguageChanged)
         {
-            get
+            PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
+            if (isAppLanguageChanged)
             {
-                return _displayTextName ?? string.Empty;
+                _planInformation = planInformation;
+                return true;
             }
-            set
-            {
-                _displayTextName = value;
-                InitializeText();
-            }
-        }
 
-        private string _toolTipTextName;
-        private string ToolTipTextName
+            if (planInformation == _planInformation)
+            {
+                return false;
+            }
+
+            _planInformation = planInformation;
+            return true;
+        }
+        
+        public async Task ConfigureAsyncWhenChangingAppLanguage(LogOnIdentity identity, bool isAppLanguageChanged)
         {
-            get
+            if (!await CreatePlanInformation(identity, isAppLanguageChanged))
             {
-                return _toolTipTextName ?? string.Empty;
+                return;
             }
-            set
-            {
-                _toolTipTextName = value;
-                InitializeText();
-            }
+
+            ConfigureLinkLabel();
         }
 
         public async Task ConfigureAsync(LogOnIdentity identity)
         {
-            PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
-            if (planInformation == _planInformation)
+            if (!await CreatePlanInformation(identity, false))
             {
-                InitializeText();
                 return;
             }
-            _planInformation = planInformation;
 
-            switch (planInformation.PlanState)
+            ConfigureLinkLabel();
+        }
+
+        private void ConfigureLinkLabel()
+        {
+            switch (_planInformation.PlanState)
             {
                 case PlanState.Unknown:
                     Visible = false;
@@ -71,54 +73,41 @@ namespace Axantum.AxCrypt
 
                 case PlanState.HasPremium:
                 case PlanState.HasBusiness:
-                    if (planInformation.DaysLeft > 15)
+                    if (_planInformation.DaysLeft > 15)
                     {
                         Visible = false;
                         break;
                     }
 
-                    DisplayTextName = (planInformation.DaysLeft > 1 ? nameof(Texts.DaysLeftPluralWarningPattern) : nameof(Texts.DaysLeftSingularWarningPattern));
+                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(_planInformation.DaysLeft);
                     LinkColor = Styling.WarningColor;
-                    _toolTipTextName = nameof(Texts.DaysLeftWarningToolTip);
+                    _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.NoPremium:
-                    DisplayTextName = nameof(Texts.UpgradePromptText);
+                    Text = Texts.UpgradePromptText;
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
                     Visible = true;
                     break;
 
                 case PlanState.CanTryPremium:
-                    DisplayTextName = nameof(Texts.TryPremiumLabel);
+                    Text = Texts.TryPremiumLabel;
                     LinkColor = Styling.WarningColor;
-                    _toolTipTextName = nameof(Texts.TryPremiumToolTip);
+                    _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.OfflineNoPremium:
-                    DisplayTextName = nameof(Texts.UpgradePromptText);
-                    _toolTipTextName = nameof(Texts.OfflineNoPremiumWarning);
+                    Text = Texts.UpgradePromptText;
+                    _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
                     LinkColor = Styling.WarningColor;
                     Visible = true;
                     break;
 
                 default:
                     break;
-            }
-        }
-
-        private void InitializeText()
-        {
-            if (!string.IsNullOrEmpty(DisplayTextName))
-            {
-                Text = Texts.ResourceManager.GetString(DisplayTextName).InvariantFormat(_planInformation.DaysLeft);
-            }
-
-            if (string.IsNullOrEmpty(ToolTipTextName))
-            {
-                _toolTip.SetToolTip(this, Texts.ResourceManager.GetString(DisplayTextName));
             }
         }
 
