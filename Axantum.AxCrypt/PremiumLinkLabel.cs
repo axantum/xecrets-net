@@ -42,10 +42,9 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-
             _planInformation = planInformation;
 
-            switch (_planInformation.PlanState)
+            switch (planInformation.PlanState)
             {
                 case PlanState.Unknown:
                     Visible = false;
@@ -53,13 +52,13 @@ namespace Axantum.AxCrypt
 
                 case PlanState.HasPremium:
                 case PlanState.HasBusiness:
-                    if (_planInformation.DaysLeft > 15)
+                    if (planInformation.DaysLeft > 15)
                     {
                         Visible = false;
                         break;
                     }
 
-                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(_planInformation.DaysLeft);
+                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(planInformation.DaysLeft);
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
