@@ -58,7 +58,7 @@ namespace Axantum.AxCrypt
                         break;
                     }
 
-                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(planInformation.DaysLeft);
+                    Text = (planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(planInformation.DaysLeft);
                     LinkColor = Styling.WarningColor;
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
