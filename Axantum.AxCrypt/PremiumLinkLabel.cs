@@ -25,46 +25,26 @@ namespace Axantum.AxCrypt
 
         private PlanInformation _planInformation = PlanInformation.Empty;
 
-        private async Task<bool> CreatePlanInformation(LogOnIdentity identity, bool isAppLanguageChanged)
+        public async Task ConfigureAsync(LogOnIdentity identity)
+        {
+            await CreatePlanInformation(identity, false);
+        }
+
+        public async Task ConfigureAsyncWhenChangingAppLanguage(LogOnIdentity identity, bool isAppLanguageChanged)
+        {
+            await CreatePlanInformation(identity, isAppLanguageChanged);
+        }
+
+        private async Task CreatePlanInformation(LogOnIdentity identity, bool isAppLanguageChanged)
         {
             PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
-            if (isAppLanguageChanged)
+            if (!isAppLanguageChanged && planInformation == _planInformation)
             {
-                _planInformation = planInformation;
-                return true;
-            }
-
-            if (planInformation == _planInformation)
-            {
-                return false;
+                return;
             }
 
             _planInformation = planInformation;
-            return true;
-        }
-        
-        public async Task ConfigureAsyncWhenChangingAppLanguage(LogOnIdentity identity, bool isAppLanguageChanged)
-        {
-            if (!await CreatePlanInformation(identity, isAppLanguageChanged))
-            {
-                return;
-            }
 
-            ConfigureLinkLabel();
-        }
-
-        public async Task ConfigureAsync(LogOnIdentity identity)
-        {
-            if (!await CreatePlanInformation(identity, false))
-            {
-                return;
-            }
-
-            ConfigureLinkLabel();
-        }
-
-        private void ConfigureLinkLabel()
-        {
             switch (_planInformation.PlanState)
             {
                 case PlanState.Unknown:
