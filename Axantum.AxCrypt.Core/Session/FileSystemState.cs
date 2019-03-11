@@ -81,13 +81,6 @@ namespace Axantum.AxCrypt.Core.Session
             private set;
         } = new List<Passphrase>();
 
-        [JsonProperty("disableRecentFiles")]
-        public virtual IEnumerable<string> DisableRecentFiles
-        {
-            get;
-            set;
-        } = new List<string>();
-
         [JsonProperty("watchedFolders")]
         private List<WatchedFolder> _watchedFolders = new List<WatchedFolder>();
 

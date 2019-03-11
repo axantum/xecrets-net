@@ -891,23 +891,17 @@ namespace Axantum.AxCrypt
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
         }
 
-        private void DisableRecentFilesListView()
+        private async void DisableRecentFilesListView()
         {
             bool disableRecentFilesListView = New<UserSettings>().DisableRecentFilesListView;
             _optionsDisableRecentFilesListViewToolStripMenuItem.Checked = !disableRecentFilesListView;
             _recentFilesListView.Enabled = disableRecentFilesListView;
 
-            SetDisableRecentFilesListViewToolTipText();
             New<UserSettings>().DisableRecentFilesListView = !disableRecentFilesListView;
+            SetDisableRecentFilesListViewToolTipText();
 
-            if (_optionsDisableRecentFilesListViewToolStripMenuItem.Checked)
-            {
-                Resolve.FileSystemState.DisableRecentFiles = _mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName);
-                _mainViewModel.RemoveRecentFiles.ExecuteAsync(Resolve.FileSystemState.DisableRecentFiles);
-                return;
-            }
-            _fileOperationViewModel.AddRecentFiles.ExecuteAsync(Resolve.FileSystemState.DisableRecentFiles);
-            Resolve.FileSystemState.DisableRecentFiles = new List<string>();
+            FileSystemState fileSystemState = FileSystemState.Create(Resolve.FileSystemState.PathInfo);
+            _recentFilesListView.UpdateRecentFiles(fileSystemState.ActiveFiles);
         }
 
         private void SetDisableRecentFilesListViewToolTipText()
