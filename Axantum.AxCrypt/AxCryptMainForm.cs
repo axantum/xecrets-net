@@ -768,7 +768,8 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
             _alwaysOfflineToolStripMenuItem.Checked = New<UserSettings>().OfflineMode;
-            SetDisableRecentFiles();
+
+            ConfigureEnableDisableRecentFilesAsync();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
@@ -888,18 +889,16 @@ namespace Axantum.AxCrypt
         {
             New<UserSettings>().DisableRecentFiles = !New<UserSettings>().DisableRecentFiles;
 
-            SetDisableRecentFiles();
+            ConfigureEnableDisableRecentFilesAsync();
+            await _mainViewModel.RemoveRecentFiles.ExecuteAsync(_mainViewModel.RecentFiles.Select(files => files.EncryptedFileInfo.FullName));
         }
 
-        private void SetDisableRecentFiles()
+        private void ConfigureEnableDisableRecentFilesAsync()
         {
             bool disableRecentFiles = New<UserSettings>().DisableRecentFiles;
             _optionsDisableRecentFilesToolStripMenuItem.Checked = disableRecentFiles;
             _recentFilesListView.Enabled = !disableRecentFiles;
             _recentFilesTabPage.ToolTipText = disableRecentFiles ? Texts.DisableRecentFilesListTabToolTipText : string.Empty;
-
-            FileSystemState fileSystemState = FileSystemState.Create(Resolve.FileSystemState.PathInfo);
-            _recentFilesListView.UpdateRecentFiles(fileSystemState.ActiveFiles);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]

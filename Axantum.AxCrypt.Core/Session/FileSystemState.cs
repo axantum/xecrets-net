@@ -439,20 +439,15 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("path");
             }
 
-            FileSystemState fileSystemState = new FileSystemState()
-            {
-                _dataStore = path,
-            };
-
-            if (New<UserSettings>().DisableRecentFiles)
-            {
-                return fileSystemState;
-            }
-
             if (path.IsAvailable)
             {
                 return CreateFileSystemState(path);
             }
+
+            FileSystemState fileSystemState = new FileSystemState()
+            {
+                _dataStore = path,
+            };
 
             if (Resolve.Log.IsInfoEnabled)
             {
