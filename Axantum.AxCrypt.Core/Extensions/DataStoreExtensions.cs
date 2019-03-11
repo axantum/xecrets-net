@@ -134,7 +134,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 return true;
             }
 
-            New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "Not encrypting '{0}', because we can't encrypt such files safely. This includes certain file extensions, file locations and attributes.".InvariantFormat(fileInfo.Name), DoNotShowAgainOptions.IgnoreFileWarning);
+            New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileWarningText.InvariantFormat(fileInfo.Name), DoNotShowAgainOptions.IgnoreFileWarning);
             return false;
         }
 
