@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Text = "&" + Texts.OptionsChangePassphraseToolStripMenuItemText;
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
-            _optionsDisableRecentFilesListViewToolStripMenuItem.Text = "&" + "Disable Recent Files List";
+            _optionsDisableRecentFilesListViewToolStripMenuItem.Text = "&" + Texts.OptionsDisableRecentFilesListToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
             _optionsIncludeSubfoldersToolStripMenuItem.Text = "&" + Texts.OptionsIncludeSubfoldersToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
@@ -906,7 +906,7 @@ namespace Axantum.AxCrypt
 
         private void SetDisableRecentFilesListViewToolTipText()
         {
-            _recentFilesTabPage.ToolTipText = _optionsDisableRecentFilesListViewToolStripMenuItem.Checked == true ? "It is disabled and can be re-enabled in options" : string.Empty;
+            _recentFilesTabPage.ToolTipText = _optionsDisableRecentFilesListViewToolStripMenuItem.Checked == true ? Texts.DisableRecentFilesListTabToolTipText : string.Empty;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]

@@ -971,6 +971,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Disable</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisableRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>!!It is disabled and can be re-enabled in options</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -1923,6 +1926,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
+  </data>
+  <data name="OptionsDisableRecentFilesListToolStripMenuItemText" xml:space="preserve">
+    <value>!!Disable Recent Files List</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>
