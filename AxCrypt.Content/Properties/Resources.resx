@@ -1927,8 +1927,8 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="OptionsDisableRecentFilesListToolStripMenuItemText" xml:space="preserve">
-    <value>!!Disable Recent Files List</value>
+  <data name="OptionsDisableRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Disable Recent Files</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>

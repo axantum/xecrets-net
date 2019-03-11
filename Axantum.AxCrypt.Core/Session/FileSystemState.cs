@@ -333,7 +333,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void AddInternal(ActiveFile activeFile)
         {
-            if (New<UserSettings>().DisableRecentFilesListView)
+            if (New<UserSettings>().DisableRecentFiles)
             {
                 return;
             }
@@ -444,7 +444,7 @@ namespace Axantum.AxCrypt.Core.Session
                 _dataStore = path,
             };
 
-            if (New<UserSettings>().DisableRecentFilesListView)
+            if (New<UserSettings>().DisableRecentFiles)
             {
                 return fileSystemState;
             }

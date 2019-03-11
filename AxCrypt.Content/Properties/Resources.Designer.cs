@@ -4761,11 +4761,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Disable Recent Files List.
+        ///   Looks up a localized string similar to !!Disable Recent Files.
         /// </summary>
-        public static string OptionsDisableRecentFilesListToolStripMenuItemText {
+        public static string OptionsDisableRecentFilesToolStripMenuItemText {
             get {
-                return ResourceManager.GetString("OptionsDisableRecentFilesListToolStripMenuItemText", resourceCulture);
+                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
             }
         }
         

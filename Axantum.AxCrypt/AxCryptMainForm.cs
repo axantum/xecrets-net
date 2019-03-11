@@ -279,7 +279,7 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Text = "&" + Texts.OptionsChangePassphraseToolStripMenuItemText;
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
-            _optionsDisableRecentFilesListViewToolStripMenuItem.Text = "&" + Texts.OptionsDisableRecentFilesListToolStripMenuItemText;
+            _optionsDisableRecentFilesToolStripMenuItem.Text = "&" + Texts.OptionsDisableRecentFilesToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
             _optionsIncludeSubfoldersToolStripMenuItem.Text = "&" + Texts.OptionsIncludeSubfoldersToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
@@ -768,14 +768,7 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
             _alwaysOfflineToolStripMenuItem.Checked = New<UserSettings>().OfflineMode;
-            SetDisableRecentFilesListView();
-        }
-
-        private void SetDisableRecentFilesListView()
-        {
-            _optionsDisableRecentFilesListViewToolStripMenuItem.Checked = New<UserSettings>().DisableRecentFilesListView;
-            _recentFilesListView.Enabled = !_optionsDisableRecentFilesListViewToolStripMenuItem.Checked;
-            SetDisableRecentFilesListViewToolTipText();
+            SetDisableRecentFiles();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
@@ -815,7 +808,7 @@ namespace Axantum.AxCrypt
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsDisableRecentFilesListViewToolStripMenuItem.Click += (sender, e) => { DisableRecentFilesListView(); };
+            _optionsDisableRecentFilesToolStripMenuItem.Click += (sender, e) => { DisableRecentFiles(); };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
@@ -891,22 +884,22 @@ namespace Axantum.AxCrypt
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
         }
 
-        private async void DisableRecentFilesListView()
+        private async void DisableRecentFiles()
         {
-            bool disableRecentFilesListView = New<UserSettings>().DisableRecentFilesListView;
-            _optionsDisableRecentFilesListViewToolStripMenuItem.Checked = !disableRecentFilesListView;
-            _recentFilesListView.Enabled = disableRecentFilesListView;
+            New<UserSettings>().DisableRecentFiles = !New<UserSettings>().DisableRecentFiles;
 
-            New<UserSettings>().DisableRecentFilesListView = !disableRecentFilesListView;
-            SetDisableRecentFilesListViewToolTipText();
+            SetDisableRecentFiles();
+        }
+
+        private void SetDisableRecentFiles()
+        {
+            bool disableRecentFiles = New<UserSettings>().DisableRecentFiles;
+            _optionsDisableRecentFilesToolStripMenuItem.Checked = disableRecentFiles;
+            _recentFilesListView.Enabled = !disableRecentFiles;
+            _recentFilesTabPage.ToolTipText = disableRecentFiles ? Texts.DisableRecentFilesListTabToolTipText : string.Empty;
 
             FileSystemState fileSystemState = FileSystemState.Create(Resolve.FileSystemState.PathInfo);
             _recentFilesListView.UpdateRecentFiles(fileSystemState.ActiveFiles);
-        }
-
-        private void SetDisableRecentFilesListViewToolTipText()
-        {
-            _recentFilesTabPage.ToolTipText = _optionsDisableRecentFilesListViewToolStripMenuItem.Checked == true ? Texts.DisableRecentFilesListTabToolTipText : string.Empty;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]

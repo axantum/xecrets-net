@@ -90,7 +90,7 @@ namespace Axantum.AxCrypt
             this._thirtyMinuteInactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._sixtyMinuteInactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._optionsDisableRecentFilesListViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._optionsDisableRecentFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsClearAllSettingsAndRestartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._keyManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -543,9 +543,9 @@ namespace Axantum.AxCrypt
             this._optionsEncryptionUpgradeModeToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
+            this._optionsDisableRecentFilesToolStripMenuItem,
             this._inactivitySignOutToolStripMenuItem,
             this._optionsDebugToolStripMenuItem,
-            this._optionsDisableRecentFilesListViewToolStripMenuItem,
             this._optionsClearAllSettingsAndRestartToolStripMenuItem});
             this._optionsToolStripMenuItem.Image = global::Axantum.AxCrypt.Properties.Resources.options;
             this._optionsToolStripMenuItem.Name = "_optionsToolStripMenuItem";
@@ -758,11 +758,11 @@ namespace Axantum.AxCrypt
             this._optionsDebugToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsDebugToolStripMenuItem.Text = "[&Debug]";
             // 
-            // _optionsDisableRecentFilesListViewToolStripMenuItem
+            // _optionsDisableRecentFilesToolStripMenuItem
             // 
-            this._optionsDisableRecentFilesListViewToolStripMenuItem.Name = "_optionsDisableRecentFilesListViewToolStripMenuItem";
-            this._optionsDisableRecentFilesListViewToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this._optionsDisableRecentFilesListViewToolStripMenuItem.Text = "[&Disable Recent File List]";
+            this._optionsDisableRecentFilesToolStripMenuItem.Name = "_optionsDisableRecentFilesToolStripMenuItem";
+            this._optionsDisableRecentFilesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this._optionsDisableRecentFilesToolStripMenuItem.Text = "[&Disable Recent Files]";
             // 
             // _optionsClearAllSettingsAndRestartToolStripMenuItem
             // 
@@ -1308,7 +1308,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _swedishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsChangePassphraseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsDebugToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _optionsDisableRecentFilesListViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _optionsDisableRecentFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsClearAllSettingsAndRestartToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _keyManagementToolStripMenuItem;
