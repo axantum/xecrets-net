@@ -448,7 +448,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _dataStore = path,
             };
-
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("No existing FileSystemState. Save location is '{0}'.".InvariantFormat(path.FullName));
