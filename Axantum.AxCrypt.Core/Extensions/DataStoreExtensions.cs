@@ -117,9 +117,9 @@ namespace Axantum.AxCrypt.Core.Extensions
             return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.IsEncrypted());
         }
 
-        public static IEnumerable<IDataStore> ListEncryptableAndIgnoreFileWarning(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
+        public static void ListEncryptableAndIgnoreFileWarning(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.CheckEncryptable());
+            folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.CheckEncryptable()).ToList();
         }
 
         public static bool CheckEncryptable(this IDataStore fileInfo)
