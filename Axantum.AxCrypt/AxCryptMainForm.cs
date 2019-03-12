@@ -1655,6 +1655,7 @@ namespace Axantum.AxCrypt
         private async void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
             await EncryptPendingFiles();
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderChange));
         }
 
         private void ProgressBackgroundWorker_ProgressBarClicked(object sender, MouseEventArgs e)
