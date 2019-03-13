@@ -301,7 +301,7 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void ShowIgnoreFileWarning(IEnumerable<IDataContainer> containers)
+        public void IgnoreFileWarning(IEnumerable<IDataContainer> containers)
         {
             if (containers == null)
             {
@@ -309,7 +309,7 @@ namespace Axantum.AxCrypt.Core
             }
             foreach (IDataContainer folder in containers)
             {
-                folder.ListEncryptableAndIgnoreFileWarning(containers, New<UserSettings>().FolderOperationMode.Policy());
+                folder.ShowIgnoreFileWarning(containers, New<UserSettings>().FolderOperationMode.Policy());
             }
         }
 
