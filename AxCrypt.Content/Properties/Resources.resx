@@ -1307,7 +1307,8 @@ To start securing your files just download and install AxCrypt from {1}.
 Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your secret password.</value>
   </data>
   <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!From inviter,  "{0}".</value>
+    <value>!!Message from {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation to use AxCrypt File Security</value>
@@ -1316,7 +1317,7 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!Personalized Message</value>
+    <value>!!Message</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
@@ -1401,8 +1402,9 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
-    <value>!!You are about to share securely with someone who is not having an AxCrypt account. AxCrypt will send the invitation mail with instructions on how to proceed the recipient.
-You can customized the invitation by providing the following fields.</value>
+    <value>!!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+
+You may specify the language to use and a personal message below.</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>

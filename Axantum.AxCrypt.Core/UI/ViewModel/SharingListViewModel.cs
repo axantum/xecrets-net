@@ -35,7 +35,6 @@ using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -57,6 +56,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
+        public AccountStatus NewKeyShareStatus { get { return GetProperty<AccountStatus>(nameof(NewKeyShareStatus)); } set { SetProperty(nameof(NewKeyShareStatus), value); } }
+
         public bool IsOnline { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
 
         public IAsyncAction AddKeyShares { get; private set; }
@@ -68,6 +69,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShareFolders { get; private set; }
 
         public IAsyncAction ShareFiles { get; private set; }
+
+        public IAsyncAction UpdateNewKeyShareStatus { get; private set; }
 
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
@@ -108,6 +111,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
             ShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
             ShareFiles = new AsyncDelegateAction<object>((o) => ShareFilesActionAsync());
+            UpdateNewKeyShareStatus = new AsyncDelegateAction<object>(async (o) => NewKeyShareStatus = await NewKeyShareStatusAsync());
         }
 
         private async Task ShareFoldersActionAsync()
@@ -139,7 +143,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static void BindPropertyChangedEvents()
+        private void BindPropertyChangedEvents()
         {
         }
 
@@ -176,10 +180,10 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(new EmailAddress[] { EmailAddress.Parse(email), }).Free();
         }
 
-        public static async Task<AccountStatus> CheckKeySharingUserAccountAsync(string email)
+        private async Task<AccountStatus> NewKeyShareStatusAsync()
         {
-            EmailAddress recipientEmail = EmailAddress.Parse(email);
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(Resolve.KnownIdentities.DefaultEncryptionIdentity));
+            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(_identity));
+            EmailAddress recipientEmail = EmailAddress.Parse(NewKeyShare);
             return await accountStorage.StatusAsync(recipientEmail).Free();
         }
 

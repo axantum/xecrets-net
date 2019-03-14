@@ -7,19 +7,19 @@ using System.Linq;
 namespace Axantum.AxCrypt.Api.Model
 {
     /// <summary>
-    /// Information for the invitation message.
+    /// Information for custom messages.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class InvitationMessageParameters
+    public class CustomMessageParameters
     {
-        public InvitationMessageParameters(CultureInfo messageCulture, string personalizedMessage)
+        public CustomMessageParameters(CultureInfo messageCulture, string customMessage)
         {
             MessageCulture = messageCulture;
-            PersonalizedMessage = personalizedMessage;
+            CustomMessage = customMessage;
         }
 
         /// <summary>
-        /// Gets the language culture to send the invitation message in the recipient's preferred language/culture.
+        /// Gets the language culture to send the message in the recipient's preferred language/culture.
         /// </summary>
         /// <value>
         /// The language culture.
@@ -28,12 +28,12 @@ namespace Axantum.AxCrypt.Api.Model
         public CultureInfo MessageCulture { get; }
 
         /// <summary>
-        /// Gets the inviter's personalized message which will exist in invitation message.
+        /// Gets a custom message which will used in the final message.
         /// </summary>
         /// <value>
-        /// The invitation personalized message.
+        /// The custom message.
         /// </value>
-        [JsonProperty("personalizedMessage")]
-        public string PersonalizedMessage { get; }
+        [JsonProperty("customMessage")]
+        public string CustomMessage { get; }
     }
 }

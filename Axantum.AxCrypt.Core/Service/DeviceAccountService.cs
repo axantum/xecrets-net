@@ -250,9 +250,9 @@ namespace Axantum.AxCrypt.Core.Service
             return await OtherUserPublicKeysAsync(() => _localService.OtherPublicKeyAsync(email), () => _remoteService.OtherPublicKeyAsync(email)).Free();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
         {
-            return await OtherUserPublicKeysAsync(() => _localService.OtherUserInvitePublicKeyAsync(email, null), () => _remoteService.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters)).Free();
+            return await OtherUserPublicKeysAsync(() => _localService.OtherUserInvitePublicKeyAsync(email, null), () => _remoteService.OtherUserInvitePublicKeyAsync(email, customParameters)).Free();
         }
 
         private async Task<UserPublicKey> OtherUserPublicKeysAsync(Func<Task<UserPublicKey>> localServiceOtherUserPublicKey, Func<Task<UserPublicKey>> remoteServiceOtherUserPublicKey)

@@ -347,7 +347,7 @@ namespace Axantum.AxCrypt.Core.Service
             }).Free();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
         {
             return await OtherPublicKeyAsync(email);
         }

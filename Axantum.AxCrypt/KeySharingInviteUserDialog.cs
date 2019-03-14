@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Net;
 using System.Windows.Forms;
 using Texts = AxCrypt.Content.Texts;
 
@@ -64,10 +63,10 @@ namespace Axantum.AxCrypt
         {
             _languageCultureDropDown.SelectedValue = Resolve.UserSettings.MessageCulture;
 
-            if (!string.IsNullOrEmpty(Resolve.UserSettings.PersonalizedMessage))
+            if (!string.IsNullOrEmpty(Resolve.UserSettings.CustomInvitationMessage))
             {
                 _personalizedMessageTextGroupBox.Visible = true;
-                _personalizedMessageTextBox.Text = WebUtility.HtmlDecode(Resolve.UserSettings.PersonalizedMessage);
+                _personalizedMessageTextBox.Text = Resolve.UserSettings.CustomInvitationMessage;
             }
         }
 
@@ -90,10 +89,10 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            string personalizedMessage = WebUtility.HtmlEncode(_personalizedMessageTextBox.Text);
-            if (!String.IsNullOrEmpty(personalizedMessage))
+            string personalizedMessage = _personalizedMessageTextBox.Text;
+            if (!string.IsNullOrEmpty(personalizedMessage))
             {
-                Resolve.UserSettings.PersonalizedMessage = personalizedMessage;
+                Resolve.UserSettings.CustomInvitationMessage = personalizedMessage;
             }
 
             CultureInfo messageCulture = new CultureInfo(_languageCultureDropDown.SelectedValue.ToString());

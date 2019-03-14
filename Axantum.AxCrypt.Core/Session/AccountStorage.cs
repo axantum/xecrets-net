@@ -118,9 +118,9 @@ namespace Axantum.AxCrypt.Core.Session
             return await _service.OtherPublicKeyAsync(email).Free();
         }
 
-        public async Task<UserPublicKey> GetOtherUserInvitePublicKeyAsync(EmailAddress email, InvitationMessageParameters invitationMessageParameters)
+        public async Task<UserPublicKey> GetOtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
         {
-            return await _service.OtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
+            return await _service.OtherUserInvitePublicKeyAsync(email, customParameters).Free();
         }
 
         public async Task<IList<CultureInfo>> GetCultureInfoListAsync()

@@ -177,10 +177,9 @@ namespace Axantum.AxCrypt.Api
         /// The invitation is customized with the selected language/culture and personalized message.
         /// </summary>
         /// <param name="userName">Name of the user.</param>
-        /// <param name="messageCulture">Inviter preferred culture info for the invitation.</param>
-        /// <param name="personalizedMessage">Personalized message from the inviter.</param>
+        /// <param name="customParameters">The message custom parameters.</param>
         /// <returns></returns>
-        public async Task<AccountKey> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, InvitationMessageParameters invitationMessageParameters)
+        public async Task<AccountKey> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, CustomMessageParameters customParameters)
         {
             if (userName == null)
             {
@@ -189,7 +188,7 @@ namespace Axantum.AxCrypt.Api
 
             Uri resource = BaseUrl.PathCombine("users/all/accounts/invite/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
 
-            RestContent content = new RestContent(Serializer.Serialize(invitationMessageParameters));
+            RestContent content = new RestContent(Serializer.Serialize(customParameters));
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);

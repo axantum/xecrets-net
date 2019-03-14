@@ -69,12 +69,12 @@ namespace Axantum.AxCrypt
 
                 await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
 
-                if (await ShareNewContactAsync())
+                AccountStatus accountStatus = await ShareNewContactAsync();
+                if (accountStatus == AccountStatus.Unverified)
                 {
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
-                    _newContact.Text = String.Empty;
                 }
-
+                _newContact.Text = string.Empty;
                 SetShareButtonState();
             };
             _unshareButton.Click += async (sender, e) =>
@@ -125,12 +125,6 @@ namespace Axantum.AxCrypt
 
         private async Task DisplayInviteMessageAsync(string email)
         {
-            AccountStatus status = await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).StatusAsync(EmailAddress.Parse(email));
-            if (status != AccountStatus.Unverified)
-            {
-                return;
-            }
-
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.SharedWithUnverfiedMessageTitle, Texts.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
@@ -190,20 +184,27 @@ namespace Axantum.AxCrypt
             SetUnshareButtonState();
         }
 
-        private async Task<bool> ShareNewContactAsync()
+        private async Task<AccountStatus> ShareNewContactAsync()
         {
-            if (String.IsNullOrEmpty(_viewModel.NewKeyShare))
+            if (string.IsNullOrEmpty(_viewModel.NewKeyShare))
             {
-                return false;
+                return AccountStatus.Unknown;
             }
             if (!AdHocValidationDueToMonoLimitations())
             {
-                return false;
+                return AccountStatus.Unknown;
             }
 
-            if (!await ValidKeySharingUserAccount())
+            AccountStatus accountStatus = await VerifyNewKeyShareStatus();
+            switch (accountStatus)
             {
-                return false;
+                case AccountStatus.Unverified:
+                case AccountStatus.Verified:
+                case AccountStatus.NotFound:
+                    break;
+
+                default:
+                    return accountStatus;
             }
 
             try
@@ -211,7 +212,7 @@ namespace Axantum.AxCrypt
                 await _viewModel.AddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
                 if (_viewModel.SharedWith.Where(sw => sw.Email.ToString() == _viewModel.NewKeyShare).Any())
                 {
-                    return true;
+                    return accountStatus;
                 }
 
                 if (New<AxCryptOnlineState>().IsOffline)
@@ -226,7 +227,7 @@ namespace Axantum.AxCrypt
                 _errorProvider1.SetIconPadding(_newContact, 3);
             }
 
-            return false;
+            return AccountStatus.Unknown;
         }
 
         private void SetOfflineError()
@@ -236,30 +237,31 @@ namespace Axantum.AxCrypt
             _errorProvider1.SetError(_newContact, Texts.KeySharingOffline);
         }
 
-        private async Task<bool> ValidKeySharingUserAccount()
+        private async Task<AccountStatus> VerifyNewKeyShareStatus()
         {
-            AccountStatus sharedUserAccountStatus = await SharingListViewModel.CheckKeySharingUserAccountAsync(_viewModel.NewKeyShare);
+            await _viewModel.UpdateNewKeyShareStatus.ExecuteAsync(null);
+            AccountStatus sharedUserAccountStatus = _viewModel.NewKeyShareStatus;
 
             if (sharedUserAccountStatus == AccountStatus.Offline)
             {
                 SetOfflineError();
-                return false;
+                return sharedUserAccountStatus;
             }
 
             if (sharedUserAccountStatus != AccountStatus.NotFound)
             {
-                return true;
+                return sharedUserAccountStatus;
             }
 
             using (KeySharingInviteUserDialog inviteDialog = new KeySharingInviteUserDialog(this))
             {
                 if (inviteDialog.ShowDialog(this) != DialogResult.OK)
                 {
-                    return false;
+                    return AccountStatus.Unknown;
                 }
             }
 
-            return true;
+            return sharedUserAccountStatus;
         }
 
         private Task ShareSelectedIndices(IEnumerable<int> indices)
