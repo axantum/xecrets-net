@@ -1654,7 +1654,7 @@ namespace Axantum.AxCrypt
 
         private async void CloseAndRemoveOpenFilesToolStripButton_Click(object sender, EventArgs e)
         {
-            Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path).IgnoreFileWarning(Resolve.FileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), New<UserSettings>().FolderOperationMode.Policy())).ToList();
+            Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path).ShowWarningWhenIgnoreFiles(Resolve.FileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), New<UserSettings>().FolderOperationMode.Policy())).ToList();
             await EncryptPendingFiles();
         }
 
