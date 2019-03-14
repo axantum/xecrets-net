@@ -374,21 +374,5 @@ namespace Axantum.AxCrypt.Core.Service
 
             await _localService.SendFeedbackAsync(subject, message).Free();
         }
-
-        public async Task<IList<CultureInfo>> CultureInfoListAsync()
-        {
-            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
-            {
-                try
-                {
-                    return await _remoteService.CultureInfoListAsync().Free();
-                }
-                catch (ApiException aex)
-                {
-                    await aex.HandleApiExceptionAsync();
-                }
-            }
-            return await _localService.CultureInfoListAsync().Free();
-        }
     }
 }

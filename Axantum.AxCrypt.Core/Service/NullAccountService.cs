@@ -137,10 +137,5 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.FromResult(default(object));
         }
-
-        public Task<IList<CultureInfo>> CultureInfoListAsync()
-        {
-            return Task.FromResult((IList<CultureInfo>)null);
-        }
     }
 }

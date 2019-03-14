@@ -25,13 +25,15 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -49,12 +51,9 @@ namespace Axantum.AxCrypt
             InitializeStyle(parent);
         }
 
-        public List<object> CultureList { get; set; }
-
         private async void KeySharingInviteUserDialog_Load(object sender, EventArgs e)
         {
-            CultureList = await Resolve.KnownIdentities.DefaultEncryptionIdentity.GetCultureInfoList();
-            _languageCultureDropDown.DataSource = new BindingSource(CultureList, null);
+            _languageCultureDropDown.DataSource = (await New<CultureNameMapper>().GetCultureMap()).AsEnumerable().ToList();
 
             SetValuesForOptionalFields();
         }

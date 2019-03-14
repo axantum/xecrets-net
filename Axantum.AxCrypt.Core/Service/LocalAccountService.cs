@@ -356,10 +356,5 @@ namespace Axantum.AxCrypt.Core.Service
         {
             throw new InvalidOperationException("Feedback sending can't be performed locally.");
         }
-
-        public async Task<IList<CultureInfo>> CultureInfoListAsync()
-        {
-            return await Task.FromResult((IList<CultureInfo>)null);
-        }
     }
 }

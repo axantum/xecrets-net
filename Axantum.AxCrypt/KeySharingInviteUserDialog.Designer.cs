@@ -142,13 +142,13 @@ namespace Axantum.AxCrypt
             // 
             // _languageCultureDropDown
             // 
-            this._languageCultureDropDown.DisplayMember = "Name";
+            this._languageCultureDropDown.DisplayMember = "Key";
             this._languageCultureDropDown.FormattingEnabled = true;
             this._languageCultureDropDown.Location = new System.Drawing.Point(10, 24);
             this._languageCultureDropDown.Name = "_languageCultureDropDown";
             this._languageCultureDropDown.Size = new System.Drawing.Size(377, 24);
             this._languageCultureDropDown.TabIndex = 0;
-            this._languageCultureDropDown.ValueMember = "Tag";
+            this._languageCultureDropDown.ValueMember = "Value";
             // 
             // _personalizedMessageTitleGroupBox
             // 

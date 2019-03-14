@@ -162,11 +162,5 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="message">The user message</param>
         /// <returns></returns>
         Task SendFeedbackAsync(string subject, string message);
-
-        /// <summary>
-        /// Get the list of culture.
-        /// </summary>
-        /// <returns>List of culture</returns>
-        Task<IList<CultureInfo>> CultureInfoListAsync();
     }
 }

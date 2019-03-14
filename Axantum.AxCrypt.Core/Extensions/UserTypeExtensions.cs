@@ -543,11 +543,5 @@ namespace Axantum.AxCrypt.Core.Extensions
                 New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, formattedTime));
             }
         }
-
-        public static async Task<List<object>> GetCultureInfoList(this LogOnIdentity identity)
-        {
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            return await CultureAssistant.GetResultAsyc(async () => await accountStorage.GetCultureInfoListAsync().Free());
-        }
     }
 }

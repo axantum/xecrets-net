@@ -58,7 +58,7 @@
     <Compile Include="AsyncLock.cs" />
     <Compile Include="AxCryptOnlineState.cs" />
     <Compile Include="CacheKey.cs" />
-    <Compile Include="CultureAssistant.cs" />
+    <Compile Include="CultureNameMapper.cs" />
     <Compile Include="DoNotShowAgainOptions.cs" />
     <Compile Include="DownloadVersion.cs" />
     <Compile Include="DummyReferencedType.cs" />
@@ -83,10 +83,6 @@
     <ProjectReference Include="..\Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj">
       <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
       <Name>Axantum.AxCrypt.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
-      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
-      <Name>AxCrypt.Content</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

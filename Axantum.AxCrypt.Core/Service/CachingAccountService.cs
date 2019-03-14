@@ -130,10 +130,5 @@ namespace Axantum.AxCrypt.Core.Service
         {
             await New<ICache>().UpdateItemAsync(async () => await _service.SendFeedbackAsync(subject, message), _key).Free();
         }
-
-        public async Task<IList<CultureInfo>> CultureInfoListAsync()
-        {
-            return await New<ICache>().UpdateItemAsync(async () => await _service.CultureInfoListAsync(), _key).Free();
-        }
     }
 }
