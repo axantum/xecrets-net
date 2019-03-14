@@ -301,18 +301,6 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        public void IgnoreFileWarning(IEnumerable<IDataContainer> containers)
-        {
-            if (containers == null)
-            {
-                throw new ArgumentNullException("containers");
-            }
-            foreach (IDataContainer folder in containers)
-            {
-                folder.ShowIgnoreFileWarning(containers, New<UserSettings>().FolderOperationMode.Policy());
-            }
-        }
-
         /// <summary>
         /// Changes the encryption for all encrypted files in the provided containers, using the original identity to decrypt
         /// and the provided encryption parameters for the new encryption.
