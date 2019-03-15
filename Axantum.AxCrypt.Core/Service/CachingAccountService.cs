@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -98,7 +97,7 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            AccountStatus status = await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(StatusAsync)), () => _service.StatusAsync(email)).Free();
+            AccountStatus status = await New<ICache>().UpdateItemAsync(() => _service.StatusAsync(email)).Free();
             if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
@@ -120,6 +119,11 @@ namespace Axantum.AxCrypt.Core.Service
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();
+        }
+
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        {
+            return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherUserInvitePublicKeyAsync)), async () => await _service.OtherUserInvitePublicKeyAsync(email, customParameters)).Free();
         }
 
         public async Task SendFeedbackAsync(string subject, string message)
