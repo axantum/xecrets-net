@@ -33,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.Service
@@ -122,6 +121,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
         Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
+
+        /// <summary>
+        /// Ensures there is at least one key pair if possible, and returns the active public key of the user.
+        /// </summary>
+        /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
+        Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters);
 
         /// <summary>
         /// Saves the account, merging keys with existing keys if necessary.
