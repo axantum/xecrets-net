@@ -74,7 +74,10 @@ namespace Axantum.AxCrypt
                 {
                     await DisplayInviteMessageAsync(_viewModel.NewKeyShare);
                 }
-                _newContact.Text = string.Empty;
+                if (accountStatus != AccountStatus.Unknown)
+                {
+                    _newContact.Text = string.Empty;
+                }
                 SetShareButtonState();
             };
             _unshareButton.Click += async (sender, e) =>
