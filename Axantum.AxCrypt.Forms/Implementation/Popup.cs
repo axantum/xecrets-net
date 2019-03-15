@@ -166,7 +166,7 @@ namespace Axantum.AxCrypt.Forms.Implementation
                     return buttons[0];
 
                 case DialogResult.Cancel:
-                    return buttons.Length > 1 ? buttons[1] : result.ToString();
+                    return buttons.Length > 1 ? buttons[1] : Texts.ButtonCancelText;
 
                 case DialogResult.Abort:
                     return buttons[2];
