@@ -2181,7 +2181,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Change</value>
   </data>
   <data name="PromptChangeEmailText" xml:space="preserve">
-    <value>!!Change Email</value>
+    <value>Change Email</value>
   </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Current password</value>
@@ -2462,9 +2462,9 @@ Subject: AxCrypt Report Snapshot
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>!!Here you can delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+    <value>This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
 
-Click&lt;a href="{0}"&gt;here&lt;/a&gt;, To change the e-mail associated with your AxCrypt ID.
+(If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)
 
 Enter your password below to a delete your AxCrypt ID.</value>
   </data>

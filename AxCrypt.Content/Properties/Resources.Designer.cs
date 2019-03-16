@@ -5382,7 +5382,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Change Email.
+        ///   Looks up a localized string similar to Change Email.
         /// </summary>
         public static string PromptChangeEmailText {
             get {
@@ -6139,9 +6139,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Here you can delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///   Looks up a localized string similar to This will delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
         ///
-        ///Click&lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt;, To change the e-mail associated with your AxCrypt ID.
+        ///(If you just want to change your AxCrypt ID e-mail, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; instead.)
         ///
         ///Enter your password below to a delete your AxCrypt ID..
         /// </summary>
