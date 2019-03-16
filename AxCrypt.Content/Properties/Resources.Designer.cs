@@ -5382,6 +5382,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Change Email.
+        /// </summary>
+        public static string PromptChangeEmailText {
+            get {
+                return ResourceManager.GetString("PromptChangeEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password.
         /// </summary>
         public static string PromptCurrentPasswordText {
@@ -6130,7 +6139,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Here you can delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///   Looks up a localized string similar to !!Here you can delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///
+        ///Click&lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt;, To change the e-mail associated with your AxCrypt ID.
         ///
         ///Enter your password below to a delete your AxCrypt ID..
         /// </summary>
