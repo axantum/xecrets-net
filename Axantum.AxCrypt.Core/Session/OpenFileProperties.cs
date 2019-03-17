@@ -1,4 +1,5 @@
 ﻿using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
@@ -58,9 +59,28 @@ namespace Axantum.AxCrypt.Core.Session
 
         private void Fill(Headers headers)
         {
-            KeyShareCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
+            KeyShareCount = GetKeyShareCount(headers);
             IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
-            IsShared = KeyShareCount > 1;
+            IsShared = KeyShareCount > 0;
+        }
+
+        private int GetKeyShareCount(Headers headers)
+        {
+            if (!Resolve.KnownIdentities.IsLoggedOn)
+            {
+                return 0;
+            }
+
+            LogOnIdentity identity = Resolve.KnownIdentities.DefaultEncryptionIdentity;
+            V2AxCryptDocument v2Document = new V2AxCryptDocument();
+            v2Document.Load(identity.Passphrase, Resolve.CryptoFactory.Preferred.CryptoId, headers);
+            V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = v2Document.DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
+            if (headerBlock == null)
+            {
+                return 0;
+            }
+
+            return headerBlock.Recipients.PublicKeys.Count(upk => upk.Email != identity.UserEmail);
         }
     }
 }
