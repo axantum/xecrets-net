@@ -917,7 +917,7 @@ namespace Axantum.AxCrypt.Core
         /// Creates an IAxCryptDocument instance from the specified source stream.
         /// </summary>
         /// <param name="source">The source stream. Ownership is passed to the IAxCryptDocument instance which disposes the stream when it is.</param>
-        /// <param name="logOnIdentity">The log on identity.</param>
+        /// <param name="identity">The log on identity.</param>
         /// <param name="displayContext">The display context.</param>
         /// <param name="progress">The progress.</param>
         /// <returns></returns>
@@ -927,15 +927,14 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress</exception>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "displayContext")]
-        private static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
+        private static IAxCryptDocument Document(Stream source, LogOnIdentity identity, string displayContext, IProgressContext progress)
         {
-            if (logOnIdentity == null)
+            if (identity == null)
             {
-                throw new ArgumentNullException("logOnIdentity");
+                throw new ArgumentNullException(nameof(identity));
             }
 
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-            IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
+            IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(identity.DecryptionParameters(), new ProgressStream(source, progress));
             return document;
         }
 

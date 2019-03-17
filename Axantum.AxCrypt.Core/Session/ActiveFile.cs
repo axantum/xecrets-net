@@ -148,15 +148,15 @@ namespace Axantum.AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Identity, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity key, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
+        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity identity, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = New<IDataStore>(encryptedFileInfo.FullName);
             DecryptedFileInfo = New<IDataStore>(decryptedFileInfo.FullName);
-            Identity = key;
+            Identity = identity;
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
-            IsShared = OpenFileProperties.Create(EncryptedFileInfo).IsShared;
+            IsShared = EncryptedFileInfo.IsKeyShared(identity);
         }
 
         public IDataStore DecryptedFileInfo

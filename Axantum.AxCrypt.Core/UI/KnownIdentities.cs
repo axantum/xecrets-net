@@ -25,14 +25,16 @@
 
 #endregion Coypright and License
 
+using Axantum.AxCrypt.Common;
+using Axantum.AxCrypt.Core.Crypto;
+using Axantum.AxCrypt.Core.Runtime;
+using Axantum.AxCrypt.Core.Service;
+using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Session;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
@@ -73,7 +75,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             get
             {
-                return DefaultEncryptionIdentity.KeyPairs.Any();
+                return DefaultEncryptionIdentity.ActiveEncryptionKeyPair != UserKeyPair.Empty;
             }
         }
 
