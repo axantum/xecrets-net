@@ -1328,18 +1328,22 @@ namespace Axantum.AxCrypt
 
         private static Task ShowSignedInInformationAsync(CommandVerb verb, IEnumerable<string> files)
         {
+            if (New<UserSettings>().DoNotShowAgain.HasFlag(DoNotShowAgainOptions.SignedInSoNoPasswordRequired))
+            {
+                return Constant.CompletedTask;
+            }
+
             switch (verb)
             {
                 case CommandVerb.Encrypt:
-                    ShowSignedInInformationAlert();
-                    break;
+                    return ShowSignedInInformationAlert();
 
                 case CommandVerb.Decrypt:
                 case CommandVerb.Open:
-                    bool isFileKeyKnown = files.Select(f => New<IDataStore>(f)).ToList().IsFileKeyKnown();
+                    bool isFileKeyKnown = files.Select(f => New<IDataStore>(f)).IsFileKeyKnown();
                     if (isFileKeyKnown)
                     {
-                        ShowSignedInInformationAlert();
+                        return ShowSignedInInformationAlert();
                     }
                     break;
 
@@ -1349,9 +1353,9 @@ namespace Axantum.AxCrypt
             return Constant.CompletedTask;
         }
 
-        private static void ShowSignedInInformationAlert()
+        private static Task ShowSignedInInformationAlert()
         {
-            New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
+            return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
         }
 
         private async Task<DragDropEffects> GetEffectsForMainToolStripAsync(DragEventArgs e)
