@@ -27,8 +27,18 @@ namespace Axantum.AxCrypt
 
         public async Task ConfigureAsync(LogOnIdentity identity)
         {
+            await ConfigureWithAppLanguageChange(identity, false);
+        }
+
+        public async Task ConfigureAsyncWhenChangingAppLanguage(LogOnIdentity identity, bool isAppLanguageChanged)
+        {
+            await ConfigureWithAppLanguageChange(identity, isAppLanguageChanged);
+        }
+
+        private async Task ConfigureWithAppLanguageChange(LogOnIdentity identity, bool isAppLanguageChanged)
+        {
             PlanInformation planInformation = await PlanInformation.CreateAsync(identity);
-            if (planInformation == _planInformation)
+            if (!isAppLanguageChanged && planInformation == _planInformation)
             {
                 return;
             }
