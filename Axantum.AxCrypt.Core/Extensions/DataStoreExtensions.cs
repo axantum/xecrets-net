@@ -229,11 +229,18 @@ namespace Axantum.AxCrypt.Core.Extensions
         {
             foreach (IDataStore fileInfo in files)
             {
-                Guid cryptoId;
-                LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
-                if (logOnIdentity != null)
+                try
                 {
-                    return true;
+                    Guid cryptoId;
+                    LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
+                    if (logOnIdentity != null)
+                    {
+                        return true;
+                    }
+                }
+                catch (FileOperationException)
+                {
+                    continue;
                 }
             }
 
