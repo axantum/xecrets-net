@@ -2,6 +2,7 @@
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
@@ -101,6 +102,11 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+            if (New<UserSettings>().DisableRecentFiles)
+            {
+                return;
+            }
+
             _updateRecentFilesInProgress = true;
             this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
         }
