@@ -2313,6 +2313,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
+        /// </summary>
+        public static string DisableRecentFilesListTabToolTipText {
+            get {
+                return ResourceManager.GetString("DisableRecentFilesListTabToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -4786,6 +4795,15 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsDebugToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsDebugToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Disable Recent Files.
+        /// </summary>
+        public static string OptionsDisableRecentFilesToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
             }
         }
         
