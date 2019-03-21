@@ -397,7 +397,8 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
-            UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(email).Free();
+            CustomMessageParameters invitationMessageParameters = new CustomMessageParameters(new CultureInfo(New<UserSettings>().MessageCulture), New<UserSettings>().CustomInvitationMessage);
+            UserPublicKey userPublicKey = await accountStorage.GetOtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
 
             if (userPublicKey != null)
             {

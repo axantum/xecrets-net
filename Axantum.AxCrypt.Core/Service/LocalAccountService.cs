@@ -39,7 +39,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -346,6 +345,11 @@ namespace Axantum.AxCrypt.Core.Service
                     return publicKey;
                 }
             }).Free();
+        }
+
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        {
+            return await OtherPublicKeyAsync(email);
         }
 
         public Task SendFeedbackAsync(string subject, string message)

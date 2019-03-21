@@ -247,7 +247,17 @@ namespace Axantum.AxCrypt.Core.Service
 
         public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
         {
-            UserPublicKey publicKey = await _localService.OtherPublicKeyAsync(email).Free();
+            return await OtherUserPublicKeysAsync(() => _localService.OtherPublicKeyAsync(email), () => _remoteService.OtherPublicKeyAsync(email)).Free();
+        }
+
+        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        {
+            return await OtherUserPublicKeysAsync(() => _localService.OtherUserInvitePublicKeyAsync(email, null), () => _remoteService.OtherUserInvitePublicKeyAsync(email, customParameters)).Free();
+        }
+
+        private async Task<UserPublicKey> OtherUserPublicKeysAsync(Func<Task<UserPublicKey>> localServiceOtherUserPublicKey, Func<Task<UserPublicKey>> remoteServiceOtherUserPublicKey)
+        {
+            UserPublicKey publicKey = await localServiceOtherUserPublicKey().Free();
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return NonNullPublicKey(publicKey);
@@ -255,7 +265,7 @@ namespace Axantum.AxCrypt.Core.Service
 
             try
             {
-                publicKey = await _remoteService.OtherPublicKeyAsync(email).Free();
+                publicKey = await remoteServiceOtherUserPublicKey().Free();
                 using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
                 {
                     knownPublicKeys.AddOrReplace(publicKey);

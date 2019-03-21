@@ -172,7 +172,31 @@ namespace Axantum.AxCrypt.Api
             return accountKey;
         }
 
-        
+        /// <summary>
+        /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
+        /// The invitation is customized with the selected language/culture and personalized message.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="customParameters">The message custom parameters.</param>
+        /// <returns></returns>
+        public async Task<AccountKey> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, CustomMessageParameters customParameters)
+        {
+            if (userName == null)
+            {
+                throw new ArgumentNullException(nameof(userName));
+            }
+
+            Uri resource = BaseUrl.PathCombine("users/all/accounts/invite/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
+
+            RestContent content = new RestContent(Serializer.Serialize(customParameters));
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            return accountKey;
+        }
+
         /// <summary>
         /// Gets the public key of any user. If the user does not exist, he or she is invited by the current user.
         /// </summary>

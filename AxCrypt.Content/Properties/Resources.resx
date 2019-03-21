@@ -952,6 +952,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Import AxCrypt ID</value>
   </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>!!User Invitation</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Access Sharing</value>
   </data>
@@ -1306,11 +1309,18 @@ To start securing your files just download and install AxCrypt from {1}.
 
 Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your secret password.</value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>!!Message from {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation to use AxCrypt File Security</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>User to invite</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>!!Message</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
@@ -1393,6 +1403,11 @@ EU VAT Number SE556967618101</value>
 
 A recipient is identified by the AxCrypt ID sign in email, but we do not send the file! Here you add the recipients' key to the file. You still have to share the actual file with the recipient afterwards.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>!!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+
+You may specify the language to use and a personal message below.</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
@@ -2168,6 +2183,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PromptChange" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Change Email</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Current password</value>
   </data>
@@ -2447,7 +2465,9 @@ Subject: AxCrypt Report Snapshot
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Here you can delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+    <value>This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+
+(If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)
 
 Enter your password below to a delete your AxCrypt ID.</value>
   </data>
