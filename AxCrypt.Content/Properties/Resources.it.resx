@@ -1876,6 +1876,10 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>Elaborazione in corso...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>{0} file processati. Tempo impiegato {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Codice di Verifica</value>
   </data>

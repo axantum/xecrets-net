@@ -60,6 +60,7 @@
     <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -88,6 +89,12 @@
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopVersion.cs" />
+    <Compile Include="KeySharingInviteUserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeySharingInviteUserDialog.Designer.cs">
+      <DependentUpon>KeySharingInviteUserDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="KnownFolderImageProvider.cs" />
     <Compile Include="PremiumLinkLabel.cs">
       <SubType>Component</SubType>
@@ -186,6 +193,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmailDialog.resx">
       <DependentUpon>EmailDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeySharingInviteUserDialog.resx">
+      <DependentUpon>KeySharingInviteUserDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportPrivatePasswordDialog.resx">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
@@ -303,6 +314,7 @@
     <Content Include="resources\encrypt.png" />
     <Content Include="resources\exit.png" />
     <Content Include="resources\exit_red.png" />
+    <Content Include="resources\expand_collapse_40px.png" />
     <Content Include="resources\feedback_40px.png" />
     <Content Include="resources\folder.png" />
     <Content Include="resources\folder_40px.png" />

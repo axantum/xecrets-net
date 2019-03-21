@@ -181,6 +181,7 @@ namespace Axantum.AxCrypt
             TypeMap.Register.Singleton<AboutAssembly>(() => new AboutAssembly(Assembly.GetExecutingAssembly()));
             TypeMap.Register.Singleton<FileLocker>(() => new FileLocker());
             TypeMap.Register.Singleton<IProgressDialog>(() => new ProgressDialog());
+            TypeMap.Register.Singleton<CultureNameMapper>(() => new CultureNameMapper(New<GlobalApiClient>().GetCultureInfoListAsync));
         }
 
         private static IEnumerable<Assembly> LoadFromFiles(IEnumerable<FileInfo> files)

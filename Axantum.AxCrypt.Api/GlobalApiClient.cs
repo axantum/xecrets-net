@@ -3,6 +3,7 @@ using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -45,6 +46,20 @@ namespace Axantum.AxCrypt.Api
                 return apiVersion;
             }
             return ApiVersion.Zero;
+        }
+
+        public async Task<IList<CultureInfo>> GetCultureInfoListAsync()
+        {
+            Uri resource = BaseUrl.PathCombine("global/support/cultures");
+
+            if (New<AxCryptOnlineState>().IsOnline)
+            {
+                RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
+                ApiCaller.EnsureStatusOk(restResponse);
+                return Serializer.Deserialize<IList<CultureInfo>>(restResponse.Content);
+            }
+
+            return await Task.FromResult((IList<CultureInfo>)null); ;
         }
     }
 }
