@@ -47,7 +47,6 @@ namespace Axantum.AxCrypt
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
-
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetRemoveKnownContactButtonState();
 
             _sharedWith.MouseDoubleClick += async (sender, e) => await Unshare(_sharedWith.IndexFromPoint(e.Location));
@@ -190,7 +189,6 @@ namespace Axantum.AxCrypt
             _okButton.Enabled = true;
             _removeKnownContactButton.Visible = false;
             AcceptButton = _okButton;
-
         }
 
         private async Task Unshare()
