@@ -1331,6 +1331,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Remove.
+        /// </summary>
+        public static string ButtonRemoveKnownContactText {
+            get {
+                return ResourceManager.GetString("ButtonRemoveKnownContactText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string ButtonSaveText {

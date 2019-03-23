@@ -62,6 +62,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AddKeyShares { get; private set; }
 
+        public IAsyncAction RemoveKnownContact { get; private set; }
+
         public IAsyncAction RemoveKeyShares { get; private set; }
 
         public IAsyncAction AddNewKeyShare { get; private set; }
@@ -107,6 +109,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             IsOnline = New<AxCryptOnlineState>().IsOnline;
 
             AddKeyShares = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => AddKeySharesActionAsync(upks));
+            RemoveKnownContact = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKnownContactsActionAsync(upks));
             RemoveKeyShares = new AsyncDelegateAction<IEnumerable<UserPublicKey>>((upks) => RemoveKeySharesActionAsync(upks));
             AddNewKeyShare = new AsyncDelegateAction<string>((email) => AddNewKeyShareActionAsync(email), (email) => Task.FromResult(this[nameof(NewKeyShare)].Length == 0));
             ShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
@@ -160,6 +163,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             SharedWith = fromSet.OrderBy(a => a.Email.Address);
             NotSharedWith = toSet.OrderBy(a => a.Email.Address);
+        }
+
+        private async Task RemoveKnownContactsActionAsync(IEnumerable<UserPublicKey> knownContactsToRemove)
+        {
+            if (!knownContactsToRemove.Any())
+            {
+                return;
+            }
+
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.Remove(knownContactsToRemove);
+
+                HashSet<UserPublicKey> notSharedWithSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
+                NotSharedWith = notSharedWithSet.Where((UserPublicKey upk) => { return !knownContactsToRemove.Contains(upk); }).OrderBy(a => a.Email.Address);
+            }
         }
 
         private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)

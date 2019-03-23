@@ -48,6 +48,8 @@ namespace Axantum.AxCrypt
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
             _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
 
+            _notSharedWith.SelectedIndexChanged += (sender, e) => SetRemoveKnownContactButtonState();
+
             _sharedWith.MouseDoubleClick += async (sender, e) => await Unshare(_sharedWith.IndexFromPoint(e.Location));
             _notSharedWith.MouseDoubleClick += async (sender, e) =>
             {
@@ -86,6 +88,12 @@ namespace Axantum.AxCrypt
                 SetUnshareButtonState();
             };
 
+            _removeKnownContactButton.Click += async (sender, e) =>
+            {
+                await RemoveKnownContact();
+                SetRemoveKnownContactButtonState();
+            };
+
             SetOkButtonState();
             _notSharedWith.Focus();
         }
@@ -121,6 +129,7 @@ namespace Axantum.AxCrypt
             _addContactGroupBox.Text = Texts.PromptAddContact;
             _unshareButton.Text = Texts.ButtonUnshareLeftText;
             _shareButton.Text = Texts.ButtonShareRightText;
+            _removeKnownContactButton.Text = Texts.ButtonRemoveKnownContactText;
             _sharedWithGroupBox.Text = Texts.PromptSharedWith;
             _okButton.Text = "&" + Texts.ButtonOkText;
             _cancelButton.Text = "&" + Texts.ButtonCancelText;
@@ -159,6 +168,17 @@ namespace Axantum.AxCrypt
             SetOkButtonState();
         }
 
+        private void SetRemoveKnownContactButtonState()
+        {
+            _removeKnownContactButton.Visible = _notSharedWith.SelectedIndices.Count > 0;
+            if (_removeKnownContactButton.Visible)
+            {
+                _sharedWith.ClearSelected();
+                AcceptButton = _removeKnownContactButton;
+            }
+            SetOkButtonState();
+        }
+
         private void SetOkButtonState()
         {
             if (_unshareButton.Visible || _shareButton.Visible)
@@ -168,7 +188,9 @@ namespace Axantum.AxCrypt
             }
 
             _okButton.Enabled = true;
+            _removeKnownContactButton.Visible = false;
             AcceptButton = _okButton;
+
         }
 
         private async Task Unshare()
@@ -185,6 +207,11 @@ namespace Axantum.AxCrypt
 
             await _viewModel.RemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_sharedWith.Items[index] });
             SetUnshareButtonState();
+        }
+
+        private async Task RemoveKnownContact()
+        {
+            await _viewModel.RemoveKnownContact.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_notSharedWith.Items[i]));
         }
 
         private async Task<AccountStatus> ShareNewContactAsync()

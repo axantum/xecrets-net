@@ -631,6 +631,9 @@ You have been warned, now enjoy!</value>
     <value>Click to reset your password.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>!!Remove</value>
+  </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Save</value>
   </data>
