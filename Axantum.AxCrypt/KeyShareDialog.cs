@@ -189,7 +189,6 @@ namespace Axantum.AxCrypt
             }
 
             _okButton.Enabled = true;
-            _removeKnownContactButton.Visible = false;
             AcceptButton = _okButton;
         }
 
