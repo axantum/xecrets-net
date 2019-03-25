@@ -54,6 +54,7 @@ namespace Axantum.AxCrypt
             {
                 await ShareSelectedIndices(new int[] { _notSharedWith.IndexFromPoint(e.Location) });
                 SetShareButtonState();
+                SetRemoveKnownContactButtonState();
             };
 
             _newContact.TextChanged += (sender, e) => { _viewModel.NewKeyShare = _newContact.Text.Trim(); ClearErrorProviders(); };
@@ -91,6 +92,7 @@ namespace Axantum.AxCrypt
             {
                 await RemoveKnownContact();
                 SetRemoveKnownContactButtonState();
+                SetShareButtonState();
             };
 
             SetOkButtonState();
@@ -180,7 +182,7 @@ namespace Axantum.AxCrypt
 
         private void SetOkButtonState()
         {
-            if (_unshareButton.Visible || _shareButton.Visible)
+            if (_unshareButton.Visible || _shareButton.Visible || _removeKnownContactButton.Visible)
             {
                 _okButton.Enabled = false;
                 return;
