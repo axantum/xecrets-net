@@ -81,6 +81,7 @@ namespace Axantum.AxCrypt
                     _newContact.Text = string.Empty;
                 }
                 SetShareButtonState();
+                SetRemoveKnownContactButtonState();
             };
             _unshareButton.Click += async (sender, e) =>
             {
