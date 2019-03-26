@@ -108,6 +108,11 @@ namespace Axantum.AxCrypt
                 return;
             }
 
+            await GetInviteUserPublicKeyAsync(inviteUserEmail, accountStorage);
+        }
+
+        private async Task GetInviteUserPublicKeyAsync(EmailAddress inviteUserEmail, AccountStorage accountStorage)
+        {
             try
             {
                 UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(inviteUserEmail).Free();
