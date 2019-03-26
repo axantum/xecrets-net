@@ -58,6 +58,7 @@ namespace Axantum.AxCrypt
             this._renameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._restoreAnonymousNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._addSecureFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._inviteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._encryptionUpgradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this._cleanDecryptedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -434,6 +435,7 @@ namespace Axantum.AxCrypt
             this._renameToolStripMenuItem,
             this._restoreAnonymousNamesToolStripMenuItem,
             this._addSecureFolderToolStripMenuItem,
+            this._inviteUserToolStripMenuItem,
             this._encryptionUpgradeMenuItem,
             this._toolStripSeparator6,
             this._cleanDecryptedToolStripMenuItem,
@@ -497,6 +499,12 @@ namespace Axantum.AxCrypt
             this._addSecureFolderToolStripMenuItem.Name = "_addSecureFolderToolStripMenuItem";
             this._addSecureFolderToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this._addSecureFolderToolStripMenuItem.Text = "[Add &Secure Folder]";
+            // 
+            // _inviteUserToolStripMenuItem
+            // 
+            this._inviteUserToolStripMenuItem.Name = "_inviteUserToolStripMenuItem";
+            this._inviteUserToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this._inviteUserToolStripMenuItem.Text = "[Invite User]";
             // 
             // _encryptionUpgradeMenuItem
             // 
@@ -1289,6 +1297,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _encryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _decryptToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _encryptedFoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _inviteUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem _cleanDecryptedToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator _toolStripSeparator3;
