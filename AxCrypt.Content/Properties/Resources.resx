@@ -975,7 +975,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
-    <value>!!Disclaimer: Automatic emails are sent in preferred language as a courtesy, but we cannot guarantee personal support in that language but will sometimes fall back to English.</value>
+    <value>!!Automatic emails are sent in preferred language as a courtesy, but we cannot guarantee personal support in that language but will sometimes fall back to English.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>

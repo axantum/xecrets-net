@@ -2313,7 +2313,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Disclaimer: Automatic emails are sent in preferred language as a courtesy, but we cannot guarantee personal support in that language but will sometimes fall back to English..
+        ///   Looks up a localized string similar to !!Automatic emails are sent in preferred language as a courtesy, but we cannot guarantee personal support in that language but will sometimes fall back to English..
         /// </summary>
         public static string DisclaimerMailFooter {
             get {
