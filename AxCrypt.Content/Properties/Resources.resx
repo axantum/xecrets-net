@@ -952,6 +952,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Import AxCrypt ID</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>!!Type an email address of a person you wish to invite to use AxCrypt.</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>!!Invite User</value>
+  </data>
   <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
     <value>!!User Invitation</value>
   </data>
@@ -1318,6 +1324,9 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   </data>
   <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
     <value>!!Message</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>!!Invite</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>

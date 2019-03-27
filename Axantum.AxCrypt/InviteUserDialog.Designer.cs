@@ -96,7 +96,6 @@
             // _buttonOk
             // 
             this._buttonOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonOk.Location = new System.Drawing.Point(63, 6);
             this._buttonOk.Name = "_buttonOk";
@@ -104,11 +103,11 @@
             this._buttonOk.TabIndex = 0;
             this._buttonOk.Text = "[OK]";
             this._buttonOk.UseVisualStyleBackColor = true;
-            this._buttonOk.Click += new System.EventHandler(this._buttonOk_Click);
             // 
             // _buttonCancel
             // 
             this._buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._buttonCancel.Location = new System.Drawing.Point(163, 6);
             this._buttonCancel.Name = "_buttonCancel";
@@ -116,7 +115,6 @@
             this._buttonCancel.TabIndex = 0;
             this._buttonCancel.Text = "[CANCEL]";
             this._buttonCancel.UseVisualStyleBackColor = true;
-            this._buttonCancel.Click += new System.EventHandler(this._buttonCancel_Click);
             // 
             // emailPanel
             // 

@@ -262,7 +262,7 @@ namespace Axantum.AxCrypt
             _importMyPrivateKeyToolStripMenuItem.ToolTipText = Texts.ImportMyPrivateKeyToolStripMenuItemToolTipText;
             _importOthersSharingKeyToolStripMenuItem.Text = "&" + Texts.ImportOthersSharingKeyToolStripMenuItemText;
             _importOthersSharingKeyToolStripMenuItem.ToolTipText = Texts.ImportOthersSharingKeyToolStripMenuItemToolTipText;
-            _inviteUserToolStripMenuItem.Text = "Invite User";
+            _inviteUserToolStripMenuItem.Text = Texts.InviteUserToolStripMenuItemText;
             _italianLanguageToolStripMenuItem.Text = "&" + Texts.ItalianLanguageSelection;
             _keyManagementToolStripMenuItem.Text = "&" + Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;

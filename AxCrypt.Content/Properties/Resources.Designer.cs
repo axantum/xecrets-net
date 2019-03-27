@@ -2250,6 +2250,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Type an email address of a person you wish to invite to use AxCrypt..
+        /// </summary>
+        public static string DialogInviteUserPromptLabelText {
+            get {
+                return ResourceManager.GetString("DialogInviteUserPromptLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Invite User.
+        /// </summary>
+        public static string DialogInviteUserTitle {
+            get {
+                return ResourceManager.GetString("DialogInviteUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to !!User Invitation.
         /// </summary>
         public static string DialogKeyShareInviteUserTitle {
@@ -3230,6 +3248,15 @@ namespace AxCrypt.Content.Properties {
         public static string InviteUserPersonalizedMessageTitle {
             get {
                 return ResourceManager.GetString("InviteUserPersonalizedMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Invite.
+        /// </summary>
+        public static string InviteUserToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("InviteUserToolStripMenuItemText", resourceCulture);
             }
         }
         

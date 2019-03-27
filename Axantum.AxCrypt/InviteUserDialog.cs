@@ -1,12 +1,10 @@
 ﻿using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -25,13 +23,29 @@ namespace Axantum.AxCrypt
             : this()
         {
             InitializeStyle(parent);
+
+            _buttonOk.Click += async (sender, e) =>
+            {
+                if (!AdHocValidationDueToMonoLimitations())
+                {
+                    DialogResult = DialogResult.None;
+                    return;
+                }
+
+                IEnumerable<UserPublicKey> userPublicKey = await EnsureUserAccountStatusAndGetInviteUserPublicKey();
+                if (userPublicKey != null)
+                {
+                    DialogResult = DialogResult.OK;
+                    return;
+                }
+            };
         }
 
         protected override void InitializeContentResources()
         {
-            Text = "User Invitation";
+            Text = Texts.DialogInviteUserTitle;
 
-            _inviteUserPromptlabel.Text = "Type an email address of a person you wish to invite to use AxCrypt.";
+            _inviteUserPromptlabel.Text = Texts.DialogInviteUserPromptLabelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _emailGroupBox.Text = Texts.PromptEmailText;
@@ -70,31 +84,16 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private async void _buttonOk_Click(object sender, EventArgs e)
-        {
-            if (!AdHocValidationDueToMonoLimitations())
-            {
-                DialogResult = DialogResult.None;
-                return;
-            }
-
-            await EnsureUserAccountStatusAndGetInviteUserPublicKey();
-        }
-
-        private async Task EnsureUserAccountStatusAndGetInviteUserPublicKey()
+        private async Task<IEnumerable<UserPublicKey>> EnsureUserAccountStatusAndGetInviteUserPublicKey()
         {
             string invitingUserName = _emailTextBox.Text;
-            AccountStatus accountStatus = await invitingUserName.CheckUserAccountStatusAsync(New<KnownIdentities>().DefaultEncryptionIdentity).Free();
+            AccountStatus accountStatus = await invitingUserName.CheckUserAccountStatusAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             if (!ShowInviteUserDialog(accountStatus))
             {
-                return;
+                return null;
             }
 
-            IEnumerable<UserPublicKey> userPublicKey = await GetUserPublicKeys(invitingUserName, accountStatus);
-            if (userPublicKey != null)
-            {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "This user '{0}' was sucessfully invited".InvariantFormat(_emailTextBox.Text));
-            }
+            return await GetUserPublicKeys(invitingUserName, accountStatus);
         }
 
         private bool ShowInviteUserDialog(AccountStatus accountStatus)
@@ -121,7 +120,7 @@ namespace Axantum.AxCrypt
 
         private void ShowOfflineOrLocalError()
         {
-            _emailTextBox.Enabled = !New<AxCryptOnlineState>().IsOffline;
+            _emailTextBox.Enabled = false;
             _emailTextBox.Text = $"[{Texts.OfflineIndicatorText}]";
             _errorProvider1.SetError(_emailTextBox, Texts.KeySharingOffline);
         }
@@ -130,12 +129,6 @@ namespace Axantum.AxCrypt
         {
             IEnumerable<EmailAddress> inviteUserEmails = new EmailAddress[] { EmailAddress.Parse(inviteUserEmail) };
             return await inviteUserEmails.ToKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-        }
-
-        private void _buttonCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            return;
         }
 
         private void ClearErrorProviders()
