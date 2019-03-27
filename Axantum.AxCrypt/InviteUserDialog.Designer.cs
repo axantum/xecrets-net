@@ -36,14 +36,14 @@
             this._panel1 = new System.Windows.Forms.Panel();
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
-            this.EmailPanel = new System.Windows.Forms.Panel();
+            this.emailPanel = new System.Windows.Forms.Panel();
             this._emailGroupBox = new System.Windows.Forms.GroupBox();
-            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this._panel1.SuspendLayout();
-            this.EmailPanel.SuspendLayout();
+            this.emailPanel.SuspendLayout();
             this._emailGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,7 +75,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this._panel1);
-            this.panel2.Controls.Add(this.EmailPanel);
+            this.panel2.Controls.Add(this.emailPanel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 55);
             this.panel2.Name = "panel2";
@@ -118,21 +118,21 @@
             this._buttonCancel.UseVisualStyleBackColor = true;
             this._buttonCancel.Click += new System.EventHandler(this._buttonCancel_Click);
             // 
-            // EmailPanel
+            // emailPanel
             // 
-            this.EmailPanel.AutoSize = true;
-            this.EmailPanel.Controls.Add(this._emailGroupBox);
-            this.EmailPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EmailPanel.Location = new System.Drawing.Point(0, 0);
-            this.EmailPanel.Name = "EmailPanel";
-            this.EmailPanel.Size = new System.Drawing.Size(307, 59);
-            this.EmailPanel.TabIndex = 6;
+            this.emailPanel.AutoSize = true;
+            this.emailPanel.Controls.Add(this._emailGroupBox);
+            this.emailPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.emailPanel.Location = new System.Drawing.Point(0, 0);
+            this.emailPanel.Name = "EmailPanel";
+            this.emailPanel.Size = new System.Drawing.Size(307, 59);
+            this.emailPanel.TabIndex = 6;
             // 
             // _emailGroupBox
             // 
             this._emailGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._emailGroupBox.Controls.Add(this.EmailTextBox);
+            this._emailGroupBox.Controls.Add(this.emailTextBox);
             this._emailGroupBox.Location = new System.Drawing.Point(12, 12);
             this._emailGroupBox.Margin = new System.Windows.Forms.Padding(3, 3, 13, 3);
             this._emailGroupBox.Name = "_emailGroupBox";
@@ -141,14 +141,14 @@
             this._emailGroupBox.TabStop = false;
             this._emailGroupBox.Text = "[Email address]";
             // 
-            // EmailTextBox
+            // emailTextBox
             // 
-            this.EmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.emailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailTextBox.Location = new System.Drawing.Point(9, 18);
-            this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(248, 20);
-            this.EmailTextBox.TabIndex = 0;
+            this.emailTextBox.Location = new System.Drawing.Point(9, 18);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(248, 20);
+            this.emailTextBox.TabIndex = 0;
             // 
             // InviteUserDialog
             // 
@@ -169,7 +169,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this._panel1.ResumeLayout(false);
-            this.EmailPanel.ResumeLayout(false);
+            this.emailPanel.ResumeLayout(false);
             this._emailGroupBox.ResumeLayout(false);
             this._emailGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -184,8 +184,8 @@
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonOk;
         private System.Windows.Forms.Button _buttonCancel;
-        private System.Windows.Forms.Panel EmailPanel;
+        private System.Windows.Forms.Panel emailPanel;
         private System.Windows.Forms.GroupBox _emailGroupBox;
-        internal System.Windows.Forms.TextBox EmailTextBox;
+        internal System.Windows.Forms.TextBox emailTextBox;
     }
 }

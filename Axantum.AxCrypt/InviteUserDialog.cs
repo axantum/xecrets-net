@@ -1,15 +1,14 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Api;
-using Axantum.AxCrypt.Api.Model;
+﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
@@ -47,8 +46,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            EmailTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
-            EmailTextBox.Focus();
+            emailTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
+            emailTextBox.Focus();
         }
 
         private bool AdHocValidationDueToMonoLimitations()
@@ -65,9 +64,9 @@ namespace Axantum.AxCrypt
         private bool AdHocValidateUserEmail()
         {
             _errorProvider1.Clear();
-            if (String.IsNullOrEmpty(EmailTextBox.Text) || !EmailTextBox.Text.IsValidEmail())
+            if (String.IsNullOrEmpty(emailTextBox.Text) || !emailTextBox.Text.IsValidEmail())
             {
-                _errorProvider1.SetError(EmailTextBox, Texts.BadEmail);
+                _errorProvider1.SetError(emailTextBox, Texts.BadEmail);
                 return false;
             }
             return true;
@@ -86,58 +85,53 @@ namespace Axantum.AxCrypt
 
         private async Task GetInviteUserPublicKey()
         {
-            EmailAddress inviteUserEmail = EmailAddress.Parse(EmailTextBox.Text);
+            EmailAddress inviteUserEmail = EmailAddress.Parse(emailTextBox.Text);
 
             IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            if (!string.IsNullOrEmpty(EmailTextBox.Text) && await accountService.IsAccountSourceLocalAsync())
+            if (!string.IsNullOrEmpty(emailTextBox.Text) && await accountService.IsAccountSourceLocalAsync())
             {
-                await ShowOfflineOrLocalError();
+                ShowOfflineOrLocalError();
                 return;
             }
 
-            AccountStorage accountStorage = new AccountStorage(accountService);
-            AccountStatus accountStatus = await accountStorage.StatusAsync(inviteUserEmail).Free();
+            if (!await CheckAccountStatusAndShowInviteMessageDialog(inviteUserEmail, accountService))
+            {
+                return;
+            }
+
+            IEnumerable<UserPublicKey> userPublicKey = await new EmailAddress[] { inviteUserEmail }.ToKnownPublicKeysAsync(accountService.Identity);
+            if (userPublicKey != null && userPublicKey.Any())
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "This user '{0}' was sucessfully invited".InvariantFormat(emailTextBox.Text));
+            }
+        }
+
+        private async void ShowOfflineOrLocalError()
+        {
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.AccountServiceLocalExceptionDialogText);
+        }
+
+        private async Task<bool> CheckAccountStatusAndShowInviteMessageDialog(EmailAddress inviteUserEmail, IAccountService accountService)
+        {
+            AccountStatus accountStatus = await accountService.StatusAsync(inviteUserEmail).Free();
             if (accountStatus == AccountStatus.Offline || accountStatus == AccountStatus.Unknown)
             {
-                await ShowOfflineOrLocalError();
-                return;
+                ShowOfflineOrLocalError();
+                return false;
             }
             if (accountStatus != AccountStatus.NotFound)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "You can't invite, If the entered user email already having the AxCrypt Account.");
-                return;
+                return true;
             }
 
-            await GetInviteUserPublicKeyAsync(inviteUserEmail, accountStorage);
-        }
-
-        private async Task GetInviteUserPublicKeyAsync(EmailAddress inviteUserEmail, AccountStorage accountStorage)
-        {
-            try
+            using (KeySharingInviteUserDialog inviteDialog = new KeySharingInviteUserDialog(this))
             {
-                UserPublicKey userPublicKey = await accountStorage.GetOtherUserPublicKeyAsync(inviteUserEmail).Free();
-                if (userPublicKey != null)
+                if (inviteDialog.ShowDialog() != DialogResult.OK)
                 {
-                    New<KnownPublicKeys>().AddOrReplace(userPublicKey);
-                    New<UserPublicKeyUpdateStatus>().SetStatus(userPublicKey, PublicKeyUpdateStatus.RecentlyUpdated);
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "This user '{0}' was sucessfully invited".InvariantFormat(EmailTextBox.Text));
-                }
-                if (New<AxCryptOnlineState>().IsOffline)
-                {
-                    await ShowOfflineOrLocalError();
+                    return false;
                 }
             }
-            catch (BadRequestApiException braex)
-            {
-                New<IReport>().Exception(braex);
-                _errorProvider1.SetError(EmailTextBox, Texts.InvalidEmail);
-                _errorProvider1.SetIconPadding(EmailTextBox, 3);
-            }
-        }
-
-        private async Task ShowOfflineOrLocalError()
-        {
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, "The invite user can't be added in local or offline state since there is no contact with the server.");
+            return true;
         }
 
         private void _buttonCancel_Click(object sender, EventArgs e)
