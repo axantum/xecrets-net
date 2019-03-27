@@ -1,9 +1,7 @@
 ﻿using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using System;
@@ -46,8 +44,8 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            emailTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
-            emailTextBox.Focus();
+            _emailTextBox.TextChanged += (s, ea) => { ClearErrorProviders(); };
+            _emailTextBox.Focus();
         }
 
         private bool AdHocValidationDueToMonoLimitations()
@@ -64,9 +62,9 @@ namespace Axantum.AxCrypt
         private bool AdHocValidateUserEmail()
         {
             _errorProvider1.Clear();
-            if (String.IsNullOrEmpty(emailTextBox.Text) || !emailTextBox.Text.IsValidEmail())
+            if (String.IsNullOrEmpty(_emailTextBox.Text) || !_emailTextBox.Text.IsValidEmail())
             {
-                _errorProvider1.SetError(emailTextBox, Texts.BadEmail);
+                _errorProvider1.SetError(_emailTextBox, Texts.BadEmail);
                 return false;
             }
             return true;
@@ -80,40 +78,27 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            await GetInviteUserPublicKey();
+            await EnsureUserAccountStatusAndGetInviteUserPublicKey();
         }
 
-        private async Task GetInviteUserPublicKey()
+        private async Task EnsureUserAccountStatusAndGetInviteUserPublicKey()
         {
-            EmailAddress inviteUserEmail = EmailAddress.Parse(emailTextBox.Text);
-
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-            if (!string.IsNullOrEmpty(emailTextBox.Text) && await accountService.IsAccountSourceLocalAsync())
-            {
-                ShowOfflineOrLocalError();
-                return;
-            }
-
-            if (!await CheckAccountStatusAndShowInviteMessageDialog(inviteUserEmail, accountService))
+            string invitingUserName = _emailTextBox.Text;
+            AccountStatus accountStatus = await invitingUserName.CheckUserAccountStatusAsync(New<KnownIdentities>().DefaultEncryptionIdentity).Free();
+            if (!ShowInviteUserDialog(accountStatus))
             {
                 return;
             }
 
-            IEnumerable<UserPublicKey> userPublicKey = await new EmailAddress[] { inviteUserEmail }.ToKnownPublicKeysAsync(accountService.Identity);
-            if (userPublicKey != null && userPublicKey.Any())
+            IEnumerable<UserPublicKey> userPublicKey = await GetUserPublicKeys(invitingUserName, accountStatus);
+            if (userPublicKey != null)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "This user '{0}' was sucessfully invited".InvariantFormat(emailTextBox.Text));
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "This user '{0}' was sucessfully invited".InvariantFormat(_emailTextBox.Text));
             }
         }
 
-        private async void ShowOfflineOrLocalError()
+        private bool ShowInviteUserDialog(AccountStatus accountStatus)
         {
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.AccountServiceLocalExceptionDialogText);
-        }
-
-        private async Task<bool> CheckAccountStatusAndShowInviteMessageDialog(EmailAddress inviteUserEmail, IAccountService accountService)
-        {
-            AccountStatus accountStatus = await accountService.StatusAsync(inviteUserEmail).Free();
             if (accountStatus == AccountStatus.Offline || accountStatus == AccountStatus.Unknown)
             {
                 ShowOfflineOrLocalError();
@@ -132,6 +117,19 @@ namespace Axantum.AxCrypt
                 }
             }
             return true;
+        }
+
+        private void ShowOfflineOrLocalError()
+        {
+            _emailTextBox.Enabled = !New<AxCryptOnlineState>().IsOffline;
+            _emailTextBox.Text = $"[{Texts.OfflineIndicatorText}]";
+            _errorProvider1.SetError(_emailTextBox, Texts.KeySharingOffline);
+        }
+
+        private async Task<IEnumerable<UserPublicKey>> GetUserPublicKeys(string inviteUserEmail, AccountStatus accountStatus)
+        {
+            IEnumerable<EmailAddress> inviteUserEmails = new EmailAddress[] { EmailAddress.Parse(inviteUserEmail) };
+            return await inviteUserEmails.ToKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
         }
 
         private void _buttonCancel_Click(object sender, EventArgs e)
