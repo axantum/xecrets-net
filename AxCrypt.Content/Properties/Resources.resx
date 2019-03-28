@@ -268,6 +268,9 @@ Please sign in using the same password you used then.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Hide the real name of a secured file by renaming it to something random.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>!!AxCrypt ID Verification Code is &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>

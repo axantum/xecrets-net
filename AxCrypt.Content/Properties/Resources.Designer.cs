@@ -457,6 +457,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!AxCrypt ID Verification Code is &lt;b&gt;{0}&lt;/b&gt;..
+        /// </summary>
+        public static string AppActivateMailSubject {
+            get {
+                return ResourceManager.GetString("AppActivateMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt.
         /// </summary>
         public static string ApplicationTitle {
