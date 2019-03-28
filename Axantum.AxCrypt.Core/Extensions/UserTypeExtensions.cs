@@ -554,14 +554,14 @@ namespace Axantum.AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(invitingUserName));
             }
 
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
             if (await accountService.IsAccountSourceLocalAsync())
             {
                 Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
                 return AccountStatus.Unknown;
             }
 
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
+            AccountStorage accountStorage = new AccountStorage(accountService);
             EmailAddress invitingUserEmail = EmailAddress.Parse(invitingUserName);
             return await accountStorage.StatusAsync(invitingUserEmail).Free();
         }

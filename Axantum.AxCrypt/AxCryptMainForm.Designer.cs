@@ -504,7 +504,7 @@ namespace Axantum.AxCrypt
             // 
             this._inviteUserToolStripMenuItem.Name = "_inviteUserToolStripMenuItem";
             this._inviteUserToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this._inviteUserToolStripMenuItem.Text = "[Invite User]";
+            this._inviteUserToolStripMenuItem.Text = "[Invite]";
             // 
             // _encryptionUpgradeMenuItem
             // 
