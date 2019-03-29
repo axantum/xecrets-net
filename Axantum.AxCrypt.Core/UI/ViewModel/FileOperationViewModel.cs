@@ -514,8 +514,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 if (e.Status.ErrorStatus == ErrorStatus.Success)
                 {
                     IDataStore encryptedInfo = New<IDataStore>(e.OpenFileFullName);
-                    EncryptedProperties encryptedProperties = EncryptedProperties.Create(encryptedInfo, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(encryptedProperties.FileMetaData.FileName));
+                    IDataStore decryptedInfo = New<IDataStore>(FileOperation.GetTemporaryDestinationName(e.SaveFileFullName));
                     ActiveFile activeFile = new ActiveFile(encryptedInfo, decryptedInfo, e.LogOnIdentity, ActiveFileStatus.NotDecrypted, e.CryptoId);
                     _fileSystemState.Add(activeFile);
                 }

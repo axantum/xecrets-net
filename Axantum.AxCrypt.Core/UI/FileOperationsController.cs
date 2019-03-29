@@ -580,11 +580,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         private Task<bool> GetAxCryptFileNameAsSaveFileNameAsync()
         {
-            if (!_eventArgs.Skip)
-            {
-                _eventArgs.SaveFileFullName = _eventArgs.AxCryptFile.FullName;
-            }
-
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return Constant.TrueTask;
         }
