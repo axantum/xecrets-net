@@ -40,8 +40,8 @@ namespace Axantum.AxCrypt
             InitializeStyle(parent);
 
             _viewModel = viewModel;
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); aks = FilterNotSharedContactsByCapability(aks); _notSharedWith.Items.AddRange(aks.ToArray()); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); SetNotSharedWithActionButtonsState(); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); aks = FilterNotSharedContactsByCapability(aks); _notSharedWith.Items.AddRange(aks.ToArray()); SetNotSharedWithActionButtonsState(); });
             _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetNotSharedWithActionButtonsState());
             _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.IsOnline), (isOnline) => { SetNewContactState(isOnline); });
 
@@ -52,7 +52,6 @@ namespace Axantum.AxCrypt
             _notSharedWith.MouseDoubleClick += async (sender, e) =>
             {
                 await ShareSelectedIndices(new int[] { _notSharedWith.IndexFromPoint(e.Location) });
-                SetNotSharedWithActionButtonsState();
             };
 
             _newContact.TextChanged += (sender, e) => { _viewModel.NewKeyShare = _newContact.Text.Trim(); ClearErrorProviders(); };
@@ -78,7 +77,6 @@ namespace Axantum.AxCrypt
                 {
                     _newContact.Text = string.Empty;
                 }
-                SetNotSharedWithActionButtonsState();
             };
             _unshareButton.Click += async (sender, e) =>
             {
@@ -89,7 +87,6 @@ namespace Axantum.AxCrypt
             _removeKnownContactButton.Click += async (sender, e) =>
             {
                 await RemoveKnownContact();
-                SetNotSharedWithActionButtonsState();
             };
 
             SetOkButtonState();
@@ -153,9 +150,9 @@ namespace Axantum.AxCrypt
             if (notSharedWithHasSelectedIndices)
             {
                 _sharedWith.ClearSelected();
-                AcceptButton = _shareButton;
             }
 
+            AcceptButton = _shareButton;
             SetOkButtonState();
         }
 
