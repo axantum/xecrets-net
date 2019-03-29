@@ -42,19 +42,17 @@ namespace Axantum.AxCrypt
             _viewModel = viewModel;
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _sharedWith.Items.Clear(); _sharedWith.Items.AddRange(aks.ToArray()); });
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.NotSharedWith), (aks) => { _notSharedWith.Items.Clear(); aks = FilterNotSharedContactsByCapability(aks); _notSharedWith.Items.AddRange(aks.ToArray()); });
-            _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetShareButtonState());
+            _viewModel.BindPropertyChanged<string>(nameof(SharingListViewModel.NewKeyShare), (email) => SetNotSharedWithActionButtonsState());
             _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.IsOnline), (isOnline) => { SetNewContactState(isOnline); });
 
             _sharedWith.SelectedIndexChanged += (sender, e) => SetUnshareButtonState();
-            _notSharedWith.SelectedIndexChanged += (sender, e) => SetShareButtonState();
-            _notSharedWith.SelectedIndexChanged += (sender, e) => SetRemoveKnownContactButtonState();
+            _notSharedWith.SelectedIndexChanged += (sender, e) => SetNotSharedWithActionButtonsState();
 
             _sharedWith.MouseDoubleClick += async (sender, e) => await Unshare(_sharedWith.IndexFromPoint(e.Location));
             _notSharedWith.MouseDoubleClick += async (sender, e) =>
             {
                 await ShareSelectedIndices(new int[] { _notSharedWith.IndexFromPoint(e.Location) });
-                SetShareButtonState();
-                SetRemoveKnownContactButtonState();
+                SetNotSharedWithActionButtonsState();
             };
 
             _newContact.TextChanged += (sender, e) => { _viewModel.NewKeyShare = _newContact.Text.Trim(); ClearErrorProviders(); };
@@ -80,8 +78,7 @@ namespace Axantum.AxCrypt
                 {
                     _newContact.Text = string.Empty;
                 }
-                SetShareButtonState();
-                SetRemoveKnownContactButtonState();
+                SetNotSharedWithActionButtonsState();
             };
             _unshareButton.Click += async (sender, e) =>
             {
@@ -92,8 +89,7 @@ namespace Axantum.AxCrypt
             _removeKnownContactButton.Click += async (sender, e) =>
             {
                 await RemoveKnownContact();
-                SetRemoveKnownContactButtonState();
-                SetShareButtonState();
+                SetNotSharedWithActionButtonsState();
             };
 
             SetOkButtonState();
@@ -142,7 +138,7 @@ namespace Axantum.AxCrypt
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.SharedWithUnverfiedMessageTitle, Texts.SharedWithUnverifiedMessagePattern.InvariantFormat(email));
         }
 
-        private void SetShareButtonState()
+        private void SetNotSharedWithActionButtonsState()
         {
             bool isNewKeyShare = !String.IsNullOrEmpty(_viewModel.NewKeyShare);
             if (isNewKeyShare)
@@ -150,12 +146,16 @@ namespace Axantum.AxCrypt
                 _notSharedWith.ClearSelected();
                 _sharedWith.ClearSelected();
             }
-            _shareButton.Visible = _notSharedWith.SelectedIndices.Count > 0 || isNewKeyShare;
-            if (_shareButton.Visible)
+
+            bool notSharedWithHasSelectedIndices = _notSharedWith.SelectedIndices.Count > 0;
+            _shareButton.Visible = notSharedWithHasSelectedIndices || isNewKeyShare;
+            _removeKnownContactButton.Visible = notSharedWithHasSelectedIndices;
+            if (notSharedWithHasSelectedIndices)
             {
                 _sharedWith.ClearSelected();
                 AcceptButton = _shareButton;
             }
+
             SetOkButtonState();
         }
 
@@ -166,17 +166,6 @@ namespace Axantum.AxCrypt
             {
                 _notSharedWith.ClearSelected();
                 AcceptButton = _unshareButton;
-            }
-            SetOkButtonState();
-        }
-
-        private void SetRemoveKnownContactButtonState()
-        {
-            _removeKnownContactButton.Visible = _notSharedWith.SelectedIndices.Count > 0;
-            if (_removeKnownContactButton.Visible)
-            {
-                _sharedWith.ClearSelected();
-                AcceptButton = _removeKnownContactButton;
             }
             SetOkButtonState();
         }
