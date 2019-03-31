@@ -1697,7 +1697,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
-            await _daysLeftPremiumLabel.ConfigureAsyncWhenChangingAppLanguage(New<KnownIdentities>().DefaultEncryptionIdentity, true);
+            _daysLeftPremiumLabel.UpdateText();
             await SetSoftwareStatus();
         }
 
