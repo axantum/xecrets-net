@@ -1240,6 +1240,9 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Inactivity Sign Out</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>!!Not encrypting '{0}', because we can't encrypt such files safely. This includes certain file extensions, file locations and attributes</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
   </data>

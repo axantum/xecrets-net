@@ -203,11 +203,17 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
-            IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
+
+            IDataStore sourceDataStore = New<IDataStore>(sourceFileName);
+            if (!await sourceDataStore.IsEncryptableWithWarningAsync())
             {
-                await EncryptFileWithBackupAndWipeAsync(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
+                return;
+            }
+
+            IDataStore destinationDataStore = New<IDataStore>(destinationFileName);
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationDataStore))
+            {
+                await EncryptFileWithBackupAndWipeAsync(sourceDataStore, destinationFileLock, encryptionParameters, progress);
             }
         }
 
@@ -225,8 +231,11 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IEnumerable<IDataStore>> filesFiles = containers.Select((folder) => folder.ListEncryptable(containers, New<UserSettings>().FolderOperationMode.Policy()));
-                IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
+                List<IDataStore> files = new List<IDataStore>();
+                foreach (IDataContainer container in containers)
+                {
+                    files.AddRange(await container.ListEncryptableWithWarningAsync(containers, New<UserSettings>().FolderOperationMode.Policy()));
+                }
 
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
@@ -244,6 +253,11 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
+            if (!await sourceStore.IsEncryptableWithWarningAsync())
+            {
+                return;
+            }
+
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
             using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {
@@ -917,7 +931,7 @@ namespace Axantum.AxCrypt.Core
         /// Creates an IAxCryptDocument instance from the specified source stream.
         /// </summary>
         /// <param name="source">The source stream. Ownership is passed to the IAxCryptDocument instance which disposes the stream when it is.</param>
-        /// <param name="logOnIdentity">The log on identity.</param>
+        /// <param name="identity">The log on identity.</param>
         /// <param name="displayContext">The display context.</param>
         /// <param name="progress">The progress.</param>
         /// <returns></returns>
@@ -927,15 +941,14 @@ namespace Axantum.AxCrypt.Core
         /// or
         /// progress</exception>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "displayContext")]
-        private static IAxCryptDocument Document(Stream source, LogOnIdentity logOnIdentity, string displayContext, IProgressContext progress)
+        private static IAxCryptDocument Document(Stream source, LogOnIdentity identity, string displayContext, IProgressContext progress)
         {
-            if (logOnIdentity == null)
+            if (identity == null)
             {
-                throw new ArgumentNullException("logOnIdentity");
+                throw new ArgumentNullException(nameof(identity));
             }
 
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { logOnIdentity.Passphrase }, logOnIdentity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-            IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, new ProgressStream(source, progress));
+            IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(identity.DecryptionParameters(), new ProgressStream(source, progress));
             return document;
         }
 
