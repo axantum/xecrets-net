@@ -3008,6 +3008,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Not encrypting &apos;{0}&apos;, because we can&apos;t encrypt such files safely. This includes certain file extensions, file locations and attributes.
+        /// </summary>
+        public static string IgnoreFileWarningText {
+            get {
+                return ResourceManager.GetString("IgnoreFileWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import AxCrypt ID with sharing and access keys..
         /// </summary>
         public static string ImportMyPrivateKeyToolStripMenuItemText {

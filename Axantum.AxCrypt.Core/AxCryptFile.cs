@@ -203,11 +203,17 @@ namespace Axantum.AxCrypt.Core
             {
                 throw new ArgumentNullException("progress");
             }
-            IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
-            IDataStore destinationFileInfo = New<IDataStore>(destinationFileName);
-            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
+
+            IDataStore sourceDataStore = New<IDataStore>(sourceFileName);
+            if (!await sourceDataStore.IsEncryptableWithWarningAsync())
             {
-                await EncryptFileWithBackupAndWipeAsync(sourceFileInfo, destinationFileLock, encryptionParameters, progress);
+                return;
+            }
+
+            IDataStore destinationDataStore = New<IDataStore>(destinationFileName);
+            using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationDataStore))
+            {
+                await EncryptFileWithBackupAndWipeAsync(sourceDataStore, destinationFileLock, encryptionParameters, progress);
             }
         }
 
@@ -225,8 +231,11 @@ namespace Axantum.AxCrypt.Core
             progress.NotifyLevelStart();
             try
             {
-                IEnumerable<IEnumerable<IDataStore>> filesFiles = containers.Select((folder) => folder.ListEncryptable(containers, New<UserSettings>().FolderOperationMode.Policy()));
-                IEnumerable<IDataStore> files = filesFiles.SelectMany(file => file).ToList();
+                List<IDataStore> files = new List<IDataStore>();
+                foreach (IDataContainer container in containers)
+                {
+                    files.AddRange(await container.ListEncryptableWithWarningAsync(containers, New<UserSettings>().FolderOperationMode.Policy()));
+                }
 
                 progress.AddTotal(files.Count());
                 foreach (IDataStore file in files)
@@ -244,6 +253,11 @@ namespace Axantum.AxCrypt.Core
 
         public virtual async Task EncryptFileUniqueWithBackupAndWipeAsync(IDataStore sourceStore, EncryptionParameters encryptionParameters, IProgressContext progress)
         {
+            if (!await sourceStore.IsEncryptableWithWarningAsync())
+            {
+                return;
+            }
+
             IDataStore destinationFileInfo = sourceStore.CreateEncryptedName();
             using (FileLock lockedDestination = destinationFileInfo.FullName.CreateUniqueFile())
             {

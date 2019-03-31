@@ -31,13 +31,15 @@ using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Extensions
@@ -59,13 +61,13 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 return FileInfoTypes.Folder;
             }
-            if (New<FileFilter>().IsEncryptable(fileInfo))
-            {
-                return FileInfoTypes.EncryptableFile;
-            }
             if (fileInfo.IsEncrypted())
             {
                 return FileInfoTypes.EncryptedFile;
+            }
+            if (New<FileFilter>().IsEncryptable(fileInfo))
+            {
+                return FileInfoTypes.EncryptableFile;
             }
             return FileInfoTypes.OtherFile;
         }
@@ -133,14 +135,54 @@ namespace Axantum.AxCrypt.Core.Extensions
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Encryptable", Justification = "Encryptable is a word.")]
-        public static IEnumerable<IDataStore> ListEncryptable(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
+        public static async Task<IEnumerable<IDataStore>> ListEncryptableWithWarningAsync(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
-            return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.IsEncryptable && New<FileFilter>().IsEncryptable(fileInfo));
+            IEnumerable<IDataStore> listofFiles = folderPath.ListOfFiles(ignoreFolders, folderOperationMode);
+            List<IDataStore> filteredListOfFiles = new List<IDataStore>();
+            foreach (IDataStore dataStore in listofFiles)
+            {
+                if (await dataStore.IsEncryptableWithWarningAsync())
+                {
+                    filteredListOfFiles.Add(dataStore);
+                }
+            }
+            return filteredListOfFiles;
         }
 
         public static IEnumerable<IDataStore> ListEncrypted(this IDataContainer folderPath, IEnumerable<IDataContainer> ignoreFolders, FolderOperationMode folderOperationMode)
         {
             return folderPath.ListOfFiles(ignoreFolders, folderOperationMode).Where(fileInfo => fileInfo.IsEncrypted());
+        }
+
+        public static bool IsEncryptable(this IDataStore dataStore)
+        {
+            if (dataStore.IsEncrypted())
+            {
+                return false;
+            }
+
+            if (dataStore.IsEncryptable && dataStore.Type() == FileInfoTypes.EncryptableFile)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static async Task<bool> IsEncryptableWithWarningAsync(this IDataStore fileInfo)
+        {
+            if (fileInfo.IsEncrypted())
+            {
+                return false;
+            }
+
+            if (fileInfo.IsEncryptable && fileInfo.Type() == FileInfoTypes.EncryptableFile)
+            {
+                return true;
+            }
+
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileWarningText.InvariantFormat(fileInfo.Name), DoNotShowAgainOptions.IgnoreFileWarning);
+            return false;
         }
 
         /// <summary>
