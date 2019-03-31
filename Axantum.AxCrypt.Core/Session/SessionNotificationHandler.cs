@@ -119,7 +119,6 @@ namespace Axantum.AxCrypt.Core.Session
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
                             IDataContainer[] dc = new IDataContainer[] { container };
-                            container.ShowWarningWhenIgnoreFiles(dc, New<UserSettings>().FolderOperationMode.Policy());
                             await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(dc, encryptionParameters, progress);
                         }
                     }

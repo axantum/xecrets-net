@@ -290,7 +290,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     break;
 
                 case SessionNotificationType.WatchedFolderChange:
-                    SetFilesArePending();
+                    FilesArePending = AreFilesPending();
                     break;
 
                 case SessionNotificationType.KnownKeyChange:
@@ -307,7 +307,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
                 case SessionNotificationType.SessionStart:
                 case SessionNotificationType.ActiveFileChange:
-                    SetFilesArePending();
+                    FilesArePending = AreFilesPending();
                     SetRecentFiles();
                     break;
 
@@ -364,13 +364,25 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RecentFiles = recentFiles;
         }
 
-        private void SetFilesArePending()
+        private bool AreFilesPending()
         {
             IList<ActiveFile> openFiles = _fileSystemState.DecryptedActiveFiles;
+            if (openFiles.Count > 0)
+            {
+                return true;
+            }
 
-            IEnumerable<IEnumerable<IDataStore>> filesFiles = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path).ListEncryptable(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), New<UserSettings>().FolderOperationMode.Policy()));
+            List<IDataStore> files = new List<IDataStore>();
+            foreach (IDataContainer container in Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => New<IDataContainer>(wf.Path)))
+            {
+                files.AddRange(container.ListOfFiles(_fileSystemState.WatchedFolders.Select(x => New<IDataContainer>(x.Path)), New<UserSettings>().FolderOperationMode.Policy()));
+            }
+            if (!New<UserSettings>().DoNotShowAgain.HasFlag(DoNotShowAgainOptions.IgnoreFileWarning))
+            {
+                return files.Any();
+            }
 
-            FilesArePending = openFiles.Count > 0 || filesFiles.SelectMany(file => file).Any();
+            return files.Where(ds => ds.IsEncryptable()).Any();
         }
 
         private async Task ClearPassphraseMemoryAction()
