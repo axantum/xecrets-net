@@ -247,6 +247,9 @@ Logga nu in med samma lösenord som du angav då.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Dölj det verkliga namnet för en skyddad fil genom att ge den ett slumpmässigt namn.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verifiering [ {0} ]</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Av säkerhetsskäl måste du ange ditt lösenord igen.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -316,7 +319,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Jag hoppas verkligen att du har haft mycket nytta och nöje av AxCrypt.</value>
+    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Jag hoppas verkligen att du har haft mycket nytta av och nöje med AxCrypt.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>När du förnyar ditt Business-abonnemang kan du och ditt team fortsätta använda:</value>
@@ -884,6 +887,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Av</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Detta automatiska e-postmeddelande är översatt till svenska, men personlig service och support sker på engelska.</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Visa inte igen.</value>
   </data>
@@ -1107,6 +1113,9 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Automatisk Utloggning</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>'{0}' krypterades inte beroende på tekniska restriktioner. Det kan bero på filändelsen, mappen eller andra egenskaper.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importera AxCrypt ID med både delnings- och åtkomstnyckel.</value>
@@ -1890,6 +1899,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PromptChange" xml:space="preserve">
     <value>Ändra</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Ändra e-post</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Nuvarande lösenord</value>
   </data>
@@ -2152,7 +2164,9 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Har kan du ta bort ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
+    <value>Detta raderar ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
+
+(Om du bara vill ändra din e-postaddress, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; istället.)
 
 Ange ditt lösenord för att bekräfta raderingen.</value>
   </data>
