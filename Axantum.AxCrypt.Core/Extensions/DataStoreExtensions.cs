@@ -87,6 +87,33 @@ namespace Axantum.AxCrypt.Core.Extensions
             return dataStore.IsEncrypted() && OpenFileProperties.Create(dataStore).IsLegacyV1;
         }
 
+        public static bool IsKeyShared(this IDataStore dataStore, LogOnIdentity decryptIdentity)
+        {
+            if (!dataStore.IsEncrypted())
+            {
+                return false;
+            }
+
+            OpenFileProperties properties = OpenFileProperties.Create(dataStore);
+            if (properties.IsLegacyV1 || properties.V2AsymetricKeyWrapCount <= 1)
+            {
+                return false;
+            }
+
+            if (decryptIdentity == LogOnIdentity.Empty)
+            {
+                return false;
+            }
+
+            using (Stream stream = dataStore.OpenRead())
+            {
+                using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptIdentity.DecryptionParameters(), stream))
+                {
+                    return document.AsymmetricRecipients.Any(ar => ar.Email != Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail);
+                }
+            }
+        }
+
         public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)
         {
             if (privateKeys == null)

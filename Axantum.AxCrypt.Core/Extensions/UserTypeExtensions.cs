@@ -223,6 +223,12 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
 
+        public static IEnumerable<DecryptionParameter> DecryptionParameters(this LogOnIdentity identity)
+        {
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+            return decryptionParameters;
+        }
+
         public static Task<SubscriptionLevel> ValidatedLevelAsync(this UserAccount userAccount)
         {
             return new LicenseValidation().ValidateLevelAsync(userAccount);
