@@ -889,6 +889,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Subscription is expiring, Please use Renew to extend the full business functionality..
+        /// </summary>
+        public static string BusinessSubscriptionExpiringWarningText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionExpiringWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string BusinessSubscriptionImportButtonLabel {
