@@ -1340,8 +1340,8 @@ namespace Axantum.AxCrypt
 
                 case CommandVerb.Decrypt:
                 case CommandVerb.Open:
-                    bool isFileKeyKnown = files.Select(f => New<IDataStore>(f)).IsFileKeyKnown();
-                    if (isFileKeyKnown)
+                    bool isAnyFileKeyKnown = files.Select(f => New<IDataStore>(f)).IsAnyFileKeyKnown();
+                    if (isAnyFileKeyKnown)
                     {
                         return ShowSignedInInformationAlert();
                     }
