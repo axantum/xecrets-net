@@ -295,7 +295,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return null;
         }
 
-        public static bool IsFileKeyKnown(this IEnumerable<IDataStore> files)
+        public static bool IsAnyFileKeyKnown(this IEnumerable<IDataStore> files)
         {
             foreach (IDataStore fileInfo in files)
             {
