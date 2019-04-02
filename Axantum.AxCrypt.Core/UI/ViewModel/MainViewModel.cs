@@ -379,7 +379,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             if (!New<UserSettings>().DoNotShowAgain.HasFlag(DoNotShowAgainOptions.IgnoreFileWarning))
             {
-                return files.Any();
+                return files.Where(ds => !ds.IsEncrypted()).Any();
             }
 
             return files.Where(ds => ds.IsEncryptable()).Any();
