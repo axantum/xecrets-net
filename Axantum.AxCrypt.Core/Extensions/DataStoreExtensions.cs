@@ -295,6 +295,28 @@ namespace Axantum.AxCrypt.Core.Extensions
             return null;
         }
 
+        public static bool IsFileKeyKnown(this IEnumerable<IDataStore> files)
+        {
+            foreach (IDataStore fileInfo in files)
+            {
+                try
+                {
+                    Guid cryptoId;
+                    LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
+                    if (logOnIdentity != null)
+                    {
+                        return true;
+                    }
+                }
+                catch (FileOperationException)
+                {
+                    continue;
+                }
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Reads the entire data store and returns the content as a byte array.
         /// </summary>
