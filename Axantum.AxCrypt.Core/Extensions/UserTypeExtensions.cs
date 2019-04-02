@@ -481,7 +481,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(fileName);
                         if (activeFile == null)
                         {
-                            return;
+                            continue;
                         }
 
                         New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
