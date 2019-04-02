@@ -450,6 +450,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>If your Business subscription is not renewed in time, you will fall back to one of our free plans.</value>
   </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>!!Subscription is expiring, Please use Renew to extend the full business functionality.</value>
+  </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Import</value>
     <comment>A word used in a button to start the multiple import process.</comment>
