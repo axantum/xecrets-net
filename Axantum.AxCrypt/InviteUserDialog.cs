@@ -32,7 +32,7 @@ namespace Axantum.AxCrypt
                     return;
                 }
 
-                IEnumerable<UserPublicKey> userPublicKey = await EnsureUserAccountStatusAndGetInviteUserPublicKey();
+                IEnumerable<UserPublicKey> userPublicKey = await EnsureUserAccountStatusAndGetInvitedUserPublicKey();
                 if (userPublicKey != null)
                 {
                     DialogResult = DialogResult.OK;
@@ -84,16 +84,17 @@ namespace Axantum.AxCrypt
             return true;
         }
 
-        private async Task<IEnumerable<UserPublicKey>> EnsureUserAccountStatusAndGetInviteUserPublicKey()
+        private async Task<IEnumerable<UserPublicKey>> EnsureUserAccountStatusAndGetInvitedUserPublicKey()
         {
-            string invitingUserName = _emailTextBox.Text;
-            AccountStatus accountStatus = await invitingUserName.CheckUserAccountStatusAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+            EmailAddress invitedEmail = EmailAddress.Parse(_emailTextBox.Text);
+            AccountStatus accountStatus = await invitedEmail.GetValidEmailAccountStatusAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
             if (!ShowInviteUserDialog(accountStatus))
             {
                 return null;
             }
 
-            return await GetUserPublicKeys(invitingUserName, accountStatus);
+            IEnumerable<EmailAddress> invitedEmails = new EmailAddress[] { invitedEmail };
+            return await invitedEmails.ToAvailableKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
         }
 
         private bool ShowInviteUserDialog(AccountStatus accountStatus)
@@ -123,12 +124,6 @@ namespace Axantum.AxCrypt
             _emailTextBox.Enabled = false;
             _emailTextBox.Text = $"[{Texts.OfflineIndicatorText}]";
             _errorProvider1.SetError(_emailTextBox, Texts.KeySharingOffline);
-        }
-
-        private async Task<IEnumerable<UserPublicKey>> GetUserPublicKeys(string inviteUserEmail, AccountStatus accountStatus)
-        {
-            IEnumerable<EmailAddress> inviteUserEmails = new EmailAddress[] { EmailAddress.Parse(inviteUserEmail) };
-            return await inviteUserEmails.ToKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
         }
 
         private void ClearErrorProviders()

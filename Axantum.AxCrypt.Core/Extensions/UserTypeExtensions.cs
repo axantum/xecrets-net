@@ -434,7 +434,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             return knownKeys;
         }
 
-        public static async Task<IEnumerable<UserPublicKey>> ToKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
+        public static async Task<IEnumerable<UserPublicKey>> ToAvailableKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
         {
             List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
@@ -548,16 +548,16 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
         }
 
-        public static async Task<AccountStatus> CheckUserAccountStatusAsync(this string invitingUserName, LogOnIdentity identity)
+        public static async Task<AccountStatus> GetValidEmailAccountStatusAsync(this EmailAddress validEmail, LogOnIdentity identity)
         {
+            if (validEmail == null)
+            {
+                throw new ArgumentNullException(nameof(validEmail));
+            }
+
             if (identity == null)
             {
                 throw new ArgumentNullException(nameof(identity));
-            }
-
-            if (string.IsNullOrEmpty(invitingUserName))
-            {
-                throw new ArgumentNullException(nameof(invitingUserName));
             }
 
             IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
@@ -568,8 +568,7 @@ namespace Axantum.AxCrypt.Core.Extensions
             }
 
             AccountStorage accountStorage = new AccountStorage(accountService);
-            EmailAddress invitingUserEmail = EmailAddress.Parse(invitingUserName);
-            return await accountStorage.StatusAsync(invitingUserEmail).Free();
+            return await accountStorage.StatusAsync(validEmail).Free();
         }
     }
 }

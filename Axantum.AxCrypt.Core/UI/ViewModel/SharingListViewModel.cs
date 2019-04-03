@@ -181,12 +181,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task<AccountStatus> NewKeyShareStatusAsync()
         {
-            return await NewKeyShare.CheckUserAccountStatusAsync(_identity);
+            EmailAddress email = EmailAddress.Parse(NewKeyShare);
+            return await email.GetValidEmailAccountStatusAsync(_identity);
         }
 
         private static async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysAsync(IEnumerable<EmailAddress> recipients, LogOnIdentity identity)
         {
-            return await recipients.ToKnownPublicKeysAsync(identity);
+            return await recipients.ToAvailableKnownPublicKeysAsync(identity);
         }
 
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)
