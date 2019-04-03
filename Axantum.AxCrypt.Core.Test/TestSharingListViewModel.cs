@@ -70,6 +70,9 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<WorkFolder>(() => new WorkFolder(Path.GetPathRoot(Environment.CurrentDirectory) + @"WorkFolder\"));
             TypeMap.Register.Singleton<SessionNotify>(() => new SessionNotify());
+            TypeMap.Register.Singleton<UserSettingsVersion>(() => new UserSettingsVersion());
+            TypeMap.Register.Singleton<ISettingsStore>(() => new SettingsStore(null));
+            TypeMap.Register.Singleton<UserSettings>(() => (new FakeUserSettings(new IterationCalculator())).Initialize());
 
             TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(knownPublicKeysStore, Resolve.Serializer));
