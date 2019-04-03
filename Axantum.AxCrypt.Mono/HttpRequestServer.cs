@@ -83,10 +83,17 @@ namespace Axantum.AxCrypt.Mono
                 throw new InvalidOperationException($"Request received with wrong URL: '{request.Url}'.");
             }
             RequestCommandEventArgs args = ReadCommand(request);
-            using (HttpListenerResponse response = context.Response)
+            try
             {
-                response.StatusCode = (int)HttpStatusCode.OK;
-                response.StatusDescription = "OK";
+                using (HttpListenerResponse response = context.Response)
+                {
+                    response.StatusCode = (int)HttpStatusCode.OK;
+                    response.StatusDescription = "OK";
+                }
+            }
+            catch (HttpListenerException)
+            {
+                return;
             }
             OnRequest(args);
         }

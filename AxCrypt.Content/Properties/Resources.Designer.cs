@@ -457,6 +457,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID Verification [ {0} ].
+        /// </summary>
+        public static string AppActivateMailSubject {
+            get {
+                return ResourceManager.GetString("AppActivateMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt.
         /// </summary>
         public static string ApplicationTitle {
@@ -876,6 +885,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionExpiresInfo {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionExpiresInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Subscription is expiring, Please use Renew to extend the full business functionality..
+        /// </summary>
+        public static string BusinessSubscriptionExpiringWarningText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionExpiringWarningText", resourceCulture);
             }
         }
         
@@ -2259,7 +2277,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!User Invitation.
+        ///   Looks up a localized string similar to Enter the email address of a person to invite to use AxCrypt..
+        /// </summary>
+        public static string DialogInviteUserPromptLabelText {
+            get {
+                return ResourceManager.GetString("DialogInviteUserPromptLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invitation.
+        /// </summary>
+        public static string DialogInviteUserTitle {
+            get {
+                return ResourceManager.GetString("DialogInviteUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invitation details.
         /// </summary>
         public static string DialogKeyShareInviteUserTitle {
             get {
@@ -2318,6 +2354,24 @@ namespace AxCrypt.Content.Properties {
         public static string DisableIdleSignOutToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("DisableIdleSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
+        /// </summary>
+        public static string DisableRecentFilesListTabToolTipText {
+            get {
+                return ResourceManager.GetString("DisableRecentFilesListTabToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This automatic email is translated to your preferred language, but direct personal service and support is in English..
+        /// </summary>
+        public static string DisclaimerMailFooter {
+            get {
+                return ResourceManager.GetString("DisclaimerMailFooter", resourceCulture);
             }
         }
         
@@ -3017,6 +3071,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties..
+        /// </summary>
+        public static string IgnoreFileWarningText {
+            get {
+                return ResourceManager.GetString("IgnoreFileWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import AxCrypt ID with sharing and access keys..
         /// </summary>
         public static string ImportMyPrivateKeyToolStripMenuItemText {
@@ -3234,11 +3297,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Message.
+        ///   Looks up a localized string similar to Personal message.
         /// </summary>
         public static string InviteUserPersonalizedMessageTitle {
             get {
                 return ResourceManager.GetString("InviteUserPersonalizedMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invite a friend.
+        /// </summary>
+        public static string InviteUserToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("InviteUserToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -3457,9 +3529,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+        ///   Looks up a localized string similar to You are about to invite a new user to AxCrypt. We will send an invitation with instructions to the contact email.
         ///
-        ///You may specify the language to use and a personal message below..
+        ///Please specify the language to use in the invitation and an optional personal message below..
         /// </summary>
         public static string KeyShareInviteUserTextPrompt {
             get {
@@ -4795,6 +4867,24 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsDebugToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsDebugToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Disable Recent Files.
+        /// </summary>
+        public static string OptionsDisableRecentFilesToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Folder Anonymous Rename.
+        /// </summary>
+        public static string OptionsFolderAnonymousRenameToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsFolderAnonymousRenameToolStripMenuItemText", resourceCulture);
             }
         }
         

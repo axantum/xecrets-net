@@ -31,7 +31,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -142,7 +141,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
+                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && upk.Email.Address != New<UserSettings>().LicenseAuthorityEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
             }
         }
 
@@ -201,26 +200,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private async Task<AccountStatus> NewKeyShareStatusAsync()
         {
-            AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(_identity));
-            EmailAddress recipientEmail = EmailAddress.Parse(NewKeyShare);
-            return await accountStorage.StatusAsync(recipientEmail).Free();
+            EmailAddress email = EmailAddress.Parse(NewKeyShare);
+            return await email.GetValidEmailAccountStatusAsync(_identity);
         }
 
         private static async Task<IEnumerable<UserPublicKey>> GetAvailablePublicKeysAsync(IEnumerable<EmailAddress> recipients, LogOnIdentity identity)
         {
-            List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
-            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-            {
-                foreach (EmailAddress recipient in recipients)
-                {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(recipient, identity);
-                    if (key != null)
-                    {
-                        availablePublicKeys.Add(key);
-                    }
-                }
-            }
-            return availablePublicKeys;
+            return await recipients.ToAvailableKnownPublicKeysAsync(identity);
         }
 
         private static void MoveKeyShares(IEnumerable<UserPublicKey> keySharesToMove, HashSet<UserPublicKey> fromSet, HashSet<UserPublicKey> toSet)
