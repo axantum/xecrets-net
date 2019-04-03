@@ -638,7 +638,8 @@ You have been warned, now enjoy!</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
   <data name="ButtonRemoveKnownContactText" xml:space="preserve">
-    <value>!!Remove</value>
+    <value>Remove</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Save</value>
@@ -1331,7 +1332,7 @@ To start securing your files just download and install AxCrypt from {1}.
 Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your secret password.</value>
   </data>
   <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!Message from {0}: {1}</value>
+    <value>A personal message from {0}: {1}</value>
     <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
   </data>
   <data name="InvitationMailSubject" xml:space="preserve">

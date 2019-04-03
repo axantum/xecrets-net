@@ -1349,7 +1349,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Remove.
+        ///   Looks up a localized string similar to Remove.
         /// </summary>
         public static string ButtonRemoveKnownContactText {
             get {
@@ -3270,7 +3270,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Message from {0}: {1}.
+        ///   Looks up a localized string similar to A personal message from {0}: {1}.
         /// </summary>
         public static string InvitationMailBodyPersonalizedMessageTitle {
             get {
