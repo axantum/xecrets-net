@@ -138,7 +138,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
-                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
+                NotSharedWith = knownPublicKeys.PublicKeys.Where(upk => upk.Email != userEmail && upk.Email.Address != New<UserSettings>().LicenseAuthorityEmail && !sharedWith.Any(sw => upk.Email == sw.Email)).OrderBy(e => e.Email.Address);
             }
         }
 
