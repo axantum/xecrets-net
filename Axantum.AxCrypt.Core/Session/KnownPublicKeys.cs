@@ -136,6 +136,17 @@ namespace Axantum.AxCrypt.Core.Session
             _publicKeys.Add(publicKey);
         }
 
+        public void Remove(IEnumerable<UserPublicKey> knownContactsToRemove)
+        {
+            if (knownContactsToRemove == null)
+            {
+                throw new ArgumentNullException("knownContactsToRemove");
+            }
+
+            _publicKeys = _publicKeys.Where(pk => !knownContactsToRemove.Contains(pk)).ToList();
+            _dirty = true;
+        }
+
         public void Dispose()
         {
             Dispose(true);
