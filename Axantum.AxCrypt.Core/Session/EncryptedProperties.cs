@@ -28,6 +28,7 @@
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
+using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -103,10 +104,8 @@ namespace Axantum.AxCrypt.Core.Session
                 return Invalid;
             }
 
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
-
             EncryptedProperties properties = new EncryptedProperties(null);
-            using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptionParameters, stream))
+            using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(identity.DecryptionParameters(), stream))
             {
                 if (!document.PassphraseIsValid)
                 {

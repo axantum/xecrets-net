@@ -13,5 +13,6 @@ namespace Axantum.AxCrypt.Common
         TryPremium = 0x4,
         SignedInSoNoPasswordRequired = 0x8,
         WillNotForgetPassword = 0x10,
+        IgnoreFileWarning = 0x20,
     }
 }

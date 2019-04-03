@@ -268,6 +268,9 @@ Please sign in using the same password you used then.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Hide the real name of a secured file by renaming it to something random.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verification [ {0} ]</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
@@ -446,6 +449,9 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>If your Business subscription is not renewed in time, you will fall back to one of our free plans.</value>
+  </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>!!Subscription is expiring, Please use Renew to extend the full business functionality.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Import</value>
@@ -630,6 +636,9 @@ You have been warned, now enjoy!</value>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
     <value>Click to reset your password.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
+  </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>!!Remove</value>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Save</value>
@@ -952,8 +961,14 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Import AxCrypt ID</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Enter the email address of a person to invite to use AxCrypt.</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Invitation</value>
+  </data>
   <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
-    <value>!!User Invitation</value>
+    <value>Invitation details</value>
   </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Access Sharing</value>
@@ -973,6 +988,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Disable</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>!!It is disabled and can be re-enabled in options</value>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
@@ -1234,6 +1255,9 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Inactivity Sign Out</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>'{0}' was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
   </data>
@@ -1317,7 +1341,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!Message</value>
+    <value>Personal message</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Invite a friend</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
@@ -1402,9 +1429,10 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
-    <value>!!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+    <value>You are about to invite a new user to AxCrypt. We will send an invitation with instructions to the contact email.
 
-You may specify the language to use and a personal message below.</value>
+Please specify the language to use in the invitation and an optional personal message below.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
@@ -1938,6 +1966,12 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
+  </data>
+  <data name="OptionsDisableRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Disable Recent Files</value>
+  </data>
+  <data name="OptionsFolderAnonymousRenameToolStripMenuItemText" xml:space="preserve">
+    <value>!!Folder Anonymous Rename</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>

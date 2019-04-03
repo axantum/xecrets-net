@@ -223,6 +223,12 @@ namespace Axantum.AxCrypt.Core.Extensions
             return new RestIdentity(identity.UserEmail.Address, identity.Passphrase.Text);
         }
 
+        public static IEnumerable<DecryptionParameter> DecryptionParameters(this LogOnIdentity identity)
+        {
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+            return decryptionParameters;
+        }
+
         public static Task<SubscriptionLevel> ValidatedLevelAsync(this UserAccount userAccount)
         {
             return new LicenseValidation().ValidateLevelAsync(userAccount);
@@ -428,23 +434,21 @@ namespace Axantum.AxCrypt.Core.Extensions
             return knownKeys;
         }
 
-        public static async Task<IEnumerable<UserPublicKey>> ToKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
+        public static async Task<IEnumerable<UserPublicKey>> ToAvailableKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
         {
-            List<UserPublicKey> knownKeys = new List<UserPublicKey>();
+            List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress email in emails)
                 {
                     UserPublicKey key = await knownPublicKeys.GetAsync(email, identity);
-                    if (key == null)
+                    if (key != null)
                     {
-                        continue;
+                        availablePublicKeys.Add(key);
                     }
-
-                    knownKeys.Add(key);
                 }
             }
-            return knownKeys;
+            return availablePublicKeys;
         }
 
         public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
@@ -460,6 +464,13 @@ namespace Axantum.AxCrypt.Core.Extensions
                 async (IDataStore file, IProgressContext progress) =>
                 {
                     await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
+                    if (activeFile != null)
+                    {
+                        New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
+                        await New<FileSystemState>().Save();
+                    }
+
                     return new FileOperationContext(file.FullName, ErrorStatus.Success);
                 },
                 async (FileOperationContext foc) =>
@@ -469,13 +480,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                         return;
                     }
-                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(foc.FullName);
-                    if (activeFile == null)
-                    {
-                        return;
-                    }
-                    New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
-                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, files));
                 });
         }
 
@@ -542,6 +547,29 @@ namespace Axantum.AxCrypt.Core.Extensions
                 string formattedTime = wholeSeconds.ToString("g", CultureInfo.CurrentCulture);
                 New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, formattedTime));
             }
+        }
+
+        public static async Task<AccountStatus> GetValidEmailAccountStatusAsync(this EmailAddress validEmail, LogOnIdentity identity)
+        {
+            if (validEmail == null)
+            {
+                throw new ArgumentNullException(nameof(validEmail));
+            }
+
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
+            if (await accountService.IsAccountSourceLocalAsync())
+            {
+                Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
+                return AccountStatus.Unknown;
+            }
+
+            AccountStorage accountStorage = new AccountStorage(accountService);
+            return await accountStorage.StatusAsync(validEmail).Free();
         }
     }
 }

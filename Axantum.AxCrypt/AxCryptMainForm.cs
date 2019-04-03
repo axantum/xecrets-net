@@ -262,6 +262,7 @@ namespace Axantum.AxCrypt
             _importMyPrivateKeyToolStripMenuItem.ToolTipText = Texts.ImportMyPrivateKeyToolStripMenuItemToolTipText;
             _importOthersSharingKeyToolStripMenuItem.Text = "&" + Texts.ImportOthersSharingKeyToolStripMenuItemText;
             _importOthersSharingKeyToolStripMenuItem.ToolTipText = Texts.ImportOthersSharingKeyToolStripMenuItemToolTipText;
+            _inviteUserToolStripMenuItem.Text = Texts.InviteUserToolStripMenuItemText;
             _italianLanguageToolStripMenuItem.Text = "&" + Texts.ItalianLanguageSelection;
             _keyManagementToolStripMenuItem.Text = "&" + Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
@@ -898,6 +899,7 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.IdentityViewModel.LoggingOnAsync = async (e) => await New<IUIThread>().SendToAsync(async () => await HandleLogOn(e));
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
             _fileOperationViewModel.ToggleEncryptionUpgradeMode += (sender, e) => New<IUIThread>().SendTo(() => ToggleEncryptionUpgradeMode());
+            _inviteUserToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await InviteUserAsync(); }, sender, e); };
             _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysWithFileSelectionAsync(); }, sender, e); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
@@ -973,6 +975,7 @@ namespace Axantum.AxCrypt
             _exportSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _importMyPrivateKeyToolStripMenuItem.Enabled = !isSignedIn;
             _importOthersSharingKeyToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
+            _inviteUserToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline && isSignedIn;
             _optionsEncryptionUpgradeModeToolStripMenuItem.Enabled = isSignedInWithAxCryptId;
             _optionsChangePassphraseToolStripMenuItem.Enabled = New<AxCryptOnlineState>().IsOnline;
             _passwordResetToolStripMenuItem.Enabled = !isSignedIn && !string.IsNullOrEmpty(New<UserSettings>().UserEmail);
@@ -1699,7 +1702,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
-            await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+            _daysLeftPremiumLabel.UpdateText();
             await SetSoftwareStatus();
         }
 
@@ -2117,6 +2120,17 @@ namespace Axantum.AxCrypt
         private async void AxCryptMainForm_ClickAsync(object sender, EventArgs e)
         {
             New<InactivitySignOut>().RestartInactivityTimer();
+        }
+
+        private async Task InviteUserAsync()
+        {
+            using (InviteUserDialog dialog = new InviteUserDialog(this))
+            {
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
         }
     }
 }
