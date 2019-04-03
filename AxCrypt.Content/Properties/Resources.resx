@@ -450,6 +450,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>If your Business subscription is not renewed in time, you will fall back to one of our free plans.</value>
   </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>!!Subscription is expiring, Please use Renew to extend the full business functionality.</value>
+  </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Import</value>
     <comment>A word used in a button to start the multiple import process.</comment>
@@ -959,13 +962,13 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Import AxCrypt ID</value>
   </data>
   <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
-    <value>!!Type an email address of a person you wish to invite to use AxCrypt.</value>
+    <value>Enter the email address of a person to invite to use AxCrypt.</value>
   </data>
   <data name="DialogInviteUserTitle" xml:space="preserve">
-    <value>!!Invite User</value>
+    <value>Invitation</value>
   </data>
   <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
-    <value>!!User Invitation</value>
+    <value>Invitation details</value>
   </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Access Sharing</value>
@@ -1338,10 +1341,10 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
     <value>User to invite</value>
   </data>
   <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
-    <value>!!Message</value>
+    <value>Personal message</value>
   </data>
   <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
-    <value>!!Invite</value>
+    <value>Invite a friend</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
@@ -1426,9 +1429,10 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
-    <value>!!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+    <value>You are about to invite a new user to AxCrypt. We will send an invitation with instructions to the contact email.
 
-You may specify the language to use and a personal message below.</value>
+Please specify the language to use in the invitation and an optional personal message below.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
