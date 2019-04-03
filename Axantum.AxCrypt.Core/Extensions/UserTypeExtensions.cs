@@ -464,6 +464,13 @@ namespace Axantum.AxCrypt.Core.Extensions
                 async (IDataStore file, IProgressContext progress) =>
                 {
                     await New<AxCryptFile>().ChangeEncryptionAsync(file, Resolve.KnownIdentities.DefaultEncryptionIdentity, encryptionParameters, progress);
+                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
+                    if (activeFile != null)
+                    {
+                        New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
+                        await New<FileSystemState>().Save();
+                    }
+
                     return new FileOperationContext(file.FullName, ErrorStatus.Success);
                 },
                 async (FileOperationContext foc) =>
@@ -473,13 +480,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         New<IStatusChecker>().CheckStatusAndShowMessage(foc.ErrorStatus, foc.FullName, foc.InternalMessage);
                         return;
                     }
-                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(foc.FullName);
-                    if (activeFile == null)
-                    {
-                        return;
-                    }
-                    New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId));
-                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, foc.FullName));
+                    await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange, files));
                 });
         }
 
