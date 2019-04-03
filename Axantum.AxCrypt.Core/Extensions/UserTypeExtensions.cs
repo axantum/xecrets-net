@@ -434,23 +434,21 @@ namespace Axantum.AxCrypt.Core.Extensions
             return knownKeys;
         }
 
-        public static async Task<IEnumerable<UserPublicKey>> ToKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
+        public static async Task<IEnumerable<UserPublicKey>> ToAvailableKnownPublicKeysAsync(this IEnumerable<EmailAddress> emails, LogOnIdentity identity)
         {
-            List<UserPublicKey> knownKeys = new List<UserPublicKey>();
+            List<UserPublicKey> availablePublicKeys = new List<UserPublicKey>();
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 foreach (EmailAddress email in emails)
                 {
                     UserPublicKey key = await knownPublicKeys.GetAsync(email, identity);
-                    if (key == null)
+                    if (key != null)
                     {
-                        continue;
+                        availablePublicKeys.Add(key);
                     }
-
-                    knownKeys.Add(key);
                 }
             }
-            return knownKeys;
+            return availablePublicKeys;
         }
 
         public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
@@ -548,6 +546,29 @@ namespace Axantum.AxCrypt.Core.Extensions
                 string formattedTime = wholeSeconds.ToString("g", CultureInfo.CurrentCulture);
                 New<IGlobalNotification>().ShowTransient(Texts.AxCryptFileEncryption, string.Format(Texts.ProgressTotalsInformationText, progressTotals.NumberOfFiles, formattedTime));
             }
+        }
+
+        public static async Task<AccountStatus> GetValidEmailAccountStatusAsync(this EmailAddress validEmail, LogOnIdentity identity)
+        {
+            if (validEmail == null)
+            {
+                throw new ArgumentNullException(nameof(validEmail));
+            }
+
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
+            if (await accountService.IsAccountSourceLocalAsync())
+            {
+                Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
+                return AccountStatus.Unknown;
+            }
+
+            AccountStorage accountStorage = new AccountStorage(accountService);
+            return await accountStorage.StatusAsync(validEmail).Free();
         }
     }
 }

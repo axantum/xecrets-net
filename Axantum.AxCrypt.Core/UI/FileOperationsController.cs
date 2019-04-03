@@ -382,7 +382,7 @@ namespace Axantum.AxCrypt.Core.UI
         {
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
-            await encryptionParameters.AddAsync(await (await GetWatchedFolderKeyShares(_eventArgs.OpenFileFullName)).ToKnownPublicKeysAsync(_eventArgs.LogOnIdentity));
+            await encryptionParameters.AddAsync(await (await GetWatchedFolderKeyShares(_eventArgs.OpenFileFullName)).ToAvailableKnownPublicKeysAsync(_eventArgs.LogOnIdentity));
 
             await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 

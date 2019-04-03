@@ -2,11 +2,9 @@
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Crypto.Asymmetric;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
-using Axantum.AxCrypt.Core.Service;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
@@ -60,13 +58,6 @@ namespace Axantum.AxCrypt
 
             _shareButton.Click += async (sender, e) =>
             {
-                IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
-                if (!string.IsNullOrEmpty(_newContact.Text) && await accountService.IsAccountSourceLocalAsync())
-                {
-                    Texts.AccountServiceLocalExceptionDialogText.ShowWarning(Texts.WarningTitle);
-                    return;
-                }
-
                 await ShareSelectedIndices(_notSharedWith.SelectedIndices.Cast<int>());
 
                 AccountStatus accountStatus = await ShareNewContactAsync();
