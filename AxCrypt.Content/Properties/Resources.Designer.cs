@@ -889,6 +889,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Subscription is expiring, Please use Renew to extend the full business functionality..
+        /// </summary>
+        public static string BusinessSubscriptionExpiringWarningText {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionExpiringWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string BusinessSubscriptionImportButtonLabel {
@@ -2268,7 +2277,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Type an email address of a person you wish to invite to use AxCrypt..
+        ///   Looks up a localized string similar to Enter the email address of a person to invite to use AxCrypt..
         /// </summary>
         public static string DialogInviteUserPromptLabelText {
             get {
@@ -2277,7 +2286,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invite User.
+        ///   Looks up a localized string similar to Invitation.
         /// </summary>
         public static string DialogInviteUserTitle {
             get {
@@ -2286,7 +2295,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!User Invitation.
+        ///   Looks up a localized string similar to Invitation details.
         /// </summary>
         public static string DialogKeyShareInviteUserTitle {
             get {
@@ -3288,7 +3297,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Message.
+        ///   Looks up a localized string similar to Personal message.
         /// </summary>
         public static string InviteUserPersonalizedMessageTitle {
             get {
@@ -3297,7 +3306,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Invite.
+        ///   Looks up a localized string similar to Invite a friend.
         /// </summary>
         public static string InviteUserToolStripMenuItemText {
             get {
@@ -3520,9 +3529,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The contact you are sharing access with does not yet have an AxCrypt ID. We will send an invitation with instructions to the contact email.
+        ///   Looks up a localized string similar to You are about to invite a new user to AxCrypt. We will send an invitation with instructions to the contact email.
         ///
-        ///You may specify the language to use and a personal message below..
+        ///Please specify the language to use in the invitation and an optional personal message below..
         /// </summary>
         public static string KeyShareInviteUserTextPrompt {
             get {
