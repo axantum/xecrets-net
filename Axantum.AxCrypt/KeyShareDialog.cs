@@ -188,7 +188,7 @@ namespace Axantum.AxCrypt
 
         private async Task RemoveKnownContact()
         {
-            await _viewModel.RemoveKnownContact.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_notSharedWith.Items[i]));
+            await _viewModel.RemoveKnownContact.ExecuteAsync(_notSharedWith.SelectedIndices.Cast<int>().Select(i => (UserPublicKey)_notSharedWith.Items[i]).ToList());
         }
 
         private async Task<AccountStatus> ShareNewContactAsync()

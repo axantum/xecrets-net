@@ -171,12 +171,16 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 return;
             }
 
+            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
+            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(UserPublicKey.EmailComparer);
+
+            MoveKeyShares(knownContactsToRemove, fromSet, toSet);
+
+            NotSharedWith = fromSet.OrderBy(a => a.Email.Address);
+
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.Remove(knownContactsToRemove);
-
-                HashSet<UserPublicKey> notSharedWithSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
-                NotSharedWith = notSharedWithSet.Where((UserPublicKey upk) => { return !knownContactsToRemove.Contains(upk); }).OrderBy(a => a.Email.Address);
             }
         }
 
