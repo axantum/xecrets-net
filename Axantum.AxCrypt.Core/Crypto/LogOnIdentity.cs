@@ -16,6 +16,11 @@ namespace Axantum.AxCrypt.Core.Crypto
     public class LogOnIdentity : IEquatable<LogOnIdentity>
     {
         /// <summary>
+        /// The key pairs, or an empty enumeration if none.
+        /// </summary>
+        private IEnumerable<UserKeyPair> _keyPairs;
+
+        /// <summary>
         /// The empty, or undefined, LogOnIdentity instance
         /// </summary>
         public static readonly LogOnIdentity Empty = new LogOnIdentity(new UserKeyPair[0], Passphrase.Empty);
@@ -47,9 +52,14 @@ namespace Axantum.AxCrypt.Core.Crypto
         /// <param name="passphrase">The passphrase.</param>
         public LogOnIdentity(IEnumerable<UserKeyPair> keyPairs, Passphrase passphrase)
         {
-            KeyPairs = keyPairs ?? throw new ArgumentNullException("userKeys");
+            if (keyPairs == null)
+            {
+                throw new ArgumentNullException("userKeys");
+            }
+
+            _keyPairs = keyPairs.OrderByDescending(uk => uk.Timestamp).ToArray();
             Passphrase = passphrase ?? Passphrase.Empty;
-            UserEmail = (keyPairs.FirstOrDefault() ?? UserKeyPair.Empty).UserEmail;
+            UserEmail = ActiveEncryptionKeyPair.UserEmail;
         }
 
         private Passphrase _passphrase;
@@ -83,23 +93,11 @@ namespace Axantum.AxCrypt.Core.Crypto
             get; private set;
         }
 
-        /// <summary>
-        /// Gets the user keys.
-        /// </summary>
-        /// <value>
-        /// The user keys or null if not known.
-        /// </value>
-        public IEnumerable<UserKeyPair> KeyPairs
-        {
-            get;
-            private set;
-        }
-
         public UserKeyPair ActiveEncryptionKeyPair
         {
             get
             {
-                return KeyPairs.FirstOrDefault() ?? UserKeyPair.Empty;
+                return _keyPairs.FirstOrDefault() ?? UserKeyPair.Empty;
             }
         }
 
@@ -107,11 +105,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (!KeyPairs.Any())
+                if (!_keyPairs.Any())
                 {
                     return new IAsymmetricPrivateKey[0];
                 }
-                return KeyPairs.Select(uk => uk.KeyPair.PrivateKey);
+                return _keyPairs.Select(uk => uk.KeyPair.PrivateKey);
             }
         }
 
@@ -119,11 +117,11 @@ namespace Axantum.AxCrypt.Core.Crypto
         {
             get
             {
-                if (!KeyPairs.Any())
+                if (!_keyPairs.Any())
                 {
                     return new UserPublicKey[0];
                 }
-                return KeyPairs.Select(uk => new UserPublicKey(uk.UserEmail, uk.KeyPair.PublicKey));
+                return _keyPairs.Select(uk => new UserPublicKey(uk.UserEmail, uk.KeyPair.PublicKey));
             }
         }
 
@@ -141,7 +139,7 @@ namespace Axantum.AxCrypt.Core.Crypto
             {
                 return false;
             }
-            return UserEmail == other.UserEmail && Passphrase == other.Passphrase && KeyPairs.SequenceEqual(other.KeyPairs);
+            return UserEmail == other.UserEmail && Passphrase == other.Passphrase && _keyPairs.SequenceEqual(other._keyPairs);
         }
 
         public override bool Equals(object obj)
@@ -157,7 +155,7 @@ namespace Axantum.AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return Passphrase.GetHashCode() ^ KeyPairs.GetHashCode();
+            return Passphrase.GetHashCode() ^ _keyPairs.GetHashCode();
         }
 
         public static bool operator ==(LogOnIdentity left, LogOnIdentity right)

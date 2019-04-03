@@ -268,6 +268,9 @@ Please sign in using the same password you used then.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Hide the real name of a secured file by renaming it to something random.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verification [ {0} ]</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
@@ -631,6 +634,9 @@ You have been warned, now enjoy!</value>
     <value>Click to reset your password.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>!!Remove</value>
+  </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -980,6 +986,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Disable</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisableRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>!!It is disabled and can be re-enabled in options</value>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -1239,6 +1251,9 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Inactivity Sign Out</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>'{0}' was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
@@ -1947,6 +1962,12 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
+  </data>
+  <data name="OptionsDisableRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Disable Recent Files</value>
+  </data>
+  <data name="OptionsFolderAnonymousRenameToolStripMenuItemText" xml:space="preserve">
+    <value>!!Folder Anonymous Rename</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>

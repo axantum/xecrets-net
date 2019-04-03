@@ -457,6 +457,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ID Verification [ {0} ].
+        /// </summary>
+        public static string AppActivateMailSubject {
+            get {
+                return ResourceManager.GetString("AppActivateMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt.
         /// </summary>
         public static string ApplicationTitle {
@@ -1327,6 +1336,15 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonPasswordResetToolTip {
             get {
                 return ResourceManager.GetString("ButtonPasswordResetToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Remove.
+        /// </summary>
+        public static string ButtonRemoveKnownContactText {
+            get {
+                return ResourceManager.GetString("ButtonRemoveKnownContactText", resourceCulture);
             }
         }
         
@@ -2331,6 +2349,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
+        /// </summary>
+        public static string DisableRecentFilesListTabToolTipText {
+            get {
+                return ResourceManager.GetString("DisableRecentFilesListTabToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This automatic email is translated to your preferred language, but direct personal service and support is in English..
+        /// </summary>
+        public static string DisclaimerMailFooter {
+            get {
+                return ResourceManager.GetString("DisclaimerMailFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -3022,6 +3058,15 @@ namespace AxCrypt.Content.Properties {
         public static string IdleSignOutToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("IdleSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties..
+        /// </summary>
+        public static string IgnoreFileWarningText {
+            get {
+                return ResourceManager.GetString("IgnoreFileWarningText", resourceCulture);
             }
         }
         
@@ -4813,6 +4858,24 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsDebugToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsDebugToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Disable Recent Files.
+        /// </summary>
+        public static string OptionsDisableRecentFilesToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Folder Anonymous Rename.
+        /// </summary>
+        public static string OptionsFolderAnonymousRenameToolStripMenuItemText {
+            get {
+                return ResourceManager.GetString("OptionsFolderAnonymousRenameToolStripMenuItemText", resourceCulture);
             }
         }
         

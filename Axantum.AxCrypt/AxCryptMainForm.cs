@@ -1700,7 +1700,7 @@ namespace Axantum.AxCrypt
 
             InitializeContentResources();
             await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
-            await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
+            _daysLeftPremiumLabel.UpdateText();
             await SetSoftwareStatus();
         }
 
