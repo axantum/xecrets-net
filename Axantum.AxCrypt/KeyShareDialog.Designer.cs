@@ -37,6 +37,7 @@
             this._addContactGroupBox = new System.Windows.Forms.GroupBox();
             this._newContact = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this._removeKnownContactButton = new System.Windows.Forms.Button();
             this._unshareButton = new System.Windows.Forms.Button();
             this._shareButton = new System.Windows.Forms.Button();
             this._sharedWithGroupBox = new System.Windows.Forms.GroupBox();
@@ -160,16 +161,31 @@
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this._removeKnownContactButton, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this._unshareButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this._shareButton, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(217, 16);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(94, 58);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(94, 83);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // _removeKnownContactButton
+            // 
+            this._removeKnownContactButton.AutoSize = true;
+            this._removeKnownContactButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this._removeKnownContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._removeKnownContactButton.Location = new System.Drawing.Point(3, 61);
+            this._removeKnownContactButton.MinimumSize = new System.Drawing.Size(58, 23);
+            this._removeKnownContactButton.Name = "_removeKnownContactButton";
+            this._removeKnownContactButton.Size = new System.Drawing.Size(88, 23);
+            this._removeKnownContactButton.TabIndex = 2;
+            this._removeKnownContactButton.Text = "[Remove]";
+            this._removeKnownContactButton.UseVisualStyleBackColor = true;
+            this._removeKnownContactButton.Visible = false;
             // 
             // _unshareButton
             // 
@@ -301,6 +317,7 @@
         private System.Windows.Forms.GroupBox _sharedWithGroupBox;
         private System.Windows.Forms.ListBox _sharedWith;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button _removeKnownContactButton;
         private System.Windows.Forms.Button _unshareButton;
         private System.Windows.Forms.Button _shareButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;

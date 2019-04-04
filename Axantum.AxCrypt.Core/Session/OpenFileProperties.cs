@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core.Extensions;
+﻿using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Header;
 using Axantum.AxCrypt.Core.IO;
 using System;
@@ -11,11 +10,13 @@ namespace Axantum.AxCrypt.Core.Session
 {
     public class OpenFileProperties
     {
-        public int KeyShareCount { get; private set; }
-
         public bool IsLegacyV1 { get; private set; }
 
-        public bool IsShared { get; private set; }
+        public int V2AsymetricKeyWrapCount { get; private set; }
+
+        private OpenFileProperties()
+        {
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public static OpenFileProperties Create(IDataStore dataStore)
@@ -36,11 +37,6 @@ namespace Axantum.AxCrypt.Core.Session
                     return Create(stream);
                 }
             }
-            catch (FileNotFoundException fnfex)
-            {
-                New<IReport>().Exception(fnfex);
-                return new OpenFileProperties();
-            }
             catch (Exception ex)
             {
                 ex.RethrowFileOperation(dataStore.FullName);
@@ -48,19 +44,19 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public static OpenFileProperties Create(Stream stream)
+        private static OpenFileProperties Create(Stream stream)
         {
             OpenFileProperties properties = new OpenFileProperties();
-            Headers headers = New<AxCryptFactory>().Headers(stream);
-            properties.Fill(headers);
+            properties.Fill(stream);
             return properties;
         }
 
-        private void Fill(Headers headers)
+        private void Fill(Stream stream)
         {
-            KeyShareCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
+            Headers headers = New<AxCryptFactory>().Headers(stream);
+
             IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
-            IsShared = KeyShareCount > 1;
+            V2AsymetricKeyWrapCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
         }
     }
 }
