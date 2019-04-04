@@ -156,7 +156,6 @@ namespace Axantum.AxCrypt.Core.Session
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
-            IsShared = EncryptedFileInfo.IsKeyShared(identity);
         }
 
         public IDataStore DecryptedFileInfo
@@ -208,18 +207,25 @@ namespace Axantum.AxCrypt.Core.Session
 
         private string _decryptedName;
 
+        private byte[] _protectedName;
+
         [JsonProperty("protectedDecryptedName")]
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
         private byte[] ProtectedDecryptedName
         {
             get
             {
-                return New<IProtectedData>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)), null);
+                if (_protectedName == null)
+                {
+                    _protectedName = New<IProtectedData>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)), null);
+                }
+                return _protectedName;
             }
             set
             {
                 byte[] bytes = New<IProtectedData>().Unprotect(value, null);
                 _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                _protectedName = (byte[])value.Clone();
             }
         }
 
@@ -243,7 +249,19 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("properties")]
         public ActiveFileProperties Properties { get; private set; }
 
-        public bool IsShared { get; private set; }
+        private bool? _isShared;
+
+        public bool IsShared
+        {
+            get
+            {
+                if (!_isShared.HasValue)
+                {
+                    _isShared = EncryptedFileInfo.IsKeyShared(Identity);
+                }
+                return _isShared.Value;
+            }
+        }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
