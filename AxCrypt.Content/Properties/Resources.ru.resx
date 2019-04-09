@@ -886,6 +886,9 @@
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Импортировать AxCrypt ID</value>
   </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Детали приглашения</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Доступ к Совместному Использованию</value>
   </data>
@@ -1920,6 +1923,9 @@
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Поменять</value>
+  </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Изменить e-mail</value>
   </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Нынешний пароль</value>
