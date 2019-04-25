@@ -1282,7 +1282,7 @@ namespace Axantum.AxCrypt
 
             if (wasSignedIn)
             {
-                await ShowSignedInInformationAsync(e.Verb);
+                await ShowSignedInInformationAsync(e.Verb, e.Arguments);
             }
 
             switch (e.Verb)
@@ -1331,19 +1331,36 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private static Task ShowSignedInInformationAsync(CommandVerb verb)
+        private static Task ShowSignedInInformationAsync(CommandVerb verb, IEnumerable<string> files)
         {
+            if (New<UserSettings>().DoNotShowAgain.HasFlag(DoNotShowAgainOptions.SignedInSoNoPasswordRequired))
+            {
+                return Constant.CompletedTask;
+            }
+
             switch (verb)
             {
                 case CommandVerb.Encrypt:
+                    return ShowSignedInInformationAlert();
+
                 case CommandVerb.Decrypt:
                 case CommandVerb.Open:
-                    return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
+                    bool isAnyFileKeyKnown = files.Select(f => New<IDataStore>(f)).IsAnyFileKeyKnown();
+                    if (isAnyFileKeyKnown)
+                    {
+                        return ShowSignedInInformationAlert();
+                    }
+                    break;
 
                 default:
                     break;
             }
             return Constant.CompletedTask;
+        }
+
+        private static Task ShowSignedInInformationAlert()
+        {
+            return New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.NoPasswordRequiredInformationText, DoNotShowAgainOptions.SignedInSoNoPasswordRequired);
         }
 
         private async Task<DragDropEffects> GetEffectsForMainToolStripAsync(DragEventArgs e)

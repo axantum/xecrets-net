@@ -250,6 +250,9 @@
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Скройте настоящее имя защищённого файла, произвольно переименовав его.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>Верификация AxCrypt ID [{0}]</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
@@ -603,6 +606,10 @@
     <value>Нажмите сюда для переустановки Вашего пароля.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
+  </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Сохранить </value>
   </data>
@@ -886,6 +893,15 @@
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Импортировать AxCrypt ID</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Введите адрес электронной почты человека,  которого Вы хотели бы пригласить использовать AxCrypt.</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Приглашение</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Детали приглашения</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Доступ к Совместному Использованию</value>
   </data>
@@ -905,6 +921,9 @@
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Отключить</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Это автоматическое электронное письмо переведено на ваш предпочитаемый язык, но персональный сервис и техническая поддержка осуществляются на английском языке.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Не показывать это снова. </value>
@@ -1138,6 +1157,9 @@
     <value>Автоматический Выход Из Системы</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>'{0}' не был зашифрован из-за технических ограничений.  Это может быть связано с расширением файла, местоположением или другими свойствами.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Импортировать AxCrypt ID с ключами совместного использования и доступа.</value>
   </data>
@@ -1207,11 +1229,21 @@
 
 Ввойдите в систему AxCrypt с {2}, введите 6- знаковый верификационный код и ыстановите Ваш секретный пароль. </value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>Личное сообщение от {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Приглашение на использование AxCrypt File Security</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Пригласить пользователя</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>Личное сообщение</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Пригласить друга</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Квитанция</value>
@@ -1282,6 +1314,12 @@
 
 Адресат будет идентифицирован адресом электронной почты своего AxCrypt ID, однако мы не высылаем файла! Здесь Вы добавляете ключ доступа адресата к файлу. После данного действия Вам всё равно необходимо самим поделиться файлом с адресатом.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>Вы собираетесь пригласить нового пользователя в AxCrypt. Мы отправим приглашение с инструкциями на контактный адрес электронной почты.
+
+Пожалуйста, укажите язык для приглашения и, если вы хотите, пожалуйста, добавьте личное сообщение. </value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Ключевой файл разделён с другими AxCrypt пользователями.</value>
@@ -1921,6 +1959,9 @@
   <data name="PromptChange" xml:space="preserve">
     <value>Поменять</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Изменить e-mail</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Нынешний пароль</value>
   </data>
@@ -2183,6 +2224,8 @@
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Здесь Вы можете окончательно удалить Ваш AxCrypt ID из системы. &lt;span class="red"&gt;Вся дата, связанная с Вашим AxCrypt ID, включая сохранённые вводы паролей, будет тоже удалена.&lt;/span&gt;
+
+(Если вы только хотите изменить электронную почту Вашего AxCrypt ID, просто нажмите &lt;a href="{0}"&gt;здесь&lt;/a&gt; )
 
 Введите ниже Ваш пароль для удаления Вашего AxCrypt ID.</value>
   </data>
