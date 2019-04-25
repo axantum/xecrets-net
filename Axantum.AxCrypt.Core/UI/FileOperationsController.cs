@@ -283,7 +283,7 @@ namespace Axantum.AxCrypt.Core.UI
         /// <returns>FileOperationStatus.Success if  the file is encrypted with a known key.</returns>
         public Task<FileOperationContext> VerifyEncryptedAsync(IDataStore fileInfo)
         {
-            return DoFileAsync(fileInfo, VerifyCanDecryptPreparationAsync, GetAxCryptFileNameAsSaveFileNameAsync);
+            return DoFileAsync(fileInfo, VerifyCanDecryptPreparationAsync, NoOperationAsync);
         }
 
         /// <summary>
@@ -578,13 +578,8 @@ namespace Axantum.AxCrypt.Core.UI
             return true;
         }
 
-        private Task<bool> GetAxCryptFileNameAsSaveFileNameAsync()
+        private Task<bool> NoOperationAsync()
         {
-            if (!_eventArgs.Skip)
-            {
-                _eventArgs.SaveFileFullName = _eventArgs.AxCryptFile.FullName;
-            }
-
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
             return Constant.TrueTask;
         }
