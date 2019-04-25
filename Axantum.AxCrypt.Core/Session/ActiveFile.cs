@@ -156,7 +156,7 @@ namespace Axantum.AxCrypt.Core.Session
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
-            _isShared = EncryptedFileInfo.IsKeyShared(Identity);
+            IsShared = EncryptedFileInfo.IsKeyShared(Identity);
         }
 
         public IDataStore DecryptedFileInfo
@@ -250,15 +250,7 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("properties")]
         public ActiveFileProperties Properties { get; private set; }
 
-        private bool _isShared;
-
-        public bool IsShared
-        {
-            get
-            {
-                return _isShared;
-            }
-        }
+        public bool IsShared { get; private set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
