@@ -247,6 +247,9 @@ S'il vous plait, connectez-vous en utilisant le même mot de passe que vous avie
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Cacher le nom réel d'un fichier sécurisé en le renommant avec un nom au hasard. </value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>Vérification de l'AxCrypt ID [ {0} ]</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Pour des raisons de sécurité, insérez de nouveau votre mot de passe. </value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -589,6 +592,10 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
     <value>Cliquez ici pour réinitialiser votre mot de passe. </value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>Supprimer</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
+  </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
@@ -865,6 +872,15 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Importer AxCrypt ID </value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Entrez l'adresse e-mail d'une personne pour l'inviter à utiliser AxCrypt</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Invitation</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Détails de l'invitation</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Accès Partage</value>
   </data>
@@ -883,6 +899,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Désactiver</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Cet e-mail automatique est traduit dans la langue que vous avez choisie, mais le service client et le support informatique sont en anglais.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Ne plus montrer cela. </value>
@@ -1108,6 +1127,9 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
     <value>Déconnexion d'inactivité</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>L'encryptage de '{0}' a échoué à cause de restrictions techniques. Il est possible que cela ait été causé par le format du fichier, son emplacement, ou d'autres propriétés.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importer AxCrypt ID avec les clefs de partage et d'accès. </value>
   </data>
@@ -1177,11 +1199,21 @@ Pour commencer à sécuriser vos fichiers il suffit de télécharger et installe
 
 Connectez-vous à AxCrypt avec {2}, entrez le code de vérification à 6 chiffres et définissez votre mot de passe secret.</value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>Message personnel de {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitation à utiliser AxCrypt File Security</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Utilisateur à inviter</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>Message personnel</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Inviter un ami</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Facture</value>
@@ -1252,6 +1284,12 @@ Connectez-vous à AxCrypt avec {2}, entrez le code de vérification à 6 chiffre
  
 Un destinataire est nommé par l'e-mail associé à son identifiant AxCrypt ID, mais nous n'envoyons pas le fichier ! Vous pouvez ici ajouter la clé de l'utilisateur au fichier. Il vous faudra ensuite partager le fichier lui-même avec son destinataire.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>Vous êtes sur le point d'inviter un nouvel utilisateur sur AxCrypt. Nous allons envoyer une invitation avec des instructions à l'adresse e-mail fournie.
+
+Veuillez choisir la langue souhaitée pour l'invitation, et ajoutez un message personnel ci-dessous si vous le souhaitez.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>La clef du fichier est partagée avec d'autres utilisateurs d'AxCrypt.</value>
@@ -1865,6 +1903,10 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
     <value>En cours...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>{0} documents terminés. Temps écoulé {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Code de vérification</value>
   </data>
@@ -1883,6 +1925,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   <data name="PromptChange" xml:space="preserve">
     <value>Changer</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Changer d'adresse e-mail</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Mot de passe actuel</value>
   </data>
@@ -1890,7 +1935,7 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
     <value>Supprimer l'identifiant AxCrypt</value>
   </data>
   <data name="PromptEmailText" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="PromptFileText" xml:space="preserve">
     <value>Fichier</value>
@@ -2146,9 +2191,11 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Vous pouvez ici supprimer votre compte de notre système. &lt;span class="red"&gt;Toutes vos données, y compris vos mots de passe, seront perdues.&lt;/span&gt;
+    <value>Cette action va supprimer votre compte AxCrypt ID de notre système. &lt;span class="red"&gt;Toutes vos données, y compris vos mots de passe, seront perdues.&lt;/span&gt;
 
-Saisissez votre mot de passe pour supprimer votre compte.</value>
+(Si vous souhaitez simplement changer l'adresse e-mail liée à votre compte, cliquez &lt;a href="{0}"&gt;ici&lt;/a&gt; .)
+ 
+Saisissez votre mot de passe ci-dessous pour supprimer votre compte.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Pour modifier l'adresse e-mail associée à votre compte, tapez une nouvelle adresse e-mail ci-dessous. Cela aura une incidence sur la façon dont vous vous connectez sur le site et où les e-mails du site sont envoyés. 
