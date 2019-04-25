@@ -1,5 +1,6 @@
 ﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
+using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
@@ -263,8 +264,9 @@ namespace Axantum.AxCrypt
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
-
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(activeFile.Identity));
+         
+            LogOnIdentity decryptIdentity = ValidateActiveFileIdentity(activeFile.Identity);
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(decryptIdentity));
 
             try
             {
@@ -282,6 +284,16 @@ namespace Axantum.AxCrypt
                 New<IReport>().Exception(aex);
                 item.SubItems[nameof(ColumnName.CryptoName)].Text = Texts.UnknownCrypto;
             }
+        }
+
+        private static LogOnIdentity ValidateActiveFileIdentity(LogOnIdentity activeFileIdentity)
+        {
+            if (activeFileIdentity != LogOnIdentity.Empty)
+            {
+                return activeFileIdentity;
+            }
+
+            return New<KnownIdentities>().DefaultEncryptionIdentity;
         }
 
         private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, bool isShared)
