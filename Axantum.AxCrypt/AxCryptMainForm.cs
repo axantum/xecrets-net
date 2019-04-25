@@ -280,6 +280,7 @@ namespace Axantum.AxCrypt
             _optionsChangePassphraseToolStripMenuItem.Text = "&" + Texts.OptionsChangePassphraseToolStripMenuItemText;
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Text = "&" + Texts.OptionsClearAllSettingsAndExitToolStripMenuItemText;
             _optionsDebugToolStripMenuItem.Text = "&" + Texts.OptionsDebugToolStripMenuItemText;
+            _optionsDisableRecentFilesToolStripMenuItem.Text = "&" + Texts.OptionsDisableRecentFilesToolStripMenuItemText;
             _optionsLanguageToolStripMenuItem.Text = "&" + Texts.OptionsLanguageToolStripMenuItemText;
             _optionsIncludeSubfoldersToolStripMenuItem.Text = "&" + Texts.OptionsIncludeSubfoldersToolStripMenuItemText;
             _optionsToolStripMenuItem.Text = "&" + Texts.OptionsToolStripMenuItemText;
@@ -554,7 +555,7 @@ namespace Axantum.AxCrypt
 
             _encryptToolStripButton.Tag = FileInfoTypes.EncryptableFile;
 
-            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages["_watchedFoldersTabPage"];
+            _hiddenWatchedFoldersTabPage = _statusTabControl.TabPages[_watchedFoldersTabPage.Name];
 
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
@@ -770,6 +771,8 @@ namespace Axantum.AxCrypt
 
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
             _alwaysOfflineToolStripMenuItem.Checked = New<UserSettings>().OfflineMode;
+
+            ConfigureEnableDisableRecentFiles(New<UserSettings>().DisableRecentFiles);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
@@ -809,6 +812,7 @@ namespace Axantum.AxCrypt
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
+            _optionsDisableRecentFilesToolStripMenuItem.Click += (sender, e) => { SetRecentFilesDisabledState(!New<UserSettings>().DisableRecentFiles); };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
@@ -882,6 +886,29 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
+        }
+
+        private void SetRecentFilesDisabledState(bool disable)
+        {
+            New<UserSettings>().DisableRecentFiles = disable;
+
+            if (disable)
+            {
+                _recentFilesListView.Items.Clear();
+            }
+            else
+            {
+                _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles);
+            }
+
+            ConfigureEnableDisableRecentFiles(disable);
+        }
+
+        private void ConfigureEnableDisableRecentFiles(bool disable)
+        {
+            _optionsDisableRecentFilesToolStripMenuItem.Checked = disable;
+            _recentFilesListView.Enabled = !disable;
+            _recentFilesTabPage.ToolTipText = disable ? Texts.DisableRecentFilesListTabToolTipText : string.Empty;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
