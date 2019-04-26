@@ -464,11 +464,10 @@ namespace Axantum.AxCrypt.Core.Extensions
                 async (IDataStore file, IProgressContext progress) =>
                 {
                     ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
-                    await New<AxCryptFile>().ChangeEncryptionAsync(file, activeFile.Identity, encryptionParameters, progress);
-
                     if (activeFile != null)
                     {
-                        New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId, Resolve.KnownIdentities.DefaultEncryptionIdentity));
+                        await New<AxCryptFile>().ChangeEncryptionAsync(file, activeFile.Identity, encryptionParameters, progress);
+                        New<FileSystemState>().Add(new ActiveFile(activeFile, encryptionParameters.CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity));
                         await New<FileSystemState>().Save();
                     }
 
