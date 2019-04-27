@@ -115,6 +115,17 @@ namespace Axantum.AxCrypt.Core.Session
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, activeFile.Properties.LastEncryptionWriteTimeUtc, cryptoId);
         }
 
+        public ActiveFile(ActiveFile activeFile, Guid cryptoId, LogOnIdentity identity)
+        {
+            if (activeFile == null)
+            {
+                throw new ArgumentNullException("activeFile");
+            }
+
+            Initialize(activeFile, identity);
+            Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, activeFile.Properties.LastEncryptionWriteTimeUtc, cryptoId);
+        }
+
         public ActiveFile(ActiveFile activeFile, DateTime lastEncryptionWriteTimeUtc, ActiveFileStatus status)
         {
             if (activeFile == null)
@@ -141,6 +152,11 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("key");
             }
             Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(New<INow>().Utc, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
+        }
+
+        private void Initialize(ActiveFile other, LogOnIdentity identity)
+        {
+            Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, identity, other.Thumbprint, other.Status, other.Properties);
         }
 
         private void Initialize(ActiveFile other)
