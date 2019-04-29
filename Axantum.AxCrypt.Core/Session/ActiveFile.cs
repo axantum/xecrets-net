@@ -173,6 +173,10 @@ namespace Axantum.AxCrypt.Core.Session
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
             IsShared = EncryptedFileInfo.IsKeyShared(Identity);
+            if (New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+            {
+                IsAnyFileActionWhenRecentFilesDisabled = true;
+            }
         }
 
         public IDataStore DecryptedFileInfo
@@ -267,6 +271,8 @@ namespace Axantum.AxCrypt.Core.Session
         public ActiveFileProperties Properties { get; private set; }
 
         public bool IsShared { get; private set; }
+
+        public bool IsAnyFileActionWhenRecentFilesDisabled { get; private set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]

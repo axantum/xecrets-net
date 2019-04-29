@@ -489,6 +489,12 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async Task Save()
         {
+            if (New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+            {
+                await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
+                return;
+            }
+
             lock (_activeFilesByEncryptedPath)
             {
                 string currentJson = string.Empty;

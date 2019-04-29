@@ -130,6 +130,10 @@ namespace Axantum.AxCrypt
                 {
                     try
                     {
+                        if (file.IsAnyFileActionWhenRecentFilesDisabled)
+                        {
+                            continue;
+                        }
                         UpdateOneItem(currentFiles, file);
                         ++i;
                     }
