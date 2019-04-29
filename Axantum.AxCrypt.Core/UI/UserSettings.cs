@@ -169,6 +169,12 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(ThisVersion), value); }
         }
 
+        public bool DisableRecentFiles
+        {
+            get { return Load(nameof(DisableRecentFiles), false); }
+            set { Store(nameof(DisableRecentFiles), value); }
+        }
+
         public bool DebugMode
         {
             get { return Load(nameof(DebugMode), false); }
