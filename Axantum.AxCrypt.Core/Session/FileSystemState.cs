@@ -366,6 +366,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
+                if (New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+                {
+                    return _activeFilesBeforeRecentFilesDisabled;
+                }
+
                 lock (_activeFilesByEncryptedPath)
                 {
                     return _activeFilesByEncryptedPath.Values.ToList();
@@ -395,7 +400,6 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask);
                 }
-
                 AddInternal(thisActiveFile);
             }
         }
@@ -512,12 +516,6 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async Task Save()
         {
-            if (New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
-            {
-                await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
-                return;
-            }
-
             lock (_activeFilesByEncryptedPath)
             {
                 string currentJson = string.Empty;
