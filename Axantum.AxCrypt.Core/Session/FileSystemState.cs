@@ -347,15 +347,20 @@ namespace Axantum.AxCrypt.Core.Session
 
             if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
             {
-                ActiveFile existingActiveFile = _activeFilesBeforeRecentFilesDisabled.SingleOrDefault(af => af.EncryptedFileInfo.FullName == activeFile.EncryptedFileInfo.FullName);
-                int activeFileIndex = _activeFilesBeforeRecentFilesDisabled.IndexOf(existingActiveFile);
-                if (activeFileIndex < 0)
-                {
-                    _activeFilesBeforeRecentFilesDisabled.Add(activeFile);
-                    return;
-                }
-                _activeFilesBeforeRecentFilesDisabled[activeFileIndex] = activeFile;
+                AddActiveFilesBeforeDisableRecentFiles(activeFile);
             }
+        }
+
+        private void AddActiveFilesBeforeDisableRecentFiles(ActiveFile activeFile)
+        {
+            ActiveFile existingActiveFile = _activeFilesBeforeRecentFilesDisabled.SingleOrDefault(af => af.EncryptedFileInfo.FullName == activeFile.EncryptedFileInfo.FullName);
+            int activeFileIndex = _activeFilesBeforeRecentFilesDisabled.IndexOf(existingActiveFile);
+            if (activeFileIndex < 0)
+            {
+                _activeFilesBeforeRecentFilesDisabled.Add(activeFile);
+                return;
+            }
+            _activeFilesBeforeRecentFilesDisabled[activeFileIndex] = activeFile;
         }
 
         private IList<ActiveFile> _activeFilesBeforeRecentFilesDisabled { get; set; } = new List<ActiveFile>();
