@@ -207,6 +207,11 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
+                if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+                {
+                    return _activeFilesBeforeRecentFilesDisabled;
+                }
+
                 lock (_activeFilesByEncryptedPath)
                 {
                     return new List<ActiveFile>(_activeFilesByEncryptedPath.Values);
@@ -327,6 +332,7 @@ namespace Axantum.AxCrypt.Core.Session
             lock (_activeFilesByEncryptedPath)
             {
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
+                _activeFilesBeforeRecentFilesDisabled.Remove(activeFile);
             }
         }
 
@@ -336,8 +342,23 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
+
             New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
+
+            if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+            {
+                ActiveFile existingActiveFile = _activeFilesBeforeRecentFilesDisabled.SingleOrDefault(af => af.EncryptedFileInfo.FullName == activeFile.EncryptedFileInfo.FullName);
+                int activeFileIndex = _activeFilesBeforeRecentFilesDisabled.IndexOf(existingActiveFile);
+                if (activeFileIndex < 0)
+                {
+                    _activeFilesBeforeRecentFilesDisabled.Add(activeFile);
+                    return;
+                }
+                _activeFilesBeforeRecentFilesDisabled[activeFileIndex] = activeFile;
+            }
         }
+
+        private IList<ActiveFile> _activeFilesBeforeRecentFilesDisabled { get; set; } = new List<ActiveFile>();
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
         [JsonProperty("activeFiles")]
@@ -356,6 +377,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     IEnumerable<ActiveFile> availableActiveFiles = value.Where(af => af.EncryptedFileInfo.IsAvailable);
                     SetRangeInternal(availableActiveFiles, ActiveFileStatus.Error | ActiveFileStatus.IgnoreChange | ActiveFileStatus.NotShareable);
+                    _activeFilesBeforeRecentFilesDisabled = _activeFilesByEncryptedPath.Values.ToList();
                 }
             }
         }
@@ -373,6 +395,7 @@ namespace Axantum.AxCrypt.Core.Session
                 {
                     thisActiveFile = new ActiveFile(activeFile, activeFile.Status & ~mask);
                 }
+
                 AddInternal(thisActiveFile);
             }
         }

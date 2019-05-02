@@ -898,7 +898,7 @@ namespace Axantum.AxCrypt
             }
             else
             {
-                _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles);
+                _recentFilesListView.UpdateRecentFiles(New<FileSystemState>().ActiveFiles);
             }
 
             ConfigureEnableDisableRecentFiles(disable);
