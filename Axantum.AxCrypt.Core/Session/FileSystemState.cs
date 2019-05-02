@@ -342,7 +342,6 @@ namespace Axantum.AxCrypt.Core.Session
             {
                 _activeFilesByEncryptedPath[activeFile.EncryptedFileInfo.FullName] = activeFile;
             }
-
             New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
 
             if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
