@@ -423,7 +423,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                await DecryptWatchedFolders.ExecuteAsync.DecryptWatchedFoldersAction(New<IDataContainer>(watchedFolderPath));
+                await DecryptWatchedFolders.ExecuteAsync(New<IDataContainer>(watchedFolderPath));
             }
         }
 
