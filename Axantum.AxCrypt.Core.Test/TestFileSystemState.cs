@@ -301,10 +301,10 @@ namespace Axantum.AxCrypt.Core.Test
 
                 Assert.That(state.WatchedFolders.First().Matches(_rootPath), "The Watched Folder should be equal to this.");
 
-                await state.RemoveWatchedFolder(Resolve.WorkFolder.FileInfo.FolderItemInfo("mystate.txt"));
+                await state.RemoveAndDecryptWatchedFolder(Resolve.WorkFolder.FileInfo.FolderItemInfo("mystate.txt"));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1), "There should still be one Watched folders.");
 
-                await state.RemoveWatchedFolder(New<IDataContainer>(_rootPath));
+                await state.RemoveAndDecryptWatchedFolder(New<IDataContainer>(_rootPath));
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0), "There should be no Watched folders now.");
             }
         }
@@ -322,7 +322,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
 
-                await state.RemoveWatchedFolder(knownFolder.My);
+                await state.RemoveAndDecryptWatchedFolder(knownFolder.My);
 
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0));
                 Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
@@ -332,7 +332,7 @@ namespace Axantum.AxCrypt.Core.Test
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(1));
                 Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));
 
-                await state.RemoveWatchedFolder(knownFolder.My);
+                await state.RemoveAndDecryptWatchedFolder(knownFolder.My);
 
                 Assert.That(state.WatchedFolders.Count(), Is.EqualTo(0));
                 Assert.That(state.AllWatchedFolders.Count(), Is.EqualTo(1));

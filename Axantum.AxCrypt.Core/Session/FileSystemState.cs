@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (watchedFolder.Path == dataItem.FullName && !dataItem.IsAvailable)
             {
-                await RemoveWatchedFolder(dataItem);
+                await RemoveAndDecryptWatchedFolder(dataItem);
                 await Save();
                 return;
             }
@@ -176,7 +176,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual async Task RemoveWatchedFolder(IDataItem dataItem)
+        public virtual async Task RemoveAndDecryptWatchedFolder(IDataItem dataItem)
         {
             if (dataItem == null)
             {
@@ -187,7 +187,7 @@ namespace Axantum.AxCrypt.Core.Session
             await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
 
-        public virtual async Task RemoveFromWatchedFolders(IDataItem dataItem)
+        public virtual async Task RemoveFromWatchedFolder(IDataItem dataItem)
         {
             if (dataItem == null)
             {
