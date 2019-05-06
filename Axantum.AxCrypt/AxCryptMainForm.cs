@@ -313,7 +313,7 @@ namespace Axantum.AxCrypt
             _watchedFolderColumnHeader.Text = Texts.WatchedFolderColumnHeaderText;
             _watchedFoldersAddSecureFolderMenuItem.Text = "&" + Texts.AddSecureFolderMenuItemText;
             _watchedFoldersdecryptTemporarilyMenuItem.Text = "&" + Texts.MenuDecryptTemporarilyText;
-            _watchedFoldersRemoveFromListButkeepFileSecuredMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
+            _removeWatchedFolderToolStripMenuItem.Text = "&" + Texts.RemoveRecentFileToolStripMenuItemText;
             _watchedFoldersKeySharingMenuItem.Text = "&" + Texts.ShareKeysToolStripMenuItemText;
             _watchedFoldersOpenExplorerHereMenuItem.Text = "&" + Texts.WatchedFoldersOpenExplorerHereMenuItemText;
             _watchedFoldersRemoveMenuItem.Text = "&" + Texts.WatchedFoldersRemoveMenuItemText;
@@ -827,6 +827,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersListView.SelectedIndexChanged += (sender, e) => { _mainViewModel.SelectedWatchedFolders = _watchedFoldersListView.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Text); };
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.DecryptWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
+            _removeWatchedFolderToolStripMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
         }
@@ -880,7 +881,7 @@ namespace Axantum.AxCrypt
         {
             bool itemSelected = _watchedFoldersListView.HitTest(location).Location == ListViewHitTestLocations.Label;
             _watchedFoldersdecryptTemporarilyMenuItem.Visible = itemSelected;
-            _watchedFoldersRemoveFromListButkeepFileSecuredMenuItem.Visible = itemSelected;
+            _removeWatchedFolderToolStripMenuItem.Visible = itemSelected;
             _watchedFoldersOpenExplorerHereMenuItem.Visible = itemSelected;
             _watchedFoldersRemoveMenuItem.Visible = itemSelected;
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
@@ -917,7 +918,6 @@ namespace Axantum.AxCrypt
             _VerifyFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.VerifyFiles.ExecuteAsync(null); };
             _axcryptFileFormatCheckToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.IntegrityCheckFiles.ExecuteAsync(null); };
             _watchedFoldersdecryptTemporarilyMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
-            _watchedFoldersRemoveFromListButkeepFileSecuredMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFolders.ExecuteAsync(_mainViewModel.DecryptWatchedFolders); };
             _watchedFoldersListView.MouseDoubleClick += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(_mainViewModel.SelectedWatchedFolders.FirstOrDefault()); };
             _recentFilesShowInFolderToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.ShowInFolder.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
         }

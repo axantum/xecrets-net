@@ -183,6 +183,23 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("folderInfo");
             }
 
+            RemoveWatchedFolderInternal(dataItem);
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
+        }
+
+        public virtual async Task RemoveFromWatchedFolders(IDataItem dataItem)
+        {
+            if (dataItem == null)
+            {
+                throw new ArgumentNullException("folderInfo");
+            }
+
+            RemoveWatchedFolderInternal(dataItem);
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity));
+        }
+
+        public virtual void RemoveWatchedFolderInternal(IDataItem dataItem)
+        {
             lock (_watchedFolders)
             {
                 int i = _watchedFolders.FindIndex((wf) => wf.Matches(dataItem.FullName));
@@ -200,7 +217,6 @@ namespace Axantum.AxCrypt.Core.Session
                     _watchedFolders.RemoveAt(i);
                 }
             }
-            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
 
         public IEnumerable<ActiveFile> ActiveFiles

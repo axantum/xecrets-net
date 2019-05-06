@@ -113,6 +113,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAction LicenseUpdate { get; private set; }
 
+        public IAsyncAction RemoveWatchedFolders { get; private set; }
+
         public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
             _fileSystemState = fileSystemState;
@@ -149,6 +151,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             AxCryptUpdateCheck = new AsyncDelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
+            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveFromWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
@@ -415,18 +418,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _fileSystemState.Save();
         }
 
-        public virtual async Task RemoveWatchedFolderWithoutAnyAction(IEnumerable<string> folders)
-        {
-            if (!folders.Any())
-            {
-                return;
-            }
-            foreach (string watchedFolderPath in folders)
-            {
-                await DecryptWatchedFolders.ExecuteAsync(New<IDataContainer>(watchedFolderPath));
-            }
-        }
-
         private async Task AddWatchedFoldersActionAsync(IEnumerable<string> folders)
         {
             if (!folders.Any())
@@ -455,6 +446,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             {
                 await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
+            await _fileSystemState.Save();
+        }
+
+        public virtual async Task RemoveFromWatchedFoldersAction(IEnumerable<string> folders)
+        {
+            if (!folders.Any())
+            {
+                return;
+            }
+            foreach (string watchedFolder in folders)
+            {
+                await _fileSystemState.RemoveFromWatchedFolders(New<IDataContainer>(watchedFolder));
+            }
+
             await _fileSystemState.Save();
         }
 
