@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
@@ -103,6 +104,11 @@ namespace Axantum.AxCrypt.Core.UI
                     activeFile = Decrypt(activeFile.Identity, activeFile.EncryptedFileInfo, destinationLock, activeFile, progress);
                 }
                 _fileSystemState.Add(activeFile);
+
+                if (New<UserSettings>().DisableRecentFiles)
+                {
+                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
+                }
                 await _fileSystemState.Save();
 
                 if (encryptedDataStore.IsWriteProtected || !New<LicensePolicy>().Capabilities.Has(LicenseCapability.EditExistingFiles))
