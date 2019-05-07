@@ -439,7 +439,7 @@ namespace Axantum.AxCrypt.Core.Test
                 await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 mockFileSystemState.ResetCalls();
 
-                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { "File1.txt", "file2.txt" });
+                await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { "File1.txt", "file2.txt" });
             }
 
             mockFileSystemState.Verify(x => x.RemoveAndDecryptWatchedFolder(It.IsAny<IDataContainer>()), Times.Exactly(2));
@@ -455,14 +455,14 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.ThrowsAsync<InvalidOperationException>(async () => await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { }));
+                Assert.ThrowsAsync<InvalidOperationException>(async () => await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { }));
 
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 fileSystemStateMock.Object.KnownPassphrases.Add(id.Passphrase);
                 await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
                 fileSystemStateMock.ResetCalls();
 
-                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { });
+                await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { });
 
                 fileSystemStateMock.Verify(x => x.RemoveAndDecryptWatchedFolder(It.IsAny<IDataContainer>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
@@ -478,7 +478,7 @@ namespace Axantum.AxCrypt.Core.Test
                 fileSystemStateMock.Verify(x => x.Save(), Times.Once);
 
                 fileSystemStateMock.ResetCalls();
-                await mvm.RemoveWatchedFolders.ExecuteAsync(new string[] { @"C:\Folder1\" });
+                await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { @"C:\Folder1\" });
             }
 
             fileSystemStateMock.Verify(x => x.RemoveAndDecryptWatchedFolder(It.IsAny<IDataContainer>()), Times.Exactly(1));
