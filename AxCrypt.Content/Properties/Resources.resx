@@ -881,6 +881,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>These files could not be re-encrypted:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>!!The above Encrypted files are opened, so do not allowing the user to exit/reset from the AxCrypt app</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
   </data>

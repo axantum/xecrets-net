@@ -2041,6 +2041,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!The above Encrypted files are opened, so do not allowing the user to exit/reset from the AxCrypt app.
+        /// </summary>
+        public static string DecryptedFilesWarningWhenExitOrReset {
+            get {
+                return ResourceManager.GetString("DecryptedFilesWarningWhenExitOrReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assumed open. Try to Close the application, or use the Clean function to remove it..
         /// </summary>
         public static string DecryptedFileToolTip {

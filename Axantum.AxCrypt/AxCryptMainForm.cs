@@ -807,7 +807,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
-            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
+            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (!await CheckDecryptedFilesAndShowWarning()) { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); } };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
@@ -1199,9 +1199,14 @@ namespace Axantum.AxCrypt
             return;
         }
 
-        private static async Task ResetAllSettingsAndRestart()
+        private async Task ResetAllSettingsAndRestart()
         {
             PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.ResetAllSettingsWarningText);
+            if (result == PopupButtons.Ok && await CheckDecryptedFilesAndShowWarning())
+            {
+                return;
+            }
+
             if (result == PopupButtons.Ok)
             {
                 new ApplicationManager().WaitForBackgroundToComplete();
@@ -1531,11 +1536,12 @@ namespace Axantum.AxCrypt
             return buttons;
         }
 
-        private bool _isAnyDecryptedFilesWhenExit;
-
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _isAnyDecryptedFilesWhenExit = true;
+            if (await CheckDecryptedFilesAndShowWarning())
+            {
+                return;
+            }
             await ShutDownAnd(New<IUIThread>().ExitApplication);
         }
 
@@ -1554,10 +1560,7 @@ namespace Axantum.AxCrypt
             await EncryptPendingFiles();
             await WarnIfAnyDecryptedFiles();
 
-            if (!_isAnyDecryptedFilesWhenExit)
-            {
-                finalAction();
-            }
+            finalAction();
         }
 
         #region ToolStrip
@@ -1592,24 +1595,30 @@ namespace Axantum.AxCrypt
 
         private async Task WarnIfAnyDecryptedFiles()
         {
+            if (await CheckDecryptedFilesAndShowWarning())
+            {
+                return;
+            }
+        }
+
+        private async Task<bool> CheckDecryptedFilesAndShowWarning()
+        {
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles ?? new ActiveFile[0];
             if (!openFiles.Any())
             {
-                _isAnyDecryptedFilesWhenExit = false;
-                return;
+                return false;
             }
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
             foreach (ActiveFile openFile in openFiles)
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
+            sb.Append("{0}{1}".InvariantFormat(Environment.NewLine, Texts.DecryptedFilesWarningWhenExitOrReset));
 
-            if (_isAnyDecryptedFilesWhenExit)
-            {
-                sb.Append(Environment.NewLine + "The above Encrypted files are opened, so do not allowing the user to exit from the AxCrypt app");
-            }
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
+            return true;
         }
 
         private void SetSortOrder(int column)
