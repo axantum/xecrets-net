@@ -33,9 +33,9 @@ namespace Axantum.AxCrypt
             this._progressContextCancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._watchedFoldersKeySharingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersDecryptMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersdecryptTemporarilyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._removeWatchedFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._watchedFoldersRemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersOpenExplorerHereMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersAddSecureFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._watchedFoldersTabPage = new System.Windows.Forms.TabPage();
@@ -246,9 +246,9 @@ namespace Axantum.AxCrypt
             // 
             this._watchedFoldersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._watchedFoldersKeySharingMenuItem,
-            this._watchedFoldersRemoveMenuItem,
+            this._watchedFoldersDecryptMenuItem,
             this._watchedFoldersdecryptTemporarilyMenuItem,
-            this._removeWatchedFolderToolStripMenuItem,
+            this._watchedFoldersRemoveMenuItem,
             this._watchedFoldersOpenExplorerHereMenuItem,
             this._watchedFoldersAddSecureFolderMenuItem});
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
@@ -260,11 +260,11 @@ namespace Axantum.AxCrypt
             this._watchedFoldersKeySharingMenuItem.Size = new System.Drawing.Size(193, 22);
             this._watchedFoldersKeySharingMenuItem.Text = "[Key Sharing]";
             // 
-            // _watchedFoldersRemoveMenuItem
+            // _watchedFoldersDecryptMenuItem
             // 
-            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
-            this._watchedFoldersRemoveMenuItem.Size = new System.Drawing.Size(193, 22);
-            this._watchedFoldersRemoveMenuItem.Text = "[&Decrypt Permanently]";
+            this._watchedFoldersDecryptMenuItem.Name = "_watchedFoldersDecryptMenuItem";
+            this._watchedFoldersDecryptMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersDecryptMenuItem.Text = "[&Decrypt Permanently]";
             // 
             // _watchedFoldersdecryptTemporarilyMenuItem
             // 
@@ -272,11 +272,11 @@ namespace Axantum.AxCrypt
             this._watchedFoldersdecryptTemporarilyMenuItem.Size = new System.Drawing.Size(193, 22);
             this._watchedFoldersdecryptTemporarilyMenuItem.Text = "[Decrypt &Temporarily]";
             // 
-            // _removeWatchedFolderToolStripMenuItem
+            // _watchedFoldersRemoveMenuItem
             // 
-            this._removeWatchedFolderToolStripMenuItem.Name = "_removeWatchedFolderToolStripMenuItem";
-            this._removeWatchedFolderToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this._removeWatchedFolderToolStripMenuItem.Text = "[&Remove from list without decrypting document]";
+            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
+            this._watchedFoldersRemoveMenuItem.Size = new System.Drawing.Size(193, 22);
+            this._watchedFoldersRemoveMenuItem.Text = "[&Remove from list without decrypting document]";
             // 
             // _watchedFoldersOpenExplorerHereMenuItem
             // 
@@ -1261,9 +1261,9 @@ namespace Axantum.AxCrypt
         private Axantum.AxCrypt.Forms.Implementation.ProgressBackgroundComponent _progressBackgroundWorker;
         private System.Windows.Forms.ToolStripMenuItem _decryptAndRemoveFromListToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _watchedFoldersContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersDecryptMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersdecryptTemporarilyMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _removeWatchedFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _watchedFoldersRemoveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _watchedFoldersOpenExplorerHereMenuItem;
         private System.Windows.Forms.TabPage _watchedFoldersTabPage;
         private System.Windows.Forms.ListView _watchedFoldersListView;
