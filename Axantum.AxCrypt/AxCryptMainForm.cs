@@ -1531,8 +1531,11 @@ namespace Axantum.AxCrypt
             return buttons;
         }
 
+        private bool _isAnyDecryptedFilesWhenExit;
+
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _isAnyDecryptedFilesWhenExit = true;
             await ShutDownAnd(New<IUIThread>().ExitApplication);
         }
 
@@ -1551,7 +1554,10 @@ namespace Axantum.AxCrypt
             await EncryptPendingFiles();
             await WarnIfAnyDecryptedFiles();
 
-            finalAction();
+            if (!_isAnyDecryptedFilesWhenExit)
+            {
+                finalAction();
+            }
         }
 
         #region ToolStrip
@@ -1589,6 +1595,7 @@ namespace Axantum.AxCrypt
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles ?? new ActiveFile[0];
             if (!openFiles.Any())
             {
+                _isAnyDecryptedFilesWhenExit = false;
                 return;
             }
             StringBuilder sb = new StringBuilder();
@@ -1596,6 +1603,11 @@ namespace Axantum.AxCrypt
             foreach (ActiveFile openFile in openFiles)
             {
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
+            }
+
+            if (_isAnyDecryptedFilesWhenExit)
+            {
+                sb.Append(Environment.NewLine + "The above Encrypted files are opened, so do not allowing the user to exit from the AxCrypt app");
             }
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
         }
