@@ -1595,10 +1595,7 @@ namespace Axantum.AxCrypt
 
         private async Task WarnIfAnyDecryptedFiles()
         {
-            if (await CheckDecryptedFilesAndShowWarning())
-            {
-                return;
-            }
+            await CheckDecryptedFilesAndShowWarning();
         }
 
         private async Task<bool> CheckDecryptedFilesAndShowWarning()
@@ -1608,7 +1605,6 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
             foreach (ActiveFile openFile in openFiles)
@@ -1616,7 +1612,6 @@ namespace Axantum.AxCrypt
                 sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
             }
             sb.Append("{0}{1}".InvariantFormat(Environment.NewLine, Texts.DecryptedFilesWarningWhenExitOrReset));
-
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
             return true;
         }
