@@ -457,7 +457,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolder in folders)
             {
-                await _fileSystemState.RemoveFromWatchedFolder(New<IDataContainer>(watchedFolder));
+                await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolder));
             }
 
             await _fileSystemState.Save();
