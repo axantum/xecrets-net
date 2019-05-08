@@ -1201,12 +1201,12 @@ namespace Axantum.AxCrypt
 
         private async Task ResetAllSettingsAndRestart()
         {
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.ResetAllSettingsWarningText);
-            if (result == PopupButtons.Ok && await WarnIfAnyDecryptedFiles())
+            if (await WarnIfAnyDecryptedFiles())
             {
                 return;
             }
 
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.ResetAllSettingsWarningText);
             if (result == PopupButtons.Ok)
             {
                 new ApplicationManager().WaitForBackgroundToComplete();
