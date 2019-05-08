@@ -315,8 +315,14 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     LicenseUpdate.Execute(null);
                     break;
 
-                case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.ProcessExit:
+                    if (New<UserSettings>().DisableRecentFiles)
+                    {
+                        FilesArePending = AreFilesPending();
+                    }
+                    break;
+
+                case SessionNotificationType.WorkFolderChange:
                 case SessionNotificationType.SessionChange:
                 default:
                     break;
