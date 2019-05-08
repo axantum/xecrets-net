@@ -807,7 +807,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
-            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (!await CheckDecryptedFilesAndShowWarning()) { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); } };
+            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (!await WarnIfAnyDecryptedFiles()) { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); } };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
@@ -1202,7 +1202,7 @@ namespace Axantum.AxCrypt
         private async Task ResetAllSettingsAndRestart()
         {
             PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WarningTitle, Texts.ResetAllSettingsWarningText);
-            if (result == PopupButtons.Ok && await CheckDecryptedFilesAndShowWarning())
+            if (result == PopupButtons.Ok && await WarnIfAnyDecryptedFiles())
             {
                 return;
             }
@@ -1538,7 +1538,7 @@ namespace Axantum.AxCrypt
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (await CheckDecryptedFilesAndShowWarning())
+            if (await WarnIfAnyDecryptedFiles())
             {
                 return;
             }
@@ -1558,7 +1558,6 @@ namespace Axantum.AxCrypt
         {
             await new ApplicationManager().ShutdownBackgroundSafe();
             await EncryptPendingFiles();
-            await WarnIfAnyDecryptedFiles();
 
             finalAction();
         }
@@ -1593,12 +1592,7 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task WarnIfAnyDecryptedFiles()
-        {
-            await CheckDecryptedFilesAndShowWarning();
-        }
-
-        private async Task<bool> CheckDecryptedFilesAndShowWarning()
+        private async Task<bool> WarnIfAnyDecryptedFiles()
         {
             IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles ?? new ActiveFile[0];
             if (!openFiles.Any())
