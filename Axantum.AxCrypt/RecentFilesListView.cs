@@ -103,6 +103,11 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
+            if (New<UserSettings>().DisableRecentFiles)
+            {
+                return;
+            }
+
             _updateRecentFilesInProgress = true;
             this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
         }
