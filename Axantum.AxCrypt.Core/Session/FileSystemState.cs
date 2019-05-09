@@ -263,6 +263,12 @@ namespace Axantum.AxCrypt.Core.Session
                     return activeFile;
                 }
             }
+
+            if (!_isRecentFilesDisabled)
+            {
+                return _activeFilesBeforeDisableRecentFiles.SingleOrDefault(af=>af.EncryptedFileInfo.FullName.NormalizeFilePath() == encryptedPath);
+            }
+
             return null;
         }
 
@@ -332,7 +338,7 @@ namespace Axantum.AxCrypt.Core.Session
             lock (_activeFilesByEncryptedPath)
             {
                 _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
-                _activeFilesBeforeDisableRecentFiles.Remove(activeFile);
+                _activeFilesBeforeDisableRecentFiles = _activeFilesBeforeDisableRecentFiles.Where(af=>af.EncryptedFileInfo.FullName != activeFile.EncryptedFileInfo.FullName).ToList();
             }
         }
 
