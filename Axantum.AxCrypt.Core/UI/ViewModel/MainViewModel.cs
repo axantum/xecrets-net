@@ -105,13 +105,15 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction ClearPassphraseMemory { get; private set; }
 
-        public IAsyncAction RemoveWatchedFolders { get; private set; }
+        public IAsyncAction DecryptWatchedFolders { get; private set; }
 
         public IAction OpenSelectedFolder { get; private set; }
 
         public IAsyncAction AxCryptUpdateCheck { get; private set; }
 
         public IAction LicenseUpdate { get; private set; }
+
+        public IAsyncAction RemoveWatchedFolders { get; private set; }
 
         public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
@@ -145,10 +147,11 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             RemoveRecentFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => RemoveRecentFilesAction(files));
             EncryptPendingFiles = new AsyncDelegateAction<object>((parameter) => EncryptPendingFilesAction());
             ClearPassphraseMemory = new AsyncDelegateAction<object>((parameter) => ClearPassphraseMemoryAction());
-            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
+            DecryptWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => DecryptWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
             OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
             AxCryptUpdateCheck = new AsyncDelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
+            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
@@ -433,7 +436,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             await _fileSystemState.Save();
         }
 
-        private async Task RemoveWatchedFoldersAction(IEnumerable<string> folders)
+        private async Task DecryptWatchedFoldersAction(IEnumerable<string> folders)
         {
             if (!folders.Any())
             {
@@ -441,8 +444,22 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
             foreach (string watchedFolderPath in folders)
             {
-                await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolderPath));
+                await _fileSystemState.RemoveAndDecryptWatchedFolder(New<IDataContainer>(watchedFolderPath));
             }
+            await _fileSystemState.Save();
+        }
+
+        public virtual async Task RemoveWatchedFoldersAction(IEnumerable<string> folders)
+        {
+            if (!folders.Any())
+            {
+                return;
+            }
+            foreach (string watchedFolder in folders)
+            {
+                await _fileSystemState.RemoveWatchedFolder(New<IDataContainer>(watchedFolder));
+            }
+
             await _fileSystemState.Save();
         }
 

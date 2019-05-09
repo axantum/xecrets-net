@@ -66,9 +66,9 @@
             this._watchedFoldersContextMenuStrip.Name = "watchedFoldersContextMenuStrip";
             this._watchedFoldersContextMenuStrip.Size = new System.Drawing.Size(186, 70);
             // 
-            // _watchedFoldersRemoveMenuItem
+            // _watchedFoldersDecryptMenuItem
             // 
-            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersRemoveMenuItem";
+            this._watchedFoldersRemoveMenuItem.Name = "_watchedFoldersDecryptMenuItem";
             this._watchedFoldersRemoveMenuItem.Size = new System.Drawing.Size(185, 22);
             this._watchedFoldersRemoveMenuItem.Text = "[&Decrypt Permanently]";
             // 
