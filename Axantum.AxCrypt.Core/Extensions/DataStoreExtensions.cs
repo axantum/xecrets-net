@@ -109,9 +109,30 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptIdentity.DecryptionParameters(), stream))
                 {
+                    if (!ValidDecryptionIdentityToCheckKeyShared(document))
+                    {
+                        return false;
+                    }
                     return document.AsymmetricRecipients.Any(ar => ar.Email != Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail);
                 }
             }
+        }
+
+        private static bool ValidDecryptionIdentityToCheckKeyShared(IAxCryptDocument document)
+        {
+            if (!document.PassphraseIsValid)
+            {
+                return false;
+            }
+            if (document.DecryptionParameter.Passphrase == Passphrase.Empty)
+            {
+                return true;
+            }
+            if (document.DecryptionParameter.Passphrase != Resolve.KnownIdentities.DefaultEncryptionIdentity.Passphrase)
+            {
+                return false;
+            }
+            return true;
         }
 
         public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)
