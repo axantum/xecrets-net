@@ -146,7 +146,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             if (watchedFolder.Path == dataItem.FullName && !dataItem.IsAvailable)
             {
-                await RemoveWatchedFolder(dataItem);
+                await RemoveAndDecryptWatchedFolder(dataItem);
                 await Save();
                 return;
             }
@@ -176,13 +176,29 @@ namespace Axantum.AxCrypt.Core.Session
             }
         }
 
-        public virtual async Task RemoveWatchedFolder(IDataItem dataItem)
+        public virtual async Task RemoveAndDecryptWatchedFolder(IDataItem dataItem)
         {
             if (dataItem == null)
             {
                 throw new ArgumentNullException("folderInfo");
             }
 
+            RemoveWatchedFolderInternal(dataItem);
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
+        }
+
+        public virtual async Task RemoveWatchedFolder(IDataItem dataItem)
+        {
+            if (dataItem == null)
+            {
+                throw new ArgumentNullException("folderInfo");
+            }
+            RemoveWatchedFolderInternal(dataItem);
+            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity));
+        }
+
+        public virtual void RemoveWatchedFolderInternal(IDataItem dataItem)
+        {
             lock (_watchedFolders)
             {
                 int i = _watchedFolders.FindIndex((wf) => wf.Matches(dataItem.FullName));
@@ -200,7 +216,6 @@ namespace Axantum.AxCrypt.Core.Session
                     _watchedFolders.RemoveAt(i);
                 }
             }
-            await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity, dataItem.FullName));
         }
 
         public IEnumerable<ActiveFile> ActiveFiles
