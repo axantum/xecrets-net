@@ -207,7 +207,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+                if (!_isRecentFilesDisabled)
                 {
                     return _activeFilesBeforeDisableRecentFiles;
                 }
@@ -344,7 +344,7 @@ namespace Axantum.AxCrypt.Core.Session
             }
             New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
 
-            if (!New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+            if (!_isRecentFilesDisabled)
             {
                 AddActiveFilesBeforeDisableRecentFiles(activeFile);
             }
@@ -362,6 +362,14 @@ namespace Axantum.AxCrypt.Core.Session
             _activeFilesBeforeDisableRecentFiles[activeFileIndex] = activeFile;
         }
 
+        private bool _isRecentFilesDisabled
+        {
+            get
+            {
+                return New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles;
+            }
+        }
+
         private IList<ActiveFile> _activeFilesBeforeDisableRecentFiles { get; set; } = new List<ActiveFile>();
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
@@ -370,7 +378,7 @@ namespace Axantum.AxCrypt.Core.Session
         {
             get
             {
-                if (New<Axantum.AxCrypt.Core.UI.UserSettings>().DisableRecentFiles)
+                if (_isRecentFilesDisabled)
                 {
                     return _activeFilesBeforeDisableRecentFiles;
                 }
@@ -520,6 +528,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         public virtual async Task Save()
         {
+            bool isFileUpdated = false;
             lock (_activeFilesByEncryptedPath)
             {
                 string currentJson = string.Empty;
@@ -532,20 +541,37 @@ namespace Axantum.AxCrypt.Core.Session
                 }
 
                 string updatedJson = Resolve.Serializer.Serialize(this);
-                if (currentJson == updatedJson)
-                {
-                    return;
-                }
 
-                using (StreamWriter writer = new StreamWriter(_dataStore.OpenWrite(), Encoding.UTF8))
+                if (currentJson != updatedJson)
                 {
-                    writer.Write(updatedJson);
+                    using (StreamWriter writer = new StreamWriter(_dataStore.OpenWrite(), Encoding.UTF8))
+                    {
+                        writer.Write(updatedJson);
+                    }
+                    isFileUpdated = true;
                 }
             }
+
+            if (!isFileUpdated)
+            {
+                CheckActiveFileChangeWhenRecentFilesDisabled();
+                return;
+            }
+
             if (Resolve.Log.IsInfoEnabled)
             {
                 Resolve.Log.LogInfo("Wrote FileSystemState to '{0}'.".InvariantFormat(_dataStore));
             }
+            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
+        }
+
+        private async void CheckActiveFileChangeWhenRecentFilesDisabled()
+        {
+            if (!_isRecentFilesDisabled)
+            {
+                return;
+            }
+
             await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.ActiveFileChange)).Free();
         }
 
