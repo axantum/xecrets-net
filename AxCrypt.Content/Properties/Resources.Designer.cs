@@ -6009,7 +6009,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove from list but keep file secured.
+        ///   Looks up a localized string similar to !!Remove from list but keep secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
             get {

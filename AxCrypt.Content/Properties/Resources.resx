@@ -2408,7 +2408,8 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Remove from list but keep file secured</value>
+    <value>!!Remove from list but keep secured</value>
+    <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
