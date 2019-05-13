@@ -247,7 +247,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static async Task<IEnumerable<UserPublicKey>> GetAllPublicKeyRecipientsFromEncryptedFiles(IEnumerable<string> fileNames, LogOnIdentity identity)
         {
-            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames);
+            IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames, identity);
             IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).Distinct();
 
             UpdateKnownKeys(sharedWith);
@@ -279,12 +279,13 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private static async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames)
+        private static async Task<IEnumerable<Tuple<string, EncryptedProperties>>> ListValidAsync(IEnumerable<string> fileNames, LogOnIdentity defaultIdentity)
         {
             List<Tuple<string, EncryptedProperties>> files = new List<Tuple<string, EncryptedProperties>>();
             foreach (string file in fileNames)
             {
-                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file));
+                LogOnIdentity decryptionIdentity = FindDecryptionIdentity(file, defaultIdentity);
+                EncryptedProperties properties = await EncryptedPropertiesAsync(New<IDataStore>(file), decryptionIdentity);
                 if (properties.IsValid)
                 {
                     files.Add(new Tuple<string, EncryptedProperties>(file, properties));
@@ -294,9 +295,20 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             return files;
         }
 
-        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore)
+        private static LogOnIdentity FindDecryptionIdentity(string filepath, LogOnIdentity defaultIdentity)
         {
-            return await Task.Run(() => EncryptedProperties.Create(dataStore));
+            ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(filepath);
+            if (activeFile == null || activeFile.Identity == LogOnIdentity.Empty)
+            {
+                return defaultIdentity;
+            }
+
+            return activeFile.Identity;
+        }
+
+        private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore, LogOnIdentity decryptionIdentity)
+        {
+            return await Task.Run(() => EncryptedProperties.Create(dataStore, decryptionIdentity));
         }
     }
 }
