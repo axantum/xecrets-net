@@ -109,7 +109,12 @@ namespace Axantum.AxCrypt.Core.Extensions
             {
                 using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(decryptIdentity.DecryptionParameters(), stream))
                 {
-                    return document.AsymmetricRecipients.Any(ar => ar.Email != Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail);
+                    if (!document.PassphraseIsValid)
+                    {
+                        return false;
+                    }
+
+                    return document.AsymmetricRecipients.Select(ar => ar.Email).Distinct().Skip(1).Any();
                 }
             }
         }
