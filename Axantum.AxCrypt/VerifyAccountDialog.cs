@@ -99,6 +99,14 @@ namespace Axantum.AxCrypt
             TaskRunner.WaitFor(() => _viewModel.VerifyAccount.ExecuteAsync(null));
             if (!VerifyCode())
             {
+                _viewModel.ErrorMessage = string.Empty;
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(_viewModel.ApiErrorMessage))
+            {
+                New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText);
+                _viewModel.ApiErrorMessage = string.Empty;
                 return false;
             }
 

@@ -237,9 +237,9 @@ namespace Axantum.AxCrypt.Core.Service
                 {
                     await _remoteService.PasswordResetAsync(verificationCode).Free();
                 }
-                catch (ApiException aex)
+                catch (ApiException)
                 {
-                    await aex.HandleApiExceptionAsync();
+                    throw;
                 }
             }
             await _localService.PasswordResetAsync(verificationCode).Free();
