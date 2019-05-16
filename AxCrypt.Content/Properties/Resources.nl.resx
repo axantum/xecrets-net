@@ -263,9 +263,7 @@ Bevat software van http://www.bouncycastle.org/ .</value>
 
 Wees voorzichtig en zorg ervoor dat al uw backups up-to-date zijn. Als u problemen heeft kunt u deze melden via https://bitbucket.org/axcryptab/axcrypt-xwt/issues of support@axcrypt.net . 
 
-U bent gewaarschuwd! Geniet van de beta!
- 
-</value>
+U bent gewaarschuwd! Geniet van de beta!</value>
     <comment>A text that is shown to users starting a beta version of our software.</comment>
   </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
@@ -307,15 +305,13 @@ U bent gewaarschuwd! Geniet van de beta!
     <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Business {0} abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.
-</value>
+    <value>Uw AxCrypt Business {0} abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Wanneer uw Business abonnement wordt vernieuwd,kunt u en uw team blijven genieten van:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.
-</value>
+    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Tijd om uw AxCrypt Business abonnement te vernieuwen!</value>
@@ -397,8 +393,7 @@ U bent gewaarschuwd! Geniet van de beta!
     <comment>A format string describing when a subscription expires. The {0} part will be filled with the appropriate date.</comment>
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
-    <value>Als uw Business abonnement niet op tijd wordt verlengd, valt u terug in een van onze gratis abonnementen.
-</value>
+    <value>Als uw Business abonnement niet op tijd wordt verlengd, valt u terug in een van onze gratis abonnementen.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importeer</value>
@@ -1041,8 +1036,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>AxCrypt Openbaar Sleutel Bestanden Delen</value>
   </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
-    <value>'{0}' is geopend in een andere applicatie. Zorg ervoor dat de andere applicatie volledig is gesloten en probeer het opnieuw.
-</value>
+    <value>'{0}' is geopend in een andere applicatie. Zorg ervoor dat de andere applicatie volledig is gesloten en probeer het opnieuw.</value>
   </data>
   <data name="FileIsWriteProtectedWarning" xml:space="preserve">
     <value>'{0}' is alleen-lezen</value>
@@ -1497,8 +1491,7 @@ De licentie voor dit programma is conform de overeenkomst.
     <value>Open Verkenner Hier</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We hebben gemerkt dat u geen Premium-abonnement heeft, dus we willen graag een gratis proefversie voor u starten!
-</value>
+    <value>We hebben gemerkt dat u geen Premium-abonnement heeft, dus we willen graag een gratis proefversie voor u starten!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Zonder Premium kunt u alleen bestanden bekijken en permanent bestanden decrypteren.</value>
@@ -1510,8 +1503,7 @@ De licentie voor dit programma is conform de overeenkomst.
 U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxCrypt.</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
-    <value>Wanneer de proefperiode verloopt, gaat u automatisch verder met AxCrypt Free, tenzij u ervoor kiest om een abonnement aan te schaffen.
-</value>
+    <value>Wanneer de proefperiode verloopt, gaat u automatisch verder met AxCrypt Free, tenzij u ervoor kiest om een abonnement aan te schaffen.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Fout</value>
@@ -1633,8 +1625,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>Offline AxCrypt ID Creatie</value>
   </data>
   <data name="OfflineApiExceptionDialogText" xml:space="preserve">
-    <value>Er lijkt een probleem te zijn met het verbinding met de server, maar we gaan offline verder. 
-</value>
+    <value>Er lijkt een probleem te zijn met het verbinding met de server, maar we gaan offline verder.</value>
   </data>
   <data name="OfflineIndicatorText" xml:space="preserve">
     <value>Offline</value>
@@ -1812,9 +1803,7 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Deze eigenschap vereist het aanschaffen van een abonnement!</value>
   </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
-    <value>AxCrypt Premium {0} x 30 dagen.
-
-</value>
+    <value>AxCrypt Premium {0} x 30 dagen.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Om sleutels te delen heeft u een abonnement nodig. Klik hier om nu te upgraden!</value>
@@ -2077,6 +2066,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Verwijder van lijst, maar houdt bestand beveiligd</value>
+    <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Opnieuw versturen</value>
@@ -2092,13 +2082,11 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Reset</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
-    <value>Hernoem tot origineel
-</value>
+    <value>Hernoem tot origineel</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
   </data>
   <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
-    <value>Herstel de bestandsnaam op basis van de originele bestandsnaam van een gecodeerd bestand waarvan de naam is gewijzigd.
-</value>
+    <value>Herstel de bestandsnaam op basis van de originele bestandsnaam van een gecodeerd bestand waarvan de naam is gewijzigd.</value>
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
@@ -2112,8 +2100,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Ga naar wachtwoordbeheer.</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
-    <value>Sorteer op
-</value>
+    <value>Sorteer op</value>
   </data>
   <data name="SecretsSortOrderOptionByContent" xml:space="preserve">
     <value>Inhoud</value>
@@ -2440,8 +2427,7 @@ Het AxCrypt team</value>
     <comment>Text displayed on Activation code page in mobile app.</comment>
   </data>
   <data name="VerifyFileToolStripMenuItem" xml:space="preserve">
-    <value>Controleer en Verifieer Bestand
-</value>
+    <value>Controleer en Verifieer Bestand</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifieer Wachtwoord</value>
