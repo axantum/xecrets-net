@@ -236,6 +236,7 @@ namespace Axantum.AxCrypt.Core.Service
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 await _remoteService.PasswordResetAsync(verificationCode).Free();
+                return;
             }
             await _localService.PasswordResetAsync(verificationCode).Free();
         }
