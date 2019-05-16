@@ -564,7 +564,7 @@ namespace Axantum.AxCrypt
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _notifySignOutToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
             _notifySignInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
-            _signOutToolStripMenuItem.Click += async (sender, e) => { if (!await WarnIfAnyDecryptedFiles()) await LogOnOrLogOffAndLogOnAgainAsync(); };
+            _signOutToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
             {
                 bool offlineMode = !New<UserSettings>().OfflineMode;
