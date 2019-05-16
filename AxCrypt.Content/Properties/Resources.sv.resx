@@ -409,6 +409,9 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Om ditt Business-abonnemang inte förnyas i tid, faller ni automatiskt tillbaka till något av våra gratis-abonnemang.</value>
   </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Abonnemanget avslutas snart. För att behålla all funktionalitet, förnya snarast!</value>
+  </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importera</value>
     <comment>A word used in a button to start the multiple import process.</comment>
@@ -591,6 +594,10 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
     <value>Klicak för att återställa ditt lösenord.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
+  </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>Ta Bort</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Spara</value>
@@ -805,6 +812,9 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
     <value>Följande filer kunde inte omkrypteras:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>Du måste stänga alla applikationer med öppna skyddade dokument först!</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Filen är troligen öppnad i sin applikation. Stäng applikationen eller använda städaknappen.</value>
   </data>
@@ -867,6 +877,15 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Importera AxCrypt ID</value>
+  </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Ange e-postaddress till någon du vill bjuda in att använda AxCrypt.</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Inbjudan</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Bjud in</value>
   </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Åtkomstdelning</value>
@@ -1188,11 +1207,21 @@ Du kan börja skydda dina filer från insyn genom att ladda ned och installera A
 
 Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord. </value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>Ett personligt meddelande från {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Inbjudan till AxCrypt Filskydd</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Bjud in användare</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>Personligt meddelande</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Bjud in en vän</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Faktura</value>
@@ -1263,6 +1292,12 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
 
 En mottagare identifieras med epostadressen för sitt AxCrypt ID, men vi skickar inte dokumentet. Här lägger du bara in mottagarens nyckel. Du måste fortfarande skicka eller dela själva dokumentet efteråt.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>Du håller på att bjuda in en ny användare till AxCrypt. Vi kommer att skicka ett mejl med instruktioner dit.
+
+Ange språk för inbjudan, och ett eventuellt personligt meddelande neda.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Filens nyckel är delad med andra AxCrypt-användare.</value>
@@ -1709,6 +1744,11 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Lösenordet är för svagt för att kunna användas med AxCrypt.</value>
   </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>Lösenordsåterställelse är inte möjlig, eftersom det finns en väntade begäran om ändring av e-postaddress från &lt;b&gt;{0}&lt;/b&gt;.
+
+Logga in på &lt;b&gt;{0}&lt;/b&gt; och fullfölj adressbytet first, eller återställ det lösenordet och fullfölj sedan.</value>
+  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Glömt lösenordet? Klicka här</value>
   </data>
@@ -2090,7 +2130,8 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Ta bort från listan men behåll filskyddet</value>
+    <value>Ta Bort men Behåll Skydd</value>
+    <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Återsänd</value>

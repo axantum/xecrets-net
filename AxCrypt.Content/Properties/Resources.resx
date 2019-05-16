@@ -451,7 +451,7 @@ You have been warned, now enjoy!</value>
     <value>If your Business subscription is not renewed in time, you will fall back to one of our free plans.</value>
   </data>
   <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
-    <value>!!Subscription is expiring, Please use Renew to extend the full business functionality.</value>
+    <value>Your subscription is soon expiring. Please renew it to retain full functionality.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Import</value>
@@ -882,7 +882,7 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
   <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
-    <value>!!The above Encrypted files are opened, so do not allowing the user to exit/reset from the AxCrypt app</value>
+    <value>You must close all applications with open encrypted files first!</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Assumed open. Try to Close the application, or use the Clean function to remove it.</value>
@@ -1974,9 +1974,6 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OptionsDisableRecentFilesToolStripMenuItemText" xml:space="preserve">
     <value>!!Disable Recent Files</value>
   </data>
-  <data name="OptionsFolderAnonymousRenameToolStripMenuItemText" xml:space="preserve">
-    <value>!!Folder Anonymous Rename</value>
-  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>
   </data>
@@ -2003,11 +2000,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>The password is not good enough to be acceptable.</value>
   </data>
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
-    <value>!!Password reset failed. A password reset request has not been made for this AxCrypt ID.
+    <value>Password reset is not possible for this account, since there is a pending change of e-mail from &lt;b&gt;{0}&lt;/b&gt;.
 
-You must complete the pending email change request to reset your AxCrypt ID Password.
-
-Please sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password to complete the pending email change process.</value>
+Please sign in to &lt;b&gt;{0}&lt;/b&gt; and complete the email change, or reset the password for this account first and then complete the change.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/PasswordReset</value>
@@ -2408,7 +2403,7 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>!!Remove from list but keep secured</value>
+    <value>Remove from list but keep secured</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
