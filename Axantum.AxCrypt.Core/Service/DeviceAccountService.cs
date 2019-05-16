@@ -1,4 +1,10 @@
-﻿using Axantum.AxCrypt.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
@@ -8,11 +14,7 @@ using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Service
@@ -233,14 +235,8 @@ namespace Axantum.AxCrypt.Core.Service
         {
             if (New<AxCryptOnlineState>().IsOnline)
             {
-                try
-                {
-                    await _remoteService.PasswordResetAsync(verificationCode).Free();
-                }
-                catch (ApiException aex)
-                {
-                    await aex.HandleApiExceptionAsync();
-                }
+                await _remoteService.PasswordResetAsync(verificationCode).Free();
+                return;
             }
             await _localService.PasswordResetAsync(verificationCode).Free();
         }

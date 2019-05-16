@@ -152,6 +152,7 @@
     <EmbeddedResource Include="Properties\Resources.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.nl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
