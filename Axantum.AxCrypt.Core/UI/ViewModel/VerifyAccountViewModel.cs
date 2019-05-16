@@ -25,10 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -36,6 +32,9 @@ using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -146,8 +145,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
             try
             {
-                await accountService.PasswordResetAsync(VerificationCode);
                 ErrorMessage = string.Empty;
+                await accountService.PasswordResetAsync(VerificationCode);
             }
             catch (BadRequestApiException braex)
             {
