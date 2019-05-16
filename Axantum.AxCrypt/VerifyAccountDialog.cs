@@ -1,14 +1,15 @@
-﻿using Axantum.AxCrypt.Common;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Core.UI.ViewModel;
 using Axantum.AxCrypt.Forms;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows.Forms;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -75,17 +76,18 @@ namespace Axantum.AxCrypt
             _activationCode.Focus();
         }
 
-        private void _buttonOk_Click(object sender, EventArgs e)
+        private async void _buttonOk_Click(object sender, EventArgs e)
         {
-            if (!IsAllValid())
+            DialogResult = DialogResult.None;
+            if (await IsAllValid())
             {
-                DialogResult = DialogResult.None;
+                DialogResult = DialogResult.OK;
             }
         }
 
-        private bool IsAllValid()
+        private async Task<bool> IsAllValid()
         {
-            TaskRunner.WaitFor(() => _viewModel.CheckAccountStatus.ExecuteAsync(null));
+            await _viewModel.CheckAccountStatus.ExecuteAsync(null);
             if (_viewModel.AlreadyVerified)
             {
                 return true;
@@ -96,7 +98,7 @@ namespace Axantum.AxCrypt
                 return false;
             }
 
-            TaskRunner.WaitFor(() => _viewModel.VerifyAccount.ExecuteAsync(null));
+            await _viewModel.VerifyAccount.ExecuteAsync(null);
             if (!VerifyCode())
             {
                 return false;
