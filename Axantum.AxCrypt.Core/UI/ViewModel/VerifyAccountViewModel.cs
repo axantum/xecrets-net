@@ -25,16 +25,17 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -56,8 +57,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public string ErrorMessage { get { return GetProperty<string>(nameof(ErrorMessage)); } set { SetProperty(nameof(ErrorMessage), value); } }
 
-        public string ApiErrorMessage { get { return GetProperty<string>(nameof(ApiErrorMessage)); } set { SetProperty(nameof(ApiErrorMessage), value); } }
-
         public IAsyncAction CheckAccountStatus { get { return new AsyncDelegateAction<object>((o) => CheckAccountActionAsync()); } }
 
         public IAsyncAction VerifyAccount { get { return new AsyncDelegateAction<object>((o) => VerifyAccountActionAsync()); } }
@@ -76,7 +75,6 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             Verification = string.Empty;
             ShowPassword = Resolve.UserSettings.DisplayEncryptPassphrase;
             ErrorMessage = string.Empty;
-            ApiErrorMessage = string.Empty;
         }
 
         private void BindPropertyChangedEvents()
@@ -112,7 +110,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                     return VerificationCode.Length == 6 && VerificationCode.ToCharArray().All(c => Char.IsDigit(c));
 
                 case nameof(ErrorMessage):
-                    return ErrorMessage.Length == 0 && string.IsNullOrEmpty(ErrorMessage);
+                    return ErrorMessage.Length == 0;
 
                 default:
                     return true;
@@ -151,16 +149,18 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
                 await accountService.PasswordResetAsync(VerificationCode);
                 ErrorMessage = string.Empty;
             }
+            catch (BadRequestApiException braex)
+            {
+                ErrorMessage = braex.Innermost().Message;
+            }
             catch (ApiException aex)
             {
-                New<IReport>().Exception(aex);
-                if (aex.ErrorStatus == ErrorStatus.BadApiRequest)
-                {
-                    ErrorMessage = aex.Innermost().Message;
-                    return;
-                }
-
-                ApiErrorMessage = aex.InnerException.Message;
+                await aex.HandleApiExceptionAsync();
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
+                ErrorMessage = ex.Innermost().Message;
             }
         }
     }
