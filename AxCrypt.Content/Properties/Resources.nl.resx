@@ -228,6 +228,9 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Verberg de echte naam van een beveiligd bestand door het een willekeurige naam te geven.</value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verificatie [ {0} ]</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Vanwege veiligsheids redenen vragen wij u om uw wachtwoord opnieuw in te voeren.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -394,6 +397,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Als uw Business abonnement niet op tijd wordt verlengd, valt u terug in een van onze gratis abonnementen.</value>
+  </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Je abonnement verloopt binnenkort. Vernieuw deze om volledige functionaliteit te behouden.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importeer</value>
@@ -577,6 +583,10 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="ButtonPasswordResetToolTip" xml:space="preserve">
     <value>Klik om uw wachtwoord te resetten.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
+  </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>Verwijder</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
   </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Opslaan</value>
@@ -791,6 +801,9 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
     <value>Deze bestanden konden niet opnieuw geëncrypteerd worden:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>U moet eerst alle toepassingen met open gecodeerde bestanden sluiten!</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Er vanuit gaande dat het geopend is. Probeer de applicatie af te sluiten, of gebruik de Opschoon functie om het te verwijderen.</value>
   </data>
@@ -854,6 +867,15 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>AxCrypt ID Importeren</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Voer het emailadres in van een persoon om diegene uit te nodigen AxCrypt te gebruiken.</value>
+  </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Uitnodiging</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Uitnodigingsdetails</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Toegang Delen</value>
   </data>
@@ -872,6 +894,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Uitschakelen</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Deze automatische email is vertaald naar de taal van uw voorkeur, maar directe persoonlijke service en ondersteuning is in het Engels.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Laat dit niet opnieuw zien.</value>
@@ -1097,6 +1122,9 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
     <value>Uitgelogd vanwege inactiviteit</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>'{0}' is niet gecodeerd wegens technische beperkingen. Dit kan komen door de bestandsextensie, locatie of andere eigenschappen.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID importeren met delen en toegang sleutels</value>
   </data>
@@ -1166,11 +1194,21 @@ Om te beginnen met het beveiligen van uw bestanden download en installeer AxCryp
 
 Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel uw geheime wachtwoord in.</value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>Een persoonlijk bericht van {0}: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Uitnodiging om gebruik te maken van AxCrypt Bestandsbeveiliging</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Gebruiker uitnodigen</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>Persoonlijk bericht</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Nodig een vriend uit</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Factuur</value>
@@ -1241,6 +1279,12 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel u
 
 Een ontvanger is geïdentificeerd via de AxCrypt ID aanmeld email, maar we versturen het bestand niet! Hier voegt u de ontvangers sleutel aan het bestand toe. U moet hierna nog het bestand zelf met de ontvanger delen.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
+  </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>U staat op het punt een nieuwe gebruiker voor AxCrypt uit te nodigen. We sturen een uitnodiging met instructies naar het emailadres van uw contact.
+
+Geef de taal van voorkeur voor de uitnodiging op en schrijf hieronder optioneel een persoonlijk bericht.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Het Sleutel Bestand is gedeeld met andere AxCrypt gebruikers.</value>
@@ -1688,6 +1732,11 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Het wachtwoord is niet goed genoeg om geaccepteerd te worden.</value>
   </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>Een wachtwoord reset is niet mogelijk voor dit account, omdat er nog een emailwijziging in behandeling is voor  &lt;b&gt;{0}&lt;/b&gt;.
+
+Meld u aan bij &lt;b&gt;{0}&lt;/b&gt; en voltooi de emailwijziging, of stel eerst het wachtwoord voor dit account opnieuw in en voltooi de wijziging.</value>
+  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Wachtwoord vergeten? Klik hier</value>
   </data>
@@ -1878,6 +1927,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PromptChange" xml:space="preserve">
     <value>Wijzigen</value>
   </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Verander Email</value>
+  </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Huidig wachtwoord</value>
   </data>
@@ -2065,7 +2117,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Verwijder van lijst, maar houdt bestand beveiligd</value>
+    <value>Verwijder van lijst, maar houdt beveiligd</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
@@ -2140,7 +2192,9 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Hier kunt u uw AxCrypt ID permanent van het systeem verwijderen. &lt;span class="red"&gt;Alle data geassocieerd met  uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zullen ook worden verwijderd.&lt;/span&gt; 
+    <value>Dit zal uw AxCrypt ID permanent verwijderen van het systeem. &lt;span class="red"&gt;Alle data geassocieerd met uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zullen ook worden verwijderd.&lt;/span&gt;
+
+(Als u alleen uw AxCrypt ID email wilt wijzigen, klik dan &lt;a href="{0}"&gt;hier&lt;/a&gt;.)
  
 Typ uw wachtwoord hieronder om uw AxCrypt ID te verwijderen.</value>
   </data>
