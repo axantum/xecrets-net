@@ -889,7 +889,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Subscription is expiring, Please use Renew to extend the full business functionality..
+        ///   Looks up a localized string similar to Your subscription is soon expiring. Please renew it to retain full functionality..
         /// </summary>
         public static string BusinessSubscriptionExpiringWarningText {
             get {
@@ -2041,7 +2041,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The above Encrypted files are opened, so do not allowing the user to exit/reset from the AxCrypt app.
+        ///   Looks up a localized string similar to You must close all applications with open encrypted files first!.
         /// </summary>
         public static string DecryptedFilesWarningWhenExitOrReset {
             get {
@@ -4889,15 +4889,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Folder Anonymous Rename.
-        /// </summary>
-        public static string OptionsFolderAnonymousRenameToolStripMenuItemText {
-            get {
-                return ResourceManager.GetString("OptionsFolderAnonymousRenameToolStripMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Include Subfolders.
         /// </summary>
         public static string OptionsIncludeSubfoldersToolStripMenuItemText {
@@ -4970,11 +4961,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Password reset failed. A password reset request has not been made for this AxCrypt ID.
+        ///   Looks up a localized string similar to Password reset is not possible for this account, since there is a pending change of e-mail from &lt;b&gt;{0}&lt;/b&gt;.
         ///
-        ///You must complete the pending email change request to reset your AxCrypt ID Password.
-        ///
-        ///Please sign in using &lt;b&gt;{0}&lt;/b&gt; and your existing password to complete the pending email change process..
+        ///Please sign in to &lt;b&gt;{0}&lt;/b&gt; and complete the email change, or reset the password for this account first and then complete the change..
         /// </summary>
         public static string PasswordResetFailedWhenPendingEmailChange {
             get {
@@ -6009,7 +5998,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Remove from list but keep secured.
+        ///   Looks up a localized string similar to Remove from list but keep secured.
         /// </summary>
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
