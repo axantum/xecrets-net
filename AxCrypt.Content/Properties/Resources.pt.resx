@@ -2084,6 +2084,7 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Remover da lista, mas manter arquivo protegido.</value>
+    <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Reenviar</value>

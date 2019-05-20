@@ -2101,6 +2101,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können dies
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Entfernen von der Liste, aber Ordner gesichert lassen</value>
+    <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Erneut senden </value>
