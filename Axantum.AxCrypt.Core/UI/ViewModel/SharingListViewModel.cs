@@ -248,7 +248,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private static async Task<IEnumerable<UserPublicKey>> GetAllPublicKeyRecipientsFromEncryptedFiles(IEnumerable<string> fileNames, LogOnIdentity identity)
         {
             IEnumerable<Tuple<string, EncryptedProperties>> files = await ListValidAsync(fileNames, identity);
-            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders).GroupBy(skh => skh.Email).Select(skh=> skh.First());
+            IEnumerable<UserPublicKey> sharedWith = files.SelectMany(f => f.Item2.SharedKeyHolders.Distinct());
 
             UpdateKnownKeys(sharedWith);
             return sharedWith;
