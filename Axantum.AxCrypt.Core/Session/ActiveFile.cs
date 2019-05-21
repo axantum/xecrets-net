@@ -74,11 +74,6 @@ namespace Axantum.AxCrypt.Core.Session
                 throw new ArgumentNullException("decryptIdentity");
             }
 
-            if (activeFile.Identity != LogOnIdentity.Empty)
-            {
-                decryptIdentity = activeFile.Identity;
-            }
-
             Initialize(activeFile, decryptIdentity);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
         }
