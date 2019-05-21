@@ -63,19 +63,24 @@ namespace Axantum.AxCrypt.Core.Session
             Identity = LogOnIdentity.Empty;
         }
 
-        public ActiveFile(ActiveFile activeFile, LogOnIdentity key)
+        public ActiveFile(ActiveFile activeFile, LogOnIdentity decryptIdentity)
         {
             if (activeFile == null)
             {
                 throw new ArgumentNullException("activeFile");
             }
-            if (key == null)
+            if (decryptIdentity == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException("decryptIdentity");
             }
-            Initialize(activeFile);
+
+            if (activeFile.Identity != LogOnIdentity.Empty)
+            {
+                decryptIdentity = activeFile.Identity;
+            }
+
+            Initialize(activeFile, decryptIdentity);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
-            Identity = key;
         }
 
         public ActiveFile(ActiveFile activeFile, IDataStore encryptedFileInfo)
