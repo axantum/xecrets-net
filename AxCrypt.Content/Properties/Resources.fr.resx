@@ -409,6 +409,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Si votre abonnement Business n'est pas renouvelé à temps, vous retournerez vers l'une de nos options gratuites.</value>
   </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Votre abonnement expire prochainement. Veuillez le renouveler pour garder toutes vos fonctionnalités.</value>
+  </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importer</value>
     <comment>A word used in a button to start the multiple import process.</comment>
@@ -808,6 +811,9 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   <data name="DecryptedFilesWarning" xml:space="preserve">
     <value>Ces fichiers ne peuvent pas être chiffré de nouveau: </value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>Vous devez d'abord fermer toutes les applications dans lesquelles des fichiers cryptés sont ouverts !</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Le fichier est probablement ouvert dans une application. Fermez cette application ou utilisez le bouton Nettoyer.</value>
@@ -1735,6 +1741,11 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Le mot de passe est trop faible pour être accepté. </value>
   </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>La réinitialisation du mot de passe n'est pas possible pour ce compte, parce qu'un changement d'adresse e-mail est en cours depuis &lt;b&gt;{0}&lt;/b&gt;.
+
+Veuillez vous connecter à &lt;b&gt;{0}&lt;/b&gt; et finissez le changement d' adresse e-mail ou réinitialisez le mot de passe à partir de ce compte avant de finir le changement.</value>
+  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Vous avez oubliez votre mot de passe? Cliquez ici.</value>
   </data>
@@ -2117,7 +2128,7 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Retirer de la liste mais laisser le fichier protégé</value>
+    <value>Retirer de la liste mais conserver la protection du fichier</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">

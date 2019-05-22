@@ -417,6 +417,9 @@ Sei stato avvertito, ora divertiti!</value>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Se il tuo abbonamento Business non viene rinnovato in tempo, retrocederai su uno dei nostri piani gratuiti.</value>
   </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Il tuo abbonamento scadrà presto. Rinnovalo per mantenere tutte le funzionalità.</value>
+  </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importa</value>
     <comment>A word used in a button to start the multiple import process.</comment>
@@ -816,6 +819,9 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
   <data name="DecryptedFilesWarning" xml:space="preserve">
     <value>Questi file non possono essere criptati di nuovo:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
+  </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>Prima di tutto devi chiudere tutte le applicazioni con file criptati aperti!</value>
   </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Il file potrebbe essere già aperto. Chiudi le applicazioni o usa la funzione Pulisci per chiuderlo.</value>
@@ -1747,6 +1753,11 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>La password non è abbastanza sicura per essere accettabile.</value>
   </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>Non è possibile resettare la password per questo account in quanto vi è un cambio email in sospeso da &lt;b&gt;{0}&lt;/b&gt;.
+
+Connettiti a &lt;b&gt;{0}&lt;/b&gt; e completa il cambio di email o resetta la password per questo account prima di finalizzare il cambio.</value>
+  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Password dimenticata? Clicca qui</value>
   </data>
@@ -2127,7 +2138,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Rimuovi dalla lista ma mantieni protetto il file</value>
+    <value>Rimuovi dalla lista ma mantieni protetto</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
