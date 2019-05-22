@@ -36,7 +36,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("Axantum.AxCrypt.Desktop.Test")]
-[assembly: AssemblyCopyright("Copyright © 2012-2017 Svante Seleborg")]
+[assembly: AssemblyCopyright("Copyright © 2012-2019 Svante Seleborg")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
