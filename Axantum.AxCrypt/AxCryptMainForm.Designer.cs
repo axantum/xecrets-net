@@ -45,6 +45,7 @@ namespace Axantum.AxCrypt
             this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._originalFileTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
@@ -340,7 +341,8 @@ namespace Axantum.AxCrypt
             this._decryptedFileColumnHeader,
             this._lastAccessTimeColumnHeader,
             this._encryptedPathColumnHeader,
-            this._cryptoName});
+            this._cryptoName,
+            this._originalFileTimeColumnHeader});
             this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._recentFilesListView.FullRowSelect = true;
             this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
@@ -369,6 +371,11 @@ namespace Axantum.AxCrypt
             // _cryptoName
             // 
             this._cryptoName.Text = "[Algorithm]";
+            // 
+            // __originalFileTimeColumnHeader
+            // 
+            this._originalFileTimeColumnHeader.Text = "[OriginalTime]";
+            this._originalFileTimeColumnHeader.Width = 149;
             // 
             // _statusTabControl
             // 
@@ -1272,6 +1279,7 @@ namespace Axantum.AxCrypt
         private RecentFilesListView _recentFilesListView;
         private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
         private System.Windows.Forms.ColumnHeader _lastAccessTimeColumnHeader;
+        private System.Windows.Forms.ColumnHeader _originalFileTimeColumnHeader;
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
         private System.Windows.Forms.ColumnHeader _cryptoName;
         private System.Windows.Forms.TabControl _statusTabControl;

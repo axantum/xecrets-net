@@ -268,6 +268,7 @@ namespace Axantum.AxCrypt
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
+            _originalFileTimeColumnHeader.Text = "OriginalFileTime";
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
