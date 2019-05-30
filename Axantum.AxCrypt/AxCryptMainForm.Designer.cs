@@ -922,7 +922,7 @@ namespace Axantum.AxCrypt
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(664, 40);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(664, 41);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // pictureBox1
