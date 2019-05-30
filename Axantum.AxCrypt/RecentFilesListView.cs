@@ -40,6 +40,7 @@ namespace Axantum.AxCrypt
             Date,
             EncryptedPath,
             CryptoName,
+            OriginalTime
         }
 
         public RecentFilesListView()
@@ -186,6 +187,9 @@ namespace Axantum.AxCrypt
             ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
             cryptoNameColumn.Name = nameof(ColumnName.CryptoName);
 
+            ListViewItem.ListViewSubItem originalTimeColumn = item.SubItems.Add(String.Empty);
+            originalTimeColumn.Name = nameof(ColumnName.OriginalTime);
+
             UpdateListViewItem(item, file);
 
             int i;
@@ -245,6 +249,14 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
+            if (left.SubItems[nameof(ColumnName.OriginalTime)].Text != right.SubItems[nameof(ColumnName.OriginalTime)].Text)
+            {
+                return false;
+            }
+            if ((DateTime)left.SubItems[nameof(ColumnName.OriginalTime)].Tag != (DateTime)right.SubItems[nameof(ColumnName.OriginalTime)].Tag)
+            {
+                return false;
+            }
             return true;
         }
 
@@ -264,7 +276,9 @@ namespace Axantum.AxCrypt
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
-         
+            item.SubItems[nameof(ColumnName.OriginalTime)].Text = activeFile.Properties.CreationTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems[nameof(ColumnName.OriginalTime)].Tag = activeFile.Properties.CreationTimeUtc;
+
             LogOnIdentity decryptIdentity = ValidateActiveFileIdentity(activeFile.Identity);
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(decryptIdentity));
 
