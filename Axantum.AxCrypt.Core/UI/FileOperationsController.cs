@@ -570,6 +570,11 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
+            if (!New<IEncryptedFileFilter>().IsOpenable(fileInfo))
+            {
+                return false;
+            }
+
             if (!await OpenAxCryptDocumentAsync(fileInfo, _eventArgs))
             {
                 return false;
