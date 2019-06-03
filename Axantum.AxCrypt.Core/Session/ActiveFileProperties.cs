@@ -34,10 +34,10 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileProperties : IEquatable<ActiveFileProperties>
     {
-        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
+        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId, DateTime creationTimeUtc)
         {
             LastActivityTimeUtc = lastActivityTimeUtc;
-            CreationTimeUtc = CreationTimeUtc;
+            CreationTimeUtc = creationTimeUtc;
             LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
             CryptoId = cryptoId;
         }
