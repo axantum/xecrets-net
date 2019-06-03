@@ -25,10 +25,10 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Drawing;
 using System.Linq;
+using System;
 using Axantum.AxCrypt.Core;
+using System.Drawing;
 
 namespace Axantum.AxCrypt
 {
@@ -49,6 +49,8 @@ namespace Axantum.AxCrypt
         public static int RecentFilesEncryptedPathWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesEncryptedPathWidth"); } set { Resolve.UserSettings.Store("RecentFilesEncryptedPathWidth", value); } }
 
         public static int RecentFilesCryptoNameWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesCryptoNameWidth"); } set { Resolve.UserSettings.Store("RecentFilesCryptoNameWidth", value); } }
+
+        public static int RecentFilesOriginalTimeWidth { get { return Resolve.UserSettings.Load<int>("RecentFilesOriginalTimeWidth"); } set { Resolve.UserSettings.Store("RecentFilesOriginalTimeWidth", value); } }
 
         public static bool RecentFilesAscending { get { return Resolve.UserSettings.Load<bool>("RecentFilesAscending", true); } set { Resolve.UserSettings.Store("RecentFilesAscending", value); } }
 

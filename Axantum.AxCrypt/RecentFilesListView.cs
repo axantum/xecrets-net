@@ -83,6 +83,10 @@ namespace Axantum.AxCrypt
                 case 3:
                     Preferences.RecentFilesCryptoNameWidth = Columns[e.ColumnIndex].Width;
                     break;
+
+                case 4:
+                    Preferences.RecentFilesOriginalTimeWidth = Columns[e.ColumnIndex].Width;
+                    break;
             }
         }
 
@@ -94,6 +98,7 @@ namespace Axantum.AxCrypt
             Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(Columns[1].Width);
             Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[2].Width);
             Columns[3].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[3].Width);
+            Columns[4].Width = Preferences.RecentFilesOriginalTimeWidth.Fallback(Columns[4].Width);
         }
 
         private bool _updateRecentFilesInProgress = false;
