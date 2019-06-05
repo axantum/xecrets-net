@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt.Core.IO
             InitializeUnopenableExtensions();
         }
 
-        public void InitializeUnopenableExtensions()
+        private void InitializeUnopenableExtensions()
         {
             AddUnopenableExtension("zip");
             AddUnopenableExtension("rar");
@@ -23,7 +23,7 @@ namespace Axantum.AxCrypt.Core.IO
             AddUnopenableExtension("7z");
         }
 
-        public bool AddUnopenableExtension(string extension)
+        private bool AddUnopenableExtension(string extension)
         {
             if (extension == null)
             {
