@@ -23,6 +23,16 @@ namespace Axantum.AxCrypt.Core.IO
             AddUnopenableExtension("7z");
         }
 
+        public bool AddUnopenableExtension(string extension)
+        {
+            if (extension == null)
+            {
+                throw new ArgumentNullException(nameof(extension));
+            }
+            pathFilters.Add(new Regex(@".*\-" + extension + "." + OS.Current.AxCryptExtension + "$"));
+            return true;
+        }
+
         public bool IsOpenable(IDataItem fileInfo)
         {
             if (fileInfo == null)
@@ -39,16 +49,5 @@ namespace Axantum.AxCrypt.Core.IO
             }
             return true;
         }
-
-        public bool AddUnopenableExtension(string extension)
-        {
-            if (extension == null)
-            {
-                throw new ArgumentNullException(nameof(extension));
-            }
-            pathFilters.Add(new Regex(@".*\-" + extension + "." + OS.Current.AxCryptExtension + "$"));
-            return true;
-        }
-
     }
 }

@@ -80,7 +80,7 @@
     <Compile Include="IO\FileLocker.cs" />
     <Compile Include="IO\FileLockManager.cs" />
     <Compile Include="IO\IDataContainer.cs" />
-    <Compile Include="IO\IAxCryptFileOptions.cs" />
+    <Compile Include="IO\IEncryptedFileFilter.cs" />
     <Compile Include="IO\IDataItem.cs" />
     <Compile Include="IO\LockedStream.cs" />
     <Compile Include="IO\PipelineStream.cs" />
