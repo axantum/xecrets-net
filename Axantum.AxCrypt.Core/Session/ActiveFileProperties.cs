@@ -34,10 +34,9 @@ namespace Axantum.AxCrypt.Core.Session
     [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileProperties : IEquatable<ActiveFileProperties>
     {
-        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId, DateTime creationTimeUtc)
+        public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
         {
             LastActivityTimeUtc = lastActivityTimeUtc;
-            CreationTimeUtc = creationTimeUtc;
             LastEncryptionWriteTimeUtc = lastEncryptionWriteTimeUtc;
             CryptoId = cryptoId;
         }
@@ -48,8 +47,8 @@ namespace Axantum.AxCrypt.Core.Session
         [JsonProperty("lastActivityTimeUtc")]
         public DateTime LastActivityTimeUtc { get; private set; }
 
-        [JsonProperty("CreationTimeUtc")]
-        public DateTime CreationTimeUtc { get; private set; }
+        //[JsonProperty("CreationTimeUtc")]
+        //public DateTime CreationTimeUtc { get; private set; }
 
         /// <summary>
         /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
