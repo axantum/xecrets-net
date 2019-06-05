@@ -281,8 +281,8 @@ namespace Axantum.AxCrypt
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
             item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
-            item.SubItems[nameof(ColumnName.OriginalTime)].Text = activeFile.Properties.CreationTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems[nameof(ColumnName.OriginalTime)].Tag = activeFile.Properties.CreationTimeUtc;
+            item.SubItems[nameof(ColumnName.OriginalTime)].Text = activeFile.EncryptedFileInfo.CreationTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems[nameof(ColumnName.OriginalTime)].Tag = activeFile.EncryptedFileInfo.CreationTimeUtc;
 
             LogOnIdentity decryptIdentity = ValidateActiveFileIdentity(activeFile.Identity);
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(decryptIdentity));
