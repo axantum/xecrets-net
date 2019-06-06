@@ -1,7 +1,11 @@
 ﻿using Axantum.AxCrypt.Core.Extensions;
+using Axantum.AxCrypt.Core.UI;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -29,7 +33,7 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException(nameof(extension));
             }
-            pathFilters.Add(new Regex(@".*\-" + extension + "." + OS.Current.AxCryptExtension + "$"));
+            pathFilters.Add(new Regex(@".*\-" + extension + OS.Current.AxCryptExtension + "$"));
             return true;
         }
 
@@ -44,6 +48,7 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 if (filter.IsMatch(fileInfo.FullName))
                 {
+                    New<Abstractions.IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(fileInfo.Name), Common.DoNotShowAgainOptions.IgnoreFileWarning));
                     return false;
                 }
             }

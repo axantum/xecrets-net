@@ -572,6 +572,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (!New<IEncryptedFileFilter>().IsOpenable(fileInfo))
             {
+                _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
 
