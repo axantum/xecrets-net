@@ -5989,6 +5989,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!When Updating keyShared file on free user that file keySharing information was removed.
+        /// </summary>
+        public static string RemovedKeyShareWhenUpdatingFileOnFreeModeText {
+            get {
+                return ResourceManager.GetString("RemovedKeyShareWhenUpdatingFileOnFreeModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove file.
         /// </summary>
         public static string RemoveRecentFileLabel {

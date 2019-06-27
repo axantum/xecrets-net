@@ -2398,6 +2398,9 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <value>Your software needs to be updated due to a reliability issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
+  <data name="RemovedKeyShareWhenUpdatingFileOnFreeModeText" xml:space="preserve">
+    <value>!!When Updating keyShared file on free user that file keySharing information was removed</value>
+  </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>Remove file</value>
     <comment>Text of "Remove File" button in mobile application</comment>
