@@ -126,7 +126,7 @@ namespace Axantum.AxCrypt.Core.Session
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium & LicenseCapability.Business))
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.RemovedKeyShareWhenUpdatingFileOnFreeModeText, Common.DoNotShowAgainOptions.RemovedKeyShareWhenUpdatingFileOnFreeMode);
-                return parameters;
+                return new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
             }
 
             EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
