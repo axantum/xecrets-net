@@ -44,9 +44,10 @@ namespace Axantum.AxCrypt
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
             this._recentFilesListView = new Axantum.AxCrypt.RecentFilesListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._lastAccessTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._lastAccessedDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._lastModifiedDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this._cryptoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._cryptoNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._statusTabControl = new System.Windows.Forms.TabControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -338,9 +339,10 @@ namespace Axantum.AxCrypt
             this._recentFilesListView.AllowDrop = true;
             this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._decryptedFileColumnHeader,
-            this._lastAccessTimeColumnHeader,
+            this._lastAccessedDateColumnHeader,
             this._encryptedPathColumnHeader,
-            this._cryptoName});
+            this._lastModifiedDateColumnHeader,
+            this._cryptoNameColumnHeader});
             this._recentFilesListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._recentFilesListView.FullRowSelect = true;
             this._recentFilesListView.Location = new System.Drawing.Point(3, 3);
@@ -358,8 +360,8 @@ namespace Axantum.AxCrypt
             // 
             // _lastAccessTimeColumnHeader
             // 
-            this._lastAccessTimeColumnHeader.Text = "[Time]";
-            this._lastAccessTimeColumnHeader.Width = 180;
+            this._lastAccessedDateColumnHeader.Text = "[Time]";
+            this._lastAccessedDateColumnHeader.Width = 180;
             // 
             // _encryptedPathColumnHeader
             // 
@@ -368,7 +370,12 @@ namespace Axantum.AxCrypt
             // 
             // _cryptoName
             // 
-            this._cryptoName.Text = "[Algorithm]";
+            this._cryptoNameColumnHeader.Text = "[Algorithm]";
+            // 
+            // _lastModifiedDateColumnHeader
+            // 
+            this._lastModifiedDateColumnHeader.Text = "[OriginalTime]";
+            this._lastModifiedDateColumnHeader.Width = 149;
             // 
             // _statusTabControl
             // 
@@ -1271,9 +1278,10 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.TabPage _recentFilesTabPage;
         private RecentFilesListView _recentFilesListView;
         private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
-        private System.Windows.Forms.ColumnHeader _lastAccessTimeColumnHeader;
+        private System.Windows.Forms.ColumnHeader _lastAccessedDateColumnHeader;
+        private System.Windows.Forms.ColumnHeader _lastModifiedDateColumnHeader;
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;
-        private System.Windows.Forms.ColumnHeader _cryptoName;
+        private System.Windows.Forms.ColumnHeader _cryptoNameColumnHeader;
         private System.Windows.Forms.TabControl _statusTabControl;
         private System.Windows.Forms.ToolStripMenuItem _shareKeysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _restoreAnonymousNamesToolStripMenuItem;

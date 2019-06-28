@@ -3648,11 +3648,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time.
+        ///   Looks up a localized string similar to Date accessed.
         /// </summary>
         public static string LastAccessTimeColumnHeaderText {
             get {
                 return ResourceManager.GetString("LastAccessTimeColumnHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date modified.
+        /// </summary>
+        public static string LastModifiedTimeColumnHeaderText {
+            get {
+                return ResourceManager.GetString("LastModifiedTimeColumnHeaderText", resourceCulture);
             }
         }
         
