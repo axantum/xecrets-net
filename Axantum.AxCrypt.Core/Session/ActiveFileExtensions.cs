@@ -96,7 +96,19 @@ namespace Axantum.AxCrypt.Core.Session
                     }
 
                     EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                    parameters = await CheckKeyShareWhenUpdatingFile(activeFile, parameters, encryptedFileLock);
+
+                    if (activeFile.IsShared && !New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium & LicenseCapability.Business))
+                    {
+                        await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.RemovedKeyShareWhenUpdatingFileOnFreeModeText, Common.DoNotShowAgainOptions.RemovedKeyShareWhenUpdatingFileOnFreeMode);
+                        activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId);
+                        parameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+                    }
+
+                    if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium) || New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+                    {
+                        EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
+                        await parameters.AddAsync(properties.SharedKeyHolders);
+                    }
 
                     New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
@@ -114,24 +126,6 @@ namespace Axantum.AxCrypt.Core.Session
                 New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
-        }
-
-        private static async Task<EncryptionParameters> CheckKeyShareWhenUpdatingFile(ActiveFile activeFile, EncryptionParameters parameters, FileLock encryptedFileLock)
-        {
-            if (!activeFile.IsShared)
-            {
-                return parameters;
-            }
-
-            if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium & LicenseCapability.Business))
-            {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.RemovedKeyShareWhenUpdatingFileOnFreeModeText, Common.DoNotShowAgainOptions.RemovedKeyShareWhenUpdatingFileOnFreeMode);
-                return new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            }
-
-            EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
-            await parameters.AddAsync(properties.SharedKeyHolders);
-            return parameters;
         }
     }
 }
