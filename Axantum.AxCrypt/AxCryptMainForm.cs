@@ -25,6 +25,21 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -46,21 +61,9 @@ using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -227,7 +230,7 @@ namespace Axantum.AxCrypt
             _closeAndRemoveOpenFilesToolStripButton.ToolTipText = Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText;
             _createAccountToolStripMenuItem.Text = "&" + Texts.CreateAccountToolStripMenuItemText;
             _createAccountToolStripMenuItem.ToolTipText = Texts.CreateAccountToolStripMenuItemToolTipText;
-            _cryptoName.Text = Texts.CryptoNameText;
+            _cryptoNameColumnHeader.Text = Texts.CryptoNameText;
             _debugCheckVersionNowToolStripMenuItem.Text = "&" + Texts.DebugCheckVersionNowToolStripMenuItemText;
             _debugCryptoPolicyToolStripMenuItem.Text = "&" + Texts.DebugCryptoPolicyToolStripMenuItemText;
             _debugLoggingToolStripMenuItem.Text = "&" + Texts.DebugLoggingToolStripMenuItemText;
@@ -267,7 +270,8 @@ namespace Axantum.AxCrypt
             _keyManagementToolStripMenuItem.Text = "&" + Texts.KeyManagementToolStripMenuItemText;
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
-            _lastAccessTimeColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
+            _lastAccessedDateColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
+            _lastModifiedDateColumnHeader.Text = Texts.LastModifiedTimeColumnHeaderText;
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
@@ -1643,11 +1647,15 @@ namespace Axantum.AxCrypt
                     break;
 
                 case 3:
+                    comparer = ActiveFileComparer.DateComparer;
+                    break;
+
+                case 4:
                     comparer = ActiveFileComparer.CryptoNameComparer;
                     break;
 
                 default:
-                    throw new ArgumentException("column is wrong.");
+                    throw new ArgumentException($"Can't sort column index '{column}'.");
             }
             comparer.ReverseSort = reverseSort;
             return comparer;
