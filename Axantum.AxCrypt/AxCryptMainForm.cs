@@ -271,7 +271,7 @@ namespace Axantum.AxCrypt
             _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessedDateColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
-            _lastModifiedDateColumnHeader.Text = "OriginalDateTime";
+            _lastModifiedDateColumnHeader.Text = Texts.LastModifiedTimeColumnHeaderText;
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
