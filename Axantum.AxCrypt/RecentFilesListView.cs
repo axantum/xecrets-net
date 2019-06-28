@@ -1,4 +1,11 @@
-﻿using Axantum.AxCrypt.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -7,12 +14,6 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -37,10 +38,10 @@ namespace Axantum.AxCrypt
         private enum ColumnName
         {
             DocumentName,
-            Date,
+            AccessedDate,
             EncryptedPath,
             CryptoName,
-            OriginalTime
+            ModifiedDate,
         }
 
         public RecentFilesListView()
@@ -73,7 +74,7 @@ namespace Axantum.AxCrypt
                     break;
 
                 case 1:
-                    Preferences.RecentFilesDateTimeWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesAccessedDateWidth = Columns[e.ColumnIndex].Width;
                     break;
 
                 case 2:
@@ -81,11 +82,11 @@ namespace Axantum.AxCrypt
                     break;
 
                 case 3:
-                    Preferences.RecentFilesCryptoNameWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesModifiedDateWidth = Columns[e.ColumnIndex].Width;
                     break;
 
                 case 4:
-                    Preferences.RecentFilesOriginalTimeWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesCryptoNameWidth = Columns[e.ColumnIndex].Width;
                     break;
             }
         }
@@ -95,10 +96,10 @@ namespace Axantum.AxCrypt
             Preferences.RecentFilesMaxNumber = 100;
 
             Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(Columns[0].Width);
-            Columns[1].Width = Preferences.RecentFilesDateTimeWidth.Fallback(Columns[1].Width);
+            Columns[1].Width = Preferences.RecentFilesAccessedDateWidth.Fallback(Columns[1].Width);
             Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[2].Width);
-            Columns[3].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[3].Width);
-            Columns[4].Width = Preferences.RecentFilesOriginalTimeWidth.Fallback(Columns[4].Width);
+            Columns[3].Width = Preferences.RecentFilesModifiedDateWidth.Fallback(Columns[4].Width);
+            Columns[4].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[3].Width);
         }
 
         private bool _updateRecentFilesInProgress = false;
@@ -183,17 +184,17 @@ namespace Axantum.AxCrypt
             item.UseItemStyleForSubItems = false;
             item.Name = file.EncryptedFileInfo.FullName;
 
-            ListViewItem.ListViewSubItem dateColumn = item.SubItems.Add(String.Empty);
-            dateColumn.Name = nameof(ColumnName.Date);
+            ListViewItem.ListViewSubItem accessedDateColumn = item.SubItems.Add(String.Empty);
+            accessedDateColumn.Name = nameof(ColumnName.AccessedDate);
 
             ListViewItem.ListViewSubItem encryptedPathColumn = item.SubItems.Add(String.Empty);
             encryptedPathColumn.Name = nameof(ColumnName.EncryptedPath);
 
+            ListViewItem.ListViewSubItem modifiedDateColumn = item.SubItems.Add(String.Empty);
+            modifiedDateColumn.Name = nameof(ColumnName.ModifiedDate);
+
             ListViewItem.ListViewSubItem cryptoNameColumn = item.SubItems.Add(String.Empty);
             cryptoNameColumn.Name = nameof(ColumnName.CryptoName);
-
-            ListViewItem.ListViewSubItem originalTimeColumn = item.SubItems.Add(String.Empty);
-            originalTimeColumn.Name = nameof(ColumnName.OriginalTime);
 
             UpdateListViewItem(item, file);
 
@@ -246,19 +247,19 @@ namespace Axantum.AxCrypt
             {
                 return false;
             }
-            if (left.SubItems[nameof(ColumnName.Date)].Text != right.SubItems[nameof(ColumnName.Date)].Text)
+            if (left.SubItems[nameof(ColumnName.AccessedDate)].Text != right.SubItems[nameof(ColumnName.AccessedDate)].Text)
             {
                 return false;
             }
-            if ((DateTime)left.SubItems[nameof(ColumnName.Date)].Tag != (DateTime)right.SubItems[nameof(ColumnName.Date)].Tag)
+            if ((DateTime)left.SubItems[nameof(ColumnName.AccessedDate)].Tag != (DateTime)right.SubItems[nameof(ColumnName.AccessedDate)].Tag)
             {
                 return false;
             }
-            if (left.SubItems[nameof(ColumnName.OriginalTime)].Text != right.SubItems[nameof(ColumnName.OriginalTime)].Text)
+            if (left.SubItems[nameof(ColumnName.ModifiedDate)].Text != right.SubItems[nameof(ColumnName.ModifiedDate)].Text)
             {
                 return false;
             }
-            if ((DateTime)left.SubItems[nameof(ColumnName.OriginalTime)].Tag != (DateTime)right.SubItems[nameof(ColumnName.OriginalTime)].Tag)
+            if ((DateTime)left.SubItems[nameof(ColumnName.ModifiedDate)].Tag != (DateTime)right.SubItems[nameof(ColumnName.ModifiedDate)].Tag)
             {
                 return false;
             }
@@ -279,10 +280,10 @@ namespace Axantum.AxCrypt
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
-            item.SubItems[nameof(ColumnName.Date)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems[nameof(ColumnName.Date)].Tag = activeFile.Properties.LastActivityTimeUtc;
-            item.SubItems[nameof(ColumnName.OriginalTime)].Text = activeFile.EncryptedFileInfo.LastWriteTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
-            item.SubItems[nameof(ColumnName.OriginalTime)].Tag = activeFile.EncryptedFileInfo.LastWriteTimeUtc;
+            item.SubItems[nameof(ColumnName.AccessedDate)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems[nameof(ColumnName.AccessedDate)].Tag = activeFile.Properties.LastActivityTimeUtc;
+            item.SubItems[nameof(ColumnName.ModifiedDate)].Text = activeFile.EncryptedFileInfo.LastWriteTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            item.SubItems[nameof(ColumnName.ModifiedDate)].Tag = activeFile.EncryptedFileInfo.LastWriteTimeUtc;
 
             LogOnIdentity decryptIdentity = ValidateActiveFileIdentity(activeFile.Identity);
             UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(decryptIdentity));
