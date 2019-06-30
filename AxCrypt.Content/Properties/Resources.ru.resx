@@ -531,8 +531,7 @@
     <comment>A prompt heading clarifying that the information below is what the action is for. The context is the business administration pages, and below this header the admin can change information, purchase additional etc. The idea is that this prompt clarifies what the user is doing, since he is at the same time part of a subscription, not necessarily the same as the one he is acting on.</comment>
   </data>
   <data name="BusinessSubscriptionResellerSubscriptionSelection" xml:space="preserve">
-    <value>Действовать в качестве
-</value>
+    <value>Действовать в качестве</value>
     <comment>A prompt for a dropdown list of reseller subscriptions, enabling a reseller or a site admin to select just what reseller subscription should be active when making the action.</comment>
   </data>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
@@ -721,8 +720,7 @@
     <value>Проверить наличие новой версии для загрузки. Требуется доступ к Интернету.</value>
   </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
-    <value>Очистить Открытые Файлы
-</value>
+    <value>Очистить Открытые Файлы</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Файл открыт и возможно требует очистки. Закройте все открытые приложения и нажмите на кнопку Очистить.</value>
@@ -912,8 +910,7 @@
     <value>Создать Новый Пароль </value>
   </data>
   <data name="DialogVerifyAccountTitle" xml:space="preserve">
-    <value>Подтвердить AxCrypt ID
-</value>
+    <value>Подтвердить AxCrypt ID</value>
   </data>
   <data name="DialogWatchedFoldersTitle" xml:space="preserve">
     <value>Защищённые Папки</value>
@@ -1049,8 +1046,7 @@
     <comment>The mail subject used when an email is sent to us as a result of user feedback via an app</comment>
   </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
-    <value>Ваша обратная связь
-</value>
+    <value>Ваша обратная связь</value>
     <comment>Text displayed in feedback content textbox when it is empty</comment>
   </data>
   <data name="FileAlreadyEncrypted" xml:space="preserve">
@@ -1342,7 +1338,7 @@
     <value>Необходимо перезапустить AxCrypt для воздействия смены языка.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Время</value>
+    <value>Дата доступа</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Вы уже обладаете последней версией!</value>
@@ -1364,9 +1360,7 @@
 
 Вы можете открыть уже существующие AxCrypt 1.x файлы, однако, если они не были конвертированы, Вы обязаны использовать изначальный пароль, даже когда Вы находитесь в системе.
 
-Разрешить автоматическую версию конвертации AxCrypt 1.x файлов (рекомендуется)?
-
-</value>
+Разрешить автоматическую версию конвертации AxCrypt 1.x файлов (рекомендуется)?</value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Вернуться на главную страницу</value>
@@ -1683,9 +1677,7 @@
     <value>К сожалению, мы не смогли отобразить запрашиваемую Вами страницу. Причиной могут быть несуществование данной страницы, перезагрузка сервера, сделавшая Ваш сеанс браузера устаревшим или другая ошибка, не позволяющая обработать Ваш запрос.
 
 Запрашиваемая страница
-{2}
-
-</value>
+{2}</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
     <value>Невозможно отобразить страницу!</value>
@@ -1752,8 +1744,7 @@
     <value>Опции</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
-    <value>Пароль
-</value>
+    <value>Пароль</value>
   </data>
   <data name="PassphraseVerificationMismatch" xml:space="preserve">
     <value>Пароли не совпадают</value>
@@ -1937,8 +1928,7 @@
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
   <data name="ProgressTotalsInformationText" xml:space="preserve">
-    <value>Количество обработанных файлов {0}. Затраченное время {1}.
-</value>
+    <value>Количество обработанных файлов {0}. Затраченное время {1}.</value>
     <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
   </data>
   <data name="PromptActivationCode" xml:space="preserve">
