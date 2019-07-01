@@ -1479,7 +1479,11 @@ Please specify the language to use in the invitation and an optional personal me
     <value>AxCrypt must be restarted in order for the language change to take effect.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Time</value>
+    <value>Date accessed</value>
+  </data>
+  <data name="LastModifiedTimeColumnHeaderText" xml:space="preserve">
+    <value>Date modified</value>
+    <comment>A column header for the display of the time an encrypted file las last modified. It should use the standard term "Date modified"</comment>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>You already have the latest version!</value>
