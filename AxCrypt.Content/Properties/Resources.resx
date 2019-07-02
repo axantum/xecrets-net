@@ -1444,6 +1444,9 @@ Please specify the language to use in the invitation and an optional personal me
   <data name="KeySharingOffline" xml:space="preserve">
     <value>New contacts can only be added when online!</value>
   </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>!!When Updating keyShared file on free user that file keySharing information was removed</value>
+  </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Click to select encrypted files to share keys with others.</value>
   </data>
@@ -2401,9 +2404,6 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a reliability issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
-  </data>
-  <data name="RemovedKeyShareWhenUpdatingFileOnFreeModeText" xml:space="preserve">
-    <value>!!When Updating keyShared file on free user that file keySharing information was removed</value>
   </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>Remove file</value>

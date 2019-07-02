@@ -94,12 +94,8 @@ namespace Axantum.AxCrypt.Core.Session
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
 
-                    EncryptionParameters parameters = await GetEncryptionParameters(activeFile, encryptedFileLock);
-
-                    if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium & LicenseCapability.Business))
-                    {
-                        activeFile = new ActiveFile(activeFile, parameters.CryptoId);
-                    }
+                    EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                    parameters = await GetEncryptionParameters(activeFile, encryptedFileLock, parameters);
 
                     New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
@@ -119,11 +115,9 @@ namespace Axantum.AxCrypt.Core.Session
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
         }
 
-        private static async Task<EncryptionParameters> GetEncryptionParameters(ActiveFile activeFile, FileLock encryptedFileLock)
+        private static async Task<EncryptionParameters> GetEncryptionParameters(ActiveFile activeFile, FileLock encryptedFileLock, EncryptionParameters parameters)
         {
-            EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-
-            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium) || New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
             {
                 EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
                 await parameters.AddAsync(properties.SharedKeyHolders);
@@ -132,10 +126,10 @@ namespace Axantum.AxCrypt.Core.Session
 
             if (activeFile.IsShared)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.RemovedKeyShareWhenUpdatingFileOnFreeModeText, Common.DoNotShowAgainOptions.RemovedKeyShareWhenUpdatingFileOnFreeMode);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.KeySharingRemovedInFreeModeWarningText, Common.DoNotShowAgainOptions.KeySharingRemovedInFreeModeWarning);
             }
 
-            return new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+            return parameters;
         }
     }
 }
