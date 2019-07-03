@@ -61,6 +61,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -774,7 +775,7 @@ namespace Axantum.AxCrypt
             _mainViewModel.RecentFilesComparer = GetComparer(Preferences.RecentFilesSortColumn, !Preferences.RecentFilesAscending);
             _alwaysOfflineToolStripMenuItem.Checked = New<UserSettings>().OfflineMode;
 
-            ConfigureEnableDisableRecentFiles(New<UserSettings>().HideRecentFiles);
+            ConfigureShowHideRecentFiles(New<UserSettings>().HideRecentFiles);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
@@ -814,7 +815,7 @@ namespace Axantum.AxCrypt
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (!await WarnIfAnyDecryptedFiles()) { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); } };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
-            _optionsHideRecentFilesToolStripMenuItem.Click += (sender, e) => { SetRecentFilesDisabledState(!New<UserSettings>().HideRecentFiles); };
+            _optionsHideRecentFilesToolStripMenuItem.Click += (sender, e) => { SetRecentFilesHiddenState(!New<UserSettings>().HideRecentFiles); };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
             _inactivitySignOutToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.InactivitySignOut, async (ss, ee) => { }, sender, e); };
             _recentFilesListView.ColumnClick += (sender, e) => { SetSortOrder(e.Column); };
@@ -892,7 +893,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersKeySharingMenuItem.Visible = itemSelected;
         }
 
-        private void SetRecentFilesDisabledState(bool hideRecentFiles)
+        private void SetRecentFilesHiddenState(bool hideRecentFiles)
         {
             New<UserSettings>().HideRecentFiles = hideRecentFiles;
 
@@ -905,10 +906,10 @@ namespace Axantum.AxCrypt
                 _recentFilesListView.UpdateRecentFiles(New<FileSystemState>().ActiveFiles);
             }
 
-            ConfigureEnableDisableRecentFiles(hideRecentFiles);
+            ConfigureShowHideRecentFiles(hideRecentFiles);
         }
 
-        private void ConfigureEnableDisableRecentFiles(bool hideRecentFiles)
+        private void ConfigureShowHideRecentFiles(bool hideRecentFiles)
         {
             _optionsHideRecentFilesToolStripMenuItem.Checked = hideRecentFiles;
             _recentFilesListView.Enabled = !hideRecentFiles;
