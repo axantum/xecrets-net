@@ -169,10 +169,10 @@ namespace Axantum.AxCrypt.Core.UI
             set { Store(nameof(ThisVersion), value); }
         }
 
-        public bool DisableRecentFiles
+        public bool HideRecentFiles
         {
-            get { return Load(nameof(DisableRecentFiles), false); }
-            set { Store(nameof(DisableRecentFiles), value); }
+            get { return Load(nameof(HideRecentFiles), false); }
+            set { Store(nameof(HideRecentFiles), value); }
         }
 
         public bool DebugMode
