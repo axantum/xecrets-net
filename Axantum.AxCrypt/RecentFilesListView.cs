@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-
-using Axantum.AxCrypt.Abstractions;
+﻿using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Core;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
@@ -14,7 +7,12 @@ using Axantum.AxCrypt.Core.UI;
 using Axantum.AxCrypt.Forms;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Properties;
-
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 using Texts = AxCrypt.Content.Texts;
@@ -110,7 +108,7 @@ namespace Axantum.AxCrypt
             {
                 return;
             }
-            if (New<UserSettings>().DisableRecentFiles)
+            if (New<UserSettings>().HideRecentFiles)
             {
                 return;
             }
