@@ -275,6 +275,9 @@ Please sign in using the same password you used then.</value>
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>!!Apply</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -999,6 +1002,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>!! Discount Code &lt;label id="applied-discount-code-label" style="font-weight:bold"&gt;&lt;/label&gt; applied.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>!!Discount Code</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -1308,6 +1317,9 @@ This may cause some operations to take very long time. Please be careful not to 
 Internet access is recommended, and required to enable paid subscription plans. Some features work better and critical updates may not reach you otherwise.
 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
+  </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>!!Discount code is either invalid or expired.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Incorrect format for an email address.</value>
