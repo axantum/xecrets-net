@@ -1327,7 +1327,7 @@ Per favore indica la lingua da utilizzare nell'invito e un messaggio personalizz
     <value>AxCrypt deve essere riavviato per rendere effettivo il cambio di lingua.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Ora</value>
+    <value>Data ultimo accesso</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Hai già la versione più aggiornata!</value>

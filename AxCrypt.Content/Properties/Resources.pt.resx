@@ -1278,7 +1278,7 @@ Um recipiente é identificado pelo email de registro do AxCrypt ID, mas nós nã
     <value>O AxCrypt precisa ser reiniciado para aceitar a mudança de idioma.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Tempo</value>
+    <value>Data de acesso</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Você já tem a última versão!</value>
