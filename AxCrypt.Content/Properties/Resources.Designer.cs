@@ -2394,7 +2394,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !! Discount Code &lt;label id=&quot;applied-discount-code-label&quot; style=&quot;font-weight:bold&quot;&gt;&lt;/label&gt; applied..
+        ///   Looks up a localized string similar to !! Discount Code {0} applied..
         /// </summary>
         public static string DiscountCodeAppliedText {
             get {

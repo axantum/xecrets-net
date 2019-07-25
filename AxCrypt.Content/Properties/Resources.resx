@@ -1003,7 +1003,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
   <data name="DiscountCodeAppliedText" xml:space="preserve">
-    <value>!! Discount Code &lt;label id="applied-discount-code-label" style="font-weight:bold"&gt;&lt;/label&gt; applied.</value>
+    <value>!! Discount Code {0} applied.</value>
   </data>
   <data name="DiscountCodeTitle" xml:space="preserve">
     <value>!!Discount Code</value>
