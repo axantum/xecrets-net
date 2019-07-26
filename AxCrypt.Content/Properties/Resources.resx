@@ -912,6 +912,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>Internal error, could not delete AxCrypt ID because the current user was not found.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>!!You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Your AxCrypt ID has been successfully deleted.
 

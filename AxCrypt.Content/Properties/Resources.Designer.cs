@@ -2131,6 +2131,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;.
+        /// </summary>
+        public static string DeleteAccountMailBodyIntro {
+            get {
+                return ResourceManager.GetString("DeleteAccountMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt ID has been successfully deleted.
         ///
         ///We&apos;re sad to see you go and hope you enjoyed your time with AxCrypt!.
