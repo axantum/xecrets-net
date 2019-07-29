@@ -5335,6 +5335,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Click &lt;a href=&quot;https://www.axcrypt.net/premium-trial/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; to know more about Premium Trial..
+        /// </summary>
+        public static string PremiumTrialInstructionsLinkText {
+            get {
+                return ResourceManager.GetString("PremiumTrialInstructionsLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press and hold to view more.
         /// </summary>
         public static string PressAndHoldLabel {

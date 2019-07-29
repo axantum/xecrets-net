@@ -2155,6 +2155,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Priority Support Request</value>
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>!!Click &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; to know more about Premium Trial.</value>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Press and hold to view more</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
