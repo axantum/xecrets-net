@@ -26,12 +26,14 @@
 #endregion Coypright and License
 
 using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
 using Axantum.AxCrypt.Core.UI.ViewModel;
+using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -577,6 +579,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (!New<IEncryptedFileFilter>().IsOpenable(_eventArgs.SaveFileFullName))
             {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.IgnoreFileWarning);
                 _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }

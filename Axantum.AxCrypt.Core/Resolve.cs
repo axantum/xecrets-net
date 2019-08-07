@@ -79,6 +79,7 @@ namespace Axantum.AxCrypt.Core
             TypeMap.Register.Singleton<CryptoPolicy>(() => new CryptoPolicy(assemblies));
             TypeMap.Register.Singleton<UserPublicKeyUpdateStatus>(() => new UserPublicKeyUpdateStatus());
             TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
+            TypeMap.Register.Singleton<IEncryptedFileFilter>(() => new EncryptedFileFilter());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());

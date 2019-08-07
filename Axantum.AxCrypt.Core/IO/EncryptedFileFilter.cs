@@ -1,11 +1,6 @@
-﻿using Axantum.AxCrypt.Core.Extensions;
-using Axantum.AxCrypt.Core.UI;
-using AxCrypt.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.IO
 {
@@ -25,6 +20,9 @@ namespace Axantum.AxCrypt.Core.IO
             AddUnopenableExtension("rar");
             AddUnopenableExtension("gz");
             AddUnopenableExtension("7z");
+            AddUnopenableExtension(".cpgz");
+            AddUnopenableExtension(".cpio");
+            AddUnopenableExtension(".cpgz");
         }
 
         private bool AddUnopenableExtension(string extension)
@@ -48,7 +46,6 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 if (filter.IsMatch(decryptedFileName))
                 {
-                    New<Abstractions.IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(decryptedFileName), Common.DoNotShowAgainOptions.IgnoreFileWarning));
                     return false;
                 }
             }
