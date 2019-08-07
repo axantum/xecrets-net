@@ -20,9 +20,9 @@ namespace Axantum.AxCrypt.Core.IO
             AddUnopenableExtension("rar");
             AddUnopenableExtension("gz");
             AddUnopenableExtension("7z");
-            AddUnopenableExtension(".cpgz");
-            AddUnopenableExtension(".cpio");
-            AddUnopenableExtension(".cpgz");
+            AddUnopenableExtension("cpgz");
+            AddUnopenableExtension("cpio");
+            AddUnopenableExtension("cpgz");
         }
 
         private bool AddUnopenableExtension(string extension)
