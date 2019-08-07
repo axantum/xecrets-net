@@ -33,22 +33,22 @@ namespace Axantum.AxCrypt.Core.IO
             {
                 throw new ArgumentNullException(nameof(extension));
             }
-            pathFilters.Add(new Regex(@".*\-" + extension + OS.Current.AxCryptExtension + "$"));
+            pathFilters.Add(new Regex(@".*\." + extension + "$"));
             return true;
         }
 
-        public bool IsOpenable(IDataItem fileInfo)
+        public bool IsOpenable(string decryptedFileName)
         {
-            if (fileInfo == null)
+            if (decryptedFileName == null)
             {
-                throw new ArgumentNullException("fileInfo");
+                throw new ArgumentNullException("decryptedFileName");
             }
 
             foreach (Regex filter in pathFilters)
             {
-                if (filter.IsMatch(fileInfo.FullName))
+                if (filter.IsMatch(decryptedFileName))
                 {
-                    New<Abstractions.IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(fileInfo.Name), Common.DoNotShowAgainOptions.IgnoreFileWarning));
+                    New<Abstractions.IUIThread>().PostTo(async () => await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(decryptedFileName), Common.DoNotShowAgainOptions.IgnoreFileWarning));
                     return false;
                 }
             }

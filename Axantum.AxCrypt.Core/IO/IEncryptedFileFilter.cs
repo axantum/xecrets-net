@@ -13,6 +13,6 @@ namespace Axantum.AxCrypt.Core.IO
         /// <value>
         ///   <c>true</c> if this file is openable; otherwise, <c>false</c>.
         /// </value>
-        bool IsOpenable(IDataItem encryptedDataStore);
+        bool IsOpenable(string fileName);
     }
 }

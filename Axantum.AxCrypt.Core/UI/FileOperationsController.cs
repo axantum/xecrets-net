@@ -570,14 +570,14 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            if (!New<IEncryptedFileFilter>().IsOpenable(fileInfo))
+            if (!await OpenAxCryptDocumentAsync(fileInfo, _eventArgs))
             {
-                _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
 
-            if (!await OpenAxCryptDocumentAsync(fileInfo, _eventArgs))
+            if (!New<IEncryptedFileFilter>().IsOpenable(_eventArgs.SaveFileFullName))
             {
+                _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
 
