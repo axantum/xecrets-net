@@ -35,16 +35,16 @@ namespace Axantum.AxCrypt.Core.IO
             return true;
         }
 
-        public bool IsOpenable(string decryptedFileName)
+        public bool IsOpenable(string fileName)
         {
-            if (decryptedFileName == null)
+            if (fileName == null)
             {
-                throw new ArgumentNullException("decryptedFileName");
+                throw new ArgumentNullException("fileName");
             }
 
             foreach (Regex filter in pathFilters)
             {
-                if (filter.IsMatch(decryptedFileName))
+                if (filter.IsMatch(fileName))
                 {
                     return false;
                 }
