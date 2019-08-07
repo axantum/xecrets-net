@@ -1070,6 +1070,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="EnterPassphraseForIdentityPrompt" xml:space="preserve">
     <value>Identity '{0}' password</value>
   </data>
+  <data name="EnumerateUsersStillNotFinishedError" xml:space="preserve">
+    <value>!!The user enumeration is currently active. So we are not allowed to do enumeration before completed the active enumeration.</value>
+  </data>
   <data name="EnumerateUsersSuccess" xml:space="preserve">
     <value>User enumeration was successful. You might have to refresh the page to get the updated statistics.</value>
   </data>
