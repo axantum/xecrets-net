@@ -100,6 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IPopup>(() => new FakePopup());
             TypeMap.Register.Singleton<IKnownFoldersDiscovery>(() => new FakeKnownFoldersDiscovery());
             TypeMap.Register.Singleton<IGlobalNotification>(() => new FakeGlobalNotification());
+            TypeMap.Register.Singleton<CanOpenEncryptedFile>(() => new CanOpenEncryptedFile());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
@@ -122,7 +123,6 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
             TypeMap.Register.New<ISingleThread>(() => new SingleThread());
-            TypeMap.Register.New<CanOpenEncryptedFile>(() => new CanOpenEncryptedFile());
 
             Resolve.UserSettings.SetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
