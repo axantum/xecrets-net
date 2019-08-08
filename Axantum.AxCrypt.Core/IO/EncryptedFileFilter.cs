@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class EncryptedFileFilter
+    public class EncryptedFileFilter : IEncryptedFileFilter
     {
         private readonly List<Regex> pathFilters;
 

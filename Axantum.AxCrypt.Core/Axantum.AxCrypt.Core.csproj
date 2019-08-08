@@ -65,6 +65,7 @@
     <Compile Include="Crypto\LogOnIdentity.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="FormatIntegrityChecker.cs" />
+    <Compile Include="IO\DefaultEncryptedFileFilter.cs" />
     <Compile Include="IO\EncryptedFileFilter.cs" />
     <Compile Include="IO\FileFilter.cs" />
     <Compile Include="Extensions\OtherExtensions.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="IO\FileLockManager.cs" />
     <Compile Include="IO\IDataContainer.cs" />
     <Compile Include="IO\IDataItem.cs" />
+    <Compile Include="IO\IEncryptedFileFilter.cs" />
     <Compile Include="IO\LockedStream.cs" />
     <Compile Include="IO\PipelineStream.cs" />
     <Compile Include="IO\WrappedBaseStream.cs" />
