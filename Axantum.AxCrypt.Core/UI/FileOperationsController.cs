@@ -553,7 +553,7 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
-            if (!New<IEncryptedFileFilter>().IsOpenable(_eventArgs.SaveFileFullName))
+            if (!New<CanOpenEncryptedFile>().IsOpenable(_eventArgs.SaveFileFullName))
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.IgnoreFileWarning);
                 _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);

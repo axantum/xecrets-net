@@ -122,7 +122,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
             TypeMap.Register.New<ISingleThread>(() => new SingleThread());
-            TypeMap.Register.New<IEncryptedFileFilter>(() => new DefaultEncryptedFileFilter());
+            TypeMap.Register.New<CanOpenEncryptedFile>(() => new CanOpenEncryptedFile());
 
             Resolve.UserSettings.SetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;

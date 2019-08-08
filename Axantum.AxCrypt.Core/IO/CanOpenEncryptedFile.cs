@@ -4,17 +4,16 @@ using System.Text.RegularExpressions;
 
 namespace Axantum.AxCrypt.Core.IO
 {
-    public class EncryptedFileFilter : IEncryptedFileFilter
+    public class CanOpenEncryptedFile
     {
         private readonly List<Regex> pathFilters;
 
-        public EncryptedFileFilter()
+        public CanOpenEncryptedFile()
         {
             pathFilters = new List<Regex>();
-            InitializeUnopenableExtensions();
         }
 
-        private void InitializeUnopenableExtensions()
+        public void AddPlatformIndependent()
         {
             AddUnopenableExtension("zip");
             AddUnopenableExtension("rar");
