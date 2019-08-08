@@ -475,6 +475,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Apply.
+        /// </summary>
+        public static string ApplyButtonText {
+            get {
+                return ResourceManager.GetString("ApplyButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For security reasons, please enter your password again..
         /// </summary>
         public static string AppSignInMessage {
@@ -2394,6 +2403,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !! Discount Code {0} applied..
+        /// </summary>
+        public static string DiscountCodeAppliedText {
+            get {
+                return ResourceManager.GetString("DiscountCodeAppliedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Discount Code.
+        /// </summary>
+        public static string DiscountCodeTitle {
+            get {
+                return ResourceManager.GetString("DiscountCodeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -3235,6 +3262,15 @@ namespace AxCrypt.Content.Properties {
         public static string Invalid_URL {
             get {
                 return ResourceManager.GetString("Invalid_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Discount code is either invalid or expired..
+        /// </summary>
+        public static string InvalidDiscountCodeErrorMessage {
+            get {
+                return ResourceManager.GetString("InvalidDiscountCodeErrorMessage", resourceCulture);
             }
         }
         
