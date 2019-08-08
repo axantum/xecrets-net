@@ -553,6 +553,13 @@ namespace Axantum.AxCrypt.Core.UI
                 return false;
             }
 
+            if (!New<EncryptedFileFilter>().IsOpenable(_eventArgs.SaveFileFullName))
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.IgnoreFileWarning);
+                _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
+                return false;
+            }
+
             if (_eventArgs.CryptoId != new V1Aes128CryptoFactory().CryptoId)
             {
                 return true;
@@ -574,13 +581,6 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (!await OpenAxCryptDocumentAsync(fileInfo, _eventArgs))
             {
-                return false;
-            }
-
-            if (!New<IEncryptedFileFilter>().IsOpenable(_eventArgs.SaveFileFullName))
-            {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.IgnoreFileWarning);
-                _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
 
