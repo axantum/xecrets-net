@@ -1251,7 +1251,7 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
     <value>언어를 변경하신 후 AxCrypt를 재시작해주시기 바랍니다.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>시간</value>
+    <value>액세스한 날짜</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>이미 최신버전입니다!</value>
