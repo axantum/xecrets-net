@@ -1320,7 +1320,11 @@ Ange språk för inbjudan, och ett eventuellt personligt meddelande neda.</value
     <value>AxCrypt måste startas om för att slutföra språkändringen.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Tid</value>
+    <value>Senast använd</value>
+  </data>
+  <data name="LastModifiedTimeColumnHeaderText" xml:space="preserve">
+    <value>Senast ändrad</value>
+    <comment>A column header for the display of the time an encrypted file las last modified. It should use the standard term "Date modified"</comment>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Du har redan den senaste versionen!</value>

@@ -1279,7 +1279,7 @@ Ein Empfänger ist von der AxCrypt ID E-Mail identifiziert, aber wir schicken di
     <value>AxCrypt muss neu gestartet werden, damit die Sprachänderung wirksam wird. </value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Zeit </value>
+    <value>Letzter Zugriff </value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Sie haben bereits die neueste Version!</value>

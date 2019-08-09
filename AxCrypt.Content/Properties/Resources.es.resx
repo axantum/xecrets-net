@@ -1270,7 +1270,7 @@ Un destinatario es identificado por el e-mail registrado de su AxCrypt ID, ¡per
     <value>AxCrypt debe reiniciarse para que el cambio de idioma tenga efecto.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Hora</value>
+    <value>Fecha de acceso</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>¡Ya tienes la última versión!</value>

@@ -1288,7 +1288,7 @@ Adresat jest identyfikowany przez AxCrypt ID w wiadomości e-mail, ale nie wysy�
     <value>AxCrypt musi zostać uruchomiony ponownie, aby zmiana języka zaczęła obowiązywać.</value>
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
-    <value>Czas</value>
+    <value>Data dostępu</value>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Masz już najnowszą wersję!</value>
