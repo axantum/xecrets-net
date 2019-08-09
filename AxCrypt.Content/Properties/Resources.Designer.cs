@@ -3612,6 +3612,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!When Updating keyShared file on free user that file keySharing information was removed.
+        /// </summary>
+        public static string KeySharingRemovedInFreeModeWarningText {
+            get {
+                return ResourceManager.GetString("KeySharingRemovedInFreeModeWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to select encrypted files to share keys with others..
         /// </summary>
         public static string KeySharingToolTip {

@@ -14,5 +14,6 @@ namespace Axantum.AxCrypt.Common
         SignedInSoNoPasswordRequired = 0x8,
         WillNotForgetPassword = 0x10,
         IgnoreFileWarning = 0x20,
+        KeySharingRemovedInFreeModeWarning = 0x40,
     }
 }
