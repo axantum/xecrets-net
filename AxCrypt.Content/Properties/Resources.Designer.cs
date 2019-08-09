@@ -2619,15 +2619,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The user enumeration is currently active. So we are not allowed to do enumeration before completed the active enumeration..
-        /// </summary>
-        public static string EnumerateUsersStillNotFinishedError {
-            get {
-                return ResourceManager.GetString("EnumerateUsersStillNotFinishedError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to User enumeration was successful. You might have to refresh the page to get the updated statistics..
         /// </summary>
         public static string EnumerateUsersSuccess {
