@@ -13,18 +13,7 @@ namespace Axantum.AxCrypt.Core.IO
             pathFilters = new List<Regex>();
         }
 
-        public void AddPlatformIndependent()
-        {
-            AddUnopenableExtension("zip");
-            AddUnopenableExtension("rar");
-            AddUnopenableExtension("gz");
-            AddUnopenableExtension("7z");
-            AddUnopenableExtension("cpgz");
-            AddUnopenableExtension("cpio");
-            AddUnopenableExtension("cpgz");
-        }
-
-        private bool AddUnopenableExtension(string extension)
+        public bool AddUnopenableExtension(string extension)
         {
             if (extension == null)
             {
