@@ -1,11 +1,13 @@
-﻿using Axantum.AxCrypt.Abstractions;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -56,10 +58,16 @@ namespace Axantum.AxCrypt.Api
             {
                 RestResponse restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
                 ApiCaller.EnsureStatusOk(restResponse);
-                return Serializer.Deserialize<IList<CultureInfo>>(restResponse.Content);
+                return DeserialieWorkAroundForCultureInfoPclFrameworkProblems(restResponse);
             }
 
             return await Task.FromResult((IList<CultureInfo>)null); ;
+        }
+
+        private static IList<CultureInfo> DeserialieWorkAroundForCultureInfoPclFrameworkProblems(RestResponse restResponse)
+        {
+            IList<string> cultureInfoStrings = Serializer.Deserialize<IList<string>>(restResponse.Content);
+            return cultureInfoStrings.Select(cit => new CultureInfo(cit)).ToList();
         }
     }
 }
