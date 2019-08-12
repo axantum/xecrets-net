@@ -555,7 +555,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             if (!New<CanOpenEncryptedFile>().IsOpenable(_eventArgs.SaveFileFullName))
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.IgnoreFileWarning);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.UnopenableFileWarning);
                 _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
