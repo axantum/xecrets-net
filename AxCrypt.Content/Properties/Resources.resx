@@ -999,9 +999,6 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Disable</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
-  <data name="DisableRecentFilesListTabToolTipText" xml:space="preserve">
-    <value>!!It is disabled and can be re-enabled in options</value>
-  </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
@@ -1262,6 +1259,9 @@ If you for any reason do not know or remember the password, you must perform a p
   </data>
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>View Help</value>
+  </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>!!It is disabled and can be re-enabled in options</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutes</value>
@@ -1990,8 +1990,8 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
     <value>Debug</value>
   </data>
-  <data name="OptionsDisableRecentFilesToolStripMenuItemText" xml:space="preserve">
-    <value>!!Disable Recent Files</value>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>!!Hide Recent Files</value>
   </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Include Subfolders</value>
