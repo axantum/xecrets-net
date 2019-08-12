@@ -1,12 +1,12 @@
-﻿using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Threading.Tasks;
+using Axantum.AxCrypt.Abstractions;
+using Axantum.AxCrypt.Abstractions.Rest;
+using Axantum.AxCrypt.Api.Model;
+using Axantum.AxCrypt.Common;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
