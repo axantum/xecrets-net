@@ -100,6 +100,7 @@ namespace Axantum.AxCrypt.Core.Test
             TypeMap.Register.Singleton<IPopup>(() => new FakePopup());
             TypeMap.Register.Singleton<IKnownFoldersDiscovery>(() => new FakeKnownFoldersDiscovery());
             TypeMap.Register.Singleton<IGlobalNotification>(() => new FakeGlobalNotification());
+            TypeMap.Register.Singleton<CanOpenEncryptedFile>(() => new CanOpenEncryptedFile());
 
             TypeMap.Register.New<AxCryptFactory>(() => new AxCryptFactory());
             TypeMap.Register.New<AxCryptFile>(() => new AxCryptFile());
