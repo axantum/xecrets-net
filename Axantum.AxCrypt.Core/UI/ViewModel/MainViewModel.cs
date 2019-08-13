@@ -25,18 +25,23 @@
 
 #endregion Coypright and License
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Common;
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
+using Axantum.AxCrypt.Core.Portable;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Session;
+
 using AxCrypt.Content;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI.ViewModel
@@ -115,6 +120,8 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction RemoveWatchedFolders { get; private set; }
 
+        public IAsyncAction WarnIfAnyDecryptedFiles { get; private set; }
+
         public MainViewModel(FileSystemState fileSystemState, UserSettings userSettings)
         {
             _fileSystemState = fileSystemState;
@@ -152,6 +159,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             AxCryptUpdateCheck = new AsyncDelegateAction<DateTime>((utc) => AxCryptUpdateCheckAction(utc));
             LicenseUpdate = new DelegateAction<object>((o) => License = New<LicensePolicy>().Capabilities);
             RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>((folders) => RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
+            WarnIfAnyDecryptedFiles = new AsyncDelegateAction<object>((o) => WarnIfAnyDecryptedFilesActionAsync());
 
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
@@ -474,6 +482,26 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
         private Task AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
         {
             return _axCryptUpdateCheck.CheckInBackgroundAsync(lastUpdateCheckUtc, _userSettings.NewestKnownVersion, _userSettings.UpdateUrl, _userSettings.CultureName);
+        }
+
+        private async Task<bool> WarnIfAnyDecryptedFilesActionAsync()
+        {
+            if (!DecryptedFiles.Any())
+            {
+                return false;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
+            foreach (ActiveFile decryptedFile in DecryptedFiles)
+            {
+                sb.AppendLine(New<IPath>().GetFileName(decryptedFile.DecryptedFileInfo.FullName));
+            }
+
+            sb.AppendLine().Append(Texts.DecryptedFilesWarningWhenExitOrReset);
+
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
+            return true;
         }
 
         private async Task SetFolderOperationMode(FolderOperationMode folderOperationMode)
