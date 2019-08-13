@@ -3116,6 +3116,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!{0} was not opened due to technical restrictions. This may be caused by the file extension, location or other properties. 
+        ///
+        ///If you want to view or update the file contents, please decrypt permanently..
+        /// </summary>
+        public static string IgnoreFileOpenWarningText {
+            get {
+                return ResourceManager.GetString("IgnoreFileOpenWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties..
         /// </summary>
         public static string IgnoreFileWarningText {
