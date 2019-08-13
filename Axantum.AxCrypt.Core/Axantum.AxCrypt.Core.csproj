@@ -65,6 +65,7 @@
     <Compile Include="Crypto\LogOnIdentity.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="FormatIntegrityChecker.cs" />
+    <Compile Include="IO\CanOpenEncryptedFile.cs" />
     <Compile Include="IO\FileFilter.cs" />
     <Compile Include="Extensions\OtherExtensions.cs" />
     <Compile Include="Extensions\UserTypeExtensions.cs" />
