@@ -567,7 +567,7 @@ namespace Axantum.AxCrypt
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _notifySignOutToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
             _notifySignInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
-            _signOutToolStripMenuItem.Click += async (sender, e) => { if (!await WarnIfAnyDecryptedFiles()) await LogOnOrLogOffAndLogOnAgainAsync(); };
+            _signOutToolStripMenuItem.Click += async (sender, e) => { if (_mainViewModel.DecryptedFiles.Any()) { await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null); return; } await LogOnOrLogOffAndLogOnAgainAsync(); };
             _alwaysOfflineToolStripMenuItem.Click += (sender, e) =>
             {
                 bool offlineMode = !New<UserSettings>().OfflineMode;
@@ -813,7 +813,7 @@ namespace Axantum.AxCrypt
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
             _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
-            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (!await WarnIfAnyDecryptedFiles()) { await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); } };
+            _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (_mainViewModel.DecryptedFiles.Any()) { await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null); return; } await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
             _optionsHideRecentFilesToolStripMenuItem.Click += (sender, e) => { SetRecentFilesHiddenState(!New<UserSettings>().HideRecentFiles); };
             _optionsIncludeSubfoldersToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.IncludeSubfolders, (ss, ee) => { return ToggleIncludeSubfoldersOption(); }, sender, e); };
@@ -1233,8 +1233,9 @@ namespace Axantum.AxCrypt
 
         private async Task ResetAllSettingsAndRestart()
         {
-            if (await WarnIfAnyDecryptedFiles())
+            if (_mainViewModel.DecryptedFiles.Any())
             {
+                await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null);
                 return;
             }
 
@@ -1570,10 +1571,12 @@ namespace Axantum.AxCrypt
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (await WarnIfAnyDecryptedFiles())
+            if (_mainViewModel.DecryptedFiles.Any())
             {
+                await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null);
                 return;
             }
+
             await ShutDownAnd(New<IUIThread>().ExitApplication);
         }
 
@@ -1622,24 +1625,6 @@ namespace Axantum.AxCrypt
                 await _mainViewModel.EncryptPendingFiles.ExecuteAsync(null);
                 new ApplicationManager().WaitForBackgroundToComplete();
             }
-        }
-
-        private async Task<bool> WarnIfAnyDecryptedFiles()
-        {
-            IEnumerable<ActiveFile> openFiles = _mainViewModel.DecryptedFiles ?? new ActiveFile[0];
-            if (!openFiles.Any())
-            {
-                return false;
-            }
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
-            foreach (ActiveFile openFile in openFiles)
-            {
-                sb.Append("{0}{1}".InvariantFormat(Path.GetFileName(openFile.DecryptedFileInfo.FullName), Environment.NewLine));
-            }
-            sb.Append("{0}{1}".InvariantFormat(Environment.NewLine, Texts.DecryptedFilesWarningWhenExitOrReset));
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
-            return true;
         }
 
         private void SetSortOrder(int column)
