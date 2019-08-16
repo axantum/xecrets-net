@@ -25,16 +25,18 @@
 
 #endregion Coypright and License
 
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
 using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.IO;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.UI;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+
+using AxCrypt.Content;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Session
@@ -95,8 +97,7 @@ namespace Axantum.AxCrypt.Core.Session
                     }
 
                     EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                    EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
-                    await parameters.AddAsync(properties.SharedKeyHolders);
+                    await AddSharingParameters(parameters, activeFile, encryptedFileLock);
 
                     New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
@@ -114,6 +115,21 @@ namespace Axantum.AxCrypt.Core.Session
                 New<ILogging>().LogInfo("Wrote back '{0}' to '{1}'".InvariantFormat(activeFile.DecryptedFileInfo.FullName, activeFile.EncryptedFileInfo.FullName));
             }
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
+        }
+
+        private static async Task AddSharingParameters(EncryptionParameters parameters, ActiveFile activeFile, FileLock encryptedFileLock)
+        {
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
+            {
+                EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
+                await parameters.AddAsync(properties.SharedKeyHolders);
+                return;
+            }
+
+            if (activeFile.IsShared)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.KeySharingRemovedInFreeModeWarningText, Common.DoNotShowAgainOptions.KeySharingRemovedInFreeModeWarning);
+            }
         }
     }
 }

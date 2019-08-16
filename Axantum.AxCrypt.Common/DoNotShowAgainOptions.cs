@@ -15,5 +15,6 @@ namespace Axantum.AxCrypt.Common
         WillNotForgetPassword = 0x10,
         IgnoreFileWarning = 0x20,
         UnopenableFileWarning  = 0x40,
+        KeySharingRemovedInFreeModeWarning = 0x80,
     }
 }
