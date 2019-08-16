@@ -2385,15 +2385,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
-        /// </summary>
-        public static string DisableRecentFilesListTabToolTipText {
-            get {
-                return ResourceManager.GetString("DisableRecentFilesListTabToolTipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This automatic email is translated to your preferred language, but direct personal service and support is in English..
         /// </summary>
         public static string DisclaimerMailFooter {
@@ -3094,6 +3085,15 @@ namespace AxCrypt.Content.Properties {
         public static string HelpViewHelpMenuItemText {
             get {
                 return ResourceManager.GetString("HelpViewHelpMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
+        /// </summary>
+        public static string HideRecentFilesListTabToolTipText {
+            get {
+                return ResourceManager.GetString("HideRecentFilesListTabToolTipText", resourceCulture);
             }
         }
         
@@ -4954,11 +4954,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Disable Recent Files.
+        ///   Looks up a localized string similar to !!Hide Recent Files.
         /// </summary>
-        public static string OptionsDisableRecentFilesToolStripMenuItemText {
+        public static string OptionsHideRecentFilesToolStripMenuItemText {
             get {
-                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
+                return ResourceManager.GetString("OptionsHideRecentFilesToolStripMenuItemText", resourceCulture);
             }
         }
         
