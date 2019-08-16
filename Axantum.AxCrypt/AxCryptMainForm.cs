@@ -1545,7 +1545,7 @@ namespace Axantum.AxCrypt
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_mainViewModel.DecryptedFiles.Any())
+            if (_mainViewModel.LoggedOn && _mainViewModel.DecryptedFiles.Any())
             {
                 await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null);
                 return;
