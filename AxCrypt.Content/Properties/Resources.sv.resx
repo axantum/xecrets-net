@@ -250,6 +250,9 @@ Logga nu in med samma lösenord som du angav då.</value>
   <data name="AppActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verifiering [ {0} ]</value>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Aktivera Rabattkoden</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Av säkerhetsskäl måste du ange ditt lösenord igen.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -909,6 +912,12 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Detta automatiska e-postmeddelande är översatt till svenska, men personlig service och support sker på engelska.</value>
   </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>Rabattkoden '{0}' är nu aktiv.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>Rabattkod</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Visa inte igen.</value>
   </data>
@@ -1179,6 +1188,9 @@ Vissa funktioner kan då ta väldigt lång tid. Var försiktig med att välja ma
 Internetåtkomst rekommenderas, och krävs för att starta betalda abonnemang. Vissa funktioner fungerar bättre och kritiska uppdateringar kanske inte når fram annars.
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
+  </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>Ogiltig rabattkod.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Felaktigt angiven epostadress.</value>

@@ -475,7 +475,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Apply.
+        ///   Looks up a localized string similar to Apply Code.
         /// </summary>
         public static string ApplyButtonText {
             get {
@@ -2403,7 +2403,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !! Discount Code {0} applied..
+        ///   Looks up a localized string similar to Discount Code {0} applied..
         /// </summary>
         public static string DiscountCodeAppliedText {
             get {
@@ -2412,7 +2412,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Discount Code.
+        ///   Looks up a localized string similar to Discount Code.
         /// </summary>
         public static string DiscountCodeTitle {
             get {
@@ -3277,7 +3277,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Discount code is either invalid or expired..
+        ///   Looks up a localized string similar to This discount code is not valid..
         /// </summary>
         public static string InvalidDiscountCodeErrorMessage {
             get {
@@ -6981,7 +6981,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Great! We&apos;ve enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
         ///
-        ///Don&apos;t worry - you&apos;ll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
+        ///Don&apos;t worry - you&apos;ll still have access to all your encrypted files and managed passwords with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
         ///
         ///Good Luck and Enjoy,
         ///

@@ -276,7 +276,7 @@ Please sign in using the same password you used then.</value>
     <comment>Title of mobile application</comment>
   </data>
   <data name="ApplyButtonText" xml:space="preserve">
-    <value>!!Apply</value>
+    <value>Apply Code</value>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
@@ -1006,10 +1006,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
   <data name="DiscountCodeAppliedText" xml:space="preserve">
-    <value>!! Discount Code {0} applied.</value>
+    <value>Discount Code {0} applied.</value>
   </data>
   <data name="DiscountCodeTitle" xml:space="preserve">
-    <value>!!Discount Code</value>
+    <value>Discount Code</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
@@ -1327,7 +1327,7 @@ Internet access is recommended, and required to enable paid subscription plans. 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
   </data>
   <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
-    <value>!!Discount code is either invalid or expired.</value>
+    <value>This discount code is not valid.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Incorrect format for an email address.</value>
@@ -2781,7 +2781,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Great! We've enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
 
-Don't worry - you'll still have access to all your files with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
+Don't worry - you'll still have access to all your encrypted files and managed passwords with AxCrypt Free even if you choose not to purchase a subscription after the trial period is over.
 
 Good Luck and Enjoy,
 
