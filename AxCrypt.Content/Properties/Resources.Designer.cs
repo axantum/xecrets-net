@@ -511,6 +511,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Auto Anonymous Rename.
+        /// </summary>
+        public static string AutoAnonymousRenameMenuItemText {
+            get {
+                return ResourceManager.GetString("AutoAnonymousRenameMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not need to respond or do anything. If you do nothing, no more e-mails will be sent and your AxCrypt ID account will be deleted permanently..
         /// </summary>
         public static string AutoDeletionEmailOutro {
@@ -1078,7 +1087,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Buy more licenses.
+        ///   Looks up a localized string similar to Buy more licenses.
         /// </summary>
         public static string BusinessSubscriptionPurchaseMenu {
             get {
@@ -2385,15 +2394,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!It is disabled and can be re-enabled in options.
-        /// </summary>
-        public static string DisableRecentFilesListTabToolTipText {
-            get {
-                return ResourceManager.GetString("DisableRecentFilesListTabToolTipText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to This automatic email is translated to your preferred language, but direct personal service and support is in English..
         /// </summary>
         public static string DisclaimerMailFooter {
@@ -3098,6 +3098,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recent Files list is disabled. Go to Options to enable..
+        /// </summary>
+        public static string HideRecentFilesListTabToolTipText {
+            get {
+                return ResourceManager.GetString("HideRecentFilesListTabToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} Minutes.
         /// </summary>
         public static string IdleMinutesSignOutToolStripMenuItemText {
@@ -3116,9 +3125,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!{0} was not opened due to technical restrictions. This may be caused by the file extension, location or other properties. 
+        ///   Looks up a localized string similar to &apos;{0}&apos; could not opened in an application due to technical restrictions. This may be because of the type of file, it&apos;s location or other properties. 
         ///
-        ///If you want to view or update the file contents, please decrypt permanently..
+        ///If you want to view or update the file contents, please decrypt it separately, and then open it directly..
         /// </summary>
         public static string IgnoreFileOpenWarningText {
             get {
@@ -4954,11 +4963,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Disable Recent Files.
+        ///   Looks up a localized string similar to Hide Recent Files.
         /// </summary>
-        public static string OptionsDisableRecentFilesToolStripMenuItemText {
+        public static string OptionsHideRecentFilesToolStripMenuItemText {
             get {
-                return ResourceManager.GetString("OptionsDisableRecentFilesToolStripMenuItemText", resourceCulture);
+                return ResourceManager.GetString("OptionsHideRecentFilesToolStripMenuItemText", resourceCulture);
             }
         }
         
@@ -5022,6 +5031,15 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordManagementPageTitle {
             get {
                 return ResourceManager.GetString("PasswordManagementPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Recently your AxCrypt account password was changed, So AxCrypt will need to SignIn again for fetching your updated key information..
+        /// </summary>
+        public static string PasswordMismatchApiExceptionText {
+            get {
+                return ResourceManager.GetString("PasswordMismatchApiExceptionText", resourceCulture);
             }
         }
         
@@ -5400,7 +5418,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Click &lt;a href=&quot;https://www.axcrypt.net/premium-trial/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; to know more about Premium Trial..
+        ///   Looks up a localized string similar to Click &lt;a href=&quot;https://www.axcrypt.net/premium-trial/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information about the Premium Trial..
         /// </summary>
         public static string PremiumTrialInstructionsLinkText {
             get {
@@ -7353,6 +7371,15 @@ namespace AxCrypt.Content.Properties {
         public static string WillNotForgetPasswordWarningText {
             get {
                 return ResourceManager.GetString("WillNotForgetPasswordWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Do you want to continue anyway?.
+        /// </summary>
+        public static string WillNotShowAgainFileOperationErrorWarningText {
+            get {
+                return ResourceManager.GetString("WillNotShowAgainFileOperationErrorWarningText", resourceCulture);
             }
         }
         

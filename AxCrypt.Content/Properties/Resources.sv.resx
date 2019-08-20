@@ -492,7 +492,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Köp Till</value>
+    <value>Köp fler licenser</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -1134,6 +1134,9 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Visa Hjälp</value>
   </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>Listan med Senaste Filer är inaktiverad. Gå till Alternativ för att aktivera.</value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuter</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
@@ -1141,6 +1144,11 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Automatisk Utloggning</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>'{0}' kan inte öppnas i någon tillämpning pga tekniska begränsningar. Det kan bero på filtypen, dess plats eller andra egenskaper.
+
+Om du vill visa eller uppdatera innehållet, dekryptera filen separat och öppna den sedan på vanligt vis.</value>
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}' krypterades inte beroende på tekniska restriktioner. Det kan bero på filändelsen, mappen eller andra egenskaper.</value>
@@ -1735,6 +1743,9 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av AxCrypt 1.x- och AES-128-filer.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Dölj Senaste Filer</value>
+  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Inkludera Underkataloger</value>
   </data>
@@ -1892,6 +1903,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
     <value>Funktionen kräver en betald prenumeration! Vill du öppna en webbsida där du kan köpa?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>Klicka &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;här&lt;/a&gt; för att få mer information om gratis Premium-utvärdering.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Tryck och håll för att se mer</value>
@@ -2430,7 +2444,7 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Härligt! Vi har aktiverat en gratis provperiod för Premium. Nu kan kan du använda alla funktioner i AxCrypt gratis under provperioden.
 
-Oroa dig inte - du har fortsatt tillgång till alla dina filer även om du väljer att inte köpa en betald prenumeration efter provperioden.
+Oroa dig inte - du har fortsatt tillgång till alla dina filer och lösenord med AxCrypt Free även om du väljer att inte köpa en betald prenumeration efter provperioden.
 
 Lycka till och mycket nöje!
 
