@@ -2405,11 +2405,10 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Geweldig! We hebben een gratis proefversie van Premium voor u ingeschakeld. U kunt nu gratis gebruik maken van alle AxCrypt eigenschappen tijdens de proefperiode.
 
-Gen zorgen - u hebt nog altijd toegang tot al uw bestanden met AxCrypt Free, zelfs als u ervoor kiest om geen abonnement te nemen na de proefperiode.
+Geen zorgen - u heeft nog altijd toegang tot al uw bestanden en wachtwoorden met AxCrypt Free, zelfs als u ervoor kiest om geen abonnement te nemen na de proefperiode.
 
-Veel succes en geniet er van,
-
-Het AxCrypt team</value>
+Geniet ervan,
+Het AxCrypt Team</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
   </data>
   <data name="TroubleRememberingLabel" xml:space="preserve">

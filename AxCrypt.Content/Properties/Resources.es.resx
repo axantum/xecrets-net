@@ -246,6 +246,9 @@ Por favor, inicie sesión usando la misma contraseña que usó entonces.</value>
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Ocultar el nombre real de un archivo protegido por cambiar el nombre de archivo aleatorio. </value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>Verificación de AxCrypt ID [ {0} ]</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Por razones de seguridad, introduce tu contraseña de nuevo.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -315,7 +318,7 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <value>Como un administrador debe renovar la suscripción para su equipo en el módulo del administración de la cuenta de web de AxCrypt. Usarse el botón de abajo para ir directamente allí. ¡No se olvida a informar su equipo que estará renovado!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Su suscripción de AxCrypt Business {0} terminará pronto. Espero que ha disfrutado de usar AxCrypt y que lo ha encontrado de utilidad. </value>
+    <value>Tu suscripción de AxCrypt Business {0} terminará pronto. Espero que le haya gustado utilizar AxCrypt y lo haya encontrado útil. </value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Cuando su suscripción de Business se refresca, usted y su equipo puede continua a disfrutar de AxCrypt. </value>
@@ -404,6 +407,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Si su suscripción no se renueva a tiempo, volverá a uno de los nuestros planes gratuitos.  </value>
+  </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Tu suscripción termina pronto. Por favor, renuévala para seguir disfrutando de todas las funcionalidades. </value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importar</value>
@@ -799,6 +805,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
     <value>Estos archivos no pudieron ser cifrados de nuevo:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>¡Lo primero que tienes que hacer es cerrar todas las aplicaciones que contengan archivos cifrados abiertos!</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>El archivo probablemente está abierto. Trate de cerrar la aplicación, o utilizar la función de limpieza para eliminarlo.</value>
   </data>
@@ -861,6 +870,12 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>Importar AxCrypt ID</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Introduce una dirección de correo electrónico e invita a nuevos usuarios a usar AxCrypt.</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Información de la invitación</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Compartir Acceso</value>
   </data>
@@ -879,6 +894,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Desactivar</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Este correo electrónico automático se ha traducido a su idioma de preferencia, pero nuestro apoyo y asistencia directa personal se lleva a cabo en inglés. </value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>No volver a mostrar este mensaje.</value>
@@ -1096,6 +1114,9 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Ver ayuda</value>
   </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>Se ha desactivado la lista de archivos recientes. Ve a Opciones para volver a activarla. </value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutos</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
@@ -1148,6 +1169,9 @@ Es recomendable tener acceso a Internet, y es necesario para la activación de l
 
 Su contraseña no se almacena en nuestro servidor, y la conexión siempre está encriptada.</value>
   </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>Este código de descuento no es válido.</value>
+  </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>El formato de correo electrónico no es válido.</value>
   </data>
@@ -1173,11 +1197,21 @@ Para iniciar a proteger tus archivos sólo tienes que descargar e instalar AxCry
 
 Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 cifras y configura tu contraseña secreta.</value>
   </data>
+  <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
+    <value>{0} te ha enviado el siguiente mensaje: {1}</value>
+    <comment>This is inserted into the invitation email, if the inviter has added a personalized message. Parameter {0} is the email of the inviter, and {1} is the message the inviter wrote to the invitee.</comment>
+  </data>
   <data name="InvitationMailSubject" xml:space="preserve">
     <value>Invitación a utilizar AxCrypt Seguridad de archivos</value>
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Invitar al usuario</value>
+  </data>
+  <data name="InviteUserPersonalizedMessageTitle" xml:space="preserve">
+    <value>Mensaje personal</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Invitar a un amigo</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Factura</value>
@@ -1670,6 +1704,9 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
     <value>Activar o desactivar la actualización automática y la conversión de archivos AxCrypt 1.x más viejos a medida que se utilicen.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Ocultar archivos recientes</value>
+  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Incluir subcarpetas</value>
   </data>
@@ -1694,6 +1731,11 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>La contraseña no es suficientemente segura para ser aceptada.</value>
+  </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>No se ha podido restablecer la contraseña para esta cuenta, ya que es necesario cambiar el correo electrónico de &lt;b&gt;{0}&lt;/b&gt;.
+
+Por favor, inicia sesión en &lt;b&gt;{0}&lt;/b&gt; y cambia el correo electrónico o, primero, restablece la contraseña de esta cuenta y después cambia el correo electrónico. </value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>¿Olvidaste tu contraseña? Haga clic aquí</value>
@@ -1823,6 +1865,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>¡Esta característica requiere un plan de pago! ¿Te gustaría abrir nuestra página web, donde puedes hacer una compra?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>Haz clic en &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; para obtener más información sobre la prueba gratuita Premium.</value>
+  </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Mantenga pulsado para ver más</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
@@ -1863,6 +1908,10 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Procesando...</value>
     <comment>Message, which is displayed in Android progress indicator.</comment>
   </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value>Se han procesado {0} archivos en {1}.</value>
+    <comment>This is used to display notification when a lengthy operation completes. It displays the number of files and the time taken as a time span, for example 1:02:03 for one hour, two minutes and three seconds.</comment>
+  </data>
   <data name="PromptActivationCode" xml:space="preserve">
     <value>Código de Verificación</value>
   </data>
@@ -1880,6 +1929,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Cambiar</value>
+  </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>Cambiar correo electrónico</value>
   </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Contraseña actual</value>
@@ -2068,7 +2120,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Eliminar de la lista pero mantener archivo protegido.</value>
+    <value>Eliminar de la lista, pero mantener archivo protegido.</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
@@ -2143,8 +2195,8 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Aquí puede eliminar su cuenta permanentemente del sistema. &lt;span class="red"&gt;También se eliminarán todos los datos asociados con su cuenta, incluyendo las entradas de contraseñas guardadas.&lt;/span&gt;
-Confirma tu contraseña para borrar su cuenta.</value>
+    <value>Aquí puedes eliminar tu cuenta permanentemente del sistema. &lt;span class="red"&gt;También se eliminarán todos los datos asociados con tu cuenta, incluyendo las entradas de contraseñas guardadas.&lt;/span&gt;
+Confirma tu contraseña para borrar tu cuenta.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Para cambiar la dirección de correo asociada con su cuenta, escriba una nueva dirección de correo electrónico a continuación. Esto afectará a la forma en que inicie sesión en el sitio y dónde se envían mensajes de correo electrónico del sitio.
@@ -2348,6 +2400,8 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>¡Genial! Ahora puedes usar todas las características de AxCrypt gratuitamente durante el período de prueba.
+
+Y, no te preocupes, aunque no continúes con la suscripción de pago cuando acabe tu período de prueba gratuito, todavía tendrás acceso a todos tus archivos protegidos y podrás administrar tus contraseñas con AxCrypt Free.
 
 Buena suerte y disfrútalo,
 
