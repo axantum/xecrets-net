@@ -1,8 +1,12 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api.Implementation;
 using Axantum.AxCrypt.Api.Model;
+
 using NUnit.Framework;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api.Test
@@ -33,7 +37,7 @@ namespace Axantum.AxCrypt.Api.Test
             parameters = new CustomMessageParameters(null, "A message");
             json = serializer.Serialize(parameters);
 
-            Assert.That(json, Is.EqualTo("{\r\n  \"messageCulture\": null,\r\n  \"customMessage\": \"A message\"\r\n}"));
+            Assert.That(json, Is.EqualTo("{\r\n  \"messageCulture\": null,\r\n  \"customMessage\": \"A message\"\r\n}".Replace("\r\n", Environment.NewLine)));
         }
 
         [Test]
@@ -47,7 +51,7 @@ namespace Axantum.AxCrypt.Api.Test
             parameters = new CustomMessageParameters(CultureInfo.CreateSpecificCulture("en-US"), "A message");
             json = serializer.Serialize(parameters);
 
-            Assert.That(json, Is.EqualTo("{\r\n  \"messageCulture\": \"en-US\",\r\n  \"customMessage\": \"A message\"\r\n}"));
+            Assert.That(json, Is.EqualTo("{\r\n  \"messageCulture\": \"en-US\",\r\n  \"customMessage\": \"A message\"\r\n}".Replace("\r\n", Environment.NewLine)));
         }
 
         [Test]
@@ -68,7 +72,7 @@ namespace Axantum.AxCrypt.Api.Test
         public void TestDeserializeWithNull()
         {
             IStringSerializer serializer = New<IStringSerializer>();
-            string json = "{\r\n  \"messageCulture\": null,\r\n  \"customMessage\": \"A message\"\r\n}";
+            string json = "{\r\n  \"messageCulture\": null,\r\n  \"customMessage\": \"A message\"\r\n}".Replace("\r\n", Environment.NewLine);
 
             CustomMessageParameters parameters = serializer.Deserialize<CustomMessageParameters>(json);
             Assert.That(parameters.MessageCulture, Is.Null);
@@ -79,7 +83,7 @@ namespace Axantum.AxCrypt.Api.Test
         public void TestDeserializeWithEnglishUsCulture()
         {
             IStringSerializer serializer = New<IStringSerializer>();
-            string json = "{\r\n  \"messageCulture\": \"en-US\",\r\n  \"customMessage\": \"A message\"\r\n}";
+            string json = "{\r\n  \"messageCulture\": \"en-US\",\r\n  \"customMessage\": \"A message\"\r\n}".Replace("\r\n", Environment.NewLine);
 
             CustomMessageParameters parameters = serializer.Deserialize<CustomMessageParameters>(json);
             Assert.That(parameters.MessageCulture.ToString(), Is.EqualTo("en-US"));
