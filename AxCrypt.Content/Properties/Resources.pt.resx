@@ -1820,7 +1820,7 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Esta função requer um plano de subscrição pago!</value>
   </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
-    <value>AxCryptPremium {0} x 30 dias.</value>
+    <value>AxCrypt Premium {0} x 30 dias.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>O compartilhamento de chave requer um plano de subscrição pago. Clique para atualizar agora!</value>

@@ -1787,7 +1787,7 @@ AxCrypt 팀</value>
     <value>이 기능은 유료 구독이 필요합니다!</value>
   </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
-    <value>AxCrypt 프리미엄 {0} x 30일.</value>
+    <value>AxCrypt Premium {0} x 30일.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>공유 키를 이용하기 위해서는 유료 구독이 필요합니다. 업그레이드를 위해 클릭하십시오!</value>
