@@ -1849,7 +1849,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Ta funkcja wymaga wykupienia wersji płatnej abonamentu!</value>
   </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
-    <value>AxCryptPremium  {0} x 30 dni.</value>
+    <value>AxCrypt Premium  {0} x 30 dni.</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>Udostępnianie klucza wymaga wersji płatnej abonamentu. Kliknij, aby przejść do wersji Premium!</value>

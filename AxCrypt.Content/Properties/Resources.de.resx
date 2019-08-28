@@ -248,6 +248,9 @@ Bitte loggen Sie sich mit dem selben Passwort ein, welches Sie zuvor benutzt hab
   <data name="AnonymousRenameToolTip" xml:space="preserve">
     <value>Verstecken Sie den echten Namen einer gesicherten Datei indem Sie ihn in etwas Beliebiges umbenennen. </value>
   </data>
+  <data name="AppActivateMailSubject" xml:space="preserve">
+    <value>AxCrypt ID Verifikation [ {0} ]</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Bitte geben Sie aus Sicherheitsgründen ein neues Kennwort ein.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -406,6 +409,9 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Falls Sie ihr Businessabonnement nicht rechtzeitig erneuern, wechseln Sie in einen unserer freien Pläne zurück.</value>
+  </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Ihr Abonnement läuft bald aus. Bitte erneuern Sie es, damit Ihnen weiterhin alle Funktionalitäten zur Verfügung stehen.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importieren</value>
@@ -803,6 +809,9 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
     <value>Diese Dateien konnten nicht neu verschlüsselt werden: </value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>Sie müssen erst alle Applikationen mit offenen verschlüsselten Dateien schließen.</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Vermutlich geöffnet. Versuchen Sie die Anwendung zu schließen oder nutzen Sie die Clean-Funktion um das Problem zu entfernen. </value>
   </data>
@@ -866,6 +875,12 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="DialogImportPrivateAxCryptIdTitle" xml:space="preserve">
     <value>AxCrypt ID importieren</value>
   </data>
+  <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
+    <value>Geben Sie die E-Mail-Adresse der Person ein, die zur Nutzung von AxCrypt eingeladen werden soll.</value>
+  </data>
+  <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
+    <value>Einladungsdetails</value>
+  </data>
   <data name="DialogKeyShareTitle" xml:space="preserve">
     <value>Zugriffsfreigabe</value>
   </data>
@@ -884,6 +899,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Deaktivieren</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisclaimerMailFooter" xml:space="preserve">
+    <value>Diese automatisch generierte E-Mail wurde in Ihre bevorzugte Sprache übersetzt. Direkter persönlicher Service und Support  wird auf Englisch angeboten.</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Nicht mehr zeigen.</value>
@@ -1187,6 +1205,9 @@ Melden Sie sich bei AxCrypt mit {2} an, geben Sie den 6-stelligen Bestätigungsc
   </data>
   <data name="Invite" xml:space="preserve">
     <value>Benutzer einladen:</value>
+  </data>
+  <data name="InviteUserToolStripMenuItemText" xml:space="preserve">
+    <value>Lade einen Freund oder eine Freundin ein</value>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Rechnung</value>
@@ -1903,6 +1924,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Ändern</value>
+  </data>
+  <data name="PromptChangeEmailText" xml:space="preserve">
+    <value>E-Mail-Adresse ändern</value>
   </data>
   <data name="PromptCurrentPasswordText" xml:space="preserve">
     <value>Aktuelles Passwort </value>
