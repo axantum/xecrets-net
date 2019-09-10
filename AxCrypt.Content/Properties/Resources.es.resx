@@ -1141,14 +1141,8 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
     <value>Cierre de sesión por inactividad</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
-  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
-    <value>Debido a restricciones técnicas, no se ha podido abrir '{0}' en una aplicación. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades. 
-
-Si quieres ver o actualizar el contenido del archivo, descífralo por separado y ábrelo directamente. </value>
-  </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
-    <value>Debido a restricciones técnicas, no se ha podido cifrar el siguiente archivo: '{0}'. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades. 
-</value>
+    <value>Debido a restricciones técnicas, no se ha podido cifrar el siguiente archivo: '{0}'. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importar AxCrypt ID con claves de compartir y acceso.</value>
@@ -1309,9 +1303,9 @@ Un destinatario es identificado por el e-mail registrado de su AxCrypt ID, ¡per
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
-    <value>Estás a punto de invitar a un nuevo usuario a AxCrypt. Enviaremos una invitación con todas las instrucciones al correo electrónico de contacto. 
+    <value>Estás a punto de invitar a un nuevo usuario a AxCrypt. Enviaremos una invitación con todas las instrucciones al correo electrónico de contacto.
 
-A continuación, elige el idioma de la invitación y puedes añadir un mensaje personal de manera opcional. </value>
+A continuación, elige el idioma de la invitación y puedes añadir un mensaje personal de manera opcional.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
