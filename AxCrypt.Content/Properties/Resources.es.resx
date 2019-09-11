@@ -249,6 +249,9 @@ Por favor, inicie sesión usando la misma contraseña que usó entonces.</value>
   <data name="AppActivateMailSubject" xml:space="preserve">
     <value>Verificación de AxCrypt ID [ {0} ]</value>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Validar código</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Por razones de seguridad, introduce tu contraseña de nuevo.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -594,6 +597,10 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <value>Haga clic para restablecer su contraseña.</value>
     <comment>Tooltip text for a button to click for resetting password.</comment>
   </data>
+  <data name="ButtonRemoveKnownContactText" xml:space="preserve">
+    <value>Eliminar</value>
+    <comment>Used to label a button in the key share dialog and similar when it's possible to remove a contact from the list of known contacts.</comment>
+  </data>
   <data name="ButtonSaveText" xml:space="preserve">
     <value>Guardar</value>
   </data>
@@ -873,6 +880,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DialogInviteUserPromptLabelText" xml:space="preserve">
     <value>Introduce una dirección de correo electrónico e invita a nuevos usuarios a usar AxCrypt.</value>
   </data>
+  <data name="DialogInviteUserTitle" xml:space="preserve">
+    <value>Invitación</value>
+  </data>
   <data name="DialogKeyShareInviteUserTitle" xml:space="preserve">
     <value>Información de la invitación</value>
   </data>
@@ -897,6 +907,12 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Este correo electrónico automático se ha traducido a su idioma de preferencia, pero nuestro apoyo y asistencia directa personal se lleva a cabo en inglés. </value>
+  </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>Se ha validado el código de descuento {0}.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>Código de descuento</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>No volver a mostrar este mensaje.</value>
@@ -1125,6 +1141,9 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
     <value>Cierre de sesión por inactividad</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>Debido a restricciones técnicas, no se ha podido cifrar el siguiente archivo: '{0}'. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importar AxCrypt ID con claves de compartir y acceso.</value>
   </data>
@@ -1283,6 +1302,12 @@ Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 ci
 Un destinatario es identificado por el e-mail registrado de su AxCrypt ID, ¡pero nosotros no podemos enviar el archivo! Aquí puedes añadir la clave del destinatario al archivo. Después tendrás que compartir el archivo con el  destinatario.</value>
     <comment>A brief description of how to use the Key Share dialog in the XWT version</comment>
   </data>
+  <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
+    <value>Estás a punto de invitar a un nuevo usuario a AxCrypt. Enviaremos una invitación con todas las instrucciones al correo electrónico de contacto.
+
+A continuación, elige el idioma de la invitación y puedes añadir un mensaje personal de manera opcional.</value>
+    <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>El clave del archivo se comparte con otros usuarios AxCrypt.</value>
   </data>
@@ -1305,6 +1330,10 @@ Un destinatario es identificado por el e-mail registrado de su AxCrypt ID, ¡per
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Fecha de acceso</value>
+  </data>
+  <data name="LastModifiedTimeColumnHeaderText" xml:space="preserve">
+    <value>Fecha de modificación</value>
+    <comment>A column header for the display of the time an encrypted file las last modified. It should use the standard term "Date modified"</comment>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>¡Ya tienes la última versión!</value>

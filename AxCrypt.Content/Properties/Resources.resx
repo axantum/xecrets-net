@@ -1275,7 +1275,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="IgnoreFileOpenWarningText" xml:space="preserve">
-    <value>'{0}' could not opened in an application due to technical restrictions. This may be because of the type of file, it's location or other properties. 
+    <value>'{0}' could not opened in an application due to technical restrictions. This may be because of the type of file, it's location or other properties.
 
 If you want to view or update the file contents, please decrypt it separately, and then open it directly.</value>
   </data>
