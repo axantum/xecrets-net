@@ -2092,7 +2092,7 @@ En bekräftelse på ditt köp har skickats till din epostadress från din betaln
  Företag och organisationer måste skapa ett &lt;a href=""&gt;AxCrypt Business&lt;/a&gt;-abonnemang. &lt;b&gt;Momsbeloppet är preliminärt&lt;/b&gt;.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>!!Premium är endast för privatpersoner. Företag och organisationer måste skapa ett &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt;-abonnemang. &lt;b&gt;Moms ingår ej här.&lt;/b&gt;.</value>
+    <value>Premium är endast för privatpersoner. Företag och organisationer måste skapa ett &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt;-abonnemang. &lt;b&gt;Moms ingår ej här.&lt;/b&gt;.</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">

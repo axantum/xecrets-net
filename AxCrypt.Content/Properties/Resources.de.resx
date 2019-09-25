@@ -2056,7 +2056,7 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
     <value>Premium ist nur für private Personen, es ist keine Absetzung der Unternehmenssteuer möglich. Unternehmen und Organisationen müssen ein href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business Konto&lt;/a&gt; Abonnement erstellen. &lt;b&gt;MwSt. ist nicht endgültig&lt;/ab&gt;.</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>!!Premium ist nur für Privatpersonen. Unternehmen und Organisationen müssen ein &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business Konto&lt;/a&gt; Abonnement erstellen. &lt;b&gt;MwSt. ist hier ausgeschlossen.&lt;b&gt;</value>
+    <value>Premium ist nur für Privatpersonen. Unternehmen und Organisationen müssen ein &lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business Konto&lt;/a&gt; Abonnement erstellen. &lt;b&gt;MwSt. ist hier ausgeschlossen.&lt;b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
