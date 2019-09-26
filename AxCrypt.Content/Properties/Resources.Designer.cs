@@ -6229,6 +6229,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Copy to clipboard.
+        /// </summary>
+        public static string SecretsCopytoClipboard {
+            get {
+                return ResourceManager.GetString("SecretsCopytoClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort By.
         /// </summary>
         public static string SecretsSortOrderLabel {
