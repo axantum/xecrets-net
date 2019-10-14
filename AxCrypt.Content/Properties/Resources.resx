@@ -2491,6 +2491,9 @@ Subject: AxCrypt Report Snapshot
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
   </data>
+  <data name="SecretsCopytoClipboard" xml:space="preserve">
+    <value>!!Copy to clipboard</value>
+  </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Sort By</value>
   </data>
