@@ -926,13 +926,6 @@ If you do not accept our temporary session cookies you cannot sign in and the si
 
 We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
-  <data name="DeleteAxCryptIDPageBodyText" xml:space="preserve">
-    <value>!!This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
-
-(If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)
-
-All pending email request(s) from this account will be deleted.</value>
-  </data>
   <data name="DeleteSecretErrorNotFound" xml:space="preserve">
     <value>The deletion failed because the requested password could not be found.</value>
   </data>
@@ -2542,11 +2535,12 @@ Subject: AxCrypt Report Snapshot
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+    <value>!!This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
 
-(If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)
-
-Enter your password below to a delete your AxCrypt ID.</value>
+(If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>!!Enter your password below to delete your AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>To change the e-mail associated with your AxCrypt ID, type in a new e-mail address below. This will affect how you sign in to the site and where site e-mails are sent. 

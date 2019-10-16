@@ -2169,19 +2169,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!This will delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
-        ///
-        ///(If you just want to change your AxCrypt ID e-mail, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; instead.)
-        ///
-        ///All pending email request(s) from this account will be deleted..
-        /// </summary>
-        public static string DeleteAxCryptIDPageBodyText {
-            get {
-                return ResourceManager.GetString("DeleteAxCryptIDPageBodyText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The deletion failed because the requested password could not be found..
         /// </summary>
         public static string DeleteSecretErrorNotFound {
@@ -6359,15 +6346,22 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
+        ///   Looks up a localized string similar to !!This will delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
         ///
-        ///(If you just want to change your AxCrypt ID e-mail, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; instead.)
-        ///
-        ///Enter your password below to a delete your AxCrypt ID..
+        ///(If you just want to change your AxCrypt ID e-mail, click &lt;a href=&quot;{0}&quot;&gt;here&lt;/a&gt; instead.).
         /// </summary>
         public static string SettingsDeletePageBody {
             get {
                 return ResourceManager.GetString("SettingsDeletePageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Enter your password below to delete your AxCrypt ID..
+        /// </summary>
+        public static string SettingsDeleteUserPasswordPrompt {
+            get {
+                return ResourceManager.GetString("SettingsDeleteUserPasswordPrompt", resourceCulture);
             }
         }
         
