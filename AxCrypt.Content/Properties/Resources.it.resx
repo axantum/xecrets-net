@@ -2215,9 +2215,10 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Questo cancellerà il tuo AxCrypt ID dal sistema definitivamente. &lt;span class="red"&gt;Tutti i dati associati al tuo AxCrypt ID, incluse le password salvate, saranno eliminati.&lt;/span&gt;
 
-(Invece, se vuoi solamente cambiare la tua email associata all'AxCrypt ID, clicca &lt;a href="{0}"&gt;qui&lt;/a&gt;.)
-
-Inserisci la tua password qui sotto per eliminare il tuo AxCrypt ID.</value>
+(Invece, se vuoi solamente cambiare la tua email associata all'AxCrypt ID, clicca &lt;a href="{0}"&gt;qui&lt;/a&gt;.)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Inserisci la tua password qui sotto per eliminare il tuo AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Per modificare l'indirizzo e-mail associato al tuo AxCrypt ID, digita un nuovo indirizzo e-mail qui sotto. Questo influenzerà le tue credenziali di accesso al sito e l'indirizzo e-mail a cui verranno inviati i messaggi.

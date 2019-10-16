@@ -2201,10 +2201,10 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können dies
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Hier können Sie Ihre AxCrypt ID permanent aus dem System löschen. &lt;span class="red"&gt;Alle Daten, die mit Ihrer AxCrypt ID assoziiert sind, wie gespeicherte Passworteinträge, werden ebenso gelöscht. &lt;/span&gt;
-
-Um Ihre Axrypt ID zu löschen geben Sie unten ihr Passwort an.
-</value>
+    <value>Hier können Sie Ihre AxCrypt ID permanent aus dem System löschen. &lt;span class="red"&gt;Alle Daten, die mit Ihrer AxCrypt ID assoziiert sind, wie gespeicherte Passworteinträge, werden ebenso gelöscht. &lt;/span&gt;</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Um Ihre Axrypt ID zu löschen geben Sie unten ihr Passwort an.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Um die mit Ihrer AxCrypt ID assoziierte E-Mail zu ändern, geben Sie die neue E-Mail bitte unten an. Dies beeinflusst wie Sie sich auf der Seite anmelden müssen und die Adresse an die die E-Mails der Seite gesendet werden. 

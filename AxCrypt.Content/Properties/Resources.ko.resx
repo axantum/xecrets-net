@@ -2120,8 +2120,10 @@ AxCrypt 팀</value>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>여기서 AxCrypt ID를 지속적으로 삭제 하실수 있습니다.
 &lt;span class="red"&gt;AxCrypt ID와 관련된 모든 정보, 비밀번호등이 삭제되실겁니다.&lt;/span&gt;⏎ 
-⏎ 
-AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍니다.</value>
+⏎</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>AxCrypt ID 삭제를 위해 아래에 비밀번호를 작성해주시기 바랍니다.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>AxCrypt ID와 연결된 이메일 주소를 수정하시려면 아래에 새로운 주소를 써주시기 바랍니다. 메일들이 맞는 주소에 메세지가 보내질수 있도록 해주시기 바랍니다.  

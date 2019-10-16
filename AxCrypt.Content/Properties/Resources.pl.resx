@@ -2191,9 +2191,10 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Tutaj możesz trwale usunąć swój AxCrypt ID z systemu. &lt;span class ="red"&gt;Wszystkie dane powiązane z Twoim AxCrypt ID, w tym zapisane hasła, również zostaną usunięte.&lt;/span&gt;
- 
-Podaj poniżej swoje hasło, aby usunąć swój AxCrypt ID.</value>
+    <value>Tutaj możesz trwale usunąć swój AxCrypt ID z systemu. &lt;span class ="red"&gt;Wszystkie dane powiązane z Twoim AxCrypt ID, w tym zapisane hasła, również zostaną usunięte.&lt;/span&gt;</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Podaj poniżej swoje hasło, aby usunąć swój AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Aby zmienić adres email skojarzony z Twoim AxCrypt ID, wpisz nowy adres email poniżej. Wpłynie to na sposób logowania się do serwisu i wysyłania wiadomości email.

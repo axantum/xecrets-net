@@ -2237,9 +2237,10 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Detta raderar ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
 
-(Om du bara vill ändra din e-postaddress, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; istället.)
-
-Ange ditt lösenord för att bekräfta raderingen.</value>
+(Om du bara vill ändra din e-postaddress, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; istället.)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Ange ditt lösenord för att bekräfta raderingen.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>För att ändra epostadressen till ditt AxCrypt ID, ange en ny nedan. Därefter måste du ange den nya adressen när du loggar in, och eventuell epost från oss skickas till den nya.

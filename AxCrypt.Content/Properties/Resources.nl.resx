@@ -2198,9 +2198,10 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Dit zal uw AxCrypt ID permanent verwijderen van het systeem. &lt;span class="red"&gt;Alle data geassocieerd met uw AxCrypt ID, waaronder opgeslagen wachtwoorden, zullen ook worden verwijderd.&lt;/span&gt;
 
-(Als u alleen uw AxCrypt ID email wilt wijzigen, klik dan &lt;a href="{0}"&gt;hier&lt;/a&gt;.)
- 
-Typ uw wachtwoord hieronder om uw AxCrypt ID te verwijderen.</value>
+(Als u alleen uw AxCrypt ID email wilt wijzigen, klik dan &lt;a href="{0}"&gt;hier&lt;/a&gt;.)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Typ uw wachtwoord hieronder om uw AxCrypt ID te verwijderen.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Om het emailadres dat is geassocieerd met uw AxCrypt ID te veranderen kunt u hieronder een nieuw emailadres invoeren. Dit beïnvloed hoe u zich op de site aanmeldt en naar welk adres emails worden verstuurd.

@@ -2216,9 +2216,10 @@
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Здесь Вы можете окончательно удалить Ваш AxCrypt ID из системы. &lt;span class="red"&gt;Вся дата, связанная с Вашим AxCrypt ID, включая сохранённые вводы паролей, будет тоже удалена.&lt;/span&gt;
 
-(Если вы только хотите изменить электронную почту Вашего AxCrypt ID, просто нажмите &lt;a href="{0}"&gt;здесь&lt;/a&gt; )
-
-Введите ниже Ваш пароль для удаления Вашего AxCrypt ID.</value>
+(Если вы только хотите изменить электронную почту Вашего AxCrypt ID, просто нажмите &lt;a href="{0}"&gt;здесь&lt;/a&gt; )</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Введите ниже Ваш пароль для удаления Вашего AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Для изменения Вашего адреса электронной почты, связанного с Вашим AxCrypt ID, введите ниже новый адрес электронной почты. Это повлияет на то, как Вы входите в систему, и куда отправляются электронные письма сайта.

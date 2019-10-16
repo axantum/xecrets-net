@@ -2205,9 +2205,10 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Cette action va supprimer votre compte AxCrypt ID de notre système. &lt;span class="red"&gt;Toutes vos données, y compris vos mots de passe, seront perdues.&lt;/span&gt;
 
-(Si vous souhaitez simplement changer l'adresse e-mail liée à votre compte, cliquez &lt;a href="{0}"&gt;ici&lt;/a&gt; .)
- 
-Saisissez votre mot de passe ci-dessous pour supprimer votre compte.</value>
+(Si vous souhaitez simplement changer l'adresse e-mail liée à votre compte, cliquez &lt;a href="{0}"&gt;ici&lt;/a&gt; .)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Saisissez votre mot de passe ci-dessous pour supprimer votre compte.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Pour modifier l'adresse e-mail associée à votre compte, tapez une nouvelle adresse e-mail ci-dessous. Cela aura une incidence sur la façon dont vous vous connectez sur le site et où les e-mails du site sont envoyés. 

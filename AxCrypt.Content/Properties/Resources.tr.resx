@@ -2232,8 +2232,10 @@ Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Bu islem senin AxCrypt kullanıcı adını sistemden kalıcı olarak silecektir. &lt;span class="red"&gt;AxCrypt kullanıcı adınla bağdaştırılan tüm veriler, kaydedilmiş şifre girişleri dahil silinecektir.&lt;/span&gt;
- (Eger sadece AxCrypt ID e-mailinizi degistirmek istiyorsaniz, tiklayiniz &lt;a href="{0}"&gt;here&lt;/a&gt;.)
-AxCrypt kimliğini silmek için şifreni gir.</value>
+ (Eger sadece AxCrypt ID e-mailinizi degistirmek istiyorsaniz, tiklayiniz &lt;a href="{0}"&gt;here&lt;/a&gt;.)</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>AxCrypt kimliğini silmek için şifreni gir.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>AxCrypt kimliğine bağlı e-posta adresini değiştirmek için aşağıya yeni bir e-posta adresi gir. Bu, siteye nasıl bağlandığını ve e-postaların nereye yollandığını belirleyecektir.

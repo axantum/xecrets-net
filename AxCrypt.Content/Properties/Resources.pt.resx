@@ -2158,9 +2158,10 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Aqui você pode deletar permanentemente seu ID AxCrypt do sistema. &lt;span class="red"&gt;Todos os dados associados ao seu ID AxCrypt, incluindo suas senhas, também serão deletados.&lt;/span&gt;
-
-Digite sua senha abaixo para deletar seu ID AxCrypt.</value>
+    <value>Aqui você pode deletar permanentemente seu ID AxCrypt do sistema. &lt;span class="red"&gt;Todos os dados associados ao seu ID AxCrypt, incluindo suas senhas, também serão deletados.&lt;/span&gt;</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Digite sua senha abaixo para deletar seu ID AxCrypt.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Para mudar o e-mail associado ao seu AxCrypt ID, coloque um novo email abaixo. Isso mudará a forma como você acessa o site e para onde serão enviados os emails do site.

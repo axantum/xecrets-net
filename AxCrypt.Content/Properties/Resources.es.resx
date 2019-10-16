@@ -2224,8 +2224,10 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Aquí puedes eliminar tu cuenta permanentemente del sistema. &lt;span class="red"&gt;También se eliminarán todos los datos asociados con tu cuenta, incluyendo las entradas de contraseñas guardadas.&lt;/span&gt;
-Confirma tu contraseña para borrar tu cuenta.</value>
+    <value>Aquí puedes eliminar tu cuenta permanentemente del sistema. &lt;span class="red"&gt;También se eliminarán todos los datos asociados con tu cuenta, incluyendo las entradas de contraseñas guardadas.&lt;/span&gt;</value>
+  </data>
+  <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
+    <value>Confirma tu contraseña para borrar tu cuenta.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>Para cambiar la dirección de correo asociada con su cuenta, escriba una nueva dirección de correo electrónico a continuación. Esto afectará a la forma en que inicie sesión en el sitio y dónde se envían mensajes de correo electrónico del sitio.
