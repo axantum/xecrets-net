@@ -6357,7 +6357,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Enter your password below to delete your AxCrypt ID..
+        ///   Looks up a localized string similar to Enter your password below to delete your AxCrypt ID..
         /// </summary>
         public static string SettingsDeleteUserPasswordPrompt {
             get {

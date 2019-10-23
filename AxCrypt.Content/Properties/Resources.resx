@@ -2540,7 +2540,7 @@ Subject: AxCrypt Report Snapshot
 (If you just want to change your AxCrypt ID e-mail, click &lt;a href="{0}"&gt;here&lt;/a&gt; instead.)</value>
   </data>
   <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
-    <value>!!Enter your password below to delete your AxCrypt ID.</value>
+    <value>Enter your password below to delete your AxCrypt ID.</value>
   </data>
   <data name="SettingsEmailPageBody" xml:space="preserve">
     <value>To change the e-mail associated with your AxCrypt ID, type in a new e-mail address below. This will affect how you sign in to the site and where site e-mails are sent. 
