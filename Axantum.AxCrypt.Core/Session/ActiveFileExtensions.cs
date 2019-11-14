@@ -96,6 +96,11 @@ namespace Axantum.AxCrypt.Core.Session
                         activeFile = new ActiveFile(activeFile, New<KnownIdentities>().DefaultEncryptionIdentity);
                     }
 
+                    if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.StrongerEncryption))
+                    {
+                        activeFile = new ActiveFile(activeFile, New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+                    }
+
                     EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
                     await AddSharingParameters(parameters, activeFile, encryptedFileLock);
 
