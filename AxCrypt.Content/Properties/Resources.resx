@@ -2492,7 +2492,7 @@ Subject: AxCrypt Report Snapshot
     <value>Go to password management.</value>
   </data>
   <data name="SecretsCopytoClipboard" xml:space="preserve">
-    <value>!!Copy to clipboard</value>
+    <value>Copy to clipboard</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Sort By</value>
