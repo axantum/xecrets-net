@@ -1998,9 +1998,9 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task ShareKeysWithFileSelectionAsync(IEnumerable<string> fileNames)
+        private async Task ShareKeysWithFileSelectionAsync(IEnumerable<string> selectedRecentFileNames)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(fileNames)
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(selectedRecentFileNames)
             {
                 FileSelectionType = FileSelectionType.KeySharing,
             };
