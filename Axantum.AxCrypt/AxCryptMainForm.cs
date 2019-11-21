@@ -2008,10 +2008,11 @@ namespace Axantum.AxCrypt
             if (!fileSelectionArgs.SelectedFiles.Any())
             {
                 await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
-                if (fileSelectionArgs.Cancel)
-                {
-                    return;
-                }
+            }
+
+            if (fileSelectionArgs.Cancel)
+            {
+                return;
             }
 
             await ShareKeysAsync(fileSelectionArgs.SelectedFiles);
