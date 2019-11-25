@@ -933,7 +933,7 @@ namespace Axantum.AxCrypt
             _fileOperationViewModel.SelectingFiles += (sender, e) => New<IUIThread>().SendTo(() => New<IDataItemSelection>().HandleSelection(e));
             _fileOperationViewModel.ToggleEncryptionUpgradeMode += (sender, e) => New<IUIThread>().SendTo(() => ToggleEncryptionUpgradeMode());
             _inviteUserToolStripMenuItem.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await InviteUserAsync(); }, sender, e); };
-            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysWithFileSelectionAsync(); }, sender, e); };
+            _keyShareToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.KeySharing, async (ss, ee) => { await ShareKeysWithFileSelectionAsync(_mainViewModel.SelectedRecentFiles); }, sender, e); };
             _openEncryptedToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _openEncryptedToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(string.Empty); };
             _recentFilesListView.DragDrop += async (sender, e) => { await DropFilesOrFoldersInRecentFilesListViewAsync(); };
@@ -1998,13 +1998,17 @@ namespace Axantum.AxCrypt
             }
         }
 
-        private async Task ShareKeysWithFileSelectionAsync()
+        private async Task ShareKeysWithFileSelectionAsync(IEnumerable<string> selectedRecentFileNames)
         {
-            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(new string[0])
+            FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(selectedRecentFileNames)
             {
                 FileSelectionType = FileSelectionType.KeySharing,
             };
-            await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
+            
+            if (!fileSelectionArgs.SelectedFiles.Any())
+            {
+                await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
+            }
 
             if (fileSelectionArgs.Cancel)
             {
