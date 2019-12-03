@@ -40,7 +40,6 @@ using NUnit.Framework;
 using System;
 using System.IO;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -334,7 +333,6 @@ namespace Axantum.AxCrypt.Core.Test
             Assert.That(hmacIsOk, "HMAC did not verify as expected for a V2 document.");
         }
 
-
         [Test]
         public void TestVerifyHmacBadV2()
         {
@@ -422,8 +420,7 @@ namespace Axantum.AxCrypt.Core.Test
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
-                    // As far as I can determine, the NUnit implementation actually performs a 'Wait()', causing the OperationCanceledException to become a TaskCanceledException (in an AggregateException unwrapped by NUnit).
-                    Assert.ThrowsAsync<TaskCanceledException>((async () => { await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
+                    Assert.ThrowsAsync<OperationCanceledException>((async () => { await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
                     string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
                     IDataStore tempFileInfo = New<IDataStore>(tempFilePath);
                     Assert.That(tempFileInfo.IsAvailable, Is.False, "The .bak file should be removed.");
