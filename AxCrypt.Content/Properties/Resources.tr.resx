@@ -482,7 +482,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!    </value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Satın Al </value>
+    <value>Daha fazla lisans satın al</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -2440,7 +2440,7 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Harika! Senin için Premium deneme süresini başlattık. Şimdi deneme süresi boyunca tüm AxCrypt özelliklerini bedavaya kullanabilirsin.
 
-Merak etme, deneme süresi bittikten sonra Premium aboneliği almak istemesen bile,  AxCrypt Free ile tüm dosyalarına erişimin olacak. 
+Merak etme, deneme süresi bittikten sonra Premium aboneliği satın almak istemesen bile,  AxCrypt Free ile tüm dosyalarına erişimin olacak. 
 
 İyi şanslar ve Premium'un tadını çıkart,
 

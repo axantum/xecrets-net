@@ -1141,6 +1141,11 @@ Si, por alguna razón, no recuerda la contraseña, debe proceder a restaurar la 
     <value>Cierre de sesión por inactividad</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>Debido a restricciones técnicas, no se ha podido abrir '{0}' en una aplicación. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades. 
+
+Si quieres ver o actualizar el contenido del archivo, descífralo por separado y ábrelo directamente. </value>
+  </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>Debido a restricciones técnicas, no se ha podido cifrar el siguiente archivo: '{0}'. Esto puede deberse a la extensión del archivo, la ubicación u otras propiedades.</value>
   </data>
