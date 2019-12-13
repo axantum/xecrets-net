@@ -257,6 +257,9 @@
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Применить код</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Ввиду безопасности, пожалуйста, введите Ваш пароль ещё раз.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -421,6 +424,9 @@
   </data>
   <data name="BusinessSubscriptionExpiresInfo" xml:space="preserve">
     <value>Если ваша Business подписка не будет обновлена вовремя, вы вернетесь к одному из наших бесплатных планов.</value>
+  </data>
+  <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
+    <value>Ваша подписка скоро истекает. Пожалуйста, обновите подписку, чтобы сохранить полную функциональность.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Импортировать </value>
@@ -828,6 +834,9 @@
     <value>Данные файлы не могут быть заново закодированы:</value>
     <comment>A line of text stating that here follows a list of files that are left in their decrypted state. It should be fairly short.</comment>
   </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value>Сначала вы должны закрыть все приложения с открытыми зашифрованными файлами!</value>
+  </data>
   <data name="DecryptedFileToolTip" xml:space="preserve">
     <value>Файл возможно открыт в приложении. Попробуйте закрыть приложение или использовать функцию Очистить.</value>
   </data>
@@ -921,6 +930,12 @@
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Это автоматическое электронное письмо переведено на ваш предпочитаемый язык, но персональный сервис и техническая поддержка осуществляются на английском языке.</value>
+  </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>Промокод {0} применен.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>Промокод</value>
   </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Не показывать это снова. </value>
@@ -1145,6 +1160,9 @@
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Просмотр Вспомогательной Справки</value>
   </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>Список Последние Файлы отключен. Перейдите в Параметры чтобы включить. </value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Минут</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
@@ -1152,6 +1170,11 @@
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Автоматический Выход Из Системы</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>'{0}' не удалось открыть в приложении из-за технических ограничений. Это может быть вызвано типом файла, его местоположением или же другими свойствами.
+
+Если вы хотите просмотреть или обновить содержимое файла, пожалуйста, расшифруйте его отдельно, и затем откройте его напрямую.</value>
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}' не был зашифрован из-за технических ограничений.  Это может быть связано с расширением файла, местоположением или другими свойствами.</value>
@@ -1199,6 +1222,9 @@
 Доступ к Интернету рекомендуется и  обязателен для активирования оплаченных подписок. Некоторые функции будут работать лучше, и ключевые обновления могут иначе быть Вам недоступными
 
 Ваш пароль не сохраняется в наших серверах, и связь всегда закодирована.</value>
+  </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>Этот промокод не действителен.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Неправильный формат адреса электронной почты.</value>
@@ -1339,6 +1365,10 @@
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Дата доступа</value>
+  </data>
+  <data name="LastModifiedTimeColumnHeaderText" xml:space="preserve">
+    <value>Дата изменена</value>
+    <comment>A column header for the display of the time an encrypted file las last modified. It should use the standard term "Date modified"</comment>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Вы уже обладаете последней версией!</value>
@@ -1734,6 +1764,9 @@
     <value>Включить или отключить автоматическое обновление и конвертацию AxCrypt 1.x и AES-128. </value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Скрыть Последние Файлы</value>
+  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Присоединить Подпапки</value>
   </data>
@@ -1758,6 +1791,11 @@
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Пароль ненадёжный для использования.</value>
+  </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>Сброс пароля невозможен для этой учетной записи, так как ожидается изменение электронной почты с &lt;b&gt;{0}&lt;/b&gt;.
+
+Пожалуйста, войдите в &lt;b&gt;{0}&lt;/b&gt; и завершите изменение адреса электронной почты, или сначала сбросьте пароль для этой учетной записи, а затем завершите изменение.</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Забыли Ваш пароль? Нажмите сюда</value>
@@ -1886,6 +1924,9 @@
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
     <value>Данная функция требует оплаченного плана! Вы хотите открыть веб страницу, где Вы сможете сделать данную покупку?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>Нажмите &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; для получения дополнительной информации о Пробной Версии Premium.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Нажмите и удерживайте, чтобы увидеть больше</value>
@@ -2172,6 +2213,9 @@
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Перейдите в Менеджер Паролей.</value>
+  </data>
+  <data name="SecretsCopytoClipboard" xml:space="preserve">
+    <value>Скопировать в буфер обмена</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Сортировать По</value>
