@@ -1305,8 +1305,7 @@ Ein Empfänger ist von der AxCrypt ID E-Mail identifiziert, aber wir schicken di
   <data name="KeyShareInviteUserTextPrompt" xml:space="preserve">
     <value>Sie sind dabei, einen neuen Benutzer zu AxCrypt einzuladen. Wir senden eine Einladung mit Anweisungen an die Kontakt-E-Mail.
 
-Bitte geben Sie die Sprache an, die in der Einladung verwendet werden soll, und unten eine optionale persönliche Nachricht.
-</value>
+Bitte geben Sie die Sprache an, die in der Einladung verwendet werden soll, und unten eine optionale persönliche Nachricht.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
