@@ -1804,7 +1804,7 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Sua assinatura do AxCrypt Premium acabará em breve. Sinceramente, espero que você tenha gostado de usar nossas funções e tenha achado-as úteis.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Adoraria que você continuasse usando nossos serviços Premium! Amplie a sua assinatura &lt;a href="{0}Home/Comprar?email={1}"&gt;agora&lt;a&gt;.</value>
+    <value>Adoraria que você continuasse usando nossos serviços Premium! Amplie a sua assinatura &lt;a href="{0}Home/Purchase?email={1}"&gt;agora&lt;a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
