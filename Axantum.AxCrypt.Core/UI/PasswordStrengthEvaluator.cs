@@ -46,12 +46,12 @@ namespace Axantum.AxCrypt.Core.UI
 
             int percent = (int)Math.Round(fraction * 100);
 
-            PasswordStrength strength = PasswordStrength.Bad;
             if (candidate.Equals(userEmail))
             {
-                strength = PasswordStrength.Unacceptable;
-                return new PasswordMetrics(strength, estimatedBits, percent);
+                return new PasswordMetrics(PasswordStrength.Unacceptable, estimatedBits, percent);
             }
+
+            PasswordStrength strength = PasswordStrength.Bad;
             if (percent == 0)
             {
                 strength = PasswordStrength.Unacceptable;
