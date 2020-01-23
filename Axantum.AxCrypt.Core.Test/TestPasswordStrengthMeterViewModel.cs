@@ -33,8 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.Test
@@ -45,6 +43,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public void Setup()
         {
+            SetupAssembly.AssemblySetup();
             TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(100, 0));
         }
 
