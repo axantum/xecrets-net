@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -27,7 +26,7 @@ namespace Axantum.AxCrypt.Core.UI
             _minimumEffectiveLength = minimumEffectiveLength;
         }
 
-        public PasswordMetrics Evaluate(string candidate)
+        public PasswordMetrics Evaluate(string candidate, string userEmail)
         {
             int estimatedBits;
             if (PasswordStrengthCalculator.Effective(candidate).Length < _minimumEffectiveLength)
@@ -48,6 +47,11 @@ namespace Axantum.AxCrypt.Core.UI
             int percent = (int)Math.Round(fraction * 100);
 
             PasswordStrength strength = PasswordStrength.Bad;
+            if (candidate.Equals(userEmail))
+            {
+                strength = PasswordStrength.Unacceptable;
+                return new PasswordMetrics(strength, estimatedBits, percent);
+            }
             if (percent == 0)
             {
                 strength = PasswordStrength.Unacceptable;

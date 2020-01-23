@@ -30,7 +30,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
@@ -92,7 +91,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void TestCandidate(string candidate)
         {
-            PasswordMetrics metrics = New<PasswordStrengthEvaluator>().Evaluate(candidate);
+            PasswordMetrics metrics = New<PasswordStrengthEvaluator>().Evaluate(candidate, string.Empty);
 
             PercentStrength = metrics.Percent;
             EstimatedBits = metrics.Bits;
