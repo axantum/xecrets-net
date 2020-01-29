@@ -484,6 +484,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the discount code.
+        /// </summary>
+        public static string ApplyDiscountCodePrompt {
+            get {
+                return ResourceManager.GetString("ApplyDiscountCodePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For security reasons, please enter your password again..
         /// </summary>
         public static string AppSignInMessage {
