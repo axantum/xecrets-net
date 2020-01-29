@@ -484,7 +484,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Enter the discount code.
+        ///   Looks up a localized string similar to Enter the discount code.
         /// </summary>
         public static string ApplyDiscountCodePrompt {
             get {

@@ -279,7 +279,7 @@ Please sign in using the same password you used then.</value>
     <value>Apply Code</value>
   </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
-    <value>!!Enter the discount code</value>
+    <value>Enter the discount code</value>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
