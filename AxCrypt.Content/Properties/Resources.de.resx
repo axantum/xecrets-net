@@ -2062,8 +2062,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
 Falls etwas nicht zu Ihrer Zufriedenheit ist, bitte &lt;a href="mailto:support@axcrypt.net"&gt; kontaktieren Sie uns&lt;/a&gt;. Wir werden immer eine volle Rückerstattung durchführen.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mehr über die Bezahlung]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Ihre persönlichen Zahlungsdaten werden nie versendet oder auf unserem Server gespeichert. Wir senden diese direkt von Ihnen zu unseren Zahlungsportalpartnern via einer verschlüsselten Verbindung. Unsere Partner sind Stripe und Paypal, beide erfüllen die hohen Standards der Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;
-
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mehr über die Bezahlung]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Ihre persönlichen Zahlungsdaten werden nie versendet oder auf unserem Server gespeichert. Wir senden diese direkt von Ihnen zu unseren Zahlungsportalpartnern via einer verschlüsselten Verbindung. Unsere Partner sind Stripe und Paypal, beide erfüllen die hohen Standards der Payment Card Industry Data Security Standard. 
 
 Sicherheit ist essentiell für uns. Alles was wir bei AxCrypt machen bewahrt Sicherheit als erste Priorität. Daher benutzen wir PayPal als Bezahlmethode für AxCrypt Premium. Die PayPal Seite ist sehr sicher und verschlüsselt automatisch Ihre vertraulichen Informationen während des Weges von Ihrem Computer auf unsere Server.
 

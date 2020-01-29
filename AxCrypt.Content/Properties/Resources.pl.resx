@@ -2017,7 +2017,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Z &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt; można w pełni wykorzystać potencjał AxCrypt na dowolnej liczbie komputerów i urządzeń. Jeśli nie jesteś w pełni usatysfakcjonowany, &lt;a href="mailto:support@axcrypt.net"&gt;skontaktuj się z nami&lt;/a&gt;. Zwrócimy Ci pełną kwotę.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-elipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Więcej o płatnościach]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Twoje dane osobowe nie są przesyłane na nasze serwery ani na nich  przechowywane. Wysyłamy je bezpośrednio od Ciebie do naszych partnerów za pośrednictwem szyfrowanego połączenia. Współpracujemy z firmami Stripe i PayPal, które spełniają wysokie standardy określone w Standardzie Bezpieczeństwa Danych Dotyczących Kart Płatniczych. &lt;a class="hide-link"&gt;[Zwiń]&lt;/a&gt;&lt;/span&gt;</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Więcej o płatnościach]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Twoje dane osobowe nie są przesyłane na nasze serwery ani na nich  przechowywane. Wysyłamy je bezpośrednio od Ciebie do naszych partnerów za pośrednictwem szyfrowanego połączenia. Współpracujemy z firmami Stripe i PayPal, które spełniają wysokie standardy określone w Standardzie Bezpieczeństwa Danych Dotyczących Kart Płatniczych. &lt;a class="hide-link"&gt;[Zwiń]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Wykup AxCrypt Premium</value>

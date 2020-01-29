@@ -1984,8 +1984,7 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Com o &lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium&lt;/a&gt;, você pode usar o AxCrypt em seu potencial máximo num variado número de computadores e aparelhos. Caso esteja insatisfeito com alguma coisa, por favor &lt;a href="mailto:support@axcrypt.net"&gt;entre em contato connosco&lt;/a&gt;. Iremos sempre reembolsá-lo na totalidade.</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
-    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mais sobre pagamentos&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Os seus dados pessoais de pagamento nunca serão enviados ou armazenados no nosso servidor. Nós enviamos diretamente de você para nossos parceiros de gateway de pagamento através de uma conexão criptografada. Temos parceria com Stripe e Paypal, ambos cumprem os altos padrões estabelecidos pelo Padrão de Segurança de Dados do Setor de Cartões de Pagamento.
-</value>
+    <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mais sobre pagamentos]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Os seus dados pessoais de pagamento nunca serão enviados ou armazenados no nosso servidor. Nós enviamos diretamente de você para nossos parceiros de gateway de pagamento através de uma conexão criptografada. Temos parceria com Stripe e Paypal, ambos cumprem os altos padrões estabelecidos pelo Padrão de Segurança de Dados do Setor de Cartões de Pagamento.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Compre AxCrypt Premium</value>
