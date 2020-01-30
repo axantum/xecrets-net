@@ -121,7 +121,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private static bool IsPassphrasePolicyValid(string passphrase)
         {
-            return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
+            return New<PasswordStrengthEvaluator>().Evaluate(passphrase, New<UserSettings>().UserEmail).Strength > PasswordStrength.Unacceptable;
         }
     }
 }
