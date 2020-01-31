@@ -26,7 +26,7 @@ namespace Axantum.AxCrypt.Core.UI
             _minimumEffectiveLength = minimumEffectiveLength;
         }
 
-        public PasswordMetrics Evaluate(string candidate, string userEmail)
+        public PasswordMetrics Evaluate(string candidate)
         {
             int estimatedBits;
             if (PasswordStrengthCalculator.Effective(candidate).Length < _minimumEffectiveLength)
@@ -46,7 +46,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             int percent = (int)Math.Round(fraction * 100);
 
-            if (candidate.Equals(userEmail))
+            if (candidate.Equals(Axantum.AxCrypt.Abstractions.TypeResolve.New<UserSettings>().UserEmail))
             {
                 return new PasswordMetrics(PasswordStrength.Unacceptable, estimatedBits, percent);
             }

@@ -91,7 +91,7 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
 
         private void TestCandidate(string candidate)
         {
-            PasswordMetrics metrics = New<PasswordStrengthEvaluator>().Evaluate(candidate, New<UserSettings>().UserEmail);
+            PasswordMetrics metrics = New<PasswordStrengthEvaluator>().Evaluate(candidate);
 
             PercentStrength = metrics.Percent;
             EstimatedBits = metrics.Bits;

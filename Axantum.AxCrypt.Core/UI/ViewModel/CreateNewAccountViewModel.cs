@@ -103,9 +103,9 @@ namespace Axantum.AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private bool ValidatePassphrasePolicy(string passphrase)
+        private static bool ValidatePassphrasePolicy(string passphrase)
         {
-            return New<PasswordStrengthEvaluator>().Evaluate(passphrase, UserEmail).Strength > PasswordStrength.Unacceptable;
+            return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
         private async Task<object> CreateAccountAction()
