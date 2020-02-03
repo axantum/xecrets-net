@@ -6229,6 +6229,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Search passwords here....
+        /// </summary>
+        public static string SearchPasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("SearchPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to password management..
         /// </summary>
         public static string SecretsButtonToolTipText {
