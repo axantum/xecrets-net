@@ -2491,6 +2491,9 @@ Subject: AxCrypt Report Snapshot
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Only users with a valid subscription plan are allowed to save password entries.</value>
   </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>!!Search passwords here...</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
   </data>
