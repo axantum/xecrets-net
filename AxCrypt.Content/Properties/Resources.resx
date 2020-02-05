@@ -2492,7 +2492,7 @@ Subject: AxCrypt Report Snapshot
     <value>Only users with a valid subscription plan are allowed to save password entries.</value>
   </data>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
-    <value>!!Search passwords here...</value>
+    <value>Search passwords here...</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
