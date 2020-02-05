@@ -6229,7 +6229,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Search passwords here....
+        ///   Looks up a localized string similar to Search passwords here....
         /// </summary>
         public static string SearchPasswordPlaceHolder {
             get {
