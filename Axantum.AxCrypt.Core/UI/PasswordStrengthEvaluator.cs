@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 namespace Axantum.AxCrypt.Core.UI
 {
     public class PasswordStrengthEvaluator
@@ -46,7 +48,7 @@ namespace Axantum.AxCrypt.Core.UI
 
             int percent = (int)Math.Round(fraction * 100);
 
-            if (candidate.Equals(Axantum.AxCrypt.Abstractions.TypeResolve.New<UserSettings>().UserEmail))
+            if (candidate.Equals(New<UserSettings>().UserEmail))
             {
                 return new PasswordMetrics(PasswordStrength.Unacceptable, estimatedBits, percent);
             }
