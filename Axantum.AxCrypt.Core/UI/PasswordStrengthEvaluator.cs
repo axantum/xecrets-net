@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
+using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Core.UI
 {
@@ -46,6 +47,11 @@ namespace Axantum.AxCrypt.Core.UI
             }
 
             int percent = (int)Math.Round(fraction * 100);
+
+            if (candidate.Equals(New<UserSettings>().UserEmail))
+            {
+                return new PasswordMetrics(PasswordStrength.Unacceptable, estimatedBits, percent);
+            }
 
             PasswordStrength strength = PasswordStrength.Bad;
             if (percent == 0)
