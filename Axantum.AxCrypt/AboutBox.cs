@@ -33,7 +33,6 @@ namespace Axantum.AxCrypt
             ProductNameText.Text = New<AboutAssembly>().AssemblyProduct;
             VersionText.Text = New<AboutAssembly>().AboutVersionText;
             CopyrightText.Text = New<AboutAssembly>().AssemblyCopyright;
-            CompanyNameText.Text = New<AboutAssembly>().AssemblyCompany;
         }
 
         private void okButton_Click(object sender, EventArgs e)
