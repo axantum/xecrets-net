@@ -43,6 +43,7 @@ namespace Axantum.AxCrypt.Core.Test
         [SetUp]
         public void Setup()
         {
+            SetupAssembly.AssemblySetup();
             TypeMap.Register.Singleton<PasswordStrengthEvaluator>(() => new PasswordStrengthEvaluator(100, 0));
         }
 
