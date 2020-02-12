@@ -414,7 +414,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                         }
 
                         // test if a match follows
-                        return Enumerable.Range(textIndex, text.Length - 1).Any(i => WildcardMatch(wildcard, text, wildcardIndex + 1, i));
+                        return Enumerable.Range(textIndex, text.Length - textIndex).Any(i => WildcardMatch(wildcard, text, wildcardIndex + 1, i));
 
                     default:
                         if (textIndex == text.Length)
