@@ -260,6 +260,9 @@
   <data name="ApplyButtonText" xml:space="preserve">
     <value>Применить код</value>
   </data>
+  <data name="ApplyDiscountCodePrompt" xml:space="preserve">
+    <value>Введите промокод</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Ввиду безопасности, пожалуйста, введите Ваш пароль ещё раз.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -505,7 +508,7 @@
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Покупка</value>
+    <value>Купить лицензии</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -2180,7 +2183,7 @@
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Удалить из списка, но оставить файл защищённым</value>
+    <value>Удалить из списка, но оставить защищённым</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
@@ -2210,6 +2213,9 @@
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Только пользователи с действующей подпиской могут сохранять вводы паролей.</value>
+  </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>Поиск паролей здесь...</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Перейдите в Менеджер Паролей.</value>
@@ -2258,9 +2264,9 @@
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Здесь Вы можете окончательно удалить Ваш AxCrypt ID из системы. &lt;span class="red"&gt;Вся дата, связанная с Вашим AxCrypt ID, включая сохранённые вводы паролей, будет тоже удалена.&lt;/span&gt;
+    <value>Это навсегда удалит ваш AxCrypt ID из системы. &lt;span class="red"&gt;Все данные, связанные с вашим AxCrypt ID, включая сохраненные записи пароля, также будут удалены.&lt;/span&gt;
 
-(Если вы только хотите изменить электронную почту Вашего AxCrypt ID, просто нажмите &lt;a href="{0}"&gt;здесь&lt;/a&gt; )</value>
+(Если вы хотите изменить вашу электронную почту AxCrypt ID, нажмите &lt;a href="{0}"&gt;here&lt;/a&gt;.)</value>
   </data>
   <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
     <value>Введите ниже Ваш пароль для удаления Вашего AxCrypt ID.</value>
@@ -2466,11 +2472,11 @@
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
-    <value>Прекрасно! Мы активировали бесплатную пробную версию Premium для Bас. Теперь Bы можете использовать все функции AxCrypt бесплатно в течение пробного периода.
+    <value>Поздравляем! Мы активировали для вас бесплатную пробную версию Premium. Теперь вы можете бесплатно пользоваться всеми функциями AxCrypt в течение пробного периода.
 
-Не волнуйтесь - у Bас все равно будет доступ ко всем Bашим файлам с помощью AxCrypt Free, даже если Bы решили не покупать подписку после окончания пробного периода.
+Не беспокойтесь - у вас по-прежнему будет доступ ко всем вашим зашифрованным файлам и паролям с помощью AxCrypt Free, даже если вы решите не покупать подписку после окончания пробного периода.
 
-Желаем удачи и приятного опыта!
+Желаем удачи и приятного опыта,
 
 Команда AxCrypt</value>
     <comment>A short message congratulating the user on having started the trial period.</comment>
