@@ -1395,11 +1395,10 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt; 를 사용해주셔서 감사합니다</value>
+    <value>를 사용해주셔서 감사합니다 AxCrypt!&lt;br&gt;The AxCrypt team</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>AxCrypt를 사요해주셔서 감사합니다!
-- Svante
 AxCrypt 팀</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">

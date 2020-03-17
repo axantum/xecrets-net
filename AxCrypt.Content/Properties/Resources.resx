@@ -365,13 +365,13 @@ You have been warned, now enjoy!</value>
     <value>As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don't forget to inform your team that you will be renewing!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Your AxCrypt Business subscription {0} is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
+    <value>Your AxCrypt Business subscription {0} is soon coming to an end. We sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>When your Business subscription is renewed you and your team can continue to enjoy:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator.</value>
+    <value>We really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Time to renew your AxCrypt Business subscription!</value>
@@ -1611,15 +1611,14 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>If it is unclear why you are receiving this from AxCrypt.net, you can ignore this email or report it to {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
+    <value>Feel free to contact us if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;</value>
+    <value>Thanks for using AxCrypt!&lt;br&gt;The AxCrypt team</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Thanks for using AxCrypt!
-- Svante
 The AxCrypt Team</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
@@ -2151,17 +2150,17 @@ White space, and parts that are equal to common passwords are ignored and do not
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful.</value>
+    <value>Your AxCrypt Premium subscription is coming to an end soon. We sincerely hope you have enjoyed using our features and found them useful.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>I’d love for you to continue using our Premium features. Extend your subscription &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; .</value>
+    <value>We’d love for you to continue using our Premium features. Extend your subscription &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
     <value>With your Premium subscription you will continue to enjoy:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Let me know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?</value>
+    <value>Let us know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
     <value>Your AxCrypt Premium subscription expires soon!</value>
@@ -2909,7 +2908,7 @@ The AxCrypt Team</value>
     <value>Welcome to AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>I’m really happy that you have signed up! To make you feel really welcome, I’m giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app.</value>
+    <value>We're really happy that you have signed up! To make you feel really welcome, We're giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>With AxCrypt Free or AxCrypt Premium, you can secure your files in a truly easy way. Encrypting your files and entire folders is just a click away. Working with the encrypted files is just as easy too!</value>

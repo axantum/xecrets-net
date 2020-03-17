@@ -1398,11 +1398,10 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir) ?</value
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>AxCrypt'i kullandığın için teşekkürler!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;AxCrypt takımı&lt;/i&gt;</value>
+    <value>AxCrypt'i kullandığın için teşekkürler!&lt;br&gt;AxCrypt takımı</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>AxCrypt kullandığın için teşekkürler!
--Svante
 AxCrypt Ekibi</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">

@@ -1445,11 +1445,10 @@
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Благодарим  Вас за использование AxCrypt!&lt;br&gt;-Svante&lt;br&gt;&lt;i&gt;Команда AxCrypt&lt;/i&gt;</value>
+    <value>Благодарим  Вас за использование AxCrypt!&lt;br&gt;Команда AxCrypt</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Благодарим Вас за использование AxCrypt!
-- Svante
 Команда AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">

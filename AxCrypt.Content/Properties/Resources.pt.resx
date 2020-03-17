@@ -1356,7 +1356,6 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Obrigado por usar AxCrypt!
-- Svante
 A Equipe AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">

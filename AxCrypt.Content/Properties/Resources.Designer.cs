@@ -690,7 +690,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} is soon coming to an end. I sincerely hope you have enjoyed using AxCrypt and found it useful..
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} is soon coming to an end. We sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiresSoonMailBody0Html {
             get {
@@ -708,7 +708,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator..
+        ///   Looks up a localized string similar to We really hope you will continue to use our Business features. To renew your subscription, please contact your AxCrypt Business administrator..
         /// </summary>
         public static string BusinessExpiresSoonMailMemberBodyHtml {
             get {
@@ -4007,7 +4007,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feel free to contact me if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
+        ///   Looks up a localized string similar to Feel free to contact us if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
         /// </summary>
         public static string MailBodyOutroHtml {
             get {
@@ -4016,7 +4016,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;The AxCrypt team&lt;/i&gt;.
+        ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;The AxCrypt team.
         /// </summary>
         public static string MailBodySignature {
             get {
@@ -4026,7 +4026,6 @@ namespace AxCrypt.Content.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Thanks for using AxCrypt!
-        ///- Svante
         ///The AxCrypt Team.
         /// </summary>
         public static string MailBodySignaturePlainText {
@@ -5328,7 +5327,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. I sincerely hope you have enjoyed using our features and found them useful..
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. We sincerely hope you have enjoyed using our features and found them useful..
         /// </summary>
         public static string PremiumExpiresSoonMailBody0Html {
             get {
@@ -5337,7 +5336,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{0}Home/Purchase?email={1}&quot;&gt;now&lt;/a&gt; ..
+        ///   Looks up a localized string similar to We’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{0}Home/Purchase?email={1}&quot;&gt;now&lt;/a&gt; ..
         /// </summary>
         public static string PremiumExpiresSoonMailBody1Html {
             get {
@@ -5355,7 +5354,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Let me know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?.
+        ///   Looks up a localized string similar to Let us know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?.
         /// </summary>
         public static string PremiumExpiresSoonMailBody3Html {
             get {
@@ -7325,7 +7324,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I’m really happy that you have signed up! To make you feel really welcome, I’m giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app..
+        ///   Looks up a localized string similar to We&apos;re really happy that you have signed up! To make you feel really welcome, We&apos;re giving you the chance to try our Premium functions for 30 days for free. Just start your trial at any time from the AxCrypt app..
         /// </summary>
         public static string WelcomeMailBody1Html {
             get {

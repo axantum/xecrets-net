@@ -1418,11 +1418,10 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Tack för att du använder AxCrypt!&lt;br&gt;- Svante&lt;br&gt;&lt;i&gt;AxCrypt-teamet&lt;/i&gt;</value>
+    <value>Tack för att du använder AxCrypt!&lt;br&gt;AxCrypt-teamet</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Tack för att du använder AxCrypt!
-- Svante
 AxCrypt-teamet</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
