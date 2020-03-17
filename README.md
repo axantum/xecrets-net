@@ -23,4 +23,4 @@ compilation. There should be tests covering every line of code in Axantum.AxCryp
 
 ### Contact ###
 
-Contact me, Svante Seleborg, AxCrypt AB via svante.seleborg@axcrypt.net .
+Contact Us, AxCrypt AB via support@axcrypt.net .
