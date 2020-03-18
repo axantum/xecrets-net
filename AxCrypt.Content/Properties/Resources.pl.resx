@@ -1362,11 +1362,11 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Dziękujemy za korzystanie z AxCrypt!&lt;br&gt;Zespół AxCrypt</value>
+    <value>Dziękujemy za korzystanie z AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;Zespół AxCrypt</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Dziękujemy za korzystanie z AxCrypt!
-Zespół AxCrypt</value>
+ -  Zespół AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

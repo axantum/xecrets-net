@@ -1412,11 +1412,11 @@ Puede abrir archivos AxCrypt 1.x heredados pero a menos que se convierten usted 
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Atentamente, &lt;br&gt;el equipo AxCrypt</value>
+    <value>Atentamente, &lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;el equipo AxCrypt</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Atentamente,
-El equipo AxCrypt</value>
+ -  El equipo AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

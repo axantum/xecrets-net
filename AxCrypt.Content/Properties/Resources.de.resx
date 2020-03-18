@@ -1407,11 +1407,11 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Vielen Dank, dass Sie AxCrypt nutzen! &lt;br&gt;Das AxCrypt Team</value>
+    <value>Vielen Dank, dass Sie AxCrypt nutzen! &lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;Das AxCrypt Team</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Danke, dass Sie AxCrypt benutzen! 
-Das AxCrypt Team </value>
+ -  Das AxCrypt Team </value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

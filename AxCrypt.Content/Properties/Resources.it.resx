@@ -1401,11 +1401,11 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Grazie per aver usato AxCrypt!&lt;br&gt;Il Team di AxCrypt</value>
+    <value>Grazie per aver usato AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;Il Team di AxCrypt</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Grazie per aver usato AxCrypt!
-Il Team di AxCrypt</value>
+ -  Il Team di AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

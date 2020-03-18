@@ -4016,7 +4016,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;The AxCrypt team.
+        ///   Looks up a localized string similar to Thanks for using AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;The AxCrypt team.
         /// </summary>
         public static string MailBodySignature {
             get {
@@ -4026,7 +4026,7 @@ namespace AxCrypt.Content.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Thanks for using AxCrypt!
-        ///The AxCrypt Team.
+        /// -  The AxCrypt Team.
         /// </summary>
         public static string MailBodySignaturePlainText {
             get {

@@ -1615,11 +1615,11 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Thanks for using AxCrypt!&lt;br&gt;The AxCrypt team</value>
+    <value>Thanks for using AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;The AxCrypt team</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Thanks for using AxCrypt!
-The AxCrypt Team</value>
+ -  The AxCrypt Team</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
