@@ -250,6 +250,12 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
   <data name="AppActivateMailSubject" xml:space="preserve">
     <value>Verifica dell'AxCrypt ID [ {0} ]</value>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Applica Codice</value>
+  </data>
+  <data name="ApplyDiscountCodePrompt" xml:space="preserve">
+    <value>Inserisci il codice sconto</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Per motivi di sicurezza, immetti nuovamente la tua password.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -497,7 +503,7 @@ Sei stato avvertito, ora divertiti!</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Acquista</value>
+    <value>Acquista licenze aggiuntive</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -918,6 +924,12 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
     <value>Questa email automatica è tradotta nella tua lingua preferita, tuttavia 
 il servizio personale diretto e il supporto sono in inglese.</value>
   </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>Codice Sconto {0} applicato.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>Codice Sconto</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Non mostrare più.</value>
   </data>
@@ -1134,6 +1146,9 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Visualizza Aiuto</value>
   </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>L'elenco dei File Recenti è disabilitato. Vai in Opzioni per abilitarlo.</value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuti</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
@@ -1141,6 +1156,11 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Disconnessione per Inattività</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>'{0}' non è stato aperto nell'applicazione a causa di restrizioni tecniche. Il problema può essere dovuto alla tipologia di file, alla sua posizione o ad altre proprietà.
+
+Se desideri visualizzare o aggiornare i contenuti del file, decriptalo separatamente e aprilo direttamente.</value>
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}' non è stato criptato a causa di limitazioni tecniche. Ciò potrebbe essere dovuto all'estensione del file, alla posizione o ad altre proprietà.</value>
@@ -1188,6 +1208,9 @@ Questo potrebbe richiedere molto tempo per eseguire alcune operazioni. Per favor
 L'accesso a Internet è fortemente consigliato e richiesto per attivare piani di abbonamento a pagamento. Alcune funzionalità funzionano meglio e aggiornamenti necessari non potrebbero essere effettuati altrimenti.
 
 La tua password non è salvata nei nostri server e la connessione è sempre criptata.</value>
+  </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>Questo codice sconto non è valido</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Formato dell'indirizzo e-mail non corretto</value>
@@ -1328,6 +1351,10 @@ Per favore indica la lingua da utilizzare nell'invito e un messaggio personalizz
   </data>
   <data name="LastAccessTimeColumnHeaderText" xml:space="preserve">
     <value>Data ultimo accesso</value>
+  </data>
+  <data name="LastModifiedTimeColumnHeaderText" xml:space="preserve">
+    <value>Data ultima modifica</value>
+    <comment>A column header for the display of the time an encrypted file las last modified. It should use the standard term "Date modified"</comment>
   </data>
   <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
     <value>Hai già la versione più aggiornata!</value>
@@ -1726,6 +1753,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei file AxCrypt 1.x e AES-128.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Nascondi File Recenti</value>
+  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Includi le Sottocartelle</value>
   </data>
@@ -1883,6 +1913,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
     <value>Questa funzionalità richiede un abbonamento a pagamento! Vuoi essere reindirizzato a una pagina dove puoi effettuare l'acquisto?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>Clicca &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;qui&lt;/a&gt; per maggiori informazioni su Premium Trial.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Clicca e mantieni premuto per visualizzare di più</value>
@@ -2167,8 +2200,14 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Solo gli utenti con un valido piano di abbonamento possono registrare password.</value>
   </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>Cerca le password qui...</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Vai alla gestione delle password</value>
+  </data>
+  <data name="SecretsCopytoClipboard" xml:space="preserve">
+    <value>Copia negli appunti</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Ordina per</value>
@@ -2211,9 +2250,9 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
-    <value>Questo cancellerà il tuo AxCrypt ID dal sistema definitivamente. &lt;span class="red"&gt;Tutti i dati associati al tuo AxCrypt ID, incluse le password salvate, saranno eliminati.&lt;/span&gt;
+    <value>Questa azione cancellerà permanentemente il tuo AxCrypt ID dal sistema. &lt;span class="red"&gt;Tutti i dati associati al tuo AxCrypt ID, incluse le password salvate, saranno eliminati.&lt;/span&gt;
 
-(Invece, se vuoi solamente cambiare la tua email associata all'AxCrypt ID, clicca &lt;a href="{0}"&gt;qui&lt;/a&gt;.)</value>
+(Se desideri solamente cambiare l' email associata al tuo AxCrypt ID, clicca &lt;a href="{0}"&gt;qui&lt;/a&gt;.)</value>
   </data>
   <data name="SettingsDeleteUserPasswordPrompt" xml:space="preserve">
     <value>Inserisci la tua password qui sotto per eliminare il tuo AxCrypt ID.</value>
@@ -2421,7 +2460,7 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Ottimo! Abbiamo abilitato per te una prova gratuita di Premium. Ora puoi utilizzare tutte le funzionalità di AxCrypt gratuitamente durante il periodo di prova.
 
-Non preoccuparti - avrai ancora accesso a tutti i tuoi file con AxCrypt Free anche se sceglierai di non acquistare un abbonamento dopo che il periodo di prova sarà terminato.
+Non preoccuparti - avrai ancora accesso a tutti i tuoi file criptati e password con AxCrypt Free anche se sceglierai di non acquistare un abbonamento dopo il termine del periodo di prova.
 
 Buona fortuna e buon divertimento,
 
