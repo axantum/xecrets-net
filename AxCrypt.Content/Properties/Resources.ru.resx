@@ -344,7 +344,7 @@
     <value>Когда ваша Business подписка обновляется, вы и ваша команда можете продолжать пользоваться:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к AxCrypt Business администратору.  </value>
+    <value>Мы очень надеемся, что вы продолжите использовать наши Business  возможности. Чтобы продлить подписку, обратитесь к администратору AxCrypt Business.  </value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Время продлить подписку на AxCrypt Business!</value>
@@ -1441,7 +1441,7 @@
     <value>Если Вы не знаете причины, по которой Вы получили это от AxCrypt.net, Вы можете проигнорировать данное электронное письмо или отослать о нём рапорт {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Будем рады ответь Вам на любые Ваши вопросы и обратную связь. См. также наши FAQ и Forum на нашей веб странице &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>Будем рады ответь Вам на любые Ваши вопросы и обратную связь. Смотрите также наши FAQ и Forum на нашей веб странице &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -1905,7 +1905,7 @@
     <value>С помощью Вашей подписки на Premium Вы сможете пользоваться:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Каково Ваше мнение об AxCrypt -  Вы планируете и в будущем его использовать, и какие улучшения Вы хотите увидеть в нашем приложении?</value>
+    <value>Нам интересно Ваше мнение об AxCrypt - Продолжите ли Вы использовать его в будущем, и какие улучшения Вы хотите увидеть в нашем приложении?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
     <value>Ваша подписка на AxCrypt Premium скоро заканчивается!</value>
@@ -2578,7 +2578,7 @@
     <value>Добро пожаловать на AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Мы безумно рады, что Вы с нами! В качестве приветственного сюрприза мы предоставляем Вам возможность опробовать наши Premium функции бесплатно в течение 30 дней. Вы можете начать пробный период в любое время через приложение AxCrypt.</value>
+    <value>Мы очень рады, что Вы с нами! В качестве приветственного сюрприза мы предоставляем Вам возможность попробовать наши Premium функции бесплатно в течение 30 дней. Вы можете начать пробный период в любое время через приложение AxCrypt.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>С помощью AxCrypt Free или AxCrypt Premium Вы можете легко обезопасить Ваши файлы. Кодирование Ваших файлов и целых папок- дело одного нажатия. Работать с закодированными файлами так же легко и просто!</value>
