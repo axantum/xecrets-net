@@ -162,5 +162,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="message">The user message</param>
         /// <returns></returns>
         Task SendFeedbackAsync(string subject, string message);
+
+        /// <summary>
+        /// Creates a premium subscription for the appstore IAP transaction.
+        /// </summary>
+        /// <param name="skTransaction">The appstore IAP transaction.</param>
+        /// <returns></returns>
+        Task CreatePremiumAsync(StoreKitTransaction skTransaction);
     }
 }

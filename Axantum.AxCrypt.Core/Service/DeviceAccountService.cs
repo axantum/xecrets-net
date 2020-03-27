@@ -370,5 +370,16 @@ namespace Axantum.AxCrypt.Core.Service
 
             await _localService.SendFeedbackAsync(subject, message).Free();
         }
+
+        public async Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                await _remoteService.CreatePremiumAsync(skTransaction).Free();
+                return;
+            }
+
+            await _localService.CreatePremiumAsync(skTransaction).Free();
+        }
     }
 }

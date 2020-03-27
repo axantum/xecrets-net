@@ -137,5 +137,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.FromResult(default(object));
         }
+
+        public Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        {
+            return _completedTask;
+        }
     }
 }
