@@ -254,6 +254,9 @@ Bitte loggen Sie sich mit dem selben Passwort ein, welches Sie zuvor benutzt hab
   <data name="ApplyButtonText" xml:space="preserve">
     <value>Anwendungscode</value>
   </data>
+  <data name="ApplyDiscountCodePrompt" xml:space="preserve">
+    <value>Geben Sie den Rabattcode ein</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Bitte geben Sie aus Sicherheitsgründen ein neues Kennwort ein.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -329,7 +332,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <value>Sobald ihr Businnesabonnement erneuert ist, können ihr Team und Sie sich zurücklegen und genießen:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Ich hoffe Sie weren weiterhin unsers Business Funktionen benutzen. Um ihr Abonnement zu erneuern kontaktieren Sie bitte ihren AxCrypt Business Administrator.</value>
+    <value>Wir hoffen Sie weren weiterhin unsers Business Funktionen benutzen. Um ihr Abonnement zu erneuern kontaktieren Sie bitte ihren AxCrypt Business Administrator.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Es ist an der Zeit ihr AxCrypt Business Abonemment zu erneuern!</value>
@@ -493,7 +496,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Kauf</value>
+    <value>Mehr Lizenzen kaufen</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -2166,7 +2169,7 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können dies
     <comment>Text of "Remove File" button in mobile application</comment>
   </data>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
-    <value>Entfernen von der Liste, aber Ordner gesichert lassen</value>
+    <value>Entfernen von der Liste, aber Ordner gesichert lassen.</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
@@ -2196,6 +2199,9 @@ Eine 30-tägige Testphase von AxCrypt Premium ist inklusive und Sie können dies
   </data>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Nur Benutzer mit einem gültigen Abonnement Plan können Passworteinträge speichern.</value>
+  </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>Passwörter hier suchen...</value>
   </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gehe zur Passwortverwaltung. </value>

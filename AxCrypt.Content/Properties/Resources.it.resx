@@ -333,13 +333,13 @@ Sei stato avvertito, ora divertiti!</value>
     <value>Come amministratore devi rinnovare l'abbonamento per il tuo team nel modulo di amministrazione dell'account web di AxCrypt. Usa il pulsante qui sotto per arrivarci direttamente. Non dimenticare di informare il tuo team che rinnoverai!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Il tuo abbonamento AxCrypt Business {0} scadrà presto. Spero sinceramente che ti sia piaciuto usare AxCrypt e che tu l'abbia trovato utile.</value>
+    <value>Il tuo abbonamento AxCrypt Business {0} scadrà presto. Speriamo sinceramente che tu abbia apprezzato utilizzare AxCrypt e che tu l'abbia trovato utile.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Quando il tuo abbonamento Business viene rinnovato, tu e il tuo team potete continuare ad utilizzare:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Spero davvero che continuerai ad utilizzare le nostre funzionalità Business. Per rinnovare il tuo abbonamento, contatta il tuo amministratore AxCrypt Business.</value>
+    <value>Speriamo davvero che continuerai ad utilizzare le nostre funzionalità Business. Per rinnovare il tuo abbonamento, contatta il tuo amministratore AxCrypt Business.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>è ora di rinnovare il tuo abbonamento AxCrypt Business!</value>
@@ -1424,7 +1424,7 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
     <value>Se non ti è chiaro perchè hai ricevuto questo da AxCrypt.net, puoi ignorare questa e-mail o segnalarla a {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Non esitare a contattarmi se hai domande o commenti. Vedi inoltre le nostre FAQ e il Forum sul nostro sito &lt;a href="{0}"&gt;{0}&lt;/a&gt;</value>
+    <value>Non esitare a contattarci se hai domande o feedback. Inoltre, puoi consultare le nostre FAQ e il Forum sul nostro sito &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -1882,7 +1882,7 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Il tuo abbonamento AxCrypt Premium sta per scadere. Spero sinceramente che tu abbia apprezzato utilizzare le nostre funzioni e che tu le abbia trovate utili.</value>
+    <value>Il tuo abbonamento AxCrypt Premium sta per scadere. Speriamo sinceramente che tu abbia apprezzato utilizzare le nostre funzionalità e che tu le abbia trovate utili.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
     <value>Sarebbe fantastico se continuassi ad utilizzare le nostre funzionalità Premium. Rinnova il tuo abbonamento &lt;a href="{0}Home/Purchase?email={1}"&gt;ora&lt;/a&gt; .</value>
@@ -1892,7 +1892,7 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>Con il tuo abbonamento Premium potrai continuare a usufruire di:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Fammi sapere cosa pensi di AxCrypt - Continuerai ad usarlo e c'è qualcosa che vorresti migliorasse?</value>
+    <value>Facci sapere cosa ne pensi di AxCrypt - Continuerai ad utilizzarlo e c'è qualcosa che vorresti migliorare?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
     <value>Il tuo abbonamento AxCrypt Premium sta per scadere!</value>
@@ -2565,7 +2565,7 @@ Il Team di AxCrypt</value>
     <value>Benvenuto in AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Sono felice che tu ti sia registrato! Per darti il benvenuto, ti do la possibilità di provare le nostre funzionalità Premium gratis per 30 giorni. Inizia la tua prova quando vuoi dall'app di AxCrypt.</value>
+    <value>Siamo felici che tu ti sia registrato! Per darti il benvenuto, ti diamo la possibilità di provare le nostre funzionalità Premium gratis per 30 giorni. Inizia la tua prova quando vuoi dall'app di AxCrypt.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Con AxCrypt Gratis o AxCrypt Premium, puoi proteggere i tuoi file in modo facilissimo. Per criptare i tuoi file e intere cartelle, basta un click. Anche lavorare con i file criptati è facilissimo!</value>
