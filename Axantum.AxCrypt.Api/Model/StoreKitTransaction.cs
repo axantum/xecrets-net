@@ -26,9 +26,6 @@ namespace Axantum.AxCrypt.Api.Model
         {
         }
 
-        [JsonProperty("datetime")]
-        public DateTime DateTimeUtc { get; }
-
         [JsonProperty("product_id")]
         public string ProductId { get; }
 
@@ -41,37 +38,40 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("paid_for")]
         public string PaidFor { get; }
 
-        [JsonProperty("item_name")]
-        public string ItemName { get; }
-
         [JsonProperty("txn_id")]
         public string TransactionId { get; }
 
         [JsonProperty("currency_paid")]
         public string CurrencyPaid { get; }
 
-        [JsonProperty("country_code")]
-        public string CountryCode { get; }
-
         [JsonProperty("amount_paid")]
         public decimal AmountPaid { get; }
-
-        [JsonProperty("amount_fee")]
-        public decimal AmountFee { get; }
 
         [JsonProperty("payment_date")]
         public DateTime PaymentDate { get; }
 
-        [JsonProperty("amount_vat")]
-        public decimal AmountVat { get; }
+        [JsonProperty("datetime")]
+        public DateTime DateTimeUtc { get; set; }
 
-        [JsonProperty("environment")]
-        public bool Environment { get; }
+        [JsonProperty("item_name")]
+        public string ItemName { get; set; }
+
+        [JsonProperty("country_code")]
+        public string CountryCode { get; set; }
+
+        [JsonProperty("amount_fee")]
+        public decimal AmountFee { get; set; }
+
+        [JsonProperty("amount_vat")]
+        public decimal AmountVat { get; set; }
+
+        [JsonProperty("is_production")]
+        public bool IsProduction { get; set; }
 
         [JsonProperty("payment_status")]
-        public string PaymentStatus { get; }
+        public string PaymentStatus { get; set; }
 
         [JsonProperty("discount_code")]
-        public string AppliedDiscountCode { get; } = string.Empty;
+        public string AppliedDiscountCode { get; set; } = string.Empty;
     }
 }

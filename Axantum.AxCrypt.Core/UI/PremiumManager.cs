@@ -65,9 +65,6 @@ namespace Axantum.AxCrypt.Core.UI
 
         public async Task CreatePremiumSubscriptionAsync(Api.Model.StoreKitTransaction skTransaction)
         {
-            //Api.Model.StoreKitTransaction storeKitTransaction = new Api.Model.StoreKitTransaction();
-            //LogOnIdentity identity, 
-
             if(skTransaction == null)
             {
                 throw new ArgumentNullException(nameof(skTransaction));
