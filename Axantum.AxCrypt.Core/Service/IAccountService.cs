@@ -1,4 +1,4 @@
-﻿#region Coypright and License
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -162,5 +162,21 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="message">The user message</param>
         /// <returns></returns>
         Task SendFeedbackAsync(string subject, string message);
+
+        /// <summary>
+        /// Get a user auto renewal subscription status.
+        /// </summary
+        /// <value>
+        /// <c>true</c> if auto renewal enabled; otherwise, <c>false</c>.
+        /// </value>
+        Task<bool> AutoRenewalStatusAsync();
+
+        /// <summary>
+        /// Update the cancel subscription status.
+        /// </summary>
+        /// <param name="isCancelSubscription">cancel subscription value</param>
+        /// <returns></returns>
+        Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription);
+
     }
 }

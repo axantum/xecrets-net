@@ -121,5 +121,15 @@ namespace Axantum.AxCrypt.Core.Session
         {
             return await _service.OtherUserInvitePublicKeyAsync(email, customParameters).Free();
         }
+
+        public async Task<bool> AutoRenewalStatusAsync()
+        {
+            return await _service.AutoRenewalStatusAsync().Free();
+        }
+
+        public async Task UpdateAutoRenewalStatusAsync(bool iscancelSubscription)
+        {
+            await _service.UpdateAutoRenewalStatusAsync(iscancelSubscription).Free();
+        }
     }
 }

@@ -7,6 +7,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
@@ -347,6 +348,30 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
             AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
             return axCryptVersion;
+        }
+
+        public async Task<bool> GetAutoRenewalStatusAsync()
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/account/cancel/subscription");
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            bool isCancelSubscription = Serializer.Deserialize<bool>(restResponse.Content);
+            return isCancelSubscription;
+        }
+
+        public async Task PutUpdateAutoRenewalStatusAsync(bool isCancelSubScription)
+        {
+            Uri resource = BaseUrl.PathCombine("purchase/cancel/subscription");
+            RestContent content = new RestContent(isCancelSubScription.ToString());
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
         }
 
         private static IStringSerializer Serializer

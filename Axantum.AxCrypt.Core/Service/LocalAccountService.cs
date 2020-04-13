@@ -356,5 +356,15 @@ namespace Axantum.AxCrypt.Core.Service
         {
             throw new InvalidOperationException("Feedback sending can't be performed locally.");
         }
+
+        public Task<bool> AutoRenewalStatusAsync()
+        {
+            throw new InvalidOperationException("Cancel subscription cannot be get locally.");
+        }
+
+        public Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription)
+        {
+            throw new InvalidOperationException("Cancel subscription cannot be updated locally.");
+        }
     }
 }
