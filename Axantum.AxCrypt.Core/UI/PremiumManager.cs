@@ -63,9 +63,14 @@ namespace Axantum.AxCrypt.Core.UI
             New<IBrowser>().OpenUri(new Uri(link));
         }
 
-        public async Task CreatePremiumSubscriptionAsync(Api.Model.StoreKitTransaction skTransaction)
+        public async Task CreatePremiumSubscriptionAsync(Api.Model.StoreKitTransaction skTransaction, LogOnIdentity logOnIdentityForPurchase)
         {
-            if(skTransaction == null)
+            if (logOnIdentityForPurchase == null)
+            {
+                throw new InvalidOperationException("Should be signed in to purchase the subscription!");
+            }
+
+            if (skTransaction == null)
             {
                 throw new ArgumentNullException(nameof(skTransaction));
             }
@@ -80,7 +85,7 @@ namespace Axantum.AxCrypt.Core.UI
             {
                 using (await New<IProgressDialog>().Show("Creating Subscription...", Texts.ProgressIndicatorWaitMessage))
                 {
-                    IAccountService accountService = New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity);
+                    IAccountService accountService = New<LogOnIdentity, IAccountService>(logOnIdentityForPurchase);
                     New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
 
                     await accountService.CreatePremiumAsync(skTransaction);
