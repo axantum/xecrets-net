@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Api
                 throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
 
-            Uri resource = BaseUrl.PathCombine("purchase/account/cancel/subscription");
+            Uri resource = BaseUrl.PathCombine("purchase/account/autorenewal");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
@@ -368,8 +368,8 @@ namespace Axantum.AxCrypt.Api
 
         public async Task PutUpdateAutoRenewalStatusAsync(bool isCancelSubScription)
         {
-            Uri resource = BaseUrl.PathCombine("purchase/cancel/subscription");
-            RestContent content = new RestContent(isCancelSubScription.ToString());
+            Uri resource = BaseUrl.PathCombine("purchase/cancel/autorenewal");
+            RestContent content = new RestContent(Serializer.Serialize(new { statusUpdated = isCancelSubScription }));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
         }
