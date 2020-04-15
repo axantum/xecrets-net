@@ -22,10 +22,10 @@ namespace Axantum.AxCrypt.Api.Model
             PaymentDate = paymentDate;
         }
 
-        public StoreKitTransaction()
-            : this(string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty, 0m, DateTime.UtcNow)
-        {
-        }
+        //public StoreKitTransaction()
+        //    : this(string.Empty, string.Empty, 0, string.Empty, string.Empty, string.Empty, string.Empty, 0m, DateTime.UtcNow)
+        //{
+        //}
 
         [JsonProperty("receipt-data")]
         public string ReceiptData { get; }
