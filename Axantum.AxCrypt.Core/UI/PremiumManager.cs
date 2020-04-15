@@ -87,23 +87,15 @@ namespace Axantum.AxCrypt.Core.UI
                 {
                     IAccountService accountService = New<LogOnIdentity, IAccountService>(logOnIdentityForPurchase);
                     New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
-
                     await accountService.CreatePremiumAsync(skTransaction);
-                }
 
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.PurchaseReceiptSuccess);
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.PurchaseReceiptSuccess);
+                }
             }
             catch (Exception ex)
             {
                 New<IReport>().Exception(ex);
-
-                if (New<AxCryptOnlineState>().IsOffline)
-                {
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageErrorTitle, Texts.NoInternetErrorMessage);
-                    return;
-                }
-
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageErrorTitle, "Oops! Failed to create a premium subscription.");
+                throw ex;
             }
         }
     }
