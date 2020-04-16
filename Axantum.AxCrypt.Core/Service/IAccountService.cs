@@ -164,7 +164,7 @@ namespace Axantum.AxCrypt.Core.Service
         Task SendFeedbackAsync(string subject, string message);
 
         /// <summary>
-        /// Creates a premium subscription for the appstore IAP transaction.
+        /// Creates a premium subscription for the AppStore InAppPurchase transaction.
         /// </summary>
         /// <param name="skTransaction">The appstore IAP transaction.</param>
         /// <returns></returns>
