@@ -231,6 +231,12 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
   <data name="AppActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verificatie [ {0} ]</value>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Code toepassen</value>
+  </data>
+  <data name="ApplyDiscountCodePrompt" xml:space="preserve">
+    <value>Voer de kortingscode in</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Vanwege veiligsheids redenen vragen wij u om uw wachtwoord opnieuw in te voeren.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -308,13 +314,13 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Business {0} abonnement is binnenkort voorbij. Ik hoop dat u AxCrypt leuk en handig vond om te gebruiken.</value>
+    <value>Uw AxCrypt Business {0} abonnement verloopt binnenkort. We hopen dat u AxCrypt leuk en handig vond om te gebruiken.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Wanneer uw Business abonnement wordt vernieuwd,kunt u en uw team blijven genieten van:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Ik hoop dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.</value>
+    <value>We hopen dat u onze Business functies blijft gebruiken. Neem contact op met uw AxCrypt Business-administrator om uw abonnement te verlengen.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Tijd om uw AxCrypt Business abonnement te vernieuwen!</value>
@@ -399,7 +405,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Als uw Business abonnement niet op tijd wordt verlengd, valt u terug in een van onze gratis abonnementen.</value>
   </data>
   <data name="BusinessSubscriptionExpiringWarningText" xml:space="preserve">
-    <value>Je abonnement verloopt binnenkort. Vernieuw deze om volledige functionaliteit te behouden.</value>
+    <value>Uw abonnement verloopt binnenkort. Vernieuw deze om volledige functionaliteit te behouden.</value>
   </data>
   <data name="BusinessSubscriptionImportButtonLabel" xml:space="preserve">
     <value>Importeer</value>
@@ -478,7 +484,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Aanschaffen</value>
+    <value>Koop meer licenties</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -898,6 +904,12 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Deze automatische email is vertaald naar de taal van uw voorkeur, maar directe persoonlijke service en ondersteuning is in het Engels.</value>
   </data>
+  <data name="DiscountCodeAppliedText" xml:space="preserve">
+    <value>Kortingscode {0} toegepast.</value>
+  </data>
+  <data name="DiscountCodeTitle" xml:space="preserve">
+    <value>Kortingscode</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Laat dit niet opnieuw zien.</value>
   </data>
@@ -1114,6 +1126,9 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Bekijk Hulp</value>
   </data>
+  <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
+    <value>Recente Bestanden lijst is uitgeschakeld. Ga naar Opties om het in te schakelen.</value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuten</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>
@@ -1121,6 +1136,11 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Uitgelogd vanwege inactiviteit</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>'{0}' kon niet geopend worden in een applicatie vanwege technische beperkingen. Dit kan komen door het type bestand, de locatie of andere eigenschappen. 
+
+Als u de inhoud van het bestand wilt bekijken of updaten, ontsleutel het dan afzonderlijk en open het vervolgens rechtstreeks. </value>
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}' is niet gecodeerd wegens technische beperkingen. Dit kan komen door de bestandsextensie, locatie of andere eigenschappen.</value>
@@ -1168,6 +1188,9 @@ Dit zorgt er mogelijk voor dat sommige acties lang duren. Zorg er voor dat u gee
 Internet toegang is aanbevolen en benodigd om betaalde abonnementen in te schakelen. Sommige eigenschappen werken dan beter en kritische updates kunnen u dan direct bereiken.
 
 U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geëncrypteerd.</value>
+  </data>
+  <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
+    <value>Deze kortingscode is niet geldig.</value>
   </data>
   <data name="InvalidEmail" xml:space="preserve">
     <value>Incorrect formaat voor een email adres.</value>
@@ -1381,15 +1404,16 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
     <value>Als u niet weer waarom u dit onvangt van AxCrypt.net, kunt u deze email negeren of rapporteren naar {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Heeft u vragen of feedback? Neem dan contact met mij op. Kijk ook naar onze FAQ en Forum op onze website hier &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
+    <value>Heeft u vragen of feedback? Neem dan contact met ons op. Kijk ook naar onze FAQ en Forum op onze website via &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
-    <value>Bedankt voor het gebruik maken van AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;Het AxCrypt team</value>
+    <value>Bedankt voor het gebruiken van AxCrypt!&lt;br&gt;&amp;nbsp;-&amp;nbsp;&amp;nbsp;Het AxCrypt team</value>
   </data>
   <data name="MailBodySignaturePlainText" xml:space="preserve">
-    <value>Bedankt voor het gebruik maken van AxCrypt!
- -  Het AxCrypt Team</value>
+    <value>Bedankt voor het gebruiken van AxCrypt!
+- Het AxCrypt Team
+</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -1710,6 +1734,9 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>Schakel het automatisch upgraden en converteren van AxCrypt 1.x en AES-128 bestanden in of uit.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
+    <value>Verberg Recente Bestanden</value>
+  </data>
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Inclusief Submappen </value>
   </data>
@@ -1836,17 +1863,17 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Premium abonnement verloopt binnenkort. Ik hoop dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
+    <value>Uw AxCrypt Premium abonnement verloopt binnenkort. We hopen dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Ik zou het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Verleng uw abonnement &lt;a href="{0}Home/Login?email={1}"&gt;nu&lt;/a&gt;</value>
+    <value>We zouden het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Verleng uw abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;nu&lt;/a&gt;</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Met uw Premium abonnement blijft u genieten van:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Vertel mij wat u vindt van AxCrypt - Blijft u gebruik maken van AxCrypt en is er iets wat u graag verbeterd wilt zien?</value>
+    <value>Vertel ons wat u vindt van AxCrypt - Blijft u er gebruik van maken en is er iets wat u graag verbeterd ziet?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
     <value>Uw AxCrypt Premium abonnement verloopt binnenkort!</value>
@@ -1867,6 +1894,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
     <value>Deze eigenschap vereist een abonnement! Wilt u een webpagina openen om deze aan te schaffen?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
+  </data>
+  <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
+    <value>Klik &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;hier&lt;/a&gt; voor meer informatie over de Premium proefperiode.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Ingedrukt houden om meer te zien</value>
@@ -2151,8 +2181,14 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Alleen gebruikers met een geldig abonnement kunnen hun ingevoerde wachtwoorden opslaan.</value>
   </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>Zoek hier wachtwoorden...</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Ga naar wachtwoordbeheer.</value>
+  </data>
+  <data name="SecretsCopytoClipboard" xml:space="preserve">
+    <value>Kopieer naar klembord</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Sorteer op</value>
@@ -2509,7 +2545,7 @@ Het AxCrypt Team</value>
     <value>Welkom bij AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Ik ben heel blij dat u zich heeft aangemeld! Om u welkom te heten, heb ik u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen. U kunt uw proefperiode op elk moment in de AxCrypt app starten.</value>
+    <value>We zijn heel blij dat u zich heeft aangemeld! Om u welkom te heten, hebben wij u gratis toegang gegeven tot onze Premium eigenschappen voor 30 dagen. U kunt uw proefperiode op elk moment in de AxCrypt app starten.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Met AxCrypt Gratis of AxCrypt Premium kunt u uw bestanden makkelijk beveiligen. Uw bestanden en mappen encrypteren is maar één klik van u vandaan. Werken met geëncrypteerde bestanden is net zo makkelijk!</value>
