@@ -62,5 +62,41 @@ namespace Axantum.AxCrypt.Core.UI
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
             New<IBrowser>().OpenUri(new Uri(link));
         }
+
+        public async Task CreatePremiumSubscriptionAsync(Api.Model.StoreKitTransaction skTransaction, LogOnIdentity logOnIdentityForPurchase)
+        {
+            if (logOnIdentityForPurchase == null)
+            {
+                throw new InvalidOperationException("Should be signed in to purchase the subscription!");
+            }
+
+            if (skTransaction == null)
+            {
+                throw new ArgumentNullException(nameof(skTransaction));
+            }
+
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageErrorTitle, Texts.NoInternetErrorMessage);
+                return;
+            }
+
+            try
+            {
+                using (await New<IProgressDialog>().Show("Creating Subscription...", Texts.ProgressIndicatorWaitMessage))
+                {
+                    IAccountService accountService = New<LogOnIdentity, IAccountService>(logOnIdentityForPurchase);
+                    New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
+                    await accountService.CreatePremiumAsync(skTransaction);
+
+                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.PurchaseReceiptSuccess);
+                }
+            }
+            catch (Exception ex)
+            {
+                New<IReport>().Exception(ex);
+                throw ex;
+            }
+        }
     }
 }

@@ -130,5 +130,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             await New<ICache>().UpdateItemAsync(async () => await _service.SendFeedbackAsync(subject, message), _key).Free();
         }
+
+        public async Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        {
+            await New<ICache>().UpdateItemAsync(() => _service.CreatePremiumAsync(skTransaction), _key).Free();
+        }
     }
 }

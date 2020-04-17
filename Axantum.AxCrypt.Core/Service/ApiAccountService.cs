@@ -289,5 +289,15 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return (await _apiClient.PostAllAccountsOtherUserInvitePublicKeyAsync(email.Address, customParameters).Free()).ToUserPublicKey();
         }
+
+        public async Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        {
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            await _apiClient.PostCreateSubscriptionAsync(skTransaction);
+        }
     }
 }

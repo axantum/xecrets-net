@@ -349,6 +349,19 @@ namespace Axantum.AxCrypt.Api
             return axCryptVersion;
         }
 
+        public async Task PostCreateSubscriptionAsync(StoreKitTransaction skTransaction)
+        {
+            if (skTransaction == null)
+            {
+                throw new ArgumentNullException(nameof(skTransaction));
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/storekit/transaction/persist");
+            RestContent content = new RestContent(Serializer.Serialize(skTransaction));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
         private static IStringSerializer Serializer
         {
             get
