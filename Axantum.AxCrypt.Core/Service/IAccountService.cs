@@ -164,16 +164,16 @@ namespace Axantum.AxCrypt.Core.Service
         Task SendFeedbackAsync(string subject, string message);
 
         /// <summary>
-        /// Creates a premium subscription for the AppStore InAppPurchase transaction.
+        /// Creates a subscription for the AppStore InAppPurchase transaction.
         /// </summary>
         /// <param name="skTransaction">The appstore IAP transaction.</param>
         /// <returns></returns>
-        Task CreatePremiumAsync(StoreKitTransaction skTransaction);
+        Task CreateSubscriptionAsync(StoreKitTransaction skTransaction);
 
         /// <summary>
-        /// Get the in app purchase product id's and discount.
+        /// Get the in app purchase settings.
         /// </summary>
-        /// <returns>The current in app purchase product description, or null if the service can't connect.</returns>
+        /// <returns>The InAppPurchase product ids and discount information, or null if the service can't connect.</returns>
         Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync();
     }
 }

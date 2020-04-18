@@ -290,7 +290,7 @@ namespace Axantum.AxCrypt.Core.Service
             return (await _apiClient.PostAllAccountsOtherUserInvitePublicKeyAsync(email.Address, customParameters).Free()).ToUserPublicKey();
         }
 
-        public async Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        public async Task CreateSubscriptionAsync(StoreKitTransaction skTransaction)
         {
             if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {

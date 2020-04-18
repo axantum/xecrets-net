@@ -357,7 +357,7 @@ namespace Axantum.AxCrypt.Core.Service
             throw new InvalidOperationException("Feedback sending can't be performed locally.");
         }
 
-        public Task CreatePremiumAsync(StoreKitTransaction skTransaction)
+        public Task CreateSubscriptionAsync(StoreKitTransaction skTransaction)
         {
             throw new InvalidOperationException("Premium creation cannot be started locally.");
         }
