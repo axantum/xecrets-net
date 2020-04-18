@@ -142,5 +142,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return _completedTask;
         }
+
+        public Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            return Task.FromResult((InAppPurchaseSettings)null);
+        }
     }
 }

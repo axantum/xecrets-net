@@ -169,5 +169,11 @@ namespace Axantum.AxCrypt.Core.Service
         /// <param name="skTransaction">The appstore IAP transaction.</param>
         /// <returns></returns>
         Task CreatePremiumAsync(StoreKitTransaction skTransaction);
+
+        /// <summary>
+        /// Get the in app purchase product id's and discount.
+        /// </summary>
+        /// <returns>The current in app purchase product description, or null if the service can't connect.</returns>
+        Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync();
     }
 }

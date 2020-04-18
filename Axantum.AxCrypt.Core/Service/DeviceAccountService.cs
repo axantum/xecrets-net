@@ -381,5 +381,15 @@ namespace Axantum.AxCrypt.Core.Service
 
             await _localService.CreatePremiumAsync(skTransaction).Free();
         }
+
+        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                return await _remoteService.GetInAppPurchaseSettingsAsync().Free();
+            }
+
+            return await _localService.GetInAppPurchaseSettingsAsync().Free();
+        }
     }
 }

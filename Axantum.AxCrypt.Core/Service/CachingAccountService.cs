@@ -135,5 +135,10 @@ namespace Axantum.AxCrypt.Core.Service
         {
             await New<ICache>().UpdateItemAsync(() => _service.CreatePremiumAsync(skTransaction), _key).Free();
         }
+
+        public async Task<Axantum.AxCrypt.Api.Model.InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            return await New<ICache>().UpdateItemAsync(() => _service.GetInAppPurchaseSettingsAsync(), _key).Free();
+        }
     }
 }

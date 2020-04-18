@@ -121,5 +121,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             return await _service.OtherUserInvitePublicKeyAsync(email, customParameters).Free();
         }
+
+        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            return await _service.GetInAppPurchaseSettingsAsync().Free();
+        }
     }
 }
