@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("app_bundle_id")]
         public string AppBundleID { get; set; }
 
-        [JsonProperty("app_bundle_id")]
+        [JsonProperty("product_identifier")]
         public string ProductIdentifier { get; set; }
 
         [JsonProperty("offer_identifier")]
