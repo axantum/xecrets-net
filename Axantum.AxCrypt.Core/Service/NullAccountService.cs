@@ -142,10 +142,5 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return Task.FromResult(false);
         }
-
-        public Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription)
-        {
-            return _completedTask;
-        }
     }
 }

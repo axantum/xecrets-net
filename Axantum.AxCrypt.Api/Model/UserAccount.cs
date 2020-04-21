@@ -113,8 +113,6 @@ namespace Axantum.AxCrypt.Api.Model
 
         public AccountSource AccountSource { get; set; }
 
-        public bool CancelAutoRenewalSubscription { get; set; }
-
         public bool Equals(UserAccount other)
         {
             if ((object)other == null)

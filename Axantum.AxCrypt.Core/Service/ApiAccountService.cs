@@ -299,16 +299,5 @@ namespace Axantum.AxCrypt.Core.Service
 
             return await _apiClient.GetAutoRenewalStatusAsync();
         }
-
-        public async Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription)
-        {
-            if (string.IsNullOrEmpty(_apiClient.Identity.User))
-            {
-                throw new InvalidOperationException("The account service requires a user.");
-            }
-
-            await _apiClient.PutUpdateAutoRenewalStatusAsync(isCancelSubscription);
-        }
-
     }
 }

@@ -135,10 +135,5 @@ namespace Axantum.AxCrypt.Core.Service
         {
             return await New<ICache>().UpdateItemAsync(() => _service.AutoRenewalStatusAsync(), _key).Free();
         }
-
-        public async Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription)
-        {
-            await New<ICache>().UpdateItemAsync(() => _service.UpdateAutoRenewalStatusAsync(isCancelSubscription), _key).Free();
-        }
     }
 }

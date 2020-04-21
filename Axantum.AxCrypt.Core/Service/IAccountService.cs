@@ -170,13 +170,5 @@ namespace Axantum.AxCrypt.Core.Service
         /// <c>true</c> if auto renewal enabled; otherwise, <c>false</c>.
         /// </value>
         Task<bool> AutoRenewalStatusAsync();
-
-        /// <summary>
-        /// Update the cancel subscription status.
-        /// </summary>
-        /// <param name="isCancelSubscription">cancel subscription value</param>
-        /// <returns></returns>
-        Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription);
-
     }
 }

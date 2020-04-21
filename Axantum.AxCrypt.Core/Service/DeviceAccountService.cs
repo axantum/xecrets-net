@@ -381,16 +381,5 @@ namespace Axantum.AxCrypt.Core.Service
 
             return await _localService.AutoRenewalStatusAsync().Free();
         }
-
-        public async Task UpdateAutoRenewalStatusAsync(bool isCancelSubscription)
-        {
-            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
-            {
-                await _remoteService.UpdateAutoRenewalStatusAsync(isCancelSubscription).Free();
-                return;
-            }
-
-            await _localService.UpdateAutoRenewalStatusAsync(isCancelSubscription).Free();
-        }
     }
 }

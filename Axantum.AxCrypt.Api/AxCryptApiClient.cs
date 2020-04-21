@@ -366,14 +366,6 @@ namespace Axantum.AxCrypt.Api
             return isCancelSubscription;
         }
 
-        public async Task PutUpdateAutoRenewalStatusAsync(bool isCancelSubScription)
-        {
-            Uri resource = BaseUrl.PathCombine("purchase/cancel/autorenewal");
-            RestContent content = new RestContent(Serializer.Serialize(new { statusUpdated = isCancelSubScription }));
-            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("PUT", resource, Timeout, content)).Free();
-            ApiCaller.EnsureStatusOk(restResponse);
-        }
-
         private static IStringSerializer Serializer
         {
             get
