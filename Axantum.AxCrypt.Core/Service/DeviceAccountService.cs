@@ -371,6 +371,27 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.SendFeedbackAsync(subject, message).Free();
         }
 
+        public async Task CreateSubscriptionAsync(StoreKitTransaction skTransaction)
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                await _remoteService.CreateSubscriptionAsync(skTransaction).Free();
+                return;
+            }
+
+            await _localService.CreateSubscriptionAsync(skTransaction).Free();
+        }
+
+        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                return await _remoteService.GetInAppPurchaseSettingsAsync().Free();
+            }
+
+            return await _localService.GetInAppPurchaseSettingsAsync().Free();
+        }
+        
         public async Task<bool> AutoRenewalStatusAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)

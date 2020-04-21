@@ -357,6 +357,16 @@ namespace Axantum.AxCrypt.Core.Service
             throw new InvalidOperationException("Feedback sending can't be performed locally.");
         }
 
+        public Task CreateSubscriptionAsync(StoreKitTransaction skTransaction)
+        {
+            throw new InvalidOperationException("Premium creation cannot be started locally.");
+        }
+
+        public Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        {
+            throw new InvalidOperationException("In app purchase member cannot be getting locally.");
+        }
+        
         public Task<bool> AutoRenewalStatusAsync()
         {
             throw new InvalidOperationException("Cancel subscription cannot be get locally.");

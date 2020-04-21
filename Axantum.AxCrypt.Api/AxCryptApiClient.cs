@@ -366,6 +366,35 @@ namespace Axantum.AxCrypt.Api
             return isCancelSubscription;
         }
 
+        public async Task PostCreateSubscriptionAsync(StoreKitTransaction skTransaction)
+        {
+            if (skTransaction == null)
+            {
+                throw new ArgumentNullException(nameof(skTransaction));
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/inapppurchase/create/subscription");
+            RestContent content = new RestContent(Serializer.Serialize(skTransaction));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+        }
+
+        public async Task<InAppPurchaseSettings> GetInAppPurchaSettingsAsync()
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get in app purchase information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/inapppurchase/settings");
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            InAppPurchaseSettings inAppPurchaseMember = Serializer.Deserialize<InAppPurchaseSettings>(restResponse.Content);
+            return inAppPurchaseMember;
+        }
+
         private static IStringSerializer Serializer
         {
             get
