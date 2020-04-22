@@ -7,6 +7,7 @@ using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Abstractions.Rest;
 using Axantum.AxCrypt.Api.Model;
 using Axantum.AxCrypt.Common;
+
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 
 namespace Axantum.AxCrypt.Api
@@ -376,6 +377,22 @@ namespace Axantum.AxCrypt.Api
 
             InAppPurchaseSettings inAppPurchaseMember = Serializer.Deserialize<InAppPurchaseSettings>(restResponse.Content);
             return inAppPurchaseMember;
+        }
+
+        public async Task<bool> GetAutoRenewalStatusAsync()
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/account/autorenewal");
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            bool isCancelSubscription = Serializer.Deserialize<bool>(restResponse.Content);
+            return isCancelSubscription;
         }
 
         private static IStringSerializer Serializer

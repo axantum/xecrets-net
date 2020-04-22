@@ -308,6 +308,16 @@ namespace Axantum.AxCrypt.Core.Service
             }
 
             return await _apiClient.GetInAppPurchaSettingsAsync();
-        }  
+        }
+
+        public async Task<bool> AutoRenewalStatusAsync()
+        {
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            return await _apiClient.GetAutoRenewalStatusAsync();
+        }
     }
 }

@@ -126,5 +126,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             return await _service.GetInAppPurchaseSettingsAsync().Free();
         }
+        
+        public async Task<bool> AutoRenewalStatusAsync()
+        {
+            return await _service.AutoRenewalStatusAsync().Free();
+        }
     }
 }
