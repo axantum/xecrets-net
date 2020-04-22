@@ -391,5 +391,16 @@ namespace Axantum.AxCrypt.Core.Service
 
             return await _localService.GetInAppPurchaseSettingsAsync().Free();
         }
+        
+        public async Task<bool> AutoRenewalStatusAsync()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                return await _remoteService.AutoRenewalStatusAsync().Free();
+                
+            }
+
+            return await _localService.AutoRenewalStatusAsync().Free();
+        }
     }
 }

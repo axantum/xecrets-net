@@ -1,4 +1,4 @@
-﻿#region Coypright and License
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -175,5 +175,13 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns>The InAppPurchase product ids and discount information, or null if the service can't connect.</returns>
         Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync();
+        
+        /// <summary>
+        /// Get a user auto renewal subscription status.
+        /// </summary
+        /// <value>
+        /// <c>true</c> if auto renewal enabled; otherwise, <c>false</c>.
+        /// </value>
+        Task<bool> AutoRenewalStatusAsync();
     }
 }
