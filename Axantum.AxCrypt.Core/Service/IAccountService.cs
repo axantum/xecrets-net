@@ -175,6 +175,12 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <returns>The InAppPurchase product ids and discount information, or null if the service can't connect.</returns>
         Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync();
+
+        /// <summary>
+        /// Create the InAppPurchase offers signature.
+        /// </summary>
+        /// <returns>The InAppPurchase offers signature, uniqueid and timestamp, or null if the service can't connect.</returns>
+        Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters);
         
         /// <summary>
         /// Get a user auto renewal subscription status.

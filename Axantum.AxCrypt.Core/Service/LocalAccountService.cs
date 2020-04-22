@@ -367,9 +367,15 @@ namespace Axantum.AxCrypt.Core.Service
             throw new InvalidOperationException("In app purchase member cannot be getting locally.");
         }
 
+        public Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
+        {
+            throw new InvalidOperationException("In app purchase member cannot be getting locally.");
+        }
+
         public Task<bool> AutoRenewalStatusAsync()
         {
             throw new InvalidOperationException("Cancel subscription cannot be get locally.");
         }
+
     }
 }

@@ -131,5 +131,10 @@ namespace Axantum.AxCrypt.Core.Session
         {
             return await _service.AutoRenewalStatusAsync().Free();
         }
+
+        public async Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
+        {
+            return await _service.CreateSubscriptionOffersSignatureAsync(iAPOffersSignatureGenerateParameters).Free();
+        }
     }
 }

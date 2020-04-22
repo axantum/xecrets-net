@@ -392,6 +392,16 @@ namespace Axantum.AxCrypt.Core.Service
             return await _localService.GetInAppPurchaseSettingsAsync().Free();
         }
 
+        public async Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                return await _remoteService.CreateSubscriptionOffersSignatureAsync(iAPOffersSignatureGenerateParameters).Free();
+            }
+
+            return await _localService.CreateSubscriptionOffersSignatureAsync(iAPOffersSignatureGenerateParameters).Free();
+        }
+
         public async Task<bool> AutoRenewalStatusAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)

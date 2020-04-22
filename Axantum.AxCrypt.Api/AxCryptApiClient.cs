@@ -395,6 +395,22 @@ namespace Axantum.AxCrypt.Api
             return isCancelSubscription;
         }
 
+        public async Task<InAppPurchaseOffersSignatureGenerateParameters> PostCreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get in app purchase information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("purchase/inapppurchase/offers/signature");
+            RestContent content = new RestContent(Serializer.Serialize(iAPOffersSignatureGenerateParameters));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            InAppPurchaseOffersSignatureGenerateParameters parameters = Serializer.Deserialize<InAppPurchaseOffersSignatureGenerateParameters>(restResponse.Content);
+            return parameters;
+        }
+
         private static IStringSerializer Serializer
         {
             get
@@ -403,4 +419,4 @@ namespace Axantum.AxCrypt.Api
             }
         }
     }
-}
+} 

@@ -141,6 +141,11 @@ namespace Axantum.AxCrypt.Core.Service
             return await New<ICache>().UpdateItemAsync(() => _service.GetInAppPurchaseSettingsAsync(), _key).Free();
         }
 
+        public async Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
+        {
+            return await New<ICache>().UpdateItemAsync(() => _service.CreateSubscriptionOffersSignatureAsync(iAPOffersSignatureGenerateParameters), _key).Free();
+        }
+
         public async Task<bool> AutoRenewalStatusAsync()
         {
             return await New<ICache>().UpdateItemAsync(() => _service.AutoRenewalStatusAsync(), _key).Free();
