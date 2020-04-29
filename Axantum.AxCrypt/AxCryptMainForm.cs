@@ -834,7 +834,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
-            _manageAccountToolStripMenuItem.Click += async (sender, e) => Process.Start("https://account.axcrypt.net/en/Home/Login");
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => { await ManageAccountHomePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -1021,6 +1021,13 @@ namespace Axantum.AxCrypt
         {
             string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
+            Process.Start(link);
+        }
+
+        private static async Task ManageAccountHomePage(IAccountService accountService)
+        {
+            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
+            string link = "https://account.axcrypt.net/Home/Login".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
             Process.Start(link);
         }
 
