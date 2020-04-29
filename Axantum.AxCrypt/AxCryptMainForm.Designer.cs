@@ -121,6 +121,7 @@ namespace Axantum.AxCrypt
             this._helpAboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._checkForUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._getPremiumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._manageAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._mainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -957,7 +958,8 @@ namespace Axantum.AxCrypt
             this._helpViewHelpMenuItem,
             this._helpAboutToolStripMenuItem,
             this._checkForUpdateToolStripMenuItem,
-            this._getPremiumToolStripMenuItem});
+            this._getPremiumToolStripMenuItem,
+            this._manageAccountToolStripMenuItem});
             this._helpToolStripMenuItem.Name = "_helpToolStripMenuItem";
             this._helpToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this._helpToolStripMenuItem.Text = "[&Help]";
@@ -987,6 +989,12 @@ namespace Axantum.AxCrypt
             this._getPremiumToolStripMenuItem.Name = "_getPremiumToolStripMenuItem";
             this._getPremiumToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this._getPremiumToolStripMenuItem.Text = "[&Get Premium]";
+            // 
+            // _manageAccountToolStripMenuItem
+            // 
+            this._manageAccountToolStripMenuItem.Name = "_manageAccountToolStripMenuItem";
+            this._manageAccountToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this._manageAccountToolStripMenuItem.Text = "[&Manage account]";
             // 
             // tableLayoutPanel3
             // 
@@ -1390,6 +1398,7 @@ namespace Axantum.AxCrypt
         private System.Windows.Forms.ToolStripMenuItem _exportMyPrivateKeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem _createAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _manageAccountToolStripMenuItem;
     }
 }
 

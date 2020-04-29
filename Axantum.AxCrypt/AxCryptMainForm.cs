@@ -25,20 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -60,9 +46,20 @@ using Axantum.AxCrypt.Forms.Implementation;
 using Axantum.AxCrypt.Forms.Style;
 using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
-
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
@@ -837,6 +834,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => Process.Start("https://account.axcrypt.net/en/Home/Login");
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -2004,7 +2002,6 @@ namespace Axantum.AxCrypt
             {
                 FileSelectionType = FileSelectionType.KeySharing,
             };
-            
             if (!fileSelectionArgs.SelectedFiles.Any())
             {
                 await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);
