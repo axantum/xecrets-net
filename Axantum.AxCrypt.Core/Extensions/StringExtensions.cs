@@ -443,5 +443,12 @@ namespace Axantum.AxCrypt.Core.Extensions
             url.Query = $"email={userEmail}";
             return url.Uri;
         }
+
+        public static Uri GetloginUrl(this string userEmail)
+        {
+            UriBuilder url = new UriBuilder("https://account.axcrypt.net/Home/Login");
+            url.Query = $"email={userEmail}";
+            return url.Uri;
+        }
     }
 }
