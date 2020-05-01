@@ -148,11 +148,6 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult((InAppPurchaseSettings)null);
         }
 
-        public Task<InAppPurchaseOffersSignatureGenerateParameters> CreateSubscriptionOffersSignatureAsync(InAppPurchaseOffersSignatureGenerateParameters iAPOffersSignatureGenerateParameters)
-        {
-            return Task.FromResult((InAppPurchaseOffersSignatureGenerateParameters)null);
-        }
-
         public Task<bool> AutoRenewalStatusAsync()
         {
             return Task.FromResult(false);
