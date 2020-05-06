@@ -63,6 +63,12 @@ namespace Axantum.AxCrypt.Core.UI
             New<IBrowser>().OpenUri(new Uri(link));
         }
 
+        public async Task ManageAccount()
+        {
+            string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
+            New<IBrowser>().OpenUri(new Uri(link));
+        }
+
         public async Task CreatePremiumSubscriptionAsync(Api.Model.StoreKitTransaction skTransaction, LogOnIdentity logOnIdentityForPurchase)
         {
             if (logOnIdentityForPurchase == null)
