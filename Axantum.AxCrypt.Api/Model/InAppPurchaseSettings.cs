@@ -1,43 +1,76 @@
 using System;
 using System.Text;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class InAppPurchaseSettings
     {
-        [JsonConstructor]
-        public InAppPurchaseSettings(string productIds, string yearlyDiscountPercentage)
+        public InAppPurchaseSettings(string productIds, int yearlyDiscountPercentage)
         {
-            ProductIds = productIds;
-            YearlyDiscountPercentage = yearlyDiscountPercentage.ToString();
+            ProductIdsWithAmount = productIds;
+            YearlyDiscountPercentage = yearlyDiscountPercentage;
         }
 
-        public InAppPurchaseSettings() : this(string.Empty, "0")
+        [JsonConstructor]
+        private InAppPurchaseSettings()
         {
         }
+
+        public static InAppPurchaseSettings Empty { get; } = new InAppPurchaseSettings();
 
         [JsonProperty("product_ids")]
-        public string ProductIds { get; }
+        public string ProductIdsWithAmount { get; private set; }
 
         [JsonProperty("yearly_discount_percent")]
-        public string YearlyDiscountPercentage { get; }
+        public int YearlyDiscountPercentage { get; private set; }
 
         public IEnumerable<string> ProductIdList
         {
             get
             {
-                if (ProductIds == null)
+                if (ProductIdsWithAmount == null)
                 {
                     return new List<string>();
                 }
 
-               return ProductIds.Split(",".ToCharArray()).ToList();
+                string[] productIdsWithAmount = ProductIdsWithAmount.Split(",".ToCharArray());
+                return productIdsWithAmount.Select(product => product.Split("|".ToCharArray())[0]);
             }
         }
 
+        public IEnumerable<SubscriptionProduct> SubscriptionProducts
+        {
+            get
+            {
+                if (ProductIdsWithAmount == null)
+                {
+                    return new List<SubscriptionProduct>();
+                }
+
+                string[] productIdsWithAmount = ProductIdsWithAmount.Split(",".ToCharArray());
+                return productIdsWithAmount.Select(product => GetSubscriptionProduct(product));
+            }
+        }
+
+        private static SubscriptionProduct GetSubscriptionProduct(string product)
+        {
+            if (product == null)
+            {
+                return new SubscriptionProduct();
+            }
+
+            string[] productIdsWithAmount = product.Split("|".ToCharArray());
+            decimal amount = 0m;
+            if (productIdsWithAmount.Length > 1)
+            {
+                amount = decimal.Parse(productIdsWithAmount[1]);
+            }
+
+            return new SubscriptionProduct() { Id = productIdsWithAmount[0], AmountExcludingVat = amount };
+        }
     }
 }

@@ -79,6 +79,7 @@
     <Compile Include="Model\PasswordResetParameters.cs" />
     <Compile Include="Model\StoreKitTransaction.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
+    <Compile Include="Model\SubscriptionProduct.cs" />
     <Compile Include="Model\UserAccounts.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
