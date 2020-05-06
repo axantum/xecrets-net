@@ -24,10 +24,10 @@ namespace Axantum.AxCrypt.Api.Model
         public static InAppPurchaseSettings Empty { get; } = new InAppPurchaseSettings();
 
         [JsonProperty("product_ids")]
-        public string ProductIdsWithAmount { get; private set; }
+        public string ProductIdsWithAmount { get; set; }
 
         [JsonProperty("yearly_discount_percent")]
-        public int YearlyDiscountPercentage { get; private set; }
+        public int YearlyDiscountPercentage { get; set; }
 
         [JsonProperty("provider")]
         public string Provider { get; private set; }
@@ -69,7 +69,7 @@ namespace Axantum.AxCrypt.Api.Model
 
             string[] productIdsWithAmount = product.Split("|".ToCharArray());
             decimal amount = 0m;
-            if (productIdsWithAmount.Length > 1)
+            if (productIdsWithAmount.Length > 1 && productIdsWithAmount[1].Length > 0)
             {
                 amount = decimal.Parse(productIdsWithAmount[1]);
             }
