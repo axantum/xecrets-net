@@ -24,6 +24,7 @@
 */
 
 #endregion Coypright and License
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using Axantum.AxCrypt.Abstractions;
 using Axantum.AxCrypt.Api;
 using Axantum.AxCrypt.Api.Model;
@@ -60,6 +62,7 @@ using Axantum.AxCrypt.Mono;
 using Axantum.AxCrypt.Properties;
 
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
+
 using Texts = AxCrypt.Content.Texts;
 
 namespace Axantum.AxCrypt
