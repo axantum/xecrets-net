@@ -834,6 +834,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => { await DisplayMYAxCryptIDPage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -1021,6 +1022,12 @@ namespace Axantum.AxCrypt
             string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
             Process.Start(link);
+        }
+
+        private static async Task DisplayMYAxCryptIDPage(IAccountService accountService)
+        {
+            string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
+            New<IBrowser>().OpenUri(new Uri(link));
         }
 
         private static async Task SetLegacyOpenMode(FileOperationEventArgs e)
@@ -1852,12 +1859,6 @@ namespace Axantum.AxCrypt
         {
             string userEmail = New<UserSettings>().UserEmail.ToString();
             Process.Start(userEmail.GetPasswordResetUrl().ToString());
-        }
-
-        private void ManageAccount_Click(object sender, EventArgs e)
-        {
-            string userEmail = New<UserSettings>().UserEmail.ToString();
-            Process.Start(userEmail.GetloginUrl().ToString());
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)
