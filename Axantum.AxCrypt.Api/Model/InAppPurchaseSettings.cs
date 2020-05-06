@@ -9,10 +9,11 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class InAppPurchaseSettings
     {
-        public InAppPurchaseSettings(string productIds, int yearlyDiscountPercentage)
+        public InAppPurchaseSettings(string productIds, int yearlyDiscountPercentage, string provider)
         {
             ProductIdsWithAmount = productIds;
             YearlyDiscountPercentage = yearlyDiscountPercentage;
+            Provider = provider;
         }
 
         [JsonConstructor]
@@ -27,6 +28,9 @@ namespace Axantum.AxCrypt.Api.Model
 
         [JsonProperty("yearly_discount_percent")]
         public int YearlyDiscountPercentage { get; private set; }
+
+        [JsonProperty("provider")]
+        public string Provider { get; private set; }
 
         public IEnumerable<string> ProductIdList
         {
