@@ -326,6 +326,7 @@ namespace Axantum.AxCrypt
             _thirtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
             _getPremiumToolStripMenuItem.Text = Texts.UpgradePromptText;
+            _manageAccountToolStripMenuItem.Text = "[Manage Account]";
         }
 
         private static void SetCulture()
@@ -834,7 +835,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
-            _manageAccountToolStripMenuItem.Click += async (sender, e) => { await DisplayMYAxCryptIDPage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => { await DisplayMyAxCryptIdPage(); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -1024,7 +1025,7 @@ namespace Axantum.AxCrypt
             Process.Start(link);
         }
 
-        private static async Task DisplayMYAxCryptIDPage(IAccountService accountService)
+        private static async Task DisplayMyAxCryptIdPage()
         {
             string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
             New<IBrowser>().OpenUri(new Uri(link));

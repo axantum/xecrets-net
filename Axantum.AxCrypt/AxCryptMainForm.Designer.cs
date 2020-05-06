@@ -994,7 +994,7 @@ namespace Axantum.AxCrypt
             // 
             this._manageAccountToolStripMenuItem.Name = "_manageAccountToolStripMenuItem";
             this._manageAccountToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this._manageAccountToolStripMenuItem.Text = "[&Manage account]";
+            this._manageAccountToolStripMenuItem.Text = "[&Manage Account]";
             // 
             // tableLayoutPanel3
             // 
