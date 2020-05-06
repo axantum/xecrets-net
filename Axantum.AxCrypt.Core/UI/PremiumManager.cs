@@ -65,7 +65,7 @@ namespace Axantum.AxCrypt.Core.UI
 
         public async Task ManageAccount()
         {
-            string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
+            string link = Texts.LinkToMyAxCryptIDPage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
             New<IBrowser>().OpenUri(new Uri(link));
         }
 

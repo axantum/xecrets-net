@@ -329,7 +329,7 @@ namespace Axantum.AxCrypt
             _thirtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
             _getPremiumToolStripMenuItem.Text = Texts.UpgradePromptText;
-            _manageAccountToolStripMenuItem.Text = "[Manage Account]";
+            _manageAccountToolStripMenuItem.Text = Texts.PromptMyAxCryptId;
         }
 
         private static void SetCulture()
@@ -1030,7 +1030,7 @@ namespace Axantum.AxCrypt
 
         private static async Task DisplayMyAxCryptIdPage()
         {
-            string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
+            string link = Texts.LinkToMyAxCryptIDPage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
             New<IBrowser>().OpenUri(new Uri(link));
         }
 
