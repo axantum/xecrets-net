@@ -838,7 +838,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
-            _manageAccountToolStripMenuItem.Click += async (sender, e) => { await DisplayMyAxCryptIdPage(); };
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => { RedirectToMyAxCryptIDPage(); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -1028,10 +1028,9 @@ namespace Axantum.AxCrypt
             Process.Start(link);
         }
 
-        private static async Task DisplayMyAxCryptIdPage()
+        public void RedirectToMyAxCryptIDPage()
         {
-            string link = Texts.LinkToMyAxCryptIDPage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
-            New<IBrowser>().OpenUri(new Uri(link));
+             New<PremiumManager>().RedirectToMyAxCryptIDPage();
         }
 
         private static async Task SetLegacyOpenMode(FileOperationEventArgs e)
