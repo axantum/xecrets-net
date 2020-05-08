@@ -329,6 +329,7 @@ namespace Axantum.AxCrypt
             _thirtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(30);
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
             _getPremiumToolStripMenuItem.Text = Texts.UpgradePromptText;
+            _manageAccountToolStripMenuItem.Text = Texts.PromptMyAxCryptId;
         }
 
         private static void SetCulture()
@@ -837,6 +838,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
+            _manageAccountToolStripMenuItem.Click += async (sender, e) => { RedirectToMyAxCryptIDPage(); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -1024,6 +1026,11 @@ namespace Axantum.AxCrypt
             string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
             Process.Start(link);
+        }
+
+        public void RedirectToMyAxCryptIDPage()
+        {
+             New<PremiumManager>().RedirectToMyAxCryptIDPage();
         }
 
         private static async Task SetLegacyOpenMode(FileOperationEventArgs e)
@@ -2004,7 +2011,7 @@ namespace Axantum.AxCrypt
             {
                 FileSelectionType = FileSelectionType.KeySharing,
             };
-            
+
             if (!fileSelectionArgs.SelectedFiles.Any())
             {
                 await New<IDataItemSelection>().HandleSelection(fileSelectionArgs);

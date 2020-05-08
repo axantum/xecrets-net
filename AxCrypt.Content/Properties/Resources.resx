@@ -1563,6 +1563,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
+  <data name="LinkToMyAxCryptIDPage" xml:space="preserve">
+    <value>{0}Home/Login?email={1}</value>
+  </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
