@@ -68,7 +68,6 @@
     <Compile Include="Model\FeedbackData.cs" />
     <Compile Include="Model\CustomMessageParameters.cs" />
     <Compile Include="Model\InAppPurchaseSettings.cs" />
-    <Compile Include="Model\InAppPurchaseOffersSignatureGenerateParameters.cs" />
     <Compile Include="Model\PrivateKeyStatus.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="Model\PasswordResetParameters.cs" />
     <Compile Include="Model\StoreKitTransaction.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
+    <Compile Include="Model\SubscriptionProduct.cs" />
     <Compile Include="Model\UserAccounts.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
