@@ -285,6 +285,11 @@ Please sign in using the same password you used then.</value>
     <value>For security reasons, please enter your password again.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>!!The Auto renewal subscription can be canceled only in app store manage subscription. 
+
+The updated subscription status will get reflected in few minutes after the status update.</value>
+  </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Version {0}</value>
     <comment>Text containing information about current application version.</comment>

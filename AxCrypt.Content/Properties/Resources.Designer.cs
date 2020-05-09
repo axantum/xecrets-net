@@ -502,6 +502,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!The Auto renewal subscription can be canceled only in app store manage subscription. 
+        ///
+        ///The updated subscription status will get reflected in few minutes after the status update..
+        /// </summary>
+        public static string AppStoreCancelSubscriptionInformationText {
+            get {
+                return ResourceManager.GetString("AppStoreCancelSubscriptionInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0}.
         /// </summary>
         public static string AppVersionLabel {
