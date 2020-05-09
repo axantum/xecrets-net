@@ -1484,6 +1484,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Cancel Subscription.
+        /// </summary>
+        public static string CancelSubscriptionPrompt {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot start application for &apos;{0}&apos;..
         /// </summary>
         public static string CannotStartApplication {
@@ -6779,7 +6788,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !One month free trial included.
+        ///   Looks up a localized string similar to !!1-month free trial included.
         /// </summary>
         public static string SubscriptionFreeTrialIndicatorText {
             get {
