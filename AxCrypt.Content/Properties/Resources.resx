@@ -2246,6 +2246,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Signing in...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
   </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>!!Creating Subscription...</value>
+  </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>Starting trial...</value>
     <comment>Title of progress indicator which is displayed during trial starting</comment>

@@ -5580,6 +5580,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Creating Subscription....
+        /// </summary>
+        public static string ProgressIndicatorSubscriptionCreationMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorSubscriptionCreationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Starting trial....
         /// </summary>
         public static string ProgressIndicatorTrialMessage {
