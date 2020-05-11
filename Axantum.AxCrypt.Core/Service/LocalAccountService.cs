@@ -371,5 +371,6 @@ namespace Axantum.AxCrypt.Core.Service
         {
             throw new InvalidOperationException("Cancel subscription cannot be get locally.");
         }
+
     }
 }

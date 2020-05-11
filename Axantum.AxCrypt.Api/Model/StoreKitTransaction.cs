@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Api.Model
@@ -63,9 +62,6 @@ namespace Axantum.AxCrypt.Api.Model
 
         [JsonProperty("amount_vat")]
         public decimal AmountVat { get; set; }
-
-        [JsonProperty("is_production")]
-        public bool IsProduction { get; set; }
 
         [JsonProperty("payment_status")]
         public string PaymentStatus { get; set; }
