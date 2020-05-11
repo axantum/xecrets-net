@@ -60,14 +60,14 @@ namespace Axantum.AxCrypt.Api.Model
             }
         }
 
-        private static SubscriptionProduct GetSubscriptionProduct(string product)
+        private static SubscriptionProduct GetSubscriptionProduct(string productIdsWithAmounString)
         {
-            if (product == null)
+            if (productIdsWithAmounString == null)
             {
                 return new SubscriptionProduct();
             }
 
-            string[] productIdsWithAmount = product.Split("|".ToCharArray());
+            string[] productIdsWithAmount = productIdsWithAmounString.Split("|".ToCharArray());
             decimal amount = 0m;
             if (productIdsWithAmount.Length > 1 && productIdsWithAmount[1].Length > 0)
             {
