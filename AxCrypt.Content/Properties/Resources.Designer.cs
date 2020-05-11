@@ -502,9 +502,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!The Auto renewal subscription can be canceled only in app store manage subscription. 
+        ///   Looks up a localized string similar to Your subscription is managed through Appstore, please make any needed changes there.
         ///
-        ///The updated subscription status will get reflected in few minutes after the status update..
+        ///Updates to the subscription will be reflected here within a few minutes..
         /// </summary>
         public static string AppStoreCancelSubscriptionInformationText {
             get {
@@ -1495,7 +1495,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Cancel Subscription.
+        ///   Looks up a localized string similar to Cancel Subscription.
         /// </summary>
         public static string CancelSubscriptionPrompt {
             get {
@@ -3427,7 +3427,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Currency and VAT may differ, please visit &lt;a href=&quot;{0}&quot;&gt;appstore&lt;/a&gt;  for exact details. .
+        ///   Looks up a localized string similar to Currency and VAT may differ, please visit &lt;a href=&quot;{0}&quot;&gt;Appstore&lt;/a&gt;  for exact details. .
         /// </summary>
         public static string InvoiceAppStoreSubscriptionInformation {
             get {
@@ -4073,7 +4073,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:.
+        ///   Looks up a localized string similar to Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:.
         /// </summary>
         public static string MailBodySubscriptionExpiredText {
             get {
@@ -4082,7 +4082,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:.
+        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:.
         /// </summary>
         public static string MailBodySubscriptionExpiryText {
             get {
@@ -4116,7 +4116,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You can easily renew your subscription here:.
+        ///   Looks up a localized string similar to You can easily renew your subscription here:.
         /// </summary>
         public static string MailBodySubscriptionRenewText {
             get {
@@ -4734,7 +4734,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Monthly.
+        ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlySubscriptionTitle {
             get {
@@ -5082,7 +5082,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!In order to use AxCrypt for mobile you need to have a paid subscription..
+        ///   Looks up a localized string similar to In order to use AxCrypt for mobile you need to have a subscription..
         /// </summary>
         public static string PaidSubscriptionNeededForMobileApp {
             get {
@@ -5591,7 +5591,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Creating Subscription....
+        ///   Looks up a localized string similar to Creating Subscription....
         /// </summary>
         public static string ProgressIndicatorSubscriptionCreationMessage {
             get {
@@ -5960,7 +5960,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!With Premium you can use AxCrypt to its full potential on any number of computers and devices. VAT may be adjusted during payment..
+        ///   Looks up a localized string similar to With Premium you can use AxCrypt to its full potential on any number of devices. VAT may be adjusted during payment..
         /// </summary>
         public static string PurchasePageInformationText {
             get {
@@ -6218,7 +6218,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Renew in.
+        ///   Looks up a localized string similar to Renew in.
         /// </summary>
         public static string RenewInTitle {
             get {
@@ -6772,7 +6772,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription will auto renew on &lt;b&gt;{0}&lt;/b&gt;..
+        ///   Looks up a localized string similar to Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;..
         /// </summary>
         public static string SubscriptionAutoRenewOn {
             get {
@@ -6790,7 +6790,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Save {0}%.
+        ///   Looks up a localized string similar to Save {0}%.
         /// </summary>
         public static string SubscriptionDiscountDisplayText {
             get {
@@ -6799,7 +6799,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;..
+        ///   Looks up a localized string similar to Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;..
         /// </summary>
         public static string SubscriptionExpireOn {
             get {
@@ -6808,7 +6808,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!1-month free trial included.
+        ///   Looks up a localized string similar to 1-month free trial included.
         /// </summary>
         public static string SubscriptionFreeTrialIndicatorText {
             get {
@@ -6826,7 +6826,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!{0} / year.
+        ///   Looks up a localized string similar to {0} / year.
         /// </summary>
         public static string SubscriptionPricePerYearDisplayText {
             get {
@@ -6835,7 +6835,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Select the plan that&apos;s right for you.
+        ///   Looks up a localized string similar to Select the plan that&apos;s right for you.
         /// </summary>
         public static string SubscriptionSelectionTitle {
             get {
@@ -8138,7 +8138,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Yearly.
+        ///   Looks up a localized string similar to Yearly.
         /// </summary>
         public static string YearlySubscriptionTitle {
             get {
