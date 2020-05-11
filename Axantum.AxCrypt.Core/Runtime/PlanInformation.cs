@@ -85,8 +85,13 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return new PlanInformation(PlanState.OfflineNoPremium, 0);
             }
+            Offers offers = (await service.AccountAsync().Free()).Offers;
+            if (!offers.HasFlag(Offers.AxCryptSubscriptionTrial))
+            {
+                return new PlanInformation(PlanState.CanTryPremium, 0);
+            }
 
-            if (!(await service.AccountAsync().Free()).Offers.HasFlag(Offers.AxCryptTrial))
+            if (!offers.HasFlag(Offers.AxCryptTrial))
             {
                 return new PlanInformation(PlanState.CanTryPremium, 0);
             }
