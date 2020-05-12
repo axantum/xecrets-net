@@ -3872,15 +3872,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Home/Login?email={1}.
-        /// </summary>
-        public static string LinkToMyAxCryptIDPage {
-            get {
-                return ResourceManager.GetString("LinkToMyAxCryptIDPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0}secrets?email={1}&amp;app.
         /// </summary>
         public static string LinkToSecretsPageWithUserNameFormat {
