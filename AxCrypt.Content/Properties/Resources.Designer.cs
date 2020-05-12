@@ -1484,6 +1484,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Subscription.
+        /// </summary>
+        public static string CancelSubscriptionPrompt {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot start application for &apos;{0}&apos;..
         /// </summary>
         public static string CannotStartApplication {
@@ -4035,6 +4044,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:.
+        /// </summary>
+        public static string MailBodySubscriptionExpiryText {
+            get {
+                return ResourceManager.GetString("MailBodySubscriptionExpiryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///&lt;li&gt;256-bit AES&lt;/li&gt;
         ///&lt;li&gt;Key Sharing&lt;/li&gt;
@@ -5003,6 +5021,15 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to use AxCrypt for mobile you need to have a subscription..
+        /// </summary>
+        public static string PaidSubscriptionNeededForMobileApp {
+            get {
+                return ResourceManager.GetString("PaidSubscriptionNeededForMobileApp", resourceCulture);
             }
         }
         
@@ -6661,11 +6688,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;..
+        /// </summary>
+        public static string SubscriptionAutoRenewOn {
+            get {
+                return ResourceManager.GetString("SubscriptionAutoRenewOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted.
         /// </summary>
         public static string SubscriptionDeletedText {
             get {
                 return ResourceManager.GetString("SubscriptionDeletedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;..
+        /// </summary>
+        public static string SubscriptionExpireOn {
+            get {
+                return ResourceManager.GetString("SubscriptionExpireOn", resourceCulture);
             }
         }
         

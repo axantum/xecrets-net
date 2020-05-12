@@ -684,6 +684,9 @@ You have been warned, now enjoy!</value>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
   </data>
+  <data name="CancelSubscriptionPrompt" xml:space="preserve">
+    <value>Cancel Subscription</value>
+  </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Cannot start application for '{0}'.</value>
   </data>
@@ -1621,6 +1624,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>Thanks for using AxCrypt!
  -  The AxCrypt Team</value>
   </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
@@ -2014,6 +2020,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>In order to use AxCrypt for mobile you need to have a subscription.</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Password</value>
@@ -2662,8 +2671,14 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Submit feedback</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionAutoRenewOn" xml:space="preserve">
+    <value>Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Deleted</value>
+  </data>
+  <data name="SubscriptionExpireOn" xml:space="preserve">
+    <value>Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}. </value>
