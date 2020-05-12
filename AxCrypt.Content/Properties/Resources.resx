@@ -2714,6 +2714,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionsSuccessDelete" xml:space="preserve">
     <value>The subscription history was successfully deleted.</value>
   </data>
+  <data name="SubscriptionStatusActiveText" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>How can we help you?</value>
   </data>

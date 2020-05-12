@@ -6814,6 +6814,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string SubscriptionStatusActiveText {
+            get {
+                return ResourceManager.GetString("SubscriptionStatusActiveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How can we help you?.
         /// </summary>
         public static string SupportBodyPrompt {
