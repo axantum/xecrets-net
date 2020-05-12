@@ -1640,6 +1640,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>&lt;p&gt;As a subscriber there are a number of excellent additional features for you on top of all the regular free functionality. You're getting features like:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
   </data>
+  <data name="MailBodySubscriptionRenewText" xml:space="preserve">
+    <value>You can easily renew your subscription here:</value>
+  </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hello {0},</value>
   </data>
@@ -2020,9 +2023,6 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Options</value>
-  </data>
-  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
-    <value>In order to use AxCrypt for mobile you need to have a subscription.</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Password</value>

@@ -4077,6 +4077,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can easily renew your subscription here:.
+        /// </summary>
+        public static string MailBodySubscriptionRenewText {
+            get {
+                return ResourceManager.GetString("MailBodySubscriptionRenewText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hello {0},.
         /// </summary>
         public static string MailBodyTitle {
@@ -5021,15 +5030,6 @@ namespace AxCrypt.Content.Properties {
         public static string OptionsToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("OptionsToolStripMenuItemText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to In order to use AxCrypt for mobile you need to have a subscription..
-        /// </summary>
-        public static string PaidSubscriptionNeededForMobileApp {
-            get {
-                return ResourceManager.GetString("PaidSubscriptionNeededForMobileApp", resourceCulture);
             }
         }
         
