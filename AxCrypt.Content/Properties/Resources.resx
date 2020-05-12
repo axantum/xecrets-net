@@ -285,6 +285,11 @@ Please sign in using the same password you used then.</value>
     <value>For security reasons, please enter your password again.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>Your subscription is managed through Appstore, please make any needed changes there.
+
+Updates to the subscription will be reflected here within a few minutes.</value>
+  </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Version {0}</value>
     <comment>Text containing information about current application version.</comment>
@@ -1382,6 +1387,9 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
   </data>
+  <data name="InvoiceAppStoreSubscriptionInformation" xml:space="preserve">
+    <value>Currency and VAT may differ, please visit &lt;a href="{0}"&gt;Appstore&lt;/a&gt;  for exact details. </value>
+  </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiary:</value>
   </data>
@@ -1624,11 +1632,15 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>Thanks for using AxCrypt!
  -  The AxCrypt Team</value>
   </data>
+  <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
+    <value>Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:</value>
+  </data>
   <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
     <value>Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
+&lt;li&gt;Mobile apps&lt;/li&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Key Sharing&lt;/li&gt;
 &lt;li&gt;Secured Folders&lt;/li&gt;
@@ -1893,6 +1905,9 @@ You can always open encrypted files with a free desktop version of  AxCrypt.</va
     <value>You're now unsubscribed from news and information emails.</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="MonthlySubscriptionTitle" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>More...</value>
     <comment>A 'More...' button text</comment>
@@ -2023,6 +2038,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>In order to use AxCrypt for mobile you need to have a subscription.</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Password</value>
@@ -2230,6 +2248,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Signing in...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
   </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>Creating Subscription...</value>
+  </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>Starting trial...</value>
     <comment>Title of progress indicator which is displayed during trial starting</comment>
@@ -2354,6 +2375,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[More about payments]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Your personal payment details are never sent to or stored on our servers. We send them directly from you to our payment gateway partners via an encrypted connection. We partner with Stripe and PayPal, both of which meet the high standards set by the Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
+  <data name="PurchasePageInformationText" xml:space="preserve">
+    <value>With Premium you can use AxCrypt to its full potential on any number of devices. VAT may be adjusted during payment.</value>
+  </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Buy AxCrypt Premium</value>
   </data>
@@ -2452,6 +2476,10 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Remove from list but keep secured</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewInTitle" xml:space="preserve">
+    <value>Renew in</value>
+    <comment>Used as "Renew in 30 days"</comment>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
@@ -2677,12 +2705,24 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Deleted</value>
   </data>
+  <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
+    <value>Save {0}%</value>
+  </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>1-month free trial included</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}. </value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
+  </data>
+  <data name="SubscriptionPricePerYearDisplayText" xml:space="preserve">
+    <value>{0} / year</value>
+  </data>
+  <data name="SubscriptionSelectionTitle" xml:space="preserve">
+    <value>Select the plan that's right for you</value>
   </data>
   <data name="SubscriptionsErrorAmount" xml:space="preserve">
     <value>Invalid format for field Amount. Please use decimal format, i.e. 10.50.</value>
@@ -3169,5 +3209,8 @@ no prompts. By default UI and all prompts are displayed.
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
+  </data>
+  <data name="YearlySubscriptionTitle" xml:space="preserve">
+    <value>Yearly</value>
   </data>
 </root>
