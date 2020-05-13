@@ -5537,6 +5537,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to per month.
+        /// </summary>
+        public static string PricePerMonthIndicatorText {
+            get {
+                return ResourceManager.GetString("PricePerMonthIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleaning decrypted files....
         /// </summary>
         public static string ProgressIndicatorCleanupMessage {
@@ -6813,15 +6822,6 @@ namespace AxCrypt.Content.Properties {
         public static string SubscriptionPlanValidUntilFormat {
             get {
                 return ResourceManager.GetString("SubscriptionPlanValidUntilFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} / year.
-        /// </summary>
-        public static string SubscriptionPricePerYearDisplayText {
-            get {
-                return ResourceManager.GetString("SubscriptionPricePerYearDisplayText", resourceCulture);
             }
         }
         

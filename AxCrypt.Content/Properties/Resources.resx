@@ -2228,6 +2228,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>{0}/month</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+  <data name="PricePerMonthIndicatorText" xml:space="preserve">
+    <value>per month</value>
+  </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Cleaning decrypted files...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
@@ -2717,9 +2720,6 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}. </value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
-  </data>
-  <data name="SubscriptionPricePerYearDisplayText" xml:space="preserve">
-    <value>{0} / year</value>
   </data>
   <data name="SubscriptionSelectionTitle" xml:space="preserve">
     <value>Select the plan that's right for you</value>
