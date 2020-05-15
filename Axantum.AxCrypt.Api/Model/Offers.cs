@@ -11,6 +11,5 @@ namespace Axantum.AxCrypt.Api.Model
     {
         None = 0,
         AxCryptTrial,
-        AxCryptSubscriptionTrial,
     }
 }

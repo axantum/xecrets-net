@@ -19,6 +19,10 @@ namespace Axantum.AxCrypt.Core.Runtime
 
         public int DaysLeft { get; }
 
+        public bool CanTryPremiumSubscription { get; } = false;
+
+        public bool SubscribedFromAppStore { get; } = false;
+
         public static async Task<PlanInformation> CreateAsync(LogOnIdentity identity)
         {
             if (identity == LogOnIdentity.Empty)
@@ -34,7 +38,8 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             IAccountService service = New<LogOnIdentity, IAccountService>(identity);
 
-            SubscriptionLevel level = await (await service.AccountAsync().Free()).ValidatedLevelAsync();
+            UserAccount userAccount = (await service.AccountAsync().Free());
+            SubscriptionLevel level = await userAccount.ValidatedLevelAsync();
             switch (level)
             {
                 case SubscriptionLevel.Unknown:
@@ -42,10 +47,10 @@ namespace Axantum.AxCrypt.Core.Runtime
                     return await NoPremiumOrCanTryAsync(service);
 
                 case SubscriptionLevel.Business:
-                    return new PlanInformation(PlanState.HasBusiness, await GetDaysLeft(service));
+                    return new PlanInformation(PlanState.HasBusiness, await GetDaysLeft(service), false, userAccount.SubscribedFromAppStore);
 
                 case SubscriptionLevel.Premium:
-                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service));
+                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service), false, userAccount.SubscribedFromAppStore);
 
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
@@ -58,6 +63,14 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             PlanState = planStatus;
             DaysLeft = daysLeft;
+        }
+
+        private PlanInformation(PlanState planStatus, int daysLeft, bool canTryPremiumSubscription, bool subscribedFromAppStore)
+        {
+            PlanState = planStatus;
+            DaysLeft = daysLeft;
+            CanTryPremiumSubscription = canTryPremiumSubscription;
+            SubscribedFromAppStore = subscribedFromAppStore;
         }
 
         private static async Task<int> GetDaysLeft(IAccountService service)
@@ -85,18 +98,16 @@ namespace Axantum.AxCrypt.Core.Runtime
             {
                 return new PlanInformation(PlanState.OfflineNoPremium, 0);
             }
-            Offers offers = (await service.AccountAsync().Free()).Offers;
-            if (!offers.HasFlag(Offers.AxCryptSubscriptionTrial))
-            {
-                return new PlanInformation(PlanState.CanTryPremium, 0);
-            }
+
+            UserAccount userAccount = (await service.AccountAsync().Free());
+            Offers offers = userAccount.Offers;
 
             if (!offers.HasFlag(Offers.AxCryptTrial))
             {
-                return new PlanInformation(PlanState.CanTryPremium, 0);
+                return new PlanInformation(PlanState.CanTryPremium, 0, userAccount.CanTryAppStorePremiumTrial, false);
             }
 
-            return new PlanInformation(PlanState.NoPremium, 0);
+            return new PlanInformation(PlanState.NoPremium, 0, userAccount.CanTryAppStorePremiumTrial, false);
         }
 
         public bool Equals(PlanInformation other)
