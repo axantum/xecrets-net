@@ -692,6 +692,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
+        /// </summary>
+        public static string BusinessExpiredMailBody0Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiredMailBody0Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription has expired!.
+        /// </summary>
+        public static string BusinessExpiredMailSubject {
+            get {
+                return ResourceManager.GetString("BusinessExpiredMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to As an administrator you must renew the subscription for your team in the administration module of the AxCrypt account web. Use the button below to go directly there. Don&apos;t forget to inform your team that you will be renewing!.
         /// </summary>
         public static string BusinessExpiresSoonMailAdministratorBodyHtml {
@@ -5402,6 +5420,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription has expired!.
+        /// </summary>
+        public static string PremiumExpiredMailSubject {
+            get {
+                return ResourceManager.GetString("PremiumExpiredMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. We sincerely hope you have enjoyed using our features and found them useful..
         /// </summary>
         public static string PremiumExpiresSoonMailBody0Html {
@@ -6777,6 +6804,15 @@ namespace AxCrypt.Content.Properties {
         public static string SubscriptionAutoRenewOn {
             get {
                 return ResourceManager.GetString("SubscriptionAutoRenewOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription was cancelled!.
+        /// </summary>
+        public static string SubscriptionCancelledMailSubject {
+            get {
+                return ResourceManager.GetString("SubscriptionCancelledMailSubject", resourceCulture);
             }
         }
         
