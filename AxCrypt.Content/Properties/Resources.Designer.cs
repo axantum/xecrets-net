@@ -701,7 +701,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription has expired!.
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription has ended!.
         /// </summary>
         public static string BusinessExpiredMailSubject {
             get {
