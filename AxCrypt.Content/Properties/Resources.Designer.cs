@@ -701,7 +701,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription has ended!.
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription has ended..
         /// </summary>
         public static string BusinessExpiredMailSubject {
             get {
@@ -5420,7 +5420,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Premium subscription has expired!.
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription has expired..
         /// </summary>
         public static string PremiumExpiredMailSubject {
             get {
@@ -6808,7 +6808,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Premium subscription was cancelled!.
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription was cancelled..
         /// </summary>
         public static string SubscriptionCancelledMailSubject {
             get {
