@@ -13,7 +13,7 @@ namespace Axantum.AxCrypt.Core.Runtime
 {
     public class PlanInformation : IEquatable<PlanInformation>
     {
-        public static readonly PlanInformation Empty = new PlanInformation(PlanState.Unknown, -1);
+        public static readonly PlanInformation Empty = new PlanInformation(PlanState.Unknown, -1, false, false);
 
         public PlanState PlanState { get; }
 
@@ -27,7 +27,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             if (identity == LogOnIdentity.Empty)
             {
-                return new PlanInformation(PlanState.NoPremium, 0);
+                return new PlanInformation(PlanState.NoPremium, 0, false, false);
             }
 
             PlanInformation pi = await GetPlanInformationAsync(identity);
@@ -55,14 +55,8 @@ namespace Axantum.AxCrypt.Core.Runtime
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
                 default:
-                    return new PlanInformation(PlanState.NoPremium, 0);
+                    return new PlanInformation(PlanState.NoPremium, 0, false, false);
             }
-        }
-
-        private PlanInformation(PlanState planStatus, int daysLeft)
-        {
-            PlanState = planStatus;
-            DaysLeft = daysLeft;
         }
 
         private PlanInformation(PlanState planStatus, int daysLeft, bool canTryPremiumSubscription, bool subscribedFromAppStore)
@@ -96,7 +90,7 @@ namespace Axantum.AxCrypt.Core.Runtime
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return new PlanInformation(PlanState.OfflineNoPremium, 0);
+                return new PlanInformation(PlanState.OfflineNoPremium, 0, false, false);
             }
 
             UserAccount userAccount = (await service.AccountAsync().Free());
