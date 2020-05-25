@@ -25,7 +25,7 @@ namespace Axantum.AxCrypt.Api.Model
             Signature = string.Empty;
             AccountSource = AccountSource.Unknown;
             CanTryAppStorePremiumTrial = false;
-            SubscribedFromAppStore = false;
+            ActiveSubscriptionFromAppStore = false;
         }
 
         public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, Offers offers)
@@ -116,8 +116,8 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("canTryAppStorePremiumTrial")]
         public bool CanTryAppStorePremiumTrial { get; set; }
 
-        [JsonProperty("subscribedFromAppStore")]
-        public bool SubscribedFromAppStore { get; set; }
+        [JsonProperty("activeSubscriptionFromAppStore")]
+        public bool ActiveSubscriptionFromAppStore { get; set; }
 
         public AccountSource AccountSource { get; set; }
 

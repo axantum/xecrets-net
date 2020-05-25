@@ -268,7 +268,7 @@ namespace Axantum.AxCrypt.Core.Extensions
                 Signature = highPriorityAccount.Signature,
                 AccountSource = highPriorityAccount.AccountSource,
                 CanTryAppStorePremiumTrial = highPriorityAccount.CanTryAppStorePremiumTrial,
-                SubscribedFromAppStore = highPriorityAccount.SubscribedFromAppStore,
+                ActiveSubscriptionFromAppStore = highPriorityAccount.ActiveSubscriptionFromAppStore,
             };
             return merged;
         }
