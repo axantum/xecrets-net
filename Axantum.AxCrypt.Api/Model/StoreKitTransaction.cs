@@ -8,7 +8,7 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class StoreKitTransaction
     {
-        public StoreKitTransaction(string productId, string receiptData, int subscriptionDays, string paidBy, string paidFor, string transactionId, string currencyPaid, decimal amountPaid, DateTime paymentDate)
+        public StoreKitTransaction(string productId, string receiptData, int subscriptionDays, string paidBy, string paidFor, string transactionId, string currencyPaid, decimal amountPaid, DateTime dateTimeUtc)
         {
             ProductId = productId;
             ReceiptData = receiptData;
@@ -18,7 +18,7 @@ namespace Axantum.AxCrypt.Api.Model
             TransactionId = transactionId;
             CurrencyPaid = currencyPaid;
             AmountPaid = amountPaid;
-            PaymentDate = paymentDate;
+            DateTimeUtc = dateTimeUtc;
         }
 
         [JsonProperty("receipt-data")]
@@ -45,11 +45,8 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("amount_paid")]
         public decimal AmountPaid { get; }
 
-        [JsonProperty("payment_date")]
-        public DateTime PaymentDate { get; }
-
         [JsonProperty("datetime")]
-        public DateTime DateTimeUtc { get; set; }
+        public DateTime DateTimeUtc { get; }
 
         [JsonProperty("item_name")]
         public string ItemName { get; set; }
