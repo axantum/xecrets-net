@@ -241,6 +241,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>보안상의 이유로 다시 한 번 비밀번호를 입력해주세요</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>구독 서비스의 관리는 Appstore에 의해 이루어집니다. 모든 정보 변경은  Appstore에서 관리하세요. 구독 서비스의 업데이트 적용은 시간이 조금 걸리는 점 양해 부탁드립니다.</value>
+  </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>{0} 버전</value>
     <comment>Text containing information about current application version.</comment>
@@ -299,6 +302,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>관리자</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
+  <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
+    <value>AxCrypt Business {0} 구독이 만료되었습니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다. </value>
+  </data>
+  <data name="BusinessExpiredMailSubject" xml:space="preserve">
+    <value>AxCrypt Business 구독이 만료되었습니다.</value>
   </data>
   <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
     <value>관리자는 AxCrypt 계정 웹의 관리 모듈에서 팀의 구독을 갱신해야합니다. 아래 버튼을 사용하여 바로 이동하십시오. 팀에 갱신 할 것을 알리는 것을 잊지 마십시오!</value>
@@ -618,6 +627,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Canceled" xml:space="preserve">
     <value>'{0}'이 취소.</value>
   </data>
+  <data name="CancelSubscriptionPrompt" xml:space="preserve">
+    <value>즉시 구독 취소</value>
+  </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>'{0}'로 앱 시작이 불가능합니다.</value>
   </data>
@@ -658,7 +670,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>AxCrypt ID 이메일 주소 변경 요청</value>
   </data>
   <data name="ChangeEmailMarkError" xml:space="preserve">
-    <value>내부 오류로 인해 이메일 주소 변경이 실패됐습니다. 다시 시도를 하거나 저희 지원부로 연락주시기 바랍니다. </value>
+    <value>내부 오류로 인해 이메일 주소 변경이 실패됐습니다. 다시 시도 하거나 저희 지원부로 연락주시기 바랍니다. </value>
   </data>
   <data name="ChangeEmailMarkErrorCurrentEmail" xml:space="preserve">
     <value>새 이메일 주소는 이전 주소와 다르게 사용해주시기 바랍니다.</value>
@@ -691,7 +703,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>열린 파일들을 정리하기</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
-    <value>파일이 열렸으나 정리를 하셔야 됩니다. 열려있는 모든 앱을 닫아주시고 '정리하기' 버튼을 눌러 주시기 바랍니다.</value>
+    <value>파일이 열렸으나 정리가 필요합니다. 열려있는 모든 앱을 종료해주고 '정리하기' 버튼을 눌러 주시기 바랍니다.</value>
   </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>앱이 로컬 파일 저장소에 해독된 파일 사본을 저장하고 있습니다. 로그아웃하시면 자동으로 삭제됩니다. 정리하기 버튼을 누르시면 수동으로 제거할 수 있습니다. </value>
@@ -824,7 +836,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>AxCrypt ID가 성공적으로 삭제되었습니다.
 
-이용해주셔서 감사합니다. 또 뵙겠습니다.</value>
+이용해주셔서 감사합니다. 또 만나요!</value>
   </data>
   <data name="DeleteSecretErrorNotFound" xml:space="preserve">
     <value>요청하신 비밀번호를 못 찾았습니다. 삭제를 실패했습니다.</value>
@@ -918,7 +930,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>요청하신 비밀번호 입력을 찾을수가 없었습니다.</value>
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
-    <value>가입이 업데이트 되었습니다.</value>
+    <value>정보가 업데이트 되었습니다.</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>이메일 열기</value>
@@ -941,7 +953,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>보안된 파일</value>
   </data>
   <data name="EncryptFileOpenDialogTitle" xml:space="preserve">
-    <value>파일을 보안하시려면 서택해주십시오</value>
+    <value>보안 강화를 원하는 파일을 선택해주세요.</value>
   </data>
   <data name="EncryptFileSaveAsDialogTitle" xml:space="preserve">
     <value>파일 존재, 이와 같이 저장</value>
@@ -1223,6 +1235,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Invoice" xml:space="preserve">
     <value>인보이스</value>
   </data>
+  <data name="InvoiceAppStoreSubscriptionInformation" xml:space="preserve">
+    <value>환율과 VAT는 매번 다를 수 있습니다. &lt;a href="{0}"&gt;Appstore&lt;/a&gt;에서 자세히 알아보세요.</value>
+  </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>수취인:</value>
   </data>
@@ -1388,7 +1403,7 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value> &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;로 무슨 이유로 이것을 받으셨는지 불확실합니다. 이 메세지를 무시하거나 {1}로 알리시기 바랍니다.</value>
   </data>
   <data name="MailBodyFooterPlainText" xml:space="preserve">
-    <value>AxCrypt.net에서 아래 내용을 무슨 이유로 받으셨는지 모르시다면 이 메세지를 무시하거나 {0}에 알리시기 바랍니다.</value>
+    <value>AxCrypt.net으로부터 알 수없는 이메일을 받으셨다면, 이 이메일을 무시하거나 {0}에 알리시기 바랍니다.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
     <value>궁금한 점이 있으시면 저희 팀한테 문의 해주시기 바랍니다. 저희 사이트에 있는 FAQ와 포럼을 &lt;a href="{0}"&gt;{0}&lt;/a&gt;에 방문해 주시기 바랍니다.</value>
@@ -1401,8 +1416,15 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>AxCrypt를 사용해주셔서 감사합니다!
  -  AxCrypt 팀</value>
   </data>
+  <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
+    <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 만료됩니다. 다음과 같은 Premium의 서비스를 즐길 수 없습니다.</value>
+  </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>구독이 취소되어 &lt;b&gt;{0}&lt;/b&gt;까지 서비스를 이용하실 수 있습니다. &lt;b&gt;{0}&lt;/b&gt;이후, 다음과 같은 Premium의 서비스를 즐길 수 없습니다.</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
+&lt;li&gt;모바일 앱&lt;/li&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;공유 키&lt;/li&gt; 
 &lt;li&gt;보안된 파일&lt;/li&gt;
@@ -1413,6 +1435,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;구독자로서 기본 무료 기능 이외에도 많은 추가 기능을 사용하실 수 있습니다. :와 같은 기능을 사용하실 수 있습니다. &lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
+  </data>
+  <data name="MailBodySubscriptionRenewText" xml:space="preserve">
+    <value>여기에서 구독을 쉽게 갱신할 수 있습니다.</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>안녕하세요 {0},</value>
@@ -1601,6 +1626,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>사용자님은 이제 뉴스와 정보 관련 메일을 구독하지 않습니다.</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="MonthlySubscriptionTitle" xml:space="preserve">
+    <value>매 달</value>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>더..</value>
     <comment>A 'More...' button text</comment>
@@ -1727,6 +1755,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>옵션</value>
   </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>AxCrypt의 모바일 버전을 사용하려면 구독 서비스가 필요합니다.</value>
+  </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>비밀번호</value>
   </data>
@@ -1842,6 +1873,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>Premium</value>
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
+  <data name="PremiumExpiredMailSubject" xml:space="preserve">
+    <value>AxCrypt Premium 구독이 만료되었습니다.</value>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>사용자의 AxCrypt Premium 구독 만료일이 다 되어갑니다. 저희가 제공한 모든 기능들을 유용하게 잘 쓰셨길 바랍니다.</value>
   </data>
@@ -1890,6 +1924,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>{0}/월</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+  <data name="PricePerMonthIndicatorText" xml:space="preserve">
+    <value>매 달</value>
+  </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>해독된 파일들 정리 중...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
@@ -1909,6 +1946,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
     <value>로그인 중...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>구독 서비스 실행 중...</value>
   </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>시작하는 중...</value>
@@ -2034,6 +2074,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[PayPal 자세히 보기]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; 사용자님의 개인 지불 상세 내역은 저희 서버로 전송되거나 서버에 저장되지 않습니다. 암호화 된 연결을 통해 사용자님의 지불 게이트웨이 파트너에게 직접 보내드립니다. 우리는 Stripe와 PayPal과 파트너 관계를 맺고 있으며, 둘 다 지불 결제 산업 데이터 보안 표준에서 정한 높은 기준을 충족합니다.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
+  <data name="PurchasePageInformationText" xml:space="preserve">
+    <value>AxCrypt Premium를 사용하시면 디바이스 개수의 제한이 없습니다. 결제 시 VAT가 다르게 적용될 수 있습니다.</value>
+  </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>AxCrypt Premium 구매</value>
   </data>
@@ -2130,6 +2173,10 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>리스트에서 파일 제외 및  보안 유지</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewInTitle" xml:space="preserve">
+    <value>리뉴</value>
+    <comment>Used as "Renew in 30 days"</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>다시 보내기</value>
@@ -2327,15 +2374,36 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>의견 제출하기</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionAutoRenewOn" xml:space="preserve">
+    <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 갱신됩니다.</value>
+  </data>
+  <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
+    <value>AxCrypt Premium 구독이 취소되었습니다. </value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>삭제 완료</value>
+  </data>
+  <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
+    <value>{0}% 저장</value>
+  </data>
+  <data name="SubscriptionExpireOn" xml:space="preserve">
+    <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 만료됩니다.</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>한달 무료 체험 포함</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} 는 {1} 까지 유효.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
+  <data name="SubscriptionSelectionTitle" xml:space="preserve">
+    <value>나에게 맞는 플랜을 선택하세요.</value>
+  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>구독이 성공적으로 저장되었습니다. </value>
+  </data>
+  <data name="SubscriptionStatusActiveText" xml:space="preserve">
+    <value>진행 중</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>어떻게 도와드릴까요?</value>
@@ -2560,6 +2628,9 @@ AxCrypt사용은 매우 쉽습니다. 매인 윈도우 창으로 시작하거나
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
     <value>해당 비밀번호는 AxCrypt의 강한 암호화를 통해 파일을 보호하는데 사용됩니다. 만약 비밀번호를 분실하실 경우, 해당 파일을 열 수 없습니다. 비밀번호 재설정을 통해 계정에 로그인 하실 수 있지만, 기존 비밀번호를 통해 보호된 파일은 열 수 없습니다.</value>
   </data>
+  <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
+    <value> 계속 진행하시겠습니까?</value>
+  </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>안전한 삭제를 위래 파일들을 선택하십시오</value>
   </data>
@@ -2754,5 +2825,8 @@ AxCrypt사용은 매우 쉽습니다. 매인 윈도우 창으로 시작하거나
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>활성화 코드는 정확히 6자리로 되어있습니다.</value>
+  </data>
+  <data name="YearlySubscriptionTitle" xml:space="preserve">
+    <value>년간</value>
   </data>
 </root>

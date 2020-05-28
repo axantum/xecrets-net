@@ -253,9 +253,17 @@ Logga nu in med samma lösenord som du angav då.</value>
   <data name="ApplyButtonText" xml:space="preserve">
     <value>Aktivera Rabattkoden</value>
   </data>
+  <data name="ApplyDiscountCodePrompt" xml:space="preserve">
+    <value>Lägg till rabattkod</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Av säkerhetsskäl måste du ange ditt lösenord igen.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
+  </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>Din prenumeration hanteras genom Appstore, ändringar kan göras där.
+
+Ändringar till prenumerationen som görs där kommer uppdateras här inom några minuter.</value>
   </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Version {0}</value>
@@ -322,13 +330,13 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Jag hoppas verkligen att du har haft mycket nytta av och nöje med AxCrypt.</value>
+    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Vi hoppas verkligen att du har haft mycket nytta av och nöje med AxCrypt.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>När du förnyar ditt Business-abonnemang kan du och ditt team fortsätta använda:</value>
   </data>
   <data name="BusinessExpiresSoonMailMemberBodyHtml" xml:space="preserve">
-    <value>Jag hoppas verkligen du vill fortsätta med AxCrypt Business. Kontakta din AxCrypt-administratör för att få abonnemanget förnyat.</value>
+    <value>Vi hoppas verkligen att du vill fortsätta med AxCrypt Business. Kontakta din AxCrypt-administratör för att få abonnemanget förnyat.</value>
   </data>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Nu är det dags att förnya ditt AxCrypt Business-abonnemang!</value>
@@ -635,6 +643,9 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Avbröt '{0}'.</value>
+  </data>
+  <data name="CancelSubscriptionPrompt" xml:space="preserve">
+    <value>Avsluta prenumeration</value>
   </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Kan inte starta applikation för '{0}'.</value>
@@ -1146,7 +1157,7 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="IgnoreFileOpenWarningText" xml:space="preserve">
-    <value>'{0}' kan inte öppnas i någon tillämpning pga tekniska begränsningar. Det kan bero på filtypen, dess plats eller andra egenskaper.
+    <value>'{0}' kan inte öppnas i någon applikation på grund av tekniska begränsningar. Det kan bero på filtypen, dess plats eller andra egenskaper.
 
 Om du vill visa eller uppdatera innehållet, dekryptera filen separat och öppna den sedan på vanligt vis.</value>
   </data>
@@ -1245,6 +1256,9 @@ Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt d
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Faktura</value>
+  </data>
+  <data name="InvoiceAppStoreSubscriptionInformation" xml:space="preserve">
+    <value>Valuta och moms kan vara annorlunda, besök &lt;a href="{0}&gt;Appstore&lt;/a&gt; för alla detaljer.</value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Mottagare:</value>
@@ -1414,7 +1428,7 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
     <value>Om du inte vet varför du får det här från AxCrypt.net, strunta i det här mejlet eller rapportera det till {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Kontakta mig gärna om du har några frågor eller synpunkter. Titta gärna på vår FAQ och vårt Forum på hemsidan &lt;a href={0}"&gt;{0}&lt;/a&gt; .</value>
+    <value>Kontakta oss gärna om du har några frågor eller synpunkter. Titta gärna på vår FAQ och vårt Forum på hemsidan &lt;a href={0}"&gt;{0}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -1424,6 +1438,12 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
     <value>Tack för att du använder AxCrypt!
  -  AxCrypt-teamet</value>
   </data>
+  <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
+    <value>Din prenumeration gick ut &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre tillgång till Premium-funktioner som:</value>
+  </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>Din prenumeration har sagts upp och kommer gå ut &lt;b&gt;{0}&lt;/b&gt;. Efter det kommer du inte längre ha tillgång till Premium-funktioner som:</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
@@ -1431,11 +1451,15 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </valu
 &lt;li&gt;Skyddade Mappar&lt;/li&gt;
 &lt;li&gt;Lösenordshantering&lt;/li&gt;
 &lt;li&gt;Molnanpassning&lt;/li&gt;
+&lt;li&gt;Molnlagringsfunktionalitet&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;Med abonnemanget följer ett antal riktigt bra funktioner, utöver alla gratisfunktioner. Du får t.ex.:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
+  </data>
+  <data name="MailBodySubscriptionRenewText" xml:space="preserve">
+    <value>Du kan enkelt förnya din prenumeration här:</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hej {0},</value>
@@ -1630,6 +1654,9 @@ Du kan alltid dekryptera dina krypterade filer med en gratisversion av AxCrypt f
     <value>Du har nu avslutat din prenumeration på nyhets- och informationsbrev via epost.</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="MonthlySubscriptionTitle" xml:space="preserve">
+    <value>Månatlig</value>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Mer...</value>
     <comment>A 'More...' button text</comment>
@@ -1754,6 +1781,9 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Alternativ</value>
   </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>För att använda AxCrypt på mobilen behöver du en prenumeration.</value>
+  </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Lösenord</value>
   </data>
@@ -1871,17 +1901,17 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ditt Premium-abonnemang löper snart ut. Jag hoppas verkligen att du har gillat Premium-funktionerna, och att du haft nytta av dem.</value>
+    <value>Ditt Premium-abonnemang löper snart ut. Vi hoppas verkligen att du har gillat Premium-funktionerna, och att du haft nytta av dem.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Jag skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Fortsätt abonnera &lt;a href="{0}Home/Purchase?email={1}"&gt;här&lt;/a&gt; .</value>
+    <value>Vi skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Fortsätt prenumerationen &lt;a href="{0}Home/Purchase?email={1}"&gt;här&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Med Premium-abonnemanget får du fortsatt tillgång till:</value>
   </data>
   <data name="PremiumExpiresSoonMailBody3Html" xml:space="preserve">
-    <value>Berätta för mig vad du tycker om AxCrypt. Kommer du att fortsätta använda det, och är du någotning du skulle vilja förbättra?</value>
+    <value>Berätta för oss vad du tycker om AxCrypt. Kommer du att fortsätta använda det, och är du någotning du skulle vilja förbättra?</value>
   </data>
   <data name="PremiumExpiresSoonMailSubject" xml:space="preserve">
     <value>Ditt AxCrypt Premium-abonnemang löper snart ut!</value>
@@ -1937,6 +1967,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
     <value>Loggar in...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>Skapar prenumeration...</value>
   </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>Startar prov...</value>
@@ -2062,6 +2095,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mer om Betalningar]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;Inga personliga detaljer eller kortnummer sänds till eller lagras på våra servrar. Informationen skickas direkt till våra betalningshanterare via en krypterad förbindelse. Vi har Stripe och PayPal som partners, och båda möter höga säkerhetskrav enlig Payment Card Industry Data Security Standard. &lt;a class="hide-link"&gt;[Visa Mindre]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
+  <data name="PurchasePageInformationText" xml:space="preserve">
+    <value>Med Premium kan du använda AxCrypt till sin fulla potential på ett obegränsat antal enheter. Moms kan komma att ändras under betalningen.</value>
+  </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Köp AxCrypt Premium</value>
   </data>
@@ -2162,6 +2198,10 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
     <value>Ta Bort men Behåll Skydd</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
+  <data name="RenewInTitle" xml:space="preserve">
+    <value>Förnya om</value>
+    <comment>Used as "Renew in 30 days"</comment>
+  </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Återsänd</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
@@ -2190,8 +2230,14 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   <data name="SaveSecretErrorIsReadOnly" xml:space="preserve">
     <value>Endast betalande abonnenter kan spara lösenordsposter.</value>
   </data>
+  <data name="SearchPasswordPlaceHolder" xml:space="preserve">
+    <value>Sök lösenord här...</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Gå till lösenordshantering.</value>
+  </data>
+  <data name="SecretsCopytoClipboard" xml:space="preserve">
+    <value>Kopiera till urklipp</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Sorteringsordning</value>
@@ -2352,12 +2398,27 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
     <value>Vad tycker du?</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionAutoRenewOn" xml:space="preserve">
+    <value>Din prenumeration kommer förnyas &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Borttagen</value>
+  </data>
+  <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
+    <value>Spara {0}%</value>
+  </data>
+  <data name="SubscriptionExpireOn" xml:space="preserve">
+    <value>Din prenumeration kommer gå ut &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>En gratis prova-på-månad ingår</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} giltigt till {1}.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
+  </data>
+  <data name="SubscriptionSelectionTitle" xml:space="preserve">
+    <value>Välj rätt plan för dig</value>
   </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Sparad.</value>
@@ -2549,7 +2610,7 @@ AxCrypt-teamet</value>
     <value>Välkommen till AxCrypt!</value>
   </data>
   <data name="WelcomeMailBody1Html" xml:space="preserve">
-    <value>Det gläder mig att du har skaffat ett AxCrypt ID! Eftersom jag gärna vill att du skall känna dig extra välkommen, vill jag ge dig tillgång till våra Premium-funktioner i 30 dagar utan kostnad. Starta provperioden när som helst i AxCrypt-programmet som du laddar ned separat.</value>
+    <value>Tack för att du har skaffat ett AxCrypt ID! Eftersom vi gärna vill att du skall känna dig extra välkommen, vill vi ge dig tillgång till våra Premium-funktioner i 30 dagar utan kostnad. Starta provperioden när som helst i AxCrypt-programmet som du laddar ned separat.</value>
   </data>
   <data name="WelcomeMailBody2Html" xml:space="preserve">
     <value>Med AxCrypt Free eller AxCrypt Premium kan du skydda dina filer på ett superenkelt vis. Att kryptera enstaka filer eller alla i en mapp kräver bara ett klick. Att arbeta med de skyddade filerna är lika enkelt!</value>
@@ -2584,6 +2645,9 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
   </data>
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
     <value>Ditt lösenord används för att skydda dina dokument med stark kryptering med AxCrypt. Om du glömmer det, kommer du inte kunna öppna dem. Du kan återställa ditt lösenord till kontot så att du kan logga in, men dokument skyddade med det gamla lösenordet går inte att öppna.</value>
+  </data>
+  <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
+    <value>Vill du fortsätta ändå?</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Välj filer för säker radering</value>
@@ -2781,5 +2845,8 @@ i %TEMP%.
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>Verifieringskoden måste vara exakt 6 siffror.</value>
+  </data>
+  <data name="YearlySubscriptionTitle" xml:space="preserve">
+    <value>Årlig</value>
   </data>
 </root>
