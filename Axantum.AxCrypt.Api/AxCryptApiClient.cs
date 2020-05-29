@@ -386,7 +386,7 @@ namespace Axantum.AxCrypt.Api
                 throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
 
-            Uri resource = BaseUrl.PathCombine("purchase/account/autorenewal");
+            Uri resource = BaseUrl.PathCombine("purchase/account/autorenewal/status");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Axantum.AxCrypt.Api.Model
@@ -9,7 +8,7 @@ namespace Axantum.AxCrypt.Api.Model
     [JsonObject(MemberSerialization.OptIn)]
     public class StoreKitTransaction
     {
-        public StoreKitTransaction(string productId, string receiptData, int subscriptionDays, string paidBy, string paidFor, string transactionId, string currencyPaid, decimal amountPaid, DateTime paymentDate)
+        public StoreKitTransaction(string productId, string receiptData, int subscriptionDays, string paidBy, string paidFor, string transactionId, string currencyPaid, decimal amountPaid, DateTime dateTimeUtc, string paymentStatus)
         {
             ProductId = productId;
             ReceiptData = receiptData;
@@ -19,7 +18,8 @@ namespace Axantum.AxCrypt.Api.Model
             TransactionId = transactionId;
             CurrencyPaid = currencyPaid;
             AmountPaid = amountPaid;
-            PaymentDate = paymentDate;
+            DateTimeUtc = dateTimeUtc;
+            PaymentStatus = paymentStatus;
         }
 
         [JsonProperty("receipt-data")]
@@ -46,11 +46,11 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("amount_paid")]
         public decimal AmountPaid { get; }
 
-        [JsonProperty("payment_date")]
-        public DateTime PaymentDate { get; }
-
         [JsonProperty("datetime")]
-        public DateTime DateTimeUtc { get; set; }
+        public DateTime DateTimeUtc { get; }
+
+        [JsonProperty("payment_status")]
+        public string PaymentStatus { get; }
 
         [JsonProperty("item_name")]
         public string ItemName { get; set; }
@@ -63,12 +63,6 @@ namespace Axantum.AxCrypt.Api.Model
 
         [JsonProperty("amount_vat")]
         public decimal AmountVat { get; set; }
-
-        [JsonProperty("is_production")]
-        public bool IsProduction { get; set; }
-
-        [JsonProperty("payment_status")]
-        public string PaymentStatus { get; set; }
 
         [JsonProperty("discount_code")]
         public string AppliedDiscountCode { get; set; } = string.Empty;

@@ -502,6 +502,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your subscription is managed through Appstore, please make any needed changes there.
+        ///
+        ///Updates to the subscription will be reflected here within a few minutes..
+        /// </summary>
+        public static string AppStoreCancelSubscriptionInformationText {
+            get {
+                return ResourceManager.GetString("AppStoreCancelSubscriptionInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version {0}.
         /// </summary>
         public static string AppVersionLabel {
@@ -677,6 +688,24 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessAdministratorsLabel {
             get {
                 return ResourceManager.GetString("BusinessAdministratorsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
+        /// </summary>
+        public static string BusinessExpiredMailBody0Html {
+            get {
+                return ResourceManager.GetString("BusinessExpiredMailBody0Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription has ended..
+        /// </summary>
+        public static string BusinessExpiredMailSubject {
+            get {
+                return ResourceManager.GetString("BusinessExpiredMailSubject", resourceCulture);
             }
         }
         
@@ -3416,6 +3445,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currency and VAT may differ, please visit &lt;a href=&quot;{0}&quot;&gt;Appstore&lt;/a&gt;  for exact details. .
+        /// </summary>
+        public static string InvoiceAppStoreSubscriptionInformation {
+            get {
+                return ResourceManager.GetString("InvoiceAppStoreSubscriptionInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beneficiary:.
         /// </summary>
         public static string InvoiceBeneficiary {
@@ -4044,6 +4082,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:.
+        /// </summary>
+        public static string MailBodySubscriptionExpiredText {
+            get {
+                return ResourceManager.GetString("MailBodySubscriptionExpiredText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:.
         /// </summary>
         public static string MailBodySubscriptionExpiryText {
@@ -4054,6 +4101,7 @@ namespace AxCrypt.Content.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul&gt;
+        ///&lt;li&gt;Mobile apps&lt;/li&gt;
         ///&lt;li&gt;256-bit AES&lt;/li&gt;
         ///&lt;li&gt;Key Sharing&lt;/li&gt;
         ///&lt;li&gt;Secured Folders&lt;/li&gt;
@@ -4695,6 +4743,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monthly.
+        /// </summary>
+        public static string MonthlySubscriptionTitle {
+            get {
+                return ResourceManager.GetString("MonthlySubscriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More....
         /// </summary>
         public static string MoreButtonText {
@@ -5034,6 +5091,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In order to use AxCrypt for mobile you need to have a subscription..
+        /// </summary>
+        public static string PaidSubscriptionNeededForMobileApp {
+            get {
+                return ResourceManager.GetString("PaidSubscriptionNeededForMobileApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string PassphrasePrompt {
@@ -5354,6 +5420,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription has expired..
+        /// </summary>
+        public static string PremiumExpiredMailSubject {
+            get {
+                return ResourceManager.GetString("PremiumExpiredMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Premium subscription is coming to an end soon. We sincerely hope you have enjoyed using our features and found them useful..
         /// </summary>
         public static string PremiumExpiresSoonMailBody0Html {
@@ -5489,6 +5564,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to per month.
+        /// </summary>
+        public static string PricePerMonthIndicatorText {
+            get {
+                return ResourceManager.GetString("PricePerMonthIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleaning decrypted files....
         /// </summary>
         public static string ProgressIndicatorCleanupMessage {
@@ -5530,6 +5614,15 @@ namespace AxCrypt.Content.Properties {
         public static string ProgressIndicatorSignInMessage {
             get {
                 return ResourceManager.GetString("ProgressIndicatorSignInMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating Subscription....
+        /// </summary>
+        public static string ProgressIndicatorSubscriptionCreationMessage {
+            get {
+                return ResourceManager.GetString("ProgressIndicatorSubscriptionCreationMessage", resourceCulture);
             }
         }
         
@@ -5894,6 +5987,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to With Premium you can use AxCrypt to its full potential on any number of devices. VAT may be adjusted during payment..
+        /// </summary>
+        public static string PurchasePageInformationText {
+            get {
+                return ResourceManager.GetString("PurchasePageInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buy AxCrypt Premium.
         /// </summary>
         public static string PurchasePageTitle {
@@ -6139,6 +6241,15 @@ namespace AxCrypt.Content.Properties {
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("RemoveRecentFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renew in.
+        /// </summary>
+        public static string RenewInTitle {
+            get {
+                return ResourceManager.GetString("RenewInTitle", resourceCulture);
             }
         }
         
@@ -6697,11 +6808,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt Premium subscription was cancelled..
+        /// </summary>
+        public static string SubscriptionCancelledMailSubject {
+            get {
+                return ResourceManager.GetString("SubscriptionCancelledMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted.
         /// </summary>
         public static string SubscriptionDeletedText {
             get {
                 return ResourceManager.GetString("SubscriptionDeletedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save {0}%.
+        /// </summary>
+        public static string SubscriptionDiscountDisplayText {
+            get {
+                return ResourceManager.GetString("SubscriptionDiscountDisplayText", resourceCulture);
             }
         }
         
@@ -6715,11 +6844,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1-month free trial included.
+        /// </summary>
+        public static string SubscriptionFreeTrialIndicatorText {
+            get {
+                return ResourceManager.GetString("SubscriptionFreeTrialIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} valid until {1}. .
         /// </summary>
         public static string SubscriptionPlanValidUntilFormat {
             get {
                 return ResourceManager.GetString("SubscriptionPlanValidUntilFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the plan that&apos;s right for you.
+        /// </summary>
+        public static string SubscriptionSelectionTitle {
+            get {
+                return ResourceManager.GetString("SubscriptionSelectionTitle", resourceCulture);
             }
         }
         
@@ -8023,6 +8170,15 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yearly.
+        /// </summary>
+        public static string YearlySubscriptionTitle {
+            get {
+                return ResourceManager.GetString("YearlySubscriptionTitle", resourceCulture);
             }
         }
     }
