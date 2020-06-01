@@ -241,6 +241,11 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
     <value>Vanwege veiligsheids redenen vragen wij u om uw wachtwoord opnieuw in te voeren.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>Uw abonnement wordt beheerd via de Appstore, breng daar graag de nodige wijzingen aan. 
+
+Updates van het abonnement worden hier binnen enkele minuten weergegeven.</value>
+  </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Versie {0}</value>
     <comment>Text containing information about current application version.</comment>
@@ -627,6 +632,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>'{0}' geannuleerd.</value>
+  </data>
+  <data name="CancelSubscriptionPrompt" xml:space="preserve">
+    <value>Annuleer Abonnement</value>
   </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Kan applicatie niet starten vanwege '{0}'.</value>
@@ -1236,6 +1244,9 @@ Meldt u aan in AxCrypt met {2}, voer uw 6-cijferige verificatiecode in en stel u
   <data name="Invoice" xml:space="preserve">
     <value>Factuur</value>
   </data>
+  <data name="InvoiceAppStoreSubscriptionInformation" xml:space="preserve">
+    <value>Valuta en btw kunnen verschillen. Ga naar de  &lt;a href="{0}"&gt;Appstore&lt;/a&gt;  voor exacte details.</value>
+  </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Begunstigde:</value>
   </data>
@@ -1415,18 +1426,28 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)? 
 - Het AxCrypt Team
 </value>
   </data>
+  <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
+    <value>Uw abonnement is verlopen op &lt;b&gt;{0}&lt;/b&gt;. U heeft geen toegang meer tot Premium functies zoals:</value>
+  </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>Uw abonnement is opgezegd en verloopt op &lt;b&gt;{0}&lt;/b&gt;. Na deze datum heeft u geen toegang meer tot Premium functies zoals:</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
+&lt;li&gt;Mobiele apps&lt;/li&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
 &lt;li&gt;Sleutel Delen&lt;/li&gt;
 &lt;li&gt;Beveiligde Mappen&lt;/li&gt;
 &lt;li&gt;Wachtwoordbeheer&lt;/li&gt;
-&lt;li&gt;Cloud Opslag Bewustzijn&lt;/li&gt;
+&lt;li&gt;Bewustzijn van Cloud Opslag&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;Als Premium abonnee zijn er enkele uitstekende aanvullende eigenschappen die u krijgt naast die in de gratis versie. Met Premium krijgt u eigenschappen zoals:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
+  </data>
+  <data name="MailBodySubscriptionRenewText" xml:space="preserve">
+    <value>U kunt hier eenvoudig uw abonnement verlengen:</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Hallo {0},</value>
@@ -1621,6 +1642,9 @@ U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxC
     <value>U ontvangt nu geen nieuws en informatie emails meer.</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="MonthlySubscriptionTitle" xml:space="preserve">
+    <value>Maandelijks</value>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Meer...</value>
     <comment>A 'More...' button text</comment>
@@ -1745,6 +1769,9 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
   </data>
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Opties</value>
+  </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>Om AxCrypt voor mobiel te gebruiken, heeft u een abonnement nodig</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Wachtwoord</value>
@@ -1910,6 +1937,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>{0}/maand</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+  <data name="PricePerMonthIndicatorText" xml:space="preserve">
+    <value>per maand</value>
+  </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Gedecrypteerde bestanden opschonen...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
@@ -1929,6 +1959,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
     <value>Aanmelden...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>Abonnement Maken...</value>
   </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>Proefversie starten...</value>
@@ -2054,6 +2087,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Meer over betalingen]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;  Uw persoonlijke betalingsdetails worden nooit naar onze server verzonden of daar op opgeslagen. Wij versturen ze direct vanaf u naar onze betalings gateway partners via een geëncrypteerde verbinding. Wij werken samen met Stripe en PayPal die beiden de hoge standaarden volgen van de Payment Card Industry Security Standard. &lt;a class="hide-link"&gt;[Sluiten]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
+  <data name="PurchasePageInformationText" xml:space="preserve">
+    <value>Met Premium kunt u optimaal gebruik maken van AxCrypt op zoveel apparaten als u wilt. Btw kan verschillen tijdens de betaling.</value>
+  </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Koop AxCrypt Premium</value>
   </data>
@@ -2152,6 +2188,10 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Verwijder van lijst, maar houdt beveiligd</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewInTitle" xml:space="preserve">
+    <value>Verleng in</value>
+    <comment>Used as "Renew in 30 days"</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Opnieuw versturen</value>
@@ -2349,15 +2389,33 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Verstuur feedback</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionAutoRenewOn" xml:space="preserve">
+    <value>Uw abonnement wordt verlengd op &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Verwijderd</value>
+  </data>
+  <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
+    <value>Bespaar {0}%</value>
+  </data>
+  <data name="SubscriptionExpireOn" xml:space="preserve">
+    <value>Uw abonnement verloopt op &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>Gratis proefmaand inbegrepen. </value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} geldig tot {1}. </value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
+  <data name="SubscriptionSelectionTitle" xml:space="preserve">
+    <value>Selecteer de optie die het beste bij u past</value>
+  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>Het abonnement was succesvol opgeslagen.</value>
+  </data>
+  <data name="SubscriptionStatusActiveText" xml:space="preserve">
+    <value>Actief</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>Hoe kunnen we u helpen?</value>
@@ -2581,6 +2639,9 @@ Voor meer informatie klik op OK om naar onze website te gaan.</value>
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
     <value>Uw wachtwoord wordt gebruikt voor het beveiligen van uw bestanden met AxCrypt's sterke encryptie. Als u dit wachtwoord vergeet, kunt u deze bestanden niet openen. Een wachtwoordreset maakt het mogelijk om in te loggen op uw account, maar niet om bestanden te openen die beveiligd zijn met het oude wachtwoord.</value>
   </data>
+  <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
+    <value>Wilt u toch doorgaan?</value>
+  </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Selecteer bestanden om beveiligd te verwijderen</value>
   </data>
@@ -2776,5 +2837,8 @@ creëer een compleet lokale kopie van de bundel in de directory. Installeren is 
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>De verificatiecode moet exact 6 cijfers lang zijn.</value>
+  </data>
+  <data name="YearlySubscriptionTitle" xml:space="preserve">
+    <value>Jaarlijks</value>
   </data>
 </root>
