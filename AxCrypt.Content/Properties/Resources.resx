@@ -1292,7 +1292,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="IgnoreFileOpenWarningText" xml:space="preserve">
-    <value>'{0}' could not opened in an application due to technical restrictions. This may be because of the type of file, it's location or other properties.
+    <value>'{0}' could not be opened in an application due to technical restrictions. This may be because of the type of file, it's location or other properties.
 
 If you want to view or update the file contents, please decrypt it separately, and then open it directly.</value>
   </data>
@@ -3015,7 +3015,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Your password will be used for securing your files with AxCrypt strong encryption. If you forget this password, you cannot open these files. A password reset will allow to sign in to your account, but not open files secured with the old password.</value>
   </data>
   <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
-    <value>!!Do you want to continue anyway?</value>
+    <value>Do you want to continue anyway?</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Select files to securely delete</value>

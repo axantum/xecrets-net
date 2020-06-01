@@ -3172,7 +3172,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; could not opened in an application due to technical restrictions. This may be because of the type of file, it&apos;s location or other properties.
+        ///   Looks up a localized string similar to &apos;{0}&apos; could not be opened in an application due to technical restrictions. This may be because of the type of file, it&apos;s location or other properties.
         ///
         ///If you want to view or update the file contents, please decrypt it separately, and then open it directly..
         /// </summary>
@@ -7609,7 +7609,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Do you want to continue anyway?.
+        ///   Looks up a localized string similar to Do you want to continue anyway?.
         /// </summary>
         public static string WillNotShowAgainFileOperationErrorWarningText {
             get {
