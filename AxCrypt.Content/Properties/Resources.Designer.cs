@@ -89,7 +89,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!I accept the &lt;a href=&quot;{0}&quot;&gt;Terms &amp; Conditions&lt;/a&gt;.
+        ///   Looks up a localized string similar to I accept the &lt;a href=&quot;{0}&quot;&gt;Terms &amp; Conditions&lt;/a&gt;.
         /// </summary>
         public static string AcceptTermsAndConditionsPrompt {
             get {
@@ -659,6 +659,15 @@ namespace AxCrypt.Content.Properties {
         public static string BeneficiaryNoAccount {
             get {
                 return ResourceManager.GetString("BeneficiaryNoAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} billed yearly.
+        /// </summary>
+        public static string BilledYearlyText {
+            get {
+                return ResourceManager.GetString("BilledYearlyText", resourceCulture);
             }
         }
         

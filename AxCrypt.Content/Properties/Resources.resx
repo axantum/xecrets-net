@@ -128,7 +128,7 @@
     <value>About {0}</value>
   </data>
   <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
-    <value>!!I accept the &lt;a href="{0}"&gt;Terms &amp; Conditions&lt;/a&gt;</value>
+    <value>I accept the &lt;a href="{0}"&gt;Terms &amp; Conditions&lt;/a&gt;</value>
   </data>
   <data name="AccountLoggedOnStatusText" xml:space="preserve">
     <value>{0}</value>
@@ -350,6 +350,9 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} doesn't have an account with us, send an invite to register an account and continue.</value>
+  </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>{0} billed yearly</value>
   </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
