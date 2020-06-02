@@ -127,6 +127,9 @@
   <data name="About" xml:space="preserve">
     <value>About {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>!!I accept the &lt;a href="{0}"&gt;Terms &amp; Conditions&lt;/a&gt;</value>
+  </data>
   <data name="AccountLoggedOnStatusText" xml:space="preserve">
     <value>{0}</value>
     <comment>Title bar status text when logged on to an account.</comment>

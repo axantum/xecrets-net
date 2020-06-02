@@ -89,6 +89,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!I accept the &lt;a href=&quot;{0}&quot;&gt;Terms &amp; Conditions&lt;/a&gt;.
+        /// </summary>
+        public static string AcceptTermsAndConditionsPrompt {
+            get {
+                return ResourceManager.GetString("AcceptTermsAndConditionsPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string AccountLoggedOnStatusText {
