@@ -24,8 +24,8 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("provider")]
         public string Provider { get; private set; }
 
-        [JsonProperty("product_ids")]
-        public string ProductIdsWithAmount { get; set; }
+        [JsonProperty("premium_product_ids")]
+        public string PremiumProductIdsWithAmount { get; set; }
 
         [JsonProperty("business_product_ids")]
         public string BusinessProductIdsWithAmount { get; set; }
@@ -36,16 +36,16 @@ namespace Axantum.AxCrypt.Api.Model
         [JsonProperty("tax_rates")]
         public string TaxRates { get; set; }
 
-        public IEnumerable<string> ProductIdList
+        public IEnumerable<string> PremiumProductIdList
         {
             get
             {
-                if (ProductIdsWithAmount == null)
+                if (PremiumProductIdsWithAmount == null)
                 {
                     return new List<string>();
                 }
 
-                string[] productIdsWithAmount = ProductIdsWithAmount.Split(",".ToCharArray());
+                string[] productIdsWithAmount = PremiumProductIdsWithAmount.Split(",".ToCharArray());
                 return productIdsWithAmount.Select(product => product.Split("=".ToCharArray())[0]);
             }
         }
@@ -54,12 +54,12 @@ namespace Axantum.AxCrypt.Api.Model
         {
             get
             {
-                if (ProductIdsWithAmount == null)
+                if (PremiumProductIdsWithAmount == null)
                 {
                     return new List<SubscriptionProduct>();
                 }
 
-                string[] productIdsWithAmount = ProductIdsWithAmount.Split(",".ToCharArray());
+                string[] productIdsWithAmount = PremiumProductIdsWithAmount.Split(",".ToCharArray());
                 return productIdsWithAmount.Select(product => GetSubscriptionProduct(product));
             }
         }
