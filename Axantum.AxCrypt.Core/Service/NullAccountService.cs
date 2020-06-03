@@ -143,9 +143,9 @@ namespace Axantum.AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
         {
-            return Task.FromResult((InAppPurchaseSettings)null);
+            return Task.FromResult((PurchaseSettings)null);
         }
 
         public Task<bool> AutoRenewalStatusAsync()

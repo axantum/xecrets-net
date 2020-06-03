@@ -300,7 +300,7 @@ namespace Axantum.AxCrypt.Core.Service
             await _apiClient.PostCreateSubscriptionAsync(skTransaction);
         }
 
-        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
         {
             if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {

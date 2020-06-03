@@ -67,7 +67,7 @@
     <Compile Include="Model\DesktopPlatformKind.cs" />
     <Compile Include="Model\FeedbackData.cs" />
     <Compile Include="Model\CustomMessageParameters.cs" />
-    <Compile Include="Model\InAppPurchaseSettings.cs" />
+    <Compile Include="Model\PurchaseSettings.cs" />
     <Compile Include="Model\PrivateKeyStatus.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />

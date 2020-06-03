@@ -382,7 +382,7 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.CreateSubscriptionAsync(skTransaction).Free();
         }
 
-        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {

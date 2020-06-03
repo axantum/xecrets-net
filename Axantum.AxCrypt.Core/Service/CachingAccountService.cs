@@ -136,7 +136,7 @@ namespace Axantum.AxCrypt.Core.Service
             await New<ICache>().UpdateItemAsync(() => _service.CreateSubscriptionAsync(skTransaction), _key).Free();
         }
 
-        public async Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
         {
             return await New<ICache>().UpdateItemAsync(() => _service.GetInAppPurchaseSettingsAsync(), _key).Free();
         }

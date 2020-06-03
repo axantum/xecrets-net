@@ -363,7 +363,7 @@ namespace Axantum.AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
-        public async Task<InAppPurchaseSettings> GetInAppPurchaSettingsAsync()
+        public async Task<PurchaseSettings> GetInAppPurchaSettingsAsync()
         {
             if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
             {
@@ -375,7 +375,7 @@ namespace Axantum.AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            InAppPurchaseSettings inAppPurchaseMember = Serializer.Deserialize<InAppPurchaseSettings>(restResponse.Content);
+            PurchaseSettings inAppPurchaseMember = Serializer.Deserialize<PurchaseSettings>(restResponse.Content);
             return inAppPurchaseMember;
         }
 

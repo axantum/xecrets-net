@@ -7,30 +7,34 @@ using System.Linq;
 namespace Axantum.AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class InAppPurchaseSettings
+    public class PurchaseSettings
     {
-        public InAppPurchaseSettings(string productIds, int yearlyDiscountPercentage, string provider)
+        public PurchaseSettings(string provider)
         {
-            ProductIdsWithAmount = productIds;
-            YearlyDiscountPercentage = yearlyDiscountPercentage;
             Provider = provider;
         }
 
         [JsonConstructor]
-        private InAppPurchaseSettings()
+        private PurchaseSettings()
         {
         }
 
-        public static InAppPurchaseSettings Empty { get; } = new InAppPurchaseSettings();
+        public static PurchaseSettings Empty { get; } = new PurchaseSettings();
+
+        [JsonProperty("provider")]
+        public string Provider { get; private set; }
 
         [JsonProperty("product_ids")]
         public string ProductIdsWithAmount { get; set; }
 
+        [JsonProperty("business_product_ids")]
+        public string BusinessProductIdsWithAmount { get; set; }
+
         [JsonProperty("yearly_discount_percent")]
         public int YearlyDiscountPercentage { get; set; }
 
-        [JsonProperty("provider")]
-        public string Provider { get; private set; }
+        [JsonProperty("tax_rates")]
+        public string TaxRates { get; set; }
 
         public IEnumerable<string> ProductIdList
         {
@@ -42,11 +46,11 @@ namespace Axantum.AxCrypt.Api.Model
                 }
 
                 string[] productIdsWithAmount = ProductIdsWithAmount.Split(",".ToCharArray());
-                return productIdsWithAmount.Select(product => product.Split("|".ToCharArray())[0]);
+                return productIdsWithAmount.Select(product => product.Split("=".ToCharArray())[0]);
             }
         }
 
-        public IEnumerable<SubscriptionProduct> SubscriptionProducts
+        public IEnumerable<SubscriptionProduct> PremiumSubscriptionProducts
         {
             get
             {
@@ -60,6 +64,20 @@ namespace Axantum.AxCrypt.Api.Model
             }
         }
 
+        public IEnumerable<SubscriptionProduct> BusinessSubscriptionProducts
+        {
+            get
+            {
+                if (BusinessProductIdsWithAmount == null)
+                {
+                    return new List<SubscriptionProduct>();
+                }
+
+                string[] productIdsWithAmount = BusinessProductIdsWithAmount.Split(",".ToCharArray());
+                return productIdsWithAmount.Select(product => GetSubscriptionProduct(product));
+            }
+        }
+
         private static SubscriptionProduct GetSubscriptionProduct(string productIdsWithAmounString)
         {
             if (productIdsWithAmounString == null)
@@ -67,14 +85,14 @@ namespace Axantum.AxCrypt.Api.Model
                 return new SubscriptionProduct();
             }
 
-            string[] productIdsWithAmount = productIdsWithAmounString.Split("|".ToCharArray());
+            string[] productIdsWithAmount = productIdsWithAmounString.Split("=".ToCharArray());
             decimal amount = 0m;
             if (productIdsWithAmount.Length > 1 && productIdsWithAmount[1].Length > 0)
             {
                 amount = decimal.Parse(productIdsWithAmount[1]);
             }
 
-            return new SubscriptionProduct() { Id = productIdsWithAmount[0], AmountExcludingVat = amount };
+            return new SubscriptionProduct() { Id = productIdsWithAmount[0], AmountExcludingVat = amount, };
         }
     }
 }

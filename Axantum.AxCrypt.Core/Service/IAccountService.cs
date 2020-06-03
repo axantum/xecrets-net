@@ -174,7 +174,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// Get the in app purchase settings.
         /// </summary>
         /// <returns>The InAppPurchase product ids and discount information, or null if the service can't connect.</returns>
-        Task<InAppPurchaseSettings> GetInAppPurchaseSettingsAsync();
+        Task<PurchaseSettings> GetInAppPurchaseSettingsAsync();
 
         /// <summary>
         /// Get a user auto renewal subscription status.
