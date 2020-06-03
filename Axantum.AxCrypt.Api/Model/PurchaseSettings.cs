@@ -50,7 +50,7 @@ namespace Axantum.AxCrypt.Api.Model
             }
         }
 
-        public IEnumerable<SubscriptionProduct> PremiumSubscriptionProducts
+        public IEnumerable<SubscriptionProduct> PremiumProducts
         {
             get
             {
