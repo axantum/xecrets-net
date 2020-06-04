@@ -64,17 +64,17 @@ namespace Axantum.AxCrypt.Api.Model
             }
         }
 
-        public IEnumerable<SubscriptionProduct> BusinessSubscriptionProducts
+        public IEnumerable<string> BusinessProductIdList
         {
             get
             {
                 if (BusinessProductIdsWithAmount == null)
                 {
-                    return new List<SubscriptionProduct>();
+                    return new List<string>();
                 }
 
                 string[] productIdsWithAmount = BusinessProductIdsWithAmount.Split(",".ToCharArray());
-                return productIdsWithAmount.Select(product => GetSubscriptionProduct(product));
+                return productIdsWithAmount.Select(product => product.Split("=".ToCharArray())[0]);
             }
         }
 
