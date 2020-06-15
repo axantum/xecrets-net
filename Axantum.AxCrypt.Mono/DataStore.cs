@@ -365,5 +365,13 @@ namespace Axantum.AxCrypt.Mono
         {
             get { return false; }
         }
+
+        public override bool IsNetworkPath
+        {
+            get
+            {
+                return new Uri(_file.FullName).IsUnc;
+            }
+        }
     }
 }

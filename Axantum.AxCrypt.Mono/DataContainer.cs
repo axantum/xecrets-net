@@ -223,5 +223,13 @@ namespace Axantum.AxCrypt.Mono
                 return _info.FullName;
             }
         }
+
+        public override bool IsNetworkPath
+        {
+            get
+            {
+                return new Uri(_info.FullName).IsUnc;
+            }
+        }
     }
 }

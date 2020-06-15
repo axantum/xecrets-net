@@ -52,5 +52,7 @@ namespace Axantum.AxCrypt.Core.IO
         /// Deletes the underlying file this instance refers to.
         /// </summary>
         void Delete();
+
+        bool IsNetworkPath { get; }
     }
 }

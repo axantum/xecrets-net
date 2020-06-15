@@ -144,7 +144,7 @@ namespace Axantum.AxCrypt.Core.Session
 
         private async Task HandleWatchedFolderChangesAsync(WatchedFolder watchedFolder, IDataItem dataItem)
         {
-            if (watchedFolder.Path == dataItem.FullName && !dataItem.IsAvailable)
+            if (watchedFolder.Path == dataItem.FullName && !dataItem.IsAvailable && !dataItem.IsNetworkPath)
             {
                 await RemoveAndDecryptWatchedFolder(dataItem);
                 await Save();

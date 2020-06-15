@@ -90,5 +90,10 @@ namespace Axantum.AxCrypt.Mono
         {
             return FullName;
         }
+
+        public abstract bool IsNetworkPath
+        {
+            get;
+        }
     }
 }
