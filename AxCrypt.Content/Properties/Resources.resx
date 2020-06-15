@@ -2294,7 +2294,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Buy now</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Buy or Renew Premium</value>
+    <value>Buy Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Change</value>
