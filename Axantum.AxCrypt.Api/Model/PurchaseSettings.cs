@@ -94,5 +94,30 @@ namespace Axantum.AxCrypt.Api.Model
 
             return new SubscriptionProduct() { Id = productIdsWithAmount[0], AmountExcludingVat = amount, };
         }
+
+        public string TaxRateID(string countryOrRegion)
+        {
+            if (TaxRates == null)
+            {
+                return string.Empty;
+            }
+
+            string[] taxRatesWithCultures = TaxRates.Split(",".ToCharArray());
+            foreach (string tax in taxRatesWithCultures)
+            {
+                if (tax == null)
+                {
+                    continue;
+                }
+
+                string[] taxRate = tax.Split("=".ToCharArray());
+                if (taxRate[0] == countryOrRegion || taxRate[0].EndsWith(countryOrRegion) || countryOrRegion.Contains(taxRate[0]))
+                {
+                    return taxRate[1];
+                }
+            }
+
+            return string.Empty;
+        }
     }
 }
