@@ -111,7 +111,7 @@ namespace Axantum.AxCrypt.Api.Model
                 }
 
                 string[] taxRate = tax.Split("=".ToCharArray());
-                if (taxRate[0] == countryOrRegion || taxRate[0].EndsWith(countryOrRegion) || countryOrRegion.Contains(taxRate[0]))
+                if (taxRate[0].Trim() == countryOrRegion || taxRate[0].Trim().Contains(countryOrRegion))
                 {
                     return taxRate[1];
                 }
