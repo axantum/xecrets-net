@@ -5708,7 +5708,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buy or Renew Premium.
+        ///   Looks up a localized string similar to Buy Premium.
         /// </summary>
         public static string PromptBuyPremium {
             get {
