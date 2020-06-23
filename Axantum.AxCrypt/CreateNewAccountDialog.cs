@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Axantum.AxCrypt.Abstractions.TypeResolve;
 using Texts = AxCrypt.Content.Texts;
@@ -113,6 +112,7 @@ namespace Axantum.AxCrypt
 
             try
             {
+                New<AxCryptOnlineState>().IsOnline = false;
                 TaskRunner.WaitFor(() => _viewModel.CreateAccount.ExecuteAsync(null));
             }
             finally

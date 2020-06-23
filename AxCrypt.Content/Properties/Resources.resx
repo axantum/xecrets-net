@@ -2866,7 +2866,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Transaction history</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Click to restore the AxCrypt application window.</value>
+    <value>Click the AxCrypt icon to restore the application window.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
