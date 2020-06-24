@@ -125,7 +125,7 @@ namespace Axantum.AxCrypt.Core.Session
                     try
                     {
                         activeFile = await CheckActiveFile(activeFile, progress).Free();
-                        if (activeFile.Status == ActiveFileStatus.NotDecrypted && !activeFile.EncryptedFileInfo.IsAvailable)
+                        if (activeFile.Status == ActiveFileStatus.NotDecrypted && !activeFile.EncryptedFileInfo.IsAvailable && !activeFile.EncryptedFileInfo.IsNetworkPath)
                         {
                             activeFile = null;
                         }

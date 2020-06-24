@@ -146,9 +146,10 @@ namespace Axantum.AxCrypt.Fake
                 return new IDataContainer[0];
             }
         }
+
         public bool IsNetworkPath
         {
-            get { return _fileInfo.IsAvailable; }
+            get { return _fileInfo.IsNetworkPath; }
         }
     }
 }
