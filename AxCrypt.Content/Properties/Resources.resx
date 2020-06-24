@@ -581,6 +581,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Renew</value>
   </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>Subscription renews on {0}.</value>
+  </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Business Subscription Renewal</value>
   </data>

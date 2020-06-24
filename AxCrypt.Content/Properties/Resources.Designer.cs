@@ -1207,6 +1207,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscription renews on {0}..
+        /// </summary>
+        public static string BusinessSubscriptionRenewsFormat {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionRenewsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business Subscription Renewal.
         /// </summary>
         public static string BusinessSubscriptionRenewTitle {
