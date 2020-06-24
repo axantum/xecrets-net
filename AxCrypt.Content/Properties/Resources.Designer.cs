@@ -7240,7 +7240,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to restore the AxCrypt application window..
+        ///   Looks up a localized string similar to Click the AxCrypt icon to restore the application window..
         /// </summary>
         public static string TrayBalloonTooltip {
             get {

@@ -97,6 +97,11 @@ namespace Axantum.AxCrypt.Api.Model
 
         public string TaxRateID(string countryOrRegion)
         {
+            if (countryOrRegion == null)
+            {
+                return string.Empty;
+            }
+
             if (TaxRates == null)
             {
                 return string.Empty;
