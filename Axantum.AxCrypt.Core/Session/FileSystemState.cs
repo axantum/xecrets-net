@@ -305,7 +305,7 @@ namespace Axantum.AxCrypt.Core.Session
             bool dirty = false;
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                if (!fullNames.Contains(activeFile.EncryptedFileInfo.FullName))
+                if (!fullNames.Contains(activeFile.EncryptedFileInfo.FullName) && activeFile.EncryptedFileInfo.IsNetworkPath)
                 {
                     continue;
                 }

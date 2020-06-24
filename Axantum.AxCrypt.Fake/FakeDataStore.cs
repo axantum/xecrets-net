@@ -468,5 +468,18 @@ namespace Axantum.AxCrypt.Fake
         }
 
         public bool IsEncryptable => true;
+
+        public bool IsNetworkPath
+        {
+            get
+            {
+                FakeFileInfo fileInfo;
+                if (_fakeFileSystem.TryGetValue(_file.FullName, out fileInfo))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

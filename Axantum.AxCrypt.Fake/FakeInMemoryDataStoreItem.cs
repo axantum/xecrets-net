@@ -121,5 +121,11 @@ namespace Axantum.AxCrypt.Fake
         {
             return _dataStream.Length;
         }
+
+        public bool IsNetworkPath
+        {
+            get;
+            set;
+        }
     }
 }
