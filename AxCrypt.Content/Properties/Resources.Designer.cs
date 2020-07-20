@@ -365,6 +365,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!There is an active subscription on this account..
+        /// </summary>
+        public static string ActiveSubscriptionText {
+            get {
+                return ResourceManager.GetString("ActiveSubscriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open AxCrypt File.
         /// </summary>
         public static string AddFileLabel {
@@ -1527,6 +1536,16 @@ namespace AxCrypt.Content.Properties {
         public static string ButtonYesText {
             get {
                 return ResourceManager.GetString("ButtonYesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!There is an active subscription on this account. The Premium subscription can&apos;t be purchased twice with the same AxCrypt account.
+        ///.
+        /// </summary>
+        public static string BuyMorePremiumSubscriptionWarning {
+            get {
+                return ResourceManager.GetString("BuyMorePremiumSubscriptionWarning", resourceCulture);
             }
         }
         
@@ -6268,6 +6287,15 @@ namespace AxCrypt.Content.Properties {
         public static string RemoveRecentFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("RemoveRecentFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!There is an active recurring subscription on this account. The recurring Business subscription does not have to be renewed manually..
+        /// </summary>
+        public static string RenewActiveBusinessSubscriptionWarning {
+            get {
+                return ResourceManager.GetString("RenewActiveBusinessSubscriptionWarning", resourceCulture);
             }
         }
         
