@@ -365,7 +365,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!There is an active subscription on this account..
+        ///   Looks up a localized string similar to There is an active subscription on this account..
         /// </summary>
         public static string ActiveSubscriptionText {
             get {
@@ -1540,7 +1540,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!There is an active subscription on this account. The Premium subscription can&apos;t be purchased twice with the same AxCrypt account.
+        ///   Looks up a localized string similar to There is an active subscription on this account. Premium subscriptions can&apos;t be purchased twice with the same AxCrypt account.
         ///.
         /// </summary>
         public static string BuyMorePremiumSubscriptionWarning {
@@ -6291,7 +6291,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!There is an active recurring subscription on this account. The recurring Business subscription does not have to be renewed manually..
+        ///   Looks up a localized string similar to There is an active recurring subscription on this account. Recurring Business subscriptions do not have to be renewed manually..
         /// </summary>
         public static string RenewActiveBusinessSubscriptionWarning {
             get {
