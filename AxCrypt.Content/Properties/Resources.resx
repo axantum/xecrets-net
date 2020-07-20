@@ -229,6 +229,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Double-click opens a Password-dialog before opening the secured file.</value>
   </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>!!There is an active subscription on this account.</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Open AxCrypt File</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -700,6 +703,10 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>!!There is an active subscription on this account. The Premium subscription can't be purchased twice with the same AxCrypt account.
+</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Canceled '{0}'.</value>
@@ -2497,6 +2504,9 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Remove from list but keep secured</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>!!There is an active recurring subscription on this account. The recurring Business subscription does not have to be renewed manually.</value>
   </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Renew in</value>
