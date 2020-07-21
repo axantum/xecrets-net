@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>Acerca de {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>Acepto los &lt;a href="{0}"&gt;Términos y condiciones&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>La cuenta debe ser verificada por el usuario primero.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -311,6 +314,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} no tiene una cuenta con nosotros, envíe una invitación para que se registre y continue.</value>
   </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>{0} facturados al año</value>
+  </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Bienvenido a AxCrypt Business.&lt;/p&gt; 
 &lt;p&gt;Has sido añadido a una subscripción AxCrypt Business por {0}, por lo que ahora tienes acceso a los beneficios del subscriptor AxCrypt mientras seas miembro legítimo.&lt;/p&gt; 
@@ -329,7 +335,7 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <value>Tu suscripción a AxCrypt Business {0} caducó. Esperamos sinceramente que hayas disfrutado de AxCrypt y que te haya parecido útil.</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
-    <value>¡Caducó tu suscripción a AxCrypt Business!</value>
+    <value>Caducó tu suscripción a AxCrypt Business.</value>
   </data>
   <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
     <value>Como un administrador debe renovar la suscripción para su equipo en el módulo del administración de la cuenta de web de AxCrypt. Usarse el botón de abajo para ir directamente allí. ¡No se olvida a informar su equipo que estará renovado!</value>
@@ -528,6 +534,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   </data>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Renovar</value>
+  </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>La suscripción se renueva el {0}.</value>
   </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Renovación de Suscripción de Business </value>
@@ -1905,7 +1914,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
   <data name="PremiumExpiredMailSubject" xml:space="preserve">
-    <value>¡Caducó tu suscripción a AxCrypt Premium!</value>
+    <value>Caducó tu suscripción a AxCrypt Premium.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Tu suscripción al servicio AxCrypt Premium está a punto de finalizar. Esperamos sinceramente que hayas disfrutado las características que ofrecemos y que te hayan parecido útiles.</value>
@@ -2006,7 +2015,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Comprar ahora</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Comprar o renovar Premium</value>
+    <value>Comprar Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Cambiar</value>
@@ -2411,7 +2420,7 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
     <value>Tu suscripción se renovará el &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
-    <value>¡Se canceló tu suscripción a AxCrypt Premium!</value>
+    <value>Se canceló tu suscripción a AxCrypt Premium.</value>
   </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Eliminado</value>
@@ -2514,7 +2523,7 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
     <value>Historial de transacciones</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Haga doble clic para abrir AxCrypt.</value>
+    <value>Haga clic sobre el ícono de AxCrypt para restaurar la ventana de la aplicación.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
