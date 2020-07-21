@@ -301,6 +301,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} heeft geen account bij ons. Stuur een uitnodiging om een account te registreren en ga verder.</value>
   </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>{0} jaarlijks gefactureerd</value>
+  </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Welkom bij AxCrypt Business.&lt;/p&gt;
 &lt;p&gt;U bent toegevoegd aan een AxCrypt Business abonnement door {0}. U heeft nu toegang tot de voordelen voor AxCrypt abonnees, zolang u een geldig lid bent.&lt;/p&gt;
@@ -314,6 +317,12 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administrators</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
+  <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
+    <value>Uw AxCrypt Business abonnement {0} is beëindigd. We hopen dat je AxCrypt met plezier hebt gebruikt en dat het nuttig was.</value>
+  </data>
+  <data name="BusinessExpiredMailSubject" xml:space="preserve">
+    <value>Uw AxCrypt Business abonnement is beëindigd.</value>
   </data>
   <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
     <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
@@ -512,6 +521,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Vernieuwen</value>
+  </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>Abonnement wordt verlengd op {0}.</value>
   </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Business Abonnementsverlenging</value>
@@ -1889,6 +1901,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Premium</value>
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
+  <data name="PremiumExpiredMailSubject" xml:space="preserve">
+    <value>Uw AxCrypt Premium abonnement is verlopen.</value>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Uw AxCrypt Premium abonnement verloopt binnenkort. We hopen dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
   </data>
@@ -1988,7 +2003,7 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Koop nu</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Koop of Vernieuw Premium</value>
+    <value>Koop Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Wijzigen</value>
@@ -2392,6 +2407,9 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Uw abonnement wordt verlengd op &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
+  <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
+    <value>Uw AxCrypt Premium abonnement is opgezegd.</value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Verwijderd</value>
   </data>
@@ -2493,7 +2511,7 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Transactiegeschiedenis</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Klik om het AxCrypt applicatie venster te herstellen.</value>
+    <value>Klik het AxCrypt icoon om het applicatie venster te herstellen.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
