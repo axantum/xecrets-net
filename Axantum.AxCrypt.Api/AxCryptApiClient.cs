@@ -350,17 +350,19 @@ namespace Axantum.AxCrypt.Api
             return axCryptVersion;
         }
 
-        public async Task PostCreateSubscriptionAsync(StoreKitTransaction skTransaction)
+        public async Task<bool> PostCreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
         {
-            if (skTransaction == null)
+            if (skTransactions == null)
             {
-                throw new ArgumentNullException(nameof(skTransaction));
+                throw new ArgumentNullException(nameof(skTransactions));
             }
 
             Uri resource = BaseUrl.PathCombine("purchase/inapppurchase/create/subscription");
-            RestContent content = new RestContent(Serializer.Serialize(skTransaction));
+            RestContent content = new RestContent(Serializer.Serialize(skTransactions));
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
+
+            return Serializer.Deserialize<bool>(restResponse.Content);
         }
 
         public async Task<PurchaseSettings> GetInAppPurchaSettingsAsync()
