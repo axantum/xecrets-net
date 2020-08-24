@@ -131,7 +131,7 @@ namespace Axantum.AxCrypt.Core.Service
             await New<ICache>().UpdateItemAsync(async () => await _service.SendFeedbackAsync(subject, message), _key).Free();
         }
 
-        public async Task<bool> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
+        public async Task<SKVerifyReceiptStatus> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
         {
             return await New<ICache>().UpdateItemAsync(() => _service.CreateSubscriptionAsync(skTransactions), _key).Free();
         }

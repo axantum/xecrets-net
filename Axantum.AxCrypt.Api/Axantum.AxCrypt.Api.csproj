@@ -95,6 +95,7 @@
     <Compile Include="Response\WhatIpResponse.cs" />
     <Compile Include="SlackApiClient.cs" />
     <Compile Include="UnauthorizedException.cs" />
+    <Compile Include="Model\SKVerifyReceiptStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
