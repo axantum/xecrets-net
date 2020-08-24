@@ -168,7 +168,7 @@ namespace Axantum.AxCrypt.Core.Service
         /// </summary>
         /// <param name="skTransactions">The appstore IAP transaction(s).</param>
         /// <returns></returns>
-        Task<bool> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions);
+        Task<SKVerifyReceiptStatus> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions);
 
         /// <summary>
         /// Get the in app purchase settings.
