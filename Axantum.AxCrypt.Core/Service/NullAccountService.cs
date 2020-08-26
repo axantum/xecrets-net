@@ -138,9 +138,9 @@ namespace Axantum.AxCrypt.Core.Service
             return Task.FromResult(default(object));
         }
 
-        public Task<SKVerifyReceiptStatus> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
+        public Task<bool> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
         {
-            return Task.FromResult(SKVerifyReceiptStatus.RequestNotMade);
+            return Task.FromResult(false);
         }
 
         public Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
