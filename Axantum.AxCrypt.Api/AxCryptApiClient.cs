@@ -350,7 +350,7 @@ namespace Axantum.AxCrypt.Api
             return axCryptVersion;
         }
 
-        public async Task<SKVerifyReceiptStatus> PostCreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
+        public async Task<bool> PostCreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
         {
             if (skTransactions == null)
             {
@@ -362,8 +362,8 @@ namespace Axantum.AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            SKVerifyReceiptStatus sKVerifyReceiptStatus = Serializer.Deserialize<SKVerifyReceiptStatus>(restResponse.Content);
-            return sKVerifyReceiptStatus;
+            bool subscriptionCreatedSuccessfully = Serializer.Deserialize<bool>(restResponse.Content);
+            return subscriptionCreatedSuccessfully;
         }
 
         public async Task<PurchaseSettings> GetInAppPurchaSettingsAsync()

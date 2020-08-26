@@ -371,7 +371,7 @@ namespace Axantum.AxCrypt.Core.Service
             await _localService.SendFeedbackAsync(subject, message).Free();
         }
 
-        public async Task<SKVerifyReceiptStatus> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
+        public async Task<bool> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {
