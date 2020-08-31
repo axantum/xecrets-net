@@ -576,13 +576,5 @@ namespace Axantum.AxCrypt.Core.Extensions
             AccountStorage accountStorage = new AccountStorage(accountService);
             return await accountStorage.StatusAsync(validEmail).Free();
         }
-
-        public static async Task DisplayPremiumPurchasePage(this LogOnIdentity identity)
-        {
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
-            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
-            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
-            New<IBrowser>().OpenUri(new Uri(link));
-        }
     }
 }

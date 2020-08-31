@@ -4,7 +4,6 @@ using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
-using Axantum.AxCrypt.Core.Session;
 using AxCrypt.Content;
 using System;
 using System.Threading.Tasks;
@@ -16,28 +15,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public async Task<bool> StartTrial(LogOnIdentity identity)
         {
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
-            try
-            {
-                using (await New<IProgressDialog>().Show(Texts.ProgressIndicatorTrialMessage, Texts.ProgressIndicatorWaitMessage))
-                {
-                    await accountService.StartPremiumTrialAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                if (New<AxCryptOnlineState>().IsOffline)
-                {
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageErrorTitle, Texts.NoInternetErrorMessage);
-                    return false;
-                }
-
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText.InvariantFormat(ex.Innermost().Message));
-                return false;
-            }
-
-            await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, identity));
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
+            await DisplayPremiumPurchasePage(identity);
 
             return true;
         }
@@ -66,6 +44,14 @@ namespace Axantum.AxCrypt.Core.UI
         public void RedirectToMyAxCryptIDPage()
         {
             string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
+            New<IBrowser>().OpenUri(new Uri(link));
+        }
+
+        public async Task DisplayPremiumPurchasePage(LogOnIdentity identity)
+        {
+            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
+            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
+            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
             New<IBrowser>().OpenUri(new Uri(link));
         }
     }
