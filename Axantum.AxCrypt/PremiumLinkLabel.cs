@@ -1,5 +1,4 @@
-﻿using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
+﻿using Axantum.AxCrypt.Core.Crypto;
 using Axantum.AxCrypt.Core.Extensions;
 using Axantum.AxCrypt.Core.Runtime;
 using Axantum.AxCrypt.Core.Service;
@@ -9,7 +8,6 @@ using Axantum.AxCrypt.Forms.Style;
 using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,12 +104,7 @@ namespace Axantum.AxCrypt
             switch (_planInformation.PlanState)
             {
                 case PlanState.CanTryPremium:
-                    await accountService.StartPremiumTrialAsync();
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.TrialPremiumStartInfo);
-
-                    accountService.Refresh();
-                    await ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity);
-                    await New<SessionNotify>().NotifyAsync(new SessionNotification(SessionNotificationType.RefreshLicensePolicy, New<KnownIdentities>().DefaultEncryptionIdentity));
+                    await New<PremiumManager>().DisplayPremiumPurchasePage(New<KnownIdentities>().DefaultEncryptionIdentity);
                     break;
 
                 case PlanState.NoPremium:
@@ -124,19 +117,12 @@ namespace Axantum.AxCrypt
                         break;
                     }
 
-                    await DisplayPremiumPurchasePage(accountService);
+                    await New<PremiumManager>().DisplayPremiumPurchasePage(New<KnownIdentities>().DefaultEncryptionIdentity);
                     break;
 
                 default:
                     break;
             }
-        }
-
-        private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
-        {
-            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
-            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
-            Process.Start(link);
         }
     }
 }
