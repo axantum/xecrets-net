@@ -1152,7 +1152,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buy more licenses.
+        ///   Looks up a localized string similar to Add more licenses.
         /// </summary>
         public static string BusinessSubscriptionPurchaseMenu {
             get {
