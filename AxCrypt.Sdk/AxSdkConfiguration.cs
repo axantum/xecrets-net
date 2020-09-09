@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Core.Crypto;
+﻿using AxCrypt.Core.Crypto;
 using System;
 using System.Collections.Generic;
 

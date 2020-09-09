@@ -10,8 +10,8 @@ About the Projects
 
 Depending on the target platform, different projects are required to build.
 
-Axantum.AxCrypt.csproj           - This is the main project for the Windows Forms-based desktop (Windows, Linux, Mac OS X) -> Axantum.AxCrypt.Windows.Forms
-Axantum.AxCrypt.Core.csproj      - All core AxCrypt functionality as a Portable Class Library for all targets.
-Axantum.AxCrypt.Desktop.csproj   - Implementations specific to full desktop .NET/Mono targets (Windows, Linux, Mac OS X) -> Axantum.AxCrypt.Core.Desktop
-Axantum.AxCrypt.Mono.csproj      - Implementations common to all targets (Windows, Linux, Mac OS X, iOS, Android) -> Axantum.AxCrypt.Core.?
-Axantum.AxCrypt.Forms.csproj     - Implementations specific to Windows Forms, not part of the main project...? -> Axantum.AxCrypt.Core.Forms
+AxCrypt.csproj           - This is the main project for the Windows Forms-based desktop (Windows, Linux, Mac OS X) -> AxCrypt.Windows.Forms
+AxCrypt.Core.csproj      - All core AxCrypt functionality as a Portable Class Library for all targets.
+AxCrypt.Desktop.csproj   - Implementations specific to full desktop .NET/Mono targets (Windows, Linux, Mac OS X) -> AxCrypt.Core.Desktop
+AxCrypt.Mono.csproj      - Implementations common to all targets (Windows, Linux, Mac OS X, iOS, Android) -> AxCrypt.Core.?
+AxCrypt.Forms.csproj     - Implementations specific to Windows Forms, not part of the main project...? -> AxCrypt.Core.Forms

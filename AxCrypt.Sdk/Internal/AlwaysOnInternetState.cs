@@ -1,4 +1,4 @@
-﻿using Axantum.AxCrypt.Abstractions;
+﻿using AxCrypt.Abstractions;
 using System;
 using System.Collections.Generic;
 

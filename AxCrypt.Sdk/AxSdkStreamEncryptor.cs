@@ -5,14 +5,14 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.Crypto.Asymmetric;
-using Axantum.AxCrypt.Core.IO;
-using Axantum.AxCrypt.Core.Session;
-using Axantum.AxCrypt.Core.UI;
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using AxCrypt.Abstractions;
+using AxCrypt.Core;
+using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Crypto.Asymmetric;
+using AxCrypt.Core.IO;
+using AxCrypt.Core.Session;
+using AxCrypt.Core.UI;
+using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {

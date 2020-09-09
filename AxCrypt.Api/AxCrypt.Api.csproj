@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6EA275D5-2372-4FCF-BB4F-5C48F5901350}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AxCrypt.Api</RootNamespace>
+    <AssemblyName>AxCrypt.Api</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
+    <ReleaseVersion>2.1.0.0</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\AxCrypt.Abstractions\AxCrypt.Abstractions.csproj">
+      <Project>{61e59383-c053-4416-9981-0dcfb8d89dc3}</Project>
+      <Name>AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Common\AxCrypt.Common.csproj">
+      <Project>{fb429566-e4a5-4391-805b-0e2a2ae297ac}</Project>
+      <Name>AxCrypt.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiCaller.cs" />
+    <Compile Include="AxCryptApi.cs" />
+    <Compile Include="AxCryptApiClient.cs" />
+    <Compile Include="BadRequestApiException.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GlobalApiClient.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Model\AccountSource.cs" />
+    <Compile Include="Model\AccountTip.cs" />
+    <Compile Include="Model\ApiVersion.cs" />
+    <Compile Include="Model\AxCryptVersion.cs" />
+    <Compile Include="Model\DesktopPlatformKind.cs" />
+    <Compile Include="Model\FeedbackData.cs" />
+    <Compile Include="Model\CustomMessageParameters.cs" />
+    <Compile Include="Model\PurchaseSettings.cs" />
+    <Compile Include="Model\PrivateKeyStatus.cs" />
+    <Compile Include="Model\Offers.cs" />
+    <Compile Include="Model\PasswordSuggestion.cs" />
+    <Compile Include="Model\SlackPayload.cs" />
+    <Compile Include="Implementation\AbstractTypeSerializer.cs" />
+    <Compile Include="Implementation\CustomSerializer.cs" />
+    <Compile Include="Model\AccountStatus.cs" />
+    <Compile Include="Model\KeyPair.cs" />
+    <Compile Include="Model\PasswordResetParameters.cs" />
+    <Compile Include="Model\StoreKitTransaction.cs" />
+    <Compile Include="Model\SubscriptionLevel.cs" />
+    <Compile Include="Model\SubscriptionProduct.cs" />
+    <Compile Include="Model\UserAccounts.cs" />
+    <Compile Include="Response\ErrorResponse.cs" />
+    <Compile Include="Response\ResponseBase.cs" />
+    <Compile Include="Model\ApiStatus.cs" />
+    <Compile Include="Model\AccountKey.cs" />
+    <Compile Include="Response\AccountKeyResponse.cs" />
+    <Compile Include="Response\UserAccountResponse.cs" />
+    <Compile Include="Response\AccountIdResponse.cs" />
+    <Compile Include="Model\UserAccount.cs" />
+    <Compile Include="Response\CurrentVersionResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Implementation\StringSerializer.cs" />
+    <Compile Include="Response\WhatIpResponse.cs" />
+    <Compile Include="SlackApiClient.cs" />
+    <Compile Include="UnauthorizedException.cs" />
+    <Compile Include="Model\SKVerifyReceiptStatus.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\SolutionItems\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\SolutionItems\Axantum.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

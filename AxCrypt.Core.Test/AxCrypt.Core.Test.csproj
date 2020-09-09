@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AxCrypt.Core.Test</RootNamespace>
+    <AssemblyName>AxCrypt.Core.Test</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\SolutionItems\Moq\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CryptoValidation\TestRsaOeap.cs" />
+    <Compile Include="CryptoValidation\TestSha256.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestFileFilter.cs" />
+    <Compile Include="TestIdentityPublicTag.cs" />
+    <Compile Include="TestKnownPublicKeys.cs" />
+    <Compile Include="TestManageAccountViewModel.cs" />
+    <Compile Include="MockAxCryptFile.cs" />
+    <Compile Include="MockFileSystemStateActions.cs" />
+    <Compile Include="SetupAssembly.cs" />
+    <Compile Include="TestActiveFile.cs" />
+    <Compile Include="TestActiveFileCollectionTests.cs" />
+    <Compile Include="TestActiveFileComparer.cs" />
+    <Compile Include="TestAxCryptFactory.cs" />
+    <Compile Include="TestCancelContext.cs" />
+    <Compile Include="TestCommandLine.cs" />
+    <Compile Include="TestCommandService.cs" />
+    <Compile Include="TestCommandServiceEventArgsTest.cs" />
+    <Compile Include="TestCounterModeCryptoTransform.cs" />
+    <Compile Include="TestDelayedAction.cs" />
+    <Compile Include="TestDelegateAction.cs" />
+    <Compile Include="TestEncryptedDataPartBlock.cs" />
+    <Compile Include="TestFactoryRegistry.cs" />
+    <Compile Include="TestFileOperation.cs" />
+    <Compile Include="TestFileOperationsController.cs" />
+    <Compile Include="TestFileOperationViewModel.cs" />
+    <Compile Include="TestFileSystemStateActions.cs" />
+    <Compile Include="TestHeaderBlock.cs" />
+    <Compile Include="TestHeaders.cs" />
+    <Compile Include="TestKnownFolder.cs" />
+    <Compile Include="TestKnownFoldersViewModel.cs" />
+    <Compile Include="TestPassphraseBase.cs" />
+    <Compile Include="TestPasswordStrengthCalculator.cs" />
+    <Compile Include="TestPasswordStrengthMeterViewModel.cs" />
+    <Compile Include="TestPbkdf2HmacSha512.cs" />
+    <Compile Include="TestAsymmetricCrypto.cs" />
+    <Compile Include="TestPipelineStreamTest.cs" />
+    <Compile Include="TestPublicKeyThumbprint.cs" />
+    <Compile Include="TestRandomGenerator.cs" />
+    <Compile Include="TestAsymmetricUserKeysStore.cs" />
+    <Compile Include="TestReportLogging.cs" />
+    <Compile Include="TestSharingListViewModel.cs" />
+    <Compile Include="TestSignerVerifier.cs" />
+    <Compile Include="TestUserKeyPair.cs" />
+    <Compile Include="TestUserPublicKeyUpdateStatus.cs" />
+    <Compile Include="TestV1AesCrypto.cs" />
+    <Compile Include="TestSymmetricIV.cs" />
+    <Compile Include="TestSymmetricKey.cs" />
+    <Compile Include="TestSymmetricKeyThumbprint.cs" />
+    <Compile Include="TestV1AxCryptDocument.cs" />
+    <Compile Include="TestAxCryptFile.cs" />
+    <Compile Include="TestAxCryptHeaderKeyWrap.cs" />
+    <Compile Include="TestAxCryptHMACSHA1.cs" />
+    <Compile Include="TestAxCryptReaderIdTagHeaderBlock.cs" />
+    <Compile Include="TestAxCryptReaderMagicGuid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAxCryptReaderPreambleHeaderBlock.cs" />
+    <Compile Include="TestAxCryptReaderVersionHeaderBlock.cs" />
+    <Compile Include="TestAxCryptStreamReader.cs" />
+    <Compile Include="TestDataHmac.cs" />
+    <Compile Include="TestDocumentHeaders.cs" />
+    <Compile Include="TestExceptions.cs" />
+    <Compile Include="TestExtensions.cs" />
+    <Compile Include="TestFileInfoEncryptedHeaderBlock.cs" />
+    <Compile Include="TestFileLock.cs" />
+    <Compile Include="TestFileNameInfoEncryptedHeaderBlock.cs" />
+    <Compile Include="TestFileSystemState.cs" />
+    <Compile Include="TestFileWatcher.cs" />
+    <Compile Include="TestIdentityViewModel.cs" />
+    <Compile Include="TestIdTagHeaderBlock.cs" />
+    <Compile Include="TestInstance.cs" />
+    <Compile Include="TestIOStreams.cs" />
+    <Compile Include="TestKeyWrap.cs" />
+    <Compile Include="TestKeyWrap1HeaderBlock.cs" />
+    <Compile Include="TestKeyWrap2HeaderBlock.cs" />
+    <Compile Include="TestIterationCalculator.cs" />
+    <Compile Include="TestSalt.cs" />
+    <Compile Include="TestKnownIdentities.cs" />
+    <Compile Include="TestLockingStreamTests.cs" />
+    <Compile Include="TestLogging.cs" />
+    <Compile Include="TestFilePasswordViewModel.cs" />
+    <Compile Include="TestMainViewModel.cs" />
+    <Compile Include="TestNDeskOptions.cs" />
+    <Compile Include="TestNewPassphraseViewModel.cs" />
+    <Compile Include="TestParallelFileOperation.cs" />
+    <Compile Include="TestPassphrase.cs" />
+    <Compile Include="TestPassphraseIdentity.cs" />
+    <Compile Include="TestPreambleHeaderBlock.cs" />
+    <Compile Include="TestProcessState.cs" />
+    <Compile Include="TestProgressContext.cs" />
+    <Compile Include="TestProgressEventArgsTest.cs" />
+    <Compile Include="TestProgressStream.cs" />
+    <Compile Include="TestResources.cs" />
+    <Compile Include="TestSessionEvent.cs" />
+    <Compile Include="TestSessionNotificationHandler.cs" />
+    <Compile Include="TestSessionNotificationMonitor.cs" />
+    <Compile Include="TestThreadWorker.cs" />
+    <Compile Include="TestThreadWorkerProgressContext.cs" />
+    <Compile Include="TestV1UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
+    <Compile Include="TestUnrecognizedHeaderBlock .cs" />
+    <Compile Include="TestUpdateCheck.cs" />
+    <Compile Include="TestUserSettings.cs" />
+    <Compile Include="TestV1AxCryptReader.cs" />
+    <Compile Include="TestV2AlgorithmVerifierEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2AsymmetricRecipientsEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2RegressionCompleteFiles.cs" />
+    <Compile Include="TestV2AesCrypto.cs" />
+    <Compile Include="TestV2AxCryptDataStreamTest.cs" />
+    <Compile Include="TestV2AxCryptDocument.cs" />
+    <Compile Include="TestV2AxCryptReader.cs" />
+    <Compile Include="TestV2CompressionEncryptedHeaderBlock.cs" />
+    <Compile Include="TestV2DocumentHeaders.cs" />
+    <Compile Include="TestV2HmacHeaderBlock.cs" />
+    <Compile Include="TestV2HmacStreamTest.cs" />
+    <Compile Include="TestV2KeyWrapHeaderBlock.cs" />
+    <Compile Include="TestV2UnicodeFileNameInfoEncryptedHeaderBlock.cs" />
+    <Compile Include="TestVersionHeaderBlock .cs" />
+    <Compile Include="TestViewModelBaseTest.cs" />
+    <Compile Include="TestVXAxCryptReader.cs" />
+    <Compile Include="TestWatchedFolder.cs" />
+    <Compile Include="TestWatchedFolderChangedEventArgsTest.cs" />
+    <Compile Include="TestWorkerGroup.cs" />
+    <Compile Include="TestWorkerGroupProgressContext.cs" />
+    <Compile Include="TestWorkFolderWatcher.cs" />
+    <Compile Include="TestSubKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestV2PlainTextLengthsEncryptedHeaderBlock.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AxantumStrongName.pfx" />
+    <None Include="packages.config" />
+    <None Include="resources\2003-05-28 PcWorld AxCrypt %27b%27 + My Keyfile-pdf.axx" />
+    <None Include="resources\david copperfield-key-%27aa ae oe%27-ulu-txt.axx" />
+    <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
+    <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
+    <None Include="resources\Foto 2015-05-19 23 19 08 %27a%27 + My Keyfile-jpg.axx" />
+    <None Include="resources\helloworld-key-a-txt.axx" />
+    <EmbeddedResource Include="resources\short-txt-AES256.axx" />
+    <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
+    <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
+    <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
+    <None Include="resources\Passphrase %27p%27 + My Keyfile-txt.axx" />
+    <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
+    <None Include="resources\uncompressable-zip.axx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AxCrypt.Abstractions\AxCrypt.Abstractions.csproj">
+      <Project>{61E59383-C053-4416-9981-0DCFB8D89DC3}</Project>
+      <Name>AxCrypt.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Api\AxCrypt.Api.csproj">
+      <Project>{6EA275D5-2372-4FCF-BB4F-5C48F5901350}</Project>
+      <Name>AxCrypt.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Common\AxCrypt.Common.csproj">
+      <Project>{FB429566-E4A5-4391-805B-0E2A2AE297AC}</Project>
+      <Name>AxCrypt.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Core\AxCrypt.Core.csproj">
+      <Project>{966E9510-1A1D-46C7-97B5-460A0FF9B89F}</Project>
+      <Name>AxCrypt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Desktop\AxCrypt.Desktop.csproj">
+      <Project>{D64DE570-3A36-49D3-95AA-9262647B04EE}</Project>
+      <Name>AxCrypt.Desktop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Fake\AxCrypt.Fake.csproj">
+      <Project>{48602976-ABA8-4639-93E1-54CD0B2F0C23}</Project>
+      <Name>AxCrypt.Fake</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Mono\AxCrypt.Mono.csproj">
+      <Project>{CE9E8614-8DC5-4757-9384-3C416AB61A47}</Project>
+      <Name>AxCrypt.Mono</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxCrypt.Content\AxCrypt.Content.csproj">
+      <Project>{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}</Project>
+      <Name>AxCrypt.Content</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\david-copperfield.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutThisAssembly.txt" />
+    <Content Include="resources\My Key-File.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\SolutionItems\Axantum.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.16.1\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
