@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>A propos de {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>J'accepte les &lt;a href="{0}"&gt;Conditions Générales&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>Le compte doit d'abord être vérifié par l'utilisateur. </value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -204,6 +207,9 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Un double-clic ouvre la fenêtre de saisie de mot de passe avant d'ouvrir le fichier protégé.</value>
+  </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>Ce compte possède déjà un abonnement actif.</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Ouvrir un fichier AxCrypt </value>
@@ -311,6 +317,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} n'a pas de compte chez nous, envoyez une invitation pour enregistrer un compte et continuer.</value>
+  </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>Coût annuel : {0}</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Bienvenue dans AxCrypt Business.&lt;/p&gt;
@@ -530,6 +539,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Renouveler</value>
   </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>Votre abonnement sera renouvelé le {0}.</value>
+  </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Renouveler un abonnement Business</value>
   </data>
@@ -646,6 +658,9 @@ Certaines parties de ce logiciel proviennent de http://www.bouncycastle.org/ .</
   </data>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Oui</value>
+  </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>Ce compte possède déjà un abonnement actif. Vous ne pouvez pas acheter plus d'un abonnement Premium avec le même compte.</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>'{0}' annulé.</value>
@@ -2006,7 +2021,7 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
     <value>Acheter maintenant </value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Acheter ou renouveler la version Premium</value>
+    <value>Acheter la version Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Changer</value>
@@ -2208,6 +2223,9 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification. </val
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Retirer de la liste mais conserver la protection du fichier</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>Ce compte possède déjà un abonnement actif et récurrent. Les abonnements Business récurrents se renouvellent automatiquement.</value>
   </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Renouvelez dans</value>
@@ -2516,7 +2534,7 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
     <value>Historique des transactions</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Cliquez pour restaurer la fenêtre de l'application AxCrypt.</value>
+    <value>Cliquez sur l'application AxCrypt pour retourner à la fenêtre précédente.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">

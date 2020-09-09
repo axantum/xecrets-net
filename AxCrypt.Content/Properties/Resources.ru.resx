@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>Об {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>Я принимаю &lt;a href="{0}"&gt;Правила и Условия&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>Данный аккаунт должен быть вначале подтверждён пользователем.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -130,9 +133,6 @@
   <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
     <value>Новые пользователи не могут быть добавлены в локальном или оффлайн режиме, так как соединение с сервером отсутствует.</value>
     <comment>A message dialog text displayed when a user attempts to add a new user to share with, which would require access to the server to fetch the new user and we can't because the user is local or offline,</comment>
-  </data>
-  <data name="AccountStatusLight" xml:space="preserve">
-    <value>AxCrypt Free</value>
   </data>
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium (пробный)</value>
@@ -508,7 +508,7 @@
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Купить лицензии</value>
+    <value>Добавить лицензии</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -716,9 +716,6 @@
   <data name="ChangePasswordError" xml:space="preserve">
     <value>Изменение пароля не удалось из-за неправильного нынешнего пароля или недействительного нового пароля.</value>
   </data>
-  <data name="ChangePasswordErrorUserNotFound" xml:space="preserve">
-    <value>Внутренняя ошибка: Изменение пароля не удалось, поскольку нынешний пользователь не был обнаружен.</value>
-  </data>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Ваш пароль был изменён.</value>
   </data>
@@ -772,9 +769,6 @@
   </data>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Транзакция UTC</value>
-  </data>
-  <data name="ConfigurationSuccess" xml:space="preserve">
-    <value>Обновление конфигурации объекта приложения прошло удачно. Вам может понадобиться перезапустить сервер для применения сделанных изменений.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Сделать это со всеми остальными файлами?</value>
@@ -1059,10 +1053,6 @@
     <value>Пожалуйста, расскажите нам, что Вы думаете о нас. Будем благодарны за любую обратную связь.</value>
     <comment>Text which motivates user to send feedback </comment>
   </data>
-  <data name="FeedbackFromUserMailSubject" xml:space="preserve">
-    <value>Обратная Связь от пользователя через приложение</value>
-    <comment>The mail subject used when an email is sent to us as a result of user feedback via an app</comment>
-  </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
     <value>Ваша обратная связь</value>
     <comment>Text displayed in feedback content textbox when it is empty</comment>
@@ -1144,9 +1134,6 @@
   </data>
   <data name="ForWhomHeadline" xml:space="preserve">
     <value>Для кого</value>
-  </data>
-  <data name="GetLogErrorDateFormat" xml:space="preserve">
-    <value>Формат первой и/или последней даты недействителен. Пожалуйста, используйте формат YYYY-MM-DD.</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Прекрасно! У Вас уже имеется аккаунт AxCrypt ID для '{0}'.
@@ -1450,15 +1437,6 @@
   <data name="MailBodySignaturePlainText" xml:space="preserve">
     <value>Благодарим Вас за использование AxCrypt!
  -  Команда AxCrypt</value>
-  </data>
-  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
-    <value>&lt;ul&gt; 
-&lt;li&gt;256-bit AES&lt;/li&gt; 
-&lt;li&gt;Ключ Совместного Пользования&lt;/li&gt; 
-&lt;li&gt;Защищенные Папки&lt;/li&gt; 
-&lt;li&gt;Управление Паролем&lt;/li&gt; 
-&lt;li&gt;Осведомлённость о Cloud Storage&lt;/li&gt; 
-&lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;Являясь подписчиком на Premium, у Вас есть доступ к большому количеству функций вдобавок к стандартным бесплатным опциям. С Premium Вы получаете доступ к таким функциям как:
@@ -1986,9 +1964,6 @@
   <data name="PromptBuyNow" xml:space="preserve">
     <value>Купить сейчас</value>
   </data>
-  <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Купить или Обновить Premium</value>
-  </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Поменять</value>
   </data>
@@ -2417,7 +2392,7 @@
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
   <data name="TermsAndConditionsLink" xml:space="preserve">
-    <value>Регистрируясь на AxCrypt, Вы подтверждаете Ваше согласие с нашими &lt;a&gt;Terms &amp;amp; Conditions &lt;/a&gt;</value>
+    <value>Регистрируясь на AxCrypt, Вы подтверждаете Ваше согласие с нашими &lt;a&gt;Правилами иamp; Условиями &lt;/a&gt;</value>
     <comment>Text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">

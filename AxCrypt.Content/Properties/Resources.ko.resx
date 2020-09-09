@@ -507,6 +507,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>리뉴</value>
   </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>구독 서비스가 ‪{0}에 다시 시작됩니다.</value>
+  </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Business 구독 갱신</value>
   </data>
@@ -959,7 +962,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>파일 존재, 이와 같이 저장</value>
   </data>
   <data name="EncryptToolStripButtonToolTipText" xml:space="preserve">
-    <value>보안할 파일들을 선택하십시오. </value>
+    <value>보안할 파일들을 선택하십시요. </value>
   </data>
   <data name="EncryptToolStripMenuItemText" xml:space="preserve">
     <value>보안</value>
@@ -2481,7 +2484,7 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>거래 목록</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>AxCrypt 응용 프로그램 윈도를 회복하시려면 클릭해주시기 바랍니다.</value>
+    <value>AxCrypt 응용 프로그램을 회복하시려면 클릭해주시기 바랍니다.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
