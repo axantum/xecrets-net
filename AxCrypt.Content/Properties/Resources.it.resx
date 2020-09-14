@@ -208,6 +208,9 @@ Scegli una password difficile da indovinare, poiché proteggerà sia le password
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Un doppio click  apre una finestra di dialogo per la password prima di aprire il file protetto.</value>
   </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>C'è un abbonamento attivo su questo account.</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Apri il File AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -663,6 +666,9 @@ Sei stato avvertito, ora divertiti!</value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Si</value>
+  </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>C'è un abbonamento attivo su questo account. Gli abbonamenti Premium non possono essere acquistati due volte con il medesimo account ‪AxCrypt‬.</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>Annullato '{0}'.</value>
@@ -2225,6 +2231,9 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Rimuovi dalla lista ma mantieni protetto</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>C'è un abbonamento ricorsivo attivo su questo account. Gli abbonamenti Business ricorsivi non devono essere rinnovati manualmente.</value>
   </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Rinnova tra</value>

@@ -500,7 +500,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Köp fler licenser</value>
+    <value>Lägg till fler licenser</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">

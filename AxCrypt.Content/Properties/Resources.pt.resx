@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>Sobre {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>Aceito os &lt;a href="{0}"&gt;Termos &amp; Condições&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>A conta deve ser primeiro verificada pelo usuário.
 </value>
@@ -207,6 +210,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Duplo clique abre uma caixa para a senha antes de abrir o arquivo protegido.</value>
   </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>Há uma subscrição activa nesta conta.</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Abrir arquivo AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -264,6 +270,11 @@ Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.
     <value>Por razões de segurança, por favor introduza sua senha novamente.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
   </data>
+  <data name="AppStoreCancelSubscriptionInformationText" xml:space="preserve">
+    <value>A sua subscrição é gerida através da Appstore, na qual deverá fazer as alterações necessárias.
+
+Actualizações à subscrição serão reflectidas aqui dentro de alguns minutos.</value>
+  </data>
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Versão {0}</value>
     <comment>Text containing information about current application version.</comment>
@@ -311,6 +322,9 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} não possui uma conta conosco, envie um convite para registrar uma conta e continue.</value>
   </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>{0} facturado anualmente</value>
+  </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Bem vindo ao AxCrypt Business.&lt;/p&gt; 
 &lt;p&gt;Você foi adicionado a uma subscrição AxCrypt Business por {0}, por isso tem agora acesso aos benefícios de assinante AxCrypt enquanto se mantiver um membro válido.&lt;/p&gt; 
@@ -324,6 +338,12 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administradores</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
+  <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
+    <value>A sua subscrição AxCrypt Business {0} terminou. Esperamos sinceramente que tenha gostado de usar a AxCrypt e que lhe tenha sido útil.</value>
+  </data>
+  <data name="BusinessExpiredMailSubject" xml:space="preserve">
+    <value>A sua subscrição AxCrypt Business terminou.</value>
   </data>
   <data name="BusinessExpiresSoonMailAdministratorBodyHtml" xml:space="preserve">
     <value>Como administrador, você deve renovar a subscrição para o seu team no módulo de administração da conta web do AxCrypt. Utilize o botão em baixo para aceder diretamente. Não se esqueça de informar o seu team de que irá proceder à renovação.</value>
@@ -523,6 +543,9 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="BusinessSubscriptionRenewMenu" xml:space="preserve">
     <value>Renovar</value>
   </data>
+  <data name="BusinessSubscriptionRenewsFormat" xml:space="preserve">
+    <value>A subscrição renova-se em {0}.</value>
+  </data>
   <data name="BusinessSubscriptionRenewTitle" xml:space="preserve">
     <value>Renovação da subscrição Business</value>
   </data>
@@ -640,8 +663,14 @@ Inclui software de http://www.bouncycastle.org/</value>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Sim</value>
   </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>Há uma subscrição activa nesta conta. Subscrições Premium não podem ser adquiridas duas vezes com a mesma conta AxCrypt.</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Cancelado '{0}'.</value>
+  </data>
+  <data name="CancelSubscriptionPrompt" xml:space="preserve">
+    <value>Cancelar Subscrição</value>
   </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Não foi possível iniciar aplicação por '{0}'.</value>
@@ -1153,9 +1182,9 @@ Se você, por alguma razão não souber ou não lembrar sua senha,  deberá real
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
   </data>
   <data name="IgnoreFileOpenWarningText" xml:space="preserve">
-    <value>'{0}' não pôde ser aberto em um aplicativo devido a restrições técnicas.  Isso pode ser por causa do tipo de arquivo, da sua localização ou outras propriedades. 
+    <value>'{0}' não pôde ser aberto numa aplicação devido a restrições técnicas. Tal poderá dever-se ao tipo de ficheiro, à sua localização ou a outras propriedades.
 
-Se você deseja exibir ou atualizar o conteúdo do arquivo, por favor descriptografe-o separadamente e depois o abra diretamente.</value>
+Se desejar visualizar ou actualizar o conteúdo do ficheiro, por favor decifre-o separadamente e de seguida abra-o directamente.</value>
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}'  não foi criptografado devido a restrições técnicas. Isso pode ser causado pela extensão, localização ou outras propriedades do arquivo.</value>
@@ -1250,6 +1279,9 @@ Faça login no AxCrypt com {2}, digite o código de verificação de 6 dígitos 
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Recibo</value>
+  </data>
+  <data name="InvoiceAppStoreSubscriptionInformation" xml:space="preserve">
+    <value>A moeda e o IVA podem diferir, por favor visite a &lt;a href="{0}"&gt;Appstore&lt;/a&gt; para mais detalhes.</value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Beneficiário:</value>
@@ -1429,18 +1461,28 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
     <value>Obrigado por usar AxCrypt!
  -  A Equipe AxCrypt</value>
   </data>
+  <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
+    <value>A sua subscrição expirou em &lt;b&gt;{0}&lt;/b&gt;. Já não tem acesso a funcionalidades Premium, tais como:</value>
+  </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>A sua subscrição foi cancelada e expirará em &lt;b&gt;{0}&lt;/b&gt;. Após esta data, não terá acesso a funcionalidades Premium, tais como:</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
-&lt;li&gt;256-bit AES&lt;/li&gt;
-&lt;li&gt;Chave de Compartilhamento&lt;/li&gt;
-&lt;li&gt;Pastas Protegidas&lt;/li&gt;
-&lt;li&gt;Gerenciamento de Senha&lt;/li&gt;
-&lt;li&gt;Conhecimento de Armazenamento da Nuvem&lt;/li&gt;
+&lt;li&gt;Aplicações móveis&lt;/li&gt;
+&lt;li&gt;AES de 256 bits&lt;/li&gt;
+&lt;li&gt;Partilha de Chaves&lt;/li&gt;
+&lt;li&gt;Pastas Seguras&lt;/li&gt;
+&lt;li&gt;Gestão de Palavras-Passe&lt;/li&gt;
+&lt;li&gt;Detecção de Armazenamento na Nuvem&lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;Como um assinante Premium, você tem acesso a uma grande quantidade de funções adicionais para além das que estão disponíveis aos assinantes gratuitos. Com o Premium, você obtém funções como:&lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
+  </data>
+  <data name="MailBodySubscriptionRenewText" xml:space="preserve">
+    <value>Pode renovar facilmente a sua subscrição aqui:</value>
   </data>
   <data name="MailBodyTitle" xml:space="preserve">
     <value>Olá, {0}.</value>
@@ -1635,6 +1677,9 @@ Você pode sempre abrir ficheiros encriptados com uma versão de secretária gra
     <value>Você está agora descadastrado das notícias e e-mails com informação.</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="MonthlySubscriptionTitle" xml:space="preserve">
+    <value>Mensal</value>
+  </data>
   <data name="MoreButtonText" xml:space="preserve">
     <value>Mais...</value>
     <comment>A 'More...' button text</comment>
@@ -1759,6 +1804,9 @@ Para retornar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;</val
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Opções</value>
   </data>
+  <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
+    <value>Para usar a versão móvel da AxCrypt, é necessária uma subscrição.</value>
+  </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Senha</value>
   </data>
@@ -1774,6 +1822,11 @@ Para retornar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;</val
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>A senha não é suficientemente boa para ser aceitável.</value>
+  </data>
+  <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
+    <value>A redefinição de palavra-passe não é possível para esta conta, uma vez que há uma alteração pendente de email de &lt;b&gt;{0}&lt;/b&gt;.
+
+Por favor, inicie sessão em &lt;b&gt;{0}&lt;/b&gt; e complete a alteração de email, ou redefina a palavra-passe para esta conta primeiro e de seguida complete a alteração.</value>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Esqueceu sua senha? Clique aqui</value>
@@ -1873,6 +1926,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Premium</value>
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
   </data>
+  <data name="PremiumExpiredMailSubject" xml:space="preserve">
+    <value>A sua subscrição AxCrypt Premium expirou.</value>
+  </data>
   <data name="PremiumExpiresSoonMailBody0Html" xml:space="preserve">
     <value>Sua assinatura do AxCrypt Premium acabará em breve. Esperamos que você tenha gostado de usar nossas funções e tenha achado-as úteis.</value>
   </data>
@@ -1921,6 +1977,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>{0}/mês</value>
     <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
+  <data name="PricePerMonthIndicatorText" xml:space="preserve">
+    <value>por mês</value>
+  </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Limpando arquivos descriptografados...</value>
     <comment>Message displayed on progress bar during temporary files cleanup.</comment>
@@ -1940,6 +1999,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   <data name="ProgressIndicatorSignInMessage" xml:space="preserve">
     <value>Iniciando sessão...</value>
     <comment>Title of progress indicator which is displayed during SignIn operation</comment>
+  </data>
+  <data name="ProgressIndicatorSubscriptionCreationMessage" xml:space="preserve">
+    <value>A Criar Subscrição...</value>
   </data>
   <data name="ProgressIndicatorTrialMessage" xml:space="preserve">
     <value>Iniciando teste...</value>
@@ -1966,7 +2028,7 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Comprar agora</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Comprar ou renovar Premium</value>
+    <value>Comprar Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Mudar</value>
@@ -2064,6 +2126,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="paypal-readmore" class="show-link"&gt;[Mais sobre pagamentos]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt; Os seus dados pessoais de pagamento nunca serão enviados ou armazenados no nosso servidor. Nós enviamos diretamente de você para nossos parceiros de gateway de pagamento através de uma conexão criptografada. Temos parceria com Stripe e Paypal, ambos cumprem os altos padrões estabelecidos pelo Padrão de Segurança de Dados do Setor de Cartões de Pagamento.&lt;a class="hide-link"&gt;[Collapse]&lt;/a&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="PurchasePageInformationText" xml:space="preserve">
+    <value>Com Premium, pode usar a AxCrypt em todo o seu potencial em qualquer número de dispositivos. O IVA pode ser ajustado durante o pagamento.</value>
   </data>
   <data name="PurchasePageTitle" xml:space="preserve">
     <value>Compre AxCrypt Premium</value>
@@ -2163,6 +2228,13 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Remover da lista, mas manter arquivo protegido.</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>Há uma subscrição recorrente activa nesta conta. Subscrições Business recorrentes não têm de ser renovadas manualmente.</value>
+  </data>
+  <data name="RenewInTitle" xml:space="preserve">
+    <value>Renovar em</value>
+    <comment>Used as "Renew in 30 days"</comment>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Reenviar</value>
@@ -2358,15 +2430,36 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Enviar comentários</value>
     <comment>Text of Submit feedback button</comment>
   </data>
+  <data name="SubscriptionAutoRenewOn" xml:space="preserve">
+    <value>A sua subscrição renovar-se-á em &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
+    <value>A sua subscrição AxCrypt Premium foi cancelada.</value>
+  </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Eliminado</value>
+  </data>
+  <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
+    <value>Poupe {0}%</value>
+  </data>
+  <data name="SubscriptionExpireOn" xml:space="preserve">
+    <value>A sua subscrição expirará em &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>Avaliação gratuita de 1 mês incluída</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} válido até {1}.</value>
     <comment>This will read something like "Premium valid until YYYY-MM-DD". The {0} field is replaced by a subscription plan name, and the {1} by a date.</comment>
   </data>
+  <data name="SubscriptionSelectionTitle" xml:space="preserve">
+    <value>Escolha o plano certo para si</value>
+  </data>
   <data name="SubscriptionsSuccessAdd" xml:space="preserve">
     <value>A assinatura foi salva com sucesso.</value>
+  </data>
+  <data name="SubscriptionStatusActiveText" xml:space="preserve">
+    <value>Activo</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>Como podemos te ajudar?</value>
@@ -2444,7 +2537,7 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Histórico de transações</value>
   </data>
   <data name="TrayBalloonTooltip" xml:space="preserve">
-    <value>Clique para restaurar a janela de aplicação do AxCrypt.</value>
+    <value>Clique no ícone AxCrypt para restaurar a janela da aplicação.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
@@ -2588,6 +2681,9 @@ Para mais informações, clique em OK para abrir uma página web para o nosso we
   </data>
   <data name="WillNotForgetPasswordWarningText" xml:space="preserve">
     <value>A sua senha será utilizada para proteger os seus ficheiros com a encriptação forte do AxCrypt. Se você esquecer a senha, não pode abrir estes ficheiros. Pode voltar a aceder à sua conta se reativar a senha, mas não poderá abrir os ficheiros protegidos com a senha antiga.</value>
+  </data>
+  <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
+    <value>Deseja continuar mesmo assim?</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Selecione os arquivos para deletá-los com segurança</value>
@@ -2784,5 +2880,8 @@ Para mais informações, clique em OK para abrir uma página web para o nosso we
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>O código de verificação deve ter, exatamente, 6 dígitos.</value>
+  </data>
+  <data name="YearlySubscriptionTitle" xml:space="preserve">
+    <value>Anual</value>
   </data>
 </root>

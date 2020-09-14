@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>Über {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>Ich akzeptiere die &lt;a href="{0}"&gt;Nutzungsbedingungen&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>Das Konto muss zuerst vom Benutzer überprüft werden.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -496,7 +499,7 @@ Umfasst Software von http://www.bouncycastle.org/ </value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Mehr Lizenzen kaufen</value>
+    <value>Mehr Lizenzen hinzufügen</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -1145,6 +1148,15 @@ Falls Sie aus irgendeinem Grund Ihr Passwort nicht wissen oder vergessen haben, 
   <data name="IdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Inaktivität Abmeldung</value>
     <comment>A menu text for the automatic sign out after X minutes of inactivity. It must be short to fit in a menu comfortably.</comment>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value>{0} wurde aufgrund technischer Restriktionen nicht geöffnet. Dies könnte auf das Dateiformat, den Speicherort oder anderen Eigenschaften zurückzuführen sein. 
+
+Wenn Sie den Dateiinhalt ansehen oder ändern möchten, entschlüsseln Sie bitte permanent. 
+</value>
+  </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value>{0}' wurde aus technischen Gründen nicht verschlüsselt. Dies kann durch die Dateiendung, den Speicherort oder andere Eigenschaften verursacht werden.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>AxCrypt ID mit Sharing- und Zugangskeys importieren. </value>
@@ -1966,7 +1978,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>Jetzt kaufen</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Premium erwerben oder verlängern</value>
+    <value>Premium erwerben</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Ändern</value>

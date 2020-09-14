@@ -123,6 +123,9 @@
   <data name="About" xml:space="preserve">
     <value>Об {0}</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>Я принимаю &lt;a href="{0}"&gt;Правила и Условия&lt;/a&gt;</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>Данный аккаунт должен быть вначале подтверждён пользователем.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -508,7 +511,7 @@
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Купить лицензии</value>
+    <value>Добавить лицензии</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -2417,7 +2420,7 @@
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
   <data name="TermsAndConditionsLink" xml:space="preserve">
-    <value>Регистрируясь на AxCrypt, Вы подтверждаете Ваше согласие с нашими &lt;a&gt;Terms &amp;amp; Conditions &lt;/a&gt;</value>
+    <value>Регистрируясь на AxCrypt, Вы подтверждаете Ваше согласие с нашими &lt;a&gt;Правилами иamp; Условиями &lt;/a&gt;</value>
     <comment>Text of link to Terms And Conditions in mobile application</comment>
   </data>
   <data name="TermsAndConditionsLinkFirstPart" xml:space="preserve">

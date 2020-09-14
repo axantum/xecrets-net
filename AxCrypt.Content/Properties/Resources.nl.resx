@@ -186,6 +186,9 @@ Kies iets wat moeilijk te raden is sinds het de wachtwoorden in de online wachtw
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Dubbelklik opent een wachtwoord-dialoogvenster voor het openen van het beveiligde bestand.</value>
   </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>Er is een actief en lopend abonnement op dit account.</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Open AxCrypt Bestand</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -641,6 +644,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Ja</value>
+  </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>Er is een actief abonnement op dit account. Premium abonnementen kunnen niet tweemaal worden gekocht met hetzelfde AxCrypt account.</value>
   </data>
   <data name="Canceled" xml:space="preserve">
     <value>'{0}' geannuleerd.</value>
@@ -1783,7 +1789,7 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
     <value>Opties</value>
   </data>
   <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
-    <value>Om AxCrypt voor mobiel te gebruiken, heeft u een abonnement nodig</value>
+    <value>Om AxCrypt voor mobiel te gebruiken, heeft u een abonnement nodig.</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Wachtwoord</value>
@@ -1908,7 +1914,7 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Uw AxCrypt Premium abonnement verloopt binnenkort. We hopen dat u tevreden bent met onze eigenschappen en dat u ze nuttig vond.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>We zouden het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Verleng uw abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;nu&lt;/a&gt;</value>
+    <value>We zouden het geweldig vinden voor u als u gebruik blijft maken van onze Premium eigenschappen. Verleng uw abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;nu&lt;/a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -2204,6 +2210,9 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Verwijder van lijst, maar houdt beveiligd</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
   </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>Er is een actief en lopend abonnement op dit account. Lopende Business abonnementen hoeven niet handmatig te worden verlengd.</value>
+  </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Verleng in</value>
     <comment>Used as "Renew in 30 days"</comment>
@@ -2420,7 +2429,7 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Uw abonnement verloopt op &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
-    <value>Gratis proefmaand inbegrepen. </value>
+    <value>Gratis proefmaand inbegrepen </value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} geldig tot {1}. </value>
