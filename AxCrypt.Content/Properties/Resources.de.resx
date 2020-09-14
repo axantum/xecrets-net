@@ -1428,6 +1428,15 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <value>Danke, dass Sie AxCrypt benutzen! 
  -  Das AxCrypt Team </value>
   </data>
+  <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
+    <value>&lt;ul&gt;
+&lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Key Sharing&lt;/li&gt;
+&lt;li&gt;Secured Folders&lt;/li&gt;
+&lt;li&gt;Password Management&lt;/li&gt;
+&lt;li&gt;Cloud Storage Awareness&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
   <data name="MailBodySubscriptionFeaturesIntroHtml" xml:space="preserve">
     <value>&lt;p&gt;Als Premium Benutzer stehen Ihnen eine Reihe von ausgezeichneten Funktionen zusätzlich zu den regulären kostenlosen Diensten zur Verfügung. Mit Premium haben Sie Zugang zu Diensten wie: &lt;/p&gt;</value>
     <comment>An introductory paragraph to the wonderful world of a paid subscription, at least as Premium level. We don't mention Premium, since this will be used for Business as well.</comment>
