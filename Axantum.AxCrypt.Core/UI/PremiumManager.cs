@@ -15,7 +15,7 @@ namespace Axantum.AxCrypt.Core.UI
     {
         public async Task<bool> StartTrial(LogOnIdentity identity)
         {
-            await DisplayPremiumPurchasePage(identity);
+            await BuyPremium(identity);
 
             return true;
         }
@@ -44,14 +44,6 @@ namespace Axantum.AxCrypt.Core.UI
         public void RedirectToMyAxCryptIDPage()
         {
             string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
-            New<IBrowser>().OpenUri(new Uri(link));
-        }
-
-        public async Task DisplayPremiumPurchasePage(LogOnIdentity identity)
-        {
-            IAccountService accountService = New<LogOnIdentity, IAccountService>(identity);
-            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
-            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
             New<IBrowser>().OpenUri(new Uri(link));
         }
     }

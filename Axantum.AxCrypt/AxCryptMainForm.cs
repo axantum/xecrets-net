@@ -836,7 +836,7 @@ namespace Axantum.AxCrypt
             _watchedFoldersOpenExplorerHereMenuItem.Click += (sender, e) => { _mainViewModel.OpenSelectedFolder.Execute(_mainViewModel.SelectedWatchedFolders.First()); };
             _watchedFoldersDecryptMenuItem.Click += async (sender, e) => { await _mainViewModel.DecryptWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
             _watchedFoldersRemoveMenuItem.Click += async (sender, e) => { await _mainViewModel.RemoveWatchedFolders.ExecuteAsync(_mainViewModel.SelectedWatchedFolders); };
-            _getPremiumToolStripMenuItem.Click += async (sender, e) => { await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity)); };
+            _getPremiumToolStripMenuItem.Click += async (sender, e) => { await New<PremiumManager>().BuyPremium(New<KnownIdentities>().DefaultEncryptionIdentity); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
             _manageAccountToolStripMenuItem.Click += async (sender, e) => { RedirectToMyAxCryptIDPage(); };
         }
@@ -1019,13 +1019,6 @@ namespace Axantum.AxCrypt
             _signOutToolStripMenuItem.Visible = isSignedIn;
             _notifySignOutToolStripMenuItem.Visible = isSignedIn;
             _encryptionUpgradeMenuItem.Enabled = isSignedInWithAxCryptId;
-        }
-
-        private static async Task DisplayPremiumPurchasePage(IAccountService accountService)
-        {
-            string tag = New<KnownIdentities>().IsLoggedOn ? (await accountService.AccountAsync()).Tag ?? string.Empty : string.Empty;
-            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail, tag);
-            Process.Start(link);
         }
 
         public void RedirectToMyAxCryptIDPage()
@@ -1699,7 +1692,7 @@ namespace Axantum.AxCrypt
                 return;
             }
 
-            await DisplayPremiumPurchasePage(New<LogOnIdentity, IAccountService>(New<KnownIdentities>().DefaultEncryptionIdentity));
+            await New<PremiumManager>().BuyPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
         }
 
         private async Task PremiumFeatureActionAsync(LicenseCapability requiredCapability, Func<Task> realHandler)

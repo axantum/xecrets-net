@@ -3938,7 +3938,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Home/Purchase?email={1}&amp;tag={2}.
+        ///   Looks up a localized string similar to {0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}.
         /// </summary>
         public static string LinkToAxCryptPremiumPurchasePage {
             get {

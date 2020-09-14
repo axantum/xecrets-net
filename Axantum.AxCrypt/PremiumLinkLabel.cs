@@ -104,7 +104,7 @@ namespace Axantum.AxCrypt
             switch (_planInformation.PlanState)
             {
                 case PlanState.CanTryPremium:
-                    await New<PremiumManager>().DisplayPremiumPurchasePage(New<KnownIdentities>().DefaultEncryptionIdentity);
+                    await New<PremiumManager>().BuyPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
                     break;
 
                 case PlanState.NoPremium:
@@ -117,7 +117,7 @@ namespace Axantum.AxCrypt
                         break;
                     }
 
-                    await New<PremiumManager>().DisplayPremiumPurchasePage(New<KnownIdentities>().DefaultEncryptionIdentity);
+                    await New<PremiumManager>().BuyPremium(New<KnownIdentities>().DefaultEncryptionIdentity);
                     break;
 
                 default:
