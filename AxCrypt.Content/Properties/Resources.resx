@@ -2239,7 +2239,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Click &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; for more information about the Premium Trial.</value>
+    <value>Click &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt; for more information about the subscriptions.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Press and hold to view more</value>
@@ -2788,6 +2788,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionStatusActiveText" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="SubscriptionTrialPrompt" xml:space="preserve">
+    <value>Get 30 days subscription free!</value>
+  </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>How can we help you?</value>
   </data>
@@ -2898,6 +2901,9 @@ The AxCrypt Team</value>
   </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>Try Broken File</value>
+  </data>
+  <data name="TryBusinessLabel" xml:space="preserve">
+    <value>Try Business</value>
   </data>
   <data name="TryItDescription" xml:space="preserve">
     <value>Secure files on the desktop, and read them on the road</value>
