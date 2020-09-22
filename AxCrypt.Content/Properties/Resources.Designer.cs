@@ -4625,7 +4625,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!.
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a subscription, so why not try for free for 30 days!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
@@ -5574,7 +5574,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click &lt;a href=&quot;https://www.axcrypt.net/premium-trial/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information about the Premium Trial..
+        ///   Looks up a localized string similar to Click &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information about the subscriptions..
         /// </summary>
         public static string PremiumTrialInstructionsLinkText {
             get {
@@ -7025,6 +7025,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get 30 days subscription free!.
+        /// </summary>
+        public static string SubscriptionTrialPrompt {
+            get {
+                return ResourceManager.GetString("SubscriptionTrialPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How can we help you?.
         /// </summary>
         public static string SupportBodyPrompt {
@@ -7315,6 +7324,15 @@ namespace AxCrypt.Content.Properties {
         public static string TryBrokenFileToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("TryBrokenFileToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try Business.
+        /// </summary>
+        public static string TryBusinessLabel {
+            get {
+                return ResourceManager.GetString("TryBusinessLabel", resourceCulture);
             }
         }
         
