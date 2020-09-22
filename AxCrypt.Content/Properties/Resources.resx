@@ -1868,7 +1868,7 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a Premium subscription, so we'd like to start a free Trial for you!</value>
+    <value>We noticed you don't have a subscription, so why not try for free for 30 days!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Without Premium you can only view and permanently decrypt encrypted files.</value>

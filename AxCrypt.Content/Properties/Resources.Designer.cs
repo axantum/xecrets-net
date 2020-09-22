@@ -4625,7 +4625,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a Premium subscription, so we&apos;d like to start a free Trial for you!.
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a subscription, so why not try for free for 30 days!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
