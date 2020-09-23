@@ -719,6 +719,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plan setup and payment.
+        /// </summary>
+        public static string BusinessCreationSetupAndPaymentTitle {
+            get {
+                return ResourceManager.GetString("BusinessCreationSetupAndPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiredMailBody0Html {
@@ -1257,6 +1266,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionTotalMemberLicensesLabel {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionTotalMemberLicensesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THE FIRST MONTH IS FREE.
+        /// </summary>
+        public static string BusinessTrialInfo {
+            get {
+                return ResourceManager.GetString("BusinessTrialInfo", resourceCulture);
             }
         }
         
@@ -1833,6 +1851,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click continue to start adding users and customize your AxCrypt account..
+        /// </summary>
+        public static string ClickToCustomizeBusinessSubscriptionText {
+            get {
+                return ResourceManager.GetString("ClickToCustomizeBusinessSubscriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to download..
         /// </summary>
         public static string ClickToDownloadText {
@@ -2008,6 +2035,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string CountryLabel {
+            get {
+                return ResourceManager.GetString("CountryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create AxCrypt ID.
         /// </summary>
         public static string CreateAccountToolStripMenuItemText {
@@ -2022,6 +2058,15 @@ namespace AxCrypt.Content.Properties {
         public static string CreateAccountToolStripMenuItemToolTipText {
             get {
                 return ResourceManager.GetString("CreateAccountToolStripMenuItemToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Congratulations and welcome to AxCrypt Business!.
+        /// </summary>
+        public static string CreateBusinessSuccess {
+            get {
+                return ResourceManager.GetString("CreateBusinessSuccess", resourceCulture);
             }
         }
         
@@ -2514,6 +2559,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done!.
+        /// </summary>
+        public static string DoneTitle {
+            get {
+                return ResourceManager.GetString("DoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -2618,6 +2672,15 @@ namespace AxCrypt.Content.Properties {
         public static string EmailLanguageInformation {
             get {
                 return ResourceManager.GetString("EmailLanguageInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email setup for account owner.
+        /// </summary>
+        public static string EmailSetupForAccountOwnerTitle {
+            get {
+                return ResourceManager.GetString("EmailSetupForAccountOwnerTitle", resourceCulture);
             }
         }
         
@@ -3149,6 +3212,15 @@ namespace AxCrypt.Content.Properties {
         public static string GetLogErrorLogType {
             get {
                 return ResourceManager.GetString("GetLogErrorLogType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href=&quot;{0}Home/Register/&quot;&gt;sign up&lt;/a&gt;..
+        /// </summary>
+        public static string GetSubscriptionLoginRequiredInfoText {
+            get {
+                return ResourceManager.GetString("GetSubscriptionLoginRequiredInfoText", resourceCulture);
             }
         }
         
@@ -4879,6 +4951,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next Step.
+        /// </summary>
+        public static string NextStepLabel {
+            get {
+                return ResourceManager.GetString("NextStepLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are Signed Out. Click to Sign In..
         /// </summary>
         public static string NoDefaultEncryptionKeySetToolTip {
@@ -5574,6 +5655,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get AxCrypt Premium today and get the first 30 days for free!.
+        /// </summary>
+        public static string PremiumTrialInfo {
+            get {
+                return ResourceManager.GetString("PremiumTrialInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt; for more information about the subscriptions..
         /// </summary>
         public static string PremiumTrialInstructionsLinkText {
@@ -6134,6 +6224,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Do you have any question about AxCrypt Business?&lt;/b&gt;
+        ///Please &lt;a href=&quot;mailto:business@axcrypt.net&quot;&gt;contact us&lt;/a&gt; and we will help you as soon as possible..
+        /// </summary>
+        public static string QueriesAboutAxCryptBusiness {
+            get {
+                return ResourceManager.GetString("QueriesAboutAxCryptBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please rate us on &lt;a&gt;Google Play&lt;/a&gt;.
         /// </summary>
         public static string RateApplicationLinkAndroid {
@@ -6217,7 +6317,7 @@ namespace AxCrypt.Content.Properties {
         /// <summary>
         ///   Looks up a localized string similar to To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing a verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That&apos;s it!
         ///
-        ///A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app..
+        ///Get 30 days free and cancel at any time!.
         /// </summary>
         public static string RegisterPageBody {
             get {
@@ -6616,6 +6716,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Let&apos;s setup the account/subscription.
+        /// </summary>
+        public static string SetupAccountOrSubscriptionLabel {
+            get {
+                return ResourceManager.GetString("SetupAccountOrSubscriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New AxCrypt User.
         /// </summary>
         public static string SharedWithUnverfiedMessageTitle {
@@ -6686,6 +6795,15 @@ namespace AxCrypt.Content.Properties {
         public static string ShowPasswordOptionPrompt {
             get {
                 return ResourceManager.GetString("ShowPasswordOptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Signed in with &lt;b&gt;{0}&lt;/b&gt;.
+        /// </summary>
+        public static string SignedInUserInfo {
+            get {
+                return ResourceManager.GetString("SignedInUserInfo", resourceCulture);
             }
         }
         
@@ -6787,6 +6905,15 @@ namespace AxCrypt.Content.Properties {
         public static string SslRequiredTitle {
             get {
                 return ResourceManager.GetString("SslRequiredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start free trial.
+        /// </summary>
+        public static string StartFreeTrial {
+            get {
+                return ResourceManager.GetString("StartFreeTrial", resourceCulture);
             }
         }
         
@@ -7034,6 +7161,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Summary.
+        /// </summary>
+        public static string SummaryTitle {
+            get {
+                return ResourceManager.GetString("SummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How can we help you?.
         /// </summary>
         public static string SupportBodyPrompt {
@@ -7210,6 +7346,24 @@ namespace AxCrypt.Content.Properties {
         public static string TextPreferenceUpdate {
             get {
                 return ResourceManager.GetString("TextPreferenceUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for choosing AxCrypt Business.
+        /// </summary>
+        public static string ThanksChoosingAxCryptBusinessTitle {
+            get {
+                return ResourceManager.GetString("ThanksChoosingAxCryptBusinessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for choosing AxCrypt!.
+        /// </summary>
+        public static string ThanksChoosingAxCryptTitle {
+            get {
+                return ResourceManager.GetString("ThanksChoosingAxCryptTitle", resourceCulture);
             }
         }
         

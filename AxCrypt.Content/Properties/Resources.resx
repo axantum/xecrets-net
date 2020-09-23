@@ -375,6 +375,9 @@ You have been warned, now enjoy!</value>
     <value>Administrators</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
   </data>
+  <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
+    <value>Plan setup and payment</value>
+  </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
   </data>
@@ -602,6 +605,9 @@ You have been warned, now enjoy!</value>
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
+  <data name="BusinessTrialInfo" xml:space="preserve">
+    <value>THE FIRST MONTH IS FREE</value>
+  </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verify</value>
   </data>
@@ -806,6 +812,9 @@ You must complete these steps to complete the process.</value>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Click to check for a newer version.</value>
   </data>
+  <data name="ClickToCustomizeBusinessSubscriptionText" xml:space="preserve">
+    <value>Click continue to start adding users and customize your AxCrypt account.</value>
+  </data>
   <data name="ClickToDownloadText" xml:space="preserve">
     <value>Click to download.</value>
   </data>
@@ -870,11 +879,17 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="CookiesDisabledError" xml:space="preserve">
     <value>Cookies appear to be disabled in your browser. Unless you accept session cookies from us you cannot sign in and the site may not perform as expected. Read more in our &lt;a href="{0}"&gt;cookie policy&lt;/a&gt;.</value>
   </data>
+  <data name="CountryLabel" xml:space="preserve">
+    <value>Country</value>
+  </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Create AxCrypt ID</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Create an AxCrypt ID with a sharing and access keys, to use and share files securely.</value>
+  </data>
+  <data name="CreateBusinessSuccess" xml:space="preserve">
+    <value>Congratulations and welcome to AxCrypt Business!</value>
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algorithm</value>
@@ -1044,6 +1059,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DiscountCodeTitle" xml:space="preserve">
     <value>Discount Code</value>
   </data>
+  <data name="DoneTitle" xml:space="preserve">
+    <value>Done!</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -1084,6 +1102,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>We try to send mailings in your language, but if you send us email we may respond in English. Please use Google Translate or similar if required.</value>
     <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
+  <data name="EmailSetupForAccountOwnerTitle" xml:space="preserve">
+    <value>Email setup for account owner</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Description]</value>
@@ -1280,6 +1301,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>The selected log type is invalid.</value>
+  </data>
+  <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
+    <value>Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Great! You already have an AxCrypt ID account for '{0}'.
@@ -1960,6 +1984,9 @@ You can always open encrypted files with a free desktop version of  AxCrypt.</va
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="NextStepLabel" xml:space="preserve">
+    <value>Next Step</value>
+  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>You are Signed Out. Click to Sign In.</value>
   </data>
@@ -2238,6 +2265,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Priority Support Request</value>
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
+  <data name="PremiumTrialInfo" xml:space="preserve">
+    <value>Get AxCrypt Premium today and get the first 30 days for free!</value>
+  </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
     <value>Click &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt; for more information about the subscriptions.</value>
   </data>
@@ -2440,6 +2470,10 @@ A confirmation of your purchase will be sent to your e-mail from your payment pr
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Purging Active Files</value>
   </data>
+  <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
+    <value>&lt;b&gt;Do you have any question about AxCrypt Business?&lt;/b&gt;
+Please &lt;a href="mailto:business@axcrypt.net"&gt;contact us&lt;/a&gt; and we will help you as soon as possible.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Please rate us on &lt;a&gt;Google Play&lt;/a&gt;</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -2475,7 +2509,7 @@ A confirmation of your purchase will be sent to your e-mail from your payment pr
   <data name="RegisterPageBody" xml:space="preserve">
     <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing a verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
 
-A 30 day trial of AxCrypt Premium is included and you can start it at any time from the AxCrypt app.</value>
+Get 30 days free and cancel at any time!</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Sign up for an AxCrypt ID</value>
@@ -2631,6 +2665,9 @@ A confirmation e-mail will be sent to the new address. The change is effective o
 
 Choose something difficult to guess, since it will protect passwords in the online password manager as well as access to the site. Type slowly and carefully, and do not forget your new password!</value>
   </data>
+  <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
+    <value>Let's setup the account/subscription</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>New AxCrypt User</value>
   </data>
@@ -2659,6 +2696,9 @@ Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Show Password</value>
+  </data>
+  <data name="SignedInUserInfo" xml:space="preserve">
+    <value> Signed in with &lt;b&gt;{0}&lt;/b&gt;</value>
   </data>
   <data name="SignInBeforePremiumMessage" xml:space="preserve">
     <value>Sign in first!</value>
@@ -2703,6 +2743,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Secure Connection Required</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartFreeTrial" xml:space="preserve">
+    <value>Start free trial</value>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
     <value>Did you know? You can enable the 'Include Subfolders' option to work with folders in folders. A paid subscription plan is required for this.</value>
@@ -2791,6 +2834,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionTrialPrompt" xml:space="preserve">
     <value>Get 30 days subscription free!</value>
   </data>
+  <data name="SummaryTitle" xml:space="preserve">
+    <value>Summary</value>
+  </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>How can we help you?</value>
   </data>
@@ -2854,6 +2900,12 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="TextPreferenceUpdate" xml:space="preserve">
     <value>Update - Get notified of all AxCrypt updates</value>
+  </data>
+  <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
+    <value>Thank you for choosing AxCrypt Business</value>
+  </data>
+  <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
+    <value>Thank you for choosing AxCrypt!</value>
   </data>
   <data name="TitleAxCryptIdSignInText" xml:space="preserve">
     <value>AxCrypt ID Sign In</value>
