@@ -1806,6 +1806,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To get started with your account, choose whether you intend to use AxCrypt mainly as a private user or business..
+        /// </summary>
+        public static string ChoosePrivateOrBusinessSignUpInfo {
+            get {
+                return ResourceManager.GetString("ChoosePrivateOrBusinessSignUpInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clean Open Files.
         /// </summary>
         public static string CleanDecryptedToolStripMenuItemText {
@@ -5975,6 +5984,15 @@ namespace AxCrypt.Content.Properties {
         public static string PromptPasswordManager {
             get {
                 return ResourceManager.GetString("PromptPasswordManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Private.
+        /// </summary>
+        public static string PromptPrivate {
+            get {
+                return ResourceManager.GetString("PromptPrivate", resourceCulture);
             }
         }
         
