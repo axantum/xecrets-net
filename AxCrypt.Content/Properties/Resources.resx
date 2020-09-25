@@ -796,6 +796,9 @@ You must complete these steps to complete the process.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Check if a newer version is available for download. Requires Internet access.</value>
   </data>
+  <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
+    <value>To get started with your account, choose whether you intend to use AxCrypt mainly as a private user or business.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Clean Open Files</value>
   </data>
@@ -2384,6 +2387,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PromptPasswordManager" xml:space="preserve">
     <value>Password Manager</value>
+  </data>
+  <data name="PromptPrivate" xml:space="preserve">
+    <value>Private</value>
   </data>
   <data name="PromptSetNewPassword" xml:space="preserve">
     <value>Set Your Password</value>
