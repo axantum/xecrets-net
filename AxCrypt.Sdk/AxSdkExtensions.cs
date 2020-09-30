@@ -1,7 +1,7 @@
 ﻿using System;
-using Axantum.AxCrypt.Abstractions.Algorithm;
-using Axantum.AxCrypt.Core;
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using AxCrypt.Abstractions.Algorithm;
+using AxCrypt.Core;
+using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {

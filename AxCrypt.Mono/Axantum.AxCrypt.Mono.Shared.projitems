@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{E012DEFD-DD3A-411F-BDE3-6BCB12D96120}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Axantum.AxCrypt.Mono</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AesWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HMACBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\Sha1Wrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\Sha256Wrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DelayTimer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DelegateTraceListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EmailParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpRequestClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HttpRequestServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Launcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logging.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MonoPlatform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\BlockingBuffer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestCaller.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RuntimeEnvironment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sleep.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ThreadWorker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Timing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AxCryptHMACSHA1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AxCryptHMACSHA1Wrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\HMACSHA512Wrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoStreamWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoTransformUnwrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\CryptoTransformWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cryptography\RandomNumberGeneratorWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortableSemaphoreWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\SingleThread.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Portable\PortablePath.cs" />
+  </ItemGroup>
+</Project>

@@ -3,43 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono", "Axantum.AxCrypt.Mono\Axantum.AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Mono", "AxCrypt.Mono\AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core", "Axantum.AxCrypt.Core\Axantum.AxCrypt.Core.csproj", "{966E9510-1A1D-46C7-97B5-460A0FF9B89F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Core", "AxCrypt.Core\AxCrypt.Core.csproj", "{966E9510-1A1D-46C7-97B5-460A0FF9B89F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Core.Test", "Axantum.AxCrypt.Core.Test\Axantum.AxCrypt.Core.Test.csproj", "{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Core.Test", "AxCrypt.Core.Test\AxCrypt.Core.Test.csproj", "{2689B1EF-29AF-4F3E-A7EC-C87FF66DC403}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Mono.Test", "Axantum.AxCrypt.Mono.Test\Axantum.AxCrypt.Mono.Test.csproj", "{79C4901A-BCAA-49AA-A789-6A8F97ACC881}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Mono.Test", "AxCrypt.Mono.Test\AxCrypt.Mono.Test.csproj", "{79C4901A-BCAA-49AA-A789-6A8F97ACC881}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolutionItems", "SolutionItems\SolutionItems.csproj", "{A60D139A-7DBC-4BC5-976A-D89C32C913AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt", "Axantum.AxCrypt\Axantum.AxCrypt.csproj", "{0998224C-F45E-4EBF-A944-7FFBCB2DB134}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Desktop.Window", "AxCrypt.Desktop.Window\AxCrypt.Desktop.Window.csproj", "{0998224C-F45E-4EBF-A944-7FFBCB2DB134}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Forms", "Axantum.AxCrypt.Forms\Axantum.AxCrypt.Forms.csproj", "{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Forms", "AxCrypt.Forms\AxCrypt.Forms.csproj", "{AC7C1ECD-4543-4CF3-8938-32F3D8CB89D5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastle.AxCrypt", "BouncyCastle.AxCrypt\BouncyCastle.AxCrypt.csproj", "{3680C939-B21F-4444-B646-42FB4B29A786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop", "Axantum.AxCrypt.Desktop\Axantum.AxCrypt.Desktop.csproj", "{D64DE570-3A36-49D3-95AA-9262647B04EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Desktop", "AxCrypt.Desktop\AxCrypt.Desktop.csproj", "{D64DE570-3A36-49D3-95AA-9262647B04EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Desktop.Test", "Axantum.AxCrypt.Desktop.Test\Axantum.AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Desktop.Test", "AxCrypt.Desktop.Test\AxCrypt.Desktop.Test.csproj", "{79C1CBFF-B54E-43FC-A4CB-E6AF0AA1D0FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api", "Axantum.AxCrypt.Api\Axantum.AxCrypt.Api.csproj", "{6EA275D5-2372-4FCF-BB4F-5C48F5901350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Api", "AxCrypt.Api\AxCrypt.Api.csproj", "{6EA275D5-2372-4FCF-BB4F-5C48F5901350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Api.Test", "Axantum.AxCrypt.Api.Test\Axantum.AxCrypt.Api.Test.csproj", "{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Api.Test", "AxCrypt.Api.Test\AxCrypt.Api.Test.csproj", "{D34E5E80-BFF9-4300-8ADA-9085D0EC65BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Abstractions", "Axantum.AxCrypt.Abstractions\Axantum.AxCrypt.Abstractions.csproj", "{61E59383-C053-4416-9981-0DCFB8D89DC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Abstractions", "AxCrypt.Abstractions\AxCrypt.Abstractions.csproj", "{61E59383-C053-4416-9981-0DCFB8D89DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Fake", "Axantum.AxCrypt.Fake\Axantum.AxCrypt.Fake.csproj", "{48602976-ABA8-4639-93E1-54CD0B2F0C23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Fake", "AxCrypt.Fake\AxCrypt.Fake.csproj", "{48602976-ABA8-4639-93E1-54CD0B2F0C23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Common", "Axantum.AxCrypt.Common\Axantum.AxCrypt.Common.csproj", "{FB429566-E4A5-4391-805B-0E2A2AE297AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Common", "AxCrypt.Common\AxCrypt.Common.csproj", "{FB429566-E4A5-4391-805B-0E2A2AE297AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Content", "AxCrypt.Content\AxCrypt.Content.csproj", "{CB0C5A7A-FBEE-4F02-BDAE-4A7F206C1CD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axantum.AxCrypt.Common.Test", "Axantum.AxCrypt.Common.Test\Axantum.AxCrypt.Common.Test.csproj", "{D08C2916-8ECB-4163-8171-BD86EF392858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Common.Test", "AxCrypt.Common.Test\AxCrypt.Common.Test.csproj", "{D08C2916-8ECB-4163-8171-BD86EF392858}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Sdk", "AxCrypt.Sdk\AxCrypt.Sdk.csproj", "{18269DE2-2BD0-441B-B540-596E87B6E869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxCrypt.Sdk", "AxCrypt.Sdk\AxCrypt.Sdk.csproj", "{18269DE2-2BD0-441B-B540-596E87B6E869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

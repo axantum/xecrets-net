@@ -1,8 +1,8 @@
-﻿using Axantum.AxCrypt.Abstractions.Rest;
-using Axantum.AxCrypt.Api;
-using Axantum.AxCrypt.Api.Model;
-using Axantum.AxCrypt.Core.Crypto;
-using Axantum.AxCrypt.Core.UI;
+﻿using AxCrypt.Abstractions.Rest;
+using AxCrypt.Api;
+using AxCrypt.Api.Model;
+using AxCrypt.Core.Crypto;
+using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

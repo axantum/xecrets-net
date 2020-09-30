@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Axantum.AxCrypt.Abstractions;
-using Axantum.AxCrypt.Abstractions.Algorithm;
-using Axantum.AxCrypt.Common;
-using Axantum.AxCrypt.Core;
-using Axantum.AxCrypt.Core.UI;
-using Axantum.AxCrypt.Mono;
-using Axantum.AxCrypt.Mono.Portable;
+using AxCrypt.Abstractions;
+using AxCrypt.Abstractions.Algorithm;
+using AxCrypt.Common;
+using AxCrypt.Core;
+using AxCrypt.Core.UI;
+using AxCrypt.Mono;
+using AxCrypt.Mono.Portable;
 using AxCrypt.Sdk.Internal;
-using static Axantum.AxCrypt.Abstractions.TypeResolve;
+using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Sdk
 {
@@ -36,7 +36,7 @@ namespace AxCrypt.Sdk
             TypeMap.Register.New<RandomNumberGenerator>(() => PortableFactory.RandomNumberGenerator());
             TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
             TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
-            TypeMap.Register.New<Aes>(() => new Axantum.AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+            TypeMap.Register.New<Aes>(() => new AxCrypt.Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
             TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
             TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
             TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
