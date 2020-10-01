@@ -19,7 +19,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Axantum.targets">
+    <None Include="AxCrypt.Net.targets">
       <SubType>Designer</SubType>
     </None>
     <None Include="..\Solution.FxCop" />
