@@ -5,7 +5,7 @@
 #region License
 
 /*
- *  Axantum.Xecrets.Core - Xecrets Core and Reference Implementation
+ *  AxCrypt.Xecrets.Core - Xecrets Core and Reference Implementation
  *
  *  Copyright (C) 2010 Svante Seleborg
  *
