@@ -234,7 +234,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Axantum.AxCrypt.ruleset" />
+    <None Include="AxCrypt.Desktop.Window.ruleset" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -385,7 +385,7 @@
   <PropertyGroup>
     <_AxCanonicalName>AxCrypt</_AxCanonicalName>
   </PropertyGroup>
-  <Import Project="..\SolutionItems\Axantum.targets" />
+  <Import Project="..\SolutionItems\AxCrypt.Net.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
