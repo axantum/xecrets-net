@@ -2976,7 +2976,7 @@ The AxCrypt Team</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
   </data>
   <data name="TryPremiumToolTip" xml:space="preserve">
-    <value>You are not using the highest level of security. Click to try Premium for free now!</value>
+    <value>You are not using the highest level of security. Click to try for free now!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
