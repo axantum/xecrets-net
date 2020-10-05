@@ -7536,7 +7536,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are not using the highest level of security. Click to try Premium for free now!.
+        ///   Looks up a localized string similar to You are not using the highest level of security. Click to try for free now!.
         /// </summary>
         public static string TryPremiumToolTip {
             get {
