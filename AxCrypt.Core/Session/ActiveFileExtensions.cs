@@ -25,17 +25,18 @@
 
 #endregion Coypright and License
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
-
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.UI;
-
-using AxCrypt.Content;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -102,7 +103,20 @@ namespace AxCrypt.Core.Session
                     }
 
                     EncryptionParameters parameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                    await AddSharingParameters(parameters, activeFile, encryptedFileLock);
+
+                    EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
+                    bool isDecryptedWithMasterKey = false;
+                    if (properties.DecryptionParameter != null && properties.DecryptionParameter.PrivateKey != null)
+                    {
+                        isDecryptedWithMasterKey = properties.DecryptionParameter.PrivateKey.Equals(activeFile.Identity.GetPrivateMasterKey());
+                    }
+
+                    if (isDecryptedWithMasterKey)
+                    {
+                        parameters = new EncryptionParameters(activeFile.Properties.CryptoId, AxCryptFile.GenerateRandomPassword());
+                    }
+
+                    await AddSharingParameters(parameters, activeFile, properties, isDecryptedWithMasterKey);
 
                     New<AxCryptFile>().Encrypt(activeFile.DecryptedFileInfo, destination, parameters, AxCryptOptions.EncryptWithCompression, progress);
                 }, progress);
@@ -122,18 +136,37 @@ namespace AxCrypt.Core.Session
             return new ActiveFile(activeFile, activeFile.DecryptedFileInfo.LastWriteTimeUtc, ActiveFileStatus.AssumedOpenAndDecrypted);
         }
 
-        private static async Task AddSharingParameters(EncryptionParameters parameters, ActiveFile activeFile, FileLock encryptedFileLock)
+        private static async Task AddSharingParameters(EncryptionParameters parameters, ActiveFile activeFile, EncryptedProperties properties, bool isDecryptedWithMasterKey)
         {
+            await AddMasterKeyParameters(parameters, activeFile);
+
+            if (!activeFile.IsShared && !isDecryptedWithMasterKey)
+            {
+                return;
+            }
+
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.KeySharing))
             {
-                EncryptedProperties properties = EncryptedProperties.Create(encryptedFileLock.DataStore);
                 await parameters.AddAsync(properties.SharedKeyHolders);
                 return;
             }
 
-            if (activeFile.IsShared)
+            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.KeySharingRemovedInFreeModeWarningText, Common.DoNotShowAgainOptions.KeySharingRemovedInFreeModeWarning);
+        }
+
+        private static async Task AddMasterKeyParameters(EncryptionParameters parameters, ActiveFile activeFile)
+        {
+            LogOnIdentity logOnIdentity = New<KnownIdentities>().DefaultEncryptionIdentity;
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business) && logOnIdentity.MasterKeyPair != null)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.KeySharingRemovedInFreeModeWarningText, Common.DoNotShowAgainOptions.KeySharingRemovedInFreeModeWarning);
+                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair.PublicKey);
+                parameters.PublicMasterKey = new UserPublicKey(logOnIdentity.UserEmail, publicKey);
+                return;
+            }
+
+            if (activeFile.IsMasterKeyShared)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "!!When Updating master key shared file on non business user that file master key sharing information removed.", Common.DoNotShowAgainOptions.MasterKeyRemovedWarning);
             }
         }
     }

@@ -493,6 +493,26 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap masterkey_32px {
+            get {
+                object obj = ResourceManager.GetObject("masterkey_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap masterkey_keyshare_32px {
+            get {
+                object obj = ResourceManager.GetObject("masterkey_keyshare_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minus_40px {
             get {
                 object obj = ResourceManager.GetObject("minus_40px", resourceCulture);

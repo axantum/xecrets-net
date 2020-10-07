@@ -664,6 +664,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Master key can&apos;t be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key..
+        /// </summary>
+        public static string ApproveMasterKeyMoreThanOneBusinessError {
+            get {
+                return ResourceManager.GetString("ApproveMasterKeyMoreThanOneBusinessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For security reasons, please enter your password again..
         /// </summary>
         public static string AppSignInMessage {

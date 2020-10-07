@@ -1237,5 +1237,20 @@ namespace AxCrypt.Core
 
             return Resolve.Portable.Path().Combine(directory, randomName.ToString());
         }
+
+        public static Passphrase GenerateRandomPassword()
+        {
+            const string validFileNameChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+-=[]{};:|,./<>?`~";
+
+            int randomLength = 18;
+            System.Text.StringBuilder randomPassword = new System.Text.StringBuilder(randomLength + 4);
+            byte[] random = Resolve.RandomGenerator.Generate(randomLength);
+            for (int i = 0; i < randomLength; ++i)
+            {
+                randomPassword.Append(validFileNameChars[random[i] % validFileNameChars.Length]);
+            }
+
+            return new Passphrase(randomPassword.ToString());
+        }
     }
 }

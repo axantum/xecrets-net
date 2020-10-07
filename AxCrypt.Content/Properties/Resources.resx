@@ -338,6 +338,9 @@ Please sign in using the same password you used then.</value>
   <data name="ApplyNowLabel" xml:space="preserve">
     <value>Apply now</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>!!Master key can't be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key.</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>

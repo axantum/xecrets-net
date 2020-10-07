@@ -27,7 +27,6 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
@@ -83,6 +82,8 @@ namespace AxCrypt.Core
         public bool PassphraseIsValid { get; set; }
 
         public IEnumerable<UserPublicKey> AsymmetricRecipients { get; private set; }
+
+        public IAsymmetricPublicKey AsymmetricMasterKey { get; private set; }
 
         public DecryptionParameter DecryptionParameter { get; set; }
 

@@ -27,7 +27,6 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
@@ -93,6 +92,19 @@ namespace AxCrypt.Core
                     return new UserPublicKey[0];
                 }
                 return headerBlock.Recipients.PublicKeys;
+            }
+        }
+
+        public IAsymmetricPublicKey AsymmetricMasterKey
+        {
+            get
+            {
+                V2AsymmetricMasterKeyEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricMasterKeyEncryptedHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    return null;
+                }
+                return headerBlock.MasterPublicKey;
             }
         }
 

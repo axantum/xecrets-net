@@ -56,6 +56,8 @@ namespace AxCrypt.Core
 
         IEnumerable<UserPublicKey> AsymmetricRecipients { get; }
 
+        IAsymmetricPublicKey AsymmetricMasterKey { get; }
+
         bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
 
         bool Load(IAsymmetricPrivateKey privateKey, Guid cryptoId, Headers headers);
