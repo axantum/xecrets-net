@@ -229,6 +229,9 @@ Zaloguj się, używając tego samego hasła, którego używałeś.</value>
     <value>AxCrypt</value>
     <comment>Title of mobile application</comment>
   </data>
+  <data name="ApplyButtonText" xml:space="preserve">
+    <value>Zastosuj kod</value>
+  </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Podaj kod zniżkowy</value>
   </data>
@@ -479,7 +482,7 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Wykup więcej licencji</value>
+    <value>Dodaj więcej licencji</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -1421,6 +1424,7 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
+&lt;li&gt;Aplikacje mobilne&lt;/li&gt;
 &lt;li&gt;256-bitowy AES&lt;/li&gt;
 &lt;li&gt;Udostępnianie klucza&lt;/li&gt;
 &lt;li&gt;Zabezpieczone Foldery&lt;/li&gt;
@@ -1586,7 +1590,7 @@ Ten program jest licencjonowany zgodnie z umową.
     <value>Otwórz Explorator tutaj</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy zaproponować Ci bezpłatny okres próbny!</value>
+    <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy zaproponować Ci bezpłatny 30-dniowy okres próbny!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.
@@ -1920,7 +1924,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Kliknij &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat okresu próbnego Premium.</value>
+    <value>Kliknij &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat subskrypcji.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Naciśnij i przytrzymaj aby zobaczyć więcej</value>
@@ -1979,7 +1983,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Kup teraz</value>
   </data>
   <data name="PromptBuyPremium" xml:space="preserve">
-    <value>Wykup lub przedłuż Premium</value>
+    <value>Wykup Premium</value>
   </data>
   <data name="PromptChange" xml:space="preserve">
     <value>Zmień</value>
@@ -2147,8 +2151,8 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
     <value>Aby rozpocząć korzystanie z programu AxCrypt, musisz zarejestrować AxCrypt ID, podając swój adres email w poniższym formularzu. Na adres ten zostanie wysłana wiadomość z linkiem weryfikacyjnym, po kliknięciu na który zostaniesz poproszony o wybranie hasła. Po prostu!
- 
-Masz do dyspozycji 30-dniowy okres próbny AxCrypt Premium, który możesz uruchomić w dowolnym momencie z poziomu aplikacji AxCrypt.</value>
+
+Skorzysaj z 30-dniowego okresu próbnego który możesz przerwać w dowolnym momencie!</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Zarejestruj własny AxCrypt ID</value>
@@ -2370,6 +2374,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   </data>
   <data name="SubscriptionDeletedText" xml:space="preserve">
     <value>Usunięto</value>
+  </data>
+  <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
+    <value>Obejmuje bezpłatny miesięczny okres próbny</value>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} ważny do {1}.</value>

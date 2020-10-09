@@ -4742,7 +4742,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We noticed you don&apos;t have a subscription, so why not try for free for 30 days!.
+        ///   Looks up a localized string similar to We noticed you don&apos;t have a subscription, you can try for free for 30 days!.
         /// </summary>
         public static string MessageAskAboutStartTrial {
             get {
@@ -5142,6 +5142,15 @@ namespace AxCrypt.Content.Properties {
         public static string OldVersionTooltip {
             get {
                 return ResourceManager.GetString("OldVersionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user could not be deleted because they are the only administrator of the Business subscription. Either cancel the subscription or nominate another administrator..
+        /// </summary>
+        public static string OnlyAdminOnActiveBusinessSubscriptionError {
+            get {
+                return ResourceManager.GetString("OnlyAdminOnActiveBusinessSubscriptionError", resourceCulture);
             }
         }
         
