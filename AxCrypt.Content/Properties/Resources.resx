@@ -1907,7 +1907,7 @@ This program is licensed according to the agreement.
     <value>Open Explorer Here</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>We noticed you don't have a subscription, so why not try for free for 30 days!</value>
+    <value>We noticed you don't have a subscription, you can try for free for 30 days!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Without Premium you can only view and permanently decrypt encrypted files.</value>
@@ -2061,6 +2061,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Your version is old. Please click to check for a newer version.</value>
+  </data>
+  <data name="OnlyAdminOnActiveBusinessSubscriptionError" xml:space="preserve">
+    <value>The user could not be deleted because they are the only administrator of the Business subscription. Either cancel the subscription or nominate another administrator.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Select secured file to open</value>

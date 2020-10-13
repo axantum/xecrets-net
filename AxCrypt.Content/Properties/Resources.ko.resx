@@ -104,6 +104,9 @@
   <data name="About" xml:space="preserve">
     <value>{0}에 대해</value>
   </data>
+  <data name="AcceptTermsAndConditionsPrompt" xml:space="preserve">
+    <value>이용 약관에 동의합니다.</value>
+  </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
     <value>사용자가 우선 계정을 인증해야 합니다.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
@@ -185,6 +188,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>더블클릭을 하시면 보안 파일을 열기전에 보안창이 떠 비밀번호를 입력하시면 됩니다. </value>
+  </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>구독 서비스 시작</value>
   </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>AxCrypt 파일 열기</value>
@@ -288,6 +294,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BeneficiaryNoAccount" xml:space="preserve">
     <value>{0} 의 계정이 저희에게 존재하지 않습니다. 계정을 등록하라는 초대장을 보내고 계속하십시오. </value>
+  </data>
+  <data name="BilledYearlyText" xml:space="preserve">
+    <value>일년 구독</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>AxCrypt Business에 오신것을 환영합니다.
@@ -627,6 +636,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="ButtonYesText" xml:space="preserve">
     <value>네</value>
   </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>Premium Subscription 구독 서비스를 갱신하세요.</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>'{0}'이 취소.</value>
   </data>
@@ -835,6 +847,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="DeleteAccountErrorIncorrectPassword" xml:space="preserve">
     <value>잘못된 비밀번호로 인해 삭제 불가능.</value>
+  </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>AxCrypt ID 삭제</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>AxCrypt ID가 성공적으로 삭제되었습니다.
@@ -1775,6 +1790,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>비밀번호들</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>비밀번호가 맞지 않습니다.</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>본 비밀번호는 허용되지 않습니다.</value>
   </data>
@@ -2145,9 +2163,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>새로운 사용자이신가요? 회원가입해주시기 바랍니다</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>AxCrypt를 사용하시려면 아래 양식에 사용자님의 메일 주소를 입력하여 AxCrypt ID에 가입해야합니다. 그러면 활성화 링크가 적힌 메시지가 지정된 주소로 전송되고 해당 링크를 클릭하면 비밀번호를 선택하라는 메시지가 표시됩니다. 
+    <value>AxCrypt를 사용하시려면 아래 양식에 사용자님의 메일 주소로 AxCrypt ID에 가입해야합니다. 활성화 링크가 적힌 메시지가 지정된 이메일 주소로 전송되고 해당 링크를 클릭하면 비밀번호를 선택하라는 메시지가 표시됩니다. 
 
-30일간의 AxCrypt Premium 무료 체험이 포함되고 있고, AxCrypt 앱에서 언제든 시작하실 수 있습니다.</value>
+30일간의 AxCrypt Premium 무료 체험이 포함되며, AxCrypt 앱을 언제든 이용하실 수 있습니다.</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>AxCrypt ID를 위해 회원가입</value>
@@ -2176,6 +2194,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>리스트에서 파일 제외 및  보안 유지</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>AxCrypt Business 구독 갱신할 시간입니다.</value>
   </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>리뉴</value>

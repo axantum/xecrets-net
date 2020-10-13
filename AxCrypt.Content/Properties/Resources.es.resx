@@ -207,6 +207,9 @@ Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administ
   <data name="ActiveFileToolTip" xml:space="preserve">
     <value>Doble clic abre un cuadro de diálogo antes de abrir el archivo protegido.</value>
   </data>
+  <data name="ActiveSubscriptionText" xml:space="preserve">
+    <value>Esta cuenta tiene una suscripción periódica activa.</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Añadir un archivo de AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -330,6 +333,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administradores</value>
     <comment>A label preceeding a list of administrator emails, displayed for users who are not administrators themselves.</comment>
+  </data>
+  <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
+    <value>Configuración y pago del plan</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Tu suscripción a AxCrypt Business {0} caducó. Esperamos sinceramente que hayas disfrutado de AxCrypt y que te haya parecido útil.</value>
@@ -511,7 +517,7 @@ Incluye el software de http://www.bouncycastle.org/.</value>
     <comment>The label for the sum total column in the purchase dialog.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseMenu" xml:space="preserve">
-    <value>Compra</value>
+    <value>Agregar</value>
     <comment>The menu text for topping up (and possibly renewing) an existing subscription. Should be short, possibly one word.</comment>
   </data>
   <data name="BusinessSubscriptionPurchaseTitle" xml:space="preserve">
@@ -552,6 +558,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
+  </data>
+  <data name="BusinessTrialInfo" xml:space="preserve">
+    <value>EL PRIMER MES ES GRATIS</value>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verificar</value>
@@ -655,6 +664,9 @@ Incluye el software de http://www.bouncycastle.org/.</value>
   <data name="ButtonYesText" xml:space="preserve">
     <value>Sí</value>
   </data>
+  <data name="BuyMorePremiumSubscriptionWarning" xml:space="preserve">
+    <value>Esta cuenta tiene una suscripción periódica activa. Las suscripciones Premium no pueden adquirirse dos veces con la misma cuenta AxCrypt.</value>
+  </data>
   <data name="Canceled" xml:space="preserve">
     <value>Cancelado '{0}'.</value>
   </data>
@@ -734,6 +746,9 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Comprobar si hay una versión más reciente para descargar. Requiere acceso a Internet.</value>
   </data>
+  <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
+    <value>Para comenzar a usar tu cuenta, elige si deseas utilizar AxCrypt  como usuario privado o como empresa.</value>
+  </data>
   <data name="CleanDecryptedToolStripMenuItemText" xml:space="preserve">
     <value>Limpiar archivos abiertos</value>
   </data>
@@ -749,6 +764,9 @@ Debe completar estos pasos para completar el proceso.</value>
   </data>
   <data name="ClickToCheckForNewerVersionTooltip" xml:space="preserve">
     <value>Haga clic para comprobar si hay una nueva versión.</value>
+  </data>
+  <data name="ClickToCustomizeBusinessSubscriptionText" xml:space="preserve">
+    <value>Haz clic en Continuar para comenzar a agregar usuarios y personalizar tu cuenta AxCrypt.</value>
   </data>
   <data name="ClickToDownloadText" xml:space="preserve">
     <value>Haga clic para descargar.</value>
@@ -806,11 +824,17 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="CookiesDisabledError" xml:space="preserve">
     <value>Las cookies parecen desactivados en su navegador. A menos que acepte las cookies  de nosotros no puede iniciar sesión y el sitio no puede funcionar como se espera. Lea más en nuestra &lt;a href="{0}"&gt;política de cookies &lt;/a&gt;.</value>
   </data>
+  <data name="CountryLabel" xml:space="preserve">
+    <value>País</value>
+  </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Crear un AxCrypt ID</value>
   </data>
   <data name="CreateAccountToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Crear una AxCrypt ID con claves compartidas y claves de acceso para usar y compartir archivos de forma segura.</value>
+  </data>
+  <data name="CreateBusinessSuccess" xml:space="preserve">
+    <value>¡Felicitaciones! Te damos la bienvenida a AxCrypt Business</value>
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algoritmo</value>
@@ -940,6 +964,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="DiscountCodeTitle" xml:space="preserve">
     <value>Código de descuento</value>
   </data>
+  <data name="DoneTitle" xml:space="preserve">
+    <value>¡Listo!</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>No volver a mostrar este mensaje.</value>
   </data>
@@ -970,6 +997,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>Intentamos de enviar correos electrónicos en su idioma, pero si nos envía un correo electrónico podamos responder en Inglés. Por favor, use Google Translate o similar si es necesario.</value>
     <comment>Explain to the user that while we're trying to send automatic e-mail to them in their own language, we may actually respond in English, and suggest the use of Google Translate. The translation should probably read: "We try to send mailings in [Language], but if you...2</comment>
+  </data>
+  <data name="EmailSetupForAccountOwnerTitle" xml:space="preserve">
+    <value>Configuración del correo electrónico del propietario de la cuenta</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Descripción]</value>
@@ -1140,6 +1170,9 @@ Si usted no acepta nuestras cookies de sesión temporales, no se puede iniciar l
   </data>
   <data name="ForWhomHeadline" xml:space="preserve">
     <value>A quien</value>
+  </data>
+  <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
+    <value>Inicia sesión para obtener tu suscripción. Si aún no tienes una cuenta, primero debes &lt;a href="https://account.axcrypt.net/Home/Register/"&gt; registrarte &lt;/a&gt;.</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>¡Estupendo! Ya tiene una cuenta AxCrypt ID para '{0}'.
@@ -1606,7 +1639,7 @@ Este programa se licencia según el acuerdo.
     <value>Abrir el explorador aquí</value>
   </data>
   <data name="MessageAskAboutStartTrial" xml:space="preserve">
-    <value>Observamos que no tiene una suscripción de Premium, entonces te queremos a empezar una prueba gratuita.</value>
+    <value>Notamos que no cuentas con una suscripción, ¡así que puedes iniciar una prueba gratuita de 30 días!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
     <value>Hemos notado que no tienes una suscripción Premium, ¡por lo que te proponemos iniciar una prueba gratuita! 
@@ -1696,6 +1729,9 @@ Puede siempre abrir los archivos cifrados con una versión de escritorio gratuit
   <data name="Next" xml:space="preserve">
     <value>Próximo</value>
   </data>
+  <data name="NextStepLabel" xml:space="preserve">
+    <value>Siguiente paso</value>
+  </data>
   <data name="NoDefaultEncryptionKeySetToolTip" xml:space="preserve">
     <value>Sesión finaliza. Haga clic para Iniciar sesión.</value>
   </data>
@@ -1755,6 +1791,9 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt
   </data>
   <data name="OldVersionTooltip" xml:space="preserve">
     <value>Su versión es antigua. Por favor, haga clic para comprobar si hay una nueva versión.</value>
+  </data>
+  <data name="OnlyAdminOnActiveBusinessSubscriptionError" xml:space="preserve">
+    <value>No se pudo eliminar al usuario porque es el único administrador de la suscripción Business. Cancela la suscripción o bien designa a otro administrador.</value>
   </data>
   <data name="OpenEncryptedFileOpenDialogTitle" xml:space="preserve">
     <value>Seleccione el archivo protegido para abrir</value>
@@ -1949,8 +1988,11 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>¡Esta característica requiere un plan de pago! ¿Te gustaría abrir nuestra página web, donde puedes hacer una compra?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
+  <data name="PremiumTrialInfo" xml:space="preserve">
+    <value>¡Obtén AxCrypt Premium hoy y accede a 30 días de prueba gratuita!</value>
+  </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Haz clic en &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; para obtener más información sobre la prueba gratuita Premium.</value>
+    <value>Haz clic en &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt;  para obtener más información sobre las suscripciones.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Mantenga pulsado para ver más</value>
@@ -2066,6 +2108,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PromptPasswordManager" xml:space="preserve">
     <value>Administración de contraseñas</value>
   </data>
+  <data name="PromptPrivate" xml:space="preserve">
+    <value>Privado</value>
+  </data>
   <data name="PromptSetNewPassword" xml:space="preserve">
     <value>Nueva contraseña</value>
   </data>
@@ -2151,6 +2196,11 @@ Tu proveedor de pagos te enviará una confirmación de la compra a tu e-mail. Pu
   <data name="PurgingActiveFiles" xml:space="preserve">
     <value>Limpieza de archivos activos</value>
   </data>
+  <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
+    <value>&lt;b&gt; ¿Tienes alguna pregunta sobre AxCrypt Business? &lt;/b&gt; 
+
+Por favor, &lt;a href="mailto:business@axcrypt.net"&gt; contáctanos &lt;/a&gt; y te ayudaremos lo antes posible.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Por favor, valóranos en &lt;a&gt;Google Play&lt;/a&gt;</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -2184,9 +2234,9 @@ Tu proveedor de pagos te enviará una confirmación de la compra a tu e-mail. Pu
     <value>¿Nuevo usuario? Regístrate</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>Para empezar a utilizar AxCrypt tienes que registrarte, para obtener una AxCrypt ID, indicando tu dirección de correo electrónico en el siguiente formulario. Se te enviará un e-mail a la dirección especificada con un enlace de verificación, y al hacer clic en ese enlace se te pedirá que elijas una contraseña. ¡Y ya está!
+    <value>Para empezar a utilizar AxCrypt tienes que registrarte a fin de obtener una AxCrypt ID; para ello, debes indicar tu dirección de correo electrónico en el formulario que se muestra a continuación. Se te enviará un correo electrónico con un enlace de verificación, y al hacer clic en ese enlace se te pedirá que elijas una contraseña. ¡Y ya está!
 
-Se incluye una prueba gratuita de 30 días de AxCrypt Premium, que podrás iniciar en cualquier momento desde la aplicación de AxCrypt.</value>
+Obtén una prueba gratuita de 30 días. ¡Puedes cancelarla cuando quieras!</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Regístrese para AxCrypt ID</value>
@@ -2215,6 +2265,9 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
   <data name="RemoveRecentFileToolStripMenuItemText" xml:space="preserve">
     <value>Eliminar de la lista, pero mantener archivo protegido.</value>
     <comment>This text is used in the context menu option, which will help the users to remove the file from the recent files list and remove the folder from the secured folders list.</comment>
+  </data>
+  <data name="RenewActiveBusinessSubscriptionWarning" xml:space="preserve">
+    <value>Esta cuenta tiene una suscripción periódica activa, por lo que no es necesario renovarla manualmente.</value>
   </data>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Renueva el</value>
@@ -2321,6 +2374,9 @@ Un correo electrónico de confirmación será enviado a la nueva dirección. El 
 
 Elija algo difícil de adivinar, ya que protegerá las contraseñas del administrador de contraseñas en línea, así como el acceso al sitio. Llene lentamente y con cuidado, ¡y no se olvide su nueva contraseña!</value>
   </data>
+  <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
+    <value>Configura la cuenta/suscripción</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Nuevo usuario AxCrypt</value>
   </data>
@@ -2349,6 +2405,9 @@ Por favor, tenga en cuenta informar '{0}' directamente sobre la seguridad de arc
   </data>
   <data name="ShowPasswordOptionPrompt" xml:space="preserve">
     <value>Mostrar contraseña</value>
+  </data>
+  <data name="SignedInUserInfo" xml:space="preserve">
+    <value>Sesión iniciada con &lt;b&gt;{0}&lt;/b&gt;</value>
   </data>
   <data name="SignInBeforePremiumMessage" xml:space="preserve">
     <value>¡Inicie sesión primero!</value>
@@ -2389,6 +2448,9 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Se requiere una conexión segura</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartFreeTrial" xml:space="preserve">
+    <value>Iniciar prueba gratis</value>
   </data>
   <data name="StartupTipIncludeSubfoldersFeature" xml:space="preserve">
     <value>¿Sabías esto? Puedes  activar la opción "Incluir Subcarpetas" para trabajar con carpetas dentro de carpetas. Una suscripción de pago es requerido para ello.</value>
@@ -2447,6 +2509,12 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   <data name="SubscriptionStatusActiveText" xml:space="preserve">
     <value>Activo</value>
   </data>
+  <data name="SubscriptionTrialPrompt" xml:space="preserve">
+    <value>¡Obtén 30 días de suscripción gratis!</value>
+  </data>
+  <data name="SummaryTitle" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>¿Cómo podemos ayudarte?</value>
   </data>
@@ -2499,6 +2567,12 @@ Para ir a la página de inicio, haga clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</
   <data name="TextPreferenceUpdate" xml:space="preserve">
     <value>Actualización - Apúntate para todas las actualizaciones de AxCrypt</value>
   </data>
+  <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
+    <value>Gracias por elegir AxCrypt Business</value>
+  </data>
+  <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
+    <value>¡Gracias por elegir AxCrypt!</value>
+  </data>
   <data name="TitleAxCryptIdSignInText" xml:space="preserve">
     <value>AxCrypt ID Iniciar sesión</value>
   </data>
@@ -2540,6 +2614,9 @@ El Equipo de AxCrypt</value>
     <value>¿Problemas para recordar tu contraseña?</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
+  <data name="TryBusinessLabel" xml:space="preserve">
+    <value>Prueba Business</value>
+  </data>
   <data name="TryItDescription" xml:space="preserve">
     <value>Protege tus archivos en el escritorio y léelos por el camino</value>
     <comment>Description of "Try It" slide on Onboarding screen in mobile application.</comment>
@@ -2553,7 +2630,7 @@ El Equipo de AxCrypt</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
   </data>
   <data name="TryPremiumToolTip" xml:space="preserve">
-    <value>¡No está usando el máximo nivel de seguridad! ¡Haz clic para probar ahora Premium gratis!</value>
+    <value>No estás usando el nivel máximo de seguridad. ¡Haz clic para probarlo gratis!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
   <data name="UnknownCrypto" xml:space="preserve">
