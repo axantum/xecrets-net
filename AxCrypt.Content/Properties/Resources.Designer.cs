@@ -2080,6 +2080,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you require alternative payment methods, choose this option and have a business support person contact you as soon as possible..
+        /// </summary>
+        public static string CreateBusinessWithOtherPaymentMethodsHelpText {
+            get {
+                return ResourceManager.GetString("CreateBusinessWithOtherPaymentMethodsHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our business support will contact you shortly to help you get started with your business account! Click continue to go to your account..
+        /// </summary>
+        public static string CreateBusinessWithOtherPaymentMethodsSuccess {
+            get {
+                return ResourceManager.GetString("CreateBusinessWithOtherPaymentMethodsSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Algorithm.
         /// </summary>
         public static string CryptoNameText {
@@ -3203,6 +3221,24 @@ namespace AxCrypt.Content.Properties {
         public static string GermanLanguageSelectionText {
             get {
                 return ResourceManager.GetString("GermanLanguageSelectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (available for 5 members or more).
+        /// </summary>
+        public static string GetContactedByUsAvailableInfo {
+            get {
+                return ResourceManager.GetString("GetContactedByUsAvailableInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get contacted by us.
+        /// </summary>
+        public static string GetContactedByUsPrompt {
+            get {
+                return ResourceManager.GetString("GetContactedByUsPrompt", resourceCulture);
             }
         }
         
@@ -6923,6 +6959,15 @@ namespace AxCrypt.Content.Properties {
         public static string SslRequiredTitle {
             get {
                 return ResourceManager.GetString("SslRequiredTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get immediate access! First month is free and you can cancel at anytime..
+        /// </summary>
+        public static string StartFreeBusinessTrialHelpText {
+            get {
+                return ResourceManager.GetString("StartFreeBusinessTrialHelpText", resourceCulture);
             }
         }
         

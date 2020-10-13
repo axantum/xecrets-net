@@ -894,6 +894,12 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="CreateBusinessSuccess" xml:space="preserve">
     <value>Congratulations and welcome to AxCrypt Business!</value>
   </data>
+  <data name="CreateBusinessWithOtherPaymentMethodsHelpText" xml:space="preserve">
+    <value>If you require alternative payment methods, choose this option and have a business support person contact you as soon as possible.</value>
+  </data>
+  <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
+    <value>Our business support will contact you shortly to help you get started with your business account! Click continue to go to your account.</value>
+  </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algorithm</value>
   </data>
@@ -1298,6 +1304,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GermanLanguageSelectionText" xml:space="preserve">
     <value>Deutsch (German)</value>
+  </data>
+  <data name="GetContactedByUsAvailableInfo" xml:space="preserve">
+    <value>(available for 5 members or more)</value>
+  </data>
+  <data name="GetContactedByUsPrompt" xml:space="preserve">
+    <value>Get contacted by us</value>
   </data>
   <data name="GetLogErrorDateFormat" xml:space="preserve">
     <value>The start and/or end date format is invalid. Please use the format YYYY-MM-DD.</value>
@@ -2749,6 +2761,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SslRequiredTitle" xml:space="preserve">
     <value>Secure Connection Required</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
+  </data>
+  <data name="StartFreeBusinessTrialHelpText" xml:space="preserve">
+    <value>Get immediate access! First month is free and you can cancel at anytime.</value>
   </data>
   <data name="StartFreeTrial" xml:space="preserve">
     <value>Start free trial</value>
