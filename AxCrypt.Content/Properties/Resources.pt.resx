@@ -127,8 +127,7 @@
     <value>Aceito os &lt;a href="{0}"&gt;Termos &amp; Condições&lt;/a&gt;</value>
   </data>
   <data name="AccountMustBeVerified" xml:space="preserve">
-    <value>A conta deve ser primeiro verificada pelo usuário.
-</value>
+    <value>A conta deve ser primeiro verificada pelo usuário.</value>
     <comment>Error message when an attempt is made to use an unverified account.</comment>
   </data>
   <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
@@ -200,8 +199,7 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
     <comment>Message about mail with activation code.</comment>
   </data>
   <data name="ActivationCodeTitle" xml:space="preserve">
-    <value>Introduza o seu código de verificação
-</value>
+    <value>Introduza o seu código de verificação</value>
     <comment>Title of ActivationCode step on SignUp page in mobile application</comment>
   </data>
   <data name="ActiveFileKnownKeyToolTip" xml:space="preserve">
@@ -235,9 +233,7 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="AlreadyVerifiedInfo" xml:space="preserve">
     <value>Muito bem. Você já verificou a sua conta, isso é ótimo!
 
-Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.
-
-</value>
+Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.</value>
     <comment>A brief informative message the account is already verified, and to please use the password already set to sign in.</comment>
   </data>
   <data name="AlwaysOffline" xml:space="preserve">
@@ -459,7 +455,7 @@ Inclui software de http://www.bouncycastle.org/</value>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
     <value>Leia mais &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;aqui&lt;/a&gt;.</value>
-    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
+    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
     <value>Gerir</value>
@@ -746,7 +742,7 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
     <value>Sua senha foi alterada.</value>
   </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
-    <value>Verifique atualizações </value>
+    <value>Verifique atualizações</value>
   </data>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Verifique se uma nova versão está disponível.  Requere acesso à Internet.</value>
@@ -800,7 +796,7 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
     <value>Marca temporal</value>
   </data>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
-    <value> Transação UTC</value>
+    <value>Transação UTC</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Fazer isso para todos os arquivos restantes?</value>
@@ -831,7 +827,7 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   <data name="CookiesDisabledError" xml:space="preserve">
     <value>Parece que os cookies estão desabilitados no seu navegador. A não ser que aceite nossa sessão de cookies, você não pode fazer login e o site pode não operar como desejado. Leia mais na nossa &lt;a href="{0}"&gt;política de cookies&lt;/a&gt;.</value>
   </data>
-  <data name="CountryLabel" xml:space="preserve">
+  <data name="CountryLabel">
     <value>País</value>
   </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
@@ -842,6 +838,9 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   </data>
   <data name="CreateBusinessSuccess" xml:space="preserve">
     <value>Parabéns e bem-vinda(o) a AxCrypt Business!</value>
+  </data>
+  <data name="CreateBusinessWithOtherPaymentMethodsHelpText" xml:space="preserve">
+    <value>Se precisar de métodos de pagamento alternativos, escolha esta opção para que uma pessoa do apoio ao negócio a(o) contacte o mais rápido possível.</value>
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algoritmo</value>
@@ -964,7 +963,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
-    <value>Este email automático é traduzido para o seu idioma de preferência, porém o serviço pessoal direto e suporte são em Inglês. </value>
+    <value>Este email automático é traduzido para o seu idioma de preferência, porém o serviço pessoal direto e suporte são em Inglês.</value>
   </data>
   <data name="DiscountCodeAppliedText" xml:space="preserve">
     <value>Código de Desconto {0} aplicado.</value>
@@ -983,11 +982,11 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
     <value>Abra arquivos protegidos por amigos e colegas.</value>
-    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
     <value>Acesse arquivos-chave compartilhados</value>
-    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Você está limitado apenas ao acesso de leitura! Somente os utilizadores com uma subscrição Premium válida podem editar ou criar novas entradas de senhas.</value>
@@ -1060,7 +1059,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <comment>The first part of "Expired in x days" label in mobile application</comment>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
-    <value>Exportar Segredo do ID AxCrypt e Par de Chaves de Compartilhamento </value>
+    <value>Exportar Segredo do ID AxCrypt e Par de Chaves de Compartilhamento</value>
   </data>
   <data name="ExportMyPrivateKeyToolStripMenuItemToolTipText" xml:space="preserve">
     <value>Para mover um ID AxCrypt, exporte as Chaves de Segredo e Compartilhamento e importe em outro lugar.</value>
@@ -1091,11 +1090,11 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="FeedbackCategoryQuestion" xml:space="preserve">
     <value>Pergunta</value>
-    <comment>Displayed name of "Question" feedback category in mobile application </comment>
+    <comment>Displayed name of "Question" feedback category in mobile application</comment>
   </data>
   <data name="FeedbackDescriptionLabel" xml:space="preserve">
     <value>Diga-nos o que você pensa, esse tipo de comentário é muito apreciado.</value>
-    <comment>Text which motivates user to send feedback </comment>
+    <comment>Text which motivates user to send feedback</comment>
   </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
     <value>Sua opinião</value>
@@ -1179,6 +1178,12 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="ForWhomHeadline" xml:space="preserve">
     <value>À quem</value>
   </data>
+  <data name="GetContactedByUsAvailableInfo" xml:space="preserve">
+    <value>(disponível para 5 ou mais membros)</value>
+  </data>
+  <data name="GetContactedByUsPrompt" xml:space="preserve">
+    <value>Seja contactada(o) por nós</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Por favor, inicie sessão para obter a sua subscrição! Se ainda não tem uma conta, deve &lt;a href="https://account.axcrypt.net/Home/Register/"&gt;aderir&lt;/a&gt; primeiro.</value>
   </data>
@@ -1260,6 +1265,12 @@ O acesso à Internet é recomendável e necessário para ativar um plano Premium
 
 Sua senha não está armazenada no nosso servidor, e a conexão é sempre encriptada.</value>
   </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Por favor, especifique o tempo como 'hh:mm:ss.mmm'.</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>URL inválida.</value>
+  </data>
   <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
     <value>Este código de desconto não é válido.</value>
   </data>
@@ -1271,12 +1282,6 @@ Sua senha não está armazenada no nosso servidor, e a conexão é sempre encrip
   </data>
   <data name="InvalidPath" xml:space="preserve">
     <value>O arquivo ou caminho '{0}' é inválido para isso.</value>
-  </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
-    <value>Por favor, especifique o tempo como 'hh:mm:ss.mmm'.</value>
-  </data>
-  <data name="Invalid_URL" xml:space="preserve">
-    <value>URL inválida.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Você foi convidado para a Segurança de Arquivo AxCrypt por &lt;b&gt;{0}&lt;/b&gt;. Para começar a proteger seus arquivos, faça o &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; e instale o AxCrypt. Faça login no AxCrypt com &lt;b&gt;{2}&lt;/b&gt;, coloque seu código de verificação e sua senha secreta.</value>
@@ -1390,7 +1395,7 @@ Por favor especifique o idioma a ser usado no convite e uma mensagem pessoal opc
     <value>Novos contatos só podem ser adicionados quando estiverem online!</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
-    <value>Clique para selecionar os arquivos criptografados para compartilhar com outros. </value>
+    <value>Clique para selecionar os arquivos criptografados para compartilhar com outros.</value>
   </data>
   <data name="KnownFolderNameMacDocuments" xml:space="preserve">
     <value>Documentos</value>
@@ -1899,10 +1904,7 @@ Nós avaliamos a senha estimando sua força, que é baseado na extensão e na co
 
 A avaliação desconsidera completamente as partes da senha que são reconhecidas como sendo as 1.000 senhas mais comuns, bem como o espaço em branco. Por exemplo, a senha 'secretX password Y 123456' é avaliada como apenas 'XY', uma vez que os espaços, 'segredo', 'senha' e '123456' são ignorados!
 
-Nós classificamos a senha em 4 categorias de força crescente, onde nós não aceitamos nenhuma senha na categoria mais baixa. O exemplo acima não é aceito por essa razão.
-
-
-</value>
+Nós classificamos a senha em 4 categorias de força crescente, onde nós não aceitamos nenhuma senha na categoria mais baixa. O exemplo acima não é aceito por essa razão.</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
   <data name="PasswordRulesShortInfo" xml:space="preserve">
@@ -2204,7 +2206,7 @@ Será enviada uma confirmação da sua compra para o seu email a partir do forne
     <value>Expurgando arquivos ativos</value>
   </data>
   <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
-    <value>&lt;b&gt;Tem alguma questão sobre AxCrypt Business?&lt;/b&gt;Por favor, &lt;a href="mailto:business@axcrypt.net"&gt;contacte-nos&lt;/a&gt; que nós ajudaremos o mais cedo possível.</value>
+    <value>&lt;b&gt;Tem alguma questão sobre AxCrypt Business?&lt;/b&gt;Por favor, &lt;a href="mailto:business@axcrypt.net"&gt;contacte-nos&lt;/a&gt; que nós ajudaremos o mais rápido possível.</value>
   </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Por favor, avalie-nos em &lt;a&gt;Google Play&lt;/a&gt;</value>
@@ -2313,7 +2315,7 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
     <value>Ir ao Gerenciador de Senhas.</value>
   </data>
   <data name="SecretsCopytoClipboard" xml:space="preserve">
-    <value>Copiar para área de transferência </value>
+    <value>Copiar para área de transferência</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Selecionar por</value>
@@ -2338,11 +2340,11 @@ Verifique seu e-mail &lt;b&gt;{0}&lt;/b&gt; para obter um link de verificação.
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Segurança</value>
-    <comment>Title of "Security" section of About Us page in mobile application. </comment>
+    <comment>Title of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>A segurança é crucial para nós. Tudo o que fazemos com o AxCrypt é feito com segurança como a mais alta prioridade. Asseguramos que ninguém nunca tenha acesso aos seus arquivos criptografados, contanto que você tenha o controle da sua senha.</value>
-    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+    <comment>Description of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Seu software precisa ser atualizado por motivos de segurança.</value>
@@ -2396,7 +2398,7 @@ Por favor, considere informar '{0}' diretamente sobre a segurança de arquivos d
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
     <value>Acesso com um clique ao gerenciador de senhas do AxCrypt</value>
-    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
     <value>Fácil acesso a senhas</value>
@@ -2452,6 +2454,9 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Necessário conexão segura</value>
     <comment>The page title for the "A Secure Connection is required" page.</comment>
   </data>
+  <data name="StartFreeBusinessTrialHelpText" xml:space="preserve">
+    <value>Obtenha acesso imediato! O primeiro mês é grátis e pode cancelar a qualquer momento.</value>
+  </data>
   <data name="StartFreeTrial" xml:space="preserve">
     <value>Iniciar avaliação gratuita</value>
   </data>
@@ -2475,7 +2480,7 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
     <value>AxCrypt Móvel</value>
-    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Enviar comentários</value>
