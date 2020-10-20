@@ -1196,6 +1196,12 @@ Zaleca się dostęp do Internetu i jest on wymagany do włączenia płatnego abo
  
 Twoje hasło nie jest zapisywane na naszych serwerach, a połączenie jest zawsze szyfrowane.</value>
   </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Proszę podać godzinę w formacie "hh: mm: ss.mmm".</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Niepoprawny URL.</value>
+  </data>
   <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
     <value>Kod zniżkowy jest nieważny.</value>
   </data>
@@ -1208,14 +1214,8 @@ Twoje hasło nie jest zapisywane na naszych serwerach, a połączenie jest zawsz
   <data name="InvalidPath" xml:space="preserve">
     <value>Plik lub ścieżka '{0}' jest nieprawidłowa do tego.</value>
   </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
-    <value>Proszę podać godzinę w formacie "hh: mm: ss.mmm".</value>
-  </data>
-  <data name="Invalid_URL" xml:space="preserve">
-    <value>Niepoprawny URL.</value>
-  </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>Zostałeś zaproszony przez &lt;b&gt;{0}&lt;/b&gt; do Ochrony Plików AxCrypt. Aby rozpocząć zabezpieczanie Twoich plików, po prostu &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; i zainstaluj AxCrypt. Zaloguj się do AxCrypt za pomocą &lt;b&gt;{2}&lt;/b&gt;, wpisz kod weryfikacyjny i ustaw swoje tajne hasło. </value>
+    <value>Zostałeś zaproszony przez &lt;b&gt;{0}&lt;/b&gt; do Ochrony Plików AxCrypt. Aby rozpocząć zabezpieczanie Twoich plików, po prostu &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; i zainstaluj AxCrypt. Zaloguj się do AxCrypt za pomocą &lt;b&gt;{2}&lt;/b&gt;, wpisz kod weryfikacyjny i ustaw swoje tajne hasło.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Zostałeś zaproszony do Ochrony Plików AxCrypt przez {0}.
@@ -1241,8 +1241,7 @@ Zaloguj się do AxCrypt za pomocą {2}, wprowadź 6-cyfrowy kod weryfikacyjny i 
     <value>Zaproś znajomego</value>
   </data>
   <data name="Invoice" xml:space="preserve">
-    <value>Faktura
-</value>
+    <value>Faktura</value>
   </data>
   <data name="InvoiceBeneficiary" xml:space="preserve">
     <value>Odbiorca:</value>
@@ -1463,7 +1462,7 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
     <comment>Tooltip for the about context menu.</comment>
   </data>
   <data name="McHlpMenuOpen" xml:space="preserve">
-    <value>Odszyfruj i otwórz dokument za pomocą skojarzonej aplikacji. </value>
+    <value>Odszyfruj i otwórz dokument za pomocą skojarzonej aplikacji.</value>
     <comment>Tooltip for open document context menu (double-click)</comment>
   </data>
   <data name="McHlpMenuRename" xml:space="preserve">
@@ -1471,7 +1470,7 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
     <comment>Tooltip for rename context menu</comment>
   </data>
   <data name="McHlpMenuShow" xml:space="preserve">
-    <value>Otwórz pełną wersję aplikacji z funkcjami zaawansowanymi. </value>
+    <value>Otwórz pełną wersję aplikacji z funkcjami zaawansowanymi.</value>
     <comment>Tooltip for show full program interface with all advanced funtions context menu.</comment>
   </data>
   <data name="McHlpMenuSignOut" xml:space="preserve">
@@ -1479,7 +1478,7 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
     <comment>Tooltip for sign out context menu</comment>
   </data>
   <data name="McHlpMenuUnwrap" xml:space="preserve">
-    <value>Odszyfruj dokument i przywróć nazwę i czas modyfikacji. </value>
+    <value>Odszyfruj dokument i przywróć nazwę i czas modyfikacji.</value>
     <comment>Tooltip for decryption context menu</comment>
   </data>
   <data name="McHlpMenuWipe" xml:space="preserve">
@@ -1593,17 +1592,16 @@ Ten program jest licencjonowany zgodnie z umową.
     <value>Zauważyliśmy, że nie masz subskrypcji Premium, dlatego chcielibyśmy zaproponować Ci bezpłatny 30-dniowy okres próbny!</value>
   </data>
   <data name="MessageAskAboutStartTrialForMac" xml:space="preserve">
-    <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.
-</value>
+    <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
     <value>Po zakonńczeniu okresu testowego nie możesz korzystać z aplikacji mobilnych. Konieczna jest płatna subskrypcja. 
 
-Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt na komputer. </value>
+Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt na komputer.</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
-    <value>Po zakończeniu okresu próbnego automatycznie przejdziesz na subskrypcję AxCrypt Free, o ile nie wybierzesz płatnej subskrypcji. </value>
+    <value>Po zakończeniu okresu próbnego automatycznie przejdziesz na subskrypcję AxCrypt Free, o ile nie wybierzesz płatnej subskrypcji.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Błąd</value>
@@ -1691,7 +1689,7 @@ Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt 
 
 Jesteś zalogowany, dlatego nie będziemy pytać Cię o hasło aby zaszyfrować, odszyfrować lub otworzyć dokumenty. 
 
-Twoje dokumenty są nadal bezpieczne zaszyfrowane Twoim hasłem. </value>
+Twoje dokumenty są nadal bezpieczne zaszyfrowane Twoim hasłem.</value>
     <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
@@ -1706,7 +1704,7 @@ Twoje dokumenty są nadal bezpieczne zaszyfrowane Twoim hasłem. </value>
 Twoje zapytanie zostało zarejestrowane. Spróbuj ponownie z właściwą ścieżką lub &lt;a href="mailto:{0}"&gt;zgłoś&lt;/a&gt; uszkodzony link.</value>
   </data>
   <data name="NotFoundPageTitle" xml:space="preserve">
-    <value>Nie można wyświetlić strony! </value>
+    <value>Nie można wyświetlić strony!</value>
   </data>
   <data name="NotFoundSafePageBody" xml:space="preserve">
     <value>Niestety nie znaleźliśmy strony, której szukasz. Może to wynikać z ponownego uruchomienia serwera, przez co Twoja sesja przeglądarki jest już nieaktualna, lub z innego błędu serwera, przez który nie możemy przetworzyć żądania.
@@ -1824,8 +1822,7 @@ Jeśli nie otrzymałeś emaila, sprawdź, czy nie trafił on do spamu oraz czy {
  
 Oceniamy hasło oceniając siłę, która jest oparta na długości i złożoności hasła.
  
-Ocena całkowicie pomija części hasła rozpoznane jako jedno z 1000 najpopularniejszych haseł, a także spacje. Na przykład hasło 'secretX password Y 123456' jest oceniane jako "XY", ponieważ spacje, 'secret', 'password' i '123456' są ignorowane!
-</value>
+Ocena całkowicie pomija części hasła rozpoznane jako jedno z 1000 najpopularniejszych haseł, a także spacje. Na przykład hasło 'secretX password Y 123456' jest oceniane jako "XY", ponieważ spacje, 'secret', 'password' i '123456' są ignorowane!</value>
     <comment>A text describing the rules for passwords for AxCrypt. Pure text. For HTML views, newlines must be replaced, and possibly wrap it with a CSS style.</comment>
   </data>
   <data name="PasswordRulesShortInfo" xml:space="preserve">
@@ -2140,8 +2137,7 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
     <value>Otwórz</value>
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
-    <value>Ostatnie pliki
-</value>
+    <value>Ostatnie pliki</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Rejestracja nie powiodła się. Sprawdź swoją skrzynkę email i spróbuj ponownie.</value>
@@ -2236,11 +2232,11 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Ochrona</value>
-    <comment>Title of "Security" section of About Us page in mobile application. </comment>
+    <comment>Title of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>Bezpieczeństwo jest dla nas kluczowe. We wszystkim, co robimy z AxCrypt, bezpieczeństwo jest najwyższym priorytetem. Dopilnowujemy, aby nikt nie miał dostępu do zaszyfrowanych plików, dopóki masz kontrolę nad własnym hasłem.</value>
-    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+    <comment>Description of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Oprogramowanie musi zostać zaktualizowane ze względu na bezpieczeństwo.</value>
@@ -2293,7 +2289,7 @@ Może rozważ bezpośrednie poinformowanie "{0}" o zabezpieczeniach plików AxCr
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
     <value>Dostęp do menedżera haseł AxCrypt jednym kliknięciem</value>
-    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
     <value>Łatwy dostęp do haseł</value>
@@ -2366,7 +2362,7 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
     <value>Mobilny AxCrypt</value>
-    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Wyślij opinię</value>
@@ -2640,7 +2636,7 @@ Aby uzyskać więcej informacji, kliknij przycisk OK, aby otworzyć przeglądark
     <value>Konfiguracja nie powiodła się</value>
   </data>
   <data name="WixFailureHyperlinkLogText" xml:space="preserve">
-    <value>Co najmniej jeden problem spowodował awarię ustawień. Napraw problemy i spróbuj ponownie. Aby uzyskać więcej informacji, zobacz &amp;lt;a href="#"&amp;gt;plik dziennika&amp;lt;/a&amp;gt;. </value>
+    <value>Co najmniej jeden problem spowodował awarię ustawień. Napraw problemy i spróbuj ponownie. Aby uzyskać więcej informacji, zobacz &amp;lt;a href="#"&amp;gt;plik dziennika&amp;lt;/a&amp;gt;.</value>
   </data>
   <data name="WixFailureInstallHeader" xml:space="preserve">
     <value>Konfiguracja nie powiodła się</value>
@@ -2756,7 +2752,7 @@ ani komunikatów. Domyślnie wyświetlany jest interfejs użytkownika i wszystki
     <comment>Error message when .NET 4.5 is missing</comment>
   </data>
   <data name="WixMsiNoDowngrade" xml:space="preserve">
-    <value>Nowsza lub ta sama wersja jest już zainstalowana! Proszę usuń tę wersję zanim będziesz kontynuować. Po otrzymaniu komunikat uruchom ponownie komputer. </value>
+    <value>Nowsza lub ta sama wersja jest już zainstalowana! Proszę usuń tę wersję zanim będziesz kontynuować. Po otrzymaniu komunikat uruchom ponownie komputer.</value>
     <comment>Error message during installation when a newer version already is installed.</comment>
   </data>
   <data name="WixMsiShellExtensionTitle" xml:space="preserve">
@@ -2801,8 +2797,7 @@ ani komunikatów. Domyślnie wyświetlany jest interfejs użytkownika i wszystki
     <value>Przed rozpoczęciem korzystania z oprogramowania należy ponownie uruchomić komputer.</value>
   </data>
   <data name="WixSuccessUninstallHeader" xml:space="preserve">
-    <value>Odinstalowywanie zostało pomyślnie zakończone
-</value>
+    <value>Odinstalowywanie zostało pomyślnie zakończone</value>
   </data>
   <data name="WorkingFileStatus" xml:space="preserve">
     <value>Status "Pracuję" z "{0}".</value>

@@ -1208,6 +1208,12 @@ Internetåtkomst rekommenderas, och krävs för att starta betalda abonnemang. V
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Ange tid som 'hh:mm:ss.mmm'.</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Felaktig sökväg.</value>
+  </data>
   <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
     <value>Ogiltig rabattkod.</value>
   </data>
@@ -1219,12 +1225,6 @@ Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</valu
   </data>
   <data name="InvalidPath" xml:space="preserve">
     <value>Sökvägen '{0}' är ogiltig.</value>
-  </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
-    <value>Ange tid som 'hh:mm:ss.mmm'.</value>
-  </data>
-  <data name="Invalid_URL" xml:space="preserve">
-    <value>Felaktig sökväg.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av &lt;b&gt;{0}&lt;/b&gt;.
@@ -2723,8 +2723,7 @@ skapar en lokal kopia i katalog. Standard är installera.
 /norestart   - hejdar omstart. Som standard visar användargränssnittet en
 prompt före omstart.
 /log log.txt - skapar logg till en specifik fil. Som standard skapas loggfilen
-i %TEMP%.
-</value>
+i %TEMP%.</value>
     <comment>The /install, /uninstall and all other /xxxxxx shold NOT BE TRANSLATED</comment>
   </data>
   <data name="WixInstallAcceptCheckbox" xml:space="preserve">

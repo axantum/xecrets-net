@@ -1151,6 +1151,12 @@
   <data name="GetLogErrorDateFormat" xml:space="preserve">
     <value>Формат первой и/или последней даты недействителен. Пожалуйста, используйте формат YYYY-MM-DD.</value>
   </data>
+  <data name="GdprBlock2Text1">
+    <value>Политика GDPR распространяется на все организации, расположенные в пределах ЕС или за его пределами, обрабатывающие и хранящие персональные данные граждан ЕС с целью: предложения товаров, или услуг или мониторинга их поведения в пределах ЕС.</value>
+  </data>
+  <data name="GetStartedPasswordManagementVideoTitleMac">
+    <value>AxCrypt: Управление паролями  для Mac</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Прекрасно! У Вас уже имеется аккаунт AxCrypt ID для '{0}'.
 
@@ -1229,6 +1235,12 @@
 
 Ваш пароль не сохраняется в наших серверах, и связь всегда закодирована.</value>
   </data>
+  <data name="Invalid_TimeSpan" xml:space="preserve">
+    <value>Пожалуйста, уточните время как 'hh:mm:ss.mmm'.</value>
+  </data>
+  <data name="Invalid_URL" xml:space="preserve">
+    <value>Недействующий URL.</value>
+  </data>
   <data name="InvalidDiscountCodeErrorMessage" xml:space="preserve">
     <value>Этот промокод не действителен.</value>
   </data>
@@ -1240,12 +1252,6 @@
   </data>
   <data name="InvalidPath" xml:space="preserve">
     <value>Файл или поисковый запрос недействителен для этого.</value>
-  </data>
-  <data name="Invalid_TimeSpan" xml:space="preserve">
-    <value>Пожалуйста, уточните время как 'hh:mm:ss.mmm'.</value>
-  </data>
-  <data name="Invalid_URL" xml:space="preserve">
-    <value>Недействующий URL.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Вы были приглашены &lt;b&gt;{0}&lt;/b&gt;  в AxCrypt File Security. Для начала обеспечения безопасности Вашим файлам просто &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;загрузите&lt;/a&gt;и установите AxCrypt. Войдите в систему AxCrypt с &lt;b&gt;{2}&lt;/b&gt;, введите верификационный код и установите Ваш секретный пароль.</value>
@@ -2430,6 +2436,9 @@
   <data name="TermsAndConditionsLinkSecondPart" xml:space="preserve">
     <value>Правила и Условия </value>
     <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
+  </data>
+  <data name="TermsOfUseLinkLabel" xml:space="preserve">
+    <value>Условия Пользования</value>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>Проверьте Вашу электронную почту и спам!</value>
