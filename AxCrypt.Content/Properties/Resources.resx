@@ -600,6 +600,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessContactBodyText" xml:space="preserve">
     <value>Do you have any questions or need any help?</value>
   </data>
+  <data name="BusinessCreationEuVatInfo" xml:space="preserve">
+    <value>We also offer VAT free sales within the EU for qualifying companies (you must supply a valid EU VAT number and address) for the Business plan. Click [a]here[/a] to add EU VAT number.</value>
+  </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Plan setup and payment</value>
   </data>
@@ -882,6 +885,12 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionTotalMemberLicensesLabel" xml:space="preserve">
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
+  </data>
+  <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
+    <value>x users</value>
+  </data>
+  <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
+    <value>The first month is free, after that:</value>
   </data>
   <data name="BusinessTrialInfo" xml:space="preserve">
     <value>THE FIRST MONTH IS FREE</value>
@@ -3643,6 +3652,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PricePerMonthIndicatorText" xml:space="preserve">
     <value>per month</value>
   </data>
+  <data name="PricePerYear" xml:space="preserve">
+    <value>{0}/year</value>
+  </data>
   <data name="PricingFeatureListAccountKey" xml:space="preserve">
     <value>Account Key Backup</value>
   </data>
@@ -5617,6 +5629,9 @@ no prompts. By default UI and all prompts are displayed.
   </data>
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>The verfication code must be exactly 6 digits.</value>
+  </data>
+  <data name="YearlyDiscountLabel" xml:space="preserve">
+    <value>Yearly discount</value>
   </data>
   <data name="YearlySubscriptionTitle" xml:space="preserve">
     <value>Yearly</value>

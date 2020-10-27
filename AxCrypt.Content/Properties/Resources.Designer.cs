@@ -1394,6 +1394,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We also offer VAT free sales within the EU for qualifying companies (you must supply a valid EU VAT number and address) for the Business plan. Click [a]here[/a] to add EU VAT number..
+        /// </summary>
+        public static string BusinessCreationEuVatInfo {
+            get {
+                return ResourceManager.GetString("BusinessCreationEuVatInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plan setup and payment.
         /// </summary>
         public static string BusinessCreationSetupAndPaymentTitle {
@@ -2102,6 +2111,24 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionTotalMemberLicensesLabel {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionTotalMemberLicensesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to x users.
+        /// </summary>
+        public static string BusinessSummaryUserCountLabel {
+            get {
+                return ResourceManager.GetString("BusinessSummaryUserCountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first month is free, after that:.
+        /// </summary>
+        public static string BusinessTrialCreationSummaryTitle {
+            get {
+                return ResourceManager.GetString("BusinessTrialCreationSummaryTitle", resourceCulture);
             }
         }
         
@@ -9784,6 +9811,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}/year.
+        /// </summary>
+        public static string PricePerYear {
+            get {
+                return ResourceManager.GetString("PricePerYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Key Backup.
         /// </summary>
         public static string PricingFeatureListAccountKey {
@@ -15360,6 +15396,15 @@ namespace AxCrypt.Content.Properties {
         public static string WrongVerificationCodeFormat {
             get {
                 return ResourceManager.GetString("WrongVerificationCodeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yearly discount.
+        /// </summary>
+        public static string YearlyDiscountLabel {
+            get {
+                return ResourceManager.GetString("YearlyDiscountLabel", resourceCulture);
             }
         }
         
