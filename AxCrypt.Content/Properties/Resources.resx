@@ -522,6 +522,9 @@ You have been warned, now enjoy!</value>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt File Security</value>
   </data>
+  <data name="AxCryptSupportIntro" xml:space="preserve">
+    <value>Welcome to AxCrypt Support.</value>
+  </data>
   <data name="BackToHomeButtonLabel" xml:space="preserve">
     <value>Back to home</value>
   </data>
@@ -687,7 +690,7 @@ You have been warned, now enjoy!</value>
     <value>Business</value>
   </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
-    <value>!!Business Priority Support</value>
+    <value>Business Priority Support Request</value>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
     <value>Add</value>
@@ -3604,7 +3607,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>You can cancel your subscription at any time. If you do this before the trial ends, you won’t be charged anything. After that, your account will fall back to the Free version.</value>
   </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
-    <value>Priority Support Request</value>
+    <value>Premium Support Request</value>
     <comment>The subject used when sending support requests from the account web.</comment>
   </data>
   <data name="PremiumThirdBodyHeading" xml:space="preserve">
@@ -3717,6 +3720,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PricingSubheading" xml:space="preserve">
     <value>How do you want to pay?</value>
+  </data>
+  <data name="PrioritySupportTitle" xml:space="preserve">
+    <value>Priority Support</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1" xml:space="preserve">
     <value>Your email address.</value>
