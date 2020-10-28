@@ -1647,6 +1647,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Business Priority Support.
+        /// </summary>
+        public static string BusinessPrioritySupportTitle {
+            get {
+                return ResourceManager.GetString("BusinessPrioritySupportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string BusinessSubscriptionAddButtonLabel {

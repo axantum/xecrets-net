@@ -686,6 +686,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessLinkLabel" xml:space="preserve">
     <value>Business</value>
   </data>
+  <data name="BusinessPrioritySupportTitle" xml:space="preserve">
+    <value>!!Business Priority Support</value>
+  </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
     <value>Add</value>
     <comment>A label or word used in a button when adding members to a subscription.</comment>
