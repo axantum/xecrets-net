@@ -1185,6 +1185,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt Support..
+        /// </summary>
+        public static string AxCryptSupportIntro {
+            get {
+                return ResourceManager.GetString("AxCryptSupportIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back to home.
         /// </summary>
         public static string BackToHomeButtonLabel {
@@ -1643,6 +1652,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessLinkLabel {
             get {
                 return ResourceManager.GetString("BusinessLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Priority Support Request.
+        /// </summary>
+        public static string BusinessPrioritySupportTitle {
+            get {
+                return ResourceManager.GetString("BusinessPrioritySupportTitle", resourceCulture);
             }
         }
         
@@ -9667,7 +9685,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Priority Support Request.
+        ///   Looks up a localized string similar to Premium Support Request.
         /// </summary>
         public static string PremiumSupportRequestMailSubect {
             get {
@@ -9996,6 +10014,15 @@ namespace AxCrypt.Content.Properties {
         public static string PricingSubheading {
             get {
                 return ResourceManager.GetString("PricingSubheading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority Support.
+        /// </summary>
+        public static string PrioritySupportTitle {
+            get {
+                return ResourceManager.GetString("PrioritySupportTitle", resourceCulture);
             }
         }
         
