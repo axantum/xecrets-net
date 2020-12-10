@@ -329,6 +329,8 @@
     <Content Include="resources\folder_40px.png" />
     <Content Include="resources\key_management.png" />
     <Content Include="resources\logo-text-retina.png" />
+    <Content Include="resources\masterkey_32px.png" />
+    <Content Include="resources\masterkey_keyshare_32px.png" />
     <Content Include="resources\open_encrypted.png" />
     <Content Include="resources\open_encrypted_80px.png" />
     <Content Include="resources\options.png" />

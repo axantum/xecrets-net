@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-
-using AxCrypt.Abstractions;
+﻿using AxCrypt.Abstractions;
 using AxCrypt.Api;
 using AxCrypt.Api.Model;
 using AxCrypt.Common;
@@ -14,6 +8,11 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -131,6 +130,8 @@ namespace AxCrypt.Core.Service
             UserAccount localAccount = await _localService.AccountAsync().Free();
             if (New<AxCryptOnlineState>().IsOffline || Identity.Passphrase == Passphrase.Empty)
             {
+                SubscriptionLevel subscriptionLevel = await localAccount.ValidatedLevelAsync();
+                localAccount.MasterKeyPair = subscriptionLevel != SubscriptionLevel.Business ? null : localAccount.MasterKeyPair;
                 return localAccount;
             }
 
@@ -396,7 +397,6 @@ namespace AxCrypt.Core.Service
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {
                 return await _remoteService.AutoRenewalStatusAsync().Free();
-
             }
 
             return await _localService.AutoRenewalStatusAsync().Free();

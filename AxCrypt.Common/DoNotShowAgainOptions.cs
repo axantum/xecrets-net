@@ -14,7 +14,9 @@ namespace AxCrypt.Common
         SignedInSoNoPasswordRequired = 0x8,
         WillNotForgetPassword = 0x10,
         IgnoreFileWarning = 0x20,
-        UnopenableFileWarning  = 0x40,
+        UnopenableFileWarning = 0x40,
         KeySharingRemovedInFreeModeWarning = 0x80,
+        MasterKeyWarning = 0x100,
+        MasterKeyRemovedWarning = 0x200,
     }
 }

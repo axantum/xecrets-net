@@ -338,6 +338,9 @@ Please sign in using the same password you used then.</value>
   <data name="ApplyNowLabel" xml:space="preserve">
     <value>Apply now</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>!!Master key can't be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key.</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -567,19 +570,24 @@ You have been warned, now enjoy!</value>
   <data name="BruteForceResistantText" xml:space="preserve">
     <value>Dynamic brute force counter measure - iterative password wrapping making attacks even harder.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>!!Accept Invitation</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
-    <value>&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;
-&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;</value>
+    <value>!!&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
+&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Welcome to AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>!!You have been invited by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href='" + {1} + "'&gt;My AxCrypt ID&lt;/a&gt; page.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administrators</value>
@@ -679,9 +687,11 @@ You have been warned, now enjoy!</value>
     <value>Made for companies</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
-&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;</value>
+    <value>!!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, accept this invitation and set your personal secret password.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>!!You have been invited by &lt;b&gt;{0}&lt;/b&gt;. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. If you don’t want to be part of this feature, please ignore this email and proceed with &lt;a href='{1}'&gt;sign up&lt;/a&gt; instead.</value>
   </data>
   <data name="BusinessLabel" xml:space="preserve">
     <value>Business</value>
@@ -1156,6 +1166,9 @@ You must complete these steps to complete the process.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Do this for all remaining files?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>!!If you have any questions, please first contact {0}.</value>
   </data>
   <data name="ContactHeading" xml:space="preserve">
     <value>Contact</value>
@@ -2886,6 +2899,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>&lt;ul&gt;
 &lt;li&gt;Mobile apps&lt;/li&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Master Key&lt;/li&gt;
 &lt;li&gt;Key Sharing&lt;/li&gt;
 &lt;li&gt;Secured Folders&lt;/li&gt;
 &lt;li&gt;Password Management&lt;/li&gt;

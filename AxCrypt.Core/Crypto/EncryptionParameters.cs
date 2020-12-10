@@ -25,17 +25,13 @@
 
 #endregion Coypright and License
 
+using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto.Asymmetric;
-using AxCrypt.Core.Session;
-using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AxCrypt.Core.Extensions;
-using static AxCrypt.Abstractions.TypeResolve;
-using AxCrypt.Abstractions;
 
 namespace AxCrypt.Core.Crypto
 {
@@ -128,5 +124,13 @@ namespace AxCrypt.Core.Crypto
         /// The crypto identifier.
         /// </value>
         public Guid CryptoId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the business subscription master public key to use for the encryption.
+        /// </summary>
+        /// <value>
+        /// The master key.
+        /// </value>
+        public UserPublicKey PublicMasterKey { get; set; }
     }
 }

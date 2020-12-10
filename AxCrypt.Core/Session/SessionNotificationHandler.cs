@@ -115,6 +115,10 @@ namespace AxCrypt.Core.Session
 
                             encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, notification.Identity);
                             await encryptionParameters.AddAsync(await watchedFolder.KeyShares.ToAvailableKnownPublicKeysAsync(notification.Identity));
+                            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+                            {
+                                encryptionParameters = await notification.Identity.AddMasterKeyParameter(encryptionParameters, true);
+                            }
 
                             IDataContainer container = New<IDataContainer>(watchedFolder.Path);
                             progress.Display = container.Name;
@@ -193,6 +197,10 @@ namespace AxCrypt.Core.Session
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, identity);
                 await encryptionParameters.AddAsync(await watchedFolder.KeyShares.ToAvailableKnownPublicKeysAsync(identity));
+                if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+                {
+                    encryptionParameters = await identity.AddMasterKeyParameter(encryptionParameters, false);
+                }
                 IDataContainer folder = New<IDataContainer>(watchedFolder.Path);
                 progress.Display = folder.Name;
                 await _axCryptFile.EncryptFoldersUniqueWithBackupAndWipeAsync(new IDataContainer[] { folder }, encryptionParameters, progress);

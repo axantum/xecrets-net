@@ -664,6 +664,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Master key can&apos;t be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key..
+        /// </summary>
+        public static string ApproveMasterKeyMoreThanOneBusinessError {
+            get {
+                return ResourceManager.GetString("ApproveMasterKeyMoreThanOneBusinessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For security reasons, please enter your password again..
         /// </summary>
         public static string AppSignInMessage {
@@ -1311,6 +1320,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Accept Invitation.
+        /// </summary>
+        public static string BusinessAcceptInvitationText {
+            get {
+                return ResourceManager.GetString("BusinessAcceptInvitationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business.
         /// </summary>
         public static string BusinessAccountLabel {
@@ -1320,9 +1338,8 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
-        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;
-        ///&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;.
+        ///   Looks up a localized string similar to !!&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
+        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;.
         /// </summary>
         public static string BusinessAddedMailBodyHtml {
             get {
@@ -1336,6 +1353,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessAddedMailSubject {
             get {
                 return ResourceManager.GetString("BusinessAddedMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!You have been invited by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href=&apos;&quot; + {1} + &quot;&apos;&gt;My AxCrypt ID&lt;/a&gt; page..
+        /// </summary>
+        public static string BusinessAddedMasterKeyInfoMailBodyHtml {
+            get {
+                return ResourceManager.GetString("BusinessAddedMasterKeyInfoMailBodyHtml", resourceCulture);
             }
         }
         
@@ -1628,12 +1654,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code below and set your personal secret password.&lt;/p&gt; 
-        ///&lt;p&gt;If you have any questions, please first contact {0}.&lt;/p&gt;.
+        ///   Looks up a localized string similar to !!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, accept this invitation and set your personal secret password..
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
             get {
                 return ResourceManager.GetString("BusinessInvitationMailBodyIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!You have been invited by &lt;b&gt;{0}&lt;/b&gt;. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. If you don’t want to be part of this feature, please ignore this email and proceed with &lt;a href=&apos;{1}&apos;&gt;sign up&lt;/a&gt; instead..
+        /// </summary>
+        public static string BusinessInvitationMasterKeyInfoMailBodyIntro {
+            get {
+                return ResourceManager.GetString("BusinessInvitationMasterKeyInfoMailBodyIntro", resourceCulture);
             }
         }
         
@@ -2880,6 +2914,15 @@ namespace AxCrypt.Content.Properties {
         public static string ConfirmAllCheckBoxText {
             get {
                 return ResourceManager.GetString("ConfirmAllCheckBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!If you have any questions, please first contact {0}..
+        /// </summary>
+        public static string ContactBusinessInviterMailBodyText {
+            get {
+                return ResourceManager.GetString("ContactBusinessInviterMailBodyText", resourceCulture);
             }
         }
         
@@ -7819,6 +7862,7 @@ namespace AxCrypt.Content.Properties {
         ///   Looks up a localized string similar to &lt;ul&gt;
         ///&lt;li&gt;Mobile apps&lt;/li&gt;
         ///&lt;li&gt;256-bit AES&lt;/li&gt;
+        ///&lt;li&gt;Master Key&lt;/li&gt;
         ///&lt;li&gt;Key Sharing&lt;/li&gt;
         ///&lt;li&gt;Secured Folders&lt;/li&gt;
         ///&lt;li&gt;Password Management&lt;/li&gt;

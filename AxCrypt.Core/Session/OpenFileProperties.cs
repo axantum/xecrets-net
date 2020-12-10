@@ -14,6 +14,8 @@ namespace AxCrypt.Core.Session
 
         public int V2AsymetricKeyWrapCount { get; private set; }
 
+        public bool V2AsymetricMasterKey { get; private set; }
+
         private OpenFileProperties()
         {
         }
@@ -57,6 +59,7 @@ namespace AxCrypt.Core.Session
 
             IsLegacyV1 = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.KeyWrap1);
             V2AsymetricKeyWrapCount = headers.HeaderBlocks.Count(hb => hb.HeaderBlockType == HeaderBlockType.V2AsymmetricKeyWrap);
+            V2AsymetricMasterKey = headers.HeaderBlocks.Any(hb => hb.HeaderBlockType == HeaderBlockType.AsymmetricMasterKey);
         }
     }
 }

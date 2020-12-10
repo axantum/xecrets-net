@@ -26,13 +26,14 @@
 #endregion Coypright and License
 
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
+using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -87,22 +88,27 @@ namespace AxCrypt.Core.Extensions
             return dataStore.IsEncrypted() && OpenFileProperties.Create(dataStore).IsLegacyV1;
         }
 
-        public static bool IsKeyShared(this IDataStore dataStore, LogOnIdentity decryptIdentity)
+        public static IAxCryptDocument GetAxCryptDocument(this IDataStore dataStore, LogOnIdentity decryptIdentity)
         {
             if (!dataStore.IsEncrypted())
             {
-                return false;
+                return null;
             }
 
             OpenFileProperties properties = OpenFileProperties.Create(dataStore);
-            if (properties.IsLegacyV1 || properties.V2AsymetricKeyWrapCount <= 1)
+            if (properties.IsLegacyV1)
             {
-                return false;
+                return null;
+            }
+
+            if (properties.V2AsymetricKeyWrapCount <= 1 && !properties.V2AsymetricMasterKey)
+            {
+                return null;
             }
 
             if (decryptIdentity == LogOnIdentity.Empty)
             {
-                return false;
+                return null;
             }
 
             using (Stream stream = dataStore.OpenRead())
@@ -111,12 +117,32 @@ namespace AxCrypt.Core.Extensions
                 {
                     if (!document.PassphraseIsValid)
                     {
-                        return false;
+                        return null;
                     }
 
-                    return document.AsymmetricRecipients.Select(ar => ar.Email).Distinct().Skip(1).Any();
+                    return document;
                 }
             }
+        }
+
+        public static bool IsKeyShared(this IAxCryptDocument document)
+        {
+            if (document == null)
+            {
+                return false;
+            }
+
+            return document.AsymmetricRecipients.Select(ar => ar.Email).Distinct().Skip(1).Any();
+        }
+
+        public static bool IsMasterKeyShared(this IAxCryptDocument document)
+        {
+            if (document == null)
+            {
+                return false;
+            }
+
+            return document.AsymmetricMasterKey != null;
         }
 
         public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)
@@ -289,7 +315,7 @@ namespace AxCrypt.Core.Extensions
 
             foreach (LogOnIdentity knownKey in Resolve.KnownIdentities.Identities)
             {
-                IEnumerable<DecryptionParameter> decryptionParameters = fileInfo.DecryptionParameters(knownKey.Passphrase, knownKey.PrivateKeys);
+                IEnumerable<DecryptionParameter> decryptionParameters = fileInfo.DecryptionParameters(knownKey.Passphrase, knownKey.GetPrivateKeys());
                 DecryptionParameter decryptionParameter = New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {

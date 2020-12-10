@@ -4,9 +4,9 @@ using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
+using AxCrypt.Desktop.Window.Properties;
 using AxCrypt.Forms;
 using AxCrypt.Forms.Style;
-using AxCrypt.Desktop.Window.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -31,6 +31,8 @@ namespace AxCrypt.Desktop.Window
             CleanUpNeeded,
             KeyShared,
             LowEncryption,
+            MasterKeyShared,
+            MasterKeyAndKeyShared,
         }
 
         private enum ColumnName
@@ -289,7 +291,8 @@ namespace AxCrypt.Desktop.Window
             item.SubItems[nameof(ColumnName.ModifiedDate)].Tag = activeFile.EncryptedFileInfo.LastWriteTimeUtc;
 
             LogOnIdentity decryptIdentity = ValidateActiveFileIdentity(activeFile.Identity);
-            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, activeFile.EncryptedFileInfo.IsKeyShared(decryptIdentity));
+            IAxCryptDocument document = activeFile.EncryptedFileInfo.GetAxCryptDocument(decryptIdentity);
+            UpdateStatusDependentPropertiesOfListViewItem(item, activeFile, document.IsKeyShared(), document.IsMasterKeyShared());
 
             try
             {
@@ -319,7 +322,7 @@ namespace AxCrypt.Desktop.Window
             return New<KnownIdentities>().DefaultEncryptionIdentity;
         }
 
-        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, bool isShared)
+        private static void UpdateStatusDependentPropertiesOfListViewItem(ListViewItem item, ActiveFile activeFile, bool isShared, bool isMasterKeyShared)
         {
             if (activeFile.IsDecrypted)
             {
@@ -328,10 +331,24 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
+            if (isShared && isMasterKeyShared)
+            {
+                item.ImageKey = nameof(ImageKey.MasterKeyAndKeyShared);
+                item.ToolTipText = "The file key is shared with business administrators and other AxCrypt users.";
+                return;
+            }
+
             if (isShared)
             {
                 item.ImageKey = nameof(ImageKey.KeyShared);
                 item.ToolTipText = Texts.KeySharingExistsToolTip;
+                return;
+            }
+
+            if (isMasterKeyShared)
+            {
+                item.ImageKey = nameof(ImageKey.MasterKeyShared);
+                item.ToolTipText = "The file key is shared with business administrators.";
                 return;
             }
 
@@ -351,6 +368,8 @@ namespace AxCrypt.Desktop.Window
             smallImageList.Images.Add(nameof(ImageKey.ActiveFileKnownKey), Resources.fileknownkeygreen16);
             smallImageList.Images.Add(nameof(ImageKey.CleanUpNeeded), Resources.clean_broom_red);
             smallImageList.Images.Add(nameof(ImageKey.KeyShared), Resources.share_32px);
+            smallImageList.Images.Add(nameof(ImageKey.MasterKeyShared), Resources.masterkey_32px);
+            smallImageList.Images.Add(nameof(ImageKey.MasterKeyAndKeyShared), Resources.masterkey_keyshare_32px);
             smallImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return smallImageList;

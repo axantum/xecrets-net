@@ -1,4 +1,5 @@
-﻿using AxCrypt.Core.Crypto.Asymmetric;
+﻿using AxCrypt.Api.Model.Masterkey;
+using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
@@ -132,6 +133,8 @@ namespace AxCrypt.Core.Crypto
                 return new IdentityPublicTag(this);
             }
         }
+
+        public MasterKeyPairInfo MasterKeyPair { get; set; }
 
         public bool Equals(LogOnIdentity other)
         {

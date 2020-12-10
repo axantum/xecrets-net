@@ -172,7 +172,10 @@ namespace AxCrypt.Core.Session
             Thumbprint = thumbprint;
             Status = status;
             Properties = new ActiveFileProperties(New<INow>().Utc, properties.LastEncryptionWriteTimeUtc, properties.CryptoId);
-            IsShared = EncryptedFileInfo.IsKeyShared(Identity);
+
+            IAxCryptDocument document = EncryptedFileInfo.GetAxCryptDocument(Identity);
+            IsShared = document.IsKeyShared();
+            IsMasterKeyShared = document.IsMasterKeyShared();
         }
 
         public IDataStore DecryptedFileInfo
@@ -267,6 +270,8 @@ namespace AxCrypt.Core.Session
         public ActiveFileProperties Properties { get; private set; }
 
         public bool IsShared { get; private set; }
+
+        public bool IsMasterKeyShared { get; private set; }
 
         [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]

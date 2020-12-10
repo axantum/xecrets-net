@@ -1,7 +1,9 @@
-﻿using AxCrypt.Abstractions;
+using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Rest;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Masterkey;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.IO;
@@ -9,7 +11,6 @@ using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -87,7 +88,12 @@ namespace AxCrypt.Core.Extensions
                 return String.Empty;
             }
 
-            byte[] privateKeyPemBytes = Encoding.UTF8.GetBytes(keys.KeyPair.PrivateKey.ToString());
+            return EncryptPrivateKey(passphrase, keys.KeyPair.PrivateKey.ToString(), null);
+        }
+
+        public static string EncryptPrivateKey(this Passphrase passphrase, string privateKey, IAsymmetricPublicKey publicKey)
+        {
+            byte[] privateKeyPemBytes = Encoding.UTF8.GetBytes(privateKey);
 
             if (passphrase == Passphrase.Empty)
             {
@@ -101,6 +107,36 @@ namespace AxCrypt.Core.Extensions
                 using (Stream stream = new MemoryStream(privateKeyPemBytes))
                 {
                     EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
+                    EncryptedProperties properties = new EncryptedProperties("private-key.pem");
+                    using (MemoryStream encryptedStream = new MemoryStream())
+                    {
+                        AxCryptFile.Encrypt(stream, encryptedStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+                        writer.Write(Convert.ToBase64String(encryptedStream.ToArray()));
+                    }
+                }
+            }
+            return encryptedPrivateKey.ToString();
+        }
+
+        public static string EncryptPrivateKey(this IAsymmetricPublicKey publicKey, string privateKey, string adminUser, Passphrase randomPassphrase)
+        {
+            byte[] privateKeyPemBytes = Encoding.UTF8.GetBytes(privateKey);
+
+            if (publicKey == null)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder encryptedPrivateKey = new StringBuilder();
+            using (StringWriter writer = new StringWriter(encryptedPrivateKey))
+            {
+                using (Stream stream = new MemoryStream(privateKeyPemBytes))
+                {
+                    EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, randomPassphrase);
+                    if (adminUser.Length > 0)
+                    {
+                        encryptionParameters.AddAsync(new List<UserPublicKey>() { new UserPublicKey(EmailAddress.Parse(adminUser), publicKey) });
+                    }
                     EncryptedProperties properties = new EncryptedProperties("private-key.pem");
                     using (MemoryStream encryptedStream = new MemoryStream())
                     {
@@ -171,7 +207,12 @@ namespace AxCrypt.Core.Extensions
             return accountKey;
         }
 
-        private static string DecryptPrivateKeyPem(string privateEncryptedPem, Passphrase passphrase)
+        public static string DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase)
+        {
+            return DecryptPrivateKeyPem(privateEncryptedPem, passphrase, null);
+        }
+
+        public static string DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase, IAsymmetricPrivateKey privateKey)
         {
             if (privateEncryptedPem.Length == 0)
             {
@@ -185,7 +226,7 @@ namespace AxCrypt.Core.Extensions
             {
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
             }
-            if (passphrase == Passphrase.Empty)
+            if (passphrase == Passphrase.Empty && privateKey == null)
             {
                 return null;
             }
@@ -195,6 +236,10 @@ namespace AxCrypt.Core.Extensions
                 using (MemoryStream decryptedPrivateKeyStream = new MemoryStream())
                 {
                     DecryptionParameter decryptionParameter = new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId);
+                    if (privateKey != null)
+                    {
+                        decryptionParameter = new DecryptionParameter(privateKey, Resolve.CryptoFactory.Preferred.CryptoId);
+                    }
                     try
                     {
                         if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
@@ -225,8 +270,53 @@ namespace AxCrypt.Core.Extensions
 
         public static IEnumerable<DecryptionParameter> DecryptionParameters(this LogOnIdentity identity)
         {
-            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, identity.PrivateKeys, Resolve.CryptoFactory.OrderedIds);
+            IEnumerable<DecryptionParameter> decryptionParameters = DecryptionParameter.CreateAll(new Passphrase[] { identity.Passphrase }, GetPrivateKeys(identity), Resolve.CryptoFactory.OrderedIds);
             return decryptionParameters;
+        }
+
+        public static IList<IAsymmetricPrivateKey> GetPrivateKeys(this LogOnIdentity identity)
+        {
+            IList<IAsymmetricPrivateKey> privateKeys = identity.PrivateKeys.ToList();
+            IAsymmetricPrivateKey masterPrivateKey = identity.GetPrivateMasterKey();
+            if (masterPrivateKey != null)
+            {
+                privateKeys.Add(masterPrivateKey);
+            }
+
+            return privateKeys;
+        }
+
+        public static IAsymmetricPrivateKey GetPrivateMasterKey(this LogOnIdentity identity)
+        {
+            if (identity.MasterKeyPair == null || identity.MasterKeyPair.PrivateKeys == null)
+            {
+                return null;
+            }
+
+            PrivateMasterKeyInfo privateKeyInfo = identity.MasterKeyPair.PrivateKeys.FirstOrDefault(pk => pk.UserEmail == identity.UserEmail.Address);
+            if (string.IsNullOrEmpty(privateKeyInfo?.PrivateKey))
+            {
+                return null;
+            }
+
+            IAsymmetricPrivateKey privateKey = GetDecryptedMasterPrivateKey(privateKeyInfo, identity);
+            if (privateKey != null)
+            {
+                return privateKey;
+            }
+
+            return null;
+        }
+
+        private static IAsymmetricPrivateKey GetDecryptedMasterPrivateKey(PrivateMasterKeyInfo privateKeyInfo, LogOnIdentity identity)
+        {
+            string masterKeyPrivateKeyPem = privateKeyInfo.PrivateKey.DecryptPrivateKeyPem(Passphrase.Empty, identity.ActiveEncryptionKeyPair.KeyPair.PrivateKey);
+            if (string.IsNullOrEmpty(masterKeyPrivateKeyPem))
+            {
+                return null;
+            }
+
+            return New<IAsymmetricFactory>().CreatePrivateKey(masterKeyPrivateKeyPem);
         }
 
         public static Task<SubscriptionLevel> ValidatedLevelAsync(this UserAccount userAccount)
@@ -245,10 +335,10 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(lowPriorityAccount));
             }
 
-            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair);
         }
 
-        public static UserAccount MergeWith(this UserAccount highPriorityAccount, IEnumerable<AccountKey> lowPriorityAccountKeys)
+        public static UserAccount MergeWith(this UserAccount highPriorityAccount, IEnumerable<AccountKey> lowPriorityAccountKeys, MasterKeyPairInfo lowPriorityMasterKeyPair)
         {
             if (highPriorityAccount == null)
             {
@@ -262,6 +352,13 @@ namespace AxCrypt.Core.Extensions
             IEnumerable<AccountKey> allKeys = new List<AccountKey>(highPriorityAccount.AccountKeys);
             IEnumerable<AccountKey> newKeys = lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
             IEnumerable<AccountKey> unionOfKeys = allKeys.Union(newKeys);
+
+            MasterKeyPairInfo mergedMasterKeyPair = highPriorityAccount.MasterKeyPair;
+            if (highPriorityAccount.MasterKeyPair != null)
+            {
+                mergedMasterKeyPair = MergeMasterKey(highPriorityAccount, lowPriorityMasterKeyPair);
+            }
+
             UserAccount merged = new UserAccount(highPriorityAccount.UserName, highPriorityAccount.SubscriptionLevel, highPriorityAccount.LevelExpiration, highPriorityAccount.AccountStatus, highPriorityAccount.Offers, unionOfKeys)
             {
                 Tag = highPriorityAccount.Tag,
@@ -269,8 +366,28 @@ namespace AxCrypt.Core.Extensions
                 AccountSource = highPriorityAccount.AccountSource,
                 CanTryAppStorePremiumTrial = highPriorityAccount.CanTryAppStorePremiumTrial,
                 ActiveSubscriptionFromAppStore = highPriorityAccount.ActiveSubscriptionFromAppStore,
+                MasterKeyPair = highPriorityAccount.IsMasterKeyEnabled ? mergedMasterKeyPair : null,
+                IsMasterKeyEnabled = highPriorityAccount.IsMasterKeyEnabled,
             };
             return merged;
+        }
+
+        private static MasterKeyPairInfo MergeMasterKey(UserAccount highPriorityAccount, MasterKeyPairInfo lowPriorityMasterKeyPair)
+        {
+            if (!highPriorityAccount.IsMasterKeyEnabled)
+            {
+                return null;
+            }
+
+            MasterKeyPairInfo mergedMasterKeyPairInfo = new MasterKeyPairInfo()
+            {
+                Timestamp = highPriorityAccount.MasterKeyPair.Timestamp,
+                PublicKey = highPriorityAccount.MasterKeyPair.PublicKey,
+                Thumbprint = highPriorityAccount.MasterKeyPair.Thumbprint,
+                PrivateKeys = highPriorityAccount.MasterKeyPair.PrivateKeys,
+            };
+
+            return mergedMasterKeyPairInfo;
         }
 
         public static UserAccount MergeWith(this IEnumerable<AccountKey> highPriorityAccountKeys, UserAccount lowPriorityAccount)
@@ -284,8 +401,9 @@ namespace AxCrypt.Core.Extensions
             {
                 Tag = lowPriorityAccount.Tag,
                 Signature = lowPriorityAccount.Signature,
+                MasterKeyPair = lowPriorityAccount.MasterKeyPair,
             };
-            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair);
         }
 
         public static IEnumerable<WatchedFolder> ToWatchedFolders(this IEnumerable<string> folderPaths)
@@ -455,9 +573,30 @@ namespace AxCrypt.Core.Extensions
 
         public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
         {
-            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
-            await encryptionParameters.AddAsync(await publicKeys.GetKnownPublicKeysAsync(New<KnownIdentities>().DefaultEncryptionIdentity));
+            LogOnIdentity logOnIdentity = New<KnownIdentities>().DefaultEncryptionIdentity;
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, logOnIdentity);
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            {
+                encryptionParameters = await AddMasterKeyParameter(logOnIdentity, encryptionParameters, false);
+            }
+            await encryptionParameters.AddAsync(await publicKeys.GetKnownPublicKeysAsync(logOnIdentity));
             await ChangeEncryptionAsync(files, encryptionParameters);
+        }
+
+        public static async Task<EncryptionParameters> AddMasterKeyParameter(this LogOnIdentity logOnIdentity, EncryptionParameters encryptionParameters, bool isShowMasterKeyWarning)
+        {
+            if (logOnIdentity.MasterKeyPair != null && isShowMasterKeyWarning)
+            {
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "You have enabled a master key option. If you have enabled the master key, business subscription administrators can access the secured file's who are encrypting the files using the business subscription.", DoNotShowAgainOptions.MasterKeyWarning);
+            }
+
+            if (logOnIdentity.MasterKeyPair != null)
+            {
+                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair.PublicKey);
+                encryptionParameters.PublicMasterKey = new UserPublicKey(logOnIdentity.UserEmail, publicKey);
+            }
+
+            return encryptionParameters;
         }
 
         private static Task ChangeEncryptionAsync(IEnumerable<string> files, EncryptionParameters encryptionParameters)
@@ -467,6 +606,23 @@ namespace AxCrypt.Core.Extensions
                 {
                     ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
                     LogOnIdentity decryptIdentity = activeFile?.Identity ?? New<KnownIdentities>().DefaultEncryptionIdentity;
+
+                    EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, decryptIdentity);
+
+                    bool isDecryptedWithMasterKey = false;
+                    if (encryptedProperties.DecryptionParameter != null && encryptedProperties.DecryptionParameter.PrivateKey != null)
+                    {
+                        isDecryptedWithMasterKey = encryptedProperties.DecryptionParameter.PrivateKey.Equals(New<KnownIdentities>().DefaultEncryptionIdentity.GetPrivateMasterKey());
+                    }
+
+                    if (isDecryptedWithMasterKey)
+                    {
+                        EncryptionParameters newEncryptionParameters = new EncryptionParameters(encryptionParameters.CryptoId, AxCryptFile.GenerateRandomPassword());
+                        await newEncryptionParameters.AddAsync(encryptionParameters.PublicKeys.Where(pk => pk.Email != New<KnownIdentities>().DefaultEncryptionIdentity.UserEmail));
+                        newEncryptionParameters.PublicMasterKey = encryptionParameters.PublicMasterKey;
+
+                        encryptionParameters = newEncryptionParameters;
+                    }
 
                     await New<AxCryptFile>().ChangeEncryptionAsync(file, decryptIdentity, encryptionParameters, progress);
 
@@ -532,6 +688,10 @@ namespace AxCrypt.Core.Extensions
                 return false;
             }
             if (left.IsShared != right.IsShared)
+            {
+                return false;
+            }
+            if (left.IsMasterKeyShared != right.IsMasterKeyShared)
             {
                 return false;
             }

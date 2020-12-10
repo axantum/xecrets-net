@@ -152,5 +152,10 @@ namespace AxCrypt.Core.Header
         /// 2.x - The algorithm verifier header/trailer. Consists of a 16-byte random sequence, followed by 16 bytes 1's complement.
         /// </summary>
         AlgorithmVerifier = 103,
+
+        /// <summary>
+        /// 2.x - Json-encoded business subscription public key representing master key.
+        /// </summary>
+        AsymmetricMasterKey = 104,
     }
 }

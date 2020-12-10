@@ -27,13 +27,13 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI.ViewModel;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -386,6 +386,11 @@ namespace AxCrypt.Core.UI
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             await encryptionParameters.AddAsync(await (await GetWatchedFolderKeyShares(_eventArgs.OpenFileFullName)).ToAvailableKnownPublicKeysAsync(_eventArgs.LogOnIdentity));
 
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            {
+                encryptionParameters = await _eventArgs.LogOnIdentity.AddMasterKeyParameter(encryptionParameters, true);
+            }
+
             await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(_eventArgs.OpenFileFullName, _eventArgs.SaveFileFullName, encryptionParameters, _progress);
 
             _eventArgs.Status = new FileOperationContext(String.Empty, ErrorStatus.Success);
@@ -673,6 +678,10 @@ namespace AxCrypt.Core.UI
             try
             {
                 EncryptionParameters encryptionParameters = new EncryptionParameters(New<CryptoFactory>().Default(New<ICryptoPolicy>()).CryptoId, New<KnownIdentities>().DefaultEncryptionIdentity);
+                if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+                {
+                    encryptionParameters = await New<KnownIdentities>().DefaultEncryptionIdentity.AddMasterKeyParameter(encryptionParameters, true);
+                }
                 await New<AxCryptFile>().ChangeEncryptionAsync(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, encryptionParameters, _progress);
             }
             finally

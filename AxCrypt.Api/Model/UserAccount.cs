@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AxCrypt.Api.Model.Masterkey;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -119,6 +120,12 @@ namespace AxCrypt.Api.Model
         [JsonProperty("activeSubscriptionFromAppStore")]
         public bool ActiveSubscriptionFromAppStore { get; set; }
 
+        [JsonProperty("isMasterKeyEnabled")]
+        public bool IsMasterKeyEnabled { get; set; }
+
+        [JsonProperty("masterKey")]
+        public MasterKeyPairInfo MasterKeyPair { get; set; }
+
         public AccountSource AccountSource { get; set; }
 
         public bool Equals(UserAccount other)
@@ -148,6 +155,10 @@ namespace AxCrypt.Api.Model
             {
                 return false;
             }
+            if (MasterKeyPair != other.MasterKeyPair)
+            {
+                return false;
+            }
             return AccountKeys.SequenceEqual(other.AccountKeys);
         }
 
@@ -164,7 +175,7 @@ namespace AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return AccountKeys.GetHashCode() ^ UserName.GetHashCode() ^ SubscriptionLevel.GetHashCode() ^ LevelExpiration.GetHashCode() ^ AccountStatus.GetHashCode() ^ AccountKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
+            return MasterKeyPair.GetHashCode() ^ AccountKeys.GetHashCode() ^ UserName.GetHashCode() ^ SubscriptionLevel.GetHashCode() ^ LevelExpiration.GetHashCode() ^ AccountStatus.GetHashCode() ^ AccountKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
         }
 
         public static bool operator ==(UserAccount left, UserAccount right)
