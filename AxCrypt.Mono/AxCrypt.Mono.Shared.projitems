@@ -6,7 +6,7 @@
     <SharedGUID>{E012DEFD-DD3A-411F-BDE3-6BCB12D96120}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Axantum.AxCrypt.Mono</Import_RootNamespace>
+    <Import_RootNamespace>AxCrypt.Mono</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Cryptography\AesWrapper.cs" />

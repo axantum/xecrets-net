@@ -10,7 +10,7 @@
     <RootNamespace>AxCrypt.Mono</RootNamespace>
     <AssemblyName>AxCrypt.Mono</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>AxCryptStrongName.pfx</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <ProductVersion>8.0.30703</ProductVersion>
@@ -106,7 +106,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AxantumStrongName.pfx" />
+    <None Include="AxCryptStrongName.pfx" />
     <None Include="Properties\AssemblyInfo.template" />
   </ItemGroup>
   <ItemGroup>
