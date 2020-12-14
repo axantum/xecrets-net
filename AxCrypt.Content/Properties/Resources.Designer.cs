@@ -9456,9 +9456,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
+        ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
         ///
-        ///&lt;span class=&quot;red&quot;&gt;If you have forgot [rest of string was truncated]&quot;;.
+        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
+        ///
+        ///Enter your e-mail below to a sen [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {

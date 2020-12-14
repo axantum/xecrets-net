@@ -3504,7 +3504,7 @@ Please sign in to &lt;b&gt;{0}&lt;/b&gt; and complete the email change, or reset
     <value>AxCrypt ID Password Reset</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>&lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
+    <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
 
 &lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
 
