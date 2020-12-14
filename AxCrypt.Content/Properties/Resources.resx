@@ -197,6 +197,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Trial</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>The provided e-mail or verification code is incorrect.</value>
   </data>
@@ -289,6 +292,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>I understand that this will not regain access to my encrypted files</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Already registered? Log in here</value>
     <comment>Link to sign in page.</comment>
@@ -339,7 +345,10 @@ Please sign in using the same password you used then.</value>
     <value>Apply now</value>
   </data>
   <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
-    <value>!!Master key can't be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key.</value>
+    <value>Master key can't be enabled while being part of more than one business. Please leave any other businesses you're part of before enabling master key.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Approve Master Key</value>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>For security reasons, please enter your password again.</value>
@@ -358,7 +367,7 @@ Updates to the subscription will be reflected here within a few minutes.</value>
     <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>
   <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
-    <value>!!Auto Anonymous Rename</value>
+    <value>Auto Anonymous Rename</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>You do not need to respond or do anything. If you do nothing, no more e-mails will be sent and your AxCrypt ID account will be deleted permanently.</value>
@@ -508,7 +517,7 @@ You have been warned, now enjoy!</value>
     <value>The AxCrypt Business subscription plan is for one or more member licenses.</value>
   </data>
   <data name="AxcryptBusinessBlock6Text2" xml:space="preserve">
-    <value>For current pricing in relevant currencies visit our &lt;a href='#/pricing'&gt;pricing&lt;/a&gt; page.</value>
+    <value>For current pricing in relevant currencies visit our &lt;a href='/pricing'&gt;pricing&lt;/a&gt; page.</value>
   </data>
   <data name="AxcryptBusinessBlock6Text3" xml:space="preserve">
     <value>For the purposes of a subscription, a month is defined as 30 days and a year as 360 days.</value>
@@ -578,8 +587,8 @@ You have been warned, now enjoy!</value>
     <comment>The non-translated name for the Business plan</comment>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
-    <value>!!&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
+&lt;p&gt;You were added to an AxCrypt Business subscription by {0}. You now have access to the subscriber benefits of AxCrypt!&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -587,7 +596,7 @@ You have been warned, now enjoy!</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
   </data>
   <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
-    <value>!!You have been invited by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href='" + {1} + "'&gt;My AxCrypt ID&lt;/a&gt; page.</value>
+    <value>You have been invited to AxCrypt by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href='" + {1} + "'&gt;My AxCrypt ID&lt;/a&gt; page.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administrators</value>
@@ -687,11 +696,11 @@ You have been warned, now enjoy!</value>
     <value>Made for companies</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>!!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, accept this invitation and set your personal secret password.</value>
+    <value>You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
-    <value>!!You have been invited by &lt;b&gt;{0}&lt;/b&gt;. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. If you don’t want to be part of this feature, please ignore this email and proceed with &lt;a href='{1}'&gt;sign up&lt;/a&gt; instead.</value>
+    <value>You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the feature &lt;i&gt;master key&lt;/i&gt; turned on. This means files you encrypt will for safety reasons be possible to recover by the administrators of the business. By accepting this invitation you will be added to the business and your files will have master key applied to them. If you don’t want to be part of this business, please ignore this email and proceed by &lt;a href='{1}'&gt;signing up&lt;/a&gt; instead.</value>
   </data>
   <data name="BusinessLabel" xml:space="preserve">
     <value>Business</value>
@@ -723,7 +732,7 @@ You have been warned, now enjoy!</value>
     <comment>A short, preferrably one word, label used to label a field or column typically containing a check box indicating if the member in question is designated as an administrator for the subscription.</comment>
   </data>
   <data name="BusinessSubscriptionAlreadyMemberCreateWarning" xml:space="preserve">
-    <value>You are already Business member, only create a new subscription if you are sure you want to.</value>
+    <value>This user is already part of a business, please ask them to leave that first</value>
     <comment>A text informing a user that is about to create a Business subscription that she already is a member, and to consider if she really wants to do this. She can, it's just unlikely she wants to.</comment>
   </data>
   <data name="BusinessSubscriptionAvailableMemberLicensesLabel" xml:space="preserve">
@@ -822,6 +831,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>You are not administrator for any subscriptions.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Organization</value>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Organization Name</value>
@@ -1168,7 +1180,7 @@ You must complete these steps to complete the process.</value>
     <value>Do this for all remaining files?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>!!If you have any questions, please first contact {0}.</value>
+    <value>If you have any questions, please first contact {0}.</value>
   </data>
   <data name="ContactHeading" xml:space="preserve">
     <value>Contact</value>
@@ -1323,7 +1335,7 @@ If you do not accept our temporary session cookies you cannot sign in and the si
     <value>Internal error, could not delete AxCrypt ID because the current user was not found.</value>
   </data>
   <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
-    <value>!!You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;</value>
+    <value>You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;</value>
   </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Your AxCrypt ID has been successfully deleted.
@@ -1409,6 +1421,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Disable</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Disable Master Key</value>
+  </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>This automatic email is translated to your preferred language, but direct personal service and support is in English.</value>
   </data>
@@ -1467,10 +1482,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not.</value>
   </data>
   <data name="DownloadInformationListOfficialDownload" xml:space="preserve">
-    <value>This is the only official download site for AxCrypt. Look up SHA256 hash.</value>
+    <value>This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href="/information/cryptographic-hashes-files"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="DownloadInformationSubheading" xml:space="preserve">
-    <value>Please read the &lt;a href='#/information/release-notes'&gt;release notes&lt;/a&gt; to see what's the current version.</value>
+    <value>Please read the &lt;a href='/information/release-notes'&gt;release notes&lt;/a&gt; to see what's the current version.</value>
   </data>
   <data name="DownloadLinkLabel" xml:space="preserve">
     <value>Download</value>
@@ -1542,6 +1557,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[No Description]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Enable Master Key</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Secured Folders</value>
@@ -1693,10 +1711,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>What is the difference between AxCrypt 1.x and 2.x?</value>
   </data>
   <data name="FaqDifference1&amp;2Answer1" xml:space="preserve">
-    <value>AxCrypt 1.x is a legacy version. That means it is outdated and there is no longer any support for it, whereas AxCrypt 2.x is the version that we are continuously working on to keep improving it. It’s absolutely not recommended to use 1.x. We recommend all users, old and new, to always use the most current released version of AxCrypt, which can be downloaded &lt;a href='#/download'&gt;here&lt;/a&gt;.</value>
+    <value>AxCrypt 1.x is a legacy version. That means it is outdated and there is no longer any support for it, whereas AxCrypt 2.x is the version that we are continuously working on to keep improving it. It’s absolutely not recommended to use 1.x. We recommend all users, old and new, to always use the most current released version of AxCrypt, which can be downloaded &lt;a href='/download'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2" xml:space="preserve">
-    <value>For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href='#/support/legacy-downloads'&gt;here&lt;/a&gt;.</value>
+    <value>For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href='/support/legacy-downloads'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller" xml:space="preserve">
     <value>What are the major differences between the standalone version and installer version of AxCrypt?</value>
@@ -1717,7 +1735,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>We will not sell or use your email for third party communications without your explicit consent.</value>
   </data>
   <data name="FaqEmailUsedForAnswer3" xml:space="preserve">
-    <value>Please see the &lt;a href='#/information/terms-of-use'&gt;terms of use&lt;/a&gt; for more details.</value>
+    <value>Please see the &lt;a href='/information/terms-of-use'&gt;terms of use&lt;/a&gt; for more details.</value>
   </data>
   <data name="FaqFileEncryptionNotWorking" xml:space="preserve">
     <value>File Encryption for .NET and Mono has stopped working</value>
@@ -1831,7 +1849,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>What platforms does AxCrypt run on?</value>
   </data>
   <data name="FaqWhatPlatformsAnswer1" xml:space="preserve">
-    <value>AxCrypt is currently available on most major platforms, including: Windows, MacOS, iOS and Android. For more information about platforms and system requirements, head over to &lt;a href='#/information/requirements'&gt;Requirements&lt;/a&gt;.</value>
+    <value>AxCrypt is currently available on most major platforms, including: Windows, MacOS, iOS and Android. For more information about platforms and system requirements, head over to &lt;a href='/information/requirements'&gt;Requirements&lt;/a&gt;.</value>
   </data>
   <data name="FaqWhyPasswordSignIn" xml:space="preserve">
     <value>Why does AxCrypt only ask for a password during sign-in? Isn’t that insecure?</value>
@@ -2097,7 +2115,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph" xml:space="preserve">
-    <value>Talk to us! &lt;br&gt; Please use our &lt;a href='/#/about'&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>Talk to us! &lt;br&gt; Please use our &lt;a href='/support/forums'&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>This is the AxCrypt ID section of AxCrypt.net, click &lt;a href="{0}"&gt;here&lt;/a&gt; to go back to the start page.</value>
@@ -2289,7 +2307,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Verify that the download is undamaged and authentic by checking the digital signature. Right-click the downloaded file in Windows Explorer, and select ‘Properties’ and the ‘Digital Signatures’ tab. Then select the digital signature and click ‘Details’. Ensure that the digital signature is shown as ‘OK’ and that the signer is ‘AxCrypt AB’.</value>
   </data>
   <data name="GetStartedInfoNote2Text1" xml:space="preserve">
-    <value>If you have any burning issues or questions, check our &lt;a href='#/support/faq'&gt;frequently asked questions&lt;/a&gt; page.</value>
+    <value>If you have any burning issues or questions, check our &lt;a href='/support/faq'&gt;frequently asked questions&lt;/a&gt; page.</value>
   </data>
   <data name="GetStartedInfoNote2Text2" xml:space="preserve">
     <value>Please report bugs and comments to us. You’re welcome to request support as well. For other issues, please send us an email.</value>
@@ -2301,7 +2319,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>In order to use AxCrypt you will need to &lt;a href='https://account.axcrypt.net/Home/Register'&gt;create an account&lt;/a&gt;. Here is a step by step video we created for you to follow along.</value>
   </data>
   <data name="GetStartedInstallingStep1" xml:space="preserve">
-    <value>&lt;a href='#/download'&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard.</value>
+    <value>&lt;a href='/download'&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard.</value>
   </data>
   <data name="GetStartedInstallingStep2" xml:space="preserve">
     <value>Register your email address.</value>
@@ -2310,7 +2328,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Complete the process by entering the activation code and choosing a password.</value>
   </data>
   <data name="GetStartedInstallingStep4" xml:space="preserve">
-    <value>You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href='#/premium'&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href='#/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+    <value>You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedInstallingVideoTitleMac" xml:space="preserve">
     <value>AxCrypt: Installing and Setting Up your AxCrypt ID on Mac</value>
@@ -2322,7 +2340,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Key Sharing</value>
   </data>
   <data name="GetStartedKeySharingIngress" xml:space="preserve">
-    <value>By using the &lt;a href='#/information/features'&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing.</value>
+    <value>By using the &lt;a href='/information/features'&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing.</value>
   </data>
   <data name="GetStartedKeySharingStep1" xml:space="preserve">
     <value>Choose the file you want to share.</value>
@@ -2358,7 +2376,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Password Management</value>
   </data>
   <data name="GetStartedPasswordManagementIngress" xml:space="preserve">
-    <value>You can store all your passwords and codes online in a secure manner using the &lt;a href='#/information/features'&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords.</value>
+    <value>You can store all your passwords and codes online in a secure manner using the &lt;a href='/information/features'&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords.</value>
   </data>
   <data name="GetStartedPasswordManagementStep1" xml:space="preserve">
     <value>Login to get access to the password management</value>
@@ -2472,7 +2490,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Strong encryption</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText" xml:space="preserve">
-    <value>&lt;p&gt;For more testimonials, head over to &lt;a href='#/about'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;For more testimonials, head over to &lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading" xml:space="preserve">
     <value>What others say</value>
@@ -2654,6 +2672,9 @@ EU VAT Number SE556967618101</value>
     <value>Italiano (Italian)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>I understand</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected.</value>
   </data>
@@ -2697,7 +2718,7 @@ Please specify the language to use in the invitation and an optional personal me
     <value>New contacts can only be added when online!</value>
   </data>
   <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
-    <value>!!When Updating keyShared file on free user that file keySharing information was removed</value>
+    <value>When updating a key shared file while on free plan, the key sharing information will be cleared. This means the file will not be possible to open by the user who shared the file.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Click to select encrypted files to share keys with others.</value>
@@ -2755,6 +2776,24 @@ Please specify the language to use in the invitation and an optional personal me
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft.</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>Are you sure you want to leave the business?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Leave Business</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>The user can not be leave the business because they are the only administrator. To leave, please first nominate another administrator.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>You have been successfully removed from the business</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Business Info</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Leave</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>After files are converted they will only open with the current AxCrypt password. Please verify your password.
@@ -2935,6 +2974,40 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>The site management property was updated successfully.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>If approved, Master key will be applied to encrypted files and possible to recover by business administrators. If you want to stop having Master key applied, you can leave the business at any time (this is done in your My AxCrypt ID page).</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>This feature makes it possible for AxCrypt to recover files encrypted by members of this business. It should only be applied on explicit request by the business!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>AxCrypt Recovery Backup</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>Master key is enabled. This means your business administrators can recover your secured files.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Files encrypted before this will not be possible to recover with master key. If you know there are files you need to have master key applied to please inform the user to stop protecting the files and then start protecting them again. This will re-encrypt the files, including the master key.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>This file had a master key applied to it. Since you're not part of the same business, master key will be cleared from this file.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Master Key</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Internal error, invalid function argument in %4</value>
@@ -3404,7 +3477,7 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
   <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
-    <value>!!Recently your AxCrypt account password was changed, So AxCrypt will need to SignIn again for fetching your updated key information.</value>
+    <value>Recently your AxCrypt account password was changed, so you will need to sign in again to synchronize you AxCrypt account information.</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password is not good enough to be acceptable.</value>
@@ -3431,11 +3504,13 @@ Please sign in to &lt;b&gt;{0}&lt;/b&gt; and complete the email change, or reset
     <value>AxCrypt ID Password Reset</value>
   </data>
   <data name="PasswordResetPageBody" xml:space="preserve">
-    <value>If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
+    <value>&lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
 
 &lt;span class="red"&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
 
-Enter your e-mail below to a send an verification or password reset link to the specified address.</value>
+Enter your e-mail below to a send an verification or password reset link to the specified address.
+
+&lt;b&gt;Note! If you remember your old password, do not use this page! Instead use &lt;a href="{0}"&gt;Change password&lt;/a&gt;&lt;/b&gt;</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Password reset</value>
@@ -3628,7 +3703,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>More information</value>
   </data>
   <data name="PremiumThirdBodyText" xml:space="preserve">
-    <value>&lt;p&gt;Read more on our &lt;a href='#/information/features'&gt;feature page&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Read more on our &lt;a href='/information/features'&gt;feature page&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="PremiumTrialInfo" xml:space="preserve">
     <value>Get AxCrypt Premium today and get the first 30 days for free!</value>
@@ -3675,6 +3750,12 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/year</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus" xml:space="preserve">
+    <value>Everything in Free plus:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus" xml:space="preserve">
+    <value>Everything in Premium plus:</value>
+  </data>
   <data name="PricingFeatureListAccountKey" xml:space="preserve">
     <value>Account Key Backup</value>
   </data>
@@ -3689,6 +3770,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PricingFeatureListBusinessAdmin" xml:space="preserve">
     <value>Business Admin</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport" xml:space="preserve">
+    <value>Business Priority Support</value>
   </data>
   <data name="PricingFeatureListCloudStorage" xml:space="preserve">
     <value>Cloud Storage Awareness</value>
@@ -3722,6 +3806,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PricingFeatureListPasswordManagement" xml:space="preserve">
     <value>Password Management</value>
+  </data>
+  <data name="PricingFeatureListProfessionalUse" xml:space="preserve">
+    <value>Professional Use</value>
   </data>
   <data name="PricingFeatureListSecuredFolders" xml:space="preserve">
     <value>Secured Folders</value>
@@ -3766,7 +3853,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>When an unexpected error (exception) occurs.</value>
   </data>
   <data name="PrivacyPolicyBlock1Text1" xml:space="preserve">
-    <value>Our privacy policy, of course, complies with the &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href='#/information/gdpr'&gt;GDPR&lt;/a&gt; page, to learn more about the regulation.</value>
+    <value>Our privacy policy, of course, complies with the &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href='/information/gdpr'&gt;GDPR&lt;/a&gt; page, to learn more about the regulation.</value>
   </data>
   <data name="PrivacyPolicyBlock1Text2" xml:space="preserve">
     <value>When you sign up with us, you do agree that we may send you occasional emails such as newsletters, offers and information about new and updated products and services from us. You can opt out, i.e. unsubscribe, at any time by clicking the link provided for this in such emails.</value>
@@ -4170,7 +4257,7 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <value>Regulatory Compliance</value>
   </data>
   <data name="ReleaseNotesDescription" xml:space="preserve">
-    <value>For full details and issue tracking of the Windows Desktop application and the core library, head over to the &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;bitbucket repository&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href='#/information/cryptographic-hashes-files'&gt;here&lt;/a&gt;.</value>
+    <value>For full details of the Windows Desktop application and the core library, head over to the &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href='/information/cryptographic-hashes-files'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel" xml:space="preserve">
     <value>Release Notes</value>
@@ -4216,7 +4303,7 @@ Subject: AxCrypt Report Snapshot</value>
     <value>Open Error Report Snapshot</value>
   </data>
   <data name="ReqruitmentLabel" xml:space="preserve">
-    <value>Requritment</value>
+    <value>Recruitment</value>
   </data>
   <data name="RequirementsLinkLabel" xml:space="preserve">
     <value>Requirements</value>
@@ -4809,7 +4896,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Source code</value>
   </data>
   <data name="TechnicalDetailsSourceCodeText" xml:space="preserve">
-    <value>The complete source code for the core libraries and the Windows client are found at &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;https://bitbucket.org/axcryptab/axcrypt-net.&lt;/a&gt;</value>
+    <value>The complete source code for the core libraries and the Windows client used to be in a mercurial repository in Bitbucket. But as of summer 2020 Bitbucket discontinued their mercurial support and we’re actively working on finding an alternative solution to make the source code easily available. For now, please contact support@axcrypt.net and we will supply the source code.</value>
   </data>
   <data name="TechnicalDetailsStoredOnServerHeading" xml:space="preserve">
     <value>What is stored on the server?</value>
@@ -4836,7 +4923,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>If the password manager is used, we also store an AES-256 XML-encrypted file with the password records, encrypted with the sign in password.</value>
   </data>
   <data name="TechnicalDetailsStoredOnServerText3" xml:space="preserve">
-    <value>Apart from the above, we perform some logging that helps us monitor the infrastructure, and improve our support capabilities. This is detailed at &lt;a href='#/information/privacy-policy/'&gt;privacy policy&lt;/a&gt;.</value>
+    <value>Apart from the above, we perform some logging that helps us monitor the infrastructure, and improve our support capabilities. This is detailed at &lt;a href='/information/privacy-policy/'&gt;privacy policy&lt;/a&gt;.</value>
   </data>
   <data name="TechnicalDetailsV1PDFLinkLabel" xml:space="preserve">
     <value>AxCrypt Version 1 Algorithms and File Format</value>
@@ -4926,7 +5013,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>We are only liable for any damage you can show is due to negligence by us. We are not liable for any inherent weaknesses that may be discovered in the security technology used.</value>
   </data>
   <data name="TermsOfUseBlock17Text4" xml:space="preserve">
-    <value>Your information is kept confidential by the use of standardized strong encryption methods, described at &lt;a href='#/information/security'&gt;Security&lt;/a&gt;, &lt;a href='#/information/technical-details'&gt;Technical Details&lt;/a&gt; and in the &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;source code&lt;/a&gt;. We do not guarantee that you choose a sufficiently strong password.</value>
+    <value>Your information is kept confidential by the use of standardized strong encryption methods, described at &lt;a href='/information/security'&gt;Security&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Technical Details&lt;/a&gt; and in the &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;source code&lt;/a&gt;. We do not guarantee that you choose a sufficiently strong password.</value>
   </data>
   <data name="TermsOfUseBlock17Text5" xml:space="preserve">
     <value>We only provide AxCrypt and are never responsible for any illegal or fraudulent actions taken by others using it. As a user, you are entirely responsible for your actions using AxCrypt. We are never liable for damage that could have been prevented by timely backup, or caused by forgotten passwords.</value>
@@ -4995,7 +5082,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>AxCrypt Premium is available to purchase for all private individuals. It is not available for companies and organizations; no VAT deduction is possible. In case a business purchases (more than one) AxCrypt Premium subscription instead of AxCrypt Business , the payment will be refunded, and the subscription will be cancelled. </value>
   </data>
   <data name="TermsOfUseBlock5Text2" xml:space="preserve">
-    <value>AxCrypt Premium provides extended features in addition to the Free plan as specified on our &lt;a href='#/pricing'&gt;Pricing&lt;/a&gt; page.</value>
+    <value>AxCrypt Premium provides extended features in addition to the Free plan as specified on our &lt;a href='/pricing'&gt;Pricing&lt;/a&gt; page.</value>
   </data>
   <data name="TermsOfUseBlock5Text3" xml:space="preserve">
     <value>If your Premium subscription runs out, you will fall back to Free or Viewer as appropriate.</value>
@@ -5007,7 +5094,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>AxCrypt Business Plan</value>
   </data>
   <data name="TermsOfUseBlock6Text1" xml:space="preserve">
-    <value>AxCrypt Business is available to purchase for companies and organizations. It is not suitable for private individuals. It provides extended features in addition to the other plans as specified on our &lt;a href='#/pricing'&gt;Pricing&lt;/a&gt; page. It also includes a self-service management system to allocate licenses to members.</value>
+    <value>AxCrypt Business is available to purchase for companies and organizations. It is not suitable for private individuals. It provides extended features in addition to the other plans as specified on our &lt;a href='/pricing'&gt;Pricing&lt;/a&gt; page. It also includes a self-service management system to allocate licenses to members.</value>
   </data>
   <data name="TermsOfUseBlock6Text2" xml:space="preserve">
     <value>If your Business subscription runs out, you will fall back to Free or Viewer as appropriate.</value>
@@ -5040,7 +5127,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>When you register as an individual, we do not require any personal information from you, except a working email address. For companies and organizations we require an address and ask for an optional EU VAT number.</value>
   </data>
   <data name="TermsOfUseBlock9Text2" xml:space="preserve">
-    <value>See our &lt;a href='#/information/privacy-policy'&gt;Privacy Policy&lt;/a&gt; for details of what and how we process, accepting these Terms of Use also means accepting our privacy policy.</value>
+    <value>See our &lt;a href='/information/privacy-policy'&gt;Privacy Policy&lt;/a&gt; for details of what and how we process, accepting these Terms of Use also means accepting our privacy policy.</value>
   </data>
   <data name="TermsOfUseDescription" xml:space="preserve">
     <value>These are the terms of use for AxCrypt</value>
@@ -5098,6 +5185,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Click the AxCrypt icon to restore the application window.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialOnlyForNewUsers" xml:space="preserve">
+    <value>Free trial only applies to new users</value>
   </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>Great! We've enabled a free trial of Premium for you. Now you can use all features of AxCrypt for free during the trial period.
@@ -5340,7 +5430,7 @@ The AxCrypt Team</value>
     <value>For the programmers and system administrators, AxCrypt provides a command-line interface easy to use from any other programming language on the Windows platform that can execute another program, including .bat files.</value>
   </data>
   <data name="UsageTipsTargetUseListItem6" xml:space="preserve">
-    <value>Developers can integrate AxCrypt by incorporating the .NET core library which has a programmatic API that is easy to use. Get the source code from bitbucket, or via nuget.</value>
+    <value>Developers can integrate AxCrypt by incorporating the .NET core library which has a programmatic API that is easy to use. Get the source code by contacting support@axcrypt.net.</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>

@@ -166,7 +166,7 @@ namespace AxCrypt.Core.Session
 
             if (activeFile.IsMasterKeyShared)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "!!When Updating master key shared file on non business user that file master key sharing information removed.", Common.DoNotShowAgainOptions.MasterKeyRemovedWarning);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.MasterKeyRemovedWarningText, Common.DoNotShowAgainOptions.MasterKeyRemovedWarning);
             }
         }
     }

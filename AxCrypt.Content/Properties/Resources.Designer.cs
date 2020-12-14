@@ -287,6 +287,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string ActionLabel {
+            get {
+                return ResourceManager.GetString("ActionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided e-mail or verification code is incorrect..
         /// </summary>
         public static string ActivateErrorEmailOrCode {
@@ -536,6 +545,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I understand that this will not regain access to my encrypted files.
+        /// </summary>
+        public static string AgreePasswordResetNotRegainAccess {
+            get {
+                return ResourceManager.GetString("AgreePasswordResetNotRegainAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already registered? Log in here.
         /// </summary>
         public static string AlreadyRegisteredLink {
@@ -664,11 +682,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Master key can&apos;t be enabled when the user has more than one business subscription(s) / membership(s). Please leave from other subscription(s) to enable the master key..
+        ///   Looks up a localized string similar to Master key can&apos;t be enabled while being part of more than one business. Please leave any other businesses you&apos;re part of before enabling master key..
         /// </summary>
         public static string ApproveMasterKeyMoreThanOneBusinessError {
             get {
                 return ResourceManager.GetString("ApproveMasterKeyMoreThanOneBusinessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve Master Key.
+        /// </summary>
+        public static string ApproveMasterKeyPrompt {
+            get {
+                return ResourceManager.GetString("ApproveMasterKeyPrompt", resourceCulture);
             }
         }
         
@@ -711,7 +738,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Auto Anonymous Rename.
+        ///   Looks up a localized string similar to Auto Anonymous Rename.
         /// </summary>
         public static string AutoAnonymousRenameMenuItemText {
             get {
@@ -1140,7 +1167,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For current pricing in relevant currencies visit our &lt;a href=&apos;#/pricing&apos;&gt;pricing&lt;/a&gt; page..
+        ///   Looks up a localized string similar to For current pricing in relevant currencies visit our &lt;a href=&apos;/pricing&apos;&gt;pricing&lt;/a&gt; page..
         /// </summary>
         public static string AxcryptBusinessBlock6Text2 {
             get {
@@ -1338,8 +1365,8 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!&lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
-        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}, so you now have access to the subscriber benefits AxCrypt as long as you are a valid member.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
+        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}. You now have access to the subscriber benefits of AxCrypt!&lt;/p&gt;.
         /// </summary>
         public static string BusinessAddedMailBodyHtml {
             get {
@@ -1357,7 +1384,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You have been invited by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href=&apos;&quot; + {1} + &quot;&apos;&gt;My AxCrypt ID&lt;/a&gt; page..
+        ///   Looks up a localized string similar to You have been invited to AxCrypt by {0}. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. This feature is not turned on for you by default! You will have to approve the feature by going to &lt;a href=&apos;&quot; + {1} + &quot;&apos;&gt;My AxCrypt ID&lt;/a&gt; page..
         /// </summary>
         public static string BusinessAddedMasterKeyInfoMailBodyHtml {
             get {
@@ -1654,7 +1681,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, accept this invitation and set your personal secret password..
+        ///   Looks up a localized string similar to You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;..
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
             get {
@@ -1663,7 +1690,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You have been invited by &lt;b&gt;{0}&lt;/b&gt;. This business has the feature master key turned on, meaning files you encrypt will for safety reasons be possible to recover by the administrators of the business. If you don’t want to be part of this feature, please ignore this email and proceed with &lt;a href=&apos;{1}&apos;&gt;sign up&lt;/a&gt; instead..
+        ///   Looks up a localized string similar to You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the feature &lt;i&gt;master key&lt;/i&gt; turned on. This means files you encrypt will for safety reasons be possible to recover by the administrators of the business. By accepting this invitation you will be added to the business and your files will have master key applied to them. If you don’t want to be part of this business, please ignore this email and proceed by &lt;a href=&apos;{1}&apos;&gt;signing up&lt;/a&gt; instead..
         /// </summary>
         public static string BusinessInvitationMasterKeyInfoMailBodyIntro {
             get {
@@ -1744,7 +1771,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are already Business member, only create a new subscription if you are sure you want to..
+        ///   Looks up a localized string similar to This user is already part of a business, please ask them to leave that first.
         /// </summary>
         public static string BusinessSubscriptionAlreadyMemberCreateWarning {
             get {
@@ -1974,6 +2001,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessSubscriptionNotAdministratorText {
             get {
                 return ResourceManager.GetString("BusinessSubscriptionNotAdministratorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization.
+        /// </summary>
+        public static string BusinessSubscriptionOrganizationLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionOrganizationLabel", resourceCulture);
             }
         }
         
@@ -2918,7 +2954,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!If you have any questions, please first contact {0}..
+        ///   Looks up a localized string similar to If you have any questions, please first contact {0}..
         /// </summary>
         public static string ContactBusinessInviterMailBodyText {
             get {
@@ -3363,7 +3399,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;.
+        ///   Looks up a localized string similar to You have tried to delete your AxCrypt ID. To complete the process you must verify your email address. Doing so proves you own the email and gives us permission to delete your AxCrypt ID permanently from the system. &lt;span class=&quot;red&quot;&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;.
         /// </summary>
         public static string DeleteAccountMailBodyIntro {
             get {
@@ -3617,6 +3653,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable Master Key.
+        /// </summary>
+        public static string DisableMasterKeyPrompt {
+            get {
+                return ResourceManager.GetString("DisableMasterKeyPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This automatic email is translated to your preferred language, but direct personal service and support is in English..
         /// </summary>
         public static string DisclaimerMailFooter {
@@ -3788,7 +3833,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the only official download site for AxCrypt. Look up SHA256 hash..
+        ///   Looks up a localized string similar to This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href=&quot;/information/cryptographic-hashes-files&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string DownloadInformationListOfficialDownload {
             get {
@@ -3797,7 +3842,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please read the &lt;a href=&apos;#/information/release-notes&apos;&gt;release notes&lt;/a&gt; to see what&apos;s the current version..
+        ///   Looks up a localized string similar to Please read the &lt;a href=&apos;/information/release-notes&apos;&gt;release notes&lt;/a&gt; to see what&apos;s the current version..
         /// </summary>
         public static string DownloadInformationSubheading {
             get {
@@ -4000,6 +4045,15 @@ namespace AxCrypt.Content.Properties {
         public static string EmptySecretTruncatedDescriptionLinkText {
             get {
                 return ResourceManager.GetString("EmptySecretTruncatedDescriptionLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Master Key.
+        /// </summary>
+        public static string EnableMasterKeyPrompt {
+            get {
+                return ResourceManager.GetString("EnableMasterKeyPrompt", resourceCulture);
             }
         }
         
@@ -4445,7 +4499,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt 1.x is a legacy version. That means it is outdated and there is no longer any support for it, whereas AxCrypt 2.x is the version that we are continuously working on to keep improving it. It’s absolutely not recommended to use 1.x. We recommend all users, old and new, to always use the most current released version of AxCrypt, which can be downloaded &lt;a href=&apos;#/download&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to AxCrypt 1.x is a legacy version. That means it is outdated and there is no longer any support for it, whereas AxCrypt 2.x is the version that we are continuously working on to keep improving it. It’s absolutely not recommended to use 1.x. We recommend all users, old and new, to always use the most current released version of AxCrypt, which can be downloaded &lt;a href=&apos;/download&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string FaqDifference1_2Answer1 {
             get {
@@ -4454,7 +4508,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href=&apos;#/support/legacy-downloads&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href=&apos;/support/legacy-downloads&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string FaqDifference1_2Answer2 {
             get {
@@ -4517,7 +4571,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please see the &lt;a href=&apos;#/information/terms-of-use&apos;&gt;terms of use&lt;/a&gt; for more details..
+        ///   Looks up a localized string similar to Please see the &lt;a href=&apos;/information/terms-of-use&apos;&gt;terms of use&lt;/a&gt; for more details..
         /// </summary>
         public static string FaqEmailUsedForAnswer3 {
             get {
@@ -4859,7 +4913,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is currently available on most major platforms, including: Windows, MacOS, iOS and Android. For more information about platforms and system requirements, head over to &lt;a href=&apos;#/information/requirements&apos;&gt;Requirements&lt;/a&gt;..
+        ///   Looks up a localized string similar to AxCrypt is currently available on most major platforms, including: Windows, MacOS, iOS and Android. For more information about platforms and system requirements, head over to &lt;a href=&apos;/information/requirements&apos;&gt;Requirements&lt;/a&gt;..
         /// </summary>
         public static string FaqWhatPlatformsAnswer1 {
             get {
@@ -5606,7 +5660,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Talk to us! &lt;br&gt; Please use our &lt;a href=&apos;/#/about&apos;&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;.
+        ///   Looks up a localized string similar to Talk to us! &lt;br&gt; Please use our &lt;a href=&apos;/support/forums&apos;&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;.
         /// </summary>
         public static string FooterContactUsParagraph {
             get {
@@ -6182,7 +6236,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have any burning issues or questions, check our &lt;a href=&apos;#/support/faq&apos;&gt;frequently asked questions&lt;/a&gt; page..
+        ///   Looks up a localized string similar to If you have any burning issues or questions, check our &lt;a href=&apos;/support/faq&apos;&gt;frequently asked questions&lt;/a&gt; page..
         /// </summary>
         public static string GetStartedInfoNote2Text1 {
             get {
@@ -6218,7 +6272,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href=&apos;#/download&apos;&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard..
+        ///   Looks up a localized string similar to &lt;a href=&apos;/download&apos;&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard..
         /// </summary>
         public static string GetStartedInstallingStep1 {
             get {
@@ -6245,7 +6299,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href=&apos;#/premium&apos;&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href=&apos;#/business&apos;&gt;AxCrypt Business&lt;/a&gt;..
+        ///   Looks up a localized string similar to You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href=&apos;/premium&apos;&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href=&apos;/business&apos;&gt;AxCrypt Business&lt;/a&gt;..
         /// </summary>
         public static string GetStartedInstallingStep4 {
             get {
@@ -6281,7 +6335,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By using the &lt;a href=&apos;#/information/features&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
+        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/features&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
         /// </summary>
         public static string GetStartedKeySharingIngress {
             get {
@@ -6389,7 +6443,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;#/information/features&apos;&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords..
+        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/features&apos;&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords..
         /// </summary>
         public static string GetStartedPasswordManagementIngress {
             get {
@@ -6724,7 +6778,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;For more testimonials, head over to &lt;a href=&apos;#/about&apos;&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;For more testimonials, head over to &lt;a href=&apos;/about/awards&apos;&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string HomeWhatOtherSayTestimonialsText {
             get {
@@ -7209,6 +7263,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I understand.
+        /// </summary>
+        public static string IUnderstandPrompt {
+            get {
+                return ResourceManager.GetString("IUnderstandPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JavaScript appears to be disabled in your browser. Unless you enable JavaScript you cannot sign in and the site may not perform as expected..
         /// </summary>
         public static string JavaScriptDisabledError {
@@ -7321,7 +7384,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!When Updating keyShared file on free user that file keySharing information was removed.
+        ///   Looks up a localized string similar to When updating a key shared file while on free plan, the key sharing information will be cleared. This means the file will not be possible to open by the user who shared the file..
         /// </summary>
         public static string KeySharingRemovedInFreeModeWarningText {
             get {
@@ -7470,6 +7533,60 @@ namespace AxCrypt.Content.Properties {
         public static string LavasoftWebCompanionExistenceWarning {
             get {
                 return ResourceManager.GetString("LavasoftWebCompanionExistenceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to leave the business?.
+        /// </summary>
+        public static string LeaveBusinessConfirmationDialogBodyText {
+            get {
+                return ResourceManager.GetString("LeaveBusinessConfirmationDialogBodyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Business.
+        /// </summary>
+        public static string LeaveBusinessConfirmationDialogHeader {
+            get {
+                return ResourceManager.GetString("LeaveBusinessConfirmationDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user can not be leave the business because they are the only administrator. To leave, please first nominate another administrator..
+        /// </summary>
+        public static string LeaveBusinessErrorText {
+            get {
+                return ResourceManager.GetString("LeaveBusinessErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have been successfully removed from the business.
+        /// </summary>
+        public static string LeaveBusinessSuccessText {
+            get {
+                return ResourceManager.GetString("LeaveBusinessSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Info.
+        /// </summary>
+        public static string LeaveBusinessTitle {
+            get {
+                return ResourceManager.GetString("LeaveBusinessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave.
+        /// </summary>
+        public static string LeaveButtonText {
+            get {
+                return ResourceManager.GetString("LeaveButtonText", resourceCulture);
             }
         }
         
@@ -7953,6 +8070,105 @@ namespace AxCrypt.Content.Properties {
         public static string ManagementSuccess {
             get {
                 return ResourceManager.GetString("ManagementSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If approved, Master key will be applied to encrypted files and possible to recover by business administrators. If you want to stop having Master key applied, you can leave the business at any time (this is done in your My AxCrypt ID page)..
+        /// </summary>
+        public static string MasterKeyApprovalInfo {
+            get {
+                return ResourceManager.GetString("MasterKeyApprovalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;.
+        /// </summary>
+        public static string MasterKeyBusinessHelpInfo1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBusinessHelpInfo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature makes it possible for AxCrypt to recover files encrypted by members of this business. It should only be applied on explicit request by the business!.
+        /// </summary>
+        public static string MasterKeyBusinessHelpInfo2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBusinessHelpInfo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Recovery Backup.
+        /// </summary>
+        public static string MasterKeyBusinessHelpPrompt {
+            get {
+                return ResourceManager.GetString("MasterKeyBusinessHelpPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If Master key is disabled, business administrators will not be able to open files encrypted by their business members..
+        /// </summary>
+        public static string MasterKeyDisableHelpText {
+            get {
+                return ResourceManager.GetString("MasterKeyDisableHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table..
+        /// </summary>
+        public static string MasterKeyHelpText1 {
+            get {
+                return ResourceManager.GetString("MasterKeyHelpText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials..
+        /// </summary>
+        public static string MasterKeyHelpText2 {
+            get {
+                return ResourceManager.GetString("MasterKeyHelpText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key is enabled. This means your business administrators can recover your secured files..
+        /// </summary>
+        public static string MasterKeyInfoPopupText {
+            get {
+                return ResourceManager.GetString("MasterKeyInfoPopupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files encrypted before this will not be possible to recover with master key. If you know there are files you need to have master key applied to please inform the user to stop protecting the files and then start protecting them again. This will re-encrypt the files, including the master key..
+        /// </summary>
+        public static string MasterKeyOldEncryptedFilesHelpText {
+            get {
+                return ResourceManager.GetString("MasterKeyOldEncryptedFilesHelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file had a master key applied to it. Since you&apos;re not part of the same business, master key will be cleared from this file..
+        /// </summary>
+        public static string MasterKeyRemovedWarningText {
+            get {
+                return ResourceManager.GetString("MasterKeyRemovedWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Key.
+        /// </summary>
+        public static string MasterKeyTitle {
+            get {
+                return ResourceManager.GetString("MasterKeyTitle", resourceCulture);
             }
         }
         
@@ -9166,7 +9382,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Recently your AxCrypt account password was changed, So AxCrypt will need to SignIn again for fetching your updated key information..
+        ///   Looks up a localized string similar to Recently your AxCrypt account password was changed, so you will need to sign in again to synchronize you AxCrypt account information..
         /// </summary>
         public static string PasswordMismatchApiExceptionText {
             get {
@@ -9240,11 +9456,9 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
+        ///   Looks up a localized string similar to &lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;If you have previously registered but have forgotten the password, or for some reason not received or lost the verification link, you may re-register and request a new verification e-mail here.
         ///
-        ///&lt;span class=&quot;red&quot;&gt;If you have forgotten your password this will allow you to sign in again, but you will not re-gain access to any encrypted files or  information stored in the online password manager. It remains encrypted with your old password, and we cannot decrypt it.&lt;/span&gt;
-        ///
-        ///Enter your e-mail below to a sen [rest of string was truncated]&quot;;.
+        ///&lt;span class=&quot;red&quot;&gt;If you have forgot [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PasswordResetPageBody {
             get {
@@ -9747,7 +9961,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Read more on our &lt;a href=&apos;#/information/features&apos;&gt;feature page&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Read more on our &lt;a href=&apos;/information/features&apos;&gt;feature page&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string PremiumThirdBodyText {
             get {
@@ -9882,6 +10096,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Everything in Free plus:.
+        /// </summary>
+        public static string PricingFeatureEverythingInFreePlus {
+            get {
+                return ResourceManager.GetString("PricingFeatureEverythingInFreePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Everything in Premium plus:.
+        /// </summary>
+        public static string PricingFeatureEverythingInPremiumPlus {
+            get {
+                return ResourceManager.GetString("PricingFeatureEverythingInPremiumPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Key Backup.
         /// </summary>
         public static string PricingFeatureListAccountKey {
@@ -9923,6 +10155,15 @@ namespace AxCrypt.Content.Properties {
         public static string PricingFeatureListBusinessAdmin {
             get {
                 return ResourceManager.GetString("PricingFeatureListBusinessAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Priority Support.
+        /// </summary>
+        public static string PricingFeatureListBusinessPrioritySupport {
+            get {
+                return ResourceManager.GetString("PricingFeatureListBusinessPrioritySupport", resourceCulture);
             }
         }
         
@@ -10022,6 +10263,15 @@ namespace AxCrypt.Content.Properties {
         public static string PricingFeatureListPasswordManagement {
             get {
                 return ResourceManager.GetString("PricingFeatureListPasswordManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professional Use.
+        /// </summary>
+        public static string PricingFeatureListProfessionalUse {
+            get {
+                return ResourceManager.GetString("PricingFeatureListProfessionalUse", resourceCulture);
             }
         }
         
@@ -10152,7 +10402,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our privacy policy, of course, complies with the &lt;a href=&apos;https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en&apos;&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href=&apos;#/information/gdpr&apos;&gt;GDPR&lt;/a&gt; page, to learn more about the regu [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Our privacy policy, of course, complies with the &lt;a href=&apos;https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en&apos;&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href=&apos;/information/gdpr&apos;&gt;GDPR&lt;/a&gt; page, to learn more about the regul [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicyBlock1Text1 {
             get {
@@ -11302,7 +11552,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For full details and issue tracking of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://bitbucket.org/axcryptab/axcrypt-net/&apos;&gt;bitbucket repository&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;#/information/cryptographic-hashes-files&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to For full details of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://www.axcrypt.net/information/technical-details/&apos;&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;/information/cryptographic-hashes-files&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string ReleaseNotesDescription {
             get {
@@ -11413,7 +11663,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Requritment.
+        ///   Looks up a localized string similar to Recruitment.
         /// </summary>
         public static string ReqruitmentLabel {
             get {
@@ -13088,7 +13338,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The complete source code for the core libraries and the Windows client are found at &lt;a href=&apos;https://bitbucket.org/axcryptab/axcrypt-net&apos;&gt;https://bitbucket.org/axcryptab/axcrypt-net.&lt;/a&gt;.
+        ///   Looks up a localized string similar to The complete source code for the core libraries and the Windows client used to be in a mercurial repository in Bitbucket. But as of summer 2020 Bitbucket discontinued their mercurial support and we’re actively working on finding an alternative solution to make the source code easily available. For now, please contact support@axcrypt.net and we will supply the source code..
         /// </summary>
         public static string TechnicalDetailsSourceCodeText {
             get {
@@ -13169,7 +13419,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apart from the above, we perform some logging that helps us monitor the infrastructure, and improve our support capabilities. This is detailed at &lt;a href=&apos;#/information/privacy-policy/&apos;&gt;privacy policy&lt;/a&gt;..
+        ///   Looks up a localized string similar to Apart from the above, we perform some logging that helps us monitor the infrastructure, and improve our support capabilities. This is detailed at &lt;a href=&apos;/information/privacy-policy/&apos;&gt;privacy policy&lt;/a&gt;..
         /// </summary>
         public static string TechnicalDetailsStoredOnServerText3 {
             get {
@@ -13430,7 +13680,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your information is kept confidential by the use of standardized strong encryption methods, described at &lt;a href=&apos;#/information/security&apos;&gt;Security&lt;/a&gt;, &lt;a href=&apos;#/information/technical-details&apos;&gt;Technical Details&lt;/a&gt; and in the &lt;a href=&apos;https://bitbucket.org/axcryptab/axcrypt-net&apos;&gt;source code&lt;/a&gt;. We do not guarantee that you choose a sufficiently strong password..
+        ///   Looks up a localized string similar to Your information is kept confidential by the use of standardized strong encryption methods, described at &lt;a href=&apos;/information/security&apos;&gt;Security&lt;/a&gt;, &lt;a href=&apos;/information/technical-details&apos;&gt;Technical Details&lt;/a&gt; and in the &lt;a href=&apos;https://bitbucket.org/axcryptab/axcrypt-net&apos;&gt;source code&lt;/a&gt;. We do not guarantee that you choose a sufficiently strong password..
         /// </summary>
         public static string TermsOfUseBlock17Text4 {
             get {
@@ -13637,7 +13887,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Premium provides extended features in addition to the Free plan as specified on our &lt;a href=&apos;#/pricing&apos;&gt;Pricing&lt;/a&gt; page..
+        ///   Looks up a localized string similar to AxCrypt Premium provides extended features in addition to the Free plan as specified on our &lt;a href=&apos;/pricing&apos;&gt;Pricing&lt;/a&gt; page..
         /// </summary>
         public static string TermsOfUseBlock5Text2 {
             get {
@@ -13673,7 +13923,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Business is available to purchase for companies and organizations. It is not suitable for private individuals. It provides extended features in addition to the other plans as specified on our &lt;a href=&apos;#/pricing&apos;&gt;Pricing&lt;/a&gt; page. It also includes a self-service management system to allocate licenses to members..
+        ///   Looks up a localized string similar to AxCrypt Business is available to purchase for companies and organizations. It is not suitable for private individuals. It provides extended features in addition to the other plans as specified on our &lt;a href=&apos;/pricing&apos;&gt;Pricing&lt;/a&gt; page. It also includes a self-service management system to allocate licenses to members..
         /// </summary>
         public static string TermsOfUseBlock6Text1 {
             get {
@@ -13772,7 +14022,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to See our &lt;a href=&apos;#/information/privacy-policy&apos;&gt;Privacy Policy&lt;/a&gt; for details of what and how we process, accepting these Terms of Use also means accepting our privacy policy..
+        ///   Looks up a localized string similar to See our &lt;a href=&apos;/information/privacy-policy&apos;&gt;Privacy Policy&lt;/a&gt; for details of what and how we process, accepting these Terms of Use also means accepting our privacy policy..
         /// </summary>
         public static string TermsOfUseBlock9Text2 {
             get {
@@ -13939,6 +14189,15 @@ namespace AxCrypt.Content.Properties {
         public static string TrayBalloonTooltip {
             get {
                 return ResourceManager.GetString("TrayBalloonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free trial only applies to new users.
+        /// </summary>
+        public static string TrialOnlyForNewUsers {
+            get {
+                return ResourceManager.GetString("TrialOnlyForNewUsers", resourceCulture);
             }
         }
         
@@ -14624,7 +14883,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Developers can integrate AxCrypt by incorporating the .NET core library which has a programmatic API that is easy to use. Get the source code from bitbucket, or via nuget..
+        ///   Looks up a localized string similar to Developers can integrate AxCrypt by incorporating the .NET core library which has a programmatic API that is easy to use. Get the source code by contacting support@axcrypt.net..
         /// </summary>
         public static string UsageTipsTargetUseListItem6 {
             get {
