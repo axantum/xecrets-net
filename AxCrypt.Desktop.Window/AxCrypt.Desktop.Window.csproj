@@ -38,7 +38,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AxCrypt.Desktop.Window.ruleset</CodeAnalysisRuleSet>
     <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
@@ -54,7 +54,7 @@
     <CodeAnalysisFailOnMissingRules>true</CodeAnalysisFailOnMissingRules>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>Axantum.AxCrypt.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AxCrypt.Desktop.Window.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DebugSymbols>true</DebugSymbols>
     <NoWarn>CS1998</NoWarn>
