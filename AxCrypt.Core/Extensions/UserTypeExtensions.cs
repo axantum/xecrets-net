@@ -587,7 +587,7 @@ namespace AxCrypt.Core.Extensions
         {
             if (logOnIdentity.MasterKeyPair != null && isShowMasterKeyWarning)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, "You have enabled a master key option. If you have enabled the master key, business subscription administrators can access the secured file's who are encrypting the files using the business subscription.", DoNotShowAgainOptions.MasterKeyWarning);
+                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.MasterKeyInfoPopupText, DoNotShowAgainOptions.MasterKeyWarning);
             }
 
             if (logOnIdentity.MasterKeyPair != null)
