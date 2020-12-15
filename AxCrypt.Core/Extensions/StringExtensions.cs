@@ -443,5 +443,11 @@ namespace AxCrypt.Core.Extensions
             url.Query = $"email={userEmail}";
             return url.Uri;
         }
+
+        public static void ProcessChangePassword(this string userEmail)
+        {
+            string link = $"{Resolve.UserSettings.AccountWebUrl}Settings/Password?email={userEmail}";
+            New<IBrowser>().OpenUri(new Uri(link));
+        }
     }
 }
