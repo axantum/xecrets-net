@@ -1930,7 +1930,7 @@ namespace AxCrypt.Desktop.Window
             }
         }
 
-        private async void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void LegacyChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Resolve.KnownIdentities.IsLoggedOnWithAxCryptId)
             {
@@ -1948,6 +1948,12 @@ namespace AxCrypt.Desktop.Window
             {
                 await LogOnOrLogOffAndLogOnAgainAsync();
             }
+        }
+
+        private void ChangePassphraseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string userEmail = New<UserSettings>().UserEmail.ToString();
+            userEmail.ProcessChangePassword();
         }
 
         private void ExportMySharingKeyToolStripMenuItem_Click(object sender, EventArgs e)
