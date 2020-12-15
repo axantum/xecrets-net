@@ -2,15 +2,13 @@
 using AxCrypt.Api;
 using AxCrypt.Api.Model;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Service;
-using AxCrypt.Content;
 using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Threading.Tasks;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI.ViewModel
@@ -80,24 +78,21 @@ namespace AxCrypt.Core.UI.ViewModel
             _signinState.IsSigningIn = true;
             try
             {
-                do
+                await WrapMessageDialogsAsync(async () =>
                 {
-                    await WrapMessageDialogsAsync(async () =>
-                    {
-                        await DoDialogsActionAsync();
-                        if (StopAndExit)
-                        {
-                            return;
-                        }
-
-                        await SignInCommandAsync();
-                        UserEmail = New<UserSettings>().UserEmail;
-                    });
+                    await DoDialogsActionAsync();
                     if (StopAndExit)
                     {
                         return;
                     }
-                } while (String.IsNullOrEmpty(UserEmail));
+
+                    await SignInCommandAsync();
+                    UserEmail = New<UserSettings>().UserEmail;
+                });
+                if (StopAndExit)
+                {
+                    return;
+                }
             }
             finally
             {
@@ -113,7 +108,6 @@ namespace AxCrypt.Core.UI.ViewModel
 
             if (Resolve.UserSettings.IsFirstSignIn)
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.InternetNotRequiredInformation);
                 Resolve.UserSettings.IsFirstSignIn = false;
                 return;
             }
@@ -178,65 +172,74 @@ namespace AxCrypt.Core.UI.ViewModel
         {
             AccountStatus status;
             PopupButtons dialogResult;
-            do
+
+            dialogResult = PopupButtons.Ok;
+            status = await EnsureEmailAccountAsync();
+            if (StopAndExit)
             {
-                dialogResult = PopupButtons.Ok;
-                status = await EnsureEmailAccountAsync();
-                if (StopAndExit)
-                {
-                    return;
-                }
+                return;
+            }
 
-                switch (status)
-                {
-                    case AccountStatus.NotFound:
-                        await New<LogOnIdentity, IAccountService>(LogOnIdentity.Empty).SignupAsync(EmailAddress.Parse(UserEmail), CultureInfo.CurrentUICulture);
-                        await CheckAccountAsync();
-                        status = await VerifyAccountOnline();
-                        break;
+            switch (status)
+            {
+                case AccountStatus.NotFound:
+                case AccountStatus.Unverified:
+                case AccountStatus.Verified:
+                    break;
 
-                    case AccountStatus.InvalidName:
-                        dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
-                        UserEmail = string.Empty;
-                        break;
+                case AccountStatus.InvalidName:
+                    dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageInvalidSignUpEmailTitle, Texts.MessageInvalidSignUpEmailText.InvariantFormat(UserEmail));
+                    UserEmail = string.Empty;
+                    break;
 
-                    case AccountStatus.Unverified:
-                        status = await VerifyAccountOnline();
-                        break;
+                case AccountStatus.Offline:
+                    New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
+                    CancelEventArgs e = new CancelEventArgs();
+                    await OnCreateAccount(e);
+                    dialogResult = GetDialogResult(dialogResult, e);
+                    if (!e.Cancel)
+                    {
+                        status = AccountStatus.Verified;
+                    }
+                    break;
 
-                    case AccountStatus.Verified:
-                        break;
-
-                    case AccountStatus.Offline:
-                        New<AxCryptOnlineState>().IsOnline = New<IInternetState>().Connected;
-                        CancelEventArgs e = new CancelEventArgs();
-                        await OnCreateAccount(e);
-                        if (!e.Cancel)
-                        {
-                            status = AccountStatus.Verified;
-                        }
-                        break;
-
-                    case AccountStatus.Unknown:
-                    case AccountStatus.Unauthenticated:
-                    case AccountStatus.DefinedByServer:
+                case AccountStatus.Unknown:
+                case AccountStatus.Unauthenticated:
+                case AccountStatus.DefinedByServer:
+                    if (!string.IsNullOrEmpty(UserEmail))
+                    {
                         dialogResult = await New<IPopup>().ShowAsync(PopupButtons.OkCancelExit, Texts.MessageUnexpectedErrorTitle, Texts.MessageUnexpectedErrorText);
                         UserEmail = string.Empty;
-                        break;
+                    }
+                    break;
 
-                    default:
-                        break;
-                }
-                if (dialogResult == PopupButtons.Exit)
-                {
-                    StopAndExit = true;
-                    return;
-                }
-                if (dialogResult == PopupButtons.Cancel)
-                {
-                    return;
-                }
-            } while (status != AccountStatus.Verified);
+                default:
+                    break;
+            }
+            if (dialogResult == PopupButtons.Exit)
+            {
+                StopAndExit = true;
+                return;
+            }
+            if (dialogResult == PopupButtons.Cancel)
+            {
+                return;
+            }
+        }
+
+        private static PopupButtons GetDialogResult(PopupButtons dialogResult, CancelEventArgs e)
+        {
+            if (!e.Cancel)
+            {
+                return dialogResult;
+            }
+
+            if (New<IInternetState>().Connected)
+            {
+                return PopupButtons.Cancel;
+            }
+
+            return PopupButtons.Exit;
         }
 
         private async Task<AccountStatus> EnsureEmailAccountAsync()
@@ -259,7 +262,6 @@ namespace AxCrypt.Core.UI.ViewModel
                 }
             }
 
-            await AskForEmailAddressToUse();
             if (StopAndExit)
             {
                 return AccountStatus.Unknown;

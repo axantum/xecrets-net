@@ -1,13 +1,12 @@
 ﻿using AxCrypt.Api.Model;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Forms.Style;
-using AxCrypt.Content;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Desktop.Window
@@ -41,38 +40,6 @@ namespace AxCrypt.Desktop.Window
                 using (CreateNewAccountDialog dialog = new CreateNewAccountDialog(parent, String.Empty, EmailAddress.Parse(UserEmail)))
                 {
                     DialogResult result = dialog.ShowDialog();
-                    if (result != DialogResult.OK)
-                    {
-                        e.Cancel = true; ;
-                    }
-                }
-                return Task.FromResult<object>(null);
-            };
-
-            viewModel.RequestEmail = (e) =>
-            {
-                using (EmailDialog dialog = new EmailDialog(parent))
-                {
-                    dialog.EmailTextBox.Text = viewModel.UserEmail;
-                    DialogResult result = dialog.ShowDialog(parent);
-                    if (result != DialogResult.OK)
-                    {
-                        e.Cancel = true;
-                        return Task.FromResult<object>(null);
-                    }
-                    viewModel.UserEmail = dialog.EmailTextBox.Text;
-                }
-                return Task.FromResult<object>(null);
-            };
-
-            viewModel.VerifyAccount = (e) =>
-            {
-                VerifyAccountViewModel vav = new VerifyAccountViewModel(EmailAddress.Parse(viewModel.UserEmail));
-                vav.BindPropertyChanged<bool>(nameof(vav.AlreadyVerified), (verified) => viewModel.AlreadyVerified = verified);
-
-                using (VerifyAccountDialog dialog = new VerifyAccountDialog(parent, vav))
-                {
-                    DialogResult result = dialog.ShowDialog(parent);
                     if (result != DialogResult.OK)
                     {
                         e.Cancel = true;

@@ -1,6 +1,9 @@
-﻿namespace AxCrypt.Desktop.Window
+﻿using System;
+using System.ComponentModel;
+
+namespace AxCrypt.Desktop.Window
 {
-    partial class LogOnAccountDialog
+    partial class SignUpSignInAccountDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +37,8 @@
             this._buttonReset = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this._userEmailGroupBox = new System.Windows.Forms.GroupBox();
+            this.UserEmailTextBox = new System.Windows.Forms.TextBox();
             this._passphraseGroupBox = new System.Windows.Forms.GroupBox();
             this._showPassphrase = new System.Windows.Forms.CheckBox();
             this._passphrase = new System.Windows.Forms.TextBox();
@@ -42,7 +47,7 @@
             this._troubleRememberingLabel = new System.Windows.Forms.LinkLabel();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
-            this._premiumLinkLabel = new AxCrypt.Desktop.Window.PremiumLinkLabel();
+            this._createAccountLinkLabel = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this._passphraseGroupBox.SuspendLayout();
@@ -100,63 +105,91 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(529, 273);
+            this.panel1.Size = new System.Drawing.Size(529, 302);
             this.panel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this._userEmailGroupBox);
             this.flowLayoutPanel1.Controls.Add(this._passphraseGroupBox);
             this.flowLayoutPanel1.Controls.Add(this._panel1);
-            this.flowLayoutPanel1.Controls.Add(this._premiumLinkLabel);
+            this.flowLayoutPanel1.Controls.Add(this._createAccountLinkLabel);
             this.flowLayoutPanel1.Controls.Add(this._troubleRememberingPanel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(529, 273);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(529, 375);
             this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // _userEmailGroupBox
+            // 
+            this._userEmailGroupBox.Controls.Add(this.UserEmailTextBox);
+            this._userEmailGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._userEmailGroupBox.Location = new System.Drawing.Point(4, 5);
+            this._userEmailGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 5, 5);
+            this._userEmailGroupBox.MinimumSize = new System.Drawing.Size(514, 0);
+            this._userEmailGroupBox.Name = "_userEmailGroupBox";
+            this._userEmailGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 30, 5);
+            this._userEmailGroupBox.Size = new System.Drawing.Size(514, 80);
+            this._userEmailGroupBox.TabIndex = 0;
+            this._userEmailGroupBox.TabStop = false;
+            this._userEmailGroupBox.Text = "[Email address]";
+            // 
+            // _userEmail
+            // 
+            this.UserEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+| System.Windows.Forms.AnchorStyles.Right)));
+            this.UserEmailTextBox.AcceptsReturn = true;
+            this.UserEmailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UserEmailTextBox.Location = new System.Drawing.Point(4, 24);
+            this.UserEmailTextBox.Margin = new System.Windows.Forms.Padding(100, 5, 100, 5);
+            this.UserEmailTextBox.MinimumSize = new System.Drawing.Size(480, 26);
+            this.UserEmailTextBox.Name = "EmailTextBox";
+            this.UserEmailTextBox.Size = new System.Drawing.Size(480, 26);
+            this.UserEmailTextBox.TabIndex = 0;
             // 
             // _passphraseGroupBox
             // 
-            this._passphraseGroupBox.Controls.Add(this._showPassphrase);
             this._passphraseGroupBox.Controls.Add(this._passphrase);
+            this._passphraseGroupBox.Controls.Add(this._showPassphrase);
             this._passphraseGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._passphraseGroupBox.Location = new System.Drawing.Point(4, 5);
+            this._passphraseGroupBox.Location = new System.Drawing.Point(4, 29);
             this._passphraseGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 5, 5);
             this._passphraseGroupBox.MinimumSize = new System.Drawing.Size(514, 0);
             this._passphraseGroupBox.Name = "_passphraseGroupBox";
             this._passphraseGroupBox.Padding = new System.Windows.Forms.Padding(4, 5, 30, 5);
-            this._passphraseGroupBox.Size = new System.Drawing.Size(514, 95);
-            this._passphraseGroupBox.TabIndex = 0;
+            this._passphraseGroupBox.Size = new System.Drawing.Size(514, 108);
+            this._passphraseGroupBox.TabIndex = 1;
             this._passphraseGroupBox.TabStop = false;
             this._passphraseGroupBox.Text = "[Enter Password]";
+            // 
+            // _passphrase
+            // 
+            this._passphrase.AcceptsReturn = true;
+            this._passphrase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._passphrase.Location = new System.Drawing.Point(4, 53);
+            this._passphrase.Margin = new System.Windows.Forms.Padding(100, 5, 100, 5);
+            this._passphrase.MinimumSize = new System.Drawing.Size(480, 26);
+            this._passphrase.Name = "_passphrase";
+            this._passphrase.Size = new System.Drawing.Size(480, 26);
+            this._passphrase.TabIndex = 1;
+            this._passphrase.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
             // _showPassphrase
             // 
             this._showPassphrase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._showPassphrase.AutoSize = true;
             this._showPassphrase.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._showPassphrase.Location = new System.Drawing.Point(9, 61);
+            this._showPassphrase.Location = new System.Drawing.Point(9, 73);
             this._showPassphrase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._showPassphrase.Name = "_showPassphrase";
             this._showPassphrase.Size = new System.Drawing.Size(156, 24);
-            this._showPassphrase.TabIndex = 1;
+            this._showPassphrase.TabIndex = 2;
             this._showPassphrase.Text = "[Show Password]";
             this._showPassphrase.UseVisualStyleBackColor = true;
-            // 
-            // _passphrase
-            // 
-            this._passphrase.AcceptsReturn = true;
-            this._passphrase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._passphrase.Location = new System.Drawing.Point(4, 24);
-            this._passphrase.Margin = new System.Windows.Forms.Padding(100, 5, 100, 5);
-            this._passphrase.MinimumSize = new System.Drawing.Size(480, 26);
-            this._passphrase.Name = "_passphrase";
-            this._passphrase.Size = new System.Drawing.Size(480, 26);
-            this._passphrase.TabIndex = 0;
-            this._passphrase.Enter += new System.EventHandler(this.PassphraseTextBox_Enter);
             // 
             // _panel1
             // 
@@ -203,17 +236,20 @@
             // 
             this._errorProvider2.ContainerControl = this;
             // 
-            // _premiumLinkLabel
+            // _createAccountLinkLabel
             // 
-            this._premiumLinkLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._premiumLinkLabel.Location = new System.Drawing.Point(4, 166);
-            this._premiumLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._premiumLinkLabel.Name = "_premiumLinkLabel";
-            this._premiumLinkLabel.Size = new System.Drawing.Size(515, 58);
-            this._premiumLinkLabel.TabIndex = 4;
-            this._premiumLinkLabel.TabStop = true;
-            this._premiumLinkLabel.Text = "[Premium Status]";
-            this._premiumLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._createAccountLinkLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._createAccountLinkLabel.Location = new System.Drawing.Point(4, 166);
+            this._createAccountLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this._createAccountLinkLabel.Name = "_createAccountLinkLabel";
+            this._createAccountLinkLabel.Size = new System.Drawing.Size(515, 58);
+            this._createAccountLinkLabel.TabIndex = 4;
+            this._createAccountLinkLabel.TabStop = true;
+            this._createAccountLinkLabel.Text = "[New user? Sign up]";
+            this._createAccountLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._createAccountLinkLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._createAccountLinkLabel.LinkColor = AxCrypt.Forms.Style.Styling.WarningColor;
+            this._createAccountLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createNewAccountLabel_LinkClicked);
             // 
             // LogOnAccountDialog
             // 
@@ -223,17 +259,19 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
-            this.ClientSize = new System.Drawing.Size(529, 273);
+            this.HelpButton = true;
+            this.ClientSize = new System.Drawing.Size(529, 375);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(541, 200);
+            this.MinimumSize = new System.Drawing.Size(541, 375);
             this.Name = "LogOnAccountDialog";
             this.Text = "[Account Sign In]";
-            this.Activated += new System.EventHandler(this.LogOnAccountDialog_Activated);
-            this.Load += new System.EventHandler(this.LogOnAccountDialog_Load);
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.SignUpSignInDialog_HelpButtonClicked);
+            this.Activated += new System.EventHandler(this.SignUpSignInAccountDialog_Activated);
+            this.Load += new System.EventHandler(this.SignUpSignInAccountDialog_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -256,15 +294,17 @@
         private System.Windows.Forms.GroupBox _passphraseGroupBox;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
         private System.Windows.Forms.ErrorProvider _errorProvider2;
+        private System.Windows.Forms.GroupBox _userEmailGroupBox;
         private System.Windows.Forms.CheckBox _showPassphrase;
         private System.Windows.Forms.TextBox _passphrase;
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
         private System.Windows.Forms.Button _buttonReset;
-        private PremiumLinkLabel _premiumLinkLabel;
+        private System.Windows.Forms.LinkLabel _createAccountLinkLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel _troubleRememberingPanel;
         private System.Windows.Forms.LinkLabel _troubleRememberingLabel;
+        internal System.Windows.Forms.TextBox UserEmailTextBox;
     }
 }

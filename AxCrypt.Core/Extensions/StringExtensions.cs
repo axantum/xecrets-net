@@ -27,17 +27,16 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Properties;
 using AxCrypt.Core.UI;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Extensions
