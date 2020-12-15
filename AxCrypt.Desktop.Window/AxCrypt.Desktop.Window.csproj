@@ -102,17 +102,23 @@
       <DependentUpon>KeySharingInviteUserDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="KnownFolderImageProvider.cs" />
+    <Compile Include="SignUpSignInAccountDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUpSignInAccountDialog.Designer.cs">
+      <DependentUpon>SignUpSignInAccountDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="PremiumLinkLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RecentFilesListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EmailDialog.cs">
+    <Compile Include="LegacyEmailDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmailDialog.Designer.cs">
-      <DependentUpon>EmailDialog.cs</DependentUpon>
+    <Compile Include="LegacyEmailDialog.Designer.cs">
+      <DependentUpon>LegacyEmailDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ImportPrivatePasswordDialog.cs">
@@ -139,11 +145,11 @@
     <Compile Include="DebugLogOutputDialog.Designer.cs">
       <DependentUpon>DebugLogOutputDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogOnAccountDialog.cs">
+    <Compile Include="LegacyLogOnAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LogOnAccountDialog.Designer.cs">
-      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
+    <Compile Include="LegacyLogOnAccountDialog.Designer.cs">
+      <DependentUpon>LegacyLogOnAccountDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ManageAccountDialog.cs">
       <SubType>Form</SubType>
@@ -200,8 +206,8 @@
     <EmbeddedResource Include="InviteUserDialog.resx">
       <DependentUpon>InviteUserDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmailDialog.resx">
-      <DependentUpon>EmailDialog.cs</DependentUpon>
+    <EmbeddedResource Include="LegacyEmailDialog.resx">
+      <DependentUpon>LegacyEmailDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeySharingInviteUserDialog.resx">
       <DependentUpon>KeySharingInviteUserDialog.cs</DependentUpon>
@@ -213,8 +219,11 @@
     <EmbeddedResource Include="KeyShareDialog.resx">
       <DependentUpon>KeyShareDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LogOnAccountDialog.resx">
-      <DependentUpon>LogOnAccountDialog.cs</DependentUpon>
+    <EmbeddedResource Include="SignUpSignInAccountDialog.resx">
+      <DependentUpon>SignUpSignInAccountDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LegacyLogOnAccountDialog.resx">
+      <DependentUpon>LegacyLogOnAccountDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManageAccountDialog.resx">
       <DependentUpon>ManageAccountDialog.cs</DependentUpon>

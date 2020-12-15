@@ -11,16 +11,16 @@ using Texts = AxCrypt.Content.Texts;
 
 namespace AxCrypt.Desktop.Window
 {
-    public partial class EmailDialog : StyledMessageBase
+    public partial class LegacyEmailDialog : StyledMessageBase
     {
         private AccountEmailViewModel _viewModel;
 
-        public EmailDialog()
+        public LegacyEmailDialog()
         {
             InitializeComponent();
         }
 
-        public EmailDialog(Form parent)
+        public LegacyEmailDialog(Form parent)
             : this()
         {
             InitializeStyle(parent);

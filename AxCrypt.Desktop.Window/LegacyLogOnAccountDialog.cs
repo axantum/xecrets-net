@@ -13,16 +13,17 @@ using Texts = AxCrypt.Content.Texts;
 
 namespace AxCrypt.Desktop.Window
 {
-    public partial class LogOnAccountDialog : StyledMessageBase
+    public partial class LegacyLogOnAccountDialog : StyledMessageBase
+
     {
-        public LogOnAccountDialog()
+        public LegacyLogOnAccountDialog()
         {
             InitializeComponent();
         }
 
         private LogOnAccountViewModel _viewModel;
 
-        public LogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel)
+        public LegacyLogOnAccountDialog(Form owner, LogOnAccountViewModel viewModel)
             : this()
         {
             InitializeStyle(owner);

@@ -1,6 +1,6 @@
 ﻿namespace AxCrypt.Desktop.Window
 {
-    partial class EmailDialog
+    partial class LegacyEmailDialog
     {
         /// <summary>
         /// Required designer variable.

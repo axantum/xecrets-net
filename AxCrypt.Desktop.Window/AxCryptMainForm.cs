@@ -25,20 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 using AxCrypt.Abstractions;
 using AxCrypt.Api;
 using AxCrypt.Api.Model;
@@ -54,15 +40,25 @@ using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
-using AxCrypt.Desktop;
+using AxCrypt.Desktop.Window.Properties;
 using AxCrypt.Forms;
 using AxCrypt.Forms.Implementation;
 using AxCrypt.Forms.Style;
 using AxCrypt.Mono;
-using AxCrypt.Desktop.Window.Properties;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using static AxCrypt.Abstractions.TypeResolve;
-
 using Texts = AxCrypt.Content.Texts;
 
 namespace AxCrypt.Desktop.Window
@@ -1203,10 +1199,8 @@ namespace AxCrypt.Desktop.Window
 
         private async Task HandleExistingAccountLogOn(LogOnEventArgs e)
         {
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.WillNotForgetPasswordWarningText, DoNotShowAgainOptions.WillNotForgetPassword, Texts.WillNotForgetPasswordCheckBoxText);
-
             LogOnAccountViewModel viewModel = new LogOnAccountViewModel(Resolve.UserSettings, e.EncryptedFileFullName);
-            using (LogOnAccountDialog logOnDialog = new LogOnAccountDialog(this, viewModel))
+            using (SignUpSignInAccountDialog logOnDialog = new SignUpSignInAccountDialog(this, viewModel))
             {
                 DialogResult dialogResult = logOnDialog.ShowDialog(this);
 
