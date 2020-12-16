@@ -127,6 +127,39 @@
   <data name="About" xml:space="preserve">
     <value>Acerca de {0}</value>
   </data>
+  <data name="AboutAxcryptHistoryText1">
+    <value>La historia de AxCrypt se remonta al 2001, cuando su autor inicial Svante necesitaba compartir datos confidenciales en Internet y no logró encontrar soluciones de protección de datos existentes para servicios de Internet que fueran fáciles de usar para todos. Fue así como desarrolló y lanzó la primera versión de AxCrypt.</value>
+  </data>
+  <data name="AboutAxcryptHistoryText2">
+    <value>En 2014, y después de 13 años en el mercado, AxCrypt logró convertirse en una de las aplicaciones de cifrado más populares del mundo con más de 20 millones de descargas en todo el mundo. Svante se asoció con el emprendedor nato Zebastian Victorin para comercializar el producto y fundaron AxCrypt AB para llevar AxCrypt al siguiente nivel.</value>
+  </data>
+  <data name="AboutAxcryptHistoryText3">
+    <value>Después de 2 años de arduo trabajo, AxCrypt 2 fue lanzado en 2016.</value>
+  </data>
+  <data name="AboutAxcryptHistoryText4">
+    <value>Desde entonces, la prestigiosa revista PC Magazine nos  ha otorgado el premio "Mejor software de cifrado del mundo" en 2016, 2017, 2018, 2019 y 2020, así como muchos otros sitios de reseñas en el mundo. Tenemos un alcance global con usuarios de todos los países. Nuestros mercados más grandes son Europa, con el 45%,  y América, con el 30% de los usuarios.</value>
+  </data>
+  <data name="AboutAxcryptHistoryText5">
+    <value>Nuestra misión es ofrecer a las personas y los equipos soluciones de cifrado que sean más fáciles de usar que nunca. Eliminaremos la complejidad del uso de tecnología criptográfica sólida y probada.</value>
+  </data>
+  <data name="AboutAxcryptHistoryText6">
+    <value>Somos un equipo inmensamente motivado, creativo y poderoso al que le apasiona lograr que las soluciones de seguridad de datos sean simples y confiables para individuos y equipos.</value>
+  </data>
+  <data name="AboutAxcryptLinkLabel">
+    <value>Acerca de AxCrypt</value>
+  </data>
+  <data name="AboutAxcryptVisionReliabilityText">
+    <value>AxCrypt lleva 15 años en el mercado y se ha convertido en una de las aplicaciones de cifrado más populares del mundo, con más de 20 millones de descargas. Durante años, nos han mencionado y calificado como una de las mejores aplicaciones de cifrado del mundo.</value>
+  </data>
+  <data name="AboutAxcryptVisionSecurityText">
+    <value>La seguridad es fundamental para nosotros. En todo lo que hacemos en AxCrypt, la seguridad es nuestra máxima prioridad. Nos aseguramos de que nadie tenga acceso a tus archivos cifrados, siempre que tengas el control de tu propia contraseña.</value>
+  </data>
+  <data name="AboutAxcryptVisionSimplicityText">
+    <value>El cifrado no es fácil, pero esto no nos ha impedido trabajar constantemente para simplificarlo para el usuario. Hemos desarrollado funciones únicas que permiten que el uso de un cifrado sólido y el intercambio de claves de cifrado sean más simples y seguros que cualquier otro software.</value>
+  </data>
+  <data name="AboutPartnerSting">
+    <value>STING ayuda a personas con talento a convertir sus ideas en negocios sostenibles.</value>
+  </data>
   <data name="AboutUsLinkLabel">
     <value>Sobre nosotros</value>
   </data>
@@ -246,6 +279,9 @@ Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administ
     <value>Es posible que te enviemos un correo electrónico si es necesario para las funciones o la seguridad de AxCrypt.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddressLabel">
+    <value>Dirección</value>
+  </data>
   <data name="AddSecureFolderMenuItemText" xml:space="preserve">
     <value>Añadir carpeta protegida</value>
   </data>
@@ -271,6 +307,9 @@ Por favor, inicia sesión con la misma contraseña que usaste anteriormente.</va
     <value>Cuando esta función esté habilitada, no será posible acceder a Internet sin que antes sea desactivada.</value>
     <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
   </data>
+  <data name="AnnualMonthlySwitcherAnnualButtonLabel">
+    <value>20% de descuento anual</value>
+  </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Mensual</value>
   </data>
@@ -295,6 +334,9 @@ Por favor, inicia sesión con la misma contraseña que usaste anteriormente.</va
   </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Ingresa el código de descuento</value>
+  </data>
+  <data name="ApplyNowLabel">
+    <value>Solicitar ahora</value>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Por razones de seguridad, introduce tu contraseña de nuevo.</value>
@@ -333,6 +375,27 @@ Si no verificas inmediatamente tu AxCrypt ID utilizando el código de verificaci
   <data name="AutomaticFileUpdatingText">
     <value>Actualización automática de archivos protegidos después de abrirlos y guardarlos.</value>
   </data>
+  <data name="AwardsLabel">
+    <value>Premios</value>
+  </data>
+  <data name="AwardsReviewsLinkLabel">
+    <value>Premios y reseñas</value>
+  </data>
+  <data name="AwardsReviewsReviewPcmagText">
+    <value>AxCrypt simplifica todo lo relacionado con el cifrado.</value>
+  </data>
+  <data name="AwardsReviewsReviewSoftpediaText">
+    <value>Es crucial cuando compartes tu computadora con varios usuarios y deseas mantener tu privacidad.</value>
+  </data>
+  <data name="AwardsReviewsReviewTechradarText">
+    <value>AxCrypt es una apuesta segura si quieres un producto confiable.</value>
+  </data>
+  <data name="AwardsReviewsReviewVpncrewText">
+    <value>AxCrypt es un software sólido de cifrado de archivos que te permite hacer mucho más que cifrar tus archivos confidenciales.</value>
+  </data>
+  <data name="AwardsReviewsReviewWindowscentralText">
+    <value>El mejor servicio de cifrado disponible por suscripción es AxCrypt.</value>
+  </data>
   <data name="AxCryptAboutDescription" xml:space="preserve">
     <value>AxCrypt AB ofrece seguridad de archivos para ti y tu equipo
 
@@ -346,11 +409,119 @@ Incluye el software de http://www.bouncycastle.org/ .</value>
 Ya fuiste notificado, así que ¡ahora disfruta!</value>
     <comment>A text that is shown to users starting a beta version of our software.</comment>
   </data>
+  <data name="AxcryptBusinessBlock1Heading">
+    <value>Introduccción</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text1">
+    <value>Cualquiera puede usar los planes gratuitos de AxCrypt.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text2">
+    <value>Para disfrutar de funciones adicionales, ofrecemos dos planes de pago: Premium y Business.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text3">
+    <value>El plan Premium es solo para usuarios privados, no para empresas.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text4">
+    <value>El plan Business es para empresas, no para usuarios privados.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text5">
+    <value>Para leer las condiciones, visita nuestros &lt;a href='/information/terms-of-use'&gt;Términos de uso&lt;/a&gt;.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text6">
+    <value>Para obtener más información, visita nuestra página de &lt;a href='/pricing'&gt;Precios&lt;/a&gt;.</value>
+  </data>
+  <data name="AxcryptBusinessBlock1Text7">
+    <value>Una suscripción Business le permite a tu organización comprar y administrar licencias para múltiples usuarios. También ofrecemos ventas libres de IVA dentro de la UE para las empresas que califiquen (debe proporcionar un número y una dirección de IVA de la UE válidos) para el plan Business. No ofrecemos ventas libres de IVA para el plan Premium.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Heading">
+    <value>Crear una suscripción Business</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text1">
+    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web. Usa el &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menú de suscripción Business&lt;/a&gt; para crear una suscripción.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text2">
+    <value>La creación de una suscripción requiere la compra inicial de al menos una licencia de miembro, es decir, tú mismo. Cuando creas y compras una suscripción Business, se te designa automáticamente como administrador, por lo que puedes asignar las licencias de miembro de la suscripción a los usuarios que elijas y realizar otras tareas administrativas.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text3">
+    <value>Parte por decidir la cantidad de licencias de miembro iniciales que necesitas, además de ti mismo. Siempre podrás agregar más.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text4">
+    <value>Una vez que hayas decidido las licencias de miembro, ten a mano una tarjeta de crédito válida, selecciona una divisa e ingresa el nombre, la dirección y el número de IVA de la UE, si corresponde.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text5">
+    <value>Cuando ingreses todo, te aparecerá el monto total y un cálculo que muestra tu descuento (si se ofrece) y el IVA que se aplica.</value>
+  </data>
+  <data name="AxcryptBusinessBlock2Text6">
+    <value>Haz clic en el botón con el logotipo de la tarjeta de crédito y completa la compra. Si todo va bien, ahora estás listo para administrar tu suscripción Business.</value>
+  </data>
+  <data name="AxcryptBusinessBlock3Heading">
+    <value>Gestión de  una suscripción Business</value>
+  </data>
+  <data name="AxcryptBusinessBlock3Text1">
+    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web y ser el administrador designado para al menos una suscripción Business. Usa el &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;menú de suscripción Business&lt;/a&gt; para administrar una suscripción.</value>
+  </data>
+  <data name="AxcryptBusinessBlock3Text2">
+    <value>Agrega y elimina miembros según corresponda. No puedes eliminarte como administrador ni tampoco de la suscripción.</value>
+  </data>
+  <data name="AxcryptBusinessBlock3Text3">
+    <value>Si agregas a un miembro que no tiene un AxCrypt ID registrado, recibirá un correo electrónico de invitación con instrucciones sobre cómo proceder. Los miembros con AxCrypt ID activos recibirán un correo electrónico de bienvenida.</value>
+  </data>
+  <data name="AxcryptBusinessBlock4Heading">
+    <value>Actualización de la información para la suscripción Business</value>
+  </data>
+  <data name="AxcryptBusinessBlock4Text1">
+    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web y ser el administrador designado para al menos una suscripción Business. Usa el &lt;a href='https://account.axcrypt.net/en/Business/SubscriptionInformation'&gt;menú de suscripción Business&lt;/a&gt; para actualizar la información de una suscripción.</value>
+  </data>
+  <data name="AxcryptBusinessBlock4Text2">
+    <value>La información que almacenamos sobre una suscripción se limita al nombre, la dirección y el número de IVA de la UE, si corresponde.</value>
+  </data>
+  <data name="AxcryptBusinessBlock4Text3">
+    <value>Al usar la página de información para suscripciones Business, puedes actualizar esta información.</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Heading">
+    <value>Compra de una suscripción Business</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Text1">
+    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web y ser el administrador designado para al menos una suscripción Business. Usa el &lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;menú de suscripción Business&lt;/a&gt; para comprar miembros adicionales o tiempo adicional para una suscripción.</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Text2">
+    <value>La creación inicial de una suscripción incluye la compra de una cantidad inicial de licencias para miembros durante un mes o un año, según el plan que elijas.</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Text3">
+    <value>Si deseas agregar más miembros a una suscripción, puedes hacerlo en cualquier momento.</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Text4">
+    <value>Cuando compras licencias de miembro adicionales, siempre es para tu período de suscripción actual. Por lo tanto, si te quedan 5 meses hasta que se renueve toda la suscripción, las licencias de miembros adicionales solo requerirán el pago de los 5 meses restantes. El tiempo restante siempre se calcula como meses completos, por lo que 50 días contarán como dos meses completos.</value>
+  </data>
+  <data name="AxcryptBusinessBlock5Text5">
+    <value>Tu suscripción de pago se renovará automáticamente al final del período de suscripción, utilizando el método de pago inicial. Si deseas cancelarla, debes hacerlo antes de que finalice el período de suscripción actual.</value>
+  </data>
   <data name="AxcryptBusinessBlock6Heading">
     <value>Precio</value>
   </data>
+  <data name="AxcryptBusinessBlock6Text1">
+    <value>El plan de suscripción de AxCrypt Business es para una o más licencias de miembro.</value>
+  </data>
+  <data name="AxcryptBusinessBlock6Text2">
+    <value>Para conocer los precios actuales en las divisas más recurrentes, visita nuestra página de &lt;a href='/pricing'&gt;Precios&lt;/a&gt;.</value>
+  </data>
+  <data name="AxcryptBusinessBlock6Text3">
+    <value>Para efectos de una suscripción, un mes se define como 30 días y un año como 360 días.</value>
+  </data>
+  <data name="AxcryptBusinessBlock6Text4">
+    <value>Cuando se crea o renueva una suscripción, el período es de un mes o un año, según el plan que elijas.</value>
+  </data>
+  <data name="AxcryptBusinessBlock6Text5">
+    <value>Cuando se compran licencias de miembros adicionales para una suscripción dentro del período de suscripción, solo se cobran los meses restantes redondeados hacia arriba a meses completos. Si quedan 50 días para el período actual y se agregan miembros adicionales, esto será por 2 meses por cada miembro adicional.</value>
+  </data>
+  <data name="AxcryptBusinessLinkLabel">
+    <value>AxCrypt Business</value>
+  </data>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt seguridad de archivos</value>
+  </data>
+  <data name="AxCryptSupportIntro" xml:space="preserve">
+    <value>Bienvenido a Soporte de AxCrypt.</value>
   </data>
   <data name="BackToHomeButtonLabel">
     <value>Volver a la Página principal</value>
@@ -376,6 +547,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} facturados al año</value>
   </data>
+  <data name="BlogLinkLabel">
+    <value>Blog</value>
+  </data>
   <data name="BrandingGuidelinesDescription">
     <value>Si quieres incluir AxCrypt en tus propias publicaciones, puedes hacerlo siempre que cumplas con las directrices de la marca. El documento incluye lo siguiente:</value>
   </data>
@@ -387,6 +561,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="BruteForceResistantLabel">
     <value>Resistencia a la fuerza bruta</value>
+  </data>
+  <data name="BruteForceResistantText">
+    <value>Contramedida dinámica de fuerza bruta: ajuste iterativo de contraseñas que dificulta aún más los ataques.</value>
   </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
@@ -409,8 +586,23 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessAfterTrialBodyText">
     <value>&lt;p&gt;Después de 30 días, se activa la suscripción a la que te registraste, ya sea mensual o anual.&lt;/p&gt;&lt;p&gt;Puedes cancelar tu suscripción en cualquier momento. Si lo haces antes de que finalice el período de prueba, no se te cobrará nada. Después de eso, tu cuenta volverá a la versión gratuita.&lt;/p&gt;</value>
   </data>
+  <data name="BusinessAfterTrialBodyText1">
+    <value>Después de 30 días, se activa la suscripción a la que te registraste, ya sea mensual o anual.</value>
+  </data>
+  <data name="BusinessAfterTrialBodyText2">
+    <value>Puedes cancelar tu suscripción en cualquier momento. Si lo haces antes de que finalice el período de prueba, no se te cobrará nada. Después de eso, tu cuenta volverá a la versión Free.</value>
+  </data>
   <data name="BusinessAfterTrialHeading">
     <value>¿Qué ocurre después del período de prueba?</value>
+  </data>
+  <data name="BusinessBigTeamCtaHeading">
+    <value>¿Tienes un equipo con más de 50 personas?</value>
+  </data>
+  <data name="BusinessContactBodyText">
+    <value>¿Tienes alguna pregunta o necesitas ayuda?</value>
+  </data>
+  <data name="BusinessCreationEuVatInfo" xml:space="preserve">
+    <value>También ofrecemos ventas exentas de IVA dentro de la UE para las empresas que califiquen (debes proporcionar un número y una dirección de IVA de la UE válidos) para el plan Business. Haz clic [a]aquí [/a] para agregar el número de IVA de la UE.</value>
   </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Configuración y pago del plan</value>
@@ -436,19 +628,67 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>¡Ya es momento de que renueves tu suscripción de AxCrypt Business!</value>
   </data>
+  <data name="BusinessFeatureListAccessTo">
+    <value>Próximamente acceso a funciones exclusivas</value>
+  </data>
+  <data name="BusinessFeatureListAvailableFor">
+    <value>Disponible para todas las plataformas principales</value>
+  </data>
+  <data name="BusinessFeatureListBestEncryption">
+    <value>El mejor software de cifrado según PCMag en 2016, 2017, 2018, 2019 y 2020</value>
+  </data>
   <data name="BusinessFeatureListDataProtection">
     <value>Se ajusta al Reglamento de Protección de Datos</value>
+  </data>
+  <data name="BusinessFeatureListFlexibleMonthly">
+    <value>Suscripción mensual o anual flexible</value>
   </data>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Creado en Suecia" con servidores en Suecia</value>
   </data>
+  <data name="BusinessFeatureListNoEncryption">
+    <value>No se necesita tener conocimiento en cifrado</value>
+  </data>
+  <data name="BusinessFeatureListPurchangeAnd">
+    <value>Adquiere y administra licencias para tus organizaciones</value>
+  </data>
   <data name="BusinessFeatureListTeamCollaboration">
     <value>Ofrece colaboración en equipo con el mecanismo de uso compartido de claves</value>
+  </data>
+  <data name="BusinessFirstBodyHeading">
+    <value>Cifrado simple, confiable y fuerte</value>
+  </data>
+  <data name="BusinessFirstBodyText" xml:space="preserve">
+    <value>&lt;p&gt;AxCrypt ahora ofrece protección de archivos para empresas y organizaciones, con cifrado AES de 256 bits. Compartir archivos con el resto del equipo de trabajo es fácil gracias a nuestra función de reconocimiento de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las regulaciones de protección de datos mientras proteges tus archivos de costosas filtraciones de datos&lt;/p&gt;. &lt;p&gt;Con AxCrypt Business, además tienes acceso a nuestra Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe, ya que está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco y más. También ofrecemos aplicaciones móviles para que puedas abrir tus archivos cifrados cuando lo necesites&lt;/p&gt;. &lt;p&gt;Para obtener más información, visita nuestra &lt;a href='/information/features'&gt;Página de funciones&lt;/a&gt; y no olvides leer los &lt;a href='/information/terms-of-use'&gt;Términos de uso &lt;/a&gt;&lt;/p&gt;.&lt;p&gt;Próximamente, tendremos más funciones Business disponibles. ¡No te lo pierdas!&lt;/p&gt;</value>
+  </data>
+  <data name="BusinessFirstBodyText1">
+    <value>AxCrypt ahora ofrece protección de archivos para empresas y organizaciones, con cifrado AES de 256 bits. Compartir archivos con el resto del equipo de trabajo es fácil gracias a nuestra función de reconocimiento de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las regulaciones de protección de datos mientras proteges tus archivos de filtraciones de datos costosas.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>Con AxCrypt Business, también tienes acceso a nuestra Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe, ya que está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco y más. También ofrecemos aplicaciones móviles para que puedas abrir tus archivos cifrados cuando lo necesites.</value>
+  </data>
+  <data name="BusinessFirstBodyText3" xml:space="preserve">
+    <value>Para obtener más información, visita nuestra &lt;a href='/information/features'&gt;página de funciones&lt;/a&gt; y no olvides leer los &lt;a href='/information/terms-of-use'&gt;Términos de uso&lt;/a&gt;.</value>
+  </data>
+  <data name="BusinessFirstBodyText4">
+    <value>Pronto tendremos más funciones exclusivas para Business. ¡No te lo pierdas!</value>
+  </data>
+  <data name="BusinessHeroSubheading">
+    <value>Creado para empresas</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Has sido añadido como usuario de AxCrypt File Security por &lt;b&gt;{0}&lt;/b&gt;. Para empezar a proteger tus archivos, simplemente &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;descarga&lt;/a&gt; e instala AxCrypt. Regístrate en AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, introduce el código de verificación debajo y configura tu contraseña personal secreta.&lt;/p&gt; 
 &lt;p&gt;Si tienes alguna pregunta, por favor, contáctanos antes de nada {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessLabel">
+    <value>Business</value>
+  </data>
+  <data name="BusinessLinkLabel">
+    <value>Business</value>
+  </data>
+  <data name="BusinessPrioritySupportTitle" xml:space="preserve">
+    <value>Solicitud de soporte prioritario para Business</value>
   </data>
   <data name="BusinessSubscriptionAddButtonLabel" xml:space="preserve">
     <value>Agregar</value>
@@ -650,8 +890,17 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
+  <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
+    <value>x usuarios</value>
+  </data>
+  <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
+    <value>El primer mes es gratis, después de eso:</value>
+  </data>
   <data name="BusinessTrialInfo" xml:space="preserve">
     <value>EL PRIMER MES ES GRATIS</value>
+  </data>
+  <data name="BusinessTryItForFreeSellingPointsGreatBusiness">
+    <value>Excelente soporte comercial, con un administrador de cuenta exclusivo</value>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verificar</value>
@@ -894,6 +1143,12 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="ColumnTransactionDateHeader" xml:space="preserve">
     <value>Transacción UTC</value>
   </data>
+  <data name="CompanyInfoLabel">
+    <value>Información de la empresa</value>
+  </data>
+  <data name="CompanyNameLabel">
+    <value>Nombre de la empresa</value>
+  </data>
   <data name="ConfigurationSuccess" xml:space="preserve">
     <value>La propiedad de configuración de la aplicación se actualizó correctamente. Es posible que debas reiniciar el servidor para que los cambios tengan efecto.</value>
   </data>
@@ -911,6 +1166,9 @@ Debe completar estos pasos para completar el proceso.</value>
   </data>
   <data name="ContactInfoTitle" xml:space="preserve">
     <value>Contacto &amp; soporte</value>
+  </data>
+  <data name="ContactUsHeading">
+    <value>Contáctanos</value>
   </data>
   <data name="ContinueLabel" xml:space="preserve">
     <value>Continuar</value>
@@ -941,6 +1199,9 @@ Si no aceptas nuestras cookies de sesión temporales, no se puede iniciar la ses
   <data name="CountryLabel">
     <value>País</value>
   </data>
+  <data name="CreateAccountLabel">
+    <value>Crear cuenta</value>
+  </data>
   <data name="CreateAccountToolStripMenuItemText" xml:space="preserve">
     <value>Crear un AxCrypt ID</value>
   </data>
@@ -956,11 +1217,23 @@ Si no aceptas nuestras cookies de sesión temporales, no se puede iniciar la ses
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>¡Nuestro equipo de soporte comercial se comunicará contigo en breve para ayudarte con tu cuenta Business! Haz clic en Continuar para ir a tu cuenta.</value>
   </data>
+  <data name="CryptographicHashesOfFilesLinkLabel">
+    <value>Funciones criptográficas hash de archivos</value>
+  </data>
+  <data name="CryptographicHashesOfFilesSHA256Text">
+    <value>Esta es una lista de hashes criptográficos de archivos publicados que se pueden usar para verificar descargas.</value>
+  </data>
+  <data name="CryptographicHashesOfFilesSLLText">
+    <value>Nuestros sitios web están protegidos con cifrado SSL y, como referencia, publicamos aquí las huellas digitales actuales y las fechas de vencimiento de estos certificados:</value>
+  </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algoritmo</value>
   </data>
   <data name="DataIntegrityLabel">
     <value>Verificación de integridad de datos</value>
+  </data>
+  <data name="DataIntegrityText">
+    <value>Los archivos protegidos no se pueden modificar sin detección.</value>
   </data>
   <data name="DaysLeftPluralWarningPattern" xml:space="preserve">
     <value>{0} días</value>
@@ -1057,6 +1330,12 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DialogDebugLogTitle" xml:space="preserve">
     <value>Resultado del registro de depuración</value>
   </data>
+  <data name="DialogDebugOptionsRestApiTimeoutPrompt" xml:space="preserve">
+    <value>API Timeout</value>
+  </data>
+  <data name="DialogDebugOptionsRestApiUrlPrompt" xml:space="preserve">
+    <value>REST API Base Url</value>
+  </data>
   <data name="DialogDebugOptionsTitle" xml:space="preserve">
     <value>Opciones de depuración</value>
   </data>
@@ -1130,6 +1409,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DoubleClickToOpenToolTip" xml:space="preserve">
     <value>Haz doble clic para abrir. Si se necesita una contraseña,  se abrirá una ventana emergente.</value>
   </data>
+  <data name="DownloadAxcrypt2LinkLabel">
+    <value>Descargar AxCrypt 2</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt para macOS</value>
   </data>
@@ -1157,6 +1439,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DownloadHeroListShareKeys">
     <value>Comparte claves con otros y permite que otros usuarios de AxCrypt abran archivos seguros con su propia contraseña.</value>
   </data>
+  <data name="DownloadInformationButtonLabel">
+    <value>Leer sobre las notas de lanzamiento</value>
+  </data>
   <data name="DownloadInformationListKeepInMind">
     <value>Ten en cuenta que si instalas AxCrypt 2 y abres archivos antiguos, estos archivos ya no se podrán abrir con AxCrypt 1.</value>
   </data>
@@ -1166,14 +1451,29 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DownloadInformationListOfficialDownload">
     <value>Este es el único sitio oficial de descarga de AxCrypt. Busca el hash SHA256.</value>
   </data>
+  <data name="DownloadInformationSubheading">
+    <value>Lee las &lt;a href='/information/release-notes'&gt;notas de lanzamiento&lt;/a&gt; para saber cuál es la versión actual.</value>
+  </data>
   <data name="DownloadLinkLabel">
     <value>Descarga</value>
   </data>
   <data name="DownloadMobileBodyText">
     <value>&lt;p&gt;Hay aplicaciones móviles disponibles para dispositivos iOS y Android. La versión móvil es una aplicación de visualización que te permite abrir y leer archivos y documentos cifrados con la aplicación de escritorio.&lt;/p&gt;&lt;p&gt;Para saber más, haz clic &lt;a href='#'&gt;aquí&lt;/a&gt;&lt;/p&gt;</value>
   </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Hay aplicaciones móviles disponibles para dispositivos iOS y Android. La versión móvil es una aplicación de visualización que te permite abrir y leer archivos y documentos encriptados con la aplicación de escritorio.</value>
+  </data>
   <data name="DownloadMobileBodyText2">
     <value>Leer más &lt;a href={url}&gt;aquí&lt;/a&gt;</value>
+  </data>
+  <data name="DownloadMobileHeading">
+    <value>AxCrypt Móvil</value>
+  </data>
+  <data name="DownloadNavHeading">
+    <value>Otras plataformas</value>
+  </data>
+  <data name="DownloadTryCtaHeading">
+    <value>Prueba nuestras suscripciones por un mes &lt;span&gt;gratis.. &lt;/span&gt;</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (holandés)</value>
@@ -1255,17 +1555,26 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="EnumerateUsersSuccess" xml:space="preserve">
     <value>La enumeración de usuarios se realizó correctamente. Es posible que debas actualizar la página para obtener las estadísticas actualizadas.</value>
   </data>
+  <data name="ErrorConfirmNotRobot">
+    <value>Por favor, confirma que no eres un robot</value>
+  </data>
   <data name="ErrorEmailMismatch" xml:space="preserve">
     <value>La verificación no coincide con el correo electrónico</value>
   </data>
   <data name="ErrorFieldRequired" xml:space="preserve">
     <value>Se debe rellenar '{0}'.</value>
   </data>
+  <data name="ErrorInvalidEmail">
+    <value>El correo electrónico ingresado no es válido.</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>La verificación de la contraseña no corresponde a la contraseña.</value>
   </data>
   <data name="ErrorPasswordTooLong" xml:space="preserve">
     <value>La contraseña debe tener al menos {2} caracteres.</value>
+  </data>
+  <data name="ErrorRequiredField">
+    <value>Este campo es obligatorio</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Excepción durante el proceso de '{0}'.</value>
@@ -1293,20 +1602,171 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FailedPrivateImport" xml:space="preserve">
     <value>Error en la importación. Probablemente no sea un archivo AxCrypt ID válido.</value>
   </data>
+  <data name="FaqAccessDenied">
+    <value>¿Por qué me aparece "Acceso denegado" y/o los nombres de mis archivos están en texto verde?</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer1">
+    <value>Se accede a AxCrypt a través del menú contextual del botón derecho, bajo el título "AxCrypt". También hay un cifrado integrado en algunas versiones de Windows, al que se accede de manera similar, pero bajo el título "Propiedades", luego el botón "Avanzado" y finalmente la casilla de verificación "Cifrar contenido para proteger los datos". Este cifrado utiliza una función llamada &lt;a href='https://support.microsoft.com/windows'&gt;Sistema de cifrado de archivos&lt;/a&gt; (EFS, por sus siglas en inglés).</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer2">
+    <value>Por lo general, existen dos razones para recibir mensajes de "Acceso denegado". Ambos ocurren cuando los archivos se mueven a un nuevo sistema o Windows se (re) instala en un sistema existente. En un caso es un problema, en el otro no.</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer3">
+    <value>Si los nombres de los archivos en el Explorador de Windows se muestran en texto negro, es probable que solo tengas un problema de propiedad de NTFS, y esto se soluciona fácilmente. Por favor, busca en Google "ntfs take ownership" (sin las comillas) para encontrar soluciones sugeridas (en inglés).</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer4">
+    <value>Si los nombres de archivo en el Explorador de Windows se muestran en texto verde, significa que los has cifrado inadvertidamente con EFS. Esto puede significar que tus archivos se pierdan. Busca en Google "efs access denied" para encontrar explicaciones y posibles soluciones (en inglés).</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer5">
+    <value>En algunos casos, EFS puede ser una función útil y, en algunas situaciones, puede ser una mejor solución que AxCrypt. Sin embargo, ten cuidado, ¡porque podría ser peligroso!</value>
+  </data>
+  <data name="FaqAccessDeniedAnswer6">
+    <value>Debido a la forma en que se implementa EFS, también es probable que sea la causa más común de pérdida de datos en entornos Windows. Si eres asistente de seguridad informática y tienes un conocimiento acabado de los certificados de cifrado X.509 y de cómo funcionan las tiendas de certificados de Windows e interactúan con las credenciales de los usuarios, no tendrás ningún problema siempre que tengas cuidado de garantizar copias de seguridad de los certificados y claves adecuados. Sin embargo, si lo escrito anteriormente te confunde, quizás no deberías usar EFS debido al riesgo mencionado de pérdida de datos al mover archivos a un nuevo sistema, o (re) instalar Windows, o restablecer contraseñas, etc.</value>
+  </data>
+  <data name="FaqAntivirusWarning">
+    <value>Recibí una advertencia de mi software antivirus. ¿AxCrypt  está infectado?</value>
+  </data>
+  <data name="FaqAntivirusWarningAnswer1">
+    <value>No, la distribución oficial no contiene intencionalmente nada que pueda considerarse malicioso. Es muy poco probable que se infecte con algo sin querer. Para conocer más detalles sobre esta afirmación, te recomendamos leer una entrada de blog más detallada.</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFile">
+    <value>Cualquiera puede eliminar mis archivos protegidos, ¿por qué?</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer1">
+    <value>Al proteger un archivo con AxCrypt, evitas que tu información caiga en manos indiscretas y en modificaciones o corrupción no detectadas. Sin embargo, no protege contra su destrucción, intencional o accidental.</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer2">
+    <value>Reiteramos: tu protección contra la pérdida de datos son las copias de seguridad periódicas.</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer3">
+    <value>Técnicamente, no es posible proteger de manera confiable tus datos contra la destrucción con software, excepto el software de respaldo. Por supuesto, el software puede agregar medidas de seguridad que permitan que sea más difícil hacerlo por error, o incluso maliciosamente; pero, al final, no te puede proteger contra los vándalos de esa manera.</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer4">
+    <value>Deberías usar el sistema de archivos NTFS y permitir que cada usuario del computador inicie sesión como un usuario separado y restringido. Normalmente, nadie debería operar como administrador. Esto protegerá tus archivos contra la eliminación por parte de otros usuarios del mismo computador, pero no los protegerá de ti ni de ningún agente que actúe en tu nombre. ¡Recuerda que los virus y los troyanos actuarán como si fuesen un usuario!</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer5">
+    <value>Si tu sistema se ve comprometido por un virus o un troyano, tus archivos protegidos estarán resguardados del robo, pero no de su destrucción.</value>
+  </data>
+  <data name="FaqAnyoneCanDeleteFileAnswer6">
+    <value>AxCrypt no está diseñado para proteger contra la destrucción y, hasta donde sabemos, no existe ningún software tan especializado, a excepción del software de respaldo. Cualquier software que afirme brindar dicha protección debe examinarse cuidadosamente para comprender con exactitud su capacidad de protección. Siempre haz una copia de seguridad de tus datos, independientemente de que hayas tomado otras medidas.</value>
+  </data>
+  <data name="FaqDamagedFile">
+    <value>Mi archivo protegido está dañado. ¿Qué debo hacer?</value>
+  </data>
+  <data name="FaqDamagedFileAnswer1">
+    <value>Si tu archivo protegido está dañado, recibirás un mensaje que hará referencia a que el HMAC es incorrecto o algún texto similar.</value>
+  </data>
+  <data name="FaqDamagedFileAnswer2">
+    <value>Este mensaje implica que el archivo es reconocido por AxCrypt y que has ingresado la contraseña correcta y/o el archivo clave, ¡y hay esperanza!</value>
+  </data>
+  <data name="FaqDamagedFileAnswer3">
+    <value>El otro mensaje que podrías recibir se referirá a que el GUID es incorrecto. Esto indica un error grave en el archivo en la medida en que ni siquiera se reconoce como un archivo AxCrypt. En la mayoría de los casos, esto se debe a que el archivo simplemente no es un archivo protegido por AxCrypt.</value>
+  </data>
+  <data name="FaqDamagedFileAnswer4">
+    <value>AxCrypt tiene algunas funciones para recuperar archivos dañados, pero existen algunas limitaciones. También debes tener cuidado y comenzar por marcar el archivo original (dañado) como de solo lectura, y luego hacer una copia, ¡y siempre trabajar solo en la copia!</value>
+  </data>
+  <data name="FaqDamagedFileAnswer5">
+    <value>Para obtener más instrucciones sobre cómo proceder, ponte en contacto con el servicio de soporte.</value>
+  </data>
+  <data name="FaqDamagedFileAnswer6">
+    <value>Tu protección contra la pérdida de datos son las copias de seguridad periódicas. Realiza una copia de seguridad de todos tus archivos importantes, tanto protegidos como sin seguridad. AxCrypt no pretende ofrecer protección contra la pérdida de datos, solo contra la divulgación y la manipulación no detectada.</value>
+  </data>
   <data name="FaqDifference1&amp;2">
     <value>¿Cuál es la diferencia entre AxCrypt 1.x y 2.x?</value>
   </data>
   <data name="FaqDifference1&amp;2Answer1">
-    <value>AxCrypt 1.x es una versión heredada. Esto significa que está desactualizada y ya no existe soporte, mientras que AxCrypt 2.x es la versión en la que trabajamos continuamente para seguir mejorando. No se recomienda en absoluto utilizar 1.x. Recomendamos a todos los usuarios, antiguos y nuevos, que utilicen siempre la versión más reciente de AxCrypt, que se puede descargar &lt;a href='#/download'&gt;aquí&lt;/a&gt;.</value>
+    <value>AxCrypt 1.x es una versión heredada. Esto significa que está desactualizada y ya no existe soporte, mientras que AxCrypt 2.x es la versión en la que trabajamos continuamente para seguir mejorando. No se recomienda en absoluto utilizar 1.x. Recomendamos a todos los usuarios, antiguos y nuevos, que utilicen siempre la versión más reciente de AxCrypt, que se puede descargar &lt;a href='/download'&gt;aquí&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Para los usuarios que tienen una necesidad específica por las descargas heredadas (uso bajo su propio riesgo), pueden encontrarlas &lt;a href='#/support/legacy-downloads'&gt;aquí&lt;/a&gt;.</value>
+    <value>Para los usuarios que tienen una necesidad específica por las descargas heredadas (uso bajo su propio riesgo), pueden encontrarlas &lt;a href='/support/legacy-downloads'&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="FaqDifferenceStandaloneInstaller">
+    <value>¿Cuáles son las principales diferencias entre la versión independiente y la versión de instalador de AxCrypt?</value>
+  </data>
+  <data name="FaqDifferenceStandaloneInstallerAnswer1">
+    <value>La versión de instalador incluye algunas funciones adicionales (por ejemplo, la integración del menú contextual) en comparación con la versión ligera e independiente.</value>
+  </data>
+  <data name="FaqDifferenceStandaloneInstallerAnswer2">
+    <value>La versión independiente es directamente ejecutable, es decir, no se requiere instalación. En esta versión, no tendrás la opción del clic derecho de AxCrypt en Explorer ni podrás abrir archivos haciendo doble clic.</value>
+  </data>
+  <data name="FaqEmailUsedFor">
+    <value>¿Para qué se utilizará mi correo electrónico cuando me registre?</value>
+  </data>
+  <data name="FaqEmailUsedForAnswer1">
+    <value>Tu correo electrónico se usará para darle nombre a tu AxCrypt ID, y también se usará como el nombre cuando se autentique en el servidor para acceder a la funcionalidad Premium. Es posible que también se use para notificarte sobre actualizaciones esenciales de software, nuevas funciones y otras comunicaciones nuestras, por ejemplo, un boletín informativo. El AxCrypt ID se utilizará para permitir que otras personas compartan contigo archivos de manera segura sin la necesidad de compartir contraseñas, y para otras posibles funciones futuras, como permitir que otros validen firmas digitales. Dado que ofrecemos funciones Premium desde una infraestructura basada en servidor, necesitamos algo para identificarlo. Actualmente, este es tu correo electrónico, ya que está disponible y aceptado universalmente. En el futuro, podría ser algún otro elemento, como tu número de teléfono móvil, tu firma digital emitida por el gobierno, tu cuenta de Twitter, etc.</value>
+  </data>
+  <data name="FaqEmailUsedForAnswer2">
+    <value>No venderemos ni utilizaremos tu correo electrónico para comunicaciones de terceros sin tu consentimiento explícito.</value>
+  </data>
+  <data name="FaqEmailUsedForAnswer3">
+    <value>Para conocer más detalles, por favor visita la sección &lt;a href='/information/terms-of-use'&gt;Términos de uso&lt;/a&gt;</value>
+  </data>
+  <data name="FaqFileEncryptionNotWorking">
+    <value>El cifrado de archivos para .NET y Mono ha dejado de funcionar</value>
+  </data>
+  <data name="FaqFileEncryptionNotWorkingAnswer1">
+    <value>Si recibes un mensaje de error “El cifrado de archivos para .NET y Mono ha dejado de funcionar. Un problema causó que el programa no funcionara correctamente. Windows cerrará el programa y te notificará si hay una solución disponible",  la causa más probable es un software llamado “Lavasoft Web Companion”. Este no es compatible con las versiones modernas de Windows y modifica la forma en que se accede a la red de manera tal que AxCrypt y otros programas se bloquean.</value>
+  </data>
+  <data name="FaqFileEncryptionNotWorkingAnswer2">
+    <value>Verifica si tienes instalado Lavasoft Web Companion y desinstálalo si este es el caso. Si sigues teniendo el mismo problema o no tienes instalado el software Lavasoft, sigue las instrucciones y &lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/'&gt;presenta un informe de errores completo&lt;/a&gt;.
+</value>
+  </data>
+  <data name="FaqForgotPassword">
+    <value>Olvidé mi contraseña. ¿Qué debo hacer?</value>
+  </data>
+  <data name="FaqForgotPasswordAnswer1">
+    <value>La regla básica es: si pierdes u olvidas tu contraseña o archivo de claves, tus documentos se pierden. No hay puerta trasera en AxCrypt.</value>
+  </data>
+  <data name="FaqForgotPasswordAnswer2">
+    <value>La única forma de recuperar una contraseña perdida es probar todas las combinaciones posibles.</value>
+  </data>
+  <data name="FaqForgotPasswordAnswer3">
+    <value>Dicho esto, hay un caso especial en el que es posible que podamos ayudarte. Si crees saber tu contraseña, pero no del todo, o si esta tiene menos de 5 caracteres, entonces podemos escribir y adaptar un programa especial que probará muchas combinaciones de manera automática. A esto se le llama ataque de fuerza bruta.</value>
+  </data>
+  <data name="FaqForgotPasswordAnswer4">
+    <value>AxCrypt está diseñado específicamente para contrarrestar los ataques de fuerza bruta y lo hace bastante bien, por lo que esto solo funcionará cuando la cantidad de combinaciones para probar sea muy pequeña, digamos menos de un millón.</value>
+  </data>
+  <data name="FaqForgotPasswordAnswer5">
+    <value>Si crees poder reducir las combinaciones posibles lo suficiente para nosotros, entonces existe una pequeña posibilidad de recuperar la contraseña usando una herramienta que intentará probar muchas posibilidades de acuerdo con un patrón que proporciones. Ponte en contacto con el servicio de soporte técnico si deseas probar la herramienta de fuerza bruta.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>¿Qué soporte tienen los archivos grandes?</value>
   </data>
   <data name="FaqHowLargeFileSupportAnswer1">
     <value>AxCrypt solo está limitada por el espacio disponible en el disco duro.</value>
+  </data>
+  <data name="FaqHowManyPassesWipe">
+    <value>¿Cuánta veces se aplica la herramienta de Limpieza / ¿Por qué solo se aplica una vez?</value>
+  </data>
+  <data name="FaqHowManyWipeAnswer1">
+    <value>Las herramientas Limpiar y Eliminar solamente sobrescriben una vez con datos pseudoaleatorios. De momento, no tenemos pensado implementar el método de desinfección de datos DoD 5220.22 (NISPOM), ni el método Gutmann de borrado seguro de 35 pasadas. El costo de recuperar datos con sobrescritura simple es prohibitivo. Si el atacante tiene los recursos para eso (además de obtener acceso físico al disco), hay muchas formas más fáciles y seguras de acceder a los datos.</value>
+  </data>
+  <data name="FaqHowManyWipeAnswer2">
+    <value>Un PC es un entorno tan inseguro y descontrolado, que utilizar el método de limpieza al estilo DoD en un sistema en ejecución es una exageración y resulta confuso. Dicho método de borrado debe utilizarse antes de la destrucción o reutilización de los discos duros, y luego solo desde un disquete y CD independientes para que se pueda borrar toda la superficie del disco, independientemente de las estructuras del sistema operativo. Para este fin, recomendamos Boot y Nuke.</value>
+  </data>
+  <data name="FaqHowManyWipeAnswer3">
+    <value>El propósito del método de limpieza AxCrypt es proteger del uso de herramientas comunes de recuperación, no proteger de la microscopía electrónica o del hardware y software de diagnóstico especial disponible para los fabricantes de discos duros. Además, limpiar 35 veces lleva mucho tiempo...</value>
+  </data>
+  <data name="FaqHowToRenew">
+    <value>¿Cómo renuevo mi suscripción?</value>
+  </data>
+  <data name="FaqHowToRenewAnswer1">
+    <value>Los nuevos suscriptores tienen una suscripción que se renovará automáticamente al final del período de suscripción, utilizando el método de pago inicial. Para verificar el estado de tu suscripción, inicia sesión en el sitio de la cuenta y verifícalo en la sección &lt;a href='https://account.axcrypt.net/en/Home/Login'&gt;Mi página de AxCrypt ID&lt;/a&gt;. Ahí verás la fecha en la que se renueva.</value>
+  </data>
+  <data name="FaqHowToRenewAnswer2">
+    <value>Si menciona que la suscripción vencerá en una fecha determinada, eso quiere decir que te suscribiste antes del 25 de junio de 2020 o que cancelaste tus pagos automáticos. En ese caso, deberás renovarlo manualmente.</value>
+  </data>
+  <data name="FaqKeysAndPasswords">
+    <value>¿Tienen claves y contraseñas en sus servidores?</value>
+  </data>
+  <data name="FaqKeysAndPasswordsAnswer1">
+    <value>Sí, pero cifrada con tu contraseña, la cual no almacenamos. No hay ningún cambio esencial en la seguridad en comparación con versiones anteriores. Aún así, debes usar una contraseña segura y mantenerla en secreto.</value>
+  </data>
+  <data name="FaqKeysAndPasswordsAnswer2">
+    <value>Lo único que debes mantener en secreto en AxCrypt es tu contraseña. Nada más; ni el software, ni los archivos protegidos, ni las claves de la cuenta protegida ni nada más. Siempre que tu contraseña sea segura y secreta, tus archivos protegidos permanecerán seguros. Aun cuando nuestro servidor se vea comprometido, los datos confidenciales almacenados permanentemente allí están encriptados con tu contraseña, la cual no almacenamos.</value>
+  </data>
+  <data name="FaqLinkLabel">
+    <value>FAQ</value>
   </data>
   <data name="FaqPasswordRecoveryCorporate">
     <value>¿AxCrypt permite la recuperación de contraseñas para uso corporativo?</value>
@@ -1323,11 +1783,59 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FaqPasswordRecoveryCorporateAnswer4">
     <value>Por lo tanto, AxCrypt es fácil de usar e implementar, a expensas de no recuperar la contraseña. Los problemas de pérdida de datos deben abordarse mediante procedimientos de copia de seguridad tanto de las contraseñas como de los datos, y las situaciones en las que empleados que se van sin divulgar sus contraseñas deben abordarse como cualquier conducta perjudicial o ilegal.</value>
   </data>
+  <data name="FaqSignInWithoutPassword">
+    <value>¿Cómo inicio sesión si tengo una cuenta activa cuya contraseña no conozco?</value>
+  </data>
+  <data name="FaqSignInWithoutPasswordAnswer1">
+    <value>Si acabas de descargar AxCrypt 2, ingresaste tu correo electrónico y recibiste un mensaje de que ya tienes una cuenta, pero no conoces la contraseña, debes ejecutar el &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;restablecimiento de contraseña&lt;/a&gt;. Haz clic en el enlace y sigue las instrucciones. Si ya usas una contraseña segura para tus archivos AxCrypt, también podrías usarla como contraseña para tu cuenta.</value>
+  </data>
+  <data name="FaqStopFromSecuring">
+    <value>¿Cómo puedo evitar que alguien proteja mis archivos?</value>
+  </data>
+  <data name="FaqStopFromSecuringAnswer1">
+    <value>Respuesta corta: No puedes. Pregunta complementaria: ¿Por qué querrías eso?</value>
+  </data>
+  <data name="FaqStopFromSecuringAnswer2">
+    <value>Si instalas AxCrypt, cualquier persona con acceso a tu computador puede proteger tus archivos. Esto a veces se considera un riesgo al instalar AxCrypt. Sin embargo, este no es el caso. El riesgo real está con "... cualquier persona con acceso a tu computadora". Cualquiera que pueda acceder a tu computador y ejecutar una copia instalada de AxCrypt, también puede instalar AxCrypt o cualquier otro software de seguridad o eliminación. Cualquiera que pueda acceder a tu computadora puede eliminar tus archivos y probablemente formatear tu disco duro. Cualquier persona con acceso físico también puede tirarlo por la ventana, robarlo, usarlo para prácticas de tiro con escopeta o cualquier otra actividad que pueda resultar perjudicial para el mantenimiento de tus archivos.</value>
+  </data>
+  <data name="FaqStopFromSecuringAnswer3">
+    <value>El punto es que no tiene sentido restringir el acceso a AxCrypt, ¡es el acceso al computador lo que se debe restringir! Es por eso que siempre debes usar un protector de pantalla con contraseña y tener siempre una contraseña en tu cuenta. De esta manera, si tus archivos están protegidos con AxCrypt, tu información permanecerá segura incluso en caso de pérdida o robo de tu computadora o medios con los archivos incluidos.</value>
+  </data>
+  <data name="FaqWhatHappensExpire">
+    <value>¿Qué ocurre cuando mi suscripción caduca?</value>
+  </data>
+  <data name="FaqWhatHappensExpireAnswer1">
+    <value>Si dejas de suscribirte a Premium o Business, volverás al plan Viewer o Free una vez que finalice tu período de suscripción. No tendrás que preocuparte por tus archivos, porque nunca perderás acceso a tus datos.</value>
+  </data>
+  <data name="FaqWhatHappensExpireAnswer2">
+    <value>Con la versión de Windows, tus archivos se volverán a cifrar con AES de 128 bits, en lugar del algoritmo AES de 256 bits que se utilizó cuando tenías una suscripción. Si estás usando AxCrypt en macOS, no podrás cifrar archivos nuevos. Aún puedes descifrar y ver los archivos cifrados. El contenido de los archivos cifrados no se puede actualizar. Eso significa que debes descifrarlos u obtener una suscripción de pago para seguir usando AxCrypt como antes.</value>
+  </data>
   <data name="FaqWhatPlatforms">
     <value>¿En qué plataformas se ejecuta AxCrypt?</value>
   </data>
   <data name="FaqWhatPlatformsAnswer1">
-    <value>AxCrypt está disponible en la mayoría de las plataformas principales, incluidas: Windows, MacOS, iOS y Android. Para obtener más información sobre plataformas y requisitos del sistema, visita la sección &lt;a href='#/information/requirements'&gt;Requisitos&lt;/a&gt;.</value>
+    <value>AxCrypt está disponible en la mayoría de las plataformas principales, incluidas: Windows, MacOS, iOS y Android. Para obtener más información sobre plataformas y requisitos del sistema, visita la sección &lt;a href='/information/requirements'&gt;Requisitos&lt;/a&gt;.</value>
+  </data>
+  <data name="FaqWhyPasswordSignIn">
+    <value>¿Por qué AxCrypt solicita una contraseña solamente durante el inicio de sesión? ¿No es inseguro?</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer1">
+    <value>Mientras hayas iniciado sesión en AxCrypt, sin conexión o en línea, AxCrypt no te volverá a pedir la misma contraseña. Esta función permite que el uso de AxCrypt sea mucho más conveniente y te evita la molestia de volver a ingresar la contraseña cada vez.</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer2">
+    <value>La seguridad es una cadena tan fuerte como su eslabón más débil. En tu sistema local, hay tantas otras formas de acceder a tus datos que sacrificar la conveniencia de una caché de contraseñas solo para "sentirse" más seguro, no pareció una buena idea.</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer3">
+    <value>Pero, ¿para qué sirve AxCrypt si cualquiera puede acercarse a mi PC y hacer doble clic?</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer4">
+    <value>En Documentación &gt; Seguridad &gt; Seguridad de PC local, encontrarás un debate sobre lo que se necesita para proteger tu PC localmente y por qué. Lo importante es lo siguiente: si alguien puede acercarse a tu PC y no está protegido por un protector de pantalla con contraseña, ¡no tienes protección de todos modos! Todo lo que necesita un posible atacante es acceso a un PC con un disquete o una unidad de CD, un puerto USB o una conexión a Internet. La instalación de un registrador de teclas o un troyano lleva solo unos segundos. No confíes en un PC que se ha dejado desatendido y desprotegido.</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer5">
+    <value>El segundo motivo para la caché de contraseñas es que si no necesitas ingresarla cada vez, es posible que te resulte conveniente usar una contraseña más larga y más segura, y así aumentar la seguridad.</value>
+  </data>
+  <data name="FaqWhyPasswordSignInAnswer6">
+    <value>Si te preocupa el acceso físico a tu computadora, hay otras medidas que debes tomar primero. Si lo deseas, puedes cerrar sesión en AxCrypt cada vez que dejes desatendida tu computadora.</value>
   </data>
   <data name="FaqWhySecure">
     <value>¿Por qué proteger archivos con cifrado seguro?</value>
@@ -1353,17 +1861,53 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FaqWhySecureAnswer7">
     <value>En estas y otras situaciones similares, los programas de cifrado como AxCrypt ofrecen un método seguro y conveniente para brindar privacidad y confidencialidad cuando sea pertinente.</value>
   </data>
+  <data name="FaqWhyTimeStap">
+    <value>¿Por qué la marca de tiempo del archivo se fija a la hora de proteger el archivo?</value>
+  </data>
+  <data name="FaqWhyTimeStapAnswer1">
+    <value>Lo que hace AxCrypt por defecto al momento de proteger un archivo de texto sin formato es almacenar las marcas de tiempo de los archivos originales dentro del archivo protegido y establecer las marcas de tiempo del archivo protegido resultante a la hora en que se protegió más recientemente. El fundamento de esta operación obedece a lo siguiente:</value>
+  </data>
+  <data name="FaqWhyTimeStapAnswer2">
+    <value>Muchos programas de software de copia de seguridad y sincronización de archivos dependen del tiempo de modificación de los archivos para determinar si se han modificado desde la última ejecución. Esta prueba falla, si el archivo protegido conserva la fecha original del archivo de texto sin formato y, en el peor de los casos, el archivo no se copia / respalda, etc.</value>
+  </data>
+  <data name="FaqWhyTimeStapAnswer3">
+    <value>Un buen software de seguridad garantizará que la protección doble del mismo archivo produzca archivos protegidos completamente diferentes, para que sea más difícil determinar si el archivo es el mismo que otro archivo u otra versión anterior de un archivo. Si se conserva la marca de tiempo, un atacante obtendrá una marca de tiempo de alta precisión que identifica de manera más o menos única todos y cada uno de los archivos, y así filtra lo que podría ser información importante sobre el archivo. (El tamaño del archivo seguirá siendo el mismo, ya que la protección es determinista, pero esta es una aseveración mucho más débil).</value>
+  </data>
+  <data name="FaqWhyTimeStapAnswer4">
+    <value>Semánticamente, proteger un archivo es una transformación del archivo, y esto debe reflejarse en la marca de tiempo. ¡Ten en cuenta que las marcas de tiempo originales en texto plano aún se restaurarán si se elimina la seguridad del archivo!</value>
+  </data>
+  <data name="FaqWhyTimeStapAnswer5">
+    <value>Si AxCrypt diera soporte a un registro de varios archivos, no hay más remedio que usar la marca de tiempo para protegerlos, de lo contrario, sería muy inconsistente, qué marca de tiempo debe tener un archivo AxCrypt de varios archivos que contenga exactamente un uso de archivo (que, por cierto, es el caso hoy en día, el formato de archivo admite varios archivos, pero AxCrypt aún no ha implementado esta funcionalidad).</value>
+  </data>
   <data name="FastDownloadLabel">
     <value>Carga y descarga rápida</value>
   </data>
   <data name="FastDownloadText">
     <value>Compresión opcional inteligente</value>
   </data>
+  <data name="FeatureLabel">
+    <value>Función</value>
+  </data>
+  <data name="FeaturesAccountKeyDescription">
+    <value>Copia de seguridad de pares de claves de cuentas personales</value>
+  </data>
   <data name="FeaturesAES128Description">
     <value>Cifrado estándar sólido</value>
   </data>
+  <data name="FeaturesAES256Description">
+    <value>Cifrado extra fuerte</value>
+  </data>
+  <data name="FeaturesAnonymousFileDescription">
+    <value>Ocultamiento de los nombres de tus archivos protegidos</value>
+  </data>
+  <data name="FeaturesBestEncryption">
+    <value>El mejor software de cifrado según PCMag en 2016, 2017, 2018, 2019 y 2020</value>
+  </data>
   <data name="FeaturesBusinessAdminDescription">
     <value>Administra tu cuenta AxCrypt Business, crea suscripciones, cambia la información de tu empresa, etc.</value>
+  </data>
+  <data name="FeaturesChangeToManage">
+    <value>Posibilidad de gestionar Marketing, Ventas y Soporte de primera línea en tu propio territorio</value>
   </data>
   <data name="FeaturesChoosePlanHeading">
     <value>Escoge un plan para ver las funciones que incluye:</value>
@@ -1371,14 +1915,59 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FeaturesClickFeatureText">
     <value>Haz clic en una función para saber más...</value>
   </data>
+  <data name="FeaturesCloudStorageDescription">
+    <value>Protección automática de una carpeta AxCrypt en Dropbox, Google Drive, etc.</value>
+  </data>
+  <data name="FeaturesCommunitySupportDescription">
+    <value>Soporte a través de foros de la comunidad de usuarios</value>
+  </data>
+  <data name="FeaturesDirectSupportDescription">
+    <value>Contacto directo con el personal de soporte por correo electrónico o chat</value>
+  </data>
+  <data name="FeaturesFileWipeDescription">
+    <value>Eliminación segura de archivos</value>
+  </data>
   <data name="FeaturesHoverFeatureText">
     <value>Desplaza el puntero sobre una función para saber más...</value>
+  </data>
+  <data name="FeaturesIncludeSubfoldersDescription">
+    <value>Operación en todas las subcarpetas con Carpetas protegidas y otras operaciones</value>
   </data>
   <data name="FeaturesKeySharingDescription">
     <value>Permite que otros usuarios de AxCrypt abran archivos seguros con su propia contraseña</value>
   </data>
+  <data name="FeaturesLinkLabel">
+    <value>Funciones</value>
+  </data>
   <data name="FeaturesMadeInSweden">
     <value>"Hecho en Suecia" con servidoes en Suecia</value>
+  </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>Acceso a tus archivos cifrados en tu dispositivo Android o iOS</value>
+  </data>
+  <data name="FeaturesMoreUpcomingDescription">
+    <value>No te pierdas las funciones que implementaremos exclusivamente para usuarios Business.</value>
+  </data>
+  <data name="FeaturesOpenSharedDescription">
+    <value>Acceso de otros miembros del equipo a archivos protegidos</value>
+  </data>
+  <data name="FeaturesPasswordGeneratorDescription">
+    <value>Generación de contraseñas seguras pero relativamente fáciles de recordar</value>
+  </data>
+  <data name="FeaturesPasswordManagementDescription">
+    <value>Todas tus contraseñas y otros secretos están a salvo en nuestra nube</value>
+  </data>
+  <data name="FeaturesProgressiveMargins">
+    <value>Márgenes progresivos (mayor porcentaje de ingresos por mayores ventas)</value>
+  </data>
+  <data name="FeaturesRecurringRevenue">
+    <value>Ingresos constantes con SaaS</value>
+  </data>
+  <data name="FeaturesSecuredFoldersDescription">
+    <value>Protección automática de archivos nuevos en carpetas designadas con un solo clic</value>
+  </data>
+  <data name="FeaturesViewerDescription">
+    <value>Visualización de archivos cifrados</value>
   </data>
   <data name="FeedbackButtonText" xml:space="preserve">
     <value>¿Qué opinas sobre nosotros? ¡Por favor, darnos su opinión!</value>
@@ -1476,6 +2065,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FileWipeLabel">
     <value>Limpieza de archivos</value>
   </data>
+  <data name="FileWipeText">
+    <value>Eliminación segura de archivos.</value>
+  </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>La carpeta '{0}' ya está protegido.</value>
   </data>
@@ -1486,6 +2078,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FollowUsTitle" xml:space="preserve">
     <value>Síguenos</value>
     <comment>Title of panel with social links in mobile application</comment>
+  </data>
+  <data name="FooterContactUsParagraph">
+    <value>¡Háblanos! &lt;br&gt;Usa nuestros &lt;a href='/support/forums'&gt;Foros de la comunidad&lt;/a&gt; para preguntas generales, comentarios y soporte técnico. También puedes enviar un correo electrónico directamente a &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Esta es la sección AxCrypt ID de AxCrypt.net. Haz clic &lt;a href="{0}"&gt;aquí&lt;/a&gt; para volver a la página de inicio.</value>
@@ -1499,6 +2094,15 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="ForEveryoneLabel">
     <value>Para todos</value>
   </data>
+  <data name="ForIndividualsLabel">
+    <value>Para usuarios individuales</value>
+  </data>
+  <data name="ForOrganisationsLabel">
+    <value>Para organizaciones</value>
+  </data>
+  <data name="ForumsLinkLabel">
+    <value>Foros</value>
+  </data>
   <data name="ForWhomHeadline" xml:space="preserve">
     <value>A quién</value>
   </data>
@@ -1507,6 +2111,69 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="FreeLabel">
     <value>Gratis</value>
+  </data>
+  <data name="GdprBlock1Heading">
+    <value>¿En qué consiste el GDPR?</value>
+  </data>
+  <data name="GdprBlock1Text1">
+    <value>El Reglamento General de Protección de Datos de la UE (GDPR) es un acto legislativo vinculante sobre la protección de datos personales y derechos individuales. El GDPR reemplaza la Directiva de Protección de Datos 95/46/CE.</value>
+  </data>
+  <data name="GdprBlock1Text2">
+    <value>Fue diseñado para armonizar las leyes de privacidad de datos en toda Europa, para proteger y potenciar la privacidad de datos de todos los ciudadanos de la UE y para renovar la manera en que las organizaciones abordan la privacidad de datos. El GDPR exige que las empresas implementen formas razonables de proteger sus datos, como el cifrado, para protegerlos contra la pérdida o exposición de datos.</value>
+  </data>
+  <data name="GdprBlock1Text3">
+    <value>La fecha de entrada en vigencia del GDPR es el 25 de mayo de 2018.</value>
+  </data>
+  <data name="GdprBlock2Heading">
+    <value>¿A quiénes aplica?</value>
+  </data>
+  <data name="GdprBlock2Text1">
+    <value>El GDPR se aplica a todas las organizaciones ubicadas dentro o fuera de la UE, que procesan y conservan los datos personales de los ciudadanos de la UE, con el fin de: ofrecer bienes o servicios, o monitorear su comportamiento dentro de la UE.</value>
+  </data>
+  <data name="GdprBlock3Heading">
+    <value>¿Cómo puede el cifrado de archivos contribuir al cumplimiento?</value>
+  </data>
+  <data name="GdprBlock3Text1">
+    <value>Como establece la Razón 83 del GDPR:</value>
+  </data>
+  <data name="GdprBlock3Text2">
+    <value>"A fin de mantener la seguridad y evitar que el tratamiento infrinja lo dispuesto en el presente Reglamento, el responsable o el encargado deben evaluar los riesgos inherentes al tratamiento y aplicar medidas para mitigarlos, como el cifrado".</value>
+  </data>
+  <data name="GdprBlock3Text3">
+    <value>Las organizaciones deben asegurarse de que sus datos personales se almacenen en forma segura, ya sea en las instalaciones o en la nube, para evitar costosas filtraciones de datos. Los archivos que se hayan cifrado quedarán inutilizados cuando se vulneren.</value>
+  </data>
+  <data name="GdprBlock4Heading">
+    <value>¿Cuáles son las sanciones por incumplimiento?</value>
+  </data>
+  <data name="GdprBlock4Text1">
+    <value>Las organizaciones pueden recibir una multa de hasta el 4% de la facturación global anual por infringir el GDPR o 20 millones de euros, el monto que sea mayor. Esta es la multa máxima que se puede imponer por las infracciones más graves. Es importante tener en cuenta que estas reglas se aplican tanto a los controladores como a los procesadores, lo que significa que la "nube" no estará exenta de la aplicación del GDPR.</value>
+  </data>
+  <data name="GdprBlock5Heading">
+    <value>¿Cómo maneja el GDPR las filtraciones de datos personales?</value>
+  </data>
+  <data name="GdprBlock5Text1">
+    <value>En caso de filtración de datos personales, el responsable del tratamiento notificará dicha filtración a la autoridad de control sin demora injustificada y, cuando sea posible, a más tardar 72 horas después de haber tenido conocimiento de ella.</value>
+  </data>
+  <data name="GdprBlock6Heading">
+    <value>¿Cuáles son mis principales responsabilidades según el GDPR?</value>
+  </data>
+  <data name="GdprBlock6Text1">
+    <value>Si tu organización maneja datos personales, la Oficina del Comisionado de Información (ICO) establece que sdeberías implementar medidas de gobernanza integrales, pero proporcionadas. Estas medidas deben minimizar el riesgo de filtraciones y defender la protección de los datos personales. Las responsabilidades exactas que se aplican son diferentes para cada organización, según su envergadura, industria y qué tipo de datos se almacenan.</value>
+  </data>
+  <data name="GdprBlock7Heading">
+    <value>¿Mi sitio web cumple con el GDPR?</value>
+  </data>
+  <data name="GdprBlock7Text1">
+    <value>Según &lt;a href='https://www.vpnmentor.com/blog/report-only-34-percent-of-websites-in-the-eu-are-ready-for-gdpr/'&gt;vpnMentor&lt;/a&gt;, tan solo el 34% de los sitios web de la UE cumplen actualmente con el GDPR. "La mayoría de los sitios web tienen políticas de privacidad obsoletas y, en algunos casos, ninguna política de privacidad, y de ninguna manera están preparados para las pautas de privacidad más estrictas".</value>
+  </data>
+  <data name="GdprBlock7Text2">
+    <value>Para determinar qué sitios web recopilan datos y, por lo tanto, necesitan actualizar su política de privacidad, vpnMentor basó su investigación en sitios que utilizan MailChimp para recopilar las direcciones de correo electrónico de los usuarios. Han recopilado hasta 100 sitios web por país y dieron un vistazo a su política de privacidad, en caso de tener alguna, a fin de determinar si cumplían con el GDPR.</value>
+  </data>
+  <data name="GdprBlock8Heading">
+    <value>¿Cómo afectará el Brexit al GDPR? ¿Se aplicará a las empresas del Reino Unido?</value>
+  </data>
+  <data name="GdprBlock8Text1">
+    <value>Si tu empresa se ubica en el Reino Unido, también deberá cumplir con la normativa de la UE. El Reino Unido ha declarado que cumplirá con el GDPR y que su cumplimiento no se verá afectado por el Brexit.</value>
   </data>
   <data name="GdprBlock9Heading">
     <value>¿Dónde puedo encontrar información más confiable sobre el GDPR?</value>
@@ -1523,6 +2190,12 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GdprHeading">
     <value>Reglamento General de Protección de Datos de la UE</value>
   </data>
+  <data name="GdprLinkLabel">
+    <value>GDPR</value>
+  </data>
+  <data name="GeneralLabel">
+    <value>General</value>
+  </data>
   <data name="GermanLanguageSelectionText" xml:space="preserve">
     <value>Deutsch (alemán)</value>
   </data>
@@ -1538,17 +2211,68 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>El tipo de registro seleccionado no es válido.</value>
   </data>
+  <data name="GetStartedAccessSecuredHeading">
+    <value>Acceso a archivos protegidos</value>
+  </data>
+  <data name="GetStartedAccessSecuredImageText">
+    <value>Abre archivos protegidos por amigos y colegas</value>
+  </data>
   <data name="GetStartedAccessSecuredText">
     <value>Una interfaz sencilla te da acceso a tus archivos cifrados almacenados en Google Drive, Dropbox, recibidos por correo electrónico, etc. La app no puede (todavía) cifrar archivos en tu teléfono, pero te permitirá abrir archivos cifrados por ti o compartidos contigo.</value>
+  </data>
+  <data name="GetStartedAxcryptMobileImageText">
+    <value>Abre archivos AxCrypt en tu teléfono</value>
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Usa la app con tu AxCrypt ID. Para utilizarla en iOS y Android se necesita una suscripción Premium . Al crear una nueva AxCrypt ID, obtendrás automáticamente una prueba Premium de 30 días.</value>
   </data>
+  <data name="GetStartedEasyAccessHeading">
+    <value>Acceso simple a las contraseñas</value>
+  </data>
+  <data name="GetStartedEasyAccessImageText">
+    <value>Acceso con un clic a nuestro Administrador de contraseñas</value>
+  </data>
+  <data name="GetStartedEasyAccessText">
+    <value>Con un simple clic, puedes acceder a la administración de contraseñas en línea de AxCrypt, que almacena todas tus contraseñas en un archivo cifrado de manera segura en línea.</value>
+  </data>
+  <data name="GetStartedHowToUseHeading">
+    <value>Uso</value>
+  </data>
+  <data name="GetStartedHowToUseIngress">
+    <value>¡En este rápido tutorial te mostramos las funciones básicas de AxCrypt! Míralo para aprender a usar el programa.</value>
+  </data>
+  <data name="GetStartedHowToUseStep1">
+    <value>Selecciona una o más carpetas en las que te gustaría operar</value>
+  </data>
   <data name="GetStartedHowToUseStep2Mac">
     <value>Haz clic secundario (generalmente con dos dedos) para abrir el menú de AxCrypt.</value>
   </data>
+  <data name="GetStartedHowToUseStep2Windows">
+    <value>Haz clic derecho para abrir el menú de AxCrypt</value>
+  </data>
   <data name="GetStartedHowToUseStep3">
     <value>Para abrir archivos a fin de visualizarlos o editarlos, simplemente haz doble clic sobre ellos.</value>
+  </data>
+  <data name="GetStartedHowToUseVideoTitleMac">
+    <value>Cómo usar AxCrypt en Mac</value>
+  </data>
+  <data name="GetStartedHowToUseVideoTitleWindows">
+    <value>Cómo usar AxCrypt</value>
+  </data>
+  <data name="GetStartedInfoNote1Heading">
+    <value>Algunas cosas importantes a tener en cuenta durante el proceso de instalación:</value>
+  </data>
+  <data name="GetStartedInfoNote1ListItem1">
+    <value>Para usar AxCrypt deberás &lt;a href='https://account.axcrypt.net/Home/Register'&gt;crear una cuenta&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedInfoNote1ListItem2">
+    <value>Si actualizas desde una versión anterior de AxCrypt, es posible que debas reiniciar tu computador.</value>
+  </data>
+  <data name="GetStartedInfoNote1ListItem3">
+    <value>Revisa la firma digital para verificar que la descarga no esté dañada y sea auténtica. Haz clic con el botón derecho en el archivo descargado en el Explorador de Windows y selecciona "Propiedades" y la pestaña "Firmas digitales". Luego, selecciona la firma digital y haz clic en "Detalles". Asegúrate de que la firma digital se muestre como "OK" y que el firmante sea "AxCrypt AB".</value>
+  </data>
+  <data name="GetStartedInfoNote2Text1">
+    <value>Si tienes algún problema o pregunta, consulta nuestra página de &lt;a href='/support/faq'&gt;Preguntas frecuentes&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>No dudes en contactarnos para informar errores y hacer tus comentarios. También puedes solicitar soporte. Para otro tipo de asuntos, envíanos un correo electrónico.</value>
@@ -1556,11 +2280,81 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetStartedInstallingHeading">
     <value>Cómo instalar AxCrypt y configurar tu AxCrypt ID</value>
   </data>
+  <data name="GetStartedInstallingIngress">
+    <value>Para utilizar AxCrypt, necesitarás &lt;a href='https://account.axcrypt.net/Home/Register'&gt;crear una cuenta &lt;/a&gt;. Acá te mostramos un video paso a paso para que sepas cómo hacerlo.</value>
+  </data>
+  <data name="GetStartedInstallingStep1">
+    <value>&lt;a href='/download'&gt;Descarga&lt;/a&gt; AxCrypt e instálalo siguiendo las instrucciones del asistente de instalación estándar.</value>
+  </data>
+  <data name="GetStartedInstallingStep2">
+    <value>Registra tu correo electrónico</value>
+  </data>
+  <data name="GetStartedInstallingStep3">
+    <value>Ingresa el código de activación y elige una contraseña para completar el proceso</value>
+  </data>
+  <data name="GetStartedInstallingStep4">
+    <value>¡Ahora puedes usar las funciones básicas de AxCrypt de manera gratuita! Hay funciones adicionales disponibles si te suscribes a &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; o &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedInstallingVideoTitleMac">
+    <value>AxCrypt: Instalación y configuración de tu  AxCrypt ID en Mac</value>
+  </data>
+  <data name="GetStartedInstallingVideoTitleWindows">
+    <value>Instalación de AxCrypt y configuración de tu  AxCrypt ID</value>
+  </data>
+  <data name="GetStartedKeySharingHeading">
+    <value>Uso compartido de claves</value>
+  </data>
   <data name="GetStartedKeySharingIngress">
-    <value>Al utilizar la función  &lt;a href='#/information/features'&gt;Uso compartido de claves&lt;/a&gt;, puedes compartir tus archivos protegidos con otras personas. A continuación, te mostramos un tutorial sobre el Uso compartido de claves.</value>
+    <value>Al utilizar la función  &lt;a href='/information/features'&gt;Uso compartido de claves&lt;/a&gt;, puedes compartir tus archivos protegidos con otras personas. A continuación, te mostramos un tutorial sobre el Uso compartido de claves.</value>
+  </data>
+  <data name="GetStartedKeySharingStep1">
+    <value>Elige el archivo que deseas compartir</value>
+  </data>
+  <data name="GetStartedKeySharingStep2">
+    <value>Agrega o selecciona un contacto</value>
+  </data>
+  <data name="GetStartedKeySharingStep3">
+    <value>Haz clic en Aceptar para dar acceso a tu archivo
+</value>
+  </data>
+  <data name="GetStartedKeySharingStep4">
+    <value>¡Recuerda que todavía tienes que enviar el archivo real al destinatario!</value>
+  </data>
+  <data name="GetStartedKeySharingVideoTitle">
+    <value>AxCrypt: Uso compartido de claves</value>
+  </data>
+  <data name="GetStartedLinkLabel">
+    <value>Cómo empezar</value>
+  </data>
+  <data name="GetStartedMobileText1">
+    <value>La aplicación móvil de AxCrypt está disponible en iOS y Android, y te permite abrir y ver cualquier archivo cifrado por nuestras aplicaciones de escritorio con versión completa.</value>
+  </data>
+  <data name="GetStartedMobileText2">
+    <value>AxCrypt implementa un cifrado fuerte con AES-128 o AES-256, junto con funciones muy avanzadas, pero fáciles de usar, para enviar y recibir archivos cifrados sin compartir contraseñas.</value>
+  </data>
+  <data name="GetStartedMobileText3">
+    <value>La aplicación es compatible con todos los archivos cifrados desde 2001 con AxCrypt.</value>
+  </data>
+  <data name="GetStartedMobileText4">
+    <value>Descarga AxCrypt para  &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android aquí&lt;/a&gt; y para &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedPasswordManagementHeading">
+    <value>Administración de contraseñas</value>
   </data>
   <data name="GetStartedPasswordManagementIngress">
-    <value>Puedes almacenar todas tus contraseñas y códigos en línea de manera segura con la función &lt;a href='#/information/features'&gt;Administrador de contraseñas&lt;/a&gt;. Ve el video que se muestra a continuación para saber cómo administrar tus contraseñas.</value>
+    <value>Puedes almacenar todas tus contraseñas y códigos en línea de manera segura con la función &lt;a href='/information/features'&gt;Administrador de contraseñas&lt;/a&gt;. Ve el video que se muestra a continuación para saber cómo administrar tus contraseñas.</value>
+  </data>
+  <data name="GetStartedPasswordManagementStep1">
+    <value>Inicia sesión para acceder a la Administración de contraseñas</value>
+  </data>
+  <data name="GetStartedPasswordManagementStep2">
+    <value>Busca tus contraseñas existentes o crea una nueva</value>
+  </data>
+  <data name="GetStartedPasswordManagementStep3">
+    <value>Considera usar la contraseña sugerida para lograr una seguridad óptima</value>
+  </data>
+  <data name="GetStartedPasswordManagementVideoTitleMac">
+    <value>AxCrypt: Administración de contraseñas en Mac</value>
   </data>
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: Administrador de contraseñas</value>
@@ -1583,8 +2377,14 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
   <data name="HelpViewHelpMenuItemText" xml:space="preserve">
     <value>Ver Ayuda</value>
   </data>
+  <data name="HideFeaturesLabel">
+    <value>Ocultar funciones</value>
+  </data>
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Se ha desactivado la lista de archivos recientes. Ve a Opciones para volver a activarla.</value>
+  </data>
+  <data name="HomeGetStartedHeading">
+    <value>Cómo empezar</value>
   </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Descargar</value>
@@ -1592,17 +2392,74 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
   <data name="HomeGetStartedListDownloadParagraph">
     <value>Obtén la versión más reciente de AxCrypt</value>
   </data>
+  <data name="HomeGetStartedListEncryptHeading">
+    <value>2. Cifra</value>
+  </data>
   <data name="HomeGetStartedListEncryptParagraph">
     <value>Selecciona qué archivos deseas proteger con solo unos clics.</value>
+  </data>
+  <data name="HomeGetStartedListShareHeading">
+    <value>3. Comparte</value>
   </data>
   <data name="HomeGetStartedListShareParagraph">
     <value>Comparte tus archivos protegidos con un solo clic</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Este es un video tutorial sobre cómo comenzar a usar AxCrypt</value>
+  </data>
+  <data name="HomeHeroHeading">
+    <value>"Cifrado avanzado con una configuración extraordinariamente sencilla"</value>
+  </data>
+  <data name="HomeHeroSubheading">
+    <value>PCMag Editors´ Choice 2020</value>
+  </data>
+  <data name="HomeHeroUnderSubheading">
+    <value>más de 20 millones de descargas a nivel mundial</value>
+  </data>
+  <data name="HomeLinkLabel">
+    <value>Inicio</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Apertura de archivos cifrados en tu teléfono</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileHeading">
+    <value>AxCrypt Móvil</value>
+  </data>
   <data name="HomeSellingPointCloudStorageAwarenessBody">
     <value>Protege automáticamente tus archivos en Dropbox, Google Drive etc.</value>
   </data>
+  <data name="HomeSellingPointCloudStorageAwarenessHeading">
+    <value>Cloud Storage Awareness</value>
+  </data>
+  <data name="HomeSellingPointCollaborationBody">
+    <value>Posibilidad de que otros usuarios de AxCrypt abran archivos protegidos con su propia contraseña.</value>
+  </data>
+  <data name="HomeSellingPointCollaborationHeading">
+    <value>Colaboración</value>
+  </data>
+  <data name="HomeSellingPointMultilingualBody">
+    <value>AxCrypt está disponible en inglés, holandés, francés, alemán, italiano, coreano, portugués, español, sueco, turco, ruso, polaco y más.</value>
+  </data>
+  <data name="HomeSellingPointMultilingualHeading">
+    <value>Multilingüe</value>
+  </data>
+  <data name="HomeSellingPointPasswordManagementBody">
+    <value>Gestión y acceso a tus contraseñas sin problemas dondequiera que estés.</value>
+  </data>
+  <data name="HomeSellingPointPasswordManagementHeading">
+    <value>Administración de contraseñas</value>
+  </data>
   <data name="HomeSellingPointStrongEncryptionBody">
     <value>Seguridad de archivos con cifrado de 128 o 256 bits.</value>
+  </data>
+  <data name="HomeSellingPointStrongEncryptionHeading">
+    <value>Cifrado fuerte</value>
+  </data>
+  <data name="HomeWhatOtherSayTestimonialsText">
+    <value>&lt;p&gt;Para leer más testimonios, visita &lt;a href='/about/awards'&gt;Premios y &lt;/a&gt;reseñas&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>Testimonios</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutos</value>
@@ -1655,6 +2512,9 @@ Esto puede hacer que algunas operaciones lleven mucho tiempo. Por favor, tenga c
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mi AxCrypt ID</value>
+  </data>
+  <data name="InformationLinkLabel">
+    <value>Información</value>
   </data>
   <data name="InformationTitle" xml:space="preserve">
     <value>Información</value>
@@ -1780,6 +2640,18 @@ Número de IVA intracomuntario: SE556967618101</value>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Parece que JavaScript está desactivado en tu navegador. Si no habilitas JavaScript, no podrás iniciar sesión y es posible que el sitio no funcione correctamente.</value>
   </data>
+  <data name="JobApplicationLinkLabel">
+    <value>Solicitud de empleo</value>
+  </data>
+  <data name="JobPositionLinkLabel">
+    <value>Puesto de trabajo</value>
+  </data>
+  <data name="JobsLinkLabel">
+    <value>Trabajos</value>
+  </data>
+  <data name="JobTitleLabel">
+    <value>Título profesional</value>
+  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Elige un Archivo de clave</value>
   </data>
@@ -1826,6 +2698,10 @@ A continuación, elige el idioma de la invitación y puedes añadir un mensaje p
     <value>Documentos</value>
     <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
   </data>
+  <data name="KnownFolderNameOneDrive" xml:space="preserve">
+    <value>OneDrive</value>
+    <comment>The non-translatable name for the Microsoft OneDrive cloud service provider</comment>
+  </data>
   <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
     <value>Documentos</value>
     <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
@@ -1864,6 +2740,21 @@ A continuación, elige el idioma de la invitación y puedes añadir un mensaje p
     <value>Después de convertir los archivos, solo se abrirán con la contraseña actual de AxCrypt. Por favor, verifica tu contraseña.
 
 ¡No olvides esta contraseña!</value>
+  </data>
+  <data name="LegacyDownloadsDescription">
+    <value>Estas son descargas heredadas de AxCrypt 1.x. No las respaldamos y te recomendamos que no las descargues ni las uses, a menos que sea necesario. &lt;strong&gt;¡Los archivos nuevos cifrados con AxCrypt 2.x no son compatibles con AxCrypt 1.x heredado!&lt;/strong&gt; Los archivos cifrados con AxCrypt 1.x heredado se pueden descifrar mediante AxCrypt 2.x.</value>
+  </data>
+  <data name="LegacyDownloadsHowToVerifyHeading">
+    <value>Cómo verificar una descarga</value>
+  </data>
+  <data name="LegacyDownloadsHowToVerifyText">
+    <value>La mayoría de los instaladores y los ejecutables están firmados digitalmente con &lt;a href='http://msdn.microsoft.com/en-us/library/ms537361(v=VS.85).aspx'&gt;Authenticode&lt;/a&gt; de 'Axantum Software AB' o 'AxCrypt AB'. Verifica la firma después de la descarga haciendo clic con el botón derecho en el archivo y selecciona 'Propiedades | Firmas digitales'. Luego, haz doble clic en la firma y comprueba que se muestra el mensaje: "Esta firma digital es correcta".</value>
+  </data>
+  <data name="LegacyDownloadsLinkLabel">
+    <value>Descargas heredadas</value>
+  </data>
+  <data name="LegacyDownloadsWarning">
+    <value>Esta versión está obsoleta y no ofrecemos soporte para ella. AxCrypt 1.x no se mantiene y no debes descargarlo, a menos que sea específicamente necesario. Su uso queda a criterio tuyo.</value>
   </data>
   <data name="LegacyOpenMessage" xml:space="preserve">
     <value>AxCrypt 2 utiliza un nuevo formato de archivos.
@@ -1954,6 +2845,9 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   </data>
   <data name="MacOsCompatibleLabel">
     <value>Compatible con MacOS</value>
+  </data>
+  <data name="MacOsCompatibleText">
+    <value>OS X 10.8 Mountain Lion o posterior.</value>
   </data>
   <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
     <value>'{0}' no es un archivo AxCrypt.</value>
@@ -2270,6 +3164,9 @@ Puedes abrir los archivos cifrados cuando quieras con una versión de escritorio
     <value>Más...</value>
     <comment>A 'More...' button text</comment>
   </data>
+  <data name="MoreFeaturesLabel">
+    <value>Más funciones</value>
+  </data>
   <data name="MoreKeyFileToolTop" xml:space="preserve">
     <value>Haz clic para introducir el nombre de un archivo de clave. Solo úsalo si sabes que usaste un archivo de clave  al protegerlo con la versión anterior de AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
@@ -2277,6 +3174,9 @@ Puedes abrir los archivos cifrados cuando quieras con una versión de escritorio
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>Mi AxCrypt</value>
     <comment>The folder name used for default watching</comment>
+  </data>
+  <data name="MyAxCryptIDLinkLabel">
+    <value>Mi AxCrypt ID</value>
   </data>
   <data name="NameLabel">
     <value>Nombre</value>
@@ -2325,6 +3225,9 @@ Tus documentos siguen encriptados de manera segura con tu contraseña.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>No cuentas con una suscripción Premium, así que no estás accediendo al nivel más alto de seguridad. ¡Haz clic para actualizarla!</value>
+  </data>
+  <data name="NoteLabel">
+    <value>Nota</value>
   </data>
   <data name="NotFoundPageBody" xml:space="preserve">
     <value>Desafortunadamente no pudimos mostrar la página que estabas buscando. Esto podría deberse a que ésta no existe, a un reinicio del servidor que provocó que la sesión en tu explorador quedase obsoleta o a algún otro error que nos impidió responder a la solicitud.
@@ -2406,6 +3309,9 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
     <value>Activar o desactivar la actualización automática y la conversión de archivos AxCrypt 1.x más viejos a medida que se utilicen.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
+  <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
+    <value>Depurar</value>
+  </data>
   <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
     <value>Ocultar archivos recientes</value>
   </data>
@@ -2418,8 +3324,32 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
   <data name="OptionsToolStripMenuItemText" xml:space="preserve">
     <value>Opciones</value>
   </data>
+  <data name="OrgNumberLabel">
+    <value>Número de org.</value>
+  </data>
+  <data name="OtherPlatformsLabel">
+    <value>Otras plataformas</value>
+  </data>
+  <data name="OurProductLinkLabel">
+    <value>Nuestro producto</value>
+  </data>
+  <data name="OurTeamLabel">
+    <value>Nuestro equipo</value>
+  </data>
+  <data name="OurVisionLabel">
+    <value>Nuestra visión</value>
+  </data>
+  <data name="PageNotFoundHeading" xml:space="preserve">
+    <value>Página no encontrada.</value>
+  </data>
+  <data name="PageNotFoundInfo" xml:space="preserve">
+    <value>No pudimos encontrar la página que buscabas. Algo salió mal o la página no existe.</value>
+  </data>
   <data name="PaidSubscriptionNeededForMobileApp" xml:space="preserve">
     <value>Debes contar con una suscripción para usar AxCrypt en tu teléfono.</value>
+  </data>
+  <data name="PartnerLabel">
+    <value>Asociado</value>
   </data>
   <data name="PassphrasePrompt" xml:space="preserve">
     <value>Contraseña</value>
@@ -2432,6 +3362,12 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
   </data>
   <data name="PasswordGeneratorHeading">
     <value>Generador de contraseñas de AxCrypt</value>
+  </data>
+  <data name="PasswordGeneratorLinkLabel">
+    <value>Generador de contraseñas</value>
+  </data>
+  <data name="PasswordGeneratorSavePasswordLinkLabel">
+    <value>Guarda tu contraseña nueva en la Administración de contraseñas de AxCrypt.</value>
   </data>
   <data name="PasswordGeneratorText1">
     <value>Crear contraseñas adecuadas no es fácil. Hay muchos consejos y trucos en Internet sobre cómo hacer esto manualmente, y también hay generadores automáticos de contraseñas disponibles. Algunos son buenos, otros no tanto.</value>
@@ -2537,6 +3473,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>La contraseña no es suficientemente fuerte.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PastIncidentsHeading">
+    <value>Incidentes anteriores</value>
+  </data>
   <data name="PaymentOnBehalfOf" xml:space="preserve">
     <value>Comprar Premium para otra persona</value>
   </data>
@@ -2552,9 +3491,18 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PerMonthLabel">
     <value>Al mes</value>
   </data>
+  <data name="PerMonthPerUserLabel">
+    <value>Al mes | Por usuario</value>
+  </data>
+  <data name="PhoneLabel">
+    <value>Teléfono</value>
+  </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
     <value>Polski (polaco)</value>
     <comment>The Polish name for polish in a language selection menu.</comment>
+  </data>
+  <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
+    <value>Polski (polaco)</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
@@ -2563,6 +3511,12 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PremiumAccountLabel" xml:space="preserve">
     <value>Premium</value>
     <comment>Title displayed on account panel in mobile application, when premium subscription is active</comment>
+  </data>
+  <data name="PremiumBusinessCtaHeading">
+    <value>¡Prueba &lt;strong&gt;AxCrypt Business&lt;/strong&gt; gratis!</value>
+  </data>
+  <data name="PremiumBusinessCtaPreHeading">
+    <value>¿Eres una empresa?</value>
   </data>
   <data name="PremiumExpiredMailSubject" xml:space="preserve">
     <value>Caducó tu suscripción a AxCrypt Premium.</value>
@@ -2592,8 +3546,32 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PremiumFirstBodyText">
     <value>&lt;p&gt;¿Quieres suscribirte, pero no sabes si el servicio se ajusta a tus necesidades? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Puedes disfrutar de 30 días de AxCrypt Premium de manera gratuita.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;¡Con AxCrypt Premium, tienes acceso a funciones adicionales interesantes! Cifra tus archivos con AES de 256 bits, el algoritmo AES más seguro. Se usa a nivel mundial para proteger información confidencial de todo tipo. Proteger carpetas nunca fue tan sencillo. Solo basta un clic para asegurar los archivos nuevos automáticamente.&lt;/p&gt;&lt;p&gt;Si además necesitas compartir archivos protegidos con otras personas, cuentas con el mecanismo de uso compartido de claves, incluso con acceso a Cloud Storage Awareness en Dropbox, Google Drive, etc. Si necesitas ver rápidamente tus archivos, puedes usar nuestra aplicación móvil para acceder a tus archivos cifrados.&lt;/p&gt;&lt;p&gt;¿Quieres guardar contraseñas de una manera fácil y segura? Usa nuestro generador y administrador de contraseñas para mantener todas tus contraseñas seguras en la nube.&lt;/p&gt;&lt;p&gt;¡Pruébalo y descubre todas las funciones y beneficios que ofrece!&lt;/p&gt;</value>
   </data>
+  <data name="PremiumFirstBodyText1">
+    <value>¿Quieres suscribirte, pero no sabes si el servicio se ajusta a tus necesidades?&lt;a href={url}&gt; Puedes disfrutar de 30 días de AxCrypt Premium de manera gratuita&lt;/a&gt;.</value>
+  </data>
+  <data name="PremiumFirstBodyText2">
+    <value>¡Con AxCrypt Premium, tienes acceso a funciones adicionales interesantes! Cifra tus archivos con AES de 256 bits, el algoritmo AES más seguro. Se usa a nivel mundial para proteger información confidencial de todo tipo. Proteger carpetas nunca fue tan sencillo. Solo basta un clic para proteger los archivos nuevos automáticamente.</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>Si además necesitas compartir archivos protegidos con otras personas, cuentas con la herramienta de uso compartido de claves, incluso con acceso a Cloud Storage Awareness en Dropbox, Google Drive, etc. Si necesitas ver rápidamente tus archivos, puedes usar nuestra aplicación móvil para acceder a tus archivos cifrados.</value>
+  </data>
+  <data name="PremiumFirstBodyText4">
+    <value>¿Quieres guardar contraseñas de una manera fácil y segura? Usa nuestro generador y administrador de contraseñas para mantener todas tus contraseñas seguras en la nube.</value>
+  </data>
+  <data name="PremiumFirstBodyText5">
+    <value>¡Pruébalo y descubre todas las funciones y beneficios que ofrece!</value>
+  </data>
+  <data name="PremiumHeroSubheading">
+    <value>Creado para usuarios individuales</value>
+  </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
     <value>AxCrypt Premium {0} x 30 días.</value>
+  </data>
+  <data name="PremiumLabel">
+    <value>Premium</value>
+  </data>
+  <data name="PremiumLinkLabel">
+    <value>Premium</value>
   </data>
   <data name="PremiumNeededForKeyShare" xml:space="preserve">
     <value>El intercambio de claves requiere una suscripción de pago. ¡Haz clic aquí para obtenerla ahora!</value>
@@ -2606,6 +3584,18 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>¡Esta función requiere un plan de pago! ¿Te gustaría que abriéramos una página web, donde puedes hacer una compra?</value>
     <comment>A popup with OK and Cancel buttons, telling the user that a paid plan is required, and asking if we should open a browser window where the user can make a purchase.</comment>
   </data>
+  <data name="PremiumSecondBodyHeading">
+    <value>¿Qué ocurre después del período de prueba?</value>
+  </data>
+  <data name="PremiumSecondBodyText">
+    <value>&lt;p&gt;Después de 30 días, se activa la suscripción a la que te registraste, ya sea mensual o anual&lt;/p&gt;.&lt;p&gt;Puedes cancelar tu suscripción en cualquier momento. Si lo haces antes de que finalice el período de prueba, no se te cobrará nada. Después de eso, tu cuenta volverá a la versión Free&lt;/p&gt;.</value>
+  </data>
+  <data name="PremiumSecondBodyText1">
+    <value>Después de 30 días, la prueba pasa a convertirse en la suscripción a la que te registraste, ya sea mensual o anual.</value>
+  </data>
+  <data name="PremiumSecondBodyText2">
+    <value>Puedes cancelar tu suscripción en cualquier momento. Si lo haces antes de que finalice el período de prueba, no se te cobrará nada. Después de eso, tu cuenta volverá a la versión Free.</value>
+  </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
     <value>Solicitud de soporte prioritario</value>
     <comment>The subject used when sending support requests from the account web.</comment>
@@ -2614,7 +3604,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Más información</value>
   </data>
   <data name="PremiumThirdBodyText">
-    <value>&lt;p&gt;Para saber más, visita nuestra &lt;a href='#/information/features'&gt;página de funciones&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Para saber más, visita nuestra &lt;a href='/information/features'&gt;página de funciones&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="PremiumTrialInfo" xml:space="preserve">
     <value>¡Obtén AxCrypt Premium hoy y accede a 30 días de prueba gratuita!</value>
@@ -2626,6 +3616,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Mantén pulsado para ver más</value>
     <comment>Tooltip for Press and hold gesture in mobile application</comment>
   </data>
+  <data name="PressAndMediaLinkLabel">
+    <value>Prensa y medios de comunicación</value>
+  </data>
   <data name="PressImagesDescription">
     <value>Fotos que pueden usarse ya sea para entrevistas e ilustraciones.</value>
   </data>
@@ -2634,6 +3627,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PressLinkLabel">
     <value>Prensa y medios de comunicación</value>
+  </data>
+  <data name="PressReleaseMessage070416">
+    <value>7 de abril de 2016: se anuncia la fecha de lanzamiento de AxCrypt 2</value>
   </data>
   <data name="PressReleaseMessage230816">
     <value>23 de agosto de 2016 – AxCrypt 2 disponible en 9 idiomas</value>
@@ -2652,8 +3648,32 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PricePerMonthIndicatorText" xml:space="preserve">
     <value>al mes</value>
   </data>
+  <data name="PricePerYear" xml:space="preserve">
+    <value>{0}/al año</value>
+  </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Todas las funciones de la versión Free y:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Todas las funciones de la versión Premium y:</value>
+  </data>
+  <data name="PricingFeatureListAccountKey">
+    <value>Copia de seguridad de la clave de la cuenta</value>
+  </data>
+  <data name="PricingFeatureListAES128">
+    <value>Cifrado AES-128</value>
+  </data>
+  <data name="PricingFeatureListAES256">
+    <value>Cifrado AES-256</value>
+  </data>
+  <data name="PricingFeatureListAnonymousFile">
+    <value>Nombres de archivos anónimos</value>
+  </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>Administrador Business</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Soporte prioritario Business</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Cloud Storage Awareness</value>
@@ -2664,8 +3684,35 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PricingFeatureListDirectSupport">
     <value>Soporte directo</value>
   </data>
+  <data name="PricingFeatureListFileWipe">
+    <value>Limpieza de archivos</value>
+  </data>
+  <data name="PricingFeatureListIncludeSubfolders">
+    <value>Incluye subcarpetas</value>
+  </data>
+  <data name="PricingFeatureListKeySharing">
+    <value>Uso compartido de claves</value>
+  </data>
   <data name="PricingFeatureListMobileApps">
     <value>Apps móviles</value>
+  </data>
+  <data name="PricingFeatureListMoreUpcoming">
+    <value>Más funciones exclusivas</value>
+  </data>
+  <data name="PricingFeatureListOpenShared">
+    <value>Apertura de claves compartidas</value>
+  </data>
+  <data name="PricingFeatureListPasswordGenerator">
+    <value>Generador de contraseñas</value>
+  </data>
+  <data name="PricingFeatureListPasswordManagement">
+    <value>Administración de contraseñas</value>
+  </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Uso profesional</value>
+  </data>
+  <data name="PricingFeatureListSecuredFolders">
+    <value>Carpetas protegidas</value>
   </data>
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
@@ -2675,6 +3722,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PricingSubheading">
     <value>¿Cómo quieres pagar?</value>
+  </data>
+  <data name="PrioritySupportTitle" xml:space="preserve">
+    <value>Soporte prioritario</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>Tu correo electrónico</value>
@@ -2704,7 +3754,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Un error que se produce de manera inesperada (excepción)</value>
   </data>
   <data name="PrivacyPolicyBlock1Text1">
-    <value>Nuestra política de privacidad, por supuesto, cumple con el &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;Reglamento General de Protección de Datos&lt;/a&gt; (GDPR, por sus siglas en inglés). En esta política de privacidad, mencionamos lo que sabemos sobre ti, qué hacemos con la información y por qué la necesitamos. En cualquier momento puedes retirar tu consentimiento y solicitarnos que eliminemos tus datos. Para obtener más información sobre la regulación, visita &lt;a href='#/information/gdpr'&gt;GDPR&lt;/a&gt;.</value>
+    <value>Nuestra política de privacidad, por supuesto, cumple con el &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;Reglamento General de Protección de Datos&lt;/a&gt; (GDPR, por sus siglas en inglés). En esta política de privacidad, mencionamos lo que sabemos sobre ti, qué hacemos con la información y por qué la necesitamos. En cualquier momento puedes retirar tu consentimiento y solicitarnos que eliminemos tus datos. Para obtener más información sobre la regulación, visita &lt;a href='/information/gdpr'&gt;GDPR&lt;/a&gt;.</value>
   </data>
   <data name="PrivacyPolicyBlock1Text2">
     <value>Cuando te registras con nosotros, aceptas que podamos enviarte correos electrónicos ocasionales, como boletines informativos, ofertas e información sobre nuestros productos y servicios nuevos y actualizados. Puedes elegir no participar, es decir, cancelar la suscripción, en cualquier momento haciendo clic en el enlace proporcionado para ello en dichos correos electrónicos.</value>
@@ -2751,6 +3801,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PrivacyPolicyBlock3Text4">
     <value>Es posible que nuestra política de privacidad se actualice de vez en cuando sin previo aviso. Consulta aquí la política vigente.</value>
   </data>
+  <data name="PrivacyPolicyBlock4Heading">
+    <value>Contacto</value>
+  </data>
   <data name="PrivacyPolicyBlock4Text1">
     <value>Si tienes alguna pregunta específica sobre nuestra necesidad de almacenar cierta información o si deseas que se eliminen tus datos, escríbenos al &lt;a href='mailto:support@axcrypt.net.'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
@@ -2769,6 +3822,18 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="ProductTryItForFreeAnnualButtonLabel">
     <value>20% de descuento anual</value>
   </data>
+  <data name="ProductTryItForFreeButtonLabel">
+    <value>Iniciar prueba gratis ahora</value>
+  </data>
+  <data name="ProductTryItForFreeCostAfterTrial">
+    <value>Costo después de la prueba gratis:</value>
+  </data>
+  <data name="ProductTryItForFreeHeading">
+    <value>Pruébalo gratis</value>
+  </data>
+  <data name="ProductTryItForFreeMonthlyButtonLabel">
+    <value>Mensual</value>
+  </data>
   <data name="ProductTryItForFreePerMonth">
     <value>Al mes</value>
   </data>
@@ -2778,8 +3843,23 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="ProductTryItForFreeSellingPointSecureFiles">
     <value>Proteger archivos en línea con Cloud Storage Awareness</value>
   </data>
+  <data name="ProductTryItForFreeSellingPointShareYour">
+    <value>Comparte tus archivos protegidos con el uso compartido de claves</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointStrongerEncryption">
+    <value>Cifrado de archivos con el algoritmo avanzado AES de 256 bits</value>
+  </data>
   <data name="ProductTryItForFreeSellingPointViewYour">
     <value>Ver tus archivos protegidos al instante con la aplicación móvil</value>
+  </data>
+  <data name="ProductTryItForFreeStartButtonLabel">
+    <value>Iniciar prueba gratis ahora</value>
+  </data>
+  <data name="ProductTryItForFreeSubheading">
+    <value>Prueba de 30 días</value>
+  </data>
+  <data name="ProductTryItForFreeYouGet">
+    <value>Obtienes:</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Limpieza de archivos descifrados...</value>
@@ -3027,6 +4107,24 @@ Obtén una prueba gratuita de 30 días. ¡Puedes cancelarla cuando quieras!</val
 
 Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verificación.</value>
   </data>
+  <data name="RegulatoryComplianceBlock1Heading">
+    <value>¿Cómo puede contribuir AxCrypt al GDPR?</value>
+  </data>
+  <data name="RegulatoryComplianceBlock1Text1">
+    <value>El Reglamento General de Protección de Datos de la UE (GDPR) es un acto legislativo vinculante sobre la protección de datos personales y derechos individuales. Fue diseñado para armonizar las leyes de privacidad de datos en toda Europa, para proteger y habilitar la privacidad de datos de todos los ciudadanos de la UE y para renovar la manera en que las organizaciones abordan la privacidad de datos.</value>
+  </data>
+  <data name="RegulatoryComplianceBlock1Text2">
+    <value>El GDPR exige que las empresas y organizaciones implementen maneras razonables de proteger sus datos, como el cifrado, para protegerlos contra la pérdida o exposición de datos. Aquí es donde AxCrypt puede ayudar.</value>
+  </data>
+  <data name="RegulatoryComplianceBlock1Text3">
+    <value>Como establece la Razón 83 del GDPR: "A fin de mantener la seguridad y evitar que el tratamiento infrinja lo dispuesto en el presente Reglamento, el responsable o el encargado deben evaluar los riesgos inherentes al tratamiento y aplicar medidas para mitigarlos, como el cifrado".</value>
+  </data>
+  <data name="RegulatoryComplianceBlock1Text4">
+    <value>Debes asegurarte de que los datos personales se almacenen de manera segura, ya sea en las instalaciones o en la nube, para evitar  filtraciones de datos costosas. Los archivos que se hayan cifrado quedarán inutilizados cuando se vulneren.</value>
+  </data>
+  <data name="RegulatoryComplianceBlock1Text5">
+    <value>A continuación, se muestran algunos recursos que pueden brindarte más información.</value>
+  </data>
   <data name="RegulatoryComplianceBlock2Heading">
     <value>¿AxCrypt cumple con la HIPAA?</value>
   </data>
@@ -3039,8 +4137,14 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
   <data name="RegulatoryComplianceBlock2ListItem3">
     <value>Controles de seguridad / integridad; Cifrado AES-128 / AES-256 / HMAC-SHA-512</value>
   </data>
+  <data name="RegulatoryComplianceBlock2Text1">
+    <value>La Ley de Portabilidad y Responsabilidad de Seguros Médicos protege la privacidad y seguridad de la información médica. El cumplimiento de HIPAA solo se aplica a organizaciones y procesos. No se aplica al software, lo que significa que una solución de cifrado como AxCrypt no puede ser compatible con HIPAA. Aunque, AxCrypt puede ser suficiente como (parte de) una salvaguardia técnica.</value>
+  </data>
   <data name="RegulatoryComplianceBlock2Text2">
     <value>El uso adecuado de cifrado y otras garantías técnicas se rigen por los estándares de seguridad de la HIPAA, 45 CFR 160, 162 y 164. La sección relevante es de 164.312 garantías técnicas. Allí tampoco se hacen recomendaciones o se establecen requisitos sobre tecnologías de cifrado específicas, se señala específicamente que la regulación es tecnológicamente neutra. Depende de todas y cada una de las organizaciones evaluar su posición y sus riesgos, y luego implementar las especificaciones necesarias o abordables.</value>
+  </data>
+  <data name="RegulatoryComplianceBlock2Text3">
+    <value>Debes asegurarte de que los datos personales se almacenen de manera segura, ya sea en las instalaciones o en la nube, para evitar  filtraciones de datos costosas. Los archivos que se hayan cifrado quedarán inutilizados cuando se vulneren.</value>
   </data>
   <data name="RegulatoryComplianceBlock2Text4">
     <value>Aunque el estándar de ninguna manera se refiere a ella, excepto en los comentarios, la Política de Seguridad de Internet en los CMS, que es la visión actual de los Centros de Servicios de Medicare y Medicaid para su propio uso, especifica algunos niveles mínimos de tecnología para ciertos casos. AxCrypt cumple con estos requisitos para la transmisión a través de Internet, pero tu organización debe evaluar en forma independiente si es suficiente usar el mismo nivel que los Centros de Servicios de Medicare y Medicaid.</value>
@@ -3053,6 +4157,15 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
   </data>
   <data name="RegulatoryComplianceLinkLabel">
     <value>Cumplimiento normativo</value>
+  </data>
+  <data name="ReleaseNotesDescription">
+    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;repositorio de bitbucket&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="ReleaseNotesLinkLabel">
+    <value>Notas de lanzamiento</value>
+  </data>
+  <data name="ReleaseNotesYearLabel">
+    <value>Ver pdf con notas de lanzamiento para</value>
   </data>
   <data name="ReliabilityLabel" xml:space="preserve">
     <value>Fiabilidad</value>
@@ -3091,14 +4204,83 @@ Asunto: Reporte resumido de AxCrypt</value>
   <data name="ReportSnapshotOpenMenuItem" xml:space="preserve">
     <value>Abrir Informe resumido de errores</value>
   </data>
+  <data name="ReqruitmentLabel">
+    <value>Reclutamiento</value>
+  </data>
+  <data name="RequirementsLinkLabel">
+    <value>Requisitos</value>
+  </data>
   <data name="RequirementsLinuxText">
     <value>Otros usuarios han tenido éxito al ejecutar AxCrypt en Wine. Sin embargo, puede que sea difícil de instalar, ya que requiere que las dependencias se instalen manualmente, y el estado de Mono (del que depende) varía mucho según la distribución.</value>
+  </data>
+  <data name="RequirementsNoteText">
+    <value>AxCrypt se ejecuta en versiones de Windows de 32 y 64 bits. En Windows 8 y 10, AxCrypt funciona en modo de escritorio; sin embargo, aún no hay una aplicación Metro disponible y AxCrypt no se ejecuta en Windows RT. Recomendamos a los usuarios de visores y editores de escritorio que abran archivos protegidos con AxCrypt, ya que las aplicaciones de Metro a veces causan varios problemas.</value>
+  </data>
+  <data name="RequirementsTableDescription">
+    <value>AxCrypt está disponible en la mayoría de las plataformas principales. La siguiente tabla muestra todos los sistemas operativos compatibles.</value>
+  </data>
+  <data name="ResellerApplicationAnnualRevenueLabel">
+    <value>Ingresos anuales en Euros o en USD</value>
+  </data>
+  <data name="ResellerApplicationExpectedSalesLabel">
+    <value>¿Cuántas ventas generas al mes?</value>
+  </data>
+  <data name="ResellerApplicationHeading">
+    <value>Conviértete en distribuidor de AxCrypt</value>
+  </data>
+  <data name="ResellerApplicationLinkLabel">
+    <value>Solicitud de distribuidor de AxCrypt</value>
+  </data>
+  <data name="ResellerApplicationNumberOfEmployeesLabel">
+    <value>Cantidad de empleados</value>
+  </data>
+  <data name="ResellerApplicationOtherInformationLabel">
+    <value>Cualquier otra información o archivos que te gustaría proporcionar (opcional)</value>
+  </data>
+  <data name="ResellerApplicationPrimaryOffersLabel">
+    <value>¿Cuáles son los principales productos/servicios que ofrece tu empresa?</value>
+  </data>
+  <data name="ResellerApplicationSaleRepresentativesLabel">
+    <value>¿Cuántos representantes de ventas tienes?</value>
+  </data>
+  <data name="ResellerApplicationServedCountriesLabel">
+    <value>¿Qué países/regiones abarcas?</value>
+  </data>
+  <data name="ResellerApplicationSimilarityLabel">
+    <value>¿Ofreces otros servicios similares a AxCrypt? Si es así, ¿qué servicios y en qué medida?</value>
+  </data>
+  <data name="ResellerApplicationSupportLabel">
+    <value>¿Ofreces soporte para tus servicios y productos?</value>
+  </data>
+  <data name="ResellerApplicationText">
+    <value>Gracias por tu interés en convertirte en distribuidor de AxCrypt. Completa el siguiente formulario para que podamos comunicarnos contigo.</value>
+  </data>
+  <data name="ResellerApplicationVatLabel">
+    <value>Número de IVA y número de organización (solo para la UE)</value>
+  </data>
+  <data name="ResellerBenefitsHeading">
+    <value>Las ventajas de convertirse en distribuidor de AxCrypt</value>
   </data>
   <data name="ResellerBenefitsText">
     <value>AxCrypt tiene clientes de todo el mundo que confían en la simplicidad y seguridad de nuestra herramienta de cifrado. Entre los mercados más importantes se encuentran EE.UU., Reino Unido y Francia. AxCrypt se expande cada día más y queremos que siga haciéndolo contigo.</value>
   </data>
+  <data name="ResellerInfoHeading">
+    <value>Conviértete en distribuidor de AxCrypt</value>
+  </data>
+  <data name="ResellerInfoText1">
+    <value>AxCrypt ofrece una solución de cifrado fácil de usar. Con más de 15 años de experiencia en la industria del cifrado de archivos, hemos posicionado a AxCrypt como una de las marcas más sólidas que existen. Con más de 20 millones de descargas, hemos demostrado que nuestro servicio es confiable. AxCrypt ha sido galardonado con el premio PCMag’s Editors’ Choice como el mejor software de cifrado en 2016, 2017 y 2018.</value>
+  </data>
   <data name="ResellerInfoText2">
     <value>Como distribuidor/a, podrás vender AxCrypt Business (actualmente no ofrecemos programas de distribuidores para AxCrypt Premium). Por una pequeña tarifa, los miembros Pemium tienen acceso a muchas más funciones y a soporte adicional, como Cifrado AES de 256 bits, Aplicaciones móviles, Uso compartido de archivos, Cloud Store Awareness, Administración de contraseñas y la Capacidad de administrar cuentas.</value>
+  </data>
+  <data name="ResellerInfoText3">
+    <value>Nuestra misión es ofrecer a los equipos de trabajo soluciones de cifrado que sean más fáciles de usar que nunca, ¡y tú puedes ser parte de esto! Para presentar tu solicitud, completa el formulario haciendo clic en el botón que aparece a continuación o bien comunicándote con nosotros en &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;.</value>
+  </data>
+  <data name="ResellerLinkLabel">
+    <value>Distribuidor</value>
+  </data>
+  <data name="ResellingLabel">
+    <value>Distribución</value>
   </data>
   <data name="ResendActivationHyperLink" xml:space="preserve">
     <value>https://account.axcrypt.net/Home/Register</value>
@@ -3123,6 +4305,13 @@ Asunto: Reporte resumido de AxCrypt</value>
   <data name="RestoreAnonymousNamesToolTip" xml:space="preserve">
     <value>Restablece el nombre del archivo basándote en el nombre del archivo original de un archivo cifrado cuyo nombre se haya cambiado.</value>
     <comment>The tooltip description of a menu item that will rename an encrypted file to it it's original name, based on the clear text file .</comment>
+  </data>
+  <data name="ReviewsLabel">
+    <value>Reseñas</value>
+  </data>
+  <data name="RussianLanguageSelection" xml:space="preserve">
+    <value>русский (ruso)</value>
+    <comment>The name of the Russian Language in Russian. It should never be translated.</comment>
   </data>
   <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
     <value>Ya has iniciado sesión con esta contraseña. Por favor, inténtalo de nuevo con una nueva contraseña.</value>
@@ -3187,6 +4376,9 @@ Asunto: Reporte resumido de AxCrypt</value>
   </data>
   <data name="SecurityBlock3ListItem2">
     <value>Si el archivo se ha visto o editado con una aplicación que crea copias temporales del contenido (como Microsoft Office), esas copias temporales aún pueden estar disponibles para su eliminación en tu disco duro.</value>
+  </data>
+  <data name="SecurityBlock3Text1">
+    <value>AxCrypt usa AES-128 o AES-256 en la versión Premium, pero si deseas alcanzar ese nivel de seguridad, debes proporcionarle 128 o 256 bits de datos verdaderamente "aleatorios". Esto es muy difícil de hacer, pero la manera más fácil de abordarlo es utilizar el generador de contraseñas incluido en la versión Premium.</value>
   </data>
   <data name="SecurityBlock3Text2">
     <value>Para obtener 128 o 256 bits, en la práctica, tendrás que guardar esta contraseña en un archivo de texto y luego mantener ese archivo de texto en secreto. Si se usa el idioma inglés en una contraseña, los 128 bits equivalen a 10 palabras 'aleatorias',  y 256 bits, por lo tanto, equivalen al doble. ¡No uses oraciones significativas ni famosas y tampoco frases rebuscadas! Al introducir variaciones en el caso, así como en caracteres no alfabéticos, puedes reducir el número de palabras necesarias. No se recomienda utilizar menos de 5 palabras. Si usas una selección completamente aleatoria de letras mayúsculas y minúsculas y dígitos, necesitas 22 caracteres para lograr una seguridad de 128 bits y, por lo tanto, necesitas 44 ​​caracteres para 256 bits. (Lo anterior es una ligera simplificación del problema, pero debería servir). La función de trituración o borrado de AxCrypt te permite borrar archivos de una manera que hace que sea imposible recuperar el contenido con software de recuperación. Sin embargo, hay algunas advertencias:</value>
@@ -3320,6 +4512,12 @@ Asunto: Reporte resumido de AxCrypt</value>
   <data name="ServerStatusLabel">
     <value>Estado del servidor</value>
   </data>
+  <data name="ServiceStatusDescription">
+    <value>Esta página contiene información sobre el estado del servicio de AxCrypt. El botón conduce a la página que incluye los monitores de tiempo de actividad/inactividad. A continuación, encontrarás una lista con comentarios sobre incidentes pasados ​​que ocurrieron hace poco.</value>
+  </data>
+  <data name="ServiceStatusLinkLabel">
+    <value>Estado del servicio</value>
+  </data>
   <data name="SetEmailLabel" xml:space="preserve">
     <value>Configurar correo electrónico</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
@@ -3387,8 +4585,14 @@ Por favor, ten en cuenta informar a '{0}' directamente sobre la seguridad de arc
     <value>¡Inicia sesión primero!</value>
     <comment>A short message used in the sign in dialog, to explain that a user should sign in first and then purchase or try premium as appropriate.</comment>
   </data>
+  <data name="SignInLinkLabel">
+    <value>Registrarse</value>
+  </data>
   <data name="SignInVerificationTitle" xml:space="preserve">
     <value>Verificar inicio de sesión</value>
+  </data>
+  <data name="SignUpLinkLabel">
+    <value>Registrarse</value>
   </data>
   <data name="SimplicityLabel" xml:space="preserve">
     <value>Sencillez</value>
@@ -3397,6 +4601,9 @@ Por favor, ten en cuenta informar a '{0}' directamente sobre la seguridad de arc
   <data name="SimplicitySectionText" xml:space="preserve">
     <value>La encriptación es complicada, pero esto no nos ha impedido trabajar constantemente en simplificarla para el usuario. Hemos desarrollado funciones únicas que hacen que el uso del cifrado fuerte y el compartir claves de encriptación sean más simples y seguros que cualquier otro programa.</value>
     <comment>Title of "Simplicity" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SitemapHeading">
+    <value>Mapa del sitio</value>
   </data>
   <data name="SiteRestartWarning" xml:space="preserve">
     <value>¡Advertencia! Un reinicio del sitio está programado en unos pocos minutos. Pedimos disculpas por las molestias.</value>
@@ -3429,6 +4636,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   </data>
   <data name="StandardsBasedLabel">
     <value>Criptografía estándar</value>
+  </data>
+  <data name="StandardsBasedText">
+    <value>Solo utiliza algoritmos criptográficos y modos de operación bien investigados.</value>
   </data>
   <data name="StartFreeBusinessTrialHelpText" xml:space="preserve">
     <value>¡Obtén acceso inmediato! El primer mes es gratis y puedes cancelar en cualquier momento.</value>
@@ -3467,6 +4677,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Enviar comentarios</value>
     <comment>Text of Submit feedback button</comment>
+  </data>
+  <data name="SubmitLabel">
+    <value>Enviar</value>
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Tu suscripción se renovará el &lt;b&gt;{0}&lt;/b&gt;.</value>
@@ -3507,6 +4720,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   </data>
   <data name="SubscriptionsErrorLevelAmount" xml:space="preserve">
     <value>Error interno: valor no válido en el campo Nivel de suscripción. Si has pagado por alguna suscripción, actualmente solo admitimos el nivel de suscripción Premium.</value>
+  </data>
+  <data name="SubscriptionsErrorStartTime" xml:space="preserve">
+    <value>Error interno: formato no válido en el campo Hora de inicio.</value>
   </data>
   <data name="SubscriptionsErrorType" xml:space="preserve">
     <value>Error interno: valor no válido en el campo Tipo de suscripción.</value>
@@ -3572,17 +4788,50 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
     <value>No se puede abrir el archivo actual</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
   </data>
+  <data name="TechnicalDetailsDescription">
+    <value>Esta sección describe en detalle de qué se trata AxCrypt, qué hace y cómo lo hace. Es principalmente para expertos técnicos, que tienen un buen conocimiento del desarrollo de software y de la criptografía. La información aquí está destinada a ser lo suficientemente completa como para desaollar software compatible con AxCrypt, por ejemplo.</value>
+  </data>
+  <data name="TechnicalDetailsLinkLabel">
+    <value>Detalles técnicos</value>
+  </data>
+  <data name="TechnicalDetailsSourceCodeHeading">
+    <value>Código fuente</value>
+  </data>
   <data name="TechnicalDetailsSourceCodeText">
     <value>El código fuente completo de las bibliotecas principales y el cliente de Windows se encuentran en &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;https://bitbucket.org/axcryptab/axcrypt-net.&lt;/a&gt;</value>
   </data>
+  <data name="TechnicalDetailsStoredOnServerHeading">
+    <value>¿Qué se almacena en el servidor?</value>
+  </data>
   <data name="TechnicalDetailsStoredOnServerListText1">
     <value>El correo electrónico de la cuenta.</value>
+  </data>
+  <data name="TechnicalDetailsStoredOnServerListText2">
+    <value>El estado de inicio de sesión, la cantidad de intentos fallidos de inicio de sesión, la última vez que iniciaste sesión, etc.</value>
+  </data>
+  <data name="TechnicalDetailsStoredOnServerListText3">
+    <value>El estado de pago</value>
   </data>
   <data name="TechnicalDetailsStoredOnServerListText4">
     <value>Una clave pública RSA-4096 que está disponible para que otros la descarguen y así puedan compartir claves de archivo.</value>
   </data>
   <data name="TechnicalDetailsStoredOnServerListText5">
     <value>Una o más claves privadas RSA-4096, cifradas con AxCrypt y la contraseña de inicio de sesión, para que podamos mantenerla sincronizada en todos los dispositivos, y como respaldo en caso de pérdida o destrucción de un dispositivo.</value>
+  </data>
+  <data name="TechnicalDetailsStoredOnServerText1">
+    <value>Cuando se crea una cuenta, almacenamos información básica.</value>
+  </data>
+  <data name="TechnicalDetailsStoredOnServerText2">
+    <value>Si se utiliza el administrador de contraseñas, también almacenamos un archivo cifrado en XML AES-256 con los registros de contraseñas, cifrados con la contraseña de inicio de sesión.</value>
+  </data>
+  <data name="TechnicalDetailsStoredOnServerText3">
+    <value>Además de lo anterior, ejecutamos algunos registros que nos ayudan a monitorear la infraestructura y mejorar nuestras capacidades de soporte. Esto se detalla en la &lt;a href='/information/privacy-policy/'&gt;Política de privacidad&lt;/a&gt;.</value>
+  </data>
+  <data name="TechnicalDetailsV1PDFLinkLabel">
+    <value>Algoritmos y Formato de archivo AxCrypt versión 1</value>
+  </data>
+  <data name="TechnicalDetailsV2PDFLinkLabel">
+    <value>Algoritmos y Formato de archivo AxCrypt versión 2</value>
   </data>
   <data name="TechnicalSupportLabel">
     <value>Soporte técnico</value>
@@ -3602,8 +4851,98 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
     <value>Términos y Condiciones</value>
     <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
+  <data name="TermsOfUseBlock10Heading">
+    <value>Actualizaciones de AxCrypt</value>
+  </data>
+  <data name="TermsOfUseBlock10Text1">
+    <value>Es posible que, sin previo aviso, modifiquemos o actualicemos AxCrypt y al seguir usándolo, automáticamente continuarás aceptando estos términos.</value>
+  </data>
   <data name="TermsOfUseBlock11Heading">
     <value>Prueba Premium</value>
+  </data>
+  <data name="TermsOfUseBlock11Text1">
+    <value>Es posible que te ofrezcamos probar Premium de manera gratuita, lo que te brinda acceso a funciones extendidas durante un período limitado. Dichas ofertas se realizan por persona, no por cuenta de AxCrypt ID. Nos reservamos el derecho de retirar o modificar dichas ofertas en cualquier momento sin previo aviso.</value>
+  </data>
+  <data name="TermsOfUseBlock12Heading">
+    <value>Pago y renovación</value>
+  </data>
+  <data name="TermsOfUseBlock12Text1">
+    <value>Ofreceremos los servicios de los planes Premium o Business después de recibir el pago. Tus datos de pago nunca se envían ni se almacenan en nuestros servidores. Tu suscripción de pago se renovará automáticamente al final del período de suscripción, con el método de pago inicial. Si deseas cancelarla, debes hacerlo antes de que finalice el período de suscripción actual. Volverás a los planes Free o Viewer, según corresponda, después del último día de tu período de suscripción actual.</value>
+  </data>
+  <data name="TermsOfUseBlock12Text2">
+    <value>Es posible que cambiemos el precio de nuestras suscripciones de pago en cualquier momento, pero esto no afectará tu período de suscripción actual. Los cambios de precio entrarán en vigencia al comienzo de tu próximo período de suscripción. Aceptas el nuevo precio si continúas usando tu suscripción de pago después de que el cambio de precio entre en vigencia, o lo rechazas cancelando antes de que entre en vigencia.</value>
+  </data>
+  <data name="TermsOfUseBlock12Text3">
+    <value>La cancelación de tu suscripción de pago se puede realizar en cualquier momento. Sin embargo, no se ofrecen reembolsos. Para probar AxCrypt y saber si se ajusta a tus necesidades, ofrecemos un mes gratis al comienzo de tu suscripción inicial.</value>
+  </data>
+  <data name="TermsOfUseBlock13Heading">
+    <value>Exención de garantías </value>
+  </data>
+  <data name="TermsOfUseBlock13Text1">
+    <value>El software se proporciona sin ninguna garantía.</value>
+  </data>
+  <data name="TermsOfUseBlock14Heading">
+    <value>Divulgación a terceros</value>
+  </data>
+  <data name="TermsOfUseBlock14Text1">
+    <value>No divulgaremos ninguna información sobre ti como resultado del uso de AxCrypt a terceros sin tu consentimiento explícito, a menos que lo exija la ley.</value>
+  </data>
+  <data name="TermsOfUseBlock15Heading">
+    <value>Divulgación a las autoridades y las fuerzas del orden</value>
+  </data>
+  <data name="TermsOfUseBlock15Text1">
+    <value>En teoría, la ley nos puede obligar a revelar información a las autoridades gubernamentales. Si así lo exige la ley, cumpliremos. Dicha información está, por definición, limitada a lo que realmente tenemos, es decir, estadísticas, registros de acceso y claves privadas cifradas y datos del administrador de contraseñas. No conocemos tu contraseña, ni sabemos qué información has cifrado y, por lo tanto, no podemos divulgarla incluso si así lo exige la ley.</value>
+  </data>
+  <data name="TermsOfUseBlock15Text2">
+    <value>Creemos, aunque probablemente no esté probado en el sistema legal, que no podemos ser obligados a reprogramar AxCrypt de una manera que permita interceptar tus contraseñas para divulgar tu información. Si esto sucediera, haremos todo lo posible, dentro de nuestros derechos legales, para darlo a conocer, posiblemente cerrando el servicio como último recurso.</value>
+  </data>
+  <data name="TermsOfUseBlock16Heading">
+    <value>Propiedad intelectual</value>
+  </data>
+  <data name="TermsOfUseBlock16Text1">
+    <value>“AxCrypt” está inscrito en el Registro de marcas de la Unión Europea. Somos propietarios exclusivos de todos los derechos, títulos e intereses relacionados con el software y el servicio, incluidos todos los derechos de propiedad intelectual asociados.</value>
+  </data>
+  <data name="TermsOfUseBlock17Heading">
+    <value>Nuestras responsabilidades y obligaciones</value>
+  </data>
+  <data name="TermsOfUseBlock17Text1">
+    <value>Solo somos responsables por daños directos, nunca indirectos. Si perdemos o divulgamos información, solo seremos responsables de los costos directos para recuperarla, reconstruirla o invalidarla, nunca por otros costos.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text2">
+    <value>Nuestro objetivo es mantener nuestros servicios disponibles en todo momento, pero no somos responsables de la falta de disponibilidad debido a problemas que están fuera de nuestro control. Mantenemos copias de seguridad diarias del servidor en una ubicación separada.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text3">
+    <value>Solo somos responsables de cualquier daño que puedas demostrar que se debe a nuestra negligencia. No somos responsables de ninguna debilidad inherente que pueda descubrirse en la tecnología de seguridad utilizada.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text4">
+    <value>Tu información se mantiene confidencial mediante el uso de métodos de cifrado fuerte estandarizados, descritos en &lt;a href='/information/security'&gt;Seguridad&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Detalles técnicos&lt;/a&gt; y en el &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;código fuente&lt;/a&gt;. No garantizamos que elijas una contraseña suficientemente segura.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text5">
+    <value>Solo ofrecemos AxCrypt y no somos responsables de las acciones ilegales o fraudulentas que tomen otras personas que lo usen. Como usuario, eres completamente responsable de tus acciones al usar AxCrypt. No nos hacemos responsables de los daños que podrían haberse evitado mediante una copia de seguridad oportuna o por daños causados ​​por contraseñas olvidadas.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text6">
+    <value>Nuestra responsabilidad nunca puede exceder el monto pagado por el servicio.</value>
+  </data>
+  <data name="TermsOfUseBlock17Text7">
+    <value>Nuestro sitio web podría contener enlaces a otros sitios web. Estos solo se proporcionan como referencia y no somos responsables de su contenido.</value>
+  </data>
+  <data name="TermsOfUseBlock18Heading">
+    <value>Disputa y validez</value>
+  </data>
+  <data name="TermsOfUseBlock18Text1">
+    <value>Estos Términos de uso se interpretarán de acuerdo con la ley sueca. Si deseas emprender acciones legales contra nosotros, debes hacerlo en un tribunal de justicia en Estocolmo, Suecia.</value>
+  </data>
+  <data name="TermsOfUseBlock18Text2">
+    <value>En caso de disputa, la versión en inglés de este acuerdo es la que rige. Todas las traducciones se proporcionan solo para tu comodidad.</value>
+  </data>
+  <data name="TermsOfUseBlock18Text3">
+    <value>Si se determina que alguna parte de este acuerdo no es válida, esto no invalida ninguna otra parte del acuerdo, y la nueva interpretación debe ser lo más cercana al original posible.</value>
+  </data>
+  <data name="TermsOfUseBlock18Text4">
+    <value>Copyright © 2020 AxCrypt AB. Todos los derechos reservados.</value>
+  </data>
+  <data name="TermsOfUseBlock1Heading">
+    <value>Licencia</value>
   </data>
   <data name="TermsOfUseBlock1Text1">
     <value>AxCrypt está hecho y comercializado por AxCrypt AB, Birger Jarlsgatan 58, 114 29 Estocolmo, Suecia, número de registro de la empresa 556967-6181, número de registro de IVA de la UE SE556967618101.</value>
@@ -3645,10 +4984,19 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
     <value>AxCrypt Premium está disponible para todos los usuarios particulares que quieran comprarlos. No está disponible para empresas ni organizaciones; no es posible la deducción del IVA. En caso de que una empresa compre (más de una) suscripción de AxCrypt Premium en lugar de AxCrypt Business, se le reembolsará el pago y se cancelará la suscripción.</value>
   </data>
   <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium ofrece funciones ampliadas además del plan Free como se especifica en nuestra página de &lt;a href='#/pricing'&gt;Precios&lt;/a&gt;</value>
+    <value>AxCrypt Premium ofrece funciones ampliadas además del plan Free como se especifica en nuestra página de &lt;a href='/pricing'&gt;Precios&lt;/a&gt;</value>
   </data>
   <data name="TermsOfUseBlock5Text3">
     <value>Si caduca tu suscripción Premium, volverás a los planes Free o Viewer, según corresponda.</value>
+  </data>
+  <data name="TermsOfUseBlock5Text4">
+    <value>Se proporciona soporte técnico por correo electrónico prioritario. No garantizamos resolver todos los problemas.</value>
+  </data>
+  <data name="TermsOfUseBlock6Heading">
+    <value>Plan Business de AxCrypt</value>
+  </data>
+  <data name="TermsOfUseBlock6Text1">
+    <value>AxCrypt Business está disponible para su compra para empresas y organizaciones. No es apto para usuarios particulares. Proporciona funciones ampliadas además de las que tienen los otros planes, tal como se especifica en nuestra página de &lt;a href='/pricing'&gt;Precios&lt;/a&gt;. También incluye un sistema de gestión de autoservicio para asignar licencias a los miembros.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Si caduca tu suscripción Business, volverás a los planes Free o Viewer, según corresponda.</value>
@@ -3680,8 +5028,14 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="TermsOfUseBlock9Text1">
     <value>Cuando te registras como individuo, no necesitamos ninguna información personal tuya, excepto una dirección de correo electrónico que funcione. Para empresas y organizaciones, necesitamos una dirección y solicitamos un número de IVA de la UE opcional.</value>
   </data>
+  <data name="TermsOfUseBlock9Text2">
+    <value>Para conocer más detalles sobre qué es lo que procesamos y cómo lo hacemos, consulta nuestra &lt;a href='/information/privacy-policy'&gt; Política de privacidad&lt;/a&gt;. Aceptar estos Términos de uso también significa aceptar nuestra política de privacidad.</value>
+  </data>
   <data name="TermsOfUseDescription">
     <value>Estos son los Términos de uso de AxCrypt</value>
+  </data>
+  <data name="TermsOfUseLinkLabel" xml:space="preserve">
+    <value>Términos de uso</value>
   </data>
   <data name="TextCheckEmailAndSpam" xml:space="preserve">
     <value>¡Verifica el correo electrónico y el correo no deseado!</value>
@@ -3734,6 +5088,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
     <value>Haga clic sobre el ícono de AxCrypt para restaurar la ventana de la aplicación.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
   </data>
+  <data name="TrialOnlyForNewUsers" xml:space="preserve">
+    <value>El período de prueba gratis solo aplica para usuarios nuevos</value>
+  </data>
   <data name="TrialPremiumStartInfo" xml:space="preserve">
     <value>¡Genial! Ahora puedes usar todas las funciones de AxCrypt gratuitamente durante el período de prueba.
 
@@ -3748,8 +5105,35 @@ El Equipo de AxCrypt</value>
     <value>¿Problemas para recordar tu contraseña?</value>
     <comment>User have multiple times failed sign in. A clickable label is shown that takes the user to the Password Reset site.</comment>
   </data>
+  <data name="TroubleShootingLabel">
+    <value>Solución de problemas</value>
+  </data>
+  <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
+    <value>Probar archivo roto</value>
+  </data>
+  <data name="TryBusinessHeading">
+    <value>Probar Business</value>
+  </data>
   <data name="TryBusinessLabel" xml:space="preserve">
     <value>Prueba Business</value>
+  </data>
+  <data name="TryBusinessPreHeading">
+    <value>Para usuarios Business</value>
+  </data>
+  <data name="TryButtonHeadingBusiness">
+    <value>Prueba Business</value>
+  </data>
+  <data name="TryButtonHeadingPremium">
+    <value>Probar Premium</value>
+  </data>
+  <data name="TryButtonPreheadingBusiness">
+    <value>Para usuarios Business</value>
+  </data>
+  <data name="TryButtonPreheadingPremium">
+    <value>Para usuarios privados</value>
+  </data>
+  <data name="TryForFreeButtonLabel">
+    <value>Pruébalo gratis</value>
   </data>
   <data name="TryItDescription" xml:space="preserve">
     <value>Protege tus archivos en el escritorio y léelos cuando quieras</value>
@@ -3758,6 +5142,9 @@ El Equipo de AxCrypt</value>
   <data name="TryItTitle" xml:space="preserve">
     <value>¡Pruébalo!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
+  </data>
+  <data name="TryPremiumHeading">
+    <value>Prueba Premium</value>
   </data>
   <data name="TryPremiumLabel" xml:space="preserve">
     <value>¡Prueba Premium!</value>
@@ -3821,14 +5208,44 @@ El Equipo de AxCrypt</value>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Nombres de archivos anónimos</value>
   </data>
+  <data name="UsageTipsAnonymousFileText">
+    <value>En muchos casos, solo el nombre del archivo es suficiente para infringir la privacidad. Como usuario de AxCrypt Premium, puedes cambiar el nombre de los archivos protegidos desde el menú contextual. Al archivo se le dará un nombre completamente anónimo, pero el nombre original se restaurará cuando lo descifres o lo abras. También es visible en la ventana completa de la aplicación AxCrypt.</value>
+  </data>
   <data name="UsageTipsBackupsHeading">
     <value>Respaldos</value>
+  </data>
+  <data name="UsageTipsBackupsText1">
+    <value>¿Realizas sus copias de seguridad en CD o DVD, en la nube o simplemente en archivos de otro disco duro con programas de copia de seguridad, o quizás WinZip? Si proteges el archivo de respaldo con AxCrypt, puedes almacenar el respaldo o el archivo en cualquier lugar, sin temor a que seinfrinja tu privacidad en caso de que se pierda.</value>
+  </data>
+  <data name="UsageTipsBackupsText2">
+    <value>Guarda una copia de la versión independiente de AxCrypt con tu copia de seguridad, y podrás librarte de una instalación de AxCrypt cuando necesites recuperar datos.</value>
   </data>
   <data name="UsageTipsConfidentialDataHeading">
     <value>Datos confidenciales en servicios de almacenamiento en la nube</value>
   </data>
+  <data name="UsageTipsConfidentialDataText1">
+    <value>Protege tus documentos con AxCrypt y ten la seguridad de preservar la confidencialidad desde su PC al servicio en la nube y de regreso a tu PC.</value>
+  </data>
+  <data name="UsageTipsConfidentialDataText2">
+    <value>Hay muchos servicios web que te permiten cargar documentos, como servicios de proyectos y similares. Si te acomoda cargar información sensible allí, independientemente de las garantías de los proveedores, protege los documentos.</value>
+  </data>
+  <data name="UsageTipsConfidentialEmailHeading">
+    <value>Correo confidencial</value>
+  </data>
+  <data name="UsageTipsConfidentialEmailText1">
+    <value>Un método rápido y sencillo para comunicarse entre dos personas. Usa AxCrypt para enviar mensajes de correo electrónico privados.</value>
+  </data>
+  <data name="UsageTipsConfidentialEmailText2">
+    <value>Escribe el mensaje inicial con el Bloc de notas, WordPad o Microsoft Word. Protege el mensaje, agrega el destinatario a la lista de miembros del equipo y envíalo.</value>
+  </data>
   <data name="UsageTipsConfidentialEmailText3">
     <value>El otro usuario ahora podrá abrir y editar el mensaje directamente, contestarlo, etc., y luego responderlo y adjuntar el archivo seguro actualizado automáticamente de una manera rápida y conveniente.</value>
+  </data>
+  <data name="UsageTipsConfidentialEmailText4">
+    <value>Esto no es tan sencillo como el correo ordinario, pero no está lejos de serlo, y la mayoría de los enfoques requieren cifrar y descifrar utilizando el portapapeles con las herramientas Cortar y Pegar.</value>
+  </data>
+  <data name="UsageTipsDescription">
+    <value>En esta sección podrás aprender para qué sirve AxCrypt y también para descubrir diferentes situaciones en las que otros usuarios como tú han considerado que AxCrypt es útil.</value>
   </data>
   <data name="UsageTipsHideShowHeading">
     <value>Ocultar/mostrar la extensión .axx</value>
@@ -3836,8 +5253,35 @@ El Equipo de AxCrypt</value>
   <data name="UsageTipsHideShowText1">
     <value>Normalmente, los archivos AxCrypt mostrarán u ocultarán la extensión .axx, dependiendo de la configuración global de Windows. Esto se puede cambiar cuando se modifica el registro de Windows.</value>
   </data>
+  <data name="UsageTipsHideShowText2">
+    <value>AxCrypt no implementa ninguna configuración para simplificar las cosas, pero si realmente deseas esto, puedes modificar el registro manualmente. Si no sabes cómo hacerlo, probablemente deberías abstenerte, pues es probable que las implicaciones no estén claras en ese momento.</value>
+  </data>
   <data name="UsageTipsLinkLabel">
     <value>Sugerencias de uso</value>
+  </data>
+  <data name="UsageTipsMakingArchivesHeading">
+    <value>Creación de registros de archivos protegidos</value>
+  </data>
+  <data name="UsageTipsMakingArchivesText1">
+    <value>AxCrypt no admite el almacenamiento de muchos archivos en un compresor de archivos, como WinZip. Esto se debe a una razón: ¡WinZip (y Windows XP o carpetas comprimidas posteriores) ya lo hacen muy bien!</value>
+  </data>
+  <data name="UsageTipsMakingArchivesText2">
+    <value>Entonces, simplemente crea tu archivo .zip, protege lo que quiersa que vaya allí con AxCrypt, y luego muévelo al archivo .zip. El archivo ahora se puede abrir en WinZip o en una vista de carpeta comprimida, y puedes trabajar con el archivo como de costumbre, y realizar tareas como abrir, editar, agregar y eliminar archivos individuales.</value>
+  </data>
+  <data name="UsageTipsNetworksHeading">
+    <value>Redes</value>
+  </data>
+  <data name="UsageTipsNetworksText1">
+    <value>Cuando proteges tus datos con AxCrypt, nunca se ven en la red, el servidor o las copias de seguridad en zona protegida.</value>
+  </data>
+  <data name="UsageTipsNetworksText2">
+    <value>Cuando almacenas un documento en un servidor de red de área local, los datos generalmente se almacenan en texto sin cifrar allí, incluso cuando los controles de acceso están activos, accesibles para todos los administradores del sistema, así como para otros que por casualidad o error tienen acceso de lectura.</value>
+  </data>
+  <data name="UsageTipsNetworksText3">
+    <value>Los datos también viajan por la red de manera segura, fácilmente detectables por cualquiera en el mismo segmento de red. Las copias de seguridad rara vez están protegidas, por lo que cualquier persona que obtenga acceso a una cinta de copia de seguridad tiene acceso potencial, independientemente de los controles de acceso instalados en el servidor.</value>
+  </data>
+  <data name="UsageTipsNetworksText4">
+    <value>Todos estos casos se abordan cuando los datos están protegidos con AxCrypt.</value>
   </data>
   <data name="UsageTipsPersonalPrivacyHeading">
     <value>Privacidad</value>
@@ -3848,11 +5292,38 @@ El Equipo de AxCrypt</value>
   <data name="UsageTipsPersonalPrivacyListItem2">
     <value>Protege los archivos almacenados en forma remota (dentro de los límites de tu contraseña). AxCrypt, dentro de los límites de tu contraseña, mantendrá protegidos los archivos almacenados en forma remota. Para los archivos en el disco duro local existen muchas advertencias que no se relacionan con la seguridad de AxCrypt. Consulta la sección sobre seguridad de la PC local.</value>
   </data>
+  <data name="UsageTipsPersonalPrivacyListItem3">
+    <value>Simplemente haz clic derecho sobre un archivo y protégelo con AxCrypt.</value>
+  </data>
+  <data name="UsageTipsPreDistributionHeading">
+    <value>Pre-distribución</value>
+  </data>
   <data name="UsageTipsPreDistributionText1">
     <value>Puede que algunos archivos sean confidenciales hasta cierto tiempo, y que luego ya no lo sean. Puede tratarse de un avance de película, un informe financiero trimestral o algo por el estilo. Protege tus archivos, ya sean un documento, un avance de película o un informe, distribúyelos por cualquier medio y ten la seguridad de que no se podrán leer hasta el momento en que elijas divulgar la información.</value>
   </data>
   <data name="UsageTipsPreDistributionText2">
     <value>Información que debe prepararse con anticipación y, por lo tanto, es ventajoso que la distribución se realice de antemano, aunque no deba divulgarse hasta cierto tiempo. Utiliza AxCrypt para proteger tus documentos, por ejemplo, el PDF del informe financiero. Luego, puedes distribuirlos por cualquier medio, horas y días antes, y la información estará ahí, pero ilegible. Cuando sea el momento de distribuirla, simplemente publica la contraseña utilizada. Esto reduce las cargas máximas del servidor y facilita la distribución.</value>
+  </data>
+  <data name="UsageTipsSecuringFoldersHeading">
+    <value>Protección de carpetas completas</value>
+  </data>
+  <data name="UsageTipsSecuringFoldersText1">
+    <value>AxCrypt protege los archivos de manera individual. Sin embargo, puedes designar carpetas como "carpetas protegidas". Las carpetas serán monitoreadas en busca de archivos nuevos y AxCrypt protegerá todos los archivos nuevos con un solo clic o cuando cierres la sesión.</value>
+  </data>
+  <data name="UsageTipsSecuringFoldersText2">
+    <value>También puedes seleccionar varios archivos, incluidos todos los archivos de una carpeta, para protegerlos en una sola operación. Siguen siendo archivos individuales y la carpeta en sí no estará protegida, solo los archivos que contiene.</value>
+  </data>
+  <data name="UsageTipsTargetUseHeading">
+    <value>Uso objetivo</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem1">
+    <value>Comparte y trabaja con documentos almacenados y archivos adjuntos de correo electrónico de manera segura.</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem2">
+    <value>Integrar sin problemas y compartir y almacenar fácilmente archivos confidenciales en tu servicio de intercambio de documentos, intranet o servidor de archivos. Si tus documentos residen en un servicio de intercambio de documentos, la intranet o el servidor de archivos, AxCrypt es especialmente adecuado y, por lo general, se integra sin problemas y permite que compartir y almacenar datos confidenciales sea tan fácil como no protegerlos.</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem3">
+    <value>Enviar archivos protegidos por correo electrónico como archivos adjuntos regulares. Para enviar un correo electrónico seguro, agrega al destinatario autorizado para abrir el archivo y luego envía tus archivos protegidos como archivos adjuntos regulares. Con el inicio de sesión de AxCrypt y la función de edición de doble clic, incluso la entrega de muchos correos electrónicos es igual de sencilla que si no tuviera seguridad.</value>
   </data>
   <data name="UsageTipsTargetUseListItem4">
     <value>Mantén seguros los archivos almacenados en forma remota (dentro de los límites de tu contraseña). AxCrypt, dentro de los límites de tu contraseña, mantendrá seguros los archivos almacenados en forma remota. Hay muchas advertencias para los archivos en tu disco duro local que no tienen relación con la seguridad de AxCrypt. Consulta la sección sobre seguridad del PC local.</value>
@@ -3933,6 +5404,18 @@ Para más información, haz clic en OK para abrir nuestra página web en un expl
   <data name="WelcomeToAxCryptTitle" xml:space="preserve">
     <value>Primeros pasos con AxCrypt</value>
   </data>
+  <data name="WeOfferLabel">
+    <value>Ofrecemos:</value>
+  </data>
+  <data name="WhatsIncludedLabel">
+    <value>¿Qué incluye?</value>
+  </data>
+  <data name="WhyAxCryptBusiness">
+    <value>¿Por qué AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>¿Por qué AxCrypt?</value>
+  </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>¡No olvidaré mi contraseña!</value>
   </data>
@@ -3944,6 +5427,12 @@ Para más información, haz clic en OK para abrir nuestra página web en un expl
   </data>
   <data name="Windows2000-XPLabel">
     <value>Windows 2000, ME y XP</value>
+  </data>
+  <data name="Windows2008-10Label">
+    <value>Windows 2008, Vista, 7, 8 y 10</value>
+  </data>
+  <data name="Windows95-NTLabel">
+    <value>Windows 95, 98 y NT</value>
   </data>
   <data name="WindowsCompatibleLabel">
     <value>Compatibilidad con Windows</value>
@@ -4155,7 +5644,13 @@ Para más información, haz clic en OK para abrir nuestra página web en un expl
   <data name="WrongVerificationCodeFormat" xml:space="preserve">
     <value>El código de verificación debe ser de exactamente 6 dígitos.</value>
   </data>
+  <data name="YearlyDiscountLabel" xml:space="preserve">
+    <value>Descuento anual</value>
+  </data>
   <data name="YearlySubscriptionTitle" xml:space="preserve">
     <value>Anual</value>
+  </data>
+  <data name="YesLabel">
+    <value>Sí</value>
   </data>
 </root>
