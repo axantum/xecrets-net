@@ -933,7 +933,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For full conditions, please see our &lt;a href=&apos;#/information/terms-of-use&apos;&gt;terms of use&lt;/a&gt;..
+        ///   Looks up a localized string similar to For full conditions, please see our &lt;a href=&apos;/information/terms-of-use&apos;&gt;terms of use&lt;/a&gt;..
         /// </summary>
         public static string AxcryptBusinessBlock1Text5 {
             get {
@@ -942,7 +942,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please see our &lt;a href=&apos;#/pricing&apos;&gt;pricing&lt;/a&gt; for details..
+        ///   Looks up a localized string similar to Please see our &lt;a href=&apos;/pricing&apos;&gt;pricing&lt;/a&gt; for details..
         /// </summary>
         public static string AxcryptBusinessBlock1Text6 {
             get {
@@ -1347,7 +1347,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Accept Invitation.
+        ///   Looks up a localized string similar to Accept Invitation.
         /// </summary>
         public static string BusinessAcceptInvitationText {
             get {
@@ -1654,7 +1654,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For more information, visit our &lt;a href=&apos;#/information/features&apos;&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href=&apos;#/information/terms-of-use&apos;&gt;Terms of use&lt;/a&gt;..
+        ///   Looks up a localized string similar to For more information, visit our &lt;a href=&apos;/information/features&apos;&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href=&apos;/information/terms-of-use&apos;&gt;Terms of use&lt;/a&gt;..
         /// </summary>
         public static string BusinessFirstBodyText3 {
             get {
@@ -8083,6 +8083,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Master key approved.
+        /// </summary>
+        public static string MasterKeyApprovedTitle {
+            get {
+                return ResourceManager.GetString("MasterKeyApprovedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;.
         /// </summary>
         public static string MasterKeyBusinessHelpInfo1 {
@@ -9635,6 +9644,15 @@ namespace AxCrypt.Content.Properties {
         public static string PayPalReadMoreLink {
             get {
                 return ResourceManager.GetString("PayPalReadMoreLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string PendingStatus {
+            get {
+                return ResourceManager.GetString("PendingStatus", resourceCulture);
             }
         }
         
@@ -11554,7 +11572,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For full details of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://www.axcrypt.net/information/technical-details/&apos;&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;/information/cryptographic-hashes-files&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to For full details of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://www.axcrypt.net/information/technical-details/&apos;&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;/information/cryptographic-hashes-of-files&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string ReleaseNotesDescription {
             get {

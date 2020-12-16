@@ -225,6 +225,9 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
     <value>Indien ingeschakeld is toegang tot het internet niet gebruikt of vereist, totdat het uitgeschakeld wordt.</value>
     <comment>A tool tip explaining that this causes AxCrypt never to access the Internet.</comment>
   </data>
+  <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
+    <value>Maandelijks</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anoniem Hernoemen</value>
   </data>
@@ -289,6 +292,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="AxCryptFileEncryption" xml:space="preserve">
     <value>AxCrypt Bestandsbeveiliging</value>
   </data>
+  <data name="BackToHomeButtonLabel">
+    <value>Terug naar startpagina</value>
+  </data>
   <data name="BadEmail" xml:space="preserve">
     <value>Onjuist emailadres</value>
     <comment>Displayed when email address format validation fails.</comment>
@@ -351,8 +357,14 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BusinessExpiresSoonMailSubject" xml:space="preserve">
     <value>Tijd om uw AxCrypt Business abonnement te vernieuwen!</value>
   </data>
+  <data name="BusinessFeatureListDataProtection">
+    <value>Voldoet aan de gegevensbeschermingsverordening</value>
+  </data>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" met servers in Zweden</value>
+  </data>
+  <data name="BusinessFeatureListTeamCollaboration">
+    <value>Teamsamenwerking met het delen van sleutels</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
@@ -957,6 +969,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt voor macOS</value>
   </data>
+  <data name="DownloadHeroListMultilingualSupport">
+    <value>Meertalige ondersteuning voor Engels, Nederlands, Frans, Duits, Italiaans, Koreaans, Portugees, Russisch, Spaans, Zweeds en Turks. Meer volgt nog.</value>
+  </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
     <value>Open de door vrienden of collega's beveiligde bestanden die voor u bedoelt zijn</value>
     <comment>Description of "Easy to work" slide on Onboarding screen in mobile application.</comment>
@@ -977,6 +992,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="EmailAppLink" xml:space="preserve">
     <value>Ga naar de email</value>
     <comment>Text of link for opening mail application.</comment>
+  </data>
+  <data name="EmailLabel">
+    <value>E-mail</value>
   </data>
   <data name="EmailLanguageInformation" xml:space="preserve">
     <value>Wij proberen mails in uw taal te versturen, maar als u ons mailt kunnen wij in het Engels reageren. Gebruik alstublieft Google Translate of iets vergelijkbaars wanneer nodig.</value>
@@ -1152,20 +1170,35 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="FooterNewsletterSignUpHeading">
     <value>Meld je aan voor onze nieuwsbrief</value>
   </data>
+  <data name="ForEveryoneLabel">
+    <value>Voor iedereen</value>
+  </data>
   <data name="ForWhomHeadline" xml:space="preserve">
     <value>Voor wie</value>
+  </data>
+  <data name="GetStartedAccessSecuredText">
+    <value>Een eenvoudige interface geeft je toegang tot je versleutelde bestanden die zijn opgeslagen op Google Drive, Dropbox, ontvangen via e-mail etc. De app kan (nog) geen bestanden versleutelen op je telefoon, je kunt je bestanden openen die door jou zijn versleuteld of die met jou zijn gedeeld door iemand anders .</value>
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Gebruik de app met je AxCrypt ID. Een Premium abonnement is nodig om zowel de Android als iOS app te gebruiken. Wanneer je een nieuwe AxCrypt ID aanmaakt, krijg je automatisch een Premium proefperiode van 30 dagen.</value>
   </data>
+  <data name="GetStartedHowToUseStep2Mac">
+    <value>Rechtermuisknop klik (meestal twee vingers) om het AxCrypt-menu te openen.</value>
+  </data>
   <data name="GetStartedHowToUseStep3">
     <value>Om bestanden te openen voor weergave of bewerking, dubbelklik ze simpelweg.</value>
+  </data>
+  <data name="GetStartedInfoNote2Text2">
+    <value>Meld bugs en opmerkingen aan ons. Je kunt ook om ondersteuning vragen. Voor andere problemen kun je ons een e-mail sturen.</value>
   </data>
   <data name="GetStartedInstallingHeading">
     <value>AxCrypt Installeren en Je AxCrypt ID Instellen</value>
   </data>
+  <data name="GetStartedKeySharingIngress">
+    <value>Door de functie &lt;a href='/information/features'&gt;Sleutels Delen&lt;/a&gt; te gebruiken, kun je beveiligde bestanden met anderen delen. Hier is een tutorial over het gebruik van Sleutels Delen.</value>
+  </data>
   <data name="GetStartedPasswordManagementIngress">
-    <value>Je kunt al je wachtwoorden en codes op een veilige manier online opslaan met behulp van de &lt;a href='#/information/features'&gt; Wachtwoordbeheer &lt;/a&gt; functie. Bekijk de onderstaande video voor instructies over het beheren van je wachtwoorden.</value>
+    <value>Je kunt al je wachtwoorden en codes op een veilige manier online opslaan met behulp van de &lt;a href='/information/features'&gt; Wachtwoordbeheer &lt;/a&gt; functie. Bekijk de onderstaande video voor instructies over het beheren van je wachtwoorden.</value>
   </data>
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: Wachtwoordbeheer</value>
@@ -1187,6 +1220,24 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   </data>
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Recente Bestanden lijst is uitgeschakeld. Ga naar Opties om het in te schakelen.</value>
+  </data>
+  <data name="HomeGetStartedListDownloadHeading">
+    <value>1. Download</value>
+  </data>
+  <data name="HomeGetStartedListDownloadParagraph">
+    <value>Download de nieuwste versie van AxCrypt</value>
+  </data>
+  <data name="HomeGetStartedListEncryptParagraph">
+    <value>Selecteer met een paar klikken welke bestanden je wilt beveiligen</value>
+  </data>
+  <data name="HomeGetStartedListShareParagraph">
+    <value>Deel je beveiligde bestanden met een enkele klik</value>
+  </data>
+  <data name="HomeSellingPointCloudStorageAwarenessBody">
+    <value>Beveilig automatisch je bestanden in Dropbox, Google Drive, etc.</value>
+  </data>
+  <data name="HomeSellingPointStrongEncryptionBody">
+    <value>Bestandsbeveiliging met 128-bit of 256-bit encryptie.</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuten</value>
@@ -1703,6 +1754,9 @@ U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxC
     <value>Klik om de naam van een sleutel bestand in te voeren. Gebruik dit alleen wanneer u weet dat u een sleutel bestand heeft gebruikt tijdens het beveiligen van dit bestand in de vorige versie van AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="NameLabel">
+    <value>Naam</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
@@ -1727,6 +1781,9 @@ U kunt altijd versleutelde bestanden openen met een gratis desktopversie van AxC
   <data name="NoInternetErrorMessage" xml:space="preserve">
     <value>Kan op dit moment niet met de server verbinden, check alstublieft uw internetverbinding.</value>
     <comment>Message which is displayed when device doesn't have internet connection.</comment>
+  </data>
+  <data name="NoLabel">
+    <value>Nee</value>
   </data>
   <data name="NoNeedToCheckForUpdatesTooltip" xml:space="preserve">
     <value>Check voor updates niet nodig.</value>
@@ -1967,6 +2024,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
+  <data name="PremiumFirstBodyText">
+    <value>&lt;p&gt;Geïnteresseerd in het nemen van een abonnement, maar weet je niet zeker of het aan je behoeften voldoet?&lt;a href='https://account.axcrypt.net/nl/Home/Purchase'&gt;Je kunt 30 dagen gratis genieten van AxCrypt Premium.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Met AxCrypt Premium heb je toegang tot uitgebreide functionaliteit en toffe functies! Versleutel je bestanden met AES-256  – het sterkste AES-algoritme. Het wordt wereldwijd gebruikt om gevoelige en geheime informatie van alle niveaus te beschermen. Het beveiligen van mappen is nog nooit zo eenvoudig geweest, met slechts een enkele klik om automatisch nieuwe bestanden te beveiligen.&lt;/p&gt;&lt;p&gt;Als je ook beveiligde bestanden met anderen wilt delen, kun je gebruik maken van sleutels delen, zelfs met toegang tot cloudopslagbewustzijn in Dropbox, Google Drive, enz. Als je vaak onderweg bent, kun je onze mobiele app gebruiken om toegang te krijgen tot je gecodeerde bestanden.&lt;/p&gt;&lt;p&gt;Wachtwoord op een veilige en gemakkelijke manier opslaan? Gebruik ons wachtwoordbeheer en -generator om al je wachtwoorden veilig in de cloud te bewaren.&lt;/p&gt;&lt;p&gt;Probeer het uit om alle functies en voordelen te ontdekken!&lt;/p&gt;</value>
+  </data>
   <data name="PremiumItemDescriptionFormat" xml:space="preserve">
     <value>AxCrypt Premium {0} x 30 dagen.</value>
   </data>
@@ -2005,17 +2065,38 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PricePerMonthIndicatorText" xml:space="preserve">
     <value>per maand</value>
   </data>
+  <data name="PricingFeatureListBusinessAdmin">
+    <value>Business Beheerder</value>
+  </data>
+  <data name="PricingFeatureListCloudStorage">
+    <value>Cloudopslag Bewustzijn</value>
+  </data>
   <data name="PricingFeatureListCommunitySupport">
     <value>Community hulp</value>
+  </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Mobiele Apps</value>
   </data>
   <data name="PricingFeatureListViewer">
     <value>Bekijker</value>
   </data>
+  <data name="PricingLinkLabel">
+    <value>Prijs</value>
+  </data>
   <data name="PrivacyPolicyLinkLabel">
     <value>Privacybeleid</value>
   </data>
+  <data name="ProductTryItForFreeAnnualButtonLabel">
+    <value>Jaarlijks 20% korting</value>
+  </data>
   <data name="ProductTryItForFreePerMonth">
     <value>Per maand</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointAutomaticallyEncrypt">
+    <value>Versleutel automatisch nieuwe bestanden in beveiligde mappen</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointSecureFiles">
+    <value>Beveilig bestanden online met bewustzijn van cloudopslag</value>
   </data>
   <data name="ProductTryItForFreeSellingPointViewYour">
     <value>Bekijk je versleutelde bestanden direct met de mobiele app</value>
@@ -2279,6 +2360,15 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Verleng in</value>
     <comment>Used as "Renew in 30 days"</comment>
   </data>
+  <data name="RequirementsLinuxText">
+    <value>Andere gebruikers hebben gemeld AxCrypt met Wine te kunnen gebruiken. Het kan echter lastig zijn om te installeren, omdat afhankelijkheden handmatig moeten worden geïnstalleerd, en de staat van Mono (waarvan het afhankelijk is) sterk varieert afhankelijk van de distributie.</value>
+  </data>
+  <data name="ResellerBenefitsText">
+    <value>AxCrypt heeft klanten van over de hele wereld, die vertrouwen op de eenvoud en veiligheid van onze encryptie tool. Onze grootste markten bestaan uit de VS, het VK en Frankrijk. AxCrypt breidt elke dag meer en meer uit, en we willen dat jij meegroeit.</value>
+  </data>
+  <data name="ResellerInfoText2">
+    <value>Als een Reseller kun je AxCrypt Business verkopen (op het moment ondersteunen we geen resellerprogramma's voor AxCrypt Premium). Voor een kleine prijs krijgen Business-leden toegang tot veel meer functies en aanvullende ondersteuning, waaronder; AES-256 bit encryptie, Mobiele Apps, Delen van Bestanden, Bewustzijn van Cloudopslag, Wachtwoordbeheer en de mogelijkheid om accounts te beheren.</value>
+  </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Opnieuw versturen</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
@@ -2349,6 +2439,9 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Beveiliging</value>
     <comment>Title of "Security" section of About Us page in mobile application.</comment>
+  </data>
+  <data name="SecurityLinkLabel">
+    <value>Veiligheid</value>
   </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>Beveiliging is belangrijk voor ons. Alles wat wij doen met AxCrypt heeft beveiliging als de hoogste prioriteit. Wij verzekeren dat niemand ooit toegang krijgt tot uw geëncrypteerde bestanden, zolang u controle heeft over uw eigen wachtwoord.</value>
@@ -2619,6 +2712,9 @@ Het AxCrypt Team</value>
     <value>Probeer Premium</value>
     <comment>A clickable link with text similar to "Try Premium"</comment>
   </data>
+  <data name="TryPremiumPreHeading">
+    <value>Voor particuliere gebruikers</value>
+  </data>
   <data name="TryPremiumToolTip" xml:space="preserve">
     <value>U gebruikt niet het hoogste beveiligingsniveau. Klik om Premium nu gratis te proberen!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
@@ -2663,6 +2759,39 @@ Het AxCrypt Team</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Koop Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UsageTipsAnonymousFileHeading">
+    <value>Anonieme bestandsnamen</value>
+  </data>
+  <data name="UsageTipsBackupsHeading">
+    <value>Back-ups</value>
+  </data>
+  <data name="UsageTipsConfidentialDataHeading">
+    <value>Vertrouwelijke gegevens in cloudopslagdiensten</value>
+  </data>
+  <data name="UsageTipsLinkLabel">
+    <value>Gebruikstips</value>
+  </data>
+  <data name="UsageTipsPersonalPrivacyHeading">
+    <value>Persoonlijke privacy</value>
+  </data>
+  <data name="UsageTipsPersonalPrivacyListItem1">
+    <value>Beveilig je bestanden – privébrieven, medische &amp; financiële informatie, correspondentie – opgeslagen op een lokale harde schijf of netwerkcomputer.</value>
+  </data>
+  <data name="UsageTipsPersonalPrivacyListItem2">
+    <value>Houd op afstand opgeslagen bestanden veilig (binnen de limieten van je wachtwoord). AxCrypt zal, binnen de limieten van je wachtwoord, op afstand opgeslagen bestanden beveiligen. Voor bestanden op je lokale harde schijf zijn er veel kanttekeningen die niet te wijten zijn aan de beveiliging van AxCrypt. Zie het gedeelte over lokale pc-beveiliging.</value>
+  </data>
+  <data name="UsageTipsPreDistributionText1">
+    <value>Sommige informatie zou tot een bepaalde tijd vertrouwelijk moeten zijn, en dat is het niet. Het kan een filmtrailer, een financieel kwartaalverslag of iets dergelijks zijn. Beveilig je bestand - document, filmtrailer of rapport, verspreid het op alle mogelijke manieren en u kunt er zeker van zijn dat het onleesbaar is totdat u ervoor kiest de informatie vrij te geven.</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem4">
+    <value>Houd op afstand opgeslagen bestanden veilig (binnen de limieten van je wachtwoord). AxCrypt zal, binnen de limieten van je wachtwoord, op afstand opgeslagen bestanden beveiligen. Voor bestanden op je lokale harde schijf zijn er veel kanttekeningen die niet te wijten zijn aan de beveiliging van AxCrypt. Zie het gedeelte over lokale pc-beveiliging.</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem5">
+    <value>Voor de programmeurs en systeembeheerders biedt AxCrypt een command-line-interface die gemakkelijk te gebruiken is vanuit elke andere programmeertaal op het Windows-platform die een ander programma kan uitvoeren, inclusief .bat-bestanden.</value>
+  </data>
+  <data name="UsageTipsTargetUseListItem6">
+    <value>Ontwikkelaars kunnen AxCrypt integreren door de .NET-core bibliotheek op te nemen die een programmatische API heeft, die gemakkelijk te gebruiken is. Haal de broncode op via bitbucket of nuget.</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>U heeft AxCrypt geüpdatet. Helaas moet uw configuratie gereset worden. Dit betekent dat na het opnieuw opstarten uw voorkeuren en instellingen helaas verloren zullen gaan. Wij verontschuldigen ons voor het ongemak. Uw geëncrypteerde bestanden zijn nog steeds veilig en ok.</value>
@@ -2739,6 +2868,9 @@ Voor meer informatie klik op OK om naar onze website te gaan.</value>
   </data>
   <data name="WillNotShowAgainFileOperationErrorWarningText" xml:space="preserve">
     <value>Wilt u toch doorgaan?</value>
+  </data>
+  <data name="Windows2000-XPLabel">
+    <value>Windows 2000, ME en XP</value>
   </data>
   <data name="WipeFileSelectFileDialogTitle" xml:space="preserve">
     <value>Selecteer bestanden om beveiligd te verwijderen</value>

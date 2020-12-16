@@ -147,7 +147,7 @@
     <value>Verifiera AxCrypt ID</value>
   </data>
   <data name="ActivateMailBodyCode" xml:space="preserve">
-    <value>Din verifieringskod är &lt;b&gt;{0}&lt;/b&gt; </value>
+    <value>Din verifieringskod är &lt;b&gt;{0}&lt;/b&gt;</value>
   </data>
   <data name="ActivateMailBodyCodePlainText" xml:space="preserve">
     <value>Din verifieringskod är {0} .</value>
@@ -437,7 +437,7 @@ Innehåller programvara från http://www.bouncycastle.org/ .</value>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
     <value>Läs mer &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;här&lt;/a&gt;.</value>
-    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions. </comment>
+    <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
     <value>Hantera</value>
@@ -937,11 +937,11 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="EasyToWorkDescription" xml:space="preserve">
     <value>Öppna filer säkrade för dig från vänner eller kollegor</value>
-    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+    <comment>Description of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="EasyToWorkTitle" xml:space="preserve">
     <value>Öppna filer med delad nyckel</value>
-    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application. </comment>
+    <comment>Title of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Du kan bara läsa lösenordsposter, inte skriva. Endast betalande abonnenter kan ändra eller radera!</value>
@@ -1042,11 +1042,11 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="FeedbackCategoryQuestion" xml:space="preserve">
     <value>Fråga</value>
-    <comment>Displayed name of "Question" feedback category in mobile application </comment>
+    <comment>Displayed name of "Question" feedback category in mobile application</comment>
   </data>
   <data name="FeedbackDescriptionLabel" xml:space="preserve">
     <value>Berätta vad du tycker om AxCrypt, alla kommenterar är välkomna.</value>
-    <comment>Text which motivates user to send feedback </comment>
+    <comment>Text which motivates user to send feedback</comment>
   </data>
   <data name="FeedbackTextPrompt" xml:space="preserve">
     <value>Dina kommenterar</value>
@@ -1229,14 +1229,14 @@ Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</valu
   <data name="InvitationMailBodyIntro" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av &lt;b&gt;{0}&lt;/b&gt;.
 Du kan börja skydda dina filer från insyn genom att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt.
-Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord. </value>
+Logga in till AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>Du har blivit inbjuden till AxCrypt av {0}.
 
 Du kan börja skydda dina filer från insyn genom att ladda ned och installera AxCrypt från {1}.
 
-Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord. </value>
+Logga in till AxCrypt med {2}, ange den 6-siffriga verifieringskoden och sätt ditt nya hemliga lösenord.</value>
   </data>
   <data name="InvitationMailBodyPersonalizedMessageTitle" xml:space="preserve">
     <value>Ett personligt meddelande från {0}: {1}</value>
@@ -1380,7 +1380,7 @@ Kom ihåg det här lösenordet!</value>
 
 Du kan öppna äldre AxCrypt 1.x-filer, men om de inte konverteras måste du ange det ursprungliga lösenordet även om du redan loggat in.
 
-Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)? </value>
+Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value>
   </data>
   <data name="LinkTextBackToMainSite" xml:space="preserve">
     <value>Till Startsidan</value>
@@ -1822,7 +1822,7 @@ Logga in på &lt;b&gt;{0}&lt;/b&gt; och fullfölj adressbytet first, eller åter
 
 &lt;span class="red"&gt;Om du har glömt ditt lösenord kommer du att kunna logga in igen, men du återfår inte åtkomst till filer eller poster i lösenordshanteraren som är skyddade med det gamla lösenordet.&lt;/span&gt;
 
-Ange din epostadress nedan så skickar vi en länk dit. </value>
+Ange din epostadress nedan så skickar vi en länk dit.</value>
   </data>
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Återställ Lösenord</value>
@@ -2262,11 +2262,11 @@ Kontrollera din inbox för &lt;b&gt;{0}&lt;/b&gt; efter ett meddelande med en ve
   </data>
   <data name="SecurityLabel" xml:space="preserve">
     <value>Säkerhet</value>
-    <comment>Title of "Security" section of About Us page in mobile application. </comment>
+    <comment>Title of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>Säkerhet är kritiskt för oss. Allt som har med AxCrypt att göra sker med säkerhet som högsta prioritet. Vi säkerställer att ingen kan öppna dina filer, så länge ditt lösenord är hemligt.</value>
-    <comment>Description of "Security" section of About Us page in mobile application. </comment>
+    <comment>Description of "Security" section of About Us page in mobile application.</comment>
   </data>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Programmet behöver uppdateras beroende på en säkerhetsbrist.</value>
@@ -2319,7 +2319,7 @@ Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
   </data>
   <data name="ShareWithOthersDescription" xml:space="preserve">
     <value>Öppna AxCrypt Lösenordshanterare med ett klick</value>
-    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application. </comment>
+    <comment>Description of "Share With Others" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="ShareWithOthersTitle" xml:space="preserve">
     <value>Enkel åtkomst av lösenord</value>
@@ -2392,7 +2392,7 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   </data>
   <data name="StrongEncryptionTitle" xml:space="preserve">
     <value>AxCrypt i Mobilen</value>
-    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application. </comment>
+    <comment>Title of "Strong encryption" slide on Onboarding screen in mobile application.</comment>
   </data>
   <data name="SubmitFeedbackButton" xml:space="preserve">
     <value>Vad tycker du?</value>

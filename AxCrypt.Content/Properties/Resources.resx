@@ -439,10 +439,10 @@ You have been warned, now enjoy!</value>
     <value>The Business plan is intended for organizations, not private individuals.</value>
   </data>
   <data name="AxcryptBusinessBlock1Text5" xml:space="preserve">
-    <value>For full conditions, please see our &lt;a href='#/information/terms-of-use'&gt;terms of use&lt;/a&gt;.</value>
+    <value>For full conditions, please see our &lt;a href='/information/terms-of-use'&gt;terms of use&lt;/a&gt;.</value>
   </data>
   <data name="AxcryptBusinessBlock1Text6" xml:space="preserve">
-    <value>Please see our &lt;a href='#/pricing'&gt;pricing&lt;/a&gt; for details.</value>
+    <value>Please see our &lt;a href='/pricing'&gt;pricing&lt;/a&gt; for details.</value>
   </data>
   <data name="AxcryptBusinessBlock1Text7" xml:space="preserve">
     <value>A Business subscription lets your organization purchase and manage licenses for multiple users. We also offer VAT free sales within the EU for qualifying companies (you must supply a valid EU VAT number and address) for the Business plan. We do not offer VAT free sales for the Premium plan.</value>
@@ -580,7 +580,7 @@ You have been warned, now enjoy!</value>
     <value>Dynamic brute force counter measure - iterative password wrapping making attacks even harder.</value>
   </data>
   <data name="BusinessAcceptInvitationText" xml:space="preserve">
-    <value>!!Accept Invitation</value>
+    <value>Accept Invitation</value>
   </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
@@ -678,7 +678,7 @@ You have been warned, now enjoy!</value>
     <value>Simple, Reliable and Strong Encryption</value>
   </data>
   <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.&lt;/p&gt;&lt;p&gt;With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away.&lt;/p&gt;&lt;p&gt;For more information, visit our &lt;a href='#/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='#/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;More exclusive Business Features coming soon. Don’t miss out!&lt;/p&gt;</value>
+    <value>&lt;p&gt;AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.&lt;/p&gt;&lt;p&gt;With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away.&lt;/p&gt;&lt;p&gt;For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;More exclusive Business Features coming soon. Don’t miss out!&lt;/p&gt;</value>
   </data>
   <data name="BusinessFirstBodyText1" xml:space="preserve">
     <value>AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.</value>
@@ -687,7 +687,7 @@ You have been warned, now enjoy!</value>
     <value>With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
-    <value>For more information, visit our &lt;a href='#/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='#/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.</value>
+    <value>For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.</value>
   </data>
   <data name="BusinessFirstBodyText4" xml:space="preserve">
     <value>More exclusive Business Features coming soon. Don’t miss out!</value>
@@ -2978,6 +2978,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="MasterKeyApprovalInfo" xml:space="preserve">
     <value>If approved, Master key will be applied to encrypted files and possible to recover by business administrators. If you want to stop having Master key applied, you can leave the business at any time (this is done in your My AxCrypt ID page).</value>
   </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Master key approved</value>
+  </data>
   <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
     <value>Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;</value>
   </data>
@@ -3586,6 +3589,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[More info about PayPal]</value>
+  </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>Pending</value>
   </data>
   <data name="PerMonthLabel" xml:space="preserve">
     <value>Per month</value>
@@ -4257,7 +4263,7 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <value>Regulatory Compliance</value>
   </data>
   <data name="ReleaseNotesDescription" xml:space="preserve">
-    <value>For full details of the Windows Desktop application and the core library, head over to the &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href='/information/cryptographic-hashes-files'&gt;here&lt;/a&gt;.</value>
+    <value>For full details of the Windows Desktop application and the core library, head over to the &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href='/information/cryptographic-hashes-of-files'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel" xml:space="preserve">
     <value>Release Notes</value>
