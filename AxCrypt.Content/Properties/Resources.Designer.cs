@@ -8611,6 +8611,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By upgrading your account you get access to many excellent features..
+        /// </summary>
+        public static string MessageAskAboutUpgradeSubscription {
+            get {
+                return ResourceManager.GetString("MessageAskAboutUpgradeSubscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string MessageErrorTitle {
@@ -14521,6 +14530,15 @@ namespace AxCrypt.Content.Properties {
         public static string UpgradePromptText {
             get {
                 return ResourceManager.GetString("UpgradePromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade to better encryption!.
+        /// </summary>
+        public static string UpgradeSubscriptionTitle {
+            get {
+                return ResourceManager.GetString("UpgradeSubscriptionTitle", resourceCulture);
             }
         }
         
