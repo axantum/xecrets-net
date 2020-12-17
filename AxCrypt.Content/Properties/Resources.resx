@@ -2994,7 +2994,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table.</value>
+    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href="https://axcrypt.net/support/master-key"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.</value>

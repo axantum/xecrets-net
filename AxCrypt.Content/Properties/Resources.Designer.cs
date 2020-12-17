@@ -8128,7 +8128,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table..
+        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href=&quot;https://axcrypt.net/support/master-key&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string MasterKeyHelpText1 {
             get {
