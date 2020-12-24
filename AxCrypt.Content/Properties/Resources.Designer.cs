@@ -1591,6 +1591,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Master key enables business administrators to recover lost files.
+        /// </summary>
+        public static string BusinessFeatureListMasterKey {
+            get {
+                return ResourceManager.GetString("BusinessFeatureListMasterKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No encryption knowledge needed.
         /// </summary>
         public static string BusinessFeatureListNoEncryption {
@@ -8110,6 +8119,204 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Master key introduction.
+        /// </summary>
+        public static string MasterKeyBlock1Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock1Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key is a feature which enables business administrators to recover files of the business members..
+        /// </summary>
+        public static string MasterKeyBlock1Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine an important financial document being encrypted after creating the yearly revenue report. During the following year a new financial team is put in place, and when it&apos;s time for the yearly report they realize the financial document the previous team used, is now encrypted with credentials no one has access to any longer..
+        /// </summary>
+        public static string MasterKeyBlock1Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Master key! With Master key enabled, the administrators of the business can always recover any file encrypted by the business members. In the above case the new financial team just has to ask their administrator and the financial document can easily be recovered, even if the original user left the company..
+        /// </summary>
+        public static string MasterKeyBlock1Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As long as the business has one or a couple administrators who make sure to keep track of their credentials, no files will ever be lost due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string MasterKeyBlock1Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key and security.
+        /// </summary>
+        public static string MasterKeyBlock2Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock2Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When enabling master key, business administrators can recover any document encrypted by their members. This, as mentioned, eliminates the risk of losing access to critical files. But is it secure?.
+        /// </summary>
+        public static string MasterKeyBlock2Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In terms of security, you can view Master key as an automatic sharing of files with the administrators of the business. Administrators will automatically be able to recover files which has their Master key applied. This is no less secure than simply using AxCrypt&apos;s tried and tested Key Sharing feature..
+        /// </summary>
+        public static string MasterKeyBlock2Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of course, business administrators need to be extra careful to choose good passwords and keeping their account safe at all times..
+        /// </summary>
+        public static string MasterKeyBlock2Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabling master key.
+        /// </summary>
+        public static string MasterKeyBlock3Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key can be enabled from the &lt;a href=&apos;https://account.axcrypt.net/en/Business/ManageSubscriptionMembers&apos;&gt;manage subscription page&lt;/a&gt;..
+        /// </summary>
+        public static string MasterKeyBlock3Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After enabling Master key, all existing member of the business have to approve the change. This is an important security consideration, an existing user should never feel like this feature was hidden from them. Who has accepted the Master key feature can be seen in the user table..
+        /// </summary>
+        public static string MasterKeyBlock3Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If a user has not accepted Master key, it will not be applied to files they encrypt, so make sure everyone in your business accepts the feature..
+        /// </summary>
+        public static string MasterKeyBlock3Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note! Files encrypted before enabling Master key will of course not be possible to recover. Old files have to be re-encrypted after the user having accepted master key..
+        /// </summary>
+        public static string MasterKeyBlock3Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For new businesses, or new members of existing businesses, Master key will be automatically approved when members joins the business..
+        /// </summary>
+        public static string MasterKeyBlock3Text5 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock3Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using Master Key.
+        /// </summary>
+        public static string MasterKeyBlock4Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once Master key has been enabled, it will be automatically applied to all files encrypted by members of the business. You can see if Master key has been applied by the Master key icon shown in the application..
+        /// </summary>
+        public static string MasterKeyBlock4Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If a file has this icon, then any business administrator can recover the file..
+        /// </summary>
+        public static string MasterKeyBlock4Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That&apos;s it! As you can see, Master key is very easy to use and nothing your business member ever have to consider or spend time on..
+        /// </summary>
+        public static string MasterKeyBlock4Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please note that even though business administrators can recover files using Master key, this should not be used in normal usage. If a file is intended to be opened by a business administrator, then the file should Key shared with that user, just as with any other user..
+        /// </summary>
+        public static string MasterKeyBlock4Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need more help?.
+        /// </summary>
+        public static string MasterKeyBlock5Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock5Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our priority business support is always standing by to help with any questions or concerns. Use the form on your account page, or send us a mail at &lt;a href=&apos;mailto:business@axcrypt.net&apos;&gt;business@axcrypt.net&lt;/a&gt; and we&apos;ll help you out!.
+        /// </summary>
+        public static string MasterKeyBlock5Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;.
         /// </summary>
         public static string MasterKeyBusinessHelpInfo1 {
@@ -8133,6 +8340,15 @@ namespace AxCrypt.Content.Properties {
         public static string MasterKeyBusinessHelpPrompt {
             get {
                 return ResourceManager.GetString("MasterKeyBusinessHelpPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable business administrators to recover lost files.
+        /// </summary>
+        public static string MasterKeyDescription {
+            get {
+                return ResourceManager.GetString("MasterKeyDescription", resourceCulture);
             }
         }
         
@@ -13075,6 +13291,15 @@ namespace AxCrypt.Content.Properties {
         public static string SubscriptionDiscountDisplayText {
             get {
                 return ResourceManager.GetString("SubscriptionDiscountDisplayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has expired since &lt;b&gt;{0}&lt;/b&gt;..
+        /// </summary>
+        public static string SubscriptionExpiredOn {
+            get {
+                return ResourceManager.GetString("SubscriptionExpiredOn", resourceCulture);
             }
         }
         
