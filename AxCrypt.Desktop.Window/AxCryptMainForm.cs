@@ -1,4 +1,4 @@
-#region Coypright and License
+﻿#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -307,6 +307,7 @@ namespace AxCrypt.Desktop.Window
             _spanishLanguageToolStripMenuItem.Text = "&" + Texts.SpanishLanguageToolStripMenuItemText;
             _swedishLanguageToolStripMenuItem.Text = "&" + Texts.SwedishLanguageToolStripMenuItemText;
             _turkishLanguageToolStripMenuItem.Text = "&" + Texts.TurkishLanguageToolStripMenuItemText;
+            _turkishLanguageToolStripMenuItem.Text = "&" + Texts.ChineseLanguageSelectionText;
             _tryBrokenFileToolStripMenuItem.Text = "&" + Texts.TryBrokenFileToolStripMenuItemText;
             _encryptionUpgradeMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
             _encryptionUpgradeMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
