@@ -78,6 +78,7 @@ namespace AxCrypt.Desktop.Window
             this._russianLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._swedishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._turkishLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._chineseLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsChangePassphraseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._passwordResetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsEncryptionUpgradeModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -566,7 +567,8 @@ namespace AxCrypt.Desktop.Window
             this._portugueseBrazilToolStripMenuItem,
             this._russianLanguageToolStripMenuItem,
             this._swedishLanguageToolStripMenuItem,
-            this._turkishLanguageToolStripMenuItem});
+            this._turkishLanguageToolStripMenuItem,
+            this._chineseLanguageToolStripMenuItem});
             this._optionsLanguageToolStripMenuItem.Name = "_optionsLanguageToolStripMenuItem";
             this._optionsLanguageToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsLanguageToolStripMenuItem.Text = "[&Language]";
@@ -667,6 +669,14 @@ namespace AxCrypt.Desktop.Window
             this._turkishLanguageToolStripMenuItem.Tag = "tr-TR";
             this._turkishLanguageToolStripMenuItem.Text = "[Türkçe]";
             this._turkishLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
+            // 
+            // _chineseLanguageToolStripMenuItem
+            // 
+            this._chineseLanguageToolStripMenuItem.Name = "_chineseLanguageToolStripMenuItem";
+            this._chineseLanguageToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this._chineseLanguageToolStripMenuItem.Tag = "zh-CN";
+            this._chineseLanguageToolStripMenuItem.Text = "[中文]";
+            this._chineseLanguageToolStripMenuItem.Click += new System.EventHandler(this.LanguageToolStripMenuItem_ClickAsync);
             // 
             // _optionsChangePassphraseToolStripMenuItem
             // 
@@ -1381,6 +1391,7 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.ToolStripMenuItem _recentFilesShowInFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _clearRecentFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _chineseLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _inactivitySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _disableInactivitySignOutToolStripMenuItem;

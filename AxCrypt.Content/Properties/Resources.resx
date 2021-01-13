@@ -1113,6 +1113,9 @@ You must complete these steps to complete the process.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Check if a newer version is available for download. Requires Internet access.</value>
   </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (Chinese)</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>To get started with your account, choose whether you intend to use AxCrypt mainly as a private user or business.</value>
   </data>
