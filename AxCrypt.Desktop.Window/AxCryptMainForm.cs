@@ -307,7 +307,7 @@ namespace AxCrypt.Desktop.Window
             _spanishLanguageToolStripMenuItem.Text = "&" + Texts.SpanishLanguageToolStripMenuItemText;
             _swedishLanguageToolStripMenuItem.Text = "&" + Texts.SwedishLanguageToolStripMenuItemText;
             _turkishLanguageToolStripMenuItem.Text = "&" + Texts.TurkishLanguageToolStripMenuItemText;
-            _turkishLanguageToolStripMenuItem.Text = "&" + Texts.ChineseLanguageSelectionText;
+            _chineseLanguageToolStripMenuItem.Text = "&" + Texts.ChineseLanguageSelectionText;
             _tryBrokenFileToolStripMenuItem.Text = "&" + Texts.TryBrokenFileToolStripMenuItemText;
             _encryptionUpgradeMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
             _encryptionUpgradeMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
