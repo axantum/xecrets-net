@@ -1,10 +1,14 @@
 ﻿using AxCrypt.Abstractions;
+using AxCrypt.Common;
 using AxCrypt.Core;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Forms;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AxCrypt.Abstractions.TypeResolve;
@@ -67,6 +71,36 @@ namespace AxCrypt.Desktop.Window
             _showPassphrase.CheckedChanged += (s, ea) => { _viewModel.ShowPassword = _showPassphrase.Checked; };
 
             _viewModel.BindPropertyChanged(nameof(LogOnAccountViewModel.ShowPassword), (bool show) => { _passphrase.UseSystemPasswordChar = !(_showPassphrase.Checked = show); });
+
+            if (New<Core.UI.UserSettings>().IsFirstSignIn)
+            {
+                _languagePanel.Visible = true;
+                _languageSelectionTextLabel.Text = Texts.LanguageSelectionLabelText;
+                _languageCultureDropDown.DataSource = SupportedLanguages();
+                _languageCultureDropDown.SelectedValue = Resolve.UserSettings.CultureName;
+            }
+        }
+
+        private IList<KeyValuePair<string, string>> SupportedLanguages()
+        {
+            IList<KeyValuePair<string, string>> supportedLanguages = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>(Texts.EnglishLanguageToolStripMenuItemText, "en-US"),
+                new KeyValuePair<string, string>(Texts.GermanLanguageSelectionText, "de-DE"),
+                new KeyValuePair<string, string>(Texts.DutchLanguageSelection, "nl-NL"),
+                new KeyValuePair<string, string>(Texts.SpanishLanguageToolStripMenuItemText, "es-ES"),
+                new KeyValuePair<string, string>(Texts.FrancaisLanguageToolStripMenuItemText, "fr-FR"),
+                new KeyValuePair<string, string>(Texts.ItalianLanguageSelection, "it-IT"),
+                new KeyValuePair<string, string>(Texts.KoreanLanguageSelection, "ko"),
+                new KeyValuePair<string, string>(Texts.PolishLanguageSelection, "pl-PL"),
+                new KeyValuePair<string, string>(Texts.PortugueseBrazilLanguageSelection, "pt-BR"),
+                new KeyValuePair<string, string>(Texts.SwedishLanguageToolStripMenuItemText, "sv-SE"),
+                new KeyValuePair<string, string>(Texts.TurkishLanguageToolStripMenuItemText, "tr-TR"),
+                new KeyValuePair<string, string>(Texts.RussianLanguageSelection, "ru-RU"),
+                new KeyValuePair<string, string>(Texts.ChineseLanguageSelectionText, "zh-CN"),
+            };
+
+            return supportedLanguages;
         }
 
         private async void ButtonOk_Click(object sender, EventArgs e)
@@ -189,6 +223,12 @@ namespace AxCrypt.Desktop.Window
         private async void ButtonReset_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Retry;
+        }
+
+        private void LanguageCultureDropDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CultureInfo selectedCulture = CultureInfo.CreateSpecificCulture(_languageCultureDropDown.SelectedValue.ToString());
+            Resolve.UserSettings.CultureName = selectedCulture.Name;
         }
     }
 }

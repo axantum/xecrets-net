@@ -394,6 +394,10 @@ namespace AxCrypt.Desktop.Window
             }
 
             await SetSignInSignOutStatusAsync(_mainViewModel.LoggedOn);
+            if (_mainViewModel.LoggedOn && Thread.CurrentThread.CurrentUICulture.Name  != Resolve.UserSettings.CultureName)
+            {
+                await SetLanguageAsync(Resolve.UserSettings.CultureName);
+            }
         }
 
         private static void StartupProcessMonitor()

@@ -2402,6 +2402,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
   </data>
+  <data name="GoToOurBlogLinkLabel" xml:space="preserve">
+    <value>GO TO OUR BLOG</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Great! You already have an AxCrypt ID account for '{0}'.
 
@@ -2759,6 +2762,9 @@ Please specify the language to use in the invitation and an optional personal me
   </data>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt must be restarted in order for the language change to take effect.</value>
+  </data>
+  <data name="LanguageSelectionLabelText" xml:space="preserve">
+    <value>Choose your language</value>
   </data>
   <data name="LargeFileSupportLabel" xml:space="preserve">
     <value>Large file support</value>
@@ -4257,6 +4263,9 @@ Please &lt;a href="mailto:business@axcrypt.net"&gt;contact us&lt;/a&gt; and we w
   <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
+    <value>Read about the latest news</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel" xml:space="preserve">
     <value>Read more about the business plan</value>
