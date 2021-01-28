@@ -7759,6 +7759,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To manage your account, &lt;a&gt;click here&lt;/a&gt;.
+        /// </summary>
+        public static string LinkToManageAccountText {
+            get {
+                return ResourceManager.GetString("LinkToManageAccountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}secrets?email={1}&amp;app.
         /// </summary>
         public static string LinkToSecretsPageWithUserNameFormat {
