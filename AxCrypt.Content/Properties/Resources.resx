@@ -665,6 +665,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessFeatureListMadeInSweden" xml:space="preserve">
     <value>"Made in Sweden" with servers in Sweden</value>
   </data>
+  <data name="BusinessFeatureListMasterKey" xml:space="preserve">
+    <value>Master key enables business administrators to recover lost files</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption" xml:space="preserve">
     <value>No encryption knowledge needed</value>
   </data>
@@ -2987,6 +2990,72 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="MasterKeyApprovedTitle" xml:space="preserve">
     <value>Master key approved</value>
   </data>
+  <data name="MasterKeyBlock1Heading" xml:space="preserve">
+    <value>Master key introduction</value>
+  </data>
+  <data name="MasterKeyBlock1Text1" xml:space="preserve">
+    <value>Master key is a feature which enables business administrators to recover files of the business members.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2" xml:space="preserve">
+    <value>Imagine an important financial document being encrypted after creating the yearly revenue report. During the following year a new financial team is put in place, and when it's time for the yearly report they realize the financial document the previous team used, is now encrypted with credentials no one has access to any longer.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3" xml:space="preserve">
+    <value>Enter Master key! With Master key enabled, the administrators of the business can always recover any file encrypted by the business members. In the above case the new financial team just has to ask their administrator and the financial document can easily be recovered, even if the original user left the company.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4" xml:space="preserve">
+    <value>As long as the business has one or a couple administrators who make sure to keep track of their credentials, no files will ever be lost due to employees leaving or forgetting their passwords.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading" xml:space="preserve">
+    <value>Master key and security</value>
+  </data>
+  <data name="MasterKeyBlock2Text1" xml:space="preserve">
+    <value>When enabling master key, business administrators can recover any document encrypted by their members. This, as mentioned, eliminates the risk of losing access to critical files. But is it secure?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2" xml:space="preserve">
+    <value>In terms of security, you can view Master key as an automatic sharing of files with the administrators of the business. Administrators will automatically be able to recover files which has their Master key applied. This is no less secure than simply using AxCrypt's tried and tested Key Sharing feature.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3" xml:space="preserve">
+    <value>Of course, business administrators need to be extra careful to choose good passwords and keeping their account safe at all times.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading" xml:space="preserve">
+    <value>Enabling master key</value>
+  </data>
+  <data name="MasterKeyBlock3Text1" xml:space="preserve">
+    <value>Master key can be enabled from the &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;manage subscription page&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2" xml:space="preserve">
+    <value>After enabling Master key, all existing member of the business have to approve the change. This is an important security consideration, an existing user should never feel like this feature was hidden from them. Who has accepted the Master key feature can be seen in the user table.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3" xml:space="preserve">
+    <value>If a user has not accepted Master key, it will not be applied to files they encrypt, so make sure everyone in your business accepts the feature.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4" xml:space="preserve">
+    <value>Note! Files encrypted before enabling Master key will of course not be possible to recover. Old files have to be re-encrypted after the user having accepted master key.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5" xml:space="preserve">
+    <value>For new businesses, or new members of existing businesses, Master key will be automatically approved when members joins the business.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading" xml:space="preserve">
+    <value>Using Master Key</value>
+  </data>
+  <data name="MasterKeyBlock4Text1" xml:space="preserve">
+    <value>Once Master key has been enabled, it will be automatically applied to all files encrypted by members of the business. You can see if Master key has been applied by the Master key icon shown in the application.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2" xml:space="preserve">
+    <value>If a file has this icon, then any business administrator can recover the file.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3" xml:space="preserve">
+    <value>That's it! As you can see, Master key is very easy to use and nothing your business member ever have to consider or spend time on.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4" xml:space="preserve">
+    <value>Please note that even though business administrators can recover files using Master key, this should not be used in normal usage. If a file is intended to be opened by a business administrator, then the file should Key shared with that user, just as with any other user.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading" xml:space="preserve">
+    <value>Need more help?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1" xml:space="preserve">
+    <value>Our priority business support is always standing by to help with any questions or concerns. Use the form on your account page, or send us a mail at &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; and we'll help you out!</value>
+  </data>
   <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
     <value>Use the checkbox below to make it possible for AxCrypt to help recover files in case business administrators forgets their password. &lt;b&gt;This should only be used upon explicit request for a verified business administrator!&lt;/b&gt;</value>
   </data>
@@ -2995,6 +3064,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>
   <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
     <value>AxCrypt Recovery Backup</value>
+  </data>
+  <data name="MasterKeyDescription" xml:space="preserve">
+    <value>Enable business administrators to recover lost files</value>
   </data>
   <data name="MasterKeyDisableHelpText" xml:space="preserve">
     <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
@@ -4805,6 +4877,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>Save {0}%</value>
+  </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Your subscription has expired since &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Your subscription will expire on &lt;b&gt;{0}&lt;/b&gt;.</value>
