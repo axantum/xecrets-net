@@ -6524,6 +6524,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GO TO OUR BLOG.
+        /// </summary>
+        public static string GoToOurBlogLinkLabel {
+            get {
+                return ResourceManager.GetString("GoToOurBlogLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
         ///
         ///If you for any reason do not know or remember the password, you must perform a password reset..
@@ -7488,6 +7497,15 @@ namespace AxCrypt.Content.Properties {
         public static string LanguageChangeRestartPrompt {
             get {
                 return ResourceManager.GetString("LanguageChangeRestartPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your language.
+        /// </summary>
+        public static string LanguageSelectionLabelText {
+            get {
+                return ResourceManager.GetString("LanguageSelectionLabelText", resourceCulture);
             }
         }
         
@@ -11564,6 +11582,15 @@ namespace AxCrypt.Content.Properties {
         public static string RateApplicationLinkSecondPartIos {
             get {
                 return ResourceManager.GetString("RateApplicationLinkSecondPartIos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read about the latest news.
+        /// </summary>
+        public static string ReadAboutTheLatestNewsLabel {
+            get {
+                return ResourceManager.GetString("ReadAboutTheLatestNewsLabel", resourceCulture);
             }
         }
         

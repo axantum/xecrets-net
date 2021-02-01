@@ -48,10 +48,14 @@ namespace AxCrypt.Desktop.Window
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this._errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this._createAccountLinkLabel = new System.Windows.Forms.LinkLabel();
+            this._languageSelectionTextLabel = new System.Windows.Forms.Label();
+            this._languageCultureDropDown = new System.Windows.Forms.ComboBox();
+            this._languagePanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this._passphraseGroupBox.SuspendLayout();
             this._panel1.SuspendLayout();
+            this._languagePanel.SuspendLayout();
             this._troubleRememberingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider2)).BeginInit();
@@ -114,6 +118,7 @@ namespace AxCrypt.Desktop.Window
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.Controls.Add(this._userEmailGroupBox);
             this.flowLayoutPanel1.Controls.Add(this._passphraseGroupBox);
+            this.flowLayoutPanel1.Controls.Add(this._languagePanel);
             this.flowLayoutPanel1.Controls.Add(this._panel1);
             this.flowLayoutPanel1.Controls.Add(this._createAccountLinkLabel);
             this.flowLayoutPanel1.Controls.Add(this._troubleRememberingPanel);
@@ -121,7 +126,7 @@ namespace AxCrypt.Desktop.Window
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(529, 375);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(529, 400);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // _userEmailGroupBox
@@ -242,7 +247,7 @@ namespace AxCrypt.Desktop.Window
             this._createAccountLinkLabel.Location = new System.Drawing.Point(4, 166);
             this._createAccountLinkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._createAccountLinkLabel.Name = "_createAccountLinkLabel";
-            this._createAccountLinkLabel.Size = new System.Drawing.Size(515, 58);
+            this._createAccountLinkLabel.Size = new System.Drawing.Size(515, 38);
             this._createAccountLinkLabel.TabIndex = 4;
             this._createAccountLinkLabel.TabStop = true;
             this._createAccountLinkLabel.Text = "[New user? Sign up]";
@@ -250,6 +255,43 @@ namespace AxCrypt.Desktop.Window
             this._createAccountLinkLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._createAccountLinkLabel.LinkColor = AxCrypt.Forms.Style.Styling.WarningColor;
             this._createAccountLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createNewAccountLabel_LinkClicked);
+            // 
+            // _languageSelectionTextLabel
+            // 
+            this._languageSelectionTextLabel.Location = new System.Drawing.Point(4, 9);
+            this._languageSelectionTextLabel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._languageSelectionTextLabel.Name = "_languageSelectionTextLabel";
+            this._languageSelectionTextLabel.Size = new System.Drawing.Size(240, 24);
+            this._languageSelectionTextLabel.TabIndex = 0;
+            this._languageSelectionTextLabel.Text = "[Choose your Language]";
+            // 
+            // _languageCultureDropDown
+            // 
+            this._languageCultureDropDown.DisplayMember = "Key";
+            this._languageCultureDropDown.Dock = System.Windows.Forms.DockStyle.Right;
+            this._languageCultureDropDown.FormattingEnabled = true;
+            this._languageCultureDropDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._languageCultureDropDown.Location = new System.Drawing.Point(356, 9);
+            this._languageCultureDropDown.Margin = new System.Windows.Forms.Padding(0, 6, 6, 6);
+            this._languageCultureDropDown.Name = "_languageCultureDropDown";
+            this._languageCultureDropDown.Size = new System.Drawing.Size(250, 24);
+            this._languageCultureDropDown.TabIndex = 1;
+            this._languageCultureDropDown.ValueMember = "Value";
+            this._languageCultureDropDown.SelectedIndexChanged += new System.EventHandler(this.LanguageCultureDropDown_SelectedIndexChanged);
+            // 
+            // _languagePanel
+            // 
+            this._languagePanel.AutoSize = true;
+            this._languagePanel.Controls.Add(this._languageSelectionTextLabel);
+            this._languagePanel.Controls.Add(this._languageCultureDropDown);
+            this._languagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._languagePanel.Location = new System.Drawing.Point(4, 249);
+            this._languagePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this._languagePanel.Padding = new System.Windows.Forms.Padding(0, 8, 10, 0);
+            this._languagePanel.Name = "_languagePanel";
+            this._languagePanel.Size = new System.Drawing.Size(457, 32);
+            this._languagePanel.TabIndex = 3;
+            this._languagePanel.Visible = false;
             // 
             // LogOnAccountDialog
             // 
@@ -260,7 +302,7 @@ namespace AxCrypt.Desktop.Window
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this._buttonCancel;
             this.HelpButton = true;
-            this.ClientSize = new System.Drawing.Size(529, 375);
+            this.ClientSize = new System.Drawing.Size(541, 400);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -279,6 +321,8 @@ namespace AxCrypt.Desktop.Window
             this._passphraseGroupBox.ResumeLayout(false);
             this._passphraseGroupBox.PerformLayout();
             this._panel1.ResumeLayout(false);
+            this._languagePanel.ResumeLayout(false);
+            this._languagePanel.PerformLayout();
             this._troubleRememberingPanel.ResumeLayout(false);
             this._troubleRememberingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
@@ -302,6 +346,9 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.Button _buttonOk;
         private System.Windows.Forms.Button _buttonReset;
         private System.Windows.Forms.LinkLabel _createAccountLinkLabel;
+        private System.Windows.Forms.Label _languageSelectionTextLabel;
+        private System.Windows.Forms.ComboBox _languageCultureDropDown;
+        private System.Windows.Forms.Panel _languagePanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel _troubleRememberingPanel;
         private System.Windows.Forms.LinkLabel _troubleRememberingLabel;
