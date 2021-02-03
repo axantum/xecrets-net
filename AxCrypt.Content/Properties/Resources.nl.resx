@@ -1475,6 +1475,9 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
     <value>Terug naar de hoofdsite</value>
     <comment>Menus and similar to link back to main site.</comment>
   </data>
+  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+    <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
+  </data>
   <data name="LocalIndicatorText" xml:space="preserve">
     <value>Lokaal</value>
     <comment>This is used in a window title to indicate that a sign in is local, typicallformatted as [Local] (The braces are not part of the text here.)</comment>

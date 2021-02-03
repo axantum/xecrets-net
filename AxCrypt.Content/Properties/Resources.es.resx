@@ -197,6 +197,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Período de prueba de AxCrypt Premium</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Acción</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>La dirección de correo electrónico o el código de verificación no es correcto.</value>
   </data>
@@ -289,6 +292,9 @@ Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administ
     <value>Selecciona una carpeta para mantener protegidos con AxCrypt. Los archivos existentes serán cifrados ahora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>Entiendo que esto no recuperará el acceso a mis archivos cifrados</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>¿Ya estás registrado? Ingresa aquí</value>
     <comment>Link to sign in page.</comment>
@@ -338,6 +344,12 @@ Por favor, inicia sesión con la misma contraseña que usaste anteriormente.</va
   <data name="ApplyNowLabel">
     <value>Solicitar ahora</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>La clave maestra no se puede habilitar si se forma parte de más de una cuenta. Abandona cualquiera de las otras cuentas de las que formes parte antes de habilitar la clave maestra.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Aprobar clave maestra</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Por razones de seguridad, introduce tu contraseña de nuevo.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -353,6 +365,9 @@ Las actualizaciones a la suscripción se verán reflejadas aquí dentro de unos 
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La página que intentaste visitar requiere autenticación. Por favor, inicia sesión para continuar.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Cambio de nombre anónimo automático</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>No es necesario que respondas ni hagas nada. Si no haces nada, no se enviarán más correos electrónicos y tu cuenta de AxCrypt ID se eliminará en forma permanente.</value>
@@ -565,6 +580,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BruteForceResistantText">
     <value>Contramedida dinámica de fuerza bruta: ajuste iterativo de contraseñas que dificulta aún más los ataques.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Aceptar invitación</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -578,6 +596,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Bienvenido a AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>{0} te ha invitado a AxCrypt. Esta cuenta tiene activada la función de clave maestra, lo que significa que los administradores de la cuenta podrán recuperar los archivos que cifres por motivos de seguridad. ¡Esta función no está activada de manera predeterminada! Tendrás que aprobar la función en la página &lt;a href='" + {1} + "'&gt;My AxCrypt ID&lt;/a&gt;.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administradores</value>
@@ -646,6 +667,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Creado en Suecia" con servidores en Suecia</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>La clave maestra permite a los administradores de la cuenta recuperar archivos perdidos</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>No se necesita tener conocimiento en cifrado</value>
   </data>
@@ -680,6 +704,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
     <value>&lt;p&gt;Has sido añadido como usuario de AxCrypt File Security por &lt;b&gt;{0}&lt;/b&gt;. Para empezar a proteger tus archivos, simplemente &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;descarga&lt;/a&gt; e instala AxCrypt. Regístrate en AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, introduce el código de verificación debajo y configura tu contraseña personal secreta.&lt;/p&gt; 
 &lt;p&gt;Si tienes alguna pregunta, por favor, contáctanos antes de nada {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; te ha invitado. Ten en cuenta que esta cuenta tiene activada la función &lt;i&gt;clave maestra&lt;/i&gt;. Esto significa que los administradores de la cuenta podrán recuperar los archivos que cifres por motivos de seguridad. Al aceptar esta invitación, se te agregará a la cuenta y se aplicará la clave maestra a tus archivos. Si no quieres ser parte de esta cuenta, ignora este correo electrónico y procede a tu &lt;a href='{1}'&gt;registro&lt;/a&gt;.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -810,6 +837,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>No eres administrador de ninguna suscripción.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Organización</value>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Nombre de la Organización</value>
@@ -1155,6 +1185,9 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>¿Hacer esto para todos los archivos que faltan?</value>
   </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>Si tienes alguna pregunta, ponte en contacto con {0}.</value>
+  </data>
   <data name="ContactHeading">
     <value>Contacto</value>
   </data>
@@ -1307,6 +1340,9 @@ Si no aceptas nuestras cookies de sesión temporales, no se puede iniciar la ses
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>Error interno, no se pudo eliminar el AxCrypt ID porque no se encontró al usuario actual.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>Has intentado eliminar tu AxCrypt ID. Para completar el proceso, debes verificar tu dirección de correo electrónico para demostrar que eres tú y así darnos permiso para eliminar tu AxCrypt ID del sistema de manera permanente. &lt;span class="red"&gt;También se eliminarán todos los datos asociados a tu AxCrypt ID, incluidas las entradas de contraseña guardadas.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Tu AxCrypt ID ha sido eliminado correctamente.
 
@@ -1390,6 +1426,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Desactivar</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Desactivar clave maestra</value>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Este correo electrónico automático se ha traducido a tu idioma de preferencia, pero nuestro soporte y asistencia directa personal se llevan a cabo en inglés.</value>
@@ -1524,6 +1563,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Sin descripción]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Habilitar clave maestra</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Archivos protegidos</value>
@@ -2637,6 +2679,9 @@ Número de IVA intracomuntario: SE556967618101</value>
     <value>Italiano (italiano)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>Entiendo</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Parece que JavaScript está desactivado en tu navegador. Si no habilitas JavaScript, no podrás iniciar sesión y es posible que el sitio no funcione correctamente.</value>
   </data>
@@ -2678,6 +2723,9 @@ A continuación, elige el idioma de la invitación y puedes añadir un mensaje p
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>¡Se requiere una conexión a Internet para agregar contactos!</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>Al actualizar un archivo con clave compartida en el plan Free, se borrará la información de uso compartido de claves. Esto significa que el usuario que compartió el archivo no podrá abrirlo.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Haga clic para seleccionar los archivos cifrados para compartir claves con otros.</value>
@@ -2735,6 +2783,24 @@ A continuación, elige el idioma de la invitación y puedes añadir un mensaje p
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Hemos detectado un software potencialmente incompatible que puede causar fallos a AxCrypt u otro software. Este software se llama Lavasot Web Companion. Si AxCrypt no funciona correctamente, intenta desinstalar Lavasoft.</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>¿Estás seguro de abandonar la cuenta?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Dejar la cuenta</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>El usuario no puede dejar la cuenta porque es su único administrador. Para dejarla, primero se debe designar a otro administrador.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>Saliste exitosamente de la cuenta</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Información de la cuenta</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Abandonar</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Después de convertir los archivos, solo se abrirán con la contraseña actual de AxCrypt. Por favor, verifica tu contraseña.
@@ -2914,6 +2980,112 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>La propiedad de administración del sitio se actualizó exitosamente.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>Si se aprueba, la clave maestra se aplicará a los archivos cifrados y los administradores de la cuenta podrán recuperarla. Si deseas que se deje de aplicar la clave maestra, puedes desactivarla en cualquier momento (puedes hacerlo desde tu página de My AxCrypt ID).</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Clave maestra aprobada</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Introducción a la clave maestra</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>La clave maestra es una función que permite a los administradores de la cuenta recuperar archivos de sus miembros.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Imagina que un documento financiero importante quede cifrado después de elaborar el informe anual de ingresos. Al año siguiente, se forma un nuevo equipo financiero, y cuando llega el momento del informe anual, se dan cuenta de que el documento financiero que usó el equipo anterior ahora está encriptado con credenciales a las que nadie tiene acceso.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>¡Ingresa la clave maestra! Con la clave maestra habilitada, los administradores de la cuenta pueden recuperar cualquier archivo cifrado por sus miembros. En el caso anterior, el nuevo equipo financiero solo tiene que preguntarle a su administrador y el documento financiero se puede recuperar fácilmente, incluso si el usuario original abandonó la empresa.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>Siempre que la cuenta tenga uno o más administradores que se aseguren de realizar seguimiento a sus credenciales, nunca se perderán archivos en caso de que los empleados se vayan u olviden sus contraseñas.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Clave maestra y seguridad</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>Al habilitar la clave maestra, los administradores de la cuenta pueden recuperar cualquier documento cifrado por sus miembros. Esto, como se mencionó, elimina el riesgo de perder el acceso a archivos críticos. ¿Pero es seguro?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>En términos de seguridad, la clave maestra debe considerarse como un intercambio automático de archivos con los administradores de la cuenta. Los administradores podrán recuperar automáticamente los archivos que tengan su clave maestra aplicada. Es tan segura como la función de uso compartido de claves probada de AxCrypt.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Por supuesto, los administradores de la cuenta deben ser muy cuidadosos al elegir buenas contraseñas y mantener su cuenta segura en todo momento.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Activación de la clave maestra</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>La clave maestra se puede habilitar desde la &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;página de administración de la suscripción&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Después de habilitar la clave maestra, todos los miembros activos de la cuenta deben aprobar el cambio. Consideración de seguridad importante: un usuario activo nunca debe sentir que esta función se le oculta. Quién haya aceptado la función de clave maestra aparece en la lista de usuarios.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Si un usuario no ha aceptado la clave maestra, esta no se aplicará a los archivos que cifren, así que asegúrate de que todos los miembros de la cuenta acepten la función.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>¡Nota! Los archivos cifrados antes de habilitar la clave maestra no se podrán recuperar. Los archivos antiguos deben volver a cifrarse después de que el usuario haya aceptado la clave maestra.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>Para cuentas nuevas o miembros nuevos de cuentas activas, la clave maestra se aprobará automáticamente cuando los miembros se unan a la cuenta.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Uso de la clave maestra</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Una vez que se haya habilitado la clave maestra, esta se aplicará automáticamente a todos los archivos cifrados por los miembros de la cuenta. Con el ícono de clave maestra que aparece en la aplicación, puedes ver si la clave maestra ha sido aplicada.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Si un archivo tiene este ícono, cualquier administrador de la cuenta puede recuperarlo.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>¡Eso es todo! Como puedes ver, la clave maestra es muy fácil de usar y no es una función a la que un miembro de la cuenta deba dedicar mucho tiempo.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Ten en cuenta que, aunque los administradores de la cuenta pueden recuperar archivos con la clave maestra, esta no debe usarse a la ligera. Si un administrador de la cuenta debe abrir un archivo, entonces el archivo debe tener una clave compartida con ese usuario, al igual que con cualquier otro usuario.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>¿Necesitas más ayuda?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Nuestro soporte comercial prioritario está siempre disponible para atender cualquier pregunta o inquietud. Para obtener ayuda, usa el formulario en la página de tu cuenta o envíanos un correo electrónico  a &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net &lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Usa la casilla de verificación a continuación para que AxCrypt pueda ayudar a recuperar archivos en caso de que los administradores de la cuenta olviden su contraseña. &lt;b&gt;¡Esto solo debe usarse bajo solicitud explícita de un administrador autorizado!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Esta función permite que AxCrypt recupere archivos cifrados por miembros de esta cuenta. ¡Solo debe aplicarse si se solicita de manera explícita!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>Copia de seguridad de recuperación de AxCrypt</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>Permitir que los administradores de la cuenta recuperen archivos perdidos</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Si la clave maestra está deshabilitada, los administradores de la cuenta no podrán abrir archivos cifrados por sus miembros.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>La clave maestra permite a los administradores de la cuenta abrir archivos cifrados por sus miembros. Ten en cuenta que primero el miembro debe aprobar la clave maestra antes de que se aplique a sus archivos. En la lista de usuarios, puedes ver quién ha aprobado la clave maestra. Para obtener más información, haz clic &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Los archivos cifrados &lt;b&gt;antes&lt;/b&gt; de habilitar la clave maestra no podrán abrirse sin las credenciales de cifrado originales.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>La clave maestra está habilitada. Esto significa que los administradores de la cuenta pueden recuperar tus archivos protegidos.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Los archivos cifrados antes de esto no se podrán recuperar con la clave maestra. Si sabes que hay archivos que necesitan una clave maestra, pide al usuario que deje de proteger los archivos y luego comience a protegerlos nuevamente. Con esta acción, se volverán a cifrar los archivos, incluida la clave maestra.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>A este archivo se le aplicó una clave maestra. Dado que no formas parte de la misma cuenta, la clave maestra se borrará de este archivo.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Clave maestra</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Internal error, invalid function argument in %4</value>
@@ -3099,6 +3271,9 @@ Puedes abrir los archivos cifrados cuando quieras con una versión de escritorio
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Cuando el período de prueba termina, seguirás automáticamente con la versión AxCrypt Free a menos que compres una suscripción.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>Al actualizar tu cuenta, obtienes acceso a muchas funciones excelentes.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Error</value>
@@ -3382,6 +3557,9 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
     <value>Contraseñas</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>Recientemente, se cambió la contraseña de tu cuenta AxCrypt, por lo que deberás iniciar sesión de nuevo para sincronizar la información de tu cuenta AxCrypt.</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>La contraseña no es suficientemente segura para ser aceptada.</value>
   </data>
@@ -3487,6 +3665,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Más información sobre PayPal]</value>
+  </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>Pendiente</value>
   </data>
   <data name="PerMonthLabel">
     <value>Al mes</value>
@@ -4693,6 +4874,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>Ahorra {0}%</value>
   </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Tu suscripción caducó el &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Tu suscripción caducará el &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
@@ -5204,6 +5388,9 @@ El Equipo de AxCrypt</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>¡Obtener Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>¡Accede a un mejor cifrado!</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Nombres de archivos anónimos</value>

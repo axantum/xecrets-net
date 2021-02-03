@@ -197,6 +197,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Période d'essai AxCrypt Premium</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>L'e-mail ou le code de vérification fourni est incorrect.</value>
   </data>
@@ -289,6 +292,9 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
     <value>Choisissez un dossier à protéger avec AxCrypt. Les fichiers qu'il contient seront chiffrés immédiatement.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>J'accepte que cela ne me rendra pas l'accès à mes fichiers chiffrés</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Déjà inscrit? Connectez-vous ici</value>
     <comment>Link to sign in page.</comment>
@@ -338,6 +344,12 @@ S'il vous plait, connectez-vous en utilisant le même mot de passe que vous avie
   <data name="ApplyNowLabel">
     <value>Postulez maintenant</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>Vous ne pouvez pas utiliser le Passe-Partout si vous appartenez à plus d'une entreprise. Veuillez quitter les autres entreprises dont vous faites partie avant d'activer le Passe-Partout.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Valider le Passe-Partout</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Pour des raisons de sécurité, insérez de nouveau votre mot de passe.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -353,6 +365,9 @@ La mise à jour de votre abonnement sera visible ici d'ici quelques minutes.</va
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La page à laquelle vous souhaitez accéder requière une authentification. S'il vous plait, connectez-vous pour poursuivre.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Renommer anonymement et automatiquement</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>Vous n'avez pas besoin de répondre ou faire quoi que ce soit. Si vous ne faites rien, nous n'enverrons plus d'e-mail et votre compte AxCrypt ID sera supprimé définitivement.</value>
@@ -564,6 +579,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BruteForceResistantText">
     <value>Contre-mesure dynamique de force brute - l'emballage itératif de mots de passe rend les attaques encore plus compliquées.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Accepter l'invitation</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -577,6 +595,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Bienvenue dans AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>Vous avez été invité.e sur AxCrypt par {0}. Cette entreprise a activé la fonctionnalité Passe-Partout, ce qui veut dire que, pour des raisons de sécurités, les documents que vous chiffrez pourront être récupérés par les gestionnaires de l'entreprise. Cette fonctionnalité n'est pas encore activée sur votre compte. Vous devrez l'approuver en allant sur la page &lt;a href='" + {1} + "'&gt;Mon AxCrypt ID&lt;/a&gt;.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administrateurs</value>
@@ -645,6 +666,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" avec des serveurs en Suède</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>Le Passe-Partout permet aux administrateurs de l'entreprise de récupérer des fichiers perdus</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>Aucune connaissance en chiffrement n'est nécessaire</value>
   </data>
@@ -681,6 +705,9 @@ Vous êtes prévenus, profitez-en bien !</value>
     <value>&lt;p&gt;Vous avez été ajouté comme utilisateur AxCrypt File Security par &lt;b&gt;{0}&lt;/b&gt;. Pour commencer à sécuriser vos fichiers &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;téléchargez&lt;/a&gt; et installez AxCrypt. Connectez vous à AxCrypt avec &lt;b&gt;{2}&lt;/b&gt;, entrez le code de vérification ci-dessous et définissez votre mot de passe personnel.&lt;/p&gt;&lt;/p&gt;
 &lt;p&gt;Si vous avez des questions, veuillez d'abord contacter {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>Vous avez été invité.e sur AxCrypt par &lt;b&gt;{0}&lt;/b&gt;. Cette entreprise a activé la fonctionnalité &lt;i&gt;Passe-Partout&lt;/i&gt;. Cela qui veut dire que, pour des raisons de sécurités, les documents que vous chiffrez pourront être récupérés par les gestionnaires de l'entreprise. En acceptant cette invitation, vous serez ajouté.e à l'entreprise et le Passe-Partout sera appliqué à vos fichiers. Si vous ne voulez pas rejoindre cette entreprise, veuillez ignorer cet e-mail et continuez en &lt;a href='{1}'&gt;vous inscrivant&lt;/a&gt; à la place.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -811,6 +838,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>Vous n'êtes administrateur pour aucun abonnement.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Entreprise</value>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Nom de l'entreprise</value>
@@ -1090,6 +1120,9 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Rechercher si une version plus récente est disponible au téléchargement. Cela nécessite un accès Internet.</value>
   </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (Chinois)</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Pour démarrer votre compte, choisissez si vous avez l'intention d'utiliser AxCrypt plutôt pour un usage privé ou pour une entreprise.</value>
   </data>
@@ -1155,6 +1188,9 @@ Vous devez effectuer ces étapes pour terminer le processus.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Faire cela pour tous les fichiers restants?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>Si vous avez d'autres questions, veuillez d'abord contacter {0}</value>
   </data>
   <data name="ContactHeading">
     <value>Contact</value>
@@ -1308,6 +1344,9 @@ Si vous n'acceptez pas nos cookies de session temporaires, vous ne pouvez pas vo
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>Erreur interne, impossible de supprimer l'AxCrypt ID parce que l'utilisateur concerné n'a pas été retrouvé.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>Vous avez essayé de supprimer votre AxCrypt ID. Pour terminer cette procédure, vous devez vérifier votre adresse e-mail. Cela nous permet de prouver que vous gérez cet e-mail et nous donne la permission de supprimer votre AxCrypt ID du système de manière permanente. &lt;span class="red"&gt;Toutes les données liées à votre AxCrypt ID, y compris les mots de passe sauvegardés, seront aussi supprimés.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Votre AxCrypt ID a été supprimé.
 
@@ -1391,6 +1430,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Désactiver</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Désactiver le Passe-Partout</value>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Cet e-mail automatique est traduit dans la langue que vous avez choisie, mais le service client et le support informatique sont en anglais.</value>
@@ -1525,6 +1567,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Pas de Description]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Activer le Passe-Partout</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Dossiers Protégés</value>
@@ -2637,6 +2682,9 @@ Numéro européen de TVA SE556967618101</value>
     <value>Italiano (Italien)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>J'accepte</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript semble être désactivé dans votre navigateur. Sauf si vous activez JavaScript, vous ne pouvez pas vous connecter et le site peut ne pas fonctionner comme prévu.</value>
   </data>
@@ -2678,6 +2726,9 @@ Veuillez choisir la langue souhaitée pour l'invitation, et ajoutez un message p
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>Une connexion Internet est requise pour ajouter des contacts.</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>Quand vous modifiez un document partagé par clé sur la version gratuite, les informations de partage de clé seront nettoyées. Cela veut dire que l'utilisateur qui a partagé le document ne pourra pas l'ouvrir avec les modifications.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Cliquer pour choisir les fichiers dont les clefs seront partagées avec d'autres.</value>
@@ -2735,6 +2786,24 @@ Veuillez choisir la langue souhaitée pour l'invitation, et ajoutez un message p
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Nous avons détecté des logiciels potentiellement incompatibles qui pourraient entraîner un dysfonctionnement d'AxCrypt et d'autres logiciels. Ce logiciel s'appelle Lavasoft Web Companion. Si vous notifiez des dysfonctionnements d'AxCrypt, essayez de désinstaller Lavasoft.</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir quitter l'entreprise ?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Quitter l'entreprise</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>L'utilisateur ne peut pas quitter l'entreprise parce qu'il en est le seul administrateur. Pour quitter, veuillez d'abord nominer un autre administrateur.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>Vous avez été retiré de l'entreprise.</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Informations de l'entreprise</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Quitter</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Une fois les fichiers convertis, ils s'ouvriront uniquement avec votre mot de passe AxCrypt actuel. Veuillez confirmer votre mot de passe.
@@ -2914,6 +2983,112 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Les propriétés de gestion du site ont été mises à jour avec succès.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>S'il est approuvé, le Passe-Partout sera appliqué sur vos fichiers chiffrés qu'il est possible de récupérer par le gestionnaire. Si vous voulez que le Passe-Partout arrête de s'appliquer, vous pouvez quitter l'entreprise n'importe quand (à partir de votre page Mon AxCrypt ID).</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Passe-Partout validé</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Introduction du Passe-Partout</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>Le Passe-Partout est une fonctionnalité qui permet aux gestionnaires d'entreprise de récupérer les fichiers de leurs membres.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Imaginez qu'un document financier important a été chiffré après avoir créé le rapport annuel des profits. Au cours de l'année suivante, une nouvelle équipe financière se construit et quand il est temps de produire le rapport annuel, ils pourraient se rendre compte que le document utilisé par l'ancienne équipe est chiffré et protégé par des identifiants auxquels plus personne n'a accès.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>Faites entrer le Passe-Partout ! Une fois le Passe-Partout mis en place, les gestionnaires de l'entreprise peuvent toujours récupérer tous les documents chiffrés par n'importe qui dans l'entreprise. Dans le cas précédent, la nouvelle équipe financière n'a plus qu'à se référer au gestionnaire et le document financier sera facilement récupéré, même si l'employé originel a quitté l'entreprise.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>Tant que l'entreprise garde un ou deux administrateurs qui s'assureront de garder l'accès à leurs identifiants de connexion, vous ne perdrez jamais de fichiers si des employés partent ou oublient leurs mots de passe.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Passe-Partout et sécurité</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>En activant le Passe-Partout, un gestionnaire peut récupérer n'importe quel document chiffré par l'un de ses membres. Ceci, comme annoncé précédemment, élimine le risque de perdre l'accès à des documents importants. Mais cela garantit-t-il la sécurité ?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>En matière de sécurité, considérez le Passe-Partout comme un partage automatique des fichiers avec les gestionnaires de l'entreprise. Les gestionnaires pourront automatiquement récupérer les fichiers concernés par le Passe-Partout. Ce n'est pas moins sûr que d'utiliser simplement la fonctionnalité (essayée et approuvée) du partage de clés.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Bien sûr, les gestionnaires doivent faire extrêmement attention à choisir de bons mots de passe et à garder leur compte en sécurité à tout moment.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Activer le Passe-Partout</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>Le Passe-Partout peut être activé depuis &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;la page de gestion des abonnements&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Après avoir mis en place le Passe-Partout, tous les membres de l'entreprise devront approuver le changement. C'est un élément important pour la sécurité, car aucun utilisateur ne doit avoir l'impression qu'une fonctionnalité leur a été cachée. Les utilisateurs ayant accepté le Passe-Partout seront visibles dans le tableau des utilisateurs.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Si un utilisateur n'a pas accepté le Passe-Partout, il ne sera pas appliqué aux documents qu'il chiffre, alors assurez-vous que tous les membres de votre entreprise acceptent la fonctionnalité.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>Attention ! Vous ne pourrez bien sûr pas récupérer les fichiers qui ont été chiffrés avant d'avoir activé le Passe-Partout. Les anciens documents devront être chiffrés à nouveau après que l'utilisateur ait accepté le Passe-Partout.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>Pour les nouvelles entreprises, ou les nouveaux membres d'entreprises existantes, le Passe-Partout sera approuvé automatiquement quand des membres rejoignent l'entreprise.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Utiliser le Passe-Partout</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Une fois que le Passe-Partout a été activé, il sera automatiquement appliqué à tous les fichiers chiffrés par des membres de l'entreprise. Vous pouvez vérifier si le Passe-Partout a été appliqué avec l'icône Passe-Partout dans l'application.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Si ce document dispose d'une icône, n'importe quel gestionnaire peut le récupérer.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>C'est tout ! Comme vous pouvez le voir, le Passe-Partout est très facile d'utilisation et ce n'est pas la peine de prévoir de passer du temps dessus.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Veuillez noter que même si les gestionnaires peuvent récupérer des documents en utilisant le Passe-Partout, cela ne devrait pas servir anecdotiquement. S'il est prévu que le document soit ouvert par un gestionnaire, il faudrait juste partager la clé du document, comme avec n'importe quel autre utilisateur.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>Besoin d'aide supplémentaire ?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Notre assistance prioritaire Business est toujours accessible pour répondre à vos questions ou vos soucis. Utilisez le formulaire sur la page de votre compte, ou envoyez-nous un e-mail à &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; et nous nous occuperons de vous aider !</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Utilisez la case ci-dessous pour permettre à AxCrypt de vous aider à récupérer les fichiers au cas où votre gestionnaire oublie son mot de passe. &lt;b&gt;Ceci ne peut être utilisé que sur la demande expresse d'un dirigeant vérifié de l'entreprise !&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Cette fonctionnalité permet à AxCrypt de récupérer des fichiers chiffrés par les membres de cette entreprise. Elle ne doit servir que lors d'une demande expresse de l'entreprise !</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>Sauvegarde de récupération AxCrypt</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>Permettre aux gestionnaires de récupérer des fichiers perdus</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Si le Passe-Partout est désactivé, les gestionnaires ne pourront pas ouvrir de documents chiffrés par les membres de leur entreprise.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>Le Passe-Partout permet aux gestionnaires d'ouvrir des documents chiffrés par des membres de leur entreprise. À noter : les membres doivent d'abord approuver le Passe-Partout avant qu'il puisse être appliqué à leurs documents. Vous pouvez voir qui a approuvé le Passe-Partout dans le tableau des utilisateurs. Pour plus d'informations, cliquez &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;ici&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Il ne sera pas possible d'ouvrir les fichiers ayant été chiffrés &lt;b&gt;avant&lt;/b&gt; l'activation du Passe-Partout sans les coordonnées de chiffrement originales.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>Le Passe-Partout est activé. Cela veut dire que vos gestionnaires peuvent récupérer vos fichiers chiffrés.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Les fichiers chiffrés avant cette date ne seront pas récupérables avec le Passe-Partout. Si vous savez qu'il y a des fichiers auxquels vous aurez besoin d'appliquer le Passe-Partout, veuillez informer l'utilisateur concerné d'arrêter de protéger ses fichiers, puis de les protéger à nouveau. Cela re-chiffrera les documents et permettra d'utiliser le Passe-Partout.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>Ce fichier a été manipulé à l'aide du Passe-Partout. Puisque vous ne faites pas partie de la même entreprise, le Passe-Partout sera retiré du fichier.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Passe-Partout</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Erreur interne, argument de fonction invalide en %4</value>
@@ -3099,6 +3274,9 @@ Vous pourrez toujours ouvrir des fichiers cryptés avec la version en ligne grat
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Lorsque la période d'essai se finira, vous continuerez automatiquement avec AxCrypt Free, sauf si vous choisissez d'acquérir un abonnement.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>En montant en gamme, vous aurez accès à beaucoup de super fonctionnalités.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Erreur</value>
@@ -3382,6 +3560,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
     <value>Mots de passe</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>Le mot de passe de votre compte AxCrypt a été changé récemment. Il faudra donc que vous vous connectiez à nouveau pour synchroniser les informations de votre compte AxCrypt.</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Le mot de passe est trop faible pour être accepté.</value>
   </data>
@@ -3487,6 +3668,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Plus d'information concernant PayPal]</value>
+  </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>En attente</value>
   </data>
   <data name="PerMonthLabel">
     <value>Par mois</value>
@@ -3654,6 +3838,12 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/année</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Tout ce que vous aurez avec Free Plus : </value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Tout ce que vous aurez avec Premium Plus :</value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Sauvegarde de la clé du compte</value>
   </data>
@@ -3668,6 +3858,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>Administrateur Business</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Assistance prioritaire Business </value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Système de stockage sur cloud</value>
@@ -3701,6 +3894,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PricingFeatureListPasswordManagement">
     <value>Gestion des mots de passe</value>
+  </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Usage professionnel</value>
   </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>Dossiers sécurisés</value>
@@ -4684,6 +4880,9 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>Économisez {0}%</value>
   </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Votre abonnement a expiré depuis le &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Votre abonnement se terminera le &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
@@ -5195,6 +5394,9 @@ L'équipe AxCrypt</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Obtenez Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>Montez en gamme pour un chiffrement amélioré !</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Noms de fichiers anonymes</value>

@@ -199,6 +199,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Prova di AxCrypt Premium</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Azione</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>L'indirizzo e-mail o il codice di verifica fornito non è corretto.</value>
   </data>
@@ -291,6 +294,9 @@ Scegli una password difficile da indovinare, poiché proteggerà sia le password
     <value>Seleziona una cartella da proteggere con AxCrypt. I file esistenti nella cartella verranno criptati immediatamente.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>Ho capito che questa azione non riacquisterà l'accesso ai miei file criptati</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Utente già registrato? Accedi qui</value>
     <comment>Link to sign in page.</comment>
@@ -340,6 +346,12 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
   <data name="ApplyNowLabel">
     <value>Applica ora</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>La Master key non può essere abilitata se si fa parte di più di un'azienda. Lascia le altre aziende di cui fai parte prima di abilitare la Master key.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Approva Master Key</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Per motivi di sicurezza, immetti nuovamente la tua password.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -355,6 +367,9 @@ Gli aggiornamenti all'abbonamento verranno riportati qui in pochi minuti.</value
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>La pagina a cui vuoi accedere richiede l'autenticazione. Per favore connettiti per continuare.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Modifica Automatica del nome Anonimo</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>Non c'è bisogno di rispondere o fare qualcosa. Se non fai nulla, non verranno più inviate e-mail e il tuo account AxCrypt ID verrà eliminato definitivamente.</value>
@@ -567,6 +582,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="BruteForceResistantText">
     <value>Contromisura dinamica della forza bruta - wrapping iterativo delle password che rende gli attacchi ancora più difficili.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Accetta l'Invito</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -580,6 +598,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Benvenuto in AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>Sei stato invitato in AxCrypt da {0}. Questa azienda ha la funzionalità Master key attivata, il che significa che i file che cripti potranno essere recuperati dagli amministratori dell'azienda per motivi di sicurezza. Questa funzionalità non è attivata per te da impostazione predefinita! Dovrai approvare la funzionalità andando nella pagina {1}&lt;a href='" + {1} + "'&gt;Il Mio ID AxCrypt&lt;/a&gt;.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Amministratori</value>
@@ -648,6 +669,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" con server in Svezia</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>La funzionalità Master key consente agli amministratori aziendali di recuperare i file persi.</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>Nessuna conoscenza di crittografia necessaria</value>
   </data>
@@ -682,6 +706,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
     <value>&lt;p&gt;Sei stato aggiunto come utente di AxCrypt File Security da &lt;b&gt;{0}&lt;/b&gt;. Per iniziare a proteggere i tuoi file &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;scarica&lt;/a&gt; e installa AxCrypt. Connettiti ad AxCrypt con &lt;b&gt;{2}&lt;/b&gt;, inserisci il codice di verifica sotto e imposta la tua password segreta e personale.&lt;/p&gt;
 &lt;p&gt;Se hai domande, per prima cosa contatta {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>Sei stato invitato da &lt;b&gt;{0}&lt;/b&gt;. Nota, questa azienda ha la funzionalità &lt;i&gt;Master key&lt;/i&gt; attivata. Ciò significa che i file che cripti potranno essere recuperati dagli amministratori dell'azienda per motivi di sicurezza. Accettando questo invito, verrai aggiunto all'azienda e la Master key verrà applicata ai tuoi file. Se non vuoi far parte di questa azienda, ignora questa email e procedi invece &lt;a href='{1}'&gt;registrandoti&lt;/a&gt;.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -812,6 +839,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>Non sei amministratore per alcun abbonamento.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Azienda</value>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Nome Azienda</value>
@@ -1091,6 +1121,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Controlla se una versione più recente è disponibile per il download. L'azione richiede l'accesso ad Internet.</value>
   </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (Cinese)</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Per iniziare con il tuo account, scegli se intendi utilizzare AxCrypt principalmente come utente privato o come azienda.</value>
   </data>
@@ -1156,6 +1189,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Eseguire l'operazione per tutti i file rimanenti?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>In caso di domande, contattare prima {0}.</value>
   </data>
   <data name="ContactHeading">
     <value>Contatto</value>
@@ -1309,6 +1345,9 @@ Se non accetti i nostri cookie temporanei di sessione, non puoi connetterti e il
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>Errore interno, impossibile eliminare l'ID AxCrypt perchè l'utente corrente non è stato trovato.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>Hai provato ad eliminare il tuo ID AxCrypt. Per completare il processo devi verificare il tuo indirizzo email. Ciò dimostra che sei il proprietario dell'email e ci autorizza ad eliminare il tuo ID AxCrypt in modo permanente dal sistema. &lt;span class="red"&gt;Tutti i dati associati al tuo ID AxCrypt, incluse le password salvate, verranno eliminati.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Il tuo AxCrypt ID è stato eliminato con successo.
 
@@ -1392,6 +1431,9 @@ Ci dispiace vederti andare via e speriamo che AxCrypt ti sia stato utile!</value
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Disattiva</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Disabilita Master Key</value>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Questa email automatica è tradotta nella tua lingua preferita, tuttavia 
@@ -1527,6 +1569,9 @@ il servizio personale diretto e il supporto sono in inglese.</value>
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Nessuna Descrizione]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Abilita Master Key</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Cartelle Protette</value>
@@ -2661,6 +2706,9 @@ SVEZIA</value>
     <value>Italiano (Italian)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>Ho capito</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript sembra essere disattivato nel tuo browser. Se non attivi JavaScript non puoi connetterti e il sito potrebbe non funzionare come previsto.</value>
   </data>
@@ -2702,6 +2750,9 @@ Per favore indica la lingua da utilizzare nell'invito e un messaggio personalizz
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>I nuovi contatti possono essere aggiunti solo quando sono online!</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>Quando si aggiorna un file condiviso tramite condivisione della chiave con il piano gratuito, le informazioni di condivisione della chiave verranno cancellate. Ciò significa che il file non potrà essere aperto dall'utente che ha condiviso il file.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Clicca per selezionare i file protetti di cui vuoi condividere le chiavi con altri.</value>
@@ -2759,6 +2810,24 @@ Per favore indica la lingua da utilizzare nell'invito e un messaggio personalizz
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Abbiamo trovato un software potenzialmente incompatibile che potrebbe portare al malfunzionamento di AxCrypt ed altri software. Il software si chiama Lavasoft Web Companion. Se AxCrypt non funziona, prova a disinstallare Lavasoft.</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>Sei sicuro di voler abbandonare l'azienda?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Abbandona l'azienda</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>L'utente non può lasciare l'azienda perché è l'unico amministratore. Per uscire, nomina prima un altro amministratore.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>Sei stato rimosso dall'azienda con successo</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Informazioni Aziendali</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Abbandona</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Dopo che i file vengono convertiti si aprono solamente con la password attuale di AxCrypt. Per favore verifica la tua password.
@@ -2904,6 +2973,7 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
     <value>&lt;ul&gt;
 &lt;li&gt;Mobile apps&lt;/li&gt;
 &lt;li&gt;256-bit AES&lt;/li&gt;
+&lt;li&gt;Master Key&lt;/li&gt;
 &lt;li&gt;Condivisione Chiavi&lt;/li&gt;
 &lt;li&gt;Cartelle Protette&lt;/li&gt;
 &lt;li&gt;Gestione delle Password&lt;/li&gt;
@@ -2939,6 +3009,115 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>La proprietà di gestione del sito è stata aggiornata correttamente.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>Se approvata, la Master key verrà applicata ai file criptati che potranno essere recuperati dagli amministratori aziendali. Se desideri interrompere l'applicazione della Master key, puoi lasciare l'azienda in qualsiasi momento (tramite la tua pagina Il Mio ID AxCrypt).
+</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Master key approvata</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Introduzione a Master key</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>Master key è una funzionalità che consente agli amministratori aziendali di recuperare i file dei membri aziendali.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Immagina che un importante documento finanziario venga criptato dopo aver creato il report annuale delle entrate. Durante l'anno successivo viene istituito un nuovo team finanziario e quando è il momento del report annuale ci si rende conto che il documento finanziario utilizzato dal team precedente è ora criptato con credenziali a cui nessuno ha più accesso.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>Inserisci la Master key! Con la Master key abilitata, gli amministratori dell'azienda possono sempre recuperare qualsiasi file criptato dai membri dell'azienda. Nel caso precedente, il nuovo team finanziario deve semplicemente chiedere al proprio amministratore e il documento finanziario può essere facilmente recuperato, anche se l'utente originale ha lasciato l'azienda.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>Finché l'azienda ha uno o più amministratori che si assicurano di tenere traccia delle proprie credenziali, nessun file andrà mai perso a causa dei dipendenti che lasciano l'azienda o dimenticano le loro password.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Master key e sicurezza</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>Quando si abilita la Master key, gli amministratori aziendali possono recuperare qualsiasi documento criptato dai propri membri. Questo, come accennato, elimina il rischio di perdere l'accesso a file essenziali. Ma è sicuro?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>In termini di sicurezza, la funzionalità Master key può essere considerata come una condivisione automatica dei file con gli amministratori dell'azienda. Gli amministratori saranno automaticamente in grado di recuperare i file a cui è stata applicata la loro Master key. Ciò non è meno sicuro del semplice utilizzo della collaudata funzionalità di Condivisione delle Chiavi di AxCrypt.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Ovviamente, gli amministratori aziendali devono prestare la massima attenzione nella scelta di buone password e nel mantenere il proprio account sempre al sicuro.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Abilitazione della Master key</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>La Master key può essere abilitata dalla &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;pagina di gestione dell'abbonamento&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Dopo aver abilitato la Master key, tutti i membri esistenti dell'azienda devono approvare la modifica. Questa è una considerazione importante per la sicurezza, un utente esistente non dovrebbe mai avere la sensazione che questa funzionalità gli fosse nascosta. Chi ha accettato la funzionalità Master key è visibile nella tabella utenti.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Se un utente non ha accettato la Master key, essa non verrà applicata ai file criptati da lui, quindi assicurati che tutti nella tua azienda accettino la funzionalità.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>Nota! Ovviamente, i file criptati prima di abilitare la Master key non potranno essere recuperati. I vecchi file devono essere criptati nuovamente dopo che l'utente ha accettato la Master key.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>Per le nuove aziende o i nuovi membri di aziende esistenti, la funzionalità Master key verrà approvata automaticamente quando i membri si uniscono all'azienda.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Utilizzo della Master Key</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Una volta abilitata, la Master key verrà applicata automaticamente a tutti i file criptati dai membri dell'azienda. Puoi vedere se la Master key è stata applicata dall'icona della Master key mostrata nell'applicazione.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Se un file ha questa icona, qualsiasi amministratore aziendale può recuperare il file.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>Questo è tutto! Come puoi vedere, la funzionalità Master key è molto facile da usare e non è nulla che i tuoi membri aziendali debbano considerare o a cui debbano dedicare del tempo.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Si noti che anche se gli amministratori aziendali possono recuperare i file utilizzando la Master key, questa non dovrebbe essere utilizzata durante il normale utilizzo. Se un file deve essere aperto da un amministratore aziendale, il file deve essere condiviso con tale utente mediante la funzionalità di Condivisione delle chiavi, proprio come con qualsiasi altro utente.
+</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>Serve altro aiuto?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Il nostro supporto aziendale prioritario è sempre pronto ad aiutarti con qualsiasi domanda o dubbio. Usa il modulo nella pagina del tuo account o inviaci una mail a &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; e ti aiuteremo!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Usa la casella in basso per consentire ad AxCrypt di aiutare a recuperare i file nel caso in cui gli amministratori aziendali dimentichino la password. &lt;b&gt;Questa funzione dovrebbe essere utilizzata solo su richiesta esplicita di un amministratore aziendale verificato!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Questa funzionalità consente ad AxCrypt di recuperare i file criptati dai membri di questa azienda. Dovrebbe essere applicata solo su esplicita richiesta dell'azienda!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>Backup di Ripristino AxCrypt</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>Consenti agli amministratori aziendali di recuperare i file persi</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Se la Master key è disabilitata, gli amministratori aziendali non saranno in grado di aprire i file criptati dai loro membri aziendali.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>La funzionalità Master key consente agli amministratori aziendali di aprire file criptati dai membri dell'azienda. Nota, il membro deve innanzitutto approvare la Master key prima che venga applicata ai propri file. Puoi vedere chi ha approvato la Master key nella tabella degli utenti. Per ulteriori informazioni, clicca &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;qui&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>I file che sono stati criptati &lt;b&gt;prima&lt;/b&gt; di abilitare la Master key non potranno essere aperti senza le credenziali di criptaggio originali.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>La Master key è abilitata. Ciò significa che i tuoi amministratori aziendali possono recuperare i tuoi file criptati.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>I file criptati prima di questo non potranno essere recuperati tramite la Master key. Se sai che ci sono file per i quali è necessario applicare la Master key, informa l'utente di interrompere la protezione dei file e poi comincia a proteggerli di nuovo. In questo modo i file verranno nuovamente criptati, includendo la Master key.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>A questo file è stata applicata una Master key. Poiché non fai parte della stessa azienda, la Master key verrà rimossa da questo file.
+</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Master Key</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Errore interno, argomento della funzione non valido in %4</value>
@@ -3124,6 +3303,9 @@ Puoi sempre aprire file criptati con una versione desktop gratuita di AxCrypt.</
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Quando scade il periodo di prova, continuerai automaticamente ad utilizzare AxCrypt Free a meno che tu non scelga di acquistare un abbonamento.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>Aggiornando il tuo account, ottieni l'accesso a molte fantastiche funzionalità.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Errore</value>
@@ -3407,6 +3589,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Password</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>Di recente la password del tuo account AxCrypt è stata cambiata, quindi dovrai accedere di nuovo per sincronizzare le informazioni del tuo account AxCrypt.</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>La password non è abbastanza sicura per essere accettabile.</value>
   </data>
@@ -3512,6 +3697,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Ulteriori informazioni su PayPal]</value>
+  </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>In attesa</value>
   </data>
   <data name="PerMonthLabel">
     <value>Al mese</value>
@@ -3676,6 +3864,12 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/anno</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Tutte le funzionalità della versione Free e:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Tutte le funzionalità della versione Premium e:</value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Backup della Chiave dell'Account</value>
   </data>
@@ -3689,7 +3883,10 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>Nomi di File Anonimi</value>
   </data>
   <data name="PricingFeatureListBusinessAdmin">
-    <value>Business Admin</value>
+    <value>Amministratore Aziendale</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Supporto Aziendale Prioritario</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Cifratura dei File nel Cloud</value>
@@ -3723,6 +3920,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   </data>
   <data name="PricingFeatureListPasswordManagement">
     <value>Gestione Password</value>
+  </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Utilizzo Professionale</value>
   </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>Cartelle Protette</value>
@@ -4217,6 +4417,9 @@ Oggetto: Rapporto Istantaneo AxCrypt </value>
   <data name="ReportSnapshotOpenMenuItem" xml:space="preserve">
     <value>Aprire il rapporto istantaneo degli errori</value>
   </data>
+  <data name="ReqruitmentLabel">
+    <value>Reclutamento</value>
+  </data>
   <data name="RequirementsLinkLabel">
     <value>Requisiti</value>
   </data>
@@ -4705,6 +4908,9 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   </data>
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>Risparmia {0}%</value>
+  </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Il tuo abbonamento è scaduto dal &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Il tuo abbonamento scadrà il &lt;b&gt;{0}&lt;/b&gt;.</value>
@@ -5224,6 +5430,9 @@ Il Team di AxCrypt</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Ottieni Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>Fai l'upgrade ad una migliore crittografia!</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Nomi di file anonimi</value>
