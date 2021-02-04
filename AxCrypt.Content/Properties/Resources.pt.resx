@@ -197,6 +197,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>Teste de AxCrypt Premium</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Acção</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>O e-mail ou código de ativação fornecido está incorreto.</value>
   </data>
@@ -289,6 +292,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
     <value>Selecione uma pasta para mantê-la protegida com o AxCrypt. Arquivos existentes serão criptografados agora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>Compreendo que isto não dará acesso aos meus ficheiros cifrados.</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Já está registrado? Faça log in aqui</value>
     <comment>Link to sign in page.</comment>
@@ -338,6 +344,12 @@ Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.</valu
   <data name="ApplyNowLabel">
     <value>Candidate-se já</value>
   </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>A chave-mestra não pode ser activada enquanto você for parte de mais do que uma empresa. Por favor, deixe outras empresas de que for parte antes de activar a chave-mestra.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Aprovar Chave-Mestra</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Por razões de segurança, por favor introduza sua senha novamente.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -353,6 +365,9 @@ Actualizações à subscrição serão reflectidas aqui dentro de alguns minutos
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>A página que você tentou visitar necessita autentificação. Por favor, faça login para continuar.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Renomeação Anónima Automática</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>Você não precisa responder ou fazer qualquer coisa. Se não fizer nada, não receberá mais e-mails e sua conta ID AxCrypt será deletada permanentemente.</value>
@@ -564,6 +579,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="BruteForceResistantText">
     <value>Contramedida de força bruta dinâmica - empacotamento iterativo de palavra-passe, tornando os ataques ainda mais difíceis.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Aceitar Convite</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -577,6 +595,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Bem vindo ao AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>Foi convidada(o) para a AxCrypt por {0}. Esta empresa tem a funcionalidade chave-mestra activa, o que quer dizer que os ficheiros que cifrar poderão, por razões de segurança, ser recuperados por administradores. Esta funcionalidade não está activa por omissão! Terá de aprovar a funcionalidade através da página &lt;a href='" + {1} + "'&gt;O Meu AxCrypt ID&lt;/a&gt;.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administradores</value>
@@ -645,6 +666,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" com servidores na Suécia</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>A chave-mestra permite aos administradores recuperar ficheiros perdidos</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>Sem necessidade de conhecimentos de cifragem</value>
   </data>
@@ -679,6 +703,9 @@ Está avisada(o), agora desfrute!</value>
     <value>&lt;p&gt;Você foi adicionado como utilizador do AxCrypt File Security por &lt;b&gt;{0}&lt;/b&gt;. Para começar a proteger os seus ficheiros &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;baixe&lt;/a&gt; simplesmente e instale o AxCrypt. Registre-se ao AxCrypt com &lt;b&gt;{2}&lt;/b&gt;, introduza o código de verificação em baixo e configure a sua senha pessoal.&lt;/p&gt; 
 &lt;p&gt;Se tiver dúvidas, entre primeiro em contato connosco {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>Foi convidada(o) por &lt;b&gt;{0}&lt;/b&gt;. Note que esta empresa tem a funcionalidade &lt;i&gt;chave-mestra&lt;/i&gt; activa. Isto quer dizer que os ficheiros que cifrar poderão, por razões de segurança, ser recuperados por administradores. Ao aceitar este convite, será adicionada(o) à empresa e a chave-mestra será aplicada aos seus ficheiros. Se não quiser fazer parte desta empresa, por favor, ignore este email e &lt;a href='{1}'&gt;adira&lt;/a&gt;.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -809,6 +836,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="BusinessSubscriptionNotAdministratorText" xml:space="preserve">
     <value>Você não é administrador para nenhuma das subscrições.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
+  </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Organização</value>
   </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Nome da organização</value>
@@ -1154,6 +1184,9 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Fazer isso para todos os arquivos restantes?</value>
   </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>Se tiver alguma questão, por favor, contacte primeiro {0}.</value>
+  </data>
   <data name="ContactHeading">
     <value>Contacto</value>
   </data>
@@ -1306,6 +1339,9 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>Erro interno, o AxCrypt ID não pôde ser removido, porque o utilizador actual não foi encontrado.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>Tentou apagar o seu AxCrypt ID. Para completar o processo, deve verificar o seu endereço de email, provando assim que detém o email e dando-nos permissão para apagar permanentemente o seu AxCrypt ID do sistema. &lt;span class="red"&gt;Toda a informação associada ao seu AxCrypt ID, incluindo palavras-passe guardadas, será apagada também.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>Seu ID AxCrypt foi deletado com sucesso.
 
@@ -1389,6 +1425,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Desativar</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Desactivar Chave-Mestra</value>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Este email automático é traduzido para o seu idioma de preferência, porém o serviço pessoal direto e suporte são em Inglês.</value>
@@ -1523,6 +1562,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Sem descrição]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Activar Chave-Mestra</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Pastas protegidas</value>
@@ -2635,6 +2677,9 @@ Número de IVA da EU SE556967618101</value>
     <value>Italiano (italiano)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>Compreendo</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript parece estar desabilitado no seu navegador. A menos que habilite JavaScript, você não poderá logar e o site poderá não funcionar como desejado.</value>
   </data>
@@ -2676,6 +2721,9 @@ Por favor especifique o idioma a ser usado no convite e uma mensagem pessoal opc
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>Novos contatos só podem ser adicionados quando estiverem online!</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>No plano Free, ao actualizar-se um ficheiro com chave partilhada, a informação de partilha de chaves será apagada. Isto quer dizer que o ficheiro não poderá ser aberto pelo utilizador que o partilhou.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Clique para selecionar os arquivos criptografados para compartilhar com outros.</value>
@@ -2733,6 +2781,24 @@ Por favor especifique o idioma a ser usado no convite e uma mensagem pessoal opc
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Detectamos softwares potencialmente incompatíveis que podem causar o mal funcionamento do AxCrypt e de outros programas. Esse software se chama Lavasot Web Companion. Se o AxCrypt não funcionar corretamente, tente desinstalar o Lavasot.</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>Tem a certeza de que quer deixar a empresa?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Deixar Empresa</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>O utilizador não pode deixar a empresa, porque é o único administrador. Para o fazer, por favor, nomeie outro administrador.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>Foi removida(o) com sucesso da empresa.</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Informação Empresarial</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Deixar</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Após os ficheiros terem sido convertidos, eles só serão abertos com a senha do AxCrypt atual. Verifique a sua senha.
@@ -2912,6 +2978,112 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>A propriedade de gestão de sítio foi actualizada com sucesso.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>Se aprovada, a Chave-Mestra será aplicada a ficheiros cifrados e possibilitará a recuperação por administradores da empresa. Se quiser deixar de ter a Chave-Mestra aplicada, pode deixar a empresa a qualquer momento (isto é feito na sua página O Meu AxCrypt ID).</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Chave-mestra aprovada</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Introdução à chave-mestra</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>A chave-mestra é uma funcionalidade que permite que administradores recuperem ficheiros de membros da empresa.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Imagine um documento financeiro importante cifrado depois da criação do relatório anual de receitas. No ano seguinte, entra uma nova equipa financeira que, pela altura do relatório anual, percebe que o documento financeiro que a equipa anterior usou está cifrado com credenciais a que ninguém tem acesso.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>Chave-Mestra! Com a Chave-Mestra activa, os administradores podem sempre recuperar qualquer ficheiro cifrado por membros da empresa. No caso acima, a nova equipa financeira tem apenas de contactar o seu administrador e o documento financeiro pode ser facilmente recuperado, mesmo que o utilizador original tenha deixado a empresa.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>Enquanto que a empresa tiver um ou um par de administradores que mantenham as suas credenciais, não haverá ficheiros perdidos por haver trabalhadores que se esqueçam das suas palavras-passe ou por saírem da empresa.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Chave-mestra e segurança</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>Ao activar a chave-mestra, os administradores podem recuperar qualquer documento cifrado pelos seus membros. Tal como mencionado, isto elimina o risco de perda de acesso a ficheiros críticos. Mas é seguro?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>Em termos de segurança, pode ver a Chave-Mestra como partilha automática de ficheiros com administradores. Os administradores poderão recuperar automaticamente ficheiros que tenham a chave-mestra aplicada. Isto não é menos seguro que a funcionalidade de Partilha de Chaves da AxCrypt.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Claro que os administradores devem ser extra-cautelosos, escolher boas palavras-passe e manter sempre as suas contas seguras.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Activar a chave-mestra</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>A chave-mestra pode ser activada através da &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;página de gestão de subscrição&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Depois de activar a Chave-Mestra, todos os membros da empresa terão de aprovar a alteração. Esta é uma consideração de segurança importante: um utilizador nunca deverá sentir que esta funcionalidade lhe foi escondida. A tabela de utilizadores mostra quem aceitou a funcionalidade Chave-Mestra.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Se um utilizador não tiver aceitado a Chave-Mestra, esta não será aplicada a ficheiros que cifre. Tenha a certeza de que toda a gente na sua empresa aceita a funcionalidade.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>Nota! Os ficheiros cifrados antes da activação da Chave-Mestra não poderão obviamente ser recuperados. Ficheiros antigos terão de ser re-cifrados depois do utilizador aceitar a chave-mestra.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>Para novas empresas ou novos membros de empresas existentes, a Chave-Mestra será aprovada automaticamente sempre que um membro se juntar à empresa.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Usar a Chave-Mestra</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Uma vez activada, a Chave-Mestra será aplicada automaticamente a todos os ficheiros cifrados por membros da empresa. Pode ver se a Chave-Mestra foi aplicada através do ícone Chave-Mestra.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Se um ficheiro tiver este ícone, qualquer administrador poderá recuperá-lo.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>É só isso! Como pode ver, a Chave-Mestra é muito fácil de usar e nada que os membros da sua empresa tenham de considerar ou em que tenham de despender tempo.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Por favor, note que, apesar dos administradores poderem recuperar ficheiros com a Chave-Mestra, tal não deve ser uso comum. Se se desejar que um ficheiro seja aberto por um administrador, então deve-se partilhar a chave com o administrador, tal como se faz com qualquer outro utilizador.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>Precisa de mais ajuda?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>O nosso suporte empresarial prioritário está sempre pronto a ajudar com quaisquer questões ou preocupações. Use o formulário na página da sua conta ou envie-nos um email para &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; que nós ajudaremos!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Use a caixa de verificação abaixo para permitir à AxCrypt ajudar a recuperar ficheiros caso os administradores se esqueçam das suas palavras-passe. &lt;b&gt;Isto deve ser apenas usado perante pedido explícito de um administrador verificado!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Esta funcionalidade possibilita à AxCrypt a recuperação de ficheiros cifrados por membros desta empresa. Deve apenas ser usada através de pedido explícito da empresa!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>Cópia de Segurança de Recuperação AxCrypt</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>Permitir que administradores recuperem ficheiros perdidos</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Se a Chave-Mestra estiver desactivada, os administradores não poderão abrir ficheiros cifrados por membros da empresa.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>A chave-mestra permite aos administradores abrir ficheiros cifrados por membros da empresa. Note que os membros devem aprovar a chave-mestra antes de a aplicarem aos seus ficheiros. Pode ver quem aprovou a chave-mestra na tabela de utilizadores. Para mais informação, clique &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;aqui&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Ficheiros cifrados &lt;b&gt;antes&lt;/b&gt; da activação da chave-mestra não poderão ser abertos sem as credenciais de cifragem originais.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>A chave-mestra está activa. Isto quer dizer que os administradores podem recuperar os seus ficheiros seguros.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Ficheiros cifrados anteriormente não poderão ser recuperados com a chave-mestra. Se souber de ficheiros a que é necessário aplicar a chave-mestra, por favor, informe o utilizador para parar de os proteger e, se seguida, voltar a protegê-los. Isto re-cifrará os ficheiros, incluindo a chave-mestra.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>Este ficheiro está associado a uma chave-mestra. Uma vez que você não é parte da mesma empresa, a chave-mestra será apagada deste ficheiro.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Chave-Mestra</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Erro interno, argumento de função inválido em %4</value>
@@ -3097,6 +3269,9 @@ Você pode sempre abrir ficheiros encriptados com uma versão de secretária gra
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Quando o período experimental terminar, você irá continuar automaticamente com o AxCrypt Free a menos que escolha comprar uma subscrição.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>Ao actualizar a sua conta, terá acesso a muitas e excelentes funcionalidades.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Erro</value>
@@ -3380,6 +3555,9 @@ Para retornar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;</val
     <value>Senhas</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>A palavra-passe da sua conta AxCrypt foi recentemente alterada. Precisará de se autenticar novamente para que a informação da sua conta AxCrypt seja sincronizada.</value>
+  </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>A senha não é suficientemente boa para ser aceitável.</value>
   </data>
@@ -3485,6 +3663,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   </data>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Mais informações sobre o PayPal]</value>
+  </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>Pendente</value>
   </data>
   <data name="PerMonthLabel">
     <value>Por mês</value>
@@ -3649,6 +3830,12 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/ano</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Igual ao plano Free mais:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Igual ao plano Premium mais:</value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Cópia de Segurança de Chaves de Conta</value>
   </data>
@@ -3663,6 +3850,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>Administrador Business</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Apoio Empresarial Prioritário</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Detecção de Armazenamento na Nuvem</value>
@@ -3696,6 +3886,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   </data>
   <data name="PricingFeatureListPasswordManagement">
     <value>Gestão de Palavras-passe</value>
+  </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Uso Profissional</value>
   </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>Pastas Seguras</value>
@@ -5186,6 +5379,9 @@ A equipe AxCrypt</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Seja Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>Actualize para uma cifragem melhor!</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Nomes anónimos de ficheiros</value>

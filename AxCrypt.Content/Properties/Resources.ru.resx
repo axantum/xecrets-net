@@ -2779,7 +2779,7 @@ SE-114 29 Стокгольм
     <comment>Menus and similar to link back to main site.</comment>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}Домой/Логин?покупка=настоящая&amp;почта={1}&amp;tag={2}</value>
+    <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/форумы/</value>
@@ -2906,6 +2906,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Управление сайтом было успешно обновлено.</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>При включении мастер-ключа, бизнес-администраторы могут восстановить любой документ, зашифрованный  участниками подписки. Это, как уже упоминалось, исключает риск потери доступа к критически важным файлам. Но безопасно ли это?</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Внутренняя ошибка, недопустимый аргумент функции в %4</value>

@@ -2783,7 +2783,7 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <comment>Menus and similar to link back to main site.</comment>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}Startseite/Login?Kauf=true&amp;email={1}&amp;tag={2}</value>
+    <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
