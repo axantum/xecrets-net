@@ -344,6 +344,9 @@ Please sign in using the same password you used then.</value>
   <data name="ApplyNowLabel" xml:space="preserve">
     <value>Apply now</value>
   </data>
+  <data name="AppNotWorkExpectedText" xml:space="preserve">
+    <value>The apps or services didn't work as expected</value>
+  </data>
   <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
     <value>Master key can't be enabled while being part of more than one business. Please leave any other businesses you're part of before enabling master key.</value>
   </data>
@@ -1110,6 +1113,9 @@ You must complete these steps to complete the process.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Your password has been changed.</value>
   </data>
+  <data name="ChangePlanText" xml:space="preserve">
+    <value>I'm looking to change my plan</value>
+  </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>Check for Update</value>
   </data>
@@ -1442,6 +1448,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DoneTitle" xml:space="preserve">
     <value>Done!</value>
   </data>
+  <data name="DontLikeRecurringFlowText" xml:space="preserve">
+    <value>I don't like recurring subscriptions</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Don't show this again.</value>
   </data>
@@ -1455,7 +1464,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt for macOS</value>
   </data>
   <data name="DownloadHeroHeadingWindows" xml:space="preserve">
-    <value>AxCrypt for Windows</value>
+    <value>AxCrypt installer for Windows</value>
+  </data>
+  <data name="DownloadHeroHeadingWindowsPortable" xml:space="preserve">
+    <value>AxCrypt standalone/portable for Windows</value>
   </data>
   <data name="DownloadHeroListDoubleClick" xml:space="preserve">
     <value>Double-click integration makes it as easy to open, edit and save secured files as it is to work with files without security.</value>
@@ -1488,7 +1500,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not.</value>
   </data>
   <data name="DownloadInformationListOfficialDownload" xml:space="preserve">
-    <value>This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href="/information/cryptographic-hashes-files"&gt;here&lt;/a&gt;.</value>
+    <value>This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href="/information/cryptographic-hashes-of-files"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="DownloadInformationSubheading" xml:space="preserve">
     <value>Please read the &lt;a href='/information/release-notes'&gt;release notes&lt;/a&gt; to see what's the current version.</value>
@@ -2454,7 +2466,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>"Advanced encryption in a superbly simple setting"</value>
   </data>
   <data name="HomeHeroSubheading" xml:space="preserve">
-    <value>PCMag Editors´ Choice 2020</value>
+    <value>PCMag Editors' Choice 2021</value>
   </data>
   <data name="HomeHeroUnderSubheading" xml:space="preserve">
     <value>over 20 million downloads worldwide</value>
@@ -2537,6 +2549,9 @@ If you want to view or update the file contents, please decrypt it separately, a
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Select Sharing Key Files</value>
+  </data>
+  <data name="ImproveOurServiceCommentText" xml:space="preserve">
+    <value>What would you recommend us for improving our service?</value>
   </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
     <value>You are about to enable a dangerous option. If you are not careful, you may affect more data than you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?</value>
@@ -3078,7 +3093,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href="https://axcrypt.net/support/master-key"&gt;here&lt;/a&gt;.</value>
+    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.</value>
@@ -3355,6 +3370,9 @@ You can always open encrypted files with a free desktop version of  AxCrypt.</va
     <value>Click to enter the name of a key file. Only use if you know you used a key file when securing this file with the previous version of AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MoreTechnicalIssueText" xml:space="preserve">
+    <value>I'm having too many technical issues</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>My AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3370,6 +3388,9 @@ You can always open encrypted files with a free desktop version of  AxCrypt.</va
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="NeedProductForProjectText" xml:space="preserve">
+    <value>I needed the product for a project I've since completed</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Create a New Password</value>
@@ -3432,6 +3453,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
 Your request has been logged. Please try again with the correct path, or &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; a broken link.
 
 To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
+  </data>
+  <data name="NotUsingProductText" xml:space="preserve">
+    <value>I am not using the product often enough</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>This may take a few minutes. Please be patient.</value>
@@ -3510,6 +3534,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OrgNumberLabel" xml:space="preserve">
     <value>Org. number</value>
+  </data>
+  <data name="OtherDetailsText" xml:space="preserve">
+    <value>If other, please give details</value>
   </data>
   <data name="OtherPlatformsLabel" xml:space="preserve">
     <value>Other platforms</value>
@@ -3695,6 +3722,15 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Polski (Polish)</value>
+  </data>
+  <data name="PortableLinkLabel" xml:space="preserve">
+    <value>For Windows 32 and 64 bit</value>
+  </data>
+  <data name="PortableVersionInfo" xml:space="preserve">
+    <value>The lightweight, standalone version of AxCrypt does not comes with some additional features (e.g. context menu integration) compared to the installer version.</value>
+  </data>
+  <data name="PortableVersionInstallationNotRequiredText" xml:space="preserve">
+    <value>The standalone version of AxCrypt is directly executable - no installation required.</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
@@ -3915,8 +3951,61 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PricingSubheading" xml:space="preserve">
     <value>How do you want to pay?</value>
   </data>
+  <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
+    <value>What are the primary reasons for the cancelation?</value>
+  </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Priority Support</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Heading" xml:space="preserve">
+    <value>Sharing information</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Text1" xml:space="preserve">
+    <value>We may share your information:
+With the public if you submit content to one of our forums, such as blog comments, social media posting, or other features of our services that are publicly visible; with third parties such as other sites that integrate with our API or our Services; or those with an API or service that we integrate with; Any necessary third party engaged by us, including data processors, vendors, consultants, marketing partners, and other service providers who need access to such information to perform work on our behalf; In response to an information request by a competent authority if we believe disclosure is under or otherwise required by applicable law, regulation, license or legal process; if we otherwise notify you and you consent to the sharing; and in an aggregate and / or anonymous form which cannot be reasonably expected to be used to identify you.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Heading" xml:space="preserve">
+    <value>Social Media</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>Google/YouTube:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>Twitter:&lt;a href='https://twitter.com/en/privacy'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>Instagram:&lt;a href='http://instagram.com/about/legal/privacy/'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>LinkedIn:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>Facebook:&lt;a href='https://www.facebook.com/privacy/explanation'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text1" xml:space="preserve">
+    <value>In addition to this website, we maintain social media sites on Twitter, Facebook, Instagram, YouTube and LinkedIn. If you visit one of these presences, personal data may be transmitted to the provider of the social network. We draw your attention to the fact that user data may be transferred to a server in a third-party country and may therefore be processed outside the European Union.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text2" xml:space="preserve">
+    <value>In addition to the storage of the specific data you have entered in this social medium, further information may also be processed by the provider of the social network. If you are logged into the network with your personal user account while visiting the corresponding website, this network can assign the visit to this account. The purpose and scope of the data collection by the respective medium and the further processing of your data there, as well as your rights in this regard, can be found in the respective provisions of the respective person responsible, e.g. below:</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Heading" xml:space="preserve">
+    <value>Transfer of data to third parties</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text1" xml:space="preserve">
+    <value>Customer Relationship Management (CRM) - Hubspot
+HubSpot is an integrated software solution with which we cover various aspects of our online marketing activities, among contact management via the CRM system. The legal basis for the use of the services of HubSpot is our rightful interest according to art. 6 I f GDPR due to the optimization of our marketing measures and the improvement of our service quality on the website.</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text2" xml:space="preserve">
+    <value>HubSpot meets the minimum requirements for legally compliant order data processing by concluding the European standard data protection clause. In addition, there is a Data Processing Agreement (DPA) with HubSpot. This ensures that HubSpot uses the user’s data only within the framework of EU data protection standards and does not pass them on to third parties. For more information, please refer to HubSpot’s data &lt;a href='https://legal.hubspot.com/privacy-policy'&gt;privacy policy.&lt;/a&gt; </value>
+  </data>
+  <data name="PrivacyPolicyBlock13Heading" xml:space="preserve">
+    <value>Changes to the Privacy Policy</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Heading" xml:space="preserve">
+    <value>Governing law and venue</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Text1" xml:space="preserve">
+    <value>This privacy statement is governed by Swedish law. Venue is Stockholm District Court.</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1" xml:space="preserve">
     <value>Your email address.</value>
@@ -3991,7 +4080,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>We also use the information logged to trace the events of usage when we receive and work with support requests. It has proven to be very helpful for us and improves the quality of support by for example seeing when last a successful sign in was made.</value>
   </data>
   <data name="PrivacyPolicyBlock3Text4" xml:space="preserve">
-    <value>Our privacy policy may be updated from time to time without prior notice. Please check here for the currently valid policy.</value>
+    <value>Our privacy policy may be updated from time to time without prior notice. Please check here for the currently valid policy. If you do not accept the new changes, we may not be able to provide you with the services you request.</value>
   </data>
   <data name="PrivacyPolicyBlock4Heading" xml:space="preserve">
     <value>Contact</value>
@@ -4002,11 +4091,44 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PrivacyPolicyBlock4Text2" xml:space="preserve">
     <value>If you are a Business users, and do not want to be included in our CRM system, please contact us at &lt;a href='mailto:business@axcrypt.net.'&gt;business@axcrypt.net&lt;/a&gt;</value>
   </data>
+  <data name="PrivacyPolicyBlock5Heading" xml:space="preserve">
+    <value>Page and service functionality</value>
+  </data>
+  <data name="PrivacyPolicyBlock5Text1" xml:space="preserve">
+    <value>Cookies are used in the operation and presentation of data from websites. Such cookies may include language code information for the language selected by the user. It can be cookies with information that supports the load balancing of the system so that all users are guaranteed the best possible experience. For services that require login or search, cookies can be used that ensure that the service presents data to the right recipient.</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Heading" xml:space="preserve">
+    <value>Web analytics and cookies</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Text1" xml:space="preserve">
+    <value>As an important part of the work of creating a user-friendly website, we look at the user pattern of those who visit the site. We analyze user behaviour to make the user experience better. The purpose of using cookies is therefore to improve the customer experience. To analyze the information, we use the analysis tool Google Analytics. Google Analytics uses cookies/cookies (small text files that the site stores on the user's computer), which records the user's IP address, and provides information about each user's online movement. Examples of what the statistics give us answers to are; how many people visit different pages, how long the visit lasts, which sites the users come from and which browsers are used. None of the cookies allows us to associate information about your use of the site with you as an individual. Cookie data is automatically deleted 14 months after registration. You can do it yourself and manage the use of cookies by adjusting settings on your browser. The information collected by Google Analytics is stored on Google's servers in the United States. Information received is subject to Google guidelines for Privacy. An IP address is defined as personal information because it can be traced back to a particular hardware and thus to an individual. We anonymize the user's IP address before the information is stored and processed by Google. Thus, the anonymized IP address cannot be used to identify the individual user. Your IP address is also logged for a short period by our web servers. The user's IP-address, time of day, website address, HTTP status, number of bytes sent, HTTP referrer and HTTP user agent is logged for 15 days. Beyond this point, the data is deleted.</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Heading" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Text1" xml:space="preserve">
+    <value>We store information about which keywords users use on our sites through Google Analytics. The purpose of the storage is to make our information offer better. The usage pattern for search is stored in aggregate form. Only the keyword is stored, and they cannot be linked to other user information such as IP addresses.</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
+    <value>Forum / Share/tips-service</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Text1" xml:space="preserve">
+    <value>The "Share with others'' features is voluntary and can be used to forward links to the site by email, or to share the content of social networking sites such as Facebook or Twitter. Information about tips is not logged with us but is only used there and then to post the tip of the social networking site. However, we cannot guarantee that the online community will not log this information. All such services should, therefore, be used wisely. You may contact the relevant service provider or online community to receive information about its collection, use, processing, and personal data protection. If you use the email feature, we only use the e-mail addresses given to forward the message without any form of storage.</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Heading" xml:space="preserve">
+    <value>Newsletter</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Text1" xml:space="preserve">
+    <value>When you sign up with us, you do agree that we may send you occasional emails such as newsletters, offers and information about new and updated products and services from us. In order for us to be able to send an email, you must register an email address. The legal basis for processing for this purpose is consent, cf. GDPR Article 6, paragraph 1, letter a. This information is not shared with other businesses and is deleted when we are told that you no longer wish to receive information from us. You can opt-out, i.e. unsubscribe, at any time by clicking the link provided for this in such emails. HubSpot is our data processor for the newsletter.</value>
+  </data>
   <data name="PrivacyPolicyDescription" xml:space="preserve">
     <value>We respect your privacy – that is one of the main reasons why we make AxCrypt. We also believe that you, as one of our users, are more concerned about this than the average computer user.</value>
   </data>
   <data name="PrivacyPolicyLinkLabel" xml:space="preserve">
     <value>Privacy policy</value>
+  </data>
+  <data name="ProductFeatureComplicatedText" xml:space="preserve">
+    <value>Product and features are too complicated for me</value>
   </data>
   <data name="ProductTryItForFreeAndMuch" xml:space="preserve">
     <value>And much more...</value>
@@ -4462,7 +4584,7 @@ Subject: AxCrypt Report Snapshot</value>
     <value>Become an AxCrypt Reseller</value>
   </data>
   <data name="ResellerInfoText1" xml:space="preserve">
-    <value>AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017 and 2018.</value>
+    <value>AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017, 2018, 2019, 2020 and 2021.</value>
   </data>
   <data name="ResellerInfoText2" xml:space="preserve">
     <value>As a Reseller, you will be able to sell AxCrypt Business (currently not supporting reseller programs for AxCrypt Premium). For a small price, Business members get access to a lot more features and additional support, including; AES-256 bit encryption, Mobile Apps, File Sharing, Cloud Storage Awareness, Password Management, and the ability to manage accounts.</value>
@@ -5275,6 +5397,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} {1} - {2}</value>
   </data>
+  <data name="TooExpensiveText" xml:space="preserve">
+    <value>It's too  expensive</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>A paid subscription plan is required for password management. Click to upgrade now!</value>
   </data>
@@ -5284,6 +5409,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Click the AxCrypt icon to restore the application window.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialEndedText" xml:space="preserve">
+    <value>My free trial ended</value>
   </data>
   <data name="TrialOnlyForNewUsers" xml:space="preserve">
     <value>Free trial only applies to new users</value>
