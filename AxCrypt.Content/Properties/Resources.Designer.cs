@@ -682,6 +682,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The apps or services didn&apos;t work as expected.
+        /// </summary>
+        public static string AppNotWorkExpectedText {
+            get {
+                return ResourceManager.GetString("AppNotWorkExpectedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master key can&apos;t be enabled while being part of more than one business. Please leave any other businesses you&apos;re part of before enabling master key..
         /// </summary>
         public static string ApproveMasterKeyMoreThanOneBusinessError {
@@ -2756,6 +2765,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I&apos;m looking to change my plan.
+        /// </summary>
+        public static string ChangePlanText {
+            get {
+                return ResourceManager.GetString("ChangePlanText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for Update.
         /// </summary>
         public static string CheckForUpdateMenuText {
@@ -3716,6 +3734,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I don&apos;t like recurring subscriptions.
+        /// </summary>
+        public static string DontLikeRecurringFlowText {
+            get {
+                return ResourceManager.GetString("DontLikeRecurringFlowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t show this again..
         /// </summary>
         public static string DontShowAgainCheckBoxText {
@@ -3752,11 +3779,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt for Windows.
+        ///   Looks up a localized string similar to AxCrypt installer for Windows.
         /// </summary>
         public static string DownloadHeroHeadingWindows {
             get {
                 return ResourceManager.GetString("DownloadHeroHeadingWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt standalone/portable for Windows.
+        /// </summary>
+        public static string DownloadHeroHeadingWindowsPortable {
+            get {
+                return ResourceManager.GetString("DownloadHeroHeadingWindowsPortable", resourceCulture);
             }
         }
         
@@ -3851,7 +3887,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href=&quot;/information/cryptographic-hashes-files&quot;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to This is the only official download site for AxCrypt. Look up SHA256 hash &lt;a href=&quot;/information/cryptographic-hashes-of-files&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string DownloadInformationListOfficialDownload {
             get {
@@ -6670,7 +6706,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag Editors´ Choice 2020.
+        ///   Looks up a localized string similar to PCMag Editors&apos; Choice 2021.
         /// </summary>
         public static string HomeHeroSubheading {
             get {
@@ -6911,6 +6947,15 @@ namespace AxCrypt.Content.Properties {
         public static string ImportPublicKeysFileSelectionTitle {
             get {
                 return ResourceManager.GetString("ImportPublicKeysFileSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What would you recommend us for improving our service?.
+        /// </summary>
+        public static string ImproveOurServiceCommentText {
+            get {
+                return ResourceManager.GetString("ImproveOurServiceCommentText", resourceCulture);
             }
         }
         
@@ -8380,7 +8425,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href=&quot;https://axcrypt.net/support/master-key&quot;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href=&quot;https://axcrypt.net/support/master-key&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string MasterKeyHelpText1 {
             get {
@@ -9070,6 +9115,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I&apos;m having too many technical issues.
+        /// </summary>
+        public static string MoreTechnicalIssueText {
+            get {
+                return ResourceManager.GetString("MoreTechnicalIssueText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My AxCrypt.
         /// </summary>
         public static string MyAxCryptFolderName {
@@ -9111,6 +9165,15 @@ namespace AxCrypt.Content.Properties {
         public static string NavigationPaneHome {
             get {
                 return ResourceManager.GetString("NavigationPaneHome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I needed the product for a project I&apos;ve since completed.
+        /// </summary>
+        public static string NeedProductForProjectText {
+            get {
+                return ResourceManager.GetString("NeedProductForProjectText", resourceCulture);
             }
         }
         
@@ -9261,6 +9324,15 @@ namespace AxCrypt.Content.Properties {
         public static string NotFoundSafePageBody {
             get {
                 return ResourceManager.GetString("NotFoundSafePageBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am not using the product often enough.
+        /// </summary>
+        public static string NotUsingProductText {
+            get {
+                return ResourceManager.GetString("NotUsingProductText", resourceCulture);
             }
         }
         
@@ -9486,6 +9558,15 @@ namespace AxCrypt.Content.Properties {
         public static string OrgNumberLabel {
             get {
                 return ResourceManager.GetString("OrgNumberLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If other, please give details.
+        /// </summary>
+        public static string OtherDetailsText {
+            get {
+                return ResourceManager.GetString("OtherDetailsText", resourceCulture);
             }
         }
         
@@ -9959,6 +10040,33 @@ namespace AxCrypt.Content.Properties {
         public static string PolishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("PolishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For Windows 32 and 64 bit.
+        /// </summary>
+        public static string PortableLinkLabel {
+            get {
+                return ResourceManager.GetString("PortableLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The lightweight, standalone version of AxCrypt does not comes with some additional features (e.g. context menu integration) compared to the installer version..
+        /// </summary>
+        public static string PortableVersionInfo {
+            get {
+                return ResourceManager.GetString("PortableVersionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The standalone version of AxCrypt is directly executable - no installation required..
+        /// </summary>
+        public static string PortableVersionInstallationNotRequiredText {
+            get {
+                return ResourceManager.GetString("PortableVersionInstallationNotRequiredText", resourceCulture);
             }
         }
         
@@ -10593,11 +10701,166 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What are the primary reasons for the cancelation?.
+        /// </summary>
+        public static string PrimaryReasonForCancelationLabelText {
+            get {
+                return ResourceManager.GetString("PrimaryReasonForCancelationLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Priority Support.
         /// </summary>
         public static string PrioritySupportTitle {
             get {
                 return ResourceManager.GetString("PrioritySupportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sharing information.
+        /// </summary>
+        public static string PrivacyPolicyBlock10Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock10Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We may share your information:
+        ///With the public if you submit content to one of our forums, such as blog comments, social media posting, or other features of our services that are publicly visible; with third parties such as other sites that integrate with our API or our Services; or those with an API or service that we integrate with; Any necessary third party engaged by us, including data processors, vendors, consultants, marketing partners, and other service providers who need access to such information  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyBlock10Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock10Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Social Media.
+        /// </summary>
+        public static string PrivacyPolicyBlock11Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Google/YouTube:&lt;a href=&apos;https://policies.google.com/privacy?hl=en&apos;&gt;Privacy statement&lt;/a&gt;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11ListItem1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twitter:&lt;a href=&apos;https://twitter.com/en/privacy&apos;&gt;Privacy statement&lt;/a&gt;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11ListItem2 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11ListItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instagram:&lt;a href=&apos;http://instagram.com/about/legal/privacy/&apos;&gt;Privacy statement&lt;/a&gt;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11ListItem3 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11ListItem3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LinkedIn:&lt;a href=&apos;https://www.linkedin.com/legal/privacy-policy&apos;&gt;Privacy statement&lt;/a&gt;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11ListItem4 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11ListItem4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facebook:&lt;a href=&apos;https://www.facebook.com/privacy/explanation&apos;&gt;Privacy statement&lt;/a&gt;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11ListItem5 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11ListItem5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In addition to this website, we maintain social media sites on Twitter, Facebook, Instagram, YouTube and LinkedIn. If you visit one of these presences, personal data may be transmitted to the provider of the social network. We draw your attention to the fact that user data may be transferred to a server in a third-party country and may therefore be processed outside the European Union..
+        /// </summary>
+        public static string PrivacyPolicyBlock11Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In addition to the storage of the specific data you have entered in this social medium, further information may also be processed by the provider of the social network. If you are logged into the network with your personal user account while visiting the corresponding website, this network can assign the visit to this account. The purpose and scope of the data collection by the respective medium and the further processing of your data there, as well as your rights in this regard, can be found in the respect [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyBlock11Text2 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock11Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer of data to third parties.
+        /// </summary>
+        public static string PrivacyPolicyBlock12Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock12Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Relationship Management (CRM) - Hubspot
+        ///HubSpot is an integrated software solution with which we cover various aspects of our online marketing activities, among contact management via the CRM system. The legal basis for the use of the services of HubSpot is our rightful interest according to art. 6 I f GDPR due to the optimization of our marketing measures and the improvement of our service quality on the website..
+        /// </summary>
+        public static string PrivacyPolicyBlock12Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock12Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HubSpot meets the minimum requirements for legally compliant order data processing by concluding the European standard data protection clause. In addition, there is a Data Processing Agreement (DPA) with HubSpot. This ensures that HubSpot uses the user’s data only within the framework of EU data protection standards and does not pass them on to third parties. For more information, please refer to HubSpot’s data &lt;a href=&apos;https://legal.hubspot.com/privacy-policy&apos;&gt;privacy policy.&lt;/a&gt; .
+        /// </summary>
+        public static string PrivacyPolicyBlock12Text2 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock12Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes to the Privacy Policy.
+        /// </summary>
+        public static string PrivacyPolicyBlock13Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock13Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Governing law and venue.
+        /// </summary>
+        public static string PrivacyPolicyBlock14Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock14Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This privacy statement is governed by Swedish law. Venue is Stockholm District Court..
+        /// </summary>
+        public static string PrivacyPolicyBlock14Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock14Text1", resourceCulture);
             }
         }
         
@@ -10818,7 +11081,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our privacy policy may be updated from time to time without prior notice. Please check here for the currently valid policy..
+        ///   Looks up a localized string similar to Our privacy policy may be updated from time to time without prior notice. Please check here for the currently valid policy. If you do not accept the new changes, we may not be able to provide you with the services you request..
         /// </summary>
         public static string PrivacyPolicyBlock3Text4 {
             get {
@@ -10854,6 +11117,96 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page and service functionality.
+        /// </summary>
+        public static string PrivacyPolicyBlock5Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock5Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookies are used in the operation and presentation of data from websites. Such cookies may include language code information for the language selected by the user. It can be cookies with information that supports the load balancing of the system so that all users are guaranteed the best possible experience. For services that require login or search, cookies can be used that ensure that the service presents data to the right recipient..
+        /// </summary>
+        public static string PrivacyPolicyBlock5Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web analytics and cookies.
+        /// </summary>
+        public static string PrivacyPolicyBlock6Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock6Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As an important part of the work of creating a user-friendly website, we look at the user pattern of those who visit the site. We analyze user behaviour to make the user experience better. The purpose of using cookies is therefore to improve the customer experience. To analyze the information, we use the analysis tool Google Analytics. Google Analytics uses cookies/cookies (small text files that the site stores on the user&apos;s computer), which records the user&apos;s IP address, and provides information about each [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyBlock6Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock6Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string PrivacyPolicyBlock7Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock7Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We store information about which keywords users use on our sites through Google Analytics. The purpose of the storage is to make our information offer better. The usage pattern for search is stored in aggregate form. Only the keyword is stored, and they cannot be linked to other user information such as IP addresses..
+        /// </summary>
+        public static string PrivacyPolicyBlock7Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock7Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forum / Share/tips-service.
+        /// </summary>
+        public static string PrivacyPolicyBlock8Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock8Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;Share with others&apos;&apos; features is voluntary and can be used to forward links to the site by email, or to share the content of social networking sites such as Facebook or Twitter. Information about tips is not logged with us but is only used there and then to post the tip of the social networking site. However, we cannot guarantee that the online community will not log this information. All such services should, therefore, be used wisely. You may contact the relevant service provider or online community t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyBlock8Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock8Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Newsletter.
+        /// </summary>
+        public static string PrivacyPolicyBlock9Heading {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock9Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you sign up with us, you do agree that we may send you occasional emails such as newsletters, offers and information about new and updated products and services from us. In order for us to be able to send an email, you must register an email address. The legal basis for processing for this purpose is consent, cf. GDPR Article 6, paragraph 1, letter a. This information is not shared with other businesses and is deleted when we are told that you no longer wish to receive information from us. You can opt- [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyBlock9Text1 {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyBlock9Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We respect your privacy – that is one of the main reasons why we make AxCrypt. We also believe that you, as one of our users, are more concerned about this than the average computer user..
         /// </summary>
         public static string PrivacyPolicyDescription {
@@ -10868,6 +11221,15 @@ namespace AxCrypt.Content.Properties {
         public static string PrivacyPolicyLinkLabel {
             get {
                 return ResourceManager.GetString("PrivacyPolicyLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product and features are too complicated for me.
+        /// </summary>
+        public static string ProductFeatureComplicatedText {
+            get {
+                return ResourceManager.GetString("ProductFeatureComplicatedText", resourceCulture);
             }
         }
         
@@ -12142,7 +12504,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017 and 2018..
+        ///   Looks up a localized string similar to AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017, 2018, 2019, 2020 and 2021..
         /// </summary>
         public static string ResellerInfoText1 {
             get {
@@ -14465,6 +14827,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s too  expensive.
+        /// </summary>
+        public static string TooExpensiveText {
+            get {
+                return ResourceManager.GetString("TooExpensiveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A paid subscription plan is required for password management. Click to upgrade now!.
         /// </summary>
         public static string ToolTipPremiumNeededForSecrets {
@@ -14488,6 +14859,15 @@ namespace AxCrypt.Content.Properties {
         public static string TrayBalloonTooltip {
             get {
                 return ResourceManager.GetString("TrayBalloonTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My free trial ended.
+        /// </summary>
+        public static string TrialEndedText {
+            get {
+                return ResourceManager.GetString("TrialEndedText", resourceCulture);
             }
         }
         
