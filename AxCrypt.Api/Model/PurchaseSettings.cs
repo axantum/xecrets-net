@@ -1,8 +1,8 @@
-using System;
-using System.Text;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AxCrypt.Api.Model
 {
@@ -124,5 +124,8 @@ namespace AxCrypt.Api.Model
 
             return string.Empty;
         }
+
+        [JsonProperty("appstore_sandbox_url")]
+        public string AppStoreSandboxUrl { get; set; }
     }
 }
