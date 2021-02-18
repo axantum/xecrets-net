@@ -4611,9 +4611,6 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>This will clear all settings. No data will be lost, but the configuration will be reset to installation defaults.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Reset</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Rename to original</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
@@ -5084,6 +5081,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Svenska (Swedish)</value>
+  </data>
+  <data name="SwitchUserButtonText" xml:space="preserve">
+    <value>Switch user</value>
   </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>The culture was successfully activated.</value>

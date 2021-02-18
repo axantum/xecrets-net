@@ -12585,15 +12585,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset.
-        /// </summary>
-        public static string ResetButtonText {
-            get {
-                return ResourceManager.GetString("ResetButtonText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rename to original.
         /// </summary>
         public static string RestoreAnonymousNamesMenuText {
@@ -13905,6 +13896,15 @@ namespace AxCrypt.Content.Properties {
         public static string SwedishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SwedishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch user.
+        /// </summary>
+        public static string SwitchUserButtonText {
+            get {
+                return ResourceManager.GetString("SwitchUserButtonText", resourceCulture);
             }
         }
         
