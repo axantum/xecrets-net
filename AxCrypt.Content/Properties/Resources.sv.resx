@@ -1148,6 +1148,9 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Listan med Senaste Filer är inaktiverad. Gå till Alternativ för att aktivera.</value>
   </data>
+  <data name="HomeHeroSubheading">
+    <value>PCMag Editors' Choice 2021</value>
+  </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuter</value>
     <comment>A menu text where the user selects after how many minutes of inactivity AxCrypt should automatically sign out. The '{0}' part is replaced by for example '5', '15' etc by the code before the text is shown to a user.</comment>

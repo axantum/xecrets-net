@@ -618,6 +618,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" z serwerami w Szwecji</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>Klucz główny umożliwia administratorom biznesowym odzyskanie utraconych plików</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>Nie jest wymagana znajomość szyfrowania</value>
   </data>
@@ -1058,6 +1061,9 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Sprawdź, czy jest dostępna nowsza wersji do pobrania. Wymaga dostępu do internetu.</value>
   </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (chiński)</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Aby rozpocząć korzystanie z konta, wybierz, czy zamierzasz używać AxCrypt głównie jako użytkownik prywatny czy firma.</value>
   </data>
@@ -1359,6 +1365,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="DisableIdleSignOutToolStripMenuItemText" xml:space="preserve">
     <value>Wyłącz</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
+  </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Wyłącz klucz główny</value>
   </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Ta automatyczna wiadomość jest przetłumaczona na Twój preferowany język ale bezpośrednia obsługa i wsparcie jest w języku angielskim.</value>
@@ -2379,7 +2388,7 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
     <value>„Zaawansowane szyfrowanie w niezwykle prostym ustawieniu”</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>Wybór redakcji PCMag 2020</value>
+    <value>Wybór redakcji PCMag 2021</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>ponad 20 milionów pobrań na całym świecie</value>
@@ -2763,6 +2772,9 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
+  <data name="LinkToManageAccountText" xml:space="preserve">
+    <value>Aby zarządzać swoim kontem, &lt;a&gt; kliknij tutaj &lt;/a&gt;</value>
+  </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
@@ -2881,6 +2893,27 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Właściwość zarządzania witryną została pomyślnie zaktualizowana.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>Jeśli zostanie zatwierdzony, klucz główny zostanie zastosowany do zaszyfrowanych plików i będzie możliwy do odzyskania przez administratorów biznesowych. Jeśli chcesz przestać używać klucza głównego, możesz opuścić firmę w dowolnym momencie (odbywa się to na stronie My AxCrypt ID).</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Po włączeniu klucza głównego wszyscy obecni członkowie firmy muszą zatwierdzić zmianę. Jest to ważna kwestia bezpieczeństwa, istniejący użytkownik nigdy nie powinien mieć wrażenia, że ta funkcja została przed nim ukryta. W tabeli użytkowników można zobaczyć, kto zaakceptował funkcję klucza głównego.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Korzystanie z klucza głównego</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>Potrzebujesz więcej pomocy?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Nasze priorytetowe wsparcie biznesowe zawsze służy pomocą w przypadku jakichkolwiek pytań lub wątpliwości. Skorzystaj z formularza na stronie swojego konta lub wyślij nam wiadomość na adres &lt;a href='mailto:business@axcrypt.net'&gt; business@axcrypt.net &lt;/a&gt;, a my Ci pomożemy!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Ta funkcja umożliwia AxCrypt odzyskanie plików zaszyfrowanych przez członków tej firmy. Powinna być stosowana tylko na wyraźne żądanie firmy!</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>Do tego pliku zastosowano klucz główny. Ponieważ nie należysz do tej samej firmy, klucz główny zostanie usunięty z tego pliku.</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Błąd wewnętrzny, niewłaściwy argument funkcji w %4</value>
@@ -3465,6 +3498,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>polski</value>
   </data>
+  <data name="PortableVersionInfo" xml:space="preserve">
+    <value>Lekka, samodzielna wersja AxCrypt nie zawiera dodatkowych funkcji (np. Integracji z menu kontekstowym) w porównaniu z wersją instalatora.</value>
+  </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brazylia)</value>
     <comment>The name of the Portuguese Brazil language. Do not translate.</comment>
@@ -3755,6 +3791,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="PrivacyPolicyBlock4Text2">
     <value>Jeśli jesteś użytkownikiem biznesowym i nie chcesz być częścią naszego systemu CRM, skontaktuj się z nami pod adresem &lt;a href='mailto:business@axcrypt.net.'&gt; business@axcrypt.net &lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
+    <value>Forum / Share / wskazówki</value>
   </data>
   <data name="PrivacyPolicyDescription">
     <value>Szanujemy Twoją prywatność - to jeden z głównych powodów, dla których tworzymy AxCrypt. Uważamy również, że Ty, jako jeden z naszych użytkowników, przejmujesz się tym bardziej niż przeciętny użytkownik komputera.</value>
@@ -4636,6 +4675,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   </data>
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>Zaoszczędź {0}%</value>
+  </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Twoja subskrypcja wygasła od &lt;b&gt; {0} &lt;/b&gt;.</value>
   </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Twoja subskrypcja wygaśnie &lt;b&gt;{0}&lt;/b&gt;.</value>

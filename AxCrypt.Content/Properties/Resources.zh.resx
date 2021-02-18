@@ -396,7 +396,7 @@
   <data name="AxCryptBetaWarning" xml:space="preserve">
     <value>警告！ 这是未经测试的测试版软件。 这意味着它可能缺少功能并且不稳定。 文本可能丢失，用户界面可能不完整。
 
-小心使用，并确保您拥有所有数据的最新备份。 请报告任何问题https://bitbucket.org/axcryptab/axcrypt-xwt/议题 或support@axcrypt.net .
+小心使用，并确保您拥有所有数据的最新备份。 请报告任何问题https://bitbucket.org/axcryptab/axcrypt-xwt/issues 或support@axcrypt.net .
 
 你已经被警告，现在享受！
 </value>
@@ -418,10 +418,10 @@
     <value>该Business计划的目的是为组织，而不是个人。</value>
   </data>
   <data name="AxcryptBusinessBlock1Text5">
-    <value>有关完整条件，请参阅我们的&lt;a href='/信息/使用条款'&gt;使用条款&lt;/a&gt;。</value>
+    <value>有关完整条件，请参阅我们的&lt;a href='/information/terms-of-use'&gt;terms of use&lt;/a&gt;.'&gt;使用条款&lt;/a&gt;。</value>
   </data>
   <data name="AxcryptBusinessBlock1Text6">
-    <value>有关详细信息，请参阅我们的&lt;a href='/定价'&gt;定价&lt;/a&gt;。</value>
+    <value>有关详细信息，请参阅我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;。</value>
   </data>
   <data name="AxcryptBusinessBlock1Text7">
     <value>Business订阅可让您的组织为多个用户购买和管理许可证。 我们还为符合条件的公司提供欧盟境内免增值税销售服务（您必须提供有效的欧盟增值税号码和地址）。 我们不提供Premium计划的免增值税销售。</value>
@@ -430,7 +430,7 @@
     <value>创建Business订阅</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/Business/创建订阅'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
+    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>创建订阅需要您自己首次购买至少一个成员许可证。 创建和购买业务订阅时，您将自动指定管理员，因此您可以将订阅成员许可证分配给您选择的用户并执行其他管理任务。</value>
@@ -451,7 +451,7 @@
     <value>管理Business订阅</value>
   </data>
   <data name="AxcryptBusinessBlock3Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个业务订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/zh/Business/管理订阅成员'&gt;Business订阅菜单&lt;/a&gt;来管理订阅。</value>
+    <value>您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个业务订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/zh/Business/ManageSubscriptionMembers'&gt;Business订阅菜单&lt;/a&gt;来管理订阅。</value>
   </data>
   <data name="AxcryptBusinessBlock3Text2">
     <value>根据需要添加和删除成员。 您不能以管理员身份或从订阅中删除自己。</value>
@@ -463,7 +463,7 @@
     <value>Business订阅的更新信息</value>
   </data>
   <data name="AxcryptBusinessBlock4Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个Business订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/en/Business/订阅信息'&gt;Business订阅菜单&lt;/a&gt;更新用于订阅的信息。</value>
+    <value>&lt;a href='https://account.axcrypt.net/en/Business/SubscriptionInformation'&gt;Business Subscription menu&lt;/a&gt;您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个Business订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/en/Business/SubscriptionInformation'&gt;Business订阅菜单&lt;/a&gt;更新用于订阅的信息。</value>
   </data>
   <data name="AxcryptBusinessBlock4Text2">
     <value>我们存储的有关订阅的信息仅限于名称、地址和欧盟增值税号码（如适用）</value>
@@ -475,7 +475,7 @@
     <value>购买Business订阅</value>
   </data>
   <data name="AxcryptBusinessBlock5Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个业务订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/en/Business/充值订阅'&gt;Business 订阅菜单&lt;/a&gt;用于购买额外的会员或时间进行订阅。</value>
+    <value>您需要在我们的网站上使用AxCrypt ID登录，并成为至少一个业务订阅的指定管理员。 使用&lt;a href='https://account.axcrypt.net/en/Business/href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Business 订阅菜单&lt;/a&gt;用于购买额外的会员或时间进行订阅。</value>
   </data>
   <data name="AxcryptBusinessBlock5Text2">
     <value>订阅的初始创建包括购买初始数量的会员许可证，为期一个月或一年，具体取决于您选择的计划。</value>
@@ -496,7 +496,7 @@
     <value>AxCrypt Business订阅计划适用于一个或多个成员许可证。</value>
   </data>
   <data name="AxcryptBusinessBlock6Text2">
-    <value>有关相关货币的当前定价，请访问我们的&lt;a href='/定价'&gt;定价&lt;/a&gt;页面。</value>
+    <value>有关相关货币的当前定价，请访问我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;页面。</value>
   </data>
   <data name="AxcryptBusinessBlock6Text3">
     <value>对于订阅而言，一个月被定义为30天，一年被定义为360天。</value>
@@ -670,7 +670,7 @@
     <value>使用AxCrypt Business，您还可以访问我们的密码管理–在这里您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 我们还提供移动应用程序，让您在离开时打开加密文件。</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
-    <value>欲了解更多信息，请访问我们的&lt;a href='/信息/功能'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/信息/使用条款'&gt;使用条款&lt;/a&gt;。</value>
+    <value>欲了解更多信息，请访问我们的&lt;a href='/information/features'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/information/terms-of-use'&gt;使用条款&lt;/a&gt;。</value>
   </data>
   <data name="BusinessFirstBodyText4">
     <value>更多独家Business功能即将推出。 千万不要错过！</value>
@@ -724,7 +724,7 @@
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>请阅读完整的&lt;a href="https://www.axcrypt.net/信息/许可证/"&gt;使用条款&lt;/a&gt;和&lt;a href="https://www.axcrypt.net/价格/"&gt;定价时间表&lt;/a&gt;购买前。</value>
+    <value>请阅读完整的&lt;a href="https://www.axcrypt.net/information/license/"&gt;使用条款&lt;/a&gt;和&lt;a href="https://www.axcrypt.net/pricing/"&gt;定价时间表&lt;/a&gt;购买前。</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -789,7 +789,7 @@
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>阅读更多&lt;a href="https://www.axcrypt.net/支持/axcrypt-business/"&gt;这里&lt;/a&gt;。</value>
+    <value>阅读更多&lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;这里&lt;/a&gt;。</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1469,7 +1469,7 @@
     <value>这是AxCrypt唯一的官方下载网站。 查找SHA256哈希.</value>
   </data>
   <data name="DownloadInformationSubheading">
-    <value>请阅读&lt;a href='/信息/发行说明'&gt;发行说明&lt;/a&gt;以查看当前版本。</value>
+    <value>请阅读&lt;a href='/information/release-notes'&gt;发行说明&lt;/a&gt;以查看当前版本。</value>
   </data>
   <data name="DownloadLinkLabel">
     <value>下载</value>
@@ -1695,10 +1695,10 @@
     <value>什么是AxCrypt之间的区别1.x和2x?</value>
   </data>
   <data name="FaqDifference1&amp;2Answer1">
-    <value>AxCrypt1.x是旧版本。 这意味着它已经过时，不再有任何支持，而AxCrypt2.x是我们不断努力不断改进的版本。 绝对不建议使用1.x。我们建议所有新老用户始终使用最新发布的AxCrypt版本，可以在这里下载&lt;a href='/下载'&gt;&lt;/a&gt;。</value>
+    <value>&lt;a href='/download'&gt;here&lt;/a&gt;AxCrypt1.x是旧版本。 这意味着它已经过时，不再有任何支持，而AxCrypt2.x是我们不断努力不断改进的版本。 绝对不建议使用1.x。我们建议所有新老用户始终使用最新发布的AxCrypt版本，可以在这里下载&lt;a href='/download'&gt;&lt;/a&gt;。</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>对于对传统下载有特定需求的用户（使用风险自担），可以在这里找到&lt;a href='/支持/传统下载'&gt;&lt;/a&gt;。</value>
+    <value>对于对传统下载有特定需求的用户（使用风险自担），可以在这里找到&lt;a href='/support/legacy-downloads'&gt;&lt;/a&gt;。</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>AxCrypt的独立版本和安装程序版本之间的主要区别是什么？</value>
@@ -1719,7 +1719,7 @@
     <value>未经您的明确同意，我们不会出售或使用您的电子邮件进行第三方通信。</value>
   </data>
   <data name="FaqEmailUsedForAnswer3">
-    <value>请参阅&lt;a href='/信息/使用条款'&gt;使用条款&lt;/a&gt;了解更多详情。</value>
+    <value>请参阅&lt;a href='/information/terms-of-use'&gt;使用条款&lt;/a&gt;了解更多详情。</value>
   </data>
   <data name="FaqFileEncryptionNotWorking">
     <value>.NET和Mono的文件加密已停止工作</value>
@@ -1728,7 +1728,7 @@
     <value>如果您收到错误消息".NET和Mono的文件加密已停止工作。 问题导致程序停止正常工作。 Windows将关闭该程序并通知您是否有可用的解决方案。"最可能的原因是一个名为"Lavasoft Web Companion"的软件。 这不是与Windows的现代版本兼容，它修改了网络的方式，导致AxCrypt和其他程序崩溃的方式进行访问。</value>
   </data>
   <data name="FaqFileEncryptionNotWorkingAnswer2">
-    <value>检查您是否安装了Lavasoft Web Companion，如果是这种情况，请将其卸载。 如果您仍然遇到同样的问题或没有安装Lavasoft软件，请按照说明和&lt;a href='http://www.axcrypt.net/博客/发送-完整-错误-报告/'&gt;提交完整的错误报告&lt;/a&gt;。</value>
+    <value>&lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/'&gt;file a full error report&lt;/a&gt;检查您是否安装了Lavasoft Web Companion，如果是这种情况，请将其卸载。 如果您仍然遇到同样的问题或没有安装Lavasoft软件，请按照说明和&lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/'&gt;提交完整的错误报告&lt;/a&gt;。</value>
   </data>
   <data name="FaqForgotPassword">
     <value>我忘了我的密码。 怎么办？</value>
@@ -1770,7 +1770,7 @@
     <value>如何续订我的订阅？</value>
   </data>
   <data name="FaqHowToRenewAnswer1">
-    <value>新用户有一个订阅，将在订阅期结束时自动更新，使用初始付款方式。 要检查您的订阅状态，请登录帐户网站，并在上检查&lt;a href='https://account.axcrypt.net/zh/首页/登录"&gt;我的AxCrypt ID页面&lt;/a&gt;。 您会看到它在那里更新的日期。</value>
+    <value>新用户有一个订阅，将在订阅期结束时自动更新，使用初始付款方式。 要检查您的订阅状态，请登录帐户网站，并在上检查&lt;a href='https://account.axcrypt.net/zh/Home/Login'&gt;我的AxCrypt ID页面&lt;/a&gt;。 您会看到它在那里更新的日期。</value>
   </data>
   <data name="FaqHowToRenewAnswer2">
     <value>如果它提到订阅将在某个日期到期，您要么在2020年6月25日之前订阅，要么取消自动付款。 在这种情况下，你将不得不自己更新。</value>
@@ -1806,7 +1806,7 @@
     <value>当我有一个我不知道密码的现有帐户时，如何登录？</value>
   </data>
   <data name="FaqSignInWithoutPasswordAnswer1">
-    <value>如果您刚刚下载了AxCrypt2，输入了您的电子邮件并收到您已经拥有帐户的消息，但不知道密码，则需要发出&lt;a href='https://account.axcrypt.net/en/首页/密码重置'&gt;密码重置&lt;/a&gt;。 点击链接并按照说明进行操作。 如果您已经使用强密码为您的AxCrypt文件，你应该考虑使用它作为您的帐户密码。</value>
+    <value>如果您刚刚下载了AxCrypt2，输入了您的电子邮件并收到您已经拥有帐户的消息，但不知道密码，则需要发出&lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;密码重置&lt;/a&gt;。 点击链接并按照说明进行操作。 如果您已经使用强密码为您的AxCrypt文件，你应该考虑使用它作为您的帐户密码。</value>
   </data>
   <data name="FaqStopFromSecuring">
     <value>如何阻止任何人保护我的文件？</value>
@@ -1833,7 +1833,7 @@
     <value>AxCrypt在哪些平台上运行？</value>
   </data>
   <data name="FaqWhatPlatformsAnswer1">
-    <value>AxCrypt目前可在大多数主要平台上使用，包括：Windows，MacOS，iOS和Android。 有关平台和系统要求的更多信息，请转到&lt;a href='/信息/要求'&gt;要求&lt;/a&gt;。</value>
+    <value>AxCrypt目前可在大多数主要平台上使用，包括：Windows，MacOS，iOS和Android。 有关平台和系统要求的更多信息，请转到&lt;a href='/information/requirements'&gt;要求&lt;/a&gt;。</value>
   </data>
   <data name="FaqWhyPasswordSignIn">
     <value>为什么AxCrypt只在登录时要求输入密码？ 这不是不安全吗？</value>
@@ -2099,7 +2099,7 @@
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>跟我们说话！ &lt;br&gt;请使用我们的&lt;a href='/支持/论坛'&gt;社区论坛&lt;/a&gt;获取一般问题、反馈和技术支持。 您也可以直接通过电子邮件发送到&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>跟我们说话！ &lt;br&gt;请使用我们的&lt;a href='/support/forums'&gt;社区论坛&lt;/a&gt;获取一般问题、反馈和技术支持。 您也可以直接通过电子邮件发送到&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>这是AxCrypt ID部分AxCrypt.net，点击&lt;a href="{0}"&gt;这里&lt;/a&gt;返回起始页。</value>
@@ -2282,7 +2282,7 @@
     <value>在安装过程中需要注意的几个关键事项:</value>
   </data>
   <data name="GetStartedInfoNote1ListItem1">
-    <value>为了使用AxCrypt，您需要&lt;a href='https://account.axcrypt.net/首页/注册'&gt;创建一个帐户&lt;/a&gt;。</value>
+    <value>为了使用AxCrypt，您需要&lt;a href='https://account.axcrypt.net/Home/Register'&gt;创建一个帐户&lt;/a&gt;。</value>
   </data>
   <data name="GetStartedInfoNote1ListItem2">
     <value>如果您从以前版本的AxCrypt升级，则可能需要重新启动电脑。</value>
@@ -2291,7 +2291,7 @@
     <value>通过检查数字签名来验证下载是否完好无损和可信。 在Windows资源管理器中右键单击下载的文件，然后选择"属性"和"数字签名"选项卡。 然后选择数字签名，然后单击"详细信息"。 确保数字签名显示为"OK"，并且签名者是"AxCrypt AB"。</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>如果您有任何迫切的问题或疑问，请查看我们的&lt;a href='/支持/常见问题'&gt;常见问题&lt;/a&gt;页面。</value>
+    <value>如果您有任何迫切的问题或疑问，请查看我们的&lt;a href='/support/faq'&gt;常见问题&lt;/a&gt;页面。</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>请报告错误和意见给我们。 您也可以请求支持。 对于其他问题，请给我们发电子邮件。</value>
@@ -2300,10 +2300,10 @@
     <value>安装AxCrypt并设置您的AxCrypt ID</value>
   </data>
   <data name="GetStartedInstallingIngress">
-    <value>为了使用AxCrypt，您需要&lt;a href='https://account.axcrypt.net/首页/注册'&gt;创建一个帐户&lt;/a&gt;。 以下是我们为您创建的一步一步的视频。</value>
+    <value>为了使用AxCrypt，您需要&lt;a href='https://account.axcrypt.net/Home/Register'&gt;创建一个帐户&lt;/a&gt;。 以下是我们为您创建的一步一步的视频。</value>
   </data>
   <data name="GetStartedInstallingStep1">
-    <value>&lt;a href='/下载'&gt;下载&lt;/a&gt;AxCrypt并按照标准安装向导的指示进行安装。</value>
+    <value>&lt;a href='/download'&gt;下载&lt;/a&gt;AxCrypt并按照标准安装向导的指示进行安装。</value>
   </data>
   <data name="GetStartedInstallingStep2">
     <value>注册您的电子邮件地址。</value>
@@ -2324,7 +2324,7 @@
     <value>密钥共享</value>
   </data>
   <data name="GetStartedKeySharingIngress">
-    <value>通过使用&lt;a href='/信息/功能'&gt;密钥共享&lt;/a&gt;功能，您可以与其他人共享您的安全文件。 以下是有关如何使用密钥共享的教程。</value>
+    <value>通过使用&lt;a href='/information/features'&gt;密钥共享&lt;/a&gt;功能，您可以与其他人共享您的安全文件。 以下是有关如何使用密钥共享的教程。</value>
   </data>
   <data name="GetStartedKeySharingStep1">
     <value>选择要共享的文件。</value>
@@ -2360,7 +2360,7 @@
     <value>密码管理</value>
   </data>
   <data name="GetStartedPasswordManagementIngress">
-    <value>您可以使用&lt;a href='/信息/功能'&gt;密码管理&lt;/a&gt;功能以安全的方式在线存储所有密码和代码。 请参阅下面的视频，了解如何管理密码的说明。</value>
+    <value>您可以使用&lt;a href='/information/features'&gt;密码管理&lt;/a&gt;功能以安全的方式在线存储所有密码和代码。 请参阅下面的视频，了解如何管理密码的说明。</value>
   </data>
   <data name="GetStartedPasswordManagementStep1">
     <value>登录以访问密码管理</value>
@@ -2378,7 +2378,7 @@
     <value>AxCrypt: 密码管理</value>
   </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
-    <value>请登录以获取您的订阅！ 如果您还没有帐户，您首先需要&lt;a href="{0}首页/ 登记/"&gt;注册&lt;/a&gt;。</value>
+    <value>请登录以获取您的订阅！ 如果您还没有帐户，您首先需要&lt;a href="{0}Home/Register/"&gt;注册&lt;/a&gt;。</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>太棒了！ 您已经拥有'{0}'的AxCrypt ID帐户。
@@ -2430,7 +2430,7 @@
     <value>"高级加密在一个非常简单的设置"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors´ 2020选择</value>
+    <value>PCMag Editors´ 2021选择</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>全球下载量超过2000万</value>
@@ -2828,19 +2828,19 @@ SE-114 29 斯德哥尔摩
     <comment>Menus and similar to link back to main site.</comment>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
-    <value>{0}首页/登录？购买=真正的&amp;电子邮件={1}&amp;标签={2}</value>
+    <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/论坛/</value>
+    <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/文档/开始/</value>
+    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
-    <value>{0}秘密?email={1}&amp;app</value>
+    <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0} 首页/注册</value>
+    <value>{0} Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>本地设备安全</value>
@@ -2992,7 +2992,7 @@ SE-114 29 斯德哥尔摩
     <value>启用主密钥</value>
   </data>
   <data name="MasterKeyBlock3Text1">
-    <value>主密钥可以启用从&lt;a href='https://account.axcrypt.net/zh/Business/管理订阅成员'&gt;管理订阅页面&lt;/a&gt;。</value>
+    <value>主密钥可以启用从&lt;a href='https://account.axcrypt.net/zh/Business/ManageSubscriptionMembers'&gt;管理订阅页面&lt;/a&gt;。</value>
   </data>
   <data name="MasterKeyBlock3Text2">
     <value>启用主密钥后，Business的所有现有成员都必须批准更改。 这是一个重要的安全考虑因素，现有用户不应该觉得这个功能被隐藏起来。 谁已经接受了主密钥功能可以在用户表中看到。</value>
@@ -3544,7 +3544,7 @@ SE-114 29 斯德哥尔摩
 请登录&lt;b&gt;{0}&lt;/b&gt;并完成电子邮件更改，或先重置此帐户的密码，然后完成更改。</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/首页/密码重置</value>
+    <value>https://account.axcrypt.net/Home/PasswordReset</value>
     <comment>The URL to a web page where a password can be reset</comment>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
@@ -3681,7 +3681,7 @@ SE-114 29 斯德哥尔摩
     <value>您的AxCrypt Premium订阅即将结束。 我们真诚地希望您喜欢使用我们的功能，并发现它们有用。</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>我们很乐意为您继续使用我们的高级功能。 扩展您的订阅&lt;a href="{0}首页/购买?电子邮件={1}"&gt;现在&lt;/a&gt;。</value>
+    <value>我们很乐意为您继续使用我们的高级功能。 扩展您的订阅&lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; ={1}"&gt;现在&lt;/a&gt;。</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -3700,7 +3700,7 @@ SE-114 29 斯德哥尔摩
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;您有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href='https://account.axcrypt.net/zh/首页/购买'&gt;您可以免费享受30天的AxCrypt高级版。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium版，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法。 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全的文件，您将有密钥共享来照顾您，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 如果您经常在飞行中，您可以使用我们的移动应用程序来访问您的加密文件.&lt;/p&gt;&lt;p&gt;要保存密码在一个安全和简单的方法？ 使用我们的密码管理和生成器，以保持所有的密码安全在云中。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
+    <value>&lt;p&gt;您有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href='https://account.axcrypt.net/zh/Home/Purchase'&gt;您可以免费享受30天的AxCrypt高级版。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium版，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法。 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全的文件，您将有密钥共享来照顾您，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 如果您经常在飞行中，您可以使用我们的移动应用程序来访问您的加密文件.&lt;/p&gt;&lt;p&gt;要保存密码在一个安全和简单的方法？ 使用我们的密码管理和生成器，以保持所有的密码安全在云中。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href={url}&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;</value>
@@ -3760,13 +3760,13 @@ SE-114 29 斯德哥尔摩
     <value>详细信息</value>
   </data>
   <data name="PremiumThirdBodyText">
-    <value>&lt;p&gt;阅读更多关于我们的&lt;a href='/信息/功能'&gt;功能页面&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;阅读更多关于我们的&lt;a href='/information/features'&gt;功能页面&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="PremiumTrialInfo" xml:space="preserve">
     <value>今天获得AxCrypt Premium版，并免费获得前30天！</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>点击&lt;a href="https://www.axcrypt.net/价格/"target="_blank"&gt;这里&lt;/a&gt;有关订阅的更多信息。</value>
+    <value>点击&lt;a href="https://www.axcrypt.net/pricing/"target="_blank"&gt;这里&lt;/a&gt;有关订阅的更多信息。</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>按住查看更多</value>
@@ -4162,7 +4162,7 @@ SE-114 29 斯德哥尔摩
     <value>所选订阅时间无效。 有效订阅必须至少为{0}个月，且不超过{1}个月。</value>
   </data>
   <data name="PurchasePageBody1" xml:space="preserve">
-    <value>与&lt;a href="https://www.axcrypt.net/价格/"&gt;Premium版&lt;/a&gt;您可以在任何数量的计算机和设备上使用AxCrypt充分发挥其潜力。 如果您不满意，请&lt;a href="mailto:support@axcrypt.net"&gt;联系我们&lt;/a&gt;。 我们将始终全额退还您。</value>
+    <value>与&lt;a href="https://www.axcrypt.net/pricing/"&gt;Premium版&lt;/a&gt;您可以在任何数量的计算机和设备上使用AxCrypt充分发挥其潜力。 如果您不满意，请&lt;a href="mailto:support@axcrypt.net"&gt;联系我们&lt;/a&gt;。 我们将始终全额退还您。</value>
   </data>
   <data name="PurchasePageBody2" xml:space="preserve">
     <value>&lt;span class="text-cutoff-ellipsis always"&gt;&lt;a id="贝宝-阅读更多" class="show-link"&gt;[更多关于付款]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff always"&gt;您的个人付款细节永远不会发送到或存储在我们的服务器上。 我们通过加密连接将它们直接从您发送给我们的支付网关合作伙伴。 我们与Stripe和贝宝合作，两者都符合支付卡行业数据安全标准设定的高标准。 &lt;a class="hide-link"&gt;[崩溃]&lt;/a&gt;&lt;/span&gt;</value>
@@ -4198,7 +4198,7 @@ SE-114 29 斯德哥尔摩
     <value>Premium只适用于个人，没有增值税扣除的企业是可能的。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/创建订阅"&gt;AxCrypt Business&lt;/a&gt;订阅。 &lt;b&gt;增值税不是最终的&lt;/b&gt;。</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
-    <value>保费仅适用于个人。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/创建订阅"&gt;AxCryptBusiness&lt;/a&gt;订阅。 &lt;b&gt;此处不包括增值税。&lt;/b&gt;</value>
+    <value>保费仅适用于个人。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCryptBusiness&lt;/a&gt;订阅。 &lt;b&gt;此处不包括增值税。&lt;/b&gt;</value>
     <comment>A sentence saying that VAT is excluded.</comment>
   </data>
   <data name="PurgingActiveFiles" xml:space="preserve">
@@ -4312,7 +4312,7 @@ SE-114 29 斯德哥尔摩
     <value>监管合规</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>有关Windows桌面应用程序和核心库的完整详细信息和问题跟踪，请转到&lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;BitBucket存储库&lt;/a&gt;。 Android、iOS和Mac的更改日志是指非公开问题跟踪器。 在这里找到加密SHA-256校验和&lt;a href='/信息/加密哈希文件'&gt;&lt;/a&gt;。</value>
+    <value>有关Windows桌面应用程序和核心库的完整详细信息和问题跟踪，请转到&lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;technical details存储库&lt;/a&gt;。 Android、iOS和Mac的更改日志是指非公开问题跟踪器。 在这里找到加密SHA-256校验和&lt;a href='/information/cryptographic-hashes-of-files'&gt;&lt;/a&gt;。</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>发行说明</value>
@@ -4436,7 +4436,7 @@ SE-114 29 斯德哥尔摩
     <value>转售</value>
   </data>
   <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/首页/注册</value>
+    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>重新发送</value>
@@ -4498,7 +4498,7 @@ SE-114 29 斯德哥尔摩
     <value>[无]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>您没有有效的订阅计划，因此无法再编辑或创建新密码条目。 但是，您仍然可以查看现有条目。 如果您还没有使用您的30天高级试用期，您可以从&lt;a href="https://www.axcrypt.net/下载/"&gt;AxCrypt应用程序&lt;/a&gt;开始。</value>
+    <value>您没有有效的订阅计划，因此无法再编辑或创建新密码条目。 但是，您仍然可以查看现有条目。 如果您还没有使用您的30天高级试用期，您可以从&lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt应用程序&lt;/a&gt;开始。</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>您的premium订阅很快就会在{0}到期。 此后，您必须扩展您的premium订阅才能编辑或创建新的密码条目。 您将无限期保留只读访问权限。</value>
@@ -5071,7 +5071,7 @@ SE-114 29 斯德哥尔摩
     <value>我们只负责您可以显示是由于我们的疏忽造成的任何损害。 我们对所使用的安全技术中可能发现的任何固有弱点概不负责。</value>
   </data>
   <data name="TermsOfUseBlock17Text4">
-    <value>您的信息将通过使用标准化的强加密方法来保密，如&lt;a href='/信息/安全'&gt;安全&lt;/a&gt;,&lt;a href='/信息/技术细节'&gt;技术细节。&lt;/a&gt;和&lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;源代码&lt;/a&gt;。 我们不保证您选择一个足够强大的密码。</value>
+    <value>您的信息将通过使用标准化的强加密方法来保密，如&lt;a href='/information/security'&gt;安全&lt;/a&gt;,&lt;a href='information/technical-details'&gt;技术细节。&lt;/a&gt;和&lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;源代码&lt;/a&gt;。 我们不保证您选择一个足够强大的密码。</value>
   </data>
   <data name="TermsOfUseBlock17Text5">
     <value>我们只提供AxCrypt，对使用它的其他人采取的任何非法或欺诈行为概不负责。 作为用户，您对使用AxCrypt的行为完全负责。 我们永远不会对及时备份或忘记密码造成的损害负责。</value>
@@ -5095,7 +5095,7 @@ SE-114 29 斯德哥尔摩
     <value>如果本协议的任何部分被发现无效，则不会使本协议的任何其他部分无效，并且新的解释必须尽可能接近原始解释。</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>版权所有 © 2020 AxCrypt AB，保留所有权利。</value>
+    <value>版权所有 © 2021 AxCrypt AB，保留所有权利。</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>许可证</value>
@@ -5140,7 +5140,7 @@ SE-114 29 斯德哥尔摩
     <value>AxCrypt Premium版可供所有私人购买。 它不适用于公司和组织;没有增值税扣除是可能的。 如果一个企业购买（多个）AxCrypt Premium订阅而不是AxCrypt Business，付款将被退还，并且订阅将被取消。</value>
   </data>
   <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium除了在我们的&lt;a href='/定价'&gt;定价&lt;/a&gt;页面上指定的Free计划之外，还提供了扩展功能。</value>
+    <value>AxCrypt Premium除了在我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;页面上指定的Free计划之外，还提供了扩展功能。</value>
   </data>
   <data name="TermsOfUseBlock5Text3">
     <value>如果您的高级订阅用完，您将根据需要回退到"Free"或"Viewer"。</value>
@@ -5152,7 +5152,7 @@ SE-114 29 斯德哥尔摩
     <value>AxCrypt Business计划</value>
   </data>
   <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business可供公司和组织购买。 它不适合个人。 除了我们的&lt;a href='/定价'&gt;定价&lt;/a&gt;页面上指定的其他计划之外，它还提供了扩展功能。 它还包括一个自助管理系统，用于向成员分配许可证。</value>
+    <value>AxCrypt Business可供公司和组织购买。 它不适合个人。 除了我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;页面上指定的其他计划之外，它还提供了扩展功能。 它还包括一个自助管理系统，用于向成员分配许可证。</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>如果您的Business订阅用完，您将根据需要回退到"Free"或"Viewer"。</value>
@@ -5185,7 +5185,7 @@ SE-114 29 斯德哥尔摩
     <value>当您注册为个人时，我们不要求您提供任何个人信息，但工作电子邮件地址除外。 对于公司和组织，我们需要一个地址，并要求一个可选的欧盟增值税号码。</value>
   </data>
   <data name="TermsOfUseBlock9Text2">
-    <value>请参阅我们的&lt;a href='/信息/隐私政策'&gt;隐私政策&lt;/a&gt;了解我们处理内容和方式的详细信息，接受这些使用条款也意味着接受我们的隐私政策。</value>
+    <value>请参阅我们的&lt;a href='/information/privacy-policy'&gt;隐私政策&lt;/a&gt;了解我们处理内容和方式的详细信息，接受这些使用条款也意味着接受我们的隐私政策。</value>
   </data>
   <data name="TermsOfUseDescription">
     <value>这些是AxCrypt的使用条款</value>
