@@ -14413,7 +14413,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2020 AxCrypt AB, All rights reserved..
+        ///   Looks up a localized string similar to Copyright © 2021 AxCrypt AB, All rights reserved..
         /// </summary>
         public static string TermsOfUseBlock18Text4 {
             get {
