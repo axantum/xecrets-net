@@ -1233,6 +1233,9 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="HomeGetStartedListShareParagraph">
     <value>Deel je beveiligde bestanden met een enkele klik</value>
   </data>
+  <data name="HomeHeroSubheading">
+    <value>PCMag Editors' Choice 2021</value>
+  </data>
   <data name="HomeSellingPointCloudStorageAwarenessBody">
     <value>Beveilig automatisch je bestanden in Dropbox, Google Drive, etc.</value>
   </data>
