@@ -1,5 +1,4 @@
 ﻿using AxCrypt.Abstractions;
-using AxCrypt.Common;
 using AxCrypt.Core;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Forms;
@@ -12,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AxCrypt.Abstractions.TypeResolve;
-
 using Texts = AxCrypt.Content.Texts;
 
 namespace AxCrypt.Desktop.Window
@@ -47,7 +45,7 @@ namespace AxCrypt.Desktop.Window
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonReset.Text = "&" + Texts.ResetButtonText;
+            _buttonReset.Text = "&" + Texts.SwitchUserButtonText;
             _troubleRememberingLabel.Text = "&" + Texts.TroubleRememberingLabel;
             _createAccountLinkLabel.Text = "&" + Texts.RegisterLink;
         }

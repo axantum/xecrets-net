@@ -41,7 +41,7 @@ namespace AxCrypt.Desktop.Window
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonReset.Text = "&" + Texts.ResetButtonText;
+            _buttonReset.Text = "&" + Texts.SwitchUserButtonText;
             _troubleRememberingLabel.Text = "&" + Texts.TroubleRememberingLabel;
         }
 
