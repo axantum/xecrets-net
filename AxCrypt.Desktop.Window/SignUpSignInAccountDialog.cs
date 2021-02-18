@@ -180,10 +180,21 @@ namespace AxCrypt.Desktop.Window
             if (string.IsNullOrEmpty(_viewModel.UserEmail))
             {
                 UserEmailTextBox.Focus();
-                _buttonReset.Enabled = false;
                 return;
             }
+
+            ResizeUserEmailBox();
+            _buttonReset.Visible = true;
+            _buttonReset.Font = New<FontLoader>().ContentText;
+
             _passphrase.Focus();
+        }
+
+        private void ResizeUserEmailBox()
+        {
+            UserEmailTextBox.MaximumSize = new System.Drawing.Size(280, 26);
+            UserEmailTextBox.MinimumSize = new System.Drawing.Size(280, 26);
+            UserEmailTextBox.Size = new System.Drawing.Size(280, 26);
         }
 
         private void PassphraseTextBox_Enter(object sender, EventArgs e)

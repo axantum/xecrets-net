@@ -65,7 +65,7 @@ namespace AxCrypt.Desktop.Window
             // 
             this._buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonOk.Location = new System.Drawing.Point(68, 11);
+            this._buttonOk.Location = new System.Drawing.Point(130, 11);
             this._buttonOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonOk.Name = "_buttonOk";
             this._buttonOk.Size = new System.Drawing.Size(117, 35);
@@ -78,7 +78,7 @@ namespace AxCrypt.Desktop.Window
             // 
             this._buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._buttonCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonCancel.Location = new System.Drawing.Point(205, 11);
+            this._buttonCancel.Location = new System.Drawing.Point(268, 11);
             this._buttonCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonCancel.Name = "_buttonCancel";
             this._buttonCancel.Size = new System.Drawing.Size(117, 35);
@@ -91,14 +91,15 @@ namespace AxCrypt.Desktop.Window
             // 
             this._buttonReset.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this._buttonReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonReset.Location = new System.Drawing.Point(342, 11);
-            this._buttonReset.Margin = new System.Windows.Forms.Padding(4,5,4,5);
+            this._buttonReset.Location = new System.Drawing.Point(375, 24);
+            this._buttonReset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._buttonReset.Name = "_buttonReset";
-            this._buttonReset.Size = new System.Drawing.Size(117, 35);
+            this._buttonReset.Size = new System.Drawing.Size(125, 35);
             this._buttonReset.TabIndex = 2;
-            this._buttonReset.Text = "[Reset]";
+            this._buttonReset.Text = "[Switch user]";
             this._buttonReset.UseVisualStyleBackColor = true;
             this._buttonReset.Click += new System.EventHandler(this.ButtonReset_Click);
+            this._buttonReset.Visible = false;
             // 
             // panel1
             // 
@@ -132,6 +133,7 @@ namespace AxCrypt.Desktop.Window
             // _userEmailGroupBox
             // 
             this._userEmailGroupBox.Controls.Add(this.UserEmailTextBox);
+            this._userEmailGroupBox.Controls.Add(this._buttonReset);
             this._userEmailGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._userEmailGroupBox.Location = new System.Drawing.Point(4, 5);
             this._userEmailGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 5, 5);
@@ -148,8 +150,7 @@ namespace AxCrypt.Desktop.Window
             this.UserEmailTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 | System.Windows.Forms.AnchorStyles.Right)));
             this.UserEmailTextBox.AcceptsReturn = true;
-            this.UserEmailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UserEmailTextBox.Location = new System.Drawing.Point(4, 24);
+            this.UserEmailTextBox.Location = new System.Drawing.Point(4, 28);
             this.UserEmailTextBox.Margin = new System.Windows.Forms.Padding(100, 5, 100, 5);
             this.UserEmailTextBox.MinimumSize = new System.Drawing.Size(480, 26);
             this.UserEmailTextBox.Name = "EmailTextBox";
@@ -201,7 +202,6 @@ namespace AxCrypt.Desktop.Window
             this._panel1.AutoSize = true;
             this._panel1.Controls.Add(this._buttonCancel);
             this._panel1.Controls.Add(this._buttonOk);
-            this._panel1.Controls.Add(this._buttonReset);
             this._panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._panel1.Location = new System.Drawing.Point(4, 110);
             this._panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
