@@ -34,7 +34,7 @@ namespace AxCrypt.Desktop.Window
             this.components = new System.ComponentModel.Container();
             this._buttonOk = new System.Windows.Forms.Button();
             this._buttonCancel = new System.Windows.Forms.Button();
-            this._buttonReset = new System.Windows.Forms.Button();
+            this._buttonSwitchUser = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._userEmailGroupBox = new System.Windows.Forms.GroupBox();
@@ -87,19 +87,19 @@ namespace AxCrypt.Desktop.Window
             this._buttonCancel.UseVisualStyleBackColor = true;
             this._buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             //
-            // _buttonReset
+            // _buttonSwitchUser
             // 
-            this._buttonReset.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this._buttonReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this._buttonReset.Location = new System.Drawing.Point(375, 24);
-            this._buttonReset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this._buttonReset.Name = "_buttonReset";
-            this._buttonReset.Size = new System.Drawing.Size(125, 35);
-            this._buttonReset.TabIndex = 2;
-            this._buttonReset.Text = "[Switch user]";
-            this._buttonReset.UseVisualStyleBackColor = true;
-            this._buttonReset.Click += new System.EventHandler(this.ButtonReset_Click);
-            this._buttonReset.Visible = false;
+            this._buttonSwitchUser.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            this._buttonSwitchUser.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this._buttonSwitchUser.Location = new System.Drawing.Point(375, 24);
+            this._buttonSwitchUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this._buttonSwitchUser.Name = "_buttonSwitchUser";
+            this._buttonSwitchUser.Size = new System.Drawing.Size(125, 35);
+            this._buttonSwitchUser.TabIndex = 2;
+            this._buttonSwitchUser.Text = "[Switch user]";
+            this._buttonSwitchUser.UseVisualStyleBackColor = true;
+            this._buttonSwitchUser.Click += new System.EventHandler(this.ButtonSwitchUser_Click);
+            this._buttonSwitchUser.Visible = false;
             // 
             // panel1
             // 
@@ -133,7 +133,7 @@ namespace AxCrypt.Desktop.Window
             // _userEmailGroupBox
             // 
             this._userEmailGroupBox.Controls.Add(this.UserEmailTextBox);
-            this._userEmailGroupBox.Controls.Add(this._buttonReset);
+            this._userEmailGroupBox.Controls.Add(this._buttonSwitchUser);
             this._userEmailGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._userEmailGroupBox.Location = new System.Drawing.Point(4, 5);
             this._userEmailGroupBox.Margin = new System.Windows.Forms.Padding(4, 5, 5, 5);
@@ -344,7 +344,7 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.Panel _panel1;
         private System.Windows.Forms.Button _buttonCancel;
         private System.Windows.Forms.Button _buttonOk;
-        private System.Windows.Forms.Button _buttonReset;
+        private System.Windows.Forms.Button _buttonSwitchUser;
         private System.Windows.Forms.LinkLabel _createAccountLinkLabel;
         private System.Windows.Forms.Label _languageSelectionTextLabel;
         private System.Windows.Forms.ComboBox _languageCultureDropDown;
