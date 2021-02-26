@@ -3607,7 +3607,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Kup AxCrypt Premium już dziś i korzystaj przez pierwsze 30 dni za darmo!</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Kliknij &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat subskrypcji.</value>
+    <value>Kliknij &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat subskrypcji.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Naciśnij i przytrzymaj aby zobaczyć więcej</value>
@@ -4277,9 +4277,6 @@ Temat: Migawka raportu AxCrypt</value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Spowoduje to wyczyszczenie wszystkich ustawień. Żadne dane nie zostaną utracone, ale konfiguracja zostanie zresetowana do domyślnych ustawień instalacji.</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Resetuj</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Przywróć pierwotną nazwę</value>

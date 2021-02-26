@@ -344,6 +344,9 @@ Por favor, inicia sesión con la misma contraseña que usaste anteriormente.</va
   <data name="ApplyNowLabel">
     <value>Solicitar ahora</value>
   </data>
+  <data name="AppNotWorkExpectedText" xml:space="preserve">
+    <value>Las aplicaciones o los servicios no funcionaron como esperaba</value>
+  </data>
   <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
     <value>La clave maestra no se puede habilitar si se forma parte de más de una cuenta. Abandona cualquiera de las otras cuentas de las que formes parte antes de habilitar la clave maestra.</value>
   </data>
@@ -1113,11 +1116,17 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Tu contraseña ha sido cambiada.</value>
   </data>
+  <data name="ChangePlanText" xml:space="preserve">
+    <value>Quiero cambiar mi plan</value>
+  </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>Comprobar si hay actualizaciones.</value>
   </data>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Comprobar si hay una versión más reciente para descargar. Requiere acceso a Internet.</value>
+  </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (chino)</value>
   </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Para comenzar a usar tu cuenta, elige si deseas utilizar AxCrypt  como usuario privado o como empresa.</value>
@@ -1442,6 +1451,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DoneTitle" xml:space="preserve">
     <value>¡Listo!</value>
   </data>
+  <data name="DontLikeRecurringFlowText" xml:space="preserve">
+    <value>No me gustan las suscripciones periódicas</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>No volver a mostrar este mensaje.</value>
   </data>
@@ -1456,6 +1468,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="DownloadHeroHeadingWindows">
     <value>AxCrypt para Windows</value>
+  </data>
+  <data name="DownloadHeroHeadingWindowsPortable" xml:space="preserve">
+    <value>AxCrypt independiente/portátil para Windows</value>
   </data>
   <data name="DownloadHeroListDoubleClick">
     <value>La integración del doble clic permite que sea tan fácil abrir, editar y guardar archivos seguros como trabajar con archivos sin seguridad.</value>
@@ -2404,6 +2419,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Inicia sesión para obtener tu suscripción. Si aún no tienes una cuenta, primero debes &lt;a href="https://account.axcrypt.net/Home/Register/"&gt; registrarte &lt;/a&gt;.</value>
   </data>
+  <data name="GoToOurBlogLinkLabel" xml:space="preserve">
+    <value>VISITA NUESTRO BLOG</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>¡Genial! Ya tienes una cuenta AxCrypt ID para '{0}'.
 
@@ -2536,6 +2554,9 @@ Si quieres ver o actualizar el contenido del archivo, descífralo por separado y
   </data>
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Selecciona archivos de clave compartida</value>
+  </data>
+  <data name="ImproveOurServiceCommentText" xml:space="preserve">
+    <value>¿Qué nos recomendarías para mejorar nuestro servicio?</value>
   </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
     <value>Estás a punto de habilitar una opción peligrosa. Si no tienes cuidado, puedes afectar a más datos de los que pretendes haciendo que las operaciones tarden más tiempo o rompiendo otros softwares incluyendo el sistema operativo. ¿Estás seguro?</value>
@@ -2761,6 +2782,9 @@ A continuación, elige el idioma de la invitación y puedes añadir un mensaje p
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt debe reiniciarse para que el cambio de idioma tenga efecto.</value>
   </data>
+  <data name="LanguageSelectionLabelText" xml:space="preserve">
+    <value>Escoger idioma</value>
+  </data>
   <data name="LargeFileSupportLabel">
     <value>Soporte para archivos grandes</value>
   </data>
@@ -2861,6 +2885,9 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>https://www.axcrypt.net/documentation/get-started/</value>
+  </data>
+  <data name="LinkToManageAccountText" xml:space="preserve">
+    <value>Para administrar tu cuenta, &lt;a&gt;haz clic aquí&lt;/a&gt;</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -3346,6 +3373,9 @@ Puedes abrir los archivos cifrados cuando quieras con una versión de escritorio
     <value>Haz clic para introducir el nombre de un archivo de clave. Solo úsalo si sabes que usaste un archivo de clave  al protegerlo con la versión anterior de AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MoreTechnicalIssueText" xml:space="preserve">
+    <value>Tengo demasiados problemas técnicos</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>Mi AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3361,6 +3391,9 @@ Puedes abrir los archivos cifrados cuando quieras con una versión de escritorio
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>Inicio</value>
+  </data>
+  <data name="NeedProductForProjectText" xml:space="preserve">
+    <value>Necesitaba el producto para un proyecto que ya completé</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Crear una contraseña nueva</value>
@@ -3423,6 +3456,9 @@ Para volver a la página de inicio, haga clic &lt;a href="{1}"&gt; aquí &lt;/a&
 Tu solicitud ha sido rechazada. Por favor, inténtalo de nuevo con la ruta correcta, o &lt;a href="mailto:{0}"&gt;reporta&lt;/a&gt; un enlace roto.
 
 Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="NotUsingProductText" xml:space="preserve">
+    <value>No uso el producto con mucha frecuencia</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>Este proceso puede tardar unos minutos . Por favor, ten paciencia.</value>
@@ -3501,6 +3537,9 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
   </data>
   <data name="OrgNumberLabel">
     <value>Número de org.</value>
+  </data>
+  <data name="OtherDetailsText" xml:space="preserve">
+    <value>Si es otra, proporcione detalles</value>
   </data>
   <data name="OtherPlatformsLabel">
     <value>Otras plataformas</value>
@@ -3684,6 +3723,15 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   </data>
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Polski (polaco)</value>
+  </data>
+  <data name="PortableLinkLabel" xml:space="preserve">
+    <value>Para Windows de 32 y 64 bits</value>
+  </data>
+  <data name="PortableVersionInfo" xml:space="preserve">
+    <value>La versión liviana e independiente de AxCrypt no incluye funciones adicionales (por ejemplo, integración del menú contextual) en comparación con la versión del instalador.</value>
+  </data>
+  <data name="PortableVersionInstallationNotRequiredText" xml:space="preserve">
+    <value>La versión independiente de AxCrypt se puede ejecutar directamente, no se requiere instalación.</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brasil)</value>
@@ -3904,8 +3952,44 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PricingSubheading">
     <value>¿Cómo quieres pagar?</value>
   </data>
+  <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
+    <value>¿Cuáles son las principales razones de la cancelación?</value>
+  </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Soporte prioritario</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Heading" xml:space="preserve">
+    <value>Distribución de información</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Heading" xml:space="preserve">
+    <value>Redes sociales</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>Google/YouTube:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Declaración de privacidad&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>Twitter:&lt;a href='https://twitter.com/en/privacy'&gt;Declaración de privacidad&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>Instagram:&lt;a href='http://instagram.com/about/legal/privacy/'&gt;Declaración de privacidad&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>LinkedIn:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Declaración de privacidad&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>Facebook:&lt;a href='https://www.facebook.com/privacy/explanation'&gt;Declaración de privacidad&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Heading" xml:space="preserve">
+    <value>Transferencia de datos a terceros</value>
+  </data>
+  <data name="PrivacyPolicyBlock13Heading" xml:space="preserve">
+    <value>Cambios a la Política de privacidad</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Heading" xml:space="preserve">
+    <value>Ley que rige y juzgado</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Text1" xml:space="preserve">
+    <value>Esta declaración de privacidad se rige por la ley sueca del Tribunal de Distrito de Estocolmo.</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>Tu correo electrónico</value>
@@ -3991,11 +4075,32 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PrivacyPolicyBlock4Text2">
     <value>Si eres un usuario Business y no deseas ser incluido en nuestro sistema CRM, escríbenos al &lt;a href='mailto:business@axcrypt.net.'&gt;business@axcrypt.net&lt;/a&gt;</value>
   </data>
+  <data name="PrivacyPolicyBlock5Heading" xml:space="preserve">
+    <value>Funcionalidad de página y servicio</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Heading" xml:space="preserve">
+    <value>Cookies y analítica web</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Heading" xml:space="preserve">
+    <value>Búsqueda</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Text1" xml:space="preserve">
+    <value>Almacenamos información sobre las palabras clave que utilizan los usuarios en nuestros sitios a través de Google Analytics. El objetivo del almacenamiento es mejorar nuestra oferta de información. El patrón de uso para la búsqueda se almacena en forma agregada. Solo se almacena la palabra clave y no se puede vincular a otra información del usuario, como direcciones IP.</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
+    <value>Foro / Compartir / servicio de sugerencias</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Heading" xml:space="preserve">
+    <value>Boletín</value>
+  </data>
   <data name="PrivacyPolicyDescription">
     <value>Respetamos tu privacidad. Esa es una de las principales razones por las que creamos AxCrypt. También creemos que tú, como uno de nuestros usuarios, estás  más preocupado por esto que el usuario promedio de un computador.</value>
   </data>
   <data name="PrivacyPolicyLinkLabel">
     <value>Política de privacidad</value>
+  </data>
+  <data name="ProductFeatureComplicatedText" xml:space="preserve">
+    <value>El producto y las funciones son muy complicados para mi</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>Y mucho más...</value>
@@ -4254,6 +4359,9 @@ Por favor, &lt;a href="mailto:business@axcrypt.net"&gt; contáctanos &lt;/a&gt; 
     <value>App Store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
+    <value>Lee sobre las noticias más recientes</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Leer más sobre el plan Business</value>
   </data>
@@ -4340,7 +4448,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <value>Cumplimiento normativo</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;repositorio de bitbucket&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
+    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;detalles técnicos&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Notas de lanzamiento</value>
@@ -4475,9 +4583,6 @@ Asunto: Reporte resumido de AxCrypt</value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Esto borrará todas las configuraciones. No se perderá ningún dato, pero se restablecerá la configuración predeterminada en la instalación.</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Restablecer</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Renombrar a original</value>
@@ -4950,6 +5055,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Svenska (sueco)</value>
   </data>
+  <data name="SwitchUserButtonText" xml:space="preserve">
+    <value>Cambiar de usuario</value>
+  </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>La cultura se activó exitosamente.</value>
   </data>
@@ -5262,6 +5370,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0}{1}-{2}</value>
   </data>
+  <data name="TooExpensiveText" xml:space="preserve">
+    <value>Es demasiado caro</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Se requiere una suscripción de pago para la administración de contraseñas. ¡Haz clic para obtenerla ahora!</value>
   </data>
@@ -5271,6 +5382,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Haga clic sobre el ícono de AxCrypt para restaurar la ventana de la aplicación.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialEndedText" xml:space="preserve">
+    <value>Mi versión de prueba finalizó</value>
   </data>
   <data name="TrialOnlyForNewUsers" xml:space="preserve">
     <value>El período de prueba gratis solo aplica para usuarios nuevos</value>

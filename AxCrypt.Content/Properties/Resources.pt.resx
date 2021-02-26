@@ -4472,9 +4472,6 @@ Assunto: Relatório de Erros AxCrypt</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Esta ação irá apagar todas as definições. Os dados não serão perdidos, mas a configuração será reiniciada com os parâmetros instalados por defeito.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Repor</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Renomear para o original</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>

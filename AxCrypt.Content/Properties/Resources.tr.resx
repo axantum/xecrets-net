@@ -434,7 +434,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Bir Business Aboneliğini Yönetin</value>
   </data>
   <data name="AxcryptBusinessBlock3Text1">
-    <value>İnternet sitemizde kayıtlı bir AxCrypt ID ile giriş yapmış ve en az bir Business aboneliğinde yönetici olarak tanımlanmış olmanız gerekmektedir. Bir aboneliği yönetmek için &lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Business Abonelik menüsünü&lt;/a&gt; kullanınız.</value>
+    <value>İnternet sitemizde kayıtlı bir AxCrypt ID ile giriş yapmış ve en az bir Business aboneliğinde yönetici olarak tanımlanmış olmanız gerekmektedir. Bir aboneliği yönetmek için &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;Business Abonelik menüsünü&lt;/a&gt; kullanınız.</value>
   </data>
   <data name="AxcryptBusinessBlock3Text2">
     <value>İstediğiniz şekilde üye ekleyin veya çıkartın. Kendinizi yöneticilikten veya abonelikten çıkartamazsınız.</value>
@@ -446,7 +446,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Business Aboneliği için Bilgileri Güncelleyin</value>
   </data>
   <data name="AxcryptBusinessBlock4Text1">
-    <value>İnternet sitemizde kayıtlı bir AxCrypt ID ile giriş yapmış ve en az bir Business aboneliğinde yönetici olarak tanımlanmış olmanız gerekmektedir. Bir aboneliği yönetmek için &lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Business Abonelik menüsünü&lt;/a&gt; kullanınız.</value>
+    <value>İnternet sitemizde kayıtlı bir AxCrypt ID ile giriş yapmış ve en az bir Business aboneliğinde yönetici olarak tanımlanmış olmanız gerekmektedir. Bir aboneliği yönetmek için &lt;a href='https://account.axcrypt.net/en/Business/SubscriptionInformation'&gt;Business Abonelik menüsünü&lt;/a&gt; kullanınız.</value>
   </data>
   <data name="AxcryptBusinessBlock4Text2">
     <value>Abonelik hakkında kaydettiğimiz bilgiler isim, adres ve mevcut ise AB KDV Numarası ile sınırlıdır.</value>
@@ -695,7 +695,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/bilgi/lisans/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/fiyatlandırma/"&gt;fiyatlandırma programı&lt;/a&gt; oku.</value>
+    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/information/license/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/pricing/"&gt;fiyatlandırma programı&lt;/a&gt; oku.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -3582,7 +3582,7 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
     <value>Bugün AxCrypt Premium edinin ve ilk 30 gün süresince ücretsiz kullanın.</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Premium Deneme Sürümü hakkında daha fazla bilgi için &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; adresine tıklayın.</value>
+    <value>Premium Deneme Sürümü hakkında daha fazla bilgi için &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt; adresine tıklayın.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Daha fazlasını görmek için tıklayıp basılı tut.</value>
@@ -4253,9 +4253,6 @@ Konu: AxCrypt Report Snapshot</value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Bu tüm ayarları silecektir. Hiçbir veri kaybı yaşanmayacak, ancak konfigürasyon kurulum ayarlarına getirilecek.</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Sıfırla</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Orijinal isme yeniden adlandır</value>

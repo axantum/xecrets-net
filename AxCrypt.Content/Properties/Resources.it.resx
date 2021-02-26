@@ -499,7 +499,7 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
     <value>Acquisto per Abbonamento Business</value>
   </data>
   <data name="AxcryptBusinessBlock5Text1">
-    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web e essere l'amministratore designato per almeno un abbonamento Businss. Utilizza il &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per acquistare membri aggiuntivi o tempo per un abbonamento.</value>
+    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web e essere l'amministratore designato per almeno un abbonamento Businss. Utilizza il &lt;a href='https://account.axcrypt.net/Business/TopupSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per acquistare membri aggiuntivi o tempo per un abbonamento.</value>
   </data>
   <data name="AxcryptBusinessBlock5Text2">
     <value>La creazione iniziale di un abbonamento include l'acquisto di un numero iniziale di licenze per un mese o per un anno, a seconda del piano scelto.</value>
@@ -3823,7 +3823,7 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>Ottieni AxCrypt Premium oggi e ricevi i primi 30 giorni gratis!</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Clicca &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;qui&lt;/a&gt; per maggiori informazioni su Premium Trial.</value>
+    <value>Clicca &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;qui&lt;/a&gt; per maggiori informazioni su Premium Trial.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Clicca e mantieni premuto per visualizzare di più</value>
@@ -4507,9 +4507,6 @@ Oggetto: Rapporto Istantaneo AxCrypt </value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Questa azione cancellerà tutte le impostazioni. Nessun dato verrà perso, ma la configurazione sarà resettata alle impostazioni predefinite di installazione.</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Resetta</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Rinomina come l'originale</value>
