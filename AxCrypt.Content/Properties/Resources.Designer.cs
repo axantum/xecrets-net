@@ -3482,6 +3482,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Deselect all files.
+        /// </summary>
+        public static string DeselectAllFilesLabelText {
+            get {
+                return ResourceManager.GetString("DeselectAllFilesLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt ID.
         /// </summary>
         public static string DialogAxCryptIdEmailTitle {
@@ -5615,6 +5624,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!File Info.
+        /// </summary>
+        public static string FileInfoLabelText {
+            get {
+                return ResourceManager.GetString("FileInfoLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; has been opened in another application. Please ensure the other application is closed entirely and try again..
         /// </summary>
         public static string FileIsLockedWarning {
@@ -6569,6 +6587,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Go to password manager.
+        /// </summary>
+        public static string GoToPasswordManagerButtonText {
+            get {
+                return ResourceManager.GetString("GoToPasswordManagerButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
         ///
         ///If you for any reason do not know or remember the password, you must perform a password reset..
@@ -7434,6 +7461,15 @@ namespace AxCrypt.Content.Properties {
         public static string KeyShareInviteUserTextPrompt {
             get {
                 return ResourceManager.GetString("KeyShareInviteUserTextPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Key Share.
+        /// </summary>
+        public static string KeyShareLabelText {
+            get {
+                return ResourceManager.GetString("KeyShareLabelText", resourceCulture);
             }
         }
         
@@ -9733,6 +9769,17 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!You can store all your passwords and codes online in a secure manner using the feature.
+        ///
+        ///Manage and access your passwords seamlessly wherever you are..
+        /// </summary>
+        public static string PasswordManagerFeatureInfoText {
+            get {
+                return ResourceManager.GetString("PasswordManagerFeatureInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recently your AxCrypt account password was changed, so you will need to sign in again to synchronize you AxCrypt account information..
         /// </summary>
         public static string PasswordMismatchApiExceptionText {
@@ -10391,6 +10438,15 @@ namespace AxCrypt.Content.Properties {
         public static string PressAndMediaLinkLabel {
             get {
                 return ResourceManager.GetString("PressAndMediaLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Press files to select.
+        /// </summary>
+        public static string PressFileToSelectLabelText {
+            get {
+                return ResourceManager.GetString("PressFileToSelectLabelText", resourceCulture);
             }
         }
         
@@ -11984,6 +12040,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!You haven&apos;t opened any secured files recently. Click Open Secured to browse for a secured file..
+        /// </summary>
+        public static string RecentFilesListInfoText {
+            get {
+                return ResourceManager.GetString("RecentFilesListInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open.
         /// </summary>
         public static string RecentFilesOpenToolStripMenuItemText {
@@ -12254,6 +12319,15 @@ namespace AxCrypt.Content.Properties {
         public static string ReliabilityUpdateAvailableWarning {
             get {
                 return ResourceManager.GetString("ReliabilityUpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Remove from recent files.
+        /// </summary>
+        public static string RemoveFromRecentFilesLabelText {
+            get {
+                return ResourceManager.GetString("RemoveFromRecentFilesLabelText", resourceCulture);
             }
         }
         
@@ -12653,6 +12727,15 @@ namespace AxCrypt.Content.Properties {
         public static string ScriptingEnabledText {
             get {
                 return ResourceManager.GetString("ScriptingEnabledText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Search for files....
+        /// </summary>
+        public static string SearchBoxPlaceHolderText {
+            get {
+                return ResourceManager.GetString("SearchBoxPlaceHolderText", resourceCulture);
             }
         }
         
@@ -13184,6 +13267,15 @@ namespace AxCrypt.Content.Properties {
         public static string SecurityUpdateAvailableWarning {
             get {
                 return ResourceManager.GetString("SecurityUpdateAvailableWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Select all files.
+        /// </summary>
+        public static string SelectAllFilesLabelText {
+            get {
+                return ResourceManager.GetString("SelectAllFilesLabelText", resourceCulture);
             }
         }
         

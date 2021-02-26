@@ -1363,6 +1363,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DescriptionLabel" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="DeselectAllFilesLabelText" xml:space="preserve">
+    <value>!!Deselect all files</value>
+  </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
   </data>
@@ -2096,6 +2099,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
     <value>AxCrypt Public Sharing Key Files</value>
   </data>
+  <data name="FileInfoLabelText" xml:space="preserve">
+    <value>!!File Info</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' has been opened in another application. Please ensure the other application is closed entirely and try again.</value>
   </data>
@@ -2417,6 +2423,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GoToOurBlogLinkLabel" xml:space="preserve">
     <value>GO TO OUR BLOG</value>
   </data>
+  <data name="GoToPasswordManagerButtonText" xml:space="preserve">
+    <value>!!Go to password manager</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Great! You already have an AxCrypt ID account for '{0}'.
 
@@ -2734,6 +2743,9 @@ A recipient is identified by the AxCrypt ID sign in email, but we do not send th
 
 Please specify the language to use in the invitation and an optional personal message below.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
+  </data>
+  <data name="KeyShareLabelText" xml:space="preserve">
+    <value>!!Key Share</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>The file key is shared with other AxCrypt users.</value>
@@ -3593,6 +3605,11 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>Passwords</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
   </data>
+  <data name="PasswordManagerFeatureInfoText" xml:space="preserve">
+    <value>!!You can store all your passwords and codes online in a secure manner using the feature.
+
+Manage and access your passwords seamlessly wherever you are.</value>
+  </data>
   <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
     <value>Recently your AxCrypt account password was changed, so you will need to sign in again to synchronize you AxCrypt account information.</value>
   </data>
@@ -3846,6 +3863,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PressAndMediaLinkLabel" xml:space="preserve">
     <value>Press and Media</value>
+  </data>
+  <data name="PressFileToSelectLabelText" xml:space="preserve">
+    <value>!!Press files to select</value>
   </data>
   <data name="PressImagesDescription" xml:space="preserve">
     <value>Photos that may be used for purposes such as interviews and illustrations.</value>
@@ -4398,6 +4418,9 @@ Please &lt;a href="mailto:business@axcrypt.net"&gt;contact us&lt;/a&gt; and we w
   <data name="ReadMoreButtonLabel" xml:space="preserve">
     <value>Read more</value>
   </data>
+  <data name="RecentFilesListInfoText" xml:space="preserve">
+    <value>!!You haven't opened any secured files recently. Click Open Secured to browse for a secured file.</value>
+  </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Open</value>
   </data>
@@ -4494,6 +4517,9 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
   <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a reliability issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
+  </data>
+  <data name="RemoveFromRecentFilesLabelText" xml:space="preserve">
+    <value>!!Remove from recent files</value>
   </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>Remove file</value>
@@ -4638,6 +4664,9 @@ Subject: AxCrypt Report Snapshot</value>
   </data>
   <data name="ScriptingEnabledText" xml:space="preserve">
     <value>Extensive command-line interface for scripting and programming.</value>
+  </data>
+  <data name="SearchBoxPlaceHolderText" xml:space="preserve">
+    <value>!!Search for files...</value>
   </data>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Search passwords here...</value>
@@ -4818,6 +4847,9 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Your software needs to be updated due to a security issue.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SelectAllFilesLabelText" xml:space="preserve">
+    <value>!!Select all files</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>Send invitation</value>
