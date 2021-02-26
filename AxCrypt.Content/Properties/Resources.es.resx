@@ -4448,7 +4448,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <value>Cumplimiento normativo</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;detalles técnicos&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
+    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;repositorio de bitbucket&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Notas de lanzamiento</value>

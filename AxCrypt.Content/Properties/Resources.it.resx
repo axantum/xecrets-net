@@ -499,7 +499,7 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
     <value>Acquisto per Abbonamento Business</value>
   </data>
   <data name="AxcryptBusinessBlock5Text1">
-    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web e essere l'amministratore designato per almeno un abbonamento Businss. Utilizza il &lt;a href='https://account.axcrypt.net/Business/TopupSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per acquistare membri aggiuntivi o tempo per un abbonamento.</value>
+    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web e essere l'amministratore designato per almeno un abbonamento Businss. Utilizza il &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per acquistare membri aggiuntivi o tempo per un abbonamento.</value>
   </data>
   <data name="AxcryptBusinessBlock5Text2">
     <value>La creazione iniziale di un abbonamento include l'acquisto di un numero iniziale di licenze per un mese o per un anno, a seconda del piano scelto.</value>
