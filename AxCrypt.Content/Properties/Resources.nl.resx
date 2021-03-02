@@ -2051,7 +2051,7 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
     <value>Meer informatie</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Klik &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;hier&lt;/a&gt; voor meer informatie over de Premium proefperiode.</value>
+    <value>Klik &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;hier&lt;/a&gt; voor meer informatie over de Premium proefperiode.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Ingedrukt houden om meer te zien</value>
@@ -2384,9 +2384,6 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Hiermee worden alle instellingen gewist. Er gaan geen gegevens verloren, maar de configuratie wordt gereset naar de standaardinstellingen van de installatie.</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Reset</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Hernoem tot origineel</value>

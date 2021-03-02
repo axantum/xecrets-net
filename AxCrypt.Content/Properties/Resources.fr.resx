@@ -4482,9 +4482,6 @@ Sujet : Rapport instantané AxCrypt</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Cette action va effacer tous les paramètres. Vous ne perdrez aucune donnée, mais la configuration sera réinitialisée avec les paramètres par défaut.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Réinitialisation</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Revenir au nom initial</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
@@ -5129,7 +5126,7 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
     <value>Si une partie de cet accord se révèle invalide, cela ne veut pas dire que les autres parties de l'accord sont invalides aussi, et la nouvelle interprétation se doit d'être aussi proche de l'original que possible.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2020 AxCrypt AB, Tous droits réservés.</value>
+    <value>Copyright © 2021 AxCrypt AB, Tous droits réservés.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licence</value>

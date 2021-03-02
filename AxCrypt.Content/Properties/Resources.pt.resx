@@ -4472,9 +4472,6 @@ Assunto: Relatório de Erros AxCrypt</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Esta ação irá apagar todas as definições. Os dados não serão perdidos, mas a configuração será reiniciada com os parâmetros instalados por defeito.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Repor</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Renomear para o original</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
@@ -5114,7 +5111,7 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Se qualquer parte deste acordo for considerada inválida, tal não invalida qualquer outra e a nova interpretação deve ser tão próxima da original quanto permitido.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2020 AxCrypt AB, Todos os direitos reservados.</value>
+    <value>Copyright © 2021 AxCrypt AB, Todos os direitos reservados.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licença</value>

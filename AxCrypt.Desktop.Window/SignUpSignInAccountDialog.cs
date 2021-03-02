@@ -45,7 +45,7 @@ namespace AxCrypt.Desktop.Window
             _showPassphrase.Text = Texts.ShowPasswordOptionPrompt;
             _buttonCancel.Text = "&" + Texts.ButtonCancelText;
             _buttonOk.Text = "&" + Texts.ButtonOkText;
-            _buttonReset.Text = "&" + Texts.SwitchUserButtonText;
+            _buttonSwitchUser.Text = "&" + Texts.SwitchUserButtonText;
             _troubleRememberingLabel.Text = "&" + Texts.TroubleRememberingLabel;
             _createAccountLinkLabel.Text = "&" + Texts.RegisterLink;
         }
@@ -184,8 +184,8 @@ namespace AxCrypt.Desktop.Window
             }
 
             ResizeUserEmailBox();
-            _buttonReset.Visible = true;
-            _buttonReset.Font = New<FontLoader>().ContentText;
+            _buttonSwitchUser.Visible = true;
+            _buttonSwitchUser.Font = New<FontLoader>().ContentText;
 
             _passphrase.Focus();
         }
@@ -229,7 +229,7 @@ namespace AxCrypt.Desktop.Window
             _errorProvider2.Clear();
         }
 
-        private async void ButtonReset_Click(object sender, EventArgs e)
+        private async void ButtonSwitchUser_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Retry;
         }

@@ -3607,7 +3607,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Kup AxCrypt Premium już dziś i korzystaj przez pierwsze 30 dni za darmo!</value>
   </data>
   <data name="PremiumTrialInstructionsLinkText" xml:space="preserve">
-    <value>Kliknij &lt;a href="https://www.axcrypt.net/premium-trial/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat subskrypcji.</value>
+    <value>Kliknij &lt;a href="https://www.axcrypt.net/pricing/" target="_blank"&gt;here&lt;/a&gt; aby uzyskać więcej informacji na temat subskrypcji.</value>
   </data>
   <data name="PressAndHoldLabel" xml:space="preserve">
     <value>Naciśnij i przytrzymaj aby zobaczyć więcej</value>
@@ -4278,9 +4278,6 @@ Temat: Migawka raportu AxCrypt</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Spowoduje to wyczyszczenie wszystkich ustawień. Żadne dane nie zostaną utracone, ale konfiguracja zostanie zresetowana do domyślnych ustawień instalacji.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Resetuj</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Przywróć pierwotną nazwę</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
@@ -4925,7 +4922,7 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
     <value>Jeśli jakakolwiek część niniejszej umowy zostanie uznana za nieważną, nie unieważnia to żadnej innej części umowy, a nowa interpretacja musi być jak najbardziej zbliżona do oryginału.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2020 AxCrypt AB, Wszelkie prawa zastrzeżone.</value>
+    <value>Copyright © 2021 AxCrypt AB, Wszelkie prawa zastrzeżone.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licencja</value>

@@ -4195,7 +4195,7 @@ SE-114 29 斯德哥尔摩
     <comment>A text indicating that the final VAT is determined by the payment provider.</comment>
   </data>
   <data name="PurchaseVatEstimated" xml:space="preserve">
-    <value>Premium只适用于个人，没有增值税扣除的企业是可能的。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/创建订阅"&gt;AxCrypt Business&lt;/a&gt;订阅。 &lt;b&gt;增值税不是最终的&lt;/b&gt;。</value>
+    <value>Premium只适用于个人，没有增值税扣除的企业是可能的。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCrypt Business&lt;/a&gt;订阅。 &lt;b&gt;增值税不是最终的&lt;/b&gt;。</value>
   </data>
   <data name="PurchaseVatExcluded" xml:space="preserve">
     <value>保费仅适用于个人。 公司和组织必须创建一个&lt;a href="https://account.axcrypt.net/Business/CreateSubscription"&gt;AxCryptBusiness&lt;/a&gt;订阅。 &lt;b&gt;此处不包括增值税。&lt;/b&gt;</value>
@@ -4447,9 +4447,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>这将清除所有设置。 不会丢失任何数据，但配置将重置为安装默认值。</value>
-  </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>重置</value>
   </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>重命名为原始</value>

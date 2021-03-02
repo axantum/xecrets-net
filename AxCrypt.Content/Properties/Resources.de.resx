@@ -399,7 +399,7 @@ Umfasst Software von http://www.bouncycastle.org/</value>
   <data name="AxCryptBetaWarning" xml:space="preserve">
     <value>Warnung! Dies ist ungetestete beta-software. Dies bedeutet, dass möglicherweise Funktionen fehlen und instabil sind. Möglicherweise fehlen Texte und die Benutzeroberfläche ist unvollständig.
 
-Verwenden Sie mit Sorgfalt und stellen Sie sicher, dass Sie aktuell backups aller Ihrer Daten haben. Bitte melden Sie alle Probleme an https://bitbucket.org/axcryptab/axcrypt-xwt/fragen oder support@axcrypt.net .
+Verwenden Sie mit Sorgfalt und stellen Sie sicher, dass Sie aktuell backups aller Ihrer Daten haben. Bitte melden Sie alle Probleme an https://bitbucket.org/axcryptab/axcrypt-xwt/issues oder support@axcrypt.net .
 
 Sie wurden gewarnt, jetzt genießen!
 
@@ -2789,7 +2789,7 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/dokumentation/loslegen/</value>
+    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -2909,6 +2909,9 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Die site-management-Eigenschaft wurde erfolgreich aktualisiert.</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>Hauptschlüssel kann von der &lt;a href='https://account.axcrypt.net/de/Business/ManageSubscriptionMembers' &gt; abonnementseite verwalten&lt; / a&gt;aktiviert werden.</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Interner Fehler, ungültiges Funktionsargument in %4</value>
@@ -3389,7 +3392,7 @@ Ihre Passwörter werden in einem sicher verschlüsselten Archiv gespeichert und 
 Bitte melden Sie sich unter &lt;b&gt;{0}&lt;/b&gt; an und vervollständigen Sie die E-Mail-Änderung, oder setzen Sie das Passwort für dieses Konto zuerst zurück und führen Sie dann die Änderung durch.</value>
   </data>
   <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswortZurücksetzen</value>
+    <value>https://account.axcrypt.net/Home/PasswordReset</value>
     <comment>The URL to a web page where a password can be reset</comment>
   </data>
   <data name="PasswordResetLink" xml:space="preserve">
@@ -3523,7 +3526,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>Ihr AxCrypt Premium Abonnement läuft bald ab. Ich hoffe aufrichtig, dass Sie unsere Dienste gerne genutzt haben und diese nützlich fanden.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Es wäre großartig, wenn Sie weiterhin unsere Premium Dienste nutzen würden.  Verlängern Sie ihr Abonnement &lt;a href="{0}Home/Login?email={1}"&gt;anmelden&lt;/a&gt; jetzt.</value>
+    <value>Es wäre großartig, wenn Sie weiterhin unsere Premium Dienste nutzen würden.  Verlängern Sie ihr Abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;anmelden&lt;/a&gt; jetzt.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -4286,9 +4289,6 @@ Thema: AxCrypt Snapshot-Bericht</value>
   <data name="ResetAllSettingsWarningText" xml:space="preserve">
     <value>Dies löscht sämtliche Einstellungen. Es werden keine Daten verloren gehen, aber die Konfiguration wird auf die Werte der Standardinstallation zurückgesetzt.</value>
   </data>
-  <data name="ResetButtonText" xml:space="preserve">
-    <value>Zurücksetzen</value>
-  </data>
   <data name="RestoreAnonymousNamesMenuText" xml:space="preserve">
     <value>Zum Original umbenennen</value>
     <comment>Displayed as a menu or context menu choice, and is used to restore the original name for encrypted files that have been renamed either manually or by using the anonymous rename function.</comment>
@@ -4928,7 +4928,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Wenn ein Teil dieser Vereinbarung für ungültig befunden wird, macht er keinen anderen Teil der Vereinbarung ungültig, und die neue Interpretation muss so nah wie möglich am Original liegen.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2020 AxCrypt AB, Alle Rechte vorbehalten.</value>
+    <value>Copyright © 2021 AxCrypt AB, Alle Rechte vorbehalten.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Lizenz</value>
