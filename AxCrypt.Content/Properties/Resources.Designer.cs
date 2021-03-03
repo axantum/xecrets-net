@@ -554,6 +554,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow all cookies.
+        /// </summary>
+        public static string AllowAllCookiesPromptText {
+            get {
+                return ResourceManager.GetString("AllowAllCookiesPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie policy. &lt;a href=&apos;https://www.axcrypt.net/information/privacy-policy&apos;&gt;Readmore&lt;/a&gt;.
+        /// </summary>
+        public static string AllowCookieInfoText {
+            get {
+                return ResourceManager.GetString("AllowCookieInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This website uses cookies.
+        /// </summary>
+        public static string AllowCookiesPopupTitle {
+            get {
+                return ResourceManager.GetString("AllowCookiesPopupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already registered? Log in here.
         /// </summary>
         public static string AlreadyRegisteredLink {
@@ -3482,7 +3509,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Deselect all files.
+        ///   Looks up a localized string similar to Deselect all files.
         /// </summary>
         public static string DeselectAllFilesLabelText {
             get {
@@ -5624,7 +5651,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!File Info.
+        ///   Looks up a localized string similar to File Info.
         /// </summary>
         public static string FileInfoLabelText {
             get {
@@ -6587,7 +6614,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Go to password manager.
+        ///   Looks up a localized string similar to Go to password manager.
         /// </summary>
         public static string GoToPasswordManagerButtonText {
             get {
@@ -7465,7 +7492,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Key Share.
+        ///   Looks up a localized string similar to Key Share.
         /// </summary>
         public static string KeyShareLabelText {
             get {
@@ -9769,9 +9796,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You can store all your passwords and codes online in a secure manner using the feature.
-        ///
-        ///Manage and access your passwords seamlessly wherever you are..
+        ///   Looks up a localized string similar to Keep all your passwords and other secrets safe in our cloud!.
         /// </summary>
         public static string PasswordManagerFeatureInfoText {
             get {
@@ -10442,7 +10467,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Press files to select.
+        ///   Looks up a localized string similar to Tap and hold to select.
         /// </summary>
         public static string PressFileToSelectLabelText {
             get {
@@ -12040,7 +12065,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!You haven&apos;t opened any secured files recently. Click Open Secured to browse for a secured file..
+        ///   Looks up a localized string similar to You haven&apos;t opened any secured files recently. Click Open Secured to browse for a secured files..
         /// </summary>
         public static string RecentFilesListInfoText {
             get {
@@ -12323,7 +12348,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Remove from recent files.
+        ///   Looks up a localized string similar to Remove from recent files.
         /// </summary>
         public static string RemoveFromRecentFilesLabelText {
             get {
@@ -12731,7 +12756,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Search for files....
+        ///   Looks up a localized string similar to Search for files....
         /// </summary>
         public static string SearchBoxPlaceHolderText {
             get {
@@ -13271,7 +13296,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Select all files.
+        ///   Looks up a localized string similar to Select all files.
         /// </summary>
         public static string SelectAllFilesLabelText {
             get {
@@ -15668,6 +15693,15 @@ namespace AxCrypt.Content.Properties {
         public static string UsageTipsTargetUseListItem6 {
             get {
                 return ResourceManager.GetString("UsageTipsTargetUseListItem6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use necessary cookies only.
+        /// </summary>
+        public static string UseNecessaryCookiesOnlyPromptText {
+            get {
+                return ResourceManager.GetString("UseNecessaryCookiesOnlyPromptText", resourceCulture);
             }
         }
         
