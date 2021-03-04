@@ -1642,6 +1642,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="ErrorRequiredField" xml:space="preserve">
     <value>This field is required</value>
   </data>
+  <data name="ExactlySelectOneFileText" xml:space="preserve">
+    <value>!!Please select a file</value>
+  </data>
   <data name="Exception" xml:space="preserve">
     <value>Exception during processing of '{0}'.</value>
     <comment>@Invariant</comment>
