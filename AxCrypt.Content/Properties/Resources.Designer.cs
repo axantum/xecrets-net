@@ -4301,6 +4301,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Please select a file.
+        /// </summary>
+        public static string ExactlySelectOneFileText {
+            get {
+                return ResourceManager.GetString("ExactlySelectOneFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception during processing of &apos;{0}&apos;..
         /// </summary>
         public static string Exception {
