@@ -4301,7 +4301,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to !!Please select a file.
+        ///   Looks up a localized string similar to Please select a file.
         /// </summary>
         public static string ExactlySelectOneFileText {
             get {
