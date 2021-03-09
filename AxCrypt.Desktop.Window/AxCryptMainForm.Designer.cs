@@ -429,7 +429,8 @@ namespace AxCrypt.Desktop.Window
             // 
             // _mainMenuStrip
             // 
-            this._mainMenuStrip.BackColor = System.Drawing.SystemColors.Control;
+            this._mainMenuStrip.BackColor = System.Drawing.Color.FromArgb(116, 151, 104);
+            this._mainMenuStrip.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this._mainMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._fileToolStripMenuItem,
@@ -1108,7 +1109,7 @@ namespace AxCrypt.Desktop.Window
             this._secretsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._secretsToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.passwords_80px;
             this._secretsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._secretsToolStripButton.Margin = new System.Windows.Forms.Padding(0);
+            this._secretsToolStripButton.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this._secretsToolStripButton.Name = "_secretsToolStripButton";
             this._secretsToolStripButton.Size = new System.Drawing.Size(40, 40);
             this._secretsToolStripButton.Text = "[Password Manager]";
@@ -1124,6 +1125,7 @@ namespace AxCrypt.Desktop.Window
             // 
             this._toolStripSeparator1.Name = "_toolStripSeparator1";
             this._toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            this._toolStripSeparator1.Visible = false;
             // 
             // _closeAndRemoveOpenFilesToolStripButton
             // 
@@ -1132,7 +1134,7 @@ namespace AxCrypt.Desktop.Window
             this._closeAndRemoveOpenFilesToolStripButton.Enabled = false;
             this._closeAndRemoveOpenFilesToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.broom_red_40px;
             this._closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._closeAndRemoveOpenFilesToolStripButton.Margin = new System.Windows.Forms.Padding(0);
+            this._closeAndRemoveOpenFilesToolStripButton.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             this._closeAndRemoveOpenFilesToolStripButton.Size = new System.Drawing.Size(40, 40);
             this._closeAndRemoveOpenFilesToolStripButton.ToolTipText = "[Click to clean and remove any open decrypted files, but ensure they are not in u" +
@@ -1142,10 +1144,9 @@ namespace AxCrypt.Desktop.Window
             // 
             this._daysLeftPremiumLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._daysLeftPremiumLabel.AutoSize = true;
-            this._daysLeftPremiumLabel.BackColor = System.Drawing.SystemColors.Control;
             this._daysLeftPremiumLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this._daysLeftPremiumLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this._daysLeftPremiumLabel.LinkColor = System.Drawing.SystemColors.ControlText;
+            this._daysLeftPremiumLabel.LinkColor = System.Drawing.Color.White;
             this._daysLeftPremiumLabel.Location = new System.Drawing.Point(507, 13);
             this._daysLeftPremiumLabel.Name = "_daysLeftPremiumLabel";
             this._daysLeftPremiumLabel.Size = new System.Drawing.Size(47, 13);
@@ -1159,7 +1160,6 @@ namespace AxCrypt.Desktop.Window
             this._rightToolStrip.AllowMerge = false;
             this._rightToolStrip.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._rightToolStrip.AutoSize = false;
-            this._rightToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this._rightToolStrip.CanOverflow = false;
             this._rightToolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._rightToolStrip.GripMargin = new System.Windows.Forms.Padding(0);
@@ -1192,7 +1192,6 @@ namespace AxCrypt.Desktop.Window
             this._softwareStatusButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._softwareStatusButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.bulb_green_40px;
             this._softwareStatusButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._softwareStatusButton.ImageTransparentColor = System.Drawing.Color.White;
             this._softwareStatusButton.Margin = new System.Windows.Forms.Padding(0);
             this._softwareStatusButton.Name = "_softwareStatusButton";
             this._softwareStatusButton.Size = new System.Drawing.Size(40, 40);
@@ -1252,6 +1251,7 @@ namespace AxCrypt.Desktop.Window
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._statusTabControl);
             this.Controls.Add(this._progressTableLayoutPanel);
+            this.BackColor = System.Drawing.Color.FromArgb(116, 151, 104);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(680, 300);
             this.Name = "AxCryptMainForm";

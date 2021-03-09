@@ -394,7 +394,7 @@ namespace AxCrypt.Desktop.Window
             }
 
             await SetSignInSignOutStatusAsync(_mainViewModel.LoggedOn);
-            if (_mainViewModel.LoggedOn && Thread.CurrentThread.CurrentUICulture.Name  != Resolve.UserSettings.CultureName)
+            if (_mainViewModel.LoggedOn && Thread.CurrentThread.CurrentUICulture.Name != Resolve.UserSettings.CultureName)
             {
                 await SetLanguageAsync(Resolve.UserSettings.CultureName);
             }
@@ -1464,28 +1464,25 @@ namespace AxCrypt.Desktop.Window
 
         private async Task SetSoftwareStatus()
         {
+            _softwareStatusButton.Image = Resources.bulb_green_40px;
             VersionUpdateStatus status = _mainViewModel.VersionUpdateStatus;
             switch (status)
             {
                 case VersionUpdateStatus.ShortTimeSinceLastSuccessfulCheck:
                 case VersionUpdateStatus.IsUpToDate:
-                    _softwareStatusButton.ToolTipText = Texts.NoNeedToCheckForUpdatesTooltip;
-                    _softwareStatusButton.Image = Resources.bulb_green_40px;
+                    _softwareStatusButton.Visible = false;
                     break;
 
                 case VersionUpdateStatus.LongTimeSinceLastSuccessfulCheck:
                     _softwareStatusButton.ToolTipText = Texts.OldVersionTooltip;
-                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.NewerVersionIsAvailable:
                     _softwareStatusButton.ToolTipText = Texts.NewVersionIsAvailableText.InvariantFormat(_mainViewModel.DownloadVersion.Version) + ' ' + Texts.ClickToDownloadText;
-                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
 
                 case VersionUpdateStatus.Unknown:
                     _softwareStatusButton.ToolTipText = Texts.ClickToCheckForNewerVersionTooltip;
-                    _softwareStatusButton.Image = Resources.bulb_red_40px;
                     break;
             }
         }
@@ -1526,10 +1523,7 @@ namespace AxCrypt.Desktop.Window
         {
             GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
 
-            bool anyFolders = folders.Any();
-            GetKnownFoldersToolItems().First().Visible = anyFolders;
-
-            if (!anyFolders)
+            if (!folders.Any())
             {
                 return;
             }

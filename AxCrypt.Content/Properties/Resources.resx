@@ -5036,6 +5036,18 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubmitLabel" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="SubscribeForFreeForFullFunctionalityText" xml:space="preserve">
+    <value>Subscribe for free for full functionality!</value>
+  </data>
+  <data name="SubscribeForFreeForFullSecurityText" xml:space="preserve">
+    <value>Subscribe for free for full security!</value>
+  </data>
+  <data name="SubscribeForFullFunctionalityText" xml:space="preserve">
+    <value>Subscribe for full functionality!</value>
+  </data>
+  <data name="SubscribeForFullSecurityText" xml:space="preserve">
+    <value>Subscribe for full security!</value>
+  </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
