@@ -13765,6 +13765,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscribe for free for full functionality!.
+        /// </summary>
+        public static string SubscribeForFreeForFullFunctionalityText {
+            get {
+                return ResourceManager.GetString("SubscribeForFreeForFullFunctionalityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscribe for free for full security!.
+        /// </summary>
+        public static string SubscribeForFreeForFullSecurityText {
+            get {
+                return ResourceManager.GetString("SubscribeForFreeForFullSecurityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscribe for full functionality!.
+        /// </summary>
+        public static string SubscribeForFullFunctionalityText {
+            get {
+                return ResourceManager.GetString("SubscribeForFullFunctionalityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscribe for full security!.
+        /// </summary>
+        public static string SubscribeForFullSecurityText {
+            get {
+                return ResourceManager.GetString("SubscribeForFullSecurityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;..
         /// </summary>
         public static string SubscriptionAutoRenewOn {

@@ -1,19 +1,14 @@
-using AxCrypt.Core;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
-using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
-using AxCrypt.Forms.Style;
-using AxCrypt.Content;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Desktop.Window
@@ -52,30 +47,30 @@ namespace AxCrypt.Desktop.Window
                         break;
                     }
 
-                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(_planInformation.DaysLeft);
-                    LinkColor = Styling.WarningColor;
+                    Text = Texts.SubscribeForFullSecurityText;
+                    LinkColor = System.Drawing.Color.White;
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.NoPremium:
-                    Text = Texts.UpgradePromptText;
-                    LinkColor = Styling.WarningColor;
+                    Text = Texts.SubscribeForFullSecurityText;
+                    LinkColor = System.Drawing.Color.White;
                     _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
                     Visible = true;
                     break;
 
                 case PlanState.CanTryPremium:
-                    Text = Texts.TryPremiumLabel;
-                    LinkColor = Styling.WarningColor;
+                    Text = Texts.SubscribeForFreeForFullSecurityText;
+                    LinkColor = System.Drawing.Color.White;
                     _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.OfflineNoPremium:
-                    Text = Texts.UpgradePromptText;
+                    Text = Texts.SubscribeForFullSecurityText;
                     _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
-                    LinkColor = Styling.WarningColor;
+                    LinkColor = System.Drawing.Color.White;
                     Visible = true;
                     break;
 

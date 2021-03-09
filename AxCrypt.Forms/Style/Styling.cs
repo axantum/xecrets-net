@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Forms.Style
@@ -92,6 +91,14 @@ namespace AxCrypt.Forms.Style
                 case "System.Windows.Forms.MenuStrip":
                     MenuStrip menuStrip = (MenuStrip)control;
                     menuStrip.Font = fontLoader.ContentText ?? menuStrip.Font;
+
+                    foreach (ToolStripDropDownItem toolStripMenuItem in menuStrip.Items)
+                    {
+                        toolStripMenuItem.MouseHover += _MouseHover_DropDownOpen;
+                        toolStripMenuItem.DropDownOpened += _MouseHover_DropDownOpen;
+                        toolStripMenuItem.MouseLeave += _MouseLeave_DropDownClose;
+                        toolStripMenuItem.DropDownClosed += _MouseLeave_DropDownClose;
+                    }
                     break;
 
                 case "System.Windows.Forms.ContextMenuStrip":
@@ -102,6 +109,7 @@ namespace AxCrypt.Forms.Style
                 case "System.Windows.Forms.ToolStrip":
                     ToolStrip toolStrip = (ToolStrip)control;
                     toolStrip.Font = fontLoader.ContentText ?? toolStrip.Font;
+                    toolStrip.BackColor = Color.FromArgb(116, 151, 104);
                     toolStrip.Renderer = new AxCryptToolStripProfessionalRenderer();
                     break;
             }
@@ -110,6 +118,21 @@ namespace AxCrypt.Forms.Style
             {
                 Style(childControl);
             }
+        }
+
+        private void _MouseHover_DropDownOpen(object sender, EventArgs e)
+        {
+            ((ToolStripMenuItem)sender).ForeColor = SystemColors.ControlText;
+        }
+
+        private void _MouseLeave_DropDownClose(object sender, EventArgs e)
+        {
+            if (((ToolStripMenuItem)sender).Pressed)
+            {
+                return;
+            }
+
+            ((ToolStripMenuItem)sender).ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
         }
 
         public static void RestoreWindowWithFocus(Form form)
