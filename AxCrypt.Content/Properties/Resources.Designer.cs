@@ -13765,7 +13765,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscribe for free for full functionality!.
+        ///   Looks up a localized string similar to Try subscribing for free for full functionality!.
         /// </summary>
         public static string SubscribeForFreeForFullFunctionalityText {
             get {
@@ -13774,7 +13774,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscribe for free for full security!.
+        ///   Looks up a localized string similar to Try subscribing for free for full security!.
         /// </summary>
         public static string SubscribeForFreeForFullSecurityText {
             get {
