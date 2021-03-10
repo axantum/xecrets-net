@@ -9344,7 +9344,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!.
+        ///   Looks up a localized string similar to You do not have a valid subscription, so you are not using the highest level of security. Click to upgrade!.
         /// </summary>
         public static string NoPremiumWarning {
             get {
