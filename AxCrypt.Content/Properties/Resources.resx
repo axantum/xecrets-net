@@ -3453,7 +3453,7 @@ Your documents are still safely encrypted with your password.</value>
     <comment>An information text, informing the user why there is no prompt for a password when you're signed in.</comment>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
-    <value>You do not have a Premium subscription, so you are not using the highest level of security. Click to upgrade!</value>
+    <value>You do not have a valid subscription, so you are not using the highest level of security. Click to upgrade!</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
     <value>Note</value>

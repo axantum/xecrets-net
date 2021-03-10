@@ -1,5 +1,6 @@
 using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
@@ -33,6 +34,8 @@ namespace AxCrypt.Desktop.Window
 
         public void UpdateText()
         {
+            LinkColor = System.Drawing.Color.White;
+
             switch (_planInformation.PlanState)
             {
                 case PlanState.Unknown:
@@ -47,30 +50,26 @@ namespace AxCrypt.Desktop.Window
                         break;
                     }
 
-                    Text = Texts.SubscribeForFullSecurityText;
-                    LinkColor = System.Drawing.Color.White;
+                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(_planInformation.DaysLeft);
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.NoPremium:
-                    Text = Texts.SubscribeForFullSecurityText;
-                    LinkColor = System.Drawing.Color.White;
+                    Text = Texts.UpgradePromptText;
                     _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
                     Visible = true;
                     break;
 
                 case PlanState.CanTryPremium:
-                    Text = Texts.SubscribeForFreeForFullSecurityText;
-                    LinkColor = System.Drawing.Color.White;
+                    Text = Texts.TryPremiumLabel;
                     _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.OfflineNoPremium:
-                    Text = Texts.SubscribeForFullSecurityText;
+                    Text = Texts.UpgradePromptText;
                     _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
-                    LinkColor = System.Drawing.Color.White;
                     Visible = true;
                     break;
 
