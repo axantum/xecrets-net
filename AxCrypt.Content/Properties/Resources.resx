@@ -1974,6 +1974,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FeaturesBusinessAdminDescription" xml:space="preserve">
     <value>Manage your AxCrypt Business account, create subscriptions, change your company info, etc</value>
   </data>
+  <data name="FeaturesBusinessPrioritySupportDescription" xml:space="preserve">
+    <value>Get quick and personal support, with a dedicated account manager</value>
+  </data>
   <data name="FeaturesChangeToManage" xml:space="preserve">
     <value>Chance to manage Marketing, Sales and 1st Line Support in your own territory</value>
   </data>
@@ -2024,6 +2027,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="FeaturesPasswordManagementDescription" xml:space="preserve">
     <value>Keep all your passwords and other secrets safe in our cloud</value>
+  </data>
+  <data name="FeaturesProfessionalUseDescription" xml:space="preserve">
+    <value>Protect all your business related data</value>
   </data>
   <data name="FeaturesProgressiveMargins" xml:space="preserve">
     <value>Progressive margins (higher revenue percent for higher sales)</value>
@@ -2592,6 +2598,9 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>Industries</value>
+  </data>
   <data name="InformationLinkLabel" xml:space="preserve">
     <value>Information</value>
   </data>
@@ -2828,6 +2837,9 @@ Please specify the language to use in the invitation and an optional personal me
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>We have detected potentially incompatible software that may cause AxCrypt and other software to malfunction. This software is named Lavasoft Web Companion. If AxCrypt malfunctions, try to uninstall Lavasoft.</value>
   </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>Learn More</value>
+  </data>
   <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
     <value>Are you sure you want to leave the business?</value>
   </data>
@@ -2872,6 +2884,9 @@ Do not forget this password!</value>
 You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
 
 Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
+  </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>Legal</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -3029,6 +3044,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>The site management property was updated successfully.</value>
   </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>This account is managed by a reseller. The reseller can add new users to the account and manage payments. Note: Resellers do NOT gain access to any encrypted information, including files secured with Master key.</value>
+  </data>
   <data name="MasterKeyApprovalInfo" xml:space="preserve">
     <value>If approved, Master key will be applied to encrypted files and possible to recover by business administrators. If you want to stop having Master key applied, you can leave the business at any time (this is done in your My AxCrypt ID page).</value>
   </data>
@@ -3117,7 +3135,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;here&lt;/a&gt;.</value>
+    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;For more information, click here&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.</value>
@@ -4616,8 +4634,269 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="ResellerBenefitsText" xml:space="preserve">
     <value>AxCrypt has customers from all over the world, relying on the simplicity and safety of our encryption tool. Our biggest markets includes US, UK and France. AxCrypt is expanding more and more every day, and we want you to grow along.</value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>Log in to &lt;a href='https://account.axcrypt.net/'&gt;account.axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>On the creation page, enter your customer’s information and the number of licenses needed. This can be changed later if needed.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>Select whether you want a monthly or yearly subscription by choosing 1 or 12 months.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>For VAT deduction (within the EU), enter a valid VAT number.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>The reseller’s discount will be automatically added.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>Click the payment button.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>Finally, you can add the email addresses of the users that need to be assigned a license.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>To resell AxCrypt Business to a new customer, create their subscription on the account website:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt; It will work both if your customer does or does not have a registered AxCrypt account.&lt;br /&gt;They will receive an email or invite saying they have been added to a Business subscription. They must then activate their account.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>You will automatically be added to their subscription as an administrator of their account.&lt;br /&gt;Naturally, you will not be assigned a license.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text4" xml:space="preserve">
+    <value>If you make any of your customer’s users an administrator, they will be able to purchase new licenses and manage the account. This means that you and they will not get the discount. We suggest not making them an administrator unless really needed.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>This process is designed so it is completely managed by you and does not require any involvement from your customer (besides activating the account, should they not have an existing account yet), or from AxCrypt. If payment by bank transfer is preferred, this is possible too. See the billing tab for more information.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt offers one subscription for reselling: &lt;b&gt;AxCrypt Business&lt;/b&gt;. You can use the sub menus on &lt;a href='http://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;  to manage your existing clients or purchase licenses for your clients. Log in using the existing account that has been set as the admin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>To contact the Reselling team, email us at &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>Choose your customer from the Acting On drop down menu.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>Add users individually by their email address.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>You can add users to the customer’s account. Just be sure that unused licenses are available — the administrator can add users as long as there are licenses available.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>To add users:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>Choose the number of licenses needed.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>If your customer’s account has all their licenses in use, you can purchase additional licenses:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt; If a payment by bank transfer is preferred, this is possible too. See billing down below for more information.&lt;br /&gt;When a subscription is created or renewed, the period is always a year.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>When additional members licenses are purchased for a subscription within the subscription period, only the remaining  months rounded upwards to whole months are charged for. If 50 days remain for the current period, and additional members are added, this will be for 2 months/additional member.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>You now have an unused license. You can either save it for when you need it (this doesn’t pause the expiration date) or assign it to a new user.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>Removing or changing users in your customer’s account are simple:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle1" xml:space="preserve">
+    <value>Add a new customer</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>Add users to a customer’s account</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>Purchase additional member licenses</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>Removing or changing users</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersTitle" xml:space="preserve">
+    <value>Add and manage customers</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>Subscriptions are purchased through AxCrypt web account portal (account.axcrypt.net). The payments are made directly through the portal with a credit card.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>It may also be possible for you to purchase by invoice, usually dependant on the number of subscriptions you wish to purchase. If you would like to do so, contact the &lt;a href='mailto:reseller@axcrypt.net'&gt;Reselling team&lt;/a&gt;. If payment is done via bank transfer, it may take longer for your customer to get access, as we first have to receive the payment.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>The current list price per member license for AxCrypt Business can be found on our &lt;a href='https://www.axcrypt.net/pricing'&gt;pricing page&lt;/a&gt;. You have a personal Reseller’s discount which applies to this.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>For the purposes of a subscription a month is defined as 30 days and a year as 360 days. When a subscription is created or renewed, the period is always a month or a year.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>When additional members licenses are purchased for a subscription within the subscription period, only the remaining  months rounded upwards to whole months are charged for. If 50 days remain for the current period, and additional members are added, this will be for 2 months/additional member.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>Read “Payment and Renewal” in our &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Terms of Use&lt;/a&gt; for more information.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>Since June 25th 2020, we  automatically renew subscriptions. If you purchased licenses before then, neither you nor your client will be charged automatically. You’ll have to renew via the menu. </value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>If you purchased licenses after June 25th 2020, the subscription will automatically renew at the end of the subscription period, using the initial payment method. If you want to cancel, you must do so before the end of the current subscription period.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>Read “Payment and Renewal” in our &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Terms of Use&lt;/a&gt; for more information.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>Here you will find your invoices and transaction history.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>Information such as date, reference, address, etc.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>Paid for which customer.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>Subscription ordered.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>Total amount.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>You can print the invoice by clicking the print icon.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>EU VAT will be deducted before purchasing when entering a valid VAT number. VAT is not applicable for countries outside EU.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>For Swedish customers, VAT deduction is not possible. As AxCrypt is a Swedish company, Swedish customers will have to have to book the incoming VAT as incoming, and this is then deducted from outgoing VAT when they pay to Swedish Tax authorities.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt; AxCrypt can’t further advise you on tax matters. Please check your country’s regulations or contact your tax advisor for more details.</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>Payment method</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>Pricing and discount details</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>Renewal</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>View your order and transaction history</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>Taxes</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>Billing</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>Before you can access your Reseller account, a member of AxCrypt’s team must assign you an administrator role with Reseller privileges. After signing the agreement, our team will ask you for an email address associated with an AxCrypt account. This account will serve as the admin of the Reseller account.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
+    <value>Note: It’s perfectly fine if you use the same account in combination with your own subscription plan.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>Log into &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt; to get access to your Reseller account. You see you account as shown in the picture below.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>Get access to your Reseller account</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>Getting started</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>Reseller Help</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>Do not edit the images without our permission.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>Leave an empty space of 25% of the logotype dimensions from adjacent images or graphical elements.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>You may use the reseller’s logo or AxCrypt’s regular logo in your own publications or website. You are free to do so as you comply to the following regulations:</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>You may use black and white versions when the colored logotype isn’t a suitable alternative.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;Logotype icon in PNG format&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;Logotype icon in JPG format&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;Logotype full in PNG format&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;Logotype full in JPG format&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>You can find the original AxCrypt logotypes on &lt;a href='https://www.axcrypt.net/information/press'&gt;https://www.axcrypt.net/information/press&lt;/a&gt;.</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>Authorized reseller logo</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>FAQ: &lt;a href='https://www.axcrypt.net/information/faq'&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>Business subscription: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>Get started: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>Usage tips: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>Technical details: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
+    <value>Our resellers (and their customers) can of course rely on professional technical support from AxCrypt. Online we have lots of documentation and product information:</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>Furthermore, technical support is available at &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;. Their time zone is UTC+5:30, and usually respond during office hours within a day.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>Of course, we always suggest that our Resellers have used AxCrypt themselves before, so that they can help their customers with some basic technical questions. Otherwise we also have a bunch of tutorials that explain various features of AxCrypt. They are available on our YouTube Channel: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>Windows tutorials:&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>MacOS tutorials:&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>As a Reseller, you are responsible for your own sales and how you approach your (potential) customer. But, of course, we would like to assist you with your sales. Teamwork makes the dream work!</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>For advertisement purposes, and to show to your customers, we have created a presentation and brochure of AxCrypt. It will explain what AxCrypt is and how it can help you to keep your data protected.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;Download AxCrypt presentation&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>Technical support</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle2" xml:space="preserve">
+    <value>Sales support</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>Support</value>
+  </data>
   <data name="ResellerInfoHeading" xml:space="preserve">
     <value>Become an AxCrypt Reseller</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>Reseller Information</value>
   </data>
   <data name="ResellerInfoText1" xml:space="preserve">
     <value>AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017, 2018, 2019, 2020 and 2021.</value>
