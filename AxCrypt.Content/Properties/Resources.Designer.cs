@@ -5291,6 +5291,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get quick and personal support, with a dedicated account manager.
+        /// </summary>
+        public static string FeaturesBusinessPrioritySupportDescription {
+            get {
+                return ResourceManager.GetString("FeaturesBusinessPrioritySupportDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chance to manage Marketing, Sales and 1st Line Support in your own territory.
         /// </summary>
         public static string FeaturesChangeToManage {
@@ -5440,6 +5449,15 @@ namespace AxCrypt.Content.Properties {
         public static string FeaturesPasswordManagementDescription {
             get {
                 return ResourceManager.GetString("FeaturesPasswordManagementDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect all your business related data.
+        /// </summary>
+        public static string FeaturesProfessionalUseDescription {
+            get {
+                return ResourceManager.GetString("FeaturesProfessionalUseDescription", resourceCulture);
             }
         }
         
@@ -7070,6 +7088,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Industries.
+        /// </summary>
+        public static string IndustriesTitle {
+            get {
+                return ResourceManager.GetString("IndustriesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string InformationLinkLabel {
@@ -7690,6 +7717,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn More.
+        /// </summary>
+        public static string LearnMoreLinkLabel {
+            get {
+                return ResourceManager.GetString("LearnMoreLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to leave the business?.
         /// </summary>
         public static string LeaveBusinessConfirmationDialogBodyText {
@@ -7809,6 +7845,15 @@ namespace AxCrypt.Content.Properties {
         public static string LegacyOpenMessage {
             get {
                 return ResourceManager.GetString("LegacyOpenMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legal.
+        /// </summary>
+        public static string LegalLinkLabel {
+            get {
+                return ResourceManager.GetString("LegalLinkLabel", resourceCulture);
             }
         }
         
@@ -8236,6 +8281,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This account is managed by a reseller. The reseller can add new users to the account and manage payments. Note: Resellers do NOT gain access to any encrypted information, including files secured with Master key..
+        /// </summary>
+        public static string ManageSubscriptionResellerInfo {
+            get {
+                return ResourceManager.GetString("ManageSubscriptionResellerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If approved, Master key will be applied to encrypted files and possible to recover by business administrators. If you want to stop having Master key applied, you can leave the business at any time (this is done in your My AxCrypt ID page)..
         /// </summary>
         public static string MasterKeyApprovalInfo {
@@ -8497,7 +8551,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. For more information, click  &lt;a href=&quot;https://axcrypt.net/support/master-key&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href=&quot;https://axcrypt.net/support/master-key&quot; target=&quot;_blank&quot;&gt;For more information, click here&lt;/a&gt;..
         /// </summary>
         public static string MasterKeyHelpText1 {
             get {
@@ -12603,11 +12657,794 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log in to &lt;a href=&apos;https://account.axcrypt.net/&apos;&gt;account.axcrypt.net&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On the creation page, enter your customer’s information and the number of licenses needed. This can be changed later if needed..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select whether you want a monthly or yearly subscription by choosing 1 or 12 months..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For VAT deduction (within the EU), enter a valid VAT number..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reseller’s discount will be automatically added..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click the payment button..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem7 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finally, you can add the email addresses of the users that need to be assigned a license..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1ListItem9 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1ListItem9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To resell AxCrypt Business to a new customer, create their subscription on the account website:.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; It will work both if your customer does or does not have a registered AxCrypt account.&lt;br /&gt;They will receive an email or invite saying they have been added to a Business subscription. They must then activate their account..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will automatically be added to their subscription as an administrator of their account.&lt;br /&gt;Naturally, you will not be assigned a license..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you make any of your customer’s users an administrator, they will be able to purchase new licenses and manage the account. This means that you and they will not get the discount. We suggest not making them an administrator unless really needed..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This process is designed so it is completely managed by you and does not require any involvement from your customer (besides activating the account, should they not have an existing account yet), or from AxCrypt. If payment by bank transfer is preferred, this is possible too. See the billing tab for more information..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt offers one subscription for reselling: &lt;b&gt;AxCrypt Business&lt;/b&gt;. You can use the sub menus on &lt;a href=&apos;http://account.axcrypt.net&apos;&gt;account.axcrypt.net&lt;/a&gt;  to manage your existing clients or purchase licenses for your clients. Log in using the existing account that has been set as the admin..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text7 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To contact the Reselling team, email us at &lt;a href=&apos;mailto:reseller@axcrypt.net&apos;&gt;reseller@axcrypt.net&lt;/a&gt;..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text8 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your customer from the Acting On drop down menu..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock2ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock2ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add users individually by their email address..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock2ListItem2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock2ListItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can add users to the customer’s account. Just be sure that unused licenses are available — the administrator can add users as long as there are licenses available..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock2Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To add users:.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock2Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the number of licenses needed..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock3ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock3ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your customer’s account has all their licenses in use, you can purchase additional licenses:.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock3Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; If a payment by bank transfer is preferred, this is possible too. See billing down below for more information.&lt;br /&gt;When a subscription is created or renewed, the period is always a year..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock3Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When additional members licenses are purchased for a subscription within the subscription period, only the remaining  months rounded upwards to whole months are charged for. If 50 days remain for the current period, and additional members are added, this will be for 2 months/additional member..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock3Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You now have an unused license. You can either save it for when you need it (this doesn’t pause the expiration date) or assign it to a new user..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock4ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock4ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing or changing users in your customer’s account are simple:.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock4Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a new customer.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersSubTitle1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersSubTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add users to a customer’s account.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersSubTitle2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersSubTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase additional member licenses.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersSubTitle3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersSubTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Removing or changing users.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersSubTitle4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersSubTitle4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add and manage customers.
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscriptions are purchased through AxCrypt web account portal (account.axcrypt.net). The payments are made directly through the portal with a credit card..
+        /// </summary>
+        public static string ResellerHelpBillingBlock1Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It may also be possible for you to purchase by invoice, usually dependant on the number of subscriptions you wish to purchase. If you would like to do so, contact the &lt;a href=&apos;mailto:reseller@axcrypt.net&apos;&gt;Reselling team&lt;/a&gt;. If payment is done via bank transfer, it may take longer for your customer to get access, as we first have to receive the payment..
+        /// </summary>
+        public static string ResellerHelpBillingBlock1Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current list price per member license for AxCrypt Business can be found on our &lt;a href=&apos;https://www.axcrypt.net/pricing&apos;&gt;pricing page&lt;/a&gt;. You have a personal Reseller’s discount which applies to this..
+        /// </summary>
+        public static string ResellerHelpBillingBlock2Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For the purposes of a subscription a month is defined as 30 days and a year as 360 days. When a subscription is created or renewed, the period is always a month or a year..
+        /// </summary>
+        public static string ResellerHelpBillingBlock2Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When additional members licenses are purchased for a subscription within the subscription period, only the remaining  months rounded upwards to whole months are charged for. If 50 days remain for the current period, and additional members are added, this will be for 2 months/additional member..
+        /// </summary>
+        public static string ResellerHelpBillingBlock2Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read “Payment and Renewal” in our &lt;a href=&apos;https://www.axcrypt.net/information/terms-of-use&apos;&gt;Terms of Use&lt;/a&gt; for more information..
+        /// </summary>
+        public static string ResellerHelpBillingBlock2Text4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock2Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Since June 25th 2020, we  automatically renew subscriptions. If you purchased licenses before then, neither you nor your client will be charged automatically. You’ll have to renew via the menu. .
+        /// </summary>
+        public static string ResellerHelpBillingBlock3Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you purchased licenses after June 25th 2020, the subscription will automatically renew at the end of the subscription period, using the initial payment method. If you want to cancel, you must do so before the end of the current subscription period..
+        /// </summary>
+        public static string ResellerHelpBillingBlock3Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read “Payment and Renewal” in our &lt;a href=&apos;https://www.axcrypt.net/information/terms-of-use&apos;&gt;Terms of Use&lt;/a&gt; for more information..
+        /// </summary>
+        public static string ResellerHelpBillingBlock3Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you will find your invoices and transaction history..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information such as date, reference, address, etc..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid for which customer..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription ordered..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total amount..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem7 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can print the invoice by clicking the print icon..
+        /// </summary>
+        public static string ResellerHelpBillingBlock4ListItem8 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock4ListItem8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EU VAT will be deducted before purchasing when entering a valid VAT number. VAT is not applicable for countries outside EU..
+        /// </summary>
+        public static string ResellerHelpBillingBlock5Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For Swedish customers, VAT deduction is not possible. As AxCrypt is a Swedish company, Swedish customers will have to have to book the incoming VAT as incoming, and this is then deducted from outgoing VAT when they pay to Swedish Tax authorities..
+        /// </summary>
+        public static string ResellerHelpBillingBlock5Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock5Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; AxCrypt can’t further advise you on tax matters. Please check your country’s regulations or contact your tax advisor for more details..
+        /// </summary>
+        public static string ResellerHelpBillingBlock5Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingBlock5Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment method.
+        /// </summary>
+        public static string ResellerHelpBillingSubTitle1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingSubTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing and discount details.
+        /// </summary>
+        public static string ResellerHelpBillingSubTitle2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingSubTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renewal.
+        /// </summary>
+        public static string ResellerHelpBillingSubTitle3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingSubTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View your order and transaction history.
+        /// </summary>
+        public static string ResellerHelpBillingSubTitle4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingSubTitle4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taxes.
+        /// </summary>
+        public static string ResellerHelpBillingSubTitle5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingSubTitle5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Billing.
+        /// </summary>
+        public static string ResellerHelpBillingTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpBillingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before you can access your Reseller account, a member of AxCrypt’s team must assign you an administrator role with Reseller privileges. After signing the agreement, our team will ask you for an email address associated with an AxCrypt account. This account will serve as the admin of the Reseller account..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock1Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: It’s perfectly fine if you use the same account in combination with your own subscription plan..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock1Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log into &lt;a href=&apos;https://account.axcrypt.net&apos;&gt;account.axcrypt.net&lt;/a&gt; to get access to your Reseller account. You see you account as shown in the picture below..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock1Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get access to your Reseller account.
+        /// </summary>
+        public static string ResellerHelpGettingStartedSubTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Getting started.
+        /// </summary>
+        public static string ResellerHelpGettingStartedTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reseller Help.
+        /// </summary>
+        public static string ResellerHelpLinkLabel {
+            get {
+                return ResourceManager.GetString("ResellerHelpLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not edit the images without our permission..
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave an empty space of 25% of the logotype dimensions from adjacent images or graphical elements..
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1ListItem2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1ListItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You may use the reseller’s logo or AxCrypt’s regular logo in your own publications or website. You are free to do so as you comply to the following regulations:.
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You may use black and white versions when the colored logotype isn’t a suitable alternative..
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png&apos;&gt;Logotype icon in PNG format&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg&apos;&gt;Logotype icon in JPG format&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png&apos;&gt;Logotype full in PNG format&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg&apos;&gt;Logotype full in JPG format&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can find the original AxCrypt logotypes on &lt;a href=&apos;https://www.axcrypt.net/information/press&apos;&gt;https://www.axcrypt.net/information/press&lt;/a&gt;..
+        /// </summary>
+        public static string ResellerHelpMarketingBlock1Text7 {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingBlock1Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorized reseller logo.
+        /// </summary>
+        public static string ResellerHelpMarketingSubTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketing.
+        /// </summary>
+        public static string ResellerHelpMarketingTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FAQ: &lt;a href=&apos;https://www.axcrypt.net/information/faq&apos;&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1ListItem1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1ListItem1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business subscription: &lt;a href=&apos;https://www.axcrypt.net/information/axcrypt-business&apos;&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1ListItem2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1ListItem2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started: &lt;a href=&apos;https://www.axcrypt.net/information/get-started/windows/&apos;&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1ListItem3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1ListItem3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage tips: &lt;a href=&apos;https://www.axcrypt.net/information/usage-tips&apos;&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1ListItem4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1ListItem4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical details: &lt;a href=&apos;https://www.axcrypt.net/information/technical-details&apos;&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1ListItem5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1ListItem5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our resellers (and their customers) can of course rely on professional technical support from AxCrypt. Online we have lots of documentation and product information:.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Furthermore, technical support is available at &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;. Their time zone is UTC+5:30, and usually respond during office hours within a day..
+        /// </summary>
+        public static string ResellerHelpSupportBlock1Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of course, we always suggest that our Resellers have used AxCrypt themselves before, so that they can help their customers with some basic technical questions. Otherwise we also have a bunch of tutorials that explain various features of AxCrypt. They are available on our YouTube Channel: &lt;a href=&apos;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&apos;&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows tutorials:&lt;a href=&apos;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&apos;&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1Text4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MacOS tutorials:&lt;a href=&apos;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&apos;&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock1Text5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a Reseller, you are responsible for your own sales and how you approach your (potential) customer. But, of course, we would like to assist you with your sales. Teamwork makes the dream work!.
+        /// </summary>
+        public static string ResellerHelpSupportBlock2Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For advertisement purposes, and to show to your customers, we have created a presentation and brochure of AxCrypt. It will explain what AxCrypt is and how it can help you to keep your data protected..
+        /// </summary>
+        public static string ResellerHelpSupportBlock2Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf&apos;&gt;Download AxCrypt presentation&lt;/a&gt;.
+        /// </summary>
+        public static string ResellerHelpSupportBlock2Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical support.
+        /// </summary>
+        public static string ResellerHelpSupportSubTitle1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportSubTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sales support.
+        /// </summary>
+        public static string ResellerHelpSupportSubTitle2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportSubTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support.
+        /// </summary>
+        public static string ResellerHelpSupportTitle {
+            get {
+                return ResourceManager.GetString("ResellerHelpSupportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Become an AxCrypt Reseller.
         /// </summary>
         public static string ResellerInfoHeading {
             get {
                 return ResourceManager.GetString("ResellerInfoHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reseller Information.
+        /// </summary>
+        public static string ResellerInformationPromptTitle {
+            get {
+                return ResourceManager.GetString("ResellerInformationPromptTitle", resourceCulture);
             }
         }
         
