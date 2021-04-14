@@ -1,6 +1,5 @@
 using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
-using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
@@ -50,25 +49,21 @@ namespace AxCrypt.Desktop.Window
                         break;
                     }
 
-                    Text = (_planInformation.DaysLeft > 1 ? Texts.DaysLeftPluralWarningPattern : Texts.DaysLeftSingularWarningPattern).InvariantFormat(_planInformation.DaysLeft);
                     _toolTip.SetToolTip(this, Texts.DaysLeftWarningToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.NoPremium:
-                    Text = Texts.UpgradePromptText;
                     _toolTip.SetToolTip(this, Texts.NoPremiumWarning);
                     Visible = true;
                     break;
 
                 case PlanState.CanTryPremium:
-                    Text = Texts.TryPremiumLabel;
                     _toolTip.SetToolTip(this, Texts.TryPremiumToolTip);
                     Visible = true;
                     break;
 
                 case PlanState.OfflineNoPremium:
-                    Text = Texts.UpgradePromptText;
                     _toolTip.SetToolTip(this, Texts.OfflineNoPremiumWarning);
                     Visible = true;
                     break;
@@ -118,6 +113,22 @@ namespace AxCrypt.Desktop.Window
 
                 default:
                     break;
+            }
+        }
+
+        internal PlanState UserPlanState
+        {
+            get
+            {
+                return _planInformation.PlanState;
+            }
+        }
+
+        internal bool BusinessAdmin
+        {
+            get
+            {
+                return _planInformation.BusinessAdmin;
             }
         }
     }

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AxCrypt.Desktop.Window
 {
@@ -19,13 +18,13 @@ namespace AxCrypt.Desktop.Window
                     return Resources.skydrive_40px;
 
                 case KnownFolderKind.GoogleDrive:
-                    return Resources.google_40px;
+                    return Resources.google_drive_40px;
 
                 case KnownFolderKind.Dropbox:
                     return Resources.dropbox_40px;
 
                 case KnownFolderKind.WindowsMyDocuments:
-                    return Resources.folder_40px;
+                    return Resources.documents_white_40px;
 
                 case KnownFolderKind.None:
                 case KnownFolderKind.ICloud:

@@ -19,7 +19,7 @@ namespace AxCrypt.Desktop.Window.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -73,6 +73,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_more_users_white {
+            get {
+                object obj = ResourceManager.GetObject("add_more_users_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap addforencryptionred32 {
             get {
                 object obj = ResourceManager.GetObject("addforencryptionred32", resourceCulture);
@@ -103,9 +113,9 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap broom_40pxs {
+        internal static System.Drawing.Bitmap broom_40px {
             get {
-                object obj = ResourceManager.GetObject("broom_40pxs", resourceCulture);
+                object obj = ResourceManager.GetObject("broom_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +156,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         internal static System.Drawing.Bitmap bulb_red_40px {
             get {
                 object obj = ResourceManager.GetObject("bulb_red_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap business_support_white {
+            get {
+                object obj = ResourceManager.GetObject("business_support_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -271,6 +291,26 @@ namespace AxCrypt.Desktop.Window.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap documents_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("documents_grey_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap documents_white_40px {
+            get {
+                object obj = ResourceManager.GetObject("documents_white_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon DocumentsLibrary {
@@ -303,9 +343,49 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dropbox_40px1 {
+            get {
+                object obj = ResourceManager.GetObject("dropbox_40px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dropbox_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("dropbox_grey_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap encrypt {
             get {
                 object obj = ResourceManager.GetObject("encrypt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap encrypt_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("encrypt_grey_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap encrypt_white_40px {
+            get {
+                object obj = ResourceManager.GetObject("encrypt_white_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +503,9 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap folder_40px {
+        internal static System.Drawing.Bitmap google_40px {
             get {
-                object obj = ResourceManager.GetObject("folder_40px", resourceCulture);
+                object obj = ResourceManager.GetObject("google_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -433,9 +513,29 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap google_40px {
+        internal static System.Drawing.Bitmap google_drive_40px {
             get {
-                object obj = ResourceManager.GetObject("google_40px", resourceCulture);
+                object obj = ResourceManager.GetObject("google_drive_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap google_drive_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("google_drive_grey_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap google_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("google_grey_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -447,6 +547,16 @@ namespace AxCrypt.Desktop.Window.Properties {
             get {
                 object obj = ResourceManager.GetObject("GoogleDrive", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap helpquestion_40px {
+            get {
+                object obj = ResourceManager.GetObject("helpquestion_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -543,16 +653,6 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap open_encrypted_80px1 {
-            get {
-                object obj = ResourceManager.GetObject("open_encrypted_80px1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap opendocument32 {
             get {
                 object obj = ResourceManager.GetObject("opendocument32", resourceCulture);
@@ -586,16 +686,6 @@ namespace AxCrypt.Desktop.Window.Properties {
         internal static System.Drawing.Bitmap passwords_grey_premium_80px {
             get {
                 object obj = ResourceManager.GetObject("passwords_grey_premium_80px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap plus_40px {
-            get {
-                object obj = ResourceManager.GetObject("plus_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -766,6 +856,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         internal static System.Drawing.Bitmap skydrive_40px {
             get {
                 object obj = ResourceManager.GetObject("skydrive_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap skydrive_grey_40px {
+            get {
+                object obj = ResourceManager.GetObject("skydrive_grey_40px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

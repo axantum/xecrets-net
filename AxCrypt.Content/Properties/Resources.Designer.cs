@@ -518,6 +518,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add more users.
+        /// </summary>
+        public static string AddMoreUsersTitle {
+            get {
+                return ResourceManager.GetString("AddMoreUsersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string AddressLabel {
@@ -2257,6 +2266,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business Support.
+        /// </summary>
+        public static string BusinessSupportTitle {
+            get {
+                return ResourceManager.GetString("BusinessSupportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The first month is free, after that:.
         /// </summary>
         public static string BusinessTrialCreationSummaryTitle {
@@ -2855,6 +2873,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean Up.
+        /// </summary>
+        public static string CleanUpPromptText {
+            get {
+                return ResourceManager.GetString("CleanUpPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please consider that app keeps decrypted copy of file in the local file storage. It will be removed on sign out. You can also remove it manually via cleanup button..
         /// </summary>
         public static string CleanupWorkflowDescription {
@@ -3350,6 +3377,15 @@ namespace AxCrypt.Content.Properties {
         public static string DecryptAndRemoveFromListToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("DecryptAndRemoveFromListToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to select documents to decrypt.
+        /// </summary>
+        public static string DecryptButtonTooltipText {
+            get {
+                return ResourceManager.GetString("DecryptButtonTooltipText", resourceCulture);
             }
         }
         
@@ -7926,6 +7962,24 @@ namespace AxCrypt.Content.Properties {
         public static string LinkToAxCryptPremiumPurchasePage {
             get {
                 return ResourceManager.GetString("LinkToAxCryptPremiumPurchasePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/en/Home/Support&apos;&gt;Business Support&lt;/a&gt;.
+        /// </summary>
+        public static string LinkToBusinessSupportPage {
+            get {
+                return ResourceManager.GetString("LinkToBusinessSupportPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/en/Business/TopupSubscription&apos;&gt;Add more users&lt;/a&gt;.
+        /// </summary>
+        public static string LinkToBusinessTopupPage {
+            get {
+                return ResourceManager.GetString("LinkToBusinessTopupPage", resourceCulture);
             }
         }
         
@@ -14151,6 +14205,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send Feedback.
+        /// </summary>
+        public static string SendFeedbackTitle {
+            get {
+                return ResourceManager.GetString("SendFeedbackTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send invitation.
         /// </summary>
         public static string SendInvitation {
@@ -16102,6 +16165,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click here to unlock full encryption features!.
+        /// </summary>
+        public static string UnlockFullEncryptionFeaturesText {
+            get {
+                return ResourceManager.GetString("UnlockFullEncryptionFeaturesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {1} for &apos;{0}&apos;..
         /// </summary>
         public static string UnrecognizedError {
@@ -16143,6 +16215,15 @@ namespace AxCrypt.Content.Properties {
         public static string UnsubscribeMailFooter {
             get {
                 return ResourceManager.GetString("UnsubscribeMailFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Available.
+        /// </summary>
+        public static string UpdateAvailableTitle {
+            get {
+                return ResourceManager.GetString("UpdateAvailableTitle", resourceCulture);
             }
         }
         
