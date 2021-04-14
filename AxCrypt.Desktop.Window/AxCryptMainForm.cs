@@ -327,6 +327,23 @@ namespace AxCrypt.Desktop.Window
             _sixtyMinuteInactivitySignOutToolStripMenuItem.Text = Texts.IdleMinutesSignOutToolStripMenuItemText.InvariantFormat(60);
             _getPremiumToolStripMenuItem.Text = Texts.UpgradePromptText;
             _manageAccountToolStripMenuItem.Text = Texts.PromptMyAxCryptId;
+
+            _softwareStatusButton.Text = Texts.UpdateAvailableTitle;
+            _openEncryptedToolStripButton.Text = Texts.OpenEncryptedToolStripMenuItemText;
+            _encryptToolStripButton.Text = Texts.EncryptToolStripMenuItemText;
+            _stopSecuringToolStripButton.Text = Texts.DecryptToolStripMenuItemText;
+            _stopSecuringToolStripButton.ToolTipText = Texts.DecryptButtonTooltipText;
+            _keyShareToolStripButton.Text = Texts.ShareKeysToolStripMenuItemText;
+            _secretsToolStripButton.Text = Texts.PasswordManagementPageTitle;
+
+            _closeAndRemoveOpenFilesToolStripButton.Text = Texts.CleanUpPromptText;
+            _feedbackButton.Text = Texts.SendFeedbackTitle;
+            _helpButton.Text = Texts.ButtonHelpText;
+            _helpButton.ToolTipText = Texts.HomeGetStartedHeading;
+            _daysLeftPremiumLabel.Text = Texts.UnlockFullEncryptionFeaturesText;
+            _businessPrioritySupportToolStripMenuItem.Text = Texts.BusinessSupportTitle;
+            _businessPrioritySupportToolStripMenuItem.ToolTipText = Texts.FeaturesBusinessPrioritySupportDescription;
+            _businessAddMoreUsersToolStripMenuItem.Text = Texts.AddMoreUsersTitle;
         }
 
         private static void SetCulture()
@@ -566,6 +583,9 @@ namespace AxCrypt.Desktop.Window
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
+            _helpButton.Click += (sender, e) => Process.Start(Texts.LinkToGettingStarted);
+            _businessPrioritySupportToolStripMenuItem.Click += (sender, e) => Process.Start(Texts.LinkToBusinessSupportPage);
+            _businessAddMoreUsersToolStripMenuItem.Click += (sender, e) => Process.Start(Texts.LinkToBusinessTopupPage);
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _notifySignOutToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
@@ -601,11 +621,13 @@ namespace AxCrypt.Desktop.Window
             {
                 _keyShareToolStripButton.Image = Resources.share_border_80px;
                 _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
+                _keyShareToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             }
             else
             {
                 _keyShareToolStripButton.Image = Resources.share_border_grey_premium_80px;
                 _keyShareToolStripButton.ToolTipText = Texts.PremiumNeededForKeyShare;
+                _keyShareToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
             }
         }
 
@@ -615,11 +637,13 @@ namespace AxCrypt.Desktop.Window
             {
                 _secretsToolStripButton.Image = Resources.passwords_80px;
                 _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
+                _secretsToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             }
             else
             {
                 _secretsToolStripButton.Image = Resources.passwords_grey_premium_80px;
                 _secretsToolStripButton.ToolTipText = Texts.ToolTipPremiumNeededForSecrets;
+                _secretsToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
             }
         }
 
@@ -789,17 +813,17 @@ namespace AxCrypt.Desktop.Window
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DecryptFileEnabled), (bool enabled) => { _decryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.DownloadVersion), async (DownloadVersion dv) => { await SetSoftwareStatus(); await DisplayUpdateCheckPopups(); });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripButton.Enabled = enabled; ConfigureEncryptMenu(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptFileEnabled), (bool enabled) => { _encryptToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _cleanDecryptedToolStripMenuItem.Enabled = filesArePending; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Enabled = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FilesArePending), (bool filesArePending) => { _closeAndRemoveOpenFilesToolStripButton.Visible = filesArePending; _closeAndRemoveOpenFilesToolStripButton.ToolTipText = filesArePending ? Texts.CloseAndRemoveOpenFilesToolStripButtonToolTipText : string.Empty; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.EncryptionUpgradeMode), (EncryptionUpgradeMode mode) => _optionsEncryptionUpgradeModeToolStripMenuItem.Checked = mode == EncryptionUpgradeMode.AutoUpgrade);
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => await _knownFoldersViewModel.UpdateState.ExecuteAsync(null));
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureMenusAccordingToPolicyAsync(license); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await ConfigureLinkLabelAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.License), async (LicenseCapabilities license) => { await SetWindowTitleTextAsync(_mainViewModel.LoggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.License), (LicenseCapabilities license) => { _recentFilesListView.UpdateRecentFiles(_mainViewModel.RecentFiles); });
-            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await _daysLeftPremiumLabel.ConfigureAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
+            _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await ConfigureLinkLabelAsync(New<KnownIdentities>().DefaultEncryptionIdentity); });
             _mainViewModel.BindPropertyAsyncChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { if (loggedOn) New<InactivitySignOut>().RestartInactivityTimer(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await SetSignInSignOutStatusAsync(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await new Display().LocalSignInWarningPopUpAsync(loggedOn); });
@@ -814,7 +838,7 @@ namespace AxCrypt.Desktop.Window
             _debugOpenReportToolStripMenuItem.Click += (sender, e) => { New<IReport>().Open(); };
             _knownFoldersViewModel.BindPropertyChanged(nameof(_knownFoldersViewModel.KnownFolders), (IEnumerable<KnownFolder> folders) => UpdateKnownFolders(folders));
             _knownFoldersViewModel.KnownFolders = New<IKnownFoldersDiscovery>().Discover();
-            _mainToolStrip.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
+            _mainToolStripTableLayout.DragOver += async (sender, e) => { _mainViewModel.DragAndDropFiles = e.GetDragged(); e.Effect = await GetEffectsForMainToolStripAsync(e); };
             _optionsEncryptionUpgradeModeToolStripMenuItem.Click += (sender, e) => ToggleEncryptionUpgradeMode();
             _optionsClearAllSettingsAndRestartToolStripMenuItem.Click += async (sender, e) => { if (_mainViewModel.DecryptedFiles.Any()) { await _mainViewModel.WarnIfAnyDecryptedFiles.ExecuteAsync(null); return; } await new ApplicationManager().ClearAllSettings(); await ShutDownAnd(New<IUIThread>().RestartApplication); };
             _optionsDebugToolStripMenuItem.Click += (sender, e) => { _mainViewModel.DebugMode = !_mainViewModel.DebugMode; };
@@ -840,6 +864,11 @@ namespace AxCrypt.Desktop.Window
             _getPremiumToolStripMenuItem.Click += async (sender, e) => { await New<PremiumManager>().BuyPremium(New<KnownIdentities>().DefaultEncryptionIdentity); };
             _recentFilesRestoreAnonymousNamesMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); }, sender, e);
             _manageAccountToolStripMenuItem.Click += async (sender, e) => { RedirectToMyAxCryptIDPage(); };
+
+            _documentsToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
+            _oneDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
+            _googleDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
+            _dropBoxToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -854,6 +883,29 @@ namespace AxCrypt.Desktop.Window
             _shareKeysToolStripMenuItem.Enabled = filesSelected & loggedOn & noPendingDecrypted;
             _recentFilesRestoreAnonymousNamesMenuItem.Enabled = canRandomRename & filesSelected & loggedOn & noPendingDecrypted;
             _clearRecentFilesToolStripMenuItem.Enabled = noPendingDecrypted;
+        }
+
+        private void ConfigureEncryptMenu(bool enabled)
+        {
+            if (enabled)
+            {
+                _encryptToolStripButton.Image = Resources.encrypt_white_40px;
+                return;
+            }
+
+            _encryptToolStripButton.Image = Resources.encrypt_grey_40px;
+        }
+
+        private async Task ConfigureLinkLabelAsync(LogOnIdentity logOnIdentity)
+        {
+            await _daysLeftPremiumLabel.ConfigureAsync(logOnIdentity);
+            if (_daysLeftPremiumLabel.UserPlanState == PlanState.HasBusiness)
+            {
+                _businessPrioritySupportToolStripMenuItem.Visible = !_daysLeftPremiumLabel.Visible;
+            }
+
+            _businessAddMoreUsersToolStripMenuItem.Visible = _daysLeftPremiumLabel.BusinessAdmin;
+            _bottomRightBusinessTableLayout.Visible = _businessPrioritySupportToolStripMenuItem.Visible || _businessAddMoreUsersToolStripMenuItem.Visible;
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)
@@ -927,6 +979,7 @@ namespace AxCrypt.Desktop.Window
             _addSecureFolderToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { WatchedFoldersAddSecureFolderMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
             _decryptAndRemoveFromListToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _decryptToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
+            _stopSecuringToolStripButton.Click += async (sender, e) => { await _fileOperationViewModel.DecryptFiles.ExecuteAsync(null); };
             _encryptedFoldersToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureFolders, (ss, ee) => { encryptedFoldersToolStripMenuItem_Click(ss, ee); return Task.FromResult<object>(null); }, sender, e);
             _encryptToolStripButton.Click += async (sender, e) => await _fileOperationViewModel.EncryptFiles.ExecuteAsync(null);
             _encryptToolStripButton.Tag = _fileOperationViewModel.EncryptFiles;
@@ -1407,8 +1460,8 @@ namespace AxCrypt.Desktop.Window
             {
                 return DragDropEffects.None;
             }
-            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
-            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
+            Point point = _mainToolStripTableLayout.PointToClient(new Point(e.X, e.Y));
+            ImageButtonWithLabel button = _mainToolStripTableLayout.GetChildAtPoint(point) as ImageButtonWithLabel;
             if (button == null)
             {
                 return DragDropEffects.None;
@@ -1465,6 +1518,7 @@ namespace AxCrypt.Desktop.Window
         private async Task SetSoftwareStatus()
         {
             _softwareStatusButton.Image = Resources.bulb_green_40px;
+            _softwareStatusButton.Visible = true;
             VersionUpdateStatus status = _mainViewModel.VersionUpdateStatus;
             switch (status)
             {
@@ -1519,48 +1573,57 @@ namespace AxCrypt.Desktop.Window
             }
         }
 
-        private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
+        private async void KnownFolder_OnClick(object sender, EventArgs e)
         {
-            GetKnownFoldersToolItems().Skip(1).ToList().ForEach(f => _mainToolStrip.Items.Remove(f));
-
-            if (!folders.Any())
-            {
-                return;
-            }
-
-            int i = _mainToolStrip.Items.IndexOf(GetKnownFoldersToolItems().First()) + 1;
-            foreach (KnownFolder knownFolder in folders)
-            {
-                ToolStripButton button = new ToolStripButton((Image)knownFolder.Image);
-                button.ImageScaling = ToolStripItemImageScaling.SizeToFit;
-                button.Size = new Size(40, 40);
-                button.Margin = new Padding(0);
-                button.Padding = new Padding(0);
-                button.AutoSize = false;
-                button.ImageAlign = ContentAlignment.MiddleCenter;
-                button.Tag = knownFolder;
-                button.ToolTipText = Texts.DefaultSecureFolderToolTip;
-                button.Click += async (sender, e) =>
-                {
-                    ToolStripItem item = sender as ToolStripItem;
-                    await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(((KnownFolder)item.Tag).My.FullName);
-                };
-                button.Enabled = knownFolder.Enabled;
-                _mainToolStrip.Items.Insert(i, button);
-                ++i;
-            }
+            ToolStripButton button = sender as ToolStripButton;
+            ImageButtonWithLabel buttonPanel = button.GetCurrentParent().Parent as ImageButtonWithLabel;
+            await _fileOperationViewModel.OpenFilesFromFolder.ExecuteAsync(buttonPanel.KnownFolderFullName);
         }
 
-        private List<ToolStripItem> GetKnownFoldersToolItems()
+        private void UpdateKnownFolders(IEnumerable<KnownFolder> folders)
         {
-            List<ToolStripItem> buttons = new List<ToolStripItem>();
-            int i = _mainToolStrip.Items.IndexOf(_knownFoldersSeparator);
-            buttons.Add(_mainToolStrip.Items[i++]);
-            while (i < _mainToolStrip.Items.Count && _mainToolStrip.Items[i] is ToolStripButton)
+            foreach (KnownFolder knownFolder in folders)
             {
-                buttons.Add(_mainToolStrip.Items[i++]);
+                if (!_documentsToolStripButton.Enabled && knownFolder.DisplayName == Texts.KnownFolderNameWindowsMyDocuments)
+                {
+                    _documentsToolStripButton.Enabled = knownFolder.Enabled;
+                    _documentsToolStripButton.Visible = true;
+                    _documentsToolStripButton.Text = Texts.KnownFolderNameWindowsMyDocuments;
+                    _documentsToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+                    _documentsToolStripButton.Image = knownFolder.Enabled ? Resources.documents_white_40px : Resources.documents_grey_40px;
+                    _documentsToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
+                }
+
+                if (!_oneDriveToolStripButton.Enabled && knownFolder.DisplayName == Texts.KnownFolderNameOneDrive)
+                {
+                    _oneDriveToolStripButton.Enabled = knownFolder.Enabled;
+                    _oneDriveToolStripButton.Visible = true;
+                    _oneDriveToolStripButton.Text = Texts.KnownFolderNameOneDrive;
+                    _oneDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+                    _oneDriveToolStripButton.Image = knownFolder.Enabled ? Resources.skydrive_40px : Resources.skydrive_grey_40px;
+                    _oneDriveToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
+                }
+
+                if (!_googleDriveToolStripButton.Enabled && knownFolder.DisplayName == Texts.KnownFolderNameGoogleDrive)
+                {
+                    _googleDriveToolStripButton.Enabled = knownFolder.Enabled;
+                    _googleDriveToolStripButton.Visible = true;
+                    _googleDriveToolStripButton.Text = Texts.KnownFolderNameGoogleDrive;
+                    _googleDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+                    _googleDriveToolStripButton.Image = knownFolder.Enabled ? Resources.google_drive_40px : Resources.google_drive_grey_40px;
+                    _googleDriveToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
+                }
+
+                if (!_dropBoxToolStripButton.Enabled && knownFolder.DisplayName == Texts.KnownFolderNameDropbox)
+                {
+                    _dropBoxToolStripButton.Enabled = knownFolder.Enabled;
+                    _dropBoxToolStripButton.Visible = true;
+                    _dropBoxToolStripButton.Text = Texts.KnownFolderNameDropbox;
+                    _dropBoxToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+                    _dropBoxToolStripButton.Image = knownFolder.Enabled ? Resources.dropbox_40px : Resources.dropbox_grey_40px;
+                    _dropBoxToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
+                }
             }
-            return buttons;
         }
 
         private async void _exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1595,8 +1658,8 @@ namespace AxCrypt.Desktop.Window
 
         private async void MainToolStrip_DragDrop(object sender, DragEventArgs e)
         {
-            Point point = _mainToolStrip.PointToClient(new Point(e.X, e.Y));
-            ToolStripButton button = _mainToolStrip.GetItemAt(point) as ToolStripButton;
+            Point point = _mainToolStripTableLayout.PointToClient(new Point(e.X, e.Y));
+            TableLayoutPanel button = _mainToolStripTableLayout.GetChildAtPoint(point, GetChildAtPointSkip.None) as TableLayoutPanel;
             if (button == null)
             {
                 return;
@@ -1716,7 +1779,7 @@ namespace AxCrypt.Desktop.Window
 
         private void ProgressBackgroundWorker_ProgressBarCreated(object sender, ControlEventArgs e)
         {
-            _progressTableLayoutPanel.Controls.Add(e.Control);
+            _progressTableLayoutPanel.Controls.Add(e.Control, 0, 1);
         }
 
         private void ProgressContextCancelToolStripMenuItem_Click(object sender, EventArgs e)

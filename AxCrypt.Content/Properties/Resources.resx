@@ -282,6 +282,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>We may still send you email if it's vital to the function or security of AxCrypt.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>Add more users</value>
+  </data>
   <data name="AddressLabel" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -932,6 +935,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x users</value>
   </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>Business Support</value>
+  </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>The first month is free, after that:</value>
   </data>
@@ -1143,6 +1149,9 @@ You must complete these steps to complete the process.</value>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>File is open, and may need to be cleaned. Close any open applications, and click the Clean Up button.</value>
   </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>Clean Up</value>
+  </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>Please consider that app keeps decrypted copy of file in the local file storage. It will be removed on sign out. You can also remove it manually via cleanup button.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
@@ -1316,6 +1325,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Stop securing and remove from list</value>
+  </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>Click to select documents to decrypt</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>File</value>
@@ -2914,6 +2926,12 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
+  </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Business Support&lt;/a&gt;</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Add more users&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -5140,6 +5158,9 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SelectAllFilesLabelText" xml:space="preserve">
     <value>Select all files</value>
   </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>Send Feedback</value>
+  </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>Send invitation</value>
   </data>
@@ -5835,6 +5856,9 @@ The AxCrypt Team</value>
   <data name="UnknownLogOn" xml:space="preserve">
     <value>Password is not previously known. Click 'New' to create a new.</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>Click here to unlock full encryption features!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} for '{0}'.</value>
   </data>
@@ -5849,6 +5873,9 @@ The AxCrypt Team</value>
   </data>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>If you would like to unsubscribe click &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; this link&lt;/a&gt;</value>
+  </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Update Available</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>

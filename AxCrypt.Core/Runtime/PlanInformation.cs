@@ -13,7 +13,7 @@ namespace AxCrypt.Core.Runtime
 {
     public class PlanInformation : IEquatable<PlanInformation>
     {
-        public static readonly PlanInformation Empty = new PlanInformation(PlanState.Unknown, -1, false, false);
+        public static readonly PlanInformation Empty = new PlanInformation(PlanState.Unknown, -1, false, false, false);
 
         public PlanState PlanState { get; }
 
@@ -23,11 +23,13 @@ namespace AxCrypt.Core.Runtime
 
         public bool SubscribedFromAppStore { get; } = false;
 
+        public bool BusinessAdmin { get; } = false;
+
         public static async Task<PlanInformation> CreateAsync(LogOnIdentity identity)
         {
             if (identity == LogOnIdentity.Empty)
             {
-                return new PlanInformation(PlanState.NoPremium, 0, false, false);
+                return new PlanInformation(PlanState.NoPremium, 0, false, false, false);
             }
 
             PlanInformation pi = await GetPlanInformationAsync(identity);
@@ -47,24 +49,25 @@ namespace AxCrypt.Core.Runtime
                     return await NoPremiumOrCanTryAsync(service);
 
                 case SubscriptionLevel.Business:
-                    return new PlanInformation(PlanState.HasBusiness, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore);
+                    return new PlanInformation(PlanState.HasBusiness, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
                 case SubscriptionLevel.Premium:
-                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore);
+                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
                 default:
-                    return new PlanInformation(PlanState.NoPremium, 0, false, false);
+                    return new PlanInformation(PlanState.NoPremium, 0, false, false, false);
             }
         }
 
-        private PlanInformation(PlanState planStatus, int daysLeft, bool canTryPremiumSubscription, bool subscribedFromAppStore)
+        private PlanInformation(PlanState planStatus, int daysLeft, bool canTryPremiumSubscription, bool subscribedFromAppStore, bool businessAdmin)
         {
             PlanState = planStatus;
             DaysLeft = daysLeft;
             CanTryPremiumSubscription = canTryPremiumSubscription;
             SubscribedFromAppStore = subscribedFromAppStore;
+            BusinessAdmin = businessAdmin;
         }
 
         private static async Task<int> GetDaysLeft(IAccountService service)
@@ -90,7 +93,7 @@ namespace AxCrypt.Core.Runtime
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return new PlanInformation(PlanState.OfflineNoPremium, 0, false, false);
+                return new PlanInformation(PlanState.OfflineNoPremium, 0, false, false, false);
             }
 
             UserAccount userAccount = (await service.AccountAsync().Free());
@@ -98,10 +101,10 @@ namespace AxCrypt.Core.Runtime
 
             if (!offers.HasFlag(Offers.AxCryptTrial))
             {
-                return new PlanInformation(PlanState.CanTryPremium, 0, userAccount.CanTryAppStorePremiumTrial, false);
+                return new PlanInformation(PlanState.CanTryPremium, 0, userAccount.CanTryAppStorePremiumTrial, false, userAccount.BusinessAdmin);
             }
 
-            return new PlanInformation(PlanState.NoPremium, 0, userAccount.CanTryAppStorePremiumTrial, false);
+            return new PlanInformation(PlanState.NoPremium, 0, userAccount.CanTryAppStorePremiumTrial, false, userAccount.BusinessAdmin);
         }
 
         public bool Equals(PlanInformation other)

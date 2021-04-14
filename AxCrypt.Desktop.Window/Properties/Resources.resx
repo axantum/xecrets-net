@@ -124,8 +124,8 @@
   <data name="dropbox_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="broom_40pxs" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\broom_40pxs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="broom_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\broom_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="share_border_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\share_border_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -180,9 +180,6 @@
   </data>
   <data name="premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="folder_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folder_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="options" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\options.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,9 +283,6 @@
   <data name="decryptedfilered16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\decryptedfilered16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\plus_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="share_premium_80px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\share_premium_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -322,9 +316,6 @@
   <data name="logo_text_retina" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\logo-text-retina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="open_encrypted_80px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\open_encrypted_80px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="expand_collapse_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\expand_collapse_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -333,5 +324,44 @@
   </data>
   <data name="masterkey_keyshare_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\masterkey_keyshare_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="helpquestion_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\helpquestion_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_drive_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google-drive_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encrypt_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\encrypt_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="encrypt_white_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\encrypt_white_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="documents_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documents_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="documents_white_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\documents_white_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_40px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dropbox_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\dropbox_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="google_drive_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\google-drive_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="skydrive_grey_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\skydrive_grey_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="business_support_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\business_support_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_more_users_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\add_more_users_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

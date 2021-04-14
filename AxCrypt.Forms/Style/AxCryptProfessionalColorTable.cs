@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AxCrypt.Forms.Style
@@ -26,6 +25,16 @@ namespace AxCrypt.Forms.Style
         public override Color ToolStripGradientEnd
         {
             get { return SystemColors.Control; }
+        }
+
+        public override Color ButtonSelectedGradientBegin
+        {
+            get { return System.Drawing.Color.FromArgb(96, 120, 82); }
+        }
+
+        public override Color ToolStripBorder
+        {
+            get { return System.Drawing.Color.FromArgb(91, 108, 78); }
         }
     }
 }

@@ -128,6 +128,8 @@ namespace AxCrypt.Api.Model
 
         public AccountSource AccountSource { get; set; }
 
+        public bool BusinessAdmin { get; set; }
+
         public bool Equals(UserAccount other)
         {
             if ((object)other == null)
@@ -156,6 +158,10 @@ namespace AxCrypt.Api.Model
                 return false;
             }
             if (MasterKeyPair != other.MasterKeyPair)
+            {
+                return false;
+            }
+            if (BusinessAdmin != other.BusinessAdmin)
             {
                 return false;
             }

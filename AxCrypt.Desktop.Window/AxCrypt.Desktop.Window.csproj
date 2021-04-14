@@ -89,6 +89,12 @@
       <DependentUpon>AxCryptMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopVersion.cs" />
+    <Compile Include="ImageButtonWithLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImageButtonWithLabel.Designer.cs">
+      <DependentUpon>ImageButtonWithLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="InviteUserDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,11 @@
       <DependentUpon>KeySharingInviteUserDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="KnownFolderImageProvider.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SignUpSignInAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,11 +275,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="AxantumStrongName.pfx" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxCrypt.Abstractions\AxCrypt.Abstractions.csproj">
@@ -315,13 +321,15 @@
     <Content Include="HowToAddLanguage.txt" />
     <Content Include="resources\activefilegreen16.png" />
     <Content Include="resources\activefileknownkeygreen16.png" />
+    <None Include="resources\add_more_users_white.png" />
     <Content Include="resources\axcrypticon.ico" />
-    <Content Include="resources\broom_40pxs.png" />
+    <Content Include="resources\broom_40px.png" />
     <Content Include="resources\broom_red_40px.png" />
     <Content Include="resources\broom_red_80px.png" />
     <Content Include="resources\bulb_green_40px.png" />
     <Content Include="resources\bulb_orange_40px.png" />
     <Content Include="resources\bulb_red_40px.png" />
+    <None Include="resources\business_support_white.png" />
     <Content Include="resources\clean_broom.png" />
     <Content Include="resources\clean_broom_red.png" />
     <Content Include="resources\clean_recycle.png" />
@@ -329,13 +337,21 @@
     <Content Include="resources\closeremovestandbyred32.png" />
     <Content Include="resources\decrypt.png" />
     <Content Include="resources\delete.png" />
+    <None Include="resources\skydrive_grey_40px.png" />
+    <None Include="resources\documents_grey_40px.png" />
+    <None Include="resources\dropbox_grey_40px.png" />
     <Content Include="resources\encrypt.png" />
+    <Content Include="resources\encrypt_grey_40px.png" />
+    <Content Include="resources\encrypt_white_40px.png" />
     <Content Include="resources\exit.png" />
     <Content Include="resources\exit_red.png" />
     <Content Include="resources\expand_collapse_40px.png" />
     <Content Include="resources\feedback_40px.png" />
     <Content Include="resources\folder.png" />
-    <Content Include="resources\folder_40px.png" />
+    <Content Include="resources\documents_white_40px.png" />
+    <None Include="resources\google-drive_40px.png" />
+    <None Include="resources\google-drive_grey_40px.png" />
+    <Content Include="resources\helpquestion_40px.png" />
     <Content Include="resources\key_management.png" />
     <Content Include="resources\logo-text-retina.png" />
     <Content Include="resources\masterkey_32px.png" />
@@ -355,7 +371,7 @@
     <Content Include="resources\share_border_80px.png" />
     <Content Include="resources\share_border_grey_premium_80px.png" />
     <Content Include="resources\share_premium_80px.png" />
-    <Content Include="resources\skydrive_40px.png" />
+    <None Include="resources\skydrive_40px.png" />
     <None Include="resources\cleanupneededred32.png" />
     <None Include="resources\cleanupneededred16.png" />
     <None Include="resources\SkyDrive.ico" />
@@ -380,7 +396,6 @@
     <Content Include="resources\inactivefilegreen16.png" />
     <None Include="resources\addforencryptionred32.png" />
     <Content Include="resources\minus_40px.png" />
-    <Content Include="resources\plus_40px.png" />
     <Content Include="resources\refresh_40px.png" />
     <Content Include="resources\refresh_grey_40px.png" />
     <Content Include="resources\removeanddecryptgreen32.png" />
