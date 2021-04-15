@@ -128,6 +128,7 @@ namespace AxCrypt.Api.Model
 
         public AccountSource AccountSource { get; set; }
 
+        [JsonProperty("businessAdmin")]
         public bool BusinessAdmin { get; set; }
 
         public bool Equals(UserAccount other)

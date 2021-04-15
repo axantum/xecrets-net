@@ -901,11 +901,10 @@ namespace AxCrypt.Desktop.Window
             await _daysLeftPremiumLabel.ConfigureAsync(logOnIdentity);
             if (_daysLeftPremiumLabel.UserPlanState == PlanState.HasBusiness)
             {
-                _businessPrioritySupportToolStripMenuItem.Visible = !_daysLeftPremiumLabel.Visible;
+                _businessPrioritySupportToolStripMenuItem.Visible = (!_daysLeftPremiumLabel.Visible);
             }
-
             _businessAddMoreUsersToolStripMenuItem.Visible = _daysLeftPremiumLabel.BusinessAdmin;
-            _bottomRightBusinessTableLayout.Visible = _businessPrioritySupportToolStripMenuItem.Visible || _businessAddMoreUsersToolStripMenuItem.Visible;
+            _bottomRightBusinessTableLayout.Visible = (!_daysLeftPremiumLabel.Visible) || _daysLeftPremiumLabel.BusinessAdmin;
         }
 
         private void ConfigureWatchedFoldersMenus(bool enabled)

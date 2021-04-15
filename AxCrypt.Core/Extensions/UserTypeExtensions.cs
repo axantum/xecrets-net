@@ -368,6 +368,7 @@ namespace AxCrypt.Core.Extensions
                 ActiveSubscriptionFromAppStore = highPriorityAccount.ActiveSubscriptionFromAppStore,
                 MasterKeyPair = highPriorityAccount.IsMasterKeyEnabled ? mergedMasterKeyPair : null,
                 IsMasterKeyEnabled = highPriorityAccount.IsMasterKeyEnabled,
+                BusinessAdmin = highPriorityAccount.BusinessAdmin,
             };
             return merged;
         }
