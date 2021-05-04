@@ -1308,14 +1308,26 @@ namespace AxCrypt.Desktop.Window
             this._bottomRightBusinessTableLayout.ColumnCount = 2;
             this._bottomRightBusinessTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this._bottomRightBusinessTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this._bottomRightBusinessTableLayout.Controls.Add(this._businessPrioritySupportToolStripMenuItem, 0, 0);
-            this._bottomRightBusinessTableLayout.Controls.Add(this._businessAddMoreUsersToolStripMenuItem, 1, 0);
+            this._bottomRightBusinessTableLayout.Controls.Add(this._businessAddMoreUsersToolStripMenuItem, 0, 0);
+            this._bottomRightBusinessTableLayout.Controls.Add(this._businessPrioritySupportToolStripMenuItem, 1, 0);
             this._bottomRightBusinessTableLayout.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
             this._bottomRightBusinessTableLayout.Name = "_bottomRightBusinessTableLayout";
             this._bottomRightBusinessTableLayout.RowCount = 1;
             this._bottomRightBusinessTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this._bottomRightBusinessTableLayout.Size = new System.Drawing.Size(160, 80);
             this._bottomRightBusinessTableLayout.TabIndex = 1;
+            // 
+            // _businessAddMoreUsersToolStripMenuItem
+            // 
+            this._businessAddMoreUsersToolStripMenuItem.AutoSize = false;
+            this._businessAddMoreUsersToolStripMenuItem.Visible = false;
+            this._businessAddMoreUsersToolStripMenuItem.Image = global::AxCrypt.Desktop.Window.Properties.Resources.add_more_users_white;
+            this._businessAddMoreUsersToolStripMenuItem.ToolStripeBackColor = System.Drawing.Color.FromArgb(27, 39, 32);
+            this._businessAddMoreUsersToolStripMenuItem.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
+            this._businessAddMoreUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
+            this._businessAddMoreUsersToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
+            this._businessAddMoreUsersToolStripMenuItem.Name = "_businessAddMoreUsersToolStripMenuItem";
+            this._businessAddMoreUsersToolStripMenuItem.Text = "[Add more users]";
             // 
             // _businessPrioritySupportToolStripMenuItem
             // 
@@ -1329,18 +1341,6 @@ namespace AxCrypt.Desktop.Window
             this._businessPrioritySupportToolStripMenuItem.Name = "_businessPrioritySupportToolStripMenuItem";
             this._businessPrioritySupportToolStripMenuItem.ToolTipText = "[Get quick and personal support, with a dedicated account manager]";
             this._businessPrioritySupportToolStripMenuItem.Text = "[Business Support]";
-            // 
-            // _businessAddMoreUsersToolStripMenuItem
-            // 
-            this._businessAddMoreUsersToolStripMenuItem.AutoSize = false;
-            this._businessAddMoreUsersToolStripMenuItem.Visible = false;
-            this._businessAddMoreUsersToolStripMenuItem.Image = global::AxCrypt.Desktop.Window.Properties.Resources.add_more_users_white;
-            this._businessAddMoreUsersToolStripMenuItem.ToolStripeBackColor = System.Drawing.Color.FromArgb(27, 39, 32);
-            this._businessAddMoreUsersToolStripMenuItem.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this._businessAddMoreUsersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
-            this._businessAddMoreUsersToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this._businessAddMoreUsersToolStripMenuItem.Name = "_businessAddMoreUsersToolStripMenuItem";
-            this._businessAddMoreUsersToolStripMenuItem.Text = "[Add more users]";
             // 
             // _progressBackgroundWorker
             // 
