@@ -7966,7 +7966,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/en/Home/Support&apos;&gt;Business Support&lt;/a&gt;.
+        ///   Looks up a localized string similar to https://account.axcrypt.net/en/Home/Support.
         /// </summary>
         public static string LinkToBusinessSupportPage {
             get {
@@ -7975,7 +7975,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/en/Business/TopupSubscription&apos;&gt;Add more users&lt;/a&gt;.
+        ///   Looks up a localized string similar to https://account.axcrypt.net/en/Business/TopupSubscription.
         /// </summary>
         public static string LinkToBusinessTopupPage {
             get {
