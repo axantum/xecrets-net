@@ -45,9 +45,9 @@ namespace AxCrypt.Desktop.Window
         protected override void InitializeContentResources()
         {
             this.Text = Texts.RenewSubscriptionTitle;
+
             string upgradeSubscriptionPromptText = Texts.UpgradeSubscriptionPromptText;
-            string str = "          •   " + System.Text.RegularExpressions.Regex.Replace(Texts.RenewSubscriptionDialogFeaturesList, "\n", "          •   ");
-            upgradeSubscriptionPromptText = upgradeSubscriptionPromptText + Environment.NewLine + Environment.NewLine + str;
+            upgradeSubscriptionPromptText += Environment.NewLine + Environment.NewLine + "          •   " + System.Text.RegularExpressions.Regex.Replace(Texts.RenewSubscriptionDialogFeaturesList, "\n", "          •   ");
             _labelPromptText.Text = upgradeSubscriptionPromptText;
             _buttonRenewNow.Text = Texts.BusinessSubscriptionRenewMenu;
             _buttonNotNow.Text = Texts.ButtonNotNow;
