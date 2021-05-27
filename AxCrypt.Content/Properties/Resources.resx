@@ -4582,6 +4582,17 @@ Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link.</value>
     <value>Renew in</value>
     <comment>Used as "Renew in 30 days"</comment>
   </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>Mobile apps
+256-bit AES
+Key Sharing
+Secured Folders
+Password Management
+Cloud Storage Awareness</value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>Renew your subscription!</value>
+  </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
 
@@ -5889,6 +5900,9 @@ The AxCrypt Team</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Get Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>Your subscription has expired. Renew today to keep using premium features like:</value>
   </data>
   <data name="UpgradeSubscriptionTitle" xml:space="preserve">
     <value>Upgrade to better encryption!</value>

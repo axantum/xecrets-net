@@ -113,6 +113,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RenewSubscriptionPromptDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenewSubscriptionPromptDialog.Designer.cs">
+      <DependentUpon>RenewSubscriptionPromptDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignUpSignInAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>

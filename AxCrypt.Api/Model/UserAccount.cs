@@ -131,6 +131,9 @@ namespace AxCrypt.Api.Model
         [JsonProperty("businessAdmin")]
         public bool BusinessAdmin { get; set; }
 
+        [JsonProperty("hadAnyPaidSubscription")]
+        public bool HadAnyPaidSubscription { get; set; }
+
         public bool Equals(UserAccount other)
         {
             if ((object)other == null)

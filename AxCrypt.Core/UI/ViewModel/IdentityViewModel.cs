@@ -24,7 +24,6 @@
 */
 
 #endregion Coypright and License
-
 using AxCrypt.Abstractions;
 using AxCrypt.Api.Model;
 using AxCrypt.Common;
@@ -169,14 +168,17 @@ namespace AxCrypt.Core.UI.ViewModel
             if (await store.IsIdentityValidAsync())
             {
                 LogOnIdentity logOnIdentity = new LogOnIdentity(await store.AllKeyPairsAsync(), passphrase);
-                return await AddMasterKeyInfo(logOnIdentity, accountService);
+
+                UserAccount userAccount = await accountService.AccountAsync();
+                new AxCryptUserAccountViewModel().Initilaize(userAccount);
+
+                return await AddMasterKeyInfo(logOnIdentity, userAccount);
             }
             return LogOnIdentity.Empty;
         }
 
-        private static async Task<LogOnIdentity> AddMasterKeyInfo(LogOnIdentity logOnIdentity, IAccountService accountService)
+        private static async Task<LogOnIdentity> AddMasterKeyInfo(LogOnIdentity logOnIdentity, UserAccount userAccount)
         {
-            UserAccount userAccount = await accountService.AccountAsync();
             if (userAccount.SubscriptionLevel != SubscriptionLevel.Business)
             {
                 return logOnIdentity;
