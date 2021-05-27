@@ -18,5 +18,6 @@ namespace AxCrypt.Common
         KeySharingRemovedInFreeModeWarning = 0x80,
         MasterKeyWarning = 0x100,
         MasterKeyRemovedWarning = 0x200,
+        UpgradeSubscriptionWarning = 0x466,
     }
 }

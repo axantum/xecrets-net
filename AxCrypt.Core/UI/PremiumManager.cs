@@ -1,10 +1,10 @@
 using AxCrypt.Abstractions;
 using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
-using AxCrypt.Content;
 using System;
 using System.Threading.Tasks;
 using static AxCrypt.Abstractions.TypeResolve;
@@ -30,6 +30,11 @@ namespace AxCrypt.Core.UI
 
         public async Task BuyPremium(LogOnIdentity identity)
         {
+            await BuyPremium(identity, false);
+        }
+
+        public async Task BuyPremium(LogOnIdentity identity, bool fromRenewSubscriptionDialog)
+        {
             string tag = string.Empty;
             if (New<KnownIdentities>().IsLoggedOn)
             {
@@ -38,6 +43,11 @@ namespace AxCrypt.Core.UI
             }
 
             string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
+            if (fromRenewSubscriptionDialog)
+            {
+                link += "&ref=renewalpopup";
+            }
+
             New<IBrowser>().OpenUri(new Uri(link));
         }
 

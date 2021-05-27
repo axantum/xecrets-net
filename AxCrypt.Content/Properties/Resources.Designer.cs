@@ -12510,6 +12510,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile apps
+        ///256-bit AES
+        ///Key Sharing
+        ///Secured Folders
+        ///Password Management
+        ///Cloud Storage Awareness.
+        /// </summary>
+        public static string RenewSubscriptionDialogFeaturesList {
+            get {
+                return ResourceManager.GetString("RenewSubscriptionDialogFeaturesList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renew your subscription!.
+        /// </summary>
+        public static string RenewSubscriptionTitle {
+            get {
+                return ResourceManager.GetString("RenewSubscriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is a snapshop report of detected errors in AxCrypt. Please copy all of this text and e-mail to:
         ///
         ///To: support@axcrypt.net
@@ -16260,6 +16283,15 @@ namespace AxCrypt.Content.Properties {
         public static string UpgradePromptText {
             get {
                 return ResourceManager.GetString("UpgradePromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription has expired. Renew today to keep using premium features like:.
+        /// </summary>
+        public static string UpgradeSubscriptionPromptText {
+            get {
+                return ResourceManager.GetString("UpgradeSubscriptionPromptText", resourceCulture);
             }
         }
         

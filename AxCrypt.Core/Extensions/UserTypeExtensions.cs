@@ -369,6 +369,7 @@ namespace AxCrypt.Core.Extensions
                 MasterKeyPair = highPriorityAccount.IsMasterKeyEnabled ? mergedMasterKeyPair : null,
                 IsMasterKeyEnabled = highPriorityAccount.IsMasterKeyEnabled,
                 BusinessAdmin = highPriorityAccount.BusinessAdmin,
+                HadAnyPaidSubscription = highPriorityAccount.HadAnyPaidSubscription,
             };
             return merged;
         }

@@ -415,6 +415,8 @@ namespace AxCrypt.Desktop.Window
             {
                 await SetLanguageAsync(Resolve.UserSettings.CultureName);
             }
+
+            ShowRenewSubscriptionDialog();
         }
 
         private static void StartupProcessMonitor()
@@ -2240,6 +2242,27 @@ namespace AxCrypt.Desktop.Window
         {
             using (InviteUserDialog dialog = new InviteUserDialog(this))
             {
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void ShowRenewSubscriptionDialog()
+        {
+            if (!_mainViewModel.LoggedOn || !AxCryptUserAccountViewModel.HadAnyPaidSubscription)
+            {
+                return;
+            }
+
+            using (RenewSubscriptionPromptDialog dialog = new RenewSubscriptionPromptDialog(this))
+            {
+                if (dialog.HideDialog)
+                {
+                    return;
+                }
+
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
