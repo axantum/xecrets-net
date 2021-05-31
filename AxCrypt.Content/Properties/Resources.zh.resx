@@ -260,6 +260,9 @@
     <value>如果AxCrypt的功能或安全性至关重要，我们仍然可能会向您发送电子邮件。</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>添加更多用户</value>
+  </data>
   <data name="AddressLabel">
     <value>地址</value>
   </data>
@@ -675,6 +678,9 @@
   <data name="BusinessFirstBodyText4">
     <value>更多独家Business功能即将推出。 千万不要错过！</value>
   </data>
+  <data name="BusinessFirstBodyText5">
+    <value>更多独家Business功能即将推出。 千万不要错过！</value>
+  </data>
   <data name="BusinessHeroSubheading">
     <value>为公司制造</value>
   </data>
@@ -901,6 +907,9 @@
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x用户</value>
   </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>Business支持</value>
+  </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>第一个月是免费的，之后:</value>
   </data>
@@ -1106,6 +1115,9 @@
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>文件已打开，可能需要清理。 关闭所有打开的应用程序，然后单击"清理"按钮。</value>
   </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>清理</value>
+  </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>请考虑应用程序将解密的文件副本保存在本地文件存储中。 它将在注销时被删除。 您也可以通过清理按钮手动删除它。</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
@@ -1279,6 +1291,9 @@
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>停止保护并从列表中删除</value>
+  </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>单击以选择要解密的文档</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>文件</value>
@@ -1518,6 +1533,9 @@
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>您的条目已更新。</value>
+  </data>
+  <data name="EducationLinkLabel">
+    <value>教育</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>转到电子邮件</value>
@@ -2087,6 +2105,9 @@
   <data name="FileWipeText">
     <value>安全删除文件。</value>
   </data>
+  <data name="FinancialLinkLabel">
+    <value>财务</value>
+  </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>文件夹'{0}'已被保护。</value>
   </data>
@@ -2380,11 +2401,20 @@
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>请登录以获取您的订阅！ 如果您还没有帐户，您首先需要&lt;a href="{0}Home/Register/"&gt;注册&lt;/a&gt;。</value>
   </data>
+  <data name="GovernmentLinkLabel">
+    <value>政府</value>
+  </data>
+  <data name="GuidesLinkLabel">
+    <value>指南</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>太棒了！ 您已经拥有'{0}'的AxCrypt ID帐户。
 
 如果您因任何原因不知道或不记得密码，则必须执行密码重置。</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
+  <data name="HealthcareLinkLabel">
+    <value>医疗</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>关于</value>
@@ -2529,6 +2559,132 @@
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>我的AxCrypt ID</value>
+  </data>
+  <data name="IndustriesBenefitsTitle">
+    <value>使用Axcrypt的好处</value>
+  </data>
+  <data name="IndustriesEducationCloud">
+    <value>简单地管理您的数据。 由于我们的云存储感知功能，任何人都可以在不同设备上访问内容，因此小组项目和演示文稿可以顺利运行。</value>
+  </data>
+  <data name="IndustriesEducationDescription">
+    <value>在线课程和数字教学蓬勃发展。 在课堂，讲座或在线会议期间使用计算机或平板电脑等数字设备越来越频繁。 通过对PDF文档做笔记或评论，积累了大量的数据。 AxCrypt以文件和文档的形式存储工作和研究时，有助于保护私人信息。 我们确保只有您和您的认可团队才能访问您的私人数据。</value>
+  </data>
+  <data name="IndustriesEducationProtection">
+    <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
+  </data>
+  <data name="IndustriesEducationSecurity">
+    <value>在上传之前保护您的知识产权和重要文件。 文章，论文，报告，资料和研究结果可以使用Axcrypt加密并防止数据泄漏。</value>
+  </data>
+  <data name="IndustriesEducationTeamwork">
+    <value>以安全、简单的方式与同学、教授和主管协作和共享内容。 使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesFinancialCloud">
+    <value>数据流量显着增加。 信息定期传输到不同的网络域，因为消费者银行依赖于不同的端点进行交互，并采用了多云环境。 访问您的所有文档并在您的设备上同步它们，同时保护您的文件免受代价高昂的数据泄露。</value>
+  </data>
+  <data name="IndustriesFinancialDescription">
+    <value>在金融领域，数据安全是一项严肃的业务。 加密使各种类型的经济活动，否则将不可能。 金融服务行业受到消费者通过其电子设备随时随地获取信息，获得帮助和进行交易的期望越来越高的影响。通过将明文转换为密文，加密可以帮助银行，保险公司，信贷市场的参与者，公司，风险投资基金，投资顾问，基金经理，咨询公司等。 保护敏感信息，因此只有授权用户才能使用正确的密钥解密和理解信息。</value>
+  </data>
+  <data name="IndustriesFinancialProtection">
+    <value>它符合公司应该和必须需要的国内和国际法规，在市场波动时绕过违规行为，在内部控制发生时显示公司的相关信息，因为只有经过批准的个人才能访它，并避开与不遵守相关的巨额罚款。</value>
+  </data>
+  <data name="IndustriesFinancialSecurity">
+    <value>客户的信息和公司交易也被安全地存储，以防止窥探。</value>
+  </data>
+  <data name="IndustriesFinancialTeamwork">
+    <value>大量数据的交换简单易行。 它确保通过互联网进行电子商务交易的安全性，例如可以传输信用卡号码。 使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesGovernmentCloud">
+    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与行政系统的所有成员。</value>
+  </data>
+  <data name="IndustriesGovernmentDescription">
+    <value>执法人员指出，加密的广泛和越来越多的使用。 它的作用之一是保护隐私和公民自由。 加密可以防止信息被盗，从而帮助使社会更加安全和安全。 作为一个政府，您可以依靠AxCrypt来对抗来自广泛行为者的威胁，包括简单而复杂的犯罪分子，外国情报机构和压制性政府。 国安局使用AES加密数据，这应该足以证明其安全性。</value>
+  </data>
+  <data name="IndustriesGovernmentProtection">
+    <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
+  </data>
+  <data name="IndustriesGovernmentSecurity">
+    <value>通过我们的128位或256位加密，AxCrypt通过实施用户友好且易于使用的加密软件来提高数据安全性并降低违规风险。</value>
+  </data>
+  <data name="IndustriesGovernmentTeamwork">
+    <value>AxCrypt允许其他AxCrypt用户使用自己的密码打开安全文件。 交换加密信息简单、快速且无风险。 使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesHeadingCloud">
+    <value>云存储感知和密码管理</value>
+  </data>
+  <data name="IndustriesHeadingConfidentiality">
+    <value>保密和完整性</value>
+  </data>
+  <data name="IndustriesHeadingProtection">
+    <value>符合数据保护法规</value>
+  </data>
+  <data name="IndustriesHeadingSecurity">
+    <value>安全性、可靠性和简单性</value>
+  </data>
+  <data name="IndustriesHeadingTeamwork">
+    <value>团队合作和协作</value>
+  </data>
+  <data name="IndustriesHealthcareCloud">
+    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
+  </data>
+  <data name="IndustriesHealthcareDescription">
+    <value>在医院，养老院和康复设施中，加密的需求变得更加普遍。 随着使用电子病历等电子健康记录的实践数量的迅速增加，通过电子邮件传输患者的医疗保健信息，包括保险信息，药物的适当剂量和其他个人信息，这是医疗保健的数字时代，敏感信息需要高度的安全性。AxCrypt为员工，患者和商业伙伴提供简单而无摩擦的用户体验。</value>
+  </data>
+  <data name="IndustriesHealthcareProtection">
+    <value>根据符合数据保护法，我们帮助您的机构和潜在患者之间建立信任，保护在线预约，与医疗专业人员的沟通以及机构之间发送的健康记录。 AxCrypt确保您的组织保持符合法规，如健康保险可移植性和责任法案（HIPAA），健康信息技术经济和临床健康法案（HITECH）和一般数据保护条例（GDPR）。</value>
+  </data>
+  <data name="IndustriesHealthcareSecurity">
+    <value>加密可防止代价高昂的数据泄露。 如果罪犯可以访问具有敏感信息的可移动设备，移动设备或笔记本电脑，您的设施可能会受到巨额罚款的惩罚。 将加密作为整体数据安全计划的一部分可以改善财务状况，并帮助组织避免安全漏洞的成本。</value>
+  </data>
+  <data name="IndustriesHealthcareTeamwork">
+    <value>医疗保健组织收集，管理和分发大量的医疗和个人记录。 加密使数据更安全，无论是传输还是静态数据。 简而言之，它可以保护患者的敏感医疗信息免受盗窃和数据泄露。 医生，护士和专家之间的信息交换是简单，快速和无风险的。使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesHeroText1">
+    <value>我们改变人们沟通和工作的方式。 通过我们的256位加密，AxCrypt通过实施用户友好且易于使用的加密软件并保护机密性和完整性来提高数据安全性并降低违规风险。 提高您的工作效率，并停止怀疑您的在线隐私。恢复对数据的完全控制，体验数字信任。 好奇加密和相关主题，看看我们每周更新的&lt;a href="/博客"&gt;博客&lt;/a&gt;。 在AxCrypt，我们很乐意为您提供帮助并回答您对加密的任何问题。</value>
+  </data>
+  <data name="IndustriesHeroText2">
+    <value>随时与我们联系&lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;不要忘记在社交媒体上关注我们。</value>
+  </data>
+  <data name="IndustriesLegalCloud">
+    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与协议和合同的所有成员。</value>
+  </data>
+  <data name="IndustriesLegalConfidentiality">
+    <value>使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesLegalDescription">
+    <value>个人和机密信息比以往任何时候都更多地以明文形式通过互联网传输，并可能暴露出来。 法律行业受到消费者通过电子设备随时随地访问信息，获得帮助和执行协议的期望越来越高的影响，这是受打击最严重的行业之一。无论您是刑法的独立从业者还是财富500强公司的内部公司律师，加密都会影响您遇到的许多问题，无论您是否意识到这一点。</value>
+  </data>
+  <data name="IndustriesLegalProtection">
+    <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
+  </data>
+  <data name="IndustriesLegalSecurity">
+    <value>合同，遗嘱和记录包含客户和合作伙伴个人的机密材料，因此必须防止泄漏和黑客。 加密可用于验证和证明文档是未更改的原件。 数字签名是这种用途的完美原型。没有使用加密来证明其系统的公司最近遭受了重大数据泄露，导致高调诉讼。 损害可能是巨大的，额外的损失可能包括所有客户的信用监控，多年的系统性和突兀审计，以确定泄漏源以及文件，服务器和存储系统的数据盗窃和破坏。 通过我们的256位加密，AxCrypt通过实施用户友好且易于使用的加密软件来提高数据安全性并降低违规风险。</value>
+  </data>
+  <data name="IndustriesLegalTeamwork">
+    <value>加强团队内部的协作，共享所有类型的文档，没有风险。 律师事务所不仅需要进行数字化转型，还需要安全地进行数字化转型。 AxCrypt允许其他AxCrypt用户使用自己的密码打开安全文件。 交换加密信息简单、快速且无风险。</value>
+  </data>
+  <data name="IndustriesLinkLabel">
+    <value>行业</value>
+  </data>
+  <data name="IndustriesTechCloud">
+    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
+  </data>
+  <data name="IndustriesTechConfidentiality">
+    <value>使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesTechDescription">
+    <value>在我们日常生活的各个方面都高度数字化的世界中，隐私和信任的迫切需求出现了，特别是在尝试数据泄露之后。 您每天使用的工具和服务既不是开放的，安全的，也不是私人的。​ ​数据的位置以及它们的存储和处理方式通常以可疑和阴暗的方式进行管理。AxCrypt致力于建立一个尊重每个人隐私的未来。 使用我们的零知识加密软件和只属于您并保留在您设备上的密钥，其他人无法访问您的数据。</value>
+  </data>
+  <data name="IndustriesTechProtection">
+    <value>采用加密是技术服务公司的一个很好的步骤，因为它增加了安全性和遵守越来越多法规的能力。 特别是因为加密数据的数量和百分比只会继续增长。</value>
+  </data>
+  <data name="IndustriesTechSecurity">
+    <value>端到端加密是确保客户数据免受任何人（包括科技公司本身）保护的最佳，最有效和最实用的方法之一，因此除了所有者之外，没有人可以访问它。 安全性和生产力是相互粘合的。同样重要的是，整个安全基础架构的可见性不会影响性能，从而降低生产力。 通过我们的128位或256位加密，AxCrypt通过实施用户友好且易于使用的加密软件来提高数据安全性并降低违规风险。</value>
+  </data>
+  <data name="IndustriesTechTeamwork">
+    <value>如今，缺乏透明度和清晰度以及大公司如何处理数据变成了数据混乱，并为企业带来了深刻的复杂性和低效率。 您的私人信息最终被跟踪和瘫痪。 通过AxCrypt，我们确保绝对隐私安全的工作环境，并加强社区内外的信任。欢迎来到一个新的数字世界。 您的数据在我们的平台上完全加密，因此即使我们的服务器被黑客入侵，也没有人可以读取您的数据。 我们遵守GDPR，并不断致力于实施与加密相关的工作流程和流程，并根据瑞典隐私法处理数据。 AxCrypt允许其他AxCrypt用户使用自己的密码打开安全文件。交换加密信息简单、快速且无风险。</value>
+  </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>行业</value>
   </data>
   <data name="InformationLinkLabel">
     <value>信息</value>
@@ -2758,6 +2914,9 @@ SE-114 29 斯德哥尔摩
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>我们已经检测到可能导致AxCrypt和其他软件故障的潜在不兼容的软件。 该软件被命名为Lavasoft网络伴侣。 如果AxCrypt出现故障，请尝试卸载Lavasoft。</value>
   </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>了解更多</value>
+  </data>
   <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
     <value>您确定您想离开Business吗？</value>
   </data>
@@ -2803,6 +2962,9 @@ SE-114 29 斯德哥尔摩
 
 启用AxCrypt1的自动转换.x文件（推荐）？</value>
   </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>法律</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -2829,6 +2991,12 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
+  </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/zh/首页/支持'&gt;Business支持&lt;/a&gt;</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/zh/Business/充值订阅'&gt;添加更多用户&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -2954,6 +3122,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>站点管理属性已成功更新。</value>
+  </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>此帐户由经销商管理。 经销商可以向帐户添加新用户并管理付款。 注意：经销商无法访问任何加密信息，包括使用主密钥保护的文件。</value>
   </data>
   <data name="MasterKeyApprovalInfo" xml:space="preserve">
     <value>如果获得批准，主密钥将应用于加密的文件，并可能由业务管理员恢复。 如果您想停止应用主密钥，您可以随时离开业务（这在您的我的AxCrypt ID页面中完成）。</value>
@@ -3320,6 +3491,9 @@ SE-114 29 斯德哥尔摩
     <value>单击以输入密钥文件的名称。 只有当您知道使用以前版本的AxCrypt保护此文件时，才使用密钥文件。</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MorePostsButtonLabel">
+    <value>更多帖子</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>我的AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3452,11 +3626,11 @@ SE-114 29 斯德哥尔摩
     <value>清除所有设置并重新启动</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>自动升级1.x和AES-128文件</value>
+    <value>自动将文件升级到AES-256</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>启用或禁用AxCrypt1.x的自动升级和转换和AES-128文件。</value>
+    <value>启用或禁用AES-128文件的自动升级和转换。</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -3987,6 +4161,12 @@ SE-114 29 斯德哥尔摩
   <data name="ProductTryItForFreeHeading">
     <value>免费试用</value>
   </data>
+  <data name="ProductTryItForFreeHeading2">
+    <value>今天免费试用吧</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2Education">
+    <value>今天免费试用或&lt;a href="mailto:business@axcrypt.net"&gt;联系我们的销售部门&lt;/a&gt;了解我们的教育折扣</value>
+  </data>
   <data name="ProductTryItForFreeMonthlyButtonLabel">
     <value>每月</value>
   </data>
@@ -4228,6 +4408,9 @@ SE-114 29 斯德哥尔摩
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>浏览我们最新的博客文章</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>了解更多关于Business计划</value>
   </data>
@@ -4347,6 +4530,17 @@ SE-114 29 斯德哥尔摩
     <value>续订</value>
     <comment>Used as "Renew in 30 days"</comment>
   </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>移动应用程序
+256位AES
+密钥共享
+安全文件夹
+密码管理
+云存储感知</value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>续订您的订阅！</value>
+  </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>这是在AxCrypt检测到的错误snapshop报告。 请将所有文本和电子邮件复制到：
 
@@ -4417,8 +4611,272 @@ SE-114 29 斯德哥尔摩
   <data name="ResellerBenefitsText">
     <value>AxCrypt拥有来自世界各地的客户，依靠我们加密工具的简单性和安全性。 我们最大的市场包括美国，英国和法国。 AxCrypt每天都在扩大越来越多，我们希望您能够一起成长。</value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>登录&lt;href="https://account.axcrypt.net/"&gt;account.axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>在创建页面上，输入客户的信息和所需的许可证数量。 如果需要，这可以稍后更改。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>通过选择1个月或12个月来选择是按月还是按年订阅。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>对于增值税抵扣（欧盟境内），请输入有效的增值税号。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>经销商的折扣将自动添加。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>点击付款按钮。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>最后，您可以添加需要分配许可证的用户的电子邮件地址。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>要将AxCrypt业务转售给新客户，请在帐户网站上创建他们的订阅:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>注意：如果您的客户有或没有注册的AxCrypt帐户，它将同时工作。
+他们将收到一封电子邮件或邀请，表示他们已添加到业务订阅。 然后，他们必须激活他们的帐户。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>您将以其帐户管理员的身份自动添加到他们的订阅中。
+当然，您不会被分配许可证。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text5">
+    <value>如果在创建过程中有任何信息填写不正确，您可以随时通过转到更改它。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>此过程的设计使其完全由您管理，不需要您的客户的任何参与（除了激活帐户，如果他们还没有现有帐户）或AxCrypt。 如果通过银行转账付款是首选，这也是可能的。 有关详细信息，请参阅"计费"选项卡。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt提供一个用于转售的订阅：&lt;b&gt;AxCrypt Business&lt;/b&gt;。 您可以使用&lt;a href='上的子菜单http://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;管理您的现有客户或为您的客户购买许可证。 使用已设置为管理员的现有帐户登录。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>要联系转售团队，请发送电子邮件至 &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>从代理下拉菜单中选择您的客户。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>按用户的电子邮件地址单独添加用户。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>您可以将用户添加到客户的帐户。 只要确保未使用的许可证可用-只要有可用的许可证，管理员就可以添加用户。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>添加用户:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>选择所需的许可证数量。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>如果您的客户的帐户拥有所有许可证，则可以购买其他许可证:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>注意：如果首选通过银行转账付款，这也是可能的。 有关更多信息，请参阅下面的结算。
+创建或续订订阅时，期限始终为一年。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>如果在订阅期内为订阅购买了其他成员许可证，则只收取向上四舍五入至整个月的剩余月份。 如果当前期间仍有50天，并且添加了其他成员，则这将是2个月/额外成员。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>您现在拥有未使用的许可证。 您可以在需要时保存它（这不会暂停到期日期），也可以将其分配给新用户。</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>删除或更改客户帐户中的用户非常简单:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>将用户添加到客户的帐户</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>购买其他会员许可证</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>删除或更改用户</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>订阅通过AxCrypt网络帐户门户购买（account.axcrypt.net）。付款是直接通过门户网站使用信用卡进行的。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>您也可以通过发票购买，通常取决于您希望购买的订阅数量。 如果您想这样做，请联系&lt;a href="mailto:reseller@axcrypt.net"&gt;转售团队&lt;/a&gt;。 如果通过银行转账付款，您的客户可能需要更长的时间才能访问，因为我们首先必须收到付款。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>AxCrypt业务的每个成员许可证的当前标价可以在我们的网站上找到&lt;a href="https://www.axcrypt.net/定价"&gt;定价页面&lt;/a&gt;。 您有适用于此的个人经销商折扣。 &lt;br&gt;</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>对于订阅而言，一个月定义为30天，一年定义为360天。 创建或续订订阅时，期限始终为一个月或一年。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>如果在订阅期内为订阅购买了其他成员许可证，则只收取向上四舍五入至整个月的剩余月份。 如果当前期间仍有50天，并且添加了其他成员，则这将是2个月/额外成员。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>阅读我们的"付款和续订&lt;a href=""https://www.axcrypt.net/信息/使用条款"&gt;使用条款&lt;/a&gt;了解更多信息。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>自2020年6月25日起，我们会自动续订订阅。 如果您在此之前购买了许可证，您和您的客户都不会被自动收取费用。 您必须通过菜单续订。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>如果您在2020年6月25日之后购买了许可证，则订阅将在订阅期结束时使用初始付款方式自动续订。 如果您想取消，您必须在当前订阅期结束之前取消。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>阅读我们的"付款和续订"&lt;a href="https://www.axcrypt.net/信息/使用条款"&gt; 使用条款&lt;/a&gt;了解更多信息。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>在这里，您可以找到您的发票和交易历史记录。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>日期、参考、地址等信息。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>支付哪个客户。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>订购了。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>总量。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>您可以通过单击打印图标打印发票。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>输入有效的增值税号时，将在购买前扣除欧盟增值税。 增值税不适用于欧盟以外的国家。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>对于瑞典客户，增值税扣除是不可能的。 由于AxCrypt是一家瑞典公司，因此瑞典客户必须将传入的增值税预订为传入，然后在向瑞典税务机关付款时从传出的增值税中扣除。</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>注意：AxCrypt无法进一步就税务事宜向您提供建议。 请查看您所在国家/地区的法规或联系您的税务顾问了解更多详情。</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>付款方式</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>定价和折扣详情</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>续期</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>查看您的订单和交易记录</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>税金</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>计费</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>在您可以访问您的经销商帐户之前，AxCrypt团队的成员必须为您分配具有经销商权限的管理员角色。 签署协议后，我们的团队会要求您提供与AxCrypt帐户关联的电子邮件地址。 此帐户将作为经销商帐户的管理员。</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>登录&lt;a href="https://account.axcrypt.net"&gt;account.axcrypt.net&lt;/a&gt;访问您的经销商帐户。 你看到你的帐户，如下图所示。</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text1">
+    <value>在您可以访问您的经销商帐户之前，AxCrypt团队的成员必须为您分配具有经销商权限的管理员角色。 签署协议后，我们的团队会要求您提供与AxCrypt帐户关联的电子邮件地址。 此帐户将作为经销商帐户的管理员。</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text2">
+    <value>注意：如果您将同一帐户与自己的订阅计划结合使用，则完全没问题。</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text3">
+    <value>登录&lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;访问您的经销商帐户。 您看到您的帐户，如下图所示。</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>访问您的经销商帐户</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle1">
+    <value>申请成为AxCrypt经销商</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle2">
+    <value>访问您的经销商帐户</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>开始使用</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>经销商帮助</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>未经我们的许可，请勿编辑图像。</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>从相邻的图像或图形元素中留下25%的标识尺寸的空白空间。</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>您可以在自己的出版物或网站上使用经销商的徽标或AxCrypt的常规徽标。 您可以自由地这样做，因为您遵守以下法规:</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>当彩色标识不是合适的替代方案时，您可以使用黑色和白色版本。</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;PNG格式的标志图标&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;JPG格式的标志图标&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;标志全PNG格式&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;标志全JPG格式&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>您可以在&lt;a href='https://www.axcrypt.net/信息/新闻界'&gt; https://www.axcrypt.net/信息/新闻界&lt;/a&gt;上找到原始的AxCrypt标志</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>授权经销商徽标</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>营销</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>常见问题:&lt;a href='https://www.axcrypt.net/信息/常见问题'&gt;https://www.axcrypt.net/信息/常见问题&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>Business订阅:&lt;a href='https://www.axcrypt.net/信息/axcrypt-business'&gt;https://www.axcrypt.net/信息/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>开始使用:&lt;a href='https://www.axcrypt.net/信息/开始使用/windows/'&gt;https://www.axcrypt.net/信息/开始使用:/windows&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>使用技巧:&lt;a href='https://www.axcrypt.net/信息/使用技巧'&gt;https://www.axcrypt.net/信息/使用技巧&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>技术细节:&lt;a href='https://www.axcrypt.net/信息/技术细节'&gt;https://www.axcrypt.net/信息/技术细节&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>此外，技术支持可在&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;。他们的时区是UTC+5:30，通常在一天内的办公时间内回复。</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>当然，我们总是建议我们的经销商之前已经使用过AxCrypt，以便他们可以帮助他们的客户解决一些基本的技术问题。 否则，我们也有一堆教程来解释AxCrypt的各种功能。 他们可以在我们的YouTube频道: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>Windows教程：&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>MacOS教程：&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>作为经销商，您负责自己的销售以及如何接近您的（潜在）客户。 但是，当然，我们希望帮助您进行销售 团队合作让梦想成真！</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>为了广告目的，并向您的客户展示，我们创建了AxCrypt的演示文稿和宣传册。 它将解释什么是AxCrypt以及它如何帮助您保护您的数据。</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>AxCrypt演示文稿:&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/转售演示.pdf'&gt;https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/转售演示.pdf&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>技术支持</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>支持</value>
+  </data>
   <data name="ResellerInfoHeading">
     <value>成为AxCrypt经销商</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>经销商信息</value>
   </data>
   <data name="ResellerInfoText1">
     <value>AxCrypt提供了一个易于使用的加密解决方案。 拥有超过15年的文件加密行业的经验，我们已经建立了AxCrypt作为最强的品牌之一在那里。 拥有超过20万次的下载，我们已经证明，我们的服务是可靠的。 AxCrypt已在2016，2017和2018中获得PCMag编辑选择最佳加密软件。</value>
@@ -4655,6 +5113,9 @@ SE-114 29 斯德哥尔摩
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>由于安全问题，您的软件需要更新。</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>发送反馈</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>发送邀请</value>
@@ -4940,6 +5401,9 @@ SE-114 29 斯德哥尔摩
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>无法打开当前文件</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TechLinkLabel">
+    <value>技术</value>
   </data>
   <data name="TechnicalDetailsDescription">
     <value>本节详细描述了AxCrypt是什么，它做了什么，以及它是如何做到的。 它主要面向技术专家，他们对软件开发和密码学有很好的把握。 这里的信息旨在足够完整，例如构建AxCrypt兼容的软件。</value>
@@ -5330,6 +5794,9 @@ AxCrypt团队</value>
   <data name="UnknownLogOn" xml:space="preserve">
     <value>密码以前不知道。 点击"新建"创建一个新的。</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>点击这里解锁完整的加密功能！</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} 为 '{0}'.</value>
   </data>
@@ -5345,6 +5812,9 @@ AxCrypt团队</value>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>如果您想取消订阅，请点击&lt;a href="{0}"style="color:#86b96e;text-decoration:none;"&gt;此链接&lt;/a&gt;</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>更新可用</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>更新状态</value>
   </data>
@@ -5352,11 +5822,14 @@ AxCrypt团队</value>
     <value>升级1.x和AES-128文件</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>使用AxCrypt1.x选择一个文件夹和AES-128文件并升级它们。</value>
+    <value>选择一个包含AES-128文件的文件夹并对其进行升级</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>获得Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>您的订阅已过期。 立即续订以继续使用premium功能，如:</value>
   </data>
   <data name="UpgradeSubscriptionTitle" xml:space="preserve">
     <value>升级到更好的加密！</value>

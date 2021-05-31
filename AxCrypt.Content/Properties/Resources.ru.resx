@@ -275,6 +275,9 @@
     <value>Мы по-прежнему можем прислать Вам электронное письмо, если это необходимо для работы и безопасности AxCrypt.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>Добавить больше пользователей</value>
+  </data>
   <data name="AddressLabel">
     <value>Адрес</value>
   </data>
@@ -666,6 +669,9 @@
   <data name="BusinessFirstBodyText4">
     <value>В ближайшее время появятся новые эксклюзивные функции для подписки Business. Не пропустите!</value>
   </data>
+  <data name="BusinessFirstBodyText5">
+    <value>В ближайшее время появятся более эксклюзивные функции в подписке Business. Не пропустите!</value>
+  </data>
   <data name="BusinessHeroSubheading">
     <value>Сделано для компаний</value>
   </data>
@@ -886,6 +892,9 @@
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x пользователей</value>
   </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>Поддержка для Business</value>
+  </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>Первый месяц бесплатно, после этого:</value>
   </data>
@@ -1091,6 +1100,9 @@
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Файл открыт и возможно требует очистки. Закройте все открытые приложения и нажмите на кнопку Очистить.</value>
   </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>Пожалуйста, примите во внимание, что приложение хранит зашифрованную копию файла в локальном хранилище файлов. Вы можете удалить её мануально через кнопку очистки.</value>
     <comment>Warning message displayed in mobile application before first decryption.</comment>
@@ -1261,6 +1273,9 @@
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Прекратить протекцию и удалить из списка</value>
+  </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>Нажмите, чтобы выбрать документы для расшифровки</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Файл</value>
@@ -1495,6 +1510,9 @@
   </data>
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Ваш доступ был обновлён.</value>
+  </data>
+  <data name="EducationLinkLabel">
+    <value>Образование</value>
   </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>Перейти к электронной почте</value>
@@ -2061,6 +2079,9 @@
   <data name="FileWipeText">
     <value>Безопасное удаление файлов.</value>
   </data>
+  <data name="FinancialLinkLabel">
+    <value>Финансы</value>
+  </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Папка '{0}' уже защищена.</value>
   </data>
@@ -2354,11 +2375,20 @@
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Пожалуйста, войдите в систему, чтобы оформить подписку! Если у вас еще нет учетной записи, вам сначала нужно &lt;a href="{0}Home/Register/"&gt;зарегестрироваться&lt;/a&gt;.</value>
   </data>
+  <data name="GovernmentLinkLabel">
+    <value>Государственное управление</value>
+  </data>
+  <data name="GuidesLinkLabel">
+    <value>Инструкции</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Прекрасно! У Вас уже имеется аккаунт AxCrypt ID для '{0}'.
 
 Если Вы по какой-нибудь причине не знаете или не помните пароля, Вам необходимо сделать смену пароля.</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
+  <data name="HealthcareLinkLabel">
+    <value>Здравоохранение </value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>Об</value>
@@ -2504,6 +2534,132 @@
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Мой AxCrypt ID</value>
+  </data>
+  <data name="IndustriesBenefitsTitle">
+    <value>Преимущества использования Axcrypt</value>
+  </data>
+  <data name="IndustriesEducationCloud">
+    <value>Управляйте своими данными легко. Групповые проекты и презентации могут выполняться без каких-либо проблем, так как контент может быть доступен любому участнику, в любом месте и на разных устройствах благодаря нашей информированности о облачных хранилищах.</value>
+  </data>
+  <data name="IndustriesEducationDescription">
+    <value>Онлайн-классы и цифровое обучение сейчас очень популярны. Использование цифровых устройств, таких как компьютеры или планшеты, во время занятий, лекций или онлайн-встреч становится все более частым. Делая заметки или комментируя PDF-документы, накапливается большой объем данных. AxCrypt помогает защитить личную информацию при хранении работ и исследований в виде файлов и документов. Мы позаботимся о том, чтобы вы и только ваша команда могли получить доступ к вашим личным данным.</value>
+  </data>
+  <data name="IndustriesEducationProtection">
+    <value>AxCrypt гарантирует, что ваша организация будет соблюдать такие правила, как Общие правила защиты данных (GDPR).</value>
+  </data>
+  <data name="IndustriesEducationSecurity">
+    <value>Защитите свою интеллектуальную собственность и важные документы перед их загрузкой. Эссе, статьи, отчеты, диссертации и результаты исследований могут быть зашифрованы с помощью Axcrypt и защищены от утечки данных.</value>
+  </data>
+  <data name="IndustriesEducationTeamwork">
+    <value>Сотрудничайте и делитесь контентом со своими одноклассниками, преподавателями и руководителями безопасным и простым способом. Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников подписки, устраняя риск потери доступа к важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesFinancialCloud">
+    <value>Объем трафика данных значительно увеличился. Информация регулярно поступает в различные сетевые домены, поскольку потребительские банки полагаются на различные конечные точки для взаимодействия и приняли мультиоблачную среду. Получите доступ ко всем вашим документам и синхронизируйте их на своих устройствах, защищая ваши файлы от дорогостоящих утечек.</value>
+  </data>
+  <data name="IndustriesFinancialDescription">
+    <value>В мире финансов безопасность данных-это серьезный бизнес. Шифрование данных позволяет осуществлять различные виды экономической деятельности, которые в противном случае были бы невозможны. Индустрия финансовых услуг сильнее всего пострадала от возросших ожиданий потребителей получить доступ к информации, получить помощь и проводить транзакции в любом месте и в любое время с помощью своих электронных устройств. Превращая открытый текст в зашифрованный, шифрование помогает банкам, страховым компаниям, участникам кредитного рынка, корпорациям, венчурным фондам, инвестиционным консультантам, управляющим фондами, консалтинговым фирмам и т.д. защитить конфиденциальную информацию, чтобы только авторизованные пользователи могли с помощью правильного ключа расшифровать и узнать информацию.</value>
+  </data>
+  <data name="IndustriesFinancialProtection">
+    <value>В соответствии с внутренними и международными правилами, в которых нужны компании, он обходит нарушения каждый раз, когда рынок колеблется, отображает соответствующую информацию компании, когда происходит внутренний контроль, поскольку доступ к ней имеют только одобренные лица, и обходит значительные штрафы, связанные с несоблюдением.</value>
+  </data>
+  <data name="IndustriesFinancialSecurity">
+    <value>Информация о клиентах и сделках компании также хранятся в надежном и защищенном от посторонних глаз месте.</value>
+  </data>
+  <data name="IndustriesFinancialTeamwork">
+    <value>Обмен большим объемом данных прост и удобен. Он обеспечивает безопасность транзакций электронной коммерции через Интернет, например, позволяя передавать номера кредитных карт. Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников подписки без риска потери доступа к критически важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesGovernmentCloud">
+    <value>Автоматически защищайте свои файлы/документы в нескольких облачных хранилищах, таких как Google Drive или Dropbox, и легко управляйте доступом к своим паролям, где бы вы ни находились. Вся информация доступна всем пользователям, участвующим в системе администрирования.</value>
+  </data>
+  <data name="IndustriesGovernmentDescription">
+    <value>Сотрудники правоохранительных органов указывают на массовое и все более широкое использование шифрования. Одна из его функций-защита частной жизни и гражданских свобод. Шифрование предотвращает кражу информации, тем самым помогая сделать общество более защищенным и безопасным. Как правительство, вы можете полагаться на AxCrypt для противодействия угрозам со стороны широкого круга субъектов, включая изощренных преступников, иностранных спецслужб и других противников страны. АНБ использует AES для шифрования данных, что должно быть достаточным доказательством его высокой безопасности.</value>
+  </data>
+  <data name="IndustriesGovernmentProtection">
+    <value>AxCrypt гарантирует, что ваша организация будет соблюдать такие правила, как Общие правила защиты данных (GDPR).</value>
+  </data>
+  <data name="IndustriesGovernmentSecurity">
+    <value>С 128-битным или 256-битным шифрованием AxCrypt повышает процент безопасности данных и снижает риски нарушений, внедряя удобное и простое в использовании программное обеспечение для шифрования.</value>
+  </data>
+  <data name="IndustriesGovernmentTeamwork">
+    <value>AxCrypt позволяет другим пользователям AxCrypt открывать защищенные файлы с помощью собственного пароля. Обмен зашифрованной информацией происходит легко, быстро и без риска. Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников бизнеса, устраняя риск потери доступа к критически важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesHeadingCloud">
+    <value>Информация об облачном хранилище и управление паролями</value>
+  </data>
+  <data name="IndustriesHeadingConfidentiality">
+    <value>Конфиденциальность и сохранность </value>
+  </data>
+  <data name="IndustriesHeadingProtection">
+    <value>Соответствие правилам защиты данных</value>
+  </data>
+  <data name="IndustriesHeadingSecurity">
+    <value>Безопасность, надежность и простота</value>
+  </data>
+  <data name="IndustriesHeadingTeamwork">
+    <value>Командная работа и сотрудничество</value>
+  </data>
+  <data name="IndustriesHealthcareCloud">
+    <value>Автоматически защищайте свои файлы/документы в нескольких облачных хранилищах, таких как Google Drive или Dropbox, и легко управляйте доступом к своим паролям, где бы вы ни находились. Вся информация доступна всем лицам, участвующим в лечении пациентов.</value>
+  </data>
+  <data name="IndustriesHealthcareDescription">
+    <value>Потребность в шифровании данных стала более распространенной в больницах, домах престарелых и реабилитационных учреждениях. С быстрым увеличением числа практик, использующих электронные медицинские записи, такие как ЭМК, передача медицинской информации о пациентах по электронной почте, включая информацию о страховании, правильных дозировках лекарств и другую личную информацию, это цифровая эпоха здравоохранения, и конфиденциальная информация нуждается в высоком уровне безопасности. AxCrypt предлагает простой и удобный пользовательский интерфейс для сотрудников, пациентов и деловых партнеров.</value>
+  </data>
+  <data name="IndustriesHealthcareProtection">
+    <value>В соответствии с законами о защите данных мы помогаем укрепить доверие между вашим учреждением и потенциальными пациентами, защищая онлайн-встречи, общение с медицинским работником и медицинские записи, отправляемые между учреждениями. AxCrypt гарантирует, что ваша организация будет соблюдать такие правила, как Закон о переносимости и подотчетности медицинского страхования (HIPAA), Закон о медицинских информационных технологиях для экономического и клинического здравоохранения (HITECH) и Общие правила защиты данных (GDPR).</value>
+  </data>
+  <data name="IndustriesHealthcareSecurity">
+    <value>Шифрование предотвращает дорогостоящие утечки данных. Если преступники получат доступ к съемному устройству, мобильному устройству или ноутбуку, содержащему конфиденциальную информацию, ваша организация может быть серьезно оштрафована. Включение шифрования в общую программу защиты данных позволяет улучшить финансовые показатели и помогает организациям избежать затрат из-за нарушения безопасности.</value>
+  </data>
+  <data name="IndustriesHealthcareTeamwork">
+    <value>Медицинские организации собирают, управляют и распространяют огромное количество медицинских и личных записей. Шифрование делает данные более безопасными, независимо от того, передаются они или нет. Иными словами, оно защищает конфиденциальную медицинскую информацию пациентов от краж и утечек. Обмен информацией между врачами, медсестрами и специалистами происходит легко, быстро и без риска. Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников подписки, устраняя риск потери доступа к критически важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesHeroText1">
+    <value>Мы меняем то, как люди общаются и работают. С помощью 256-битного шифрования AxCrypt повышает безопасность данных и снижает риски нарушений, внедряя удобное и простое в использовании программное обеспечение для шифрования и гарантируя конфиденциальность и целостность. Повысьте свою производительность и перестаньте беспокоиться о своей конфиденциальности в Интернете. Верните себе полный контроль над своими данными и испытайте цифровое доверие. Если вы интересуйтесь шифрованием данным и связанными с ним темами, загляните в наши еженедельные блоги &lt;a href="/blog"&gt;Блоги&lt;/a &gt;. Здесь, в AxCrypt, мы будем рады помочь вам и ответить на любые ваши вопросы о шифровании данных.</value>
+  </data>
+  <data name="IndustriesHeroText2">
+    <value>Не стесняйтесь обращаться к нам по адресу &lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; и не забывайте следить за нами в социальных сетях.</value>
+  </data>
+  <data name="IndustriesLegalCloud">
+    <value>Автоматически защищайте свои файлы/документы в нескольких облачных хранилищах, таких как Google Drive или Dropbox, и легко управляйте доступом к своим паролям, где бы вы ни находились. Вся информация доступна всем сторонам, участвующим в соглашениях и контрактах.</value>
+  </data>
+  <data name="IndustriesLegalConfidentiality">
+    <value>Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников бизнеса, устраняя риск потери доступа к важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesLegalDescription">
+    <value>Больше, чем когда-либо прежде, личная и конфиденциальная информация передается через Интернет в виде открытого текста и потенциально раскрывается. Юридическая индустрия сильнее всего пострадала от возросших ожиданий потребителей получить доступ к информации, получить помощь и заключить соглашения в любом месте и в любое время с помощью своих электронных устройств. Неважно являетесь ли вы индивидуально практикующим специалистом по уголовному праву или внутренним корпоративным адвокатом в компании из списка Fortune 500, шифрование влияет на многие проблемы, с которыми вы сталкиваетесь, независимо от того, осознаете вы это или нет.</value>
+  </data>
+  <data name="IndustriesLegalProtection">
+    <value>AxCrypt гарантирует, что ваша организация будет соблюдать такие правила, как Общие правила защиты данных (GDPR).</value>
+  </data>
+  <data name="IndustriesLegalSecurity">
+    <value>Контракты, завещания и записи содержат секретные материалы, личные для клиентов и партнеров, и поэтому должны быть защищены от утечек и хакеров. Шифрование может использоваться для проверки подлинности и подтверждения того, что документ является оригиналом, который не был изменен. Цифровые подписи-идеальный пример такого использования. Компании, которые не представили свою систему шифрования данных, недавно пострадали от серьезных нарушений целостности данных, что привело к громким судебным разбирательствам. Ущерб может быть огромным, а дополнительные потери могут включать мониторинг кредитоспособности всех клиентов, годы системных и навязчивых проверок для выявления источника утечки, кражи данных и уничтожения файлов, серверов и систем хранения. Благодаря 256-битному шифрованию, AxCrypt повышает безопасность данных и снижает риски нарушений, внедряя удобное и простое в использовании программное обеспечение для шифрования.</value>
+  </data>
+  <data name="IndustriesLegalTeamwork">
+    <value>Расширьте сотрудничество внутри команды и делитесь всеми типами документов без каких-либо рисков. Юридические фирмы должны не только участвовать в цифровой трансформации, но и делать это безопасно. AxCrypt позволяет другим пользователям AxCrypt открывать защищенные файлы с помощью собственного пароля. Обмен зашифрованной информацией происходит легко, быстро и без риска.</value>
+  </data>
+  <data name="IndustriesLinkLabel">
+    <value>Индустрии</value>
+  </data>
+  <data name="IndustriesTechCloud">
+    <value>Автоматически защищайте свои файлы/документы в нескольких облачных хранилищах, таких как Google Drive или Dropbox, и легко управляйте доступом к своим паролям, где бы вы ни находились. Вся информация доступна всем лицам, участвующим в лечении пациентов.</value>
+  </data>
+  <data name="IndustriesTechConfidentiality">
+    <value>Используйте мастер-ключ, функцию, которая позволяет бизнес-администраторам восстанавливать файлы участников подписки, устраняя риск потери доступа к критически важным файлам из-за ухода сотрудников или потери их паролей.</value>
+  </data>
+  <data name="IndustriesTechDescription">
+    <value>В мире, где каждый аспект нашей повседневной жизни в высшей степени цифровой, возникает острая потребность в конфиденциальности и доверии, особенно после экспериментов с нарушениями целостности данных. Инструменты и сервисы, которыми вы пользуетесь каждый день, не являются ни открытыми, ни безопасными, ни частными.​ ​Расположение ваших данных и то, как они хранятся и обрабатываются, слишком часто управляются сомнительным и ненадежным способом. AxCrypt стремится построить будущее, в котором уважается конфиденциальность каждого человека. С нашим простым в использовании программным обеспечением для шифрования и ключом, который принадлежит только вам и остается на вашем устройстве, никто другой не может получить доступ к вашим данным.</value>
+  </data>
+  <data name="IndustriesTechProtection">
+    <value>Внедрение шифрования является отличным шагом для фирм, предоставляющих технические услуги, поскольку оно повышает безопасность и способность соблюдать растущее число правил. Тем более что объем и процент зашифрованных данных будут только расти.</value>
+  </data>
+  <data name="IndustriesTechSecurity">
+    <value>Сквозное шифрование-одно из лучших, наиболее эффективных и практичных способов обеспечения защиты данных клиентов от кого бы то ни было, включая сами технологические компании, чтобы никто, кроме владельца, не мог получить к ним доступ. Безопасность и производительность тесно связаны друг с другом. Не менее важно, чтобы видимость всей инфраструктуры безопасности не снижала эффективность и, соответственно, не снижала производительность. С нашим 128-битным или 256-битным шифрованием AxCrypt повышает безопасность данных и снижает риски нарушений, внедряя удобное и простое в использовании программное обеспечение для шифрования.</value>
+  </data>
+  <data name="IndustriesTechTeamwork">
+    <value>В настоящее время отсутствие прозрачности и ясности, а также того, как крупные корпорации обрабатывают данные, превращается в хаос данных и приводит к большим проблемам. Ваша личная информация в конечном итоге отслеживается и искажается. С помощью AxCrypt мы обеспечиваем абсолютно безопасную для конфиденциальности рабочую среду и укрепляем доверие в вашем сообществе и за его пределами. Добро пожаловать в новый цифровой мир. Ваши данные полностью зашифрованы на нашей платформе, поэтому, даже если наши серверы будут взломаны, никто не сможет их прочитать. Мы соблюдаем требования GDPR и постоянно работаем над внедрением рабочих процессов и процессов, связанных с шифрованием и обработкой данных в соответствии со шведским законодательством о конфиденциальности. AxCrypt позволяет другим пользователям AxCrypt открывать защищенные файлы с помощью собственного пароля. Обмен зашифрованной информацией происходит легко, быстро и без риска.</value>
+  </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>Индустрии</value>
   </data>
   <data name="InformationLinkLabel">
     <value>Информация</value>
@@ -2727,6 +2883,9 @@ SE-114 29 Стокгольм
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Мы обнаружили потенциально несовместимое программное обеспечение, которое возможно является причиной неполадок AxCrypt и других программных обеспечений. Данное программное обеспечение называется Lavasoft Web Companion. Если AxCrypt работает неисправно, попробуйте деинсталлировать Lavasoft.</value>
   </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>Узнать Больше</value>
+  </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>После конвертации файлов они будут открыты только с помощью текущего пароля AxCrypt. Пожалуйста, подтвердите свой пароль. 
 
@@ -2754,6 +2913,9 @@ SE-114 29 Стокгольм
 
 Разрешить автоматическую версию конвертации AxCrypt 1.x файлов (рекомендуется)?</value>
   </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>Правовая помощь</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -2780,6 +2942,12 @@ SE-114 29 Стокгольм
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
+  </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/ru/СтартоваяСтраница/Поддержка'&gt;Поддержка для Business&lt;/a&gt;</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>&lt;a href='https://account.axcrypt.net/ru/Business/ПополнитьСчетПодписки'&gt;Добавить больше пользователей&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -2906,6 +3074,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Управление сайтом было успешно обновлено.</value>
+  </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>Эта учетная запись управляется реселлером. Реселлер может добавлять новых пользователей в учетную запись и управлять платежами. Примечание: Реселлеры НЕ получают доступа к какой-либо зашифрованной информации, включая файлы, защищенные мастер-ключом.</value>
   </data>
   <data name="MasterKeyBlock2Text1">
     <value>При включении мастер-ключа, бизнес-администраторы могут восстановить любой документ, зашифрованный  участниками подписки. Это, как уже упоминалось, исключает риск потери доступа к критически важным файлам. Но безопасно ли это?</value>
@@ -3169,6 +3340,9 @@ SE-114 29 Стокгольм
     <value>Нажмите для введения имени ключевого файла. Использовать только, если Вы использовали ключевой файл при обеспечении безопасности данному файлу с помощью предыдущей версии  AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MorePostsButtonLabel">
+    <value>Больше постов</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>Мой AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3296,11 +3470,11 @@ SE-114 29 Стокгольм
     <value>Очистить все настройки и перезагрузить.</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Автоматически обновить файлы: 1.x  и AES-128</value>
+    <value>Автоматическое обновление файлов до AES-256</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Включить или отключить автоматическое обновление и конвертацию AxCrypt 1.x и AES-128.</value>
+    <value>Включить или отключить автоматическое обновление и конвертацию AES-128.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -3813,6 +3987,12 @@ SE-114 29 Стокгольм
   <data name="ProductTryItForFreeHeading">
     <value>Попробуйте бесплатно</value>
   </data>
+  <data name="ProductTryItForFreeHeading2">
+    <value>Попробуйте бесплатно уже сейчас</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2Education">
+    <value>Попробуйте бесплатно сегодня или &lt;a href="mailto:business@axcrypt.net"&gt;свяжитесь с нашим отделом продаж&lt;/a&gt;, чтобы узнать о наших учебных скидках</value>
+  </data>
   <data name="ProductTryItForFreeMonthlyButtonLabel">
     <value>Ежемесячно</value>
   </data>
@@ -4054,6 +4234,9 @@ SE-114 29 Стокгольм
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Просмотрите наши последние публикации в блоге</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Читайте больше о плане Business</value>
   </data>
@@ -4173,6 +4356,17 @@ SE-114 29 Стокгольм
     <value>Обновится через</value>
     <comment>Used as "Renew in 30 days"</comment>
   </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>Мобильные приложения
+256-битный AES 
+Обмен ключами 
+Защищенные папки 
+Управление паролями 
+Осведомлённость о Cloud Storage </value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>Обновите ваше подписку!</value>
+  </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>Это краткий отчет об обнаруженных ошибках AxCrypt. Пожалуйста, скопируйте весь этот текст и напишите по адресу: 
 
@@ -4244,8 +4438,287 @@ SE-114 29 Стокгольм
   <data name="ResellerBenefitsText">
     <value>AxCrypt используют клиенты со всего мира, полагающиеся на простоту и безопасность нашего инструмента шифрования. Наши самые большие рынки включают США, Великобританию и Францию. С каждым днем рынок AxCrypt расширяется, и мы хотим, чтобы вы росли вместе с нами.</value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>Войти в &lt;a href='https://account.axcrypt.net/'&gt;account.axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>На странице создания введите информацию о вашем клиенте и необходимое количество лицензий. Это может быть изменено позже, если это необходимо.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>Выберите, хотите ли вы ежемесячную или годовую подписку, выбрав 1 или 12 месяцев.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>Для вычета НДС (в пределах ЕС) введите действительный номер НДС.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>Скидка реселлера будет добавлена автоматически.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>Нажмите кнопку оплаты.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>Наконец, вы можете добавить адреса электронной почты пользователей, которым необходимо присвоить лицензию.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>Чтобы перепродать AxCrypt Business новому клиенту, создайте его подписку на странице учетной записи:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>&lt;b&gt;Примечание:&lt;/b&gt; Это будет работать вне зависимости, если у вашего клиента есть или нет зарегистрированной учетной записи AxCrypt.&lt;br /&gt;Они получат электронное письмо или приглашение с сообщением о том, что они были добавлены к Business подписке. Затем они должны активировать свою учетную запись.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>Вы автоматически будете добавлены к их подписке в качестве администратора их учетной записи.&lt;br /&gt;Естественно, вам не будет выдана лицензия.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text4" xml:space="preserve">
+    <value>Если вы сделаете любого из пользователей вашего клиента администратором, они смогут приобретать новые лицензии и управлять учетной записью. Это означает, что вы и они не получите скидку. Мы предлагаем не делать их администраторами, только если это действительно необходимо.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text5">
+    <value>Если какая-либо информация была заполнена неправильно во время создания, вы всегда можете изменить ее, перейдя в раздел .</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>Этот процесс разработан таким образом, что он полностью управляется вами и не требует никакого участия со стороны вашего клиента (помимо активации учетной записи, если у него еще нет существующей учетной записи) или AxCrypt. Если предпочтительна оплата банковским переводом, то это тоже возможно. Дополнительные сведения см. на вкладке выставление счетов.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt предлагает одну подписку для перепродажи: &lt;b&gt;AxCrypt Business&lt;/b&gt;. Вы можете использовать подменю на &lt;a href='http://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt; для управления существующими клиентами или покупки лицензий для ваших клиентов. Войдите в систему, используя существующую учетную запись, которая была установлена в качестве администратора.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>Чтобы связаться с командой поддержки реселлеров, напишите нам по адресу &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>Выберите своего клиента из выпадающего меню Действующие.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>Добавляйте пользователей индивидуально по их адресу электронной почты.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>Вы можете добавлять пользователей в учетную запись клиента. Просто убедитесь, что неиспользуемые лицензии доступны. Администратор может добавлять пользователей до тех пор, пока есть доступные лицензии.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>Чтобы добавить пользователей:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>Выберите необходимое количество лицензий.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>Если в учетной записи вашего клиента используются все лицензии, вы можете приобрести дополнительные лицензии:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>&lt;b&gt;Примечание:&lt;/b&gt; Если предпочтительна оплата банковским переводом, то это тоже возможно. Дополнительные сведения см. в разделе Выставление счетов ниже.&lt;br /&gt;При создании или продлении подписки этот период всегда равен году.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>При покупке дополнительных лицензий участников для подписки в течение периода подписки взимается плата только за оставшиеся месяцы, округленные в сторону увеличения до целых месяцев. Если на текущий период остается 50 дней и добавляются дополнительные участники, то это будет на 2 месяца/дополнительный участник.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>Теперь у вас есть неиспользованная лицензия. Вы можете либо сохранить её (это не приостанавливает срок годности), либо назначить её новому пользователю.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>Удаление или смена пользователей в учетной записи вашего клиента очень просты:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle1" xml:space="preserve">
+    <value>Добавить нового клиента</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>Добавление пользователей в учетную запись клиента</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>Приобретите дополнительные членские лицензии</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>Удаление или смена пользователей</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersTitle" xml:space="preserve">
+    <value>Добавление клиентов и управление</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>Подписки приобретаются через веб-портал учетных записей AxCrypt (account.axcrypt.net). Оплата производится непосредственно через портал с помощью кредитной карты.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>Вы также можете приобрести его по счету-фактуре, как правило, в зависимости от количества подписок, которые вы хотите приобрести. Если вы хотите это сделать, свяжитесь с &lt;a href='mailto:reseller@axcrypt.net'&gt;Команда поддержки реселлеров&lt;/a&gt;. Если оплата производится банковским переводом, то вашему клиенту может потребоваться больше времени, чтобы получить доступ, так как сначала мы должны получить платеж.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>Текущую цену за членскую лицензию для AxCrypt Business можно найти на нашем сайте &lt;a href='https://www.axcrypt.net/цены'&gt;страница цен&lt;/a&gt;. У вас есть персональная скидка реселлера, которую можно применить.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>Для расчета подписки, месяц определяется как 30 дней, а год-как 360 дней. При создании или продлении подписки этот период всегда составляет месяц или год.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>При покупке дополнительных лицензий участников для подписки в течение периода подписки взимается плата только за оставшиеся месяцы, округленные в сторону увеличения до целых месяцев. Если на текущий период остается 50 дней и добавляются дополнительные участники, то это будет на 2 месяца/дополнительный участник.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>Читайте “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/информация/условия-использования'&gt;Условия использования&lt;/a&gt; для получения дополнительной информации.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>С 25 июня 2020 года мы автоматически продлеваем подписку. Если вы приобрели лицензии до этого, ни с вас, ни с вашего клиента не будет взиматься плата автоматически. Вам придется обновить подписку через меню.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>Если вы приобрели лицензии после 25 июня 2020 года, подписка будет автоматически продлена в конце периода подписки с использованием метода первоначальной оплаты. Если вы хотите отменить подписку, вы должны сделать это до окончания текущего периода подписки.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>Читайте раздел “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/информация/условия-использования'&gt;Условия использования&lt;/a&gt;  для получения дополнительной информации.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>Здесь вы найдете свои счета-фактуры и историю транзакций.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>Такая информация, как дата, справка, адрес и т. д.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>Заплатил(а) за какого клиента.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>Подписка заказана.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>Общая сумма.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>Вы можете распечатать счет-фактуру, нажав на значок печати.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>НДС ЕС будет вычтен перед покупкой при вводе действительного номера НДС. НДС не применяется для стран, не входящих в ЕС.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>Для шведских клиентов вычет НДС невозможен. Поскольку AxCrypt является шведской компанией, шведские клиенты должны будут регистрировать входящий НДС как входящий, а затем он вычитается из исходящего НДС, когда они платят налоговым органам Швеции.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>&lt;b&gt;Примечание:&lt;/b&gt; AxCrypt не может больше консультировать вас по налоговым вопросам. Пожалуйста, ознакомьтесь с законами вашей страны или свяжитесь с вашим налоговым консультантом для получения более подробной информации.</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>Способ оплаты</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>Информация о ценах и скидках</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>Обновление</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>Просмотр истории ваших заказов и транзакций</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>Налоги</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>Оплата</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>Прежде чем вы сможете получить доступ к своей учетной записи Реселлера, член команды AxCrypt должен назначить вам роль администратора с правами Реселлера. После подписания соглашения наша команда запросит у вас адрес электронной почты, связанный с учетной записью AxCrypt. Эта учетная запись будет служить администратором учетной записи Реселлера.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
+    <value>Примечание: Это совершенно нормально, если вы используете одну и ту же учетную запись вместе с вашим собственным планом подписки.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>Войдите в &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt; чтобы получить доступ к вашему счету реселлера. Вы видите свою учетную запись, как показано на рисунке ниже.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text1">
+    <value>Прежде чем вы сможете получить доступ к своей учетной записи реселлера, член команды AxCrypt должен назначить вам роль администратора с правами реселлера. После подписания соглашения, наша команда запросит у вас адрес электронной почты, связанный с учетной записью AxCrypt. Эта учетная запись будет служить администратором учетной записи Реселлера.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text2">
+    <value>Примечание: Это совершенно нормально, если вы используете одну и ту же учетную запись вместе с вашим собственным планом подписки.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text3">
+    <value>Войдите в &lt;a href='https://account.axcrypt.net" &gt;account.axcrypt.net&lt;/a&gt; чтобы получить доступ к вашей учетной записи реселлера. Вы видите свою учетную запись, как показано на рисунке ниже.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>Получите доступ к своему аккаунту реселлера</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle1">
+    <value>Подайте заявку, чтобы стать реселлером AxCrypt</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle2">
+    <value>Получить доступ к вашему Реселлер аккаунту</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>Начать</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>Помощь реселлерам</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>Не редактируйте изображения без нашего разрешения.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>Оставьте пустое пространство размером 25% размера логотипа от соседних изображений или графических элементов.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>Вы можете использовать логотип реселлера или обычный логотип AxCrypt в своих собственных публикациях или на веб-сайте. Вы можете сделать это при соблюдении следующих правил:</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>Вы можете использовать черно-белые версии, когда цветной логотип является неподходящей альтернативой.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;Значок логотипа в формате PNG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;Значок логотипа в формате JPG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;Логотип полный в формате PNG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;Логотип полный в формате JPG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>Вы можете найти оригинальные логотипы AxCrypt на &lt;a href='https://www.axcrypt.net/информация/пресса'&gt;https://www.axcrypt.net/информация/пресса&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>Логотип авторизованного реселлера</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>Маркетинг</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>Часто задаваемые вопросы: &lt;a href='https://www.axcrypt.net/информация/часто задаваемые вопросы'&gt;https://www.axcrypt.net/информация/часто задаваемые вопросы&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>Business подписка: &lt;a href='https://www.axcrypt.net/информация/axcrypt-business'&gt;https://www.axcrypt.net/информация/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>Начать: &lt;a href='https://www.axcrypt.net/информация/начать/windows/'&gt;https://www.axcrypt.net/информация/начать/windows&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>Полезные советы: &lt;a href='https://www.axcrypt.net/информация/полезные-советы'&gt;https://www.axcrypt.net/информация/полезные-советы&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>Технические детали: &lt;a href='https://www.axcrypt.net/информация/технические-детали'&gt;https://www.axcrypt.net/информация/технические-детали&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
+    <value>Наши реселлеры (и их клиенты), конечно же, могут рассчитывать на профессиональную техническую поддержку AxCrypt. В Интернете у нас есть большое количество документации и информации о продукте:</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>Кроме того, техническая поддержка доступна по адресу &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;. Часовой пояс UTC+5:30. Обычно они отвечают в рабочее время в течение дня.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>Конечно, мы всегда предполагаем, что наши реселлеры уже использовали AxCrypt сами, чтобы они могли помочь своим клиентам с некоторыми основными техническими вопросами. В противном случае у нас также есть куча учебных пособий, которые объясняют различные функции AxCrypt. Они доступны на нашем YouTube канале: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>Руководство для Windows:&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>Руководство для MacOS:&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>Как Реселлер, вы несете ответственность за свои собственные продажи и за то, как вы подходите к своему (потенциальному) клиенту. Но, конечно, мы хотели бы помочь вам с продажами. Командная работа заставляет мечту работать!</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>В рекламных целях, а также для того, чтобы показать своим клиентам, мы создали презентацию и брошюру AxCrypt. Они помогут объяснить, что такое AxCrypt и как он может помочь вам защитить ваши данные.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/загрузки/Реселлинг-Презентация.pdf'&gt;Скачать презентацию AxCrypt &lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>Техническая поддержка</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle2" xml:space="preserve">
+    <value>Поддержка продаж</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
   <data name="ResellerInfoHeading">
     <value>Станьте реселлером AxCrypt</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>Информация о реселлере</value>
   </data>
   <data name="ResellerInfoText1">
     <value>AxCrypt предлагает простое решение для шифрования. Имея более чем 15 - летний опыт работы в индустрии шифрования файлов, мы создали AxCrypt как один из самых сильных брендов в мире. С более чем 20 миллионами загрузок, мы доказали, что наш сервис надежен. В 2016, 2017 и 2018 годах AxCrypt был награжден выбором редакторов PCMag за лучшее программное обеспечение для шифрования.</value>
@@ -4482,6 +4955,9 @@ SE-114 29 Стокгольм
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Ваше программное обеспечение необходимо обновить ввиду проблемы безопасности.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>Отправить отзыв</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>Отправить приглашение</value>
@@ -4764,6 +5240,9 @@ SE-114 29 Стокгольм
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Не удалось открыть текущий файл</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TechLinkLabel">
+    <value>Технология</value>
   </data>
   <data name="TechnicalDetailsDescription">
     <value>В этом разделе подробно описывается, что такое AxCrypt, что он делает и как он это делает. Это в основном для технических экспертов, которые хорошо разбираются в разработке программного обеспечения, а также криптографии. Информация здесь предназначена для того, чтобы, к примеру, построить совместимое с AxCrypt программное обеспечение.</value>
@@ -5154,6 +5633,9 @@ SE-114 29 Стокгольм
   <data name="UnknownLogOn" xml:space="preserve">
     <value>Пароль неизвестен. Нажмите на 'Новый' для создания нового.</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>Нажмите здесь, чтобы открыть все функции продвинутого шифрования!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} на '{0}'.</value>
   </data>
@@ -5169,18 +5651,24 @@ SE-114 29 Стокгольм
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>Если Вы хотите отменить подписку, нажмите &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; this link&lt;/a&gt;</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Доступно Обновление</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Обновление Статуса</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Обновить файлы: 1.x и AES-128</value>
+    <value>Обновить файлы: AES-256</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Выберите папку с файлами AxCrypt 1.x и AES-128 и обновите их.</value>
+    <value>Выберите папку с файлами AES-128 и обновите их.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Приобрести Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>Срок действия вашей подписки истек. Обновите её сегодня, чтобы продолжать использовать premium-функции, такие как:</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Неизвестные имена файлов</value>

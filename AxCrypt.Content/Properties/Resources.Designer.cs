@@ -179,7 +179,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to STING helps talented people to turn their ideas info sustainable businesses..
+        ///   Looks up a localized string similar to STING helps talented people to turn their ideas into sustainable businesses..
         /// </summary>
         public static string AboutPartnerSting {
             get {
@@ -1600,7 +1600,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019 &amp; 2020.
+        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021.
         /// </summary>
         public static string BusinessFeatureListBestEncryption {
             get {
@@ -1722,6 +1722,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessFirstBodyText4 {
             get {
                 return ResourceManager.GetString("BusinessFirstBodyText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More exclusive Business Features coming soon. Don’t miss out!.
+        /// </summary>
+        public static string BusinessFirstBodyText5 {
+            get {
+                return ResourceManager.GetString("BusinessFirstBodyText5", resourceCulture);
             }
         }
         
@@ -4112,6 +4121,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Education.
+        /// </summary>
+        public static string EducationLinkLabel {
+            get {
+                return ResourceManager.GetString("EducationLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to email.
         /// </summary>
         public static string EmailAppLink {
@@ -5309,7 +5327,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019 &amp; 2020.
+        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021.
         /// </summary>
         public static string FeaturesBestEncryption {
             get {
@@ -5791,6 +5809,15 @@ namespace AxCrypt.Content.Properties {
         public static string FileWipeText {
             get {
                 return ResourceManager.GetString("FileWipeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Financial.
+        /// </summary>
+        public static string FinancialLinkLabel {
+            get {
+                return ResourceManager.GetString("FinancialLinkLabel", resourceCulture);
             }
         }
         
@@ -6686,6 +6713,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Government.
+        /// </summary>
+        public static string GovernmentLinkLabel {
+            get {
+                return ResourceManager.GetString("GovernmentLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guides.
+        /// </summary>
+        public static string GuidesLinkLabel {
+            get {
+                return ResourceManager.GetString("GuidesLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
         ///
         ///If you for any reason do not know or remember the password, you must perform a password reset..
@@ -6693,6 +6738,15 @@ namespace AxCrypt.Content.Properties {
         public static string HaveAccountInfo {
             get {
                 return ResourceManager.GetString("HaveAccountInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Healthcare.
+        /// </summary>
+        public static string HealthcareLinkLabel {
+            get {
+                return ResourceManager.GetString("HealthcareLinkLabel", resourceCulture);
             }
         }
         
@@ -7120,6 +7174,375 @@ namespace AxCrypt.Content.Properties {
         public static string IndexPageTitle {
             get {
                 return ResourceManager.GetString("IndexPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits of using Axcrypt.
+        /// </summary>
+        public static string IndustriesBenefitsTitle {
+            get {
+                return ResourceManager.GetString("IndustriesBenefitsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your data simply. Group projects and presentations can be run smoothly as the content can be accessed by anyone and anywhere on different devices thanks to our cloud storage awareness..
+        /// </summary>
+        public static string IndustriesEducationCloud {
+            get {
+                return ResourceManager.GetString("IndustriesEducationCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Online classes and digital teaching are thriving. The use of digital devices such as computers or tablets during classes, lectures or online meetings is more and more recurrent. By taking notes or commenting on PDF documents, a large amount of data is accumulated. AxCrypt helps protect private information when storing work and research under the form of files and documents. We make sure that you and only your accredited team can access your private data..
+        /// </summary>
+        public static string IndustriesEducationDescription {
+            get {
+                return ResourceManager.GetString("IndustriesEducationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR)..
+        /// </summary>
+        public static string IndustriesEducationProtection {
+            get {
+                return ResourceManager.GetString("IndustriesEducationProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure your intellectual property and important documents before uploading them. Essays, papers, reports, thesis and research results can be encrypted with Axcrypt and protected against data leaks..
+        /// </summary>
+        public static string IndustriesEducationSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesEducationSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collaborate and share content with your classmates, professors and supervisors in a secure and uncomplicated way. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string IndustriesEducationTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesEducationTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The volume of data traffic has significantly increased. Information travels regularly to different network domains, as consumer banking relies on different endpoints to interact and has adopted a multi-cloud environment. Access all your documents and synchronize them on your devices while protecting your files from costly data breaches..
+        /// </summary>
+        public static string IndustriesFinancialCloud {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the world of finance, data security is a serious business. Encryption enables various types of economic activities that would otherwise not be possible. The financial services industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct transactions anywhere and at any time via their electronic devices. By converting plaintext into ciphertext, encryption helps banks, insurance companies, actors in the credit market, corporations, venture funds,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesFinancialDescription {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compliant with domestic and international regulations that companies should and must need, it bypasses breaches every time the market fluctuates, displays company’s relevant information when internal controls occur as only approved individuals have access to it  and sidestep the considerable fines associated with non-compliance..
+        /// </summary>
+        public static string IndustriesFinancialProtection {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client’s information and company deals are also stored safe and secure from prying eyes..
+        /// </summary>
+        public static string IndustriesFinancialSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The exchange of a large amount of data is simple and easy. It assures the security of electronic commerce transactions over the Internet for example making it possible to transmit credit card numbers. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string IndustriesFinancialTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the administrational system..
+        /// </summary>
+        public static string IndustriesGovernmentCloud {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Law enforcement officials point to the widespread and increasing use of encryption. One of its roles is to protect privacy and civil liberties. Encryption prevents the theft of information, thus helping make society more secure and safe. As a government you can rely on AxCrypt to counter threats from a wide range of actors, including unsophisticated and sophisticated criminals, foreign intelligence agencies, and repressive governments. The NSA uses AES to encrypt data, which ought to be proof enough of its  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesGovernmentDescription {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR)..
+        /// </summary>
+        public static string IndustriesGovernmentProtection {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With our 128-bit or 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software..
+        /// </summary>
+        public static string IndustriesGovernmentSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt allows secured files to be opened by other AxCrypt users with their own password. Exchanging encrypted information is easy, fast and riskless. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string IndustriesGovernmentTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud storage awareness and password  management.
+        /// </summary>
+        public static string IndustriesHeadingCloud {
+            get {
+                return ResourceManager.GetString("IndustriesHeadingCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confidentiality and integrity.
+        /// </summary>
+        public static string IndustriesHeadingConfidentiality {
+            get {
+                return ResourceManager.GetString("IndustriesHeadingConfidentiality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data protection regulation compliant.
+        /// </summary>
+        public static string IndustriesHeadingProtection {
+            get {
+                return ResourceManager.GetString("IndustriesHeadingProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security, reliability and simplicity.
+        /// </summary>
+        public static string IndustriesHeadingSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesHeadingSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teamwork, collaboration.
+        /// </summary>
+        public static string IndustriesHeadingTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesHeadingTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
+        /// </summary>
+        public static string IndustriesHealthcareCloud {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The need of encryption has become more prevalent in hospitals, nursing homes and rehabilitation facilities. With the rapid increase in the number of practices using electronic health records such as EMRs, transmitting patient healthcare information by email including insurance information, proper dosage amounts for medicine, and other personal information, this is the digital age of healthcare and sensitive information needs a high level of security. AxCrypt offers an easy and frictionless user experience f [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesHealthcareDescription {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compliant with data protection laws, we help build trust between your institution and potential patients, safeguarding online appointments, communications with a medical professional and health records sent between institutions. AxCrypt ensures your organization stays compliant with regulations like the Health Insurance Portability and Accountability Act (HIPAA), the Health Information Technology for Economic and Clinical Health Act (HITECH) and the General Data Protection Regulation (GDPR)..
+        /// </summary>
+        public static string IndustriesHealthcareProtection {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption prevents costly data breaches. If criminals gain access to a removable device, mobile device, or laptop that has sensitive information, your facility may be penalized with huge fines. Including encryption as part of an overall data security program allows financial improvements and helps organizations avoid the cost of security breaches..
+        /// </summary>
+        public static string IndustriesHealthcareSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Healthcare organizations collect, manage and distribute an enormous amount of medical and personal records. Encryption makes data more secure, whether it’s being transported or at rest. In short, it protects patients’ sensitive medical information from thefts and data breaches. Exchanging information between doctors, nurses and specialists is easy, fast and riskless. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing acces [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesHealthcareTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We change the way people communicate and work. With our 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software and safeguarding confidentiality and integrity. Increase your productivity and stop wondering about your online privacy. Take back full control of your data and experience digital trust. Curious about encryption and related topics, have a look at our weekly updated &lt;a href=&quot;/blog&quot;&gt;blogs&lt;/a &gt;. Here at AxCr [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesHeroText1 {
+            get {
+                return ResourceManager.GetString("IndustriesHeroText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feel free to contact us at &lt;a href=&quot;mailto:support@axcrypt.net&quot;&gt;support@axcrypt.net&lt;/a&gt; and don’t forget to follow us on social media..
+        /// </summary>
+        public static string IndustriesHeroText2 {
+            get {
+                return ResourceManager.GetString("IndustriesHeroText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts..
+        /// </summary>
+        public static string IndustriesLegalCloud {
+            get {
+                return ResourceManager.GetString("IndustriesLegalCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string IndustriesLegalConfidentiality {
+            get {
+                return ResourceManager.GetString("IndustriesLegalConfidentiality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than ever before, personal and confidential information is transmitted over the Internet in clear text and potentially exposed. The legal industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct agreements anywhere and at any time via their electronic devices. Whether you are a solo practitioner in criminal law or an in-house corporate attorney at a Fortune 500 company, encryption affects many of the issues you encounter, whether you reali [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesLegalDescription {
+            get {
+                return ResourceManager.GetString("IndustriesLegalDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR)..
+        /// </summary>
+        public static string IndustriesLegalProtection {
+            get {
+                return ResourceManager.GetString("IndustriesLegalProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contracts, wills and records contain classified material personal to clients and partners and therefore must be protected from leaks and hackers. Encryption may be used to authenticate and prove that a document is an original that has not been changed. Digital signatures are a perfect archetype of this use. Companies that haven’t exemplified their system with encryption have recently suffered major data breaches resulting in high profile litigation. Damages can be massive and additional losses can include c [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesLegalSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesLegalSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhance collaboration inside the team and share all types of documents with no risks. Legal firms not only need to engage in digital transformation but to also do so securely. AxCrypt allows secured files to be opened by other AxCrypt users with their own password. Exchanging excrypted information is easy, fast and riskless..
+        /// </summary>
+        public static string IndustriesLegalTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesLegalTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Industries.
+        /// </summary>
+        public static string IndustriesLinkLabel {
+            get {
+                return ResourceManager.GetString("IndustriesLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
+        /// </summary>
+        public static string IndustriesTechCloud {
+            get {
+                return ResourceManager.GetString("IndustriesTechCloud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords..
+        /// </summary>
+        public static string IndustriesTechConfidentiality {
+            get {
+                return ResourceManager.GetString("IndustriesTechConfidentiality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In a world where every aspect of our everyday life is highly digital,  an urgent need of privacy and trust arises, especially after experimenting with data breaches. The​ tools and services you use every day are​ ​neither​ ​open, secure​ ​nor​ ​private.​ ​Location of your data and how they are stored and processed are too often managed in a dubious and shady way. AxCrypt ​strives​ ​to​ ​build​ ​a​ ​future​ ​that​ ​respects​ everyone&apos;s ​privacy. With our zero-knowledge encryption software and a  key that onl [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesTechDescription {
+            get {
+                return ResourceManager.GetString("IndustriesTechDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adopting encryption is an excellent step for tech-services firms, as it adds security and the ability to comply with a growing number of regulations. Especially since the volume and percentage of encrypted data will only continue to grow..
+        /// </summary>
+        public static string IndustriesTechProtection {
+            get {
+                return ResourceManager.GetString("IndustriesTechProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End-to-end encryption is one of the best, most efficient and most practical ways of ensuring that customers’ data is secured from anyone, including the tech companies themselves, so nobody other than the owner can access it. Security and productivity are glued to one another. It is equally important that visibility across the security infrastructure doesn’t compromise performance and accordingly decrease productivity. With our 128-bit or 256-bit encryption, AxCrypt increases data security and reduces risks  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesTechSecurity {
+            get {
+                return ResourceManager.GetString("IndustriesTechSecurity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowadays, the lack of transparency and clarity and how big corporations handle data turns into data chaos and brings deep complexity and inefficiencies for businesses. Your private information ends up being tracked and cripeled. With AxCrypt we ensure an absolute privacy-safe work environment and strengthen trust within your community and beyond. Welcome to a new digital world. Your data is fully encrypted on our platform, so even if our servers are hacked no one could read your data. We are compliant to th [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesTechTeamwork {
+            get {
+                return ResourceManager.GetString("IndustriesTechTeamwork", resourceCulture);
             }
         }
         
@@ -9295,6 +9718,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to More posts.
+        /// </summary>
+        public static string MorePostsButtonLabel {
+            get {
+                return ResourceManager.GetString("MorePostsButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I&apos;m having too many technical issues.
         /// </summary>
         public static string MoreTechnicalIssueText {
@@ -9670,7 +10102,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto Upgrade 1.x and AES-128 Files.
+        ///   Looks up a localized string similar to Auto Upgrade files to AES-256.
         /// </summary>
         public static string OptionsConvertMenuItemText {
             get {
@@ -9679,7 +10111,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable or disable the automatic upgrade and conversion of AxCrypt 1.x and AES-128 files..
+        ///   Looks up a localized string similar to Enable or disable the automatic upgrade and conversion of AES-128 files..
         /// </summary>
         public static string OptionsConvertMenuToolTip {
             get {
@@ -11477,6 +11909,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try it for free today.
+        /// </summary>
+        public static string ProductTryItForFreeHeading2 {
+            get {
+                return ResourceManager.GetString("ProductTryItForFreeHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try for free today or &lt;a href=&quot;mailto:business@axcrypt.net&quot;&gt;contact our sales department&lt;/a&gt; to hear about our educational discounts.
+        /// </summary>
+        public static string ProductTryItForFreeHeading2Education {
+            get {
+                return ResourceManager.GetString("ProductTryItForFreeHeading2Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string ProductTryItForFreeMonthlyButtonLabel {
@@ -12151,6 +12601,15 @@ namespace AxCrypt.Content.Properties {
         public static string ReadAboutTheLatestNewsLabel {
             get {
                 return ResourceManager.GetString("ReadAboutTheLatestNewsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse our latest blog posts.
+        /// </summary>
+        public static string ReadAboutTheLatestNewsLabel2 {
+            get {
+                return ResourceManager.GetString("ReadAboutTheLatestNewsLabel2", resourceCulture);
             }
         }
         
@@ -12833,6 +13292,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If any information has been filled in incorrectly during the creation, you can always change it by going to ..
+        /// </summary>
+        public static string ResellerHelpAddAndManageCustomersBlock1Text5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpAddAndManageCustomersBlock1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This process is designed so it is completely managed by you and does not require any involvement from your customer (besides activating the account, should they not have an existing account yet), or from AxCrypt. If payment by bank transfer is preferred, this is possible too. See the billing tab for more information..
         /// </summary>
         public static string ResellerHelpAddAndManageCustomersBlock1Text6 {
@@ -13238,11 +13706,56 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Before you can access your Reseller account, a member of AxCrypt’s team must assign you an administrator role with Reseller privileges. After signing the agreement, our team will ask you for an email address associated with an AxCrypt account. This account will serve as the admin of the Reseller account..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock2Text1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: It’s perfectly fine if you use the same account in combination with your own subscription plan..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock2Text2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log into &lt;a href=&apos;https://account.axcrypt.net&apos;&gt;account.axcrypt.net&lt;/a&gt; to get access to your Reseller account. You see you account as shown in the picture below..
+        /// </summary>
+        public static string ResellerHelpGettingStartedBlock2Text3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get access to your Reseller account.
         /// </summary>
         public static string ResellerHelpGettingStartedSubTitle {
             get {
                 return ResourceManager.GetString("ResellerHelpGettingStartedSubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to become an AxCrypt reseller.
+        /// </summary>
+        public static string ResellerHelpGettingStartedSubTitle1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedSubTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get access to your Reseller account.
+        /// </summary>
+        public static string ResellerHelpGettingStartedSubTitle2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGettingStartedSubTitle2", resourceCulture);
             }
         }
         
@@ -15057,6 +15570,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tech.
+        /// </summary>
+        public static string TechLinkLabel {
+            get {
+                return ResourceManager.GetString("TechLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This section describes in detail just what AxCrypt is, what it does, and how it does it. It is mostly for technical experts, who have a good grasp on software development as well as cryptography. Information here is intended to be complete enough to build AxCrypt-compatible software for example..
         /// </summary>
         public static string TechnicalDetailsDescription {
@@ -16260,7 +16782,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upgrade 1.x and AES-128 Files.
+        ///   Looks up a localized string similar to Upgrade files to AES-256.
         /// </summary>
         public static string UpgradeLegacyFilesMenuItemText {
             get {
@@ -16269,7 +16791,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pick a folder with AxCrypt 1.x and AES-128 files and upgrade them..
+        ///   Looks up a localized string similar to Pick a folder with AES-128 files and upgrade them..
         /// </summary>
         public static string UpgradeLegacyFilesMenuToolTip {
             get {

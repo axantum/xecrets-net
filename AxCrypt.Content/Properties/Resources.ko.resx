@@ -3267,11 +3267,11 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>모든 설정 초기화 및 다시 시작</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>1.x과 AES-128 파일 자동 업그레이드</value>
+    <value>파일을 AES-256으로 자동 업그레이드</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x 및 AES-128 파일의 자동 업그레이드 및 변경 활성화 또는 비활성화</value>
+    <value>AES-128 파일의 자동 업그레이드 및 변환을 활성화 또는 비활성화합니다.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -5146,7 +5146,7 @@ AxCrypt 팀</value>
     <value>1.x 파일 및 AES-128 파일 업그레이드</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x 및 AES-128 파일의 폴더를 선택하고 업그레이드하십시오.</value>
+    <value>AES-128 파일이있는 폴더를 선택하고 업그레이드하십시오</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium 사용하기!</value>

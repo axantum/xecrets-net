@@ -3273,11 +3273,11 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
     <value>Tüm Ayarları Sıfırla ve Yeniden Başlat</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>1.x ve AES-128 Dosyalarını Otomatik Olarak Yükselt</value>
+    <value>Dosyaları AES-256'ya Otomatik Yükseltme</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x ve AES-128 dosyalarının otomatik güncelleme ve dönüşümünü etkinleştir veya devre dışı bırak.</value>
+    <value>AES-128 dosyalarının otomatik güncelleme ve dönüşümünü etkinleştir veya devre dışı bırak.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -5152,10 +5152,10 @@ AxCrypt Ekibi</value>
     <value>Konum yenileniyor</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>1.x ve AES-128 Dosyalarını Yükselt</value>
+    <value>AES-256 Dosyalarını Yükselt</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>AxCrypt 1.x ve AES-128 dosyaları içeren bir klasör seç ve dosyaları güncelle.</value>
+    <value>AES-128 dosyaları içeren bir klasör seç ve dosyaları güncelle.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium'a üye ol!</value>

@@ -3300,11 +3300,11 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
     <value>Wyczyść wszystkie ustawienia i wyjdź</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Automatyczne rozszerzanie plików 1.x i AES-128</value>
+    <value>Automatycznie aktualizuj pliki do AES-256</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Włącz lub wyłącz automatyczną aktualizację i konwertowanie starszych plików AxCrypt 1.x i AES-128 w miarę ich używania.</value>
+    <value>Włącz lub wyłącz automatyczną aktualizację i konwertowanie starszych plików AES-128 w miarę ich używania.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -5179,10 +5179,10 @@ Zespół AxCrypt</value>
     <value>Aktualizuję status</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Uaktualnij pliki 1.x i AES-128</value>
+    <value>Uaktualnij pliki AES-256</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Wybierz miejsce do wyszukania plików zabezpieczonych AxCrypt 1.x i AES-128, i uaktualnij je.</value>
+    <value>Wybierz miejsce do wyszukania plików zabezpieczonych AES-128, i uaktualnij je.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Pobierz Premium!</value>
