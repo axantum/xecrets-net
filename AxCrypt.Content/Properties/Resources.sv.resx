@@ -1768,11 +1768,11 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
     <value>Rensa alla inställningar och starta om</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Uppgradera 1.x och AES-128-filer automatiskt</value>
+    <value>Uppgradera filer till AES-256 automatiskt</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av AxCrypt 1.x- och AES-128-filer.</value>
+    <value>Aktivera eller inaktivera automatisk uppgradering och konvertering av AES-128-filer.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsHideRecentFilesToolStripMenuItemText" xml:space="preserve">
@@ -2567,10 +2567,10 @@ AxCrypt-teamet</value>
     <value>Uppdaterar Status</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Uppgradera 1.x- och AES-128-filer</value>
+    <value>Uppgradera filer till AES-256</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Välj en mapp med AxCrypt 1.x och AES-128-filer att uppgradera.</value>
+    <value>Välj en mapp med AES-128-filer att uppgradera.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Skaffa Premium!</value>

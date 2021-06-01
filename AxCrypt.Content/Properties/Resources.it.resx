@@ -3509,11 +3509,11 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
     <value>Cancella Tutte le Impostazioni e Riavvia</value>
   </data>
   <data name="OptionsConvertMenuItemText" xml:space="preserve">
-    <value>Aggiornamento Automatico dei File 1.x e AES-128</value>
+    <value>Aggiornamento automatico dei file ad AES-256</value>
     <comment>The menu text for the option to automatically convert legacy 1.x files to AxCrypt 2 format.</comment>
   </data>
   <data name="OptionsConvertMenuToolTip" xml:space="preserve">
-    <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei file AxCrypt 1.x e AES-128.</value>
+    <value>Abilita o disabilita l'aggiornamento automatico e la conversione dei file AES-128.</value>
     <comment>The tool tip explanation for the option to enable auto conversion of legacy 1.x files</comment>
   </data>
   <data name="OptionsDebugToolStripMenuItemText" xml:space="preserve">
@@ -5419,10 +5419,10 @@ Il Team di AxCrypt</value>
     <value>Aggiornamento dello Stato</value>
   </data>
   <data name="UpgradeLegacyFilesMenuItemText" xml:space="preserve">
-    <value>Aggiorna i File 1.x e AES-128</value>
+    <value>Aggiorna i File AES-256</value>
   </data>
   <data name="UpgradeLegacyFilesMenuToolTip" xml:space="preserve">
-    <value>Scegli una cartella con file AxCrypt 1.x e AES-128 e aggiornali.</value>
+    <value>Scegli una cartella con file AES-128 e aggiornali.</value>
   </data>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Ottieni Premium!</value>
