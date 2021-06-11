@@ -16773,6 +16773,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update payment details.
+        /// </summary>
+        public static string UpdatePaymentDetailsText {
+            get {
+                return ResourceManager.GetString("UpdatePaymentDetailsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updating Status.
         /// </summary>
         public static string UpdatingStatus {

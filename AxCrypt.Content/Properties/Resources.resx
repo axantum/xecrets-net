@@ -6062,6 +6062,9 @@ The AxCrypt Team</value>
   <data name="UpdateAvailableTitle" xml:space="preserve">
     <value>Update Available</value>
   </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>Update payment details</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Updating Status</value>
   </data>
