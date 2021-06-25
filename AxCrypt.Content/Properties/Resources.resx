@@ -1277,6 +1277,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Our business support will contact you shortly to help you get started with your business account! Click continue to go to your account.</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>Congratulations and welcome to AxCrypt Premium!</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel" xml:space="preserve">
     <value>Cryptographic Hashes of Files</value>
   </data>
@@ -1486,6 +1489,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="DownloadAxcrypt2LinkLabel" xml:space="preserve">
     <value>Download AxCrypt 2</value>
+  </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>Download AxCrypt App</value>
   </data>
   <data name="DownloadHeroHeadingMac" xml:space="preserve">
     <value>AxCrypt for macOS</value>
@@ -2458,6 +2464,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
+  </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>Go to My AxCrypt</value>
   </data>
   <data name="GoToOurBlogLinkLabel" xml:space="preserve">
     <value>GO TO OUR BLOG</value>
@@ -4582,6 +4591,10 @@ A confirmation of your purchase will be sent to your e-mail from your payment pr
     <value>&lt;b&gt;Do you have any question about AxCrypt Business?&lt;/b&gt;
 Please &lt;a href="mailto:business@axcrypt.net"&gt;contact us&lt;/a&gt; and we will help you as soon as possible.</value>
   </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
+    <value>&lt;b&gt;Do you have any question about AxCrypt Premium?&lt;/b&gt;
+Please &lt;a href="mailto:premium@axcrypt.net"&gt;contact us&lt;/a&gt; and we will help you as soon as possible.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Please rate us on &lt;a&gt;Google Play&lt;/a&gt;</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -5912,6 +5925,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
     <value>Thank you for choosing AxCrypt Business</value>
+  </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
+    <value>Thank you for choosing AxCrypt Premium</value>
   </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
     <value>Thank you for choosing AxCrypt!</value>
