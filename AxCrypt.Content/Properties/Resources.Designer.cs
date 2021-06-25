@@ -3237,6 +3237,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Congratulations and welcome to AxCrypt Premium!.
+        /// </summary>
+        public static string CreatePremiumSuccess {
+            get {
+                return ResourceManager.GetString("CreatePremiumSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cryptographic Hashes of Files.
         /// </summary>
         public static string CryptographicHashesOfFilesLinkLabel {
@@ -3847,6 +3856,15 @@ namespace AxCrypt.Content.Properties {
         public static string DownloadAxcrypt2LinkLabel {
             get {
                 return ResourceManager.GetString("DownloadAxcrypt2LinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download AxCrypt App.
+        /// </summary>
+        public static string DownloadAxCryptAppPrompt {
+            get {
+                return ResourceManager.GetString("DownloadAxCryptAppPrompt", resourceCulture);
             }
         }
         
@@ -6691,6 +6709,15 @@ namespace AxCrypt.Content.Properties {
         public static string GetSubscriptionLoginRequiredInfoText {
             get {
                 return ResourceManager.GetString("GetSubscriptionLoginRequiredInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to My AxCrypt.
+        /// </summary>
+        public static string GoToMyAxCryptPrompt {
+            get {
+                return ResourceManager.GetString("GoToMyAxCryptPrompt", resourceCulture);
             }
         }
         
@@ -12551,6 +12578,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Do you have any question about AxCrypt Premium?&lt;/b&gt;
+        ///Please &lt;a href=&quot;mailto:premium@axcrypt.net&quot;&gt;contact us&lt;/a&gt; and we will help you as soon as possible..
+        /// </summary>
+        public static string QueriesAboutAxCryptPremium {
+            get {
+                return ResourceManager.GetString("QueriesAboutAxCryptPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please rate us on &lt;a&gt;Google Play&lt;/a&gt;.
         /// </summary>
         public static string RateApplicationLinkAndroid {
@@ -16367,6 +16404,15 @@ namespace AxCrypt.Content.Properties {
         public static string ThanksChoosingAxCryptBusinessTitle {
             get {
                 return ResourceManager.GetString("ThanksChoosingAxCryptBusinessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for choosing AxCrypt Premium.
+        /// </summary>
+        public static string ThanksChoosingAxCryptPremiumTitle {
+            get {
+                return ResourceManager.GetString("ThanksChoosingAxCryptPremiumTitle", resourceCulture);
             }
         }
         
