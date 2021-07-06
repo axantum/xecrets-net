@@ -4646,9 +4646,7 @@ Please &lt;a href="mailto:premium@axcrypt.net"&gt;contact us&lt;/a&gt; and we wi
     <value>New user? Sign up</value>
   </data>
   <data name="RegisterPageBody" xml:space="preserve">
-    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing a verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!
-
-Get 30 days free and cancel at any time!</value>
+    <value>To start using AxCrypt you have to sign up for an AxCrypt ID by submitting your e-mail address in the form below. A message containing a verification link will then be sent to the specified address and when you click that link you will be asked to choose a password. That's it!</value>
   </data>
   <data name="RegisterPageTitle" xml:space="preserve">
     <value>Sign up for an AxCrypt ID</value>
