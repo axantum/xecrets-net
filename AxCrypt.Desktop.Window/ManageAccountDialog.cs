@@ -1,5 +1,6 @@
 ﻿using AxCrypt.Core;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
@@ -70,7 +71,7 @@ namespace AxCrypt.Desktop.Window
 
         private async void _changePassphraseButton_Click(object sender, EventArgs e)
         {
-            await this.ChangePasswordDialogAsync(_viewModel);
+            New<UserSettings>().UserEmail.ProcessChangePassword();
         }
 
         private void ManageAccountDialog_Load(object sender, EventArgs e)
