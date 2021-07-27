@@ -5187,10 +5187,10 @@ Subject: AxCrypt Report Snapshot</value>
     <value>[None]</value>
   </data>
   <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Premium Trial period, you can start it from the &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
+    <value>You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Trial period, you can start it from &lt;a href="https://account.axcrypt.net/en/Home/Upgrade"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
-    <value>Your premium subscription expires soon, on {0}. Thereafter you'll have to extend your premium subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>
+    <value>Your subscription expires soon, on {0}. Thereafter you'll have to extend your subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>
   </data>
   <data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt Secure Delete</value>
