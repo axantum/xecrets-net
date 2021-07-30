@@ -2959,7 +2959,7 @@ SE-114 29 Стокгольм
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0} Стартовая страница/Регистрация</value>
+    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Безопасность локального устройства</value>

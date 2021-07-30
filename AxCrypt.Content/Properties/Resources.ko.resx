@@ -2771,7 +2771,7 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}홈/레지스터</value>
+    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>로컬 디바이스 보안</value>
