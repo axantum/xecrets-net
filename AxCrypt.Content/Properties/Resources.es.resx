@@ -3091,7 +3091,7 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Inicio/Registro</value>
+    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Seguridad de dispositivo local</value>
