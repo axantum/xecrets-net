@@ -554,6 +554,141 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Affiliate Marketing Advantages.
+        /// </summary>
+        public static string AffiliateAdvantagesHeading {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whether you’re a business, blogger, vlogger, influencer, or media publisher, Axcrypt affiliate program offers some of the best rewards in the market..
+        /// </summary>
+        public static string AffiliateAdvantagesSubHeading {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generous commission - We are proud to offer a commission of 25%, one of the best within the industry..
+        /// </summary>
+        public static string AffiliateAdvantagesText1 {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dedicated Account Manager - With a dedicated account manager, you&apos;ll get the help you need every step of the way, from setup to one-on-one counselling..
+        /// </summary>
+        public static string AffiliateAdvantagesText2 {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global Reach - Axcrypt affiliates run campaigns at a global level. This allows you access to generate traffic, conversions and revenue from all corners of the earth..
+        /// </summary>
+        public static string AffiliateAdvantagesText3 {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top conversion rates - Our optimized marketing strategy and strong brand reputation lead to high percentage conversions. This allows you to maximize your earning potential..
+        /// </summary>
+        public static string AffiliateAdvantagesText4 {
+            get {
+                return ResourceManager.GetString("AffiliateAdvantagesText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become an AxCrypt Affiliate.
+        /// </summary>
+        public static string AffiliateInfoHeading {
+            get {
+                return ResourceManager.GetString("AffiliateInfoHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join our affiliate program to provide a valuable Encryption solution while earning generous commissions..
+        /// </summary>
+        public static string AffiliateInfoText1 {
+            get {
+                return ResourceManager.GetString("AffiliateInfoText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is an easy-to-use encryption programme available on Windows, Mac, iOS, and Android.  AxCrypt has grown to be one of the world’s most popular encryption applications with over 20 million downloads worldwide and been awarded as “The Best Encryption Software” by the prestigious PC Magazine in 2021 consecutively for 6 years in a row. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish, Mandarin and more to follow..
+        /// </summary>
+        public static string AffiliateInfoText2 {
+            get {
+                return ResourceManager.GetString("AffiliateInfoText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promote AxCrypt and earn a profit from each sale.
+        /// </summary>
+        public static string AffiliateInstructionsHeading {
+            get {
+                return ResourceManager.GetString("AffiliateInstructionsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become a member of our affiliate program by signing up within seconds.
+        /// </summary>
+        public static string AffiliateInstructionsStep1 {
+            get {
+                return ResourceManager.GetString("AffiliateInstructionsStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get access to exclusive connections and promotional materials. Leverage our marketing assets to get your campaigns off the ground.
+        /// </summary>
+        public static string AffiliateInstructionsStep2 {
+            get {
+                return ResourceManager.GetString("AffiliateInstructionsStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refer AxCrypt and earn 25% commission on every paid conversion.
+        /// </summary>
+        public static string AffiliateInstructionsStep3 {
+            get {
+                return ResourceManager.GetString("AffiliateInstructionsStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt now offers you an affiliate opportunity where you get paid from each sale by promoting AxCrypt. Let&apos;s get started now..
+        /// </summary>
+        public static string AffiliateInstructionsSubHeading {
+            get {
+                return ResourceManager.GetString("AffiliateInstructionsSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate.
+        /// </summary>
+        public static string AffiliateLinkLabel {
+            get {
+                return ResourceManager.GetString("AffiliateLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I understand that this will not regain access to my encrypted files.
         /// </summary>
         public static string AgreePasswordResetNotRegainAccess {
@@ -1519,6 +1654,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Business email.
+        /// </summary>
+        public static string BusinessEmailLabel {
+            get {
+                return ResourceManager.GetString("BusinessEmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiredMailBody0Html {
@@ -1717,7 +1861,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More exclusive Business Features coming soon. Don’t miss out!.
+        ///   Looks up a localized string similar to For more information on how to setup your new business in AxCrypt visit our &lt;a href=&apos;/information/axcrypt-business&apos;&gt;business guide&lt;/a&gt;. You can read more about the features you get on our &lt;a href=&apos;/information/features&apos;&gt;feature page&lt;/a&gt;, and don’t forget to read &lt;a href=&apos;/information/terms-of-use&apos;&gt;Terms of use&lt;/a&gt;..
         /// </summary>
         public static string BusinessFirstBodyText4 {
             get {
@@ -2289,6 +2433,15 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessTrialCreationSummaryTitle {
             get {
                 return ResourceManager.GetString("BusinessTrialCreationSummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!You&apos;re eligible for a free 30 day trial! You can add as many users as you like and pay nothing for the first 30 days! But remember, after the 30 days are up, you will be charged.
+        /// </summary>
+        public static string BusinessTrialEligibleInfo {
+            get {
+                return ResourceManager.GetString("BusinessTrialEligibleInfo", resourceCulture);
             }
         }
         
@@ -5966,6 +6119,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full name.
+        /// </summary>
+        public static string FullNameLabel {
+            get {
+                return ResourceManager.GetString("FullNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What is the GDPR?.
         /// </summary>
         public static string GdprBlock1Heading {
@@ -6704,6 +6866,69 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password Reset.
+        /// </summary>
+        public static string GetStartedPasswordResetHeading {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did you forget your AxCrypt ID password? You can now do a password reset. By resetting your password, you can sign in again, but you will not have access to files encrypted with your old password. See the video below for instructions on how to reset your password..
+        /// </summary>
+        public static string GetStartedPasswordResetIngress {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to file options within the application and select “Password Reset” or head directly to &lt;a href=&apos;https://account.axcrypt.net/en/Home/PasswordReset&apos;&gt;Password Reset&lt;/a&gt;..
+        /// </summary>
+        public static string GetStartedPasswordResetStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be redirected to our website, where you can request a reset..
+        /// </summary>
+        public static string GetStartedPasswordResetStep2 {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After verifying, follow the prompt in the email sent to your email address..
+        /// </summary>
+        public static string GetStartedPasswordResetStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt: Password Reset on Mac.
+        /// </summary>
+        public static string GetStartedPasswordResetVideoTitleMac {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetVideoTitleMac", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt: Password Reset.
+        /// </summary>
+        public static string GetStartedPasswordResetVideoTitleWindows {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordResetVideoTitleWindows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href=&quot;{0}Home/Register/&quot;&gt;sign up&lt;/a&gt;..
         /// </summary>
         public static string GetSubscriptionLoginRequiredInfoText {
@@ -7205,11 +7430,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Industries.
+        /// </summary>
+        public static string IndustriesAboutLinkLabel {
+            get {
+                return ResourceManager.GetString("IndustriesAboutLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Benefits of using Axcrypt.
         /// </summary>
         public static string IndustriesBenefitsTitle {
             get {
                 return ResourceManager.GetString("IndustriesBenefitsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New to encryption? Check out our blog for the latest news..
+        /// </summary>
+        public static string IndustriesBlogLabel {
+            get {
+                return ResourceManager.GetString("IndustriesBlogLabel", resourceCulture);
             }
         }
         
@@ -7228,6 +7471,24 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesEducationDescription {
             get {
                 return ResourceManager.GetString("IndustriesEducationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt proprietary essays, papers, reports, theses and research.
+        /// </summary>
+        public static string IndustriesEducationHeading {
+            get {
+                return ResourceManager.GetString("IndustriesEducationHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access all your documents and synchronize them on your devices while protecting your files from costly data breaches..
+        /// </summary>
+        public static string IndustriesEducationParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesEducationParagraph", resourceCulture);
             }
         }
         
@@ -7277,6 +7538,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Safeguard highly sensitive financial information.
+        /// </summary>
+        public static string IndustriesFinancialHeading {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt encryption, client’s information and company deals are stored safe and secure from prying eyes..
+        /// </summary>
+        public static string IndustriesFinancialParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesFinancialParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compliant with domestic and international regulations that companies should and must need, it bypasses breaches every time the market fluctuates, displays company’s relevant information when internal controls occur as only approved individuals have access to it  and sidestep the considerable fines associated with non-compliance..
         /// </summary>
         public static string IndustriesFinancialProtection {
@@ -7318,6 +7597,24 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesGovernmentDescription {
             get {
                 return ResourceManager.GetString("IndustriesGovernmentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preserve electronically archived confidential documents.
+        /// </summary>
+        public static string IndustriesGovernmentHeading {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption prevents the theft of information, thus helping make society more secure and safe. Law enforcement officials point to the widespread and increasing use of encryption..
+        /// </summary>
+        public static string IndustriesGovernmentParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesGovernmentParagraph", resourceCulture);
             }
         }
         
@@ -7412,6 +7709,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Secure personal identifiable information and health records.
+        /// </summary>
+        public static string IndustriesHealthcareHeading {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remain compliant with local and federal data protection regulations while building trust between your institution and potential patients..
+        /// </summary>
+        public static string IndustriesHealthcareParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesHealthcareParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compliant with data protection laws, we help build trust between your institution and potential patients, safeguarding online appointments, communications with a medical professional and health records sent between institutions. AxCrypt ensures your organization stays compliant with regulations like the Health Insurance Portability and Accountability Act (HIPAA), the Health Information Technology for Economic and Clinical Health Act (HITECH) and the General Data Protection Regulation (GDPR)..
         /// </summary>
         public static string IndustriesHealthcareProtection {
@@ -7435,6 +7750,24 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesHealthcareTeamwork {
             get {
                 return ResourceManager.GetString("IndustriesHealthcareTeamwork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover AxCrypt Business.
+        /// </summary>
+        public static string IndustriesHeroButton {
+            get {
+                return ResourceManager.GetString("IndustriesHeroButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We change the way people communicate and work..
+        /// </summary>
+        public static string IndustriesHeroText0 {
+            get {
+                return ResourceManager.GetString("IndustriesHeroText0", resourceCulture);
             }
         }
         
@@ -7484,6 +7817,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Protect classified contracts, wills and records.
+        /// </summary>
+        public static string IndustriesLegalHeading {
+            get {
+                return ResourceManager.GetString("IndustriesLegalHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is absolutely necessary when storing and sharing sensitive information in order to evade unauthorised and illegal processing of personal data. Reduce the risks of breaches by implementing a user-friendly and easy to use encryption software..
+        /// </summary>
+        public static string IndustriesLegalParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesLegalParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR)..
         /// </summary>
         public static string IndustriesLegalProtection {
@@ -7520,6 +7871,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to clients worldwide.
+        /// </summary>
+        public static string IndustriesStatistic1 {
+            get {
+                return ResourceManager.GetString("IndustriesStatistic1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCMag Editors&apos; Choice.
+        /// </summary>
+        public static string IndustriesStatistic2 {
+            get {
+                return ResourceManager.GetString("IndustriesStatistic2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to user downloads.
+        /// </summary>
+        public static string IndustriesStatistic3 {
+            get {
+                return ResourceManager.GetString("IndustriesStatistic3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to languages available.
+        /// </summary>
+        public static string IndustriesStatistic4 {
+            get {
+                return ResourceManager.GetString("IndustriesStatistic4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
         /// </summary>
         public static string IndustriesTechCloud {
@@ -7543,6 +7930,24 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesTechDescription {
             get {
                 return ResourceManager.GetString("IndustriesTechDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase data security with 128-bit or 256-bit encryption.
+        /// </summary>
+        public static string IndustriesTechHeading {
+            get {
+                return ResourceManager.GetString("IndustriesTechHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With our 128-bit or 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software..
+        /// </summary>
+        public static string IndustriesTechParagraph {
+            get {
+                return ResourceManager.GetString("IndustriesTechParagraph", resourceCulture);
             }
         }
         
@@ -8230,7 +8635,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The user can not be leave the business because they are the only administrator. To leave, please first nominate another administrator..
+        ///   Looks up a localized string similar to The user cannot leave the business because they are the only administrator. To leave, please first nominate another administrator..
         /// </summary>
         public static string LeaveBusinessErrorText {
             get {
@@ -9518,9 +9923,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When the trial period ends, you can&apos;t use the AxCrypt mobile apps. A paid subscription is required.
-        ///
-        ///You can always open encrypted files with a free desktop version of  AxCrypt..
+        ///   Looks up a localized string similar to When the trial period ends, you can&apos;t use the AxCrypt mobile apps to secure new files anymore (you&apos;re always able to access previously secured files though)..
         /// </summary>
         public static string MessageAskAboutStartTrialForMobileApps {
             get {
@@ -10670,6 +11073,15 @@ namespace AxCrypt.Content.Properties {
         public static string PhoneLabel {
             get {
                 return ResourceManager.GetString("PhoneLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string PhoneNumberLabel {
+            get {
+                return ResourceManager.GetString("PhoneNumberLabel", resourceCulture);
             }
         }
         
@@ -13714,7 +14126,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Before you can access your Reseller account, a member of AxCrypt’s team must assign you an administrator role with Reseller privileges. After signing the agreement, our team will ask you for an email address associated with an AxCrypt account. This account will serve as the admin of the Reseller account..
+        ///   Looks up a localized string similar to To become an AxCrypt reseller, first sign up using the &lt;a href=&apos;/information/reseller&apos;&gt;reseller application form&lt;/a&gt;..
         /// </summary>
         public static string ResellerHelpGettingStartedBlock1Text1 {
             get {
@@ -14106,6 +14518,15 @@ namespace AxCrypt.Content.Properties {
         public static string ResellerLinkLabel {
             get {
                 return ResourceManager.GetString("ResellerLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Your subscription has expired since {0}. Please contact &lt;a href=&quot;mailto:reseller@axcrypt.net&quot;&gt;support&lt;/a&gt; to have it extended..
+        /// </summary>
+        public static string ResellerSubscriptionExpiredWarning {
+            get {
+                return ResourceManager.GetString("ResellerSubscriptionExpiredWarning", resourceCulture);
             }
         }
         
@@ -15817,6 +16238,24 @@ namespace AxCrypt.Content.Properties {
         public static string TermsOfUseBlock11Heading {
             get {
                 return ResourceManager.GetString("TermsOfUseBlock11Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium &amp; Business Trial.
+        /// </summary>
+        public static string TermsOfUseBlock11Heading1 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlock11Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We offer 30 days free trial for the AxCrypt Premium or Business plan for new users. If you don’t like the product you can cancel the subscription before the trial ends. Cancelling the subscription can be done at any time. Doing this will not affect the trial and you will still be able to use all the features that comes with Business &amp; Premium subscription during your trial period. After the 30 days of free trial we will charge your credit card if you haven’t cancelled your subscription. No refund will be pr [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TermsOfUseBlock11Text01 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlock11Text01", resourceCulture);
             }
         }
         

@@ -295,6 +295,51 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Select a folder to keep secured with AxCrypt. Existing files will be encrypted now.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AffiliateAdvantagesHeading" xml:space="preserve">
+    <value>AxCrypt Affiliate Marketing Advantages</value>
+  </data>
+  <data name="AffiliateAdvantagesSubHeading" xml:space="preserve">
+    <value>Whether you’re a business, blogger, vlogger, influencer, or media publisher, Axcrypt affiliate program offers some of the best rewards in the market.</value>
+  </data>
+  <data name="AffiliateAdvantagesText1" xml:space="preserve">
+    <value>Generous commission - We are proud to offer a commission of 25%, one of the best within the industry.</value>
+  </data>
+  <data name="AffiliateAdvantagesText2" xml:space="preserve">
+    <value>Dedicated Account Manager - With a dedicated account manager, you'll get the help you need every step of the way, from setup to one-on-one counselling.</value>
+  </data>
+  <data name="AffiliateAdvantagesText3" xml:space="preserve">
+    <value>Global Reach - Axcrypt affiliates run campaigns at a global level. This allows you access to generate traffic, conversions and revenue from all corners of the earth.</value>
+  </data>
+  <data name="AffiliateAdvantagesText4" xml:space="preserve">
+    <value>Top conversion rates - Our optimized marketing strategy and strong brand reputation lead to high percentage conversions. This allows you to maximize your earning potential.</value>
+  </data>
+  <data name="AffiliateInfoHeading" xml:space="preserve">
+    <value>Become an AxCrypt Affiliate</value>
+  </data>
+  <data name="AffiliateInfoText1" xml:space="preserve">
+    <value>Join our affiliate program to provide a valuable Encryption solution while earning generous commissions.</value>
+  </data>
+  <data name="AffiliateInfoText2" xml:space="preserve">
+    <value>AxCrypt is an easy-to-use encryption programme available on Windows, Mac, iOS, and Android.  AxCrypt has grown to be one of the world’s most popular encryption applications with over 20 million downloads worldwide and been awarded as “The Best Encryption Software” by the prestigious PC Magazine in 2021 consecutively for 6 years in a row. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish, Mandarin and more to follow.</value>
+  </data>
+  <data name="AffiliateInstructionsHeading" xml:space="preserve">
+    <value>Promote AxCrypt and earn a profit from each sale</value>
+  </data>
+  <data name="AffiliateInstructionsStep1" xml:space="preserve">
+    <value>Become a member of our affiliate program by signing up within seconds</value>
+  </data>
+  <data name="AffiliateInstructionsStep2" xml:space="preserve">
+    <value>Get access to exclusive connections and promotional materials. Leverage our marketing assets to get your campaigns off the ground</value>
+  </data>
+  <data name="AffiliateInstructionsStep3" xml:space="preserve">
+    <value>Refer AxCrypt and earn 25% commission on every paid conversion</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading" xml:space="preserve">
+    <value>AxCrypt now offers you an affiliate opportunity where you get paid from each sale by promoting AxCrypt. Let's get started now.</value>
+  </data>
+  <data name="AffiliateLinkLabel" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
   <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
     <value>I understand that this will not regain access to my encrypted files</value>
   </data>
@@ -641,6 +686,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Plan setup and payment</value>
   </data>
+  <data name="BusinessEmailLabel" xml:space="preserve">
+    <value>Business email</value>
+  </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
   </data>
@@ -708,7 +756,7 @@ You have been warned, now enjoy!</value>
     <value>For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.</value>
   </data>
   <data name="BusinessFirstBodyText4" xml:space="preserve">
-    <value>More exclusive Business Features coming soon. Don’t miss out!</value>
+    <value>For more information on how to setup your new business in AxCrypt visit our &lt;a href='/information/axcrypt-business'&gt;business guide&lt;/a&gt;. You can read more about the features you get on our &lt;a href='/information/features'&gt;feature page&lt;/a&gt;, and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.</value>
   </data>
   <data name="BusinessFirstBodyText5" xml:space="preserve">
     <value>More exclusive Business Features coming soon. Don’t miss out!</value>
@@ -943,6 +991,9 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>The first month is free, after that:</value>
+  </data>
+  <data name="BusinessTrialEligibleInfo" xml:space="preserve">
+    <value>!!You're eligible for a free 30 day trial! You can add as many users as you like and pay nothing for the first 30 days! But remember, after the 30 days are up, you will be charged</value>
   </data>
   <data name="BusinessTrialInfo" xml:space="preserve">
     <value>THE FIRST MONTH IS FREE</value>
@@ -2216,6 +2267,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FreeLabel" xml:space="preserve">
     <value>Free</value>
   </data>
+  <data name="FullNameLabel" xml:space="preserve">
+    <value>Full name</value>
+  </data>
   <data name="GdprBlock1Heading" xml:space="preserve">
     <value>What is the GDPR?</value>
   </data>
@@ -2462,6 +2516,27 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetStartedPasswordManagementVideoTitleWindows" xml:space="preserve">
     <value>AxCrypt: Password Management</value>
   </data>
+  <data name="GetStartedPasswordResetHeading" xml:space="preserve">
+    <value>Password Reset</value>
+  </data>
+  <data name="GetStartedPasswordResetIngress" xml:space="preserve">
+    <value>Did you forget your AxCrypt ID password? You can now do a password reset. By resetting your password, you can sign in again, but you will not have access to files encrypted with your old password. See the video below for instructions on how to reset your password.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep1" xml:space="preserve">
+    <value>Go to file options within the application and select “Password Reset” or head directly to &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Password Reset&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2" xml:space="preserve">
+    <value>You will be redirected to our website, where you can request a reset.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3" xml:space="preserve">
+    <value>After verifying, follow the prompt in the email sent to your email address.</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac" xml:space="preserve">
+    <value>AxCrypt: Password Reset on Mac</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows" xml:space="preserve">
+    <value>AxCrypt: Password Reset</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
   </data>
@@ -2637,14 +2712,26 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndexPageTitle" xml:space="preserve">
     <value>My AxCrypt ID</value>
   </data>
+  <data name="IndustriesAboutLinkLabel" xml:space="preserve">
+    <value>About Industries</value>
+  </data>
   <data name="IndustriesBenefitsTitle" xml:space="preserve">
     <value>Benefits of using Axcrypt</value>
+  </data>
+  <data name="IndustriesBlogLabel" xml:space="preserve">
+    <value>New to encryption? Check out our blog for the latest news.</value>
   </data>
   <data name="IndustriesEducationCloud" xml:space="preserve">
     <value>Manage your data simply. Group projects and presentations can be run smoothly as the content can be accessed by anyone and anywhere on different devices thanks to our cloud storage awareness.</value>
   </data>
   <data name="IndustriesEducationDescription" xml:space="preserve">
     <value>Online classes and digital teaching are thriving. The use of digital devices such as computers or tablets during classes, lectures or online meetings is more and more recurrent. By taking notes or commenting on PDF documents, a large amount of data is accumulated. AxCrypt helps protect private information when storing work and research under the form of files and documents. We make sure that you and only your accredited team can access your private data.</value>
+  </data>
+  <data name="IndustriesEducationHeading" xml:space="preserve">
+    <value>Encrypt proprietary essays, papers, reports, theses and research</value>
+  </data>
+  <data name="IndustriesEducationParagraph" xml:space="preserve">
+    <value>Access all your documents and synchronize them on your devices while protecting your files from costly data breaches.</value>
   </data>
   <data name="IndustriesEducationProtection" xml:space="preserve">
     <value>AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR).</value>
@@ -2661,6 +2748,12 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndustriesFinancialDescription" xml:space="preserve">
     <value>In the world of finance, data security is a serious business. Encryption enables various types of economic activities that would otherwise not be possible. The financial services industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct transactions anywhere and at any time via their electronic devices. By converting plaintext into ciphertext, encryption helps banks, insurance companies, actors in the credit market, corporations, venture funds, investment advisors, fund managers, consulting firms, etc. protect sensitive information so only the authorized users can, with the right key, decrypt and understand the information.</value>
   </data>
+  <data name="IndustriesFinancialHeading" xml:space="preserve">
+    <value>Safeguard highly sensitive financial information</value>
+  </data>
+  <data name="IndustriesFinancialParagraph" xml:space="preserve">
+    <value>With AxCrypt encryption, client’s information and company deals are stored safe and secure from prying eyes.</value>
+  </data>
   <data name="IndustriesFinancialProtection" xml:space="preserve">
     <value>Compliant with domestic and international regulations that companies should and must need, it bypasses breaches every time the market fluctuates, displays company’s relevant information when internal controls occur as only approved individuals have access to it  and sidestep the considerable fines associated with non-compliance.</value>
   </data>
@@ -2675,6 +2768,12 @@ This may cause some operations to take very long time. Please be careful not to 
   </data>
   <data name="IndustriesGovernmentDescription" xml:space="preserve">
     <value>Law enforcement officials point to the widespread and increasing use of encryption. One of its roles is to protect privacy and civil liberties. Encryption prevents the theft of information, thus helping make society more secure and safe. As a government you can rely on AxCrypt to counter threats from a wide range of actors, including unsophisticated and sophisticated criminals, foreign intelligence agencies, and repressive governments. The NSA uses AES to encrypt data, which ought to be proof enough of its security.</value>
+  </data>
+  <data name="IndustriesGovernmentHeading" xml:space="preserve">
+    <value>Preserve electronically archived confidential documents</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph" xml:space="preserve">
+    <value>Encryption prevents the theft of information, thus helping make society more secure and safe. Law enforcement officials point to the widespread and increasing use of encryption.</value>
   </data>
   <data name="IndustriesGovernmentProtection" xml:space="preserve">
     <value>AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR).</value>
@@ -2706,6 +2805,12 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndustriesHealthcareDescription" xml:space="preserve">
     <value>The need of encryption has become more prevalent in hospitals, nursing homes and rehabilitation facilities. With the rapid increase in the number of practices using electronic health records such as EMRs, transmitting patient healthcare information by email including insurance information, proper dosage amounts for medicine, and other personal information, this is the digital age of healthcare and sensitive information needs a high level of security. AxCrypt offers an easy and frictionless user experience for employees, patients and business associates.</value>
   </data>
+  <data name="IndustriesHealthcareHeading" xml:space="preserve">
+    <value>Secure personal identifiable information and health records</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph" xml:space="preserve">
+    <value>Remain compliant with local and federal data protection regulations while building trust between your institution and potential patients.</value>
+  </data>
   <data name="IndustriesHealthcareProtection" xml:space="preserve">
     <value>Compliant with data protection laws, we help build trust between your institution and potential patients, safeguarding online appointments, communications with a medical professional and health records sent between institutions. AxCrypt ensures your organization stays compliant with regulations like the Health Insurance Portability and Accountability Act (HIPAA), the Health Information Technology for Economic and Clinical Health Act (HITECH) and the General Data Protection Regulation (GDPR).</value>
   </data>
@@ -2714,6 +2819,12 @@ This may cause some operations to take very long time. Please be careful not to 
   </data>
   <data name="IndustriesHealthcareTeamwork" xml:space="preserve">
     <value>Healthcare organizations collect, manage and distribute an enormous amount of medical and personal records. Encryption makes data more secure, whether it’s being transported or at rest. In short, it protects patients’ sensitive medical information from thefts and data breaches. Exchanging information between doctors, nurses and specialists is easy, fast and riskless. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords.</value>
+  </data>
+  <data name="IndustriesHeroButton" xml:space="preserve">
+    <value>Discover AxCrypt Business</value>
+  </data>
+  <data name="IndustriesHeroText0" xml:space="preserve">
+    <value>We change the way people communicate and work.</value>
   </data>
   <data name="IndustriesHeroText1" xml:space="preserve">
     <value>We change the way people communicate and work. With our 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software and safeguarding confidentiality and integrity. Increase your productivity and stop wondering about your online privacy. Take back full control of your data and experience digital trust. Curious about encryption and related topics, have a look at our weekly updated &lt;a href="/blog"&gt;blogs&lt;/a &gt;. Here at AxCrypt, we are happy to assist you and answer any questions you might have about encryption.</value>
@@ -2730,6 +2841,12 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndustriesLegalDescription" xml:space="preserve">
     <value>More than ever before, personal and confidential information is transmitted over the Internet in clear text and potentially exposed. The legal industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct agreements anywhere and at any time via their electronic devices. Whether you are a solo practitioner in criminal law or an in-house corporate attorney at a Fortune 500 company, encryption affects many of the issues you encounter, whether you realize it or not.</value>
   </data>
+  <data name="IndustriesLegalHeading" xml:space="preserve">
+    <value>Protect classified contracts, wills and records</value>
+  </data>
+  <data name="IndustriesLegalParagraph" xml:space="preserve">
+    <value>Encryption is absolutely necessary when storing and sharing sensitive information in order to evade unauthorised and illegal processing of personal data. Reduce the risks of breaches by implementing a user-friendly and easy to use encryption software.</value>
+  </data>
   <data name="IndustriesLegalProtection" xml:space="preserve">
     <value>AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR).</value>
   </data>
@@ -2742,6 +2859,18 @@ This may cause some operations to take very long time. Please be careful not to 
   <data name="IndustriesLinkLabel" xml:space="preserve">
     <value>Industries</value>
   </data>
+  <data name="IndustriesStatistic1" xml:space="preserve">
+    <value>clients worldwide</value>
+  </data>
+  <data name="IndustriesStatistic2" xml:space="preserve">
+    <value>PCMag Editors' Choice</value>
+  </data>
+  <data name="IndustriesStatistic3" xml:space="preserve">
+    <value>user downloads</value>
+  </data>
+  <data name="IndustriesStatistic4" xml:space="preserve">
+    <value>languages available</value>
+  </data>
   <data name="IndustriesTechCloud" xml:space="preserve">
     <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients.</value>
   </data>
@@ -2750,6 +2879,12 @@ This may cause some operations to take very long time. Please be careful not to 
   </data>
   <data name="IndustriesTechDescription" xml:space="preserve">
     <value>In a world where every aspect of our everyday life is highly digital,  an urgent need of privacy and trust arises, especially after experimenting with data breaches. The​ tools and services you use every day are​ ​neither​ ​open, secure​ ​nor​ ​private.​ ​Location of your data and how they are stored and processed are too often managed in a dubious and shady way. AxCrypt ​strives​ ​to​ ​build​ ​a​ ​future​ ​that​ ​respects​ everyone's ​privacy. With our zero-knowledge encryption software and a  key that only belongs to you and remains on your device, nobody else can access your data.</value>
+  </data>
+  <data name="IndustriesTechHeading" xml:space="preserve">
+    <value>Increase data security with 128-bit or 256-bit encryption</value>
+  </data>
+  <data name="IndustriesTechParagraph" xml:space="preserve">
+    <value>With our 128-bit or 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software.</value>
   </data>
   <data name="IndustriesTechProtection" xml:space="preserve">
     <value>Adopting encryption is an excellent step for tech-services firms, as it adds security and the ability to comply with a growing number of regulations. Especially since the volume and percentage of encrypted data will only continue to grow.</value>
@@ -3009,7 +3144,7 @@ Please specify the language to use in the invitation and an optional personal me
     <value>Leave Business</value>
   </data>
   <data name="LeaveBusinessErrorText" xml:space="preserve">
-    <value>The user can not be leave the business because they are the only administrator. To leave, please first nominate another administrator.</value>
+    <value>The user cannot leave the business because they are the only administrator. To leave, please first nominate another administrator.</value>
   </data>
   <data name="LeaveBusinessSuccessText" xml:space="preserve">
     <value>You have been successfully removed from the business</value>
@@ -3499,9 +3634,7 @@ This program is licensed according to the agreement.
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>When the trial period ends, you can't use the AxCrypt mobile apps. A paid subscription is required.
-
-You can always open encrypted files with a free desktop version of  AxCrypt.</value>
+    <value>When the trial period ends, you can't use the AxCrypt mobile apps to secure new files anymore (you're always able to access previously secured files though).</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>When the trial period ends, you'll automatically continue with AxCrypt Free unless you choose to purchase a subscription.</value>
@@ -3931,6 +4064,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PhoneLabel" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="PhoneNumberLabel" xml:space="preserve">
+    <value>Phone number</value>
   </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
     <value>Polski (Polish)</value>
@@ -4990,7 +5126,7 @@ Subject: AxCrypt Report Snapshot</value>
     <value>Billing</value>
   </data>
   <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
-    <value>Before you can access your Reseller account, a member of AxCrypt’s team must assign you an administrator role with Reseller privileges. After signing the agreement, our team will ask you for an email address associated with an AxCrypt account. This account will serve as the admin of the Reseller account.</value>
+    <value>To become an AxCrypt reseller, first sign up using the &lt;a href='/information/reseller'&gt;reseller application form&lt;/a&gt;.</value>
   </data>
   <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
     <value>Note: It’s perfectly fine if you use the same account in combination with your own subscription plan.</value>
@@ -5120,6 +5256,9 @@ Subject: AxCrypt Report Snapshot</value>
   </data>
   <data name="ResellerLinkLabel" xml:space="preserve">
     <value>Reseller</value>
+  </data>
+  <data name="ResellerSubscriptionExpiredWarning" xml:space="preserve">
+    <value>!!Your subscription has expired since {0}. Please contact &lt;a href="mailto:reseller@axcrypt.net"&gt;support&lt;/a&gt; to have it extended.</value>
   </data>
   <data name="ResellingLabel" xml:space="preserve">
     <value>Reselling</value>
@@ -5728,6 +5867,12 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="TermsOfUseBlock11Heading" xml:space="preserve">
     <value>Premium Trial</value>
+  </data>
+  <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
+    <value>Premium &amp; Business Trial</value>
+  </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>We offer 30 days free trial for the AxCrypt Premium or Business plan for new users. If you don’t like the product you can cancel the subscription before the trial ends. Cancelling the subscription can be done at any time. Doing this will not affect the trial and you will still be able to use all the features that comes with Business &amp; Premium subscription during your trial period. After the 30 days of free trial we will charge your credit card if you haven’t cancelled your subscription. No refund will be provided if you haven’t cancelled your subscription during the trial period . We reserve the right to withdraw or modify such offers at any time without prior notice.</value>
   </data>
   <data name="TermsOfUseBlock11Text1" xml:space="preserve">
     <value>We may offer you to try Premium for free, giving you access to extended features for a limited period. Such offers are made per person, not per AxCrypt ID account. We reserve the right to withdraw or modify such offers at any time without prior notice.</value>
