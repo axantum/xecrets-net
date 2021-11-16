@@ -174,6 +174,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium 사용해보기</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>액션</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>작성하신 이메일 주소나 활성화 코드가 맞지 않습니다.</value>
   </data>
@@ -256,6 +259,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>AxCrypt의 기능과 보안 상 중요하다면, 이메일을 보낼 수 있습니다.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>더 많은 사용자 추가하기</value>
+  </data>
   <data name="AddressLabel">
     <value>주소</value>
   </data>
@@ -265,6 +271,63 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>AxCrypt와 보안될 파일을 선택해주십시오. 기존의 있는 파일들은 암호화됩니다.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AffiliateAdvantagesHeading">
+    <value>AxCrypt Affiliate 마케팅 혜</value>
+  </data>
+  <data name="AffiliateAdvantagesSubHeading">
+    <value>Axcrypt 제휴 프로그램은 기업, 블로거, 블로거, 인플루언서 또는 미디어 게시자 등 모든 부문에서 최고의 보상을 제공합니다.</value>
+  </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>관대한 커미션 - 업계 최고 중 하나인 25%의 커미션을 제공하게 되어 자랑스럽습니다.</value>
+  </data>
+  <data name="AffiliateAdvantagesText2">
+    <value>전념적인 어카운트 매니저- 일의 처음 시작 단계부터 일대일 카운셀링까지 모든 과정의 도움을 받으실 수 있습니다.</value>
+  </data>
+  <data name="AffiliateAdvantagesText3">
+    <value>Global Reach - Axcrypt 계열사는 글로벌 차원에서 캠페인을 진행합니다. 이를 통해 존재하는 모든 트래픽을 살펴볼 수 잇어 변환 및 수익을 창출할 수 있습니다.</value>
+  </data>
+  <data name="AffiliateAdvantagesText4">
+    <value>최고 전환율 - 최적화된 마케팅 전략과 강력한 브랜드 평판은 높은 비율로 전환됩니다. 이를 통해 수익 잠재력을 극대화할 수 있습니다.</value>
+  </data>
+  <data name="AffiliateInfoHeading">
+    <value>AxCrypt Affiliate 사용하기</value>
+  </data>
+  <data name="AffiliateInfoText1">
+    <value>당사의 제휴 프로그램에 참여하여 후한 수수료를 받는 동시에 귀중한 암호화 솔루션을 제공하세요.</value>
+  </data>
+  <data name="AffiliateInfoText2">
+    <value>AxCrypt는 Windows, Mac, iOS 및 안드로이드에서 사용할 수 있는 간편한 암호화 프로그램입니다. AxCrypt는 전 세계적으로 2000만건 이상의 다운로드를 기록하며 세계에서 가장 인기 있는 암호화 애플리케이션 중 하나로 성장했으며, 2021년 권위 있는 PC 매거진으로부터 6년 연속 "최고의 암호화 소프트웨어"로 선정되었습니다. AxCrypt는 다국어이며 영어, 네덜란드어, 프랑스어, 독일어, 이탈리아어, 한국어, 폴란드어, 포르투갈어, 러시아어, 스페인어, 스웨덴어, 터키어, 만다린어 등을 지원합니다.</value>
+  </data>
+  <data name="AffiliateInstructionsHeading">
+    <value>AxCrypt 홍보 및 각 판매 수익 창출</value>
+  </data>
+  <data name="AffiliateInstructionsStep1">
+    <value>affiliate 프로그램의 멤버로 서비스를 즐겨보세요.</value>
+  </data>
+  <data name="AffiliateInstructionsStep2">
+    <value>전용 연결 및 홍보 자료에 액세스할 수 있습니다. 마케팅을 통해 캠페인을 시작해보세요.</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>AxCrypt를 참조하여 모든 유료 전환에 대해 25%의 커미션을 받습니다.</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading">
+    <value>AxCrypt는 이제 AxCrypt 홍보로 수익을 얻을 수 있는 제휴 기회를 제공합니다. 자, 함께 가보시죠.</value>
+  </data>
+  <data name="AffiliateLinkLabel">
+    <value>Affiliate</value>
+  </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>암호화된 파일에 다시 액세스할 수 없음을 인지하고 있습니다.</value>
+  </data>
+  <data name="AllowAllCookiesPromptText" xml:space="preserve">
+    <value>쿠키 허용하기</value>
+  </data>
+  <data name="AllowCookieInfoText" xml:space="preserve">
+    <value>이 웹 사이트는 쿠키를 사용하여 사용자 환경을 개선합니다. 귀하는 당사의 웹 사이트를 사용하여 당사의 쿠키 정책에 따라 모든 쿠키에 동의합니다. &lt;a href='https://www.axcrypt.net/information/privacy-policy'&gt;더 읽어 보세요.</value>
+  </data>
+  <data name="AllowCookiesPopupTitle" xml:space="preserve">
+    <value>이 웹사이트는 쿠키를 사용합니다</value>
   </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>이미 회원이신가요? 여기에 로그인하세요</value>
@@ -316,6 +379,15 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="ApplyNowLabel">
     <value>지금 등록하세요</value>
   </data>
+  <data name="AppNotWorkExpectedText" xml:space="preserve">
+    <value>앱 혹은 서비스가 예상대로 작동하지 않았습니다.</value>
+  </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>하나 이상의 비즈니스에 속해있을 경우 마스터 키를 사용할 수 없습니다. 마스터 키를 사용하시기 전에는 속해있는 비즈니스를 확인해주세요.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>마스터 키 인증 완료</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>보안상의 이유로 다시 한 번 비밀번호를 입력해주세요</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -329,6 +401,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>요청하신 페이지를 보고싶으시면 로그인 해주시기 바랍니다.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Auto Anonymous Rename</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>답변을 안 하셔도 됩니다. 무시하시면 AxCrypt ID는 지속적으로 삭제되고 메일을 더이상 안 받으실겁니다.</value>
@@ -538,6 +613,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BruteForceResistantText">
     <value>다이나믹 브루트 포스 카운터 측정 - 반복적인 암호 래핑으로 공격을 더욱 어렵게 합니다.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>초대 승락하기</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -551,6 +629,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>AxCrypt Business에 오신것을 환영합니다.</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>‪{0}‬의 AxCrypt에 초대되었습니다. 이 비즈니스에는 기능 마스터 키가 켜져 있습니다. 즉, 비즈니스 관리자가 안전을 위해 암호화한 파일을 복구할 수 있습니다. 이 기능은 기본적으로 설정되어 있지 않으므로, &lt;a href=' + {1} + '''내 AxCrypt ID&lt;/a&gt; 페이지로 이동하여 기능을 승인하세요.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>관리자</value>
@@ -579,6 +660,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>플랜 및 결제 설정</value>
+  </data>
+  <data name="BusinessEmailLabel">
+    <value>비즈니스 이메일</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>AxCrypt Business {0} 구독이 만료되었습니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
@@ -619,6 +703,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessFeatureListMadeInSweden">
     <value>"Made in Sweden" 스웨덴 서버</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>마스터 키로 잃어버린 파일을 재복구 할 수 있는 business administrators 기능을 사용할 수 있습니다.</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>암호화에 대한 특별한 지식 필요없음</value>
   </data>
@@ -645,6 +732,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BusinessFirstBodyText4">
     <value>더 많은 Business 구독 서비스의 기능이 계발 중입니다. 기대해주세요! </value>
+  </data>
+  <data name="BusinessFirstBodyText5">
+    <value>더욱 익스클루시브한 비즈니스 기능을 선보입니다. 놓치지 마세요!</value>
   </data>
   <data name="BusinessHeroSubheading">
     <value>회사를 위한 서비스</value>
@@ -784,6 +874,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>구독 관리자가 아닙니다.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
   </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>기관</value>
+  </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>단체명</value>
     <comment>The prompt for the an organization name</comment>
@@ -865,6 +958,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x 사용자</value>
+  </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>비즈니스 서포트</value>
   </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>첫 달은 무료입니다. 그 이후는: </value>
@@ -1052,11 +1148,17 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>비밀번호가 바뀌셨습니다.</value>
   </data>
+  <data name="ChangePlanText" xml:space="preserve">
+    <value>나의 플랜 변경을 원합니다.</value>
+  </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>업데이트 확인하기</value>
   </data>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>신규 버전 이용이 가능한지 확인해 주시기 바랍니다. 인터넷 접속이 필요합니다.</value>
+  </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>중국어</value>
   </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>계정을 시작하려면 AxCrypt를 개인 사용자로 사용할 것인지 아니면 프라이벗 혹은 비즈니스 사용자로 사용할 것인지를 선택하세요.</value>
@@ -1066,6 +1168,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>파일이 열렸으나 정리가 필요합니다. 열려있는 모든 앱을 종료해주고 '정리하기' 버튼을 눌러 주시기 바랍니다.</value>
+  </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>클린 업</value>
   </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>앱이 로컬 파일 저장소에 해독된 파일 사본을 저장하고 있습니다. 로그아웃하시면 자동으로 삭제됩니다. 정리하기 버튼을 누르시면 수동으로 제거할 수 있습니다.</value>
@@ -1123,6 +1228,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>남은 모든 파일에 하시겠습니까?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>문의사항이 있으시면, ‪{0}‬으로 연락주세요.</value>
   </data>
   <data name="ContactHeading">
     <value>연락</value>
@@ -1186,6 +1294,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Business 지원팀에서 곧 연락하여 Business 계정 시작을 도와드리겠습니다! 계정으로 이동하려면 [계속]을 클릭하십세요.</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>AxCrypt Business에 오신 것을 환영합니다.</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel">
     <value>파일의 암호화 해시</value>
   </data>
@@ -1237,6 +1348,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>보안 정지그리고 리스트에서 추방</value>
+  </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>암호화를 풀기위해 도큐먼트 선택하기</value>
   </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>파일</value>
@@ -1292,6 +1406,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="DescriptionLabel">
     <value>설명</value>
+  </data>
+  <data name="DeselectAllFilesLabelText" xml:space="preserve">
+    <value>파일 선택 해제하기</value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
@@ -1363,6 +1480,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>비활성화</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Master Key 비활성화하기</value>
+  </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>이 자동 이메일은 귀하의 설정 언어로 번역되지만, 직접적인 개인 서비스와 지원은 영어로 제공됩니다.</value>
   </data>
@@ -1375,6 +1495,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="DoneTitle" xml:space="preserve">
     <value>완료!</value>
   </data>
+  <data name="DontLikeRecurringFlowText" xml:space="preserve">
+    <value>구독 연장을 하고 싶지 않습니다.</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>다시 보지 않기</value>
   </data>
@@ -1384,11 +1507,17 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="DownloadAxcrypt2LinkLabel">
     <value>AxCrypt 2 다운로드</value>
   </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>AxCrypt 앱 다운로드</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt의 macOS 버전</value>
   </data>
   <data name="DownloadHeroHeadingWindows">
     <value>윈도우를 위한 AxCrypt</value>
+  </data>
+  <data name="DownloadHeroHeadingWindowsPortable" xml:space="preserve">
+    <value>Windows에 적합한 AxCrypt의 standalone/portable 버전</value>
   </data>
   <data name="DownloadHeroListDoubleClick">
     <value>두 번 클릭 통합으로 보안 없이 파일 작업을 할 수 있는 만큼 보안 파일을 쉽게 열고 편집하고 저장할 수 있습니다.</value>
@@ -1474,6 +1603,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>정보가 업데이트 되었습니다.</value>
   </data>
+  <data name="EducationLinkLabel">
+    <value>교육</value>
+  </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>이메일 열기</value>
     <comment>Text of link for opening mail application.</comment>
@@ -1496,6 +1628,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[설명이 없음]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>마스터 키 사용하기</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>보안 폴더</value>
@@ -1547,6 +1682,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="ErrorRequiredField">
     <value>해당 입력란을 채워주세요.</value>
+  </data>
+  <data name="ExactlySelectOneFileText" xml:space="preserve">
+    <value>파일을 선택해주세요.</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>'{0}' 프로세싱중 예외.</value>
@@ -1877,6 +2015,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="FeaturesBusinessAdminDescription">
     <value>AxCrypt Business 계정으로 구독 상태와 회사명 등 다양한 정보를 관리해보세요.</value>
   </data>
+  <data name="FeaturesBusinessPrioritySupportDescription" xml:space="preserve">
+    <value>account 매니저의 신속하고 개인화된 도움을 받아보세요</value>
+  </data>
   <data name="FeaturesChangeToManage">
     <value>나만의 영역에서 마케팅 및 세일즈을 관리해보세요.</value>
   </data>
@@ -1927,6 +2068,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="FeaturesPasswordManagementDescription">
     <value>클라우드에서 모든 암호화 기타 정보를 안전하게 보호하세요.</value>
+  </data>
+  <data name="FeaturesProfessionalUseDescription" xml:space="preserve">
+    <value>비지니스 관련 정보를 보호하세요</value>
   </data>
   <data name="FeaturesProgressiveMargins">
     <value>누진차익(매출액 증가 시 높은 수익률)</value>
@@ -2014,6 +2158,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
     <value>AxCrypt 공개 키 공유 키 파일</value>
   </data>
+  <data name="FileInfoLabelText" xml:space="preserve">
+    <value>파일 정보</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' 이/가 다른 앱에 열려있습니다. 다른 앱을 완전히 종료하시고 다시 한번 시도해주시기 바랍니다.</value>
   </data>
@@ -2038,6 +2185,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="FileWipeText">
     <value>파일 안전하게 제거하기</value>
+  </data>
+  <data name="FinancialLinkLabel">
+    <value>재정</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>폴더 '{0}' 이미 보안.</value>
@@ -2082,6 +2232,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="FreeLabel">
     <value>무료</value>
+  </data>
+  <data name="FullNameLabel">
+    <value>성함</value>
   </data>
   <data name="GdprBlock1Heading">
     <value>GDPR이 무엇인가요?</value>
@@ -2330,14 +2483,53 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: 패스워드 매니지먼트</value>
   </data>
+  <data name="GetStartedPasswordResetHeading">
+    <value>패스워드 리셋하기</value>
+  </data>
+  <data name="GetStartedPasswordResetIngress">
+    <value>AxCrypt ID 비밀번호를 잊어버렸습니까? 이제 암호 재설정을 해보세요. 암호를 재설정하면 다시 로그인할 수 있지만 이전 암호로 암호화된 파일에 액세스할 수 없습니다. 암호를 재설정하는 방법은 아래 비디오를 참조하세요.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep1">
+    <value>어플리케이션 파트의 옵션에서 "패스워드 재설정"을 선택하시거나, &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;패스워드 재설정&lt;/a&gt;으로 바로 변경할 수 있습니다.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2">
+    <value>리셋을 요청하시면 웹사이트로 이동하게 됩니다.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3">
+    <value>확인 후 이메일 주소로 보낸 메시지 가이드를 따라주세요.</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac">
+    <value>AxCrypt: 맥에서 패스워드 리셋하기</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows">
+    <value>AxCrypt: 패스워드 리셋하기</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>구독 서비스를 이용하시려면 로그인을 해주세요. 계정이 아직 없으시다면 &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;을 클릭해주세요.</value>
+  </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>나의 AxCrypt로 이동하기</value>
+  </data>
+  <data name="GoToOurBlogLinkLabel" xml:space="preserve">
+    <value>블로그 살펴보기</value>
+  </data>
+  <data name="GoToPasswordManagerButtonText" xml:space="preserve">
+    <value>패스워드 매니징하기</value>
+  </data>
+  <data name="GovernmentLinkLabel">
+    <value>정부</value>
+  </data>
+  <data name="GuidesLinkLabel">
+    <value>가이드</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>이미 '{0}' 라는 계정으로 AxCrypt ID를 가지고 계십니다.
 
 만약 비밀번호가 기억나지 않는다면, 비밀번호 재설정을 하셔야 합니다.</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
+  <data name="HealthcareLinkLabel">
+    <value>건강 관리</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>에 관하여</value>
@@ -2465,6 +2657,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>공유 키 파일들을 선택해주십시오</value>
   </data>
+  <data name="ImproveOurServiceCommentText" xml:space="preserve">
+    <value>서비스 향상을 위해 코멘트를 남겨주세요.</value>
+  </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
     <value>위험한 옵션을 사용하려고 하십니다. 사용자님께서 조심하지 않으면, 의도치 않게 더 많은 데이터의 작동을 느리게 하고, 운영체제를 포함한 다른 소프트웨어를 손상시킬 수 도 있습니다. 그래도 계속 하시겠습니까?</value>
   </data>
@@ -2482,6 +2677,193 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>나의 AxCrypt ID</value>
+  </data>
+  <data name="IndustriesAboutLinkLabel">
+    <value>산업에 관하여</value>
+  </data>
+  <data name="IndustriesBenefitsTitle">
+    <value>Axcrypt의 혜택</value>
+  </data>
+  <data name="IndustriesBlogLabel">
+    <value>암호화에 대해 더 알고 싶으신가요? 그렇다면 저희 블로그에 놀러오세요.</value>
+  </data>
+  <data name="IndustriesEducationCloud">
+    <value>데이터를 간단하게 관리하십시오. 클라우드 스토리지 인식 덕분에 다른 기기에 있는 모든 사람과 어디서나 컨텐츠에 액세스할 수 있기 때문에 그룹 프로젝트 및 프리젠테이션을 원활하게 실행할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesEducationDescription">
+    <value>온라인 수업과 디지털 교육이 번창하고 있습니다. 수업, 강의 또는 온라인 회의 중에 컴퓨터나 태블릿과 같은 디지털 기기 사용도 늘어나고 있습니다. PDF 문서에 메모를 하거나 주석을 달면 대량의 데이터가 축적되며 AxCrypt는 작업과 연구를 파일 및 문서 형식으로 저장할 때 개인 정보를 보호하는 데 도움이 됩니다. 귀하와 귀하의 공인된 팀만이 귀하의 개인 데이터에 액세스할 수 있도록 보장합니다.</value>
+  </data>
+  <data name="IndustriesEducationHeading">
+    <value>에세이, 논문, 보고서, 논문 및 연구 암호화</value>
+  </data>
+  <data name="IndustriesEducationParagraph">
+    <value>데이터 정리에서 파일을 보호하기 위해 도큐먼트 액세스는 물론 데이터를 기기에 활성화 시켜주세요. </value>
+  </data>
+  <data name="IndustriesEducationProtection">
+    <value>AxCrypt은 귀하의 조직이 개인정보보호 규정(GDPR)에 준수하는 것을 보장합니다.</value>
+  </data>
+  <data name="IndustriesEducationSecurity">
+    <value>지식재산과 중요 문서를 업로드하기 전에 보호 및 관리하세요. 에세이, 논문, 보고서, 논문 및 연구 결과를 Axcrypt로 암호화하고 데이터 유출로부터 보호할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesEducationTeamwork">
+    <value>안전하고 복잡하지 않은 방법으로 친구, 교수 및 슈퍼바이저와 협업하고 컨텐츠를 공유할 수 있습니다. 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능인 마스터 키를 사용하여 직원이 암호를 잊거나 탈퇴하여 중요한 파일에 액세스할 수 없게 되는 위험을 제거할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesFinancialCloud">
+    <value>데이터 트래픽 볼륨이 크게 증가했습니다. 소비자 뱅킹은 서로 다른 엔드포인트에 의존하여 상호 작용하고 멀티 클라우드 환경을 채택했기 때문에 정보는 서로 다른 네트워크 도메인으로 정기적으로 이동합니다. 많은 비용이 드는 데이터 침해로부터 파일을 보호하는 동시에 모든 문서에 액세스하여 장치에서 동기화하세요.</value>
+  </data>
+  <data name="IndustriesFinancialDescription">
+    <value>In the world of finance, data security is a serious business. Encryption enables various types of economic activities that would otherwise not be possible. The financial services industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct transactions anywhere and at any time via their electronic devices. By converting plaintext into ciphertext, encryption helps banks, insurance companies, actors in the credit market, corporations, venture funds, investment advisors, fund managers, consulting firms, etc. protect sensitive information so only the authorized users can, with the right key, decrypt and understand the information.</value>
+  </data>
+  <data name="IndustriesFinancialHeading">
+    <value>매우 민감한 재무 정보 보호</value>
+  </data>
+  <data name="IndustriesFinancialParagraph">
+    <value>AxCrypt의 암호화 기능으로 고객 정보 및 회사 거래 내역을 안전하게 보관할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesFinancialProtection">
+    <value>기업이 필요로 하고 필요로 하는 국내외 규정을 준수하여 시장이 변동할 때마다 위반을 우회하고, 승인된 개인만이 관련 정보에 접근할 수 있기 때문에 내부 통제가 발생할 때 회사의 관련 정보를 표시하고, 규정 위반과 관련된 상당한 벌금을 회피합니다.</value>
+  </data>
+  <data name="IndustriesFinancialSecurity">
+    <value>고객의 정보 및 회사 거래도 안전하게 보관되고 있습니다.</value>
+  </data>
+  <data name="IndustriesFinancialTeamwork">
+    <value>많은 양의 데이터를 교환하는 것은 간단하고 쉽습니다. 그것은 예를 들어 신용 카드 번호를 전송하는 것을 가능하게 하는 등 인터넷을 통한 전자 상거래의 보안을 보장합니다. 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능인 마스터 키를 사용하여 직원이 암호를 잊거나 탈퇴하여 중요한 파일에 액세스할 수 없게 될 위험을 제거합니다.</value>
+  </data>
+  <data name="IndustriesGovernmentCloud">
+    <value>Google Drive 및 Dropbox와 같은 여러 클라우드 스토리지 서비스에서 파일/문서를 자동으로 보호하고 어디서나 암호에 대한 액세스를 완벽하게 관리할 수 있습니다. 모든 정보는 관리 시스템에 관련된 모든 구성원이 사용할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesGovernmentDescription">
+    <value>법 집행 관계자들은 사생활과 시민의 자유를 보호하기 위해 암호화 사용이 광범위하고 증가하고 있습니다. 암호화는 정보의 도용을 방지하여 사회를 더 안전하고 안전하게 만드는 데 도움이 된다. 정부로서 여러분은 AxCrypt에 의지하여 세련되지 못한 범죄자, 외국 정보 기관, 억압적인 정부를 포함한 광범위한 행위자들의 위협에 대응할 수 있습니다. NSA는 AES를 사용하여 데이터를 암호화하는데, 이것은 보안에 대한 충분한 증거입니다.</value>
+  </data>
+  <data name="IndustriesGovernmentHeading">
+    <value>전자 보관된 기밀 문서 보존</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph">
+    <value>암호화는 정보의 도용을 방지하여 사회를 더 안전하고 안전하게 만드는 데 도움이 됩니다. 법 집행 관계자들은 암호화의 사용이 광범위하고 증가하고 있다는 의견을 밝혔습니다.</value>
+  </data>
+  <data name="IndustriesGovernmentProtection">
+    <value>AxCrypt는 조직이 GDPR(General Data Protection Regulation)과 같은 규정을 준수하도록 보장합니다.</value>
+  </data>
+  <data name="IndustriesGovernmentSecurity">
+    <value>128-bit 또는 256-bit 암호화 기능은 AxCrypt는 향상된 데이터 보안으로 위험을 줄인 편리하고 쉬운 소프트웨어로 제공됩니다.</value>
+  </data>
+  <data name="IndustriesGovernmentTeamwork">
+    <value>AxCrypt를 사용하면 다른 AxCrypt 사용자가 자신의 암호로 보안 파일을 열 수 있습니다. 암호화된 정보를 쉽고, 빠르고, 위험 없이 교환할 수 있습니다. 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능인 마스터 키를 사용하여 직원이 암호를 잊거나 탈퇴하여 중요한 파일에 액세스할 수 없게 되는 위험을 제거할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesHeadingCloud">
+    <value>클라우드 스토리지 인식 및 패스워드 매니지먼트</value>
+  </data>
+  <data name="IndustriesHeadingConfidentiality">
+    <value>Confidentiality 및 integrity</value>
+  </data>
+  <data name="IndustriesHeadingProtection">
+    <value>데이터 보호 규정 준수</value>
+  </data>
+  <data name="IndustriesHeadingSecurity">
+    <value>간편함, 의존성, 보안성</value>
+  </data>
+  <data name="IndustriesHeadingTeamwork">
+    <value>팀 워크, 콜라보레이션</value>
+  </data>
+  <data name="IndustriesHealthcareCloud">
+    <value>Google Drive 및 Dropbox와 같은 여러 클라우드 스토리지 서비스에서 파일/문서를 자동으로 보호하고 어디서나 암호에 대한 액세스를 완벽하게 관리할 수 있습니다. 모든 정보는 환자 치료에 관련된 모든 구성원이 사용할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesHealthcareDescription">
+    <value>The need of encryption has become more prevalent in hospitals, nursing homes and rehabilitation facilities. With the rapid increase in the number of practices using electronic health records such as EMRs, transmitting patient healthcare information by email including insurance information, proper dosage amounts for medicine, and other personal information, this is the digital age of healthcare and sensitive information needs a high level of security. AxCrypt offers an easy and frictionless user experience for employees, patients and business associates.</value>
+  </data>
+  <data name="IndustriesHealthcareHeading">
+    <value>개인 확인 정보 및 건강 기록의 안전한 보관</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph">
+    <value>기관과 잠재적 환자 사이에 신뢰를 쌓는 동시에 지역 및 연방 데이터 보호 규정에 대한 의문을 가지세요.</value>
+  </data>
+  <data name="IndustriesHealthcareProtection">
+    <value>저희는 귀하의 조직 및 잠재적인 고객 사이에서 일어나는 안전 보원과의 온라인 예약, 의학 전문의들과의 대화 내용, 의료 기록등을 관리하는데 신뢰를 얻으며 데이터 보호 법에 순응합니다. AxCrypt은 귀하의 조직이 Health Insurance Portability and Accountability Act(HIPAA), the Health Information Technology for Economic and Clinical Health Act (HITECH) 및 the General Data Protection Regulation (GDPR).과 같은 법률에 순응할 수 있도록 도움을 드립니다.</value>
+  </data>
+  <data name="IndustriesHealthcareSecurity">
+    <value>Encryption prevents costly data breaches. If criminals gain access to a removable device, mobile device, or laptop that has sensitive information, your facility may be penalized with huge fines. Including encryption as part of an overall data security program allows financial improvements and helps organizations avoid the cost of security breaches.</value>
+  </data>
+  <data name="IndustriesHealthcareTeamwork">
+    <value>헬스케어 조직은 많은 양의 메디컬 및 개인 정보를 수집하고 관리합니다. 암호화는 데이터를 보다 더 안전하게 유지합니다. 즉, 환자의 개인 정보가 노출되거나 지워지는 것을 방지할 수 있습니다. 혹은, 의사, 간호사 혹은 다른 전문의 사이에서 공유하는 정보도 쉽게 위험에 노출되어 있습니다.  마스터 키를 사용하시면 비즈니스 administrators가 비지니스 멤버의 파일을 복구하고, 멤버가 떠나거나, 패스워드를 잃어버렸을 때에도 중요한 파일에 대한 권한을 잃어버리지 않을 수 있습니다.</value>
+  </data>
+  <data name="IndustriesHeroButton">
+    <value>AxCrypt 비즈니스 살펴보기</value>
+  </data>
+  <data name="IndustriesHeroText0">
+    <value>저희는 사람들이 업무 및 커뮤니케이션 하는 방법을 바꾸기 위해 존재합니다.</value>
+  </data>
+  <data name="IndustriesHeroText1">
+    <value>저희는 사람들의 의사소통과 일하는 방식을 바꿉니다. AxCrypt는 256비트 암호화를 통해 사용자에게 친밀하고 사용하기 쉬운 암호화 소프트웨어를 구현하고 기밀성과 무결성을 보호하여 데이터 보안을 강화하고 침해 위험을 감소합니다. 생산성을 높이고 온라인 개인 정보에 대해 더 이상 집중하지 마세요. 데이터에 대한 완전한 제어권을 되찾고 디지털 신뢰를 경험하세요. 암호화 및 관련 주제에 대해 궁금하신 분은 매주 업데이트되는 이곳&lt;a href="/contains"&gt;에서 살펴보세요. 여기 AxCrypt에서는 암호화와 관련된 모든 것을 알려드립니다.</value>
+  </data>
+  <data name="IndustriesHeroText2">
+    <value>언제든지 이곳&lt;ahref="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;으로 문의주세요. 그리고 소셜 미디어도 살펴보세요.</value>
+  </data>
+  <data name="IndustriesLegalCloud">
+    <value>Google Drive 및 Dropbox와 같은 여러 클라우드 스토리지 서비스에서 파일/문서를 자동으로 보호하고 어디서나 암호에 대한 액세스를 완벽하게 관리할 수 있습니다. 모든 정보는 계약 및 계약에 관련된 모든 회원에게 제공됩니다.</value>
+  </data>
+  <data name="IndustriesLegalConfidentiality">
+    <value>비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능인 마스터 키를 사용하여 직원이 암호를 잊거나 탈퇴하여 중요한 파일에 액세스할 수 없게 되는 위험을 제거할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesLegalDescription">
+    <value>그 어느 때보다 개인 및 기밀 정보가 인터넷을 통해 일반 텍스트로 전송되고 잠재적으로 노출될 수 있습니다. 전자 기기를 통해 언제 어디서나 정보에 접근하고 도움을 받고 계약을 이행하려는 소비자들의 기대가 높아지면서 법조계는 가장 큰 타격을 받고 있다. 귀하가 형법 분야의 단독 변호사이든 Fortune지 선정 500대 기업의 사내 변호사이든 암호화를 통해 발생하는 많은 문제에 영향을 미치게 됩니다.</value>
+  </data>
+  <data name="IndustriesLegalHeading">
+    <value>기밀 계약, 유언장 및 기록 보호</value>
+  </data>
+  <data name="IndustriesLegalParagraph">
+    <value>개인정보의 무단 및 불법 처리를 피하기 위해 중요한 정보를 저장 및 공유할 때 암호화는 필요합니다. 사용하기 쉽고 사용자에게 친숙한 암호화 소프트웨어를 구현하여 위반 위험을 줄일 수 있습니다.</value>
+  </data>
+  <data name="IndustriesLegalProtection">
+    <value>AxCrypt는 조직이 GDPR(General Data Protection Regulation)과 같은 규정을 준수하도록 보장합니다.</value>
+  </data>
+  <data name="IndustriesLegalSecurity">
+    <value>계약서, 유언서 및 기록에는 고객 및 파트너에 대한 기밀 자료가 포함되어 있으므로 유출 및 해커로부터 보호해야 합니다. 암호화는 문서가 변경되지 않은 원본임을 인증하고 증명하는 데 사용되며 디지털 서명은 이 사용의 완벽한 예입니다. 암호화를 통해 시스템을 예시하지 못한 기업들은 최근 중대한 데이터 침해로 인해 세간의 이목을 끄는 소송에 휘말리고 있습니다. 피해는 엄청날 수 있으며, 모든 고객에 대한 신용 모니터링, 누수 원인을 식별하기 위한 수년간의 체계적이고 눈에 띄는 감사, 파일, 서버 및 스토리지 시스템의 데이터 도난 및 파괴가 추가 손실의 원인이 될 수 있습니다. AxCrypt는 256비트 암호화를 통해 데이터 보안을 강화하고 사용이 간편한 암호화 소프트웨어를 구현하여 침해 위험을 줄입니다.</value>
+  </data>
+  <data name="IndustriesLegalTeamwork">
+    <value>팀 내 협업을 강화하고 위험 없이 모든 유형의 문서를 공유합니다. 법률 회사들은 디지털 혁신에 참여할 뿐만 아니라 안전한 디지털 혁신을 필요로 합니다. AxCrypt를 사용하면 다른 AxCrypt 사용자가 자신의 암호로 보안 파일을 열 수 있습니다. 암호화된 정보를 쉽고, 빠르고, 위험 없이 교환할 수 있습니다.</value>
+  </data>
+  <data name="IndustriesLinkLabel">
+    <value>산업</value>
+  </data>
+  <data name="IndustriesStatistic1">
+    <value>전세계 클라이언트</value>
+  </data>
+  <data name="IndustriesStatistic2">
+    <value>PCMag 에디터의 선택</value>
+  </data>
+  <data name="IndustriesStatistic3">
+    <value>사용자 다운로드
+</value>
+  </data>
+  <data name="IndustriesStatistic4">
+    <value>가능한 언어 </value>
+  </data>
+  <data name="IndustriesTechCloud">
+    <value>구글 드라이브와 드롭박스와 같은 여러개의 클라우드 보관 서비스로 자동으로 파일/도큐먼트를 보안 관리해보세요. 또한, 어디서든 비밀번호 권한도 관리할 수 있습니다. 모든 정보는 환자를 보살피는 모든 멤버에게 오픈됩니다.</value>
+  </data>
+  <data name="IndustriesTechConfidentiality">
+    <value>비즈니스 행정 업무를 보는 멤버가 모든 멤버의 파일을 회복하고, 멤버의 퇴사 혹은 비밀번호를 잃어버릴 시에도 보안 노출 위험을 줄일 수 있는 마스터 키를 사용해보세요.</value>
+  </data>
+  <data name="IndustriesTechDescription">
+    <value>일상생활의 모든 부분이 고도로 디지털화된 세상에서 특히 데이터 침해 실험을 한 후에는 프라이버시와 신뢰가 시급하게 요구됩니다. 매일 사용하는 도구와 서비스는 공개되거나, 보안되거나, 비공개적이지 않습니다.데이터의 위치와 데이터의 저장 및 처리 방식이 의심스럽고 음습한 방식으로 관리되는 경우가 너무 많습니다. AxCrypt는 모두의 사생활을 존중하는 미래를 만들기 위해 노력합니다. NAT의 제로 지식 암호화 소프트웨어와 귀하의 장치에만 있는 키를 사용하면 그 누구도 귀하의 데이터에 액세스할 수 없습니다.</value>
+  </data>
+  <data name="IndustriesTechHeading">
+    <value>128-bit 혹은 256-bit 암호화로 강화된 데이터 보안</value>
+  </data>
+  <data name="IndustriesTechParagraph">
+    <value>AxCrypt은 128-bit 혹은 256-bit 암호화로 보다 쉽고 간편한 소프트웨어로 보다 강화된 데이터 보안과 향상된 방어벽 기능을 자랑합니다.</value>
+  </data>
+  <data name="IndustriesTechProtection">
+    <value>암호화를 채택은 점점 더 많은 규정을 준수할 수 있는 보안과 기능을 추가하기 때문에 기술 서비스 기업에서는 아주 중요한 일입니다. 특히 암호화된 데이터의 볼륨과 확률은 계속 증가할 것이기 때문입니다.</value>
+  </data>
+  <data name="IndustriesTechSecurity">
+    <value>End-to-end 암호화는 고객의 데이터가 기술 회사 자신을 포함한 모든 사람으로부터 보호되어 소유자가 아닌 누구도 액세스할 수 없도록 보장하는 가장 효율적이고 실용적인 방법 중 하나입니다. 보안과 생산성은 서로 달라붙어 있습니다. 보안 인프라 전반의 가시성이 성능을 저하시키지 않고 그에 따라 생산성을 저하시키지 않는 것도 중요합니다. 128비트 또는 256비트 암호화를 통해 AxCrypt는 사용자에게 친숙한 암호화 소프트웨어를 구현하여 데이터 보안을 강화하고 위반 위험을 줄일 수 있습니다.</value>
+  </data>
+  <data name="IndustriesTechTeamwork">
+    <value>오늘날, 투명성과 명확성의 결여와 대기업의 데이터 처리 방식은 데이터 혼돈으로 변모하고 기업에 심각한 복잡성과 비효율성을 초래합니다. 당신의 개인정보는 결국 감시받기 때문에  AxCrypt를 통해 우리는 완벽한 개인 정보 보호 작업 환경을 보장하고 지역사회와 그 너머의 신뢰를 강화할 필요가 있습니다. 새로운 디지털 세계에 오신 것을 환영합니다! 귀하의 데이터는 당사의 플랫폼에서 완전히 암호화되어 있으므로 당사의 서버가 해킹을 당하더라도 아무도 귀하의 데이터를 읽을 수 없습니다. 우리는 GDPR을 준수하며 스웨덴 개인 정보 보호법에 따라 암호화 및 데이터 처리와 관련된 워크플로우 및 프로세스를 지속적으로 구현합니다. AxCrypt는 보안 파일을 다른 AxCrypt 사용자가 자신의 암호를 사용하여 열 수 있도록 허용합니다. 유출된 정보를 교환하는 것은 쉽고, 빠르고, 위험 부담이 없습니다.</value>
+  </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>산업</value>
   </data>
   <data name="InformationLinkLabel">
     <value>정보</value>
@@ -2608,6 +2990,9 @@ EU VAT Number SE556967618101</value>
     <value>이탈리아어(이탈리아)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>동의합니다.</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>JavaScript가 현재 사용중이신 브라우저로 인해 사용이 불가능합니다. JavaScript사용이 불가능한 이상 로그인 및 사이트 실행이 예상대로 안될수도 있습니다.</value>
   </data>
@@ -2644,11 +3029,17 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
 초대장에 사용할 언어와 선택 가능한 개인 메시지를 아래에 표기해 주십시오.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
+  <data name="KeyShareLabelText" xml:space="preserve">
+    <value>Key 공유하기</value>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>파일 키는 다른 AxCrypt 사용자분들과 공유 되고 있습니다.</value>
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>새로운 연락처는 인터넷 연결이 된 다음에 추가 가능합니다!</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>무료 요금제를 사용하는 동안 키 공유 파일을 업데이트 시 키 공유 정보가 지워집니다. 이는 파일을 공유한 사용자가 파일을 열 수 없습니다.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>타들과 키를 공유하시려는 암호화된 파일들을 선택하기 위해서 클릭 해주시기 바랍니다.</value>
@@ -2684,6 +3075,9 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>언어를 변경하신 후 AxCrypt를 재시작해주시기 바랍니다.</value>
   </data>
+  <data name="LanguageSelectionLabelText" xml:space="preserve">
+    <value>언어 선택하기</value>
+  </data>
   <data name="LargeFileSupportLabel">
     <value>라지 파일 서포트</value>
   </data>
@@ -2706,6 +3100,27 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>AxCrypt와 다른 소프트웨어가 오류을 일으킬 수있고, 잠재적으로 호환되지 않는 소프트웨어를 발견했습니다. 소프트웨어의 이름은 Lavasoft Web Companion입니다. AxCrypt가 오작동하는 경우 Lavasoft를 제거하십시오.</value>
+  </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>더 자세히 살펴보기</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>비즈니스를 떠날 것을 확신합니까?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>비즈니스 떠나기</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>사용자는 administrator이므로 비지니스를 떠날 수 없습니다. 떠나실려면, 다른 사용자를 administrator로 지정해주세요.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>비즈니스에서 성공적으로 제거하였습니다.</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>비즈니스 정보</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>떠나기</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>파일 변환 이후에는 현재 AxCrypt 비밀번호로만 열 수 있습니다. 비밀번호를 확인하십시오.
@@ -2734,6 +3149,9 @@ AxCrypt 1.x 레거시 파일을 여실수 있습니다, 하지만 전환되어�
 
 AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>법</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -2761,11 +3179,20 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Home/Support</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
+  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>https://www.axcrypt.net/documentation/get-started/</value>
+  </data>
+  <data name="LinkToManageAccountText" xml:space="preserve">
+    <value>계정 관리를 위해 &lt;a&gt;click here&lt;/a&gt;를 클릭해주세요.</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -2885,6 +3312,115 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>사이트 메니지먼트 프로퍼티가 성공적으로 업데이트 되었습니다.</value>
+  </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>리셀러가 운영하는 계정입니다. 리셀러는 새로운 유저를 계정에 추가할 수 있으며 결제를 관리할 수 있습니다. 주의: 리셀러는 마스터 키를 저장하는 파일과 같은 암호화된 정보에 대한 권한은 없습니다.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>만약 승인이 된다면, 마스터 키는 암호화된 파일에 적용될 것이며 business administrator에게 보여질 것입니다. 마스터 키 적용을 중단하고 싶으시면, business를 나의 AxCrypt ID 페이지에서 언제든지 중단할 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>마스터 키 확인 완료</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>마스터 키 인트로덕션</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>마스터 키는 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능입니다.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>연간 수익 보고서를 작성한 후 중요한 재무 문서가 암호화된다고 상상해 보십시오. 다음 해에는 새로운 재무 팀이 구성되며, 연간 보고서가 작성될 때 이전 팀이 사용한 재무 문서가 더 이상 액세스 권한이 없는 자격 증명으로 암호화됩니다.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>마스터 키! 마스터 키를 사용하면 비즈니스 관리자는 항상 비즈니스 구성원이 암호화한 파일을 복구할 수 있습니다. 위와 같은 경우 신규 금융팀은 관리자에게 요청하기만 하면 최초 사용자가 퇴사하더라도 재무문서를 쉽게 복구할 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>회사에 자격 증명을 추적하는 관리자가 한 명 또는 두 명 있는 한, 직원들이 비밀번호를 잊어버려서 파일이 손실되는 일은 없을 것입니다.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>마스터 키 및 보안</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>마스터 키를 사용 가능으로 설정하면, 비즈니스 관리자는 구성원이 암호화한 모든 문서를 복구할 수 있습니다. 이렇게 하면 중요한 파일에 액세스할 수 없게 될 위험이 없습니다. 하지만 안전한지에 대해서 의문을 가져볼 필요는 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>보안 측면에서 마스터 키를 비즈니스 관리자와의 파일 자동 공유로 볼 수 있습니다. 관리자는 마스터 키가 적용된 파일을 자동으로 복구할 수 있습니다. 이것은 단순히 AxCrypt가 시도하고 테스트한 키 공유 기능을 사용하는 것 못지 않게 안전합니다.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>물론, 비즈니스 administrators는 계정을 안전하게 보호할 비밀번호를 정해야 합니다.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>마스터 키 활성화하기</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>마스터 키는 &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;구독 관리 페이지&lt;/a&gt;에서 활성화시킬 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>마스터 키 활성화 후, 모든 팀 멤버들의 활성화에 대해 승인이 필요합니다. 보안의 목적으로 기존의 멤버에게 공개된 기능입니다. 유저 테이블에서는 어느 멤버가 마스터 키 기능을 수락하였는지 확인할 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>만약 사용자가 마스터 키를 허락하지 않았다면, 암호화 할 파일에 적용되지 않습니다. 그러므로, 모든 멤버가 이 기능을 수용하도록 하세요.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>참고: 마스터 키를 사용하기 전에 암호화된 파일은 복구할 수 없습니다. 사용자가 마스터 키를 승인한 후 이전 파일을 다시 암호화해야 합니다.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>신규 사업체 또는 기존 사업체의 신규 사업체 회원의 경우, 회원이 사업에 가입할 때 마스터 키가 자동으로 승인됩니다.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Master Key 사용하기</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>마스터 키가 사용 가능으로 설정되면 해당 기업 구성원이 암호화한 모든 파일에 자동으로 적용됩니다. 응용프로그램에 표시된 마스터 키 아이콘으로 마스터 키가 적용되었는지 확인할 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>만약 파일에 이 아이콘을 확인할 수 있다면, 비즈니스 administrator는 파일을 복구 할 수 있습니다.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>네! 보시는 바와 같이 마스터 키는 사용하기 매우 쉬우며 비즈니스 구성원이 고려하거나 시간을 할애할 필요가 없습니다.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>비즈니스 administrator가 마스터 키를 사용하여 파일을 복구할 수 있지만 일반적인 사용에서는 사용을 권하지 않습니다. 만약  파일을 열어야 하는 경우, 다른 사용자와 마찬가지로 해당 파일이 해당 사용자와 공유되어야 합니다.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>도움이 필요하십니까?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>고객님의 문의와 질문은 저희에게 매우 중요합니다. 나의 계정 페이지의 폼 혹은 href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt;으로 이메일을 보내주세요. </value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>아래에 있는 체크박스를 사용해보세요. AxCrypt가 비즈니스 administrators 파일의 패스워드를 잃어버린 경우 도움을 줄 것입니다. &lt;b&gt;이 기능은 인증된 비즈니스 administrator의 요청으로만 가능합니다!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>AxCrypt가 각 비지니스의 멤버들이 암호화한 파일을 재복구할 수 있는 기능입니다. 해당 비지니스의 리퀘스트에 의해서만 진행되는 기능입니다.</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>AxCrypt 리커버리 백업</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>비즈니스 administrators가 손실된 파일을 복구할 수 있도록 활성화하기</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>마스터 키를 사용할 수 없는 경우, 비즈니스 administrators는 비즈니스 구성원이 암호화한 파일을 열 수 없습니다.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>마스터 키는 비즈니스 행정 업무를 보는 멤버가 보안된 파일을 열 수 있는 기능을 제공합니다. 주의할 사항은 마스터 키를 파일에 적용하기 전에 먼저 승인 절차가 필요합니다. </value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>마스터 키를 활성화하기 전에 암호화된 파일은 원래 암호화 자격 증명이 없으면 열 수 없습니다.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>마스터 키가 활성화되었습니다. 즉, 비즈니스 administrators가 보안 파일을 복구할 수 있습니다.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>이전에 암호화된 파일은 마스터 키로 복구할 수 없습니다. 마스터 키를 적용해야 하는 파일이 있는 경우 사용자에게 파일 보호를 중지하고 다시 보호를 시작하도록 알려주십시오. 이렇게 하면 마스터 키를 포함하여 파일이 다시 암호화됩니다.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>이 파일은 마스터 키가 적용되어 있습니다. 동일한 business에 속하지 않았기때문에 마스터키는 파일에서 삭제됩니다.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>마스터 키</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>내부 오류, %4 사용 불가</value>
@@ -3059,11 +3595,11 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>Premium 구독 없이는 암호화된 파일을 보거나 영구적으로 복호화 하는 기능만 사용 가능합니다.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
-  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>무료 체험이 끝나면 AxCrypt 모바일 앱을 사용할 수 없습니다. 유료 구독 가입이 필요합니다. 무료 데스크톱 버전의 AxCrypt로는 계속 암호화 된 파일을 열 수 있습니다.</value>
-  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>무료 체험이 끝나고 유료 구독을 선택하지 않으면 자동으로 AxCrypt Free가 계속됩니다.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>계정을 업그레이드하시면 더욱 다양한 기능을 만나보실 수 있습니다.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>오류</value>
@@ -3136,6 +3672,12 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>키 파일 이름을 작성하시려면 여기를 클릭하십시오. 이 파일을 보안하실때 키 파일을 AxCrypt 이전 버전으로 사용하셨을 때만 사용가능합니다.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MorePostsButtonLabel">
+    <value>더 많은 포스트</value>
+  </data>
+  <data name="MoreTechnicalIssueText" xml:space="preserve">
+    <value>많은 테크 이슈를 겪고 있습니다.</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>나의 AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3151,6 +3693,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>홈</value>
+  </data>
+  <data name="NeedProductForProjectText" xml:space="preserve">
+    <value>내가 완료한 프로젝트에 대한 상품을 필요로 했습니다.</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>새 비밀번호 입력하기</value>
@@ -3213,6 +3758,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
 요청하신 페이지를 저장했습니다. 올바른 경로 또는 연결이 끊어진 링크 &lt;a href="mailto:{0}"&gt;report&lt;/a&gt; 로  재시도 해주시기 바랍니다. 
 
 시작 페이지로 이동하시려면, &lt;a href="{1}"&gt;here&lt;/a&gt; 을 클릭해주시기 바랍니다.</value>
+  </data>
+  <data name="NotUsingProductText" xml:space="preserve">
+    <value>상품을 자주 사용하지 않습니다.</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>실행 작업이 몇분 걸릴수 있습니다. 잠시만 기다려주시기 바랍니다.</value>
@@ -3292,6 +3840,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="OrgNumberLabel">
     <value>Org. number</value>
   </data>
+  <data name="OtherDetailsText" xml:space="preserve">
+    <value>아니시라면, 다른 디테일을 적어주세요.</value>
+  </data>
   <data name="OtherPlatformsLabel">
     <value>다른 플랫폼</value>
   </data>
@@ -3347,6 +3898,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>비밀번호들</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
+  </data>
+  <data name="PasswordManagerFeatureInfoText" xml:space="preserve">
+    <value>비밀번호와 다른 정보를 클라우드에서 안전하게 보관하세요.</value>
   </data>
   <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
     <value>비밀번호가 맞지 않습니다.</value>
@@ -3455,6 +4009,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal에 대한 자세한 정보]</value>
   </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>대기 중</value>
+  </data>
   <data name="PerMonthLabel">
     <value>매 달</value>
   </data>
@@ -3464,12 +4021,24 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PhoneLabel">
     <value>전화번호</value>
   </data>
+  <data name="PhoneNumberLabel">
+    <value>전화번호</value>
+  </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
     <value>폴란드어 (폴란드)</value>
     <comment>The Polish name for polish in a language selection menu.</comment>
   </data>
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>폴란드어(Polish)</value>
+  </data>
+  <data name="PortableLinkLabel" xml:space="preserve">
+    <value>윈도우즈 32 및 64 비트 용</value>
+  </data>
+  <data name="PortableVersionInfo" xml:space="preserve">
+    <value>간단하고, 독보적인 AxCrypt 버전은 installer 버전과 비교하면 context menu integration과 같은 별도의 기능은 포함하지 않습니다.</value>
+  </data>
+  <data name="PortableVersionInstallationNotRequiredText" xml:space="preserve">
+    <value>standalone 버전은 바로 실행 가능합니다. 설치가 별도로 필요하지 않습니다.</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>포르투갈어(Brasil)</value>
@@ -3586,6 +4155,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PressAndMediaLinkLabel">
     <value>프레스와 미디어</value>
   </data>
+  <data name="PressFileToSelectLabelText" xml:space="preserve">
+    <value>탭 후 누른 상태로 선택하기</value>
+  </data>
   <data name="PressImagesDescription">
     <value>인터뷰, 일러스트레이션 등 사용할 수 있는 이미지</value>
   </data>
@@ -3618,6 +4190,12 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PricePerYear" xml:space="preserve">
     <value>{0} 년</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Free plus의 모든 것:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>프리미엄 플러스의 모든 것:</value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Account Key 백업</value>
   </data>
@@ -3632,6 +4210,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>Business Admin</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Business Priority 서포트</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>클라우드 보관 시스템</value>
@@ -3666,6 +4247,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PricingFeatureListPasswordManagement">
     <value>패스워드 매니지먼트</value>
   </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>전문 사용</value>
+  </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>보안된 폴더</value>
   </data>
@@ -3678,8 +4262,61 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PricingSubheading">
     <value>결제는 어떻게 하고 싶으신가요?</value>
   </data>
+  <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
+    <value>취소하시는 이유는 무엇입니까?</value>
+  </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Priority Support</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Heading" xml:space="preserve">
+    <value>정보 공유하기</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Text1" xml:space="preserve">
+    <value>We may share your information:
+With the public if you submit content to one of our forums, such as blog comments, social media posting, or other features of our services that are publicly visible; with third parties such as other sites that integrate with our API or our Services; or those with an API or service that we integrate with; Any necessary third party engaged by us, including data processors, vendors, consultants, marketing partners, and other service providers who need access to such information to perform work on our behalf; In response to an information request by a competent authority if we believe disclosure is under or otherwise required by applicable law, regulation, license or legal process; if we otherwise notify you and you consent to the sharing; and in an aggregate and / or anonymous form which cannot be reasonably expected to be used to identify you.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Heading" xml:space="preserve">
+    <value>소셜 미디어</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>구글/유투브:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>트위터:&lt;a href='https://twitter.com/en/privacy'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>인스타그램: href='http://instagram.com/about/legal/privacy/'&gt;Privacystatement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>링크드인:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>페이스북: href='https://www.facebook.com/privacy/explanation'&gt;Privacystatement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text1" xml:space="preserve">
+    <value>웹사이트에 관련해 더 나아가 저희는 트위터, 페이스북, 인스트그램, 유투브 및 링크드인과 같은 소셜 미디어를 유지합니다. 이와 같은 소셜 미디어에 방문한다면 개인 정보는 네트웨크 프로바이더에게 전달됩니다. AxCrypt는 사용자에게 제 3의 국가나 유럽 국가 이외에서일어날 수 있는 상황을  알려주는 역할을 합니다.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text2" xml:space="preserve">
+    <value>게다가, 이 소셜 미디어에 입력한 특정 데이터의 저장 외에도, 추가 정보는 소셜 네트워크 제공자에 의해 처리될 수 있습니다. 해당 웹 사이트를 방문하는 동안 개인 사용자 계정으로 네트워크에 로그인한 경우 이 네트워크에서 이 계정에 방문을 할당할 수 있습니다. 각 매체에 의한 데이터 수집의 목적과 범위와 해당 매체에 의한 추가 데이터 처리 및 이와 관련된 귀하의 권리는 아래 각 책임자의 각 조항에서 확인할 수 있습니다.</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Heading" xml:space="preserve">
+    <value>제 3자에게 데이터 전송하기</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text1" xml:space="preserve">
+    <value>고객 관계 관리(CRM) - Hubspot
+HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활동의 다양한 측면을 다루는 통합 소프트웨어 솔루션입니다. HubSpot의 서비스 사용에 대한 법적 근거는 예술에 따른 우리의 정당한 관심입니다. 6 I f GDPR은 우리의 마케팅 조치의 최적화와 웹사이트에서의 서비스 품질 향상으로 인해 가능합니다.</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text2" xml:space="preserve">
+    <value>HubSpot은 유럽피안 표준 정보 보호에 따른 법류 준수 데이터 요건을 최소한으로 포함하고 있습니다. 게다가, Data Processing Agreement(DPA)도 포함하고 있습니다. 즉, HubSpot은 유럽피안 국가 안에서만 데이터 보호가 가능합니다. 더 많은 정보는 HubSpot의 데이터 &lt;a href='https://legal.hubspot.com/privacy-policy'&gt;의 privacy policy를 참고해주세요.&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock13Heading" xml:space="preserve">
+    <value>프라이버시 정책 수정하기</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Heading" xml:space="preserve">
+    <value>Governing law and venue</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Text1" xml:space="preserve">
+    <value>이 개인 정보 보호 정책은 스웨덴 법률의 적용을 받습니다. 장소는 스톡홀름 지방 법원입니다.</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>이메일 주소</value>
@@ -3765,11 +4402,44 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PrivacyPolicyBlock4Text2">
     <value>CRM 시스템에 포함되고 싶지않은 Business 사용자라면,&lt;a href='mailto:business@axcrypt.net.'&gt;business@axcrypt.net&lt;/a&gt;으로 문의해주세요.</value>
   </data>
+  <data name="PrivacyPolicyBlock5Heading" xml:space="preserve">
+    <value>페이지 및 서비스 기능</value>
+  </data>
+  <data name="PrivacyPolicyBlock5Text1" xml:space="preserve">
+    <value>Cookies are used in the operation and presentation of data from websites. Such cookies may include language code information for the language selected by the user. It can be cookies with information that supports the load balancing of the system so that all users are guaranteed the best possible experience. For services that require login or search, cookies can be used that ensure that the service presents data to the right recipient.</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Heading" xml:space="preserve">
+    <value>웹 애널리틱스 및 쿠키</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Text1" xml:space="preserve">
+    <value>As an important part of the work of creating a user-friendly website, we look at the user pattern of those who visit the site. We analyze user behaviour to make the user experience better. The purpose of using cookies is therefore to improve the customer experience. To analyze the information, we use the analysis tool Google Analytics. Google Analytics uses cookies/cookies (small text files that the site stores on the user's computer), which records the user's IP address, and provides information about each user's online movement. Examples of what the statistics give us answers to are; how many people visit different pages, how long the visit lasts, which sites the users come from and which browsers are used. None of the cookies allows us to associate information about your use of the site with you as an individual. Cookie data is automatically deleted 14 months after registration. You can do it yourself and manage the use of cookies by adjusting settings on your browser. The information collected by Google Analytics is stored on Google's servers in the United States. Information received is subject to Google guidelines for Privacy. An IP address is defined as personal information because it can be traced back to a particular hardware and thus to an individual. We anonymize the user's IP address before the information is stored and processed by Google. Thus, the anonymized IP address cannot be used to identify the individual user. Your IP address is also logged for a short period by our web servers. The user's IP-address, time of day, website address, HTTP status, number of bytes sent, HTTP referrer and HTTP user agent is logged for 15 days. Beyond this point, the data is deleted.</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Heading" xml:space="preserve">
+    <value>검색하기</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Text1" xml:space="preserve">
+    <value>사용자가 어떤 키워드를 사용하는지에 대한 정보를 Google Analytics를 통해 사이트에 저장합니다. 스토리지의 목적은 당사의 정보를 보다 효과적으로 제공하기 위한 것입니다. 검색에 대한 사용 패턴은 집계 형식으로 저장됩니다. 키워드만 저장되며 IP 주소와 같은 다른 사용자 정보에는 연결할 수 없습니다.</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
+    <value>Forum / Share/tips-service</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Text1" xml:space="preserve">
+    <value>"다른 사람과 공유"기능은 자발적이며 이메일을 통해 사이트 링크를 포워드할 수 있거나 페이스북 및 트위터와 같은 소셜 네트워킹 사이트에 컨텐츠를 공유를 가능하게 합니다. 팁과 같은 정보는 저희에게 저장되지 않으며 소셜 네트워크 사이트의 팁에 포스팅할 경우에만 사용됩니다. 하지만,온라인 커뮤니티에서 이러한 정보를 저장하지 않는 것에 대해서는 보장할 수 없습니다. </value>
+  </data>
+  <data name="PrivacyPolicyBlock9Heading" xml:space="preserve">
+    <value>뉴스레터</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Text1" xml:space="preserve">
+    <value>가입 시, 귀하는 뉴스레터, 제안서, 그리고 당사가 제공하는 새롭고 업데이트된 제품 및 서비스에 대한 정보와 같은 이메일을 가끔 보내드릴 수 있다는 데 동의해야 합니다. 이메일을 보내려면 이메일 주소를 등록해야 합니다. 이러한 목적을 위한 처리를 위한 법적 근거는 동의입니다. CFR 제6조 제1항, 편지 a. 이 정보는 다른 업체와 공유되지 않으며 더 이상 당사에서 정보를 받지 않으려는 경우 삭제됩니다. 이러한 이메일에 제공된 링크를 클릭하여 언제든지 구독을 취소할 수 있습니다. HubSpot은 뉴스레터용 데이터 프로세서입니다.</value>
+  </data>
   <data name="PrivacyPolicyDescription">
     <value>사용자의 프라이버시를 가장 중요하게 생각합니다. AxCrypt의 주 목적이기도 합니다. </value>
   </data>
   <data name="PrivacyPolicyLinkLabel">
     <value>Privacy policy</value>
+  </data>
+  <data name="ProductFeatureComplicatedText" xml:space="preserve">
+    <value>상품과 기능 설명이 너무 어렵습니다.</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>그리고 더 많은...</value>
@@ -3785,6 +4455,12 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="ProductTryItForFreeHeading">
     <value>무료로 이용해보세요.</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2">
+    <value>오늘 무료 체험하기</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2Education">
+    <value>오늘 무료로 즐겨보세요. 혹은 &lt;a href="mailto:business@axcrypt.net"&gt;세일즈 팀&lt;/a&gt;에 교육 기관 할인에 대해 문의해보세요.</value>
   </data>
   <data name="ProductTryItForFreeMonthlyButtonLabel">
     <value>매달</value>
@@ -4004,6 +4680,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
     <value>&lt;b&gt;AxCrypt Business에 대해 궁금한 점이 있나요?&lt;/b&gt;href="mailto:business@axcrypt.net"으로 문의 부탁드립니다.</value>
   </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
+    <value>&lt;b&gt;AxCrypt Business에 대해 궁금한 점이 있나요?&lt;/b&gt;href="mailto:business@axcrypt.net"으로 문의 부탁드립니다.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>&lt;a&gt;구글 플레이&lt;/a&gt;에서 저희를 평가해주세요</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -4024,6 +4703,12 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>앱 스토어</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
+    <value>최신 뉴스 읽기</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>최신 블로그 포스트 살펴보기</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>business 플랜에 대해서 더 알아보세요.</value>
   </data>
@@ -4032,6 +4717,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="ReadMoreButtonLabel">
     <value>더 보기</value>
+  </data>
+  <data name="RecentFilesListInfoText" xml:space="preserve">
+    <value>보안 처리된 파일을 최근에 연 적이 없습니다. 파일을 찾으시려면 브라우즈를 클릭하여 파일을 열어주세요.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>열기</value>
@@ -4130,6 +4818,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>보안 문제로 소프트웨어 업데이트를 하셔야 됩니다.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
+  <data name="RemoveFromRecentFilesLabelText" xml:space="preserve">
+    <value>최근 파일에서 삭제하기</value>
+  </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>파일 제거하기</value>
     <comment>Text of "Remove File" button in mobile application</comment>
@@ -4144,6 +4835,17 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="RenewInTitle" xml:space="preserve">
     <value>리뉴</value>
     <comment>Used as "Renew in 30 days"</comment>
+  </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>모바일 앱
+256-비트 AES
+키 쉐어링
+보안된 폴더
+패스워드 매니지먼트
+클라우드 스토리지 인식</value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>구독 갱신하기!</value>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>AxCrypt에서 발생한 오류 보고서입니다. 아래와 같이 이메일 주소과 타이틀을 복사해서 작성해주세요.</value>
@@ -4212,8 +4914,287 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="ResellerBenefitsText">
     <value>AxCrypt은 간단한 방법으로 최고의 보안을 보장하는 보안 시스템으로  전 세계의 고객을 보유하고 있습니다.  특히, 미국과 영국, 프랑스에서 많은 사랑을 받고 있습니다. </value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>href='https://account.axcrypt.net/'&gt;account.axcrypt.net&lt;/a&gt;에서 로그인하세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>생성 페이지에서 고객 정보와 필요한 라이센스 수를 입력합니다. 필요한 경우 나중에 변경할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>1개월 또는 12개월 중 하나를 선택하여 월별 또는 연간 구독을 원하는지 선택합니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>VAT 공제를 원하시면(EU 국가 한정), VAT 넘버를 입력해주세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>리셀러 할인이 자동으로 적용되었습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>결제 버튼을 클릭해주세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>마지막으로 라이센스가 주어지는 사용자의 이메일 주소를 추가할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>AxCrypt Business를 새 고객에게 재판매하려면 계정 웹 사이트에서 구독을 만드세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt;고객이 AxCrypt의 계정 소유의 유무와는 상관없이 원활하게 진행됩니다.&lt;br /&gt; 비지니스 구독에 가입되면 이메일 혹은 초대장을 받으신 후 계정 활성화를 해주셔야 합니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>자동으로 administrator 계정의 구독 리스트에 추가될 것입니다.account.&lt;br/&gt; 즉, 라이센스를 지급될 것입니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text4" xml:space="preserve">
+    <value>만약 사용자 어느 한 명을 administrator 로 지정하려면, 사용자가 새로운 라이센스를 구입 후 계정 관리를 해야합니다. 즉, 어느 할인도 받으실 수 없습니다. 그러므로 정말 필요한 경우가 아니면 administrator로 지정은 삼가하는 것을 제안합니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text5">
+    <value>정보가 잘못 입력된 경우 언제든지 이동하여 정보를 변경할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>이 프로세스는 사용자가 완전히 관리하도록 설계되었으며 고객의 개입이 필요하지 않습니다(아직 계정이 없는 경우 계정을 활성화하는 것 외에도), AxCrypt의 개입이 필요하지 않습니다. 계좌이체 결제가 선호된다면 이 또한 가능합니다. 자세한 내용은 청구 탭을 참조하세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt는 재판매를 위해 AxCrypt Business라는 한 가지 구독을 제공한다. 서브메뉴는 &lt;a href='http://account.axcrypt.net&gt; 계정&lt;/a&gt;에서 이용하실 수 있습니다. 기존 클라이언트를 관리하거나 클라이언트의 라이센스를 구입할 수 있습니다. 관리자로 설정된 기존 계정을 사용하여 로그인합니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>리셀링 팀에게 문의 시, 이곳 &lt;ahref='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;으로 이메일 보내실 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>Action On 드롭다운 메뉴에서 고객을 선택할 수 있습니다. </value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>이메일으로 고객을 매뉴얼로 추가할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>사용하지 않은 라이센스가 있다면 고객 계정의 사용자를 추가할 수 있습니다. administrator가 라이센스가 사용되지 않은 것만 확인한다면 언제든지 고객을 추가할 수 있습니다. </value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>사용자 추가:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>필요하신 라이센스 수를 선택해주세요.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>만약, 고객 계정의 라이센스가 모두 사용 중이라면, 추가 라이센스를 구매하실 수 있습니다:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>&lt;b&gt;노트:&lt;/b&gt; 계좌이체 결제를 원하시면, 아래 청구서를 참조하십시오. &lt;br /&gt;구독을 신청 및 갱신하신다면, 구독 기간은 항상 일년 기준입니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>구독 기간 동안 추가 멤버의 구독 라이센스을 구매할 경우, 남은 구독 개월 수를 반올림하여 비용이 청구됩니다. 만약 구독 전까지 50일이 남은 시점에 새로운 멤버가 추가될 경우, 2달/추가 멤버 수로 구독 비용이 청구됩니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>이제 사용되지 않는 라이센스가 있습니다. 필요할 때 저장하거나(만기일을 일시 중지하지 않음) 새 사용자에게 할당할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>고객 계정의 사용자를 지우거나 변경하는 것은 매우 간단합니다:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle1" xml:space="preserve">
+    <value>새로운 고객 등록하기</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>고객 계정에 사용자 추가하기</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>추가 멤버 라이센스 구매하기</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>사용자 변경 및 제거하기</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersTitle" xml:space="preserve">
+    <value>고객 추가 및 관리하기</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>구독은 AxCrypt 웹 계정 포털((account.axcrypt.net)을 통해 가능합니다. 결제는 신용 카드로 포털을 통해 직접 이루어집니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>인보이스를 통해 구매하실 수 있습니다. 보통 구독 멤버의 수에 따라 구매하실 수 있습니다. 원하신다면&lt;ahref='mailto:reseller@axcrypt.net'&gt;리셀러 팀&lt;/a&gt;에 문의해주세요. 뱅크 트랜스퍼로 결제가 진행된다면, 권한이 주어지는데 조금 걸릴 수 있음을 참고해주세요.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>AxCrypt의 비즈니스 멤버쉽 라이센스 가격은 &lt;ahref='https://www.axcrypt.net/pricing'&gt;pricing 이곳에서&lt;/a&gt;확인해보세요.  개인 리셀러 할인도 확인할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>구독 기간은 한 달(30일)과 일 년(360일)으로 구분됩니다. 새롭게 구독을 신청 혹은 갱신하신다면 구독 기간은 항상 한 달 혹은 일 년으로 진행됩니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>가입 기간 내에 추가 회원 라이센스를 구입하는 경우, 전체 월로 반올림된 남은 월만 요금이 부과됩니다. 현재 기간이 50일 남았고, 회원이 추가되면 2개월/추가 회원입니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>"결제 및 갱신"에 대해 자세한 정보는 이곳&lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Terms of Use&lt;/a&gt;을 살펴보세요.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>2020년 6월 25일부터 구독을 자동으로 갱신합니다. 그 전에 라이선스를 구입한 경우, 귀하와 귀하의 클라이언트는 자동으로 요금이 부과되지 않습니다. 메뉴를 통해 갱신하셔야 합니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>2020년 6월 25일 이후에 라이센스를 구입한 경우, 최초 지불 방법을 사용하여 가입 기간이 종료될 때 자동으로 구독이 갱신됩니다. 취소하려면 현재 가입 기간이 만료되기 전에 취소가 필요합니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>&lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;결제 및 갱신 페이지&lt;/a&gt; 를 참고해주세요.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>인보이스와 결제 내역을 살펴볼 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>날짜, 레퍼런스, 주소 등과 같은 정보</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>Paid for which customer.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>구독 신청 완료.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>총 금액.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>프린트 버튼을 누르시면 인보이스를 출력하실 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>EU의 부가가치세는 유효한 부가가치세 번호를 입력할 때 구매 전에 공제됩니다. 부가가치세는 EU 이외의 국가에는 적용되지 않는 점 참고해주세요.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>스웨덴 고객일 경우, VAT 세금 감면은 불가능합니다. AxCrypt가 스웨덴에 위치한 회사이므로 스웨덴 고객은 들어오는 VAT를 들어오는 VAT로 예약해야 하며, 이는 스웨덴 세무 당국에 납부할 때 나가는 VAT에서 공제됩니다.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>&lt;b&gt;노트:&lt;/b&gt; AxCrypt는 세금 이슈에 대해 어떠한 조언도 드릴 수 없습니다. 속해있는 국가 세법을 자세히 확인해주세요.</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>결제 방법</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>가격 및 할인 디테일</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>리뉴얼</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>주문 및 결제 히스토리 살펴보기</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>세금</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>빌링</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>재판매자 계정에 액세스하려면 먼저 AxCrypt 팀의 구성원이 재판매자 권한을 가진 관리자 역할을 할당해야 합니다. 계약서에 서명한 후, 우리 팀은 당신에게 AxCrypt 계정과 관련된 이메일 주소를 요청할 것이다. 이 계정은 리셀러 계정의 관리자 역할을 합니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
+    <value>노트: 일반 계정과 구독 계정이 동일해도 문제없습니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>리셀러 계정의 구너한을 받으시려면 이곳&lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;로 로그인하세요. 계정 사진은 아래에 보여집니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text1">
+    <value>리셀러 계정에 액세스하려면 먼저 AxCrypt 팀의 구성원이 재판매자 권한을 가진 관리자 역할을 할당해야 합니다. 계약서에 서명한 후, 우리 팀은 당신에게 AxCrypt 계정과 관련된 이메일 주소를 요청할 이며, 이 계정은 리셀러 계정의 관리자 역할을 합니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text2">
+    <value>노트: 귀하의 구독 플랜을 이용하는 계정과 현재 계정과 같이 사용되어도 문제 없습니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text3">
+    <value>이곳&lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;에서 로그인하여 리셀러 계정 권한을 얻어보세요. 이미지 아래에서 계정을 확인할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>리셀러 계정 권한 얻기</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle1">
+    <value>AxCrypt 리셀러 신청하기</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle2">
+    <value>나의 Reseller 계정에 권한 부여하기</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>시작하기</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>리셀러 도움</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>허락없이 이미지를 수정하지 마십시오.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>이미지나 그래픽 소재의 로고타이프 면적 25%정도의 여유 공간을 남겨두세요. </value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>귀하의 출판물이나 웹 사이트에서 리셀러의 로고 또는 AxCrypt의 일반 로고를 사용할 수 있습니다. 귀하는 다음 규정을 준수하므로 자유롭게 이 작업을 수행할 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>다채로운 로고타이프 활성화가 가능하지 않으면, 흑백 버전을 사용하실 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;PNG 포맷의 로고타이프&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;ahref='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;로고타이프 아이콘 JPG 포맷&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;ahref='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;PNG 포맷의 전체 로고타이프&lt;/a&gt; </value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;JPG 포맷의 전체 로고타이프&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>오리지널 AxCrypt 로고타이프는 &lt;a href='https://www.axcrypt.net/information/press'&gt;https://www.axcrypt.net/information/press&lt;/a&gt;에서 찾을 수 있습니다.</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>인증된 리셀러 로고</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>마케팅</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>FAQ: &lt;a href='https://www.axcrypt.net/information/faq'&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>비즈니스 구독:&lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>시작하기: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt; </value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>사용 팁:&lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>테크니컬 디테일: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
+    <value>저희의 리셀러(그들의 고객 포함)도 물론 AxCrypt의 전문적은 테크 관련 도움을 받을 수 있습니다. 저희가 보유한 많은 온라인 도큐먼트와 상품 정보는: </value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>게다가, &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;에서 테크니컬 서포트를 받으실 수 있습니다. 표준 시간대는 UTC+5:30이며, 보통 하루 이내에 서포트 응답을 받을 수 있도록 노력하고 있습니다.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>물론, 리셀러가 고객의 다양한 테크 질문을 효율적으로 도울 수 있도록 AxCrypt의 기능을 먼저 사용해보라고 권장합니다. 그렇지 않으면 AxCrypt는 각 기능을 설명하는 다양한 튜토리얼을 제공합니다. 유투브 채널에서도 확인하실 수 있습니다.&lt;ahref='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>윈도우즈 튜토리얼:&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>맥OS 튜토리얼:&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>리셀러로서 귀하는 자신의 판매와 (잠재적) 고객에게 접근하는 방법에 대한 책임이 있습니다. 하지만 물론, 우리는 당신의 판매에 도움을 주고자 합니다.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>광고 목적과 고객에게 보여주기 위해 AxCrypt의 프레젠테이션과 브로셔를 만들었습니다. AxCrypt가 무엇이며 데이터를 보호하는 데 어떻게 도움이 되는지 설명합니다.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;AxCrypt 프리젠테이션 다운로드하기&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>테크니컬 서포트</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle2" xml:space="preserve">
+    <value>세일즈 서포트</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>서포트</value>
+  </data>
   <data name="ResellerInfoHeading">
     <value>AxCrypt의 리셀러가 되어보세요.</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>리셀러 정보</value>
   </data>
   <data name="ResellerInfoText1">
     <value>AxCrypt는 사용하기 쉬운 암호화 솔루션을 제공합니다. 파일 암호화 업계에서 15년 이상의 경력을 가지고, 우리는 AxCrypt를 세계에서 가장 강력한 브랜드 중 하나로 설립했습니다. 다운로드가 2천만 건을 넘으면서 우리 서비스가 믿을 만하다는 것을 증명했습니다. AxCrypt는 2016년, 2017년, 2018년에 PCMag의 최고의 암호화 소프트웨어 편집자 선택 상을 받기도 했습니다.</value>
@@ -4271,6 +5252,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="ScriptingEnabledText">
     <value>스크립팅 및 프로그래밍을 위한 광범위한 코맨드 인터페이스</value>
   </data>
+  <data name="SearchBoxPlaceHolderText" xml:space="preserve">
+    <value>파일 찾기...</value>
+  </data>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>비밀번호 검색하기</value>
   </data>
@@ -4288,9 +5272,6 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[없음]</value>
-  </data>
-  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>유효 구독 플랜을 이용하지 않으시므로 더 이상 새 비밀번호 항목을 편집하거나 만들 수 없습니다. 그러나 기존 항목을 계속 볼 수 있습니다. 30 일 Premium 무료 체험 기간을 이용하지 않았다면, &lt;a href="https://www.axcrypt.net/Download/"&gt; AxCrypt 앱 &lt;/a&gt;에서 시작할 수 있습니다.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>{0}에 Premium 구독 만료일이 곧 끝납니다. 새로운 비밀번호 입력이나 비밀번호 재설정을 원하시면 Premium 구독 신청을 연장하셔야 됩니다.  읽기 전용으로만 접속이 가능합니다.</value>
@@ -4451,6 +5432,12 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>보안 문제로 사용자의 소프트웨어 업데이트가 필요합니다.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SelectAllFilesLabelText" xml:space="preserve">
+    <value>전체 파일 선택하기</value>
+  </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>피드백 보내기</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>초대장 보내기</value>
@@ -4627,6 +5614,18 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="SubmitLabel">
     <value>제출하기</value>
   </data>
+  <data name="SubscribeForFreeForFullFunctionalityText" xml:space="preserve">
+    <value>모든 기능을 무료로 즐겨보세요.</value>
+  </data>
+  <data name="SubscribeForFreeForFullSecurityText" xml:space="preserve">
+    <value>안전 보안을 위해 무료로 구독해보세요!</value>
+  </data>
+  <data name="SubscribeForFullFunctionalityText" xml:space="preserve">
+    <value>보안을 위한 구독!</value>
+  </data>
+  <data name="SubscribeForFullSecurityText" xml:space="preserve">
+    <value>보안을 위한 구독!</value>
+  </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 갱신됩니다.</value>
   </data>
@@ -4638,6 +5637,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>{0}% 저장</value>
+  </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value> &lt;b&gt;{0}&lt;/b&gt; 에 구독 서비스가 종료됩니다.</value>
   </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 만료됩니다.</value>
@@ -4712,6 +5714,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>스웨덴어 (스웨덴)</value>
   </data>
+  <data name="SwitchUserButtonText" xml:space="preserve">
+    <value>사용자 변환하기</value>
+  </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>컬쳐가 성공적으로 실행되었습니다.</value>
   </data>
@@ -4733,6 +5738,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>현재 파일을 열 수 없습니다.</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TechLinkLabel">
+    <value>테크</value>
   </data>
   <data name="TechnicalDetailsDescription">
     <value>AxCrypt가 전하고자 하는 비전과 어떻게 비전을 이룰 것인지에 대해 자세히 설명합니다. 패스워드는는 물론 소프트웨어 개발에도 능숙한 기술 전문가를 위한 것이며, 정보는 예를 들어 AxCrypt 호환 소프트웨어를 구축할 수 있을 정도로 충분히 완성됩니다.</value>
@@ -5002,6 +6010,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
     <value>AxCrypt Business를 이용해주셔서 감사합니다.</value>
   </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
+    <value>AxCrypt Business를 이용해주셔서 감사합니다.</value>
+  </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
     <value>AxCrypt를 이용해주셔서 감사합니다.</value>
   </data>
@@ -5025,6 +6036,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0}{1}-{2}</value>
   </data>
+  <data name="TooExpensiveText" xml:space="preserve">
+    <value>너무 비용이 많습니다.</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>비밀번호 관리는 유료 구독을 통해 하실수 있습니다. 업그레이드를 하시려면 클릭해주십시오!</value>
   </data>
@@ -5034,6 +6048,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>AxCrypt 응용 프로그램을 회복하시려면 클릭해주시기 바랍니다.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialEndedText" xml:space="preserve">
+    <value>무료 체험 종료</value>
   </data>
   <data name="TrialOnlyForNewUsers" xml:space="preserve">
     <value>무료 평가판은 신규 사용자에게만 적용</value>
@@ -5124,6 +6141,9 @@ AxCrypt 팀</value>
   <data name="UnknownLogOn" xml:space="preserve">
     <value>모르는 비밀번호입니다. 새로운 비밀번호를 원하시다면 ''새로운 비밀번호''를 클릭해주십시오.</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>암호화 전체 기능을 보시려면 여기를 클릭해 주세요.</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} 으로 '{0}'.</value>
   </data>
@@ -5139,6 +6159,12 @@ AxCrypt 팀</value>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>만약 사용자님께서 구독하지 않으려면 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; 여기&lt;/a&gt;를 클릭하세요</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>업데이트 가능</value>
+  </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>결제 디테일 업데이트하기</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>파일 상태를 업데이트 하고 있습니다</value>
   </data>
@@ -5151,6 +6177,12 @@ AxCrypt 팀</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium 사용하기!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>가입이 만료되었습니다. 다음과 같은 프리미엄 기능을 계속 사용하려면 지금 갱신하세요.</value>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>더 나은 암호화 기능으로 업그레이드하기</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>익명 파일 이름</value>
@@ -5280,6 +6312,9 @@ AxCrypt 팀</value>
   </data>
   <data name="UsageTipsTargetUseListItem6">
     <value>개발자는 사용하기 편리한 API을 포함한 .NET 코어 라이브러리와 AxCrypt를 동시에 사용하실 수 있습니다. bitbucket이나 nuget에서 소스 코드를 받으세요.</value>
+  </data>
+  <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
+    <value>필요한 쿠키만 사용</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>AxCrypt를 업데이트 하셨습니다. 하지만 구성 재설정을 하셔야합니다. 재시작을 하신 다음, 저장하신 장치들을 모두 잃을 수 있습니다. 불편을 드려 죄송합니다. 암호화된 파일들은 안정적으로 저장되어있습니다.</value>

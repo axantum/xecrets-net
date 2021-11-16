@@ -288,6 +288,51 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <value>Wählen Sie einen Ordner, den Sie mit AxCrypt sichern wollen. Existierende Dateien werden jetzt verschlüsselt.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AffiliateAdvantagesHeading">
+    <value>AxCrypt Partner Marketing Vorteile</value>
+  </data>
+  <data name="AffiliateAdvantagesSubHeading">
+    <value>Egal, ob Sie ein Unternehmen, Blogger, Vlogger, Influencer oder Medienpublisher sind, das Axcrypt-Partnerprogramm bietet einige der besten Belohnungen auf dem Markt.</value>
+  </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>Großzügige Provision - Wir sind stolz darauf, eine Provision von 25% anbieten zu können, eine der besten in der Branche.</value>
+  </data>
+  <data name="AffiliateAdvantagesText2">
+    <value>Dedizierter Account-Manager - Mit einem dedizierten Account-Manager erhalten Sie bei jedem Schritt die Hilfe, die Sie benötigen, von der Einrichtung bis zur Einzelberatung.</value>
+  </data>
+  <data name="AffiliateAdvantagesText3">
+    <value>Globale Reichweite-Axcrypt Partner führen Kampagnen auf globaler Ebene durch. Auf diese Weise können Sie Traffic, Unterhaltungen und Einnahmen aus allen Ecken der Erde generieren.</value>
+  </data>
+  <data name="AffiliateAdvantagesText4">
+    <value>Top Umrechnungskurse - Unsere optimierte Marketingstrategie und der starke Markenruf führen zu hochprozentigen Umrechnungen. So können Sie Ihr Verdienstpotenzial maximieren.</value>
+  </data>
+  <data name="AffiliateInfoHeading">
+    <value>Werden Sie ein AxCrypt Partner</value>
+  </data>
+  <data name="AffiliateInfoText1">
+    <value>Treten Sie unserem Partnerprogramm bei, um eine wertvolle Verschlüsselungslösung bereitzustellen und gleichzeitig großzügige Provisionen zu verdienen.</value>
+  </data>
+  <data name="AffiliateInfoText2">
+    <value>AxCrypt ist ein benutzerfreundliches Verschlüsselungsprogramm, das für Windows, Mac, iOS und Android verfügbar ist. AxCrypt hat sich mit über 20 Millionen Downloads weltweit zu einer der beliebtesten Verschlüsselungsanwendungen der Welt entwickelt und wurde vom renommierten PC-Magazin im Jahr 2021 6 Jahre hintereinander als "Beste Verschlüsselungssoftware" ausgezeichnet. AxCrypt ist mehrsprachig und unterstützt Englisch, Niederländisch, Französisch, Deutsch, Italienisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Schwedisch, Türkisch, Mandarin und weitere Sprachen.</value>
+  </data>
+  <data name="AffiliateInstructionsHeading">
+    <value>Fördern Sie AxCrypt und verdienen Sie mit jedem Verkauf einen Gewinn</value>
+  </data>
+  <data name="AffiliateInstructionsStep1">
+    <value>Werden Sie Mitglied unseres Partnerprogramms, indem Sie sich innerhalb von Sekunden anmelden</value>
+  </data>
+  <data name="AffiliateInstructionsStep2">
+    <value>Erhalten Sie Zugang zu exklusiven Verbindungen und Werbematerialien. Nutzen Sie unsere Marketing-Vermögen, um Ihre Kampagnen auf den Weg zu bringen</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>Verweisen Sie AxCrypt und verdienen Sie 25% Provision für jede bezahlte Umrechnung</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading">
+    <value>AxCrypt bietet Ihnen jetzt eine Partner-Möglichkeit, bei der Sie von jedem Verkauf bezahlt werden, indem Sie AxCrypt bewerben. Fangen wir jetzt an.</value>
+  </data>
+  <data name="AffiliateLinkLabel">
+    <value>Partner</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Bereits registriert? Hier einloggen</value>
     <comment>Link to sign in page.</comment>
@@ -607,6 +652,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Plan einrichten und Zahlung</value>
+  </data>
+  <data name="BusinessEmailLabel">
+    <value>Business Email</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Ihr AxCrypt Business Abonnement {0} ist beendet. Wir hoffen aufrichtig, dass Sie die Verwendung von AxCrypt genossen Haben und es nützlich fanden.</value>
@@ -1227,6 +1275,9 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Unser business-support wird Sie in Kürze kontaktieren, um Ihnen den Einstieg in Ihr business-konto zu erleichtern! Klicken Sie auf weiter, um zu Ihrem Konto zu gelangen.</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>Herzlichen Glückwunsch und willkommen im AxCrypt Business!</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel">
     <value>Kryptografische Hashes von Dateien</value>
   </data>
@@ -1424,6 +1475,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="DownloadAxcrypt2LinkLabel">
     <value>Download AxCrypt 2</value>
+  </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>AxCrypt App herunterladen</value>
   </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt für macOS</value>
@@ -2130,6 +2184,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="FreeLabel">
     <value>Free</value>
   </data>
+  <data name="FullNameLabel">
+    <value>Voller Name</value>
+  </data>
   <data name="GdprBlock1Heading">
     <value>Was ist das DSGVO?</value>
   </data>
@@ -2376,8 +2433,32 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: Passwortverwaltung</value>
   </data>
+  <data name="GetStartedPasswordResetHeading">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="GetStartedPasswordResetIngress">
+    <value>Haben Sie Ihr AxCrypt ID Passwort vergessen? Sie können jetzt ein Passwort zurücksetzen. Wenn Sie Ihr Kennwort zurücksetzen, können Sie sich erneut anmelden, haben jedoch keinen Zugriff auf Dateien, die mit Ihrem alten Kennwort verschlüsselt wurden. Anweisungen zum Zurücksetzen Ihres Kennworts finden Sie im folgenden Video.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep1">
+    <value>Gehen Sie zu Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href='https://account.axcrypt.net/de/Startseite/PasswortZurücksetzen' &gt;Passwort zurücksetzen&lt; / a&gt;.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2">
+    <value>Sie werden auf unsere Website weitergeleitet, wo Sie einen Reset anfordern können.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3">
+    <value>Befolgen Sie nach der Überprüfung die Eingabeaufforderung in der an Ihre E-Mail-Adresse gesendeten E-Mail.</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac">
+    <value>AxCrypt: Zurücksetzen des Kennworts auf dem Mac</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows">
+    <value>AxCrypt: Passwort Zurücksetzen</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Bitte melden Sie sich an, um Ihr Abonnement zu erhalten! Wenn Sie noch kein Konto haben, müssen Sie sich zuerst &lt;a href="{0}Home/Register/"&gt;anmelden&lt;/a&gt;.</value>
+  </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>Gehe zu meiner AxCrypt</value>
   </data>
   <data name="GovernmentLinkLabel">
     <value>Regierung</value>
@@ -2539,14 +2620,26 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Meine AxCrypt ID</value>
   </data>
+  <data name="IndustriesAboutLinkLabel">
+    <value>Über Branchen</value>
+  </data>
   <data name="IndustriesBenefitsTitle">
     <value>Vorteile der Verwendung von Axcrypt</value>
+  </data>
+  <data name="IndustriesBlogLabel">
+    <value>Neu in der Verschlüsselung? Schauen Sie sich unseren Blog für die neuesten Nachrichten.</value>
   </data>
   <data name="IndustriesEducationCloud">
     <value>Verwalten Sie Ihre Daten einfach. Gruppenprojekte und Präsentationen können reibungslos ausgeführt werden, da auf die Inhalte dank unserer Cloud-Speicherfunktion von jedem und überall auf verschiedenen Geräten zugegriffen werden kann.</value>
   </data>
   <data name="IndustriesEducationDescription">
     <value>Online-Kurse und digitaler Unterricht gedeihen. Die Verwendung digitaler Geräte wie Computer oder Tablets während des Unterrichts, Vorträge oder Online-Meetings wird immer häufiger. Durch Notizen oder Kommentieren von PDF-Dokumenten wird eine große Datenmenge gesammelt. AxCrypt schützt private Informationen beim Speichern von Arbeit und Forschung in Form von Dateien und Dokumenten. Wir stellen sicher, dass Sie und nur Ihr akkreditiertes Team auf Ihre privaten Daten zugreifen können.</value>
+  </data>
+  <data name="IndustriesEducationHeading">
+    <value>Verschlüsseln proprietäre Essays, Papiere, Berichte, Thesen und Forschung</value>
+  </data>
+  <data name="IndustriesEducationParagraph">
+    <value>Greifen Sie auf alle Ihre Dokumente zu und synchronisieren Sie sie auf Ihren Geräten, während Sie Ihre Dateien vor kostspieligen Datenverletzungen schützen.</value>
   </data>
   <data name="IndustriesEducationProtection">
     <value>AxCrypt stellt sicher, dass Ihr Unternehmen Vorschriften wie die Datenschutz-Grundverordnung (DSGVO) einhält.</value>
@@ -2563,6 +2656,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   <data name="IndustriesFinancialDescription">
     <value>In der Finanzwelt ist Datensicherheit ein ernstes Geschäft. Verschlüsselung ermöglicht verschiedene Arten von wirtschaftlichen Aktivitäten, die sonst nicht möglich wären. Die Finanzdienstleistungsbranche ist von den gestiegenen Erwartungen der Verbraucher, über ihre elektronischen Geräte überall und jederzeit auf Informationen zuzugreifen, Hilfe zu erhalten und Transaktionen durchzuführen, am stärksten betroffen. Durch die Umwandlung von Klartext in Chiffretext hilft Verschlüsselung Banken, Versicherungsunternehmen, Akteuren auf dem Kreditmarkt, Unternehmen, Risikokapitalfonds, Anlageberatern, Fondsmanagern, Beratungsunternehmen usw. schützen Sie sensible Informationen, so dass nur die autorisierten Benutzer mit dem richtigen Schlüssel entschlüsseln und verstehen können</value>
   </data>
+  <data name="IndustriesFinancialHeading">
+    <value>Schutz hochsensibler Finanzinformationen</value>
+  </data>
+  <data name="IndustriesFinancialParagraph">
+    <value>Mit der AxCrypt-Verschlüsselung werden Kundeninformationen und Unternehmensgeschäfte sicher vor neugierigen Blicken gespeichert.</value>
+  </data>
   <data name="IndustriesFinancialProtection">
     <value>Es entspricht den nationalen und internationalen Vorschriften, die Unternehmen benötigen sollten und müssen, umgeht Verstöße jedes Mal, wenn der Markt schwankt, zeigt die relevanten Informationen des Unternehmens an, wenn interne Kontrollen stattfinden, da nur zugelassene Personen Zugang dazu haben und die mit der Nichteinhaltung verbundenen erheblichen Geldbußen umgehen.</value>
   </data>
@@ -2577,6 +2676,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   </data>
   <data name="IndustriesGovernmentDescription">
     <value>Strafverfolgungsbeamte weisen auf die weit verbreitete und zunehmende Verwendung von Verschlüsselung hin. Eine seiner Aufgaben ist der Schutz der Privatsphäre und der bürgerlichen Freiheiten. Verschlüsselung verhindert den Diebstahl von Informationen und trägt so dazu bei, die Gesellschaft sicherer und sicherer zu machen. Als Regierung können Sie sich auf AxCrypt verlassen, um Bedrohungen durch eine Vielzahl von Akteuren entgegenzuwirken, darunter unkomplizierte und hoch entwickelte Kriminelle, ausländische Geheimdienste und repressive Regierungen. Die NSA verwendet AES, um Daten zu verschlüsseln, was ein Beweis für ihre Sicherheit sein sollte.</value>
+  </data>
+  <data name="IndustriesGovernmentHeading">
+    <value>Elektronisch archivierte vertrauliche Dokumente aufbewahren</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph">
+    <value>Verschlüsselung verhindert den Diebstahl von Informationen und trägt so dazu bei, die Gesellschaft sicherer und sicherer zu machen. Strafverfolgungsbeamte weisen auf den weit verbreiteten und zunehmenden Einsatz von Verschlüsselung hin.</value>
   </data>
   <data name="IndustriesGovernmentProtection">
     <value>AxCrypt stellt sicher, dass Ihr Unternehmen Vorschriften wie die Datenschutz-Grundverordnung (DSGVO) einhält.</value>
@@ -2608,6 +2713,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   <data name="IndustriesHealthcareDescription">
     <value>Der Bedarf an Verschlüsselung ist in Krankenhäusern, Pflegeheimen und Rehabilitationseinrichtungen immer größer geworden. Mit der rasanten Zunahme der Anzahl von Praktiken, die elektronische Gesundheitsakten wie EMRs verwenden, die Übermittlung von Patientengesundheitsinformationen per E-Mail, einschließlich Versicherungsinformationen, angemessene Dosierungsbeträge für Medikamente und andere persönliche Informationen, ist dies das digitale Zeitalter des Gesundheitswesens und sensible Informationen benötigen ein hohes Maß an Sicherheit. AxCrypt bietet eine einfache und reibungslose Benutzererfahrung für Mitarbeiter, Patienten und Geschäftspartner.</value>
   </data>
+  <data name="IndustriesHealthcareHeading">
+    <value>Sichere personenbezogene Daten und Gesundheitsakten</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph">
+    <value>Halten Sie die lokalen und bundesstaatlichen Datenschutzbestimmungen ein und bauen Sie gleichzeitig Vertrauen zwischen Ihrer Einrichtung und potenziellen Patienten auf.</value>
+  </data>
   <data name="IndustriesHealthcareProtection">
     <value>In Übereinstimmung mit den Datenschutzgesetzen helfen wir dabei, Vertrauen zwischen Ihrer Einrichtung und potenziellen Patienten aufzubauen, indem wir Online-Termine, die Kommunikation mit einem Arzt und die zwischen den Institutionen gesendeten Krankenakten schützen. AxCrypt stellt sicher, dass Ihr Unternehmen Vorschriften wie das Health Insurance Portability and Accountability Act (HIPAA), das Health Information Technology for Economic and Clinical Health Act (HITECH) und die Allgemeine Datenschutzverordnung (DSGVO) einhält.</value>
   </data>
@@ -2616,6 +2727,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   </data>
   <data name="IndustriesHealthcareTeamwork">
     <value>Gesundheitsorganisationen sammeln, verwalten und verteilen eine enorme Menge an medizinischen und persönlichen Aufzeichnungen. Die Verschlüsselung macht Daten sicherer, egal ob sie transportiert werden oder in Ruhe sind. Kurz gesagt, es schützt die sensiblen medizinischen Informationen von Patienten vor Diebstählen und Datenverletzungen. Der Austausch von Informationen zwischen Ärzten, Krankenschwestern und Spezialisten ist einfach, schnell und risikolos. Verwenden Sie den Hauptschlüssel, eine Funktion, mit der Geschäftsadministratoren Dateien der Geschäftsmitglieder wiederherstellen können, wodurch das Risiko des Verlusts des Zugriffs auf kritische Dateien aufgrund des Verlassens oder Vergessens ihrer Passwörter durch Mitarbeiter vermieden wird.</value>
+  </data>
+  <data name="IndustriesHeroButton">
+    <value>Entdecken Sie AxCrypt Business</value>
+  </data>
+  <data name="IndustriesHeroText0">
+    <value>Wir verändern die Art, wie Menschen kommunizieren und arbeiten.</value>
   </data>
   <data name="IndustriesHeroText1">
     <value>Wir verändern die Art und Weise, wie Menschen kommunizieren und arbeiten. Mit unserer 256-Bit-Verschlüsselung erhöht AxCrypt die Datensicherheit und reduziert das Risiko von Verstößen, indem es eine benutzerfreundliche und benutzerfreundliche Verschlüsselungssoftware implementiert und Vertraulichkeit und Integrität schützt. Steigern Sie Ihre Produktivität und fragen Sie sich nicht mehr über Ihre Online-Privatsphäre. Nehmen Sie die volle Kontrolle über Ihre Daten zurück und erleben Sie digitales Vertrauen. Neugierig auf Verschlüsselung und verwandte Themen, werfen Sie einen Blick auf unsere wöchentlich aktualisierten &lt;a href="/blog"&gt;Blogs&lt;/a&gt;. Hier bei AxCrypt stehen wir Ihnen gerne zur Seite und beantworten Ihre Fragen zur Verschlüsselung.</value>
@@ -2632,6 +2749,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   <data name="IndustriesLegalDescription">
     <value>Mehr als je zuvor werden persönliche und vertrauliche Informationen im Klartext über das Internet übertragen und potenziell offengelegt. Die Rechtsbranche ist von den gestiegenen Erwartungen der Verbraucher, über ihre elektronischen Geräte überall und jederzeit auf Informationen zuzugreifen, Hilfe zu erhalten und Vereinbarungen zu treffen, am stärksten betroffen. Egal, ob Sie ein Solo-Praktiker im Strafrecht oder ein Inhouse-Unternehmensanwalt bei einem Fortune 500-Unternehmen sind, Verschlüsselung wirkt sich auf viele der Probleme, die Sie begegnen, ob Sie es erkennen oder nicht.</value>
   </data>
+  <data name="IndustriesLegalHeading">
+    <value>Schützen Sie geheime Verträge, Testamente und Aufzeichnungen</value>
+  </data>
+  <data name="IndustriesLegalParagraph">
+    <value>Eine Verschlüsselung ist bei der Speicherung und Weitergabe sensibler Informationen unbedingt erforderlich, um einer unbefugten und rechtswidrigen Verarbeitung personenbezogener Daten zu entgehen. Reduzieren Sie das Risiko von Verstößen durch die Implementierung einer benutzerfreundlichen und benutzerfreundlichen Verschlüsselungssoftware.</value>
+  </data>
   <data name="IndustriesLegalProtection">
     <value>AxCrypt stellt sicher, dass Ihr Unternehmen Vorschriften wie die Datenschutz-Grundverordnung (DSGVO) einhält.</value>
   </data>
@@ -2644,6 +2767,18 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   <data name="IndustriesLinkLabel">
     <value>Industrie</value>
   </data>
+  <data name="IndustriesStatistic1">
+    <value>Kunden Weltweit</value>
+  </data>
+  <data name="IndustriesStatistic2">
+    <value>PCMag Editors' Choice</value>
+  </data>
+  <data name="IndustriesStatistic3">
+    <value>Benutzer-downloads</value>
+  </data>
+  <data name="IndustriesStatistic4">
+    <value>verfügbare Sprachen</value>
+  </data>
   <data name="IndustriesTechCloud">
     <value>Sichern Sie Ihre Dateien/Dokumente automatisch auf mehreren Cloud-Speicherdiensten wie Google Drive und Dropbox und verwalten Sie den Zugriff auf Ihre Passwörter nahtlos, wo immer Sie sich befinden. Alle Informationen stehen allen Mitgliedern zur Verfügung, die an der Behandlung der Patienten beteiligt sind.</value>
   </data>
@@ -2652,6 +2787,12 @@ Das kann dazu führen, dass einige Operationen sehr lang dauern können. Bitte p
   </data>
   <data name="IndustriesTechDescription">
     <value>In einer Welt, in der jeder Aspekt unseres Alltags sehr digital ist, entsteht ein dringendes Bedürfnis nach Privatsphäre und Vertrauen, insbesondere nach dem Experimentieren mit Datenschutzverletzungen. Die Tools und Dienste, die Sie täglich nutzen, sind weder offen, sicher noch privat.​ ​Lage Ihrer Daten und wie sie gespeichert und verarbeitet werden, werden zu oft in einer zweifelhaften und schattigen Art und Weise verwaltet. AxCrypt ist bestrebt, eine Zukunft aufzubauen, die die Privatsphäre aller respektiert. Mit unserer Zero-Knowledge-Verschlüsselungssoftware und einem Schlüssel, der nur Ihnen gehört und auf Ihrem Gerät verbleibt, kann niemand sonst auf Ihre Daten zugreifen.</value>
+  </data>
+  <data name="IndustriesTechHeading">
+    <value>Erhöhen Sie die Datensicherheit mit 128-Bit- oder 256-Bit-Verschlüsselung</value>
+  </data>
+  <data name="IndustriesTechParagraph">
+    <value>Mit unserer 128-Bit-oder 256-Bit-Verschlüsselung erhöht AxCrypt die Datensicherheit und reduziert das Risiko von Verstößen durch die Implementierung einer benutzerfreundlichen und benutzerfreundlichen Verschlüsselungssoftware.</value>
   </data>
   <data name="IndustriesTechProtection">
     <value>Die Einführung der Verschlüsselung ist ein hervorragender Schritt für Technologieunternehmen, da sie Sicherheit und die Fähigkeit bietet, eine wachsende Anzahl von Vorschriften einzuhalten. Zumal das Volumen und der Prozentsatz der verschlüsselten Daten nur weiter wachsen werden.</value>
@@ -3264,9 +3405,7 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Wenn die Probezeit endet, können Sie die AxCrypt Smartphone Applikationen nicht mehr benutzen. Dafür ist eine bezahltes Abonnement erforderlich. 
-
-Sie können jederzeit verschlüsselte Dateien mit der kostenlosen Desktopversion von AxCrypt öffnen.</value>
+    <value>Wenn der Probezeit endet, können Sie die mobilen AxCrypt-Apps nicht mehr zum Sichern neuer Dateien verwenden (Sie können jedoch immer auf zuvor gesicherte Dateien zugreifen).</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Sobald die kostenlose Periode endet, benutzen Sie weiterhin AxCrypt Free, solange bis Sie sich entscheiden ein Abonnement zu kaufen.</value>
@@ -3671,6 +3810,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   </data>
   <data name="PhoneLabel">
     <value>Telefon</value>
+  </data>
+  <data name="PhoneNumberLabel">
+    <value>Telefonnummer</value>
   </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
     <value>Polnisch</value>
@@ -4225,6 +4367,9 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
     <value>Aktive Dateien bereinigen</value>
   </data>
   <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
+    <value>&lt;b&gt;Haben Sie Fragen zu AxCrypt Business?&lt;/b&gt;Bitte &lt;a href="mailto:business@axcrypt.net"&gt; Kontaktieren Sie uns&lt;/a&gt; und wir helfen Ihnen so schnell wie möglich.</value>
+  </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
     <value>&lt;b&gt;Haben Sie Fragen zu AxCrypt Business?&lt;/b&gt;Bitte &lt;a href="mailto:business@axcrypt.net"&gt; Kontaktieren Sie uns&lt;/a&gt; und wir helfen Ihnen so schnell wie möglich.</value>
   </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
@@ -4810,9 +4955,6 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Keine]</value>
   </data>
-  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Sie haben keinen gültigen Abonnementplan und können daher nicht mehr länger Passworteinträge bearbeiten oder erstellen. Sie können jedoch noch bestehende Einträge sehen. Wenn Sie Ihre 30-tätige Premium Testphase noch nicht benutzt haben, können Sie sie auf &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt; beginnen.</value>
-  </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ihr Premium Abonnement läuft bald ab, am {0}. Danach müssen Sie Ihr Premium Abonnement verlängern um weiterhin Passworteinträge zu erstellen oder zu verändern. Andernfalls werden Sie nur noch Lesezugriff auf der Seite haben.</value>
   </data>
@@ -5330,6 +5472,12 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock11Heading">
     <value>Premium Testversion</value>
   </data>
+  <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
+    <value>Premium &amp; Business-Testversion</value>
+  </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>Wir bieten 30 Tage kostenlose Testversion für den AxCrypt Premium-oder Business-Plan für neue Benutzer. Wenn Ihnen das Produkt nicht gefällt, können Sie das Abonnement vor Ablauf der Testversion kündigen. Die Kündigung des Abonnements kann jederzeit erfolgen. Wenn Sie dies tun, hat dies keine Auswirkungen auf die Testversion und Sie können während Ihres Testzeitraums weiterhin alle Funktionen des Business &amp; Premium-Abonnements nutzen. Nach der 30-tägigen kostenlosen Testversion belasten wir Ihre Kreditkarte, wenn Sie Ihr Abonnement nicht gekündigt haben. Es wird keine Rückerstattung gewährt, wenn Sie Ihr Abonnement während des Testzeitraums nicht gekündigt haben . Wir behalten uns vor, solche Angebote jederzeit ohne vorherige Ankündigung zurückzuziehen oder zu ändern.</value>
+  </data>
   <data name="TermsOfUseBlock11Text1">
     <value>Wir bieten Ihnen möglicherweise an, Premium kostenlos auszuprobieren, sodass Sie für einen begrenzten Zeitraum auf erweiterte Funktionen zugreifen können. Solche Angebote werden pro person gemacht, nicht pro AxCrypt ID-Konto. Wir behalten uns das Recht vor, solche Angebote jederzeit ohne Vorherige Ankündigung zurückzuziehen oder zu ändern.</value>
   </data>
@@ -5525,6 +5673,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
     <value>Vielen Dank für die Wahl AxCrypt Business</value>
   </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
+    <value>Vielen Dank für die Wahl AxCrypt Business</value>
+  </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
     <value>Vielen Dank für die Wahl AxCrypt!</value>
   </data>
@@ -5664,6 +5815,9 @@ Das AxCrypt Team</value>
   </data>
   <data name="UpdateAvailableTitle" xml:space="preserve">
     <value>Update Verfügbar</value>
+  </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>Bitte, aktualisieren Sie die Zahlungsdaten</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Status aktualisieren</value>

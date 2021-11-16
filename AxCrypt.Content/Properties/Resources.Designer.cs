@@ -14711,7 +14711,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Trial period, you can start it from &lt;a href=&quot;https://account.axcrypt.net/en/Home/Upgrade&quot;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to You do not have a valid subscription plan and can therefore no longer edit or create new password entries. However, you can still see existing entries. If you have not used your 30 day Trial period, you can start it from &lt;a href=&quot;/Home/Upgrade&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string SecretsWarningIsReadOnly {
             get {

@@ -273,6 +273,51 @@
     <value>选择一个文件夹，以保持与AxCrypt安全。 现有文件现在将被加密。</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AffiliateAdvantagesHeading">
+    <value>AxCrypt联盟营销优势</value>
+  </data>
+  <data name="AffiliateAdvantagesSubHeading">
+    <value>无论您是企业，博主，视频博客，影响者还是媒体发布者，Axcrypt联盟计划都可以提供市场上最好的奖励。</value>
+  </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>慷慨的佣金 - 我们很自豪能够提供25％的佣金，这是业内最好的之一。</value>
+  </data>
+  <data name="AffiliateAdvantagesText2">
+    <value>专用客户经理 - 通过专门的客户经理，您将获得从设置到一对一咨询的每个步骤所需的帮助。</value>
+  </data>
+  <data name="AffiliateAdvantagesText3">
+    <value>全球复盖 - Axcrypt分支机构在全球范围内开展活动。 这使您可以从地球的各个角落获得流量，转换和收入。</value>
+  </data>
+  <data name="AffiliateAdvantagesText4">
+    <value>最高转化率 - 我们优化的营销策略和强大的品牌声誉导致高百分比的转化率。 这可以让你最大限度地提高你的收入潜力。</value>
+  </data>
+  <data name="AffiliateInfoHeading">
+    <value>成为AxCrypt联盟</value>
+  </data>
+  <data name="AffiliateInfoText1">
+    <value>加入我们的联盟计划，提供有价值的加密解决方案，同时赚取丰厚的佣金。</value>
+  </data>
+  <data name="AffiliateInfoText2">
+    <value>AxCrypt是一个易于使用的加密程序，可在Windows，Mac，iOS和Android上使用。 AxCrypt已发展成为世界上最受欢迎的加密应用程序之一，全球下载量超过2000万，并连续6年被着名的PC杂志评为2021的"最佳加密软件"。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语，普通话等。</value>
+  </data>
+  <data name="AffiliateInstructionsHeading">
+    <value>推广AxCrypt并从每次销售中赚取利润</value>
+  </data>
+  <data name="AffiliateInstructionsStep1">
+    <value>在几秒钟内注册成为我们联盟计划的成员</value>
+  </data>
+  <data name="AffiliateInstructionsStep2">
+    <value>获得独家连接和宣传材料。 利用我们的营销资产，让您的营销活动开始</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>推荐AxCrypt并在每次付费转换中获得25％的佣金</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading">
+    <value>AxCrypt现在为您提供一个联盟机会，您可以通过推广AxCrypt从每次销售中获得报酬。 让我们现在开始吧。</value>
+  </data>
+  <data name="AffiliateLinkLabel">
+    <value>联盟</value>
+  </data>
   <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
     <value>我明白，这不会重新访问我的加密文件</value>
   </data>
@@ -608,6 +653,9 @@
   </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>计划设置和付款</value>
+  </data>
+  <data name="BusinessEmailLabel">
+    <value>企业邮箱</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>您的AxCrypt Business订阅{0}已结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
@@ -1240,6 +1288,9 @@
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>我们的业务支持将尽快与您联系，以帮助您开始使用您的业务帐户！ 单击继续转到您的帐户。</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>祝贺和欢迎AxCrypt Business！</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel">
     <value>文件的加密哈希</value>
   </data>
@@ -1443,6 +1494,9 @@
   </data>
   <data name="DownloadAxcrypt2LinkLabel">
     <value>AxCrypt 2下载</value>
+  </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>下载AxCrypt应用程序</value>
   </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt 适用于macOS</value>
@@ -2152,6 +2206,9 @@
   <data name="FreeLabel">
     <value>Free</value>
   </data>
+  <data name="FullNameLabel">
+    <value>全名</value>
+  </data>
   <data name="GdprBlock1Heading">
     <value>什么是GDPR？</value>
   </data>
@@ -2398,8 +2455,32 @@
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: 密码管理</value>
   </data>
+  <data name="GetStartedPasswordResetHeading">
+    <value>密码重置</value>
+  </data>
+  <data name="GetStartedPasswordResetIngress">
+    <value>您是否忘记了您的AxCrypt ID密码？ 您现在可以进行密码重置。 通过重置密码，您可以再次登录，但您将无法访问使用旧密码加密的文件。 有关如何重置密码的说明，请参阅下面的视频。</value>
+  </data>
+  <data name="GetStartedPasswordResetStep1">
+    <value>转到应用程序中的文件选项，然后选择"密码重置"或直接前往&lt;a href='https://account.axcrypt.net/zh/首页/密码重置'&gt;密码重置&lt;/a&gt;。</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2">
+    <value>您将被重定向到我们的网站，在那里您可以请求重置。</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3">
+    <value>验证后，请按照发送到您的电子邮件地址的电子邮件中的提示进行操作。</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac">
+    <value>AxCrypt：Mac上的密码重置</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows">
+    <value>AxCrypt：密码重置</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>请登录以获取您的订阅！ 如果您还没有帐户，您首先需要&lt;a href="{0}Home/Register/"&gt;注册&lt;/a&gt;。</value>
+  </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>转到我的AxCrypt</value>
   </data>
   <data name="GovernmentLinkLabel">
     <value>政府</value>
@@ -2560,14 +2641,26 @@
   <data name="IndexPageTitle" xml:space="preserve">
     <value>我的AxCrypt ID</value>
   </data>
+  <data name="IndustriesAboutLinkLabel">
+    <value>关于行业</value>
+  </data>
   <data name="IndustriesBenefitsTitle">
     <value>使用Axcrypt的好处</value>
+  </data>
+  <data name="IndustriesBlogLabel">
+    <value>新的加密？ 查看我们的博客获取最新消息。</value>
   </data>
   <data name="IndustriesEducationCloud">
     <value>简单地管理您的数据。 由于我们的云存储感知功能，任何人都可以在不同设备上访问内容，因此小组项目和演示文稿可以顺利运行。</value>
   </data>
   <data name="IndustriesEducationDescription">
     <value>在线课程和数字教学蓬勃发展。 在课堂，讲座或在线会议期间使用计算机或平板电脑等数字设备越来越频繁。 通过对PDF文档做笔记或评论，积累了大量的数据。 AxCrypt以文件和文档的形式存储工作和研究时，有助于保护私人信息。 我们确保只有您和您的认可团队才能访问您的私人数据。</value>
+  </data>
+  <data name="IndustriesEducationHeading">
+    <value>加密专有文章，资料，报告，论文和研究</value>
+  </data>
+  <data name="IndustriesEducationParagraph">
+    <value>访问您的所有文档并在您的设备上同步它们，同时保护您的文件免受代价高昂的数据泄露。</value>
   </data>
   <data name="IndustriesEducationProtection">
     <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
@@ -2584,6 +2677,12 @@
   <data name="IndustriesFinancialDescription">
     <value>在金融领域，数据安全是一项严肃的业务。 加密使各种类型的经济活动，否则将不可能。 金融服务行业受到消费者通过其电子设备随时随地获取信息，获得帮助和进行交易的期望越来越高的影响。通过将明文转换为密文，加密可以帮助银行，保险公司，信贷市场的参与者，公司，风险投资基金，投资顾问，基金经理，咨询公司等。 保护敏感信息，因此只有授权用户才能使用正确的密钥解密和理解信息。</value>
   </data>
+  <data name="IndustriesFinancialHeading">
+    <value>保护高度敏感的财务信息</value>
+  </data>
+  <data name="IndustriesFinancialParagraph">
+    <value>使用AxCrypt加密，客户的信息和公司交易安全存储，免受窥探。</value>
+  </data>
   <data name="IndustriesFinancialProtection">
     <value>它符合公司应该和必须需要的国内和国际法规，在市场波动时绕过违规行为，在内部控制发生时显示公司的相关信息，因为只有经过批准的个人才能访它，并避开与不遵守相关的巨额罚款。</value>
   </data>
@@ -2598,6 +2697,12 @@
   </data>
   <data name="IndustriesGovernmentDescription">
     <value>执法人员指出，加密的广泛和越来越多的使用。 它的作用之一是保护隐私和公民自由。 加密可以防止信息被盗，从而帮助使社会更加安全和安全。 作为一个政府，您可以依靠AxCrypt来对抗来自广泛行为者的威胁，包括简单而复杂的犯罪分子，外国情报机构和压制性政府。 国安局使用AES加密数据，这应该足以证明其安全性。</value>
+  </data>
+  <data name="IndustriesGovernmentHeading">
+    <value>保留电子存档的机密文件</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph">
+    <value>加密可以防止信息被盗，从而帮助使社会更加安全和安全。 执法官员指出，加密的广泛和不断增加的使用。</value>
   </data>
   <data name="IndustriesGovernmentProtection">
     <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
@@ -2629,6 +2734,12 @@
   <data name="IndustriesHealthcareDescription">
     <value>在医院，养老院和康复设施中，加密的需求变得更加普遍。 随着使用电子病历等电子健康记录的实践数量的迅速增加，通过电子邮件传输患者的医疗保健信息，包括保险信息，药物的适当剂量和其他个人信息，这是医疗保健的数字时代，敏感信息需要高度的安全性。AxCrypt为员工，患者和商业伙伴提供简单而无摩擦的用户体验。</value>
   </data>
+  <data name="IndustriesHealthcareHeading">
+    <value>保护个人身份信息和健康记录</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph">
+    <value>在您的机构和潜在患者之间建立信任的同时，遵守当地和联邦数据保护法规。</value>
+  </data>
   <data name="IndustriesHealthcareProtection">
     <value>根据符合数据保护法，我们帮助您的机构和潜在患者之间建立信任，保护在线预约，与医疗专业人员的沟通以及机构之间发送的健康记录。 AxCrypt确保您的组织保持符合法规，如健康保险可移植性和责任法案（HIPAA），健康信息技术经济和临床健康法案（HITECH）和一般数据保护条例（GDPR）。</value>
   </data>
@@ -2637,6 +2748,12 @@
   </data>
   <data name="IndustriesHealthcareTeamwork">
     <value>医疗保健组织收集，管理和分发大量的医疗和个人记录。 加密使数据更安全，无论是传输还是静态数据。 简而言之，它可以保护患者的敏感医疗信息免受盗窃和数据泄露。 医生，护士和专家之间的信息交换是简单，快速和无风险的。使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
+  </data>
+  <data name="IndustriesHeroButton">
+    <value>了解AxCrypt业务</value>
+  </data>
+  <data name="IndustriesHeroText0">
+    <value>我们改变人们沟通和工作的方式。</value>
   </data>
   <data name="IndustriesHeroText1">
     <value>我们改变人们沟通和工作的方式。 通过我们的256位加密，AxCrypt通过实施用户友好且易于使用的加密软件并保护机密性和完整性来提高数据安全性并降低违规风险。 提高您的工作效率，并停止怀疑您的在线隐私。恢复对数据的完全控制，体验数字信任。 好奇加密和相关主题，看看我们每周更新的&lt;a href="/博客"&gt;博客&lt;/a&gt;。 在AxCrypt，我们很乐意为您提供帮助并回答您对加密的任何问题。</value>
@@ -2653,6 +2770,12 @@
   <data name="IndustriesLegalDescription">
     <value>个人和机密信息比以往任何时候都更多地以明文形式通过互联网传输，并可能暴露出来。 法律行业受到消费者通过电子设备随时随地访问信息，获得帮助和执行协议的期望越来越高的影响，这是受打击最严重的行业之一。无论您是刑法的独立从业者还是财富500强公司的内部公司律师，加密都会影响您遇到的许多问题，无论您是否意识到这一点。</value>
   </data>
+  <data name="IndustriesLegalHeading">
+    <value>保护机密合同、遗嘱和记录</value>
+  </data>
+  <data name="IndustriesLegalParagraph">
+    <value>在存储和共享敏感信息时，加密是绝对必要的，以避免未经授权和非法处理个人数据。 通过实施用户友好且易于使用的加密软件来降低违规风险。</value>
+  </data>
   <data name="IndustriesLegalProtection">
     <value>AxCrypt确保您的组织遵守通用数据保护条例（GDPR）等法规。</value>
   </data>
@@ -2665,6 +2788,18 @@
   <data name="IndustriesLinkLabel">
     <value>行业</value>
   </data>
+  <data name="IndustriesStatistic1">
+    <value>全球客户</value>
+  </data>
+  <data name="IndustriesStatistic2">
+    <value>PCMag编辑选择</value>
+  </data>
+  <data name="IndustriesStatistic3">
+    <value>用户的下载</value>
+  </data>
+  <data name="IndustriesStatistic4">
+    <value>可用的语言</value>
+  </data>
   <data name="IndustriesTechCloud">
     <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
   </data>
@@ -2673,6 +2808,12 @@
   </data>
   <data name="IndustriesTechDescription">
     <value>在我们日常生活的各个方面都高度数字化的世界中，隐私和信任的迫切需求出现了，特别是在尝试数据泄露之后。 您每天使用的工具和服务既不是开放的，安全的，也不是私人的。​ ​数据的位置以及它们的存储和处理方式通常以可疑和阴暗的方式进行管理。AxCrypt致力于建立一个尊重每个人隐私的未来。 使用我们的零知识加密软件和只属于您并保留在您设备上的密钥，其他人无法访问您的数据。</value>
+  </data>
+  <data name="IndustriesTechHeading">
+    <value>通过128位或256位加密提高数据安全性</value>
+  </data>
+  <data name="IndustriesTechParagraph">
+    <value>通过我们的128位或256位加密，AxCrypt通过实施用户友好且易于使用的加密软件来提高数据安全性并降低违规风险。</value>
   </data>
   <data name="IndustriesTechProtection">
     <value>采用加密是技术服务公司的一个很好的步骤，因为它增加了安全性和遵守越来越多法规的能力。 特别是因为加密数据的数量和百分比只会继续增长。</value>
@@ -3410,9 +3551,7 @@ SE-114 29 斯德哥尔摩
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
   <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>试用期结束后，您无法使用AxCrypt移动应用程序。 付费订阅是必需的。
-
-您可以随时使用AxCrypt的免费桌面版本打开加密文件。</value>
+    <value>试用期结束后，您将无法使用AxCrypt移动应用程序来保护新文件（但您始终可以访问以前受保护的文件）。</value>
   </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>当试用期结束时，除非您选择购买订阅，否则您将自动继续使用AxCrypt Free。</value>
@@ -3825,6 +3964,9 @@ SE-114 29 斯德哥尔摩
     <value>每月/每个用户</value>
   </data>
   <data name="PhoneLabel">
+    <value>电话号码</value>
+  </data>
+  <data name="PhoneNumberLabel">
     <value>电话号码</value>
   </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
@@ -4385,6 +4527,10 @@ SE-114 29 斯德哥尔摩
     <value>清除活动文件</value>
   </data>
   <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
+    <value>&lt;b&gt;您对AxCrypt业务有任何疑问吗？&lt;/b&gt;
+请&lt;a href="mailto:business@axcrypt.net"&gt;联系我们&lt;/a&gt;我们将尽快帮助您。</value>
+  </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
     <value>&lt;b&gt;您对AxCrypt业务有任何疑问吗？&lt;/b&gt;
 请&lt;a href="mailto:business@axcrypt.net"&gt;联系我们&lt;/a&gt;我们将尽快帮助您。</value>
   </data>
@@ -4952,9 +5098,6 @@ SE-114 29 斯德哥尔摩
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[无]</value>
   </data>
-  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>您没有有效的订阅计划，因此无法再编辑或创建新密码条目。 但是，您仍然可以查看现有条目。 如果您还没有使用您的30天高级试用期，您可以从&lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt应用程序&lt;/a&gt;开始。</value>
-  </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>您的premium订阅很快就会在{0}到期。 此后，您必须扩展您的premium订阅才能编辑或创建新的密码条目。 您将无限期保留只读访问权限。</value>
   </data>
@@ -5477,6 +5620,12 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock11Heading">
     <value>Premium 试用</value>
   </data>
+  <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
+    <value>Premium和Business试用</value>
+  </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>我们为新用户提供AxCrypt Premium或Business订阅的30天免费试用。 如果您不喜欢该产品，您可以在试用结束前取消订阅。 可以随时取消订阅。 这样做不会影响试用，您仍然可以在试用期内使用Business＆Premium订阅附带的所有功能。 免费试用30天后，如果您尚未取消订阅，我们将从您的信用卡中扣除费用。 如果您在试用期内没有取消订阅，则不会退款。 我们保留随时撤销或修改此类优惠的权利，恕不另行通知。</value>
+  </data>
   <data name="TermsOfUseBlock11Text1">
     <value>我们可能会为您提供免费试用Premium版，让您在有限的时间内访问扩展功能。 这样的优惠是每人进行的，而不是每个AxCrypt ID帐户。 我们保留随时撤回或修改此类优惠的权利，恕不另行通知。</value>
   </data>
@@ -5672,6 +5821,9 @@ SE-114 29 斯德哥尔摩
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
     <value>感谢您选择AxCrypt Business</value>
   </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
+    <value>感谢您选择AxCrypt Business</value>
+  </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
     <value>感谢您选择AxCrypt！</value>
   </data>
@@ -5814,6 +5966,9 @@ AxCrypt团队</value>
   </data>
   <data name="UpdateAvailableTitle" xml:space="preserve">
     <value>更新可用</value>
+  </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>更新付款详情</value>
   </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>更新状态</value>
