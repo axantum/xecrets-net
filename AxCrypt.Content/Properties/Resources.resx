@@ -1727,6 +1727,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Your subscription expired due to not being able to charge your card. To continue the subscription, update your payment details.</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Expire in</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>

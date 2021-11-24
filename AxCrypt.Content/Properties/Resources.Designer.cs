@@ -4553,6 +4553,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your subscription expired due to not being able to charge your card. To continue the subscription, update your payment details..
+        /// </summary>
+        public static string ExpiredUpdatePaymentDetailsWarning {
+            get {
+                return ResourceManager.GetString("ExpiredUpdatePaymentDetailsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expire in.
         /// </summary>
         public static string ExpireInLabelFirstPart {
