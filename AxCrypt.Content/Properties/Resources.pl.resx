@@ -174,6 +174,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium Okres Próbny</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Akcja</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>Podany email lub kod weryfikacyjny jest niepoprawny.</value>
   </data>
@@ -254,6 +257,9 @@ Wybierz coś trudnego do odgadnięcia, ponieważ hasło to będzie chronić has�
     <value>Być może wyślemy Ci jeszcze email, jeśli będzie to istotne dla funkcjonowania lub bezpieczeństwa AxCrypt.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>Dodaj więcej użytkowników</value>
+  </data>
   <data name="AddressLabel">
     <value>Adres </value>
   </data>
@@ -263,6 +269,18 @@ Wybierz coś trudnego do odgadnięcia, ponieważ hasło to będzie chronić has�
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Wybierz folder, który ma być zabezpieczony przez AxCrypt. Istniejące pliki zostaną teraz zaszyfrowane.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>Rozumiem, że nie odzyskam dostępu do moich zaszyfrowanych plików</value>
+  </data>
+  <data name="AllowAllCookiesPromptText" xml:space="preserve">
+    <value>Zezwól na wszystkie pliki cookie</value>
+  </data>
+  <data name="AllowCookieInfoText" xml:space="preserve">
+    <value>Ta strona korzysta z plików cookie, aby poprawić wrażenia użytkownika. Korzystając z naszej witryny, wyrażasz zgodę na wszystkie pliki cookie zgodnie z naszą Polityką plików cookie. &lt;a href='https://www.axcrypt.net/information/privacy-policy'&gt;Więcej informacji&lt;/a&gt;</value>
+  </data>
+  <data name="AllowCookiesPopupTitle" xml:space="preserve">
+    <value>Ta strona korzysta z plików cookie </value>
   </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Masz już konto? Zaloguj się tutaj</value>
@@ -312,6 +330,15 @@ Zaloguj się, używając tego samego hasła, którego używałeś.</value>
   </data>
   <data name="ApplyNowLabel">
     <value>Aplikuj teraz</value>
+  </data>
+  <data name="AppNotWorkExpectedText" xml:space="preserve">
+    <value>Aplikacje lub usługi nie działały zgodnie z oczekiwaniami</value>
+  </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>Klucza głównego nie można włączyć, będąc należąc do więcej niż jednej firmy. Przed włączeniem klucza głównego opuść wszystkie inne firmy, których jesteś częścią.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Zatwierdź klucz główny</value>
   </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Ze względów bezpieczeństwa ponownie podaj swoje hasło.</value>
@@ -537,6 +564,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BruteForceResistantText">
     <value>Dynamiczny środek przeciwdziałający brutalnej sile - iteracyjne zawijanie haseł jeszcze bardziej utrudnia ataki.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Przyjmij zaproszenie</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -550,6 +580,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>Witamy w AxCrypt Business</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>Zostałeś zaproszony do AxCrypt przez {0}. Ta firma ma włączony klucz główny funkcji, co oznacza, że zaszyfrowane pliki będą możliwe do odzyskania ze względów bezpieczeństwa przez administratorów firmy. Ta funkcja nie jest domyślnie włączona! Będziesz musiał zatwierdzić tę funkcję, przechodząc do strony &lt;a href='" + {1} + "'&gt;Mój identyfikator AxCrypt&lt;/a&gt;.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Administratorzy</value>
@@ -648,6 +681,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessFirstBodyText4">
     <value>Bardziej ekskluzywne funkcje biznesowe już wkrótce. Nie przegap okazji!</value>
   </data>
+  <data name="BusinessFirstBodyText5">
+    <value>Więcej ekskluzywnych funkcji biznesowych już wkrótce. Nie przegap!</value>
+  </data>
   <data name="BusinessHeroSubheading">
     <value>Stworzony dla firm</value>
   </data>
@@ -655,6 +691,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <value>&lt;p&gt;Zostałeś dodany przez &lt;b&gt;{0}&lt;/b&gt; jako użytkownik AxCrypt File Security. Aby zacząć zabezpieczać swoje pliki, po prostu &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;pobierz&lt;/a&gt; i  zinstaluj AxCrypt. Zaloguj się do AxCrypt używając &lt;b&gt;{2}&lt;/b&gt;, wpisz poniższy kod weryfikacyjny i ustaw swoje osobiste tajne hasło.&lt;/p&gt;
 &lt;/p&gt;Jeśli masz jakieś pytania, najpierw skontaktuj się z {0}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>Zostałeś zaproszony przez &lt;b&gt;{0}&lt;/b&gt;. Pamiętaj, że ta firma ma włączoną funkcję &lt;i&gt;klucz główny&lt;/i&gt;. Oznacza to, że zaszyfrowane pliki ze względów bezpieczeństwa będą mogły zostać odzyskane przez administratorów firmy. Akceptując to zaproszenie, zostaniesz dodany do firmy, a do Twoich plików zostanie zastosowany klucz główny. Jeśli nie chcesz być częścią tej firmy, zignoruj tę wiadomość e-mail i zamiast tego dokonaj &lt;a href='{1}'&gt;rejestracji&lt;/a&gt;.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -783,6 +822,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <value>Nie jesteś administratorem żadnych abonamentów.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
   </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Organizacja</value>
+  </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Nazwa Organizacji</value>
     <comment>The prompt for the an organization name</comment>
@@ -864,6 +906,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   </data>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>użytkownicy x</value>
+  </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>Wsparcie biznesowe</value>
   </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>Pierwszy miesiąc jest bezpłatny, potem:</value>
@@ -1055,6 +1100,9 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Twoje hasło zostało zmienione</value>
   </data>
+  <data name="ChangePlanText" xml:space="preserve">
+    <value>Chcę zmienić swój abonament</value>
+  </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>Sprawdź aktualizacje</value>
   </data>
@@ -1072,6 +1120,9 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Plik jest otwarty i może wymagać czyszczenia. Zamknij wszystkie otwarte aplikacje i kliknij przycisk Wyczyść.</value>
+  </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>Wyczyść</value>
   </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>Pamiętaj, że aplikacja przechowuje odszyfrowaną kopię pliku w lokalnej pamięci plików. Zostanie ona usunięta po wylogowaniu. Możesz także usunąć ją ręcznie przyciskiem Cleanup.</value>
@@ -1129,6 +1180,9 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Wykonać dla wszystkich pozostałych plików?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>Jeśli masz jakieś pytania, najpierw skontaktuj się z {0}.</value>
   </data>
   <data name="ContactHeading">
     <value>Kontakt </value>
@@ -1192,6 +1246,9 @@ Jeśli nie akceptujesz naszych tymczasowych plików cookie sesji, nie możesz si
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Nasze wsparcie biznesowe wkrótce skontaktuje się z Tobą, aby pomóc Ci rozpocząć korzystanie z konta biznesowego! Kliknij Kontynuuj, aby przejść do swojego konta.</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>Gratulujemy i witamy w AxCrypt Business!</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel">
     <value>Kryptograficzne skróty plików</value>
   </data>
@@ -1244,6 +1301,9 @@ Jeśli nie akceptujesz naszych tymczasowych plików cookie sesji, nie możesz si
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Przestań chronić i usuń z listy</value>
   </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>Kliknij, aby wybrać dokumenty do odszyfrowania</value>
+  </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Plik</value>
   </data>
@@ -1295,6 +1355,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="DescriptionLabel">
     <value>Opis</value>
+  </data>
+  <data name="DeselectAllFilesLabelText" xml:space="preserve">
+    <value>Odznacz wszystkie pliki</value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt ID</value>
@@ -1381,6 +1444,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="DoneTitle" xml:space="preserve">
     <value>Zrobione!</value>
   </data>
+  <data name="DontLikeRecurringFlowText" xml:space="preserve">
+    <value>Nie lubię subskrypcji cyklicznych</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Nie pokazuj więcej tego komunikatu.</value>
   </data>
@@ -1390,11 +1456,17 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="DownloadAxcrypt2LinkLabel">
     <value>Pobierz AxCrypt 2</value>
   </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>Pobierz aplikację AxCrypt</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt dla macOS</value>
   </data>
   <data name="DownloadHeroHeadingWindows">
     <value>AxCrypt dla Windows</value>
+  </data>
+  <data name="DownloadHeroHeadingWindowsPortable" xml:space="preserve">
+    <value>AxCrypt samodzielny/przenośny dla Windows</value>
   </data>
   <data name="DownloadHeroListDoubleClick">
     <value>Integracja z podwójnym kliknięciem sprawia, że otwieranie, edytowanie i zapisywanie zabezpieczonych plików jest równie łatwe, jak praca z plikami bez zabezpieczeń.</value>
@@ -1480,6 +1552,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Twój wpis został zaktualizowany.</value>
   </data>
+  <data name="EducationLinkLabel">
+    <value>Edukacja</value>
+  </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>Idź do skrzynki email</value>
     <comment>Text of link for opening mail application.</comment>
@@ -1502,6 +1577,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Brak opisu]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Włącz klucz główny</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Zabezpieczone Foldery</value>
@@ -1553,6 +1631,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="ErrorRequiredField">
     <value>To pole jest wymagane</value>
+  </data>
+  <data name="ExactlySelectOneFileText" xml:space="preserve">
+    <value>Proszę wybrać plik</value>
   </data>
   <data name="Exception" xml:space="preserve">
     <value>Wyjątek podczas przetwarzania "{0}".</value>
@@ -1883,6 +1964,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="FeaturesBusinessAdminDescription">
     <value>Zarządzaj kontem AxCrypt Business, twórz subskrypcje, zmieniaj informacje o firmie itp</value>
   </data>
+  <data name="FeaturesBusinessPrioritySupportDescription" xml:space="preserve">
+    <value>Uzyskaj szybkie i osobiste wsparcie dzięki dedykowanemu menedżerowi konta</value>
+  </data>
   <data name="FeaturesChangeToManage">
     <value>Możliwość zarządzania marketingiem, sprzedażą i wsparciem pierwszej linii na własnym terytorium</value>
   </data>
@@ -1933,6 +2017,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="FeaturesPasswordManagementDescription">
     <value>Przechowuj wszystkie swoje hasła i inne tajemnice w naszej chmurze</value>
+  </data>
+  <data name="FeaturesProfessionalUseDescription" xml:space="preserve">
+    <value>Chroń wszystkie dane związane z biznesem</value>
   </data>
   <data name="FeaturesProgressiveMargins">
     <value>Progresywne marże (wyższy procent przychodów przy wyższej sprzedaży)</value>
@@ -2020,6 +2107,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
     <value>Publiczny klucz udostępniania Pliki</value>
   </data>
+  <data name="FileInfoLabelText" xml:space="preserve">
+    <value>Informacja o pliku</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' jest otwarty w innej aplikacji. Upewnij się, że aplikacja ta jest zamknięta i spróbuj ponownie.</value>
   </data>
@@ -2044,6 +2134,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="FileWipeText">
     <value>Bezpieczne usuwanie plików.</value>
+  </data>
+  <data name="FinancialLinkLabel">
+    <value>Budżetowy</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Folder '{0}' jest już zabezpieczony.</value>
@@ -2339,11 +2432,29 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Zaloguj się, aby otrzymać subskrypcję! Jeśli nie masz jeszcze konta, musisz najpierw &lt;a href="{0}Home/Register/"&gt; zarejestrować się &lt;/a&gt;.</value>
   </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>Przejdź do mojego AxCrypt</value>
+  </data>
+  <data name="GoToOurBlogLinkLabel" xml:space="preserve">
+    <value>PRZEJDŹ DO NASZEGO BLOGA</value>
+  </data>
+  <data name="GoToPasswordManagerButtonText" xml:space="preserve">
+    <value>Przejdź do menedżera haseł</value>
+  </data>
+  <data name="GovernmentLinkLabel">
+    <value>Rząd</value>
+  </data>
+  <data name="GuidesLinkLabel">
+    <value>Wskazówki</value>
+  </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Świetnie! Masz już konto AxCrypt ID dla '{0}'.
  
 Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zresetować hasło.</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
+  <data name="HealthcareLinkLabel">
+    <value>Opieka zdrowotna</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>O</value>
@@ -2472,6 +2583,9 @@ Jeśli chcesz obejrzeć lub uaktualnić zawartość plików, proszę odszyfruj j
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Wybierz pliki kluczy udostępniania.</value>
   </data>
+  <data name="ImproveOurServiceCommentText" xml:space="preserve">
+    <value>Co poleciłbyś nam, aby ulepszyć nasze usługi?</value>
+  </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
     <value>Zamierzasz włączyć niebezpieczną opcję. Jeśli nie będziesz ostrożny, możesz mieć wpływ na więcej danych niż zamierzasz, powodując że operacje zajmą bardzo dużo czasu lub uszkadzając inne programy, w tym system operacyjny. Jesteś pewny?</value>
   </data>
@@ -2489,6 +2603,132 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>Mój AxCrypt ID</value>
+  </data>
+  <data name="IndustriesBenefitsTitle">
+    <value>Korzyści z używania Axcrypt</value>
+  </data>
+  <data name="IndustriesEducationCloud">
+    <value>Zarządzaj swoimi danymi w prosty sposób. Projekty grupowe i prezentacje mogą przebiegać płynnie, ponieważ zawartość jest dostępna dla każdego i z dowolnego miejsca na różnych urządzeniach dzięki naszej świadomości przechowywania w chmurze.</value>
+  </data>
+  <data name="IndustriesEducationDescription">
+    <value>Prężnie rozwijają się zajęcia online i nauczanie cyfrowe. Korzystanie z urządzeń cyfrowych, takich jak komputery czy tablety podczas zajęć, wykładów czy spotkań online, jest coraz częstsze. Robienie notatek lub komentowanie dokumentów PDF powoduje gromadzenie dużej ilości danych. AxCrypt pomaga chronić prywatne informacje podczas przechowywania pracy i badań w postaci plików i dokumentów. Dbamy o to, abyś Ty i tylko Twój akredytowany zespół miał dostęp do Twoich prywatnych danych. </value>
+  </data>
+  <data name="IndustriesEducationProtection">
+    <value>AxCrypt zapewnia, że Twoja organizacja pozostaje zgodna z przepisami, takimi jak ogólne rozporządzenie o ochronie danych (RODO).</value>
+  </data>
+  <data name="IndustriesEducationSecurity">
+    <value>Zabezpiecz swoją własność intelektualną i ważne dokumenty zanim je wyślesz. Eseje, artykuły, raporty, prace dyplomowe i wyniki badań mogą być szyfrowane za pomocą Axcrypt i chronione przed wyciekiem danych.</value>
+  </data>
+  <data name="IndustriesEducationTeamwork">
+    <value>Współpracuj i udostępniaj treści swoim kolegom z klasy, profesorom i przełożonym w bezpieczny i nieskomplikowany sposób. Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesFinancialCloud">
+    <value>Wielkość ruchu danych znacznie wzrosła. Informacje wędrują regularnie do różnych domen sieciowych, ponieważ bankowość konsumencka opiera się na różnych punktach końcowych interakcji i obejmuje środowisko wielu chmur. Uzyskaj dostęp do wszystkich swoich dokumentów i synchronizuj je na swoich urządzeniach, jednocześnie chroniąc pliki przed kosztownymi naruszeniami bezpieczeństwa danych.</value>
+  </data>
+  <data name="IndustriesFinancialDescription">
+    <value>W świecie finansów bezpieczeństwo danych to poważna sprawa. Szyfrowanie umożliwia różne rodzaje działalności gospodarczej, które w innym przypadku nie byłyby możliwe. Branża usług finansowych najbardziej ucierpiała z powodu zwiększonych oczekiwań konsumentów dotyczących dostępu do informacji, otrzymywania pomocy i przeprowadzania transakcji w dowolnym miejscu i czasie za pośrednictwem urządzeń elektronicznych. Konwertując tekst jawny na tekst zaszyfrowany, szyfrowanie pomaga bankom, towarzystwom ubezpieczeniowym, podmiotom na rynku kredytowym, korporacjom, funduszom venture, doradcom inwestycyjnym, zarządzającym funduszami, firmom konsultingowym itp. chronić poufne informacje, dzięki czemu tylko autoryzowani użytkownicy mogą, z odpowiednim kluczem, odszyfrować i zrozumieć informacje.</value>
+  </data>
+  <data name="IndustriesFinancialProtection">
+    <value>Zgodny z krajowymi i międzynarodowymi przepisami, których firmy powinny i muszą potrzebować, omija naruszenia za każdym razem, gdy rynek się zmienia, wyświetla istotne informacje firmy, gdy przeprowadzane są kontrole wewnętrzne, ponieważ dostęp do nich mają tylko zatwierdzone osoby i omija znaczne kary związane z nieprzestrzeganiem przepisów.</value>
+  </data>
+  <data name="IndustriesFinancialSecurity">
+    <value>Informacje klienta i oferty firmy są również bezpiecznie przechowywane przed wścibskimi oczami.</value>
+  </data>
+  <data name="IndustriesFinancialTeamwork">
+    <value>Wymiana dużej ilości danych jest prosta i łatwa. Zapewnia bezpieczeństwo transakcji handlu elektronicznego przez Internet, na przykład umożliwiając przesyłanie numerów kart kredytowych. Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesGovernmentCloud">
+    <value>Automatycznie zabezpieczaj swoje pliki/dokumenty w wielu usługach przechowywania w chmurze, takich jak Google Drive i Dropbox, i bezproblemowo zarządzaj dostępem do haseł, gdziekolwiek jesteś. Wszystkie informacje są dostępne dla wszystkich członków zaangażowanych w system administracyjny.</value>
+  </data>
+  <data name="IndustriesGovernmentDescription">
+    <value>Funkcjonariusze organów ścigania wskazują na powszechne i rosnące wykorzystanie szyfrowania. Jedną z jego ról jest ochrona prywatności i swobód obywatelskich. Szyfrowanie zapobiega kradzieży informacji, pomagając w ten sposób uczynić społeczeństwo bardziej bezpiecznym i bezpiecznym. Jako rząd możesz polegać na AxCrypt, aby przeciwdziałać zagrożeniom ze strony szerokiej gamy podmiotów, w tym niewyrafinowanych i wyrafinowanych przestępców, zagranicznych agencji wywiadowczych i represyjnych rządów. NSA używa AES do szyfrowania danych, co powinno być wystarczającym dowodem na jego bezpieczeństwo.</value>
+  </data>
+  <data name="IndustriesGovernmentProtection">
+    <value>AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak Ogólne rozporządzenie o ochronie danych osobowych (RODO).</value>
+  </data>
+  <data name="IndustriesGovernmentSecurity">
+    <value>Dzięki naszemu 128-bitowemu lub 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące.</value>
+  </data>
+  <data name="IndustriesGovernmentTeamwork">
+    <value>AxCrypt umożliwia otwieranie zabezpieczonych plików przez innych użytkowników AxCrypt za pomocą własnego hasła. Wymiana zaszyfrowanych informacji jest łatwa, szybka i bez ryzyka. Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesHeadingCloud">
+    <value>Świadomość przechowywania w chmurze i zarządzanie hasłami</value>
+  </data>
+  <data name="IndustriesHeadingConfidentiality">
+    <value>Poufność i integralność</value>
+  </data>
+  <data name="IndustriesHeadingProtection">
+    <value>Zgodność z przepisami o ochronie danych</value>
+  </data>
+  <data name="IndustriesHeadingSecurity">
+    <value>Bezpieczeństwo, niezawodność i prostota</value>
+  </data>
+  <data name="IndustriesHeadingTeamwork">
+    <value>Praca zespołowa, współpraca</value>
+  </data>
+  <data name="IndustriesHealthcareCloud">
+    <value>Automatycznie zabezpieczaj swoje pliki/dokumenty w wielu usługach przechowywania w chmurze, takich jak Google Drive i Dropbox, i bezproblemowo zarządzaj dostępem do haseł, gdziekolwiek jesteś. Wszystkie informacje są dostępne dla wszystkich członków zaangażowanych w leczenie pacjentów.</value>
+  </data>
+  <data name="IndustriesHealthcareDescription">
+    <value>Potrzeba szyfrowania stała się bardziej powszechna w szpitalach, domach opieki i ośrodkach rehabilitacyjnych. Wraz z szybkim wzrostem liczby praktyk wykorzystujących elektroniczną dokumentację medyczną, taką jak EMR, przesyłanie informacji dotyczących opieki zdrowotnej pacjentów pocztą elektroniczną, w tym informacji ubezpieczeniowych, odpowiednich dawek leków i innych danych osobowych, nastała cyfrowa era opieki zdrowotnej i potrzeb związanych z informacjami wrażliwymi. wysoki poziom bezpieczeństwa. AxCrypt oferuje łatwą i bezproblemową obsługę dla pracowników, pacjentów i partnerów biznesowych.</value>
+  </data>
+  <data name="IndustriesHealthcareProtection">
+    <value>Zgodnie z przepisami o ochronie danych pomagamy budować zaufanie między Twoją instytucją a potencjalnymi pacjentami, zabezpieczając wizyty online, komunikację z lekarzem i dokumentację medyczną przesyłaną między instytucjami. AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak ustawa o przenośności i odpowiedzialności w ubezpieczeniach zdrowotnych (HIPAA), ustawa o technologii informacyjnej w zakresie zdrowia gospodarczego i klinicznego (HITECH) oraz ogólne rozporządzenie o ochronie danych (RODO).</value>
+  </data>
+  <data name="IndustriesHealthcareSecurity">
+    <value>Szyfrowanie zapobiega kosztownym naruszeniom danych. Jeśli przestępcy uzyskają dostęp do urządzenia przenośnego, urządzenia mobilnego lub laptopa, na którym znajdują się poufne informacje, zakład może zostać ukarany wysokimi grzywnami. Włączenie szyfrowania jako części ogólnego programu bezpieczeństwa danych umożliwia usprawnienia finansowe i pomaga organizacjom uniknąć kosztów naruszeń bezpieczeństwa.</value>
+  </data>
+  <data name="IndustriesHealthcareTeamwork">
+    <value>Organizacje opieki zdrowotnej gromadzą, zarządzają i dystrybuują ogromną ilość dokumentacji medycznej i osobistej. Szyfrowanie sprawia, że dane są bezpieczniejsze, niezależnie od tego, czy są transportowane, czy w spoczynku. Krótko mówiąc, chroni wrażliwe informacje medyczne pacjentów przed kradzieżami i naruszeniami danych. Wymiana informacji między lekarzami, pielęgniarkami i specjalistami jest łatwa, szybka i bez ryzyka. Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesHeroText1">
+    <value>Zmieniamy sposób, w jaki ludzie się komunikują i pracują. Dzięki naszemu 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące oraz chroniąc poufność i integralność. Zwiększ swoją produktywność i przestań zastanawiać się nad swoją prywatnością w Internecie. Odzyskaj pełną kontrolę nad swoimi danymi i ciesz się cyfrowym zaufaniem. Ciekawi Cię szyfrowanie i powiązane tematy, zapoznaj się z naszymi cotygodniowymi aktualizowanymi &lt;a href="/blog"&gt;blogami&lt;/a &gt;. W AxCrypt chętnie Ci pomożemy i odpowiemy na wszelkie pytania dotyczące szyfrowania.</value>
+  </data>
+  <data name="IndustriesHeroText2">
+    <value>Skontaktuj się z nami pod adresem &lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; i nie zapomnij śledzić nas w mediach społecznościowych.</value>
+  </data>
+  <data name="IndustriesLegalCloud">
+    <value>Automatycznie zabezpieczaj swoje pliki/dokumenty w wielu usługach przechowywania w chmurze, takich jak Dysk Google i Dropbox, i bezproblemowo zarządzaj dostępem do haseł, gdziekolwiek jesteś. Wszystkie informacje są dostępne dla wszystkich członków zaangażowanych w umowy i kontrakty.</value>
+  </data>
+  <data name="IndustriesLegalConfidentiality">
+    <value>Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesLegalDescription">
+    <value>Bardziej niż kiedykolwiek wcześniej informacje osobiste i poufne są przesyłane przez Internet w postaci zwykłego tekstu i potencjalnie narażone. Branża prawnicza jest najbardziej dotknięta zwiększonymi oczekiwaniami konsumentów w zakresie dostępu do informacji, otrzymywania pomocy i zawierania umów w dowolnym miejscu i czasie za pośrednictwem urządzeń elektronicznych. Niezależnie od tego, czy jesteś samodzielnym praktykiem prawa karnego, czy wewnętrznym prawnikiem korporacyjnym w firmie z listy Fortune 500, szyfrowanie wpływa na wiele napotykanych problemów, niezależnie od tego, czy zdajesz sobie z tego sprawę, czy nie.</value>
+  </data>
+  <data name="IndustriesLegalProtection">
+    <value>AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak Ogólne rozporządzenie o ochronie danych osobowych (RODO).</value>
+  </data>
+  <data name="IndustriesLegalSecurity">
+    <value>Umowy, testamenty i akta zawierają poufne materiały osobiste klientów i partnerów, dlatego muszą być chronione przed wyciekami i hakerami. Szyfrowanie może służyć do uwierzytelnienia i udowodnienia, że dokument jest niezmienionym oryginałem. Podpisy cyfrowe są doskonałym archetypem tego zastosowania. Firmy, które nie zabezpieczyły swojego systemu szyfrowaniem, doświadczyły ostatnio poważnych naruszeń danych, co spowodowało poważne spory sądowe. Uszkodzenia mogą być ogromne, a dodatkowe straty mogą obejmować monitorowanie kredytów dla wszystkich klientów, lata systematycznych i natrętnych audytów w celu zidentyfikowania źródła wycieku i kradzieży danych oraz niszczenie plików, serwerów i systemów pamięci masowej. Dzięki naszemu 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące.</value>
+  </data>
+  <data name="IndustriesLegalTeamwork">
+    <value>Wzmocnij współpracę w zespole i udostępniaj wszystkie rodzaje dokumentów bez ryzyka. Firmy prawnicze muszą nie tylko angażować się w transformację cyfrową, ale także robić to w bezpieczny sposób. AxCrypt umożliwia otwieranie zabezpieczonych plików przez innych użytkowników AxCrypt za pomocą własnego hasła. Wymiana zaszyfrowanych informacji jest łatwa, szybka i bez ryzyka.</value>
+  </data>
+  <data name="IndustriesLinkLabel">
+    <value>Branże</value>
+  </data>
+  <data name="IndustriesTechCloud">
+    <value>Automatycznie zabezpieczaj swoje pliki/dokumenty w wielu usługach przechowywania w chmurze, takich jak Google Drive i Dropbox, i bezproblemowo zarządzaj dostępem do haseł, gdziekolwiek jesteś. Wszystkie informacje są dostępne dla wszystkich członków zaangażowanych w leczenie pacjentów.</value>
+  </data>
+  <data name="IndustriesTechConfidentiality">
+    <value>Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesTechDescription">
+    <value>W świecie, w którym każdy aspekt naszego codziennego życia jest wysoce cyfrowy, pojawia się pilna potrzeba prywatności i zaufania, zwłaszcza po eksperymentowaniu z naruszeniami danych. Narzędzia i usługi, z których korzystasz na co dzień, nie są ani otwarte, bezpieczne, ani prywatne. Lokalizacja Twoich danych oraz sposób ich przechowywania i przetwarzania są zbyt często zarządzane w wątpliwy i podejrzany sposób. AxCrypt dąży do zbudowania przyszłości, która szanuje prywatność wszystkich. Dzięki naszemu oprogramowaniu szyfrującemu o zerowej wiedzy i kluczowi, który należy tylko do Ciebie i pozostaje na Twoim urządzeniu, nikt inny nie ma dostępu do Twoich danych.</value>
+  </data>
+  <data name="IndustriesTechProtection">
+    <value>Przyjęcie szyfrowania to doskonały krok dla firm świadczących usługi technologiczne, ponieważ zwiększa bezpieczeństwo i zdolność do przestrzegania rosnącej liczby przepisów. Zwłaszcza, że ilość i odsetek zaszyfrowanych danych będzie nadal rósł.</value>
+  </data>
+  <data name="IndustriesTechSecurity">
+    <value>Szyfrowanie typu end-to-end jest jednym z najlepszych, najwydajniejszych i najbardziej praktycznych sposobów zabezpieczenia danych klientów przed kimkolwiek, w tym przed samymi firmami technologicznymi, tak aby nikt poza właścicielem nie miał do nich dostępu. Bezpieczeństwo i produktywność są ze sobą sklejone. Równie ważne jest, aby widoczność całej infrastruktury bezpieczeństwa nie wpływała negatywnie na wydajność i odpowiednio zmniejszała produktywność. Dzięki naszemu 128-bitowemu lub 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące.</value>
+  </data>
+  <data name="IndustriesTechTeamwork">
+    <value>W dzisiejszych czasach brak przejrzystości i jasności oraz sposób, w jaki duże korporacje radzą sobie z danymi, zmienia się w chaos danych i przynosi firmom głęboką złożoność i nieefektywność. Twoje prywatne informacje są śledzone i okaleczane. Dzięki AxCrypt zapewniamy całkowicie bezpieczne środowisko pracy i wzmacniamy zaufanie w Twojej społeczności i poza nią. Witamy w nowym cyfrowym świecie. Twoje dane są w pełni zaszyfrowane na naszej platformie, więc nawet jeśli nasze serwery zostaną zhakowane, nikt nie będzie mógł odczytać Twoich danych. Jesteśmy zgodni z RODO i stale pracujemy nad wdrażaniem przepływów pracy i procesów związanych z szyfrowaniem i przetwarzaniem danych zgodnie ze szwedzkimi przepisami o ochronie prywatności. AxCrypt umożliwia otwieranie zabezpieczonych plików przez innych użytkowników AxCrypt za pomocą własnego hasła. Wymiana zaszyfrowanych informacji jest łatwa, szybka i bez ryzyka.</value>
+  </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>Branże</value>
   </data>
   <data name="InformationLinkLabel">
     <value>Informacja</value>
@@ -2613,6 +2853,9 @@ SWEDEN</value>
     <value>Włoski</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>Rozumiem</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>W Twojej przeglądarce jest wyłączona obsługa JavaScript. Jeśli nie włączysz JavaScript, nie możesz się zalogować, a witryna może nie działać zgodnie z oczekiwaniami.</value>
   </data>
@@ -2648,6 +2891,9 @@ Adresat jest identyfikowany przez AxCrypt ID w wiadomości e-mail, ale nie wysy�
 
 Podaj poniżej język zaproszenia i opcjonalną wiadomość osobistą.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
+  </data>
+  <data name="KeyShareLabelText" xml:space="preserve">
+    <value>Udostępnij klucz</value>
   </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Klucz plików jest udostępniany innym użytkownikom programu AxCrypt.</value>
@@ -2689,6 +2935,9 @@ Podaj poniżej język zaproszenia i opcjonalną wiadomość osobistą.</value>
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>AxCrypt musi zostać uruchomiony ponownie, aby zmiana języka zaczęła obowiązywać.</value>
   </data>
+  <data name="LanguageSelectionLabelText" xml:space="preserve">
+    <value>Wybierz swój język</value>
+  </data>
   <data name="LargeFileSupportLabel">
     <value>Obsługa dużych plików</value>
   </data>
@@ -2711,6 +2960,27 @@ Podaj poniżej język zaproszenia i opcjonalną wiadomość osobistą.</value>
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>Wykryliśmy potencjalnie niezgodne oprogramowanie, które może spowodować wadliwe działanie AxCrypt i innych programów. Oprogramowanie to nazywa się Lavasoft Web Companion. Jeśli AxCrypt działa nieprawidłowo, spróbuj odinstalować Lavasoft.</value>
+  </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>Dowiedz się więcej </value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>Czy na pewno chcesz opuścić firmę?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>Zrezygnuj z Biznes</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>Użytkownik nie może opuścić firmy, ponieważ jest jedynym administratorem. Aby odejść, najpierw wyznacz innego administratora.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>Zostałeś pomyślnie usunięty z firmy</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>Informacje biznesowe</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Wyjdź</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Po przekształceniu plików będzie można je otworzyć tylko przy użyciu obecnego hasła AxCrypt. Proszę sprawdź swoje hasło tutaj.
@@ -2739,6 +3009,9 @@ Możesz otworzyć starsze pliki AxCrypt 1.x, ale jeśli nie są one skonwertowan
  
 Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>Prawny</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Biznes</value>
     <comment>The general name for the Business plan.</comment>
@@ -2765,6 +3038,12 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
+  </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Home/Support</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -2894,14 +3173,74 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Właściwość zarządzania witryną została pomyślnie zaktualizowana.</value>
   </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>To konto jest zarządzane przez sprzedawcę. Sprzedawca może dodawać nowych użytkowników do konta i zarządzać płatnościami. Uwaga: Sprzedawcy NIE uzyskują dostępu do żadnych zaszyfrowanych informacji, w tym plików zabezpieczonych kluczem głównym.</value>
+  </data>
   <data name="MasterKeyApprovalInfo" xml:space="preserve">
     <value>Jeśli zostanie zatwierdzony, klucz główny zostanie zastosowany do zaszyfrowanych plików i będzie możliwy do odzyskania przez administratorów biznesowych. Jeśli chcesz przestać używać klucza głównego, możesz opuścić firmę w dowolnym momencie (odbywa się to na stronie My AxCrypt ID).</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Zatwierdzono klucz główny</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Wprowadzenie do klucza głównego</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>Klucz główny to funkcja, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Wyobraź sobie, że ważny dokument finansowy jest szyfrowany po utworzeniu rocznego raportu o przychodach. W następnym roku zostaje utworzony nowy zespół finansowy, a kiedy nadejdzie czas na roczny raport, zdają sobie sprawę, że dokument finansowy, którego używał poprzedni zespół, jest teraz zaszyfrowany danymi, do których nikt już nie ma dostępu.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>Wprowadź klucz główny! Po włączeniu klucza głównego administratorzy firmy zawsze mogą odzyskać dowolny plik zaszyfrowany przez członków firmy. W powyższym przypadku nowy zespół finansowy musi tylko zwrócić się do swojego administratora, a dokument finansowy można łatwo odzyskać, nawet jeśli pierwotny użytkownik odszedł z firmy.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>Dopóki firma ma jednego lub kilku administratorów, którzy pilnują, aby śledzić ich dane uwierzytelniające, żadne pliki nigdy nie zostaną utracone z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Klucz główny i zabezpieczenia</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>Po włączeniu klucza głównego administratorzy biznesowi mogą odzyskać dowolny dokument zaszyfrowany przez swoich członków. To, jak wspomniano, eliminuje ryzyko utraty dostępu do krytycznych plików. Ale czy to jest bezpieczne?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>Jeśli chodzi o bezpieczeństwo, klucz główny można postrzegać jako automatyczne udostępnianie plików administratorom firmy. Administratorzy będą mogli automatycznie odzyskać pliki, do których zastosowano ich klucz główny. Jest to nie mniej bezpieczne niż zwykłe korzystanie z wypróbowanej i przetestowanej funkcji udostępniania kluczy AxCrypt.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Oczywiście administratorzy biznesowi muszą zachować szczególną ostrożność, aby wybierać dobre hasła i dbać o bezpieczeństwo swojego konta przez cały czas.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Włączanie klucza głównego</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>Klucz główny można włączyć na &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;stronie zarządzania subskrypcją&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyBlock3Text2">
     <value>Po włączeniu klucza głównego wszyscy obecni członkowie firmy muszą zatwierdzić zmianę. Jest to ważna kwestia bezpieczeństwa, istniejący użytkownik nigdy nie powinien mieć wrażenia, że ta funkcja została przed nim ukryta. W tabeli użytkowników można zobaczyć, kto zaakceptował funkcję klucza głównego.</value>
   </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Jeśli użytkownik nie zaakceptował klucza głównego, nie zostanie on zastosowany do zaszyfrowanych plików, więc upewnij się, że wszyscy w Twojej firmie akceptują tę funkcję.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>Notatka! Pliki zaszyfrowane przed włączeniem klucza głównego oczywiście nie będą mogły zostać odzyskane. Stare pliki muszą zostać ponownie zaszyfrowane po zaakceptowaniu przez użytkownika klucza głównego.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>W przypadku nowych firm lub nowych członków istniejących firm klucz główny zostanie automatycznie zatwierdzony, gdy członkowie dołączą do firmy.</value>
+  </data>
   <data name="MasterKeyBlock4Heading">
     <value>Korzystanie z klucza głównego</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Po włączeniu klucza głównego zostanie on automatycznie zastosowany do wszystkich plików zaszyfrowanych przez członków firmy. Możesz sprawdzić, czy klucz Master został zastosowany, za pomocą ikony klucza Master wyświetlanej w aplikacji.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Jeśli plik ma tę ikonę, każdy administrator biznesowy może go odzyskać.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>Otóż to! Jak widać, klucz Master jest bardzo łatwy w użyciu i nie wymaga, aby Twój członek biznesu musiał się nad nim zastanawiać ani spędzać nad nim czas.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Należy pamiętać, że chociaż administratorzy biznesowi mogą odzyskiwać pliki za pomocą klucza głównego, nie należy go używać w normalnym użytkowaniu. Jeśli plik ma zostać otwarty przez administratora biznesowego, plik powinien być udostępniony temu użytkownikowi, tak jak każdemu innemu użytkownikowi.</value>
   </data>
   <data name="MasterKeyBlock5Heading">
     <value>Potrzebujesz więcej pomocy?</value>
@@ -2909,11 +3248,39 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   <data name="MasterKeyBlock5Text1">
     <value>Nasze priorytetowe wsparcie biznesowe zawsze służy pomocą w przypadku jakichkolwiek pytań lub wątpliwości. Skorzystaj z formularza na stronie swojego konta lub wyślij nam wiadomość na adres &lt;a href='mailto:business@axcrypt.net'&gt; business@axcrypt.net &lt;/a&gt;, a my Ci pomożemy!</value>
   </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>Użyj poniższego pola wyboru, aby umożliwić AxCrypt pomoc w odzyskaniu plików w przypadku, gdy administratorzy biznesowi zapomną swoje hasło. &lt;b&gt;Powinno to być używane tylko na wyraźną prośbę zweryfikowanego administratora biznesowego!&lt;/b&gt;</value>
+  </data>
   <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
     <value>Ta funkcja umożliwia AxCrypt odzyskanie plików zaszyfrowanych przez członków tej firmy. Powinna być stosowana tylko na wyraźne żądanie firmy!</value>
   </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>Kopia zapasowa odzyskiwania AxCrypt</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>Umożliwia administratorom biznesowym odzyskiwanie utraconych plików</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Jeśli klucz główny jest wyłączony, administratorzy biznesowi nie będą mogli otwierać plików zaszyfrowanych przez ich członków biznesowych.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>Klucz główny umożliwia administratorom biznesowym otwieranie plików zaszyfrowanych przez członków firmy. Pamiętaj, że członek musi najpierw zatwierdzić klucz główny, zanim zostanie on zastosowany do jego plików. Możesz zobaczyć, kto zatwierdził klucz główny w tabeli użytkownika. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;Więcej informacji znajdziesz tutaj&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Pliki, które zostały zaszyfrowane &lt;b&gt;przed&lt;/b&gt; włączeniem klucza głównego, nie będą mogły być otwierane bez oryginalnych poświadczeń szyfrowania.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>Klucz główny jest włączony. Oznacza to, że administratorzy Twojej firmy mogą odzyskać Twoje zabezpieczone pliki.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Plików zaszyfrowanych wcześniej nie będzie można odzyskać za pomocą klucza głównego. Jeśli wiesz, że istnieją pliki, do których musisz zastosować klucz główny, poinformuj użytkownika, aby przestał chronić pliki, a następnie zacznij je ponownie chronić. Spowoduje to ponowne zaszyfrowanie plików, w tym klucza głównego.</value>
+  </data>
   <data name="MasterKeyRemovedWarningText" xml:space="preserve">
     <value>Do tego pliku zastosowano klucz główny. Ponieważ nie należysz do tej samej firmy, klucz główny zostanie usunięty z tego pliku.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Klucz główny</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Błąd wewnętrzny, niewłaściwy argument funkcji w %4</value>
@@ -3092,13 +3459,11 @@ Ten program jest licencjonowany zgodnie z umową.
     <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
-  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Po zakonńczeniu okresu testowego nie możesz korzystać z aplikacji mobilnych. Konieczna jest płatna subskrypcja. 
-
-Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt na komputer.</value>
-  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Po zakończeniu okresu próbnego automatycznie przejdziesz na subskrypcję AxCrypt Free, o ile nie wybierzesz płatnej subskrypcji.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>Uaktualniając swoje konto, zyskujesz dostęp do wielu wspaniałych funkcji.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Błąd</value>
@@ -3171,6 +3536,12 @@ Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt 
     <value>Kliknij, aby wprowadzić nazwę pliku klucza. Używaj tylko jeśli wiesz, że używałeś pliku klucza podczas zabezpieczania tego pliku za pomocą poprzedniej wersji programu AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MorePostsButtonLabel">
+    <value>Więcej postów</value>
+  </data>
+  <data name="MoreTechnicalIssueText" xml:space="preserve">
+    <value>Mam zbyt wiele problemów technicznych</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>Mój AxCrypt</value>
     <comment>The folder name used for default watching</comment>
@@ -3186,6 +3557,9 @@ Zawsze możesz otwierać zaszyfrowane pliki przy pomocy darmowej wersji AxCrypt 
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>Start</value>
+  </data>
+  <data name="NeedProductForProjectText" xml:space="preserve">
+    <value>Potrzebowałem produktu do projektu, który ukończyłem</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Utwórz nowe hasło</value>
@@ -3246,6 +3620,9 @@ Twoje zapytanie zostało zarejestrowane. Spróbuj ponownie z właściwą ścież
 Twoje żądanie  zostało zarejestrowane. Spróbuj ponownie z właściwą ścieżką lub &lt;a href="mailto:{0}"&gt;zgłoś&lt;/a&gt; uszkodzony link.
  
 Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a&gt;.</value>
+  </data>
+  <data name="NotUsingProductText" xml:space="preserve">
+    <value>Nie używam produktu wystarczająco często</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>Cierpliwości, to może potrwać kilka minut.</value>
@@ -3325,6 +3702,9 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
   <data name="OrgNumberLabel">
     <value>Numer organizacji</value>
   </data>
+  <data name="OtherDetailsText" xml:space="preserve">
+    <value>Jeśli inne, proszę podać szczegóły</value>
+  </data>
   <data name="OtherPlatformsLabel">
     <value>Inne platformy</value>
   </data>
@@ -3379,6 +3759,9 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>Hasła</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
+  </data>
+  <data name="PasswordManagerFeatureInfoText" xml:space="preserve">
+    <value>Przechowuj wszystkie swoje hasła i inne tajemnice  bezpieczne w naszej chmurze!</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Hasło nie jest wystarczająco mocne, aby mogło być zaakceptowane.</value>
@@ -3482,6 +3865,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[Więcej informacji o PayPal]</value>
   </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>Oczekujący</value>
+  </data>
   <data name="PerMonthLabel">
     <value>Miesięcznie </value>
   </data>
@@ -3498,8 +3884,14 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>polski</value>
   </data>
+  <data name="PortableLinkLabel" xml:space="preserve">
+    <value>Dla Windows 32 i 64-bitowego</value>
+  </data>
   <data name="PortableVersionInfo" xml:space="preserve">
     <value>Lekka, samodzielna wersja AxCrypt nie zawiera dodatkowych funkcji (np. Integracji z menu kontekstowym) w porównaniu z wersją instalatora.</value>
+  </data>
+  <data name="PortableVersionInstallationNotRequiredText" xml:space="preserve">
+    <value>Samodzielna wersja AxCrypt jest bezpośrednio wykonywalna - nie jest wymagana instalacja.</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Português (Brazylia)</value>
@@ -3616,6 +4008,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PressAndMediaLinkLabel">
     <value>Prasa i media</value>
   </data>
+  <data name="PressFileToSelectLabelText" xml:space="preserve">
+    <value>Dotknij i przytrzymaj, aby wybrać</value>
+  </data>
   <data name="PressImagesDescription">
     <value>Zdjęcia, które mogą być użyte do celów takich jak wywiady i ilustracje.</value>
   </data>
@@ -3648,6 +4043,12 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/rok </value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Wszystko we Free plus:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Wszystko w Premium plus:</value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Kopia zapasowa klucza konta</value>
   </data>
@@ -3662,6 +4063,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>BusinessAdmin</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>Priorytetowe Wsparcie Biznesowe</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Świadomość przechowywania w chmurze</value>
@@ -3696,6 +4100,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PricingFeatureListPasswordManagement">
     <value>Zarządzanie hasłami</value>
   </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Zastosowanie profesjonalne</value>
+  </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>Zabezpieczone foldery</value>
   </data>
@@ -3707,6 +4114,57 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="PricingSubheading">
     <value>Jak chcesz zapłacić?</value>
+  </data>
+  <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
+    <value>Jakie są główne powody anulowania?</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Heading" xml:space="preserve">
+    <value>Dzielenie się informacjami</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Text1" xml:space="preserve">
+    <value>Możemy udostępniać Twoje dane: publicznie, jeśli przesyłasz treści na jedno z naszych forów, takie jak komentarze na blogu, posty w mediach społecznościowych lub inne funkcje naszych usług, które są publicznie widoczne; ze stronami trzecimi, takimi jak inne witryny, które integrują się z naszym API lub naszymi Usługami; lub te z interfejsem API lub usługą, z którą się integrujemy; Wszelkie niezbędne strony trzecie zaangażowane przez nas, w tym podmioty przetwarzające dane, dostawcy, konsultanci, partnerzy marketingowi i inni usługodawcy, którzy potrzebują dostępu do takich informacji w celu wykonywania pracy w naszym imieniu; W odpowiedzi na żądanie informacji ze strony właściwego organu, jeśli uważamy, że ujawnienie jest zgodne lub w inny sposób wymagane przez obowiązujące prawo, regulacje, licencję lub proces prawny; jeśli powiadomimy Cię w inny sposób, a Ty wyrazisz zgodę na udostępnienie; oraz w formie zbiorczej i/lub anonimowej, co do których nie można racjonalnie oczekiwać, że zostaną wykorzystane do identyfikacji użytkownika.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Heading" xml:space="preserve">
+    <value>Media społecznościowe</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>Google/YouTube:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Oświadczenie o ochronie prywatności&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>Twitter:&lt;a href='https://twitter.com/en/privacy'&gt;Oświadczenie o ochronie prywatności&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>Instagram:&lt;a href='http://instagram.com/about/legal/privacy/'&gt;Oświadczenie o ochronie prywatności&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>LinkedIn:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Oświadczenie o ochronie prywatności&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>Facebook:&lt;a href='https://www.facebook.com/privacy/explanation'&gt;Oświadczenie o ochronie prywatności&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text1" xml:space="preserve">
+    <value>Oprócz tej witryny prowadzimy serwisy społecznościowe na Twitterze, Facebooku, Instagramie, YouTube i LinkedIn. Jeśli odwiedzisz jeden z nich, dane osobowe mogą zostać przesłane do dostawcy sieci społecznościowej. Zwracamy uwagę na fakt, że dane użytkownika mogą być przesyłane na serwer w kraju trzecim, a zatem mogą być przetwarzane poza Unią Europejską.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text2" xml:space="preserve">
+    <value>Oprócz przechowywania określonych danych wprowadzonych przez użytkownika w tym serwisie społecznościowym, dostawca sieci społecznościowej może również przetwarzać dalsze informacje. Jeśli jesteś zalogowany do sieci za pomocą swojego osobistego konta użytkownika podczas odwiedzania odpowiedniej strony internetowej, ta sieć może przypisać wizytę do tego konta. Cel i zakres gromadzenia danych przez odpowiednie medium oraz dalsze przetwarzanie Twoich danych w tym medium, a także Twoje prawa w tym zakresie, można znaleźć w odpowiednich przepisach odpowiedniej osoby odpowiedzialnej, np.: poniżej:</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Heading" xml:space="preserve">
+    <value>Przekazywanie danych podmiotom trzecim</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text1" xml:space="preserve">
+    <value>Zarządzanie relacjami z klientem (CRM) - HubspotHubSpot to zintegrowane rozwiązanie programowe, za pomocą którego obejmujemy różne aspekty naszych działań marketingowych online, w tym zarządzanie kontaktami za pośrednictwem systemu CRM. Podstawą prawną korzystania z usług HubSpot jest nasz uzasadniony interes zgodnie z art. 6 I f RODO ze względu na optymalizację naszych działań marketingowych i poprawę jakości naszych usług na stronie internetowej.</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text2" xml:space="preserve">
+    <value>HubSpot spełnia minimalne wymagania dla zgodnego z prawem przetwarzania danych o zamówieniach, zawierając europejską standardową klauzulę ochrony danych. Ponadto istnieje Umowa o przetwarzanie danych (DPA) z HubSpot. Gwarantuje to, że HubSpot wykorzystuje dane użytkownika wyłącznie w ramach unijnych standardów ochrony danych i nie przekazuje ich osobom trzecim. Aby uzyskać więcej informacji, zapoznaj się z &lt;a href='https://legal.hubspot.com/privacy-policy'&gt;polityką prywatności HubSpot.&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock13Heading" xml:space="preserve">
+    <value>Zmiany w Polityce Prywatności</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Heading" xml:space="preserve">
+    <value>Prawo właściwe i miejsce</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Text1" xml:space="preserve">
+    <value>Niniejsze oświadczenie o ochronie prywatności podlega prawu szwedzkiemu. Miejscem obrad jest Sąd Rejonowy w Sztokholmie.</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>Twój adres email.</value>
@@ -3792,14 +4250,44 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PrivacyPolicyBlock4Text2">
     <value>Jeśli jesteś użytkownikiem biznesowym i nie chcesz być częścią naszego systemu CRM, skontaktuj się z nami pod adresem &lt;a href='mailto:business@axcrypt.net.'&gt; business@axcrypt.net &lt;/a&gt;</value>
   </data>
+  <data name="PrivacyPolicyBlock5Heading" xml:space="preserve">
+    <value>Funkcjonalność stron i usług</value>
+  </data>
+  <data name="PrivacyPolicyBlock5Text1" xml:space="preserve">
+    <value>Pliki cookies wykorzystywane są do obsługi i prezentacji danych ze stron internetowych. Takie pliki cookie mogą zawierać informacje o kodzie języka wybranego przez użytkownika. Mogą to być pliki cookie z informacjami, które wspierają równoważenie obciążenia systemu, tak aby wszyscy użytkownicy mieli zagwarantowane jak najlepsze wrażenia. W przypadku usług wymagających logowania lub wyszukiwania można zastosować pliki cookie, które zapewniają, że usługa prezentuje dane właściwemu odbiorcy.</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Heading" xml:space="preserve">
+    <value>Analityka internetowa i pliki cookie</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Text1" xml:space="preserve">
+    <value>Ważną częścią naszej pracy nad tworzeniem przyjaznej dla użytkownika strony internetowej, jest przyglądanie się wzorcowi użytkowników odwiedzających witrynę. Analizujemy zachowanie użytkowników, aby poprawić wrażenia użytkownika. Celem korzystania z plików cookie jest zatem poprawa jakości obsługi klienta. Do analizy informacji używamy narzędzia analitycznego Google Analytics. Google Analytics wykorzystuje pliki cookie/ciasteczka (małe pliki tekstowe, które witryna przechowuje na komputerze użytkownika), które rejestrują adres IP użytkownika i dostarczają informacji o ruchu online każdego użytkownika. Przykładami tego, na co statystyki dają nam odpowiedzi, są: ile osób odwiedza różne strony, jak długo trwa wizyta, z jakich witryn pochodzą użytkownicy i z jakich przeglądarek korzystają. Żaden z plików cookie nie pozwala nam kojarzyć informacji o korzystaniu z witryny z Tobą jako osobą fizyczną. Dane cookie są automatycznie usuwane po 14 miesiącach od rejestracji. Możesz to zrobić samodzielnie i zarządzać wykorzystaniem plików cookies, dostosowując ustawienia w swojej przeglądarce. Informacje zebrane przez Google Analytics są przechowywane na serwerach Google w Stanach Zjednoczonych. Otrzymane informacje podlegają wytycznym Google dotyczącym prywatności. Adres IP jest definiowany jako dane osobowe, ponieważ można go powiązać z konkretnym sprzętem, a tym samym z osobą. Anonimizujemy adres IP użytkownika, zanim informacje zostaną zapisane i przetworzone przez Google. W związku z tym anonimowy adres IP nie może być wykorzystany do identyfikacji indywidualnego użytkownika. Twój adres IP jest również przez krótki czas rejestrowany przez nasze serwery internetowe. Adres IP użytkownika, pora dnia, adres strony internetowej, status HTTP, liczba wysłanych bajtów, strona odsyłająca HTTP i klient użytkownika HTTP są rejestrowane przez 15 dni. Po tym czasie dane są usuwane. </value>
+  </data>
+  <data name="PrivacyPolicyBlock7Heading" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Text1" xml:space="preserve">
+    <value>Przechowujemy informacje o tym, jakich słów kluczowych używają użytkownicy w naszych witrynach za pośrednictwem Google Analytics. Celem przechowywania jest ulepszenie naszej oferty informacyjnej. Wzorzec użycia dla wyszukiwania jest przechowywany w formie zagregowanej. Przechowywane jest tylko słowo kluczowe i nie można ich powiązać z innymi informacjami o użytkowniku, takimi jak adresy IP.</value>
+  </data>
   <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
     <value>Forum / Share / wskazówki</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Text1" xml:space="preserve">
+    <value>Funkcja „Udostępnij innym” jest dobrowolna i może być wykorzystywana do przekazywania linków do serwisu przez e-mail lub udostępniania treści serwisów społecznościowych, takich jak Facebook czy Twitter. Informacje o wskazówkach nie są u nas rejestrowane, a jedynie wykorzystywane tam, a następnie do zamieszczenia wskazówki w serwisie społecznościowym. Nie możemy jednak zagwarantować, że społeczność internetowa nie będzie rejestrować tych informacji. W związku z tym wszystkie takie usługi powinny być używane z rozwagą. Możesz skontaktować się z odpowiednim usługodawcą lub społecznością internetową, aby otrzymywać informacje o jej gromadzeniu, wykorzystywaniu, przetwarzaniu i ochronie danych osobowych. Jeśli korzystasz z funkcji poczty elektronicznej, wykorzystujemy tylko podane adresy e-mail do przekazania wiadomości bez jakiejkolwiek formy przechowywania.</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Heading" xml:space="preserve">
+    <value>Newsletter</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Text1" xml:space="preserve">
+    <value>Rejestrując się u nas, zgadzasz się, że możemy od czasu do czasu wysyłać Ci wiadomości e-mail, takie jak biuletyny, oferty i informacje o nowych i zaktualizowanych produktach i usługach od nas. Abyśmy mogli wysłać wiadomość e-mail, musisz zarejestrować adres e-mail. Podstawą prawną przetwarzania w tym celu jest zgoda, por. Art. 6 ust. 1 lit. a RODO. Informacje te nie są udostępniane innym firmom i są usuwane, gdy zostaniemy poinformowani, że nie chcesz już otrzymywać od nas informacji. Możesz zrezygnować, tj. zrezygnować z subskrypcji, w dowolnym momencie, klikając link podany w tego typu wiadomościach e-mail. HubSpot jest naszym podmiotem przetwarzającym dane dotyczące biuletynu.</value>
   </data>
   <data name="PrivacyPolicyDescription">
     <value>Szanujemy Twoją prywatność - to jeden z głównych powodów, dla których tworzymy AxCrypt. Uważamy również, że Ty, jako jeden z naszych użytkowników, przejmujesz się tym bardziej niż przeciętny użytkownik komputera.</value>
   </data>
   <data name="PrivacyPolicyLinkLabel">
     <value>Polityka prywatności </value>
+  </data>
+  <data name="ProductFeatureComplicatedText" xml:space="preserve">
+    <value>Produkt i funkcje są dla mnie zbyt skomplikowane</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>I wiele więcej...</value>
@@ -3815,6 +4303,12 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="ProductTryItForFreeHeading">
     <value>Wypróbuj bezpłatnie</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2">
+    <value>Wypróbuj za darmo już dziś</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2Education">
+    <value>Wypróbuj za darmo już dziś lub &lt;a href="mailto:business@axcrypt.net"&gt;skontaktuj się z naszym działem sprzedaży&lt;/a&gt;, aby dowiedzieć się o naszych zniżkach edukacyjnych</value>
   </data>
   <data name="ProductTryItForFreeMonthlyButtonLabel">
     <value>Miesięcznie </value>
@@ -4036,6 +4530,9 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
   <data name="QueriesAboutAxCryptBusiness" xml:space="preserve">
     <value>&lt;b&gt;Czy masz jakieś pytania dotyczące AxCrypt Business?&lt;/b&gt; Prosimy &lt;a href="mailto:business@axcrypt.net"&gt; o kontakt &lt;/a&gt;, a my pomożemy jak najszybciej.</value>
   </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
+    <value>&lt;b&gt;Czy masz jakieś pytania dotyczące AxCrypt Business?&lt;/b&gt; Prosimy &lt;a href="mailto:business@axcrypt.net"&gt; o kontakt &lt;/a&gt;, a my pomożemy jak najszybciej.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Oceń nas na &lt;a&gt;Google Play&lt;/a&gt;</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -4056,6 +4553,12 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
+    <value>Przeczytaj o nowościach</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Przeglądaj nasze najnowsze posty na blogu</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Przeczytaj więcej o abonamencie Business</value>
   </data>
@@ -4064,6 +4567,9 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
   </data>
   <data name="ReadMoreButtonLabel">
     <value>Czytaj więcej</value>
+  </data>
+  <data name="RecentFilesListInfoText" xml:space="preserve">
+    <value>Ostatnio nie otwierałeś żadnych zabezpieczonych plików. Kliknij Otwórz zabezpieczone, aby wyszukać zabezpieczone pliki.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Otwórz</value>
@@ -4162,6 +4668,9 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
     <value>Twoje oprogramowanie musi być aktualizowane z powodu problemu niezawodności.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
+  <data name="RemoveFromRecentFilesLabelText" xml:space="preserve">
+    <value>Usuń z ostatnich plików</value>
+  </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>Usuń plik</value>
     <comment>Text of "Remove File" button in mobile application</comment>
@@ -4176,6 +4685,17 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
   <data name="RenewInTitle" xml:space="preserve">
     <value>Odnów za</value>
     <comment>Used as "Renew in 30 days"</comment>
+  </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>Aplikacje mobilne
+256-bitowy AES
+Udostępnianie kluczy
+Zabezpieczone foldery kluczy 
+Zarządzanie hasłami
+Świadomość przechowywania w chmurze</value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>Odnów subskrypcję!</value>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>To jest raport snapshopu dotyczący wykrytych błędów w AxCrypt. Proszę skopiować cały ten tekst i e-mail na adres: 
@@ -4247,8 +4767,287 @@ Temat: Migawka raportu AxCrypt</value>
   <data name="ResellerBenefitsText">
     <value>AxCrypt ma klientów z całego świata, polegających na prostocie i bezpieczeństwie naszego narzędzia szyfrującego. Nasze największe rynki to USA, Wielka Brytania i Francja. AxCrypt rozwija się coraz bardziej każdego dnia i chcemy, abyś Ty też się rozwijał.</value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>Zaloguj się do &lt;a href='https://account.axcrypt.net/'&gt;account.axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>Na stronie tworzenia wprowadź informacje o kliencie i liczbę potrzebnych licencji. W razie potrzeby można to później zmienić.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>Wybierz, czy chcesz mieć miesięczną, czy roczną subskrypcję, wybierając 1 lub 12 miesięcy.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>Aby odliczyć podatek VAT (w UE), wprowadź prawidłowy numer VAT.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>Rabat sprzedawcy zostanie automatycznie dodany.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>Kliknij przycisk płatności.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>Na koniec możesz dodać adresy e-mail użytkowników, którym należy przypisać licencję.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>Aby odsprzedać AxCrypt Business nowemu klientowi, utwórz jego subskrypcję na stronie konta:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>&lt;b&gt;Uwaga:&lt;/b&gt; Będzie działać niezależnie, czy Twój klient ma zarejestrowane konto AxCrypt, czy nie.&lt;br /&gt;Otrzyma wiadomość e-mail lub zaproszenie z informacją, że został dodany do subskrypcji Business. Następnie musi aktywować swoje konto.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>Zostaniesz automatycznie dodany do ich subskrypcji jako administrator ich konta.&lt;br /&gt;Oczywiście nie zostanie Ci przypisana licencja.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text4" xml:space="preserve">
+    <value>Jeśli wyznaczysz dowolnego użytkownika klienta jako administratora, będzie on mógł kupować nowe licencje i zarządzać kontem. Oznacza to, że ty i on nie dostaniecie zniżki. Sugerujemy, aby nie czynić go administratorem, chyba że jest to naprawdę potrzebne.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text5">
+    <value>Jeśli jakieś informacje zostały nieprawidłowo wypełnione podczas tworzenia, zawsze możesz je zmienić, przechodząc do .</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>Ten proces został zaprojektowany tak, aby był całkowicie zarządzany przez Ciebie i nie wymaga żadnego zaangażowania ze strony Twojego klienta (poza aktywacją konta, jeśli nie ma on jeszcze założonego konta) ani od AxCrypt. Jeśli preferowana jest płatność przelewem bankowym, jest to również możliwe. Więcej informacji znajdziesz na karcie Płatności.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt oferuje jedną subskrypcję do odsprzedaży: &lt;b&gt;AxCrypt Business&lt;/b&gt;. Możesz użyć podmenu na &lt;a href='http://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;, aby zarządzać istniejącymi klientami lub kupować licencje dla swoich klientów. Zaloguj się przy użyciu istniejącego konta, które zostało ustawione jako konto administratora.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>Aby skontaktować się z zespołem ds. sprzedaży, napisz do nas na adres &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt;. </value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>Wybierz klienta z rozwijanego menu Działając na.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>Dodaj użytkowników indywidualnie według ich adresów e-mail.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>Możesz dodawać użytkowników do konta klienta. Upewnij się tylko, że dostępne są niewykorzystane licencje — administrator może dodawać użytkowników, o ile są dostępne licencje.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>Aby dodać użytkowników:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>Wybierz liczbę potrzebnych licencji.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>Jeśli na koncie klienta są używane wszystkie jego licencje, możesz kupić dodatkowe licencje:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>&lt;b&gt;Uwaga:&lt;/b&gt; Jeśli preferowana jest płatność przelewem bankowym, jest to również możliwe. Zobacz rozliczenia poniżej, aby uzyskać więcej informacji.&lt;br /&gt;Gdy subskrypcja jest tworzona lub odnawiana, okresem jest zawsze rok.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>W przypadku zakupu dodatkowych licencji członkowskich w ramach subskrypcji w czasie jej trwania, opłata pobierana jest tylko za pozostałe miesiące zaokrąglone w górę do pełnych miesięcy. Jeśli w bieżącym okresie pozostanie 50 dni i zostaną dodani dodatkowi członkowie, będzie to oznaczać 2 miesiące/dodatkowego członka. </value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>Masz teraz nieużywaną licencję. Możesz zachować ją na czas, kiedy jej będziesz potrzebować (nie wstrzymuje to daty wygaśnięcia) lub przypisać ją nowemu użytkownikowi.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>Usuwanie lub zmienianie użytkowników na koncie klienta jest proste:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle1" xml:space="preserve">
+    <value>Dodaj nowego klienta</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>Dodaj użytkowników do konta klienta</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>Kup dodatkowe licencje członkowskie</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>Usuwanie lub zmiana użytkowników</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersTitle" xml:space="preserve">
+    <value>Dodawaj klientów i zarządzaj nimi</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>Subskrypcje są kupowane za pośrednictwem portalu internetowego AxCrypt (account.axcrypt.net). Płatności dokonywane są bezpośrednio przez portal za pomocą karty kredytowej.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>Możliwe jest również dokonanie zakupu na podstawie faktury, zwykle w zależności od liczby subskrypcji, które chcesz kupić. Jeśli chcesz to zrobić, skontaktuj się z &lt;a href='mailto:reseller@axcrypt.net'&gt;zespołem ds. sprzedaży&lt;/a&gt;. Jeśli płatność jest dokonywana przelewem bankowym, uzyskanie dostępu przez klienta może potrwać dłużej, ponieważ najpierw musimy otrzymać przelew.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>Aktualną cenę katalogową za licencję członkowską AxCrypt Business można znaleźć na naszej &lt;a href='https://www.axcrypt.net/pricing'&gt;stronie z cenami&lt;/a&gt;. Masz osobistą zniżkę Sprzedawcy, która tego dotyczy.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>Na potrzeby abonamentu miesiąc definiuje się jako 30 dni, a rok jako 360 dni. Kiedy subskrypcja jest tworzona lub odnawiana, okres to zawsze miesiąc lub rok.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>W przypadku zakupu dodatkowych licencji członkowskich w ramach subskrypcji w okresie subskrypcji, opłata dotyczy tylko pozostałych miesięcy zaokrąglonych w górę do pełnych miesięcy. Jeśli w bieżącym okresie pozostanie 50 dni i zostaną dodani dodatkowi członkowie, będzie to oznaczać 2 miesiące/dodatkowy członek.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>Przeczytaj „Płatności i odnawianie” w naszych &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Warunkach korzystania&lt;/a&gt;, aby uzyskać więcej informacji.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>Od 25 czerwca 2020 automatycznie odnawiamy subskrypcje. Jeśli wcześniej kupiłeś licencje, ani Ty, ani Twój klient nie zostaniesz automatycznie obciążony. Będziesz musiał odnowić za pomocą menu.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>Jeśli kupiłeś licencje po 25 czerwca 2020 r., subskrypcja zostanie automatycznie odnowiona na koniec okresu subskrypcji przy użyciu początkowej metody płatności. Jeśli chcesz zrezygnować, musisz to zrobić przed końcem bieżącego okresu subskrypcji.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>Przeczytaj „Płatności i odnawianie” w naszych &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Warunkach korzystania&lt;/a&gt;, aby uzyskać więcej informacji.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>Tutaj znajdziesz swoje faktury i historię transakcji.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>Informacje takie jak data, numer referencyjny, adres itp.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>Zapłacono za jakiego klienta.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>Zamówiono subskrypcję.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>Całkowita kwota. </value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>Fakturę możesz wydrukować, klikając ikonę drukowania.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>VAT UE zostanie odliczony przed zakupem przy wpisaniu prawidłowego numeru VAT. VAT nie dotyczy krajów spoza UE.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>Dla szwedzkich klientów odliczenie podatku VAT nie jest możliwe. Ponieważ AxCrypt jest szwedzką firmą, szwedzcy klienci będą musieli księgować przychodzący podatek VAT jako przychodzący, a następnie odliczany od wychodzącego podatku VAT, gdy płacą szwedzkim organom podatkowym.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>&lt;b&gt;Uwaga:&lt;/b&gt; AxCrypt nie może dalej doradzać w sprawach podatkowych. Sprawdź przepisy obowiązujące w Twoim kraju lub skontaktuj się z doradcą podatkowym, aby uzyskać więcej informacji.</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>Metoda płatności</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>Szczegóły cen i rabatów</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>Odnowienie</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>Zobacz historię swoich zamówień i transakcji</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>Podatki</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>Dane do faktury</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>Zanim uzyskasz dostęp do swojego konta Sprzedawcy, członek zespołu AxCrypt musi przypisać Ci rolę administratora z uprawnieniami Sprzedawcy. Po podpisaniu umowy nasz zespół poprosi Cię o adres e-mail powiązany z kontem AxCrypt. To konto będzie służyć jako administrator konta sprzedawcy.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
+    <value>Uwaga: jest całkowicie w porządku, jeśli używasz tego samego konta w połączeniu z własnym abonamentem.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>Zaloguj się na &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;, aby uzyskać dostęp do swojego konta sprzedawcy. Widzisz swoje konto, jak pokazano na poniższym obrazku.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text1">
+    <value>Zanim uzyskasz dostęp do swojego konta Sprzedawcy, członek zespołu AxCrypt musi przypisać Ci rolę administratora z uprawnieniami Sprzedawcy. Po podpisaniu umowy nasz zespół poprosi Cię o adres e-mail powiązany z kontem AxCrypt. To konto będzie służyć jako administrator konta sprzedawcy.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text2">
+    <value>Uwaga: W porządku, jeśli używasz tego samego konta w połączeniu z własnym planem subskrypcji.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text3">
+    <value>Zaloguj się na &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;, aby uzyskać dostęp do swojego konta sprzedawcy. Widzisz swoje konto, jak pokazano na poniższym obrazku.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>Uzyskaj dostęp do swojego konta sprzedawcy</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle1">
+    <value>Złóż wniosek, aby zostać sprzedawcą AxCrypt</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle2">
+    <value>Uzyskaj dostęp do swojego konta sprzedawcy</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>Rozpoczęcie pracy</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>Pomoc sprzedawcy</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>Nie edytuj zdjęć bez naszej zgody.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>Zostaw pustą przestrzeń 25% wymiarów logotypu z sąsiednich obrazów lub elementów graficznych.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>Możesz używać logo sprzedawcy lub zwykłego logo AxCrypt we własnych publikacjach lub na stronie internetowej. Możesz to zrobić, przestrzegając następujących przepisów:</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>Możesz użyć wersji czarno-białej, gdy kolorowy logotyp nie jest odpowiednią alternatywą.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;Ikona logotypu w formacie PNG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;Ikona logotypu w formacie JPG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;Pełne logo w formacie PNG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;Logotyp pełny w formacie JPG&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>Oryginalne logotypy AxCrypt można znaleźć na &lt;a href='https://www.axcrypt.net/information/press'&gt;https://www.axcrypt.net/information/press&lt;/a&gt;.</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>Logo autoryzowanego sprzedawcy</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>Marketing</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>FAQ: &lt;a href='https://www.axcrypt.net/information/faq'&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>Subskrypcja biznesowa: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>Rozpocznij: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>Wskazówki dotyczące użytkowania: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>Szczegóły techniczne: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
+    <value>Nasi sprzedawcy (i ich klienci) mogą oczywiście liczyć na profesjonalne wsparcie techniczne AxCrypt. W Internecie mamy wiele dokumentacji i informacji o produktach:</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>Ponadto pomoc techniczna jest dostępna pod adresem &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;. Ich strefa czasowa to UTC+5:30 i zwykle odpowiada w godzinach pracy w ciągu jednego dnia.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>Oczywiście zawsze sugerujemy, aby nasi sprzedawcy sami korzystali wcześniej z AxCrypt, aby mogli pomóc swoim klientom z kilkoma podstawowymi pytaniami technicznymi. W przeciwnym razie mamy również kilka samouczków, które wyjaśniają różne funkcje AxCrypt. Są one dostępne na naszym kanale YouTube: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>Samouczki dotyczące systemu Windows:&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRUh6jRoJs6Yx</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>Samouczki dotyczące systemu MacOS:&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLXHRUhJs6 -1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>Jako Sprzedawca jesteś odpowiedzialny za własną sprzedaż i podejście do (potencjalnego) klienta. Ale oczywiście chcielibyśmy pomóc Ci w sprzedaży. Praca zespołowa sprawia, że marzenia stają się rzeczywistością!</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>W celach reklamowych i do pokazania Twoim klientom stworzyliśmy prezentację i broszurę AxCrypt. Wyjaśni, czym jest AxCrypt i jak może pomóc w ochronie Twoich danych.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;Pobierz prezentację AxCrypt&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>Pomoc techniczna</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle2" xml:space="preserve">
+    <value>Wsparcie sprzedaży</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>Wsparcie</value>
+  </data>
   <data name="ResellerInfoHeading">
     <value>Zostań dystrybutorem AxCrypt</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>Informacje o sprzedawcy</value>
   </data>
   <data name="ResellerInfoText1">
     <value>AxCrypt oferuje łatwe w użyciu rozwiązanie do szyfrowania. Dzięki ponad 15-letniemu doświadczeniu w branży szyfrowania plików ugruntowaliśmy AxCrypt jako jedną z najsilniejszych marek na rynku. Dzięki ponad 20 milionom pobrań udowodniliśmy, że nasza usługa jest niezawodna. AxCrypt otrzymał nagrodę redakcji PCMag dla najlepszego oprogramowania szyfrującego w 2016, 2017 i 2018 roku.</value>
@@ -4306,6 +5105,9 @@ Temat: Migawka raportu AxCrypt</value>
   <data name="ScriptingEnabledText">
     <value>Rozbudowany interfejs wiersza poleceń do tworzenia skryptów i programowania.</value>
   </data>
+  <data name="SearchBoxPlaceHolderText" xml:space="preserve">
+    <value>Szukaj plików...</value>
+  </data>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Wyszukaj hasła tutaj ...</value>
   </data>
@@ -4323,9 +5125,6 @@ Temat: Migawka raportu AxCrypt</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Żaden]</value>
-  </data>
-  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Nie masz wykupionego abonamentu i dlatego nie możesz już edytować ani tworzyć nowych haseł. Możesz jednak nadal przeglądać istniejące wpisy. Jeśli nie korzystałeś z 30-dniowego okresu testowego Premium, możesz go uruchomić z &lt;a href="https://www.axcrypt.net/Download/"&gt;aplikacji AxCrypt&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Twoja subskrypcja Premium wygasa {0}. Będziesz musiał przedłużyć subskrypcję Premium, aby móc edytować lub tworzyć nowe hasła. Dostęp tylko do odczytu zachowujesz bezterminowo.</value>
@@ -4485,6 +5284,12 @@ Temat: Migawka raportu AxCrypt</value>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Oprogramowanie musi zostać zaktualizowane ze względu na bezpieczeństwo.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SelectAllFilesLabelText" xml:space="preserve">
+    <value>Wybierz wszystkie pliki</value>
+  </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>Wyślij opinię</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>Wyślij zaproszenie</value>
@@ -4661,6 +5466,18 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="SubmitLabel">
     <value>Zatwierdź</value>
   </data>
+  <data name="SubscribeForFreeForFullFunctionalityText" xml:space="preserve">
+    <value>Wypróbuj bezpłatną subskrypcję, aby uzyskać pełną funkcjonalność!</value>
+  </data>
+  <data name="SubscribeForFreeForFullSecurityText" xml:space="preserve">
+    <value>Wypróbuj bezpłatną subskrypcję dla pełnego bezpieczeństwa!</value>
+  </data>
+  <data name="SubscribeForFullFunctionalityText" xml:space="preserve">
+    <value>Zapisz się, aby uzyskać pełną funkcjonalność!</value>
+  </data>
+  <data name="SubscribeForFullSecurityText" xml:space="preserve">
+    <value>Zapisz się dla pełnego bezpieczeństwa!</value>
+  </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Twoja subskrypcja zostanie odnowiona &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
@@ -4749,6 +5566,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Szwedzki</value>
   </data>
+  <data name="SwitchUserButtonText" xml:space="preserve">
+    <value>Zmień użytkownika</value>
+  </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>Kultura została pomyślnie aktywowana.</value>
   </data>
@@ -4770,6 +5590,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Nie można otworzyć pliku</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TechLinkLabel">
+    <value>Technika</value>
   </data>
   <data name="TechnicalDetailsDescription">
     <value>W tej sekcji szczegółowo opisano, czym jest AxCrypt, co robi i jak to robi. Jest ona przeznaczona głównie dla ekspertów technicznych, którzy mają dobrą znajomość tworzenia oprogramowania, a także kryptografii. Informacje zamieszczone tutaj mają być wystarczająco kompletne, aby na przykład zbudować oprogramowanie kompatybilne z AxCrypt.</value>
@@ -5038,6 +5861,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
     <value>Dziękujemy za wybranie AxCrypt Business</value>
   </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
+    <value>Dziękujemy za wybranie AxCrypt Business</value>
+  </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
     <value>Dziękujemy za wybranie AxCrypt!</value>
   </data>
@@ -5061,6 +5887,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0} {1} - {2}</value>
   </data>
+  <data name="TooExpensiveText" xml:space="preserve">
+    <value>To jest zbyt drogie</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Zarządzanie hasłami wymaga płatnego abonamentu. Kliknij, aby przejść do wersji Premium!</value>
   </data>
@@ -5070,6 +5899,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>Kliknij, aby przywrócić okno aplikacji AxCrypt</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialEndedText" xml:space="preserve">
+    <value>Mój bezpłatny okres próbny dobiegł końca</value>
   </data>
   <data name="TrialOnlyForNewUsers" xml:space="preserve">
     <value>Bezpłatny okres próbny dotyczy tylko nowych użytkowników</value>
@@ -5160,6 +5992,9 @@ Zespół AxCrypt</value>
   <data name="UnknownLogOn" xml:space="preserve">
     <value>Nieznane hasłoj. Kliknij "Nowy", aby utworzyć nowe.</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>Kliknij tutaj, aby odblokować pełne funkcje szyfrowania!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} for '{0}'.</value>
   </data>
@@ -5175,6 +6010,12 @@ Zespół AxCrypt</value>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>Jeśli chcesz zrezygnować z subskrypcji, kliknij &lt;a href="{0}" style="color: # 86b96e; text-decoration: none ;"&gt;ten link&lt;/a&gt;</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Dostępna aktualizacja</value>
+  </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>Zaktualizuj szczegóły płatności</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Aktualizuję status</value>
   </data>
@@ -5187,6 +6028,12 @@ Zespół AxCrypt</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Pobierz Premium!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>Twoja subskrypcja wygasła. Odnów dzisiaj, aby nadal korzystać z funkcji premium, takich jak:</value>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>Uaktualnij do lepszego szyfrowania!</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Anonimowe nazwy plików</value>
@@ -5316,6 +6163,9 @@ Zespół AxCrypt</value>
   </data>
   <data name="UsageTipsTargetUseListItem6">
     <value>Programiści mogą zintegrować AxCrypt poprzez włączenie biblioteki .NET core, która ma łatwy w użyciu programistyczny interfejs API. Pobierz kod źródłowy z Bitbucket lub za pośrednictwem nuget.</value>
+  </data>
+  <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
+    <value>Używaj tylko niezbędnych plików cookie</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Zaktualizowałeś AxCrypt. Niestety Twoja konfiguracja musi zostać zresetowana. Po ponownym uruchomieniu preferencje i ustawienia zostaną utracone. Przepraszamy za niedogodności. Twoje zaszyfrowane pliki są nadal bezpieczne.</value>

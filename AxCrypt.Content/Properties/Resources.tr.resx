@@ -1192,6 +1192,9 @@ Geçici oturum çerezlerimizi kabul etmediğin halde oturum açamazsın ve site 
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Kısa süre içinde business desteğimiz sizinle iletişime geçecek ve business hesabınızın oluşturulmasında size yardımcı olacaktır. Hesabınıza gitmek için devama tıklayın.</value>
   </data>
+  <data name="CreatePremiumSuccess" xml:space="preserve">
+    <value>Tebrikler ve AxCrypt Business'a hoşgeldiniz!</value>
+  </data>
   <data name="CryptographicHashesOfFilesLinkLabel">
     <value>Dosyaların Şifreleme Ayrışımı</value>
   </data>
@@ -3063,11 +3066,6 @@ Bu program anlaşmaya göre lisanslanmıştır.
     <value>Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
-  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
-    <value>Deneme süresi bittiğinde, AxCrypt mobil uygulamalarını kullanamayacaksın. Bunun için ücretli bir abonelik gerekmektedir. 
-
-Şifrelenmiş dosyalarını, AxCrypt'in ücretsiz masaüstü versiyonuyla her zaman açabilirsin.</value>
-  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Deneme süresi bittiğinde, üyelik satın almadığın sürece otomatik olarak AxCrypt Free ile devam edeceksin.</value>
   </data>
@@ -4012,6 +4010,10 @@ Faturan e-posta adresine ödeme hizmeti sağlayıcın tarafından gönderilecek.
     <value>&lt;b&gt;xCrypt Business hakkında herhangi bir sorunuz var mı?&lt;/b&gt;
 Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto:business@axcrypt.net"&gt;bize ulaşın&lt;/a&gt;.</value>
   </data>
+  <data name="QueriesAboutAxCryptPremium" xml:space="preserve">
+    <value>&lt;b&gt;xCrypt Business hakkında herhangi bir sorunuz var mı?&lt;/b&gt;
+Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto:business@axcrypt.net"&gt;bize ulaşın&lt;/a&gt;.</value>
+  </data>
   <data name="RateApplicationLinkAndroid" xml:space="preserve">
     <value>Lütfen bizi &lt;a&gt;Google Play&lt;/a&gt; de notlandırın</value>
     <comment>Link to app store in mobile application (Android)</comment>
@@ -4299,10 +4301,6 @@ Konu: AxCrypt Report Snapshot</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Hiçbiri]</value>
-  </data>
-  <data name="SecretsWarningIsReadOnly" xml:space="preserve">
-    <value>Premium üyeliğin olmadığı için artık şifre düzenleyemiyor ya da yeni şifreler oluşturamıyorsun. Ancak hala var olan şifreleri görüntüleyebilirsin. 30 günlük Premium deneme paketini kullanmadıysan buradan başlayabilirsin:
- &lt;a href="https://www.axcrypt.net/Download/"&gt;AxCrypt app&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>{0} da Premium üyeliğinin süresi dolmak üzere. Sonrasında yeni şifre girişleri yaratmak veya değişiklik yapmak için premium üyeliğini uzatman gerekmektedir. Yalnızca okumaya süresiz erişimin bulunmaktadır.</value>
@@ -5009,6 +5007,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
     <value>Güncelle - Tüm AxCrypt güncellemeleri hakkında belirti al</value>
   </data>
   <data name="ThanksChoosingAxCryptBusinessTitle" xml:space="preserve">
+    <value>AxCrypt Business'ı tercih ettiğiniz için teşekkür ederiz</value>
+  </data>
+  <data name="ThanksChoosingAxCryptPremiumTitle" xml:space="preserve">
     <value>AxCrypt Business'ı tercih ettiğiniz için teşekkür ederiz</value>
   </data>
   <data name="ThanksChoosingAxCryptTitle" xml:space="preserve">
