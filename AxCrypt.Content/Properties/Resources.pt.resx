@@ -1726,6 +1726,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Sair</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>A sua subscrição expirou porque o seu cartão não pôde ser debitado. Para continuar a sua subscrição, actualize os seus detalhes de pagamento.</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Expira em</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>
@@ -3631,6 +3634,9 @@ Este programa é licenciado de acordo com a licença.
     <value>Sem o Premium, você só pode ver e decriptar permanentemente ficheiros encriptados.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Quando o período de avaliação terminar, não poderá mais usar as aplicações móveis AxCrypt para proteger novos ficheiros (poderá, no entanto, aceder sempre a ficheiros protegidos anteriormente).</value>
+  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Quando o período experimental terminar, você irá continuar automaticamente com o AxCrypt Free a menos que escolha comprar uma subscrição.</value>
   </data>
@@ -5314,6 +5320,9 @@ Assunto: Relatório de Erros AxCrypt</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Nenhum]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>Não tem um plano de subscrição válido e portanto não pode editar ou criar novas entradas de palavras-passe. Pode, no entanto, ver entradas existentes. Se não tiver usado o seu período de avaliação de 30 dias, pode começar a fazê-lo &lt;a href="/Home/Upgrade"&gt;aqui&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Sua assinatura Premium terminará em breve, em {0}. Assim sendo, você deverá prolongar sua assinatura Premium para que possa continuar editando e criando novas senhas. Você terá acesso de leitura indefinidamente.</value>

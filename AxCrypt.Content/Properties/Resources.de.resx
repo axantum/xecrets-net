@@ -1653,6 +1653,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Verlassen</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Ihr Abonnement ist abgelaufen, weil Ihre Karte nicht belastet werden konnte. Aktualisieren Sie Ihre Zahlungsdetails, um das Abonnement fortzusetzen.</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>verfällt in</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>
@@ -4954,6 +4957,9 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Keine]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>Sie haben kein gültiges Abonnement und können daher keine neuen Passworteinträge mehr bearbeiten oder erstellen. Sie können jedoch weiterhin vorhandene Einträge sehen. Wenn Sie Ihre 30-tägige Testversion nicht genutzt haben, können Sie sie von &lt;a href="/Home/Upgrade"&gt;hier&lt;/a&gt; starten.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ihr Premium Abonnement läuft bald ab, am {0}. Danach müssen Sie Ihr Premium Abonnement verlängern um weiterhin Passworteinträge zu erstellen oder zu verändern. Andernfalls werden Sie nur noch Lesezugriff auf der Seite haben.</value>

@@ -1727,6 +1727,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Tu suscripción caducó debido a que no se pudo cargar tu tarjeta. Para continuar con la suscripción, actualiza tus datos de pago.</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Expira en</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>
@@ -5323,6 +5326,9 @@ Asunto: Reporte resumido de AxCrypt</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Ninguno]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>No tienes un plan de suscripción válido y, por lo tanto, ya no puedes editar ni crear nuevas entradas de contraseña. Sin embargo, aún puedes ver las entradas existentes. Si no has utilizado tu período de prueba de 30 días, puedes iniciarlo desde &lt;a href="/Home/Upgrade"&gt;aquí&lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Tu suscripción Premium caducará pronto, el {0}. A partir de esa fecha, tendrás que extender tu suscripción Premium para poder editar o crear nuevas entradas de contraseñas. Vas a retener acceso de solo lectura indefinidamente.</value>

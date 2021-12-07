@@ -1675,6 +1675,9 @@
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>退出</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>您的订阅由于无法从您的卡中收取费用而过期。 要继续订阅，请更新您的付款详细信息。</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>过期</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>
@@ -5097,6 +5100,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[无]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>您没有有效的订阅计划，因此无法再编辑或创建新密码条目。 但是，您仍然可以看到现有条目。 如果您还没有使用您的30天试用期，您可以从&lt;a href="/首页/升级"&gt;这里开始&lt;/a&gt;。</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>您的premium订阅很快就会在{0}到期。 此后，您必须扩展您的premium订阅才能编辑或创建新的密码条目。 您将无限期保留只读访问权限。</value>

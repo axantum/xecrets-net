@@ -174,6 +174,9 @@
   <data name="AccountStatusPremiumTrial" xml:space="preserve">
     <value>AxCrypt Premium deneme</value>
   </data>
+  <data name="ActionLabel" xml:space="preserve">
+    <value>Eylem</value>
+  </data>
   <data name="ActivateErrorEmailOrCode" xml:space="preserve">
     <value>Belirtilen e-posta veya onay kodu hatalıdır.</value>
   </data>
@@ -256,6 +259,9 @@ Tahmin edilmesi zor bir tane seç çünkü bu hem siteye erişimi sağlar hem de
     <value>AxCrypt'in işleyişi ya da güvenliği açısından önemli olması durumunda sana hala e-posta gönderebiliriz.</value>
     <comment>Additional information about the scope and meaning of the unsubscribe.</comment>
   </data>
+  <data name="AddMoreUsersTitle" xml:space="preserve">
+    <value>Daha fazla kullanıcı ekleyin</value>
+  </data>
   <data name="AddressLabel">
     <value>Adres</value>
   </data>
@@ -265,6 +271,63 @@ Tahmin edilmesi zor bir tane seç çünkü bu hem siteye erişimi sağlar hem de
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>AxCrypt ile güvene almak istediğin dosyayı seç. Varolan dosyalar şimdi şifrelenecek.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AffiliateAdvantagesHeading">
+    <value>AxCrypt Ortak Pazarlama Avantajları</value>
+  </data>
+  <data name="AffiliateAdvantagesSubHeading">
+    <value>İster bir işletme, blog yazarı, vlogger, influencer veya medya yayıncısı olun, Axcrypt ortaklık programı piyasadaki en iyi ödüllerden bazılarını sunar.</value>
+  </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>Cömert komisyon - Sektördeki en iyilerden biri olan% 25'lik bir komisyon sunmakla gurur duyuyoruz.</value>
+  </data>
+  <data name="AffiliateAdvantagesText2">
+    <value>Özel Hesap Yöneticisi - Özel bir hesap yöneticisiyle, kurulumdan bire bir danışmanlığa kadar yolun her adımında ihtiyacınız olan yardımı alacaksınız.</value>
+  </data>
+  <data name="AffiliateAdvantagesText3">
+    <value>Global Reach - AxCrypt iştirakleri, küresel düzeyde kampanyalar yürütür. Bu, dünyanın her köşesinden trafik, dönüşüm ve gelir elde etmenize olanak tanır.</value>
+  </data>
+  <data name="AffiliateAdvantagesText4">
+    <value>En yüksek dönüşüm oranları - Optimize edilmiş pazarlama stratejimiz ve güçlü marka itibarımız, yüksek dönüşüm yüzdesine yol açar. Bu, kazanç potansiyelinizi en üst düzeye çıkarmanıza olanak tanır.</value>
+  </data>
+  <data name="AffiliateInfoHeading">
+    <value>AxCrypt İş Ortağı Olun</value>
+  </data>
+  <data name="AffiliateInfoText1">
+    <value>Cömert komisyonlar kazanırken değerli bir şifreleme çözümü sağlamak için ortaklık programımıza katılın.</value>
+  </data>
+  <data name="AffiliateInfoText2">
+    <value>AxCrypt, Windows, Mac, iOS ve Android'de kullanılabilen, kullanımı kolay bir şifreleme programıdır. AxCrypt, dünya çapında 20 milyondan fazla indirme ile dünyanın en popüler şifreleme uygulamalarından biri haline geldi ve prestijli PC Magazine tarafından 2021'de arka arkaya 6 yıl "En İyi Şifreleme Yazılımı" olarak ödüllendirildi. AxCrypt çok dillidir ve İngilizce, Felemenkçe, Fransızca, Almanca, İtalyanca, Korece, Lehçe, Portekizce, Rusça, İspanyolca, İsveççe, Türkçe, Mandarin ve daha fazlasını destekler.</value>
+  </data>
+  <data name="AffiliateInstructionsHeading">
+    <value>AxCrypt'i tanıtın ve her satıştan kar elde edin</value>
+  </data>
+  <data name="AffiliateInstructionsStep1">
+    <value>Saniyeler içinde kaydolarak ortaklık programımıza üye olun</value>
+  </data>
+  <data name="AffiliateInstructionsStep2">
+    <value>Özel bağlantılara ve promosyon malzemelerine erişin. Kampanyalarınızı hayata geçirmek için pazarlama varlıklarımızdan yararlanın</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>AxCrypt'i tanıtın ve her ücretli dönüşüm için %25 komisyon kazanın</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading">
+    <value>AxCrypt şimdi size, AxCrypt'i tanıtarak her satıştan ödeme alacağınız bir ortaklık fırsatı sunuyor. Haydi şimdi başlayalım.</value>
+  </data>
+  <data name="AffiliateLinkLabel">
+    <value>Ortaklık</value>
+  </data>
+  <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
+    <value>Bunun şifrelenmiş dosyalarıma tekrar erişim sağlamayacağını anlıyorum.</value>
+  </data>
+  <data name="AllowAllCookiesPromptText" xml:space="preserve">
+    <value>Tüm çerezlere izin ver</value>
+  </data>
+  <data name="AllowCookieInfoText" xml:space="preserve">
+    <value>Bu web sitesi, kullanıcı deneyimini geliştirmek için çerezleri kullanır. Web sitemizi kullanarak, Çerez politikamıza uygun olarak tüm çerezlere izin vermiş olursunuz. &lt;a href='https://www.axcrypt.net/information/privacy-policy'&gt;Readmore&lt;/a&gt;</value>
+  </data>
+  <data name="AllowCookiesPopupTitle" xml:space="preserve">
+    <value>Bu web sitesi çerezleri kullanır</value>
   </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Zaten kaydoldun mu? Buradan oturum aç</value>
@@ -315,6 +378,15 @@ Lütfen aynı şifreyi kullanarak oturum aç.</value>
   <data name="ApplyNowLabel">
     <value>Şimdi başvurun</value>
   </data>
+  <data name="AppNotWorkExpectedText" xml:space="preserve">
+    <value>Uygulamalar veya hizmetler beklendiği gibi çalışmadı</value>
+  </data>
+  <data name="ApproveMasterKeyMoreThanOneBusinessError" xml:space="preserve">
+    <value>Ana anahtar, birden fazla işletmenin parçasıyken etkinleştirilemez. Lütfen ana anahtarı etkinleştirmeden önce parçası olduğunuz diğer işletmelerden ayrılın.</value>
+  </data>
+  <data name="ApproveMasterKeyPrompt" xml:space="preserve">
+    <value>Ana Anahtarı Onaylayın</value>
+  </data>
   <data name="AppSignInMessage" xml:space="preserve">
     <value>Güvenlik sorunları nedeniyle lütfen şifreni tekrar gir.</value>
     <comment>The message we show when we need to be signed in to the web, but we're coming from an app-link.</comment>
@@ -330,6 +402,9 @@ Aboneliklere  yapılan güncellemeler buraya bir kaç dakika içinde yansıtıla
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>Girmeye çalıştığın site doğrulama gerektirmektedir. Devam etmek için lütfen oturum aç.</value>
+  </data>
+  <data name="AutoAnonymousRenameMenuItemText" xml:space="preserve">
+    <value>Otomatik Anonim Yeniden Adlandır</value>
   </data>
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>Cevaplaman veya başka birşey yapman gerekmemektedir. Bir şey yapmazsan başka e-posta yollanmayacak ve AxCrypt kimliğin kalıcı olarak silinecektir.</value>
@@ -541,6 +616,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BruteForceResistantText">
     <value>Dinamik kaba kuvvet önlemi, yinelemeli şifre paketleme saldırıları daha da zor hale getirir.</value>
   </data>
+  <data name="BusinessAcceptInvitationText" xml:space="preserve">
+    <value>Daveti Kabul Et</value>
+  </data>
   <data name="BusinessAccountLabel" xml:space="preserve">
     <value>Business</value>
     <comment>The non-translated name for the Business plan</comment>
@@ -554,6 +632,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
     <value>AxCrypt Business'a hoş geldin</value>
     <comment>The mail subject used when a member has been added to a business subscription. The user already exists, so the main point is to inform that the user is now upgraded.</comment>
+  </data>
+  <data name="BusinessAddedMasterKeyInfoMailBodyHtml" xml:space="preserve">
+    <value>{0} tarafından AxCrypt'e davet edildiniz. Bu işletmede ana anahtar özelliği açık, yani şifrelediğiniz dosyalar güvenlik nedenleriyle işletme yöneticileri tarafından kurtarılabilir. Bu özellik sizin için varsayılan olarak açık değildir! &lt;a href='" + {1} + "'&gt;AxCrypt Kimliğim&lt;/a&gt; sayfasına giderek özelliği onaylamanız gerekecek.</value>
   </data>
   <data name="BusinessAdministratorsLabel" xml:space="preserve">
     <value>Yöneticiler</value>
@@ -582,6 +663,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Kurulum ve ödeme planı</value>
+  </data>
+  <data name="BusinessEmailLabel">
+    <value>İşletme e-postası</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>AxCrypt Business aboneliğiniz sona ermiştir.  Umarız AxCrypt'ten memnun kalıp kullanışlı bulmuşsunuzdur.</value>
@@ -622,6 +706,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BusinessFeatureListMadeInSweden">
     <value>İsveç'te sunucuları ile "İsveç Malı"</value>
   </data>
+  <data name="BusinessFeatureListMasterKey">
+    <value>Ana anahtar, işletme yöneticilerinin kayıp dosyaları kurtarmasını sağlar</value>
+  </data>
   <data name="BusinessFeatureListNoEncryption">
     <value>Herhangi bir şifreleme bilgisi gerektirmez</value>
   </data>
@@ -649,6 +736,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BusinessFirstBodyText4">
     <value>Daha fazla özel Business Özellikleri çok yakında. Kaçırmayın!</value>
   </data>
+  <data name="BusinessFirstBodyText5">
+    <value>Daha özel Business Özellikleri çok yakında. Kaçırmayın!</value>
+  </data>
   <data name="BusinessHeroSubheading">
     <value>Firmalar için uygun</value>
   </data>
@@ -656,6 +746,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>&lt;p&gt;&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendiniz. Dosyalarınızı korumaya başlamak için &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;indirin&lt;/a&gt; ve AxCrypt'i kurun. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt oturumunuzu açın, aşağıdaki doğrulama kodunu girip gizli kişisel şifrenizi belirleyin.&lt;/p&gt; 
 &lt;p&gt;Sorularınız için lütfen önce {0} ile iletişime geçin.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>&lt;b&gt;{0}&lt;/b&gt; tarafından davet edildiniz. Bu işletmede &lt;i&gt;ana anahtar&lt;/i&gt; özelliğinin açık olduğunu unutmayın. Bu, güvenlik nedenleriyle şifrelediğiniz dosyaların işletme yöneticileri tarafından kurtarılabileceği anlamına gelir. Bu daveti kabul ederek işletmeye ekleneceksiniz ve dosyalarınıza ana anahtar uygulanmış olacak. Bu işletmenin bir parçası olmak istemiyorsanız, lütfen bu e-postayı dikkate almayın ve bunun yerine &lt;a href='{1}'&gt;kaydolarak&lt;/a&gt; devam edin.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -787,6 +880,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Hiçbir abonelikte yönetici değilsin.</value>
     <comment>A sentence informing the user that (s)he is not the administrator of any subscriptions, so there's nothing to do here.</comment>
   </data>
+  <data name="BusinessSubscriptionOrganizationLabel" xml:space="preserve">
+    <value>Organizasyon</value>
+  </data>
   <data name="BusinessSubscriptionOrganizationNameLabel" xml:space="preserve">
     <value>Kuruluş Adı</value>
     <comment>The prompt for the an organization name</comment>
@@ -868,6 +964,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x kullanıcılar</value>
+  </data>
+  <data name="BusinessSupportTitle" xml:space="preserve">
+    <value>İş Desteği</value>
   </data>
   <data name="BusinessTrialCreationSummaryTitle" xml:space="preserve">
     <value>İlk ay ücretsiz, ardından:</value>
@@ -1058,11 +1157,17 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
   <data name="ChangePasswordSuccess" xml:space="preserve">
     <value>Şifren değiştirilmiştir.</value>
   </data>
+  <data name="ChangePlanText" xml:space="preserve">
+    <value>Planımı değiştirmeyi düşünüyorum</value>
+  </data>
   <data name="CheckForUpdateMenuText" xml:space="preserve">
     <value>Güncelleme ara</value>
   </data>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Daha yeni bir sürüm var mı diye kontrol et. İnternet bağlantısı gerektirir.</value>
+  </data>
+  <data name="ChineseLanguageSelectionText" xml:space="preserve">
+    <value>中文 (Çince)</value>
   </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Hesabınızın ilk adımlarını atmak için AxCrypt'i şahıs olarak mı yoksa kuruluş olarak mı kullanacağınıza karar verin.</value>
@@ -1072,6 +1177,9 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
   </data>
   <data name="CleanUpNeededToolTip" xml:space="preserve">
     <value>Dosya açık ve temizlik gerektirebilir. Açık uygulamaları kapatıp Temizle tuşuna bas.</value>
+  </data>
+  <data name="CleanUpPromptText" xml:space="preserve">
+    <value>Temizlemek</value>
   </data>
   <data name="CleanupWorkflowDescription" xml:space="preserve">
     <value>Uygulamanın dosyanın açılmış kopyasını yerel dosya diskinde tutacağını lütfen dikkate al. Dosya oturum kapatıldığında silinecektir. Dilersen dosyayı temizleme düğmesi aracılığıyla manuel olarak da silebilirsin.</value>
@@ -1129,6 +1237,9 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
   </data>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Bütün dosyalar için aynısı yapılsın mı ?</value>
+  </data>
+  <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
+    <value>Herhangi bir sorunuz varsa, lütfen önce {0} ile iletişime geçin.</value>
   </data>
   <data name="ContactHeading">
     <value>İletişim</value>
@@ -1247,6 +1358,9 @@ Geçici oturum çerezlerimizi kabul etmediğin halde oturum açamazsın ve site 
   <data name="DecryptAndRemoveFromListToolStripMenuItemText" xml:space="preserve">
     <value>Korumayı durdur ve listeden kaldır</value>
   </data>
+  <data name="DecryptButtonTooltipText" xml:space="preserve">
+    <value>Şifresi çözülecek belgeleri seçmek için tıklayın</value>
+  </data>
   <data name="DecryptedFileColumnHeaderText" xml:space="preserve">
     <value>Dosya</value>
   </data>
@@ -1285,6 +1399,9 @@ Geçici oturum çerezlerimizi kabul etmediğin halde oturum açamazsın ve site 
   <data name="DeleteAccountErrorUserNotFound" xml:space="preserve">
     <value>İç hata, geçerli kullanıcı bulunamadığı için AxCrypt ID silinemedi.</value>
   </data>
+  <data name="DeleteAccountMailBodyIntro" xml:space="preserve">
+    <value>AxCrypt Kimliğinizi silmeyi denediniz. İşlemi tamamlamak için e-posta adresinizi doğrulamanız gerekir. Bunu yapmak, e-postanın sahibi olduğunuzu kanıtlar ve bize AxCrypt Kimliğinizi sistemden kalıcı olarak silme izni verir. &lt;span class="red"&gt;Kaydedilmiş şifre girişleri de dahil olmak üzere AxCrypt Kimliğinizle ilişkili tüm veriler de silinecektir.&lt;/span&gt;</value>
+  </data>
   <data name="DeleteAccountSuccess" xml:space="preserve">
     <value>AxCrypt kimliğin başarıyla silinmiştir. 
 
@@ -1298,6 +1415,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   </data>
   <data name="DescriptionLabel">
     <value>Açıklama</value>
+  </data>
+  <data name="DeselectAllFilesLabelText" xml:space="preserve">
+    <value>Tüm dosyaların seçimini kaldır</value>
   </data>
   <data name="DialogAxCryptIdEmailTitle" xml:space="preserve">
     <value>AxCrypt kimliği</value>
@@ -1369,6 +1489,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
     <value>Devre Dışı Bırak</value>
     <comment>The menu option used to disable the inactivity automatic sign out feature.</comment>
   </data>
+  <data name="DisableMasterKeyPrompt" xml:space="preserve">
+    <value>Ana Anahtarı Devre Dışı Bırak</value>
+  </data>
   <data name="DisclaimerMailFooter" xml:space="preserve">
     <value>Bu otomatik e-posta tercih etmiş olduğun dile tercüme edilmiştir, fakat bireysel yardım ve destek İngilizcedir.</value>
   </data>
@@ -1381,6 +1504,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="DoneTitle" xml:space="preserve">
     <value>İşlem tamam!</value>
   </data>
+  <data name="DontLikeRecurringFlowText" xml:space="preserve">
+    <value>Tekrarlayan abonelikleri sevmiyorum</value>
+  </data>
   <data name="DontShowAgainCheckBoxText" xml:space="preserve">
     <value>Bunu bir daha gösterme.</value>
   </data>
@@ -1390,11 +1516,17 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="DownloadAxcrypt2LinkLabel">
     <value>AxCrypt 2'yi İndirin</value>
   </data>
+  <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
+    <value>AxCrypt Uygulamasını İndirin</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>MacOS için AxCrypt</value>
   </data>
   <data name="DownloadHeroHeadingWindows">
     <value>Windows için AxCrypt</value>
+  </data>
+  <data name="DownloadHeroHeadingWindowsPortable" xml:space="preserve">
+    <value>AxCrypt Windows için bağımsız/taşınabilir</value>
   </data>
   <data name="DownloadHeroListDoubleClick">
     <value>Çift tık desteği, güvenli dosyaları açarken, düzenlerken ve kaydederken hiç güvenlik yokmuş gibi kolaylıkla çalışmanızı sağlar.</value>
@@ -1480,6 +1612,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="EditSecretSuccess" xml:space="preserve">
     <value>Son kayıtın güncellenmiştir.</value>
   </data>
+  <data name="EducationLinkLabel">
+    <value>Eğitim</value>
+  </data>
   <data name="EmailAppLink" xml:space="preserve">
     <value>E-postaya git</value>
     <comment>Text of link for opening mail application.</comment>
@@ -1502,6 +1637,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   </data>
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Tanım Yok]</value>
+  </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Ana Anahtarı Etkinleştir</value>
   </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Güvenli dosyalar</value>
@@ -1554,12 +1692,18 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="ErrorRequiredField">
     <value>Bu alan zorunludur</value>
   </data>
+  <data name="ExactlySelectOneFileText" xml:space="preserve">
+    <value>Lütfen bir dosya seçin</value>
+  </data>
   <data name="Exception" xml:space="preserve">
     <value>'{0}' işlemi sırasında istisna.</value>
     <comment>@Invariant</comment>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Çıkış</value>
+  </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Kartınızdan çekim yapamadığınız için aboneliğiniz sona erdi. Aboneliğe devam etmek için ödeme ayrıntılarınızı güncelleyin.</value>
   </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Sonlanıyor</value>
@@ -1885,6 +2029,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="FeaturesBusinessAdminDescription">
     <value>AxCrypt Business hesabınızı yönetin, abonelikler oluşturun, firma bilgilerinizi değiştirin, vb.</value>
   </data>
+  <data name="FeaturesBusinessPrioritySupportDescription" xml:space="preserve">
+    <value>Özel hesap yöneticisi ile hızlı ve kişisel destek alın</value>
+  </data>
   <data name="FeaturesChangeToManage">
     <value>Kendi bölgenizde Pazarlama, Satış ve 1. Seviye Destek Hattını yönetme fırsatı</value>
   </data>
@@ -1935,6 +2082,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="FeaturesPasswordManagementDescription">
     <value>Bütün şifrelerinizi ve diğer sırlarınızı bulutumuzda güvende tutun.</value>
+  </data>
+  <data name="FeaturesProfessionalUseDescription" xml:space="preserve">
+    <value>İşle ilgili tüm verilerinizi koruyun</value>
   </data>
   <data name="FeaturesProgressiveMargins">
     <value>Aşamalı kazançlar (daha yüksek satışlarda daha yüksek gelir yüzdesi)</value>
@@ -2022,6 +2172,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="FileFilterFileTypePublicSharingKeyFiles" xml:space="preserve">
     <value>AxCrypt Ortak Paylaşım Anahtar Dosyaları</value>
   </data>
+  <data name="FileInfoLabelText" xml:space="preserve">
+    <value>Dosya Bilgileri</value>
+  </data>
   <data name="FileIsLockedWarning" xml:space="preserve">
     <value>'{0}' başka bir uygulamada açık. Lütfen diğer uygulamanın tamamen kapalı olduğundan emin olup tekrar dene.</value>
   </data>
@@ -2046,6 +2199,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="FileWipeText">
     <value>Dosyaların güvenli kaldırılması.</value>
+  </data>
+  <data name="FinancialLinkLabel">
+    <value>Finansal</value>
   </data>
   <data name="FolderAlreadyWatched" xml:space="preserve">
     <value>Dosya '{0}' zaten güvenli.</value>
@@ -2090,6 +2246,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="FreeLabel">
     <value>Ücretsiz</value>
+  </data>
+  <data name="FullNameLabel">
+    <value>Tam ad</value>
   </data>
   <data name="GdprBlock1Heading">
     <value>GDPR nedir?</value>
@@ -2337,14 +2496,53 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: Şifre Yönetici</value>
   </data>
+  <data name="GetStartedPasswordResetHeading">
+    <value>Parola Sıfırlama</value>
+  </data>
+  <data name="GetStartedPasswordResetIngress">
+    <value>AxCrypt ID şifrenizi mi unuttunuz? Artık bir parola sıfırlama yapabilirsiniz. Parolanızı sıfırlayarak tekrar oturum açabilirsiniz, ancak eski parolanızla şifrelenmiş dosyalara erişiminiz olmayacaktır. Parolanızı nasıl sıfırlayacağınızla ilgili talimatlar için aşağıdaki videoya bakın.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep1">
+    <value>Uygulama içindeki Dosya Seçeneklerine gidin ve “Parola Sıfırlama”yı seçin veya doğrudan &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Password Reset&lt;/a&gt;'ya gidin.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2">
+    <value>Sıfırlama talebinde bulunabileceğiniz web sitemize yönlendirileceksiniz.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3">
+    <value>Doğruladıktan sonra, e-posta adresinize gönderilen e-postadaki istemi takip edin.</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac">
+    <value>AxCrypt: Mac'te Parola Sıfırlama</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows">
+    <value>AxCrypt: Parola Sıfırlama</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Abonelik almak için lütfen üye girişi yapın. Eğer hesabınız yok ise, öncelikle&lt;a href="{0}Home/Register/"&gt;kaydolmanız&lt;/a&gt; gerekir.</value>
+  </data>
+  <data name="GoToMyAxCryptPrompt" xml:space="preserve">
+    <value>AxCrypt'ime Git</value>
+  </data>
+  <data name="GoToOurBlogLinkLabel" xml:space="preserve">
+    <value>BLOĞUMUZA GİDİN</value>
+  </data>
+  <data name="GoToPasswordManagerButtonText" xml:space="preserve">
+    <value>Şifre yöneticisine gidin</value>
+  </data>
+  <data name="GovernmentLinkLabel">
+    <value>Devlet</value>
+  </data>
+  <data name="GuidesLinkLabel">
+    <value>Kılavuzlar</value>
   </data>
   <data name="HaveAccountInfo" xml:space="preserve">
     <value>Harika! '{0}' için zaten bir AxCrypt kimliğine sahipsin. 
 
 Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifre sıfırlaması yapman gerekmektedir.</value>
     <comment>A text displayed during initial startup explaining that the user already has an account with that email, and if the password is unknown a password reset must be issued in order to sign in. If {0} is present, the email address will be displayed there.</comment>
+  </data>
+  <data name="HealthcareLinkLabel">
+    <value>Sağlık hizmeti</value>
   </data>
   <data name="HelpAboutToolStripMenuItemText" xml:space="preserve">
     <value>Hakkında</value>
@@ -2473,6 +2671,9 @@ Dosyanın içeriğini görmek veya güncellemek istiyorsanız lütfen ayrıca de
   <data name="ImportPublicKeysFileSelectionTitle" xml:space="preserve">
     <value>Paylaşım anahtarı dosyalarını seç</value>
   </data>
+  <data name="ImproveOurServiceCommentText" xml:space="preserve">
+    <value>Hizmetimizi geliştirmek için bize ne önerirsiniz?</value>
+  </data>
   <data name="IncludeSubfoldersConfirmationBody" xml:space="preserve">
     <value>Tehlikeli bir seçeneği etkinleştirmek üzeresin. Eğer dikkatli olmazsan, dilediğinden daha fazla veriyi etkileyebilir, dolayısıyla işlemlerin çok uzun sürmesine neden olabilir ya da işletim sistemi de dahil olmak üzere diğer yazılımları aksatabilirsin. Emin misin?</value>
   </data>
@@ -2490,6 +2691,192 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
   </data>
   <data name="IndexPageTitle" xml:space="preserve">
     <value>AxCrypt kimliğim</value>
+  </data>
+  <data name="IndustriesAboutLinkLabel">
+    <value>Endüstriler Hakkında</value>
+  </data>
+  <data name="IndustriesBenefitsTitle">
+    <value>Axcrypt kullanmanın faydaları</value>
+  </data>
+  <data name="IndustriesBlogLabel">
+    <value>Şifrelemede yeni misiniz? En son haberler için blogumuza göz atın.</value>
+  </data>
+  <data name="IndustriesEducationCloud">
+    <value>Verilerinizi basitçe yönetin. Bulut depolama farkındalığımız sayesinde içeriklere herkes ve her yerden farklı cihazlardan erişilebildiği için grup projeleri ve sunumları sorunsuz bir şekilde yürütülebilir.</value>
+  </data>
+  <data name="IndustriesEducationDescription">
+    <value>Çevrimiçi sınıflar ve dijital öğretim gelişiyor. Dersler, sınıflar veya çevrimiçi toplantılar sırasında bilgisayar veya tablet gibi dijital cihazların kullanımı giderek daha fazla yineleniyor. PDF belgelerine not almak veya yorum yapmak büyük miktarda veri birikir. AxCrypt, çalışma ve araştırmaları dosya ve belgeler biçiminde saklarken özel bilgilerin korunmasına yardımcı olur. Sizin ve yalnızca itibarlı ekibinizin özel verilerinize eriştiğinden emin oluyoruz.</value>
+  </data>
+  <data name="IndustriesEducationHeading">
+    <value>Tescilli makaleleri, kağıtları, raporları, tezleri ve araştırmaları şifreleyin</value>
+  </data>
+  <data name="IndustriesEducationParagraph">
+    <value>Dosyalarınızı maliyetli veri ihlallerinden korurken tüm belgelerinize erişin ve cihazlarınızda senkronize edin.</value>
+  </data>
+  <data name="IndustriesEducationProtection">
+    <value>AxCrypt, organizasyonunuzun Genel Veri Koruma Yönetmeliği (GVKY) gibi düzenlemelerle uyumlu kalmasını sağlar.</value>
+  </data>
+  <data name="IndustriesEducationSecurity">
+    <value>Fikri mülkiyetinizi ve önemli belgelerinizi yüklemeden önce güvenceye alın. Denemeler, makaleler, raporlar, tezler ve araştırma sonuçları Axcrypt ile şifrelenebilir ve veri sızıntılarına karşı korunabilir.</value>
+  </data>
+  <data name="IndustriesEducationTeamwork">
+    <value>Sınıf arkadaşlarınız, profesörleriniz ve gözetmenlerinizle güvenli ve karmaşık olmayan bir şekilde işbirliği yapın ve içerik paylaşın. İşletme yöneticilerinin, işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolayı unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesFinancialCloud">
+    <value>Veri trafiğinin hacmi önemli ölçüde arttı. Tüketici bankacılığı, etkileşim için farklı uç noktalara dayandığından ve çoklu bulut ortamını benimsediğinden, bilgi düzenli olarak farklı ağ alanlarına gider. Dosyalarınızı maliyetli veri ihlallerinden korurken tüm belgelerinize erişin ve bunları cihazlarınızda senkronize edin.</value>
+  </data>
+  <data name="IndustriesFinancialDescription">
+    <value>Finans dünyasında veri güvenliği ciddi bir iştir. Şifreleme, aksi takdirde mümkün olmayacak çeşitli ekonomik faaliyetlere olanak tanır. Finansal hizmetler sektörü, tüketicilerin bilgiye erişme, yardım alma ve elektronik cihazları aracılığıyla her yerde ve her zaman işlem yapma konusundaki artan beklentilerinden en çok etkilenen sektörlerden biridir. Şifreleme, düz metni şifreli metne dönüştürerek bankalara, sigorta şirketlerine, kredi piyasasındaki aktörlere, şirketlere, girişim fonlarına, yatırım danışmanlarına, fon yöneticilerine, danışmanlık firmalarına vb. hassas bilgileri korumalarına yardımcı olur, böylece yalnızca yetkili kullanıcılar doğru anahtarla, bilgilerin şifresini çözer ve anlar.</value>
+  </data>
+  <data name="IndustriesFinancialHeading">
+    <value>Son derece hassas finansal bilgileri koruyun</value>
+  </data>
+  <data name="IndustriesFinancialParagraph">
+    <value>AxCrypt şifrelemesi ile müşterinin bilgileri ve şirket anlaşmaları, meraklı gözlerden güvenli ve sağlam bir şekilde saklanır.</value>
+  </data>
+  <data name="IndustriesFinancialProtection">
+    <value>Firmaların uygulaması gereken ulusal ve uluslararası düzenlemelere uyar, piyasanın her dalgalanmasında ihlallerin önüne geçer, sadece yetkili kişilerin erişimi olduğu için iç kontroller gerçekleştiğinde ilgili firma bilgilerini görüntüler ve uygunsuzluktan kaynaklanan önemli cezalardan kaçınılır.</value>
+  </data>
+  <data name="IndustriesFinancialSecurity">
+    <value>Müşteri bilgileri ve şirket anlaşmaları güvenli ve emin bir şekilde meraklı gözlerden korunur.</value>
+  </data>
+  <data name="IndustriesFinancialTeamwork">
+    <value>Büyük miktarda veri alışverişi basit ve kolaydır. İnternet üzerinden elektronik ticaret işlemlerinin güvenliğini sağlar, örneğin kredi kartı numaralarının iletilmesini mümkün kılar. İşletme yöneticilerinin işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolasını unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesGovernmentCloud">
+    <value>Dosyalarınızı/belgelerinizi Google Drive ve Dropbox gibi birden çok bulut depolama hizmetinde otomatik olarak güvenceye alın ve nerede olursanız olun şifrelerinize erişimi sorunsuz bir şekilde yönetin. Tüm bilgiler, yönetim sistemine dahil olan tüm üyelere açıktır.</value>
+  </data>
+  <data name="IndustriesGovernmentDescription">
+    <value>Emniyet yetkilileri, şifrelemenin yaygın ve artan kullanımına dikkat çekiyor. Görevlerinden biri mahremiyeti ve sivil özgürlükleri korumaktır. Şifreleme, bilgi hırsızlığını önleyerek toplumu daha güvenli ve emniyetli hale getirmeye yardımcı olur. Bir hükümet olarak, deneyimsiz ve sofistike suçlular, yabancı istihbarat teşkilatları ve baskıcı hükümetler dahil olmak üzere çok çeşitli aktörlerden gelen tehditlere karşı koymak için AxCrypt'e güvenebilirsiniz. NSA, güvenliğinin yeterince kanıtı olması gereken verileri şifrelemek için AES kullanır.</value>
+  </data>
+  <data name="IndustriesGovernmentHeading">
+    <value>Elektronik olarak arşivlenmiş gizli belgeleri koruyun</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph">
+    <value>Şifreleme, bilgi hırsızlığını önleyerek toplumu daha güvenli ve emniyetli hale getirmeye yardımcı olur. Hukuk yetkilileri, şifrelemenin yaygın ve artan kullanımına işaret ediyor.</value>
+  </data>
+  <data name="IndustriesGovernmentProtection">
+    <value>AxCrypt, kuruluşunuzun Genel Veri Koruma Yönetmeliği (GDPR) gibi düzenlemelerle uyumlu kalmasını sağlar.</value>
+  </data>
+  <data name="IndustriesGovernmentSecurity">
+    <value>128 bit veya 256 bit şifrelememizle AxCrypt, kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak veri güvenliğini artırır ve ihlal risklerini azaltır.</value>
+  </data>
+  <data name="IndustriesGovernmentTeamwork">
+    <value>AxCrypt, güvenli dosyaların diğer AxCrypt kullanıcıları tarafından kendi şifreleriyle açılmasına izin verir. Şifrelenmiş bilgi alışverişi kolay, hızlı ve risksizdir. İşletme yöneticilerinin işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolayı unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesHeadingCloud">
+    <value>Bulut depolama farkındalığı ve parola yönetimi</value>
+  </data>
+  <data name="IndustriesHeadingConfidentiality">
+    <value>Gizlilik ve dürüstlük</value>
+  </data>
+  <data name="IndustriesHeadingProtection">
+    <value>Veri koruma yönetmeliğine uygun</value>
+  </data>
+  <data name="IndustriesHeadingSecurity">
+    <value>Güvenlik, güvenilirlik ve basitlik</value>
+  </data>
+  <data name="IndustriesHeadingTeamwork">
+    <value>Ekip çalışması, işbirliği</value>
+  </data>
+  <data name="IndustriesHealthcareCloud">
+    <value>Dosyalarınızı/belgelerinizi Google Drive ve Dropbox gibi birden çok bulut depolama hizmetinde otomatik olarak güvenceye alın ve nerede olursanız olun şifrelerinize erişimi sorunsuz bir şekilde yönetin. Hastaların tedavisine dahil olan tüm üyeler için tüm bilgiler mevcuttur.</value>
+  </data>
+  <data name="IndustriesHealthcareDescription">
+    <value>Şifreleme ihtiyacı hastanelerde, bakım evlerinde ve rehabilitasyon tesislerinde daha yaygın hale geldi. EMR'ler gibi elektronik sağlık kayıtlarını kullanan, sigorta bilgileri, ilaç için uygun dozaj miktarları ve diğer kişisel bilgileri içeren hasta sağlık bilgilerini e-posta ile ileten uygulamaların sayısındaki hızlı artışla birlikte, bu çağ yüksek güvenlik gerektiren bir dijital sağlık ve hassas bilgi çağıdır. AxCrypt, çalışanlar, hastalar ve iş ortakları için kolay ve sorunsuz bir kullanıcı deneyimi sunar.</value>
+  </data>
+  <data name="IndustriesHealthcareHeading">
+    <value>Kişisel tanımlanabilir bilgileri ve sağlık kayıtlarını koruyun</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph">
+    <value>Kurumunuz ve potansiyel hastalar arasında güven oluştururken yerel ve federal veri koruma düzenlemeleriyle uyumlu kalın.</value>
+  </data>
+  <data name="IndustriesHealthcareProtection">
+    <value>Veri koruma yasalarına uygun olarak, çevrimiçi randevuları, bir tıp uzmanıyla iletişimleri ve kurumlar arasında gönderilen sağlık kayıtlarını koruyarak, kurumunuz ve potansiyel hastalar arasında güven oluşturmaya yardımcı oluyoruz. AxCrypt, kuruluşunuzun Sağlık Sigortası Taşınabilirlik ve Sorumluluk Yasası (HIPAA), Ekonomik ve Klinik Sağlık için Sağlık Bilgi Teknolojisi Yasası (HITECH) ve Genel Veri Koruma Yönetmeliği (GDPR) gibi düzenlemelerle uyumlu kalmasını sağlar.</value>
+  </data>
+  <data name="IndustriesHealthcareSecurity">
+    <value>Şifreleme, maliyetli veri ihlallerini önler. Suçlular, hassas bilgiler içeren çıkarılabilir bir cihaza, mobil cihaza veya dizüstü bilgisayara erişirse, işletmeniz büyük para cezalarıyla cezalandırılabilir. Genel bir veri güvenliği programının parçası olarak şifrelemeyi dahil etmek, finansal iyileştirmelere izin verir ve kuruluşların güvenlik ihlallerinin maliyetinden kaçınmasına yardımcı olur.</value>
+  </data>
+  <data name="IndustriesHealthcareTeamwork">
+    <value>Sağlık kuruluşları, muazzam miktarda tıbbi ve kişisel kayıt toplar, yönetir ve dağıtır. Şifreleme, ister taşınırken ister hareketsiz durumdayken verileri daha güvenli hale getirir. Kısacası, hastaların hassas tıbbi bilgilerini hırsızlık ve veri ihlallerinden korur. Doktorlar, hemşireler ve uzmanlar arasında bilgi alışverişi kolay, hızlı ve risksizdir. İşletme yöneticilerinin, işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolayı unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesHeroButton">
+    <value>AxCrypt Business'ı keşfedin</value>
+  </data>
+  <data name="IndustriesHeroText0">
+    <value>İnsanların iletişim ve çalışma şeklini değiştiriyoruz.</value>
+  </data>
+  <data name="IndustriesHeroText1">
+    <value>İnsanların iletişim ve çalışma şeklini değiştiriyoruz. 256 bit şifrelememizle AxCrypt, kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak ve gizliliği ve bütünlüğü koruyarak veri güvenliğini artırır ve ihlal risklerini azaltır. Üretkenliğinizi artırın ve çevrimiçi gizliliğinizi merak etmeyi bırakın. Verilerinizin tam kontrolünü geri alın ve dijital güveni yaşayın. Şifreleme ve ilgili konuları merak ediyorsanız, haftalık olarak güncellenen &lt;a href="/blog"&gt;bloglarımıza&lt;/a &gt; bir göz atın. AxCrypt olarak size yardımcı olmaktan ve şifrelemeyle ilgili tüm sorularınızı yanıtlamaktan mutluluk duyarız.</value>
+  </data>
+  <data name="IndustriesHeroText2">
+    <value>&lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; adresinden bizimle iletişime geçmekten çekinmeyin ve bizi sosyal medyada takip etmeyi unutmayın.</value>
+  </data>
+  <data name="IndustriesLegalCloud">
+    <value>Dosyalarınızı/belgelerinizi Google Drive ve Dropbox gibi birden çok bulut depolama hizmetinde otomatik olarak güvenceye alın ve nerede olursanız olun şifrelerinize erişimi sorunsuz bir şekilde yönetin. Tüm bilgiler, anlaşmalara ve sözleşmelere dahil olan tüm üyelere açıktır.</value>
+  </data>
+  <data name="IndustriesLegalConfidentiality">
+    <value>İşletme yöneticilerinin işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolayı unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesLegalDescription">
+    <value>Kişisel ve gizli bilgiler her zamankinden daha fazla internet üzerinden açık metin olarak aktarılıyor ve potansiyel olarak ifşa ediliyor. Hukuk sektörü, tüketicilerin elektronik cihazları aracılığıyla her yerde ve her zaman bilgiye erişme, yardım alma ve sözleşmeler yapma konusundaki artan beklentilerinden en çok etkilenen sektördür. İster tek başına bir ceza hukuku uzmanı, ister bir Fortune 500 şirketinde bir şirket avukatı olun, şifreleme, farkında olsanız da olmasanız da karşılaştığınız sorunların çoğunu etkiler.</value>
+  </data>
+  <data name="IndustriesLegalHeading">
+    <value>Gizli sözleşmeleri, vasiyetleri ve kayıtları koruyun</value>
+  </data>
+  <data name="IndustriesLegalParagraph">
+    <value>Kişisel verilerin yetkisiz ve yasa dışı işlenmesinden kaçınmak için hassas bilgileri saklarken ve paylaşırken şifreleme kesinlikle gereklidir. Kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak ihlal risklerini azaltın.</value>
+  </data>
+  <data name="IndustriesLegalProtection">
+    <value>AxCrypt, kuruluşunuzun Genel Veri Koruma Yönetmeliği (GDPR) gibi düzenlemelerle uyumlu kalmasını sağlar.</value>
+  </data>
+  <data name="IndustriesLegalSecurity">
+    <value>Sözleşmeler, vasiyetnameler ve kayıtlar, müşterilere ve ortaklara özel sınıflandırılmış materyaller içerir ve bu nedenle sızıntılardan ve bilgisayar korsanlarından korunmalıdır. Şifreleme, bir belgenin değiştirilmemiş orijinal olduğunu doğrulamak ve kanıtlamak için kullanılabilir. Dijital imzalar bu kullanımın mükemmel bir örneğidir. Sistemlerini şifreleme ile örneklendirmeyen şirketler, son zamanlarda yüksek profilli davalarla sonuçlanan büyük veri ihlallerinden muzdarip oldu. Hasarlar çok büyük olabilir ve ek kayıplar, tüm müşteriler için kredi izlemeyi, sızıntı kaynağını belirlemek için yıllarca süren sistematik ve rahatsız edici denetimleri ve veri hırsızlığını ve dosyaların, sunucuların ve depolama sistemlerinin imhasını içerebilir. 256 bit şifrelememizle AxCrypt, kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak veri güvenliğini artırır ve ihlal risklerini azaltır.</value>
+  </data>
+  <data name="IndustriesLegalTeamwork">
+    <value>Ekip içindeki işbirliğini geliştirin ve her tür belgeyi risk olmadan paylaşın. Hukuk firmalarının sadece dijital dönüşüme girmeleri değil, aynı zamanda bunu güvenli bir şekilde yapmaları gerekiyor. AxCrypt, güvenli dosyaların diğer AxCrypt kullanıcıları tarafından kendi şifreleriyle açılmasına izin verir. Şifrelenmiş bilgi alışverişi kolay, hızlı ve risksizdir.</value>
+  </data>
+  <data name="IndustriesLinkLabel">
+    <value>Endüstriler</value>
+  </data>
+  <data name="IndustriesStatistic1">
+    <value>dünya çapında müşteriler</value>
+  </data>
+  <data name="IndustriesStatistic2">
+    <value>PCMag Editörün Seçimi</value>
+  </data>
+  <data name="IndustriesStatistic3">
+    <value>kullanıcı indirmeleri</value>
+  </data>
+  <data name="IndustriesStatistic4">
+    <value>mevcut diller</value>
+  </data>
+  <data name="IndustriesTechCloud">
+    <value>Dosyalarınızı/belgelerinizi Google Drive ve Dropbox gibi birden çok bulut depolama hizmetinde otomatik olarak güvenceye alın ve nerede olursanız olun şifrelerinize erişimi sorunsuz bir şekilde yönetin. Hastaların tedavisine dahil olan tüm üyeler için tüm bilgiler mevcuttur.</value>
+  </data>
+  <data name="IndustriesTechConfidentiality">
+    <value>İşletme yöneticilerinin işletme üyelerinin dosyalarını kurtarmasını sağlayan ve çalışanların işten ayrılması veya parolayı unutması nedeniyle kritik dosyalara erişimi kaybetme riskini ortadan kaldıran bir özellik olan ana anahtarı kullanın.</value>
+  </data>
+  <data name="IndustriesTechDescription">
+    <value>Günlük hayatımızın her yönünün son derece dijital olduğu bir dünyada, özellikle veri ihlalleriyle ilgili deneyler yaptıktan sonra, acilen mahremiyet ve güven ihtiyacı ortaya çıkıyor. Her gün kullandığınız araçlar ve hizmetler ne açık, ne güvenli ne de özeldir. Verilerinizin konumu ve bunların nasıl depolanıp işlendiği çoğu zaman şüpheli ve gölgeli bir şekilde yönetilir. AxCrypt, herkesin mahremiyetine saygı duyan bir gelecek inşa etmek için çabalıyor. Sıfır bilgi şifreleme yazılımımız ve yalnızca size ait olan ve cihazınızda kalan bir anahtar ile verilerinize başka hiç kimse erişemez.</value>
+  </data>
+  <data name="IndustriesTechHeading">
+    <value>128 bit veya 256 bit şifreleme ile veri güvenliğini artırın</value>
+  </data>
+  <data name="IndustriesTechParagraph">
+    <value>AxCrypt 128-bit veya 256-bit şifrelememizle, kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak veri güvenliğini artırır ve ihlal risklerini azaltır.</value>
+  </data>
+  <data name="IndustriesTechProtection">
+    <value>Şifrelemeyi benimsemek, güvenlik ve artan sayıda düzenlemeye uyma yeteneği eklediğinden, teknoloji hizmetleri firmaları için mükemmel bir adımdır. Özellikle şifrelenmiş verilerin hacmi ve yüzdesi yalnızca artmaya devam edeceğinden.</value>
+  </data>
+  <data name="IndustriesTechSecurity">
+    <value>Uçtan uca şifreleme, müşterilerin verilerinin, teknoloji şirketleri de dahil olmak üzere herkesten güvence altına alınmasını sağlamanın en iyi, en verimli ve en pratik yollarından biridir, böylece sahibinden başka hiç kimse bu verilere erişemez. Güvenlik ve üretkenlik birbirine yapıştırılmıştır. Güvenlik altyapısı genelinde görünürlüğün performanstan ödün vermemesi ve buna bağlı olarak üretkenliği düşürmesi de aynı derecede önemlidir. 128 bit veya 256 bit şifrelememizle AxCrypt, kullanıcı dostu ve kullanımı kolay şifreleme yazılımı uygulayarak veri güvenliğini artırır ve ihlal risklerini azaltır.</value>
+  </data>
+  <data name="IndustriesTechTeamwork">
+    <value>Günümüzde şeffaflık ve netliğin olmaması ve büyük şirketlerin verileri nasıl ele aldığı, veri kaosuna dönüşüyor ve işletmeler için derin bir karmaşıklık ve verimsizlik getiriyor. Özel bilgileriniz izlenir ve sakattır. AxCrypt ile kesinlikle gizlilik açısından güvenli bir çalışma ortamı sağlıyor ve topluluğunuz ve ötesindeki güveni güçlendiriyoruz. Yeni bir dijital dünyaya hoş geldiniz. Verileriniz platformumuzda tamamen şifrelenir, bu nedenle sunucularımız saldırıya uğrasa bile hiç kimse verilerinizi okuyamaz. GDPR ile uyumluyuz ve İsveç Gizlilik Yasaları kapsamında verilerin şifrelenmesi ve işlenmesiyle ilgili iş akışları ve süreçleri uygulamak için sürekli çalışıyoruz. AxCrypt, güvenli dosyaların diğer AxCrypt kullanıcıları tarafından kendi şifreleriyle açılmasına izin verir. Şifrelenmiş bilgi alışverişi kolay, hızlı ve risksizdir.</value>
+  </data>
+  <data name="IndustriesTitle" xml:space="preserve">
+    <value>Endüstriler</value>
   </data>
   <data name="InformationLinkLabel">
     <value>Bilgi</value>
@@ -2614,6 +3001,9 @@ AB KDV Numarası SE556967618101</value>
     <value>Italiano (İtalyanca)</value>
     <comment>The name of the language Italian in Italian. It should never be translated.</comment>
   </data>
+  <data name="IUnderstandPrompt" xml:space="preserve">
+    <value>Anladım</value>
+  </data>
   <data name="JavaScriptDisabledError" xml:space="preserve">
     <value>Tarayıcında JavaScript bloke edilmiş görünüyor. JavaScript'i geçerli kılmazsan oturum açamazsın ve site gerektiği gibi çalışmayabilir.</value>
   </data>
@@ -2650,11 +3040,17 @@ Alıcılar AxCrypt Kimlik oturum açma e-postaları tarafından tanımlanıyorla
 Lütfen davetiyede kullanılacak olan dili ve alttaki isteğe bağlı mesajı belirleyiniz.</value>
     <comment>This is a dialog text that is presented whenever a new user is about to be invited to use AxCrypt, either as a result of an attempt to key share to someone who does not have an AxCrypt ID yet, or as the result of an explicit invitation.</comment>
   </data>
+  <data name="KeyShareLabelText" xml:space="preserve">
+    <value>Anahtar Paylaşımı</value>
+  </data>
   <data name="KeySharingExistsToolTip" xml:space="preserve">
     <value>Bu dosya anahtarı başka AxCrypt kullanıcılarıyla paylaşılmaktadır.</value>
   </data>
   <data name="KeySharingOffline" xml:space="preserve">
     <value>Yeni kişi eklemek için çevrimiçi olmak gerekmektedir!</value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value>Ücretsiz plandayken paylaşılan bir anahtar dosyayı güncellerken, anahtar paylaşım bilgileri temizlenecektir. Bu, dosyayı paylaşan kullanıcı tarafından dosyanın açılmasının mümkün olmayacağı anlamına gelir.</value>
   </data>
   <data name="KeySharingToolTip" xml:space="preserve">
     <value>Başkalarıyla anahtar paylaşımında bulunmak için şifreli dosyaları seç.</value>
@@ -2690,6 +3086,9 @@ Lütfen davetiyede kullanılacak olan dili ve alttaki isteğe bağlı mesajı be
   <data name="LanguageChangeRestartPrompt" xml:space="preserve">
     <value>Lisan değişikliklerinin işlemesi için AxCrypt tekrar başlatılmalı.</value>
   </data>
+  <data name="LanguageSelectionLabelText" xml:space="preserve">
+    <value>Dilinizi seçin</value>
+  </data>
   <data name="LargeFileSupportLabel">
     <value>Büyük dosya desteği</value>
   </data>
@@ -2712,6 +3111,27 @@ Lütfen davetiyede kullanılacak olan dili ve alttaki isteğe bağlı mesajı be
   </data>
   <data name="LavasoftWebCompanionExistenceWarning" xml:space="preserve">
     <value>AxCrypt'in ve diğer yazılımların çalışmamasına neden olabilecek, uyumsuz olması muhtemel bir yazılım tespit ettik. Bu yazılımın adı Lavasoft Web Companion. AxCrypt'in çalışmayı durdurması halinde Lavasoft'u kaldırmayı dene.</value>
+  </data>
+  <data name="LearnMoreLinkLabel" xml:space="preserve">
+    <value>Daha fazla bilgi edin</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogBodyText" xml:space="preserve">
+    <value>İşletmeden ayrılmak istediğinizden emin misiniz?</value>
+  </data>
+  <data name="LeaveBusinessConfirmationDialogHeader" xml:space="preserve">
+    <value>İşletmeden Ayrıl</value>
+  </data>
+  <data name="LeaveBusinessErrorText" xml:space="preserve">
+    <value>Kullanıcı, tek yönetici olduğu için işletmeden ayrılamaz. Ayrılmak için lütfen önce başka bir yönetici atayın.</value>
+  </data>
+  <data name="LeaveBusinessSuccessText" xml:space="preserve">
+    <value>İşletmeden başarıyla çıkarıldınız</value>
+  </data>
+  <data name="LeaveBusinessTitle" xml:space="preserve">
+    <value>İşletme Bilgileri</value>
+  </data>
+  <data name="LeaveButtonText" xml:space="preserve">
+    <value>Terk etmek</value>
   </data>
   <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
     <value>Dosyalar dönüştürüldükten sonra yalnızca güncel AxCrypt şifresiyle açılabilirler. Lütfen şifreni doğrula.</value>
@@ -2737,6 +3157,9 @@ Lütfen davetiyede kullanılacak olan dili ve alttaki isteğe bağlı mesajı be
 Legacy AxCrypt 1.x dosyaları açabilirsiniz fakat dönüştürülmüş olmadığı sürece oturum  açmış olsan bile orijinal şifreyi girmen gerekir.
 
 AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
+  </data>
+  <data name="LegalLinkLabel" xml:space="preserve">
+    <value>Yasal</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -2765,11 +3188,20 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
+  <data name="LinkToBusinessSupportPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Home/Support</value>
+  </data>
+  <data name="LinkToBusinessTopupPage" xml:space="preserve">
+    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
+  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
     <value>https://www.axcrypt.net/documentation/get-started/</value>
+  </data>
+  <data name="LinkToManageAccountText" xml:space="preserve">
+    <value>Hesabınızı yönetmek için, &lt;a&gt;burayı tıklayın&lt;/a&gt;</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -2888,6 +3320,115 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   </data>
   <data name="ManagementSuccess" xml:space="preserve">
     <value>Site yönetimi özelliği başarı ile güncelleştirildi.</value>
+  </data>
+  <data name="ManageSubscriptionResellerInfo" xml:space="preserve">
+    <value>Bu hesap bir bayi tarafından yönetilmektedir. Bayi hesaba yeni kullanıcılar ekleyebilir ve ödemeleri yönetebilir. Not: Bayiler, bir Ana anahtarla korunan dosyalar da dahil olmak üzere herhangi bir şifreli bilgiye ERİŞEMEZLER.</value>
+  </data>
+  <data name="MasterKeyApprovalInfo" xml:space="preserve">
+    <value>Onaylanırsa, Ana anahtar şifrelenmiş dosyalara uygulanacak ve işletme yöneticileri tarafından kurtarılması mümkün olacaktır. Ana anahtarın uygulanmasını durdurmak istiyorsanız, istediğiniz zaman işten ayrılabilirsiniz (bu, AxCrypt Kimlik sayfanızda yapılır).</value>
+  </data>
+  <data name="MasterKeyApprovedTitle" xml:space="preserve">
+    <value>Ana anahtar onaylandı</value>
+  </data>
+  <data name="MasterKeyBlock1Heading">
+    <value>Ana anahtar tanıtımı</value>
+  </data>
+  <data name="MasterKeyBlock1Text1">
+    <value>Ana anahtar, işletme yöneticilerinin işletme üyelerinin dosyalarını kurtarmasını sağlayan bir özelliktir.</value>
+  </data>
+  <data name="MasterKeyBlock1Text2">
+    <value>Yıllık gelir raporunu oluşturduktan sonra önemli bir finansal belgenin şifrelendiğini hayal edin. Takip eden yıl boyunca yeni bir finans ekibi devreye alınır ve yıllık rapor zamanı geldiğinde, önceki ekibin kullandığı finansal belgenin artık kimsenin erişimi olmayan kimlik bilgileriyle şifrelendiğini fark ederler.</value>
+  </data>
+  <data name="MasterKeyBlock1Text3">
+    <value>Ana anahtarı girin! Ana anahtar etkinleştirildiğinde, işletme yöneticileri, işletme üyeleri tarafından şifrelenen herhangi bir dosyayı her zaman kurtarabilir. Yukarıdaki durumda, yeni finans ekibinin yöneticilerine sorması yeterlidir ve asıl kullanıcı şirketten ayrılsa bile finansal belge kolayca kurtarılabilir.</value>
+  </data>
+  <data name="MasterKeyBlock1Text4">
+    <value>İşletmenin kimlik bilgilerini takip ettiğinden emin olan bir veya birkaç yöneticisi olduğu sürece, çalışanların işi bırakması veya  parolalarını unutması nedeniyle hiçbir dosya kaybolmaz.</value>
+  </data>
+  <data name="MasterKeyBlock2Heading">
+    <value>Ana anahtar ve güvenlik</value>
+  </data>
+  <data name="MasterKeyBlock2Text1">
+    <value>İşletme yöneticileri, ana anahtarı etkinleştirirken, üyeleri tarafından şifrelenen herhangi bir belgeyi kurtarabilir. Bu, belirtildiği gibi, kritik dosyalara erişimi kaybetme riskini ortadan kaldırır. Ama güvenli mi?</value>
+  </data>
+  <data name="MasterKeyBlock2Text2">
+    <value>Güvenlik açısından, Ana anahtarı, işletmenin yöneticileriyle otomatik olarak dosya paylaşımı olarak görüntüleyebilirsiniz. Yöneticiler, Ana anahtarının uygulanmış olduğu dosyaları otomatik olarak kurtarabilir. Bu, AxCrypt'in denenmiş ve test edilmiş Anahtar Paylaşımı özelliğini kullanmak kadar güvenlidir.</value>
+  </data>
+  <data name="MasterKeyBlock2Text3">
+    <value>Elbette, işletme yöneticilerinin iyi şifreler seçmeye ve hesaplarını her zaman güvende tutmaya çok dikkat etmesi gerekir.</value>
+  </data>
+  <data name="MasterKeyBlock3Heading">
+    <value>Ana anahtarı etkinleştirme</value>
+  </data>
+  <data name="MasterKeyBlock3Text1">
+    <value>Ana anahtar, &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;aboneliği yönetme sayfasından&lt;/a&gt; etkinleştirilebilir.</value>
+  </data>
+  <data name="MasterKeyBlock3Text2">
+    <value>Ana anahtarı etkinleştirdikten sonra, işletmenin tüm mevcut üyelerinin değişikliği onaylaması gerekir. Bu önemli bir güvenlik meselesidir, mevcut bir kullanıcı asla bu özelliğin kendilerinden gizlendiğini düşünmemelidir. Master key özelliğini kimlerin kabul ettiği kullanıcı tablosunda görülebilir.</value>
+  </data>
+  <data name="MasterKeyBlock3Text3">
+    <value>Bir kullanıcı ana anahtarı kabul etmemişse, şifrelediği dosyalara uygulanmaz, bu nedenle işletmenizdeki herkesin özelliği kabul ettiğinden emin olun.</value>
+  </data>
+  <data name="MasterKeyBlock3Text4">
+    <value>Not! Ana anahtarı etkinleştirmeden önce şifrelenen dosyaların kurtarılması elbette mümkün olmayacaktır. Kullanıcı ana anahtarı kabul ettikten sonra eski dosyaların yeniden şifrelenmesi gerekir.</value>
+  </data>
+  <data name="MasterKeyBlock3Text5">
+    <value>Yeni işletmeler veya mevcut işletmelerin yeni üyeleri için, üyeler işletmeye katıldığında Ana anahtar otomatik olarak onaylanacaktır.</value>
+  </data>
+  <data name="MasterKeyBlock4Heading">
+    <value>Ana Anahtarın Kullanılması</value>
+  </data>
+  <data name="MasterKeyBlock4Text1">
+    <value>Ana anahtar etkinleştirildiğinde, işletmenin üyeleri tarafından şifrelenen tüm dosyalara otomatik olarak uygulanacaktır. Ana anahtarın uygulanıp uygulanmadığını uygulamada gösterilen Ana anahtar simgesinden görebilirsiniz.</value>
+  </data>
+  <data name="MasterKeyBlock4Text2">
+    <value>Bir dosyada bu simge varsa, herhangi bir işletme yöneticisi dosyayı kurtarabilir.</value>
+  </data>
+  <data name="MasterKeyBlock4Text3">
+    <value>Bu kadar! Gördüğünüz gibi, Ana anahtarın kullanımı çok kolaydır ve iş üyenizin düşünmesi veya zaman harcaması gereken hiçbir şey yoktur.</value>
+  </data>
+  <data name="MasterKeyBlock4Text4">
+    <value>Lütfen, işletme yöneticilerinin Ana anahtarı kullanarak dosyaları kurtarabilmesine rağmen, bunun normal kullanımda kullanılmaması gerektiğini unutmayın. Bir dosyanın bir işletme yöneticisi tarafından açılması amaçlanıyorsa, dosya anahtarı diğer herhangi bir kullanıcıyla olduğu gibi o kullanıcıyla da paylaşılmalıdır.</value>
+  </data>
+  <data name="MasterKeyBlock5Heading">
+    <value>Daha fazla yardıma mı ihtiyacınız var?</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Öncelikli işletme desteğimiz, herhangi bir soru veya endişeniz için her zaman yardıma hazırdır. Hesap sayfanızdaki formu kullanın veya &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; adresinden bize bir e-posta gönderin ve size yardımcı olalım!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo1" xml:space="preserve">
+    <value>AxCrypt'in işletme yöneticilerinin parolalarını unutması durumunda dosyaları kurtarmasına yardımcı olmasını sağlamak için aşağıdaki onay kutusunu kullanın. &lt;b&gt;Bu, yalnızca doğrulanmış bir işletme yöneticisinin açık talebi üzerine kullanılmalıdır!&lt;/b&gt;</value>
+  </data>
+  <data name="MasterKeyBusinessHelpInfo2" xml:space="preserve">
+    <value>Bu özellik, AxCrypt'in bu işletmenin üyeleri tarafından şifrelenmiş dosyaları kurtarmasını sağlar. Yalnızca işletmenin açık taleplerine uygulanmalıdır!</value>
+  </data>
+  <data name="MasterKeyBusinessHelpPrompt" xml:space="preserve">
+    <value>AxCrypt Kurtarma Yedeği</value>
+  </data>
+  <data name="MasterKeyDescription">
+    <value>İşletme yöneticilerinin kayıp dosyaları kurtarmasını sağlayın</value>
+  </data>
+  <data name="MasterKeyDisableHelpText" xml:space="preserve">
+    <value>Ana anahtar devre dışı bırakılırsa, işletme yöneticileri işletme üyeleri tarafından şifrelenen dosyaları açamaz.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>Ana anahtar, işletme yöneticilerinin işletme üyeleri tarafından şifrelenmiş dosyaları açmasını sağlar. Üyenin, dosyalarına uygulanmadan önce ana anahtarı onaylaması gerektiğini unutmayın. Ana anahtarı kimin onayladığını kullanıcı tablosunda görebilirsiniz. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;Daha fazla bilgi için burayı tıklayın&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Ana anahtarı etkinleştirmeden &lt;b&gt;önce&lt;/b&gt; şifrelenmiş dosyalar, orijinal şifreleme kimlik bilgileri olmadan açılamaz.</value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value>Ana anahtar etkinleştirildi. Bu, işletme yöneticilerinizin güvenli dosyalarınızı kurtarabileceği anlamına gelir.</value>
+    <comment>Inform all the desktop users about the master key feature.</comment>
+  </data>
+  <data name="MasterKeyOldEncryptedFilesHelpText" xml:space="preserve">
+    <value>Bundan önce şifrelenen dosyalar ana anahtarla kurtarılamaz. Ana anahtara ihtiyaç duyan dosyalar olduğunu biliyorsanız, kullanıcıdan dosyaları korumayı bırakmasını ve ardından yeniden korumaya başlamasını isteyin. Bu eylemle, ana anahtar da dahil olmak üzere dosyalar yeniden şifrelenecektir.</value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value>Bu dosyaya uygulanan bir ana anahtar vardı. Aynı işletmenin parçası olmadığınız için ana anahtar bu dosyadan silinecek.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Ana Anahtar</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>İç hata, %4 geçersiz fonksiyon argümanı</value>
@@ -3066,8 +3607,14 @@ Bu program anlaşmaya göre lisanslanmıştır.
     <value>Premium üyeliğin olmadan, şifrelenmiş dosyaları sadece görüntüleyebilir veya kalıcı olarak açabilirsin.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Deneme süresi sona erdiğinde, yeni dosyaların güvenliğini sağlamak için artık AxCrypt mobil uygulamalarını kullanamazsınız (ancak daha önce güvenli olan dosyalara her zaman erişebilirsiniz).</value>
+  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Deneme süresi bittiğinde, üyelik satın almadığın sürece otomatik olarak AxCrypt Free ile devam edeceksin.</value>
+  </data>
+  <data name="MessageAskAboutUpgradeSubscription" xml:space="preserve">
+    <value>Hesabınızı yükselterek birçok mükemmel özelliğe erişebilirsiniz.</value>
   </data>
   <data name="MessageErrorTitle" xml:space="preserve">
     <value>Hata</value>
@@ -3140,6 +3687,12 @@ Bu program anlaşmaya göre lisanslanmıştır.
     <value>Bir anahtar dosyasının adını girmek için tıkla. Sadece bir önceki AxCrypt sürümünde dosyayı koruma altına alırken anahtar dosyası kullandıysan bunu yap.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
   </data>
+  <data name="MorePostsButtonLabel">
+    <value>Daha fazla gönderi</value>
+  </data>
+  <data name="MoreTechnicalIssueText" xml:space="preserve">
+    <value>Çok fazla teknik sorun yaşıyorum</value>
+  </data>
   <data name="MyAxCryptFolderName" xml:space="preserve">
     <value>AxCrypt'im</value>
     <comment>The folder name used for default watching</comment>
@@ -3155,6 +3708,9 @@ Bu program anlaşmaya göre lisanslanmıştır.
   </data>
   <data name="NavigationPaneHome" xml:space="preserve">
     <value>Giriş</value>
+  </data>
+  <data name="NeedProductForProjectText" xml:space="preserve">
+    <value>Ürüne, o zamandan beri tamamladığım bir proje için ihtiyacım vardı.</value>
   </data>
   <data name="NewPassphraseDialogTitle" xml:space="preserve">
     <value>Yeni şifre yarat</value>
@@ -3217,6 +3773,9 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
 İsteğin kaydedilmiştir. Lütfen doğru yol ile tekrar dene ya da bozuk ağı &lt;a href="mailto:{0}"&gt;bildir&lt;/a&gt; .
 
 Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
+  </data>
+  <data name="NotUsingProductText" xml:space="preserve">
+    <value>Ürünü yeterince sık kullanmıyorum</value>
   </data>
   <data name="OfflineAccountBePatient" xml:space="preserve">
     <value>İşlem birkaç dakika sürebilir. Lütfen sabret.</value>
@@ -3296,6 +3855,9 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
   <data name="OrgNumberLabel">
     <value>Org. numarası</value>
   </data>
+  <data name="OtherDetailsText" xml:space="preserve">
+    <value>Diğer ise lütfen detay veriniz</value>
+  </data>
   <data name="OtherPlatformsLabel">
     <value>Diğer platformlar</value>
   </data>
@@ -3350,6 +3912,12 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
   <data name="PasswordManagementPageTitle" xml:space="preserve">
     <value>Şifreler</value>
     <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
+  </data>
+  <data name="PasswordManagerFeatureInfoText" xml:space="preserve">
+    <value>Tüm şifrelerinizi ve diğer sırlarınızı bulutumuzda güvende tutun!</value>
+  </data>
+  <data name="PasswordMismatchApiExceptionText" xml:space="preserve">
+    <value>Yakın zamanda AxCrypt hesap şifreniz değiştirildi, bu nedenle AxCrypt hesap bilgilerinizi senkronize etmek için tekrar oturum açmanız gerekecek.</value>
   </data>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Şifre kabul edilebilmek için yeterince güçlü değil.</value>
@@ -3457,6 +4025,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PayPalReadMoreLink" xml:space="preserve">
     <value>[PayPal hakkında daha fazla bilgi]</value>
   </data>
+  <data name="PendingStatus" xml:space="preserve">
+    <value>Bekliyor</value>
+  </data>
   <data name="PerMonthLabel">
     <value>Aylık</value>
   </data>
@@ -3466,12 +4037,24 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PhoneLabel">
     <value>Telefon</value>
   </data>
+  <data name="PhoneNumberLabel">
+    <value>Telefon numarası</value>
+  </data>
   <data name="PolishLanguageSelection" xml:space="preserve">
     <value>Polski (Lehçe)</value>
     <comment>The Polish name for polish in a language selection menu.</comment>
   </data>
   <data name="PolishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Polski (Lehçe)</value>
+  </data>
+  <data name="PortableLinkLabel" xml:space="preserve">
+    <value>Windows 32 ve 64 bit için</value>
+  </data>
+  <data name="PortableVersionInfo" xml:space="preserve">
+    <value>AxCrypt'in hafif, bağımsız sürümü, kurulumcu sürümüne kıyasla bazı ek özelliklerle (örneğin içerik menüsü entegrasyonu) ile gelmez.</value>
+  </data>
+  <data name="PortableVersionInstallationNotRequiredText" xml:space="preserve">
+    <value>AxCrypt'in bağımsız sürümü doğrudan çalıştırılabilir - kurulum gerekmez.</value>
   </data>
   <data name="PortugueseBrazilLanguageSelection" xml:space="preserve">
     <value>Portekiz (Brezilya Portekizcesi)</value>
@@ -3589,6 +4172,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PressAndMediaLinkLabel">
     <value>Basın ve Medya</value>
   </data>
+  <data name="PressFileToSelectLabelText" xml:space="preserve">
+    <value>Seçmek için tıklayın ve basılı tutun</value>
+  </data>
   <data name="PressImagesDescription">
     <value>Fotoğraflar, mülakat ve illüstrasyon gibi amaçlar için kullanılabilir.</value>
   </data>
@@ -3621,6 +4207,12 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricePerYear" xml:space="preserve">
     <value>{0}/yılda</value>
   </data>
+  <data name="PricingFeatureEverythingInFreePlus">
+    <value>Her şey fazlasıyla ücretsiz:</value>
+  </data>
+  <data name="PricingFeatureEverythingInPremiumPlus">
+    <value>Premium plusdaki her şey: </value>
+  </data>
   <data name="PricingFeatureListAccountKey">
     <value>Hesap Anahtarı Yedekleme</value>
   </data>
@@ -3635,6 +4227,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   </data>
   <data name="PricingFeatureListBusinessAdmin">
     <value>İş Yöneticisi</value>
+  </data>
+  <data name="PricingFeatureListBusinessPrioritySupport">
+    <value>İş Önceliği Desteği</value>
   </data>
   <data name="PricingFeatureListCloudStorage">
     <value>Bulut Depolama Farkındalığı</value>
@@ -3669,6 +4264,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricingFeatureListPasswordManagement">
     <value>Şifre Yönetimi</value>
   </data>
+  <data name="PricingFeatureListProfessionalUse">
+    <value>Profesyonel Kullanım</value>
+  </data>
   <data name="PricingFeatureListSecuredFolders">
     <value>Güvenli Klasörler</value>
   </data>
@@ -3681,8 +4279,61 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricingSubheading">
     <value>Nasıl ödeme yapmak istersiniz?</value>
   </data>
+  <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
+    <value>İptalin başlıca nedenleri nelerdir?</value>
+  </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Öncelikli Destek</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Heading" xml:space="preserve">
+    <value>Bilgi paylaşımı</value>
+  </data>
+  <data name="PrivacyPolicyBlock10Text1" xml:space="preserve">
+    <value>Bilgilerinizi şu şekillerde paylaşabiliriz:
+Herkese açık olarak, forumlarımızdan birine blog yorumları, sosyal medya gönderileri veya hizmetlerimizin herkese açık diğer özellikleri gibi içerik gönderirseniz; API'miz veya Hizmetlerimiz ile entegre olan diğer siteler gibi üçüncü taraflarla; veya entegre ettiğimiz bir API veya hizmete sahip olanlar; Veri işleyiciler, satıcılar, danışmanlar, pazarlama ortakları ve bizim adımıza iş yapmak için bu bilgilere erişmesi gereken diğer hizmet sağlayıcılar dahil, tarafımızca görevlendirilen tüm gerekli üçüncü taraflar; Açıklamanın yürürlükteki yasa, yönetmelik, lisans veya yasal süreç kapsamında veya başka bir şekilde gerektirdiğine inanmamız halinde yetkili bir makam tarafından yapılan bir bilgi talebine yanıt olarak; aksi takdirde size bildirimde bulunursak ve siz de paylaşıma izin verirseniz; ve sizi tanımlamak için kullanılması makul bir şekilde beklenemeyecek toplu ve/veya isimsiz bir biçimde.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Heading" xml:space="preserve">
+    <value>Sosyal Medya</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>Google/YouTube:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>Twitter:&lt;a href='https://twitter.com/en/privacy'&gt;Gizlilik bildirimi&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>Instagram:&lt;a href='http://instagram.com/about/legal/privacy/'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>LinkedIn:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Gizlilik bildirimi&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>Facebook:&lt;a href='https://www.facebook.com/privacy/explanation'&gt;Privacy statement&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text1" xml:space="preserve">
+    <value>Bu web sitesine ek olarak, Twitter, Facebook, Instagram, YouTube ve LinkedIn'de sosyal medya sitelerinin bakımını yapıyoruz. Bu ortamlardan birini ziyaret ederseniz, kişisel veriler sosyal ağ sağlayıcısına iletilebilir. Kullanıcı verilerinin üçüncü taraf bir ülkedeki bir sunucuya aktarılabileceğine ve dolayısıyla Avrupa Birliği dışında işlenebileceğine dikkatinizi çekeriz.</value>
+  </data>
+  <data name="PrivacyPolicyBlock11Text2" xml:space="preserve">
+    <value>Bu sosyal ortama girdiğiniz belirli verilerin saklanmasına ek olarak, sosyal ağın sağlayıcısı tarafından başka bilgiler de işlenebilir. İlgili web sitesini ziyaret ederken kişisel kullanıcı hesabınızla ağa giriş yaptıysanız, bu ağ, ziyareti bu hesaba atayabilir. İlgili ortam tarafından veri toplamanın amacı ve kapsamı ve verilerinizin orada daha fazla işlenmesi ile bu konudaki haklarınız, ilgili sorumlu kişinin ilgili hükümlerinde bulunabilir, örn. aşağıda:</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Heading" xml:space="preserve">
+    <value>Verilerin üçüncü şahıslara aktarılması</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text1" xml:space="preserve">
+    <value>Müşteri İlişkileri Yönetimi (CRM) - Hubspot
+HubSpot, CRM sistemi aracılığıyla iletişim yönetimi dahil, çevrimiçi pazarlama faaliyetlerimizin çeşitli yönlerini kapsadığımız entegre bir yazılım çözümüdür. HubSpot hizmetlerinin kullanımının yasal dayanağı, sanat uyarınca meşru menfaatimizdir. 6 I f GDPR, pazarlama önlemlerimizin optimizasyonu ve web sitesindeki hizmet kalitemizin iyileştirilmesi nedeniyle.</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text2" xml:space="preserve">
+    <value>HubSpot, Avrupa standart veri koruma maddesini tamamlayarak yasaya uygun olarak veri işleme için minimum gereksinimleri karşılar. Ayrıca HubSpot ile bir Veri İşleme Sözleşmesi (DPA) bulunmaktadır. Bu, HubSpot'un kullanıcının verilerini yalnızca AB veri koruma standartları çerçevesinde kullanmasını ve üçüncü taraflara aktarmamasını sağlar. Daha fazla bilgi için lütfen HubSpot'un &lt;a href='https://legal.hubspot.com/privacy-policy'&gt;gizlilik politikasına&lt;/a&gt; bakın.</value>
+  </data>
+  <data name="PrivacyPolicyBlock13Heading" xml:space="preserve">
+    <value>Gizlilik Politikasındaki Değişiklikler</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Heading" xml:space="preserve">
+    <value>Geçerli yasa ve mahkeme yeri</value>
+  </data>
+  <data name="PrivacyPolicyBlock14Text1" xml:space="preserve">
+    <value>Bu gizlilik bildirimi İsveç yasalarına tabidir. Mahkeme Stockholm Bölge Mahkemesidir.</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>E-mail adresiniz.</value>
@@ -3768,11 +4419,44 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PrivacyPolicyBlock4Text2">
     <value>Eğer bir Business kullanıcısıysanız ve CRM sistemimize dahil edilmek istemiyorsanız lütfen bize &lt;a href='mailto:business@axcrypt.net.'&gt;business@axcrypt.net&lt;/a&gt; adresinden ulaşın.</value>
   </data>
+  <data name="PrivacyPolicyBlock5Heading" xml:space="preserve">
+    <value>Sayfa ve hizmet işlevselliği</value>
+  </data>
+  <data name="PrivacyPolicyBlock5Text1" xml:space="preserve">
+    <value>Çerezler, web sitelerinden verilerin çalıştırılmasında ve sunumunda kullanılmaktadır. Bu tür çerezler, kullanıcı tarafından seçilen dil için dil kodu bilgilerini içerebilir. Tüm kullanıcılara mümkün olan en iyi deneyimi garanti etmek için sistemin yük dengelemesini destekleyen bilgiler içeren çerezler olabilir. Oturum açma veya arama gerektiren hizmetler için, hizmetin verileri doğru alıcıya sunmasını sağlayan çerezler kullanılabilir.</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Heading" xml:space="preserve">
+    <value>Web analitiği ve çerezler</value>
+  </data>
+  <data name="PrivacyPolicyBlock6Text1" xml:space="preserve">
+    <value>Kullanıcı dostu bir web sitesi oluşturma çalışmalarının önemli bir parçası olarak, siteyi ziyaret edenlerin kullanıcı kalıplarına bakıyoruz. Kullanıcı deneyimini daha iyi hale getirmek için kullanıcı davranışını analiz ediyoruz. Çerez kullanmanın amacı bu nedenle müşteri deneyimini iyileştirmektir. Bilgileri analiz etmek için Google Analytics analiz aracını kullanıyoruz. Google Analytics, kullanıcının IP adresini kaydeden ve her kullanıcının çevrimiçi hareketi hakkında bilgi sağlayan çerezler/çerezler (sitenin kullanıcının bilgisayarında sakladığı küçük metin dosyaları) kullanır. İstatistiklerin bize cevap verdiği örnekler; kaç kişinin farklı sayfaları ziyaret ettiği, ziyaretin ne kadar sürdüğü, kullanıcıların hangi sitelerden geldiği ve hangi tarayıcıların kullanıldığıdır. </value>
+  </data>
+  <data name="PrivacyPolicyBlock7Heading" xml:space="preserve">
+    <value>Arama</value>
+  </data>
+  <data name="PrivacyPolicyBlock7Text1" xml:space="preserve">
+    <value>Kullanıcıların sitelerimizde hangi anahtar kelimeleri kullandığına dair bilgileri Google Analytics aracılığıyla saklarız. Depolamanın amacı, bilgi teklifimizi daha iyi hale getirmektir. Arama için kullanım modeli toplu biçimde saklanır. Yalnızca anahtar kelime saklanır ve diğer kullanıcıların IP adresleri gibi bilgilerine bağlanamazlar.</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Heading" xml:space="preserve">
+    <value>Forum / Paylaş / ipuçları-servisi</value>
+  </data>
+  <data name="PrivacyPolicyBlock8Text1" xml:space="preserve">
+    <value>"Başkalarıyla paylaş" özellikleri isteğe bağlıdır ve e-posta yoluyla siteye bağlantılar iletmek, Facebook veya Twitter gibi sosyal ağ sitelerinin içeriğini paylaşmak için kullanılabilir. İpuçları hakkındaki bilgiler bizde günlüğe kaydedilmez, sadece orada ve daha sonra sosyal ağ sitesinin ipucunu göndermek için kullanılır. Ancak, çevrimiçi topluluğun bu bilgileri günlüğe kaydetmeyeceğini garanti edemeyiz. Bu nedenle, tüm bu hizmetler akıllıca kullanılmalıdır. Toplanması, kullanılması, işlenmesi ve kişisel verilerin korunması hakkında bilgi almak için ilgili hizmet sağlayıcı veya çevrimiçi toplulukla iletişime geçebilirsiniz. E-posta özelliğini kullanırsanız, herhangi bir depolama biçimi olmaksızın yalnızca mesajı iletmek için verilen e-posta adreslerini kullanırız.</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Heading" xml:space="preserve">
+    <value>Bülten</value>
+  </data>
+  <data name="PrivacyPolicyBlock9Text1" xml:space="preserve">
+    <value>Bize kaydolduğunuzda, size ara sıra haber bültenleri, teklifler ve bizden yeni ve güncellenmiş ürünler ve hizmetler hakkında bilgiler gibi e-postalar gönderebileceğimizi kabul edersiniz. Bir e-posta gönderebilmemiz için bir e-posta adresi kaydetmeniz gerekir. Bu amaçla işlemenin yasal dayanağı rızadır, bkz. GDPR Madde 6, paragraf 1, harf a. Bu bilgiler diğer işletmelerle paylaşılmaz ve bizden artık bilgi almak istemediğiniz söylendiğinde silinir. Bu tür e-postalarda bunun için sağlanan bağlantıya tıklayarak istediğiniz zaman abonelikten çıkabilir çıkabilirsiniz. HubSpot, haber bülteni için veri işlemcimizdir.</value>
+  </data>
   <data name="PrivacyPolicyDescription">
     <value>Gizliliğinize verdiğimiz önem AxCrypt'i yapmamızın en önde gelen sebeplerinden biridir. Kullanıcılarımızdan biri olarak bu konuya sizin, ortalama bir bilgisayar kullanıcısından daha fazla önem verdiğinize de inanıyoruz.</value>
   </data>
   <data name="PrivacyPolicyLinkLabel">
     <value>Gizlilik politikası</value>
+  </data>
+  <data name="ProductFeatureComplicatedText" xml:space="preserve">
+    <value>Ürün ve özellikleri benim için çok karmaşık</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>Ve daha fazlası...</value>
@@ -3788,6 +4472,12 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   </data>
   <data name="ProductTryItForFreeHeading">
     <value>Ücretsiz deneyin</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2">
+    <value>Bugün ücretsiz deneyin</value>
+  </data>
+  <data name="ProductTryItForFreeHeading2Education">
+    <value>Bugün ücretsiz deneyin veya eğitim indirimlerimizden haberdar olmak için &lt;a href="mailto:business@axcrypt.net"&gt;satış departmanımızla iletişime geçin&lt;/a&gt;</value>
   </data>
   <data name="ProductTryItForFreeMonthlyButtonLabel">
     <value>Aylık</value>
@@ -4034,6 +4724,12 @@ Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto
     <value>Uygulama dükkanı</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
+    <value>En son haberleri okuyun</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>En son blog yazılarımıza göz atın</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>İş planı hakkında daha fazla bilgi edinin</value>
   </data>
@@ -4042,6 +4738,9 @@ Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto
   </data>
   <data name="ReadMoreButtonLabel">
     <value>Devamını okuyun</value>
+  </data>
+  <data name="RecentFilesListInfoText" xml:space="preserve">
+    <value>Yakın zamanda güvenli dosya açmadınız. Güvenli bir dosyaya göz atmak için Güvenli Aç'ı tıklayın.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Aç</value>
@@ -4140,6 +4839,9 @@ Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
     <value>Bir güvenilirlik sorunundan dolayı yazılımının güncellenmesi gerekmektedir.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a reliability fix.</comment>
   </data>
+  <data name="RemoveFromRecentFilesLabelText" xml:space="preserve">
+    <value>Son dosyalardan kaldır</value>
+  </data>
   <data name="RemoveRecentFileLabel" xml:space="preserve">
     <value>Dosyayı kaldır</value>
     <comment>Text of "Remove File" button in mobile application</comment>
@@ -4154,6 +4856,17 @@ Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
   <data name="RenewInTitle" xml:space="preserve">
     <value>Yenilenme tarihi</value>
     <comment>Used as "Renew in 30 days"</comment>
+  </data>
+  <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
+    <value>Mobil uygulamalar
+256 bit AES
+Anahtar Paylaşımı
+Güvenli Klasörler
+Parola Yönetimi
+Bulut Depolama Farkındalığı</value>
+  </data>
+  <data name="RenewSubscriptionTitle" xml:space="preserve">
+    <value>Aboneliğinizi yenileyin!</value>
   </data>
   <data name="ReportSnapshotIntro" xml:space="preserve">
     <value>Bu, AxCrypt'te belirlenen hataların görüntülü bir raporudur. Lütfen bu metnin hepsini kopyalayın ve aşağıdaki adrese e-mail yoluyla iletin:
@@ -4225,8 +4938,289 @@ Konu: AxCrypt Report Snapshot</value>
   <data name="ResellerBenefitsText">
     <value>Şifreleme aracının güvenliği ve basitliği sayesinde AxCrypt'in dünyanın her yerinden müşterisi bulunmaktadır. En büyük pazarlarımız ABD, Birleşik Krallık ve Fransa'dan oluşmaktadır. AxCrypt her geçen gün büyümekte, sizinle birlikte büyümeye devam etmek isteriz.</value>
   </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem1" xml:space="preserve">
+    <value>Giriş yap &lt;a href='https://account.axcrypt.net/'&gt;account.axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem3" xml:space="preserve">
+    <value>Oluşturma sayfasında, müşterinizin bilgilerini ve gereken lisans sayısını girin. Gerekirse bu daha sonra değiştirilebilir.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem4" xml:space="preserve">
+    <value>1 veya 12 ay seçerek aylık mı yoksa yıllık abonelik mi istediğinizi seçin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem5" xml:space="preserve">
+    <value>KDV indirimi için (AB içinde), geçerli bir KDV numarası girin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem6" xml:space="preserve">
+    <value>Bayinin indirimi otomatik olarak eklenecektir.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem7" xml:space="preserve">
+    <value>Ödeme düğmesine tıklayın.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1ListItem9" xml:space="preserve">
+    <value>Son olarak, lisans atanması gereken kullanıcıların e-posta adreslerini ekleyebilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text1" xml:space="preserve">
+    <value>AxCrypt Business'ı yeni bir müşteriye yeniden satmak için hesap web sitesinde aboneliklerini oluşturun:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text2" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt; Müşterinizin kayıtlı bir AxCrypt hesabı varsa veya yoksa işe yarayacaktır. &lt;br /&gt; İşletme aboneliğine eklendiklerine dair bir e-posta veya davet alacaklardır. Daha sonra hesaplarını etkinleştirmeleri gerekir.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text3" xml:space="preserve">
+    <value>Onların aboneliklerine hesaplarının yöneticisi olarak otomatik olarak ekleneceksiniz.&lt;br /&gt;Doğal olarak, size bir lisans atanmayacak.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text4" xml:space="preserve">
+    <value>Müşterinizin kullanıcılarından herhangi birini yönetici yaparsanız, yeni lisanslar satın alabilir ve hesabı yönetebilirler. Bu, sizin ve onların indirim almayacağı anlamına gelir. Gerçekten gerekmedikçe onları yönetici yapmamanızı öneririz.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text5">
+    <value>Oluşturma sırasında herhangi bir bilgi yanlış doldurulmuşsa, her zaman 'ye giderek değiştirebilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text6" xml:space="preserve">
+    <value>Bu süreç, tamamen sizin tarafınızdan yönetilecek şekilde tasarlanmıştır ve müşterinizin (henüz mevcut bir hesabı yoksa hesabı etkinleştirmenin yanı sıra) veya AxCrypt'ten herhangi bir müdahalesi gerektirmez. Banka havalesi ile ödeme tercih edilirse bu da mümkündür. Daha fazla bilgi için faturalandırma sekmesine bakın.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text7" xml:space="preserve">
+    <value>AxCrypt, yeniden satış için bir abonelik sunar: &lt;b&gt;AxCrypt Business&lt;/b&gt;. Mevcut müşterilerinizi yönetmek veya müşterileriniz için lisans satın almak için &lt;a href='http://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt; üzerindeki alt menüleri kullanabilirsiniz. Yönetici olarak ayarlanmış mevcut hesabı kullanarak giriş yapın.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock1Text8" xml:space="preserve">
+    <value>Bayi ekibiyle iletişime geçmek için &lt;a href='mailto:reseller@axcrypt.net'&gt;reseller@axcrypt.net&lt;/a&gt; adresinden bize e-posta gönderin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem1" xml:space="preserve">
+    <value>Açılan menüden müşterinizi seçin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2ListItem2" xml:space="preserve">
+    <value>Kullanıcıları e-posta adreslerine göre tek tek ekleyin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text1" xml:space="preserve">
+    <value>Müşterinin hesabına kullanıcı ekleyebilirsiniz. Kullanılmayan lisansların mevcut olduğundan emin olun - yönetici, kullanılabilir lisanslar olduğu sürece kullanıcıları ekleyebilir.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock2Text2" xml:space="preserve">
+    <value>Kullanıcı eklemek için:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3ListItem1" xml:space="preserve">
+    <value>Gerekli lisans sayısını seçin.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text1" xml:space="preserve">
+    <value>Müşterinizin hesabında tüm lisanslar kullanılıyorsa ek lisanslar satın alabilirsiniz:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text2" xml:space="preserve">
+    <value>&lt;b&gt;Note:&lt;/b&gt; Banka havalesi ile ödeme tercih edilirse, bu da mümkündür. Daha fazla bilgi için aşağıdaki faturalandırmaya bakın.&lt;br /&gt;Bir abonelik oluşturulduğunda veya yenilendiğinde, dönem her zaman bir yıldır.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock3Text3" xml:space="preserve">
+    <value>Abonelik süresi içinde bir abonelik için ek üye lisansları satın alındığında, yalnızca tam aylara yuvarlanmış kalan aylar için ücret alınır. Cari döneme 50 gün kalırsa ve ilave üyeler eklenirse, bu 2 ay/ek üyeler için olacaktır.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4ListItem1" xml:space="preserve">
+    <value>Artık kullanılmayan bir lisansınız var. Daha sonra kullanmak için saklayabilir (bu, son kullanma tarihini duraklatmaz) veya yeni bir kullanıcıya atayabilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersBlock4Text1" xml:space="preserve">
+    <value>Müşterinizin hesabındaki kullanıcıları kaldırmak veya değiştirmek basittir:</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle1" xml:space="preserve">
+    <value>Yeni bir müşteri ekleyin</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle2" xml:space="preserve">
+    <value>Bir müşterinin hesabına kullanıcı ekleyin</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle3" xml:space="preserve">
+    <value>Ek üye lisansları satın alın</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersSubTitle4" xml:space="preserve">
+    <value>Kullanıcıları kaldırma veya değiştirme</value>
+  </data>
+  <data name="ResellerHelpAddAndManageCustomersTitle" xml:space="preserve">
+    <value>Müşteri ekleme ve yönetme</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text1" xml:space="preserve">
+    <value>Abonelikler AxCrypt web hesabı portalı (account.axcrypt.net) aracılığıyla satın alınır. Ödemeler doğrudan portal üzerinden kredi kartı ile yapılır.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock1Text2" xml:space="preserve">
+    <value>Genellikle satın almak istediğiniz abonelik sayısına bağlı olarak, fatura ile satın almanız da mümkün olabilir. Bunu yapmak isterseniz, &lt;a href='mailto:reseller@axcrypt.net'&gt;Reselling team&lt;/a&gt; iletişime geçin. Ödeme banka havalesi yoluyla yapılırsa, önce ödemeyi almamız gerektiği için müşterinizin erişmesi daha uzun sürebilir.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
+    <value>AxCrypt Business için üye lisansı başına güncel liste fiyatı &lt;a href='https://www.axcrypt.net/pricing'&gt;pricing page&lt;/a&gt; bulunabilir. Bunun için geçerli olan kişisel bir Bayi indiriminiz var.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
+    <value>Abonelik amaçları için bir ay 30 gün ve bir yıl 360 gün olarak tanımlanır. Bir abonelik oluşturulduğunda veya yenilendiğinde, dönem her zaman bir ay veya bir yıldır.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text3" xml:space="preserve">
+    <value>Abonelik süresi içinde bir abonelik için ek üye lisansları satın alındığında, yalnızca tam aylara yuvarlanmış kalan aylar için ücret alınır. Cari döneme 50 gün kalırsa ve ilave üyeler eklenirse, bu 2 ay/ek üyeler için olacaktır.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
+    <value>Daha fazla bilgi için &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Terms of Use&lt;/a&gt;  "Ödeme ve Yenileme" bölümünü okuyun.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
+    <value>25 Haziran 2020'den itibaren abonelikleri otomatik olarak yeniliyoruz. Daha önce lisans satın aldıysanız, sizden veya müşterinizden otomatik olarak ücret alınmaz. Menüden yenilemeniz gerekecek.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text2" xml:space="preserve">
+    <value>25 Haziran 2020'den sonra lisans satın aldıysanız abonelik, abonelik süresinin sonunda ilk ödeme yöntemi kullanılarak otomatik olarak yenilenecektir. İptal etmek istiyorsanız, bunu mevcut abonelik döneminin bitiminden önce yapmalısınız.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
+    <value>Daha fazla bilgi için &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Terms of Use&lt;/a&gt; "Ödeme ve Yenileme" bölümünü okuyun.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
+    <value>Burada faturalarınızı ve işlem geçmişinizi bulacaksınız.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem4" xml:space="preserve">
+    <value>Tarih, referans, adres vb. bilgiler</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem5" xml:space="preserve">
+    <value>Hangi müşteri için ödendi.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem6" xml:space="preserve">
+    <value>Abonelik sipariş edildi.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem7" xml:space="preserve">
+    <value>Toplam tutar.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock4ListItem8" xml:space="preserve">
+    <value>Yazdır simgesine tıklayarak faturayı yazdırabilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text1" xml:space="preserve">
+    <value>AB KDV'si, satın almadan önce geçerli bir KDV numarası girilirken düşülecektir. AB dışındaki ülkeler için KDV geçerli değildir.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text2" xml:space="preserve">
+    <value>İsveçli müşteriler için KDV indirimi mümkün değildir. AxCrypt İsveçli bir şirket olduğundan, İsveçli müşterilerin giren KDV'yi girdi olarak kaydetmesi gerekecek ve bu daha sonra İsveç Vergi dairelerine ödeme yaptıklarında çıkan KDV'den düşülecek.</value>
+  </data>
+  <data name="ResellerHelpBillingBlock5Text3" xml:space="preserve">
+    <value>AxCrypt, vergi konularında size daha fazla tavsiyede bulunamaz. Daha fazla ayrıntı için lütfen ülkenizin düzenlemelerini kontrol edin veya vergi danışmanınızla iletişime geçin.</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle1" xml:space="preserve">
+    <value>Ödeme şekli</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle2" xml:space="preserve">
+    <value>Fiyatlandırma ve indirim detayları</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle3" xml:space="preserve">
+    <value>Yenileme</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle4" xml:space="preserve">
+    <value>Siparişinizi ve işlem geçmişinizi görüntüleyin</value>
+  </data>
+  <data name="ResellerHelpBillingSubTitle5" xml:space="preserve">
+    <value>Vergiler</value>
+  </data>
+  <data name="ResellerHelpBillingTitle" xml:space="preserve">
+    <value>Faturalandırma</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text1" xml:space="preserve">
+    <value>AxCrypt bayisi olmak için önce &lt;a href='/information/reseller'&gt;reseller application form&lt;/a&gt; kullanarak kaydolun.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text2" xml:space="preserve">
+    <value>Not: Aynı hesabı kendi abonelik planınızla birlikte kullanırsanız sorun olmaz.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock1Text3" xml:space="preserve">
+    <value>Bayi hesabınıza erişmek için &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;'te oturum açın. Hesabınızı aşağıdaki resimde gösterildiği gibi görüyorsunuz.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text1">
+    <value>Bayi hesabınıza erişmeden önce, AxCrypt ekibinin bir üyesinin size Bayi ayrıcalıklarına sahip bir yönetici rolü ataması gerekir. Sözleşmeyi imzaladıktan sonra ekibimiz sizden bir AxCrypt hesabıyla ilişkili bir e-posta adresi isteyecektir. Bu hesap, Bayi hesabının yöneticisi olarak görev yapacaktır.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text2">
+    <value>Not: Aynı hesabı kendi abonelik planınızla birlikte kullanırsanız sorun olmaz.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedBlock2Text3">
+    <value>Bayi hesabınıza erişmek için &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;'te oturum açın. Hesabınızı aşağıdaki resimde gösterildiği gibi görüyorsunuz.</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
+    <value>Bayi hesabınıza erişim sağlayın</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle1">
+    <value>AxCrypt bayisi olmak için başvurun</value>
+  </data>
+  <data name="ResellerHelpGettingStartedSubTitle2">
+    <value>Bayi hesabınıza erişim sağlayın</value>
+  </data>
+  <data name="ResellerHelpGettingStartedTitle" xml:space="preserve">
+    <value>Başlıyoruz</value>
+  </data>
+  <data name="ResellerHelpLinkLabel" xml:space="preserve">
+    <value>Bayi Yardımı</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem1" xml:space="preserve">
+    <value>Görselleri iznimiz olmadan düzenlemeyin.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1ListItem2" xml:space="preserve">
+    <value>Bitişik resimlerden veya grafik öğelerden logo tipi boyutlarının %25'i kadar boş alan bırakın.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text1" xml:space="preserve">
+    <value>Bayinin logosunu veya AxCrypt'in normal logosunu kendi yayınlarınızda veya web sitenizde kullanabilirsiniz. Aşağıdaki düzenlemelere uyduğunuz sürece bunu yapmakta özgürsünüz:</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text2" xml:space="preserve">
+    <value>Renkli logonun uygun bir alternatif olmadığında siyah beyaz versiyonları kullanabilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.png'&gt;PNG formatında logo simgesi&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text4" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/reseller_transparent_transparent.jpg'&gt;JPG formatında logo simgesi&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text5" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.png'&gt;PNG formatında tam logo&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text6" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;JPG formatında tam logo&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
+    <value>Orijinal AxCrypt logolarını &lt;a href='https://www.axcrypt.net/information/press'&gt;https://www.axcrypt.net/information/press&lt;/a&gt; adresinde bulabilirsiniz.</value>
+  </data>
+  <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
+    <value>Yetkili bayi logosu</value>
+  </data>
+  <data name="ResellerHelpMarketingTitle" xml:space="preserve">
+    <value>Pazarlama</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
+    <value>SSS: &lt;a href='https://www.axcrypt.net/information/faq'&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
+    <value>Business aboneliği: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
+    <value>Başlayın: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
+    <value>Kullanım ipuçları: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
+    <value>Teknik detaylar: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
+    <value>Bayilerimiz (ve müşterileri) elbette AxCrypt'in profesyonel teknik desteğine güvenebilir. Çevrimiçi olarak çok sayıda belge ve ürün bilgisine sahibiz:</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
+    <value>Ayrıca, &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; adresinden teknik destek alınabilir. Saat dilimleri UTC+5:30'dur ve genellikle mesai saatleri içinde bir gün içinde yanıt verir.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
+    <value>Bayilerimizin müşterilerine bazı temel teknik sorularda yardımcı olabilmeleri için elbette AxCrypt'i daha önce kendilerinin kullanmasını her zaman öneriyoruz. Aksi takdirde, AxCrypt'in çeşitli özelliklerini açıklayan bir sürü öğretici videolarımız da var. Bunlar YouTube Kanalımızda mevcuttur: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text4" xml:space="preserve">
+    <value>Windows eğitimleri:&lt;a href='https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6'&gt;https://www.youtube.com/watch?v=kE8fuBglFhA&amp;list=PLHRiJs6YxUhgR9sd66jR4ao0EiCxPO7u6&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock1Text5" xml:space="preserve">
+    <value>MacOS eğitimleri:&lt;a href='https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d'&gt;https://www.youtube.com/watch?v=KqKwgnBy-Io&amp;list=PLHRiJs6YxUhj6XCOS_P6dl-1HZSOYQl0d&lt;/a&gt;</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text1" xml:space="preserve">
+    <value>Bir Bayi olarak, kendi satışlarınızdan ve (potansiyel) müşterinize nasıl yaklaştığınızdan siz sorumlusunuz. Ancak, elbette, satışlarınızda size yardımcı olmak isteriz. Takım çalışması rüyayı gerçek kılar!</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text2" xml:space="preserve">
+    <value>Reklam amaçlı ve müşterilerinize göstermek için AxCrypt'in bir sunumunu ve broşürünü oluşturduk. AxCrypt'in ne olduğunu ve verilerinizi korumanıza nasıl yardımcı olabileceğini açıklayacaktır.</value>
+  </data>
+  <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;AxCrypt sunumunu indirin&lt;/a&gt;
+
+</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
+    <value>Teknik Destek</value>
+  </data>
+  <data name="ResellerHelpSupportSubTitle2" xml:space="preserve">
+    <value>Satış desteği</value>
+  </data>
+  <data name="ResellerHelpSupportTitle" xml:space="preserve">
+    <value>Destek</value>
+  </data>
   <data name="ResellerInfoHeading">
     <value>AxCrypt Bayi olun</value>
+  </data>
+  <data name="ResellerInformationPromptTitle" xml:space="preserve">
+    <value>Bayi Bilgileri</value>
   </data>
   <data name="ResellerInfoText1">
     <value>AxCrypt kullanımı kolay şifreleme çözümü sunar. Dosya şifreme endüstrisindeki 15 yıllık deneyimimiz ile marketteki en güçlü markalardan birisi olan AxCrypt'i kurduk. 20 milyondan fazla indirme ile sunduğum hizmetin güvenilir olduğunu kanıtladık. AxCrypt, PCMag Şifreleme Yazılımı Editörün Seçimi 2016, 2017 ve 2018 ödüllerini almıştır.</value>
@@ -4284,6 +5278,9 @@ Konu: AxCrypt Report Snapshot</value>
   <data name="ScriptingEnabledText">
     <value>Komut dizisi oluşturma ve kodlama için geniş çaplı komut satırı arayüzü</value>
   </data>
+  <data name="SearchBoxPlaceHolderText" xml:space="preserve">
+    <value>Dosyaları ara...</value>
+  </data>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Şifreleri burada arayın...</value>
   </data>
@@ -4301,6 +5298,9 @@ Konu: AxCrypt Report Snapshot</value>
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Hiçbiri]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>Geçerli bir abonelik planınız yok ve bu nedenle artık yeni şifre girişlerini düzenleyemez veya oluşturamazsınız. Ancak, yine de mevcut girişleri görebilirsiniz. 30 günlük Deneme sürenizi kullanmadıysanız, &lt;a href="/Home/Upgrade"&gt;here&lt;/a&gt; başlatabilirsiniz.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>{0} da Premium üyeliğinin süresi dolmak üzere. Sonrasında yeni şifre girişleri yaratmak veya değişiklik yapmak için premium üyeliğini uzatman gerekmektedir. Yalnızca okumaya süresiz erişimin bulunmaktadır.</value>
@@ -4460,6 +5460,12 @@ Konu: AxCrypt Report Snapshot</value>
   <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
     <value>Sürümün bir güvenlik sorunu nedeniyle yenilenmelidir.</value>
     <comment>Displayed prominently, perhaps as a pop-up, when it's discovered that an update is available the contains a security fix.</comment>
+  </data>
+  <data name="SelectAllFilesLabelText" xml:space="preserve">
+    <value>Tüm dosyaları seç</value>
+  </data>
+  <data name="SendFeedbackTitle" xml:space="preserve">
+    <value>Geribildirim Gönder</value>
   </data>
   <data name="SendInvitation" xml:space="preserve">
     <value>Davetiye gönder</value>
@@ -4635,6 +5641,18 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="SubmitLabel">
     <value>Gönder</value>
   </data>
+  <data name="SubscribeForFreeForFullFunctionalityText" xml:space="preserve">
+    <value>Tam işlevsellik için ücretsiz abone olmayı deneyin!</value>
+  </data>
+  <data name="SubscribeForFreeForFullSecurityText" xml:space="preserve">
+    <value>Tam güvenlik için ücretsiz abone olmayı deneyin!</value>
+  </data>
+  <data name="SubscribeForFullFunctionalityText" xml:space="preserve">
+    <value>Tam işlevsellik için abone olun!</value>
+  </data>
+  <data name="SubscribeForFullSecurityText" xml:space="preserve">
+    <value>Tam güvenlik için abone olun!</value>
+  </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Aboneliğiniz &lt;b&gt;{0}&lt;/b&gt; tarihinde yenilenecektir.</value>
   </data>
@@ -4646,6 +5664,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="SubscriptionDiscountDisplayText" xml:space="preserve">
     <value>%{0} Tasarruf</value>
+  </data>
+  <data name="SubscriptionExpiredOn" xml:space="preserve">
+    <value>Aboneliğiniz &lt;b&gt;{0}&lt;/b&gt; tarihinden itibaren sona erdi.</value>
   </data>
   <data name="SubscriptionExpireOn" xml:space="preserve">
     <value>Aboneliğinizin süresi &lt;b&gt;{0}&lt;/b&gt; tarihinde dolacaktır.</value>
@@ -4720,6 +5741,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Svenska (İsveççe)</value>
   </data>
+  <data name="SwitchUserButtonText" xml:space="preserve">
+    <value>Kullanıcı değiştir</value>
+  </data>
   <data name="SyntheticWordsSuccessActivate" xml:space="preserve">
     <value>Kültür başarı ile etkinleştirildi.</value>
   </data>
@@ -4741,6 +5765,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TargetApplicationNotFoundMessage" xml:space="preserve">
     <value>Dosya açılamıyor</value>
     <comment>Message which is displayed when user hasn't application for file opening</comment>
+  </data>
+  <data name="TechLinkLabel">
+    <value>Teknoloji</value>
   </data>
   <data name="TechnicalDetailsDescription">
     <value>Bu bölümde AxCrypt'in ne olduğu, ne yaptığı ve nasıl çalıştığı bilgileri verilmektedir. Daha çok yazılım geliştirme ve şifreleme konusunda bilgili, teknik uzmanlara hitap etmektedir. Buradaki bilginin, örneğin AxCrypt uyumlu yazılım geliştirmeye yardımcı olacak kadar kapsamlı amaçlanmıştır.</value>
@@ -4813,6 +5840,12 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="TermsOfUseBlock11Heading">
     <value>Premium Deneme Sürümü</value>
+  </data>
+  <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
+    <value>Premium ve Business Denemesi</value>
+  </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>Yeni kullanıcılar için AxCrypt Premium veya Business planı için 30 günlük ücretsiz deneme sunuyoruz. Ürünü beğenmezseniz, deneme süresi bitmeden aboneliğinizi iptal edebilirsiniz. Aboneliğin iptali herhangi bir zamanda yapılabilir. Bunu yapmak denemeyi etkilemeyecek ve deneme süreniz boyunca Business &amp; Premium aboneliğiyle birlikte gelen tüm özellikleri kullanmaya devam edebileceksiniz. 30 günlük ücretsiz deneme süresinden sonra, aboneliğinizi iptal etmediyseniz kredi kartınızdan ücret tahsil edeceğiz. Deneme süresi boyunca aboneliğinizi iptal etmediyseniz geri ödeme yapılmayacaktır. Bu tür teklifleri önceden haber vermeksizin herhangi bir zamanda geri çekme veya değiştirme hakkını saklı tutarız.</value>
   </data>
   <data name="TermsOfUseBlock11Text1">
     <value>Size, geniş kapsamlı özelliklere erişmenize izin verecek Premium'u kısa bir süreliğine ücretsiz sunabiliriz. Bu tip teklifler AxCrypt ID hesabı başına değil, kişi başına yapılır. Ön bilgi vermeksizin bu tip teklifleri geri çekme veya düzenleme hakkını saklı tutarız.</value>
@@ -5035,6 +6068,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TitleWindowSignInStatus" xml:space="preserve">
     <value>{0}{1}-{2}</value>
   </data>
+  <data name="TooExpensiveText" xml:space="preserve">
+    <value>Çok pahalı</value>
+  </data>
   <data name="ToolTipPremiumNeededForSecrets" xml:space="preserve">
     <value>Şifre idaresi için Premium gereklidir. Premium'a yükselmek için tıkla!</value>
   </data>
@@ -5044,6 +6080,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TrayBalloonTooltip" xml:space="preserve">
     <value>AxCrypt uygulama penceresini yenilemek için tıkla.</value>
     <comment>Previous text: Double-click to restore the AxCrypt application window.</comment>
+  </data>
+  <data name="TrialEndedText" xml:space="preserve">
+    <value>Ücretsiz denemem sona erdi</value>
   </data>
   <data name="TrialOnlyForNewUsers" xml:space="preserve">
     <value>Ücretsiz deneme sürümü sadece yeni üyeler içindir</value>
@@ -5134,6 +6173,9 @@ AxCrypt Ekibi</value>
   <data name="UnknownLogOn" xml:space="preserve">
     <value>Şifre daha önceden tanınmamaktadır. Yeni bir tane yaratmak için 'Yeni' ye tıkla.</value>
   </data>
+  <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
+    <value>Tam şifreleme özelliklerini açmak için burayı tıklayın!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>'{0}' için {1}</value>
   </data>
@@ -5149,6 +6191,12 @@ AxCrypt Ekibi</value>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>Abonelikten çıkmak istiyorsan bu linki tıkla: &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; bu link&lt;/a&gt;</value>
   </data>
+  <data name="UpdateAvailableTitle" xml:space="preserve">
+    <value>Güncelleme Mevcut</value>
+  </data>
+  <data name="UpdatePaymentDetailsText" xml:space="preserve">
+    <value>Ödeme ayrıntılarını güncelleyin</value>
+  </data>
   <data name="UpdatingStatus" xml:space="preserve">
     <value>Konum yenileniyor</value>
   </data>
@@ -5161,6 +6209,12 @@ AxCrypt Ekibi</value>
   <data name="UpgradePromptText" xml:space="preserve">
     <value>Premium'a üye ol!</value>
     <comment>One-word text for a link-label text asking the user to upgrade to premium.</comment>
+  </data>
+  <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
+    <value>Aboneliğinizin süresi doldu. Bunlar gibi premium özellikleri kullanmaya devam etmek için bugün yenileyin:</value>
+  </data>
+  <data name="UpgradeSubscriptionTitle" xml:space="preserve">
+    <value>Daha iyi şifrelemeye yükseltin!</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Anonim dosya isimleri</value>
@@ -5290,6 +6344,9 @@ AxCrypt Ekibi</value>
   </data>
   <data name="UsageTipsTargetUseListItem6">
     <value>Geliştiriciler, AxCrypt'i kullanımı kolay program API'ına sahip .NET çekirdek kütüphanesine ekleyerek entegre edebilirler. Kaynak kodunu bitbucket'tan veya nuget ile alınız.</value>
+  </data>
+  <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
+    <value>Yalnızca gerekli çerezleri kullanın</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>AxCrypt i güncellemedin. Ne yazık ki konfigürasyonunun tekrar yapılması gerekmektedir. Sıfırlamadan sonra tercihlerin ve ayarların kaybolacaktır. Rahatsızlıktan dolayı özür dileriz. Şifreli dosyaların hala koruma altında.</value>
