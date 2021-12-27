@@ -3008,6 +3008,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose plan.
+        /// </summary>
+        public static string ChoosePlanPrompt {
+            get {
+                return ResourceManager.GetString("ChoosePlanPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To get started with your account, choose whether you intend to use AxCrypt mainly as a private user or business..
         /// </summary>
         public static string ChoosePrivateOrBusinessSignUpInfo {
@@ -10121,6 +10130,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easily decrypt secured files both from desktop and mobile.
+        /// </summary>
+        public static string MobileOnboardingDecryptDescription {
+            get {
+                return ResourceManager.GetString("MobileOnboardingDecryptDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt sensitive files directly on your phone.
+        /// </summary>
+        public static string MobileOnboardingEncryptDescription {
+            get {
+                return ResourceManager.GetString("MobileOnboardingEncryptDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open AxCrypt files on your phone.
+        /// </summary>
+        public static string MobileOnboardingOpenFileDescription {
+            get {
+                return ResourceManager.GetString("MobileOnboardingOpenFileDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One-click access to the AxCrypt password manager.
+        /// </summary>
+        public static string MobileOnboardingPasswordManagerDescription {
+            get {
+                return ResourceManager.GetString("MobileOnboardingPasswordManagerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlySubscriptionTitle {
@@ -10510,6 +10555,15 @@ namespace AxCrypt.Content.Properties {
         public static string OpenToolStripButtonToolTipText {
             get {
                 return ResourceManager.GetString("OpenToolStripButtonToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like us to open a web page where you can make a purchase?.
+        /// </summary>
+        public static string OpenWebPageForPurchaseRequest {
+            get {
+                return ResourceManager.GetString("OpenWebPageForPurchaseRequest", resourceCulture);
             }
         }
         
@@ -17207,6 +17261,24 @@ namespace AxCrypt.Content.Properties {
         public static string UnlockFullEncryptionFeaturesText {
             get {
                 return ResourceManager.GetString("UnlockFullEncryptionFeaturesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover the amazing features we designed to empower your mobile encryption with our &lt;b&gt;subscriptions right now or after 30-days free trial&lt;/b&gt;..
+        /// </summary>
+        public static string UnlockMagicalFeaturesDescription {
+            get {
+                return ResourceManager.GetString("UnlockMagicalFeaturesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock our magical features!.
+        /// </summary>
+        public static string UnlockMagicalFeaturesTitle {
+            get {
+                return ResourceManager.GetString("UnlockMagicalFeaturesTitle", resourceCulture);
             }
         }
         

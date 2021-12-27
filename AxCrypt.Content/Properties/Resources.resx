@@ -1194,6 +1194,9 @@ You must complete these steps to complete the process.</value>
   <data name="ChineseLanguageSelectionText" xml:space="preserve">
     <value>中文 (Chinese)</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Choose plan</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>To get started with your account, choose whether you intend to use AxCrypt mainly as a private user or business.</value>
   </data>
@@ -3702,6 +3705,18 @@ This program is licensed according to the agreement.
   <data name="MobileAppText" xml:space="preserve">
     <value>Android 4.0.3 or later, iOS 8.0 or later.</value>
   </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>Easily decrypt secured files both from desktop and mobile</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>Encrypt sensitive files directly on your phone</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Open AxCrypt files on your phone</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>One-click access to the AxCrypt password manager</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Monthly</value>
   </data>
@@ -3848,6 +3863,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Click to select a secured file to open.</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest" xml:space="preserve">
+    <value>Would you like us to open a web page where you can make a purchase?</value>
   </data>
   <data name="OperatingSystemsLabel" xml:space="preserve">
     <value>Operating system</value>
@@ -6205,6 +6223,12 @@ The AxCrypt Team</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Click here to unlock full encryption features!</value>
+  </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>Discover the amazing features we designed to empower your mobile encryption with our &lt;b&gt;subscriptions right now or after 30-days free trial&lt;/b&gt;.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Unlock our magical features!</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} for '{0}'.</value>
