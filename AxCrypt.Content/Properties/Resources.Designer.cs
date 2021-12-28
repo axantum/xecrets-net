@@ -8767,6 +8767,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Let`s get started!.
+        /// </summary>
+        public static string LetsGetStartedTitle {
+            get {
+                return ResourceManager.GetString("LetsGetStartedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business.
         /// </summary>
         public static string LicenseBusinessNameText {
@@ -10126,6 +10135,15 @@ namespace AxCrypt.Content.Properties {
         public static string MobileAppText {
             get {
                 return ResourceManager.GetString("MobileAppText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose files from.
+        /// </summary>
+        public static string MobileCustomFilepickerPromptTitle {
+            get {
+                return ResourceManager.GetString("MobileCustomFilepickerPromptTitle", resourceCulture);
             }
         }
         
@@ -17891,6 +17909,15 @@ namespace AxCrypt.Content.Properties {
         public static string WeakPasswordLabel {
             get {
                 return ResourceManager.GetString("WeakPasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome back!.
+        /// </summary>
+        public static string WelcomeBackTitle {
+            get {
+                return ResourceManager.GetString("WelcomeBackTitle", resourceCulture);
             }
         }
         

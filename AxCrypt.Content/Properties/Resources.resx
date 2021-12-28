@@ -3191,6 +3191,9 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Legal</value>
   </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Let`s get started!</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -3704,6 +3707,9 @@ This program is licensed according to the agreement.
   </data>
   <data name="MobileAppText" xml:space="preserve">
     <value>Android 4.0.3 or later, iOS 8.0 or later.</value>
+  </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Choose files from</value>
   </data>
   <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
     <value>Easily decrypt secured files both from desktop and mobile</value>
@@ -6437,6 +6443,9 @@ The AxCrypt Team</value>
   </data>
   <data name="WeakPasswordLabel" xml:space="preserve">
     <value>Weak password</value>
+  </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>Welcome back!</value>
   </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>Welcome to AxCrypt!</value>
