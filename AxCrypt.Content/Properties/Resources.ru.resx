@@ -1649,6 +1649,9 @@
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Срок действия вашей подписки истек из-за невозможности списать средства с вашей карты. Чтобы возобновить подписку, обновите свои платежные реквизиты.</value>
+  </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Истекает через</value>
     <comment>The first part of "Expired in x days" label in mobile application</comment>
@@ -4939,6 +4942,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Ничего]</value>
+  </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>У вас нет действующего плана подписки, и поэтому вы больше не можете редактировать или создавать новые записи паролей. Тем не менее, вы все еще можете видеть существующие записи. Если вы еще не воспользовались своим 30-дневным пробным периодом, вы можете начать его с &lt;a href="/Главная/Обновление"&gt; здесь &lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ваша подписка на Рremium скоро заканчивается {0}. После Вам необходимо продлить Вашу Рremium подписку для возможности редактирования и создания новых вводов паролей.  Вы оставляете за собой неограниченный доступ к режиму чтения документов.</value>
