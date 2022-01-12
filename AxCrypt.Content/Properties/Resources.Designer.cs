@@ -10148,7 +10148,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Easily decrypt secured files both from desktop and mobile.
+        ///   Looks up a localized string similar to &lt;fc&gt;Easily decrypt&lt;/fc&gt; secured files both from desktop and mobile.
         /// </summary>
         public static string MobileOnboardingDecryptDescription {
             get {
@@ -10157,7 +10157,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypt sensitive files directly on your phone.
+        ///   Looks up a localized string similar to &lt;fc&gt;Encrypt&lt;/fc&gt; sensitive files directly on your phone.
         /// </summary>
         public static string MobileOnboardingEncryptDescription {
             get {
@@ -10166,7 +10166,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open AxCrypt files on your phone.
+        ///   Looks up a localized string similar to Open &lt;fc&gt;AxCrypt files&lt;/fc&gt; on your phone.
         /// </summary>
         public static string MobileOnboardingOpenFileDescription {
             get {
@@ -10175,7 +10175,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to One-click access to the AxCrypt password manager.
+        ///   Looks up a localized string similar to One-click access to the AxCrypt &lt;fc&gt;password manager&lt;/fc&gt;.
         /// </summary>
         public static string MobileOnboardingPasswordManagerDescription {
             get {
@@ -13171,7 +13171,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You haven&apos;t opened any secured files recently. Click Open Secured to browse for a secured files..
+        ///   Looks up a localized string similar to You haven&apos;t opened any secured files recently. Click &lt;b&gt;Open Secured&lt;/b&gt; to browse for a secured files..
         /// </summary>
         public static string RecentFilesListInfoText {
             get {

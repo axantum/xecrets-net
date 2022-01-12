@@ -3712,16 +3712,16 @@ This program is licensed according to the agreement.
     <value>Choose files from</value>
   </data>
   <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
-    <value>Easily decrypt secured files both from desktop and mobile</value>
+    <value>&lt;fc&gt;Easily decrypt&lt;/fc&gt; secured files both from desktop and mobile</value>
   </data>
   <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
-    <value>Encrypt sensitive files directly on your phone</value>
+    <value>&lt;fc&gt;Encrypt&lt;/fc&gt; sensitive files directly on your phone</value>
   </data>
   <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
-    <value>Open AxCrypt files on your phone</value>
+    <value>Open &lt;fc&gt;AxCrypt files&lt;/fc&gt; on your phone</value>
   </data>
   <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
-    <value>One-click access to the AxCrypt password manager</value>
+    <value>One-click access to the AxCrypt &lt;fc&gt;password manager&lt;/fc&gt;</value>
   </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Monthly</value>
@@ -4794,7 +4794,7 @@ Please &lt;a href="mailto:premium@axcrypt.net"&gt;contact us&lt;/a&gt; and we wi
     <value>Read more</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>You haven't opened any secured files recently. Click Open Secured to browse for a secured files.</value>
+    <value>You haven't opened any secured files recently. Click &lt;b&gt;Open Secured&lt;/b&gt; to browse for a secured files.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Open</value>
