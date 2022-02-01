@@ -721,14 +721,8 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BusinessFirstBodyHeading">
     <value>Basit, Güvenilir ve Güçlü Şifreleme</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt artık 256-bit AES şifreleme ile firmalara ve kuruluşlara da dosya güvenliği sunmaktadır. Bulut depolama farkındalığı ve anahtar paylaşımı özelliği ile yerel dosyaları takımınızla paylaşmak aldığı ödülleri hak edecek kadar kolay. Bu, hem veri koruma yönetmeliklerine uymanızı hem de dosyalarınızı masraflı veri ihlallerinden korumanızı sağlar.&lt;/p&gt;&lt;p&gt;AxCrypt Business ile, parolaları ve kodları güvenli bir şekilde depolayabileceğiniz ve yönetebileceğiniz Şifre Yönetimine de erişiminiz olur. AxCrypt çok dillidir ve İngilizce, Hollandaca, Fransızca, Almanca, İtalyanca, Korece, Lehçe, Portekizce, Rusça, İspanyolca, İsveççe, Türkçe ve planlanan bir çok dilde mevcuttur. Ayrıca, seyahat esnasında şifrelenmiş dosyalarınızı açabilmeniz için Mobil Uygulamalar da sunuyoruz.&lt;/p&gt;&lt;p&gt;Daha fazla bilgi için &lt;a href='/information/features'&gt;özellikler sayfamızı&lt;/a&gt; ziyaret edin ve &lt;a href='/information/terms-of-use'&gt;Kullanım koşullarını&lt;/a&gt; okumayı unutmayın.&lt;/p&gt;&lt;p&gt;Daha fazla özel Business Özellikleri çok yakında. Kaçırmayın!&lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt artık 256-bit AES şifreleme ile firmalara ve kuruluşlara da dosya güvenliği sunuyor. Takımın diğer üyeleri ile dosya paylaşmak, bulut depolama farkındalığımız ve yerel dosyalarda anahtar paylaşımı ile aldığı ödülleri hak edecek kadar kolay. Bu sayede, dosyalarınızı masraflı veri ihlallerinden korurken veri koruma yönetmeliklerine uyum sağlarsınız.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>AxCrypt Business ile şifrelerinizi ve kodlarınızı güvenli bir şekilde depolayabileceğiniz ve yönetebileceğiniz Şifre Yöneticisine de erişebilirsiniz. AxCrypt çok dillidir ve İngilizce, Hollandaca, Fransızca, Almanca, İtalyanca, Korece, Lehçe, Portekizce, Rusça, İspanyolca, İsveççe, Türkçe ve planlanan bir çok dilde mevcuttur. Ayrıca, seyahat esnasında şifrelenmiş dosyalarınızı açabilmeniz için Mobil Uygulamalar da sunuyoruz.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Daha fazla bilgi için, &lt;a href='/information/terms-of-use'&gt;Kullanım koşullarımızı&lt;/a&gt; ziyaret edin.</value>
@@ -1169,6 +1163,9 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
   <data name="ChineseLanguageSelectionText" xml:space="preserve">
     <value>中文 (Çince)</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Planı seçin</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Hesabınızın ilk adımlarını atmak için AxCrypt'i şahıs olarak mı yoksa kuruluş olarak mı kullanacağınıza karar verin.</value>
   </data>
@@ -1566,15 +1563,6 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   </data>
   <data name="DownloadLinkLabel">
     <value>İndir</value>
-  </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Android ve iOS cihazlar için mobil uygulamalar mevcuttur. Mobil sürüm, masaüstü uygulaması kullanılarak şifrelenmiş herhangi bir dosyayı açmanızı ve görüntülemenizi sağlayan bir görüntüleyici uygulamadır./p&gt;</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Android ve iOS cihazlar için mobil uygulamalar mevcuttur. Mobil versiyon, masaüstü uygulaması ile şifrelenmiş dosyaları ve belgeleri açmanıza ve okumanıza imkan tanır.</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>Daha fazla bilgi için &lt;a href={url}&gt;here&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobil</value>
@@ -2068,9 +2056,6 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="FeaturesMadeInSweden">
     <value>İsveç'te sunucuları ile "İsveç Malı"</value>
   </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Şifrelenmiş dosyalarınıza Android veya iOS cihazınızdan erişin</value>
-  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Sadece Business kullanıcıları için getireceğimiz özellikleri kaçırmayın.</value>
   </data>
@@ -2559,9 +2544,6 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Son Dosyalar listesi devre dışı.  Etkinleştirmek için Ayarlara gidin.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>Başlangıç adımları</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. İndir</value>
   </data>
@@ -2580,23 +2562,17 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   <data name="HomeGetStartedListShareParagraph">
     <value>Güvenli dosyalarınızı sadece tek tıkla paylaşın</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>Bu, AxCrypt kurulumu üzerine eğitici bir videodur</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"Oldukça basit bir ortamda ileri düzey şifreleme"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editörün Seçimi 2021</value>
+    <value>PCMag Editörün Seçimi 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>dünya çapında 20 milyondan fazla indirme</value>
   </data>
   <data name="HomeLinkLabel">
     <value>Ana Sayfa</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Şifrelenmiş dosyalarınızı telefonunuzda açın.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobil</value>
@@ -2633,9 +2609,6 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Diğer referanslar için &lt;a href='/about/awards'&gt;ödüller &amp; incelemeler'e&lt;/a&gt;  gidin&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>Başkalarının düşünceleri</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Dakika</value>
@@ -3673,6 +3646,21 @@ Bu program anlaşmaya göre lisanslanmıştır.
   <data name="MobileAppText">
     <value>Android 4.0.3 veya daha günceli, iOS 8.0 veya daha günceli.</value>
   </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Dosyaları seçin</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Güvenli dosyaların şifresini hem&lt;/fc&gt; masaüstünden hem de mobilden kolayca çözün</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>Hassas dosyaları doğrudan telefonunuzda &lt;fc&gt;şifreleyin&lt;/fc&gt;</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Telefonunuzda &lt;fc&gt;AxCrypt dosyalarını&lt;/fc&gt; açın</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>AxCrypt &lt;fc&gt;parola yöneticisine&lt;/fc&gt; tek tıklamayla erişim</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Aylık</value>
   </data>
@@ -3819,6 +3807,9 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Açmak için koruma altına alınmış dosyayı seç</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>Satın alma işlemi yapabileceğiniz bir web sayfası açmamızı ister misiniz?</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>İşletim sistemi</value>
@@ -4095,18 +4086,11 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Abone olmayı düşünmenize rağmen ihtiyaçlarınızı karşıladığından emin değil misiniz? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Hiçbir ücret ödemeden AxCrypt Premium'u 30 gün boyunca deneyebilirsiniz&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;AxCrypt Premium ile geniş kapsamlı işlevselliğe ve heyecan verici özelliklere erişin! Dosyalarınızı, AES algoritmasının en güçlüsü olan AES-256 ile şifreleyin. Her seviyeden hassas ve gizli bilgileri korumak adına tüm dünyada kullanılmaktadır. Sadece tek tıkla yeni dosyaları otomatik şekilde güvence altına alarak klasörleri güvenli hale getirmek artık çok daha kolay.&lt;/p&gt;&lt;p&gt;İhtiyaç halinde güvenli dosyalarınızı, Dropbox, Google Drive, vb.de Bulut Depolama Farkındalığına erişimi de içeren anahtar paylaşımı sayesinde başkaları ile paylaşabilirsiniz. Sık sık seyahat ediyorsanız mobil uygulamamız ile şifrelenmiş dosyalarınıza ulaşabilirsiniz.&lt;/p&gt;&lt;p&gt;Şifrelerinizi güvenli ve kolay bir şekilde kaydetmek ister misiniz? Şifre yöneticimizi ve oluşturucumuzu kullanarak şifrelerinizi bulutta güvende tutun.&lt;/p&gt;&lt;p&gt;Bütün işlevlerini ve faydalarını keşfetmek için deneyin!&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>Abone olmayı düşünmenize rağmen ihtiyaçlarınızı karşıladığından emin değil misiniz?&lt;a href={url}&gt;Hiçbir ücret ödemeden AxCrypt Premium'u 30 gün boyunca deneyebilirsiniz&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>AxCrypt Premium ile geniş kapsamlı işlevselliğe ve heyecan verici özelliklere erişin! Dosyalarınızı, AES algoritmasının en güçlüsü olan AES-256 ile şifreleyin. Her seviyeden hassas ve gizli bilgileri korumak adına tüm dünyada kullanılmaktadır. Sadece tek tıkla yeni dosyaları otomatik şekilde güvence altına alarak klasörleri güvenli hale getirmek artık çok daha kolay.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>Eğer güvenli dosyaları başkaları ile paylaşmanız gerekirse, Dropbox, Google Drive, vb.'inde bulut depolama farkındalığına erişim de dahil olmak üzere anahtay paylaşımı ihtiyacınızı karşılar. Seyahat halinde olduğunuz takdirde, mobil uygulamamızı kullanarak şifreli dosyalarınıza erişebilirsiniz.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Şifrelerinizi güvenli ve kolay bir şekilde kaydetmek ister misiniz? Şifre yöneticimizi ve oluşturucumuzu kullanarak şifrelerinizi bulutta güvende tutun.</value>
@@ -4248,9 +4232,6 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Anahtar Paylaşımı</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>Mobil Uygulamalar</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Henüz Yayınlanmamış Özel Özellikler</value>
@@ -4497,9 +4478,6 @@ HubSpot, CRM sistemi aracılığıyla iletişim yönetimi dahil, çevrimiçi paz
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>AES-256 ile daha güçlü şifreleme</value>
   </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Mobil uygulama ile şifreli dosyalarınızı seyahat halinde görüntüleyin</value>
-  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Ücretsiz deneme sürümünü başlatın</value>
   </data>
@@ -4740,7 +4718,7 @@ Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto
     <value>Devamını okuyun</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>Yakın zamanda güvenli dosya açmadınız. Güvenli bir dosyaya göz atmak için Güvenli Aç'ı tıklayın.</value>
+    <value>Yakın zamanda güvenli dosya açmadınız. Güvenli bir dosyaya göz atmak &lt;b&gt;için Güvenli&lt;/b&gt; Aç'ı tıklayın.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Aç</value>
@@ -6176,6 +6154,12 @@ AxCrypt Ekibi</value>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Tam şifreleme özelliklerini açmak için burayı tıklayın!</value>
   </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>&lt;b&gt;Hemen veya 30 günlük ücretsiz denemeden sonra&lt;/b&gt; aboneliklerimizle mobil şifrelemenizi güçlendirmek için tasarladığımız harika özellikleri keşfedin.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Sihirli özelliklerimizin kilidini açın!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>'{0}' için {1}</value>
   </data>
@@ -6426,9 +6410,6 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı aç ve interne
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Neden AxCrypt Business?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>Neden AxCrypt?</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Şifremi unutmayacağım!</value>

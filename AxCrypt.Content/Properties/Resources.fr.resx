@@ -744,16 +744,8 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BusinessFirstBodyHeading">
     <value>Simple, fiable, et chiffrement fort</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt propose maintenant de sécuriser des fichiers pour des entreprises et des associations - avec un chiffrement AES 256-bit. Partager des fichiers avec votre équipe est un jeu d'enfant avec notre système de stockage sur Cloud et notre fonctionnalité de partage de clés pour les fichiers se trouvant sur place. Cela vous permet de respecter les règles de la protection de données tout en protégeant vos fichiers de coûteuses intrusions.&lt;/p&gt;
-&lt;p&gt;Avec AxCrypt Business, vous avez aussi accès à notre gestionnaire de mots de passe - où vous pouvez stocker et gérer vos mots de passe et vos codes en toute sécurité. AxCrypt est multilingue, disponible en anglais, néerlandais, français, allemand, italien, coréen, polonais, portugais, russe, espagnol, suédois, turc, et d'autres langues à venir. Nous proposons aussi des applications mobile pour que vous puissiez ouvrir vos fichiers chiffrés quand vous êtes en déplacement.&lt;/p&gt;
-&lt;p&gt;Pour plus d'informations, visitez notre &lt;a href='/information/features'&gt;page de fonctionnalités&lt;/a&gt; et n'oubliez pas de lire &lt;a href='/information/terms-of-use'&gt;les conditions d'utilisation&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;De nouvelles fonctionnalités Business exclusives arrivent bientôt. Ne les manquez pas !&lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt propose maintenant de sécuriser des fichiers pour des entreprises et des associations - avec un chiffrement AES 256-bit. Partager des fichiers avec votre équipe est un jeu d'enfant avec notre système de stockage sur Cloud et notre fonctionnalité de partage de clés pour les fichiers se trouvant sur place. Cela vous permet de respecter les règles de la protection de données tout en protégeant vos fichiers de coûteuses intrusions.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>Avec AxCrypt Business, vous aurez accès à notre gestionnaire de mots de passe - où vous pourrez conserver et gérer vos mots de passe et vos codes en toute sécurité. AxCrypt est multilingue, disponible en anglais, néerlandais, français, allemand, italien, coréen, polonais, portugais, russe, espagnol, suédois, turc, et d'autres langues à venir. Nous proposons aussi des applications mobile pour que vous puissiez ouvrir vos fichiers chiffrés en déplacement.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Pour en savoir plus, visitez notre &lt;a href='/information/features'&gt;page de fonctionnalités&lt;/a&gt; et n'oubliez pas de lire les &lt;a href='/information/terms-of-use'&gt; Conditions d'utilisation&lt;/a&gt;.</value>
@@ -1593,15 +1585,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="DownloadLinkLabel">
     <value>Télécharger</value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Des applications mobile sont disponibles pour les appareils Android et iOS. La version mobile est une application spectateur qui vous permet d'ouvrir et de lire fichiers et documents chiffrés avec l'application bureau.&lt;/p&gt;&lt;p&gt;En savoir plus&lt;a href='#'&gt;ici&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Des applications mobile sont disponibles pour Android et iOS. La version mobile est une application spectateur qui vous permet d'ouvrir et de lire des fichiers chiffrés avec la version bureau.</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>En savoir plus &lt;a href={url}&gt;ici&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt mobile</value>
   </data>
@@ -2088,9 +2071,6 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FeaturesMadeInSweden">
     <value>"Made in Sweden" avec des serveurs en Suède</value>
-  </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Accédez à vos documents chiffrés sur votre appareil Android ou iOS</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Ne ratez plus les fonctionnalités que nous allons mettre en place spécialement pour les utilisateurs Business.</value>
@@ -2580,9 +2560,6 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>La liste Documents Récents n'est pas activée. Rendez-vous dans Options pour l'activer.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>Comment démarrer</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Téléchargement</value>
   </data>
@@ -2601,23 +2578,17 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   <data name="HomeGetStartedListShareParagraph">
     <value>Partagez vos fichiers sécurisés en un seul clic</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>Ceci est un tutoriel vidéo pour bien démarrer avec AxCrypt</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"Un chiffrement exceptionnel et des paramètres très simples"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>Choix de la rédaction de PCMag 2021</value>
+    <value>Choix de la rédaction de PCMag 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>plus de 20 millions de téléchargements dans le monde</value>
   </data>
   <data name="HomeLinkLabel">
     <value>Accueil</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Ouvrez vos fichiers chiffrés sur votre téléphone.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt pour mobile</value>
@@ -2654,9 +2625,6 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Pour d'autres témoignages, rendez-vous sur &lt;a href='/about/awards'&gt;récompenses et avis&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>Ce qu'en disent les autres</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutes</value>
@@ -4119,20 +4087,11 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Un abonnement vous intéresse, mais vous ne savez pas si cela vous correspond ?&lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Vous pouvez profiter gratuitement d'AxCrypt Premium pendant 30 jours&lt;/a&gt;&lt;p&gt;
-&lt;p&gt;Avec AxCrypt Premium, vous avez accès à des fonctionnalités étendues et toujours plus de possibilités ! Chiffrez vos documents avec AES-256 – le plus fort des algorithmes AES. Il est utilisé mondialement pour protéger des données sensibles ou classées à tous les niveaux. Il n'a jamais été aussi facile de sécuriser des dossiers, avec un simple clic pour sécuriser automatiquement de nouveaux documents.&lt;/p&gt;
-&lt;p&gt;Si vous avez aussi besoin de partager vos fichiers sécurisés avec d'autres gens, vous aurez le partage de clés pour vous occuper de cela, avec également un accès à un stockage sur cloud avec Dropbox, Google Drive, etc. Si vous êtes souvent en déplacement, vous pourrez utiliser notre application mobile pour accéder à vos fichiers chiffrés.&lt;/p&gt;
-&lt;p&gt;Vous voulez sauvegarder vos mots de passe de manière sûre et facile ? Utilisez notre gestionnaire et notre générateur de mots de passe pour garder tous vos mots de passe en sécurité dans le cloud.&lt;/p&gt;&lt;p&gt;Essayez-le pour découvrir toutes les fonctionnalités et les avantages qu'il propose !&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>Un abonnement vous intéresse, mais vous n'êtes pas sûr.e que cela corresponde à vos besoins ? &lt;a href={url}&gt;Vous pouvez profiter d'AxCrypt gratuitement pendant 30 jours.&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>Avec AxCrypt Premium, vous avez accès à des fonctionnalités étendues et fantastiques ! Chiffrez vos documents avec AES-256, le plus solide des algorithmes AES. Il est utilisé mondialement pour protéger des informations sensibles et classées de tous niveaux. Sécuriser des fichiers n'a jamais été aussi facile, puisque cela ne prend qu'un seul clic pour sécuriser automatiquement de nouveaux fichiers.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>Si vous avez aussi besoin de partager des fichiers sécurisés avec d'autres, vous aurez le partage de clés pour vous en occuper, avec également un accès au stockage sur Cloud par Dropbox, Google Drive, etc. Si vous êtes souvent en déplacement, vous pouvez utiliser notre application mobile pour accéder à vos fichiers chiffrés.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Vous cherchez à sauvegarder vos mots de passe facilement et en toute sécurité ? Utilisez notre gestionnaire de mots de passe pour garder tous vos mots de passe en sécurité dans le Cloud.</value>
@@ -4274,9 +4233,6 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Partage de clés</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>Applications mobile</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>De nouvelles fonctionnalités exclusives à venir</value>
@@ -4524,9 +4480,6 @@ HubSpot est une solution logicielle intégrée avec laquelle nous couvrons diff�
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Chiffrement plus fort avec AES-256</value>
   </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Visionnez vos documents chiffrés n'importe où grâce à l'application mobile</value>
-  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Commencer l'essai gratuit maintenant</value>
   </data>
@@ -4754,9 +4707,6 @@ Les entreprises et associations doivent créer un &lt;a href="https://account.ax
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>Lisez les dernières actualités</value>
   </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Parcourez nos derniers articles sur le blog</value>
-  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>En savoir plus sur la version Business</value>
   </data>
@@ -4767,7 +4717,7 @@ Les entreprises et associations doivent créer un &lt;a href="https://account.ax
     <value>En savoir plus</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>Vous n'avez pas ouvert de fichiers sécurisés récemment. Cliquez sur 'Ouvrir fichier sécurisé' pour en rechercher un.</value>
+    <value>Vous n'avez pas ouvert de fichiers sécurisés récemment. Cliquez sur &lt;b&gt;'Ouvrir fichier sécurisé'&lt;/b&gt; pour en rechercher un.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Ouvrir</value>
@@ -6452,9 +6402,6 @@ Pour plus d'informations, cliquez sur OK pour ouvrir un navigateur web et notre 
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Pourquoi AxCrypt Business ?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>Pourquoi choisir AxCrypt ?</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Je n'oublierai pas mon mot de passe !</value>

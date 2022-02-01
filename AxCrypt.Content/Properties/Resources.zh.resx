@@ -711,14 +711,8 @@
   <data name="BusinessFirstBodyHeading">
     <value>简单，可靠和强大的加密</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt现在为公司和组织提供文件安全 – 采用256位AES加密。 与团队其他成员共享文件是屡获殊荣的轻松与我们的云存储意识和内部文件的关键共享功能。 这使您可以遵守数据保护法规，同时保护您的文件免受代价高昂的数据泄露。&lt;/p&gt;&lt;p&gt;使用AxCrypt Business，您还可以访问我们的密码管理–在这里您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 我们还提供移动应用程序，让您在离开时打开加密文件。&lt;/p&gt;&lt;p&gt;欲了解更多信息，请访问我们的&lt;a href='/信息/功能'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/信息/使用条款'&gt;使用条款&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;更多独家业务功能即将推出。 千万不要错过！&lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>现在AxCrypt为公司和组织提供文件安全–采用256位AES加密。 与团队其他成员共享文件是屡获殊荣的轻松与我们的云存储意识和内部文件的关键共享功能。 这使您可以遵守数据保护法规，同时保护您的文件免受代价高昂的数据泄露。</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>使用AxCrypt Business，您还可以访问我们的密码管理–在这里您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 我们还提供移动应用程序，让您在离开时打开加密文件。</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>欲了解更多信息，请访问我们的&lt;a href='/information/features'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/information/terms-of-use'&gt;使用条款&lt;/a&gt;。</value>
@@ -1543,15 +1537,6 @@
   <data name="DownloadLinkLabel">
     <value>下载</value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;有可用于Android和iOS设备的移动应用程序。 移动版本是一个查看器应用程序，可以让你打开和读取文件和文件加密的桌面应用程序。&lt;/p&gt;&lt;p&gt;阅读更多 &lt;a href='#'&gt;这里&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>有可用于Android和iOS设备的移动应用程序。 移动版本是一个查看器应用程序，可以让你打开和读取文件和文件加密的桌面应用程序。</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>在这里阅读更多&lt;a href={url}&gt;&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt移动</value>
   </data>
@@ -2036,9 +2021,6 @@
   <data name="FeaturesMadeInSweden">
     <value>"瑞典制造"在瑞典的服务器</value>
   </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>在Android或iOS设备上访问您的加密文件</value>
-  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>不要错过我们将专门为Business用户实施的功能。</value>
   </data>
@@ -2515,9 +2497,6 @@
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>最近的文件列表被禁用。 转到选项以启用。</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>如何开始</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1.下载</value>
   </data>
@@ -2537,9 +2516,6 @@
   <data name="HomeGetStartedListShareParagraph">
     <value>只需单击一下即可共享您的安全文件</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>这是关于如何开始使用AxCrypt的视频教程</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"高级加密在一个非常简单的设置"</value>
   </data>
@@ -2551,9 +2527,6 @@
   </data>
   <data name="HomeLinkLabel">
     <value>首页</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>在手机上打开加密文件。</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt移动</value>
@@ -2590,9 +2563,6 @@
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;欲了解更多推荐，请前往&lt;a href='/关于/奖项'&gt;奖项与评论&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>其他人说什么</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0}分钟</value>
@@ -4018,17 +3988,11 @@ SE-114 29 斯德哥尔摩
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;您有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href='https://account.axcrypt.net/zh/Home/Purchase'&gt;您可以免费享受30天的AxCrypt高级版。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium版，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法。 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全的文件，您将有密钥共享来照顾您，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 如果您经常在飞行中，您可以使用我们的移动应用程序来访问您的加密文件.&lt;/p&gt;&lt;p&gt;要保存密码在一个安全和简单的方法？ 使用我们的密码管理和生成器，以保持所有的密码安全在云中。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href={url}&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>使用AxCrypt Premium,版，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法。 这在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>如果您还需要与他人共享安全的文件，您将有密钥共享来照顾您，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 如果您经常在飞行中，您可以使用我们的移动应用程序来访问您的加密文件。</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>要保存密码在一个安全和简单的方法？ 使用我们的密码管理和生成器，以保持所有的密码安全在云中。</value>
@@ -4167,9 +4131,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>密钥共享</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>移动应用</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>更多即将推出的独家功能</value>
@@ -4329,9 +4290,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>使用AES-256更强大的加密功能</value>
-  </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>使用移动应用程序即时查看加密文件</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>现在开始免费试用</value>
@@ -4556,9 +4514,6 @@ SE-114 29 斯德哥尔摩
   <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
-  </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>浏览我们最新的博客文章</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>了解更多关于Business计划</value>
@@ -6202,9 +6157,6 @@ AxCrypt团队</value>
   </data>
   <data name="WhyAxCryptBusiness">
     <value>为什么AxCrypt Business?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>为什么选择AxCrypt？</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>我不会忘记我的密码！</value>

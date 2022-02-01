@@ -666,14 +666,8 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessFirstBodyHeading">
     <value>Proste, niezawodne i mocne szyfrowanie</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>AxCrypt oferuje teraz bezpieczeństwo plików dla firm i organizacji - z 256-bitowym szyfrowaniem AES. Udostępnianie plików pozostałym członkom zespołu jest łatwe dzięki naszej świadomości przechowywania w chmurze i funkcji udostępniania kluczy dla plików lokalnych. Pozwala to zachować zgodność z przepisami dotyczącymi ochrony danych, jednocześnie chroniąc pliki przed kosztownymi naruszeniami danych. &lt;/p&gt; &lt;p&gt; Dzięki AxCrypt Business masz również dostęp do naszego zarządzania hasłami - gdzie możesz bezpiecznie przechowywać i zarządzać hasłami i kodami. AxCrypt jest wielojęzyczny i obsługuje język angielski, holenderski, francuski, niemiecki, włoski, koreański, polski, portugalski, rosyjski, hiszpański, szwedzki, turecki i wiele innych. Oferujemy również aplikacje mobilne umożliwiające otwieranie zaszyfrowanych plików poza domem. &lt;/p&gt; &lt;p&gt; Aby uzyskać więcej informacji, odwiedź naszą &lt;a href='/information/features'&gt; stronę funkcji &lt;/a&gt; i nie zapomnij przeczytać &lt;a href='/information/terms-of-use'&gt; Warunki korzystania &lt;/a&gt;. &lt;/p&gt; &lt;p&gt; Wkrótce udostępnimy bardziej ekskluzywne funkcje biznesowe. Nie przegap okazji! &lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt oferuje teraz bezpieczeństwo plików dla firm i organizacji - z 256-bitowym szyfrowaniem AES. Udostępnianie plików pozostałym członkom zespołu jest łatwe dzięki naszej świadomości przechowywania w chmurze i funkcji udostępniania kluczy dla plików lokalnych. Dzięki temu możesz przestrzegać przepisów dotyczących ochrony danych, jednocześnie chroniąc pliki przed kosztownymi naruszeniami danych.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>Dzięki AxCrypt Business masz również dostęp do naszego zarządzania hasłami - gdzie możesz bezpiecznie przechowywać hasła i kody oraz zarządzać nimi. AxCrypt jest wielojęzyczny, obsługuje angielski, holenderski, francuski, niemiecki, włoski, koreański, polski, portugalski, rosyjski, hiszpański, szwedzki, turecki i wiele innych. Oferujemy również aplikacje mobilne do otwierania zaszyfrowanych plików gdy jesteś poza domem.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Aby uzyskać więcej informacji, odwiedź naszą &lt;a href='/information/features'&gt; stronę z opisem funkcji &lt;/a&gt; i nie zapomnij przeczytać &lt;a href='/information/terms-of-use'&gt; Warunki użytkowania &lt;/a&gt;.</value>
@@ -1507,15 +1501,6 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="DownloadLinkLabel">
     <value>Pobierz </value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt; Istnieją aplikacje mobilne dostępne na urządzenia z Androidem i iOS. Wersja mobilna to przeglądarka, która umożliwia otwieranie i odczytywanie plików i dokumentów zaszyfrowanych za pomocą aplikacji komputerowej. &lt;/p&gt; &lt;p&gt; Przeczytaj więcej &lt;a href='#'&gt; tutaj &lt;/a&gt; &lt;/p&gt;</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Istnieją aplikacje mobilne dostępne na urządzenia z systemem Android i iOS. Wersja mobilna to aplikacja do przeglądania, która umożliwia otwieranie i odczytywanie plików i dokumentów zaszyfrowanych za pomocą aplikacji komputerowej.</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>Przeczytaj więcej &lt;a href={url}&gt;tutaj&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
   </data>
@@ -2003,9 +1988,6 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="FeaturesMadeInSweden">
     <value>„Made in Sweden” z serwerami w Szwecji</value>
   </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Uzyskaj dostęp do zaszyfrowanych plików na urządzeniu z systemem Android lub iOS</value>
-  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Nigdy nie przegap funkcji, które wdrożymy wyłącznie dla użytkowników biznesowych.</value>
   </data>
@@ -2471,9 +2453,6 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Lista Ostatnie Pliki jest nieaktywna. Przejdź do Opcji aby ją uaktywnić.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>Jak zacząć</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Ściągnij</value>
   </data>
@@ -2492,23 +2471,17 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   <data name="HomeGetStartedListShareParagraph">
     <value>Udostępniaj zabezpieczone pliki jednym kliknięciem</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>To jest samouczek wideo, jak rozpocząć pracę z AxCrypt</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>„Zaawansowane szyfrowanie w niezwykle prostym ustawieniu”</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>Wybór redakcji PCMag 2021</value>
+    <value>Wybór redakcji PCMag 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>ponad 20 milionów pobrań na całym świecie</value>
   </data>
   <data name="HomeLinkLabel">
     <value>Strona główna </value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Otwórz zaszyfrowane pliki w telefonie.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobilny</value>
@@ -2545,9 +2518,6 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt; Aby uzyskać więcej opinii, przejdź do &lt;a href='/about/awards'&gt; nagród i recenzji &lt;/a&gt; &lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>Co mówią inni </value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} minut</value>
@@ -3932,17 +3902,11 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Zainteresowany wykupieniem subskrypcji ale nie jesteś pewien czy pasuje ona do Twoich potrzeb? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Możesz cieszyć się 30 dniami AxCrypt Premium za darmo &lt;/a&gt;&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>Chcesz otrzymać abonament, ale nie wiesz, czy odpowiada Twoim potrzebom? &lt;a href={url}&gt;Możesz bezpłatnie korzystać z 30 dni AxCrypt Premium.&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>Dzięki AxCrypt Premium masz dostęp do rozszerzonej funkcjonalności i ekscytujących funkcji! Szyfruj swoje pliki za pomocą AES-256 - najsilniejszego algorytmu AES. Jest używany na całym świecie w celu ochrony wrażliwych i niejawnych informacji na wszystkich poziomach. Zabezpieczanie folderów nigdy nie było łatwiejsze, wystarczy jedno kliknięcie, aby automatycznie zabezpieczyć nowe pliki.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>Jeśli chcesz również udostępniać zabezpieczone pliki innym osobom, udostępnianie kluczy zajmie się tym za Ciebie, nawet z dostępem do świadomości przechowywania w chmurze w Dropbox, Google Drive itp. Jeśli często jesteś w ruchu, możesz korzystać z naszej aplikacji mobilnej, aby uzyskać dostęp do zaszyfrowanych plików.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Chcesz zapisać hasło w bezpieczny i łatwy sposób? Skorzystaj z naszego narzędzia do zarządzania hasłami i generatora, aby wszystkie hasła były bezpieczne w chmurze.</value>
@@ -4084,9 +4048,6 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Udostępnianie kluczy</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>Aplikacje mobilne</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Więcej nadchodzących ekskluzywnych funkcji</value>
@@ -4328,9 +4289,6 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Silniejsze szyfrowanie za pomocą AES-256</value>
   </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Przeglądaj swoje zaszyfrowane pliki na bieżąco w aplikacji mobilnej</value>
-  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Rozpocznij bezpłatny okres próbny już teraz</value>
   </data>
@@ -4556,9 +4514,6 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>Przeczytaj o nowościach</value>
   </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Przeglądaj nasze najnowsze posty na blogu</value>
-  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Przeczytaj więcej o abonamencie Business</value>
   </data>
@@ -4569,7 +4524,7 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
     <value>Czytaj więcej</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>Ostatnio nie otwierałeś żadnych zabezpieczonych plików. Kliknij Otwórz zabezpieczone, aby wyszukać zabezpieczone pliki.</value>
+    <value>Ostatnio nie otwierałeś żadnych zabezpieczonych plików. Kliknij &lt;b&gt;Otwórz zabezpieczone&lt;/b&gt;, aby wyszukać zabezpieczone pliki.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Otwórz</value>
@@ -6245,9 +6200,6 @@ Aby uzyskać więcej informacji, kliknij przycisk OK, aby otworzyć przeglądark
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Dlaczego AxCrypt Business </value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>Dlaczego warto wybrać AxCrypt </value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Nie zapomnę mojego hasła!</value>
