@@ -721,14 +721,8 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BusinessFirstBodyHeading">
     <value>Eenvoudige, betrouwbare en sterke versleuteling</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt biedt nu bestandsbeveiliging voor bedrijven en organisaties - met 256-bits AES-codering. Bestanden delen met de rest van het team is eenvoudig bekroond met onze cloudopslag en de functie voor het delen van sleutels voor on-premise bestanden. Hierdoor kunt u voldoen aan de voorschriften voor gegevensbescherming en tegelijkertijd uw bestanden beschermen tegen kostbare gegevensinbreuken.&lt;/p&gt;&lt;p&gt;Met AxCrypt Zakelijk heeft u ook toegang tot ons wachtwoordbeheer - waar u wachtwoorden en codes veilig kunt opslaan en beheren. AxCrypt is meertalig en ondersteunt Engels, Nederlands, Frans, Duits, Italiaans, Koreaans, Pools, Portugees, Russisch, Spaans, Zweeds, Turks en meer zullen er volgen. We bieden ook mobiele apps waarmee u uw versleutelde bestanden kunt openen wanneer u weg bent.&lt;/p&gt;&lt;p&gt;Ga voor meer informatie naar onze &lt;a href='/information/features'&gt;functiepagina&lt;/a&gt; en vergeet niet om &lt;a href='/information/terms-of-use'&gt;Gebruiksvoorwaarden&lt;/a&gt; te lezen.&lt;/p&gt;&lt;p&gt;Binnenkort meer exclusieve zakelijke functies. Mis het niet!&lt;/p&gt; </value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt biedt nu bestandsbeveiliging voor bedrijven en organisaties - met 256-bit AES-codering. Bestanden delen met de rest van het team is eenvoudig bekroond met onze cloudopslag en de functie voor het delen van sleutels voor on-premise bestanden. Hierdoor kunt u voldoen aan de voorschriften voor gegevensbescherming en tegelijkertijd uw bestanden beschermen tegen kostbare datalekken.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>Met AxCrypt Zakelijk heeft u ook toegang tot ons wachtwoordbeheer - waar u wachtwoorden en codes veilig kunt opslaan en beheren. AxCrypt is meertalig en ondersteunt Engels, Nederlands, Frans, Duits, Italiaans, Koreaans, Pools, Portugees, Russisch, Spaans, Zweeds, Turks en meer zullen volgen. We bieden ook mobiele apps waarmee u uw versleutelde bestanden kunt openen wanneer u weg bent.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Bezoek voor meer informatie onze &lt;a href='/information/features'&gt; functiepagina &lt;/a&gt; en vergeet niet de &lt;a href='/information/terms-of-use'&gt;Gebruiksvoorwaarden &lt;/a&gt; te lezen. </value>
@@ -1568,15 +1562,6 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DownloadLinkLabel">
     <value>Download</value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Er zijn mobiele apps beschikbaar voor Android- en iOS-apparaten. De mobiele versie is een viewer-app waarmee u bestanden en documenten kunt openen en lezen die zijn versleuteld met de desktop applicatie.&lt;/p&gt;&lt;p&gt;Lees &lt;a href='#'&gt;hier&lt;/a&gt;&lt;/p&gt; meer</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Er zijn mobiele apps beschikbaar voor Android en iOS apparaten. De mobiele versie is een Viewer-app, dat u alleen de bestanden en documenten laat openen en lezen die versleuteld zijn op de desktop applicatie. </value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>Lees meer&lt;a href={url}&gt;hier&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobiel</value>
   </data>
@@ -2063,9 +2048,6 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="FeaturesMadeInSweden">
     <value>"Gemaakt in Zweden" met servers in Zweden</value>
-  </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Toegang krijgen tot uw versleutelde bestanden op uw Android- of iOS-apparaat</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Mis nooit meer de functies die we exclusief voor Zakelijke gebruikers zullen implementeren. </value>
@@ -2555,9 +2537,6 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Recente Bestanden lijst is uitgeschakeld. Ga naar Opties om het in te schakelen.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>Hoe te beginnen</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Download</value>
   </data>
@@ -2576,23 +2555,17 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   <data name="HomeGetStartedListShareParagraph">
     <value>Deel je beveiligde bestanden met een enkele klik</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>Dit is een video-tutorial over hoe u aan de slag kunt met AxCrypt</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"Geavanceerde versleuteling in een super eenvoudige instelling"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors' Choice 2021</value>
+    <value>PCMag Editors' Choice 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>meer dan 20 miljoen downloads wereldwijd</value>
   </data>
   <data name="HomeLinkLabel">
     <value>Home</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Open uw versleutelde bestanden op uw telefoon.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobiel</value>
@@ -2629,9 +2602,6 @@ Als u om een of andere reden uw wachtwoord niet weet of uw wachtwoord niet herin
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Ga voor meer getuigenissen naar &lt;a href='/about/awards'&gt;prijzen en recensies&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>Wat anderen zeggen</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuten</value>
@@ -4094,17 +4064,11 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Geïnteresseerd in het nemen van een abonnement, maar weet je niet zeker of het aan je behoeften voldoet?&lt;a href='https://account.axcrypt.net/nl/Home/Purchase'&gt;Je kunt 30 dagen gratis genieten van AxCrypt Premium.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Met AxCrypt Premium heb je toegang tot uitgebreide functionaliteit en toffe functies! Versleutel je bestanden met AES-256  – het sterkste AES-algoritme. Het wordt wereldwijd gebruikt om gevoelige en geheime informatie van alle niveaus te beschermen. Het beveiligen van mappen is nog nooit zo eenvoudig geweest, met slechts een enkele klik om automatisch nieuwe bestanden te beveiligen.&lt;/p&gt;&lt;p&gt;Als je ook beveiligde bestanden met anderen wilt delen, kun je gebruik maken van sleutels delen, zelfs met toegang tot cloudopslagbewustzijn in Dropbox, Google Drive, enz. Als je vaak onderweg bent, kun je onze mobiele app gebruiken om toegang te krijgen tot je gecodeerde bestanden.&lt;/p&gt;&lt;p&gt;Wachtwoord op een veilige en gemakkelijke manier opslaan? Gebruik ons wachtwoordbeheer en -generator om al je wachtwoorden veilig in de cloud te bewaren.&lt;/p&gt;&lt;p&gt;Probeer het uit om alle functies en voordelen te ontdekken!&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>Bent u geïnteresseerd in een abonnement, maar weet u niet zeker of het bij u past? &lt;a href={url}&gt;U kunt 30 dagen gratis genieten van AxCrypt Premium.&lt;/a&gt; </value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>Met AxCrypt Premium heeft u toegang tot uitgebreide functionaliteit en spannende functies! Versleutel uw bestanden met AES-256 – de sterkste van het AES-algoritme. Het wordt wereldwijd gebruikt om gevoelige en geclassificeerde informatie van alle niveaus te beschermen. Het beveiligen van mappen is nog nooit zo eenvoudig geweest, met slechts één klik om nieuwe bestanden automatisch te beveiligen.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>Als u ook met anderen beveiligde bestanden wilt delen, heeft u key sharing dat dit voor u kunt doen. Zelfs met toegang tot de cloud opslag bewustzijn in Dropbox, Google Drive, etc. Als u vaak onderweg ben, kunt u onze mobiele app gebruiken om toegang te krijgen tot versleutelde bestanden. </value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Wachtwoord op een veilige en gemakkelijke manier opslaan? Gebruik ons ​​wachtwoordbeheer en onze generator om al uw wachtwoorden veilig in de cloud te bewaren.</value>
@@ -4246,9 +4210,6 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Sleutel delen</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>Mobiele Apps</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Meer Aankomende Exclusieve Functies</value>
@@ -4495,9 +4456,6 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Sterkere versleuteling met AES-256</value>
   </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Bekijk je versleutelde bestanden direct met de mobiele app</value>
-  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Start gratis proefperiode nu</value>
   </data>
@@ -4725,9 +4683,6 @@ Alstublieft &lt;a href="mailto:premium@axcrypt.net"&gt;contacteer ons&lt;/a&gt; 
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>Lees over het laatste nieuws</value>
   </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Blader door onze nieuwste blogberichten</value>
-  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Lees meer over het business plan</value>
   </data>
@@ -4738,7 +4693,7 @@ Alstublieft &lt;a href="mailto:premium@axcrypt.net"&gt;contacteer ons&lt;/a&gt; 
     <value>Lees meer</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>U heeft recentelijk geen beveiligde bestanden geopend. Klik op Beveiligd Openen om naar beveiligde bestanden te zoeken.</value>
+    <value>U heeft recentelijk geen beveiligde bestanden geopend. Klik &lt;b&gt;op Beveiligd Openen&lt;/b&gt; om naar beveiligde bestanden te zoeken.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Open</value>
@@ -6419,9 +6374,6 @@ Voor meer informatie klik op OK om naar onze website te gaan.</value>
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Waarom AxCrypt Zakelijk?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>Waarom kiezen voor AxCrypt?</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Ik zal mijn wachtwoord niet vergeten!</value>

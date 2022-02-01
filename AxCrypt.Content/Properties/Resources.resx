@@ -239,6 +239,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verification</value>
   </data>
+  <data name="ActivateMailText1" xml:space="preserve">
+    <value>Just one more step...</value>
+  </data>
+  <data name="ActivateMailText2" xml:space="preserve">
+    <value>We are excited to have you with us on this cyber security journey.</value>
+  </data>
+  <data name="ActivateMailText3" xml:space="preserve">
+    <value>To complete the signup process you must verify your email address. Doing so proves you own the email and gives us permission to send emails to you.</value>
+  </data>
+  <data name="ActivateMailText4" xml:space="preserve">
+    <value>Get AxCrypt for your mobile devices!</value>
+  </data>
+  <data name="ActivateMailText5" xml:space="preserve">
+    <value>Follow Us on Our Social Media</value>
+  </data>
+  <data name="ActivateMailText6" xml:space="preserve">
+    <value>Please read our &lt;a href="https://axcrypt.net/information/privacy-policy"&gt;privacy policy&lt;/a&gt; for details.</value>
+  </data>
+  <data name="ActivateMailText7" xml:space="preserve">
+    <value>Contact us at &lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
@@ -302,7 +323,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Whether you’re a business, blogger, vlogger, influencer, or media publisher, Axcrypt affiliate program offers some of the best rewards in the market.</value>
   </data>
   <data name="AffiliateAdvantagesText1" xml:space="preserve">
-    <value>Generous commission - We are proud to offer a commission of 25%, one of the best within the industry.</value>
+    <value>Generous commission - We are proud to offer one of the best commissions in the industry. Reach out to get the details!</value>
   </data>
   <data name="AffiliateAdvantagesText2" xml:space="preserve">
     <value>Dedicated Account Manager - With a dedicated account manager, you'll get the help you need every step of the way, from setup to one-on-one counselling.</value>
@@ -332,7 +353,7 @@ Choose something difficult to guess, since it will protect passwords in the onli
     <value>Get access to exclusive connections and promotional materials. Leverage our marketing assets to get your campaigns off the ground</value>
   </data>
   <data name="AffiliateInstructionsStep3" xml:space="preserve">
-    <value>Refer AxCrypt and earn 25% commission on every paid conversion</value>
+    <value>Refer AxCrypt and earn one of the industry's best commissions on every paid conversion</value>
   </data>
   <data name="AffiliateInstructionsSubHeading" xml:space="preserve">
     <value>AxCrypt now offers you an affiliate opportunity where you get paid from each sale by promoting AxCrypt. Let's get started now.</value>
@@ -744,13 +765,13 @@ You have been warned, now enjoy!</value>
     <value>Simple, Reliable and Strong Encryption</value>
   </data>
   <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.&lt;/p&gt;&lt;p&gt;With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away.&lt;/p&gt;&lt;p&gt;For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;More exclusive Business Features coming soon. Don’t miss out!&lt;/p&gt;</value>
+    <value>&lt;p&gt;AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.&lt;/p&gt;&lt;p&gt;With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.&lt;/p&gt;&lt;p&gt;For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;More exclusive Business Features coming soon. Don’t miss out!&lt;/p&gt;</value>
   </data>
   <data name="BusinessFirstBodyText1" xml:space="preserve">
     <value>AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.</value>
   </data>
   <data name="BusinessFirstBodyText2" xml:space="preserve">
-    <value>With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away.</value>
+    <value>With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>For more information, visit our &lt;a href='/information/features'&gt;feature page&lt;/a&gt; and don’t forget to read &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;.</value>
@@ -1596,12 +1617,15 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Download</value>
   </data>
   <data name="DownloadMobileBodyText" xml:space="preserve">
-    <value>&lt;p&gt;There are mobile apps available for Android and iOS devices. The mobile version is a viewer app that lets you open and read files and documents encrypted with the desktop application.&lt;/p&gt;&lt;p&gt;Read more &lt;a href='#'&gt;here&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href='#'&gt;here&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="DownloadMobileBodyText1" xml:space="preserve">
-    <value>There are mobile apps available for Android and iOS devices. The mobile version is a viewer app that lets you open and read files and documents encrypted with the desktop application.</value>
+    <value>Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).</value>
   </data>
   <data name="DownloadMobileBodyText2" xml:space="preserve">
+    <value> Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!</value>
+  </data>
+  <data name="DownloadMobileBodyText3" xml:space="preserve">
     <value>Read more &lt;a href={url}&gt;here&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading" xml:space="preserve">
@@ -2095,7 +2119,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>"Made in Sweden" with servers in Sweden</value>
   </data>
   <data name="FeaturesMobileAppsDescription" xml:space="preserve">
-    <value>Access your encrypted files on your Android or iOS device</value>
+    <value>Encrypt and decrypt files on the phone, from anywhere and at any time</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription" xml:space="preserve">
     <value>Never miss out on the features we will implement exclusively for Business users.</value>
@@ -2489,6 +2513,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetStartedLinkLabel" xml:space="preserve">
     <value>Get started</value>
   </data>
+  <data name="GetStartedLinkLabel2" xml:space="preserve">
+    <value>GET STARTED!</value>
+  </data>
   <data name="GetStartedMobileText1" xml:space="preserve">
     <value>The AxCrypt mobile app is available on Android and iOS and let’s you open and view any file encrypted by our full versioned desktop apps.</value>
   </data>
@@ -2586,7 +2613,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Recent Files list is disabled. Go to Options to enable.</value>
   </data>
   <data name="HomeGetStartedHeading" xml:space="preserve">
-    <value>How to get started</value>
+    <value>&lt;span&gt;Get started&lt;/span&gt; with AxCrypt</value>
   </data>
   <data name="HomeGetStartedListDownloadHeading" xml:space="preserve">
     <value>1. Download</value>
@@ -2607,13 +2634,40 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Share your secured files with a single click</value>
   </data>
   <data name="HomeGetStartedYoutubeDescription" xml:space="preserve">
-    <value>This is a video tutorial on how to get started with AxCrypt</value>
+    <value>Watch &lt;span&gt;our tutorial&lt;/span&gt; that will help you get going faster</value>
+  </data>
+  <data name="HomeHeroCountries1" xml:space="preserve">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2" xml:space="preserve">
+    <value>represented countries</value>
+  </data>
+  <data name="HomeHeroDeliveries1" xml:space="preserve">
+    <value>20&lt;span&gt;years&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2" xml:space="preserve">
+    <value>trusted delivery</value>
+  </data>
+  <data name="HomeHeroDownloads1" xml:space="preserve">
+    <value>20M+</value>
+  </data>
+  <data name="HomeHeroDownloads2" xml:space="preserve">
+    <value>downloads worldwide</value>
   </data>
   <data name="HomeHeroHeading" xml:space="preserve">
     <value>"Advanced encryption in a superbly simple setting"</value>
   </data>
+  <data name="HomeHeroHeadingHighlight" xml:space="preserve">
+    <value>"Advanced &lt;span&gt;encryption&lt;/span&gt; in a superbly &lt;span&gt;simple&lt;/span&gt; setting"</value>
+  </data>
+  <data name="HomeHeroRecommended1" xml:space="preserve">
+    <value>300+&lt;span&gt;sites&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2" xml:space="preserve">
+    <value>recommendations</value>
+  </data>
   <data name="HomeHeroSubheading" xml:space="preserve">
-    <value>PCMag Editors' Choice 2021</value>
+    <value>PCMag Editors' Choice 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading" xml:space="preserve">
     <value>over 20 million downloads worldwide</value>
@@ -2622,10 +2676,10 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>Home</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileBody" xml:space="preserve">
-    <value>Open your encrypted files on your phone.</value>
+    <value>Encrypt and decrypt files on you Android phone, iPhone, or tablet from anywhere at any time.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading" xml:space="preserve">
-    <value>AxCrypt Mobile</value>
+    <value>AxCrypt Mobile Encryption</value>
   </data>
   <data name="HomeSellingPointCloudStorageAwarenessBody" xml:space="preserve">
     <value>Automatically secure your files in Dropbox, Google Drive etc.</value>
@@ -2657,11 +2711,22 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="HomeSellingPointStrongEncryptionHeading" xml:space="preserve">
     <value>Strong encryption</value>
   </data>
+  <data name="HomeStayInTouchHeading" xml:space="preserve">
+    <value>Stay in touch with us</value>
+  </data>
+  <data name="HomeStayInTouchParagraph" xml:space="preserve">
+    <value>By clicking Keep Me Updated, you agree to be contacted by AxCrypt.
+For more information on how we use the information you submit here,
+please see the AxCrypt Privacy Policy.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading" xml:space="preserve">
+    <value>Sign up below for free to stay updated with our news</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText" xml:space="preserve">
     <value>&lt;p&gt;For more testimonials, head over to &lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading" xml:space="preserve">
-    <value>What others say</value>
+    <value>What others &lt;span&gt;say&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutes</value>
@@ -3046,6 +3111,9 @@ EU VAT Number SE556967618101</value>
   </data>
   <data name="JobTitleLabel" xml:space="preserve">
     <value>Job Title</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel" xml:space="preserve">
+    <value>Keep Me Updated</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Select a Key File</value>
@@ -4151,7 +4219,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.&lt;/p&gt;&lt;p&gt;If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. In case you are often on the fly, you can use our mobile app to access your encrypted files.&lt;/p&gt;&lt;p&gt;Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.&lt;/p&gt;&lt;p&gt;Try it out to discover all the features and benefits it offers!&lt;/p&gt;</value>
+    <value> &lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.&lt;/p&gt;&lt;p&gt;If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.&lt;/p&gt;&lt;p&gt;Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.&lt;/p&gt;&lt;p&gt;Try it out to discover all the features and benefits it offers!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1" xml:space="preserve">
     <value>Interested in getting a subscription, but not sure if it fits your needs? &lt;a href={url}&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;</value>
@@ -4160,7 +4228,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.</value>
   </data>
   <data name="PremiumFirstBodyText3" xml:space="preserve">
-    <value>If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. In case you are often on the fly, you can use our mobile app to access your encrypted files.</value>
+    <value> If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
   </data>
   <data name="PremiumFirstBodyText4" xml:space="preserve">
     <value>Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.</value>
@@ -4304,7 +4372,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Key Sharing</value>
   </data>
   <data name="PricingFeatureListMobileApps" xml:space="preserve">
-    <value>Mobile Apps</value>
+    <value>Mobile Encryption</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming" xml:space="preserve">
     <value>More Upcoming Exclusive Features</value>
@@ -4552,7 +4620,7 @@ HubSpot is an integrated software solution with which we cover various aspects o
     <value>Stronger encryption with AES-256</value>
   </data>
   <data name="ProductTryItForFreeSellingPointViewYour" xml:space="preserve">
-    <value>View your encrypted files on the fly with the mobile app</value>
+    <value>Encrypt and decrypt files on the fly with the mobile app</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel" xml:space="preserve">
     <value>Start free trial now</value>
@@ -4782,7 +4850,7 @@ Please &lt;a href="mailto:premium@axcrypt.net"&gt;contact us&lt;/a&gt; and we wi
     <value>Read about the latest news</value>
   </data>
   <data name="ReadAboutTheLatestNewsLabel2" xml:space="preserve">
-    <value>Browse our latest blog posts</value>
+    <value>Browse our latest &lt;span&gt;blog posts&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel" xml:space="preserve">
     <value>Read more about the business plan</value>
@@ -6491,7 +6559,7 @@ For more information, click OK to open a web browser to our web site.</value>
     <value>Why AxCrypt Business?</value>
   </data>
   <data name="WhyChooseAxcrypt" xml:space="preserve">
-    <value>Why choose AxCrypt?</value>
+    <value>Why choose &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>I will not forget my password!</value>

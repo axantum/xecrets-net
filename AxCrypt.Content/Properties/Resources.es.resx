@@ -745,14 +745,14 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessFirstBodyHeading">
     <value>Cifrado simple, confiable y fuerte</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt ahora ofrece protección de archivos para empresas y organizaciones, con cifrado AES de 256 bits. Compartir archivos con el resto del equipo de trabajo es fácil gracias a nuestra función de reconocimiento de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las regulaciones de protección de datos mientras proteges tus archivos de costosas filtraciones de datos&lt;/p&gt;. &lt;p&gt;Con AxCrypt Business, además tienes acceso a nuestra Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe, ya que está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco y más. También ofrecemos aplicaciones móviles para que puedas abrir tus archivos cifrados cuando lo necesites&lt;/p&gt;. &lt;p&gt;Para obtener más información, visita nuestra &lt;a href='/information/features'&gt;Página de funciones&lt;/a&gt; y no olvides leer los &lt;a href='/information/terms-of-use'&gt;Términos de uso &lt;/a&gt;&lt;/p&gt;.&lt;p&gt;Próximamente, tendremos más funciones Business disponibles. ¡No te lo pierdas!&lt;/p&gt;</value>
+  <data name="BusinessFirstBodyText">
+    <value>&lt;p&gt;Ahora AxCrypt ofrece seguridad de archivos con cifrado AES de 256 bits a empresas y organizaciones. Compartir archivos con un equipo de trabajo es reconocidamente fácil con nuestra función de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las normas de protección de datos al tiempo que proteges tus archivos de costosas filtraciones de datos.&lt;/p&gt;&lt;p&gt;Con AxCrypt Business, además tienes acceso a nuestra herramienta de Administración de contraseñas, con la que puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe y está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco, etc. Con la app móvil de AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.&lt;/p&gt;&lt;p&gt;Para obtener más información, visita nuestra &lt;a href='/information/features'&gt;página de funciones&lt; /a&gt; y no olvides leer los &lt;a href='/information/terms-of-use'&gt;Términos de uso&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Próximamente habrá más funciones Busines exclusivas. ¡No te lo pierdas!&lt;/p&gt;</value>
   </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt ahora ofrece protección de archivos para empresas y organizaciones, con cifrado AES de 256 bits. Compartir archivos con el resto del equipo de trabajo es fácil gracias a nuestra función de reconocimiento de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las regulaciones de protección de datos mientras proteges tus archivos de filtraciones de datos costosas.</value>
   </data>
   <data name="BusinessFirstBodyText2">
-    <value>Con AxCrypt Business, también tienes acceso a nuestra Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe, ya que está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco y más. También ofrecemos aplicaciones móviles para que puedas abrir tus archivos cifrados cuando lo necesites.</value>
+    <value>Con AxCrypt Business, también tendrás acceso a la herramienta de Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe y está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco, etc. Con la app móvil de AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Para obtener más información, visita nuestra &lt;a href='/information/features'&gt;página de funciones&lt;/a&gt; y no olvides leer los &lt;a href='/information/terms-of-use'&gt;Términos de uso&lt;/a&gt;.</value>
@@ -1194,6 +1194,9 @@ Debe completar estos pasos para completar el proceso.</value>
   <data name="ChineseLanguageSelectionText" xml:space="preserve">
     <value>中文 (chino)</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Escoger un plan</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Para comenzar a usar tu cuenta, elige si deseas utilizar AxCrypt  como usuario privado o como empresa.</value>
   </data>
@@ -1593,13 +1596,16 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
     <value>Descarga</value>
   </data>
   <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Hay aplicaciones móviles disponibles para dispositivos iOS y Android. La versión móvil es una aplicación de visualización que te permite abrir y leer archivos y documentos cifrados con la aplicación de escritorio.&lt;/p&gt;&lt;p&gt;Para saber más, haz clic &lt;a href='#'&gt;aquí&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Cifra y descifra archivos, desde cualquier lugar y en cualquier momento. Las apps móviles son compatibles con servicios de almacenamiento en la nube como Google Drive y Dropbox (y otros servicios a futuro).&lt;/p&gt;&lt;p&gt;Tus archivos protegidos y los archivos compartidos contigo estarán siempre disponibles, sin suscripción y en cualquier plataforma. ¡Y ahora también podrás verlos desde tu teléfono móvil!&lt;/p&gt;&lt;p&gt;Más información &lt;a href='#'&gt;aquí&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="DownloadMobileBodyText1">
-    <value>Hay aplicaciones móviles disponibles para dispositivos iOS y Android. La versión móvil es una aplicación de visualización que te permite abrir y leer archivos y documentos encriptados con la aplicación de escritorio.</value>
+    <value>Cifra y descifra archivos en cualquier lugar y en cualquier momento. Las apps móviles son compatibles con servicios de almacenamiento en la nube como Google Drive y Dropbox (y con otros servicios a futuro).</value>
   </data>
   <data name="DownloadMobileBodyText2">
-    <value>Leer más &lt;a href={url}&gt;aquí&lt;/a&gt;</value>
+    <value>Tus archivos protegidos y los archivos compartidos contigo siempre estarán disponibles, sin suscripción y en cualquier plataforma. ¡Y ahora también podrás verlos en tu teléfono móvil!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Más información &lt;a href={url}&gt;aquí&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Móvil</value>
@@ -2090,10 +2096,10 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
     <value>Funciones</value>
   </data>
   <data name="FeaturesMadeInSweden">
-    <value>"Hecho en Suecia" con servidoes en Suecia</value>
+    <value>"Hecho en Suecia" con servidores en Suecia</value>
   </data>
   <data name="FeaturesMobileAppsDescription">
-    <value>Acceso a tus archivos cifrados en tu dispositivo Android o iOS</value>
+    <value>Cifra y descifra archivos en tu teléfono móvil, desde cualquier lugar y en cualquier momento</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>No te pierdas las funciones que implementaremos exclusivamente para usuarios Business.</value>
@@ -2488,6 +2494,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetStartedLinkLabel">
     <value>Cómo empezar</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>¡COMENZAR!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>La aplicación móvil de AxCrypt está disponible en iOS y Android, y te permite abrir y ver cualquier archivo cifrado por nuestras aplicaciones de escritorio con versión completa.</value>
   </data>
@@ -2585,7 +2594,7 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
     <value>Se ha desactivado la lista de archivos recientes. Ve a Opciones para volver a activarla.</value>
   </data>
   <data name="HomeGetStartedHeading">
-    <value>Cómo empezar</value>
+    <value>&lt;span&gt;Ponte en marcha&lt;/span&gt; con AxCrypt</value>
   </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Descargar</value>
@@ -2606,13 +2615,40 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
     <value>Comparte tus archivos protegidos con un solo clic</value>
   </data>
   <data name="HomeGetStartedYoutubeDescription">
-    <value>Este es un video tutorial sobre cómo comenzar a usar AxCrypt</value>
+    <value>Mira &lt;span&gt;nuestro tutorial&lt;/span&gt; para ponerte en marcha más rápido</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55 </value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>países representados</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;años&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>de servicio confiable</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>Más de 20 millones</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>de descargas a nivel mundial</value>
   </data>
   <data name="HomeHeroHeading">
     <value>"Cifrado avanzado con una configuración extraordinariamente sencilla"</value>
   </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"&lt;span&gt;Cifrado&lt;/span&gt; avanzado con una configuración extraordinariamente &lt;span&gt;simple&lt;/span&gt;"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>Más de 300&lt;span&gt;sitios&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>recomendaciones</value>
+  </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors' Choice 2021</value>
+    <value>PCMag Editors' Choice 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>más de 20 millones de descargas a nivel mundial</value>
@@ -2621,7 +2657,7 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
     <value>Inicio</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Apertura de archivos cifrados en tu teléfono</value>
+    <value>Cifra y descifra archivos en tu teléfono Android, tu iPhone o tu tableta desde cualquier lugar y en cualquier momento.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Móvil</value>
@@ -2656,11 +2692,22 @@ Si, por alguna razón, no recuerdas la contraseña, deberás restablecerla.</val
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Cifrado fuerte</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Sigamos conectados</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Al hacer clic en Mantenerme informado, aceptas que AxCrypt se comunique contigo.
+Para obtener más información sobre cómo usamos la información que envías,
+consulta la Política de privacidad de AxCrypt.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Suscríbete gratis y entérate de las últimas novedades</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Para leer más testimonios, visita &lt;a href='/about/awards'&gt;Premios y &lt;/a&gt;reseñas&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
-    <value>Testimonios</value>
+    <value>Lo que otros &lt;span&gt;opinan&lt;/span&gt; de nosotros</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minutos</value>
@@ -3045,6 +3092,9 @@ Número de IVA intracomuntario: SE556967618101</value>
   <data name="JobTitleLabel">
     <value>Título profesional</value>
   </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Mantenerme informado</value>
+  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Elige un Archivo de clave</value>
   </data>
@@ -3188,6 +3238,9 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Legal</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>¡Comencemos!</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -3702,6 +3755,21 @@ Este programa se licencia según el acuerdo.
   <data name="MobileAppText">
     <value>Android 4.0.3 o una versión posterior; iOS 8.0 o una versión posterior.</value>
   </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Escoger archivos desde</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Descifra fácilmente&lt;/fc&gt; archivos protegidos desde la computadora y el dispositivo móvil</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Cifra&lt;/fc&gt; información delicada directamente desde tu teléfono móvil</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Abre tus &lt;fc&gt;archivos de AxCrypt&lt;/fc&gt; en tu teléfono móvil</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>Acceso con un clic al &lt;fc&gt;administrador de contraseñas&lt;/fc&gt; de AxCrypt</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Mensual</value>
   </data>
@@ -3848,6 +3916,9 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Haz clic y elige un archivo protegido para abrir.</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>¿Quieres que abramos una página web donde puedas realizar una compra?</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>Sistema operativo</value>
@@ -4125,7 +4196,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;¿Quieres suscribirte, pero no sabes si el servicio se ajusta a tus necesidades? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Puedes disfrutar de 30 días de AxCrypt Premium de manera gratuita.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;¡Con AxCrypt Premium, tienes acceso a funciones adicionales interesantes! Cifra tus archivos con AES de 256 bits, el algoritmo AES más seguro. Se usa a nivel mundial para proteger información confidencial de todo tipo. Proteger carpetas nunca fue tan sencillo. Solo basta un clic para asegurar los archivos nuevos automáticamente.&lt;/p&gt;&lt;p&gt;Si además necesitas compartir archivos protegidos con otras personas, cuentas con el mecanismo de uso compartido de claves, incluso con acceso a Cloud Storage Awareness en Dropbox, Google Drive, etc. Si necesitas ver rápidamente tus archivos, puedes usar nuestra aplicación móvil para acceder a tus archivos cifrados.&lt;/p&gt;&lt;p&gt;¿Quieres guardar contraseñas de una manera fácil y segura? Usa nuestro generador y administrador de contraseñas para mantener todas tus contraseñas seguras en la nube.&lt;/p&gt;&lt;p&gt;¡Pruébalo y descubre todas las funciones y beneficios que ofrece!&lt;/p&gt;</value>
+    <value>&lt;p&gt;¿Te interesa suscribirte, pero no estás seguro si se ajusta a sus necesidades? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Puedes disfrutar de 30 días de AxCrypt Premium gratis.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Con AxCrypt Premium, tienes acceso a funciones ampliadas e interesantes. Cifra tus archivos con AES-256, el algoritmo AES más potente que se utiliza globalmente para proteger información sensible y confidencial de todos los niveles. Proteger las carpetas nunca fue tan fácil; con un solo clic puedes proteger automáticamente los archivos nuevos.&lt;/p&gt;&lt;p&gt;Si además necesitas compartir archivos protegidos con otras personas, la herramienta de uso compartido de claves lo hará por ti, incluso con acceso a almacenamiento en la nube en Dropbox, Google Drive, etc. Con la app móvil de AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.&lt;/p&gt;&lt;p&gt;¿Quieres guardar la contraseña de una manera segura y fácil? Utiliza nuestro administrador y generador de contraseñas para mantener todas tus contraseñas seguras en la nube.&lt;/p&gt;&lt;p&gt;¡Pruébalo y descubre todas las funciones y los beneficios que ofrece!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>¿Quieres suscribirte, pero no sabes si el servicio se ajusta a tus necesidades?&lt;a href={url}&gt; Puedes disfrutar de 30 días de AxCrypt Premium de manera gratuita&lt;/a&gt;.</value>
@@ -4134,7 +4205,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>¡Con AxCrypt Premium, tienes acceso a funciones adicionales interesantes! Cifra tus archivos con AES de 256 bits, el algoritmo AES más seguro. Se usa a nivel mundial para proteger información confidencial de todo tipo. Proteger carpetas nunca fue tan sencillo. Solo basta un clic para proteger los archivos nuevos automáticamente.</value>
   </data>
   <data name="PremiumFirstBodyText3">
-    <value>Si además necesitas compartir archivos protegidos con otras personas, cuentas con la herramienta de uso compartido de claves, incluso con acceso a Cloud Storage Awareness en Dropbox, Google Drive, etc. Si necesitas ver rápidamente tus archivos, puedes usar nuestra aplicación móvil para acceder a tus archivos cifrados.</value>
+    <value>Si además necesitas compartir archivos protegidos con otras personas, la herramienta para compartir contraseñas lo hará por ti, incluso con acceso a almacenamiento en la nube en Dropbox, Google Drive, etc. Con la app móvil de AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>¿Quieres guardar contraseñas de una manera fácil y segura? Usa nuestro generador y administrador de contraseñas para mantener todas tus contraseñas seguras en la nube.</value>
@@ -4278,7 +4349,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Uso compartido de claves</value>
   </data>
   <data name="PricingFeatureListMobileApps">
-    <value>Apps móviles</value>
+    <value>Cifrado móvil</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Más funciones exclusivas</value>
@@ -4526,7 +4597,7 @@ HubSpot es una solución de software integrada con la que abarcamos diversos asp
     <value>Cifrado de archivos con el algoritmo avanzado AES de 256 bits</value>
   </data>
   <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Ver tus archivos protegidos al instante con la aplicación móvil</value>
+    <value>Cifra y descifra archivos al instante con la app móvil</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Iniciar prueba gratis ahora</value>
@@ -4758,7 +4829,7 @@ Por favor, &lt;a href="mailto:business@axcrypt.net"&gt; contáctanos &lt;/a&gt; 
     <value>Lee sobre las noticias más recientes</value>
   </data>
   <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Explora nuestras últimas publicaciones de blog</value>
+    <value>Explora nuestras entrada en el blog más recientes</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Leer más sobre el plan Business</value>
@@ -4770,7 +4841,7 @@ Por favor, &lt;a href="mailto:business@axcrypt.net"&gt; contáctanos &lt;/a&gt; 
     <value>Leer más</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>No has abierto ningún archivo protegido recientemente. Haz clic en Abrir protegido para buscar archivos protegidos.</value>
+    <value>No has abierto ningún archivo protegido recientemente. Haz clic en &lt;b&gt;Abrir protegido&lt;/b&gt; para buscar archivos protegidos.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Abrir</value>
@@ -6205,6 +6276,12 @@ El Equipo de AxCrypt</value>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>¡Haz clic aquí para desbloquear todas las funciones de cifrado!</value>
   </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>Descubre las increíbles funciones que diseñamos para potenciar el cifrado móvil con nuestras &lt;b&gt;suscripciones ahora mismo o después de 30 días de prueba gratuita&lt;/b&gt;.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>¡Desbloquea nuestras funciones mágicas!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} por '{0}'.</value>
   </data>
@@ -6413,6 +6490,9 @@ El Equipo de AxCrypt</value>
   <data name="WeakPasswordLabel">
     <value>Contraseña débil</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>¡Bienvenido!</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>¡Bienvenido a AxCrypt!</value>
   </data>
@@ -6457,7 +6537,7 @@ Para más información, haz clic en OK para abrir nuestra página web en un expl
     <value>¿Por qué AxCrypt Business?</value>
   </data>
   <data name="WhyChooseAxcrypt">
-    <value>¿Por qué AxCrypt?</value>
+    <value>Por qué elegir &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>¡No olvidaré mi contraseña!</value>

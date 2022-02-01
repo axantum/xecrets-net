@@ -718,14 +718,8 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BusinessFirstBodyHeading">
     <value>간단하며 믿을 수 있고, 강력한 암호화</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;AxCrypt는 256-bit AES 알고리즘을 사용하여 회사나 기관의 파일 보안 서비스를 제공합니다. 다양한 언어(영어, 네덜란드어, 프랑스어, 독일어, 이탈리아어, 한국어, 포르투갈어, 러시아어, 스페인어, 스웨덴어, 터키어, 폴란드어) 서비스를 PC와 모바일 버전 모두 제공합니다. &lt;p&gt;더 많은 정보를 원하시면 &lt;a href='/information/features'&gt;이곳과&lt;/a&gt; &lt;a href='/information/terms-of-use'&gt;이용약관&lt;/a&gt;을 확인해주세요.&lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt는 이제 256비트 AES 암호화를 통해 기업과 조직에 파일 보안을 제공합니다. 사내 파일에 대한 NAT의 클라우드 스토리지 인지도와 키 공유 기능으로 팀원들과 파일을 공유하는 것은 손쉽게 사용할 수 있습니다. 이를 통해 데이터 보호 규정을 준수하는 동시에 비용이 많이 드는 데이터 침해로부터 파일을 보호할 수 있습니다.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>AxCrypt Business를 사용하면 암호와 코드를 안전하게 저장하고 관리할 수 있는 암호 관리 기능도 이용할 수 있습니다. AxCrypt는 영어, 네덜란드어, 프랑스어, 독일어, 이탈리아어, 한국어, 폴란드어, 포르투갈어, 러시아어, 스페인어, 스웨덴어, 터키어 등을 지원합니다. 우리는 또한 당신이 부재중일 때 당신의 암호화된 파일을 열 수 있도록 모바일 앱을 제공합니다.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>더 많은 정보를 원하신다면, &lt;a href='/information/features'&gt;feature page&lt;/a&gt;을 방문해보세요. 이용 약관은 &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;을 참고해주세요.</value>
@@ -1558,15 +1552,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="DownloadLinkLabel">
     <value>다운로드</value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Android와 iOS 기기에서 사용할 수 있는 모바일 앱이 있습니다. 모바일 버전은 데스크톱 애플리케이션으로 암호화된 파일과 문서를 열고 읽을 수 있는 뷰어 앱입니다. 이곳을 확인해주세요.</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Android와 iOS 기기의 모바일 앱을 이용해보세요. 데스트탑 서버에서 암호화된 파일도 모바일 앱으로 간편하게 열고 읽을 수 있습니다.</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>더 보기&lt;a href={url}&gt;here&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt 모바일</value>
   </data>
@@ -2053,9 +2038,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="FeaturesMadeInSweden">
     <value>"Made in Sweden" 스웨덴 서버</value>
-  </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Android 또는 iOS 기기에서 암호화된 파일에 액세스</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Business 사용자에게만 주어지는 특별한 기능을 절대 놓치지 마세요.</value>
@@ -2546,9 +2528,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>최근 파일 리스트는 비활성화되었습니다. 활성화를 원하시면 옵션을 선택하여 주십시오.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>시작 방법</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. 다운로드</value>
   </data>
@@ -2567,23 +2546,17 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="HomeGetStartedListShareParagraph">
     <value>간단한 클릭으로 보안 강화가 된 파일을 다른 사람에게 공유해보세요.</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>AxCrypt를 어떻게 사용하는 지에 대한 비디오 튜토리얼입니다.</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"매우 간단한 방법을 통한 최고의 암호화 서비스"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors' Choice 2021</value>
+    <value>PCMag Editors' Choice 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>전 세계적으로 2천만건 이상의 다운로드</value>
   </data>
   <data name="HomeLinkLabel">
     <value>메인</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>모바일로 보안된 파일을 열어보세요.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt 모바일
@@ -2621,9 +2594,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;더 많은 테스트모니얼을 보시려면, 이 곳을 확인해주세요&lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>다른 사용자의 의견</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} 분</value>
@@ -4079,17 +4049,11 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;구독을 망설이시고 계신가요? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;AxCrypt Premium를 30일동안 무료로 이용해보세요.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;AxCrypt Premium은 향상된 기능과 디자인을 제공하며, AES 알고리즘에서 세계적으로 가장 강력한 보안을 자랑하는 AES-256로 파일은 암호화 할 수 있습니다. 단순한 클릭 한번으로 기존의 폴더와 새로 생성된 폴더의 보안도 관리할 수 있습니다.&lt;/p&gt;&lt;p&gt;드롭박스나 구글 드라이브와 같이 간단한 key를 공유함으로서 다른 사람들과 파일을 공유할 수 있습니다. 만약 비행을 자주 하신다면, 모바일 앱으로도 암호화된 파일을 사용하실 수 있습니다.&lt;/p&gt;&lt;p&gt; 비밀번호도 간단하고 안전하게 저장하고 싶으신가요? 그렇다면 패스워드 매니지먼트 기능을 사용해보세요. 클라우드의 철저한 보안 시스템으로 모든 비밀번호를 안전하게 관리할 수 있습니다.&lt;/p&gt;&lt;p&gt;모든 기능과 서비스를 지금 바로 경험해보세요!&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>구독을 망설이시고 계신가요? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;AxCrypt Premium를 30일동안 무료로 이용해보세요.</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>AxCrypt Premium을 사용하면, 확장된 기능 및 흥미로운 기능에 액세스할 수 있습니다.  AES 알고리즘 중 가장 강력한 AES-256으로 파일을 암호화하시고, 모든 수준의 민감하고 기밀적인 정보를 보호하기 위해 전세계적으로 사용됩니다. 폴더 보안은 한 번의 클릭만으로 새 파일을 자동으로 보호할 수 있어 그 어느 때보다도 쉽게 이용하 실 수 있습니다.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>드롭박스, 구글 드라이브와 같은 클라우드 시스템에 key sharing 기능으로 다른 사용자에게 안전하게 파일을 공유해보세요. 비행 중에서도 모바일 앱으로 보안된 파일에 접근하실 수 있습니다.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>안전하고 쉬운 방법으로 암호를 저장하고 싶으신가요? 클라우드에서 모든 암호를 안전하게 유지하려면 패스워드 관리 및 생성기를 사용하세요.</value>
@@ -4231,9 +4195,6 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Key Sharing </value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>모바일 앱</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>익스클루시브 기능 더 보기</value>
@@ -4480,9 +4441,6 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>AES-256 알고리즘을 사용한 강력한 암호화</value>
   </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>비행 중 모바일 앱으로 암호화 된 파일 보기</value>
-  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>지금 무료 체험을 이용해보세요.</value>
   </data>
@@ -4705,9 +4663,6 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>최신 뉴스 읽기</value>
-  </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>최신 블로그 포스트 살펴보기</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>business 플랜에 대해서 더 알아보세요.</value>
@@ -6394,9 +6349,6 @@ AxCrypt사용은 매우 쉽습니다. 매인 윈도우 창으로 시작하거나
   </data>
   <data name="WhyAxCryptBusiness">
     <value>왜 AxCrypt Business여만 할까요?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>왜 AxCrypt 일까요?</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>비밀번호를 잊어버리지 않습니다!</value>

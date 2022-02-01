@@ -413,6 +413,69 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Just one more step....
+        /// </summary>
+        public static string ActivateMailText1 {
+            get {
+                return ResourceManager.GetString("ActivateMailText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are excited to have you with us on this cyber security journey..
+        /// </summary>
+        public static string ActivateMailText2 {
+            get {
+                return ResourceManager.GetString("ActivateMailText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To complete the signup process you must verify your email address. Doing so proves you own the email and gives us permission to send emails to you..
+        /// </summary>
+        public static string ActivateMailText3 {
+            get {
+                return ResourceManager.GetString("ActivateMailText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get AxCrypt for your mobile devices!.
+        /// </summary>
+        public static string ActivateMailText4 {
+            get {
+                return ResourceManager.GetString("ActivateMailText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow Us on Our Social Media.
+        /// </summary>
+        public static string ActivateMailText5 {
+            get {
+                return ResourceManager.GetString("ActivateMailText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please read our &lt;a href=&quot;https://axcrypt.net/information/privacy-policy&quot;&gt;privacy policy&lt;/a&gt; for details..
+        /// </summary>
+        public static string ActivateMailText6 {
+            get {
+                return ResourceManager.GetString("ActivateMailText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us at &lt;a href=&quot;mailto:support@axcrypt.net&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        /// </summary>
+        public static string ActivateMailText7 {
+            get {
+                return ResourceManager.GetString("ActivateMailText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;b&gt;Stop!&lt;/b&gt;
         ///
         ///You should only be here because clicking on the link in the AxCrypt ID verification e-mail from AxCrypt did not work. (You must of course register for an AxCrypt ID to get a verification e-mail)
@@ -572,7 +635,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generous commission - We are proud to offer a commission of 25%, one of the best within the industry..
+        ///   Looks up a localized string similar to Generous commission - We are proud to offer one of the best commissions in the industry. Reach out to get the details!.
         /// </summary>
         public static string AffiliateAdvantagesText1 {
             get {
@@ -662,7 +725,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refer AxCrypt and earn 25% commission on every paid conversion.
+        ///   Looks up a localized string similar to Refer AxCrypt and earn one of the industry&apos;s best commissions on every paid conversion.
         /// </summary>
         public static string AffiliateInstructionsStep3 {
             get {
@@ -1843,7 +1906,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. We also offer Mobile Apps for you to open your encrypted files when away..
+        ///   Looks up a localized string similar to With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
         /// </summary>
         public static string BusinessFirstBodyText2 {
             get {
@@ -4175,7 +4238,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;There are mobile apps available for Android and iOS devices. The mobile version is a viewer app that lets you open and read files and documents encrypted with the desktop application.&lt;/p&gt;&lt;p&gt;Read more &lt;a href=&apos;#&apos;&gt;here&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href=&apos;#&apos;&gt;here&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string DownloadMobileBodyText {
             get {
@@ -4184,7 +4247,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are mobile apps available for Android and iOS devices. The mobile version is a viewer app that lets you open and read files and documents encrypted with the desktop application..
+        ///   Looks up a localized string similar to Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come)..
         /// </summary>
         public static string DownloadMobileBodyText1 {
             get {
@@ -4193,11 +4256,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read more &lt;a href={url}&gt;here&lt;/a&gt;.
+        ///   Looks up a localized string similar to  Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!.
         /// </summary>
         public static string DownloadMobileBodyText2 {
             get {
                 return ResourceManager.GetString("DownloadMobileBodyText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more &lt;a href={url}&gt;here&lt;/a&gt;.
+        /// </summary>
+        public static string DownloadMobileBodyText3 {
+            get {
+                return ResourceManager.GetString("DownloadMobileBodyText3", resourceCulture);
             }
         }
         
@@ -5651,7 +5723,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access your encrypted files on your Android or iOS device.
+        ///   Looks up a localized string similar to Encrypt and decrypt files on the phone, from anywhere and at any time.
         /// </summary>
         public static string FeaturesMobileAppsDescription {
             get {
@@ -6785,6 +6857,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GET STARTED!.
+        /// </summary>
+        public static string GetStartedLinkLabel2 {
+            get {
+                return ResourceManager.GetString("GetStartedLinkLabel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The AxCrypt mobile app is available on Android and iOS and let’s you open and view any file encrypted by our full versioned desktop apps..
         /// </summary>
         public static string GetStartedMobileText1 {
@@ -7066,7 +7147,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to get started.
+        ///   Looks up a localized string similar to &lt;span&gt;Get started&lt;/span&gt; with AxCrypt.
         /// </summary>
         public static string HomeGetStartedHeading {
             get {
@@ -7129,11 +7210,65 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is a video tutorial on how to get started with AxCrypt.
+        ///   Looks up a localized string similar to Watch &lt;span&gt;our tutorial&lt;/span&gt; that will help you get going faster.
         /// </summary>
         public static string HomeGetStartedYoutubeDescription {
             get {
                 return ResourceManager.GetString("HomeGetStartedYoutubeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ~55.
+        /// </summary>
+        public static string HomeHeroCountries1 {
+            get {
+                return ResourceManager.GetString("HomeHeroCountries1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to represented countries.
+        /// </summary>
+        public static string HomeHeroCountries2 {
+            get {
+                return ResourceManager.GetString("HomeHeroCountries2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20&lt;span&gt;years&lt;/span&gt;.
+        /// </summary>
+        public static string HomeHeroDeliveries1 {
+            get {
+                return ResourceManager.GetString("HomeHeroDeliveries1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trusted delivery.
+        /// </summary>
+        public static string HomeHeroDeliveries2 {
+            get {
+                return ResourceManager.GetString("HomeHeroDeliveries2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20M+.
+        /// </summary>
+        public static string HomeHeroDownloads1 {
+            get {
+                return ResourceManager.GetString("HomeHeroDownloads1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to downloads worldwide.
+        /// </summary>
+        public static string HomeHeroDownloads2 {
+            get {
+                return ResourceManager.GetString("HomeHeroDownloads2", resourceCulture);
             }
         }
         
@@ -7147,7 +7282,34 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag Editors&apos; Choice 2021.
+        ///   Looks up a localized string similar to &quot;Advanced &lt;span&gt;encryption&lt;/span&gt; in a superbly &lt;span&gt;simple&lt;/span&gt; setting&quot;.
+        /// </summary>
+        public static string HomeHeroHeadingHighlight {
+            get {
+                return ResourceManager.GetString("HomeHeroHeadingHighlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 300+&lt;span&gt;sites&lt;/span&gt;.
+        /// </summary>
+        public static string HomeHeroRecommended1 {
+            get {
+                return ResourceManager.GetString("HomeHeroRecommended1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to recommendations.
+        /// </summary>
+        public static string HomeHeroRecommended2 {
+            get {
+                return ResourceManager.GetString("HomeHeroRecommended2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PCMag Editors&apos; Choice 2022.
         /// </summary>
         public static string HomeHeroSubheading {
             get {
@@ -7174,7 +7336,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open your encrypted files on your phone..
+        ///   Looks up a localized string similar to Encrypt and decrypt files on you Android phone, iPhone, or tablet from anywhere at any time..
         /// </summary>
         public static string HomeSellingPointAxcryptMobileBody {
             get {
@@ -7183,7 +7345,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Mobile.
+        ///   Looks up a localized string similar to AxCrypt Mobile Encryption.
         /// </summary>
         public static string HomeSellingPointAxcryptMobileHeading {
             get {
@@ -7282,6 +7444,35 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stay in touch with us.
+        /// </summary>
+        public static string HomeStayInTouchHeading {
+            get {
+                return ResourceManager.GetString("HomeStayInTouchHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By clicking Keep Me Updated, you agree to be contacted by AxCrypt.
+        ///For more information on how we use the information you submit here,
+        ///please see the AxCrypt Privacy Policy..
+        /// </summary>
+        public static string HomeStayInTouchParagraph {
+            get {
+                return ResourceManager.GetString("HomeStayInTouchParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up below for free to stay updated with our news.
+        /// </summary>
+        public static string HomeStayInTouchSubHeading {
+            get {
+                return ResourceManager.GetString("HomeStayInTouchSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;For more testimonials, head over to &lt;a href=&apos;/about/awards&apos;&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string HomeWhatOtherSayTestimonialsText {
@@ -7291,7 +7482,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What others say.
+        ///   Looks up a localized string similar to What others &lt;span&gt;say&lt;/span&gt;.
         /// </summary>
         public static string HomeWhatOthersSayHeading {
             get {
@@ -8384,6 +8575,15 @@ namespace AxCrypt.Content.Properties {
         public static string JobTitleLabel {
             get {
                 return ResourceManager.GetString("JobTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep Me Updated.
+        /// </summary>
+        public static string KeepMeUpdatedLinkLabel {
+            get {
+                return ResourceManager.GetString("KeepMeUpdatedLinkLabel", resourceCulture);
             }
         }
         
@@ -11320,7 +11520,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href=&apos;https://account.axcrypt.net/en/Home/Purchase&apos;&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatic [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to  &lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href=&apos;https://account.axcrypt.net/en/Home/Purchase&apos;&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automati [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PremiumFirstBodyText {
             get {
@@ -11347,7 +11547,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. In case you are often on the fly, you can use our mobile app to access your encrypted files..
+        ///   Looks up a localized string similar to  If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
         /// </summary>
         public static string PremiumFirstBodyText3 {
             get {
@@ -11761,7 +11961,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Apps.
+        ///   Looks up a localized string similar to Mobile Encryption.
         /// </summary>
         public static string PricingFeatureListMobileApps {
             get {
@@ -12501,7 +12701,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View your encrypted files on the fly with the mobile app.
+        ///   Looks up a localized string similar to Encrypt and decrypt files on the fly with the mobile app.
         /// </summary>
         public static string ProductTryItForFreeSellingPointViewYour {
             get {
@@ -13135,7 +13335,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Browse our latest blog posts.
+        ///   Looks up a localized string similar to Browse our latest &lt;span&gt;blog posts&lt;/span&gt;.
         /// </summary>
         public static string ReadAboutTheLatestNewsLabel2 {
             get {
@@ -18024,7 +18224,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why choose AxCrypt?.
+        ///   Looks up a localized string similar to Why choose &lt;span&gt;AxCrypt&lt;/span&gt;.
         /// </summary>
         public static string WhyChooseAxcrypt {
             get {

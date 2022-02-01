@@ -702,14 +702,8 @@
   <data name="BusinessFirstBodyHeading">
     <value>Простое и Надежное Шифрование</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>Теперь AxCrypt предлагает защиту файлов для компаний и организаций – с 256-битным шифрованием AES. Обмен файлами с остальной частью команды станет простым и легким с нашей осведомленностью о облачных хранилищах и функцией обмена ключами для локальных файлов. Это позволяет вам соблюдать правила защиты данных, защищая ваши файлы от дорогостоящих утечек данных.&lt;/p&gt;&lt;p&gt;с AxCrypt Business у вас также будет доступ к нашему управлению паролями, где вы можете безопасно хранить и управлять паролями и кодами. AxCrypt поддерживает такие языки, как английский, голландский, французский, немецкий, итальянский, корейский, польский, португальский, русский, испанский, шведский, турецкий и т.д. Мы также предлагаем наши мобильные приложения, чтобы вы всегда имели доступ к вашим зашифрованным файлам.&lt;/p&gt;&lt;p&gt;для получения дополнительной информации, посетите наш &lt;а href='/information/features '&gt;страницу&lt;/a&gt; и не забывайте читать &lt;а href='/information/terms-of-use'&gt;Условия использования&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Эксклюзивные бизнес-возможности в самое ближайшее время. Не пропустите!&lt;/p&gt;</value>
-  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt теперь предлагает безопасность файлов для компаний и организаций – с 256-битным шифрованием AES. Обмен файлами с остальной частью команды никогда не был проще, с нашей осведомленностью о облачных хранилищах и функцией обмена ключами для локальных файлов. Это позволит вам соблюдать правила защиты данных, защищая ваши файлы от дорогостоящих утечек данных.</value>
-  </data>
-  <data name="BusinessFirstBodyText2">
-    <value>С AxCrypt Business у вас также будет доступ к нашему управлению паролями, где вы сможете безопасно хранить и управлять паролями и кодами. AxCrypt поддерживает английский, голландский, французский, немецкий, итальянский, корейский, польский, португальский, русский, испанский, шведский, турецкий языки. Мы также создали мобильное приложение, чтобы иметь возможность открыть ваши зашифрованные файлы в любой точке планеты.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Для получения дополнительной информации посетите нашу страницу &lt;a href='/information/features'&gt;страница функций&lt;/a&gt; и не забудьте ознакомиться с &lt;a href='/information/terms-of-use'&gt;Условия Пользования&lt;/a&gt;.</value>
@@ -1520,15 +1514,6 @@
   <data name="DownloadLinkLabel">
     <value>Загрузить</value>
   </data>
-  <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Существуют мобильные приложения, доступные для устройств Android и iOS. Мобильная версия - это приложение для просмотра, которое позволяет открывать и читать файлы и документы, зашифрованные с помощью настольного приложения.&lt;/p&gt;&lt;p&gt;Подробнее &lt;a href='#'&gt;здесь&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="DownloadMobileBodyText1">
-    <value>Есть мобильное приложение, доступное для  Android и iOS. Мобильная версия-это приложение для просмотра, которое позволяет открывать и читать файлы и документы, зашифрованные на компьютере.</value>
-  </data>
-  <data name="DownloadMobileBodyText2">
-    <value>Узнайте больше &lt;a href={url}&gt;here&lt;/a&gt;</value>
-  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
   </data>
@@ -2010,9 +1995,6 @@
   <data name="FeaturesMadeInSweden">
     <value>"Сделано в Швеции" на шведских серверах</value>
   </data>
-  <data name="FeaturesMobileAppsDescription">
-    <value>Получите доступ к зашифрованным файлам на вашем  Android или iOS устройстве </value>
-  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Не пропустите функции, которые мы реализуем исключительно для пользователей Business подписки.</value>
   </data>
@@ -2489,9 +2471,6 @@
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Список Последние Файлы отключен. Перейдите в Параметры чтобы включить.</value>
   </data>
-  <data name="HomeGetStartedHeading">
-    <value>Как начать</value>
-  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Загрузить</value>
   </data>
@@ -2510,23 +2489,17 @@
   <data name="HomeGetStartedListShareParagraph">
     <value>Делитесь зашифрованными файлами в один клик</value>
   </data>
-  <data name="HomeGetStartedYoutubeDescription">
-    <value>Это обучающее видео, как начать работу с AxCrypt</value>
-  </data>
   <data name="HomeHeroHeading">
     <value>"Продвинутое шифрование с очень простой настройкой"</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>Выбор редакторов PCMag в 2021 году</value>
+    <value>Выбор редакторов PCMag в 2022 году</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>более 20 миллионов загрузок по всему миру</value>
   </data>
   <data name="HomeLinkLabel">
     <value>Стартовая страница</value>
-  </data>
-  <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Открывайте зашифрованные файлы на своей смартфоне.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -2563,9 +2536,6 @@
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Больше отзывов по ссылке &lt;a href='/about/awards'&gt;награды и отзывы&lt;/a&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="HomeWhatOthersSayHeading">
-    <value>Что говорят другие</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Минут</value>
@@ -3856,17 +3826,11 @@ SE-114 29 Стокгольм
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
-  <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Заинтересованы в подписке, но не уверены,соответствует ли она вашим потребностям? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Вы можете использовать AxCrypt Premium бесплатно первые 30 дней. &lt;/a&gt;&lt;/p&gt;&lt;p&gt;С подпиской AxCrypt Premium у Вас будет доступ к расширенному функционалу и интересным опциям! Зашифруйте ваши файлы с помощью AES-256 - самого сильного алгоритма AES. Он используется во всем мире для защиты конфиденциальной и секретной информации всех уровней. Защита папок никогда не была проще. Достаточно одного клика, чтобы автоматически защитить новые файлы. &lt;/p&gt;&lt;p&gt; Для того, чтобы поделиться защищенными файлами с другими пользователями, Вы можете воспользоваться специальным ключом обмена, который также имеет доступ к облачным хранилищам в Dropbox, Google Drive, и т.д. Если вы постоянно в дороге, то вы можете воспользоваться нашим мобильным приложением, чтобы всегда иметь доступ к вашим защищенным файлам.&lt;/p&gt;&lt;p&gt;Хотите сохранять пароли простым и безопасным способом?Используйте наше управление и генератор паролей, чтобы безопасно сохранить их в облаке.&lt;/p&gt;&lt;p&gt;Попробуйте, чтобы открыть для себя все предложенные функции и преимущества!&lt;/p&gt;</value>
-  </data>
   <data name="PremiumFirstBodyText1">
     <value>Заинтересованы в подписке, но не уверены,соответствует ли она вашим потребностям? &lt;a href={url}&gt;Вы можете использовать AxCrypt Premium бесплатно первые 30 дней. &lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>С подпиской AxCrypt Premium у Вас будет доступ к расширенному функционалу и интересным опциям! Зашифруйте ваши файлы с помощью AES-256 - самого сильного алгоритма AES. Он используется во всем мире для защиты конфиденциальной и секретной информации всех уровней. Защита папок никогда не была проще. Достаточно одного клика, чтобы автоматически защитить новые файлы.</value>
-  </data>
-  <data name="PremiumFirstBodyText3">
-    <value>Для того, чтобы поделиться защищенными файлами с другими пользователями, Вы можете воспользоваться специальным ключом обмена, который также имеет доступ к облачным хранилищам в Dropbox, Google Drive, и т.д. Если вы постоянно в дороге, то вы можете воспользоваться нашим мобильным приложением, чтобы всегда иметь доступ к вашим защищенным файлам.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Хотите сохранить пароль безопасным и простым способом? Используйте наше управление и генератор паролями, чтобы сохранить все ваши пароли в облаке в полной безопасности.</value>
@@ -3996,9 +3960,6 @@ SE-114 29 Стокгольм
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Ключ совместного пользования</value>
-  </data>
-  <data name="PricingFeatureListMobileApps">
-    <value>Мобильные приложения</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Больше новых эксклюзивных функций</value>
@@ -4155,9 +4116,6 @@ SE-114 29 Стокгольм
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Более сильное шифрование с AES-256</value>
-  </data>
-  <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Просматривайте все защищенные файлы в любое время в нашем мобильном приложении</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Начните бесплатный пробный период прямо сейчас</value>
@@ -4382,9 +4340,6 @@ SE-114 29 Стокгольм
   <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
-  </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Просмотрите наши последние публикации в блоге</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Читайте больше о плане Business</value>
@@ -6038,9 +5993,6 @@ SE-114 29 Стокгольм
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Почему AxCrypt Business?</value>
-  </data>
-  <data name="WhyChooseAxcrypt">
-    <value>Почему AxCrypt?</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Я не забуду моего пароля!</value>
