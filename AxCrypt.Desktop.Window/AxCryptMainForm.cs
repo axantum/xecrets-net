@@ -87,6 +87,8 @@ namespace AxCrypt.Desktop.Window
 
         private bool _startMinimized;
 
+        private static readonly Color _ENABLEDTOOLSTRIPBACKCOLOR = ColorTranslator.FromHtml("#86B96E");
+
         public AxCryptMainForm()
         {
             InitializeComponent();
@@ -267,6 +269,7 @@ namespace AxCrypt.Desktop.Window
             _koreanLanguageToolStripMenuItem.Text = "&" + Texts.KoreanLanguageSelection;
             _lastAccessedDateColumnHeader.Text = Texts.LastAccessTimeColumnHeaderText;
             _lastModifiedDateColumnHeader.Text = Texts.LastModifiedTimeColumnHeaderText;
+            _fileSizeColumnHeader.Text = Texts.FileSizeColumnHeaderText;
             _notifyIcon.Text = Texts.AxCryptFileEncryption;
             _notifySignInToolStripMenuItem.Text = "&" + Texts.LogOnText;
             _notifySignOutToolStripMenuItem.Text = "&" + Texts.LogOffText;
@@ -339,7 +342,7 @@ namespace AxCrypt.Desktop.Window
             _closeAndRemoveOpenFilesToolStripButton.Text = Texts.CleanUpPromptText;
             _feedbackButton.Text = Texts.SendFeedbackTitle;
             _helpButton.Text = Texts.ButtonHelpText;
-            _helpButton.ToolTipText = Texts.HomeGetStartedHeading;
+            _helpButton.ToolTipText = Texts.GetStartedLinkLabel;
             _daysLeftPremiumLabel.Text = Texts.UnlockFullEncryptionFeaturesText;
             _businessPrioritySupportToolStripMenuItem.Text = Texts.BusinessSupportTitle;
             _businessPrioritySupportToolStripMenuItem.ToolTipText = Texts.FeaturesBusinessPrioritySupportDescription;
@@ -623,7 +626,7 @@ namespace AxCrypt.Desktop.Window
             {
                 _keyShareToolStripButton.Image = Resources.share_border_80px;
                 _keyShareToolStripButton.ToolTipText = Texts.KeySharingToolTip;
-                _keyShareToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+                _keyShareToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             }
             else
             {
@@ -639,7 +642,7 @@ namespace AxCrypt.Desktop.Window
             {
                 _secretsToolStripButton.Image = Resources.passwords_80px;
                 _secretsToolStripButton.ToolTipText = Texts.SecretsButtonToolTipText;
-                _secretsToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+                _secretsToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             }
             else
             {
@@ -871,6 +874,12 @@ namespace AxCrypt.Desktop.Window
             _oneDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
             _googleDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
             _dropBoxToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
+
+            if (_recentFilesListView.Items.Count == 0)
+            {
+                this._recentFilesTabPage.BackgroundImage = Properties.Resources.recent_files_background;
+                this._recentFilesTabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            }
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -892,10 +901,13 @@ namespace AxCrypt.Desktop.Window
             if (enabled)
             {
                 _encryptToolStripButton.Image = Resources.encrypt_white_40px;
-                return;
+                _encryptToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             }
-
-            _encryptToolStripButton.Image = Resources.encrypt_grey_40px;
+            else
+            {
+                _encryptToolStripButton.Image = Resources.encrypt_grey_40px;
+                _encryptToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
+            }
         }
 
         private async Task ConfigureLinkLabelAsync(LogOnIdentity logOnIdentity)
@@ -1591,7 +1603,16 @@ namespace AxCrypt.Desktop.Window
                     _documentsToolStripButton.Visible = true;
                     _documentsToolStripButton.Text = Texts.KnownFolderNameWindowsMyDocuments;
                     _documentsToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
-                    _documentsToolStripButton.Image = knownFolder.Enabled ? Resources.documents_white_40px : Resources.documents_grey_40px;
+                    if (Enabled)
+                    {
+                        _documentsToolStripButton.Image = Resources.documents_white_40px;
+                        _documentsToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
+                    }
+                    else
+                    {
+                        _documentsToolStripButton.Image = Resources.documents_grey_40px;
+                        _documentsToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
+                    }
                     _documentsToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
                 }
 
@@ -1601,7 +1622,16 @@ namespace AxCrypt.Desktop.Window
                     _oneDriveToolStripButton.Visible = true;
                     _oneDriveToolStripButton.Text = Texts.KnownFolderNameOneDrive;
                     _oneDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
-                    _oneDriveToolStripButton.Image = knownFolder.Enabled ? Resources.skydrive_40px : Resources.skydrive_grey_40px;
+                    if (Enabled)
+                    {
+                        _oneDriveToolStripButton.Image = Resources.skydrive_40px;
+                        _oneDriveToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
+                    }
+                    else
+                    {
+                        _oneDriveToolStripButton.Image = Resources.skydrive_grey_40px;
+                        _oneDriveToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
+                    }
                     _oneDriveToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
                 }
 
@@ -1611,7 +1641,16 @@ namespace AxCrypt.Desktop.Window
                     _googleDriveToolStripButton.Visible = true;
                     _googleDriveToolStripButton.Text = Texts.KnownFolderNameGoogleDrive;
                     _googleDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
-                    _googleDriveToolStripButton.Image = knownFolder.Enabled ? Resources.google_drive_40px : Resources.google_drive_grey_40px;
+                    if (Enabled)
+                    {
+                        _googleDriveToolStripButton.Image = Resources.google_drive_40px;
+                        _googleDriveToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
+                    }
+                    else
+                    {
+                        _googleDriveToolStripButton.Image = Resources.google_drive_grey_40px;
+                        _googleDriveToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
+                    }
                     _googleDriveToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
                 }
 
@@ -1621,7 +1660,16 @@ namespace AxCrypt.Desktop.Window
                     _dropBoxToolStripButton.Visible = true;
                     _dropBoxToolStripButton.Text = Texts.KnownFolderNameDropbox;
                     _dropBoxToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
-                    _dropBoxToolStripButton.Image = knownFolder.Enabled ? Resources.dropbox_40px : Resources.dropbox_grey_40px;
+                    if (Enabled)
+                    {
+                        _dropBoxToolStripButton.Image = Resources.dropbox_40px;
+                        _dropBoxToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
+                    }
+                    else
+                    {
+                        _dropBoxToolStripButton.Image = Resources.dropbox_grey_40px;
+                        _dropBoxToolStripButton.ToolStripeBackColor = Color.FromArgb(232, 232, 232);
+                    }
                     _dropBoxToolStripButton.KnownFolderFullName = knownFolder.My.FullName;
                 }
             }

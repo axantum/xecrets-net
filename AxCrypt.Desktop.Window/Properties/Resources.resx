@@ -364,4 +364,7 @@
   <data name="add_more_users_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\add_more_users_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="recent_files_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\recent_files_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -44,6 +44,7 @@ namespace AxCrypt.Desktop.Window
             this._recentFilesTabPage = new System.Windows.Forms.TabPage();
             this._recentFilesListView = new AxCrypt.Desktop.Window.RecentFilesListView();
             this._decryptedFileColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._fileSizeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastAccessedDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._lastModifiedDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._encryptedPathColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -205,7 +206,7 @@ namespace AxCrypt.Desktop.Window
             // 
             // _mainMenuStrip
             // 
-            this._mainMenuStrip.BackColor = System.Drawing.Color.FromArgb(116, 151, 104);
+            this._mainMenuStrip.BackColor = System.Drawing.ColorTranslator.FromHtml("#48772C"); 
             this._mainMenuStrip.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this._mainMenuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this._mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -808,7 +809,6 @@ namespace AxCrypt.Desktop.Window
             this._softwareStatusButton.AutoSize = false;
             this._softwareStatusButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.bulb_green_40px;
             this._softwareStatusButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._softwareStatusButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(116, 151, 104);
             this._softwareStatusButton.Margin = new System.Windows.Forms.Padding(10, 12, 0, 0);
             this._softwareStatusButton.Name = "_softwareStatusButton";
             this._softwareStatusButton.Size = new System.Drawing.Size(80, 50);
@@ -856,7 +856,7 @@ namespace AxCrypt.Desktop.Window
             // 
             this._openEncryptedToolStripButton.AutoSize = false;
             this._openEncryptedToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.open_encrypted_80px;
-            this._openEncryptedToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+            this._openEncryptedToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             this._openEncryptedToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._openEncryptedToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._openEncryptedToolStripButton.Padding = new System.Windows.Forms.Padding(0);
@@ -869,7 +869,7 @@ namespace AxCrypt.Desktop.Window
             this._encryptToolStripButton.AutoSize = false;
             this._encryptToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.encrypt_white_40px;
             this._encryptToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._encryptToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+            this._encryptToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             this._encryptToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._encryptToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._encryptToolStripButton.Name = "_encryptToolStripButton";
@@ -882,7 +882,7 @@ namespace AxCrypt.Desktop.Window
             this._stopSecuringToolStripButton.AutoSize = false;
             this._stopSecuringToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.minus_40px;
             this._stopSecuringToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._stopSecuringToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+            this._stopSecuringToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR; 
             this._stopSecuringToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._stopSecuringToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._stopSecuringToolStripButton.Name = "_stopSecuringToolStripButton";
@@ -895,7 +895,7 @@ namespace AxCrypt.Desktop.Window
             this._keyShareToolStripButton.AutoSize = false;
             this._keyShareToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.share_border_80px;
             this._keyShareToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._keyShareToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+            this._keyShareToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR;
             this._keyShareToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._keyShareToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._keyShareToolStripButton.Name = "_keyShareToolStripButton";
@@ -908,7 +908,7 @@ namespace AxCrypt.Desktop.Window
             this._secretsToolStripButton.AutoSize = false;
             this._secretsToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.passwords_80px;
             this._secretsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._secretsToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
+            this._secretsToolStripButton.ToolStripeBackColor = _ENABLEDTOOLSTRIPBACKCOLOR; 
             this._secretsToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._secretsToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._secretsToolStripButton.Name = "_secretsToolStripButton";
@@ -921,7 +921,6 @@ namespace AxCrypt.Desktop.Window
             this._documentsToolStripButton.AutoSize = false;
             this._documentsToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.documents_white_40px;
             this._documentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._documentsToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             this._documentsToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._documentsToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._documentsToolStripButton.Name = "_documentsToolStripButton";
@@ -935,7 +934,6 @@ namespace AxCrypt.Desktop.Window
             this._oneDriveToolStripButton.AutoSize = false;
             this._oneDriveToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.skydrive_40px;
             this._oneDriveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._oneDriveToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             this._oneDriveToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._oneDriveToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._oneDriveToolStripButton.Name = "_oneDriveToolStripButton";
@@ -949,7 +947,6 @@ namespace AxCrypt.Desktop.Window
             this._googleDriveToolStripButton.AutoSize = false;
             this._googleDriveToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.google_drive_40px;
             this._googleDriveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._googleDriveToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             this._googleDriveToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._googleDriveToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._googleDriveToolStripButton.Name = "_googleDriveToolStripButton";
@@ -963,7 +960,6 @@ namespace AxCrypt.Desktop.Window
             this._dropBoxToolStripButton.AutoSize = false;
             this._dropBoxToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.dropbox_40px;
             this._dropBoxToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._dropBoxToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(96, 120, 82);
             this._dropBoxToolStripButton.ButtonTitleMargin = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this._dropBoxToolStripButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._dropBoxToolStripButton.Name = "_dropBoxToolStripButton";
@@ -978,7 +974,7 @@ namespace AxCrypt.Desktop.Window
             this._closeAndRemoveOpenFilesToolStripButton.Visible = false;
             this._closeAndRemoveOpenFilesToolStripButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.broom_40px;
             this._closeAndRemoveOpenFilesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._closeAndRemoveOpenFilesToolStripButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(116, 151, 104);
+            this._closeAndRemoveOpenFilesToolStripButton.ToolStripeBackColor = System.Drawing.ColorTranslator.FromHtml("#494949");
             this._closeAndRemoveOpenFilesToolStripButton.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
             this._closeAndRemoveOpenFilesToolStripButton.Name = "_closeAndRemoveOpenFilesToolStripButton";
             this._closeAndRemoveOpenFilesToolStripButton.Size = new System.Drawing.Size(60, 80);
@@ -1016,6 +1012,7 @@ namespace AxCrypt.Desktop.Window
             this._recentFilesListView.AllowDrop = true;
             this._recentFilesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this._decryptedFileColumnHeader,
+            this._fileSizeColumnHeader,
             this._lastAccessedDateColumnHeader,
             this._encryptedPathColumnHeader,
             this._lastModifiedDateColumnHeader,
@@ -1036,6 +1033,11 @@ namespace AxCrypt.Desktop.Window
             this._decryptedFileColumnHeader.Text = "[Document]";
             this._decryptedFileColumnHeader.Width = 159;
             // 
+            // _fileSizeColumnHeader
+            // 
+            this._fileSizeColumnHeader.Text = "[Size]";
+            this._fileSizeColumnHeader.Width = 159;
+            //
             // _lastAccessTimeColumnHeader
             // 
             this._lastAccessedDateColumnHeader.Text = "[Time]";
@@ -1054,7 +1056,7 @@ namespace AxCrypt.Desktop.Window
             // 
             this._lastModifiedDateColumnHeader.Text = "[OriginalTime]";
             this._lastModifiedDateColumnHeader.Width = 149;
-            // 
+            //
             // _watchedFoldersTabPage
             // 
             this._watchedFoldersTabPage.Controls.Add(this._watchedFoldersListView);
@@ -1211,9 +1213,9 @@ namespace AxCrypt.Desktop.Window
             this._progressTableLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this._progressTableLayoutPanel.ColumnCount = 3;
-            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45));
+            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this._progressTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this._progressTableLayoutPanel.Controls.Add(this.pictureBox1, 0, 0);
             this._progressTableLayoutPanel.Controls.Add(this._bottomCenterTableLayout, 1, 0);
             this._progressTableLayoutPanel.Controls.Add(this._daysLeftPremiumLabel, 2, 0);
@@ -1232,7 +1234,6 @@ namespace AxCrypt.Desktop.Window
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left));
             this.pictureBox1.Image = global::AxCrypt.Desktop.Window.Properties.Resources.logo_text_retina;
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 340);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(25, 20, 0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(145, 33);
@@ -1251,8 +1252,8 @@ namespace AxCrypt.Desktop.Window
             this._bottomCenterTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this._bottomCenterTableLayout.Name = "_bottomCenterTableLayout";
             this._bottomCenterTableLayout.RowCount = 1;
-            this._bottomCenterTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this._bottomCenterTableLayout.Size = new System.Drawing.Size(150, 80);
+            this._bottomCenterTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this._bottomCenterTableLayout.Size = new System.Drawing.Size(150, 60);
             this._bottomCenterTableLayout.TabIndex = 1;
             // 
             // _feedbackButton
@@ -1260,7 +1261,6 @@ namespace AxCrypt.Desktop.Window
             this._feedbackButton.AutoSize = false;
             this._feedbackButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.feedback_40px;
             this._feedbackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._feedbackButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(116, 151, 104);
             this._feedbackButton.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this._feedbackButton.Name = "_feedbackButton";
             this._feedbackButton.Size = new System.Drawing.Size(75, 50);
@@ -1271,7 +1271,6 @@ namespace AxCrypt.Desktop.Window
             this._helpButton.AutoSize = false;
             this._helpButton.Image = global::AxCrypt.Desktop.Window.Properties.Resources.helpquestion_40px;
             this._helpButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._helpButton.ToolStripeBackColor = System.Drawing.Color.FromArgb(116, 151, 104);
             this._helpButton.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this._helpButton.ButtonTitleMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this._helpButton.Name = "_helpButton";
@@ -1293,7 +1292,7 @@ namespace AxCrypt.Desktop.Window
             this._daysLeftPremiumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this._daysLeftPremiumLabel.Text = "[&Click here to unlock full encryption features!]";
             this._daysLeftPremiumLabel.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this._daysLeftPremiumLabel.Margin = new System.Windows.Forms.Padding(0, 18, 20, 0);
+            this._daysLeftPremiumLabel.Margin = new System.Windows.Forms.Padding(0, 18, 30, 0);
             this._daysLeftPremiumLabel.BackColor = System.Drawing.Color.FromArgb(134, 185, 110);
             this._daysLeftPremiumLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._daysLeftPremiumLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1396,7 +1395,7 @@ namespace AxCrypt.Desktop.Window
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._statusTabControl);
             this.Controls.Add(this._progressTableLayoutPanel);
-            this.BackColor = System.Drawing.Color.FromArgb(116, 151, 104);
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#48772C");
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(840, 460);
             this.Name = "AxCryptMainForm";
@@ -1449,6 +1448,7 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.TabPage _recentFilesTabPage;
         private RecentFilesListView _recentFilesListView;
         private System.Windows.Forms.ColumnHeader _decryptedFileColumnHeader;
+        private System.Windows.Forms.ColumnHeader _fileSizeColumnHeader;
         private System.Windows.Forms.ColumnHeader _lastAccessedDateColumnHeader;
         private System.Windows.Forms.ColumnHeader _lastModifiedDateColumnHeader;
         private System.Windows.Forms.ColumnHeader _encryptedPathColumnHeader;

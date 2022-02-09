@@ -6056,6 +6056,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string FileSizeColumnHeaderText {
+            get {
+                return ResourceManager.GetString("FileSizeColumnHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
         public static string FileToolStripMenuItemText {
