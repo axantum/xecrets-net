@@ -25,11 +25,9 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Core.Portable;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace AxCrypt.Core.Session
 {
@@ -103,13 +101,17 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        public static ActiveFileComparer EncryptedNameComparer { get { return new EncryptedNameComparerImpl(); } }
+        public static ActiveFileComparer EncryptedNameComparer
+        { get { return new EncryptedNameComparerImpl(); } }
 
-        public static ActiveFileComparer DecryptedNameComparer { get { return new DecryptedNameComparerImpl(); } }
+        public static ActiveFileComparer DecryptedNameComparer
+        { get { return new DecryptedNameComparerImpl(); } }
 
-        public static ActiveFileComparer DateComparer { get { return new DateComparerImpl(); } }
+        public static ActiveFileComparer DateComparer
+        { get { return new DateComparerImpl(); } }
 
-        public static ActiveFileComparer CryptoNameComparer { get { return new CryptoNameComparerImpl(); } }
+        public static ActiveFileComparer CryptoNameComparer
+        { get { return new CryptoNameComparerImpl(); } }
 
         public abstract int Compare(ActiveFile x, ActiveFile y);
 

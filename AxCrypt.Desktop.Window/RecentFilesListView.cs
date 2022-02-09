@@ -38,6 +38,7 @@ namespace AxCrypt.Desktop.Window
         private enum ColumnName
         {
             DocumentName,
+            Size,
             AccessedDate,
             EncryptedPath,
             CryptoName,
@@ -74,18 +75,22 @@ namespace AxCrypt.Desktop.Window
                     break;
 
                 case 1:
-                    Preferences.RecentFilesAccessedDateWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesSizeWidth = Columns[e.ColumnIndex].Width;
                     break;
 
                 case 2:
-                    Preferences.RecentFilesEncryptedPathWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesAccessedDateWidth = Columns[e.ColumnIndex].Width;
                     break;
 
                 case 3:
-                    Preferences.RecentFilesModifiedDateWidth = Columns[e.ColumnIndex].Width;
+                    Preferences.RecentFilesEncryptedPathWidth = Columns[e.ColumnIndex].Width;
                     break;
 
                 case 4:
+                    Preferences.RecentFilesModifiedDateWidth = Columns[e.ColumnIndex].Width;
+                    break;
+
+                case 5:
                     Preferences.RecentFilesCryptoNameWidth = Columns[e.ColumnIndex].Width;
                     break;
             }
@@ -96,10 +101,11 @@ namespace AxCrypt.Desktop.Window
             Preferences.RecentFilesMaxNumber = 100;
 
             Columns[0].Width = Preferences.RecentFilesDocumentWidth.Fallback(Columns[0].Width);
-            Columns[1].Width = Preferences.RecentFilesAccessedDateWidth.Fallback(Columns[1].Width);
-            Columns[2].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[2].Width);
-            Columns[3].Width = Preferences.RecentFilesModifiedDateWidth.Fallback(Columns[4].Width);
-            Columns[4].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[3].Width);
+            Columns[1].Width = Preferences.RecentFilesSizeWidth.Fallback(Columns[1].Width);
+            Columns[2].Width = Preferences.RecentFilesAccessedDateWidth.Fallback(Columns[2].Width);
+            Columns[3].Width = Preferences.RecentFilesEncryptedPathWidth.Fallback(Columns[3].Width);
+            Columns[4].Width = Preferences.RecentFilesModifiedDateWidth.Fallback(Columns[4].Width);
+            Columns[5].Width = Preferences.RecentFilesCryptoNameWidth.Fallback(Columns[5].Width);
         }
 
         private bool _updateRecentFilesInProgress = false;
@@ -117,6 +123,7 @@ namespace AxCrypt.Desktop.Window
 
             _updateRecentFilesInProgress = true;
             this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
+            this.Visible = Items.Count > 0;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
@@ -189,6 +196,9 @@ namespace AxCrypt.Desktop.Window
             item.UseItemStyleForSubItems = false;
             item.Name = file.EncryptedFileInfo.FullName;
 
+            ListViewItem.ListViewSubItem sizeColumn = item.SubItems.Add(String.Empty);
+            sizeColumn.Name = nameof(ColumnName.Size);
+
             ListViewItem.ListViewSubItem accessedDateColumn = item.SubItems.Add(String.Empty);
             accessedDateColumn.Name = nameof(ColumnName.AccessedDate);
 
@@ -240,6 +250,10 @@ namespace AxCrypt.Desktop.Window
             {
                 return false;
             }
+            if (left.SubItems[nameof(ColumnName.Size)].Text != right.SubItems[nameof(ColumnName.Size)].Text)
+            {
+                return false;
+            }
             if (left.SubItems[nameof(ColumnName.CryptoName)].Text != right.SubItems[nameof(ColumnName.CryptoName)].Text)
             {
                 return false;
@@ -285,6 +299,7 @@ namespace AxCrypt.Desktop.Window
         {
             OpenFileProperties openProperties = OpenFileProperties.Create(activeFile.EncryptedFileInfo);
             item.SubItems[nameof(ColumnName.EncryptedPath)].Text = activeFile.EncryptedFileInfo.FullName;
+            item.SubItems[nameof(ColumnName.Size)].Text = SizeSuffix(activeFile.EncryptedFileInfo.Length(), 2);
             item.SubItems[nameof(ColumnName.AccessedDate)].Text = activeFile.Properties.LastActivityTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
             item.SubItems[nameof(ColumnName.AccessedDate)].Tag = activeFile.Properties.LastActivityTimeUtc;
             item.SubItems[nameof(ColumnName.ModifiedDate)].Text = activeFile.EncryptedFileInfo.LastWriteTimeUtc.ToLocalTime().ToString(CultureInfo.CurrentCulture);
@@ -384,6 +399,41 @@ namespace AxCrypt.Desktop.Window
             largeImageList.TransparentColor = System.Drawing.Color.Transparent;
 
             return largeImageList;
+        }
+
+        private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
+        public static string SizeSuffix(Int64 value, int decimalPlaces = 1)
+        {
+            if (decimalPlaces < 0)
+            {
+                throw new ArgumentOutOfRangeException("decimalPlaces");
+            }
+            if (value < 0)
+            {
+                return "-" + SizeSuffix(-value, decimalPlaces);
+            }
+            if (value == 0)
+            {
+                return string.Format("{0:n" + decimalPlaces + "} bytes", 0);
+            }
+
+            // mag is 0 for bytes, 1 for KB, 2, for MB, etc.
+            int mag = (int)Math.Log(value, 1024);
+
+            // 1L << (mag * 10) == 2 ^ (10 * mag)
+            // [i.e. the number of bytes in the unit corresponding to mag]
+            decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+
+            // make adjustment when the value is large enough that
+            // it would round up to 1000 or more
+            if (Math.Round(adjustedSize, decimalPlaces) >= 1000)
+            {
+                mag += 1;
+                adjustedSize /= 1024;
+            }
+
+            return string.Format("{0:n" + decimalPlaces + "} {1}", adjustedSize, SizeSuffixes[mag]);
         }
     }
 }
