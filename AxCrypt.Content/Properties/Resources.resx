@@ -255,10 +255,10 @@
     <value>Follow Us on Our Social Media</value>
   </data>
   <data name="ActivateMailText6" xml:space="preserve">
-    <value>Please read our &lt;a href="https://axcrypt.net/information/privacy-policy"&gt;privacy policy&lt;/a&gt; for details.</value>
+    <value>Please read our &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;privacy policy&lt;/a&gt; for details.</value>
   </data>
   <data name="ActivateMailText7" xml:space="preserve">
-    <value>Contact us at &lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
+    <value>Contact us at &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;

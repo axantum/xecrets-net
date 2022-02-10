@@ -4705,9 +4705,6 @@ Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>En son haberleri okuyun</value>
   </data>
-  <data name="ReadAboutTheLatestNewsLabel2">
-    <value>En son blog yazılarımıza göz atın</value>
-  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>İş planı hakkında daha fazla bilgi edinin</value>
   </data>
