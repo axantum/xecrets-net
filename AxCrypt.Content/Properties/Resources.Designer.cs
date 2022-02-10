@@ -458,7 +458,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please read our &lt;a href=&quot;https://axcrypt.net/information/privacy-policy&quot;&gt;privacy policy&lt;/a&gt; for details..
+        ///   Looks up a localized string similar to Please read our &lt;a href=&quot;https://axcrypt.net/information/privacy-policy&quot; style=&quot;color: white; font-weight: 600&quot;&gt;privacy policy&lt;/a&gt; for details..
         /// </summary>
         public static string ActivateMailText6 {
             get {
@@ -467,7 +467,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact us at &lt;a href=&quot;mailto:support@axcrypt.net&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        ///   Looks up a localized string similar to Contact us at &lt;a href=&quot;mailto:support@axcrypt.net&quot; style=&quot;color: white; font-weight: 600&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
         /// </summary>
         public static string ActivateMailText7 {
             get {

@@ -232,6 +232,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Верификация Вашего AxCrypt ID</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Еще один шаг...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Мы рады, что вы с нами в этом путешествии к кибербезопасности.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Чтобы завершить процесс регистрации, вы должны подтвердить свой адрес электронной почты. Это доказывает, что вы являетесь её владельцем, и дает нам разрешение отправлять вам электронные письма.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Получите версию AxCrypt для своих мобильных устройств!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Следите за нами в наших социальных сетях</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Пожалуйста, прочтите наш &lt;a href="https://axcrypt.net/information/privacy-policy"&gt;политика конфиденциальности&lt;/a&gt; для получения более подробной информации.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Свяжитесь с нами по адресу &lt;a href="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; если у вас есть какие-либо вопросы!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Стоп!&lt;/b&gt;
 
@@ -295,7 +316,7 @@
     <value>Являетесь ли вы бизнесменом, блогером, влоггером, инфлюенсером или издателем СМИ, партнерская программа Axcrypt предлагает одни из лучших наград на рынке.</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>Щедрая комиссия - Мы с гордостью предлагаем комиссию в размере 25%, одну из лучших в отрасли.</value>
+    <value>Щедрая комиссия - Мы гордимся тем, что предлагаем одну из лучших комиссий в отрасли. Свяжитесь с нами, чтобы узнать подробности!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Специальный менеджер по работе с клиентами - С помощью специального менеджера по работе с клиентами вы получите необходимую помощь на каждом этапе, от настройки до частных консультаций.</value>
@@ -325,7 +346,7 @@
     <value>Получите доступ к эксклюзивным связям и рекламным материалам. Используйте наши маркетинговые ресурсы, чтобы создать ваши кампании с нуля</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>Продвигаете AxCrypt и получайте комиссию в размере 25% за каждую оплаченную конвертацию</value>
+    <value>Используйте AxCrypt и получите одну из лучших в отрасли комиссий за каждую оплаченную конверсию</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt предлагает вам партнерскую возможность, при которой вы получаете деньги с каждой продажи, продвигая AxCrypt. Давайте начнем прямо сейчас.</value>
@@ -466,7 +487,7 @@
     <value>План Business предназначен только для организаций, а не для частных лиц.</value>
   </data>
   <data name="AxcryptBusinessBlock1Text5">
-    <value>Для ознакомления с полным списком условий, пожалуйста, посетите наш &lt;а href='/information/terms-of-use&gt;условия-пользования&lt;/а&gt;.</value>
+    <value>Для ознакомления с полным списком условий, пожалуйста, посетите наш &lt;а href='/information/terms-of-use'&gt;условия-пользования&lt;/а&gt;.</value>
   </data>
   <data name="AxcryptBusinessBlock1Text6">
     <value>Пожалуйста, посетите наш &lt;а href='/pricing'&gt;цена&lt;/a&gt; для дополнительных сведений.</value>
@@ -702,8 +723,14 @@
   <data name="BusinessFirstBodyHeading">
     <value>Простое и Надежное Шифрование</value>
   </data>
+  <data name="BusinessFirstBodyText">
+    <value>&lt;p&gt; AxCrypt теперь предлагает защиту файлов для компаний и организаций – с помощью 256-битного шифрования AES. Обмениваться файлами с остальными членами команды легко благодаря облачным хранилищам и функции обмена ключами для локальных файлов. Это позволяет вам соблюдать правила защиты данных, защищая ваши файлы от дорогостоящих утечек данных.&lt;/p&gt;&lt;p&gt; С AxCrypt Business у вас также есть доступ к нашему управлению паролями, где вы можете безопасно хранить пароли и коды,  а также управлять ими. AxCrypt многоязычен, поддерживает английский, голландский, французский, немецкий, итальянский, корейский, польский, португальский, русский, испанский, шведский, турецкий и другие языки. С помощью мобильного приложения AxCrypt вы можете шифровать и расшифровывать файлы на своем телефоне из любого места и в любое время.&lt;/p&gt;&lt;p&gt;Для получения дополнительной информации посетите нашу страницу &lt;a href='/information/features'&gt;&lt;/a&gt; и не забудьте прочитать &lt;a href='/information/terms-of-use'&gt; Условия использования&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Скоро появятся более эксклюзивные бизнес-функции. Не пропустите!&lt; / p&gt;</value>
+  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt теперь предлагает безопасность файлов для компаний и организаций – с 256-битным шифрованием AES. Обмен файлами с остальной частью команды никогда не был проще, с нашей осведомленностью о облачных хранилищах и функцией обмена ключами для локальных файлов. Это позволит вам соблюдать правила защиты данных, защищая ваши файлы от дорогостоящих утечек данных.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>С AxCrypt Business у вас также есть доступ к нашему Управлению паролями, где вы можете безопасно хранить пароли и коды, а также управлять ими. AxCrypt многоязычен, поддерживает английский, голландский, французский, немецкий, итальянский, корейский, польский, португальский, русский, испанский, шведский, турецкий и другие языки. С помощью мобильного приложения AxCrypt вы можете зашифровывать и расшифровывать файлы на своем телефоне из любого места и в любое время.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Для получения дополнительной информации посетите нашу страницу &lt;a href='/information/features'&gt;страница функций&lt;/a&gt; и не забудьте ознакомиться с &lt;a href='/information/terms-of-use'&gt;Условия Пользования&lt;/a&gt;.</value>
@@ -1133,6 +1160,9 @@
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Проверить наличие новой версии для загрузки. Требуется доступ к Интернету.</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Выберите план</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Чтобы начать работу с вашей учетной записью, выберите тип регистрации: частный или корпоративный пользователь AxCrypt. </value>
   </data>
@@ -1513,6 +1543,18 @@
   </data>
   <data name="DownloadLinkLabel">
     <value>Загрузить</value>
+  </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt; Шифруйте и расшифровывайте файлы в любом месте и в любое время. Мобильные приложения поддерживают наиболее распространенные облачные хранилища, такие как Google Диск и Dropbox (скоро и многие другие). &lt;/p&gt;&lt;p&gt; Ваши существующие защищенные файлы и файлы, которыми вы делитесь, всегда можно просматривать без подписки на любой платформе. Теперь включая и ваш мобильный телефон!&lt;/p&gt;&lt;p&gt;Подробнее &lt;a href='#'&gt;читайте здесь&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Зашифровывайте и расшифровывайте файлы в любом месте и в любое время. Мобильные приложения поддерживают наиболее распространенные облачные хранилища, такие как Google Диск и Dropbox (скоро многие другие).</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>Ваши существующие защищенные файлы и файлы, которыми вы делитесь, всегда можно просматривать без подписки на любой платформе. Теперь включая и ваш мобильный телефон!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Подробнее &lt;a href={url}&gt;читайте здесь&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -1995,6 +2037,9 @@
   <data name="FeaturesMadeInSweden">
     <value>"Сделано в Швеции" на шведских серверах</value>
   </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>Зашифровывайте и расшифровывайте файлы на телефоне из любого места и в любое время</value>
+  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Не пропустите функции, которые мы реализуем исключительно для пользователей Business подписки.</value>
   </data>
@@ -2381,6 +2426,9 @@
   <data name="GetStartedLinkLabel">
     <value>Начать</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>СТАРТ!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>Мобильное приложение AxCrypt доступно на Android и iOS и позволит вам открывать и просматривать любой файл, который был зашифрован на ПК.</value>
   </data>
@@ -2421,7 +2469,7 @@
     <value>Вы забыли свой пароль от AxCrypt ID? Теперь вы можете выполнить сброс пароля. Сбросив пароль, вы сможете снова войти в систему, но у вас не будет доступа к файлам, зашифрованным вашим старым паролем. Смотрите видео ниже для получения инструкций о том, как сбросить свой пароль.</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>Перейдите в раздел Параметры файла в приложении и выберите “Сброс пароля” или перейдите непосредственно на &lt;a href='https://account.axcrypt.net/ru/ГлавнаяСтраница/СбросПароля'&gt;Сброс пароля&lt;/a&gt;.</value>
+    <value>Перейдите в раздел Параметры файла в приложении и выберите “Сброс пароля” или перейдите непосредственно на &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Сброс пароля&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>Вы будете перенаправлены на наш веб-сайт, где сможете запросить сброс.</value>
@@ -2471,6 +2519,9 @@
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Список Последние Файлы отключен. Перейдите в Параметры чтобы включить.</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>&lt;span&gt;Начните&lt;/span&gt; с AxCrypt</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Загрузить</value>
   </data>
@@ -2489,8 +2540,38 @@
   <data name="HomeGetStartedListShareParagraph">
     <value>Делитесь зашифрованными файлами в один клик</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Посмотрите &lt;span&gt; наш руководство&lt;/span&gt;, которое поможет вам быстрее разобраться</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>представленные страны</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;лет&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>надежная доставка</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20M+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>загрузки по всему миру</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"Продвинутое шифрование с очень простой настройкой"</value>
+  </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"Расширенное &lt;span&gt; шифрование&lt;/span&gt; в великолепно &lt;span&gt; простой &lt;/span&gt; настройке"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300+&lt;span&gt;веб-сайтов&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>рекомендации</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>Выбор редакторов PCMag в 2022 году</value>
@@ -2500,6 +2581,9 @@
   </data>
   <data name="HomeLinkLabel">
     <value>Стартовая страница</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Зашиифровывайте и расшифровывайте файлы на вашем телефоне Android, iPhone или планшете из любого места в любое время.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -2534,8 +2618,22 @@
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Сильное шифрование</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Оставайтесь с нами на связи</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Нажимая "Держать меня в курсе", вы соглашаетесь на то, что AxCrypt свяжется с вами.
+Для получения дополнительной информации о том, как мы используем данные, которые вы предоставляете здесь,
+пожалуйста, ознакомьтесь с Политикой конфиденциальности AxCrypt.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Бесплатно зарегистрируйтесь ниже, чтобы быть в курсе наших новостей</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Больше отзывов по ссылке &lt;a href='/about/awards'&gt;награды и отзывы&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>Что &lt;span&gt;говорят&lt;/span&gt; другие</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Минут</value>
@@ -2913,6 +3011,9 @@ SE-114 29 Стокгольм
   <data name="JobTitleLabel">
     <value>Название должности</value>
   </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Держите Меня В Курсе Событий</value>
+  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Выберите Ключевой Файл</value>
   </data>
@@ -3030,6 +3131,9 @@ SE-114 29 Стокгольм
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Правовая помощь</value>
   </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Давайте начнем!</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -3058,10 +3162,10 @@ SE-114 29 Стокгольм
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/ru/СтартоваяСтраница/Поддержка'&gt;Поддержка для Business&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Поддержка для Business&lt;/a&gt;</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/ru/Business/ПополнитьСчетПодписки'&gt;Добавить больше пользователей&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Добавить больше пользователей&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -3196,7 +3300,7 @@ SE-114 29 Стокгольм
     <value>При включении мастер-ключа, бизнес-администраторы могут восстановить любой документ, зашифрованный  участниками подписки. Это, как уже упоминалось, исключает риск потери доступа к критически важным файлам. Но безопасно ли это?</value>
   </data>
   <data name="MasterKeyBlock3Text1">
-    <value>Мастер-ключ можно включить из &lt;a href='https://account.axcrypt.net/ru/Business/ManageSubscriptionMembers'&gt;страница управления подпиской&lt;/a&gt;.</value>
+    <value>Мастер-ключ можно включить из &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;страница управления подпиской&lt;/a&gt;.</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Внутренняя ошибка, недопустимый аргумент функции в %4</value>
@@ -3438,6 +3542,21 @@ SE-114 29 Стокгольм
   <data name="MobileAppText">
     <value>Android 4.0.3, iOS 8.0 или более позднии версии.</value>
   </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Выберите файлы из</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt; Легко расшифровывайте защищенные файлы&lt;/fc&gt; как с компьютеров, так и с мобильных устройств</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Шифруйте&lt;/fc&gt; конфиденциальные файлы прямо на вашем телефоне</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Открывайте &lt;fc&gt;файлы AxCrypt&lt;/fc&gt; на своем телефоне</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>Доступ в один клик к &lt;fc&gt;менеджеру паролей&lt;/fc&gt; AxCrypt </value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Ежемесячно</value>
   </data>
@@ -3571,6 +3690,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Нажмите для выбора защищённого файла для его открытия.</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>Хотите, чтобы мы открыли веб-страницу, на которой вы сможете совершить покупку?</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>Операционная система</value>
@@ -3826,11 +3948,17 @@ SE-114 29 Стокгольм
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
+  <data name="PremiumFirstBodyText">
+    <value>&lt;p&gt; Заинтересованы в получении подписки, но не уверены, соответствует ли она вашим потребностям? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Вы можете использовать AxCrypt Premium бесплатно 30 дней.&lt;/a&gt;&lt;/p&gt;&lt;p&gt; С AxCrypt Premium у вас есть доступ к расширенной функциональности и захватывающим функциям! Зашифруйте ваши файлы с помощью AES-256 – самого мощного алгоритма AES. Он используется во всем мире для защиты конфиденциальной и секретной информации всех уровней. Защита папок никогда не была проще, достаточно одного клика, чтобы автоматически защитить новые файлы.&lt;/p&gt;&lt;p&gt; Если вам также необходимо поделиться защищенными файлами с другими, вы можете просто поделиться ключами, даже имея доступ к облачным хранилищам данных в Dropbox, Google Диске и т.д. С помощью мобильного приложения AxCrypt вы можете зашифровывать и расшифровывать файлы на своем телефоне из любого места и в любое время.&lt;/p&gt;&lt;p&gt;Хотите сохранить пароль безопасным и простым способом? Используйте наше управление и генератор паролей, чтобы сохранить все ваши пароли в безопасности в облаке.&lt;/p&gt;&lt;p&gt; Попробуйте, чтобы открыть для себя все функции и преимущества, которые он предлагает!&lt; / p&gt;</value>
+  </data>
   <data name="PremiumFirstBodyText1">
     <value>Заинтересованы в подписке, но не уверены,соответствует ли она вашим потребностям? &lt;a href={url}&gt;Вы можете использовать AxCrypt Premium бесплатно первые 30 дней. &lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>С подпиской AxCrypt Premium у Вас будет доступ к расширенному функционалу и интересным опциям! Зашифруйте ваши файлы с помощью AES-256 - самого сильного алгоритма AES. Он используется во всем мире для защиты конфиденциальной и секретной информации всех уровней. Защита папок никогда не была проще. Достаточно одного клика, чтобы автоматически защитить новые файлы.</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>Если вам также необходимо поделиться защищенными файлами с другими, вы можете просто поделиться ключами, даже имея доступ к облачным хранилищам данных в Dropbox, Google Диске и т.д. С помощью мобильного приложения AxCrypt вы можете зашифровывать и расшифровывать файлы на своем телефоне из любого места и в любое время.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Хотите сохранить пароль безопасным и простым способом? Используйте наше управление и генератор паролями, чтобы сохранить все ваши пароли в облаке в полной безопасности.</value>
@@ -3960,6 +4088,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Ключ совместного пользования</value>
+  </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Мобильное Шифрование</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Больше новых эксклюзивных функций</value>
@@ -4116,6 +4247,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Более сильное шифрование с AES-256</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>Зашифровываете и расшифровывайте файлы на лету с помощью мобильного приложения</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Начните бесплатный пробный период прямо сейчас</value>
@@ -4341,6 +4475,9 @@ SE-114 29 Стокгольм
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
   </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Просмотрите наши последние &lt;span&gt; посты в блоге&lt;/span&gt;</value>
+  </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Читайте больше о плане Business</value>
   </data>
@@ -4425,7 +4562,7 @@ SE-114 29 Стокгольм
     <value>Нормативные требования</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Для получения полной информации и отслеживания проблем настольного приложения Windows и библиотеки-классов, перейдите по ссылке &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;репозиторий bitbucket&lt;/a&gt;. Журнал изменений для Android, iOS и Mac относится к непубличным трекерам проблем. Криптографические контрольные суммы SHA-256 находятся &lt;a href='/information/cryptographic-hashes-files'&gt;здесь&lt;/a&gt;.</value>
+    <value>Для получения полной информации и отслеживания проблем настольного приложения Windows и библиотеки-классов, перейдите по ссылке &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;репозиторий bitbucket&lt;/a&gt;. Журнал изменений для Android, iOS и Mac относится к непубличным трекерам проблем. Криптографические контрольные суммы SHA-256 находятся &lt;a href='/information/cryptographic-hashes-files'&gt;здесь&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Примечания</value>
@@ -4639,7 +4776,7 @@ SE-114 29 Стокгольм
     <value>Вы также можете приобрести его по счету-фактуре, как правило, в зависимости от количества подписок, которые вы хотите приобрести. Если вы хотите это сделать, свяжитесь с &lt;a href='mailto:reseller@axcrypt.net'&gt;Команда поддержки реселлеров&lt;/a&gt;. Если оплата производится банковским переводом, то вашему клиенту может потребоваться больше времени, чтобы получить доступ, так как сначала мы должны получить платеж.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
-    <value>Текущую цену за членскую лицензию для AxCrypt Business можно найти на нашем сайте &lt;a href='https://www.axcrypt.net/цены'&gt;страница цен&lt;/a&gt;. У вас есть персональная скидка реселлера, которую можно применить.</value>
+    <value>Текущую цену за членскую лицензию для AxCrypt Business можно найти на нашем сайте &lt;a href='https://www.axcrypt.net/pricing'&gt;страница цен&lt;/a&gt;. У вас есть персональная скидка реселлера, которую можно применить.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
     <value>Для расчета подписки, месяц определяется как 30 дней, а год-как 360 дней. При создании или продлении подписки этот период всегда составляет месяц или год.</value>
@@ -4648,7 +4785,7 @@ SE-114 29 Стокгольм
     <value>При покупке дополнительных лицензий участников для подписки в течение периода подписки взимается плата только за оставшиеся месяцы, округленные в сторону увеличения до целых месяцев. Если на текущий период остается 50 дней и добавляются дополнительные участники, то это будет на 2 месяца/дополнительный участник.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
-    <value>Читайте “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/информация/условия-использования'&gt;Условия использования&lt;/a&gt; для получения дополнительной информации.</value>
+    <value>Читайте “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Условия использования&lt;/a&gt; для получения дополнительной информации.</value>
   </data>
   <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
     <value>С 25 июня 2020 года мы автоматически продлеваем подписку. Если вы приобрели лицензии до этого, ни с вас, ни с вашего клиента не будет взиматься плата автоматически. Вам придется обновить подписку через меню.</value>
@@ -4657,7 +4794,7 @@ SE-114 29 Стокгольм
     <value>Если вы приобрели лицензии после 25 июня 2020 года, подписка будет автоматически продлена в конце периода подписки с использованием метода первоначальной оплаты. Если вы хотите отменить подписку, вы должны сделать это до окончания текущего периода подписки.</value>
   </data>
   <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
-    <value>Читайте раздел “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/информация/условия-использования'&gt;Условия использования&lt;/a&gt;  для получения дополнительной информации.</value>
+    <value>Читайте раздел “Оплата и продление” в нашем &lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Условия использования&lt;/a&gt;  для получения дополнительной информации.</value>
   </data>
   <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
     <value>Здесь вы найдете свои счета-фактуры и историю транзакций.</value>
@@ -4720,7 +4857,7 @@ SE-114 29 Стокгольм
     <value>Примечание: Это совершенно нормально, если вы используете одну и ту же учетную запись вместе с вашим собственным планом подписки.</value>
   </data>
   <data name="ResellerHelpGettingStartedBlock2Text3">
-    <value>Войдите в &lt;a href='https://account.axcrypt.net" &gt;account.axcrypt.net&lt;/a&gt; чтобы получить доступ к вашей учетной записи реселлера. Вы видите свою учетную запись, как показано на рисунке ниже.</value>
+    <value>Войдите в &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt; чтобы получить доступ к вашей учетной записи реселлера. Вы видите свою учетную запись, как показано на рисунке ниже.</value>
   </data>
   <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
     <value>Получите доступ к своему аккаунту реселлера</value>
@@ -4762,7 +4899,7 @@ SE-114 29 Стокгольм
     <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;Логотип полный в формате JPG&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
-    <value>Вы можете найти оригинальные логотипы AxCrypt на &lt;a href='https://www.axcrypt.net/информация/пресса'&gt;https://www.axcrypt.net/информация/пресса&lt;/a&gt;</value>
+    <value>Вы можете найти оригинальные логотипы AxCrypt на &lt;a href='https://www.axcrypt.net/information/press'&gt;https://www.axcrypt.net/information/press&lt;/a&gt;.</value>
   </data>
   <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
     <value>Логотип авторизованного реселлера</value>
@@ -4771,19 +4908,19 @@ SE-114 29 Стокгольм
     <value>Маркетинг</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem1" xml:space="preserve">
-    <value>Часто задаваемые вопросы: &lt;a href='https://www.axcrypt.net/информация/часто задаваемые вопросы'&gt;https://www.axcrypt.net/информация/часто задаваемые вопросы&lt;/a&gt;</value>
+    <value>Часто задаваемые вопросы: &lt;a href='https://www.axcrypt.net/information/faq'&gt;https://www.axcrypt.net/information/faq&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem2" xml:space="preserve">
-    <value>Business подписка: &lt;a href='https://www.axcrypt.net/информация/axcrypt-business'&gt;https://www.axcrypt.net/информация/axcrypt-business&lt;/a&gt;</value>
+    <value>Business подписка: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Начать: &lt;a href='https://www.axcrypt.net/информация/начать/windows/'&gt;https://www.axcrypt.net/информация/начать/windows&lt;/a&gt;</value>
+    <value>Начать:&lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
-    <value>Полезные советы: &lt;a href='https://www.axcrypt.net/информация/полезные-советы'&gt;https://www.axcrypt.net/информация/полезные-советы&lt;/a&gt;</value>
+    <value>Полезные советы: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
-    <value>Технические детали: &lt;a href='https://www.axcrypt.net/информация/технические-детали'&gt;https://www.axcrypt.net/информация/технические-детали&lt;/a&gt;</value>
+    <value>Технические детали: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
     <value>Наши реселлеры (и их клиенты), конечно же, могут рассчитывать на профессиональную техническую поддержку AxCrypt. В Интернете у нас есть большое количество документации и информации о продукте:</value>
@@ -4807,7 +4944,7 @@ SE-114 29 Стокгольм
     <value>В рекламных целях, а также для того, чтобы показать своим клиентам, мы создали презентацию и брошюру AxCrypt. Они помогут объяснить, что такое AxCrypt и как он может помочь вам защитить ваши данные.</value>
   </data>
   <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
-    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/загрузки/Реселлинг-Презентация.pdf'&gt;Скачать презентацию AxCrypt &lt;/a&gt;</value>
+    <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;Скачать презентацию AxCrypt &lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
     <value>Техническая поддержка</value>
@@ -4897,9 +5034,6 @@ SE-114 29 Стокгольм
   </data>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Ничего]</value>
-  </data>
-  <data name="SecretsWarningIsReadOnly">
-    <value>У вас нет действующего плана подписки, и поэтому вы больше не можете редактировать или создавать новые записи паролей. Тем не менее, вы все еще можете видеть существующие записи. Если вы еще не воспользовались своим 30-дневным пробным периодом, вы можете начать его с &lt;a href="/Главная/Обновление"&gt; здесь &lt;/a&gt;.</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Ваша подписка на Рremium скоро заканчивается {0}. После Вам необходимо продлить Вашу Рremium подписку для возможности редактирования и создания новых вводов паролей.  Вы оставляете за собой неограниченный доступ к режиму чтения документов.</value>
@@ -5749,6 +5883,12 @@ SE-114 29 Стокгольм
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Нажмите здесь, чтобы открыть все функции продвинутого шифрования!</value>
   </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>Откройте для себя удивительные функции, которые мы разработали для расширения возможностей вашего мобильного шифрования с помощью наших подписок &lt;b&gt; прямо сейчас или после 30-дневной бесплатной пробной версии &lt;/b&gt;.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Разблокируйте наши магические возможности!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} на '{0}'.</value>
   </data>
@@ -5951,6 +6091,9 @@ SE-114 29 Стокгольм
   <data name="WeakPasswordLabel">
     <value>Слабый пароль</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>С возвращением!</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>Добро пожаловать на AxCrypt!</value>
   </data>
@@ -5993,6 +6136,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Почему AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Почему стоит выбрать &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Я не забуду моего пароля!</value>
