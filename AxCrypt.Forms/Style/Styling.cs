@@ -24,6 +24,10 @@ namespace AxCrypt.Forms.Style
 
         public static Color OkColor { get; } = Color.FromArgb(134, 185, 110);
 
+        private static readonly Color _cancelButtonBorderColor = Color.FromArgb(153, 153, 153);
+
+        private static readonly Color _cancelButtonForegroundColor = Color.FromArgb(26, 26, 26);
+
         private Icon _icon;
 
         public Styling(Icon icon)
@@ -64,6 +68,12 @@ namespace AxCrypt.Forms.Style
                     button.ForeColor = _buttonForegroundColor;
                     button.FlatStyle = FlatStyle.Flat;
                     button.FlatAppearance.BorderColor = _buttonBorderColor;
+                    if (button.DialogResult == DialogResult.Cancel)
+                    {
+                        button.BackColor = _buttonForegroundColor;
+                        button.ForeColor = _cancelButtonForegroundColor;
+                        button.FlatAppearance.BorderColor = _cancelButtonBorderColor;
+                    }
                     button.FlatAppearance.MouseOverBackColor = _buttonMouseOverColor;
                     button.FlatAppearance.BorderSize = 1;
                     break;

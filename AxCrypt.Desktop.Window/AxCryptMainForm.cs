@@ -2132,13 +2132,14 @@ namespace AxCrypt.Desktop.Window
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
             SharingListViewModel viewModel = await SharingListViewModel.CreateForFilesAsync(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
+            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel, fileNames))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
             }
+
             await viewModel.ShareFiles.ExecuteAsync(null);
         }
 
@@ -2150,7 +2151,7 @@ namespace AxCrypt.Desktop.Window
             }
 
             SharingListViewModel viewModel = await SharingListViewModel.CreateForFoldersAsync(folderPaths, Resolve.KnownIdentities.DefaultEncryptionIdentity);
-            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel))
+            using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel, folderPaths))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
