@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("AxCrypt AB")]
 [assembly: AssemblyProduct("AxCrypt")]
-[assembly: AssemblyCopyright("Copyright © 2012-2021 AxCrypt AB")]
+[assembly: AssemblyCopyright("Copyright © 2012-2022 AxCrypt AB")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
