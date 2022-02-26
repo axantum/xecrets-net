@@ -239,6 +239,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Verificación de AxCrypt ID</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Solo un paso más...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Nos emociona que compartas con nosotros este viaje de seguridad cibernética.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Para completar el proceso de registro, debes verificar tu dirección de correo electrónico. Así demuestras que tú eres el propietario del correo electrónico y nos das permiso para enviarte información y novedades.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>¡Descarga AxCrypt para teléfonos móviles!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Síguenos en nuestras redes sociales</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Lee nuestra &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;política de privacidad&lt;/a&gt; para conocer más detalles.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Escríbenos al correo &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; si tienes alguna pregunta.</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;¡Para!&lt;/b&gt;
 
@@ -302,7 +323,7 @@ Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administ
     <value>No importa si eres una empresa, un blogger, un vlogger, un influencer o un editor de medios, el programa de afiliados de AxCrypt ofrece algunas de las mejores recompensas del mercado.</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>Comisión generosa: nos enorgullece ofrecer una comisión del 25%, una de las mejores de la industria.</value>
+    <value>Comisión generosa: estamos orgullosos de ofrecer una de las mejores comisiones de la industria. ¡Comunícate con nosotros para conocer más detalles!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Administrador de cuenta dedicado: con un administrador de cuenta dedicado, obtendrás la ayuda que necesitas en cada paso, desde la configuración hasta el asesoramiento personalizado.</value>
@@ -332,7 +353,7 @@ Elige algo difícil de adivinar, ya que protegerá las contraseñas del Administ
     <value>Obtén acceso a conexiones exclusivas y materiales promocionales. Aprovecha nuestros activos de marketing para que tus campañas despeguen</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>Recomienda AxCrypt y obtén una comisión del 25% en cada conversión pagada</value>
+    <value>Recomienda AxCrypt y gana una de las mejores comisiones de la industria por cada conversión pagada</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>Ahora AxCrypt te ofrece una oportunidad de afiliado en la que recibes un pago por cada venta al promocionar la marca. Comencemos.</value>
@@ -375,6 +396,9 @@ Por favor, inicia sesión con la misma contraseña que usaste anteriormente.</va
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Mensual</value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Anual</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Renombre anónimo</value>
@@ -2277,6 +2301,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FreeLabel">
     <value>Gratis</value>
   </data>
+  <data name="FreeTrial">
+    <value>Prueba gratis</value>
+  </data>
   <data name="FullNameLabel">
     <value>Nombre completo</value>
   </data>
@@ -2963,6 +2990,9 @@ Esto puede hacer que algunas operaciones lleven mucho tiempo. Por favor, tenga c
 Es recomendable tener acceso a Internet, y es necesario para habilitar los planes de suscripciones de pago. Algunas características funcionarán mejor y es posible que no se instalen algunas actualizaciones importantes.
 
 Tu contraseña no se almacena en nuestros servidores y la conexión está siempre cifrada.</value>
+  </data>
+  <data name="InterviewsLabel">
+    <value>Entrevistas</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Por favor, especifica la hora como 'hh:mm:ss.mmm'.</value>
@@ -4280,6 +4310,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PressImagesLabel">
     <value>Imágenes de prensa</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>El director técnico Jonatan Pettersson entrevistado por privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Prensa y medios de comunicación</value>
   </data>
@@ -4372,11 +4405,23 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>Para &lt;span&gt;organizaciones&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Para usuarios &lt;span&gt;privados&lt;/span&gt;</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Precios</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Prueba nuestras suscripciones por &lt;span&gt;un mes gratis&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>¿Cómo quieres pagar?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Solo podrás descifrar archivos existentes (archivos que tú mismo encriptaste anteriormente o archivos que alguien más compartió contigo).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>¿Cuáles son las principales razones de la cancelación?</value>
@@ -6239,6 +6284,9 @@ El Equipo de AxCrypt</value>
     <value>¡Pruébalo!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Prueba&lt;/span&gt; 1-mes</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Prueba Premium</value>
   </data>
@@ -6256,6 +6304,9 @@ El Equipo de AxCrypt</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (turco)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>20% de descuento</value>
   </data>
   <data name="TypographyLabel">
     <value>Tipografía</value>

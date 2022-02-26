@@ -378,6 +378,9 @@
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Ежемесячно</value>
   </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Годовая</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Анонимное Переименование</value>
   </data>
@@ -2210,6 +2213,9 @@
   <data name="FreeLabel">
     <value>Бесплатно </value>
   </data>
+  <data name="FreeTrial">
+    <value>Бесплатная пробная версия</value>
+  </data>
   <data name="FullNameLabel">
     <value>ФИО</value>
   </data>
@@ -2469,7 +2475,7 @@
     <value>Вы забыли свой пароль от AxCrypt ID? Теперь вы можете выполнить сброс пароля. Сбросив пароль, вы сможете снова войти в систему, но у вас не будет доступа к файлам, зашифрованным вашим старым паролем. Смотрите видео ниже для получения инструкций о том, как сбросить свой пароль.</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>Перейдите в раздел Параметры файла в приложении и выберите “Сброс пароля” или перейдите непосредственно на &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Сброс пароля&lt;/a&gt;.</value>
+    <value>Перейдите в раздел Параметры файла в приложении и выберите “Сброс пароля” или перейдите непосредственно на &lt;a href='https://account.axcrypt.net/ru/Home/PasswordReset'&gt;Сброс пароля&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>Вы будете перенаправлены на наш веб-сайт, где сможете запросить сброс.</value>
@@ -2887,6 +2893,9 @@
 
 Ваш пароль не сохраняется в наших серверах, и связь всегда закодирована.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>Интервью</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Пожалуйста, уточните время как 'hh:mm:ss.mmm'.</value>
   </data>
@@ -3162,10 +3171,10 @@ SE-114 29 Стокгольм
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Поддержка для Business&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/ru/Home/Support'&gt;Поддержка для Business&lt;/a&gt;</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Добавить больше пользователей&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/ru/Business/TopupSubscription'&gt;Добавить больше пользователей&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -3300,7 +3309,7 @@ SE-114 29 Стокгольм
     <value>При включении мастер-ключа, бизнес-администраторы могут восстановить любой документ, зашифрованный  участниками подписки. Это, как уже упоминалось, исключает риск потери доступа к критически важным файлам. Но безопасно ли это?</value>
   </data>
   <data name="MasterKeyBlock3Text1">
-    <value>Мастер-ключ можно включить из &lt;a href='https://account.axcrypt.net/en/Business/ManageSubscriptionMembers'&gt;страница управления подпиской&lt;/a&gt;.</value>
+    <value>Мастер-ключ можно включить из &lt;a href='https://account.axcrypt.net/ru/Business/ManageSubscriptionMembers'&gt;страница управления подпиской&lt;/a&gt;.</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Внутренняя ошибка, недопустимый аргумент функции в %4</value>
@@ -4030,6 +4039,9 @@ SE-114 29 Стокгольм
   <data name="PressImagesLabel">
     <value>Снимки прессы</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>Технический директор Йонатан Петтерссон дал интервью privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Пресса и СМИ</value>
   </data>
@@ -4110,11 +4122,23 @@ SE-114 29 Стокгольм
   <data name="PricingFeatureListViewer">
     <value>Просмотр</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>Для &lt;span&gt;организаций&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Для &lt;span&gt;частных&lt;/span&gt; пользователей</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Стоимость</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Попробуйте наши подписки на &lt;span&gt; один месяц бесплатно&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>Какой способ оплаты?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Вы сможете расшифровать только существующие файлы (файлы, которые вы ранее зашифровали самостоятельно, или файлы, которыми кто-то другой поделился с вами).</value>
   </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Приоритетная Поддержка</value>
@@ -5846,6 +5870,9 @@ SE-114 29 Стокгольм
     <value>Попробуйте!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Попробуйте&lt;/span&gt; 1 месяц</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Попробуйте Premium</value>
   </data>
@@ -5863,6 +5890,9 @@ SE-114 29 Стокгольм
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Турецкий</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>скидка 20%</value>
   </data>
   <data name="TypographyLabel">
     <value>Типографика</value>

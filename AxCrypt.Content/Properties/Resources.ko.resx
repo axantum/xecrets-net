@@ -278,9 +278,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="AffiliateAdvantagesSubHeading">
     <value>Axcrypt 제휴 프로그램은 기업, 블로거, 블로거, 인플루언서 또는 미디어 게시자 등 모든 부문에서 최고의 보상을 제공합니다.</value>
   </data>
-  <data name="AffiliateAdvantagesText1">
-    <value>관대한 커미션 - 업계 최고 중 하나인 25%의 커미션을 제공하게 되어 자랑스럽습니다.</value>
-  </data>
   <data name="AffiliateAdvantagesText2">
     <value>전념적인 어카운트 매니저- 일의 처음 시작 단계부터 일대일 카운셀링까지 모든 과정의 도움을 받으실 수 있습니다.</value>
   </data>
@@ -307,9 +304,6 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>전용 연결 및 홍보 자료에 액세스할 수 있습니다. 마케팅을 통해 캠페인을 시작해보세요.</value>
-  </data>
-  <data name="AffiliateInstructionsStep3">
-    <value>AxCrypt를 참조하여 모든 유료 전환에 대해 25%의 커미션을 받습니다.</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt는 이제 AxCrypt 홍보로 수익을 얻을 수 있는 제휴 기회를 제공합니다. 자, 함께 가보시죠.</value>
@@ -737,6 +731,128 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;, &lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
 문의사항은 {0}으로 연락 주시기 바랍니다.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
+  </data>
+  <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
+    <value>Search results might be outdated:
+
+18 Results / 18 Loaded
+
+ResellerSubscriptionExpiredWarning
+untranslated
+!!Your subscription has expired since {0}. Please contact &lt;a href="mailto:reseller@axcrypt.net"&gt;support&lt;/a&gt; to have it extended.
+
+
+BusinessTrialEligibleInfo
+untranslated
+!!You're eligible for a free 30 day trial! You can add as many users as you like and pay nothing for the first 30 days! But remember, after the 30 days are up, you will be charged
+
+
+ResellerHelpMarketingBlock1ListItem1
+translated
+Do not edit the images without our permission.
+
+허락없이 이미지를 수정하지 마십시오.
+
+
+ResellerHelpAddAndManageCustomersBlock1Text1
+translated
+To resell AxCrypt Business to a new customer, create their subscription on the account website:
+
+AxCrypt Business를 새 고객에게 재판매하려면 계정 웹 사이트에서 구독을 만드세요.
+
+
+ResellerHelpAddAndManageCustomersBlock1ListItem6
+translated
+The reseller’s discount will be automatically added.
+
+리셀러 할인이 자동으로 적용되었습니다.
+
+
+ResellerHelpAddAndManageCustomersBlock4ListItem1
+translated
+You now have an unused license. You can either save it for when you need it (this doesn’t pause the expiration date) or assign it to a new user.
+
+이제 사용되지 않는 라이센스가 있습니다. 필요할 때 저장하거나(만기일을 일시 중지하지 않음) 새 사용자에게 할당할 수 있습니다.
+
+
+ResellerHelpAddAndManageCustomersBlock1Text5
+translated
+If any information has been filled in incorrectly during the creation, you can always change it by going to .
+
+정보가 잘못 입력된 경우 언제든지 이동하여 정보를 변경할 수 있습니다.
+
+
+IndustriesFinancialDescription
+translated
+In the world of finance, data security is a serious business. Encryption enables various types of economic activities that would otherwise not be possible. The financial services industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct transactions anywhere and at any time via their electronic devices. By converting plaintext into ciphertext, encryption helps banks, insurance companies, actors in the credit market, corporations, venture funds, investment advisors, fund managers, consulting firms, etc. protect sensitive information so only the authorized users can, with the right key, decrypt and understand the information.
+
+In the world of finance, data security is a serious business. Encryption enables various types of economic activities that would otherwise not be possible. The financial services industry is one hit hardest by the heightened expectations of consumers to access information, receive help, and conduct transactions anywhere and at any time via their electronic devices. By converting plaintext into ciphertext, encryption helps banks, insurance companies, actors in the credit market, corporations, venture funds, investment advisors, fund managers, consulting firms, etc. protect sensitive information so only the authorized users can, with the right key, decrypt and understand the information.
+
+
+IndustriesFinancialSecurity
+translated
+Client’s information and company deals are also stored safe and secure from prying eyes.
+
+고객의 정보 및 회사 거래도 안전하게 보관되고 있습니다.
+
+
+IndustriesFinancialTeamwork
+translated
+The exchange of a large amount of data is simple and easy. It assures the security of electronic commerce transactions over the Internet for example making it possible to transmit credit card numbers. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords.
+
+많은 양의 데이터를 교환하는 것은 간단하고 쉽습니다. 그것은 예를 들어 신용 카드 번호를 전송하는 것을 가능하게 하는 등 인터넷을 통한 전자 상거래의 보안을 보장합니다. 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있는 기능인 마스터 키를 사용하여 직원이 암호를 잊거나 탈퇴하여 중요한 파일에 액세스할 수 없게 될 위험을 제거합니다.
+
+
+IndustriesLegalCloud
+translated
+Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts.
+
+Google Drive 및 Dropbox와 같은 여러 클라우드 스토리지 서비스에서 파일/문서를 자동으로 보호하고 어디서나 암호에 대한 액세스를 완벽하게 관리할 수 있습니다. 모든 정보는 계약 및 계약에 관련된 모든 회원에게 제공됩니다.
+
+
+AffiliateAdvantagesText1
+translated
+Generous commission - We are proud to offer a commission of 25%, one of the best within the industry.
+
+관대한 커미션 - 업계 최고 중 하나인 25%의 커미션을 제공하게 되어 자랑스럽습니다.
+
+
+AffiliateAdvantagesText4
+translated
+Top conversion rates - Our optimized marketing strategy and strong brand reputation lead to high percentage conversions. This allows you to maximize your earning potential.
+
+최고 전환율 - 최적화된 마케팅 전략과 강력한 브랜드 평판은 높은 비율로 전환됩니다. 이를 통해 수익 잠재력을 극대화할 수 있습니다.
+
+
+AffiliateInstructionsHeading
+translated
+Promote AxCrypt and earn a profit from each sale
+
+AxCrypt 홍보 및 각 판매 수익 창출
+
+
+AffiliateInstructionsStep3
+translated
+Refer AxCrypt and earn 25% commission on every paid conversion
+
+AxCrypt를 참조하여 모든 유료 전환에 대해 25%의 커미션을 받습니다.
+
+
+BusinessInvitationMasterKeyInfoMailBodyIntro
+untranslated
+You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the feature &lt;i&gt;master key&lt;/i&gt; turned on. This means files you encrypt will for safety reasons be possible to recover by the administrators of the business. By accepting this invitation you will be added to the business and your files will have master key applied to them. If you don’t want to be part of this business, please ignore this email and proceed by &lt;a href='{1}'&gt;signing up&lt;/a&gt; instead.
+
+
+MasterKeyHelpText2
+untranslated
+Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.
+
+
+MasterKeyOldEncryptedFilesHelpText
+untranslated
+Files encrypted before this will not be possible to recover with master key. If you know there are files you need to have master key applied to please inform the user to stop protecting the files and then start protecting them again. This will re-encrypt the files, including the master key.
+
+You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the feature &lt;i&gt;master key&lt;/i&gt; turned on. This means files you encrypt will for safety reasons be possible to recover by the administrators of the business. By accepting this invitation you will be added to the business and your files will have master key applied to them. If you don’t want to be part of this business, please ignore this email and proceed by &lt;a href='{1}'&gt;signing up&lt;/a&gt; instead.</value>
   </data>
   <data name="BusinessLabel">
     <value>Business</value>
@@ -6349,6 +6465,9 @@ AxCrypt사용은 매우 쉽습니다. 매인 윈도우 창으로 시작하거나
   </data>
   <data name="WhyAxCryptBusiness">
     <value>왜 AxCrypt Business여만 할까요?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>&lt;span&gt;AxCrypt&lt;/span&gt;를 선택하는 이유</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>비밀번호를 잊어버리지 않습니다!</value>

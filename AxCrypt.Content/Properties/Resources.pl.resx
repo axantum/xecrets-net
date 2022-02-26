@@ -2474,6 +2474,9 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   <data name="HomeHeroHeading">
     <value>„Zaawansowane szyfrowanie w niezwykle prostym ustawieniu”</value>
   </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>„Zaawansowane &lt;span&gt;szyfrowanie&lt;/span&gt; w niezwykle &lt;span&gt;prostym&lt;/span&gt; ustawieniu”</value>
+  </data>
   <data name="HomeHeroSubheading">
     <value>Wybór redakcji PCMag 2022</value>
   </data>
@@ -6200,6 +6203,9 @@ Aby uzyskać więcej informacji, kliknij przycisk OK, aby otworzyć przeglądark
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Dlaczego AxCrypt Business </value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Dlaczego warto wybrać &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Nie zapomnę mojego hasła!</value>
