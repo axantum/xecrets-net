@@ -241,6 +241,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Verifica di AxCrypt ID</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Un ultimo passaggio ...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Siamo felici che tu ti sia unito a noi in questo viaggio nella sicurezza informatica.  </value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Per completare la registrazione devi verificare il tuo indirizzo email. In questo modo proverai che sei il titolare dell'indirizzo email e ci fornirai il consenso ad inviarti email.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Ottieni AxCrypt per i tuoi dispositivi mobili!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Seguici sui social</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Per maggiori dettagli si prega di leggere la nostra pagina &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;Privacy Policy&lt;/a&gt;.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Se hai domande contattaci all'indirizzo &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; !</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
@@ -304,7 +325,7 @@ Scegli una password difficile da indovinare, poiché proteggerà sia le password
     <value>Sei un'azienda, un blogger, un vlogger, un influencer o un editore di media? Il programma di affiliazione AxCrypt offre alcune delle migliori remunerazioni sul mercato.</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>Commissioni generose - Siamo orgogliosi di offrire una commissione del 25%, una delle migliori del settore.</value>
+    <value>Commissioni generose - Siamo lieti di offrire una delle commissioni migliori del settore. Contattaci per maggiori dettagli!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Account Manager dedicato - Con un Account Manager dedicato, avrai l'assistenza di cui hai bisogno in ogni fase del percorso, dalla configurazione alla consulenza individuale.</value>
@@ -334,8 +355,7 @@ Scegli una password difficile da indovinare, poiché proteggerà sia le password
     <value>Accedi a contatti e materiali promozionali esclusivi. Sfrutta le nostre risorse di marketing per far decollare le tue campagne</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>Segnala AxCrypt e guadagna il 25% di commissione su ogni conversione pagata
-</value>
+    <value>Segnala AxCrypt e ottieni una delle migliori commissioni del settore per ogni conversione in abbonamento</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt ora ti offre l'opportunità di affiliarti per poter guadagnare da ogni vendita promuovendo AxCrypt. Comincia ora.</value>
@@ -748,8 +768,14 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="BusinessFirstBodyHeading">
     <value>Crittografia Semplice, Affidabile e Forte</value>
   </data>
+  <data name="BusinessFirstBodyText">
+    <value>&lt;p&gt;AxCrypt ora offre la sicurezza dei file per aziende ed organizzazioni - con crittografia AES a 256 bit. Condividere file con il resto del team è semplicissimo grazie alle nostre funzionalità di cifratura dei file nel cloud e condivisione delle chiavi per i file on-premise. Ciò consente di rispettare le normative sulla protezione dei dati, proteggendo i file da costose violazioni dei dati.&lt;/p&gt;&lt;p&gt;Con AxCrypt Business puoi anche accedere alla nostra Gestione Password, dove puoi salvare e gestire le tue password e i tuoi codici in modo sicuro. AxCrypt è disponibile in molte lingue: inglese, olandese, francese, tedesco, italiano, coreano, polacco, portoghese, russo, spagnolo, svedese, turco e presto molte altre. Con la app AxCrypt puoi criptare e decriptare file sul tuo telefono, ovunque e in qualsiasi momento.&lt;/p&gt;&lt;p&gt;Per maggiori informazioni, visita la pagina &lt;a href='/information/features'&gt;Pagina funzionalità&lt;/a&gt; e non dimenticare di leggere &lt;a href='/information/terms-of-use'&gt;Termini di utilizzo&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Presto saranno disponibili più Funzionalità Business esclusive. Non perdertele!&lt;/p&gt;</value>
+  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt ora offre la sicurezza dei file per aziende ed organizzazioni - con crittografia AES a 256 bit. Condividere file con il resto del team è semplicissimo grazie alle nostre funzionalità di cifratura dei file nel cloud e condivisione delle chiavi per i file on-premise. Ciò consente di rispettare le normative sulla protezione dei dati, proteggendo i file da costose violazioni dei dati.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>Con AxCrypt Business puoi accedere anche al sistema di Gestione Password, dove puoi salvare e gestire le tue password e i tuoi codici in modo sicuro. AxCrypt è disponibile in molte lingue: inglese, olandese, francese, tedesco, italiano, coreano, polacco, portoghese, russo, spagnolo, svedese, turco e presto molte altre. Con la app AxCrypt puoi criptare e decriptare file sul tuo telefono, ovunque e in qualsiasi momento. </value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Per ulteriori informazioni, visita la nostra &lt;a href='/information/features'&gt;pagina delle funzionalità&lt;/a&gt; e non dimenticare di leggere i &lt;a href='/information/terms-of-use'&gt;Termini di utilizzo&lt;/a&gt;.</value>
@@ -1107,7 +1133,7 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
     <value>Annullato '{0}'.</value>
   </data>
   <data name="CancelSubscriptionPrompt" xml:space="preserve">
-    <value>Annulla l'iscrizione</value>
+    <value>Annulla l'abbonamento</value>
   </data>
   <data name="CannotStartApplication" xml:space="preserve">
     <value>Impossibile avviare l'applicazione per '{0}'.</value>
@@ -1190,6 +1216,9 @@ Devi effettuare queste operazioni per completare il processo.</value>
   </data>
   <data name="ChineseLanguageSelectionText" xml:space="preserve">
     <value>中文 (Cinese)</value>
+  </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Scegli un piano</value>
   </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Per iniziare con il tuo account, scegli se intendi utilizzare AxCrypt principalmente come utente privato o come azienda.</value>
@@ -1590,6 +1619,19 @@ il servizio personale diretto e il supporto sono in inglese.</value>
   <data name="DownloadLinkLabel">
     <value>Scarica</value>
   </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt;Cripta e decripta i tuoi file ovunque e in qualsiasi momento. Le app per dispositivi mobili sono compatibili con i più diffusi sistemi di archiviazione in cloud come Google Drive e Dropbox (e altri se ne aggiungeranno presto).&lt;/p&gt;&lt;p&gt;Potrai sempre visualizzare i tuoi file protetti già esistenti e i file condivisi con te su qualsiasi piattaforma, senza necessità di abbonamento. Adesso anche su dispositivi mobili!&lt;/p&gt;&lt;p&gt;Scopri di più &lt;a href='#'&gt;here&lt;/a&gt;&lt;/p&gt;
+</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Cripta e decripta file, ovunque e in qualsiasi momento. Le app supportano i più comuni sistemi di archiviazione in cloud come Google Drive e Dropbox  (e molti altri si aggiungeranno presto).</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>Potrai sempre visualizzare i tuoi file protetti già esistenti e i file condivisi con te su qualsiasi piattaforma, senza necessità di abbonamento. Adesso anche su dispositivi mobili!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Scopri di più &lt;a href={url}&gt;qui&lt;/a&gt;</value>
+  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
   </data>
@@ -1715,6 +1757,9 @@ il servizio personale diretto e il supporto sono in inglese.</value>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Esci</value>
+  </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>Il tuo abbonamento è scaduto per impossibilità di addebitare la tua carta di credito. Aggiorna i dati di pagamento per continuare l'abbonamento. </value>
   </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>Scadrà in</value>
@@ -2096,6 +2141,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   </data>
   <data name="FeaturesMadeInSweden">
     <value>"Made in Sweden" con server in Svezia</value>
+  </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>Cripta e decripta file sul telefono, ovunque e in qualsiasi momento.</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Non perderti le funzionalità che implementeremo esclusivamente per gli utenti Business.</value>
@@ -2493,6 +2541,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   <data name="GetStartedLinkLabel">
     <value>Inizia</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>INIZIAMO!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>L'app mobile AxCrypt è disponibile su Android e iOS e ti consente di aprire e visualizzare qualsiasi file criptato dalle nostre app desktop con versione completa.</value>
   </data>
@@ -2589,6 +2640,9 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>L'elenco dei File Recenti è disabilitato. Vai in Opzioni per abilitarlo.</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>&lt;span&gt;Inizia ad usare&lt;/span&gt; AxCrypt</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Scarica</value>
   </data>
@@ -2607,8 +2661,38 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="HomeGetStartedListShareParagraph">
     <value>Condividi i tuoi file protetti con un solo click</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Guarda &lt;span&gt;il tutorial&lt;/span&gt; per iniziare ancora più velocemente</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>paesi rappresentati</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;anni&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>consegna affidabile</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20M+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>download eseguibili in tutto il mondo</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"Crittografia avanzata e un'impostazione semplicissima"</value>
+  </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"La crittografia &lt;span&gt;avanzata&lt;/span&gt; con impostazioni &lt;span&gt;super &lt;/span&gt; semplici"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300+&lt;span&gt;siti&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>raccomandazioni</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>Editors' Choice di PCMag 2022</value>
@@ -2618,6 +2702,9 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   </data>
   <data name="HomeLinkLabel">
     <value>Home</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Cripta e decripta file sul tuo telefono Android, iPhone o tablet, ovunque, in qualsiasi momento.  </value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -2652,8 +2739,23 @@ Se per qualsiasi ragione non sai o non ti ricordi la password, devi resettare la
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Crittografia forte</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Restiamo in contatto</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Cliccando su Tienimi aggiornato, acconsenti ad essere contattato 
+ da AxCrypt.
+Per maggiori informazioni su come utilizziamo le informazioni che comunichi qui,
+consulta la Privacy Policy AxCrypt.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Registrati gratuitamente e resta aggiornato con le nostre news</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Per ulteriori testimonianze, visita &lt;a href='/about/awards'&gt;premi &amp; recensioni&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>Cosa dicono &lt;span&gt;di noi&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuti</value>
@@ -3039,6 +3141,9 @@ SVEZIA</value>
   <data name="JobTitleLabel">
     <value>Qualifica</value>
   </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Tienimi aggiornato</value>
+  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Seleziona un File Chiave</value>
   </data>
@@ -3183,6 +3288,9 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Legale</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Iniziamo!</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -3635,6 +3743,9 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Senza Premium puoi solo visualizzare e decriptare in modo permanente i file criptati.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Al termine del periodo di prova, le applicazioni mobili AxCrypt non potranno essere più utilizzate per proteggere nuovi file (sarà comunque sempre possibile accedere ai file protetti in precedenza).</value>
+  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Quando scade il periodo di prova, continuerai automaticamente ad utilizzare AxCrypt Free a meno che tu non scelga di acquistare un abbonamento.</value>
   </data>
@@ -3697,6 +3808,21 @@ Questo programma è autorizzato secondo l'accordo.
   </data>
   <data name="MobileAppText">
     <value>Android 4.0.3 o successivo, iOS 8.0 o successivo.</value>
+  </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Scegli i file da</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Decripta i file protetti&lt;/fc&gt; facilmente da computer e da dispositivi mobili</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Cripta&lt;/fc&gt; i file contenenti dati sensibili direttamente sul tuo telefono</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Apri &lt;fc&gt;i file AxCrypt &lt;/fc&gt; sul tuo telefono</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>Accedi al &lt;fc&gt;Gestore Password&lt;/fc&gt; AxCrypt in un solo click</value>
   </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Mensile</value>
@@ -3844,6 +3970,9 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Clicca per selezionare un file protetto da aprire.</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>Vuoi aprire la pagina da cui puoi acquistare?</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>Sistema operativo</value>
@@ -4120,11 +4249,17 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
+  <data name="PremiumFirstBodyText">
+    <value>&lt;p&gt;Sei interessato ad un abbonamento, ma non sei sicuro che faccia al caso tuo? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Puoi provare gratuita AxCrypt Premium per 30 giorni.&lt;/a&gt;&lt;/p&gt;&lt;p&gt; AxCrypt Premium ti consente di accedere a funzionalità estese ed eccitanti! Cripta i tuoi file con l'algoritmo AES-256 – il più potente degli algoritmi AES, utilizzato a livello mondiale per proteggere informazioni sensibili e riservate a tutti i livelli. Proteggere le tue cartelle non è mai stato così semplice, basta un semplice click per proteggere automaticamente i nuovi file.&lt;/p&gt;&lt;p&gt;Anche se devi condividere i file protetti, avrai a disposizione la funzionalità di condivisione chiavi, anche in caso di cifratura dei file in cloud su Dropbox, Google Drive, etc. L'app AxCrypt ti permette di criptare e decriptare i file sul tuo telefono, ovunque e in qualsiasi momento.&lt;/p&gt;&lt;p&gt;Vuoi salvare le tue password in maniera sicura e facile? Usa il nostro sistema di Gestione e generazione password per avere tutte le tue password al sicuro in cloud.&lt;/p&gt;&lt;p&gt;Provalo e scopri tutte le funzionalità e i benefici che offre!&lt;/p&gt;</value>
+  </data>
   <data name="PremiumFirstBodyText1">
     <value>Sei interessato ad un abbonamento ma non sei sicuro che si adatti alle tue esigenze? &lt;a href={url}&gt;Puoi avere a disposizione 30 giorni di AxCrypt Premium gratis.&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>Con AxCrypt Premium hai accesso a funzionalità estese e caratteristiche entusiasmanti! Cripta i tuoi file con AES-256 - il più potente algoritmo AES. Viene utilizzato a livello globale per proteggere informazioni sensibili e classificate di tutti i livelli. Proteggere le cartelle non è mai stato così facile, basta un solo click per proteggere automaticamente i nuovi file.</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>Anche se devi condividere i file protetti, avrai a disposizione la funzionalità di condivisione chiavi, che potrai usare anche in caso di cifratura dei file in cloud su Dropbox, Google Drive, etc. L'app AxCrypt ti permette di criptare e decriptare i file sul tuo telefono, ovunque e in qualsiasi momento.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Vuoi salvare le password in modo sicuro e facile? Utilizza la nostra gestione delle password ed il nostro generatore di password per mantenere tutte le tue password al sicuro nel cloud.</value>
@@ -4266,6 +4401,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Condivisione Chiavi</value>
+  </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Crittografia per dispositivi mobili</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Altre Funzionalità Esclusive in Arrivo</value>
@@ -4514,6 +4652,9 @@ HubSpot è una soluzione software integrata che copre vari aspetti delle nostre 
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Crittografia più forte con AES-256</value>
   </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>Cripta e decripta file al volo con la app per dispositivi mobili</value>
+  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Inizia ora la prova gratuita</value>
   </data>
@@ -4740,6 +4881,9 @@ La ricevuta del tuo acquisto ti è stata inviata per e-mail.</value>
   </data>
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>Leggi le ultime notizie</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Leggi gli ultimi &lt;span&gt;posts sul nostro blog&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Scopri di più sul piano business</value>
@@ -5310,6 +5454,9 @@ Oggetto: Rapporto Istantaneo AxCrypt </value>
   <data name="SecretsSortOrderOptionNone" xml:space="preserve">
     <value>[Nessuno]</value>
   </data>
+  <data name="SecretsWarningIsReadOnly">
+    <value>Non hai un piano di abbonamento valido, quindi non puoi più modificare o creare nuove password. Puoi però ancora vedere le voci esistenti. Se non hai utilizzato il tuo periodo di prova gratuito di 30 giorni, puoi farlo adesso dalla pagina &lt;a href="/Home/Upgrade"&gt;qui&lt;/a&gt;.</value>
+  </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Il tuo abbonamento Premium sta per scadere, il {0}. In seguito dovrai prolungare il tuo abbonamento Premium per modificare o creare nuove password. Avrai accesso in sola lettura per sempre.</value>
   </data>
@@ -5855,6 +6002,12 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="TermsOfUseBlock11Heading">
     <value>Prova Premium</value>
   </data>
+  <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
+    <value>Prova Premium &amp; Business</value>
+  </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>Ai nuovi utenti offriamo un periodo di prova gratuita di 30 giorni per i piani AxCrypt Premium o Business. Se non ti piace il prodotto, puoi cancellare l'abbonamento prima del termine del periodo di prova.  Puoi disdire l'abbonamento in ogni momento. Questo non influirà sul periodo di prova e potrai ancora utilizzare tutte le funzionalità incluse nell'abbonamento Premium o Business durante il periodo di prova. In caso di mancata cancellazione dell'abbonamento, al termine dei 30 giorni di prova gratuita addebiteremo la tua carta di credito. Non è previsto alcun rimborso se l'abbonamento non è stato disdetto durante il periodo di prova. AxCrypt si riserva il diritto di ritirare o modificare tali offerte in ogni momento senza preavviso.</value>
+  </data>
   <data name="TermsOfUseBlock11Text1">
     <value>Potremmo offrirti di provare Premium gratuitamente, dandoti accesso a funzionalità estese per un periodo limitato. Tali offerte sono pensate per persona, non per account ID AxCrypt. Ci riserviamo il diritto di ritirare o modificare tali offerte in qualsiasi momento senza preavviso.</value>
   </data>
@@ -6189,6 +6342,12 @@ Il Team di AxCrypt</value>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Clicca qui per accedere a tutte le funzioni di crittografia!</value>
   </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>Scopri le fantastiche funzionalità che abbiamo progettato per potenziare la crittografia sul tuo dispositivo mobile. Acquista i nostri &lt;b&gt;abbonamenti o richiedi la prova gratuita di 30 giorni&lt;/b&gt;.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Sblocca le nostre fantastiche funzionalità!</value>
+  </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} per '{0}'.</value>
   </data>
@@ -6403,6 +6562,9 @@ Il Team di AxCrypt</value>
   <data name="WeakPasswordLabel">
     <value>Password debole</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>Bentornato!</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>Benvenuto in AxCrypt!</value>
   </data>
@@ -6445,6 +6607,9 @@ Per ulteriori informazioni, clicca OK per aprire il nostro sito nel browser.</va
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Perchè AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Perché scegliere &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Non dimenticherò la mia password!</value>

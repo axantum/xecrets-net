@@ -216,6 +216,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID验证</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>又一步...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>我们很高兴您能与我们一起踏上这次网络安全之旅。</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>要完成注册过程，您必须验证您的电子邮件地址。 这样做证明您拥有该电子邮件，并允许我们向您发送电子邮件。</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>为您的移动设备获取AxCrypt！</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>关注我们的社交媒体</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>请阅读我们的&lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;隐私政策&lt;/a&gt;了解详情。</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>联系我们&lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;如果您有任何问题！</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;停止！&lt;/b&gt;
 
@@ -280,7 +301,7 @@
     <value>无论您是企业，博主，视频博客，影响者还是媒体发布者，Axcrypt联盟计划都可以提供市场上最好的奖励。</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>慷慨的佣金 - 我们很自豪能够提供25％的佣金，这是业内最好的之一。</value>
+    <value>慷慨的佣金-我们很自豪能够提供业内最好的佣金之一。 伸手去拿细节！</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>专用客户经理 - 通过专门的客户经理，您将获得从设置到一对一咨询的每个步骤所需的帮助。</value>
@@ -310,7 +331,7 @@
     <value>获得独家连接和宣传材料。 利用我们的营销资产，让您的营销活动开始</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>推荐AxCrypt并在每次付费转换中获得25％的佣金</value>
+    <value>提到AxCrypt，在每次付费转换中获得业界最好的佣金之一</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt现在为您提供一个联盟机会，您可以通过推广AxCrypt从每次销售中获得报酬。 让我们现在开始吧。</value>
@@ -344,6 +365,9 @@
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>每月</value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>年报</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>匿名重命名</value>
@@ -711,8 +735,14 @@
   <data name="BusinessFirstBodyHeading">
     <value>简单，可靠和强大的加密</value>
   </data>
+  <data name="BusinessFirstBodyText">
+    <value>&lt;p&gt;AxCrypt现在为公司和组织提供文件安全-采用256位AES加密。 与团队的其他成员共享文件是屡获殊荣的容易与我们的云存储意识和关键共享功能的前提文件。 这使您能够遵守数据保护法规，同时保护您的文件免受代价高昂的数据泄露。&lt;/p&gt;&lt;p&gt;使用AxCrypt Business，您还可以访问我们的密码管理-在那里您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。&lt;/p&gt;&lt;p&gt;有关更多信息，请访问我们的&lt;a href='/消息/功能'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/消息/使用条款'&gt;使用条款&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;更多独家业务功能即将推出。 不要错过！&lt;/p&gt;</value>
+  </data>
   <data name="BusinessFirstBodyText1">
     <value>现在AxCrypt为公司和组织提供文件安全–采用256位AES加密。 与团队其他成员共享文件是屡获殊荣的轻松与我们的云存储意识和内部文件的关键共享功能。 这使您可以遵守数据保护法规，同时保护您的文件免受代价高昂的数据泄露。</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>使用AxCrypt Business，您还可以访问我们的密码管理-您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>欲了解更多信息，请访问我们的&lt;a href='/information/features'&gt;功能页面&lt;/a&gt;，不要忘记阅读&lt;a href='/information/terms-of-use'&gt;使用条款&lt;/a&gt;。</value>
@@ -1148,6 +1178,9 @@
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>检查是否有较新版本可供下载。 需要互联网接入。</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>选择计划</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>要开始使用您的帐户，选择您是否打算使用AxCrypt主要是作为私人用户或企业。</value>
   </data>
@@ -1536,6 +1569,18 @@
   </data>
   <data name="DownloadLinkLabel">
     <value>下载</value>
+  </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt;加密和解密文件，随时随地。 移动应用程序支持最常见的云存储，如谷歌驱动器和Dropbox（还有更多）。&lt;/p&gt;&lt;p&gt;您现有的安全文件以及与您共享的文件始终可以在任何平台上查看，而无需订阅。 现在包括移动！&lt;/p&gt;&lt;p&gt;阅读更多&lt;a href='#'&gt;这里&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>随时随地加密和解密文件。 移动应用程序支持最常见的云存储，如谷歌驱动器和Dropbox（还有更多）。</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>您的现有安全文件和与您共享的文件始终可以在任何平台上查看，而无需订阅。 现在包括移动！</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>阅读更多&lt;a href={url}&gt;在这里&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt移动</value>
@@ -2021,6 +2066,9 @@
   <data name="FeaturesMadeInSweden">
     <value>"瑞典制造"在瑞典的服务器</value>
   </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>随时随地在手机上加密和解密文件</value>
+  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>不要错过我们将专门为Business用户实施的功能。</value>
   </data>
@@ -2190,6 +2238,9 @@
   </data>
   <data name="FreeLabel">
     <value>Free</value>
+  </data>
+  <data name="FreeTrial">
+    <value>免费试用</value>
   </data>
   <data name="FullNameLabel">
     <value>全名</value>
@@ -2407,6 +2458,9 @@
   <data name="GetStartedLinkLabel">
     <value>开始</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>开始吧！</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>AxCrypt移动应用程序可在Android和iOS上使用，让您打开并查看我们完全版本化的桌面应用程序加密的任何文件。</value>
   </data>
@@ -2497,6 +2551,9 @@
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>最近的文件列表被禁用。 转到选项以启用。</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>使用AxCrypt&lt;span&gt;开始&lt;/span&gt;</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1.下载</value>
   </data>
@@ -2516,17 +2573,50 @@
   <data name="HomeGetStartedListShareParagraph">
     <value>只需单击一下即可共享您的安全文件</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>观看&lt;span&gt;我们的教程&lt;/span&gt;，它将帮助你更快地前进</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>代表国家</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;年&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>可信赖的交付</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20百万+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>全球下载</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"高级加密在一个非常简单的设置"</value>
   </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"高级&lt;span&gt;加密&lt;/span&gt;在一个超级&lt;span&gt;简单的&lt;/span&gt;设置"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300+&lt;span&gt;网站&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>建议</value>
+  </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors´ 2021选择</value>
+    <value>PCMag Editors´ 2022选择</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>全球下载量超过2000万</value>
   </data>
   <data name="HomeLinkLabel">
     <value>首页</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>随时随地加密和解密Android手机，iPhone或平板电脑上的文件。</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt移动</value>
@@ -2561,8 +2651,22 @@
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>强大的加密</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>与我们保持联系</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>通过点击保持我的更新,你同意被AxCrypt联系.
+有关我们如何使用您在此提交的信息的更多信息, 
+请参阅AxCrypt隐私政策。</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>请在下面免费注册，随时了解我们的最新消息</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;欲了解更多推荐，请前往&lt;a href='/关于/奖项'&gt;奖项与评论&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>别人&lt;span&gt;怎么说&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0}分钟</value>
@@ -2666,7 +2770,7 @@
     <value>大量数据的交换简单易行。 它确保通过互联网进行电子商务交易的安全性，例如可以传输信用卡号码。 使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
   </data>
   <data name="IndustriesGovernmentCloud">
-    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与行政系统的所有成员。</value>
+    <value>自动保护您在多个云存储服务（如谷歌驱动器和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与行政系统的所有成员。</value>
   </data>
   <data name="IndustriesGovernmentDescription">
     <value>执法人员指出，加密的广泛和越来越多的使用。 它的作用之一是保护隐私和公民自由。 加密可以防止信息被盗，从而帮助使社会更加安全和安全。 作为一个政府，您可以依靠AxCrypt来对抗来自广泛行为者的威胁，包括简单而复杂的犯罪分子，外国情报机构和压制性政府。 国安局使用AES加密数据，这应该足以证明其安全性。</value>
@@ -2702,7 +2806,7 @@
     <value>团队合作和协作</value>
   </data>
   <data name="IndustriesHealthcareCloud">
-    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
+    <value>自动保护您在多个云存储服务（如谷歌驱动器和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
   </data>
   <data name="IndustriesHealthcareDescription">
     <value>在医院，养老院和康复设施中，加密的需求变得更加普遍。 随着使用电子病历等电子健康记录的实践数量的迅速增加，通过电子邮件传输患者的医疗保健信息，包括保险信息，药物的适当剂量和其他个人信息，这是医疗保健的数字时代，敏感信息需要高度的安全性。AxCrypt为员工，患者和商业伙伴提供简单而无摩擦的用户体验。</value>
@@ -2735,7 +2839,7 @@
     <value>随时与我们联系&lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;不要忘记在社交媒体上关注我们。</value>
   </data>
   <data name="IndustriesLegalCloud">
-    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与协议和合同的所有成员。</value>
+    <value>自动保护您在多个云存储服务（如谷歌驱动器和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有信息都提供给参与协议和合同的所有成员。</value>
   </data>
   <data name="IndustriesLegalConfidentiality">
     <value>使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
@@ -2774,7 +2878,7 @@
     <value>可用的语言</value>
   </data>
   <data name="IndustriesTechCloud">
-    <value>自动保护您在多个云存储服务（如Google Drive和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
+    <value>自动保护您在多个云存储服务（如谷歌驱动器和Dropbox）上的文件/文档，并随时随地无缝管理对密码的访问。 所有参与治疗患者的所有成员都可以获得所有信息。</value>
   </data>
   <data name="IndustriesTechConfidentiality">
     <value>使用主密钥，这一功能使业务管理员能够恢复业务成员的文件，从而消除由于员工离开或忘记密码而失去对关键文件的访问权限的风险。</value>
@@ -2813,6 +2917,9 @@
 建议访问互联网，并且需要启用付费订阅计划。 某些功能更好地工作，否则关键更新可能无法到达您。
 
 您的密码不会存储在我们的服务器上，并且连接始终是加密的。</value>
+  </data>
+  <data name="InterviewsLabel">
+    <value>面谈</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>请指定时间为 'hh:mm:ss.mmm'.</value>
@@ -2940,6 +3047,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="JobTitleLabel">
     <value>职称</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>让我更新</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>选择密钥文件</value>
@@ -3078,6 +3188,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>法律</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>我们开始吧！</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -3589,6 +3702,21 @@ SE-114 29 斯德哥尔摩
   <data name="MobileAppText">
     <value>Android4.0.3或更高版本，iOS8.0或更高版本。</value>
   </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>选择文件</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>从桌面和移动端&lt;fc&gt;轻松解密&lt;/fc&gt;安全文件</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>直接在手机上&lt;fc&gt;加密&lt;/fc&gt;敏感文件</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>在手机上打开&lt;fc&gt;AxCrypt文件&lt;/fc&gt;</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>一键访问AxCrypt&lt;fc&gt;密码管理器&lt;/fc&gt;</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>每月</value>
   </data>
@@ -3727,6 +3855,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>单击以选择要打开的安全文件。</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>您想让我们打开一个网页，在那里你可以购买吗？</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>操作系统</value>
@@ -3988,11 +4119,17 @@ SE-114 29 斯德哥尔摩
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
+  <data name="PremiumFirstBodyText">
+    <value>&lt;p&gt;有兴趣获得订阅，但不确定它是否符合您的需求？ &lt;a href='https://account.axcrypt.net/zh/页面/购买'&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法. 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全文件，您将有密钥共享来为您处理，即使可以访问Dropbox，谷歌驱动器等中的云存储感知。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。&lt;/p&gt;&lt;p&gt;想以安全简便的方式保存密码？ 使用我们的密码管理和生成器，确保您的所有密码在云中安全。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
+  </data>
   <data name="PremiumFirstBodyText1">
     <value>有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href={url}&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>使用AxCrypt Premium,版，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法。 这在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>如果您还需要与他人共享安全文件，您将有密钥共享来为您处理，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>要保存密码在一个安全和简单的方法？ 使用我们的密码管理和生成器，以保持所有的密码安全在云中。</value>
@@ -4064,6 +4201,9 @@ SE-114 29 斯德哥尔摩
   <data name="PressImagesLabel">
     <value>新闻图片</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>privateinternetaccess.com约谈的首席技术官Jonatan Pettersson</value>
+  </data>
   <data name="PressLinkLabel">
     <value>新闻媒体</value>
   </data>
@@ -4132,6 +4272,9 @@ SE-114 29 斯德哥尔摩
   <data name="PricingFeatureListKeySharing">
     <value>密钥共享</value>
   </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>移动加密</value>
+  </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>更多即将推出的独家功能</value>
   </data>
@@ -4153,11 +4296,23 @@ SE-114 29 斯德哥尔摩
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>对于&lt;span&gt;组织&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>对于&lt;span&gt;私有&lt;/span&gt;用户</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>定价</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>试试我们的订阅&lt;span&gt;一个月免费&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>您想怎么付款？</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>您只能解密现有文件（您之前自己加密的文件，或其他人与您共享的文件）。</value>
   </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>优先支持</value>
@@ -4290,6 +4445,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>使用AES-256更强大的加密功能</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>使用移动应用程序即时加密和解密文件</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>现在开始免费试用</value>
@@ -4514,6 +4672,9 @@ SE-114 29 斯德哥尔摩
   <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>浏览我们最新的&lt;span&gt;博客文章&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>了解更多关于Business计划</value>
@@ -5873,6 +6034,9 @@ AxCrypt团队</value>
     <value>试试吧！</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;试一试&lt;/span&gt;1个月</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>尝试Premium版</value>
   </data>
@@ -5890,6 +6054,9 @@ AxCrypt团队</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>土耳其语</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>80%折扣</value>
   </data>
   <data name="TypographyLabel">
     <value>排版</value>
@@ -5909,6 +6076,12 @@ AxCrypt团队</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>点击这里解锁完整的加密功能！</value>
+  </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>发现惊人的功能，我们设计的授权您的移动加密与我们的&lt;b&gt;订阅现在或后30天免费试用&lt;/b&gt;。</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>解锁我们的神奇功能！</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} 为 '{0}'.</value>
@@ -6115,6 +6288,9 @@ AxCrypt团队</value>
   <data name="WeakPasswordLabel">
     <value>弱密码</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>欢迎回来！</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>欢迎到AxCrypt!</value>
   </data>
@@ -6157,6 +6333,9 @@ AxCrypt团队</value>
   </data>
   <data name="WhyAxCryptBusiness">
     <value>为什么AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>为什么选择&lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>我不会忘记我的密码！</value>

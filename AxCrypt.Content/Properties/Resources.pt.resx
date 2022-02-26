@@ -301,9 +301,6 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="AffiliateAdvantagesSubHeading">
     <value>Seja você um negócio, blogger, vlogger, influenciador ou editor de média, o programa de afiliação da AxCrypt oferece-lhe uma das melhores recompensas do mercado.</value>
   </data>
-  <data name="AffiliateAdvantagesText1">
-    <value>Comissão generosa - Orgulhamo-nos em oferecer uma comissão de 25%, uma das melhores da indústria</value>
-  </data>
   <data name="AffiliateAdvantagesText2">
     <value>Gestor de Conta Dedicado - Com um gestor de conta dedicado, obterá a ajuda de que precisa a cada passo, desde configuração até aconselhamento personalizado.</value>
   </data>
@@ -330,9 +327,6 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>Tenha acesso a ligações exclusivas e material promocional. Alavanque os nossos activos de marketing para lançar as suas campanhas</value>
-  </data>
-  <data name="AffiliateInstructionsStep3">
-    <value>Refira a AxCrypt e ganhe 25% de comissão em cada conversão paga</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>A AxCrypt oferece-lhe a oportunidade de afiliação, sendo pago por cada venda que resulte da sua promoção da AxCrypt. Vamos começar agora.</value>

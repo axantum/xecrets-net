@@ -301,9 +301,6 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   <data name="AffiliateAdvantagesSubHeading">
     <value>Que vous soyez une entreprise, un blogueur, un vlogueur, un influenceur ou un éditeur de médias, le programme d'affiliation d'Axcrypt offre certaines des meilleures récompenses du marché.</value>
   </data>
-  <data name="AffiliateAdvantagesText1">
-    <value>Une Commission généreuse - Nous sommes fiers d'offrir une commission de 25%, l'une des meilleures du secteur.</value>
-  </data>
   <data name="AffiliateAdvantagesText2">
     <value>Gestionnaire de compte dédié - Avec un gestionnaire de compte dédié, vous obtiendrez l'aide dont vous avez besoin à chaque étape du processus, de la configuration au conseil individuel.</value>
   </data>
@@ -330,9 +327,6 @@ Choisissez un mot de passe difficile à deviner. Il sera utiliser pour protéger
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>Accédez à des connexions et du matériel promotionnel exclusifs. Exploitez nos ressources marketing pour faire décoller vos campagnes.</value>
-  </data>
-  <data name="AffiliateInstructionsStep3">
-    <value>Recommandez AxCrypt et gagnez une commission de 25 % sur chaque conversion payée</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt vous offre maintenant une opportunité d'affiliation où vous êtes payé sur chaque vente en faisant la promotion d'AxCrypt. Commencez dès maintenant.</value>
@@ -2581,6 +2575,9 @@ Si pour une raison quelconque vous ne connaissez pas ou vous ne souvenez pas de 
   <data name="HomeHeroHeading">
     <value>"Un chiffrement exceptionnel et des paramètres très simples"</value>
   </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"Un &lt;span&gt;chiffrement&lt;/span&gt; exceptionnel et des paramètres très &lt;span&gt;simples&lt;/span&gt;"</value>
+  </data>
   <data name="HomeHeroSubheading">
     <value>Choix de la rédaction de PCMag 2022</value>
   </data>
@@ -4233,6 +4230,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   </data>
   <data name="PricingFeatureListKeySharing">
     <value>Partage de clés</value>
+  </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Chiffrement mobile</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>De nouvelles fonctionnalités exclusives à venir</value>
@@ -6402,6 +6402,9 @@ Pour plus d'informations, cliquez sur OK pour ouvrir un navigateur web et notre 
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Pourquoi AxCrypt Business ?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Pourquoi choisir &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Je n'oublierai pas mon mot de passe !</value>

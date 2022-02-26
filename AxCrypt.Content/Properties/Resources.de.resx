@@ -232,6 +232,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verfizierung</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Nur noch ein Schritt...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Wir freuen uns, Sie auf dieser Reise zur Cybersicherheit zu begleiten.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Um den Anmeldevorgang abzuschließen, müssen Sie Ihre E-Mail-Adresse bestätigen. Dies beweist, dass Sie die E-Mail besitzen und gibt uns die Erlaubnis, E-Mails an Sie zu senden.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Holen Sie sich AxCrypt für Ihre mobilen Geräte!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Folgen Sie uns auf unseren sozialen Medien</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Bitte lesen Sie unsere &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;Datenschutzerklärung&lt;/a&gt; für Details.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Kontaktieren Sie uns unter &lt;a href="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stop!&lt;/b&gt;
 
@@ -295,7 +316,7 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <value>Egal, ob Sie ein Unternehmen, Blogger, Vlogger, Influencer oder Medienpublisher sind, das Axcrypt-Partnerprogramm bietet einige der besten Belohnungen auf dem Markt.</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>Großzügige Provision - Wir sind stolz darauf, eine Provision von 25% anbieten zu können, eine der besten in der Branche.</value>
+    <value>Großzügige Provision - Wir sind stolz darauf, eine der besten Provisionen der Branche anbieten zu können. Erreichen Sie, um die Details zu erhalten!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Dedizierter Account-Manager - Mit einem dedizierten Account-Manager erhalten Sie bei jedem Schritt die Hilfe, die Sie benötigen, von der Einrichtung bis zur Einzelberatung.</value>
@@ -325,7 +346,7 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
     <value>Erhalten Sie Zugang zu exklusiven Verbindungen und Werbematerialien. Nutzen Sie unsere Marketing-Vermögen, um Ihre Kampagnen auf den Weg zu bringen</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>Verweisen Sie AxCrypt und verdienen Sie 25% Provision für jede bezahlte Umrechnung</value>
+    <value>Verweisen Sie AxCrypt und verdienen Sie eine der besten Provisionen der Branche für jede bezahlte Umwandlung</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt bietet Ihnen jetzt eine Partner-Möglichkeit, bei der Sie von jedem Verkauf bezahlt werden, indem Sie AxCrypt bewerben. Fangen wir jetzt an.</value>
@@ -356,6 +377,9 @@ Bitte loggen Sie sich mit dem selben Passwort ein, welches Sie zuvor benutzt hab
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Monatlich</value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Jährlich</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonym neubenennen</value>
@@ -707,8 +731,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="BusinessFirstBodyHeading">
     <value>Einfache, Zuverlässige und Starke Verschlüsselung</value>
   </data>
+  <data name="BusinessFirstBodyText">
+    <value>AxCrypt bietet jetzt Dateisicherheit für Unternehmen und Organisationen – mit 256-Bit-AES-Verschlüsselung. Das Teilen von Dateien mit dem Rest des Teams ist mit unserem Cloud-Speicherbewusstsein und der Schlüsselfreigabefunktion für lokale Dateien preisgekrönt. Auf diese Weise können Sie die Datenschutzbestimmungen einhalten und gleichzeitig Ihre Dateien vor kostspieligen Datenverletzungen schützen.&lt;/p&gt;&lt;p&gt;Mit AxCrypt Business haben Sie auch Zugriff auf unser Passwort–Management - hier können Sie Passwörter und Codes sicher speichern und verwalten. AxCrypt ist mehrsprachig und unterstützt Englisch, Niederländisch, Französisch, Deutsch, Italienisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Schwedisch, Türkisch und weitere Sprachen. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Für weitere Informationen besuchen Sie unsere &lt;a href='/information/features'&gt;Funktion-Seite&lt;/a&gt; und vergessen Sie nicht, &lt;a href='/information/terms-of-use'&gt;Nutzungsbedingungen&lt;/a&gt;</value>
+  </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt bietet jetzt Dateisicherheit für Unternehmen und Organisationen – mit 256-bit-AES-Verschlüsselung. Das teilen von Dateien mit dem rest des Teams ist preisgekrönt einfach mit unserem cloud storage awareness und Schlüsselfreigabe Funktion für On-Premise-Dateien. Auf diese Weise können Sie die Datenschutzbestimmungen einhalten und gleichzeitig Ihre Dateien vor kostspieligen Datenschutzverletzungen schützen.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>Mit AxCrypt Business haben Sie auch Zugriff auf unser Passwort–Management - hier können Sie Passwörter und Codes sicher speichern und verwalten. AxCrypt ist mehrsprachig und unterstützt Englisch, Niederländisch, Französisch, Deutsch, Italienisch, Koreanisch, Polnisch, Portugiesisch, Russisch, Spanisch, Schwedisch, Türkisch und weitere Sprachen. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Weitere Informationen finden Sie auf unserer Funktion-Seite &lt;a href='/information/features'&gt;&lt;/a&gt; und vergessen Sie nicht, &lt;a href='/information/terms-of-use'&gt;Nutzungsbedingungen&lt;/a&gt;zu Lesen.</value>
@@ -1138,6 +1168,9 @@ Sie müssen diese Schritte vollenden, um den Prozess abzuschließen.</value>
   <data name="CheckForUpdateMenuToolTip" xml:space="preserve">
     <value>Überprüfen, ob eine neuere Version zum Herunterladen verfügbar ist. Dies benötigt eine Internetverbindung.</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>Plan wählen</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>Um mit Ihrem Konto zu beginnen, wählen Sie aus, ob Sie AxCrypt hauptsächlich als privaten Benutzer oder Unternehmen verwenden möchten.</value>
   </data>
@@ -1517,6 +1550,18 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="DownloadLinkLabel">
     <value>Download</value>
+  </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt;Verschlüsseln und Entschlüsseln von Dateien, überall und jederzeit. Die mobilen Apps unterstützen die gängigsten Cloud-Speicher wie Google Drive und Dropbox (und viele weitere werden folgen).&lt;/p&gt;&lt;p&gt;Ihre vorhandenen gesicherten Dateien und Dateien, die mit Ihnen geteilt werden, können jederzeit ohne Abonnement auf jeder Plattform angezeigt werden. Jetzt auch mobil!&lt;/p&gt;&lt;p&gt;Lesen Sie mehr &lt;a href='#'&gt;hier&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Verschlüsseln und Entschlüsseln von Dateien, überall und jederzeit. Die mobilen Apps unterstützen die gängigsten Cloud-Speicher wie Google Drive und Dropbox (und viele weitere werden folgen).</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>Ihre vorhandenen gesicherten Dateien und Dateien, die mit Ihnen geteilt werden, können jederzeit ohne Abonnement auf jeder Plattform angezeigt werden. Jetzt auch mobil!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Lesen Sie mehr &lt;a href={url}&gt;hier&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -1999,6 +2044,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="FeaturesMadeInSweden">
     <value>"Made in Schweden" mit Servern in Schweden</value>
   </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>Verschlüsseln und Entschlüsseln von Dateien auf dem Handy, von überall und zu jeder Zeit</value>
+  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Verpassen Sie niemals die Funktionen, die wir exklusiv für Businessanwender implementieren.</value>
   </data>
@@ -2168,6 +2216,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="FreeLabel">
     <value>Free</value>
+  </data>
+  <data name="FreeTrial">
+    <value>Kostenlose Testversion</value>
   </data>
   <data name="FullNameLabel">
     <value>Voller Name</value>
@@ -2385,6 +2436,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="GetStartedLinkLabel">
     <value>Start</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>LOS GEHT'S!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>Die AxCrypt mobile app ist auf Android und iOS verfügbar und lässt Sie alle Dateien öffnen und anzeigen, die von unseren voll versionierten desktop-apps verschlüsselt wurden.</value>
   </data>
@@ -2475,6 +2529,9 @@ Falls Sie aus irgendeinem Grund Ihr Passwort nicht wissen oder vergessen haben, 
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>!!Vorübergehend deaktiviert, kann aber unter Optionen wieder aktiviert werden</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>&lt;span&gt;Erste Schritte&lt;/span&gt; mit AxCrypt</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Download</value>
   </data>
@@ -2493,8 +2550,38 @@ Falls Sie aus irgendeinem Grund Ihr Passwort nicht wissen oder vergessen haben, 
   <data name="HomeGetStartedListShareParagraph">
     <value>Teilen Sie Ihre gesicherten Dateien mit einem einzigen Klick</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Sehen Sie sich &lt;span&gt;unser Tutorial&lt;/span&gt; an, das Ihnen hilft, schneller loszulegen</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>vertretene Länder</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;Jahre&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>vertrauenswürdige Lieferung</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20M+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>Downloads weltweit</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"Erweiterte Verschlüsselung in einer hervorragend einfachen Einstellung"</value>
+  </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"Erweiterte &lt;span&gt;Verschlüsselung&lt;/span&gt; in einer hervorragend &lt;span&gt;einfachen&lt;/span&gt; Einstellung"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300+&lt;span&gt;Websites&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>Empfehlungen</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>PCMag Editoren Wahl 2022</value>
@@ -2504,6 +2591,9 @@ Falls Sie aus irgendeinem Grund Ihr Passwort nicht wissen oder vergessen haben, 
   </data>
   <data name="HomeLinkLabel">
     <value>Startseite</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Verschlüsseln und entschlüsseln Sie Dateien auf Ihrem Android-Handy, iPhone oder Tablet von überall und jederzeit.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -2538,8 +2628,22 @@ Falls Sie aus irgendeinem Grund Ihr Passwort nicht wissen oder vergessen haben, 
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Starke Verschlüsselung</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Bleiben Sie mit uns in Kontakt</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Indem Sie auf Keep Me Updated klicken, erklären Sie sich damit einverstanden, von AxCrypt kontaktiert zu werden.
+Weitere Informationen darüber, wie wir die von Ihnen übermittelten Informationen verwenden, finden Sie hier,
+bitte beachten Sie die AxCrypt Datenschutzerklärung.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Melden Sie sich unten kostenlos an, um über unsere Neuigkeiten auf dem Laufenden zu bleiben</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;weitere testimonials finden Sie unter &lt;a href= '/about/awards'&gt;Auszeichnungen &amp; Bewertungen&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>Was andere &lt;span&gt;sagen&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuten</value>
@@ -2793,6 +2897,9 @@ Ein Internetzugang wird jedoch empfohlen und ist für die Aktivierung Ihres beza
 
 Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer verschlüsselt.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>Interviews</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Bitte geben Sie die Zeit im Format 'hh:mm:ss.mmm' an.</value>
   </data>
@@ -2917,6 +3024,9 @@ SCHWEDEN</value>
   <data name="JobTitleLabel">
     <value>Berufsbezeichnung</value>
   </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Halte mich auf dem Laufenden</value>
+  </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Schlüsseldatei auswählen</value>
   </data>
@@ -3033,6 +3143,9 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Rechtliche</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Lass uns anfangen!</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -3440,6 +3553,21 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="MobileAppText">
     <value>Android 4.0.3 oder höher, iOS 8.0 oder höher.</value>
   </data>
+  <data name="MobileCustomFilepickerPromptTitle" xml:space="preserve">
+    <value>Wählen Sie Dateien aus</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt; Leicht entschlüsseln &lt;/ fc&gt; gesicherte Dateien sowohl vom Desktop und mobile</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt; Verschlüsseln&lt;/fc&gt; sensible Dateien direkt auf Ihrem Handy</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Öffnen Sie &lt;fc&gt;AxCrypt-Dateien&lt;/fc&gt; auf Ihrem Handy</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>Ein-Klick-Zugriff auf den AxCrypt &lt;fc&gt;Passwortmanager&lt;/fc&gt;</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Monatlich</value>
   </data>
@@ -3577,6 +3705,9 @@ Um zur Startseite zurückzukehren, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt
   </data>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>Klicken Sie, um eine gesicherte Datei zum Öffnen auszuwählen.</value>
+  </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>Möchten Sie, dass wir eine Webseite öffnen, auf der Sie einen Kauf tätigen können?</value>
   </data>
   <data name="OperatingSystemsLabel">
     <value>Betriebssystem</value>
@@ -3833,11 +3964,17 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   <data name="PremiumFirstBodyHeading">
     <value>AxCrypt Premium</value>
   </data>
+  <data name="PremiumFirstBodyText">
+    <value>&lt;p&gt;Sie interessieren sich für ein Abonnement, sind sich aber nicht sicher, ob es Ihren Anforderungen entspricht? &lt;a href='https://account.axcrypt.net/de/Startseite/Kauf '&gt; Sie können AxCrypt Premium 30 Tage lang kostenlos nutzen.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit zum Schutz sensibler und Verschlusssachen auf allen Ebenen eingesetzt. Sichern von Ordnern war noch nie einfacher, nur einen einzigen Klick, um automatisch neue Dateien zu sichern.&lt;/p&gt;&lt;p&gt;Wenn Sie auch gesicherte Dateien mit anderen teilen müssen, haben Sie Key Sharing, um das für Sie zu erledigen, auch mit Zugriff auf Cloud-Speicher in Dropbox, Google Drive usw. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unser Passwort-Management und Generator, um alle Ihre Passwörter sicher in der Cloud zu halten.&lt;/p&gt;&lt;p&gt;Probieren Sie es aus, um alle Funktionen und Vorteile zu entdecken!&lt;/p&gt;</value>
+  </data>
   <data name="PremiumFirstBodyText1">
     <value>Interessiert an einem Abonnement, aber nicht sicher, ob es Ihren Bedürfnissen entspricht? &lt;a href={url}&gt;Sie können 30 Tage AxCrypt Premium kostenlos genießen.&lt;/a&gt;</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit verwendet, um sensible und geheime Informationen aller Ebenen zu schützen. Ordner sichern war noch nie einfacher, nur mit einem einzigen Klick automatisch neue Dateien zu sichern.</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>Wenn Sie auch gesicherte Dateien für andere freigeben müssen, haben Sie die Schlüsselfreigabe, um dies für Sie zu erledigen, auch wenn Sie auf Cloud-Speicher in Dropbox, Google Drive usw. zugreifen können. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Handy von überall und jederzeit ver- und entschlüsseln.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unsere Passwortverwaltung und generator, um alle Ihre Passwörter sicher in der cloud zu halten.</value>
@@ -3909,6 +4046,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   <data name="PressImagesLabel">
     <value>Pressebildern</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>CTO Jonatan Pettersson im Interview mit privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Presse und Medien</value>
   </data>
@@ -3968,6 +4108,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   <data name="PricingFeatureListKeySharing">
     <value>Schlüsselfreigabe</value>
   </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Mobile Verschlüsselung</value>
+  </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Weitere Kommende Exklusive Funktionen</value>
   </data>
@@ -3986,11 +4129,23 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>Für &lt;span&gt;Organisationen&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Für &lt;span&gt;private&lt;/span&gt; Benutzer</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Preise</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Testen Sie unsere Abonnements für &lt;span&gt;einen Monat kostenlos&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>Wie wollen Sie bezahlen?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Sie können nur vorhandene Dateien entschlüsseln (Dateien, die Sie zuvor selbst verschlüsselt haben, oder Dateien, die jemand anderes für Sie freigegeben hat).</value>
   </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Vorrangige Unterstützung</value>
@@ -4123,6 +4278,9 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Stärkere Verschlüsselung mit AES-256</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>Verschlüsseln und entschlüsseln Sie Dateien im Handumdrehen mit der mobilen App</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Starten Sie jetzt Kostenlose Testversion</value>
@@ -4352,6 +4510,9 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
   <data name="RateApplicationLinkSecondPartIos" xml:space="preserve">
     <value>App store</value>
     <comment>Clickable part of "Rate us on App Store" link in iOS mobile application</comment>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Durchsuchen Sie unsere neuesten &lt;span&gt;Blogbeiträge&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Lesen Sie mehr über den Businessplan</value>
@@ -5722,6 +5883,9 @@ Das AxCrypt Team</value>
     <value>Versuchen Sie es!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Probieren&lt;/span&gt; 1 Monat</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Versuchen Sie Premium</value>
   </data>
@@ -5739,6 +5903,9 @@ Das AxCrypt Team</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkisch</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>20% Rabatt</value>
   </data>
   <data name="TypographyLabel">
     <value>Typografie</value>
@@ -5758,6 +5925,12 @@ Das AxCrypt Team</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Klicken Sie hier, um vollständige Verschlüsselungsfunktionen freizuschalten!</value>
+  </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>Entdecken Sie &lt;b&gt;jetzt oder nach einer 30-tägigen kostenlosen Testversion&lt;/b&gt; die erstaunlichen Funktionen, die wir entwickelt haben, um Ihre mobile Verschlüsselung mit unseren Abonnements zu verbessern.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Schalte unsere magischen Funktionen frei!</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} für '{0}'.</value>
@@ -5961,6 +6134,9 @@ Das AxCrypt Team</value>
   <data name="WeakPasswordLabel">
     <value>Schwaches Passwort</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>Willkommen zurück!</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>Willkommen bei AxCrypt!</value>
   </data>
@@ -6003,6 +6179,9 @@ Für mehr Informationen klicken Sie auf OK um einen Webbrowser zu unserer Websit
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Warum AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Warum wählen Sie &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Ich werde mein Passwort nicht vergessen!</value>

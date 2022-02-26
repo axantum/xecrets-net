@@ -216,6 +216,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt kimliği onay</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Sadece bir adım daha...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Bu siber güvenlik yolculuğunda sizleri de aramızda görmekten heyecan duyuyoruz.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Kayıt işlemini tamamlamak için e-posta adresinizi doğrulamalısınız. Bunu yapmak, e-postanın size ait olduğunu kanıtlar ve size e-posta göndermemize izin verir.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Mobil cihazlarınız için AxCrypt edinin!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Bizi Sosyal Medyada Takip Edin</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Ayrıntılar için lütfen &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;gizlilik politikamızı&lt;/a&gt; okuyun.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Herhangi bir sorunuz varsa &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; adresinden bize ulaşın!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Durun!&lt;/b&gt;
 
@@ -279,7 +300,7 @@ Tahmin edilmesi zor bir tane seç çünkü bu hem siteye erişimi sağlar hem de
     <value>İster bir işletme, blog yazarı, vlogger, influencer veya medya yayıncısı olun, Axcrypt ortaklık programı piyasadaki en iyi ödüllerden bazılarını sunar.</value>
   </data>
   <data name="AffiliateAdvantagesText1">
-    <value>Cömert komisyon - Sektördeki en iyilerden biri olan% 25'lik bir komisyon sunmakla gurur duyuyoruz.</value>
+    <value>Cömert komisyon - Sektördeki en iyi komisyonlardan birini sunmaktan gurur duyuyoruz. Detayları almak için ulaşın!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Özel Hesap Yöneticisi - Özel bir hesap yöneticisiyle, kurulumdan bire bir danışmanlığa kadar yolun her adımında ihtiyacınız olan yardımı alacaksınız.</value>
@@ -309,7 +330,7 @@ Tahmin edilmesi zor bir tane seç çünkü bu hem siteye erişimi sağlar hem de
     <value>Özel bağlantılara ve promosyon malzemelerine erişin. Kampanyalarınızı hayata geçirmek için pazarlama varlıklarımızdan yararlanın</value>
   </data>
   <data name="AffiliateInstructionsStep3">
-    <value>AxCrypt'i tanıtın ve her ücretli dönüşüm için %25 komisyon kazanın</value>
+    <value>AxCrypt'e başvurun ve her ücretli dönüşümde sektörün en iyi komisyonlarından birini kazanın</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt şimdi size, AxCrypt'i tanıtarak her satıştan ödeme alacağınız bir ortaklık fırsatı sunuyor. Haydi şimdi başlayalım.</value>
@@ -352,6 +373,9 @@ Lütfen aynı şifreyi kullanarak oturum aç.</value>
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Aylık</value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Yıllık</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonim yeni isimlendirme</value>
@@ -723,6 +747,9 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt artık 256-bit AES şifreleme ile firmalara ve kuruluşlara da dosya güvenliği sunuyor. Takımın diğer üyeleri ile dosya paylaşmak, bulut depolama farkındalığımız ve yerel dosyalarda anahtar paylaşımı ile aldığı ödülleri hak edecek kadar kolay. Bu sayede, dosyalarınızı masraflı veri ihlallerinden korurken veri koruma yönetmeliklerine uyum sağlarsınız.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>AxCrypt Business ile, parolaları ve kodları güvenli bir şekilde saklayabileceğiniz ve yönetebileceğiniz Parola Yönetimimize de erişebilirsiniz. AxCrypt çok dillidir, İngilizce, Felemenkçe, Fransızca, Almanca, İtalyanca, Korece, Lehçe, Portekizce, Rusça, İspanyolca, İsveççe, Türkçe ve daha fazlasını destekler. AxCrypt mobil uygulamasıyla, telefonunuzdaki dosyaları istediğiniz yerden ve istediğiniz zaman şifreleyebilir ve şifresini çözebilirsiniz.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Daha fazla bilgi için, &lt;a href='/information/terms-of-use'&gt;Kullanım koşullarımızı&lt;/a&gt; ziyaret edin.</value>
@@ -1564,6 +1591,15 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="DownloadLinkLabel">
     <value>İndir</value>
   </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Dosyaları istediğiniz zaman istediğiniz yerde şifreleyin ve şifresini çözün. Mobil uygulamalar, Google Drive ve Dropbox gibi en yaygın bulut depolarını destekler (daha fazlası gelecek).</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>Mevcut güvenli dosyalarınız ve sizinle paylaşılan dosyalar, herhangi bir platformda abonelik olmadan her zaman görüntülenebilir. Artık mobil de dahil!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Daha fazlasını &lt;a href={url}&gt;buradan&lt;/a&gt; okuyun</value>
+  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobil</value>
   </data>
@@ -2056,6 +2092,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="FeaturesMadeInSweden">
     <value>İsveç'te sunucuları ile "İsveç Malı"</value>
   </data>
+  <data name="FeaturesMobileAppsDescription">
+    <value>Telefondaki dosyaları her yerden ve her zaman şifreleyin ve şifresini çözün</value>
+  </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Sadece Business kullanıcıları için getireceğimiz özellikleri kaçırmayın.</value>
   </data>
@@ -2231,6 +2270,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="FreeLabel">
     <value>Ücretsiz</value>
+  </data>
+  <data name="FreeTrial">
+    <value>Ücretsiz deneme</value>
   </data>
   <data name="FullNameLabel">
     <value>Tam ad</value>
@@ -2448,6 +2490,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="GetStartedLinkLabel">
     <value>Başlangıç</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>BAŞLAYIN!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>AxCrypt mobil uygulaması Android ve iOS'ta mevcut olup, tam sürüm masaüstü uygulamalarımız kullanılarak şifrelenmiş herhangi bir dosyayı açmanızı ve görüntülemenizi sağlar.</value>
   </data>
@@ -2544,6 +2589,9 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Son Dosyalar listesi devre dışı.  Etkinleştirmek için Ayarlara gidin.</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>AxCrypt ile &lt;span&gt;başlayın&lt;/span&gt;</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. İndir</value>
   </data>
@@ -2562,8 +2610,38 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   <data name="HomeGetStartedListShareParagraph">
     <value>Güvenli dosyalarınızı sadece tek tıkla paylaşın</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Daha hızlı ilerlemenize yardımcı olacak &lt;span&gt;eğiticimizi&lt;/span&gt; izleyin</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>temsil edilen ülkeler</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;yıl&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>güvenilir teslimat</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20M+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>dünya çapında indirmeler</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"Oldukça basit bir ortamda ileri düzey şifreleme"</value>
+  </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"Oldukça &lt;span&gt;basit&lt;/span&gt; bir ortamda ileri düzey &lt;span&gt;şifreleme&lt;/span&gt;"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300'den fazla&lt;span&gt;site&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>öneriler</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>PCMag Editörün Seçimi 2022</value>
@@ -2573,6 +2651,9 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   </data>
   <data name="HomeLinkLabel">
     <value>Ana Sayfa</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Android telefonunuzdaki, iPhone'unuzdaki veya tabletinizdeki dosyaları istediğiniz zaman istediğiniz yerden şifreleyin ve şifresini çözün.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobil</value>
@@ -2607,8 +2688,20 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Güçlü şifreleme</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Bizimle iletişimde kalın</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Beni Güncelle'yi tıklatarak, AxCrypt tarafından sizinle iletişime geçilmesini kabul etmiş olursunuz. Buraya gönderdiğiniz bilgileri nasıl kullandığımız hakkında daha fazla bilgi için, lütfen AxCrypt Gizlilik Politikasına bakın.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Yeniliklerimizden haberdar olmak için aşağıdan ücretsiz üye olun</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;Diğer referanslar için &lt;a href='/about/awards'&gt;ödüller &amp; incelemeler'e&lt;/a&gt;  gidin&lt;/p&gt;</value>
+  </data>
+  <data name="HomeWhatOthersSayHeading">
+    <value>Başkalarının &lt;span&gt;söylediği&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Dakika</value>
@@ -2863,6 +2956,9 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
 
 İnternet bağlantısı önerilir ve Premium'u devreye sokmak için gereklidir. Bazı özellikler daha iyi işleyebilir ve önemli yeni sürümler internet bağlantısı olmadığında sana ulaşmayabilir.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>görüşmeler</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Lütfen zamanı 'ss:dd:ss.mmm' şeklinde belirt.</value>
   </data>
@@ -2991,6 +3087,9 @@ AB KDV Numarası SE556967618101</value>
   </data>
   <data name="JobTitleLabel">
     <value>İş Unvanı</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Beni Güncel Tut</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Bir anahtar dosya seç</value>
@@ -3133,6 +3232,9 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Yasal</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Başlayalım!</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
@@ -4092,6 +4194,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PremiumFirstBodyText2">
     <value>AxCrypt Premium ile geniş kapsamlı işlevselliğe ve heyecan verici özelliklere erişin! Dosyalarınızı, AES algoritmasının en güçlüsü olan AES-256 ile şifreleyin. Her seviyeden hassas ve gizli bilgileri korumak adına tüm dünyada kullanılmaktadır. Sadece tek tıkla yeni dosyaları otomatik şekilde güvence altına alarak klasörleri güvenli hale getirmek artık çok daha kolay.</value>
   </data>
+  <data name="PremiumFirstBodyText3">
+    <value>Güvenli dosyaları başkalarıyla da paylaşmanız gerekiyorsa, Dropbox, Google Drive vb.'deki bulut depolama farkındalığına erişiminiz olsa bile, bunu sizin için halletmek için anahtar paylaşımınız olacaktır. AxCrypt mobil uygulamasıyla, telefonunuzdaki dosyaları istediğiniz yerden ve istediğiniz zaman şifreleyebilir ve şifresini çözebilirsiniz.</value>
+  </data>
   <data name="PremiumFirstBodyText4">
     <value>Şifrelerinizi güvenli ve kolay bir şekilde kaydetmek ister misiniz? Şifre yöneticimizi ve oluşturucumuzu kullanarak şifrelerinizi bulutta güvende tutun.</value>
   </data>
@@ -4165,6 +4270,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PressImagesLabel">
     <value>Basın için görseller</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>CTO Jonatan Pettersson, privateinternetaccess.com ile röportaj yaptı</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Basın ve yayın</value>
   </data>
@@ -4233,6 +4341,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricingFeatureListKeySharing">
     <value>Anahtar Paylaşımı</value>
   </data>
+  <data name="PricingFeatureListMobileApps">
+    <value>Mobil Şifreleme</value>
+  </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Henüz Yayınlanmamış Özel Özellikler</value>
   </data>
@@ -4254,11 +4365,20 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricingFeatureListViewer">
     <value>Görüntüleyici</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>&lt;span&gt;Kuruluşlar&lt;/span&gt; için</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>&lt;span&gt;özel&lt;/span&gt; kullanıcılar için</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Fiyatlandırma</value>
   </data>
   <data name="PricingSubheading">
     <value>Nasıl ödeme yapmak istersiniz?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Yalnızca mevcut dosyaların (daha önce kendiniz şifrelediğiniz dosyalar veya başka birinin sizinle paylaştığı dosyalar) şifresini çözebileceksiniz.</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>İptalin başlıca nedenleri nelerdir?</value>
@@ -4477,6 +4597,9 @@ HubSpot, CRM sistemi aracılığıyla iletişim yönetimi dahil, çevrimiçi paz
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>AES-256 ile daha güçlü şifreleme</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>Mobil uygulama ile dosyaları anında şifreleyin ve şifresini çözün</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Ücretsiz deneme sürümünü başlatın</value>
@@ -4704,6 +4827,9 @@ Lütfen en hızlı şekilde size yardımcı olabilmemiz için &lt;a href="mailto
   </data>
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>En son haberleri okuyun</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>En son &lt;span&gt;blog yayınlarımıza&lt;/span&gt; göz atın</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>İş planı hakkında daha fazla bilgi edinin</value>
@@ -5208,6 +5334,9 @@ Konu: AxCrypt Report Snapshot</value>
   </data>
   <data name="ResellerLinkLabel">
     <value>Bayi</value>
+  </data>
+  <data name="ResellerSubscriptionExpiredWarning" xml:space="preserve">
+    <value>!!Aboneliğinizin süresi {0} tarihinden itibaren sona erdi. Lütfen uzatmak için &lt;a href="mailto:reseller@axcrypt.net"&gt;support&lt;/a&gt; ile iletişime geçin.</value>
   </data>
   <data name="ResellingLabel">
     <value>Satma</value>
@@ -6114,6 +6243,9 @@ AxCrypt Ekibi</value>
     <value>Dene!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>1 aylık &lt;span&gt;Dene&lt;/span&gt;</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Premium'u deneyin</value>
   </data>
@@ -6131,6 +6263,9 @@ AxCrypt Ekibi</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Türkçe)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>%20 indirim</value>
   </data>
   <data name="TypographyLabel">
     <value>Tipografi</value>
@@ -6365,6 +6500,9 @@ AxCrypt Ekibi</value>
   <data name="WeakPasswordLabel">
     <value>Zayıf şifre</value>
   </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>Tekrar hoşgeldiniz!</value>
+  </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>AxCrypt'e hoş geldin!</value>
   </data>
@@ -6407,6 +6545,9 @@ Daha fazla bilgi için Tamam'ı tıklayarak bir web tarayıcısı aç ve interne
   </data>
   <data name="WhyAxCryptBusiness">
     <value>Neden AxCrypt Business?</value>
+  </data>
+  <data name="WhyChooseAxcrypt">
+    <value>Neden &lt;span&gt;AxCrypt'i seçmelisiniz?&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Şifremi unutmayacağım!</value>

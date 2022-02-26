@@ -297,9 +297,6 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   <data name="AffiliateAdvantagesSubHeading">
     <value>Oavsett om du är ett företag, bloggare, vloggare, influencer, eller utgivare, erbjuder AxCrypts affiliateprogram några av de bästa belöningarna på marknaden.</value>
   </data>
-  <data name="AffiliateAdvantagesText1">
-    <value>Generös provision - Vi är stolta över att kunna erbjuda en provision på 25 %, vilket är en av de bästa inom branschen.</value>
-  </data>
   <data name="AffiliateAdvantagesText2">
     <value>Dedikerad Account Manager - Med en dedikerad account manager får all den hjälp du behöver, från installation och setup till enskild rådgivning.</value>
   </data>
@@ -326,9 +323,6 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>Få tillgång till exklusiva anslutningar och kampanjmaterial. Utnyttja våra marknadsföringstillgångar för att få igång dina kampanjer.</value>
-  </data>
-  <data name="AffiliateInstructionsStep3">
-    <value>Referera AxCrypt och tjäna 25 % i provision på varje betald konvertering</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt erbjuder dig nu en affiliatemöjlighet där du får betalt från varje försäljning genom att marknadsföra AxCrypt. Låt oss börja idag!</value>
@@ -740,15 +734,14 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="BusinessFirstBodyHeading">
     <value>Enkel, Pålitlig och Stark Kryptering</value>
   </data>
-  <data name="BusinessFirstBodyText" xml:space="preserve">
-    <value>&lt;p&gt;Nu erbjuder AxCrypt filsäkerhet för företag och organisationer - med 256-bit AES encryption. Fildelning med resten av teamet är prisbelönt enkelt med vår kunskap om molnagring och nyckeldelningsfunktion för lokala filer. Detta tillåter dig att följa dataskyddsreglerna medan dina filer skyddas från kostsamma dataintrång.&lt;/p&gt;
-&lt;p&gt;Med AxCrypt Business, har du även tillgång till vår Lösenordshanterng - där du tryggt kan lagra och hantera lösenord samt koder säkert. AxCrypt är multispråkigt, med stöd för Engelska, Holländska, Italienska, Koreanska, Polskt, Portugisiska, Ryska, Spanska, Svenska, Turkiska och fler framöver. Vi erbjuder även Mobila Appar för dig att kunna öppna krypterade filer från distans.&lt;/p&gt;&lt;p&gt;Besök vår &lt;a href='/information/features'&gt;feature page&lt;/a&gt; för mer information, och glöm inte att läsa &lt;a href='/informstion/terms-of-use'&gt;Användarvillkor&lt;a/a.&lt;/p&gt;&lt;p&gt;Fler exklusiva Affärsfunktioner kommer snart. Missa inte! &lt;/p&gt;</value>
+  <data name="BusinessFirstBodyText">
+    <value>&lt;p&gt;AxCrypt erbjuder nu filsäkerhet för företag och organisationer – med 256-bitars AES-kryptering. Att dela filer med resten av teamet är prisbelönt och enkelt med vår molnlagringsmedvetenhet och nyckeldelningsfunktion för lokala filer. Detta gör att du kan följa dataskyddsregleringar samtidigt som du skyddar dina filer från kostsamma dataintrång.&lt;/p&gt;&lt;p&gt;Med AxCrypt Business har du också tillgång till vår lösenordshanterare – där du kan lagra och hantera lösenord och koder säkert. AxCrypt är flerspråkig och stöder idag engelska, holländska, franska, tyska, italienska, koreanska, polska, portugisiska, ryska, spanska, svenska och  turkiska. Med mobilappen AxCrypt kan du kryptera och dekryptera filer på din telefon, var som helst och när som helst.&lt;/p&gt;&lt;p&gt;För mer information, besök vår &lt;a href='/information/features'&gt;funktionssida&lt; /a&gt; och glöm inte att läsa &lt;a href='/information/terms-of-use'&gt;Användarvillkoren&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Fler exklusiva Business Features kommer snart. Missa det inte!&lt;/p&gt;</value>
   </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt erbjuder nu filsäkerhet för företag och organisationer – med 256-bitars AES-kryptering. Att dela filer med resten av teamet är prisbelönt enkelt med vår medvetenhet om molnlagring och nyckeldelningsfunktion för filer på plats. Detta gör att du kan följa dataskyddsbestämmelserna samtidigt som du skyddar dina filer från kostsamma dataintrång.</value>
   </data>
   <data name="BusinessFirstBodyText2">
-    <value>Med AxCrypt Business har du också tillgång till vår lösenordshantering – där du kan lagra och hantera lösenord och koder säkert. AxCrypt är flerspråkig, och stöder engelska, nederländska, franska, tyska, italienska, koreanska, polska, portugisiska, ryska, spanska, svenska, turkiska och ännu fler som kommer. Vi erbjuder även mobilappar så att du kan öppna dina krypterade filer när du är iväg.</value>
+    <value>Med AxCrypt Business har du också tillgång till vår lösenordshantering – där du kan lagra och hantera lösenord och koder säkert. AxCrypt är flerspråkig och stöder idag engelska, holländska, franska, tyska, italienska, koreanska, polska, portugisiska, ryska, spanska, svenska och turkiska. Med mobilappen AxCrypt kan du kryptera och dekryptera filer på din telefon, var som helst och när som helst.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>För mer information, besök vår &lt;a href='/information/features'&gt;featuresida&lt;/a&gt; och glöm inte att läsa våra &lt;a href='/information/terms-of-use'&gt;Användarvillkor&lt;/a&gt;.</value>
@@ -1592,12 +1585,15 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Ladda ner</value>
   </data>
   <data name="DownloadMobileBodyText">
-    <value>&lt;p&gt;Det finns mobilappar tillgängliga för Android- och iOS-enheter. Mobilversionen är en visningsapp som låter dig öppna och läsa filer och dokument krypterade med skrivbordsapplikationen.&lt;/p&gt;&lt;p&gt;Läs mer &lt;a href='#'&gt;här&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Kryptera och dekryptera filer, var som helst och när som helst. Mobilapparna stöder de vanligaste molnlagringstjänsterna som Google Drive och Dropbox (med många fler på gång).&lt;/p&gt;&lt;p&gt;Dina befintliga säkra filer och filer som delas med dig är alltid möjliga att se och öppna, utan att ha en prenumeration, på vilken plattform som helst. Idag inkluderar detta även på mobilen!&lt;/p&gt;&lt;p&gt;Läs mer &lt;a href='#'&gt;här&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="DownloadMobileBodyText1">
-    <value>Det finns mobilappar tillgängliga för Android och iOS enheter. Mobilversionen är en visningsapp som låter dig att öppna och läsa filer och dokument som är krypterade med skrivbordsappen.</value>
+    <value>Kryptera och dekryptera filer, var som helst när som helst. Mobilapparna stöder de vanligaste molnlagringstjänsterna som Google Drive och Dropbox (med många fler på ingång).</value>
   </data>
   <data name="DownloadMobileBodyText2">
+    <value>Dina befintliga säkra filer och filer som delas med dig är alltid möjliga att se och öppna, utan att ha en prenumeration, på vilken plattform som helst. Idag inkluderar detta även på mobilen!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
     <value>Läs mer &lt;a href={url}&gt;här&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
@@ -2091,7 +2087,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>"Tillverkat i Sverige" med servrar i Sverige</value>
   </data>
   <data name="FeaturesMobileAppsDescription">
-    <value>Tillgång till dina krypterade filer på din Android eller iOS enhet.</value>
+    <value>Kryptera och dekryptera filer på telefonen, var som helst och när som helst</value>
   </data>
   <data name="FeaturesMoreUpcomingDescription">
     <value>Missa aldrig funktionerna som vi kommer att implementera exklusivt för Business-användare.</value>
@@ -2485,6 +2481,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="GetStartedLinkLabel">
     <value>Kom igång</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>KOM IGÅNG!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>AxCrypts mobilappen är tillgänglig på Android och iOS och låter dig öppna och visa alla filer krypterade av våra fullversioner av skrivbordsapparna.</value>
   </data>
@@ -2582,7 +2581,7 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
     <value>Listan med Senaste Filer är inaktiverad. Gå till Alternativ för att aktivera.</value>
   </data>
   <data name="HomeGetStartedHeading">
-    <value>Hur du kommer igång</value>
+    <value>&lt;span&gt;Kom igång&lt;/span&gt; med AxCrypt</value>
   </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Ladda Ner</value>
@@ -2603,13 +2602,40 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
     <value>Dela dina säkrade filer med ett enda klick</value>
   </data>
   <data name="HomeGetStartedYoutubeDescription">
-    <value>Det här är en video för hur man kommer igång med AxCrypt</value>
+    <value>Titta på &lt;span&gt;vår tutorial&lt;/span&gt; som hjälper dig att komma igång snabbare</value>
+  </data>
+  <data name="HomeHeroCountries1">
+    <value>~55</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>representerade länder</value>
+  </data>
+  <data name="HomeHeroDeliveries1">
+    <value>20&lt;span&gt;år&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>pålitlig leverans</value>
+  </data>
+  <data name="HomeHeroDownloads1">
+    <value>20 miljoner+</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>nedladdningar globalt</value>
   </data>
   <data name="HomeHeroHeading">
     <value>"Avancerad kryptering i ett enkelt format"</value>
   </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"Avancerad &lt;span&gt;kryptering&lt;/span&gt; i ett &lt;span&gt;enkelt&lt;/span&gt; format"</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300+&lt;span&gt;webbplatser&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>rekommendationer</value>
+  </data>
   <data name="HomeHeroSubheading">
-    <value>PCMag Editors' Choice 2021</value>
+    <value>PCMag Editors' Choice 2022</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>över 20 miljoner nedladdning över hela världen</value>
@@ -2618,7 +2644,7 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
     <value>Hem</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileBody">
-    <value>Öppna dina krypterade filter på telefonen.</value>
+    <value>Kryptera och dekryptera filer på din Android-telefon, iPhone eller surfplatta var som helst och när som helst.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobil</value>
@@ -2653,11 +2679,21 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Stark kryptering</value>
   </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Håll kontakten med oss</value>
+  </data>
+  <data name="HomeStayInTouchParagraph">
+    <value>Genom att klicka på Håll Mig Uppdaterad godkänner du att bli kontaktad av AxCrypt.
+För mer information om hur vi använder informationen du skickar in här, vänligen se AxCrypts sekretesspolicy.</value>
+  </data>
+  <data name="HomeStayInTouchSubHeading">
+    <value>Registrera dig nedan gratis för att hålla dig uppdaterad om våra nyheter</value>
+  </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;För fler rekommendationer, gå till &lt;a href='/about/awards'&gt;utmärkelser och recensioner&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
-    <value>Vad andra säger</value>
+    <value>Vad andra &lt;span&gt;säger&lt;/span&gt;</value>
   </data>
   <data name="IdleMinutesSignOutToolStripMenuItemText" xml:space="preserve">
     <value>{0} Minuter</value>
@@ -3046,6 +3082,9 @@ EU Moms-nummer SE556967618101</value>
   </data>
   <data name="JobTitleLabel">
     <value>Jobbtitel</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Håll Mig Uppdaterad</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Välj Nyckelfil</value>
@@ -4108,7 +4147,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Axcrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Intresserad av en prenumeration, men osäker på om det passar dina behov? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Du kan avnjuta 30 dagar av AxCrypt Premium helt gratis. &lt;/a&gt;&lt;/p&gt;&lt;p&gt;Med AxCrypt Premium får du tillgång till utökad funktionalitet och spännande tjänster! Kryptera dina filer med AES-256 - den starkaste AES algorytmen. Den används världen över för att skydda känslig och klassificerad information i alla grader.  Säkrandet av dina filer har aldrig varit lättare, endast ett enda klick behövs för att automatiskt säkra nya filer. &lt;/p&gt;&lt;p&gt;Om du dessutom behöver dela säkrade filer med andra, kommer en nyckeldelning hantera det åt dig, med tillgång till molnlagring i Dropbox, Google Drive, m.m. på det. I fall du ofta befinner dig på resande fot, kan du använda vår mobila app för att nå dina krypterade filer. &lt;/p&gt;&lt;p&gt;Vill du spara lösenord på ett tryggt och enkelt sätt? Använd vår lösenordshantering och generator för att bevara alla dina lösenord i molnet. &lt;/p&gt;&lt;p&gt;Testa för att upptäcka alla funktioner och fördelarna som erbjuds!&lt;/p&gt;</value>
+    <value>&lt;p&gt;Är du intresserad av att skaffa en prenumeration, men är inte säker på om den passar dina behov? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Du kan njuta av 30 dagars AxCrypt Premium gratis.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Med AxCrypt Premium har du tillgång till utökad funktionalitet och spännande funktioner! Kryptera dina filer med AES-256 – den starkaste av AES-algoritmen. Det används globalt för att skydda känslig och hemligstämplad information på alla nivåer. Att säkra mappar har aldrig varit enklare, med ett enda knapptryck säkrar du nya filer automatiskt. &lt;/p&gt;&lt;p&gt;Om du också behöver dela säkrade filer med andra har du nyckeldelning för att ta hand om det åt dig, som till och med har tillgång till molnlagringen i Dropbox, Google Drive, etc. Med mobilappen AxCrypt kan du kryptera och dekryptera filer på din telefon, var som helst och när som helst.&lt;/p&gt;&lt;p&gt;Vill du spara lösenord på ett säkert och enkelt sätt? Använd vår lösenordshanterare och generator för att hålla alla dina lösenord säkra i molnet.&lt;/p&gt;&lt;p&gt;Testa det för att upptäcka alla funktioner och fördelar som det erbjuder!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>Är du intresserad av att skaffa ett abonnemang, men inte säker på om det passar dina behov? &lt;a href={url}&gt;Njut av AxCrypt Premium i 30 dagar gratis.&lt;/a&gt;</value>
@@ -4117,7 +4156,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Med AxCrypt Premium har du tillgång till utökad funktionalitet och spännande funktioner! Kryptera dina filer med AES-256 – den starkaste av AES-algoritmen. Det används globalt för att skydda känslig och hemligstämplad information på alla nivåer. Det har aldrig varit lättare att säkra mappar. Det sker bara med ett enda klick för att automatiskt säkra nya filer.</value>
   </data>
   <data name="PremiumFirstBodyText3">
-    <value>Om du också behöver dela säkra filer med andra, har du en nyckeldelning som tar hand om det för dig, även med tillgång till molnlagring i Dropbox, Google Drive, etc. I de fall där du ofta är på språng, kan du använda vår mobilapp för att få tillgång till dina krypterade filer.</value>
+    <value>Om du också behöver dela säkra filer med andra har du nyckeldelning som tar hand om det åt dig, som även har tillgång till molnlagringen i Dropbox, Google Drive, etc. Med mobilappen AxCrypt kan du kryptera och dekryptera filer på din telefon, var som helst och när som helst.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>Vill du spara dina lösenord på ett säkert och enkelt sätt? Använd vår lösenordshanterare och lösenordsgenerator för att hålla alla dina lösenord säkra i molnet.</value>
@@ -4261,7 +4300,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Nyckeldelning</value>
   </data>
   <data name="PricingFeatureListMobileApps">
-    <value>Mobila Appar</value>
+    <value>Mobilkryptering</value>
   </data>
   <data name="PricingFeatureListMoreUpcoming">
     <value>Fler Kommande Exklusiva Funktioner</value>
@@ -4509,7 +4548,7 @@ HubSpot är en integrerad mjukvarulösning där vi täcker olika aspekter av vå
     <value>Starkare kryptering med AES-256</value>
   </data>
   <data name="ProductTryItForFreeSellingPointViewYour">
-    <value>Granska dina krypterade filer på resande fot med den mobila appen</value>
+    <value>Kryptera och dekryptera filer på språng med mobilappen</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Påbörja din provperiod nu</value>
@@ -4739,7 +4778,7 @@ Vänligen &lt;a href="mailto:business@axcrypt.net"&gt;kontakta oss&lt;/a&gt; så
     <value>Läs om de senaste nyheterna</value>
   </data>
   <data name="ReadAboutTheLatestNewsLabel2">
-    <value>Se våra senaste bloginlägg</value>
+    <value>Bläddra bland våra senaste &lt;span&gt;blogginlägg&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Läs mer om Business planen</value>
@@ -4751,7 +4790,7 @@ Vänligen &lt;a href="mailto:business@axcrypt.net"&gt;kontakta oss&lt;/a&gt; så
     <value>Läs mer</value>
   </data>
   <data name="RecentFilesListInfoText" xml:space="preserve">
-    <value>Du har inte öppnat några säkra filer nyligen. Klicka på Open Secured för att bläddra efter säkra filer.</value>
+    <value>Du har inte öppnat några säkra filer nyligen. Klicka på &lt;b&gt;Open Secured&lt;/b&gt; för att bläddra efter säkra filer.</value>
   </data>
   <data name="RecentFilesOpenToolStripMenuItemText" xml:space="preserve">
     <value>Öppna</value>
@@ -6450,7 +6489,7 @@ Mer information hittar du genom att klicka OK som öppnar en webbläsare till v�
     <value>Varför AxCrypt Business?</value>
   </data>
   <data name="WhyChooseAxcrypt">
-    <value>Varför välja AxCrypt?</value>
+    <value>Varför välja &lt;span&gt;AxCrypt&lt;/span&gt;</value>
   </data>
   <data name="WillNotForgetPasswordCheckBoxText" xml:space="preserve">
     <value>Jag glömmer inte mitt lösenord!</value>
