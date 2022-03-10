@@ -397,6 +397,9 @@ Please sign in using the same password you used then.</value>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel" xml:space="preserve">
     <value>Monthly</value>
   </data>
+  <data name="AnnualSubscriptionTitle" xml:space="preserve">
+    <value>Annual</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonymous Rename</value>
   </data>
@@ -2297,6 +2300,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FreeLabel" xml:space="preserve">
     <value>Free</value>
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>Free trial</value>
+  </data>
   <data name="FullNameLabel" xml:space="preserve">
     <value>Full name</value>
   </data>
@@ -2982,6 +2988,9 @@ This may cause some operations to take very long time. Please be careful not to 
 Internet access is recommended, and required to enable paid subscription plans. Some features work better and critical updates may not reach you otherwise.
 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
+  </data>
+  <data name="InterviewsLabel" xml:space="preserve">
+    <value>Interviews</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Please specify time as 'hh:mm:ss.mmm'.</value>
@@ -4303,6 +4312,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PressImagesLabel" xml:space="preserve">
     <value>Press images</value>
   </data>
+  <data name="PressInterviewByPIAText" xml:space="preserve">
+    <value>CTO Jonatan Pettersson interviewed by privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel" xml:space="preserve">
     <value>Press and media</value>
   </data>
@@ -4395,11 +4407,23 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PricingFeatureListViewer" xml:space="preserve">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations" xml:space="preserve">
+    <value>For &lt;span&gt;organizations&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers" xml:space="preserve">
+    <value>For &lt;span&gt;private&lt;/span&gt; users</value>
+  </data>
   <data name="PricingLinkLabel" xml:space="preserve">
     <value>Pricing</value>
   </data>
+  <data name="PricingLinkLabelFeature" xml:space="preserve">
+    <value>Try our subscriptions for &lt;span&gt;one month free&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading" xml:space="preserve">
     <value>How do you want to pay?</value>
+  </data>
+  <data name="PricingViewerTierInfo" xml:space="preserve">
+    <value>You will only be able to decrypt existing files (files you previously encrypted yourself, or files that someone else shared with you).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>What are the primary reasons for the cancelation?</value>
@@ -6261,6 +6285,9 @@ The AxCrypt Team</value>
     <value>Try it!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth" xml:space="preserve">
+    <value>&lt;span&gt;Try&lt;/span&gt; 1-month</value>
+  </data>
   <data name="TryPremiumHeading" xml:space="preserve">
     <value>Try Premium</value>
   </data>
@@ -6278,6 +6305,9 @@ The AxCrypt Team</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Turkish)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff" xml:space="preserve">
+    <value>20% off</value>
   </data>
   <data name="TypographyLabel" xml:space="preserve">
     <value>Typography</value>

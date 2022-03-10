@@ -844,6 +844,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Annual.
+        /// </summary>
+        public static string AnnualSubscriptionTitle {
+            get {
+                return ResourceManager.GetString("AnnualSubscriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anonymous Rename.
         /// </summary>
         public static string AnonymousRenameMenuText {
@@ -6209,6 +6218,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Free trial.
+        /// </summary>
+        public static string FreeTrial {
+            get {
+                return ResourceManager.GetString("FreeTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full name.
         /// </summary>
         public static string FullNameLabel {
@@ -8224,6 +8242,15 @@ namespace AxCrypt.Content.Properties {
         public static string InternetNotRequiredInformation {
             get {
                 return ResourceManager.GetString("InternetNotRequiredInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interviews.
+        /// </summary>
+        public static string InterviewsLabel {
+            get {
+                return ResourceManager.GetString("InterviewsLabel", resourceCulture);
             }
         }
         
@@ -11763,6 +11790,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CTO Jonatan Pettersson interviewed by privateinternetaccess.com.
+        /// </summary>
+        public static string PressInterviewByPIAText {
+            get {
+                return ResourceManager.GetString("PressInterviewByPIAText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press and media.
         /// </summary>
         public static string PressLinkLabel {
@@ -12033,6 +12069,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For &lt;span&gt;organizations&lt;/span&gt;.
+        /// </summary>
+        public static string PricingForOrganizations {
+            get {
+                return ResourceManager.GetString("PricingForOrganizations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For &lt;span&gt;private&lt;/span&gt; users.
+        /// </summary>
+        public static string PricingForPrivateUsers {
+            get {
+                return ResourceManager.GetString("PricingForPrivateUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pricing.
         /// </summary>
         public static string PricingLinkLabel {
@@ -12042,11 +12096,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try our subscriptions for &lt;span&gt;one month free&lt;/span&gt;.
+        /// </summary>
+        public static string PricingLinkLabelFeature {
+            get {
+                return ResourceManager.GetString("PricingLinkLabelFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How do you want to pay?.
         /// </summary>
         public static string PricingSubheading {
             get {
                 return ResourceManager.GetString("PricingSubheading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will only be able to decrypt existing files (files you previously encrypted yourself, or files that someone else shared with you)..
+        /// </summary>
+        public static string PricingViewerTierInfo {
+            get {
+                return ResourceManager.GetString("PricingViewerTierInfo", resourceCulture);
             }
         }
         
@@ -17384,6 +17456,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Try&lt;/span&gt; 1-month.
+        /// </summary>
+        public static string TryOneMonth {
+            get {
+                return ResourceManager.GetString("TryOneMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try Premium.
         /// </summary>
         public static string TryPremiumHeading {
@@ -17425,6 +17506,15 @@ namespace AxCrypt.Content.Properties {
         public static string TurkishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("TurkishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20% off.
+        /// </summary>
+        public static string TwentyPercentOff {
+            get {
+                return ResourceManager.GetString("TwentyPercentOff", resourceCulture);
             }
         }
         
