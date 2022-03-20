@@ -576,6 +576,11 @@ namespace AxCrypt.Core.Extensions
         public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys)
         {
             LogOnIdentity logOnIdentity = New<KnownIdentities>().DefaultEncryptionIdentity;
+            await files.ChangeKeySharingAsync(publicKeys, logOnIdentity);
+        }
+
+        public static async Task ChangeKeySharingAsync(this IEnumerable<string> files, IEnumerable<UserPublicKey> publicKeys, LogOnIdentity logOnIdentity)
+        {
             EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId, logOnIdentity);
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
             {
