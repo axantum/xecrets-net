@@ -98,6 +98,10 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+  <data name="AaaUtfDummy" xml:space="preserve">
+    <value>Två Öâr är Brà.</value>
+    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
+  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>Status 'Przerwany' ({0}).</value>
   </data>
@@ -216,6 +220,24 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Weryfikacja AxCrypt ID</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Jeszcze tylko jeden krok ...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Cieszymy się, że jesteś z nami w tej podróży z bezpieczeństwem cybernetycznym.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Aby zakończyć proces rejestracji, musisz zweryfikować swój adres e-mail. W ten sposób potwierdzasz, że jesteś właścicielem wiadomości e-mail i dajesz nam pozwolenie na wysyłanie do Ciebie wiadomości e-mail.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Pobierz AxCrypt na swoje urządzenia mobilne!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Śledź nas w naszych mediach społecznościowych</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Skontaktuj się z nami pod adresem &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt;, jeśli masz jakiekolwiek pytania!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>Powinieneś być tu tylko w wypadku, kiedy kliknięcie na link weryfikacyjny AxCrypt ID w emailu od AxCrypt nie działa. (Musisz oczywiście zarejestrować swój AxCrypt ID aby otrzymać email weryfikacyjny)
  
@@ -270,6 +292,36 @@ Wybierz coś trudnego do odgadnięcia, ponieważ hasło to będzie chronić has�
     <value>Wybierz folder, który ma być zabezpieczony przez AxCrypt. Istniejące pliki zostaną teraz zaszyfrowane.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AffiliateAdvantagesHeading">
+    <value>Zalety marketingu afiliacyjnego AxCrypt</value>
+  </data>
+  <data name="AffiliateAdvantagesText2">
+    <value>Dedykowany menedżer konta — dzięki dedykowanemu menedżerowi konta uzyskasz niezbędną pomoc na każdym etapie, od konfiguracji po indywidualne doradztwo.</value>
+  </data>
+  <data name="AffiliateAdvantagesText3">
+    <value>Globalny zasięg — partnerzy Axcrypt prowadzą kampanie na poziomie globalnym. Umożliwia to dostęp do generowania ruchu, konwersji i przychodów ze wszystkich zakątków świata.</value>
+  </data>
+  <data name="AffiliateAdvantagesText4">
+    <value>Najwyższe współczynniki konwersji — nasza zoptymalizowana strategia marketingowa i silna reputacja marki prowadzą do wysokiego procentu konwersji. Pozwala to zmaksymalizować swój potencjał zarobkowy.</value>
+  </data>
+  <data name="AffiliateInstructionsHeading">
+    <value>Promuj AxCrypt i zarabiaj na każdej sprzedaży</value>
+  </data>
+  <data name="AffiliateInstructionsStep1">
+    <value>Zostań członkiem naszego programu partnerskiego, rejestrując się w ciągu kilku sekund</value>
+  </data>
+  <data name="AffiliateInstructionsStep2">
+    <value>Uzyskaj dostęp do ekskluzywnych połączeń i materiałów promocyjnych. Wykorzystaj nasze zasoby marketingowe, aby rozpocząć kampanie</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>Poleć AxCrypt i zarabiaj jedną z najlepszych w branży prowizji za każdą płatną konwersję</value>
+  </data>
+  <data name="AffiliateInstructionsSubHeading">
+    <value>AxCrypt oferuje teraz możliwość partnerską, w której otrzymujesz zapłatę z każdej sprzedaży, promując AxCrypt. Zacznijmy teraz.</value>
+  </data>
+  <data name="AffiliateLinkLabel">
+    <value>Przyłącz się</value>
+  </data>
   <data name="AgreePasswordResetNotRegainAccess" xml:space="preserve">
     <value>Rozumiem, że nie odzyskam dostępu do moich zaszyfrowanych plików</value>
   </data>
@@ -305,6 +357,9 @@ Zaloguj się, używając tego samego hasła, którego używałeś.</value>
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Miesięczne </value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Coroczny</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonimowa zmiana nazwy</value>
@@ -612,6 +667,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="BusinessCreationSetupAndPaymentTitle" xml:space="preserve">
     <value>Konfiguracja planu i płatność</value>
   </data>
+  <data name="BusinessEmailLabel">
+    <value>Służbowy adres e-mail</value>
+  </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Twoja subskrypcja AxCrypt Business {0} dobiegła końca. Mamy szczerą nadzieję, że korzystanie z AxCrypt sprawiło Ci przyjemność i okazało się przydatne.</value>
   </data>
@@ -668,6 +726,9 @@ Zostałeś ostrzeżony, przyjemności!</value>
   </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt oferuje teraz bezpieczeństwo plików dla firm i organizacji - z 256-bitowym szyfrowaniem AES. Udostępnianie plików pozostałym członkom zespołu jest łatwe dzięki naszej świadomości przechowywania w chmurze i funkcji udostępniania kluczy dla plików lokalnych. Dzięki temu możesz przestrzegać przepisów dotyczących ochrony danych, jednocześnie chroniąc pliki przed kosztownymi naruszeniami danych.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>Dzięki AxCrypt Business masz również dostęp do naszego zarządzania hasłami, gdzie możesz bezpiecznie przechowywać i zarządzać hasłami i kodami. AxCrypt jest wielojęzyczny, obsługuje angielski, holenderski, francuski, niemiecki, włoski, koreański, polski, portugalski, rosyjski, hiszpański, szwedzki, turecki i wiele innych. Dzięki aplikacji mobilnej AxCrypt możesz szyfrować i odszyfrowywać pliki na swoim telefonie, z dowolnego miejsca i o dowolnej porze.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>Aby uzyskać więcej informacji, odwiedź naszą &lt;a href='/information/features'&gt; stronę z opisem funkcji &lt;/a&gt; i nie zapomnij przeczytać &lt;a href='/information/terms-of-use'&gt; Warunki użytkowania &lt;/a&gt;.</value>
@@ -1080,7 +1141,7 @@ Aby zakończyć proces, musisz wykonać te czynności.</value>
     <value>Twoje preferencje dot. powiadomień zostały zmienione.</value>
   </data>
   <data name="ChangeOptionGenericWarning" xml:space="preserve">
-    <value>Zmiana opcji może być niebezpieczna. Zrób to tylko wtedy, gdy jesteś pewien, że rozumiesz, co robi dana opcja. Potwierdź, wprowadzając swoje hasło.</value>
+    <value>Zmiana opcji może być niebezpieczna. Zrób to tylko wtedy, gdy jesteś pewien, że rozumiesz, co robi dana opcja.</value>
   </data>
   <data name="ChangePassphraseDialogTitle" xml:space="preserve">
     <value>Zmień hasło</value>
@@ -1500,6 +1561,18 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="DownloadLinkLabel">
     <value>Pobierz </value>
+  </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt;Szyfruj i odszyfruj pliki w dowolnym miejscu i czasie. Aplikacje mobilne obsługują najpopularniejsze magazyny w chmurze, takie jak Dysk Google i Dropbox (a będzie ich wiele więcej).&lt;/p&gt;&lt;p&gt;Twoje istniejące zabezpieczone pliki i pliki udostępnione Tobie są zawsze możliwe do przeglądania, bez subskrypcji, na dowolnej platformie. Teraz także na telefony komórkowe!&lt;/p&gt;&lt;p&gt;Więcej informacji&lt;a href='#'&gt;tutaj&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>Szyfruj i odszyfruj pliki w dowolnym miejscu i czasie. Aplikacje mobilne obsługują najpopularniejsze magazyny w chmurze, takie jak Dysk Google i Dropbox (a będzie ich wiele więcej).</value>
+  </data>
+  <data name="DownloadMobileBodyText2">
+    <value>Twoje istniejące zabezpieczone pliki i pliki udostępnione Tobie są zawsze możliwe do przeglądania bez subskrypcji na dowolnej platformie. Teraz również na telefonie komórkowym!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>Przeczytaj więcej &lt;a href={url}&gt;tutaj&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt Mobile</value>
@@ -2164,6 +2237,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="FreeLabel">
     <value>Bezpłatny</value>
   </data>
+  <data name="FreeTrial">
+    <value>Bezpłatna wersja próbna</value>
+  </data>
   <data name="GdprBlock1Heading">
     <value>Co to jest RODO?</value>
   </data>
@@ -2378,6 +2454,9 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   <data name="GetStartedLinkLabel">
     <value>Rozpocznij</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>ZACZYNAJ!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>Aplikacja mobilna AxCrypt jest dostępna na Androida i iOS i umożliwia otwieranie i przeglądanie dowolnego pliku zaszyfrowanego przez nasze pełne wersje aplikacji komputerowych.</value>
   </data>
@@ -2410,6 +2489,21 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
   </data>
   <data name="GetStartedPasswordManagementVideoTitleWindows">
     <value>AxCrypt: Zarządzanie hasłami </value>
+  </data>
+  <data name="GetStartedPasswordResetIngress">
+    <value>Zapomniałeś hasła do AxCrypt ID? Możesz teraz zresetować hasło. Resetując hasło, możesz zalogować się ponownie, ale nie będziesz mieć dostępu do plików zaszyfrowanych starym hasłem. Obejrzyj poniższy film, aby dowiedzieć się, jak zresetować hasło.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep2">
+    <value>Zostaniesz przekierowany na naszą stronę internetową, gdzie możesz poprosić o zresetowanie.</value>
+  </data>
+  <data name="GetStartedPasswordResetStep3">
+    <value>Po weryfikacji postępuj zgodnie z monitem w wiadomości e-mail wysłanej na Twój adres e-mail.</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleMac">
+    <value>AxCrypt: Resetowanie hasła na Macu</value>
+  </data>
+  <data name="GetStartedPasswordResetVideoTitleWindows">
+    <value>AxCrypt: Resetowanie hasła</value>
   </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Zaloguj się, aby otrzymać subskrypcję! Jeśli nie masz jeszcze konta, musisz najpierw &lt;a href="{0}Home/Register/"&gt; zarejestrować się &lt;/a&gt;.</value>
@@ -2453,6 +2547,9 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Lista Ostatnie Pliki jest nieaktywna. Przejdź do Opcji aby ją uaktywnić.</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>&lt;span&gt;Rozpocznij&lt;/span&gt; używać AxCrypt</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. Ściągnij</value>
   </data>
@@ -2471,11 +2568,29 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   <data name="HomeGetStartedListShareParagraph">
     <value>Udostępniaj zabezpieczone pliki jednym kliknięciem</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>Obejrzyj &lt;span&gt;nasz samouczek&lt;/span&gt;, który pomoże Ci szybciej działać</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>reprezentowane kraje</value>
+  </data>
+  <data name="HomeHeroDeliveries2">
+    <value>zaufana dostawa</value>
+  </data>
+  <data name="HomeHeroDownloads2">
+    <value>pliki do pobrania na całym świecie</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>„Zaawansowane szyfrowanie w niezwykle prostym ustawieniu”</value>
   </data>
   <data name="HomeHeroHeadingHighlight">
     <value>„Zaawansowane &lt;span&gt;szyfrowanie&lt;/span&gt; w niezwykle &lt;span&gt;prostym&lt;/span&gt; ustawieniu”</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>Ponad 300 &lt;span&gt;witryn&lt;/span&gt;</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>rekomendacje</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>Wybór redakcji PCMag 2022</value>
@@ -2485,6 +2600,9 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   </data>
   <data name="HomeLinkLabel">
     <value>Strona główna </value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>Szyfruj i odszyfruj pliki na telefonie z Androidem, iPhonie lub tablecie z dowolnego miejsca w dowolnym czasie.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt Mobilny</value>
@@ -2518,6 +2636,9 @@ Jeśli z jakiegokolwiek powodu nie znasz lub nie pamiętasz hasła, musisz zrese
   </data>
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>Silne szyfrowanie</value>
+  </data>
+  <data name="HomeStayInTouchHeading">
+    <value>Pozostań z nami w kontakcie</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt; Aby uzyskać więcej opinii, przejdź do &lt;a href='/about/awards'&gt; nagród i recenzji &lt;/a&gt; &lt;/p&gt;</value>
@@ -2586,6 +2707,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   <data name="IndustriesEducationDescription">
     <value>Prężnie rozwijają się zajęcia online i nauczanie cyfrowe. Korzystanie z urządzeń cyfrowych, takich jak komputery czy tablety podczas zajęć, wykładów czy spotkań online, jest coraz częstsze. Robienie notatek lub komentowanie dokumentów PDF powoduje gromadzenie dużej ilości danych. AxCrypt pomaga chronić prywatne informacje podczas przechowywania pracy i badań w postaci plików i dokumentów. Dbamy o to, abyś Ty i tylko Twój akredytowany zespół miał dostęp do Twoich prywatnych danych. </value>
   </data>
+  <data name="IndustriesEducationHeading">
+    <value>Szyfruj zastrzeżone eseje, artykuły, raporty, tezy i badania</value>
+  </data>
+  <data name="IndustriesEducationParagraph">
+    <value>Uzyskaj dostęp do wszystkich swoich dokumentów i synchronizuj je na swoich urządzeniach, jednocześnie chroniąc pliki przed kosztownymi naruszeniami bezpieczeństwa danych.</value>
+  </data>
   <data name="IndustriesEducationProtection">
     <value>AxCrypt zapewnia, że Twoja organizacja pozostaje zgodna z przepisami, takimi jak ogólne rozporządzenie o ochronie danych (RODO).</value>
   </data>
@@ -2601,6 +2728,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   <data name="IndustriesFinancialDescription">
     <value>W świecie finansów bezpieczeństwo danych to poważna sprawa. Szyfrowanie umożliwia różne rodzaje działalności gospodarczej, które w innym przypadku nie byłyby możliwe. Branża usług finansowych najbardziej ucierpiała z powodu zwiększonych oczekiwań konsumentów dotyczących dostępu do informacji, otrzymywania pomocy i przeprowadzania transakcji w dowolnym miejscu i czasie za pośrednictwem urządzeń elektronicznych. Konwertując tekst jawny na tekst zaszyfrowany, szyfrowanie pomaga bankom, towarzystwom ubezpieczeniowym, podmiotom na rynku kredytowym, korporacjom, funduszom venture, doradcom inwestycyjnym, zarządzającym funduszami, firmom konsultingowym itp. chronić poufne informacje, dzięki czemu tylko autoryzowani użytkownicy mogą, z odpowiednim kluczem, odszyfrować i zrozumieć informacje.</value>
   </data>
+  <data name="IndustriesFinancialHeading">
+    <value>Chroń wysoce poufne informacje finansowe</value>
+  </data>
+  <data name="IndustriesFinancialParagraph">
+    <value>Dzięki szyfrowaniu AxCrypt informacje klientów i transakcje firmy są bezpiecznie przechowywane przed wścibskimi oczami.</value>
+  </data>
   <data name="IndustriesFinancialProtection">
     <value>Zgodny z krajowymi i międzynarodowymi przepisami, których firmy powinny i muszą potrzebować, omija naruszenia za każdym razem, gdy rynek się zmienia, wyświetla istotne informacje firmy, gdy przeprowadzane są kontrole wewnętrzne, ponieważ dostęp do nich mają tylko zatwierdzone osoby i omija znaczne kary związane z nieprzestrzeganiem przepisów.</value>
   </data>
@@ -2615,6 +2748,9 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   </data>
   <data name="IndustriesGovernmentDescription">
     <value>Funkcjonariusze organów ścigania wskazują na powszechne i rosnące wykorzystanie szyfrowania. Jedną z jego ról jest ochrona prywatności i swobód obywatelskich. Szyfrowanie zapobiega kradzieży informacji, pomagając w ten sposób uczynić społeczeństwo bardziej bezpiecznym i bezpiecznym. Jako rząd możesz polegać na AxCrypt, aby przeciwdziałać zagrożeniom ze strony szerokiej gamy podmiotów, w tym niewyrafinowanych i wyrafinowanych przestępców, zagranicznych agencji wywiadowczych i represyjnych rządów. NSA używa AES do szyfrowania danych, co powinno być wystarczającym dowodem na jego bezpieczeństwo.</value>
+  </data>
+  <data name="IndustriesGovernmentParagraph">
+    <value>Szyfrowanie zapobiega kradzieży informacji, pomagając w ten sposób uczynić społeczeństwo bardziej bezpiecznym i bezpiecznym. Funkcjonariusze organów ścigania wskazują na powszechne i rosnące wykorzystanie szyfrowania.</value>
   </data>
   <data name="IndustriesGovernmentProtection">
     <value>AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak Ogólne rozporządzenie o ochronie danych osobowych (RODO).</value>
@@ -2646,6 +2782,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   <data name="IndustriesHealthcareDescription">
     <value>Potrzeba szyfrowania stała się bardziej powszechna w szpitalach, domach opieki i ośrodkach rehabilitacyjnych. Wraz z szybkim wzrostem liczby praktyk wykorzystujących elektroniczną dokumentację medyczną, taką jak EMR, przesyłanie informacji dotyczących opieki zdrowotnej pacjentów pocztą elektroniczną, w tym informacji ubezpieczeniowych, odpowiednich dawek leków i innych danych osobowych, nastała cyfrowa era opieki zdrowotnej i potrzeb związanych z informacjami wrażliwymi. wysoki poziom bezpieczeństwa. AxCrypt oferuje łatwą i bezproblemową obsługę dla pracowników, pacjentów i partnerów biznesowych.</value>
   </data>
+  <data name="IndustriesHealthcareHeading">
+    <value>Zabezpiecz dane osobowe i dokumentację medyczną</value>
+  </data>
+  <data name="IndustriesHealthcareParagraph">
+    <value>Zachowaj zgodność z lokalnymi i federalnymi przepisami o ochronie danych, jednocześnie budując zaufanie między Twoją instytucją a potencjalnymi pacjentami.</value>
+  </data>
   <data name="IndustriesHealthcareProtection">
     <value>Zgodnie z przepisami o ochronie danych pomagamy budować zaufanie między Twoją instytucją a potencjalnymi pacjentami, zabezpieczając wizyty online, komunikację z lekarzem i dokumentację medyczną przesyłaną między instytucjami. AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak ustawa o przenośności i odpowiedzialności w ubezpieczeniach zdrowotnych (HIPAA), ustawa o technologii informacyjnej w zakresie zdrowia gospodarczego i klinicznego (HITECH) oraz ogólne rozporządzenie o ochronie danych (RODO).</value>
   </data>
@@ -2654,6 +2796,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   </data>
   <data name="IndustriesHealthcareTeamwork">
     <value>Organizacje opieki zdrowotnej gromadzą, zarządzają i dystrybuują ogromną ilość dokumentacji medycznej i osobistej. Szyfrowanie sprawia, że dane są bezpieczniejsze, niezależnie od tego, czy są transportowane, czy w spoczynku. Krótko mówiąc, chroni wrażliwe informacje medyczne pacjentów przed kradzieżami i naruszeniami danych. Wymiana informacji między lekarzami, pielęgniarkami i specjalistami jest łatwa, szybka i bez ryzyka. Użyj klucza głównego, funkcji, która umożliwia administratorom biznesowym odzyskiwanie plików członków firmy, eliminując ryzyko utraty dostępu do krytycznych plików z powodu pozostawienia lub zapomnienia haseł przez pracowników.</value>
+  </data>
+  <data name="IndustriesHeroButton">
+    <value>Odkryj AxCrypt Biznes</value>
+  </data>
+  <data name="IndustriesHeroText0">
+    <value>Zmieniamy sposób, w jaki ludzie się komunikują i pracują.</value>
   </data>
   <data name="IndustriesHeroText1">
     <value>Zmieniamy sposób, w jaki ludzie się komunikują i pracują. Dzięki naszemu 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące oraz chroniąc poufność i integralność. Zwiększ swoją produktywność i przestań zastanawiać się nad swoją prywatnością w Internecie. Odzyskaj pełną kontrolę nad swoimi danymi i ciesz się cyfrowym zaufaniem. Ciekawi Cię szyfrowanie i powiązane tematy, zapoznaj się z naszymi cotygodniowymi aktualizowanymi &lt;a href="/blog"&gt;blogami&lt;/a &gt;. W AxCrypt chętnie Ci pomożemy i odpowiemy na wszelkie pytania dotyczące szyfrowania.</value>
@@ -2670,6 +2818,9 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   <data name="IndustriesLegalDescription">
     <value>Bardziej niż kiedykolwiek wcześniej informacje osobiste i poufne są przesyłane przez Internet w postaci zwykłego tekstu i potencjalnie narażone. Branża prawnicza jest najbardziej dotknięta zwiększonymi oczekiwaniami konsumentów w zakresie dostępu do informacji, otrzymywania pomocy i zawierania umów w dowolnym miejscu i czasie za pośrednictwem urządzeń elektronicznych. Niezależnie od tego, czy jesteś samodzielnym praktykiem prawa karnego, czy wewnętrznym prawnikiem korporacyjnym w firmie z listy Fortune 500, szyfrowanie wpływa na wiele napotykanych problemów, niezależnie od tego, czy zdajesz sobie z tego sprawę, czy nie.</value>
   </data>
+  <data name="IndustriesLegalParagraph">
+    <value>Szyfrowanie jest absolutnie niezbędne podczas przechowywania i udostępniania poufnych informacji w celu uniknięcia nieuprawnionego i nielegalnego przetwarzania danych osobowych. Zmniejsz ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące.</value>
+  </data>
   <data name="IndustriesLegalProtection">
     <value>AxCrypt zapewnia, że Twoja organizacja zachowuje zgodność z przepisami, takimi jak Ogólne rozporządzenie o ochronie danych osobowych (RODO).</value>
   </data>
@@ -2682,6 +2833,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   <data name="IndustriesLinkLabel">
     <value>Branże</value>
   </data>
+  <data name="IndustriesStatistic2">
+    <value>Wybór redaktorów PCMag</value>
+  </data>
+  <data name="IndustriesStatistic3">
+    <value>pliki do pobrania przez użytkownika</value>
+  </data>
   <data name="IndustriesTechCloud">
     <value>Automatycznie zabezpieczaj swoje pliki/dokumenty w wielu usługach przechowywania w chmurze, takich jak Google Drive i Dropbox, i bezproblemowo zarządzaj dostępem do haseł, gdziekolwiek jesteś. Wszystkie informacje są dostępne dla wszystkich członków zaangażowanych w leczenie pacjentów.</value>
   </data>
@@ -2690,6 +2847,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
   </data>
   <data name="IndustriesTechDescription">
     <value>W świecie, w którym każdy aspekt naszego codziennego życia jest wysoce cyfrowy, pojawia się pilna potrzeba prywatności i zaufania, zwłaszcza po eksperymentowaniu z naruszeniami danych. Narzędzia i usługi, z których korzystasz na co dzień, nie są ani otwarte, bezpieczne, ani prywatne. Lokalizacja Twoich danych oraz sposób ich przechowywania i przetwarzania są zbyt często zarządzane w wątpliwy i podejrzany sposób. AxCrypt dąży do zbudowania przyszłości, która szanuje prywatność wszystkich. Dzięki naszemu oprogramowaniu szyfrującemu o zerowej wiedzy i kluczowi, który należy tylko do Ciebie i pozostaje na Twoim urządzeniu, nikt inny nie ma dostępu do Twoich danych.</value>
+  </data>
+  <data name="IndustriesTechHeading">
+    <value>Zwiększ bezpieczeństwo danych dzięki 128-bitowemu lub 256-bitowemu szyfrowaniu</value>
+  </data>
+  <data name="IndustriesTechParagraph">
+    <value>Dzięki naszemu 128-bitowemu lub 256-bitowemu szyfrowaniu, AxCrypt zwiększa bezpieczeństwo danych i zmniejsza ryzyko naruszeń, wdrażając przyjazne dla użytkownika i łatwe w użyciu oprogramowanie szyfrujące.</value>
   </data>
   <data name="IndustriesTechProtection">
     <value>Przyjęcie szyfrowania to doskonały krok dla firm świadczących usługi technologiczne, ponieważ zwiększa bezpieczeństwo i zdolność do przestrzegania rosnącej liczby przepisów. Zwłaszcza, że ilość i odsetek zaszyfrowanych danych będzie nadal rósł.</value>
@@ -2716,6 +2879,12 @@ Może to powodować, że niektóre operacje trwają bardzo długo. Uważaj, aby 
 Zaleca się dostęp do Internetu i jest on wymagany do włączenia płatnego abonamentu. Niektóre funkcje działają lepiej i krytyczne aktualizacje mogą się do Ciebie nie dotrzeć.
  
 Twoje hasło nie jest zapisywane na naszych serwerach, a połączenie jest zawsze szyfrowane.</value>
+  </data>
+  <data name="InterviewsLabel">
+    <value>Wywiady</value>
+  </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Witamy w AxCrypt!</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Proszę podać godzinę w formacie "hh: mm: ss.mmm".</value>
@@ -2843,6 +3012,9 @@ SWEDEN</value>
   </data>
   <data name="JobTitleLabel">
     <value>Stanowisko</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>Informuj mnie</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>Wybierz Plik Klucza</value>
@@ -2984,6 +3156,9 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>Prawny</value>
+  </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>Zaczynajmy!</value>
   </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Biznes</value>
@@ -3432,6 +3607,9 @@ Ten program jest licencjonowany zgodnie z umową.
     <value>Bez subskrypcji Premium możesz tylko oglądać i trwale odszyfrowywać zaszyfrowane pliki.</value>
     <comment>Message which is displaying after registering new account in mobile application. It asks user to start trial premium subscription.</comment>
   </data>
+  <data name="MessageAskAboutStartTrialForMobileApps" xml:space="preserve">
+    <value>Po zakończeniu okresu próbnego nie możesz już używać aplikacji mobilnych AxCrypt do zabezpieczania nowych plików (jednak zawsze możesz uzyskać dostęp do wcześniej zabezpieczonych plików).</value>
+  </data>
   <data name="MessageAskAboutStartTrialForWindows" xml:space="preserve">
     <value>Po zakończeniu okresu próbnego automatycznie przejdziesz na subskrypcję AxCrypt Free, o ile nie wybierzesz płatnej subskrypcji.</value>
   </data>
@@ -3494,6 +3672,18 @@ Ten program jest licencjonowany zgodnie z umową.
   </data>
   <data name="MobileAppText">
     <value>Android 4.0.3 lub nowszy, iOS 8.0 lub nowszy.</value>
+  </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Łatwe odszyfrowywanie&lt;/fc&gt; zabezpieczonych plików zarówno z komputerów stacjonarnych, jak i urządzeń mobilnych</value>
+  </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>&lt;fc&gt;Szyfruj&lt;/fc&gt; poufne pliki bezpośrednio w telefonie</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>Otwórz &lt;fc&gt;pliki AxCrypt&lt;/fc&gt; na swoim telefonie</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>Dostęp jednym kliknięciem do &lt;fc&gt;menedżera haseł AxCrypt&lt;/fc&gt;</value>
   </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>Miesięcznie</value>
@@ -4073,11 +4263,23 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>Dla &lt;span&gt;organizacji&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Dla &lt;span&gt;prywatnych&lt;/span&gt; użytkowników</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Wycena</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Wypróbuj nasze subskrypcje przez &lt;span&gt;jeden miesiąc za darmo&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>Jak chcesz zapłacić?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Będziesz mógł odszyfrować tylko istniejące pliki (pliki, które wcześniej sam zaszyfrowałeś lub pliki, które udostępnił Ci ktoś inny).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>Jakie są główne powody anulowania?</value>
@@ -4291,6 +4493,9 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
   </data>
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>Silniejsze szyfrowanie za pomocą AES-256</value>
+  </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>Szyfruj i odszyfruj pliki w locie za pomocą aplikacji mobilnej</value>
   </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>Rozpocznij bezpłatny okres próbny już teraz</value>
@@ -4516,6 +4721,9 @@ Potwierdzenie zakupu zostanie wysłane na Twój email przez Twojego dostawcę p�
   </data>
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>Przeczytaj o nowościach</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>Przeglądaj nasze najnowsze &lt;span&gt;posty na blogu&lt;/span&gt;</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>Przeczytaj więcej o abonamencie Business</value>
@@ -5624,6 +5832,9 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
   <data name="TermsOfUseBlock11Heading">
     <value>Wersja próbna Premium</value>
   </data>
+  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
+    <value>Dla nowych użytkowników oferujemy 30-dniowy darmowy okres próbny planu AxCrypt Premium lub Business. Jeśli produkt Ci się nie podoba, możesz anulować subskrypcję przed zakończeniem okresu próbnego. Anulowanie subskrypcji można zrobić w dowolnym momencie. Nie wpłynie to na okres próbny i nadal będziesz mógł korzystać ze wszystkich funkcji dostępnych w subskrypcji Business i Premium podczas okresu próbnego. Po 30 dniach bezpłatnego okresu próbnego obciążymy Twoją kartę kredytową, jeśli nie anulowałeś subskrypcji. Nie otrzymasz zwrotu pieniędzy, jeśli nie anulujesz subskrypcji w okresie próbnym . Zastrzegamy sobie prawo do wycofania lub zmiany takich ofert w dowolnym momencie bez wcześniejszego powiadomienia.</value>
+  </data>
   <data name="TermsOfUseBlock11Text1">
     <value>Możemy zaoferować Ci wypróbowanie Premium za darmo, dając Ci dostęp do rozszerzonych funkcji przez ograniczony czas. Takie oferty są składane na osobę, a nie na konto AxCrypt ID. Zastrzegamy sobie prawo do wycofania lub zmiany takich ofert w dowolnym momencie bez wcześniejszego powiadomienia.</value>
   </data>
@@ -5934,6 +6145,9 @@ Zespół AxCrypt</value>
     <value>Turecki</value>
     <comment>The name for 'Turkish', in turkish.</comment>
   </data>
+  <data name="TwentyPercentOff">
+    <value>20% zniżki</value>
+  </data>
   <data name="TypographyLabel">
     <value>Typografia</value>
   </data>
@@ -5952,6 +6166,9 @@ Zespół AxCrypt</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>Kliknij tutaj, aby odblokować pełne funkcje szyfrowania!</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>Odblokuj nasze magiczne funkcje!</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} for '{0}'.</value>
@@ -6160,6 +6377,9 @@ Zespół AxCrypt</value>
   </data>
   <data name="WeakPasswordLabel">
     <value>słabe hasło</value>
+  </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>Witamy z powrotem!</value>
   </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>Witamy w AxCrypt!</value>

@@ -2921,6 +2921,9 @@
   <data name="InterviewsLabel">
     <value>面谈</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>欢迎到AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>请指定时间为 'hh:mm:ss.mmm'.</value>
   </data>

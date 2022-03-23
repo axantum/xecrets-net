@@ -3014,6 +3014,9 @@ L'accesso a Internet è fortemente consigliato e richiesto per attivare piani di
 
 La tua password non è salvata nei nostri server e la connessione è sempre criptata.</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Benvenuto in AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Per favore specifica l'ora nel formato 'hh:mm:ss.mmm'.</value>
   </data>

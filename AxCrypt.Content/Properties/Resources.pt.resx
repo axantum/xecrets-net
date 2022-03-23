@@ -239,6 +239,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>Verificação do ID AxCrypt</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Só mais um passo...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Estamos entusiasmados por tê-la(o) connosco nesta viagem de cibersegurança.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>Para completar o processo de adesão, deve verificar o seu endereço de email, provando assim que o detém e dando-nos permissão para lhe enviar emails.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Obtenha a AxCrypt para os seus dispositivos móveis!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Siga-nos nas Nossas Redes Sociais</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Por favor, leia a nossa &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;política de privacidade&lt;/a&gt; para mais detalhes.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Se tiver alguma questão, contacte-nos via &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt;!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Pare!&lt;/b&gt;
 
@@ -301,6 +322,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="AffiliateAdvantagesSubHeading">
     <value>Seja você um negócio, blogger, vlogger, influenciador ou editor de média, o programa de afiliação da AxCrypt oferece-lhe uma das melhores recompensas do mercado.</value>
   </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>Comissão generosa - Orgulhamo-nos em oferecer uma das melhores comissões da indústria. Contacte-nos para obter detalhes!</value>
+  </data>
   <data name="AffiliateAdvantagesText2">
     <value>Gestor de Conta Dedicado - Com um gestor de conta dedicado, obterá a ajuda de que precisa a cada passo, desde configuração até aconselhamento personalizado.</value>
   </data>
@@ -327,6 +351,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>Tenha acesso a ligações exclusivas e material promocional. Alavanque os nossos activos de marketing para lançar as suas campanhas</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>Refira a AxCrypt e ganhe uma das melhores comissões da indústria por cada conversão paga</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>A AxCrypt oferece-lhe a oportunidade de afiliação, sendo pago por cada venda que resulte da sua promoção da AxCrypt. Vamos começar agora.</value>
@@ -369,6 +396,9 @@ Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.</valu
   </data>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Mensal</value>
+  </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Anual</value>
   </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Renomeação anônima</value>
@@ -2269,6 +2299,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="FreeLabel">
     <value>Free</value>
   </data>
+  <data name="FreeTrial">
+    <value>Avaliação grátis</value>
+  </data>
   <data name="FullNameLabel">
     <value>Nome completo</value>
   </data>
@@ -2954,6 +2987,12 @@ Isto pode fazer com que com algumas operações demorem muito tempo. Por favor, 
 O acesso à Internet é recomendável e necessário para ativar um plano Premium. Caso contrário, algumas funções não funcionarão tão bem e não poderá realizar algumas atualizações importantes.
 
 Sua senha não está armazenada no nosso servidor, e a conexão é sempre encriptada.</value>
+  </data>
+  <data name="InterviewsLabel">
+    <value>Entrevistas</value>
+  </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Bem-vindo ao AxCrypt!</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Por favor, especifique o tempo como 'hh:mm:ss.mmm'.</value>
@@ -4272,6 +4311,9 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   <data name="PressImagesLabel">
     <value>Imagens de imprensa</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>CTO Jonatan Pettersson entrevistado por privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Imprensa e média</value>
   </data>
@@ -4364,11 +4406,23 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
   <data name="PricingFeatureListViewer">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>For &lt;span&gt;organizações&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Para &lt;span&gt;particulares&lt;/span&gt;</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Preços</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Experimente as nossas subscrições durante &lt;span&gt;um mês grátis&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>Como deseja pagar?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Só será capaz de decifrar ficheiros existentes (ficheiros que cifrou ou que alguém partilhou consigo).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>Quais são as razões principais do cancelamento?</value>
@@ -6225,6 +6279,9 @@ A equipe AxCrypt</value>
     <value>Teste-o!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Experimente&lt;/span&gt; 1 mês</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Experimente Premium</value>
   </data>
@@ -6242,6 +6299,9 @@ A equipe AxCrypt</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (turco)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>Desconto de 20%</value>
   </data>
   <data name="TypographyLabel">
     <value>Tipografia</value>

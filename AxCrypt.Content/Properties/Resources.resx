@@ -397,6 +397,9 @@ Please sign in using the same password you used then.</value>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel" xml:space="preserve">
     <value>Monthly</value>
   </data>
+  <data name="AnnualSubscriptionTitle" xml:space="preserve">
+    <value>Annual</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonymous Rename</value>
   </data>
@@ -2297,6 +2300,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FreeLabel" xml:space="preserve">
     <value>Free</value>
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>Free trial</value>
+  </data>
   <data name="FullNameLabel" xml:space="preserve">
     <value>Full name</value>
   </data>
@@ -2982,6 +2988,177 @@ This may cause some operations to take very long time. Please be careful not to 
 Internet access is recommended, and required to enable paid subscription plans. Some features work better and critical updates may not reach you otherwise.
 
 Your password is not stored on our servers, and the connection is always encrypted.</value>
+  </data>
+  <data name="InterviewsLabel" xml:space="preserve">
+    <value>Interviews</value>
+  </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Welcome to AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText1" xml:space="preserve">
+    <value>Thank you for choosing AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText10" xml:space="preserve">
+    <value>World's Best Encryption Software</value>
+  </data>
+  <data name="Introduction1MailText11" xml:space="preserve">
+    <value>AxCrypt has been awarded the "The World's Best Encryption Software" by PC Magazine for the past six years, including this year, with a global presence of over 20 million downloads.</value>
+  </data>
+  <data name="Introduction1MailText12" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="Introduction1MailText13" xml:space="preserve">
+    <value>&lt;span style="font-size: 18px"&gt;With our 256-bit encryption, we make sure that no one ever gets access to your encrypted files, as long as you have control of your own key. Take a look at some of the &lt;strong&gt;&lt;span style="color:gold"&gt;features&lt;/span&gt;&lt;/strong&gt; that might benefit you if you are using a &lt;strong&gt;&lt;span style="color:gold"&gt;Business or Premium subscription.&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14" xml:space="preserve">
+    <value>Cloud storage</value>
+  </data>
+  <data name="Introduction1MailText15" xml:space="preserve">
+    <value>AxCrypt makes it easy to accomplish data privacy in the cloud. AxCrypt will automatically find what Cloud Storage services are installed on your computer and create an AxCrypt folder there.</value>
+  </data>
+  <data name="Introduction1MailText16" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="Introduction1MailText17" xml:space="preserve">
+    <value>Master key</value>
+  </data>
+  <data name="Introduction1MailText18" xml:space="preserve">
+    <value>The master key is one of the significant features which eliminates the risk of losing access to critical files. This feature is available for Business subscriptions only.</value>
+  </data>
+  <data name="Introduction1MailText19" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="Introduction1MailText2" xml:space="preserve">
+    <value>Not sure where to begin? Don't worry. To make sure you get the most out of using AxCrypt, we are here for you.</value>
+  </data>
+  <data name="Introduction1MailText20" xml:space="preserve">
+    <value>Key sharing</value>
+  </data>
+  <data name="Introduction1MailText21" xml:space="preserve">
+    <value>With the key sharing feature, AxCrypt allows secured files to be opened by other AxCrypt users with their own passwords.</value>
+  </data>
+  <data name="Introduction1MailText22" xml:space="preserve">
+    <value>Password manager</value>
+  </data>
+  <data name="Introduction1MailText23" xml:space="preserve">
+    <value>With the AxCrypt password manager feature you can store all your passwords and codes in our cloud in a secure manner.</value>
+  </data>
+  <data name="Introduction1MailText24" xml:space="preserve">
+    <value>With AxCrypt, you can avoid becoming a victim of a cyberattack.</value>
+  </data>
+  <data name="Introduction1MailText25" xml:space="preserve">
+    <value>Check out our industry page to see how we serve different industries and what they say about us: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26" xml:space="preserve">
+    <value>Read our latest blog post for more information on how to keep your data safe: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27" xml:space="preserve">
+    <value>Contact us at &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
+  </data>
+  <data name="Introduction1MailText28" xml:space="preserve">
+    <value>Follow Us on Our Social Media</value>
+  </data>
+  <data name="Introduction1MailText3" xml:space="preserve">
+    <value>Here is a guide for you &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;to get started!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4" xml:space="preserve">
+    <value>Watch &lt;strong&gt;our tutorials&lt;/strong&gt; that will help you get going faster. They cover how to complete your set up process, key features of your account, plus some super handy tips.</value>
+  </data>
+  <data name="Introduction1MailText5" xml:space="preserve">
+    <value>Take a glance at &lt;strong&gt;&lt;span style="color: #48772c"&gt;our blog posts&lt;/span&gt;&lt;/strong&gt; for more information on how to keep your data safe: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6" xml:space="preserve">
+    <value>Check out &lt;strong&gt;&lt;span style="color: #48772c"&gt;our industry page&lt;/span&gt;&lt;/strong&gt; to see how we serve different industries and what they say about us: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Introduction1MailText8" xml:space="preserve">
+    <value>Our mission is to provide individuals, small teams, enterprises, and companies with encryption solutions that are easier to use than ever before. By introducing new features, we aim to eliminate the complexity from the usage of strong and proven cryptographic technology.</value>
+  </data>
+  <data name="Introduction1MailText9" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="Introduction2MailSubject" xml:space="preserve">
+    <value>Get more out of AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText1" xml:space="preserve">
+    <value>Hello AxCrypt user!</value>
+  </data>
+  <data name="Introduction2MailText10" xml:space="preserve">
+    <value>AxCrypt makes it easy to accomplish data privacy in the cloud. AxCrypt will automatically find what Cloud Storage services are installed on your computer and create an AxCrypt folder there.</value>
+  </data>
+  <data name="Introduction2MailText11" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="Introduction2MailText12" xml:space="preserve">
+    <value>Mobile encryption</value>
+  </data>
+  <data name="Introduction2MailText13" xml:space="preserve">
+    <value>AxCrypt's mobile encryption supports Google Drive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, DropBox, OneDrive, etc. will be supported soon in the upcoming releases</value>
+  </data>
+  <data name="Introduction2MailText14" xml:space="preserve">
+    <value>Key sharing</value>
+  </data>
+  <data name="Introduction2MailText15" xml:space="preserve">
+    <value>With the key sharing feature, users can send an encrypted file via email, which means that the file can only be accessed with a unique key. For more information check our tutorial on YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16" xml:space="preserve">
+    <value>Password Manager</value>
+  </data>
+  <data name="Introduction2MailText17" xml:space="preserve">
+    <value>With the AxCrypt password manager feature you can store all your passwords and codes in our cloud in a secure manner that no one but you can access.</value>
+  </data>
+  <data name="Introduction2MailText18" xml:space="preserve">
+    <value>Why is it more necessary than ever &lt;strong&gt;to get encrypted in 2021?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19" xml:space="preserve">
+    <value>Since the start of the pandemic, there has been a 300% increase in reported cybercrimes around the world.</value>
+  </data>
+  <data name="Introduction2MailText2" xml:space="preserve">
+    <value>We hope you're enjoying AxCrypt! Do you know that the AxCrypt Business and Premium subscriptions provide a lot more data protection features and also helps in building a secure work environment with your team?</value>
+  </data>
+  <data name="Introduction2MailText20" xml:space="preserve">
+    <value>By 2025, the global email encryption market is anticipated to reach $12.9 billion, representing a 20.1 percent increase.</value>
+  </data>
+  <data name="Introduction2MailText21" xml:space="preserve">
+    <value>The frequency of cyberattacks has risen to 11 seconds in 2021, and ransomware damage costs rose 57 times more than in 2015.</value>
+  </data>
+  <data name="Introduction2MailText22" xml:space="preserve">
+    <value>With AxCrypt, you can avoid becoming a victim of a cyberattack.</value>
+  </data>
+  <data name="Introduction2MailText23" xml:space="preserve">
+    <value>Check out our industry page to see how we serve different industries and what they say about us: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24" xml:space="preserve">
+    <value>Read our latest blog post for more information on how to keep your data safe: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25" xml:space="preserve">
+    <value>Contact us at &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
+  </data>
+  <data name="Introduction2MailText26" xml:space="preserve">
+    <value>Follow Us on Our Social Media</value>
+  </data>
+  <data name="Introduction2MailText3" xml:space="preserve">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;gives you access to a variety of features that help you protect your personal data. Use the discount code &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; discount.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4" xml:space="preserve">
+    <value>&lt;span style= "color: #494949"&gt;If you are looking to use AxCrypt for professional purposes then &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; is a right plan for you. Upgrade now and work with your team in a safe and secure manner. Use the discount code &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= "color: #000000"&gt;15% discount&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5" xml:space="preserve">
+    <value>Advantages of &lt;span style="color: #FDBC01"&gt;AxCrypt subscription&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6" xml:space="preserve">
+    <value>Master key</value>
+  </data>
+  <data name="Introduction2MailText7" xml:space="preserve">
+    <value>The master key is one of the significant features which eliminates the risk of losing access to critical files. This feature is available for Business subscriptions only.</value>
+  </data>
+  <data name="Introduction2MailText8" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="Introduction2MailText9" xml:space="preserve">
+    <value>Cloud storage</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Please specify time as 'hh:mm:ss.mmm'.</value>
@@ -4303,6 +4480,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PressImagesLabel" xml:space="preserve">
     <value>Press images</value>
   </data>
+  <data name="PressInterviewByPIAText" xml:space="preserve">
+    <value>CTO Jonatan Pettersson interviewed by privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel" xml:space="preserve">
     <value>Press and media</value>
   </data>
@@ -4395,11 +4575,23 @@ White space, and parts that are equal to common passwords are ignored and do not
   <data name="PricingFeatureListViewer" xml:space="preserve">
     <value>Viewer</value>
   </data>
+  <data name="PricingForOrganizations" xml:space="preserve">
+    <value>For &lt;span&gt;organizations&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers" xml:space="preserve">
+    <value>For &lt;span&gt;private&lt;/span&gt; users</value>
+  </data>
   <data name="PricingLinkLabel" xml:space="preserve">
     <value>Pricing</value>
   </data>
+  <data name="PricingLinkLabelFeature" xml:space="preserve">
+    <value>Try our subscriptions for &lt;span&gt;one month free&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading" xml:space="preserve">
     <value>How do you want to pay?</value>
+  </data>
+  <data name="PricingViewerTierInfo" xml:space="preserve">
+    <value>You will only be able to decrypt existing files (files you previously encrypted yourself, or files that someone else shared with you).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>What are the primary reasons for the cancelation?</value>
@@ -6261,6 +6453,9 @@ The AxCrypt Team</value>
     <value>Try it!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth" xml:space="preserve">
+    <value>&lt;span&gt;Try&lt;/span&gt; 1-month</value>
+  </data>
   <data name="TryPremiumHeading" xml:space="preserve">
     <value>Try Premium</value>
   </data>
@@ -6278,6 +6473,9 @@ The AxCrypt Team</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Turkish)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff" xml:space="preserve">
+    <value>20% off</value>
   </data>
   <data name="TypographyLabel" xml:space="preserve">
     <value>Typography</value>

@@ -2879,6 +2879,9 @@ Un accès Internet est recommandé, et nécessaire pour l'usage d'abonnements pa
 
 Votre mot de passe n'est pas stocké sur nos serveurs, et la connexion est toujours cryptée.</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Bienvenue sur AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Veuillez saisir l'heure sous la forme 'hh:mm:ss.mmmm'.</value>
   </data>
