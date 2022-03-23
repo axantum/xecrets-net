@@ -8759,7 +8759,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
->>>>>>> Stashed changes
         ///   Looks up a localized string similar to Please specify time as &apos;hh:mm:ss.mmm&apos;..
         /// </summary>
         public static string Invalid_TimeSpan {
