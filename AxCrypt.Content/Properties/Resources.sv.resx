@@ -2952,6 +2952,9 @@ Internetåtkomst rekommenderas, och krävs för att starta betalda abonnemang. V
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Väkommen till AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Ange tid som 'hh:mm:ss.mmm'.</value>
   </data>

@@ -8255,6 +8255,511 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt!.
+        /// </summary>
+        public static string Introduction1MailSubject {
+            get {
+                return ResourceManager.GetString("Introduction1MailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for choosing AxCrypt!.
+        /// </summary>
+        public static string Introduction1MailText1 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World&apos;s Best Encryption Software.
+        /// </summary>
+        public static string Introduction1MailText10 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has been awarded the &quot;The World&apos;s Best Encryption Software&quot; by PC Magazine for the past six years, including this year, with a global presence of over 20 million downloads..
+        /// </summary>
+        public static string Introduction1MailText11 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string Introduction1MailText12 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style=&quot;font-size: 18px&quot;&gt;With our 256-bit encryption, we make sure that no one ever gets access to your encrypted files, as long as you have control of your own key. Take a look at some of the &lt;strong&gt;&lt;span style=&quot;color:gold&quot;&gt;features&lt;/span&gt;&lt;/strong&gt; that might benefit you if you are using a &lt;strong&gt;&lt;span style=&quot;color:gold&quot;&gt;Business or Premium subscription.&lt;/span&gt;&lt;/strong&gt;.
+        /// </summary>
+        public static string Introduction1MailText13 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud storage.
+        /// </summary>
+        public static string Introduction1MailText14 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt makes it easy to accomplish data privacy in the cloud. AxCrypt will automatically find what Cloud Storage services are installed on your computer and create an AxCrypt folder there..
+        /// </summary>
+        public static string Introduction1MailText15 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string Introduction1MailText16 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key.
+        /// </summary>
+        public static string Introduction1MailText17 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The master key is one of the significant features which eliminates the risk of losing access to critical files. This feature is available for Business subscriptions only..
+        /// </summary>
+        public static string Introduction1MailText18 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read more.
+        /// </summary>
+        public static string Introduction1MailText19 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not sure where to begin? Don&apos;t worry. To make sure you get the most out of using AxCrypt, we are here for you..
+        /// </summary>
+        public static string Introduction1MailText2 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key sharing.
+        /// </summary>
+        public static string Introduction1MailText20 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the key sharing feature, AxCrypt allows secured files to be opened by other AxCrypt users with their own passwords..
+        /// </summary>
+        public static string Introduction1MailText21 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password manager.
+        /// </summary>
+        public static string Introduction1MailText22 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the AxCrypt password manager feature you can store all your passwords and codes in our cloud in a secure manner..
+        /// </summary>
+        public static string Introduction1MailText23 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, you can avoid becoming a victim of a cyberattack..
+        /// </summary>
+        public static string Introduction1MailText24 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out our industry page to see how we serve different industries and what they say about us: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/industries&quot;&gt;https://www.axcrypt.net/industries&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction1MailText25 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read our latest blog post for more information on how to keep your data safe: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40&quot;&gt;https://www.axcrypt.net/blog&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction1MailText26 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us at &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;mailto:support@axcrypt.net&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        /// </summary>
+        public static string Introduction1MailText27 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow Us on Our Social Media.
+        /// </summary>
+        public static string Introduction1MailText28 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is a guide for you &lt;strong&gt;&lt;span style=&quot;color: #4d8342;font-size: 16px&quot;&gt;to get started!&lt;/span&gt;&lt;/strong&gt;.
+        /// </summary>
+        public static string Introduction1MailText3 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch &lt;strong&gt;our tutorials&lt;/strong&gt; that will help you get going faster. They cover how to complete your set up process, key features of your account, plus some super handy tips..
+        /// </summary>
+        public static string Introduction1MailText4 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take a glance at &lt;strong&gt;&lt;span style=&quot;color: #48772c&quot;&gt;our blog posts&lt;/span&gt;&lt;/strong&gt; for more information on how to keep your data safe: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40&quot;&gt;https://www.axcrypt.net/blog&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction1MailText5 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out &lt;strong&gt;&lt;span style=&quot;color: #48772c&quot;&gt;our industry page&lt;/span&gt;&lt;/strong&gt; to see how we serve different industries and what they say about us: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/industries&quot;&gt;https://www.axcrypt.net/industries&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction1MailText6 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About us.
+        /// </summary>
+        public static string Introduction1MailText7 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our mission is to provide individuals, small teams, enterprises, and companies with encryption solutions that are easier to use than ever before. By introducing new features, we aim to eliminate the complexity from the usage of strong and proven cryptographic technology..
+        /// </summary>
+        public static string Introduction1MailText8 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string Introduction1MailText9 {
+            get {
+                return ResourceManager.GetString("Introduction1MailText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get more out of AxCrypt!.
+        /// </summary>
+        public static string Introduction2MailSubject {
+            get {
+                return ResourceManager.GetString("Introduction2MailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello AxCrypt user!.
+        /// </summary>
+        public static string Introduction2MailText1 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt makes it easy to accomplish data privacy in the cloud. AxCrypt will automatically find what Cloud Storage services are installed on your computer and create an AxCrypt folder there..
+        /// </summary>
+        public static string Introduction2MailText10 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read More.
+        /// </summary>
+        public static string Introduction2MailText11 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile encryption.
+        /// </summary>
+        public static string Introduction2MailText12 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt&apos;s mobile encryption supports Google Drive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, DropBox, OneDrive, etc. will be supported soon in the upcoming releases.
+        /// </summary>
+        public static string Introduction2MailText13 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key sharing.
+        /// </summary>
+        public static string Introduction2MailText14 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the key sharing feature, users can send an encrypted file via email, which means that the file can only be accessed with a unique key. For more information check our tutorial on YouTube..
+        /// </summary>
+        public static string Introduction2MailText15 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Manager.
+        /// </summary>
+        public static string Introduction2MailText16 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the AxCrypt password manager feature you can store all your passwords and codes in our cloud in a secure manner that no one but you can access..
+        /// </summary>
+        public static string Introduction2MailText17 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why is it more necessary than ever &lt;strong&gt;to get encrypted in 2021?&lt;/strong&gt;.
+        /// </summary>
+        public static string Introduction2MailText18 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Since the start of the pandemic, there has been a 300% increase in reported cybercrimes around the world..
+        /// </summary>
+        public static string Introduction2MailText19 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We hope you&apos;re enjoying AxCrypt! Do you know that the AxCrypt Business and Premium subscriptions provide a lot more data protection features and also helps in building a secure work environment with your team?.
+        /// </summary>
+        public static string Introduction2MailText2 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By 2025, the global email encryption market is anticipated to reach $12.9 billion, representing a 20.1 percent increase..
+        /// </summary>
+        public static string Introduction2MailText20 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The frequency of cyberattacks has risen to 11 seconds in 2021, and ransomware damage costs rose 57 times more than in 2015..
+        /// </summary>
+        public static string Introduction2MailText21 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, you can avoid becoming a victim of a cyberattack..
+        /// </summary>
+        public static string Introduction2MailText22 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out our industry page to see how we serve different industries and what they say about us: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/industries&quot;&gt;https://www.axcrypt.net/industries&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction2MailText23 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read our latest blog post for more information on how to keep your data safe: &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40&quot;&gt;https://www.axcrypt.net/blog&lt;/a&gt;.
+        /// </summary>
+        public static string Introduction2MailText24 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us at &lt;a style=&quot;color: #5f5f5f; font-weight: 800; text-decoration: none&quot; href=&quot;mailto:support@axcrypt.net&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        /// </summary>
+        public static string Introduction2MailText25 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow Us on Our Social Media.
+        /// </summary>
+        public static string Introduction2MailText26 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;&lt;span style= &quot;color: #48772c&quot;&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= &quot;color: #494949&quot;&gt;gives you access to a variety of features that help you protect your personal data. Use the discount code &lt;strong&gt;&lt;span style= &quot;color: #48772c&quot;&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= &quot;color: #48772c&quot;&gt;10%&lt;/span&gt;&lt;/strong&gt; discount.&lt;/span&gt;.
+        /// </summary>
+        public static string Introduction2MailText3 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span style= &quot;color: #494949&quot;&gt;If you are looking to use AxCrypt for professional purposes then &lt;strong&gt;&lt;span style= &quot;color: #000000&quot;&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; is a right plan for you. Upgrade now and work with your team in a safe and secure manner. Use the discount code &lt;strong&gt;&lt;span style= &quot;color: #000000&quot;&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= &quot;color: #000000&quot;&gt;15% discount&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;.
+        /// </summary>
+        public static string Introduction2MailText4 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advantages of &lt;span style=&quot;color: #FDBC01&quot;&gt;AxCrypt subscription&lt;/span&gt;.
+        /// </summary>
+        public static string Introduction2MailText5 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key.
+        /// </summary>
+        public static string Introduction2MailText6 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The master key is one of the significant features which eliminates the risk of losing access to critical files. This feature is available for Business subscriptions only..
+        /// </summary>
+        public static string Introduction2MailText7 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read More.
+        /// </summary>
+        public static string Introduction2MailText8 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud storage.
+        /// </summary>
+        public static string Introduction2MailText9 {
+            get {
+                return ResourceManager.GetString("Introduction2MailText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+>>>>>>> Stashed changes
         ///   Looks up a localized string similar to Please specify time as &apos;hh:mm:ss.mmm&apos;..
         /// </summary>
         public static string Invalid_TimeSpan {

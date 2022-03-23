@@ -2965,6 +2965,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
 
 사용자의 비밀번호가 서버에 저장되어 있지 않고, 연결이 항상 암호화되어 있습니다.</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>AxCrypt에 오신것을 환영합니다!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>시간을 'hh:mm:ss.mmm'을 토대로 작성해주시기 바랍니다.</value>
   </data>

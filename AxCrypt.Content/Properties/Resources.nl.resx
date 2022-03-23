@@ -2967,6 +2967,9 @@ U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geën
   <data name="InterviewsLabel">
     <value>Interviews</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Welkom bij AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Specificeer tijd alstublieft als 'uu:mm:ss.mmm'.</value>
   </data>

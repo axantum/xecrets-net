@@ -2896,6 +2896,9 @@
   <data name="InterviewsLabel">
     <value>Интервью</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Добро пожаловать на AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Пожалуйста, уточните время как 'hh:mm:ss.mmm'.</value>
   </data>

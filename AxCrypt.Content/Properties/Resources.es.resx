@@ -2994,6 +2994,9 @@ Tu contraseña no se almacena en nuestros servidores y la conexión está siempr
   <data name="InterviewsLabel">
     <value>Entrevistas</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>¡Bienvenido a AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Por favor, especifica la hora como 'hh:mm:ss.mmm'.</value>
   </data>

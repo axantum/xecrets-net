@@ -2991,6 +2991,9 @@ Sua senha não está armazenada no nosso servidor, e a conexão é sempre encrip
   <data name="InterviewsLabel">
     <value>Entrevistas</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Bem-vindo ao AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Por favor, especifique o tempo como 'hh:mm:ss.mmm'.</value>
   </data>

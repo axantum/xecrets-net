@@ -2963,6 +2963,9 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
   <data name="InterviewsLabel">
     <value>görüşmeler</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>AxCrypt'e hoş geldin!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Lütfen zamanı 'ss:dd:ss.mmm' şeklinde belirt.</value>
   </data>

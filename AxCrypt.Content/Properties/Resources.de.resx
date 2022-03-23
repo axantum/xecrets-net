@@ -2900,6 +2900,9 @@ Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer 
   <data name="InterviewsLabel">
     <value>Interviews</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Willkommen bei AxCrypt</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Bitte geben Sie die Zeit im Format 'hh:mm:ss.mmm' an.</value>
   </data>

@@ -2883,6 +2883,9 @@ Twoje hasło nie jest zapisywane na naszych serwerach, a połączenie jest zawsz
   <data name="InterviewsLabel">
     <value>Wywiady</value>
   </data>
+  <data name="Introduction1MailSubject" xml:space="preserve">
+    <value>Witamy w AxCrypt!</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Proszę podać godzinę w formacie "hh: mm: ss.mmm".</value>
   </data>
