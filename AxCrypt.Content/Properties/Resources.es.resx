@@ -2997,6 +2997,174 @@ Tu contraseña no se almacena en nuestros servidores y la conexión está siempr
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>¡Bienvenido a AxCrypt!</value>
   </data>
+  <data name="Introduction1MailText1">
+    <value>¡Gracias por escoger AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>El mejor software de cifrado del mundo</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt ha sido galardonado como "El mejor software de cifrado del mundo" por PC Magazine durante los últimos seis años, incluido este año, con una presencia global de más de 20 millones de descargas.</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;Con nuestro cifrado de 256 bits, nos aseguramos de que nadie tenga acceso a tus archivos cifrados, siempre que tengas el control de tu propia clave. Echa un vistazo a algunas de las &lt;strong&gt;&lt;span style="color:gold"&gt;funciones&lt;/span&gt;&lt;/strong&gt; que podrían ayudarte si usas la &lt;strong&gt;&lt;span style="color:gold" &gt;Suscripción Business o Premium&lt;/span&gt;&lt;/strong&gt;.
+</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Almacenamiento en la nube</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt te permite lograr la privacidad de los datos en la nube. AxCrypt hallará automáticamente los servicios de almacenamiento en la nube instalados en tu computadora y creará una carpeta AxCrypt allí.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Clave maestra</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>La clave maestra es una de las funciones importantes que elimina el riesgo de perder el acceso a archivos delicados. Esta característica está disponible solo para suscriptores Business.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>¿No estás seguro por dónde empezar? No te preocupes. Estamos aquí para ayudarte a sacar el mayor provecho de AxCrypt.</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Uso compartido de contraseñas</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Con la función de uso compartido de claves, AxCrypt permite que otros usuarios de AxCrypt abran archivos protegidos con sus propias contraseñas.</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Administrador de contraseñas</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>Con la función de administrador de contraseñas de AxCrypt, puedes almacenar todas tus contraseñas y códigos en nuestra nube de manera segura.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>Con AxCrypt, puedes evitar ser víctima de un ciberataque.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Consulta la sección de Industrias de nuestra página web para saber cómo atendemos a las diferentes industrias y lo que dicen sobre nosotros:</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Lee nuestra última publicación de blog para obtener más información sobre cómo mantener tus datos seguros: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net /blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Si tienes dudas, escríbenos a nuestro correo electrónico &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Síguenos en las redes sociales</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Aquí tienes una guía para que &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;empezar&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Mira &lt;strong&gt;nuestros tutoriales&lt;/strong&gt; que te ayudarán a ponerte en marcha más rápido. Con ellos sabrás cómo completar el proceso de configuración, conocerás algunas características clave de tu cuenta y obtendrás algunos consejos muy útiles.</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Echa un vistazo a &lt;strong&gt;&lt;span style="color: #48772c"&gt;nuestras entradas de blog&lt;/span&gt;&lt;/strong&gt; para obtener más información sobre cómo mantener tus datos seguros: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Consulta &lt;strong&gt;&lt;span style="color: #48772c"&gt;la sección de Industrias de nuestra página web&lt;/span&gt;&lt;/strong&gt; para saber cómo atendemos a diferentes industrias y qué dicen de nosotros: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>Sobre nosotros</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>Nuestra misión es ofrecer a personas,  equipos pequeños y empresas soluciones de cifrado que son más fáciles de usar que nunca antes. Mediante la introducción de nuevas funciones, nuestro objetivo es eliminar la complejidad del uso de tecnología criptográfica sólida y comprobada.</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>¡Aprovecha AxCrypt al máximo!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>¡Hola, usuario de AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt  te permite lograr la privacidad de los datos en la nube. AxCrypt hallará automáticamente los servicios de almacenamiento en la nube instalados en tu computadora y creará una carpeta AxCrypt allí.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>Cifrado móvil</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>El cifrado móvil de AxCrypt es compatible con el cifrado de archivos de Google Drive en iOS y Android. El cifrado de almacenamiento local y otras unidades en la nube, como iCloud, DropBox, OneDrive, etc., serán compatibles pronto en las próximas versiones.</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Uso compartido de contraseñas</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>Con la función de uso compartido de claves, los usuarios pueden enviar un archivo cifrado por correo electrónico, lo que significa que solo se puede acceder al archivo con una clave única. Para más información, consulta nuestro tutorial en YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Administrador de contraseñas</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>Con la función de administrador de contraseñas de AxCrypt, puedes almacenar todas tus contraseñas y códigos en nuestra nube de una manera segura. Nadie más que tú tendrá acceso.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>¿Por qué es más necesario que nunca &lt;strong&gt;cifrar archivos en 2021?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>Desde el inicio de la pandemia, ha habido un aumento del 300% en los delitos cibernéticos denunciados en todo el mundo.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>¡Esperamos que estés disfrutando de AxCrypt! ¿Sabías que las suscripciones a AxCrypt Business y Premium brindan muchas más funciones de protección de datos y también ayudan a construir un entorno de trabajo seguro con tu equipo?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Para el año 2025, se prevé que el mercado mundial de cifrado de correo electrónico alcance los 12.900 millones de dólares, lo que representa un aumento del 20,1 %.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>La frecuencia de los ciberataques aumentó a 11 segundos en 2021, y los costos de daños por ransomware aumentaron 57 veces más que en 2015.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>Con AxCrypt, puedes evitar ser víctima de un ciberataque.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Consulta la sección de Industrias de nuestra página web y entérate de cómo atendemos a diferentes industrias y qué dicen sobre nosotros: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Lee nuestra última publicación de blog para obtener más información sobre cómo mantener tus datos seguros: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Si tienes alguna consulta, escríbenos a nuestro correo electrónico &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Síguenos en las redes sociales</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;te brinda acceso a una serie de funciones que te ayudarán a proteger tus datos personales. Usa el código de descuento &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; y obtén un &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; de descuento&lt;/span&gt;.</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Si buscas utilizar AxCrypt para fines profesionales, entonces &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; es el plan perfecto para ti. 
+Actualízate ahora y trabaja con tu equipo de manera segura.
+Usa el código de descuento &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; y obtén un &lt;strong&gt;&lt;span style= "color: #000000"&gt;descuento de 15%&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Ventajas de la &lt;span style="color: #FDBC01"&gt;suscripción a AxCrypt&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Clave maestra</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>La clave maestra es una de las funciones importantes que elimina el riesgo de perder el acceso a archivos delicados. Esta característica está disponible solo para suscriptores Business.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Más información</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Almacenamiento en la nube</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Por favor, especifica la hora como 'hh:mm:ss.mmm'.</value>
   </data>
@@ -5009,7 +5177,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
   <data name="RenewSubscriptionDialogFeaturesList" xml:space="preserve">
     <value>Apps móviles
 AES de 256 bits
-Uso compartido de claves
+Uso compartido de contraseñas
 Carpetas protegidas
 Administración de contraseñas
 Cloud Storage Awareness</value>
