@@ -2924,6 +2924,171 @@
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>欢迎到AxCrypt!</value>
   </data>
+  <data name="Introduction1MailText1">
+    <value>感谢您选择AxCrypt！</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>世界上最好的加密软件</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt在过去六年（包括今年）被PC Magazine评为"世界最佳加密软件"，全球下载量超过2000万次。</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>阅读更多</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;通过我们的256位加密，我们确保没有人可以访问您的加密文件，只要您控制自己的密钥。 看看一些&lt;strong&gt;&lt;span style="color:gold"&gt;功能&lt;/span&gt;&lt;/strong&gt;，如果您使用的是&lt;strong&gt;&lt;span style="color:gold"&gt;Business或Premium订阅，这些功能可能会使您受益。&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>云存储</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt可以轻松实现云中的数据隐私。 AxCrypt将自动查找您的计算机上安装的云存储服务，并在那里创建一个AxCrypt文件夹。</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>阅读更多</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>主密钥</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>主密钥是一个重要的功能，它消除了失去访问关键文件的风险。 此功能仅适用于Business订阅。</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>阅读更多</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>不知道从哪里开始？ 别担心。 为了确保您充分利用AxCrypt，我们在这里为您服务。</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>密钥共享</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>通过密钥共享功能，AxCrypt允许其他AxCrypt用户使用自己的密码打开安全文件。</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>密码管理器</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>使用AxCrypt密码管理器功能，您可以以安全的方式将所有密码和代码存储在我们的云中。</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>使用AxCrypt，您可以避免成为网络攻击的受害者。</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>查看我们的行业页面，了解我们如何为不同的行业服务，以及他们对我们的评价: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>阅读我们最新的博客文章，了解有关如何保护数据安全的更多信息: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>联系我们&lt;a style="color:#5f5f5f;font-weight:800;text-decoration:none"href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;如果您有任何问题！</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>在我们的社交媒体上关注我们</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>这里有一个指南为您&lt;strong&gt;&lt;span style="color:#4d8342;font-size:16px"&gt;开始！&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>观看&lt;strong&gt;我们的教程&lt;/strong&gt;，这将帮助你更快地开始。 它们包括如何完成您的设置过程，您的帐户的主要功能，以及一些超级方便的提示。</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>查看&lt;strong&gt;&lt;span style="color:#48772c"&gt;我们的博客文章&lt;/span&gt;&lt;/strong&gt;，了解有关如何保护数据安全的更多信息:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>查看&lt;strong&gt;&lt;span style="color:#48772c"&gt;我们的行业页面&lt;/span&gt;&lt;/strong&gt;，了解我们如何为不同行业服务以及他们对我们的评价: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>关于我们</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>我们的使命是为个人，小团队，企业和公司提供比以往更容易使用的加密解决方案。 通过引入新功能，我们的目标是消除使用强大和经过验证的加密技术的复杂性。</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>了解更多</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>从AxCrypt中获得更多！</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>您好AxCrypt用户！</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt可以轻松实现云中的数据隐私。 AxCrypt将自动查找您的计算机上安装的云存储服务，并在那里创建一个AxCrypt文件夹。</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>阅读更多</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>移动加密</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>Axcrypt移动加密支持iOS和Android上的谷歌云端硬盘文件加密。 本地存储加密和其他云驱动器，如iCloud，DropBox，OneDrive等。 将在即将发布的版本中提供支持</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>密钥共享</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>使用密钥共享功能，用户可以通过电子邮件发送加密文件，这意味着只能使用唯一密钥访问该文件。 有关更多信息，请查看我们在YouTube上的教程。</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>密码管理器</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>使用AxCrypt密码管理器功能，您可以以安全的方式将所有密码和代码存储在我们的云中，只有您可以访问。</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value> &lt;strong&gt;为什么在2021年加密&lt;/strong&gt;比以往任何时候都更有必要？</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>自大流行开始以来，全球报告的网络犯罪增加了300％。</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>希望 您喜欢AxCrypt！ 您是否知道AxCrypt业务和高级订阅提供了更多的数据保护功能，并有助于与您的团队建立一个安全的工作环境？</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>到2025年，全球电子邮件加密市场预计将达到129亿美元，增长20.1%。</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>网络攻击的频率在2021年上升到11秒，勒索软件的破坏成本比2015年上升了57倍。</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>使用AxCrypt，您可以避免成为网络攻击的受害者。</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>查看我们的行业页面，了解我们如何为不同的行业服务，以及他们对我们的评价: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>阅读我们最新的博客文章，了解有关如何保护数据安全的更多信息:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>联系我们&lt;a style="color:#5f5f5f;font-weight:800;text-decoration:none"href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;如果您有任何问题！</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>在我们的社交媒体上关注我们</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;给您访问到的各种功能，帮助您保护个人数据。 使用的折扣码 &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; 获得 &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; 的折扣.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;如果您是在寻找使用AxCrypt用于职业目的，那么 &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; 是正确的计划。 现在升级，并与你的团队在一个安全和有保障的方式。 使用的折扣码 &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; 获得 &lt;strong&gt;&lt;span style= "color: #000000"&gt;15%的折扣&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>&lt;span style="color:#FDBC01"&gt;AxCrypt订阅的优点&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>主密钥</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>主密钥是一个重要的功能，它消除了失去访问关键文件的风险。 此功能仅适用于Business订阅。</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>阅读更多</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>云存储</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>请指定时间为 'hh:mm:ss.mmm'.</value>
   </data>
