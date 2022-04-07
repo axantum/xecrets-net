@@ -2903,6 +2903,171 @@ Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer 
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>Willkommen bei AxCrypt</value>
   </data>
+  <data name="Introduction1MailText1">
+    <value>Vielen Dank, dass Sie sich für AxCrypt entschieden haben!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>Die weltweit beste Verschlüsselungssoftware</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt wurde in den letzten sechs Jahren, einschließlich dieses Jahres, vom PC Magazine mit einer weltweiten Präsenz von über 20 Millionen Downloads als "Die beste Verschlüsselungssoftware der Welt" ausgezeichnet.</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Lesen Sie mehr</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;Mit unserer 256-Bit-Verschlüsselung stellen wir sicher, dass niemand jemals Zugriff auf Ihre verschlüsselten Dateien erhält, solange Sie die Kontrolle über Ihren eigenen Schlüssel haben. Werfen Sie einen Blick auf einige der &lt;strong&gt;&lt;span style="color:gold"&gt;Funktionen&lt;/span&gt;&lt;/strong&gt;, von denen Sie profitieren könnten, wenn Sie ein &lt;strong&gt;&lt;span style="color:gold"&gt;Business- oder Premium-Abonnement verwenden.&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Cloud-Speicher</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt macht es einfach, Datenschutz in der Cloud zu erreichen. AxCrypt findet automatisch, welche Cloud-Speicherdienste auf Ihrem Computer installiert sind, und erstellt dort einen AxCrypt-Ordner.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Lesen Sie mehr</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Hauptschlüssel</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>Der Hauptschlüssel ist eine der wesentlichen Funktionen, die das Risiko des Verlusts des Zugriffs auf kritische Dateien eliminiert. Diese Funktion ist nur für Business-Abonnements verfügbar.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Lesen Sie mehr</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>Nicht sicher, wo Sie anfangen sollen? Keine Sorge. Damit Sie AxCrypt optimal nutzen können, sind wir für Sie da.</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Schlüsselfreigabe</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Mit der Schlüsselfreigabefunktion ermöglicht AxCrypt, dass gesicherte Dateien von anderen AxCrypt-Benutzern mit ihren eigenen Passwörtern geöffnet werden können.</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Passwort-Manager</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>Mit der AxCrypt Passwort-Manager-Funktion können Sie alle Ihre Passwörter und Codes sicher in unserer Cloud speichern.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>Mit AxCrypt können Sie vermeiden, Opfer eines Cyberangriffs zu werden.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Auf unserer Branchenseite erfahren Sie, wie wir verschiedene Branchen bedienen und was sie über uns sagen:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Lesen Sie unseren neuesten Blogbeitrag, um weitere Informationen darüber zu erhalten, wie Sie Ihre Daten schützen können: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Folgen Sie uns in unseren sozialen Medien</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Hier ist eine Anleitung für Sie &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;, um loszulegen!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Sehen Sie sich &lt;strong&gt;unsere Tutorials&lt;/strong&gt; an, die Ihnen helfen, schneller loszulegen. Sie behandeln, wie Sie Ihren Einrichtungsprozess abschließen, die wichtigsten Funktionen Ihres Kontos sowie einige super praktische Tipps.</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Werfen Sie einen Blick auf &lt;strong&gt;&lt;span style="color: #48772c"&gt;unsere Blogbeiträge&lt;/span&gt;&lt;/strong&gt;, um weitere Informationen zum Schutz Ihrer Daten zu erhalten: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Schauen Sie sich &lt;strong&gt;&lt;span style="color: #48772c"&gt;unsere Branchenseite&lt;/span&gt;&lt;/strong&gt; an, um zu sehen, wie wir verschiedene Branchen bedienen und was sie über uns sagen: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>Über uns</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>Unsere Mission ist es, Einzelpersonen, kleinen Teams, Unternehmen und Unternehmen Verschlüsselungslösungen zur Verfügung zu stellen, die einfacher zu bedienen sind als je zuvor. Durch die Einführung neuer Funktionen wollen wir die Komplexität der Verwendung starker und bewährter kryptografischer Technologie beseitigen.</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Mehr erfahren</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>Holen Sie mehr aus AxCrypt heraus!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>Hallo AxCrypt-Benutzer!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt macht es einfach, Datenschutz in der Cloud zu erreichen. AxCrypt findet automatisch, welche Cloud-Speicherdienste auf Ihrem Computer installiert sind, und erstellt dort einen AxCrypt-Ordner.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Lesen Sie mehr</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>Mobile Verschlüsselung</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>Axcrypt mobile Encryption unterstützt die Google Drive-Dateiverschlüsselung auf iOS und Android. Lokale Speicherverschlüsselung und andere Cloud-Laufwerke wie iCloud, DropBox, OneDrive usw. wird in Kürze in den kommenden Versionen unterstützt</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Schlüsselfreigabe</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>Mit der Schlüsselfreigabefunktion können Benutzer eine verschlüsselte Datei per E-Mail senden, was bedeutet, dass nur mit einem eindeutigen Schlüssel auf die Datei zugegriffen werden kann. Weitere Informationen finden Sie in unserem Tutorial auf YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Passwort-Manager</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>Mit der AxCrypt Passwort-Manager-Funktion können Sie alle Ihre Passwörter und Codes auf sichere Weise in unserer Cloud speichern, auf die niemand außer Ihnen zugreifen kann.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>Warum ist es im Jahr 2021 notwendiger denn je, &lt;strong&gt; verschlüsselt zu werden?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>Seit Beginn der Pandemie ist die Zahl der gemeldeten Cyberkriminalität weltweit um 300% gestiegen.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>Wir hoffen, Ihnen gefällt AxCrypt! Wussten Sie, dass die AxCrypt Business- und Premium-Abonnements viel mehr Datenschutzfunktionen bieten und auch beim Aufbau einer sicheren Arbeitsumgebung mit Ihrem Team helfen?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Bis 2025 wird der weltweite Markt für E-Mail-Verschlüsselung voraussichtlich 12,9 Milliarden US-Dollar erreichen, was einem Anstieg von 20,1 Prozent entspricht.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>Die Häufigkeit von Cyberangriffen ist im Jahr 2021 auf 11 Sekunden gestiegen, und die Kosten für Ransomware-Schäden sind um das 57-fache gestiegen als im Jahr 2015.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>Mit AxCrypt können Sie vermeiden, Opfer eines Cyberangriffs zu werden.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Auf unserer Branchenseite erfahren Sie, wie wir verschiedene Branchen bedienen und was sie über uns sagen: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Lesen Sie unseren neuesten Blogbeitrag, um weitere Informationen darüber zu erhalten, wie Sie Ihre Daten schützen können:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Folgen Sie uns in unseren sozialen Medien</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;bietet Ihnen Zugriff auf eine Vielzahl von Funktionen, mit denen Sie Ihre persönlichen Daten schützen können. Verwenden Sie den Rabattcode &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt;, um einen &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; Rabatt zu erhalten.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Wenn Sie AxCrypt für professionelle Zwecke verwenden möchten, ist &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; der richtige Plan für Sie. Rüsten Sie jetzt auf und arbeiten Sie sicher mit Ihrem Team zusammen. Verwenden Sie den Rabattcode &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt;, um einen &lt;strong&gt;&lt;span style= "color: #000000"&gt;15% Rabatt&lt;/span&gt;&lt;/strong&gt; zu erhalten.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Vorteile des &lt;span style="color: #FDBC01"&gt;AxCrypt-Abonnements&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Hauptschlüssel</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>Der Hauptschlüssel ist eine der wesentlichen Funktionen, die das Risiko des Verlusts des Zugriffs auf kritische Dateien eliminiert. Diese Funktion ist nur für Business-Abonnements verfügbar.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Lesen Sie mehr</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Cloud-Speicher</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Bitte geben Sie die Zeit im Format 'hh:mm:ss.mmm' an.</value>
   </data>
