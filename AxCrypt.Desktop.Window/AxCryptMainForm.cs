@@ -342,7 +342,7 @@ namespace AxCrypt.Desktop.Window
             _closeAndRemoveOpenFilesToolStripButton.Text = Texts.CleanUpPromptText;
             _feedbackButton.Text = Texts.SendFeedbackTitle;
             _helpButton.Text = Texts.ButtonHelpText;
-            _helpButton.ToolTipText = Texts.HomeGetStartedHeading;
+            _helpButton.ToolTipText = Texts.GetStartedLinkLabel;
             _daysLeftPremiumLabel.Text = Texts.UnlockFullEncryptionFeaturesText;
             _businessPrioritySupportToolStripMenuItem.Text = Texts.BusinessSupportTitle;
             _businessPrioritySupportToolStripMenuItem.ToolTipText = Texts.FeaturesBusinessPrioritySupportDescription;
