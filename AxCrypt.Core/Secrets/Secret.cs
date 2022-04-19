@@ -59,6 +59,8 @@ namespace AxCrypt.Core.Secrets
             Description = secret.Description;
             TheSecret = secret.TheSecret;
             EncryptionKey = secret.EncryptionKey;
+            CreatedUtc = secret.CreatedUtc;
+            UpdatedUtc = secret.UpdatedUtc;
         }
 
         public Secret(Guid id, string title, string description, string theSecret)
@@ -73,6 +75,13 @@ namespace AxCrypt.Core.Secrets
             : this(id, title, description, theSecret)
         {
             EncryptionKey = encryptionKey;
+        }
+
+        public Secret(Guid id, string title, string description, string theSecret, EncryptionKey encryptionKey, DateTime createdUtc, DateTime updatedUtc)
+            : this(id, title, description, theSecret, encryptionKey)
+        {
+            CreatedUtc = createdUtc;
+            UpdatedUtc = updatedUtc;
         }
 
         private EncryptionKey _encryptionKey;
@@ -126,6 +135,22 @@ namespace AxCrypt.Core.Secrets
         {
             get { return _theSecret ?? String.Empty; }
             set { _theSecret = value; }
+        }
+
+        private DateTime _createdUtc = DateTime.MinValue;
+
+        public DateTime CreatedUtc
+        {
+            get { return _createdUtc; }
+            set { _createdUtc = value; }
+        }
+
+        private DateTime _updatedUtc = DateTime.MinValue;
+
+        public DateTime UpdatedUtc
+        {
+            get { return _updatedUtc; }
+            set { _updatedUtc = value; }
         }
 
         /// <summary>
