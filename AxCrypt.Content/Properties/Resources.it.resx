@@ -399,6 +399,9 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Mensile</value>
   </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Annuo</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Rinomina Anonimo</value>
   </data>
@@ -2265,6 +2268,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
     <value>Per favore fornisci la password originale per questo file.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Dimensione</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>File</value>
   </data>
@@ -2320,6 +2326,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   </data>
   <data name="FreeLabel">
     <value>Gratis</value>
+  </data>
+  <data name="FreeTrial">
+    <value>Prova gratuita</value>
   </data>
   <data name="FullNameLabel">
     <value>Nome e cognome</value>
@@ -3014,8 +3023,176 @@ L'accesso a Internet è fortemente consigliato e richiesto per attivare piani di
 
 La tua password non è salvata nei nostri server e la connessione è sempre criptata.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>Interviste</value>
+  </data>
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>Benvenuto in AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText1">
+    <value>Grazie per aver scelto AxCrypt! </value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>Il miglior software di cifratura </value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt ha ricevuto da PC Magazine il premio come "Miglior software di cifratura al mondo" negli ultimi 6 anni, incluso l'anno corrente, con un totale di oltre 20 milioni di download.   </value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;Con la nostra cifratura a 256-bit, ci assicuriamo che nessuno possa accedere ai tuoi file criptati fintanto che ha il controllo della tua chiave di accesso. Dai un'occhiata ad alcune delle &lt;strong&gt;&lt;span style="color:gold"&gt;funzioni&lt;/span&gt;&lt;/strong&gt; che potrai utilizzare con un &lt;strong&gt;&lt;span style="color:gold"&gt;abbonamento Business or Premium.&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Servizi Cloud</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>Con AxCrypt è facile ottenere la privacy dei tuoi dati in cloud. AxCrypt rileverà automaticamente quali Servizi Cloud sono installati sul tuo computer e vi creerà una cartella AxCrypt.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Master key</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>La Master key è una delle funzioni chiave per eliminare il rischio di perdere l'accesso a file essenziali. Questa funzione è disponibile solo per gli abbonamenti Business.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>Non sai da dove iniziare? Niente paura. Siamo qui per aiutarti ad ottenere il massimo da AxCrypt.</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Condivisione chiavi</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Grazie alla funzione Condivisione chiavi, AxCrypt permette ad altri utenti di aprire i file protetti utilizzando le loro password.</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Gestore Password</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>La funzione Gestore password di AxCrypt ti permette di salvare tutte le tue password e i tuoi codici nel nostro cloud in modo sicuro.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>AxCrypt ti aiuta a non essere vittima di attacchi informatici.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Visita la nostra pagina "Settori" per vedere i diversi settori in cui operiamo e le recensioni su di noi: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Leggi i post più recenti sul nostro blog per saperne di più su come tenere i tuoi file al sicuro: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Per qualsiasi domanda contattaci all'indirizzo &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;!</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Seguici sui social</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Guarda la guida &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;to get started!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Guarda &lt;strong&gt;i nostri tutorials&lt;/strong&gt;, ti aiuteranno a iniziare velocemente. Ti illustreranno come completare il processo di installazione, quali sono le funzioni principali del tuo account e ti forniranno inoltre consigli super pratici. </value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Dai un'occhiata a &lt;strong&gt;&lt;span style="color: #48772c"&gt;i post del nostro blog&lt;/span&gt;&lt;/strong&gt; per sapere di più su come tenere i tuoi dati al sicuro: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Visita &lt;strong&gt;&lt;span style="color: #48772c"&gt;la nostra pagina "Settori"&lt;/span&gt;&lt;/strong&gt; per vedere in quali settori operiamo e le recensioni su di noi: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>Chi siamo</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>La nostra mission è fornire a singoli, piccoli team, aziende e società soluzioni di cifratura sempre più semplici. Introducendo nuove funzioni, vogliamo rendere la tecnologia di cifratura forte e solida, ma al contempo priva di ogni complessità di utilizzo.  </value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>Ottieni di più da AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>Ciao utente AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>Con AxCrypt è facile ottenere la privacy dei tuoi dati in cloud. AxCrypt rileverà automaticamente quali Servizi Cloud sono installati sul tuo computer e vi creerà una cartella AxCrypt.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>Cifratura mobile</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>La cifratura mobile di AxCrypt è compatibile con la cifratura dei file in Google Drive su iOS e Android. La cifratura dei file in locale e su altri servizi cloud, come iCloud, DropBox, OneDrive, ecc. sarà disponibile nelle prossime versioni</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Condivisione chiavi</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>Grazie alla funzione di Condivisione chiavi gli utenti possono inviare via email un file criptato che potrà essere aperto con un'unica chiave. Guarda il tutorial su YouTube per  saperne di più.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Gestione Password</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>La funzione Gestore password di AxCrypt ti permette di salvare tutte le tue password e i tuoi codici nel nostro cloud in modo sicuro cosicché nessuno a parte te possa accedervi.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>Perché oggi nel 2021 è più necessario che mai &lt;strong&gt;criptare i propri dati?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>Dall'inizio della pandemia c'è stato un incremento del 300% dei crimini informatici nel mondo.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>Speriamo che ti stia godendo AxCrypt! Sai che gli abbonamenti AxCrypt Business e Premium offrono molte più funzioni di protezione dei dati e ti aiutano anche a creare un ambiente di lavoro sicuro per il tuo team?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Si prevede che entro il 2025 il mercato della cifratura delle email a livello globale aumenterà del 20,1% e raggiungerà i 12,9 miliardi di dollari.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>La frequenza degli attacchi informatici è arrivata ad 11 secondi del 2021 e i costi dei danni da ransomware sono aumentati di 57 volte rispetto al 2015.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>AxCrypt ti aiuta a non essere vittima di attacchi informatici.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Controlla la pagina "Settori" per vedere i diversi settori in cui operiamo e ciò che dicono di noi: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Leggi i post più recenti sul nostro blog per saperne di più su come tenere i tuoi file al sicuro: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Se hai domande, contattaci all'indirizzo &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; !</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Seguici sui social</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;ti dà accesso ad una vasta gamma di funzioni che ti aiutano a proteggere i tuoi dati personali. Usa il codice sconto &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; discount.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Se vuoi utilizzare AxCrypt a scopo professionale, &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; è l'abbonamento adatto a te. Effettua ora l'upgrade e collabora con il tuo team in modo sicuro. Usa il codice sconto &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; per ottenere uno&lt;strong&gt;&lt;span style= "color: #000000"&gt;15% sconto&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Vantaggi di un &lt;span style="color: #FDBC01"&gt;Abbonamento AxCrypt &lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Master key</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>La Master key è una delle funzioni chiave per eliminare il rischio di perdere l'accesso a file essenziali. Questa funzione è disponibile solo per gli abbonamenti Business.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Scopri di più</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Salvataggio in cloud</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Per favore specifica l'ora nel formato 'hh:mm:ss.mmm'.</value>
@@ -4337,6 +4514,9 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PressImagesLabel">
     <value>Immagini per la stampa</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>Il CTO Jonatan Pettersson intervistato da privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Stampa e media</value>
   </data>
@@ -4429,11 +4609,23 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
   <data name="PricingFeatureListViewer">
     <value>Visualizzatore</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>Per &lt;span&gt;aziende&lt;/span&gt; </value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>Per &lt;span&gt;utenti&lt;/span&gt; privati</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Prezzi</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Prova i nostri abbonamenti per &lt;span&gt;un mese gratuitamente&lt;/span&gt;</value>
+  </data>
   <data name="PricingSubheading">
     <value>Come preferisci pagare?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Potrai decriptare solo i file di esistenti (criptati da te in precedenza o che qualcuno ha condiviso con te).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>Quali sono i motivi principali della disdetta?</value>
@@ -6308,6 +6500,9 @@ Il Team di AxCrypt</value>
     <value>Provalo!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Prova&lt;/span&gt; 1 mese</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Prova Premium</value>
   </data>
@@ -6325,6 +6520,9 @@ Il Team di AxCrypt</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Turco)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>Meno 20%</value>
   </data>
   <data name="TypographyLabel">
     <value>Tipografia</value>

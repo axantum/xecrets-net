@@ -2220,6 +2220,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Geef alstublieft het orginele wachtwoord voor dit bestand.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Maat</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Bestand</value>
   </data>
@@ -2969,6 +2972,171 @@ U wachtwoord is niet opgeslagen op onze servers en de verbinding is altijd geën
   </data>
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>Welkom bij AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText1">
+    <value>Bedankt voor het kiezen van AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>'s Werelds beste versleutelingssoftware</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt is de afgelopen zes jaar, inclusief dit jaar, door PC Magazine uitgeroepen tot "The World's Best Encryption Software" met een wereldwijde aanwezigheid van meer dan 20 miljoen downloads.</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Lees meer</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;Met onze 256-bits encryptie zorgen we ervoor dat niemand ooit toegang krijgt tot uw versleutelde bestanden, zolang u de controle hebt over uw eigen sleutel. Bekijk enkele van de &lt;strong&gt;&lt;span style="color:gold"&gt;functies&lt;/span&gt;&lt;/strong&gt; die u kunnen helpen als u een &lt;strong&gt;&lt;span style="color:gold" gebruikt &gt;Business- of Premium-abonnement.&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Cloud opslag</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt maakt het gemakkelijk om gegevensprivacy in de cloud te realiseren. AxCrypt zal automatisch vinden welke Cloud Storage-services op uw computer zijn geïnstalleerd en daar een AxCrypt-map maken.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Lees meer</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Master sleutel</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>De master sleutel is een van de belangrijkste functies die het risico op verlies van toegang tot kritieke bestanden uitsluit. Deze functie is alleen beschikbaar voor zakelijke abonnementen.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Lees meer</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>Weet u niet waar u moet beginnen? Maakt u geen zorgen. Om ervoor te zorgen dat u het meeste uit het gebruik van AxCrypt haalt, zijn we er voor u.</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Sleutel delen</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Met de functie voor het delen van sleutels staat AxCrypt toe dat beveiligde bestanden worden geopend door andere AxCrypt-gebruikers met hun eigen wachtwoorden.</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Wachtwoord beheerder</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>Met de AxCrypt wachtwoordmanager functie kunt u al uw wachtwoorden en codes op een veilige manier in onze cloud opslaan.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>Met AxCrypt kunt u voorkomen dat u het slachtoffer wordt van een cyberaanval.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Bekijk onze branchepagina om te zien hoe we verschillende branches bedienen en wat ze over ons zeggen: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www. axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Lees onze nieuwste blogpost voor meer informatie over hoe u uw gegevens veilig kunt houden: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net /blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Neem contact met ons op via &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; als u vragen hebt!</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Volg ons op onze sociale media</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Hier is een handleiding voor u &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;om aan de slag te gaan!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Bekijk &lt;strong&gt;onze tutorials&lt;/strong&gt; waarmee u sneller aan de slag kunt. Ze behandelen hoe u uw installatieproces voltooit, de belangrijkste functies van uw account, plus enkele superhandige tips.</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Bekijk &lt;strong&gt;&lt;span style="color: #48772c"&gt;onze blogberichten&lt;/span&gt;&lt;/strong&gt; voor meer informatie over hoe u uw gegevens veilig kunt houden: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Bekijk &lt;strong&gt;&lt;span style="color: #48772c"&gt;onze branchepagina&lt;/span&gt;&lt;/strong&gt; om te zien hoe we verschillende branches bedienen en wat ze over ons zeggen: &lt;a style="color: #5f5f5f ; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>Over ons</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>Het is onze missie om individuen, kleine teams, ondernemingen en bedrijven te voorzien van versleutelings-oplossingen die gebruiksvriendelijker zijn dan ooit tevoren. Door nieuwe functies te introduceren, proberen we de complexiteit van het gebruik van sterke en bewezen cryptografische technologie te elimineren.</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Leer meer</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>Haal meer uit AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>Hallo AxCrypt gebruiker!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt maakt het gemakkelijk om gegevensprivacy in de cloud te realiseren. AxCrypt zal automatisch vinden welke Cloud Storage-services op uw computer zijn geïnstalleerd en daar een AxCrypt-map maken.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Lees meer</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>Mobiele versleuteling</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>De mobiele versleuteling van AxCrypt ondersteunt Google Drive-bestandsversleuteling op iOS en Android. Lokale opslagversleuteling en andere clouddrives, zoals iCloud, DropBox, OneDrive, enz. zullen binnenkort worden ondersteund in de komende releases</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Sleutel delen</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>Met de functie voor het delen van sleutels kunnen gebruikers een versleuteld bestand via e-mail verzenden, wat betekent dat het bestand alleen toegankelijk is met een unieke sleutel. Bekijk voor meer informatie onze tutorial op YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Wachtwoord beheerder</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>Met de AxCrypt-wachtwoordbeheerfunctie kunt u al uw wachtwoorden en codes op een veilige manier in onze cloud opslaan waar niemand anders dan u toegang tot heeft.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>Waarom is het meer dan ooit nodig om &lt;strong&gt;versleuteld te worden in 2021?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>Sinds het begin van de pandemie is het aantal gemelde cybercriminaliteit over de hele wereld met 300% gestegen.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>We hopen dat u geniet van AxCrypt! Weet u dat de AxCrypt Business- en Premium-abonnementen veel meer functies voor gegevensbescherming bieden en ook helpen bij het bouwen van een veilige werkomgeving met uw team?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Tegen 2025 zal de wereldwijde markt voor e-mailversleuteling naar verwachting 12,9 miljard dollar bereiken, een stijging van 20,1 procent.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>De frequentie van cyberaanvallen is gestegen tot 11 seconden in 2021 en de kosten van ransomware-schade stegen 57 keer meer dan in 2015.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>Met AxCrypt kunt u voorkomen dat u het slachtoffer wordt van een cyberaanval.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Bekijk onze branchepagina om te zien hoe we verschillende branches bedienen en wat ze over ons zeggen: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www. axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Lees onze nieuwste blogpost voor meer informatie over hoe u uw gegevens veilig kunt houden: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net /blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Neem contact met ons op via &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; als u vragen hebt!</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Volg ons op onze sociale media</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;geeft u toegang tot verschillende functies die u helpen uw persoonlijke gegevens te beschermen . Gebruik de kortingscode &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; om &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt; korting &lt;/strong&gt; te krijgen.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Als u AxCrypt voor professionele doeleinden wilt gebruiken, dan is &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; een goed plan voor u. Upgrade nu en werk op een veilige manier samen met uw team. Gebruik de kortingscode &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; om &lt;strong&gt;&lt;span style= "color: #000000"&gt;15% korting&lt;/span te krijgen &gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Voordelen van &lt;span style="color: #FDBC01"&gt;AxCrypt-abonnement&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Master sleutel</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>De master  sleutel is een van de belangrijkste functies die het risico op verlies van toegang tot kritieke bestanden uitsluit. Deze functie is alleen beschikbaar voor zakelijke abonnementen.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Lees meer</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Cloud opslag</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Specificeer tijd alstublieft als 'uu:mm:ss.mmm'.</value>

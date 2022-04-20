@@ -2899,6 +2899,171 @@
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>Добро пожаловать на AxCrypt!</value>
   </data>
+  <data name="Introduction1MailText1">
+    <value>Спасибо, что выбрали AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>Лучшее в мире программное обеспечение для шифрования</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt был удостоен каждой награды "Лучшее в мире программное обеспечение для шифрования" по версии PC Magazine за последние шесть лет, в том числе в этом году, с глобальным присутствием более 20 миллионов загрузок.</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Подробнее</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;С помощью нашего 256-битного шифрования мы гарантируем, что никто не получит доступ к вашим зашифрованным файлам, пока вы следите за своим ключом шифрования. Взгляните на некоторые функции &lt;strong&gt;&lt;span style="color:gold"&gt;&lt;/span&gt;&lt;/strong&gt;, которые могут вам с этим помочь, если вы используете &lt;strong&gt;&lt;span style="color:gold"&gt;подписку Business или Premium .&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Облачное хранилище</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt позволяет легко обеспечить конфиденциальность данных в облаке. AxCrypt автоматически найдет, какие облачные службы хранения данных установлены на вашем компьютере, и создаст там папку AxCrypt.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Подробнее</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Мастер-ключ</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>Мастер-ключ является одной из важных функций, которая устраняет риск потери доступа к критически важным файлам. Эта функция доступна только для Business подписок.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Подробнее</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>Не знаете, с чего начать? Не беспокойтесь. Мы здесь для вас, чтобы убедиться, что вы получаете максимальную пользу от использования AxCrypt</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Обмен ключами</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>С помощью функции обмена ключами AxCrypt позволяет другим пользователям AxCrypt открывать защищенные файлы с их собственными паролями.</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Менеджер паролей</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>С помощью функции AxCrypt "Менеджер паролей" вы можете безопасно хранить все свои пароли и коды в нашем облаке.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>С помощью AxCrypt вы можете избежать стать жертвой кибер-атаки.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Посетите нашу страницу, чтобы узнать, как мы обслуживаем различные отрасли и что они говорят о нас: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Почитайте наше последние посты в блоге для получения дополнительной информации о том, как сохранить ваши данные в безопасности: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Свяжитесь с нами &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;, если у вас возникли вопросы!</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Подпишитесь на нас в социальных сетях</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Руководство для вас &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt;, чтобы начать!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Посмотрите &lt;strong&gt; наши обучающие видео&lt;/strong&gt;, которые помогут вам освоиться быстрее. Вы узнаете, как завершить процесс настройки, основные функции вашей учетной записи, а также получите несколько очень полезных советов.</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Взгляните на &lt;strong&gt;&lt;span style="color: #48772c"&gt;наши посты в блоге&lt;/span&gt;&lt;/strong&gt; для получения дополнительной информации о том, как сохранить ваши данные в безопасности: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Посетите &lt;strong&gt;&lt;span style="color: #48772c"&gt; нашу страницу&lt;/span&gt;&lt;/strong&gt; , чтобы узнать, как мы обслуживаем различные отрасли и что они говорят о нас:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>О нас</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>Наша миссия состоит в том, чтобы предоставить частным лицам, небольшим командам, предприятиям и компаниям простые решения для шифрования. Внедряя новые функции, мы стремимся устранить сложности, связанные с использованием надежной и проверенной криптографической технологии.</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Узнать больше</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>Получайте больше от AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>Привет, пользователь AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt позволяет легко обеспечить конфиденциальность данных в облаке. AxCrypt автоматически найдет, какие облачные службы хранения данных установлены на вашем компьютере, и создаст там папку AxCrypt.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Подробнее</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>Мобильное шифрование</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>Мобильное шифрование AxCrypt поддерживает зашифровку файлов Google Drive на iOS и Android. Шифрование локального хранилища и других облачных накопителей, таких как iCloud, DropBox, OneDrive и т.д. скоро будет поддерживаться в следующих обновлениях.</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Обмен ключами</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>С помощью функции обмена ключами пользователи могут отправлять зашифрованный файл по электронной почте, потому что доступ к файлу возможен только с помощью уникального ключа. Для получения дополнительной информации ознакомьтесь с нашим руководством на YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Менеджер паролей</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>С помощью функции AxCrypt "Менеджер паролей",  вы можете безопасно хранить все свои пароли и коды в нашем облаке, к которым никто, кроме вас, не сможет получить доступ.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>Почему &lt;strong&gt;шифрование данных в 2021 году&lt;/strong&gt; так необходимо, чем когда-либо?</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>С начала пандемии число зарегистрированных кибер-преступлений по всему миру увеличилось на 300%.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>Мы надеемся, что вам нравится AxCrypt! Знаете ли вы, что подписки AxCrypt Business и Premium предоставляют гораздо больше возможностей для защиты данных, а также помогают создать безопасную рабочую среду для вашей команды?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Ожидается, что к 2025 году мировой рынок шифрования электронной почты достигнет 12,9 миллиарда долларов, что на 20,1 процента больше, по сравнению с данным годом.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>Частота кибер-атак возросла до 11 секунд в 2021 году, а стоимость ущерба от программ-вымогателей выросла в 57 раз по сравнению с 2015 годом.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>С помощью AxCrypt вы можете избежать стать жертвой кибер-атаки.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Посетите нашу страницу, чтобы узнать, как мы обслуживаем различные отрасли и что они говорят о нас: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Почитайте наше последние посты в блоге для получения дополнительной информации о том, как сохранить ваши данные в безопасности: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Свяжитесь с нами  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;, если у вас возникнут вопросы!</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Подпишитесь на нас в социальных сетях </value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;предоставляет вам доступ к множеству функций, которые помогут вам защитить ваши персональные данные. Используйте код  &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt;, чтобы получить скидку &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Если вы хотите использовать AxCrypt в профессиональных целях, то &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; - это идеальный план для вас. Обновитесь прямо сейчас и работайте со своей командой безопасно и надежно. Используйте код &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt;, чтобы получить &lt;strong&gt;&lt;span style= "color: #000000"&gt;скидку 15%&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Преимущества &lt;span style="color: #FDBC01"&gt;подписки AxCrypt&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Мастер-ключ</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>Мастер-ключ является одной из важных функций, которая устраняет риск потери доступа к критически важным файлам. Эта функция доступна только для Business подписок.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Подробнее</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Облачное хранилище</value>
+  </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Пожалуйста, уточните время как 'hh:mm:ss.mmm'.</value>
   </data>
