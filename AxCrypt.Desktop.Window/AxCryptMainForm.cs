@@ -1404,7 +1404,7 @@ namespace AxCrypt.Desktop.Window
                     break;
 
                 case CommandVerb.Wipe:
-                    await _fileOperationViewModel.WipeFiles.ExecuteAsync(e.Arguments);
+                    await PremiumFeatureActionAsync(LicenseCapability.SecureWipe, () => _fileOperationViewModel.WipeFiles.ExecuteAsync(e.Arguments));
                     break;
 
                 case CommandVerb.RandomRename:
