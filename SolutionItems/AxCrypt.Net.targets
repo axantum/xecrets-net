@@ -80,7 +80,7 @@
   <PropertyGroup>
     <!-- Import the certificate to Computer Account - Personal using MMC certificates snap-in, if required give developer and service users permissions also -->
     <_AxTimeStampUrl>http://timestamp.comodoca.com/authenticode</_AxTimeStampUrl>
-    <_AxCertificateThumbprint>f79dbe0c2c1fce87109bc149c500442ef7e0775b</_AxCertificateThumbprint>
+    <_AxCertificateThumbprint>82395302b94909ecfd6829e9dc5504a8e7f65155</_AxCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <UseHostCompilerIfAvailable>false</UseHostCompilerIfAvailable>
