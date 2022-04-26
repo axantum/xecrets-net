@@ -498,6 +498,8 @@ namespace AxCrypt.Desktop
                 secretElement.AppendChild(document.CreateElement("Title")).InnerText = secret.Title;
                 secretElement.AppendChild(document.CreateElement("Description")).InnerText = secret.Description;
                 secretElement.AppendChild(document.CreateElement("TheSecret")).InnerText = secret.TheSecret;
+                secretElement.AppendChild(document.CreateElement("CreationDate")).InnerText = secret.CreatedUtc.ToString(CultureInfo.InvariantCulture);
+                secretElement.AppendChild(document.CreateElement("LastUpdateUtc")).InnerText = secret.UpdatedUtc.ToString(CultureInfo.InvariantCulture);
 
                 secretsElement.AppendChild(secretElement);
             }
@@ -516,6 +518,8 @@ namespace AxCrypt.Desktop
                 string title = String.Empty;
                 string description = String.Empty;
                 string theSecret = String.Empty;
+                DateTime creationDate = DateTime.MinValue;
+                DateTime lastUpdateUtc = DateTime.MinValue;
                 foreach (XmlNode textElement in secretElement.ChildNodes)
                 {
                     switch (textElement.Name)
@@ -532,6 +536,14 @@ namespace AxCrypt.Desktop
                             theSecret = WebUtility.HtmlDecode(textElement.InnerText);
                             break;
 
+                        case "CreationDate":
+                            creationDate = DateTime.Parse(WebUtility.HtmlDecode(textElement.InnerText), CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+                            break;
+
+                        case "LastUpdateUtc":
+                            lastUpdateUtc = DateTime.Parse(WebUtility.HtmlDecode(textElement.InnerText), CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+                            break;
+
                         default:
                             if (New<ILogging>().IsWarningEnabled)
                             {
@@ -541,7 +553,7 @@ namespace AxCrypt.Desktop
                     }
                 }
 
-                secrets.Add(new InternalSecret(new Secret(id, title, description, theSecret, key)));
+                secrets.Add(new InternalSecret(new Secret(id, title, description, theSecret, key, creationDate, lastUpdateUtc)));
             }
 
             return secrets;
