@@ -2245,6 +2245,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
     <value>Por favor, ingresa la contraseña original para este archivo.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Archivo</value>
   </data>
