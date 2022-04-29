@@ -1355,6 +1355,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Our business support will contact you shortly to help you get started with your business account! Click continue to go to your account.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Create new</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>Congratulations and welcome to AxCrypt Premium!</value>
   </data>
@@ -6433,6 +6436,9 @@ The AxCrypt Team</value>
   <data name="TryBusinessPreHeading" xml:space="preserve">
     <value>For business users</value>
   </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>Try AxCrypt Business instead!</value>
+  </data>
   <data name="TryButtonHeadingBusiness" xml:space="preserve">
     <value>Try business</value>
   </data>
@@ -6544,6 +6550,9 @@ The AxCrypt Team</value>
   </data>
   <data name="UpgradeSubscriptionTitle" xml:space="preserve">
     <value>Upgrade to better encryption!</value>
+  </data>
+  <data name="UpsellBusinessForNotStandardPremiumUsersText" xml:space="preserve">
+    <value>It seems like you come from a business. Consider using our business tier to get things like master key, business administration etc.</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading" xml:space="preserve">
     <value>Anonymous file names</value>
