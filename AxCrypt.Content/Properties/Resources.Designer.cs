@@ -3471,6 +3471,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new.
+        /// </summary>
+        public static string CreateNewPrompt {
+            get {
+                return ResourceManager.GetString("CreateNewPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Congratulations and welcome to AxCrypt Premium!.
         /// </summary>
         public static string CreatePremiumSuccess {
@@ -17906,6 +17915,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try AxCrypt Business instead!.
+        /// </summary>
+        public static string TryBusinessPrompt {
+            get {
+                return ResourceManager.GetString("TryBusinessPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try business.
         /// </summary>
         public static string TryButtonHeadingBusiness {
@@ -18217,6 +18235,15 @@ namespace AxCrypt.Content.Properties {
         public static string UpgradeSubscriptionTitle {
             get {
                 return ResourceManager.GetString("UpgradeSubscriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It seems like you come from a business. Consider using our business tier to get things like master key, business administration etc..
+        /// </summary>
+        public static string UpsellBusinessForNotStandardPremiumUsersText {
+            get {
+                return ResourceManager.GetString("UpsellBusinessForNotStandardPremiumUsersText", resourceCulture);
             }
         }
         
