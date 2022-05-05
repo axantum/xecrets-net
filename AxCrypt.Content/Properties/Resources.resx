@@ -6552,7 +6552,7 @@ The AxCrypt Team</value>
     <value>Upgrade to better encryption!</value>
   </data>
   <data name="UpsellBusinessForNotStandardPremiumUsersText" xml:space="preserve">
-    <value>It seems like you come from a business. Consider using our business tier to get things like master key, business administration etc.</value>
+    <value>It seems like you come from a business. Consider using our business tier to get features like master key, business administration etc.</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading" xml:space="preserve">
     <value>Anonymous file names</value>

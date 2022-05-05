@@ -18239,7 +18239,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It seems like you come from a business. Consider using our business tier to get things like master key, business administration etc..
+        ///   Looks up a localized string similar to It seems like you come from a business. Consider using our business tier to get features like master key, business administration etc..
         /// </summary>
         public static string UpsellBusinessForNotStandardPremiumUsersText {
             get {
