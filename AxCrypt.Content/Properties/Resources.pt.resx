@@ -2243,6 +2243,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>Por favor, forneça a senha original para este arquivo.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Arquivo</value>
   </data>
