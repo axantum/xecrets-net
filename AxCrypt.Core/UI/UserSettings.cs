@@ -331,6 +331,12 @@ namespace AxCrypt.Core.UI
             set { Store(nameof(LongOperationThreshold), value); }
         }
 
+        public DateTime LastInAppReviewInitiated
+        {
+            get { return Load(nameof(LastInAppReviewInitiated), DateTime.MinValue); }
+            set { Store(nameof(LastInAppReviewInitiated), value); }
+        }
+
         public T Load<T>(string key)
         {
             return Load(key, default(T));
