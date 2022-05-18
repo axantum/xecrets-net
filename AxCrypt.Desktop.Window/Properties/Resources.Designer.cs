@@ -113,6 +113,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AxCryptLogo {
+            get {
+                object obj = ResourceManager.GetObject("AxCryptLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap broom_40px {
             get {
                 object obj = ResourceManager.GetObject("broom_40px", resourceCulture);
@@ -243,6 +253,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ContactsIcon {
+            get {
+                object obj = ResourceManager.GetObject("ContactsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap decrypt {
             get {
                 object obj = ResourceManager.GetObject("decrypt", resourceCulture);
@@ -317,6 +337,16 @@ namespace AxCrypt.Desktop.Window.Properties {
             get {
                 object obj = ResourceManager.GetObject("DocumentsLibrary", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DotsIcon {
+            get {
+                object obj = ResourceManager.GetObject("DotsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -783,6 +813,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refreshIcon {
+            get {
+                object obj = ResourceManager.GetObject("refreshIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap refreshred {
             get {
                 object obj = ResourceManager.GetObject("refreshred", resourceCulture);
@@ -851,6 +891,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShareKeyBackground {
+            get {
+                object obj = ResourceManager.GetObject("ShareKeyBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon SkyDrive {
@@ -883,9 +933,29 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TextDocumentIcon {
+            get {
+                object obj = ResourceManager.GetObject("TextDocumentIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap trashred16 {
             get {
                 object obj = ResourceManager.GetObject("trashred16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unShareIcon {
+            get {
+                object obj = ResourceManager.GetObject("unShareIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

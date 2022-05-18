@@ -563,6 +563,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add email.
+        /// </summary>
+        public static string AddEmailPromptText {
+            get {
+                return ResourceManager.GetString("AddEmailPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open AxCrypt File.
         /// </summary>
         public static string AddFileLabel {
@@ -590,6 +599,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddPromptText {
+            get {
+                return ResourceManager.GetString("AddPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string AddressLabel {
@@ -613,6 +631,15 @@ namespace AxCrypt.Content.Properties {
         public static string AddSecureFolderTitle {
             get {
                 return ResourceManager.GetString("AddSecureFolderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add user.
+        /// </summary>
+        public static string AddUserPromptText {
+            get {
+                return ResourceManager.GetString("AddUserPromptText", resourceCulture);
             }
         }
         
@@ -912,6 +939,15 @@ namespace AxCrypt.Content.Properties {
         public static string ApplyDiscountCodePrompt {
             get {
                 return ResourceManager.GetString("ApplyDiscountCodePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string ApplyLabel {
+            get {
+                return ResourceManager.GetString("ApplyLabel", resourceCulture);
             }
         }
         
@@ -10960,6 +10996,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} more files.
+        /// </summary>
+        public static string MoreFilesLabel {
+            get {
+                return ResourceManager.GetString("MoreFilesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to enter the name of a key file. Only use if you know you used a key file when securing this file with the previous version of AxCrypt..
         /// </summary>
         public static string MoreKeyFileToolTop {
@@ -13992,6 +14037,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string RefreshPromptText {
+            get {
+                return ResourceManager.GetString("RefreshPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration failed. Please check your e-mail and try again..
         /// </summary>
         public static string RegisterError {
@@ -16195,6 +16249,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Share access.
+        /// </summary>
+        public static string ShareAccessTitle {
+            get {
+                return ResourceManager.GetString("ShareAccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All users with access in selected files ({0}).
+        /// </summary>
+        public static string SharedKeyUserListTitle {
+            get {
+                return ResourceManager.GetString("SharedKeyUserListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New AxCrypt User.
         /// </summary>
         public static string SharedWithUnverfiedMessageTitle {
@@ -18154,6 +18226,15 @@ namespace AxCrypt.Content.Properties {
         public static string UnregisterMailSubject {
             get {
                 return ResourceManager.GetString("UnregisterMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UnShare.
+        /// </summary>
+        public static string UnSharePromptText {
+            get {
+                return ResourceManager.GetString("UnSharePromptText", resourceCulture);
             }
         }
         

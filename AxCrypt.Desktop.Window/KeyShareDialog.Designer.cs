@@ -1,26 +1,16 @@
-﻿namespace AxCrypt.Desktop.Window
+﻿
+
+using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
+
+namespace AxCrypt.Desktop.Window
 {
     partial class KeyShareDialog
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        #region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -29,305 +19,232 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this._knownContactsGroupBox = new System.Windows.Forms.GroupBox();
-            this._notSharedWith = new System.Windows.Forms.ListBox();
-            this._addContactGroupBox = new System.Windows.Forms.GroupBox();
-            this._newContact = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this._removeKnownContactButton = new System.Windows.Forms.Button();
-            this._unshareButton = new System.Windows.Forms.Button();
-            this._shareButton = new System.Windows.Forms.Button();
-            this._sharedWithGroupBox = new System.Windows.Forms.GroupBox();
-            this._sharedWith = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this._okButton = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyShareDialog));
+            this._shareKeyAddUserInfo = new System.Windows.Forms.Label();
+            this._addUserLabel = new System.Windows.Forms.Label();
+            this._sharedKeyUsersListTitle = new System.Windows.Forms.Label();
+            this._addNewUserTextBox = new System.Windows.Forms.TextBox();
+            this._addButton = new System.Windows.Forms.Button();
+            this._applyButton = new System.Windows.Forms.Button();
             this._cancelButton = new System.Windows.Forms.Button();
+            this._sharedWithUsersListLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this._selectedFileListLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this._selectedSharedKeyUserPopupLayout = new System.Windows.Forms.FlowLayoutPanel();
             this._errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this._knownContactsGroupBox.SuspendLayout();
-            this._addContactGroupBox.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this._sharedWithGroupBox.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
+            this._shareAccessTitlePanel = new System.Windows.Forms.Panel();
+            this._sharedWithUsersListLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this._shareAccessTitle = new System.Windows.Forms.Label();
+            this._moreFilesInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
+
             this.SuspendLayout();
+
             // 
-            // tableLayoutPanel3
+            // _shareAccessTitle
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(534, 211);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this._shareAccessTitle.AutoSize = true;
+            this._shareAccessTitle.Font = new System.Drawing.Font("Open Sans", 10.8F, System.Drawing.FontStyle.Bold);
+            this._shareAccessTitle.ForeColor = System.Drawing.Color.White;
+            this._shareAccessTitle.Location = new System.Drawing.Point(250, 2);
+            this._shareAccessTitle.Name = "_shareAccessTitle";
+            this._shareAccessTitle.Size = new System.Drawing.Size(250, 24);
+            this._shareAccessTitle.TabIndex = 0;
+            this._shareAccessTitle.Text = "[Share access]";
             // 
-            // tableLayoutPanel1
+            // _shareAccessTitlePanel
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this._sharedWithGroupBox, 2, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(475, 100);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 170);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this._shareAccessTitlePanel.Controls.Add(this._shareAccessTitle);
+            this._shareAccessTitlePanel.BackColor = System.Drawing.Color.FromArgb(72, 119, 44);
+            this._shareAccessTitlePanel.Location = new System.Drawing.Point(0, 0);
+            this._shareAccessTitlePanel.Name = "_shareAccessTitlePanel";
+            this._shareAccessTitlePanel.Size = new System.Drawing.Size(670, 25);
+            this._shareAccessTitlePanel.TabIndex = 7;
+            this._shareAccessTitlePanel.Paint += DrawBorder;
             // 
-            // tableLayoutPanel5
+            // _shareKeyAddUserInfo
             // 
-            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel5.ColumnCount = 1;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this._knownContactsGroupBox, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this._addContactGroupBox, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(214, 170);
-            this.tableLayoutPanel5.TabIndex = 0;
+            this._shareKeyAddUserInfo.Font = FormStyles.OpenSans10Regular;
+            this._shareKeyAddUserInfo.ForeColor = FormStyles.GreyColor;
+            this._shareKeyAddUserInfo.AutoSize = true;
+            this._shareKeyAddUserInfo.Location = new System.Drawing.Point(55, 40);
+            this._shareKeyAddUserInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this._shareKeyAddUserInfo.Name = "_shareKeyAddUserInfo";
+            this._shareKeyAddUserInfo.Size = new System.Drawing.Size(447, 17);
+            this._shareKeyAddUserInfo.Text = "Add recipients to the list of people who you want to share this file with.";
             // 
-            // groupBox1
+            // _addUserLabel
             // 
-            this._knownContactsGroupBox.Controls.Add(this._notSharedWith);
-            this._knownContactsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._knownContactsGroupBox.Location = new System.Drawing.Point(3, 3);
-            this._knownContactsGroupBox.Name = "groupBox1";
-            this._knownContactsGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._knownContactsGroupBox.Size = new System.Drawing.Size(208, 119);
-            this._knownContactsGroupBox.TabIndex = 2;
-            this._knownContactsGroupBox.TabStop = false;
-            this._knownContactsGroupBox.Text = "[Known Contacts]";
+            this._addUserLabel.AutoSize = true;
+            this._addUserLabel.Font = FormStyles.OpenSans12Bold;
+            this._addUserLabel.ForeColor = FormStyles.GreyColor;
+            this._addUserLabel.Location = new System.Drawing.Point(55, 71);
+            this._addUserLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this._addUserLabel.Name = "_addUserLabel";
+            this._addUserLabel.Size = new System.Drawing.Size(96, 20);
+            this._addUserLabel.Text = "[Add user]";
             // 
-            // _notSharedWith
+            // _addNewUserTextBox
             // 
-            this._notSharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._notSharedWith.FormattingEnabled = true;
-            this._notSharedWith.Location = new System.Drawing.Point(3, 16);
-            this._notSharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._notSharedWith.Name = "_notSharedWith";
-            this._notSharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._notSharedWith.Size = new System.Drawing.Size(202, 103);
-            this._notSharedWith.TabIndex = 0;
-            // 
-            // groupBox3
-            // 
-            this._addContactGroupBox.Controls.Add(this._newContact);
-            this._addContactGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._addContactGroupBox.Location = new System.Drawing.Point(3, 128);
-            this._addContactGroupBox.Name = "groupBox3";
-            this._addContactGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 25, 3);
-            this._addContactGroupBox.Size = new System.Drawing.Size(208, 39);
-            this._addContactGroupBox.TabIndex = 3;
-            this._addContactGroupBox.TabStop = false;
-            this._addContactGroupBox.Text = "[Add Contact]";
-            // 
-            // _newContact
-            // 
-            this._newContact.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._newContact.Location = new System.Drawing.Point(3, 16);
-            this._newContact.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-            this._newContact.Name = "_newContact";
-            this._newContact.Size = new System.Drawing.Size(180, 20);
-            this._newContact.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.AutoSize = true;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this._removeKnownContactButton, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this._unshareButton, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this._shareButton, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(217, 16);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(94, 83);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // _removeKnownContactButton
-            // 
-            this._removeKnownContactButton.AutoSize = true;
-            this._removeKnownContactButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._removeKnownContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._removeKnownContactButton.Location = new System.Drawing.Point(3, 61);
-            this._removeKnownContactButton.MinimumSize = new System.Drawing.Size(58, 23);
-            this._removeKnownContactButton.Name = "_removeKnownContactButton";
-            this._removeKnownContactButton.Size = new System.Drawing.Size(88, 23);
-            this._removeKnownContactButton.TabIndex = 2;
-            this._removeKnownContactButton.Text = "[Remove]";
-            this._removeKnownContactButton.UseVisualStyleBackColor = true;
-            this._removeKnownContactButton.Visible = false;
-            // 
-            // _unshareButton
-            // 
-            this._unshareButton.AutoSize = true;
-            this._unshareButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._unshareButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._unshareButton.Location = new System.Drawing.Point(3, 32);
-            this._unshareButton.MinimumSize = new System.Drawing.Size(58, 23);
-            this._unshareButton.Name = "_unshareButton";
-            this._unshareButton.Size = new System.Drawing.Size(88, 23);
-            this._unshareButton.TabIndex = 1;
-            this._unshareButton.Text = "[<< Unshare]";
-            this._unshareButton.UseVisualStyleBackColor = true;
-            this._unshareButton.Visible = false;
-            // 
-            // _shareButton
-            // 
-            this._shareButton.AutoSize = true;
-            this._shareButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._shareButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._shareButton.Location = new System.Drawing.Point(3, 3);
-            this._shareButton.MinimumSize = new System.Drawing.Size(58, 23);
-            this._shareButton.Name = "_shareButton";
-            this._shareButton.Size = new System.Drawing.Size(88, 23);
-            this._shareButton.TabIndex = 0;
-            this._shareButton.Text = "[Share >>]";
-            this._shareButton.UseVisualStyleBackColor = true;
-            this._shareButton.Visible = false;
-            // 
-            // groupBox2
-            // 
-            this._sharedWithGroupBox.Controls.Add(this._sharedWith);
-            this._sharedWithGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sharedWithGroupBox.Location = new System.Drawing.Point(317, 3);
-            this._sharedWithGroupBox.Name = "groupBox2";
-            this._sharedWithGroupBox.Padding = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._sharedWithGroupBox.Size = new System.Drawing.Size(208, 164);
-            this._sharedWithGroupBox.TabIndex = 0;
-            this._sharedWithGroupBox.TabStop = false;
-            this._sharedWithGroupBox.Text = "[Shared With]";
-            // 
-            // _sharedWith
-            // 
-            this._sharedWith.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sharedWith.FormattingEnabled = true;
-            this._sharedWith.Location = new System.Drawing.Point(3, 16);
-            this._sharedWith.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this._sharedWith.Name = "_sharedWith";
-            this._sharedWith.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this._sharedWith.Size = new System.Drawing.Size(202, 148);
-            this._sharedWith.TabIndex = 0;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.tableLayoutPanel4.AutoSize = true;
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this._okButton, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this._cancelButton, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(366, 179);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(162, 29);
-            this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // _okButton
-            // 
-            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this._okButton.Location = new System.Drawing.Point(3, 3);
-            this._okButton.Name = "_okButton";
-            this._okButton.Size = new System.Drawing.Size(80, 23);
-            this._okButton.TabIndex = 0;
-            this._okButton.Text = "[OK]";
-            this._okButton.UseVisualStyleBackColor = true;
-            this._okButton.Click += new System.EventHandler(this._okButton_Click);
-            // 
-            // _cancelButton
-            // 
-            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(89, 3);
-            this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(80, 23);
-            this._cancelButton.TabIndex = 1;
-            this._cancelButton.Text = "[Cancel]";
-            this._cancelButton.UseVisualStyleBackColor = true;
+            this._addNewUserTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this._addNewUserTextBox.Multiline = true;
+            this._addNewUserTextBox.MinimumSize = new System.Drawing.Size(425, 25);
+            this._addNewUserTextBox.Size = new System.Drawing.Size(425, 27);
+            this._addNewUserTextBox.Location = new System.Drawing.Point(55, 97);
+            this._addNewUserTextBox.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
+            this._addNewUserTextBox.Name = "_addNewUserTextBox";
+            this._addNewUserTextBox.TabIndex = 1;
+            this._addNewUserTextBox.Text = "Add email";
             // 
             // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
             // 
-            // KeyShareDialog
+            // _addButton
             // 
-            this.AcceptButton = this._okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this._addButton.BackColor = System.Drawing.Color.FromArgb(72, 119, 44);
+            this._addButton.Font = FormStyles.OpenSans12Bold;
+            this._addButton.Location = new System.Drawing.Point(499, 97);
+            this._addButton.Name = "_addButton";
+            this._addButton.Size = new System.Drawing.Size(100, 27);
+            this._addButton.TabIndex = 2;
+            this._addButton.Text = "[Add]";
+            this._addButton.UseVisualStyleBackColor = true;
+            this._addButton.Enabled = true;
+
+            // 
+            // _selectedFileListLayout
+            // 
+            this._selectedFileListLayout.AutoScroll = true;
+            this._selectedFileListLayout.Location = new System.Drawing.Point(55, 132);
+            this._selectedFileListLayout.Name = "_selectedFileListLayout";
+            this._selectedFileListLayout.Size = new System.Drawing.Size(550, 35);
+            // 
+            // _moreFilesInfo
+            // 
+            this._moreFilesInfo.AutoSize = true;
+            this._moreFilesInfo.BackColor = FormStyles.GreenColor;
+            this._moreFilesInfo.ForeColor = System.Drawing.Color.Black;
+            this._moreFilesInfo.Location = new System.Drawing.Point(490, 165);
+            this._moreFilesInfo.Name = "_moreFilesInfo";
+            this._moreFilesInfo.Size = new System.Drawing.Size(101, 17);
+            this._moreFilesInfo.TabIndex = 9;
+            this._moreFilesInfo.Text = "[+ 0 more files]";
+            this._moreFilesInfo.Visible = false;
+            // 
+            // _sharedKeyUsersListTitle
+            // 
+            this._sharedKeyUsersListTitle.AutoSize = true;
+            this._sharedKeyUsersListTitle.Font = FormStyles.OpenSans12Bold;
+            this._sharedKeyUsersListTitle.ForeColor = System.Drawing.Color.FromArgb(1, 72, 119, 44);
+            this._sharedKeyUsersListTitle.Location = new System.Drawing.Point(55, 182);
+            this._sharedKeyUsersListTitle.Name = "_sharedKeyUsersListTitle";
+            this._sharedKeyUsersListTitle.Size = new System.Drawing.Size(387, 24);
+            this._sharedKeyUsersListTitle.TabIndex = 0;
+            this._sharedKeyUsersListTitle.Text = "[All users with access in selected files (0)]";
+            // 
+            // _sharedWithUsersListLayoutPanel
+            // 
+            this._sharedWithUsersListLayoutPanel.AutoScroll = false;
+            this._sharedWithUsersListLayoutPanel.AutoSize = true;
+            this._sharedWithUsersListLayoutPanel.Dock = DockStyle.None;
+            this._sharedWithUsersListLayoutPanel.BackColor = System.Drawing.Color.White;
+            this._sharedWithUsersListLayoutPanel.Location = new System.Drawing.Point(55, 215);
+            this._sharedWithUsersListLayoutPanel.Name = "_sharedWithUsersListLayoutPanel";
+            this._sharedWithUsersListLayoutPanel.Size = new System.Drawing.Size(530, 180);
+            this._sharedWithUsersListLayoutPanel.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
+            this._sharedWithUsersListLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            this._sharedWithUsersListLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            this._sharedWithUsersListLayoutPanel.Controls.Add(this._sharedWithUsersListLayout);
+            // 
+            // _sharedWithUsersListLayout
+            // 
+            this._sharedWithUsersListLayout.BackColor = Color.White;
+            this._sharedWithUsersListLayout.Name = "_sharedWithUsersListLayout";
+            this._sharedWithUsersListLayout.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this._sharedWithUsersListLayout.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._sharedWithUsersListLayout.AutoScroll = true;
+            this._sharedWithUsersListLayout.Size = new System.Drawing.Size(530, 180);
+            // 
+            // _selectedSharedKeyUserPopupLayout
+            // 
+            this._selectedSharedKeyUserPopupLayout.ForeColor = System.Drawing.Color.Black;
+            this._selectedSharedKeyUserPopupLayout.BackColor = System.Drawing.Color.White;
+            this._selectedSharedKeyUserPopupLayout.Name = "_selectedSharedKeyUserPopupLayout";
+            this._selectedSharedKeyUserPopupLayout.Size = new System.Drawing.Size(130, 32);
+            this._selectedSharedKeyUserPopupLayout.Visible = false;
+            // 
+            // _cancelButton
+            // 
+            this._cancelButton.BackColor = System.Drawing.Color.White;
+            this._cancelButton.ForeColor = Color.FromArgb(26, 26, 26);
+            this._cancelButton.FlatAppearance.BorderColor = Color.FromArgb(153, 153, 153);
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancelButton.Location = new System.Drawing.Point(55, 422);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(95, 28);
+            this._cancelButton.TabIndex = 9;
+            this._cancelButton.Text = "[Cancel]";
+            this._cancelButton.UseVisualStyleBackColor = false;
+            // 
+            // _applyButton
+            // 
+            this._applyButton.BackColor = System.Drawing.Color.FromArgb(1, 72, 119, 44);
+            this._applyButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._applyButton.Location = new System.Drawing.Point(160, 422);
+            this._applyButton.Name = "_applyButton";
+            this._applyButton.Size = new System.Drawing.Size(95, 28);
+            this._applyButton.TabIndex = 8;
+            this._applyButton.Text = "[Apply]";
+            this._applyButton.UseVisualStyleBackColor = true;
+            this._applyButton.Enabled = false;
+            // 
+            // KeyShareDialogRedesign
+            // 
+            this.AcceptButton = this._addButton;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this._cancelButton;
-            this.ClientSize = new System.Drawing.Size(534, 211);
-            this.Controls.Add(this.tableLayoutPanel3);
+            this.BackColor = System.Drawing.Color.FromArgb(247, 247, 247);
+            this.ClientSize = new System.Drawing.Size(670, 480);
+            this.MinimumSize = new System.Drawing.Size(670, 480);
+            this.Controls.Add(this._shareAccessTitlePanel);
+            this.Controls.Add(this._shareKeyAddUserInfo);
+            this.Controls.Add(this._addUserLabel);
+            this.Controls.Add(this._selectedFileListLayout);
+            this.Controls.Add(this._moreFilesInfo);
+            this.Controls.Add(this._selectedSharedKeyUserPopupLayout);
+            this.Controls.Add(this._sharedKeyUsersListTitle);
+            this.Controls.Add(this._addNewUserTextBox);
+            this.Controls.Add(this._addButton);
+            this.Controls.Add(this._sharedWithUsersListLayoutPanel);
+            this.Controls.Add(this._applyButton);
+            this.Controls.Add(this._cancelButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(500, 200);
-            this.Name = "KeyShareDialog";
-            this.Text = "[AxCrypt Key Sharing]";
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this._knownContactsGroupBox.ResumeLayout(false);
-            this._addContactGroupBox.ResumeLayout(false);
-            this._addContactGroupBox.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            this._sharedWithGroupBox.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
+            this.AutoSize = false;
+            this.Name = "KeyShareDialogRedesign";
+            this.Text = "[Share access]";
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).EndInit();
             this.ResumeLayout(false);
-
+            this.PerformLayout();
         }
 
-        #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.GroupBox _sharedWithGroupBox;
-        private System.Windows.Forms.ListBox _sharedWith;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button _removeKnownContactButton;
-        private System.Windows.Forms.Button _unshareButton;
-        private System.Windows.Forms.Button _shareButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label _shareKeyAddUserInfo;
+        private System.Windows.Forms.Label _addUserLabel;
+        private System.Windows.Forms.TextBox _addNewUserTextBox;
+        private System.Windows.Forms.Button _addButton;
+        private System.Windows.Forms.Button _applyButton;
         private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.Button _okButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.GroupBox _knownContactsGroupBox;
-        private System.Windows.Forms.ListBox _notSharedWith;
-        private System.Windows.Forms.GroupBox _addContactGroupBox;
-        private System.Windows.Forms.TextBox _newContact;
+        private System.Windows.Forms.Label _sharedKeyUsersListTitle;
+        private System.Windows.Forms.FlowLayoutPanel _sharedWithUsersListLayout;
+        private System.Windows.Forms.FlowLayoutPanel _selectedFileListLayout;
+        private System.Windows.Forms.FlowLayoutPanel _selectedSharedKeyUserPopupLayout;
+        private Panel _shareAccessTitlePanel;
+        private TableLayoutPanel _sharedWithUsersListLayoutPanel;
+        private Label _shareAccessTitle;
+        private Label _moreFilesInfo;
         private System.Windows.Forms.ErrorProvider _errorProvider1;
     }
+
 }

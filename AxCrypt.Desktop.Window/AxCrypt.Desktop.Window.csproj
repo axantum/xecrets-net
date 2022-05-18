@@ -101,6 +101,12 @@
     <Compile Include="InviteUserDialog.Designer.cs">
       <DependentUpon>InviteUserDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyShareDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyShareDialog.Designer.cs">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeySharingInviteUserDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,7 @@
     <Compile Include="RenewSubscriptionPromptDialog.Designer.cs">
       <DependentUpon>RenewSubscriptionPromptDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SharedKeyUser.cs" />
     <Compile Include="SignUpSignInAccountDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,11 +151,11 @@
     <Compile Include="ImportPrivatePasswordDialog.Designer.cs">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="KeyShareDialog.cs">
+    <Compile Include="LegacyKeyShareDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KeyShareDialog.Designer.cs">
-      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    <Compile Include="LegacyKeyShareDialog.Designer.cs">
+      <DependentUpon>LegacyKeyShareDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="CreateNewAccountDialog.cs">
       <SubType>Form</SubType>
@@ -223,6 +230,9 @@
     <EmbeddedResource Include="InviteUserDialog.resx">
       <DependentUpon>InviteUserDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KeyShareDialog.resx">
+      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LegacyEmailDialog.resx">
       <DependentUpon>LegacyEmailDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,8 +243,8 @@
     <EmbeddedResource Include="ImportPrivatePasswordDialog.resx">
       <DependentUpon>ImportPrivatePasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KeyShareDialog.resx">
-      <DependentUpon>KeyShareDialog.cs</DependentUpon>
+    <EmbeddedResource Include="LegacyKeyShareDialog.resx">
+      <DependentUpon>LegacyKeyShareDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignUpSignInAccountDialog.resx">
       <DependentUpon>SignUpSignInAccountDialog.cs</DependentUpon>
@@ -281,6 +291,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="AxantumStrongName.pfx" />
+    <None Include="resources\unShareIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxCrypt.Abstractions\AxCrypt.Abstractions.csproj">
@@ -327,8 +338,11 @@
     <Content Include="HowToAddLanguage.txt" />
     <Content Include="resources\activefilegreen16.png" />
     <Content Include="resources\activefileknownkeygreen16.png" />
+    <None Include="resources\TextDocumentIcon.png" />
     <None Include="resources\add_more_users_white.png" />
     <Content Include="resources\axcrypticon.ico" />
+    <None Include="resources\AxCryptIcon.png" />
+    <Content Include="resources\AxCryptLogo.png" />
     <Content Include="resources\broom_40px.png" />
     <Content Include="resources\broom_red_40px.png" />
     <Content Include="resources\broom_red_80px.png" />
@@ -341,11 +355,13 @@
     <Content Include="resources\clean_recycle.png" />
     <Content Include="resources\closeremovestandbygreen32.png" />
     <Content Include="resources\closeremovestandbyred32.png" />
+    <None Include="resources\ContactsIcon.png" />
     <Content Include="resources\decrypt.png" />
     <Content Include="resources\delete.png" />
     <None Include="resources\skydrive_grey_40px.png" />
     <None Include="resources\documents_grey_40px.png" />
     <None Include="resources\dropbox_grey_40px.png" />
+    <None Include="resources\DotsIcon.png" />
     <Content Include="resources\encrypt.png" />
     <Content Include="resources\encrypt_grey_40px.png" />
     <Content Include="resources\encrypt_white_40px.png" />
@@ -373,6 +389,8 @@
     <Content Include="resources\premium_yellow_32px.png" />
     <Content Include="resources\premium_yellow_80px.png" />
     <Content Include="resources\recent_files_background.png" />
+    <None Include="resources\refreshIcon.png" />
+    <Content Include="resources\ShareKeyBackground.png" />
     <Content Include="resources\share_32px.png" />
     <Content Include="resources\share_80px.png" />
     <Content Include="resources\share_border_80px.png" />
