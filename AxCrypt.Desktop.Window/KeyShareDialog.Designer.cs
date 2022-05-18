@@ -35,8 +35,9 @@ namespace AxCrypt.Desktop.Window
             this._sharedWithUsersListLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this._shareAccessTitle = new System.Windows.Forms.Label();
             this._moreFilesInfo = new System.Windows.Forms.Label();
+            this._userEmailAutoSuggestionLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this._userEmailAutoSuggestionLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this._errorProvider1)).BeginInit();
-
             this.SuspendLayout();
 
             // 
@@ -95,6 +96,25 @@ namespace AxCrypt.Desktop.Window
             this._addNewUserTextBox.TabIndex = 1;
             this._addNewUserTextBox.Text = "Add email";
             // 
+            // _userEmailAutoSuggestionLayoutPanel
+            // 
+            this._userEmailAutoSuggestionLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._userEmailAutoSuggestionLayoutPanel.BackColor = FormStyles.LightGreyColor;
+            this._userEmailAutoSuggestionLayoutPanel.Location = new System.Drawing.Point(55, 122);
+            this._userEmailAutoSuggestionLayoutPanel.Name = "_userEmailAutoSuggestionLayout";
+            this._userEmailAutoSuggestionLayoutPanel.Size = new System.Drawing.Size(425, 165);
+            this._userEmailAutoSuggestionLayoutPanel.Controls.Add(_userEmailAutoSuggestionLayout);
+            this._userEmailAutoSuggestionLayoutPanel.Visible = false;
+            // 
+            // _userEmailAutoSuggestionLayout
+            // 
+            this._userEmailAutoSuggestionLayout.AutoScroll = true;
+            this._userEmailAutoSuggestionLayout.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._userEmailAutoSuggestionLayout.BackColor = System.Drawing.Color.White;
+            this._userEmailAutoSuggestionLayout.Name = "_userEmailAutoSuggestionLayout";
+            this._userEmailAutoSuggestionLayout.Margin = new Padding(1, 1, 1, 1);
+            this._userEmailAutoSuggestionLayout.Size = new System.Drawing.Size(423, 163);
+            // 
             // _errorProvider1
             // 
             this._errorProvider1.ContainerControl = this;
@@ -110,7 +130,6 @@ namespace AxCrypt.Desktop.Window
             this._addButton.Text = "[Add]";
             this._addButton.UseVisualStyleBackColor = true;
             this._addButton.Enabled = true;
-
             // 
             // _selectedFileListLayout
             // 
@@ -214,6 +233,7 @@ namespace AxCrypt.Desktop.Window
             this.Controls.Add(this._selectedSharedKeyUserPopupLayout);
             this.Controls.Add(this._sharedKeyUsersListTitle);
             this.Controls.Add(this._addNewUserTextBox);
+            this.Controls.Add(this._userEmailAutoSuggestionLayoutPanel);
             this.Controls.Add(this._addButton);
             this.Controls.Add(this._sharedWithUsersListLayoutPanel);
             this.Controls.Add(this._applyButton);
@@ -240,6 +260,8 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.FlowLayoutPanel _sharedWithUsersListLayout;
         private System.Windows.Forms.FlowLayoutPanel _selectedFileListLayout;
         private System.Windows.Forms.FlowLayoutPanel _selectedSharedKeyUserPopupLayout;
+        private System.Windows.Forms.FlowLayoutPanel _userEmailAutoSuggestionLayout;
+        private System.Windows.Forms.FlowLayoutPanel _userEmailAutoSuggestionLayoutPanel;
         private Panel _shareAccessTitlePanel;
         private TableLayoutPanel _sharedWithUsersListLayoutPanel;
         private Label _shareAccessTitle;
