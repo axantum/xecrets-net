@@ -16287,6 +16287,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add recipients to the list of people who you want to share this file with..
+        /// </summary>
+        public static string ShareKeyInformationText {
+            get {
+                return ResourceManager.GetString("ShareKeyInformationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select secured file to share.
         /// </summary>
         public static string ShareKeysFileOpenDialogTitle {

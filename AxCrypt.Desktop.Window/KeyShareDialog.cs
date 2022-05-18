@@ -92,6 +92,7 @@ namespace AxCrypt.Desktop.Window
         {
             Text = Texts.ShareAccessTitle;
             _shareAccessTitle.Text = "&" + Texts.ShareAccessTitle;
+            _shareKeyAddUserInfo.Text = "&" + Texts.ShareKeyInformationText;
             _addUserLabel.Text = "&" + Texts.AddUserPromptText;
             _addButton.Text = "&" + Texts.AddPromptText;
             _applyButton.Text = "&" + Texts.ApplyLabel;
@@ -391,21 +392,26 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
+            int imageWidth = (int)Math.Round(0.2 * 150);
+            int textWidth = (int)Math.Round(0.79 * 150);
+
             PictureBox fileIcon = new PictureBox
             {
                 Image = Resources.TextDocumentIcon,
                 Name = "fileIcon",
                 SizeMode = PictureBoxSizeMode.AutoSize,
+                Size = new System.Drawing.Size(imageWidth, 28),
             };
 
             Label fileName = new Label
             {
-                AutoSize = true,
                 Name = "fileName",
-                Text = Truncate(selectedFileName, 14),
+                Text = selectedFileName,
                 Padding = new Padding(0, 2, 0, 0),
                 Font = FormStyles.OpenSans9Dot5Regular,
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                Size = new System.Drawing.Size(textWidth, 28),
+                AutoEllipsis = true
             };
 
             FlowLayoutPanel selectedFileItem = new FlowLayoutPanel
@@ -450,12 +456,13 @@ namespace AxCrypt.Desktop.Window
             Label userEmail = new Label
             {
                 Name = "UserEmail",
-                Text = Truncate(shareKeyUser.UserEmail.Address, 45),
+                Text = shareKeyUser.UserEmail.Address,
                 Size = new System.Drawing.Size(textWidth, 32),
                 Padding = new System.Windows.Forms.Padding(12, 3, 0, 0),
                 Font = FormStyles.OpenSans10Regular,
                 ForeColor = FormStyles.GreyColor,
                 TextAlign = ContentAlignment.MiddleLeft,
+                AutoEllipsis = true,
             };
             Button contextMenuButton = new Button
             {

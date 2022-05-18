@@ -5861,6 +5861,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
 
 Please consider informing '{0}' directly about AxCrypt file security.</value>
   </data>
+  <data name="ShareKeyInformationText" xml:space="preserve">
+    <value>Add recipients to the list of people who you want to share this file with.</value>
+  </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
     <value>Select secured file to share</value>
   </data>
