@@ -1354,6 +1354,9 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>O nosso suporte empresarial irá contactá-la(o) brevemente para a(o) ajudar a iniciar a sua conta empresarial! Clique em continuar para ir até à sua conta.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Criar novo</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>Parabéns e bem-vinda(o) a AxCrypt Business!</value>
   </data>
@@ -6424,6 +6427,9 @@ A equipe AxCrypt</value>
   <data name="TryBusinessPreHeading">
     <value>Para utilizadores empresariais</value>
   </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>Experimente AxCrypt Business!</value>
+  </data>
   <data name="TryButtonHeadingBusiness">
     <value>Experimente Business</value>
   </data>
@@ -6535,6 +6541,9 @@ A equipe AxCrypt</value>
   </data>
   <data name="UpgradeSubscriptionTitle" xml:space="preserve">
     <value>Actualize para uma cifragem melhor!</value>
+  </data>
+  <data name="UpsellBusinessForNotStandardPremiumUsersText" xml:space="preserve">
+    <value>Parece ser uma empresa. Considere a subscrição empresarial para obter funcionalidades como chave-mestra, administração empresarial, etc.</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Nomes anónimos de ficheiros</value>
