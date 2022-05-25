@@ -6003,6 +6003,9 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Your subscription will renew on &lt;b&gt;{0}&lt;/b&gt;.</value>
   </data>
+  <data name="SubscriptionCancelAtAnyTimeText" xml:space="preserve">
+    <value>You can of course cancel at any time!</value>
+  </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Your AxCrypt Premium subscription was cancelled.</value>
   </data>
