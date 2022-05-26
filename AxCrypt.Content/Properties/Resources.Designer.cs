@@ -16658,6 +16658,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can of course cancel at any time!.
+        /// </summary>
+        public static string SubscriptionCancelAtAnyTimeText {
+            get {
+                return ResourceManager.GetString("SubscriptionCancelAtAnyTimeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Premium subscription was cancelled..
         /// </summary>
         public static string SubscriptionCancelledMailSubject {
