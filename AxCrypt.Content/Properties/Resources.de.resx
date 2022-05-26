@@ -288,6 +288,9 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
   <data name="ActiveSubscriptionText" xml:space="preserve">
     <value>Es gibt ein aktives Abonnement für dieses Konto.</value>
   </data>
+  <data name="AddEmailPromptText" xml:space="preserve">
+    <value>E-Mail hinzufügen</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Öffnen Sie eine AxCrypt Datei</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -299,6 +302,9 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
   <data name="AddMoreUsersTitle" xml:space="preserve">
     <value>Weitere Benutzer hinzufügen</value>
   </data>
+  <data name="AddPromptText" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
   <data name="AddressLabel">
     <value>Adresse</value>
   </data>
@@ -308,6 +314,9 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Wählen Sie einen Ordner, den Sie mit AxCrypt sichern wollen. Existierende Dateien werden jetzt verschlüsselt.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AddUserPromptText" xml:space="preserve">
+    <value>Benutzer hinzufügen</value>
   </data>
   <data name="AffiliateAdvantagesHeading">
     <value>AxCrypt Partner Marketing Vorteile</value>
@@ -402,6 +411,9 @@ Bitte loggen Sie sich mit dem selben Passwort ein, welches Sie zuvor benutzt hab
   </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Geben Sie den Rabattcode ein</value>
+  </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Anwenden</value>
   </data>
   <data name="ApplyNowLabel">
     <value>Jetzt bewerben</value>
@@ -1302,6 +1314,9 @@ Wenn Sie unsere temporären Session-Cookies nicht akzeptieren, können Sie sich 
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Unser business-support wird Sie in Kürze kontaktieren, um Ihnen den Einstieg in Ihr business-konto zu erleichtern! Klicken Sie auf weiter, um zu Ihrem Konto zu gelangen.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Neues erstellen</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>Herzlichen Glückwunsch und willkommen im AxCrypt Business!</value>
   </data>
@@ -2160,6 +2175,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="FilePasswordDialogHeader" xml:space="preserve">
     <value>Bitte geben Sie das ursprüngliche Passwort für diese Datei an.</value>
     <comment>The header text for the file password dialog.</comment>
+  </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Größe</value>
   </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Datei</value>
@@ -3746,6 +3764,9 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="MoreFeaturesLabel">
     <value>Mehr Funktionen</value>
   </data>
+  <data name="MoreFilesLabel" xml:space="preserve">
+    <value>{0} weitere Dateien</value>
+  </data>
   <data name="MoreKeyFileToolTop" xml:space="preserve">
     <value>Klicken Sie um den Namen einer Schlüsseldatei einzugeben. Benutzen Sie dies nur, wenn Sie bei der Sicherung dieser Datei mit der alten Version von AxCrypt eine Schlüsseldatei benutzt haben</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
@@ -4697,6 +4718,9 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Zuletzt verwendete Dateien</value>
   </data>
+  <data name="RefreshPromptText" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Registrierung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und versuchen Sie es dann erneut.</value>
   </data>
@@ -5448,6 +5472,12 @@ Wählen Sie ein schwer zu erratendes Passwort, da es sowohl die vom Passwortmana
   <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
     <value>Lassen Sie uns das Konto/Abonnement einrichten</value>
   </data>
+  <data name="ShareAccessTitle" xml:space="preserve">
+    <value>Zugriff freigeben</value>
+  </data>
+  <data name="SharedKeyUserListTitle" xml:space="preserve">
+    <value>Alle Benutzer mit Zugriff in ausgewählten Dateien ({0})</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Neuer AxCrypt Benutzer</value>
   </data>
@@ -6028,6 +6058,9 @@ Das AxCrypt Team</value>
   <data name="TryBusinessPreHeading">
     <value>Für business Nutzer</value>
   </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>Probieren Sie stattdessen AxCrypt Business aus!</value>
+  </data>
   <data name="TryButtonHeadingBusiness">
     <value>Versuchen Sie Business</value>
   </data>
@@ -6112,6 +6145,9 @@ Das AxCrypt Team</value>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID gelöscht</value>
   </data>
+  <data name="UnSharePromptText" xml:space="preserve">
+    <value>Freigabe</value>
+  </data>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>Wenn Sie sich abmelden wollen klicken Sie &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; this link&lt;/a&gt;</value>
   </data>
@@ -6136,6 +6172,9 @@ Das AxCrypt Team</value>
   </data>
   <data name="UpgradeSubscriptionPromptText" xml:space="preserve">
     <value>Ihr Abonnement ist abgelaufen. Erneuern Sie noch heute, um Premium-Funktionen wie:</value>
+  </data>
+  <data name="UpsellBusinessForNotStandardPremiumUsersText" xml:space="preserve">
+    <value>Es scheint, als kämen Sie aus einem Geschäft. Erwägen Sie die Verwendung unserer Business-Ebene, um Funktionen wie Hauptschlüssel, Betriebswirtschaft usw. zu erhalten.</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Anonyme Dateinamen</value>
