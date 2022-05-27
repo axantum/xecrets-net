@@ -2225,7 +2225,7 @@
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>跟我们说话！ &lt;br&gt;请使用我们的&lt;a href='/support/forums'&gt;社区论坛&lt;/a&gt;获取一般问题、反馈和技术支持。 您也可以直接通过电子邮件发送到&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>跟我们说话！ &lt;br&gt;请使用我们的&lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;社区论坛&lt;/a&gt;获取一般问题、反馈和技术支持。 您也可以直接通过电子邮件发送到&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>这是AxCrypt ID部分AxCrypt.net，点击&lt;a href="{0}"&gt;这里&lt;/a&gt;返回起始页。</value>

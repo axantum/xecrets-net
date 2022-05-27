@@ -295,6 +295,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="ActiveSubscriptionText" xml:space="preserve">
     <value>Há uma subscrição activa nesta conta.</value>
   </data>
+  <data name="AddEmailPromptText" xml:space="preserve">
+    <value>Adicionar email</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Abrir arquivo AxCrypt</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -306,6 +309,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="AddMoreUsersTitle" xml:space="preserve">
     <value>Adicionar mais utilizadores</value>
   </data>
+  <data name="AddPromptText" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
   <data name="AddressLabel">
     <value>Morada</value>
   </data>
@@ -315,6 +321,9 @@ Escolha algo difícil de adivinhar, já que irá proteger senhas no Gerenciador 
   <data name="AddSecureFolderTitle" xml:space="preserve">
     <value>Selecione uma pasta para mantê-la protegida com o AxCrypt. Arquivos existentes serão criptografados agora.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
+  </data>
+  <data name="AddUserPromptText" xml:space="preserve">
+    <value>Adicionar utilizador</value>
   </data>
   <data name="AffiliateAdvantagesHeading">
     <value>Vantagens de Marketing dos Afiliados AxCrypt</value>
@@ -421,6 +430,9 @@ Por favor inicie sua sessão utilizando a mesma senha usada anteriormente.</valu
   </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Digite o código de disconto</value>
+  </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Aplicar</value>
   </data>
   <data name="ApplyNowLabel">
     <value>Candidate-se já</value>
@@ -2273,7 +2285,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Fale connosco! &lt;br&gt; Por favor, use os nossos &lt;a href='/support/forums'&gt;Fóruns da Comunidade&lt;/a&gt; para questões gerais, feedback e suporte técnico. Pode também enviar-nos um email directamente para &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>Fale connosco! &lt;br&gt; Por favor, use os nossos &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Fóruns da Comunidade&lt;/a&gt; para questões gerais, feedback e suporte técnico. Pode também enviar-nos um email directamente para &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Essa é a seção ID AxCrypt do AxCrypt.net, clique &lt;a href="{0}"&gt;aqui&lt;/a&gt; para voltar à página inicial.</value>
@@ -3982,6 +3994,9 @@ Este programa é licenciado de acordo com a licença.
   <data name="MoreFeaturesLabel">
     <value>Mais funcionalidades</value>
   </data>
+  <data name="MoreFilesLabel" xml:space="preserve">
+    <value>Mais {0} ficheiros</value>
+  </data>
   <data name="MoreKeyFileToolTop" xml:space="preserve">
     <value>Clique para colocar o nome do arquivo-chave. Somente use se você sabe que usou um arquivo-chave quando protegeu este arquivo com a versão anterior do AxCrypt.</value>
     <comment>A tooltip for a more button displaying a key file entry field</comment>
@@ -5062,6 +5077,9 @@ Será enviada uma confirmação da sua compra para o seu email a partir do forne
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Arquivos recentes</value>
   </data>
+  <data name="RefreshPromptText" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Registro falhou. Por favor, verifique seu e-mail e tente novamente.</value>
   </data>
@@ -5820,6 +5838,12 @@ Escolha algo difícil de adivinhar, uma vez que protegerá senhas no Gerenciador
   <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
     <value>Vamos configurar a conta/subscrição</value>
   </data>
+  <data name="ShareAccessTitle" xml:space="preserve">
+    <value>Partilhar acesso</value>
+  </data>
+  <data name="SharedKeyUserListTitle" xml:space="preserve">
+    <value>Todos os utilizadores com acesso aos ficheiros seleccionados ({0})</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Novo usuário AxCrypt</value>
   </data>
@@ -5827,6 +5851,9 @@ Escolha algo difícil de adivinhar, uma vez que protegerá senhas no Gerenciador
     <value>Você está prestes a compartilhar de modo seguro com alguém que recebeu, mas ainda não respondeu, a um convite para usar AxCrypt.
 
 Por favor, considere informar '{0}' diretamente sobre a segurança de arquivos do AxCrypt,</value>
+  </data>
+  <data name="ShareKeyInformationText" xml:space="preserve">
+    <value>Adicionar destinatários à lista de pessoas com quem deseja partilhar este ficheiro.</value>
   </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
     <value>Selecione um ficheiro seguro para partilhar</value>
@@ -6513,6 +6540,9 @@ A equipe AxCrypt</value>
   </data>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>ID AxCrypt deletado</value>
+  </data>
+  <data name="UnSharePromptText" xml:space="preserve">
+    <value>Deixar de partilhar</value>
   </data>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>Se você quiser se descadastrar clique &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; nesse link&lt;/a&gt;</value>

@@ -2243,7 +2243,7 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Bizimle iletişime geçin! &lt;br&gt; Lütfen genel sorular, geri bildirim ve teknik destek için &lt;a href='/support/forums'&gt;Topluluk Forumlarımızı&lt;/a&gt; kullanın. Ayrıca, &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; adresine doğrudan e-mail de atabilirsiniz.</value>
+    <value>Bizimle iletişime geçin! &lt;br&gt; Lütfen genel sorular, geri bildirim ve teknik destek için &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Topluluk Forumlarımızı&lt;/a&gt; kullanın. Ayrıca, &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; adresine doğrudan e-mail de atabilirsiniz.</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Burası AxCrypt.net içinde AxCrypt kimlik bölümüdür, anasayfaya dönmek için &lt;a href="{0}"&gt;buraya&lt;/a&gt; tıkla</value>

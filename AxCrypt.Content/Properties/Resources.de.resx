@@ -2203,7 +2203,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Sprich mit uns! &lt;br&gt; Bitte nutzen Sie unsere &lt;a href='/support/forums'&gt;Community-Foren&lt;/a&gt;für Allgemeine Fragen, Feedback und technischen Unterstützung. Sie können auch direkt an &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>Sprich mit uns! &lt;br&gt; Bitte nutzen Sie unsere &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Community-Foren&lt;/a&gt;für Allgemeine Fragen, Feedback und technischen Unterstützung. Sie können auch direkt an &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Dies ist die AxCrypt ID Rubrik von AxCrypt.net, klicken Sie auf &lt;a href="{0}"&gt;here&lt;/a&gt; um zur Startseite zurückzukehren.</value>

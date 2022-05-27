@@ -4148,6 +4148,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not..
+        /// </summary>
+        public static string DownloadAxcryptLatestFeatures1 {
+            get {
+                return ResourceManager.GetString("DownloadAxcryptLatestFeatures1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the only official download site for AxCrypt. Look up SHA256 hash here..
+        /// </summary>
+        public static string DownloadAxcryptLatestFeatures2 {
+            get {
+                return ResourceManager.GetString("DownloadAxcryptLatestFeatures2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep in mind that if you install AxCrypt 2 and open old files, these files will no longer be possible to open with AxCrypt 1..
+        /// </summary>
+        public static string DownloadAxcryptLatestFeatures3 {
+            get {
+                return ResourceManager.GetString("DownloadAxcryptLatestFeatures3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt for macOS.
         /// </summary>
         public static string DownloadHeroHeadingMac {
@@ -4351,6 +4378,15 @@ namespace AxCrypt.Content.Properties {
         public static string DownloadTryCtaHeading {
             get {
                 return ResourceManager.GetString("DownloadTryCtaHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud, DropBox, OneDrive, and others, will be supported in the upcoming releases.
+        /// </summary>
+        public static string DownloadTryMobileSubscription {
+            get {
+                return ResourceManager.GetString("DownloadTryMobileSubscription", resourceCulture);
             }
         }
         
@@ -6173,7 +6209,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Talk to us! &lt;br&gt; Please use our &lt;a href=&apos;/support/forums&apos;&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;.
+        ///   Looks up a localized string similar to Talk to us! &lt;br&gt; Please use our &lt;a href=&apos;https://forum.axcrypt.net/forums/forum/community/&apos;&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;.
         /// </summary>
         public static string FooterContactUsParagraph {
             get {
@@ -13214,11 +13250,191 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches..
+        /// </summary>
+        public static string ProductBusinessHighlights1 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHighlights1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
+        /// </summary>
+        public static string ProductBusinessHighlights2 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHighlights2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More exclusive Business Features coming soon. Don’t miss out!..
+        /// </summary>
+        public static string ProductBusinessHighlights3 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHighlights3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. .
+        /// </summary>
+        public static string ProductBusinessHightlightsTitle {
+            get {
+                return ResourceManager.GetString("ProductBusinessHightlightsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;The master key&lt;/span&gt; eliminates the risk of losing access to critical files..
+        /// </summary>
+        public static string ProductBusinessMasterKeySellingPointViews {
+            get {
+                return ResourceManager.GetString("ProductBusinessMasterKeySellingPointViews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try &lt;span&gt; Business &lt;/span&gt; subscription for &lt;span&gt; one month free. &lt;/span&gt;.
+        /// </summary>
+        public static string ProductBusinessPricingTitle {
+            get {
+                return ResourceManager.GetString("ProductBusinessPricingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stronger encryption with &lt;span&gt; AES-256&lt;/span&gt;.
+        /// </summary>
+        public static string ProductBusinessSellingPointsStrongerEncrypt {
+            get {
+                return ResourceManager.GetString("ProductBusinessSellingPointsStrongerEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product and features are too complicated for me.
         /// </summary>
         public static string ProductFeatureComplicatedText {
             get {
                 return ResourceManager.GetString("ProductFeatureComplicatedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files..
+        /// </summary>
+        public static string ProductPremiumHightlights1 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHightlights1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
+        /// </summary>
+        public static string ProductPremiumHightlights2 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHightlights2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud..
+        /// </summary>
+        public static string ProductPremiumHightlights3 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHightlights3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt Premium, you have access to extended functionality and exciting features!.
+        /// </summary>
+        public static string ProductPremiumHightlightsTitle {
+            get {
+                return ResourceManager.GetString("ProductPremiumHightlightsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try &lt;span&gt; Premium &lt;/span&gt; subscription for &lt;span&gt; one month free. &lt;/span&gt;.
+        /// </summary>
+        public static string ProductPremiumPricingTitle {
+            get {
+                return ResourceManager.GetString("ProductPremiumPricingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stronger encryption with &lt;span&gt; AES-256&lt;/span&gt;.
+        /// </summary>
+        public static string ProductPremiumSellingPointsStrongerEncrypt {
+            get {
+                return ResourceManager.GetString("ProductPremiumSellingPointsStrongerEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Encrypt and decrypt&lt;/span&gt; both from desktop and mobile.
+        /// </summary>
+        public static string ProductSellingPointsSecure {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Business Admin allows&lt;/span&gt; you to buy and manage licenses for your company..
+        /// </summary>
+        public static string ProductSellingPointsSecureBusinessAdmin {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureBusinessAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Great&lt;span&gt; business support,&lt;/span &gt;have an own dedicated Account Manager.
+        /// </summary>
+        public static string ProductSellingPointsSecureBusinessSupport {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureBusinessSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share your secure files with &lt;span&gt; key sharing&lt;/span&gt;.
+        /// </summary>
+        public static string ProductSellingPointsSecureFile {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically &lt;span&gt;encrypt new files&lt;/span&gt; in secure folders.
+        /// </summary>
+        public static string ProductSellingPointsSecureFolder {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Encrypt and decrypt&lt;/span&gt; both on desktop and mobile.
+        /// </summary>
+        public static string ProductSellingPointsSecureInDevice {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureInDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure files online with &lt;span&gt;cloud storage awareness&lt;/span&gt;.
+        /// </summary>
+        public static string ProductSellingPointsSecureStorageAwareness {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsSecureStorageAwareness", resourceCulture);
             }
         }
         
@@ -13372,6 +13588,33 @@ namespace AxCrypt.Content.Properties {
         public static string ProductTryItForFreeYouGet {
             get {
                 return ResourceManager.GetString("ProductTryItForFreeYouGet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What others &lt;span&gt;say&lt;/span&gt;.
+        /// </summary>
+        public static string ProductWhatOthersSayTitle {
+            get {
+                return ResourceManager.GetString("ProductWhatOthersSayTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;.
+        /// </summary>
+        public static string ProductWhyAxcryptBusiness {
+            get {
+                return ResourceManager.GetString("ProductWhyAxcryptBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;.
+        /// </summary>
+        public static string ProductWhyAxcryptPremium {
+            get {
+                return ResourceManager.GetString("ProductWhyAxcryptPremium", resourceCulture);
             }
         }
         

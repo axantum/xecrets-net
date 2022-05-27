@@ -2299,7 +2299,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>의견을 말해주세요! &lt;br&gt; 저희의 &lt;a href=&gt;'support/forum'&gt;커뮤니티 포럼&lt;/a&gt;을 이용해 주세요일반 질문, 피드백 및 기술 지원을 위한 . 당신은 또한 직접 &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt;으로 이메일을 보낼 수도 있습니다.</value>
+    <value>의견을 말해주세요! &lt;br&gt; 저희의 &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;커뮤니티 포럼&lt;/a&gt;을 이용해 주세요일반 질문, 피드백 및 기술 지원을 위한 . 당신은 또한 직접 &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt;으로 이메일을 보낼 수도 있습니다.</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>AxCrypt.net의 AxCrypt ID 섹션입니다. 시작 페이지로 돌아가고 싶으시면 &lt;a href="{0}"&gt;here&lt;/a&gt;  클릭해 주십시오.</value>

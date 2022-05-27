@@ -2199,7 +2199,7 @@
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Поговорите с нами! пожалуйста, используйте наши &lt;a href='/support/forums'&gt;Форумы сообщества&lt;/a&gt;для обсуждения общих вопросов, обратной связи и технической поддержки. Вы также можете написать непосредственно на &lt;а href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/а&gt;</value>
+    <value>Поговорите с нами! пожалуйста, используйте наши &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Форумы сообщества&lt;/a&gt;для обсуждения общих вопросов, обратной связи и технической поддержки. Вы также можете написать непосредственно на &lt;а href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/а&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Это секция AxCrypt ID для AxCrypt.net, нажмите &lt;a href="{0}"&gt;here&lt;/a&gt; для перехода обратно на стартовую страницу.</value>

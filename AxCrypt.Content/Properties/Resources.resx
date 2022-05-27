@@ -1586,6 +1586,15 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Download AxCrypt App</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>This is the only official download site for AxCrypt. Look up SHA256 hash here.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>Keep in mind that if you install AxCrypt 2 and open old files, these files will no longer be possible to open with AxCrypt 1.</value>
+  </data>
   <data name="DownloadHeroHeadingMac" xml:space="preserve">
     <value>AxCrypt for macOS</value>
   </data>
@@ -1654,6 +1663,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="DownloadTryCtaHeading" xml:space="preserve">
     <value>Try our subscriptions for one month &lt;span&gt;for free...&lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud, DropBox, OneDrive, and others, will be supported in the upcoming releases</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Dutch)</value>
@@ -2286,7 +2298,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph" xml:space="preserve">
-    <value>Talk to us! &lt;br&gt; Please use our &lt;a href='/support/forums'&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>Talk to us! &lt;br&gt; Please use our &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Community Forums&lt;/a&gt; for general questions, feedback and technical support. You can also email directly to &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>This is the AxCrypt ID section of AxCrypt.net, click &lt;a href="{0}"&gt;here&lt;/a&gt; to go back to the start page.</value>
@@ -4790,8 +4802,68 @@ HubSpot is an integrated software solution with which we cover various aspects o
   <data name="PrivacyPolicyLinkLabel" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches.</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>With AxCrypt Business, you also have access to our Password Management – where you can store and manage passwords and codes securely. AxCrypt is multilingual, supporting English, Dutch, French, German, Italian, Korean, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to follow. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>More exclusive Business Features coming soon. Don’t miss out!.</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt now offers file security for companies and organisations – with 256-bit AES encryption. </value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;The master key&lt;/span&gt; eliminates the risk of losing access to critical files.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Try &lt;span&gt; Business &lt;/span&gt; subscription for &lt;span&gt; one month free. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Stronger encryption with &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Product and features are too complicated for me</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>With AxCrypt Premium, you have access to extended functionality and exciting features!</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>Try &lt;span&gt; Premium &lt;/span&gt; subscription for &lt;span&gt; one month free. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Stronger encryption with &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecure" xml:space="preserve">
+    <value>&lt;span&gt;Encrypt and decrypt&lt;/span&gt; both from desktop and mobile</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;Business Admin allows&lt;/span&gt; you to buy and manage licenses for your company.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>Great&lt;span&gt; business support,&lt;/span &gt;have an own dedicated Account Manager</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>Share your secure files with &lt;span&gt; key sharing&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>Automatically &lt;span&gt;encrypt new files&lt;/span&gt; in secure folders</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>&lt;span&gt;Encrypt and decrypt&lt;/span&gt; both on desktop and mobile</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Secure files online with &lt;span&gt;cloud storage awareness&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch" xml:space="preserve">
     <value>And much more...</value>
@@ -4843,6 +4915,15 @@ HubSpot is an integrated software solution with which we cover various aspects o
   </data>
   <data name="ProductTryItForFreeYouGet" xml:space="preserve">
     <value>You get:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>What others &lt;span&gt;say&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>Why AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>Why AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Cleaning decrypted files...</value>
