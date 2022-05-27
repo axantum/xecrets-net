@@ -2284,7 +2284,7 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>¡Háblanos! &lt;br&gt;Usa nuestros &lt;a href='/support/forums'&gt;Foros de la comunidad&lt;/a&gt; para preguntas generales, comentarios y soporte técnico. También puedes enviar un correo electrónico directamente a &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>¡Háblanos! &lt;br&gt;Usa nuestros &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Foros de la comunidad&lt;/a&gt; para preguntas generales, comentarios y soporte técnico. También puedes enviar un correo electrónico directamente a &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Esta es la sección AxCrypt ID de AxCrypt.net. Haz clic &lt;a href="{0}"&gt;aquí&lt;/a&gt; para volver a la página de inicio.</value>

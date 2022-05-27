@@ -2241,7 +2241,7 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Mów do nas! &lt;br&gt; Skorzystaj z naszych &lt;a href='/support/forums'&gt; forów społeczności &lt;/a&gt;, aby uzyskać ogólne pytania, opinie i pomoc techniczną. Możesz również wysłać e-mail bezpośrednio na adres &lt;a href='mailto:support@axcrypt.net'&gt; support@axcrypt.net &lt;/a&gt;</value>
+    <value>Mów do nas! &lt;br&gt; Skorzystaj z naszych &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt; forów społeczności &lt;/a&gt;, aby uzyskać ogólne pytania, opinie i pomoc techniczną. Możesz również wysłać e-mail bezpośrednio na adres &lt;a href='mailto:support@axcrypt.net'&gt; support@axcrypt.net &lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>To jest sekcja AxCrypt ID witryny AxCrypt.net, kliknij &lt;a href="{0}"&gt;tutaj&lt;/a&gt;, aby wrócić do strony startowej.</value>

@@ -2247,7 +2247,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Praat met ons! &lt;br&gt; Gebruik onze &lt;a href='/support/forums'&gt;Community Forums&lt;/a&gt; voor algemene vragen, feedback en technische ondersteuning. U kunt ook rechtstreeks e-mailen naar &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; </value>
+    <value>Praat met ons! &lt;br&gt; Gebruik onze &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Community Forums&lt;/a&gt; voor algemene vragen, feedback en technische ondersteuning. U kunt ook rechtstreeks e-mailen naar &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; </value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Dit is de AxCrypt ID sectie van AxCrypt.net, klik &lt;a href="{0}"&gt;hier&lt;/a&gt; om terug te gaan naar de startpagina.</value>

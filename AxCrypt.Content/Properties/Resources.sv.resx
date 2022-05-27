@@ -2233,7 +2233,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Kontakta oss! &lt;br&gt; Använd våra &lt;a href='/support/forums'&gt;Allmänna Forum&lt;/a&gt; för vanliga frågor, förslag och teknisk support. Du kan också maila direkt till &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
+    <value>Kontakta oss! &lt;br&gt; Använd våra &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt;Allmänna Forum&lt;/a&gt; för vanliga frågor, förslag och teknisk support. Du kan också maila direkt till &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Det här är AxCrypt ID-webben för axcrypt.net, klicka &lt;a href="{0}"&gt;här&lt;/a&gt; om du vill tillbaka till startsidan.</value>

@@ -2295,7 +2295,7 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
     <comment>Title of panel with social links in mobile application</comment>
   </data>
   <data name="FooterContactUsParagraph">
-    <value>Parla con noi! &lt;br&gt; Utilizza i nostri &lt;a href='/support/forums'&gt; Forum della Community &lt;/a&gt; per domande generiche, feedback e supporto tecnico. Puoi anche inviare un'e-mail direttamente a &lt;a href='mailto:support@axcrypt.net'&gt; support@axcrypt.net &lt;/a&gt;</value>
+    <value>Parla con noi! &lt;br&gt; Utilizza i nostri &lt;a href='https://forum.axcrypt.net/forums/forum/community/'&gt; Forum della Community &lt;/a&gt; per domande generiche, feedback e supporto tecnico. Puoi anche inviare un'e-mail direttamente a &lt;a href='mailto:support@axcrypt.net'&gt; support@axcrypt.net &lt;/a&gt;</value>
   </data>
   <data name="FooterInfoBody" xml:space="preserve">
     <value>Questa è la sezione AxCrypt ID di AxCrypt.net, clicca &lt;a href="{0}"&gt;qui&lt;/a&gt; per tornare alla pagina iniziale.</value>
