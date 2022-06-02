@@ -1540,6 +1540,15 @@
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>下载AxCrypt应用程序</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt是没有后门的加密。 如果没有密码，您的文件将丢失。 不要忘记密码！ 始终保持重要文件的适当备份，加密与否。</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>这是AxCrypt唯一的官方下载网站。 在这里查找SHA256哈希。</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>请记住，如果您安装AxCrypt2并打开旧文件，这些文件将不再可能使用AxCrypt1打开。</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt 适用于macOS</value>
   </data>
@@ -1605,6 +1614,9 @@
   </data>
   <data name="DownloadTryCtaHeading">
     <value>&lt;span&gt;免费&lt;/span&gt;试用我们的订阅一个月。</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>您可以随时随地加密和解密Android手机，iPhone或平板电脑上的文件。 AxCrypt移动加密支持Android和iOS。 AxCrypt支持iOS和Android上的谷歌云端硬盘文件加密。 本地存储加密目前仅在Android上可用。 其他云驱动器，如iCloud，DropBox，OneDrive和其他，将在即将发布的版本中得到支持</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>荷兰语</value>
@@ -4596,6 +4608,66 @@ SE-114 29 斯德哥尔摩
   <data name="PrivacyPolicyLinkLabel">
     <value>隐私策略</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>与团队的其他成员共享文件是屡获殊荣的容易与我们的云存储意识和关键共享功能的前提文件。 这使您能够遵守数据保护法规，同时保护您的文件免受代价高昂的数据泄露。</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>使用AxCrypt Business，您还可以访问我们的密码管理-您可以安全地存储和管理密码和代码。 AxCrypt是多语言的，支持英语，荷兰语，法语，德语，意大利语，韩语，波兰语，葡萄牙语，俄语，西班牙语，瑞典语，土耳其语等。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>更多独家业务功能即将推出。 不要错过！</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt现在为公司和组织提供文件安全-使用256位AES加密。</value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;主密钥&lt;/span&gt;消除了失去对关键文件访问权限的风险。</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>尝试&lt;span&gt;Business&lt;/span&gt;订阅&lt;span&gt;一个月是免费的。 &lt;/span&gt;</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>使用&lt;span&gt;AES-256&lt;/span&gt;加强加密</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>使用AES-256加密您的文件–最强大的AES算法。 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>如果您还需要与他人共享安全文件，您将有密钥共享来为您处理，即使可以访问Dropbox，谷歌驱动器等中的云存储意识。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>想要以安全简便的方式保存密码？ 使用我们的密码管理和生成器，确保您的所有密码在云中安全。</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>使用AxCrypt Premium，您可以访问扩展功能和令人兴奋的功能！</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>尝试&lt;span&gt;Premium&lt;/span&gt;订阅&lt;span&gt;一个月是免费的。&lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>使用&lt;span&gt;AES-256&lt;/span&gt;加强加密</value>
+  </data>
+  <data name="ProductSellingPointsSecure">
+    <value>在桌面和移动设备上&lt;span&gt;加密和解密&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;业务管理员允许&lt;/span&gt;您为公司购买和管理许可证。</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>伟大的&lt;span&gt;业务支持，&lt;/span&gt;有一个自己专门的客户经理</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>使用&lt;span&gt;密钥共享&lt;/span&gt;共享您的安全文件</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>自动&lt;span&gt;加密安全文件夹中的新文件&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>在桌面和移动设备上&lt;span&gt;加密和解密&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>使用&lt;span&gt;云存储感知&lt;/span&gt;在线安全文件</value>
+  </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>还有更多...</value>
   </data>
@@ -4646,6 +4718,15 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>您得到:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>别人&lt;span&gt;怎么说&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>为什么AxCrypt&lt;span&gt;BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>为什么AxCrypt&lt;span&gt;PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>清理解密的文件中...</value>
@@ -5631,6 +5712,9 @@ SE-114 29 斯德哥尔摩
 
 请考虑直接通知'{0}'有关AxCrypt文件安全性。</value>
   </data>
+  <data name="ShareKeyInformationText" xml:space="preserve">
+    <value>将收件人添加到要与之共享此文件的人员列表中。</value>
+  </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
     <value>选择要共享的安全文件</value>
   </data>
@@ -5757,6 +5841,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>您的订阅将在&lt;b&gt;{0}&lt;/b&gt;续订。</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>您当然可以随时取消！</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>您的AxCrypt Premium订阅已被取消。</value>
