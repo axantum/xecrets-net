@@ -1583,6 +1583,15 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Descargar la app de AxCrypt</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt es encriptación sin puertas traseras. Sin la contraseña, tus archivos se pierden. ¡No olvides tu contraseña! Mantén siempre copias de seguridad adecuadas de los archivos importantes, encriptados o no.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>Este es el único sitio de descarga oficial de AxCrypt. Busca el hash SHA256 aquí.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>Ten en cuenta que si instalas AxCrypt 2 y abres archivos antiguos, estos archivos ya no podrán abrirse con AxCrypt 1.</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt para macOS</value>
   </data>
@@ -1651,6 +1660,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Prueba nuestras suscripciones por un mes &lt;span&gt;gratis.. &lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Puedes cifrar y descifrar archivos en tu teléfono Android, iPhone o tableta desde cualquier lugar y en cualquier momento. El cifrado móvil AxCrypt es compatible con Android e iOS. AxCrypt admite el cifrado de archivos de Google Drive en iOS y Android. El cifrado de almacenamiento local solo está disponible en Android por ahora. Otras unidades en la nube, como iCloud, DropBox, OneDrive y otras, serán compatibles con las próximas versiones.</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (holandés)</value>
@@ -4788,8 +4800,68 @@ HubSpot es una solución de software integrada con la que abarcamos diversos asp
   <data name="PrivacyPolicyLinkLabel">
     <value>Política de privacidad</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Compartir archivos con el resto del equipo es fácil con nuestra función de almacenamiento en la nube y uso compartido de claves para archivos locales. Esto te permite cumplir con las normas de protección de datos y, al mismo tiempo, proteger tus archivos de costosas filtraciones de datos.</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>Con AxCrypt Business, también tienes acceso a nuestra herramienta de Administración de contraseñas, donde puedes almacenar y administrar contraseñas y códigos de manera segura. AxCrypt es multilingüe y está disponible en inglés, holandés, francés, alemán, italiano, coreano, polaco, portugués, ruso, español, sueco, turco, etc. Con la aplicación móvil AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>Próximamente habrá más funciones comerciales exclusivas. ¡No te lo pierdas!</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt ahora ofrece seguridad de archivos para empresas y organizaciones, con cifrado AES de 256 bits.</value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;La clave maestra&lt;/span&gt; elimina el riesgo de perder el acceso a archivos críticos.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Prueba la suscripción &lt;span&gt; Business &lt;/span&gt; durante &lt;span&gt; un mes gratis&lt;/span&gt;.</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Cifrado más sólido con &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>El producto y las funciones son muy complicados para mi</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Cifra tus archivos con AES-256, el algoritmo AES más potente. Se utiliza a nivel global para proteger información sensible y clasificada de todos los niveles. Proteger las carpetas nunca fue tan fácil, ya que con un solo clic puedes proteger automáticamente los nuevos archivos.</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Si además necesitas compartir archivos protegidos con otras personas, la herramienta para compartir claves se encargará de eso, incluso con acceso a almacenamiento en la nube en Dropbox, Google Drive, etc. Con la aplicación móvil AxCrypt, puedes cifrar y descifrar archivos en tu teléfono, desde cualquier lugar y en cualquier momento.</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>¿Quieres guardar la contraseña de una manera fácil y segura? Utiliza nuestro administrador y generador de contraseñas para mantener todas tus contraseñas seguras en la nube.</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>¡Con AxCrypt Premium, tienes acceso a funciones ampliadas e interesantes!</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>Prueba la suscripción &lt;span&gt; Premium &lt;/span&gt; durante &lt;span&gt; un mes gratis&lt;/span&gt;.</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Cifrado más sólido con &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecure">
+    <value>&lt;span&gt;Cifra y descifra&lt;/span&gt; desde el escritorio o desde el móvil</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;Business Admin te permite&lt;/span&gt; comprar y administrar licencias para tu empresa.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>Excelente &lt;span&gt; soporte comercial&lt;/span &gt;. Puedes contar con un administrador de cuenta dedicado.</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>Comparte tus archivos seguros con la herramienta de &lt;span&gt; uso compartido de claves&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>&lt;span&gt;Cifra archivos nuevos&lt;/span&gt; automáticamente en carpetas seguras</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>&lt;span&gt;Cifra y descifra&lt;/span&gt; archivos en computadoras de escritorio o en dispositivos móviles</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Protege los archivos en línea con &lt;span&gt;conocimiento del almacenamiento habilitado para la nube&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>Y mucho más...</value>
@@ -4841,6 +4913,15 @@ HubSpot es una solución de software integrada con la que abarcamos diversos asp
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>Obtienes:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>Lo que otras personas &lt;span&gt;dicen&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>¿Por qué elegir AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>¿Por qué elegir AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Limpieza de archivos descifrados...</value>
@@ -6001,6 +6082,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Tu suscripción se renovará el &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>¡Puedes cancelar en cualquier momento!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Se canceló tu suscripción a AxCrypt Premium.</value>

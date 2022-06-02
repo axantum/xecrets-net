@@ -1034,7 +1034,7 @@ Está avisada(o), agora desfrute!</value>
     <value>O PRIMEIRO MÊS É GRÁTIS</value>
   </data>
   <data name="BusinessTryItForFreeSellingPointsGreatBusiness">
-    <value>Excelente suporte empresarial excelente, tenha o seu Gestor de Conta dedicado</value>
+    <value>Excelente suporte empresarial, tenha o seu Gestor de Conta dedicado</value>
   </data>
   <data name="ButtonActivateText" xml:space="preserve">
     <value>Verificar</value>
@@ -1585,6 +1585,15 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Descarregue a App da AxCrypt</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>A AxCrypt representa cifragem sem portas de serviço. Sem a palavra-passe, os seus ficheiros são perdidos. Não se esqueça da sua palavra-passe! Mantenha sempre cópias de segurança apropriadas de ficheiros importantes, cifrados ou não.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>Este é o único sítio web oficial de descarregamento da AxCrypt. Consulte a hash SHA256 aqui.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>Tenha em atenção que se instalar a AxCrypt 2 e abrir ficheiros antigos, estes ficheiros não poderão mais ser abertos com a AxCrypt 1.</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt para macOS</value>
   </data>
@@ -1653,6 +1662,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Experimente as nossas subscrições durante um mês &lt;span&gt;grátis...&lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Pode cifrar e decifrar ficheiros no seu telefone Android, iPhone ou tablet em qualquer lugar e em qualquer momento. A cifragem móvel AxCrypt suporta tanto Android com iOS. A AxCrypt suporta cifragem de ficheiros no Google Drive em iOS e Android. A cifragem de ficheiros locais está disponível em Android apenas, para já. Outros sistemas na nuvem, tais como o iCloud, o DropBox, o OneDrive e outros, serão suportados em breve nas próximas versões</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (neerlandês)</value>
@@ -3112,7 +3124,7 @@ Sua senha não está armazenada no nosso servidor, e a conexão é sempre encrip
     <value>Cifragem móvel</value>
   </data>
   <data name="Introduction2MailText13">
-    <value>A cifragem móvel AxCrypt suporta cifragem de ficheiros Google Drive em iOS e Android. A cifragem de ficheiros armazenados localmente e noutros sistema na nuvem, tais como o iCloud, o DropBox, o OneDrive, etc. serão suportados em breve nas próximas versões</value>
+    <value>A cifragem móvel AxCrypt suporta cifragem de ficheiros Google Drive em iOS e Android. A cifragem de ficheiros locais e noutros sistemas na nuvem, tais como o iCloud, o DropBox, o OneDrive, etc. serão suportados em breve nas próximas versões</value>
   </data>
   <data name="Introduction2MailText14">
     <value>Partilha de chaves</value>
@@ -4786,8 +4798,68 @@ O HubSpot é uma solução integrada de software com a qual cobrimos vários asp
   <data name="PrivacyPolicyLinkLabel">
     <value>Política de privacidade</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Partilhar ficheiros com o resto da equipa é facílimo com a nossa detecção de armazenamento na nuvem e funcionalidade de partilha de chaves para ficheiros locais. Tal permite-lhe estar em conformidade com regulamentos de protecção de dados e, ao mesmo tempo, proteger os seus ficheiros de violações de dados dispendiosas.</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>Com a AxCrypt Business, também tem acesso à nossa Gestão de Palavras-Passe – onde pode armazenar e gerir palavras-passe e códigos com segurança. A AxCrypt é multilingue, com suporte para inglês, neerlandês, francês, alemão, italiano, coreano, polaco, português, russo, espanhol, sueco, turco e mais no futuro. Com a aplicação móvel AxCrypt, pode cifrar e decifrar ficheiros no seu telefone em qualquer lugar e em qualquer momento.</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>Mais Funcionalidades Business exclusivas brevemente. Não perca!</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>A AxCrypt oferece agora segurança de ficheiros para empresas e organizações – com cifragem AES de 256 bits.</value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;A chave-mestra&lt;/span&gt; elimina o risco de perda de acesso a ficheiros críticos.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Experimente gratuitamente a subscrição &lt;span&gt; Business &lt;/span&gt; durante &lt;span&gt; um mês. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Cifragem mais forte com &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>O produto e as funcionalidades são demasiado complicadas para mim</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Cifre os seus ficheiros com AES-256 – o mais forte algoritmo AES. É usado globalmente para proteger informação sensível e classificada de todos os níveis. Proteger pastas nunca foi tão fácil, bastando um só clique para proteger novos ficheiros automaticamente.</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Se precisar também de partilhar ficheiros seguros com outras pessoas, a partilha de chaves tomará conta disso por si, mesmo com Detecção de Armazenamento na Nuvem em Dropbox, Google Drive, etc. Com a aplicação móvel AxCrypt, pode cifrar e decifrar ficheiros no seu telefone em qualquer lugar e em qualquer momento.</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>Deseja guardar palavras-passe de forma segura e fácil? Use o nosso gestor e gerador de palavras-passe para manter todas as suas palavras-passe seguras na nuvem.</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>Com o plano AxCrypt Premium, tem acesso a funcionalidades alargadas e características entusiasmantes!</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>Experimente gratuitamente a subscrição &lt;span&gt; Premium &lt;/span&gt; durante &lt;span&gt; um mês. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Cifragem mais forte com &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecure">
+    <value>&lt;span&gt;Cifre e decifre&lt;/span&gt; a partir do computador e do telemóvel</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>O &lt;span&gt;Administrator Business permite-lhe&lt;/span&gt; comprar e gerir licenças para a sua empresa.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>Excelente&lt;span&gt; suporte empresarial,&lt;/span&gt; tenha o seu Gestor de Conta dedicado</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>Partilhe os seus ficheiros seguros com a &lt;span&gt; partilha de chaves&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>&lt;span&gt;Cifre novos ficheiros&lt;/span&gt; em pastas seguras automaticamente</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>&lt;span&gt;Cifre e decifre&lt;/span&gt; no computador e no telemóvel</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Proteja ficheiros online com a &lt;span&gt;detecção de armazenamento na nuvem&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>E muito mais...</value>
@@ -4839,6 +4911,15 @@ O HubSpot é uma solução integrada de software com a qual cobrimos vários asp
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>Recebe:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>O que outros &lt;span&gt;dizem&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>Porquê AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>Porquê AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Limpando arquivos descriptografados...</value>
@@ -5993,6 +6074,9 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>A sua subscrição renovar-se-á em &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>Pode obviamente cancelar a qualquer momento!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>A sua subscrição AxCrypt Premium foi cancelada.</value>

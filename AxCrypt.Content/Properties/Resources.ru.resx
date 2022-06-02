@@ -1516,6 +1516,15 @@
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Скачать приложение AxCrypt</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt - это шифрование без бэкдоров. Без пароля ваши файлы будут потеряны. Не забывайте свой пароль! Всегда сохраняйте правильные резервные копии важных файлов, зашифрованных или нет.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>Это единственный официальный сайт для загрузки AxCrypt. Найдите хэш SHA256 здесь.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>Имейте в виду, что если вы установите AxCrypt 2 и откроете старые файлы, эти файлы больше нельзя будет открыть с помощью AxCrypt 1.</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt для macOS</value>
   </data>
@@ -1582,6 +1591,9 @@
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Попробуйте нашу месячную подписку &lt;span&gt;бесплатно...&lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Вы можете шифровать и расшифровывать файлы на своем телефоне Android, iPhone или планшете из любого места и в любое время. Мобильное шифрование AxCrypt поддерживает как Android, так и iOS. AxCrypt поддерживает шифрование файлов Google Drive на iOS и Android. Шифрование локального хранилища пока доступно только на Android. Другие облачные накопители, такие как iCloud, DropBox, OneDrive и другие, будут поддерживаться в следующих версиях.</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Голландский</value>
@@ -4422,6 +4434,66 @@ SE-114 29 Стокгольм
   <data name="PrivacyPolicyLinkLabel">
     <value>Политика конфиденциальности</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Обмениваться файлами с остальными членами команды очень просто благодаря облачным хранилищам и функции обмена ключами для локальных файлов. Это позволяет вам соблюдать правила защиты данных, защищая ваши файлы от дорогостоящих утечек данных.</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>С AxCrypt Business у вас также есть доступ к нашему управлению паролями, где вы можете безопасно хранить пароли и коды и управлять ими. AxCrypt многоязычен и поддерживает английский, голландский, французский, немецкий, итальянский, корейский, польский, португальский, русский, испанский, шведский, турецкий и другие языки. С помощью мобильного приложения AxCrypt вы можете шифровать и расшифровывать файлы на своем телефоне из любого места и в любое время.</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>Скоро появятся новые эксклюзивные бизнес-функции. Не пропустите!</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt теперь предлагает защиту файлов для компаний и организаций с помощью 256-битного шифрования AES.</value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;Мастер-ключ&lt;/span&gt; устраняет риск потери доступа к критически важным файлам.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Попробуйте подписку &lt;span&gt; Business &lt;/span&gt; на &lt;span&gt; один месяц бесплатно. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Более надежное шифрование с помощью &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Зашифруйте ваши файлы с помощью AES-256 - самого мощного алгоритма AES. Он используется во всем мире для защиты конфиденциальной и секретной информации всех уровней. Защита папок никогда не была такой простой, достаточно одного щелчка мыши, чтобы автоматически защитить новые файлы.</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Если вам также нужно поделиться защищенными файлами с другими, у вас будет общий доступ к ключам, и к облачным хранилищам данных в Dropbox, Google Drive и т.д. С помощью мобильного приложения AxCrypt вы можете шифровать и расшифровывать файлы на своем телефоне из любого места и в любое время.</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>Хотите сохранить пароль безопасным и простым способом? Используйте наше управление паролями и генератор, чтобы сохранить все ваши пароли в безопасности, в облаке.</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>С AxCrypt Premium у вас есть доступ к расширенной функциональности и захватывающим функциям!</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>Попробуйте &lt;span&gt; Premium &lt;/span&gt;подписку на &lt;span&gt; один месяц бесплатно. &lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Более надежное шифрование с помощью &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecure">
+    <value>&lt;span&gt;Шифрование и дешифрование&lt;/span&gt; как на настольных компьютерах, так и на мобильных устройствах</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;Бизнес-Администратор позволяет&lt;/span&gt; вам покупать лицензии для вашей компании и управлять ими.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>Отличная&lt;span&gt; поддержка бизнеса,&lt;/span &gt; есть собственный менеджер по работе с клиентами</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>Поделитесь своими защищенными файлами с помощью функции &lt;span&gt; общего доступа к ключам&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>Автоматическое &lt;span&gt;шифрование новых файлов&lt;/span&gt; в защищенных папках</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>&lt;span&gt;Шифрование и дешифрование&lt;/span&gt; как на настольных компьютерах, так и на мобильных устройствах</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Защищайте файлы в Интернете с помощью &lt;span&gt;облачных хранилищ&lt;/span&gt;</value>
+  </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>И многое другое...</value>
   </data>
@@ -4472,6 +4544,15 @@ SE-114 29 Стокгольм
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>Вы получите:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>Что &lt;span&gt;говорят&lt;/span&gt; о нас другие</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>Почему AxCrypt&lt;span&gt;BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>Почему AxCrypt&lt;span&gt;PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Чистка декодированных файлов...</value>
@@ -5470,6 +5551,9 @@ SE-114 29 Стокгольм
 
 Вам следует проинформировать лично '{0}'  о безопасности файлов в AxCrypt.</value>
   </data>
+  <data name="ShareKeyInformationText" xml:space="preserve">
+    <value>Добавьте получателей в список людей, с которыми вы хотите поделиться этим файлом.</value>
+  </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
     <value>Выберите защищённые файлы для совместного пользования</value>
   </data>
@@ -5596,6 +5680,9 @@ SE-114 29 Стокгольм
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Ваша подписка будет обновлена &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>Конечно, вы можете отменить подписку в любое время!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Ваша AxCrypt Premium подписка отменена.</value>
