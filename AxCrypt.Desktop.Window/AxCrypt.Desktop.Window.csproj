@@ -341,7 +341,6 @@
     <None Include="resources\TextDocumentIcon.png" />
     <None Include="resources\add_more_users_white.png" />
     <Content Include="resources\axcrypticon.ico" />
-    <None Include="resources\AxCryptIcon.png" />
     <Content Include="resources\AxCryptLogo.png" />
     <Content Include="resources\broom_40px.png" />
     <Content Include="resources\broom_red_40px.png" />

@@ -66,7 +66,10 @@ namespace AxCrypt.Desktop.Window
             _viewModel = viewModel;
             _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _shareKeyUserList = aks.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user => new ShareKeyUser(user.Email, AccountStatus.Verified)).ToList(); });
             _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.IsOnline), (bool isOnline) => { SetNewContactState(); });
-            _addNewUserTextBox.TextChanged += (sender, e) => { _viewModel.NewKeyShare = _addNewUserTextBox.Text.Trim(); ClearErrorProviders(); };
+            _addNewUserTextBox.GotFocus += (sender, e) => { SuggestUnSharedUserEmailList(); };
+            _addNewUserTextBox.Click += (sender, e) => { SuggestUnSharedUserEmailList(); };
+            _addNewUserTextBox.TextChanged += (sender, e) => { SuggestUnSharedUserEmailList(); };
+
             _addNewUserTextBox.Enter += (sender, e) => { Textbox_GotFocus(sender, e); };
             _addNewUserTextBox.Leave += Textbox_LostFocus;
 
@@ -75,17 +78,11 @@ namespace AxCrypt.Desktop.Window
                 await AddShareKeyUser();
             };
 
-            this.Click += (sender, args) =>
-            {
-                this._selectedSharedKeyUserPopupLayout.Visible = false;
-            };
+            this.Click += (sender, args) => { HideOpenedLayouts(); };
+            this._sharedWithUsersListLayoutPanel.Click += (sender, args) => { HideOpenedLayouts(); };
+            this._selectedFileListLayout.Click += (sender, args) => { HideOpenedLayouts(); };
 
-            this._sharedWithUsersListLayoutPanel.Click += (sender, args) =>
-            {
-                this._selectedSharedKeyUserPopupLayout.Visible = false;
-            };
-
-            InitializeControls(viewModel, fileorFolderNames);
+            InitializeControls(fileorFolderNames);
         }
 
         protected override void InitializeContentResources()
@@ -99,7 +96,7 @@ namespace AxCrypt.Desktop.Window
             _cancelButton.Text = "&" + Texts.ButtonCancelText;
         }
 
-        private void InitializeControls(SharingListViewModel viewModel, IEnumerable<string> fileorFolderNames)
+        private void InitializeControls(IEnumerable<string> fileorFolderNames)
         {
             _selectedFileList = fileorFolderNames;
 
@@ -134,37 +131,30 @@ namespace AxCrypt.Desktop.Window
             UpdateShareKeyUserListLayout();
         }
 
-        private async Task UnSharePopupMenuItemAction()
+        private void SuggestUnSharedUserEmailList()
         {
-            if (_selectedUserEmailForContextMenuOperation == EmailAddress.Empty)
+            _viewModel.NewKeyShare = _addNewUserTextBox.Text.Trim();
+            this._userEmailAutoSuggestionLayout.Controls.Clear();
+
+            IEnumerable<UserPublicKey> filteredList = _viewModel.NotSharedWith.Where(nsw => nsw.Email.Address.Contains(_addNewUserTextBox.Text));
+            IEnumerable<ShareKeyUser> filteredUnSharedUsersList = filteredList.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user => new ShareKeyUser(user.Email, AccountStatus.Verified)).ToList();
+
+            if (!filteredUnSharedUsersList.Any())
             {
+                this._userEmailAutoSuggestionLayoutPanel.Visible = false;
+                ClearErrorProviders();
                 return;
             }
 
-            await _viewModel.RemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_viewModel.SharedWith.First(su => su.Email == _selectedUserEmailForContextMenuOperation) });
-
-            if (_shareKeyUserList.Count == 5)
+            foreach (ShareKeyUser user in filteredUnSharedUsersList)
             {
-                InitializeSharedKeyUsersListLayout();
-                this._selectedSharedKeyUserPopupLayout.Visible = false;
-            }
-            else
-            {
-                if (_selectedControlForContextMenuOperation != null)
-                {
-                    int index = this._sharedWithUsersListLayout.Controls.IndexOf(_selectedControlForContextMenuOperation);
-                    Control underline = this._sharedWithUsersListLayout.Controls[index + 1];
-
-                    this._sharedWithUsersListLayout.Controls.Remove(_selectedControlForContextMenuOperation);
-                    this._sharedWithUsersListLayout.Controls.Remove(underline);
-
-                    this._selectedSharedKeyUserPopupLayout.Visible = false;
-                }
-
-                UpdateShareKeyUserListLayout();
+                AddUserEmailAutoSuggestionItem(user, filteredUnSharedUsersList.Count() >= 5);
             }
 
-            SetOkButtonState();
+            this._userEmailAutoSuggestionLayoutPanel.Visible = true;
+            this._userEmailAutoSuggestionLayoutPanel.BringToFront();
+
+            ClearErrorProviders();
         }
 
         private async Task AddShareKeyUser()
@@ -221,6 +211,39 @@ namespace AxCrypt.Desktop.Window
             SetOkButtonState();
             _addNewUserTextBox.Text = string.Empty;
             _addNewUserTextBox.Focus();
+        }
+
+        private async Task UnSharePopupMenuItemAction()
+        {
+            if (_selectedUserEmailForContextMenuOperation == EmailAddress.Empty)
+            {
+                return;
+            }
+
+            await _viewModel.RemoveKeyShares.ExecuteAsync(new UserPublicKey[] { (UserPublicKey)_viewModel.SharedWith.First(su => su.Email == _selectedUserEmailForContextMenuOperation) });
+
+            if (_shareKeyUserList.Count == 5)
+            {
+                InitializeSharedKeyUsersListLayout();
+                this._selectedSharedKeyUserPopupLayout.Visible = false;
+            }
+            else
+            {
+                if (_selectedControlForContextMenuOperation != null)
+                {
+                    int index = this._sharedWithUsersListLayout.Controls.IndexOf(_selectedControlForContextMenuOperation);
+                    Control underline = this._sharedWithUsersListLayout.Controls[index + 1];
+
+                    this._sharedWithUsersListLayout.Controls.Remove(_selectedControlForContextMenuOperation);
+                    this._sharedWithUsersListLayout.Controls.Remove(underline);
+
+                    this._selectedSharedKeyUserPopupLayout.Visible = false;
+                }
+
+                UpdateShareKeyUserListLayout();
+            }
+
+            SetOkButtonState();
         }
 
         private bool CanShareKeyInOfflineFor(EmailAddress addedUserEmailAddress)
@@ -383,6 +406,12 @@ namespace AxCrypt.Desktop.Window
             _errorProvider1.Clear();
         }
 
+        private void HideOpenedLayouts()
+        {
+            this._selectedSharedKeyUserPopupLayout.Visible = false;
+            this._userEmailAutoSuggestionLayoutPanel.Visible = false;
+        }
+
         #region SelectedFileListItemAndSharedKeyUsersListItemTemplate
 
         private void AddSelectedFileToList(string selectedFileName)
@@ -478,7 +507,7 @@ namespace AxCrypt.Desktop.Window
 
             contextMenuButton.Click += (sender, args) => OnContextMenuClick(sender, args, shareKeyUser.UserEmail.Address);
 
-            FlowLayoutPanel ShareKeyUserEntry = new FlowLayoutPanel
+            FlowLayoutPanel shareKeyUserEntry = new FlowLayoutPanel
             {
                 FlowDirection = FlowDirection.LeftToRight,
                 AutoScroll = false,
@@ -494,21 +523,88 @@ namespace AxCrypt.Desktop.Window
                 }
             };
 
-            Panel userListPanelLine = new Panel
+            Panel bottomLine = new Panel
             {
                 Size = new System.Drawing.Size(imageAndMenuWidth + textWidth + imageAndMenuWidth + 5, 1),
                 BackColor = FormStyles.LightGreyColor,
-                Name = "userListPanelLine",
+                Name = "bottomLine",
                 Margin = new System.Windows.Forms.Padding(0, 0, 0, 0),
             };
 
-            this._sharedWithUsersListLayout.Controls.Add(ShareKeyUserEntry);
-            this._sharedWithUsersListLayout.Controls.Add(userListPanelLine);
+            this._sharedWithUsersListLayout.Controls.Add(shareKeyUserEntry);
+            this._sharedWithUsersListLayout.Controls.Add(bottomLine);
         }
 
-        private string Truncate(string value, int maxChars)
+        private void AddUserEmailAutoSuggestionItem(ShareKeyUser shareKeyUser, bool canReduceWidthForScroll)
         {
-            return value.Length <= maxChars ? value : value.Substring(0, maxChars) + "...";
+            int verticalScrollSize = 18;
+            int width = _userEmailAutoSuggestionLayout.Width;
+            if (canReduceWidthForScroll)
+            {
+                width = width - verticalScrollSize; // Substract a vertical scroll width, To show a scroll without horizontal scroll
+            }
+
+            int imageAndMenuWidth = (int)Math.Round(0.2 * width);
+            int textWidth = (int)Math.Round(0.79 * width);
+
+            Label userEmail = new Label
+            {
+                Name = "UserEmail",
+                Text = shareKeyUser.UserEmail.Address,
+                Size = new System.Drawing.Size(textWidth, 32),
+                Padding = new System.Windows.Forms.Padding(15, 3, 0, 0),
+                Font = FormStyles.OpenSans10Regular,
+                ForeColor = FormStyles.LightGreyColor,
+                TextAlign = ContentAlignment.MiddleLeft,
+                AutoEllipsis = true,
+            };
+            userEmail.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+
+            PictureBox userTypeIcon = new PictureBox
+            {
+                Image = shareKeyUser.Image,
+                ImeMode = System.Windows.Forms.ImeMode.NoControl,
+                Name = "UserTypeIcon",
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Size = new System.Drawing.Size(imageAndMenuWidth, 32),
+                Padding = new System.Windows.Forms.Padding(30, 10, 0, 10),
+            };
+            userTypeIcon.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+
+            FlowLayoutPanel userEmailAutoSuggestionItemLayout = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                AutoScroll = false,
+                AutoSize = true,
+                Height = 33,
+                BackColor = Color.White,
+                Margin = new System.Windows.Forms.Padding(0, 0, 0, 0),
+                Controls =
+                {
+                    userEmail,
+                    userTypeIcon,
+                }
+            };
+            userEmailAutoSuggestionItemLayout.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+
+            Panel bottomLine = new Panel
+            {
+                Size = new System.Drawing.Size(textWidth + imageAndMenuWidth + 3, 1),
+                BackColor = FormStyles.LightGreyColor,
+                Name = "bottomLine",
+                Margin = new System.Windows.Forms.Padding(0, 0, 0, 0),
+            };
+
+            this._userEmailAutoSuggestionLayout.Controls.Add(userEmailAutoSuggestionItemLayout);
+            this._userEmailAutoSuggestionLayout.Controls.Add(bottomLine);
+        }
+
+        private void OnSelectItemFromAutoSuggestionList(string selectedUserEmail)
+        {
+            _addNewUserTextBox.Text = selectedUserEmail;
+
+            this._userEmailAutoSuggestionLayoutPanel.Visible = false;
+            this._userEmailAutoSuggestionLayout.Controls.Clear();
         }
 
         private void OnContextMenuClick(object sender, EventArgs e, string selectedUserEmail)
