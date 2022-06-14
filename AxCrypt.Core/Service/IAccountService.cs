@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 #region Coypright and License
 
 /*
@@ -29,10 +32,8 @@ using AxCrypt.Api.Model;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.UI;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AxCrypt.Core.Service
@@ -185,5 +186,13 @@ namespace AxCrypt.Core.Service
         /// <c>true</c> if auto renewal enabled; otherwise, <c>false</c>.
         /// </value>
         Task<bool> AutoRenewalStatusAsync();
+
+        /// <summary>
+        /// Deletes the user account.
+        /// </summary>
+        /// <returns>
+        ///  /// <c>true</c> if user account deleted; otherwise, <c>false</c>.
+        /// </returns>
+        Task<bool> DeleteUserAsync();
     }
 }

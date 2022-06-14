@@ -1,13 +1,12 @@
-﻿using System;
+﻿using AxCrypt.Abstractions;
+using AxCrypt.Abstractions.Rest;
+using AxCrypt.Api.Model;
+using AxCrypt.Common;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Threading.Tasks;
-using AxCrypt.Abstractions;
-using AxCrypt.Abstractions.Rest;
-using AxCrypt.Api.Model;
-using AxCrypt.Common;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Api
@@ -396,6 +395,22 @@ namespace AxCrypt.Api
 
             bool isCancelSubscription = Serializer.Deserialize<bool>(restResponse.Content);
             return isCancelSubscription;
+        }
+
+        public async Task<bool> DeleteUserAsync()
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("users/my/account");
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("DELETE", resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            bool userAccountDeleted = Serializer.Deserialize<bool>(restResponse.Content);
+            return userAccountDeleted;
         }
 
         private static IStringSerializer Serializer

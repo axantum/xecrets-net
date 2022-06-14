@@ -84,7 +84,7 @@ namespace AxCrypt.Core.Session
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async virtual Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
+        public virtual async Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
             return (await _service.ListAsync().Free()).OrderByDescending(uk => uk.Timestamp);
         }
@@ -102,7 +102,7 @@ namespace AxCrypt.Core.Session
             return await _service.StatusAsync(email).Free();
         }
 
-        public async virtual Task<bool> ChangePassphraseAsync(Passphrase passphrase)
+        public virtual async Task<bool> ChangePassphraseAsync(Passphrase passphrase)
         {
             if (passphrase == null)
             {
@@ -126,10 +126,15 @@ namespace AxCrypt.Core.Session
         {
             return await _service.GetInAppPurchaseSettingsAsync().Free();
         }
-        
+
         public async Task<bool> AutoRenewalStatusAsync()
         {
             return await _service.AutoRenewalStatusAsync().Free();
+        }
+
+        public async Task<bool> DeleteUserAsync()
+        {
+            return await _service.DeleteUserAsync().Free();
         }
     }
 }

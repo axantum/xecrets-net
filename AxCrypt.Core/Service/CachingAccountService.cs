@@ -145,5 +145,10 @@ namespace AxCrypt.Core.Service
         {
             return await New<ICache>().UpdateItemAsync(() => _service.AutoRenewalStatusAsync(), _key).Free();
         }
+
+        public async Task<bool> DeleteUserAsync()
+        {
+            return await New<ICache>().UpdateItemAsync(() => _service.DeleteUserAsync(), _key).Free();
+        }
     }
 }
