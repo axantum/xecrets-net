@@ -401,5 +401,15 @@ namespace AxCrypt.Core.Service
 
             return await _localService.AutoRenewalStatusAsync().Free();
         }
+
+        public async Task<bool> DeleteUserAsync()
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                return await _remoteService.DeleteUserAsync().Free();
+            }
+
+            return await _localService.DeleteUserAsync().Free();
+        }
     }
 }

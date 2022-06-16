@@ -371,5 +371,10 @@ namespace AxCrypt.Core.Service
         {
             throw new InvalidOperationException("Cancel subscription cannot be get locally.");
         }
+
+        public Task<bool> DeleteUserAsync()
+        {
+            throw new InvalidOperationException("Can't perform delete user account locally.");
+        }
     }
 }

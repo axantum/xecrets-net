@@ -1,4 +1,7 @@
-﻿#region Coypright and License
+﻿using System;
+using System.Linq;
+
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -29,10 +32,8 @@ using AxCrypt.Api.Model;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.UI;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AxCrypt.Core.Service
@@ -149,6 +150,11 @@ namespace AxCrypt.Core.Service
         }
 
         public Task<bool> AutoRenewalStatusAsync()
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task<bool> DeleteUserAsync()
         {
             return Task.FromResult(false);
         }
