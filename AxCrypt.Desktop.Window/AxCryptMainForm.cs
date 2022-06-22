@@ -347,6 +347,15 @@ namespace AxCrypt.Desktop.Window
             _businessPrioritySupportToolStripMenuItem.Text = Texts.BusinessSupportTitle;
             _businessPrioritySupportToolStripMenuItem.ToolTipText = Texts.FeaturesBusinessPrioritySupportDescription;
             _businessAddMoreUsersToolStripMenuItem.Text = Texts.AddMoreUsersTitle;
+
+            _documentsToolStripButton.Text = Texts.KnownFolderNameWindowsMyDocuments;
+            _documentsToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+            _oneDriveToolStripButton.Text = Texts.KnownFolderNameOneDrive;
+            _oneDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+            _googleDriveToolStripButton.Text = Texts.KnownFolderNameGoogleDrive;
+            _googleDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+            _dropBoxToolStripButton.Text = Texts.KnownFolderNameDropbox;
+            _dropBoxToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
         }
 
         private static void SetCulture()
@@ -1601,8 +1610,6 @@ namespace AxCrypt.Desktop.Window
                 {
                     _documentsToolStripButton.Enabled = knownFolder.Enabled;
                     _documentsToolStripButton.Visible = true;
-                    _documentsToolStripButton.Text = Texts.KnownFolderNameWindowsMyDocuments;
-                    _documentsToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
                     if (Enabled)
                     {
                         _documentsToolStripButton.Image = Resources.documents_white_40px;
@@ -1620,8 +1627,6 @@ namespace AxCrypt.Desktop.Window
                 {
                     _oneDriveToolStripButton.Enabled = knownFolder.Enabled;
                     _oneDriveToolStripButton.Visible = true;
-                    _oneDriveToolStripButton.Text = Texts.KnownFolderNameOneDrive;
-                    _oneDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
                     if (Enabled)
                     {
                         _oneDriveToolStripButton.Image = Resources.skydrive_40px;
@@ -1639,8 +1644,6 @@ namespace AxCrypt.Desktop.Window
                 {
                     _googleDriveToolStripButton.Enabled = knownFolder.Enabled;
                     _googleDriveToolStripButton.Visible = true;
-                    _googleDriveToolStripButton.Text = Texts.KnownFolderNameGoogleDrive;
-                    _googleDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
                     if (Enabled)
                     {
                         _googleDriveToolStripButton.Image = Resources.google_drive_40px;
@@ -1658,8 +1661,6 @@ namespace AxCrypt.Desktop.Window
                 {
                     _dropBoxToolStripButton.Enabled = knownFolder.Enabled;
                     _dropBoxToolStripButton.Visible = true;
-                    _dropBoxToolStripButton.Text = Texts.KnownFolderNameDropbox;
-                    _dropBoxToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
                     if (Enabled)
                     {
                         _dropBoxToolStripButton.Image = Resources.dropbox_40px;
