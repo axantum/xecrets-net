@@ -3141,6 +3141,10 @@ Ange språk för inbjudan, och ett eventuellt personligt meddelande neda.</value
     <value>Dokument</value>
     <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
   </data>
+  <data name="KnownFolderNameOneDrive" xml:space="preserve">
+    <value>OneDrive</value>
+    <comment>The non-translatable name for the Microsoft OneDrive cloud service provider</comment>
+  </data>
   <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
     <value>Dokument</value>
     <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
