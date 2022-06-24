@@ -3134,11 +3134,11 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
     <value>타들과 키를 공유하시려는 암호화된 파일들을 선택하기 위해서 클릭 해주시기 바랍니다.</value>
   </data>
   <data name="KnownFolderNameDropbox" xml:space="preserve">
-    <value>드롭박스</value>
+    <value>Dropbox</value>
     <comment>The non-translatable name for the dropbox could service</comment>
   </data>
   <data name="KnownFolderNameGoogleDrive" xml:space="preserve">
-    <value> 구글 드라이브</value>
+    <value>Google Drive</value>
     <comment>The non-translatable name of the the Google Drive cloud service provider</comment>
   </data>
   <data name="KnownFolderNameICloud" xml:space="preserve">
@@ -3150,7 +3150,7 @@ AxCrypt ID 로그인시 사용한 이메일을 통해 수신자의 신원확인�
     <comment>The localized name of the "Documents" folder in Mac OS X. This MUST be translated to the official localization used by Apple for the "Documents" folder.</comment>
   </data>
   <data name="KnownFolderNameOneDrive" xml:space="preserve">
-    <value>원드라이브</value>
+    <value>OneDrive</value>
     <comment>The non-translatable name for the Microsoft OneDrive cloud service provider</comment>
   </data>
   <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">

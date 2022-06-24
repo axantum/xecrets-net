@@ -3067,10 +3067,6 @@ Veuillez choisir la langue souhaitée pour l'invitation, et ajoutez un message p
     <value>OneDrive</value>
     <comment>The non-translatable name for the Microsoft OneDrive cloud service provider</comment>
   </data>
-  <data name="KnownFolderNameWindowsMyDocuments" xml:space="preserve">
-    <value>Documents</value>
-    <comment>The translatable name for the Windows "My Documents" folder. This MUST be translated to the name used by Microsoft in a localized version of Windows!</comment>
-  </data>
   <data name="KoreanLanguageSelection" xml:space="preserve">
     <value>한국어 (Coréen)</value>
     <comment>The text to display when selecting Korean as the UI language. It should always be in Korean.</comment>
@@ -3838,12 +3834,6 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="OptionsIncludeSubfoldersToolStripMenuItemText" xml:space="preserve">
     <value>Inclut des sous-dossiers</value>
   </data>
-  <data name="OptionsLanguageToolStripMenuItemText" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="OptionsToolStripMenuItemText" xml:space="preserve">
-    <value>Options</value>
-  </data>
   <data name="OrgNumberLabel">
     <value>Immatriculation de votre entreprise</value>
   </data>
@@ -4572,9 +4562,6 @@ HubSpot est une solution logicielle intégrée avec laquelle nous couvrons diff�
   </data>
   <data name="PromptMonths" xml:space="preserve">
     <value>x mois</value>
-  </data>
-  <data name="PromptMyAxCryptId" xml:space="preserve">
-    <value>My AxCrypt ID</value>
   </data>
   <data name="PromptMySettings" xml:space="preserve">
     <value>Paramètres</value>

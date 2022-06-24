@@ -4243,10 +4243,6 @@ Per tornare alla pagina iniziale clicca &lt;a href="{1}"&gt;qui&lt;/a&gt;.</valu
   <data name="PasswordManagementListPageBody" xml:space="preserve">
     <value>Gestisci tutte le tue password online nel cloud &lt;span class="text-cutoff"&gt; con la Gestione delle Password di AxCrypt, il tuo deposito sicuro online per password, codici, pin, ecc. Le tue password sono salvate in un archivio criptato in modo sicuro e sono disponibili per te, e solo per te, ovunque e in qualsiasi momento. &lt;a class="hide-link"&gt;[Minimizza]&lt;/a&gt;&lt;/span&gt;&lt;span class="text-cutoff-ellipsis"&gt;... &lt;a class="show-link"&gt;[Per saperne di più]&lt;/a&gt;&lt;/span&gt;</value>
   </data>
-  <data name="PasswordManagementPageTitle" xml:space="preserve">
-    <value>Password</value>
-    <comment>A one-word title for the password manager, typically having the meaning of 'passwords', i.e. the plural form of Password.</comment>
-  </data>
   <data name="PasswordManagerFeatureInfoText" xml:space="preserve">
     <value>Mantieni tutte le tue password e altri codici segreti al sicuro nel nostro cloud!</value>
   </data>

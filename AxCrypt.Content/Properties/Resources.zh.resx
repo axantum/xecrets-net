@@ -3287,7 +3287,7 @@ SE-114 29 斯德哥尔摩
     <comment>The non-translatable name for the dropbox could service</comment>
   </data>
   <data name="KnownFolderNameGoogleDrive" xml:space="preserve">
-    <value>谷歌驱动器</value>
+    <value>Google Drive</value>
     <comment>The non-translatable name of the the Google Drive cloud service provider</comment>
   </data>
   <data name="KnownFolderNameICloud" xml:space="preserve">
