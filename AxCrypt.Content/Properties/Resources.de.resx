@@ -363,6 +363,9 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
   <data name="AffiliateLinkLabel">
     <value>Partner</value>
   </data>
+  <data name="AllowCookieInfoText" xml:space="preserve">
+    <value>Diese Website verwendet Cookies, um die Benutzererfahrung zu verbessern. Durch die Nutzung unserer Website stimmen Sie allen Cookies gemäß unserer Cookie-Richtlinie zu. &lt;a href='https://www.axcrypt.net/information/privacy-policy'&gt;Weiterlesen&lt;/a&gt;</value>
+  </data>
   <data name="AlreadyRegisteredLink" xml:space="preserve">
     <value>Bereits registriert? Hier einloggen</value>
     <comment>Link to sign in page.</comment>
@@ -518,7 +521,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Erstellen Sie ein Business-Abonnement</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/en/HomeBusiness/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
+    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Das erstellen eines Abonnements erfordert den Erstkauf von mindestens einer mitgliedslizenz. Wenn Sie ein Geschäftsabonnement erstellen und erwerben, werden Sie automatisch als Administrator bezeichnet, sodass Sie die abonnementmitgliederlizenzen Benutzern Ihrer Wahl zuweisen und andere administrative Aufgaben ausführen können.</value>
@@ -2509,7 +2512,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Haben Sie Ihr AxCrypt ID Passwort vergessen? Sie können jetzt ein Passwort zurücksetzen. Wenn Sie Ihr Kennwort zurücksetzen, können Sie sich erneut anmelden, haben jedoch keinen Zugriff auf Dateien, die mit Ihrem alten Kennwort verschlüsselt wurden. Anweisungen zum Zurücksetzen Ihres Kennworts finden Sie im folgenden Video.</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>Gehen Sie zu Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href='https://account.axcrypt.net/de/Startseite/PasswortZurücksetzen' &gt;Passwort zurücksetzen&lt; / a&gt;.</value>
+    <value>Gehen Sie zu Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Passwort zurücksetzen&lt; / a&gt;.</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>Sie werden auf unsere Website weitergeleitet, wo Sie einen Reset anfordern können.</value>
@@ -3373,10 +3376,10 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/de/Startseite/Unterstützung'&gt;Business Unterstützung&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Business Unterstützung&lt;/a&gt;</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/de/Business/Abonnement aufladen'&gt;Weitere Benutzer hinzufügen&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Weitere Benutzer hinzufügen&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -3508,6 +3511,9 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   </data>
   <data name="MasterKeyBlock3Text1">
     <value>Hauptschlüssel kann von der &lt;a href='https://account.axcrypt.net/de/Business/ManageSubscriptionMembers' &gt; abonnementseite verwalten&lt; / a&gt;aktiviert werden.</value>
+  </data>
+  <data name="MasterKeyBlock5Text1">
+    <value>Unsere Priorität Business Unterstützung steht immer zur Verfügung, um bei Fragen oder Bedenken zu helfen. Verwenden Sie das Formular auf Ihrer Kontoseite oder senden Sie uns eine mail an &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt;und wir helfen Ihnen!</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Interner Fehler, ungültiges Funktionsargument in %4</value>
@@ -4166,7 +4172,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Sie interessieren sich für ein Abonnement, sind sich aber nicht sicher, ob es Ihren Anforderungen entspricht? &lt;a href='https://account.axcrypt.net/de/Startseite/Kauf '&gt; Sie können AxCrypt Premium 30 Tage lang kostenlos nutzen.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit zum Schutz sensibler und Verschlusssachen auf allen Ebenen eingesetzt. Sichern von Ordnern war noch nie einfacher, nur einen einzigen Klick, um automatisch neue Dateien zu sichern.&lt;/p&gt;&lt;p&gt;Wenn Sie auch gesicherte Dateien mit anderen teilen müssen, haben Sie Key Sharing, um das für Sie zu erledigen, auch mit Zugriff auf Cloud-Speicher in Dropbox, Google Drive usw. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unser Passwort-Management und Generator, um alle Ihre Passwörter sicher in der Cloud zu halten.&lt;/p&gt;&lt;p&gt;Probieren Sie es aus, um alle Funktionen und Vorteile zu entdecken!&lt;/p&gt;</value>
+    <value>&lt;p&gt;Sie interessieren sich für ein Abonnement, sind sich aber nicht sicher, ob es Ihren Anforderungen entspricht? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Sie können AxCrypt Premium 30 Tage lang kostenlos nutzen.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit zum Schutz sensibler und Verschlusssachen auf allen Ebenen eingesetzt. Sichern von Ordnern war noch nie einfacher, nur einen einzigen Klick, um automatisch neue Dateien zu sichern.&lt;/p&gt;&lt;p&gt;Wenn Sie auch gesicherte Dateien mit anderen teilen müssen, haben Sie Key Sharing, um das für Sie zu erledigen, auch mit Zugriff auf Cloud-Speicher in Dropbox, Google Drive usw. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unser Passwort-Management und Generator, um alle Ihre Passwörter sicher in der Cloud zu halten.&lt;/p&gt;&lt;p&gt;Probieren Sie es aus, um alle Funktionen und Vorteile zu entdecken!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>Interessiert an einem Abonnement, aber nicht sicher, ob es Ihren Bedürfnissen entspricht? &lt;a href={url}&gt;Sie können 30 Tage AxCrypt Premium kostenlos genießen.&lt;/a&gt;</value>
@@ -4350,6 +4356,24 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
   </data>
   <data name="PrioritySupportTitle" xml:space="preserve">
     <value>Vorrangige Unterstützung</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem1" xml:space="preserve">
+    <value>Google/YouTube:&lt;a href='https://policies.google.com/privacy?hl=en'&gt;Datenschutzerklärung&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem2" xml:space="preserve">
+    <value>Twitter:&lt;a href='https://twitter.com/en/privacy'&gt;Datenschutzerklärung&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem3" xml:space="preserve">
+    <value>Instagram:&lt;a href='http://instagram.com/about/legal/privacy/'&gt;Datenschutzerklärung&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem4" xml:space="preserve">
+    <value>LinkedIn:&lt;a href='https://www.linkedin.com/legal/privacy-policy'&gt;Datenschutzerklärung&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock11ListItem5" xml:space="preserve">
+    <value>Facebook:&lt;a href='https://www.facebook.com/privacy/explanation'&gt;Datenschutzerklärung&lt;/a&gt;</value>
+  </data>
+  <data name="PrivacyPolicyBlock12Text2" xml:space="preserve">
+    <value>HubSpot erfüllt die Mindestanforderungen für eine rechtskonforme Auftragsdatenverarbeitung durch den Abschluss der europäischen Standard-Datenschutzklausel. Zudem gibt es einen Datenverarbeitungsvertrag mit HubSpot. (DPA) Dadurch wird sichergestellt, dass HubSpot die Daten des Nutzers nur im Rahmen der EU-Datenschutzstandards verwendet und nicht an Dritte weitergibt. Weitere Informationen finden Sie in den Daten von HubSpot &lt;a href='https://legal.hubspot.com/privacy-policy'&gt;datenschutz.&lt;/a&gt;</value>
   </data>
   <data name="PrivacyPolicyBlock1List1Item1">
     <value>Ihre E-Mail-Adresse.</value>
@@ -4873,7 +4897,7 @@ Erhalten Sie 30 Tage kostenlos und stornieren Sie jederzeit!</value>
     <value>Einhaltung behördlicher Auflagen</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Für vollständige Details und Problemverfolgung der Windows-Desktopanwendung und der Kernbibliothek gehen Sie zum &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;bitbucket repository&lt;/a&gt;. Das änderungsprotokoll für Android, iOS und Mac bezieht sich auf nicht öffentliche Issue Tracker. Kryptographische SHA-256 Prüfsummen finden Sie &lt;a href='/information/cryptographic-hashes-files'&gt;hier&lt;/a&gt;.</value>
+    <value>Für vollständige Details und Problemverfolgung der Windows-Desktopanwendung und der Kernbibliothek gehen Sie zum &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;bitbucket repository&lt;/a&gt;. Das änderungsprotokoll für Android, iOS und Mac bezieht sich auf nicht öffentliche Issue Tracker. Kryptographische SHA-256 Prüfsummen finden Sie &lt;a href='/information/cryptographic-hashes-files'&gt;hier&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Release Notes</value>
@@ -5088,7 +5112,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Es kann auch möglich sein, dass Sie per Rechnung kaufen, in der Regel abhängig von der Anzahl der Abonnements, die Sie kaufen möchten. Wenn Sie dies tun möchten, wenden Sie sich an die &lt;a href='mailto:reseller@axcrypt.net'&gt;Reselling Team&lt;/a&gt;. Wenn die Zahlung per Banküberweisung erfolgt, kann es länger dauern, bis Ihr Kunde Zugang erhält, da wir zuerst die Zahlung erhalten müssen.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
-    <value>Der aktuelle Listenpreis pro Mitgliedslizenz für AxCrypt Business finden Sie auf unserer &lt;a href="https://www.axcrypt.net/Preis" &gt;Preisseite&lt; / a&gt;. Sie haben einen persönlichen Rabatt des Wiederverkäufers, der dafür gilt. &lt;br&gt;</value>
+    <value>Der aktuelle Listenpreis pro Mitgliedslizenz für AxCrypt Business finden Sie auf unserer &lt;a href='https://www.axcrypt.net/pricing'&gt;Preisseite&lt; / a&gt;. Sie haben einen persönlichen Rabatt des Wiederverkäufers, der dafür gilt. &lt;br&gt;</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
     <value>Für die Zwecke eines Abonnements wird ein Monat als 30 Tage und ein Jahr als 360 Tage definiert. Wenn ein Abonnement erstellt oder verlängert wird, beträgt der Zeitraum immer einen Monat oder ein Jahr.</value>
@@ -5097,7 +5121,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Wenn innerhalb des Abonnementzeitraums zusätzliche Mitgliederlizenzen für ein Abonnement erworben werden, werden nur die verbleibenden Monate berechnet, die auf ganze Monate aufgerundet sind. Wenn 50 Tage für den aktuellen Zeitraum verbleiben und zusätzliche Mitglieder hinzugefügt werden, gilt dies für 2 Monate/zusätzliches Mitglied.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text4" xml:space="preserve">
-    <value>Lesen Sie "Zahlung und Verlängerung" in unserem&lt;a href='https://www.axcrypt.net/information/nutzungsbedingungen' &gt;Nutzungsbedingungen&lt;/a&gt;für weitere Informationen.</value>
+    <value>Lesen Sie "Zahlung und Verlängerung" in unserem&lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Nutzungsbedingungen&lt;/a&gt;für weitere Informationen.</value>
   </data>
   <data name="ResellerHelpBillingBlock3Text1" xml:space="preserve">
     <value>Seit 25. Juni 2020 erneuern wir automatisch Abonnements. Wenn Sie zuvor Lizenzen gekauft haben, werden weder Sie noch Ihr Kunde automatisch belastet. Sie müssen über das Menü erneuern.</value>
@@ -5106,7 +5130,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Wenn Sie Lizenzen nach dem 25. Juni 2020 erworben haben, verlängert sich das Abonnement automatisch am Ende des Abonnementzeitraums unter Verwendung der ursprünglichen Zahlungsmethode. Wenn Sie kündigen möchten, müssen Sie dies vor dem Ende des aktuellen Abonnementzeitraums tun.</value>
   </data>
   <data name="ResellerHelpBillingBlock3Text3" xml:space="preserve">
-    <value>Lesen Sie "Zahlung und Verlängerung" in unserem&lt;a href='https://www.axcrypt.net/information/nutzungsbedingungen' &gt; Nutzungsbedingungen&lt;/a&gt;für  weitere Informationen.</value>
+    <value>Lesen Sie "Zahlung und Verlängerung" in unserem&lt;a href='https://www.axcrypt.net/information/terms-of-use'&gt;Nutzungsbedingungen&lt;/a&gt;für  weitere Informationen.</value>
   </data>
   <data name="ResellerHelpBillingBlock4ListItem2" xml:space="preserve">
     <value>Hier finden Sie Ihre Rechnungen und Transaktionshistorie.</value>
@@ -5211,7 +5235,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>&lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/wp/logo_reseller_transparent.jpg'&gt;Logo voll im JPG-format&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpMarketingBlock1Text7" xml:space="preserve">
-    <value>Sie finden die ursprünglichen AxCrypt-Logotypen auf &lt;a href='https://www.axcrypt.net/information/presse'&gt; https://www.axcrypt.net/information/presse&lt;/a&gt;.</value>
+    <value>Sie finden die ursprünglichen AxCrypt-Logotypen auf &lt;a href='https://www.axcrypt.net/information/press'&gt; https://www.axcrypt.net/information/press&lt;/a&gt;.</value>
   </data>
   <data name="ResellerHelpMarketingSubTitle" xml:space="preserve">
     <value>Berechtigt Reseller Logo</value>
@@ -5226,13 +5250,13 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Business Abonnement: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Erste Schritte: &lt;a href='https://www.axcrypt.net/information/erste-schritte/windows/'&gt;https://www.axcrypt.net/information/erste-schritte/windows&lt;/a&gt;</value>
+    <value>Erste Schritte: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
-    <value>Tipps zur Verwendung: &lt;a href='https://www.axcrypt.net/information/tipps-zur-verwendung'&gt;https://www.axcrypt.net/information/tipps -zur-verwendung&lt;/a&gt;</value>
+    <value>Tipps zur Verwendung: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem5" xml:space="preserve">
-    <value>Technische details: &lt;a href='https://www.axcrypt.net/information/technische-details'&gt;https://www.axcrypt.net/information/technische-details&lt;/a&gt;</value>
+    <value>Technische details: &lt;a href='https://www.axcrypt.net/information/technical-details'&gt;https://www.axcrypt.net/information/technical-details&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1Text1" xml:space="preserve">
     <value>Unsere ResellersWiederverkäufer (und ihre Kunden) können sich natürlich auf professionelle technische Unterstützung von AxCrypt verlassen. Online haben wir viele Dokumentationen und Produktinformationen:</value>
@@ -5256,7 +5280,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Zu Werbezwecken und um es Ihren Kunden zu zeigen, haben wir eine Präsentation und Broschüre von AxCrypt erstellt. Es wird erklärt, was AxCrypt ist und wie es Ihnen helfen kann, Ihre Daten zu schützen.</value>
   </data>
   <data name="ResellerHelpSupportBlock2Text3" xml:space="preserve">
-    <value>AxCrypt Präsentation: &lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Präsentation.pdf'&gt;https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Präsentation.pdf&lt;/a&gt;</value>
+    <value>AxCrypt Präsentation: &lt;a href='https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf'&gt;https://axcrypt-download.s3.eu-north-1.amazonaws.com/downloads/Reselling-Presentation.pdf&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportSubTitle1" xml:space="preserve">
     <value>Technische Unterstützung</value>

@@ -5082,7 +5082,8 @@ Sprawdź swoją skrzynkę mailową &lt;b&gt;{0}&lt;/b&gt;, aby otrzymać link we
     <value>Zgodność z przepisami</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Aby uzyskać szczegółowe informacje i śledzić problemy dotyczące aplikacji komputerowej systemu Windows i podstawowej biblioteki, przejdź do &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt; repozytorium bitbucket &lt;/a&gt;. Dziennik zmian dla systemów Android, iOS i Mac odnosi się do niepublicznych narzędzi do śledzenia problemów. Sumy kontrolne Cryptograhic SHA-256 można znaleźć &lt;a href='/information/cryptographic-hashes-files'&gt; tutaj &lt;/a&gt;.</value>
+    <value>Aby uzyskać szczegółowe informacje i śledzić problemy dotyczące aplikacji komputerowej systemu Windows i podstawowej biblioteki, przejdź do &lt;a href='
+https://www.axcrypt.net/information/technical-details/'&gt;repozytorium bitbucket&lt;/a&gt;. Dziennik zmian dla systemów Android, iOS i Mac odnosi się do niepublicznych narzędzi do śledzenia problemów. Sumy kontrolne Cryptograhic SHA-256 można znaleźć &lt;a href='/information/cryptographic-hashes-files'&gt; tutaj &lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Informacje o wydaniu</value>

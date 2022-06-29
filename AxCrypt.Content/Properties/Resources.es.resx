@@ -4408,7 +4408,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Tu suscripción al servicio AxCrypt Premium está a punto de finalizar. Esperamos sinceramente que hayas disfrutado las características que ofrecemos y que te hayan parecido útiles.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Nos gustaría que siguieras usando las funciones Premium. Amplía la suscripción &lt;f="{0}Home/Purchase?email={1}"&gt;ahora&lt;/a&gt;.</value>
+    <value>Nos gustaría que siguieras usando las funciones Premium. Amplía la suscripción &lt;a href="{0}Home/Purchase?email={1}"&gt;ahora&lt;/a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -5238,7 +5238,7 @@ Comprueba en tu correo electrónico &lt;b&gt;{0}&lt;/b&gt; el enlace de verifica
     <value>Cumplimiento normativo</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;repositorio de bitbucket&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
+    <value>Para obtener todos los detalles y el seguimiento de problemas de la aplicación de escritorio de Windows y la biblioteca principal, dirígete al &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;repositorio de bitbucket&lt;/a&gt;. El registro de cambios para Android, iOS y Mac se refiere a rastreadores de problemas no públicos. Las sumas de comprobación criptográficas SHA-256 se encuentran &lt;a href='/information/cryptographic-hashes-files'&gt;aquí&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Notas de lanzamiento</value>

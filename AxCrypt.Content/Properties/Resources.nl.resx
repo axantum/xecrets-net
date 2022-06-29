@@ -2541,7 +2541,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Bent u uw AxCrypt ID-wachtwoord vergeten? U kunt nu een wachtwoord reset uitvoeren. Door uw wachtwoord opnieuw in te stellen, kunt u zich opnieuw aanmelden, maar heeft u geen toegang tot bestanden die zijn versleuteld met uw oude wachtwoord. Bekijk de onderstaande video voor instructies over het opnieuw instellen van uw wachtwoord.</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>Ga naar de bestandsopties in de applicatie en selecteer "Wachtwoord Reset" of ga direct naar &lt;a href='https://account.axcrypt.net/nl/Home/WachtwoordReset'&gt;Wachtwoord Reset&lt;/a&gt;.</value>
+    <value>Ga naar de bestandsopties in de applicatie en selecteer "Wachtwoord Reset" of ga direct naar &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Wachtwoord Reset&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>U wordt doorgestuurd naar onze website, waar u een reset kunt aanvragen.</value>

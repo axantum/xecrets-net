@@ -4927,7 +4927,7 @@ Onay linki için e-posta kutunu &lt;b&gt;{0}&lt;/b&gt; kontrol et.</value>
     <value>Yönetmeliğe Uygunluk</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Windows Masaüstü uygulamasının ve çekirdek kütüphanenin tam ayrıntıları ve sorun takibi için &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;bitbucket veri havuzuna&lt;/a&gt; gidiniz. Android, iOS ve Mac değişim günlükleri açık olmayan sorun izleyicilerini kastetmektedir.  Kriptografik SHA-256 sağlama toplamları &lt;a href='/information/cryptographic-hashes-files'&gt;burada&lt;/a&gt; bulunmaktadır.</value>
+    <value>Windows Masaüstü uygulamasının ve çekirdek kütüphanenin tam ayrıntıları ve sorun takibi için &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;bitbucket veri havuzuna&lt;/a&gt; gidiniz. Android, iOS ve Mac değişim günlükleri açık olmayan sorun izleyicilerini kastetmektedir.  Kriptografik SHA-256 sağlama toplamları &lt;a href='/information/cryptographic-hashes-of-files'&gt;burada&lt;/a&gt; bulunmaktadır.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Sürüm Notları</value>

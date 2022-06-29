@@ -728,7 +728,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>회사를 위한 서비스</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;, &lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
+    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
 문의사항은 {0}으로 연락 주시기 바랍니다.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
@@ -1660,7 +1660,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>AxCrypt는 백도어가 없는 암호화 서비스를 제공합니다. 암호가 없으면 파일이 손실되오니 암호를 꼭 기억하세요. 또한, 암호화가 되든 안 되든 중요한 파일의 적절한 백업을 항상 유지하세요.</value>
   </data>
   <data name="DownloadInformationListOfficialDownload">
-    <value>이 사이트는 AxCrypt의 공식적인 다운로드를 제공합니다. SHA256 hash를 살펴봐주세요.</value>
+    <value>이 사이트는 AxCrypt의 공식적인 다운로드를 제공합니다. SHA256 hash &lt;a href="/information/cryptographic-hashes-of-files"&gt;를 살펴봐주세요&lt;/a&gt;.</value>
   </data>
   <data name="DownloadInformationSubheading">
     <value>최근 버전이 궁금하시면 &lt;a href='/information/release-notes'&gt;release notes&lt;/a&gt;을 참고해주세요.</value>
@@ -1919,7 +1919,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>만약 "파일 암호화 for .NET와 Mono가 작동을 멈췄습니다. 문제가 발생하여 프로그램이 제대로 작동하지 않습니다." 오류 메시지를 받았다면, 이것은 프로그램이 "Lavasoft Web Companion"라는  불리는 소프트웨어가 제대로 작동하지 않았다는 말입니다. 현대 버전의 Windows와 호환되지 않으며,  AxCrypt와 다른 프로그램들의 충돌로 인해 발생합니다.</value>
   </data>
   <data name="FaqFileEncryptionNotWorkingAnswer2">
-    <value>Lavasoft Web Companion이 설치되어 있는지 확인하고 만약 설치되어 있다면 삭제하세요. 여전히 동일한 문제가 있거나 Lavasoft 소프트웨어가 설치되어 있지 않은 경우 지침에 따라 전체 오류 보고서를 &lt;/a&gt; 파일로 제출 및 문의 부탁드립니다.</value>
+    <value>Lavasoft Web Companion이 설치되어 있는지 확인하고 만약 설치되어 있다면 삭제하세요. 여전히 동일한 문제가 있거나 Lavasoft 소프트웨어가 설치되어 있지 않은 경우 지침에 따라 &lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/'&gt;전체 오류 보고서를&lt;/a&gt; .</value>
   </data>
   <data name="FaqForgotPassword">
     <value>비밀번호가 기억이 나지 않나요? </value>
@@ -2879,7 +2879,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>저희는 사람들이 업무 및 커뮤니케이션 하는 방법을 바꾸기 위해 존재합니다.</value>
   </data>
   <data name="IndustriesHeroText1">
-    <value>저희는 사람들의 의사소통과 일하는 방식을 바꿉니다. AxCrypt는 256비트 암호화를 통해 사용자에게 친밀하고 사용하기 쉬운 암호화 소프트웨어를 구현하고 기밀성과 무결성을 보호하여 데이터 보안을 강화하고 침해 위험을 감소합니다. 생산성을 높이고 온라인 개인 정보에 대해 더 이상 집중하지 마세요. 데이터에 대한 완전한 제어권을 되찾고 디지털 신뢰를 경험하세요. 암호화 및 관련 주제에 대해 궁금하신 분은 매주 업데이트되는 이곳&lt;a href="/contains"&gt;에서 살펴보세요. 여기 AxCrypt에서는 암호화와 관련된 모든 것을 알려드립니다.</value>
+    <value>저희는 사람들의 의사소통과 일하는 방식을 바꿉니다. AxCrypt는 256비트 암호화를 통해 사용자에게 친밀하고 사용하기 쉬운 암호화 소프트웨어를 구현하고 기밀성과 무결성을 보호하여 데이터 보안을 강화하고 침해 위험을 감소합니다. 생산성을 높이고 온라인 개인 정보에 대해 더 이상 집중하지 마세요. 데이터에 대한 완전한 제어권을 되찾고 디지털 신뢰를 경험하세요. 암호화 및 관련 주제에 대해 궁금하신 분은 매주 업데이트되는 이곳&lt;a href="/blog"&gt;에서 살펴보세요. 여기 AxCrypt에서는 암호화와 관련된 모든 것을 알려드립니다.</value>
   </data>
   <data name="IndustriesHeroText2">
     <value>언제든지 이곳&lt;ahref="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;으로 문의주세요. 그리고 소셜 미디어도 살펴보세요.</value>
@@ -2987,7 +2987,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>'{0}' 파일이 잘못 되었습니다.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;b&gt;{0}&lt;/b&gt; 께서 AxCrypt 보안 파일에 초대하셨습니다. 파일 보안을 시작하려면  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;다운로드&lt;/a&gt; 를 하시고 AxCrypt를 설치하세요. &lt;b&gt;{2}&lt;/b&gt;로 AxCrypt에 로그인 하신뒤, 인증 코드와 비밀번호를 입력해주십시오.</value>
+    <value>&lt;b&gt;{0}&lt;/b&gt; 께서 AxCrypt 보안 파일에 초대하셨습니다. 파일 보안을 시작하려면  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; 를 하시고 AxCrypt를 설치하세요. &lt;b&gt;{2}&lt;/b&gt;로 AxCrypt에 로그인 하신뒤, 인증 코드와 비밀번호를 입력해주십시오.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>{0}께서 AxCrypt 보안 파일에 초대하셨습니다. 
@@ -4426,7 +4426,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>알수 없는 오류가 발생했습니다.</value>
   </data>
   <data name="PrivacyPolicyBlock1Text1">
-    <value>물론 우리의 개인정보 보호정책은 &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;을 준수합니다. 이 개인 정보 보호 정책에서 사용자의 정보, 정보의 사용 목적, 그리고 왜 필요한지에 대해 언급합니다. 언제든지 동의를 철회하고  자료 삭제를 요청할 수 있습니다. 규정에 대해 자세히 알아보려면 당사의 전용 &lt;a href='/정보/gdpr' 페이지를 방문하세요.</value>
+    <value>물론 우리의 개인정보 보호정책은 &lt;a href='https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en'&gt;을 준수합니다. 이 개인 정보 보호 정책에서 사용자의 정보, 정보의 사용 목적, 그리고 왜 필요한지에 대해 언급합니다. 언제든지 동의를 철회하고  자료 삭제를 요청할 수 있습니다. 규정에 대해 자세히 알아보려면 당사의 전용 &lt;a href='/information/gdpr'&gt;페이지를 방문하세요.</value>
   </data>
   <data name="PrivacyPolicyBlock1Text2">
     <value>뉴스레터, 제안서 및 AxCrpyt가 제공하는 신제품 및 업데이트된 제품과 서비스에 대한 정보와 같은 이메일을 가끔 보내드릴 수 있다는 데 동의합니다. 이메일에 제공된 링크를 클릭하면 언제든지 구독을 취소할 수 있습니다.</value>
@@ -4872,7 +4872,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>규제순응(Regulatory Compliance)</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Windows Desktop 애플리케이션 및 핵심 라이브러리의 전체 세부 정보와 문제 추적을 보려면 &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;bitbucket 저장소로 이동하세요. Android, iOS, Mac의 변경 로그는 비공개의 이슈 추적이 가능합니다. 암호화된 SHA-256 체크섬은 여기서 &lt;a href='/정보/암호해시 파일&gt;을 확인하세요.</value>
+    <value>Windows Desktop 애플리케이션 및 핵심 라이브러리의 전체 세부 정보와 문제 추적을 보려면 &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;bitbucket 저장소로 이동하세요. Android, iOS, Mac의 변경 로그는 비공개의 이슈 추적이 가능합니다. 암호화된 SHA-256 체크섬은 여기서 &lt;a href='/information/cryptographic-hashes-of-files'&gt;을 확인하세요.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>노트 릴리즈</value>
@@ -6024,7 +6024,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>AxCrypt 비즈니스 플랜</value>
   </data>
   <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business 는 기업과 조직을 위해 구매가 가능합니다. 개인을 위한 서비사가 아닙니다. &lt;a href='/pringing'&gt; 페이지에 명시된 다른 계획 외에 확장된 기능을 제공합니다. 사용자에게 라이센스를 제공하는 셀프 서비스 관리 시스템도 포함하고 있다.</value>
+    <value>AxCrypt Business 는 기업과 조직을 위해 구매가 가능합니다. 개인을 위한 서비사가 아닙니다. &lt;a href='/pricing'&gt; 페이지에 명시된 다른 계획 외에 확장된 기능을 제공합니다. 사용자에게 라이센스를 제공하는 셀프 서비스 관리 시스템도 포함하고 있다.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Business 구독이 만료되었으면 무료 서비스나 뷰어 서비스로 변경됩니다.</value>
@@ -6058,7 +6058,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>개인으로 가입할 때에는 가입 시 이메일 주소 외에는 어떠한 개인 정보도 요구하지 않습니다. 회사나 조직의 경우는 주소와 EU VAT 번호를 선택적으로 공개하셔야합니다.</value>
   </data>
   <data name="TermsOfUseBlock9Text2">
-    <value>저희가 관리하는 정보와 정보 보관 방법에 대한 자세한 내용은  &lt;a href='/information/privacy-policy&gt;을 참조하십세요. 이러한 이용 약관을 수락한다는 것은 개인정보 보호정책을 수용하는 것으로 취급합니다.</value>
+    <value>저희가 관리하는 정보와 정보 보관 방법에 대한 자세한 내용은  &lt;a href='/information/privacy-policy'&gt;을 참조하십세요. 이러한 이용 약관을 수락한다는 것은 개인정보 보호정책을 수용하는 것으로 취급합니다.</value>
   </data>
   <data name="TermsOfUseDescription">
     <value>AxCrypt의 이용 약관입니다.</value>
