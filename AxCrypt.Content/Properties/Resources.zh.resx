@@ -2534,7 +2534,7 @@
     <value>您是否忘记了您的AxCrypt ID密码？ 您现在可以进行密码重置。 通过重置密码，您可以再次登录，但您将无法访问使用旧密码加密的文件。 有关如何重置密码的说明，请参阅下面的视频。</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>转到应用程序中的文件选项，然后选择"密码重置"或直接前往&lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;密码重置&lt;/a&gt;。</value>
+    <value>转到应用程序中的文件选项，然后选择"密码重置"或直接前往&lt;a href='https://account.axcrypt.net/zh/Home/PasswordReset'&gt;密码重置&lt;/a&gt;。</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>您将被重定向到我们的网站，在那里您可以请求重置。</value>
@@ -3424,7 +3424,7 @@ SE-114 29 斯德哥尔摩
     <value>&lt;a href='https://account.axcrypt.net/zh/首页/支持'&gt;Business支持&lt;/a&gt;</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;添加更多用户&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/zh/Business/TopupSubscription'&gt;添加更多用户&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -4324,7 +4324,7 @@ SE-114 29 斯德哥尔摩
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;有兴趣获得订阅，但不确定它是否符合您的需求？ &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法. 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全文件，您将有密钥共享来为您处理，即使可以访问Dropbox，谷歌驱动器等中的云存储感知。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。&lt;/p&gt;&lt;p&gt;想以安全简便的方式保存密码？ 使用我们的密码管理和生成器，确保您的所有密码在云中安全。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
+    <value>&lt;p&gt;有兴趣获得订阅，但不确定它是否符合您的需求？ &lt;a href='https://account.axcrypt.net/zh/Home/Purchase'&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;&lt;/p&gt;&lt;p&gt;使用AxCrypt Premium，您可以访问扩展功能和令人兴奋的功能！ 使用AES-256加密您的文件–最强的AES算法. 它在全球范围内用于保护所有级别的敏感和机密信息。 保护文件夹从未如此简单，只需单击一下即可自动保护新文件。&lt;/p&gt;&lt;p&gt;如果您还需要与他人共享安全文件，您将有密钥共享来为您处理，即使可以访问Dropbox，谷歌驱动器等中的云存储感知。 使用AxCrypt移动应用程序，您可以随时随地加密和解密手机上的文件。&lt;/p&gt;&lt;p&gt;想以安全简便的方式保存密码？ 使用我们的密码管理和生成器，确保您的所有密码在云中安全。&lt;/p&gt;&lt;p&gt;尝试一下，发现它提供的所有功能和好处！&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>有兴趣获得订阅，但不知道它是否适合您的需求？ &lt;a href={url}&gt;您可以免费享受30天的AxCrypt Premium。&lt;/a&gt;</value>

@@ -521,7 +521,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Erstellen Sie ein Business-Abonnement</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
+    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/en/Business/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Das erstellen eines Abonnements erfordert den Erstkauf von mindestens einer mitgliedslizenz. Wenn Sie ein Geschäftsabonnement erstellen und erwerben, werden Sie automatisch als Administrator bezeichnet, sodass Sie die abonnementmitgliederlizenzen Benutzern Ihrer Wahl zuweisen und andere administrative Aufgaben ausführen können.</value>
@@ -2512,7 +2512,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Haben Sie Ihr AxCrypt ID Passwort vergessen? Sie können jetzt ein Passwort zurücksetzen. Wenn Sie Ihr Kennwort zurücksetzen, können Sie sich erneut anmelden, haben jedoch keinen Zugriff auf Dateien, die mit Ihrem alten Kennwort verschlüsselt wurden. Anweisungen zum Zurücksetzen Ihres Kennworts finden Sie im folgenden Video.</value>
   </data>
   <data name="GetStartedPasswordResetStep1">
-    <value>Gehen Sie zu Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Passwort zurücksetzen&lt; / a&gt;.</value>
+    <value>Gehen Sie zu Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href='https://account.axcrypt.net/de/Home/PasswordReset'&gt;Passwort zurücksetzen&lt; / a&gt;.</value>
   </data>
   <data name="GetStartedPasswordResetStep2">
     <value>Sie werden auf unsere Website weitergeleitet, wo Sie einen Reset anfordern können.</value>
@@ -3376,10 +3376,10 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Business Unterstützung&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/de/Home/Support'&gt;Business Unterstützung&lt;/a&gt;</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Weitere Benutzer hinzufügen&lt;/a&gt;</value>
+    <value>&lt;a href='https://account.axcrypt.net/de/Business/TopupSubscription'&gt;Weitere Benutzer hinzufügen&lt;/a&gt;</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -4172,7 +4172,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText">
-    <value>&lt;p&gt;Sie interessieren sich für ein Abonnement, sind sich aber nicht sicher, ob es Ihren Anforderungen entspricht? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;Sie können AxCrypt Premium 30 Tage lang kostenlos nutzen.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit zum Schutz sensibler und Verschlusssachen auf allen Ebenen eingesetzt. Sichern von Ordnern war noch nie einfacher, nur einen einzigen Klick, um automatisch neue Dateien zu sichern.&lt;/p&gt;&lt;p&gt;Wenn Sie auch gesicherte Dateien mit anderen teilen müssen, haben Sie Key Sharing, um das für Sie zu erledigen, auch mit Zugriff auf Cloud-Speicher in Dropbox, Google Drive usw. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unser Passwort-Management und Generator, um alle Ihre Passwörter sicher in der Cloud zu halten.&lt;/p&gt;&lt;p&gt;Probieren Sie es aus, um alle Funktionen und Vorteile zu entdecken!&lt;/p&gt;</value>
+    <value>&lt;p&gt;Sie interessieren sich für ein Abonnement, sind sich aber nicht sicher, ob es Ihren Anforderungen entspricht? &lt;a href='https://account.axcrypt.net/de/Home/Purchase'&gt;Sie können AxCrypt Premium 30 Tage lang kostenlos nutzen.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Mit AxCrypt Premium haben Sie Zugriff auf erweiterte Funktionen und spannende Features! Verschlüsseln Sie Ihre Dateien mit AES-256 - dem stärksten AES-Algorithmus. Es wird weltweit zum Schutz sensibler und Verschlusssachen auf allen Ebenen eingesetzt. Sichern von Ordnern war noch nie einfacher, nur einen einzigen Klick, um automatisch neue Dateien zu sichern.&lt;/p&gt;&lt;p&gt;Wenn Sie auch gesicherte Dateien mit anderen teilen müssen, haben Sie Key Sharing, um das für Sie zu erledigen, auch mit Zugriff auf Cloud-Speicher in Dropbox, Google Drive usw. Mit der AxCrypt Mobile App können Sie Dateien auf Ihrem Telefon von überall und jederzeit ver- und entschlüsseln.&lt;/p&gt;&lt;p&gt;Möchten Sie das Passwort auf sichere und einfache Weise speichern? Verwenden Sie unser Passwort-Management und Generator, um alle Ihre Passwörter sicher in der Cloud zu halten.&lt;/p&gt;&lt;p&gt;Probieren Sie es aus, um alle Funktionen und Vorteile zu entdecken!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1">
     <value>Interessiert an einem Abonnement, aber nicht sicher, ob es Ihren Bedürfnissen entspricht? &lt;a href={url}&gt;Sie können 30 Tage AxCrypt Premium kostenlos genießen.&lt;/a&gt;</value>
