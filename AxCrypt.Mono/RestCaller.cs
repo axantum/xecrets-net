@@ -85,6 +85,9 @@ namespace AxCrypt.Mono
                     case "POST":
                         return await SendPostAsync(identity, request).Free();
 
+                    case "DELETE":
+                        return await SendDeleteAsync(identity, request).Free();
+
                     default:
                         throw new NotSupportedException("The method '{0}' is not supported.".InvariantFormat(request.Method));
                 }
@@ -121,7 +124,7 @@ namespace AxCrypt.Mono
 
         #endregion IRestCaller Members
 
-        private async static Task<RestResponse> SendGetAsync(RestIdentity identity, RestRequest request)
+        private static async Task<RestResponse> SendGetAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())
@@ -139,7 +142,7 @@ namespace AxCrypt.Mono
             }
         }
 
-        private async static Task<RestResponse> SendPutAsync(RestIdentity identity, RestRequest request)
+        private static async Task<RestResponse> SendPutAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())
@@ -154,7 +157,7 @@ namespace AxCrypt.Mono
             }
         }
 
-        private async static Task<RestResponse> SendPostAsync(RestIdentity identity, RestRequest request)
+        private static async Task<RestResponse> SendPostAsync(RestIdentity identity, RestRequest request)
         {
             string content = String.Empty;
             using (HttpClient client = CreateHttpClient())
@@ -163,6 +166,20 @@ namespace AxCrypt.Mono
 
                 StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
                 HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).Free();
+                content = await httpResponse.Content.ReadAsStringAsync().Free();
+
+                return new RestResponse(httpResponse.StatusCode, content);
+            }
+        }
+
+        private static async Task<RestResponse> SendDeleteAsync(RestIdentity identity, RestRequest request)
+        {
+            string content = String.Empty;
+            using (HttpClient client = CreateHttpClient())
+            {
+                PrepareClient(client, identity, request);
+
+                HttpResponseMessage httpResponse = await client.DeleteAsync(request.Url.PathAndQuery).Free();
                 content = await httpResponse.Content.ReadAsStringAsync().Free();
 
                 return new RestResponse(httpResponse.StatusCode, content);
