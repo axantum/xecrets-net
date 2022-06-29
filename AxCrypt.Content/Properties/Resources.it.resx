@@ -5165,7 +5165,7 @@ Controlla la tua e-mail &lt;b&gt;{0}&lt;/b&gt; per il link di verifica.</value>
     <value>Conformità alla normativa</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Per i dettagli completi e il monitoraggio dei problemi dell'applicazione desktop di Windows e della libreria principale, vai al &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;repository bitbucket&lt;/a&gt;. Il registro delle modifiche per Android, iOS e Mac fa riferimento al tracciamento di problemi non pubblici. I checksum crittografici SHA-256 si trovano &lt;a href='/information/cryptographic-hashes-files'&gt;qui&lt;/a&gt;.</value>
+    <value>Per i dettagli completi e il monitoraggio dei problemi dell'applicazione desktop di Windows e della libreria principale, vai al &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;repository bitbucket&lt;/a&gt;. Il registro delle modifiche per Android, iOS e Mac fa riferimento al tracciamento di problemi non pubblici. I checksum crittografici SHA-256 si trovano &lt;a href='/information/cryptographic-hashes-files'&gt;qui&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Note di Rilascio</value>

@@ -4786,7 +4786,7 @@ Vérifiez vos e-mail &lt;b&gt;{0}&lt;/b&gt; pour un code de vérification.</valu
     <value>Conformité réglementaire</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Pour les détails complets et pour suivre les problèmes de l'applications de bureau Windows et de la bibliothèque de base, allez voir le &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net/'&gt;fonds Bitbucket&lt;/a&gt;. Le registre des changements pour Android, iOS et Mac font référence à des suivis de problèmes qui ne sont pas publics. Les sommes cryptographiques SHA-256 se trouvent &lt;a href='/information/cryptographic-hashes-files'&gt;ici&lt;/a&gt;.</value>
+    <value>Pour les détails complets et pour suivre les problèmes de l'applications de bureau Windows et de la bibliothèque de base, allez voir le &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;fonds Bitbucket&lt;/a&gt;. Le registre des changements pour Android, iOS et Mac font référence à des suivis de problèmes qui ne sont pas publics. Les sommes cryptographiques SHA-256 se trouvent &lt;a href='/information/cryptographic-hashes-files'&gt;ici&lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Notes de sortie</value>
