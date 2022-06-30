@@ -7255,6 +7255,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!For PRIVATE users.
+        /// </summary>
+        public static string HomeFeatureForPrivateUsers {
+            get {
+                return ResourceManager.GetString("HomeFeatureForPrivateUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;span&gt;Get started&lt;/span&gt; with AxCrypt.
         /// </summary>
         public static string HomeGetStartedHeading {
@@ -17702,7 +17711,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2021 AxCrypt AB, All rights reserved..
+        ///   Looks up a localized string similar to Copyright © 2022 AxCrypt AB, All rights reserved..
         /// </summary>
         public static string TermsOfUseBlock18Text4 {
             get {

@@ -2648,6 +2648,9 @@ If you for any reason do not know or remember the password, you must perform a p
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Recent Files list is disabled. Go to Options to enable.</value>
   </data>
+  <data name="HomeFeatureForPrivateUsers" xml:space="preserve">
+    <value>!!For PRIVATE users</value>
+  </data>
   <data name="HomeGetStartedHeading" xml:space="preserve">
     <value>&lt;span&gt;Get started&lt;/span&gt; with AxCrypt</value>
   </data>
@@ -6357,7 +6360,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>If any part of this agreement is found to be invalid, it does not invalidate any other part of the agreement, and the new interpretation must be as close to the original as allowed.</value>
   </data>
   <data name="TermsOfUseBlock18Text4" xml:space="preserve">
-    <value>Copyright © 2021 AxCrypt AB, All rights reserved.</value>
+    <value>Copyright © 2022 AxCrypt AB, All rights reserved.</value>
   </data>
   <data name="TermsOfUseBlock1Heading" xml:space="preserve">
     <value>License</value>
