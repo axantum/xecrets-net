@@ -505,7 +505,7 @@ Vous êtes prévenus, profitez-en bien !</value>
     <value>Création d'un abonnement Business</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Vous devez être connecté avec un AxCrypt ID sur notre site web. Utilisez le &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menu abonnement Business&lt;/a&gt; pour vous abonner.</value>
+    <value>Vous devez être connecté avec un AxCrypt ID sur notre site web. Utilisez le &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;menu abonnement Business&lt;/a&gt; pour vous abonner.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>La création d'un abonnement demande l'achat initial d'au moins une licence de membre : la vôtre. Quand vous créez et achetez un abonnement Business, vous êtes désigné administrateur automatiquement, et vous pouvez donc assigner d'autres licences de membres aux utilisateurs de votre choix et réaliser d'autres tâches administratives.</value>

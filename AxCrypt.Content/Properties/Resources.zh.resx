@@ -517,7 +517,7 @@
     <value>创建Business订阅</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
+    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>创建订阅需要您自己首次购买至少一个成员许可证。 创建和购买业务订阅时，您将自动指定管理员，因此您可以将订阅成员许可证分配给您选择的用户并执行其他管理任务。</value>

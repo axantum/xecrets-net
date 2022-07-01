@@ -548,7 +548,7 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
     <value>Crear una suscripción Business</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web. Usa el &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menú de suscripción Business&lt;/a&gt; para crear una suscripción.</value>
+    <value>Debes iniciar sesión con un AxCrypt ID en nuestro sitio web. Usa el &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;menú de suscripción Business&lt;/a&gt; para crear una suscripción.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>La creación de una suscripción requiere la compra inicial de al menos una licencia de miembro, es decir, tú mismo. Cuando creas y compras una suscripción Business, se te designa automáticamente como administrador, por lo que puedes asignar las licencias de miembro de la suscripción a los usuarios que elijas y realizar otras tareas administrativas.</value>

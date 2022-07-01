@@ -521,7 +521,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Erstellen Sie ein Business-Abonnement</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/en/Business/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
+    <value>Sie müssen mit einer AxCrypt-ID auf unserer Webseite angemeldet sein. Verwenden Sie das &lt;a href='https://account.axcrypt.net/en/HomeBusiness/CreateSubscription'&gt;Business Abonnement Menü&lt;/a&gt; um ein Abonnement zu erstellen.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Das erstellen eines Abonnements erfordert den Erstkauf von mindestens einer mitgliedslizenz. Wenn Sie ein Geschäftsabonnement erstellen und erwerben, werden Sie automatisch als Administrator bezeichnet, sodass Sie die abonnementmitgliederlizenzen Benutzern Ihrer Wahl zuweisen und andere administrative Aufgaben ausführen können.</value>
@@ -1808,7 +1808,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Was ist der Unterschied zwischen AxCrypt 1.x und 2.x?</value>
   </data>
   <data name="FaqDifference1&amp;2Answer1">
-    <value>AxCrypt 1.x ist eine Legacy-Version. Das bedeutet, es ist veraltet und es gibt keine Unterstützung mehr dafür, während AxCrypt 2.x ist die Version, an der wir kontinuierlich arbeiten, um Sie weiter zu verbessern. Es wird absolut nicht empfohlen, 1.x zu verwenden. Wir empfehlen allen Benutzern, alt und neu, immer die aktuellste Version von AxCrypt zu verwenden, die hier gedownloadet werden kann &lt;a href= '/download'&gt;&lt;/a&gt;.</value>
+    <value>AxCrypt 1.x ist eine Legacy-Version. Das bedeutet, es ist veraltet und es gibt keine Unterstützung mehr dafür, während AxCrypt 2.x ist die Version, an der wir kontinuierlich arbeiten, um Sie weiter zu verbessern. Es wird absolut nicht empfohlen, 1.x zu verwenden. Wir empfehlen allen Benutzern, alt und neu, immer die aktuellste Version von AxCrypt zu verwenden, die werden kann &lt;a href='/download'&gt;hier gedownloadet &lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
     <value>Für Benutzer, die einen bestimmten Bedarf an legacy-downloaden haben (Nutzung auf eigenes Risiko), finden Sie &lt;a href='/support/legacy-downloads'&gt;hier&lt;/a&gt;.</value>

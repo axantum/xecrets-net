@@ -511,7 +511,7 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <value>Utwórz subskrypcję biznesową</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Musisz zalogować się za pomocą identyfikatora AxCrypt na naszej stronie internetowej. Skorzystaj z &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt; menu Business Subscription &lt;/a&gt;, aby utworzyć subskrypcję.</value>
+    <value>Musisz zalogować się za pomocą identyfikatora AxCrypt na naszej stronie internetowej. Skorzystaj z &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt; menu Business Subscription &lt;/a&gt;, aby utworzyć subskrypcję.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Utworzenie subskrypcji wymaga samodzielnego zakupu co najmniej jednej licencji członkowskiej. Tworząc i kupując subskrypcję Business, zostajesz automatycznie wyznaczony na administratora, dzięki czemu możesz przypisać licencje członkowskie do wybranych użytkowników i wykonywać inne zadania administracyjne.</value>

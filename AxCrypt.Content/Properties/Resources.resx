@@ -547,7 +547,7 @@ You have been warned, now enjoy!</value>
     <value>Create a Business Subscription</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1" xml:space="preserve">
-    <value>You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Subscription menu&lt;/a&gt; to create a subscription.</value>
+    <value>You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business Subscription menu&lt;/a&gt; to create a subscription.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2" xml:space="preserve">
     <value>Creating a subscription requires an initial purchase of at least one member license, yourself. When you create and purchase a Business subscription you are automatically designated administrator, so you can assign the subscription member licenses to users of your choice and perform other administrative tasks.</value>
@@ -2647,9 +2647,6 @@ If you for any reason do not know or remember the password, you must perform a p
   </data>
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>Recent Files list is disabled. Go to Options to enable.</value>
-  </data>
-  <data name="HomeFeatureForPrivateUsers" xml:space="preserve">
-    <value>!!For PRIVATE users</value>
   </data>
   <data name="HomeGetStartedHeading" xml:space="preserve">
     <value>&lt;span&gt;Get started&lt;/span&gt; with AxCrypt</value>

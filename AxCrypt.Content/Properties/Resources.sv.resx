@@ -501,7 +501,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Skapa en Business-prenumeration</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Du måste vara inloggad med ett AxCrypt-ID på vår webbplats. Använd &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Prenumeration-menyn&lt;/a&gt; för att skapa en prenumeration.</value>
+    <value>Du måste vara inloggad med ett AxCrypt-ID på vår webbplats. Använd &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business Prenumeration-menyn&lt;/a&gt; för att skapa en prenumeration.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>För att skapa en prenumeration krävs det ett initialt köp av åtminstone en medlemslicens. När du skapar och köper en Business prenumeration blir du automatiskt administratör, så att du kan tilldela medlemslicenser till dina utvalda användare och utföra andra administrativa uppgifter. </value>
