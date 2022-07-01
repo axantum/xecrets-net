@@ -404,7 +404,7 @@ namespace AxCrypt.Api
                 throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
             }
 
-            Uri resource = BaseUrl.PathCombine("users/my/account/{0}".With(Identity.User));
+            Uri resource = BaseUrl.PathCombine("users/my/account");
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("DELETE", resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
