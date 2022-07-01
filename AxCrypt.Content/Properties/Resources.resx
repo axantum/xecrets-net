@@ -547,7 +547,7 @@ You have been warned, now enjoy!</value>
     <value>Create a Business Subscription</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1" xml:space="preserve">
-    <value>You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Subscription menu&lt;/a&gt; to create a subscription.</value>
+    <value>You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business Subscription menu&lt;/a&gt; to create a subscription.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2" xml:space="preserve">
     <value>Creating a subscription requires an initial purchase of at least one member license, yourself. When you create and purchase a Business subscription you are automatically designated administrator, so you can assign the subscription member licenses to users of your choice and perform other administrative tasks.</value>
@@ -6357,7 +6357,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>If any part of this agreement is found to be invalid, it does not invalidate any other part of the agreement, and the new interpretation must be as close to the original as allowed.</value>
   </data>
   <data name="TermsOfUseBlock18Text4" xml:space="preserve">
-    <value>Copyright © 2021 AxCrypt AB, All rights reserved.</value>
+    <value>Copyright © 2022 AxCrypt AB, All rights reserved.</value>
   </data>
   <data name="TermsOfUseBlock1Heading" xml:space="preserve">
     <value>License</value>

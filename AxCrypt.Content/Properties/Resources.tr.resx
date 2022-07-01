@@ -516,7 +516,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Business Aboneliği Oluştur</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>İnternet sitemizde AxCrypt ID'niz ile giriş yapmış olmanız gerekmektedir. Abonelik oluşturmak için &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business Abonelik menüsünü /a&gt; kullanın.</value>
+    <value>İnternet sitemizde AxCrypt ID'niz ile giriş yapmış olmanız gerekmektedir. Abonelik oluşturmak için &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business Abonelik menüsünü /a&gt; kullanın.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Bir aboneliği oluşturmak en az bir, yani size ait olan üye lisansının satın alınmasını gerektirir. Bir Business aboneliği oluşturup satın aldığınız zaman otomatik olarak yöneticiliğe atanırsınız ve bu sayede istediğiniz kullanıcılara abonelik lisansı tanımlayabilir ve yöneticilik gerektiren işlemleri yapabilirsiniz.</value>
@@ -6037,7 +6037,7 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
     <value>Anlaşmanın herhangi bir parçasının geçersiz olması diğer parçalarını geçersiz kılmaz ve yeni yorumun orijinaline, izin verildiği kadar yakın olması gerekir.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, Tüm hakları saklıdır.</value>
+    <value>Copyright © 2022 AxCrypt AB, Tüm hakları saklıdır.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Lisans</value>

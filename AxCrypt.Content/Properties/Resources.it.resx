@@ -538,7 +538,7 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
     <value>Crea un Abbonamento Business</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web. Utilizza il &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per creare un abbonamento.</value>
+    <value>Devi essere registrato con un ID AxCrypt sul nostro sito web. Utilizza il &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;menu Abbonamento Business&lt;/a&gt; per creare un abbonamento.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>La creazione di un abbonamento richiede un acquisto iniziale di almeno una licenza, la tua. Quando crei e acquisti un abbonamento Business, sei automaticamente designato come amministratore, quindi puoi assegnare le licenze dell'abbonamento a utenti di tua scelta ed eseguire altre attività amministrative.</value>
@@ -6281,7 +6281,7 @@ Possediamo esclusivamente tutti i diritti, titoli e interessi relativi al softwa
     <value>Se una qualsiasi parte di questo accordo viene ritenuta non valida, non invalida nessun' altra parte dell'accordo e la nuova interpretazione deve essere il più vicino possibile all'originale.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, tutti i diritti riservati.</value>
+    <value>Copyright © 2022 AxCrypt AB, tutti i diritti riservati.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licenza</value>

@@ -1257,7 +1257,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href=&apos;https://account.axcrypt.net/Business/CreateSubscription&apos;&gt;Business Subscription menu&lt;/a&gt; to create a subscription..
+        ///   Looks up a localized string similar to You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href=&apos;https://account.axcrypt.net/HomeBusiness/CreateSubscription&apos;&gt;Business Subscription menu&lt;/a&gt; to create a subscription..
         /// </summary>
         public static string AxcryptBusinessBlock2Text1 {
             get {
@@ -17702,7 +17702,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2021 AxCrypt AB, All rights reserved..
+        ///   Looks up a localized string similar to Copyright © 2022 AxCrypt AB, All rights reserved..
         /// </summary>
         public static string TermsOfUseBlock18Text4 {
             get {

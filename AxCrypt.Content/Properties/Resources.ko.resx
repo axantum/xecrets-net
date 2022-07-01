@@ -479,7 +479,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>Business 구독 신청하기</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>AxCrypt ID로 로그인합니다. &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business 구독 메뉴&lt;/a&gt;구독 신청을 하세요</value>
+    <value>AxCrypt ID로 로그인합니다. &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business 구독 메뉴&lt;/a&gt;구독 신청을 하세요</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>구독 서비스를 신청하려면 적어도 하나의 계정을 통해 구독 서비스를 구입하셔야합니다.  Business 구독은 자동으로 관리자로 지정되며, 팀 멤버에게 라이센스를 할당하고 다른 관리 작업을 실행할 수 있습니다.</value>
@@ -728,7 +728,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>회사를 위한 서비스</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; 를 다운로드 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
+    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;다운로드 &lt;/a&gt; 를 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
 문의사항은 {0}으로 연락 주시기 바랍니다.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
@@ -2987,7 +2987,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>'{0}' 파일이 잘못 되었습니다.</value>
   </data>
   <data name="InvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;b&gt;{0}&lt;/b&gt; 께서 AxCrypt 보안 파일에 초대하셨습니다. 파일 보안을 시작하려면  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; 를 하시고 AxCrypt를 설치하세요. &lt;b&gt;{2}&lt;/b&gt;로 AxCrypt에 로그인 하신뒤, 인증 코드와 비밀번호를 입력해주십시오.</value>
+    <value>&lt;b&gt;{0}&lt;/b&gt; 께서 AxCrypt 보안 파일에 초대하셨습니다. 파일 보안을 시작하려면  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;다운로드&lt;/a&gt; 를 하시고 AxCrypt를 설치하세요. &lt;b&gt;{2}&lt;/b&gt;로 AxCrypt에 로그인 하신뒤, 인증 코드와 비밀번호를 입력해주십시오.</value>
   </data>
   <data name="InvitationMailBodyIntroPlainText" xml:space="preserve">
     <value>{0}께서 AxCrypt 보안 파일에 초대하셨습니다. 
@@ -5967,7 +5967,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>약정의 어느 부분이 무효로 인식되어도 다른 부분은 무효로 하지 않으며, 새로운 해석은 허용된 원문에 가까운 것이어야 합니다.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, All rights reserved.</value>
+    <value>Copyright © 2022 AxCrypt AB, All rights reserved.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>라이센스</value>

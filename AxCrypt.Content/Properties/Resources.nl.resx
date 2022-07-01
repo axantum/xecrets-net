@@ -512,7 +512,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Maak een zakelijk abonnement</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>U moet zijn aangemeld met een AxCrypt ID op onze website. Gebruik het &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Zakelijk Abonnement-menu&lt;/a&gt; om een abonnement aan te maken.</value>
+    <value>U moet zijn aangemeld met een AxCrypt ID op onze website. Gebruik het &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Zakelijk Abonnement-menu&lt;/a&gt; om een abonnement aan te maken.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Het aanmaken van een abonnement vereist een eerste aankoop van ten minste één lidmaatschapslicentie. Wanneer u een Zakelijk-abonnement aanmaakt en aanschaft, wordt u automatisch de beheerder, zodat u de lidmaatschapslicenties kunt toewijzen aan gebruikers van uw keuze en andere administratieve taken kunt uitvoeren. </value>
@@ -6215,7 +6215,7 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
     <value>Als een gedeelte van deze overeenkomst ongeldig blijkt te zijn, maakt dit geen enkel ander deel van de overeenkomst ongeldig, en de nieuwe interpretatie moet zo dicht mogelijk bij het origineel liggen als mogelijk is.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, Alle rechten voorbehouden.</value>
+    <value>Copyright © 2022 AxCrypt AB, Alle rechten voorbehouden.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licentie</value>

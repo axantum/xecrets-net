@@ -517,7 +517,7 @@
     <value>创建Business订阅</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
+    <value>您需要在我们的网站上使用AxCrypt ID登录。 使用&lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;Business 订阅菜单&lt;/a&gt;创建订阅。</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>创建订阅需要您自己首次购买至少一个成员许可证。 创建和购买业务订阅时，您将自动指定管理员，因此您可以将订阅成员许可证分配给您选择的用户并执行其他管理任务。</value>
@@ -6115,7 +6115,7 @@ SE-114 29 斯德哥尔摩
     <value>如果本协议的任何部分被发现无效，则不会使本协议的任何其他部分无效，并且新的解释必须尽可能接近原始解释。</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>版权所有 © 2021 AxCrypt AB，保留所有权利。</value>
+    <value>版权所有 © 2022 AxCrypt AB，保留所有权利。</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>许可证</value>

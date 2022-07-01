@@ -511,7 +511,7 @@ Zostałeś ostrzeżony, przyjemności!</value>
     <value>Utwórz subskrypcję biznesową</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Musisz zalogować się za pomocą identyfikatora AxCrypt na naszej stronie internetowej. Skorzystaj z &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt; menu Business Subscription &lt;/a&gt;, aby utworzyć subskrypcję.</value>
+    <value>Musisz zalogować się za pomocą identyfikatora AxCrypt na naszej stronie internetowej. Skorzystaj z &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt; menu Business Subscription &lt;/a&gt;, aby utworzyć subskrypcję.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Utworzenie subskrypcji wymaga samodzielnego zakupu co najmniej jednej licencji członkowskiej. Tworząc i kupując subskrypcję Business, zostajesz automatycznie wyznaczony na administratora, dzięki czemu możesz przypisać licencje członkowskie do wybranych użytkowników i wykonywać inne zadania administracyjne.</value>
@@ -6189,7 +6189,7 @@ Aby przejść do strony początkowej, kliknij &lt;a href="{1}"&gt;tutaj&lt;/a&gt
     <value>Jeśli jakakolwiek część niniejszej umowy zostanie uznana za nieważną, nie unieważnia to żadnej innej części umowy, a nowa interpretacja musi być jak najbardziej zbliżona do oryginału.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, Wszelkie prawa zastrzeżone.</value>
+    <value>Copyright © 2022 AxCrypt AB, Wszelkie prawa zastrzeżone.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licencja</value>

@@ -547,7 +547,7 @@ Está avisada(o), agora desfrute!</value>
     <value>Criar uma Subscrição Business</value>
   </data>
   <data name="AxcryptBusinessBlock2Text1">
-    <value>Precisa de iniciar sessão no nosso sítio web com um AxCrypt ID. Use o &lt;a href='https://account.axcrypt.net/Business/CreateSubscription'&gt;menu Subscrição Business&lt;/a&gt; para criar uma subscrição.</value>
+    <value>Precisa de iniciar sessão no nosso sítio web com um AxCrypt ID. Use o &lt;a href='https://account.axcrypt.net/HomeBusiness/CreateSubscription'&gt;menu Subscrição Business&lt;/a&gt; para criar uma subscrição.</value>
   </data>
   <data name="AxcryptBusinessBlock2Text2">
     <value>Criar uma subscrição requer uma compra inicial de, pelo menos, uma licença de um membro, você. Ao criar e comprar uma subscrição Business, é automaticamente designado(a) administrador(a), podendo atribuir licenças de subscrição a utilizadores da sua escolha e executar outras tarefas administrativas.</value>
@@ -6348,7 +6348,7 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Se qualquer parte deste acordo for considerada inválida, tal não invalida qualquer outra e a nova interpretação deve ser tão próxima da original quanto permitido.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2021 AxCrypt AB, Todos os direitos reservados.</value>
+    <value>Copyright © 2022 AxCrypt AB, Todos os direitos reservados.</value>
   </data>
   <data name="TermsOfUseBlock1Heading">
     <value>Licença</value>
