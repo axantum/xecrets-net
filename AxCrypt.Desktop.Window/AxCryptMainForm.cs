@@ -1761,18 +1761,22 @@ namespace AxCrypt.Desktop.Window
                     break;
 
                 case 1:
-                    comparer = ActiveFileComparer.DateComparer;
+                    comparer = ActiveFileComparer.SizeComparer;
                     break;
 
                 case 2:
-                    comparer = ActiveFileComparer.EncryptedNameComparer;
-                    break;
-
-                case 3:
                     comparer = ActiveFileComparer.DateComparer;
                     break;
 
+                case 3:
+                    comparer = ActiveFileComparer.EncryptedNameComparer;
+                    break;
+
                 case 4:
+                    comparer = ActiveFileComparer.DateComparer;
+                    break;
+
+                case 5:
                     comparer = ActiveFileComparer.CryptoNameComparer;
                     break;
 
