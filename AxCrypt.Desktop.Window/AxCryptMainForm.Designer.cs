@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace AxCrypt.Desktop.Window
 {
@@ -153,6 +154,7 @@ namespace AxCrypt.Desktop.Window
             this._bottomRightBusinessTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this._businessPrioritySupportToolStripMenuItem = new ImageButtonWithLabel();
             this._businessAddMoreUsersToolStripMenuItem = new ImageButtonWithLabel();
+            this._backgroundImage = new System.Windows.Forms.PictureBox();
 
             this._recentFilesContextMenuStrip.SuspendLayout();
             this._progressContextMenuStrip.SuspendLayout();
@@ -1027,7 +1029,11 @@ namespace AxCrypt.Desktop.Window
             this._recentFilesListView.UseCompatibleStateImageBehavior = false;
             this._recentFilesListView.View = System.Windows.Forms.View.Details;
             this._recentFilesListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            // 
+            //
+            //
+            this._backgroundImage.BackgroundImage = Properties.Resources.recent_files_background;
+            this._backgroundImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._backgroundImage.Dock = System.Windows.Forms.DockStyle.Fill;
             // _decryptedFileColumnHeader
             // 
             this._decryptedFileColumnHeader.Text = "[Document]";
@@ -1565,5 +1571,6 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.TableLayoutPanel _bottomRightBusinessTableLayout;
         private ImageButtonWithLabel _businessPrioritySupportToolStripMenuItem;
         private ImageButtonWithLabel _businessAddMoreUsersToolStripMenuItem;
+        private System.Windows.Forms.PictureBox _backgroundImage;
     }
 }

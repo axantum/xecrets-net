@@ -843,7 +843,7 @@ namespace AxCrypt.Desktop.Window
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.LoggedOn), async (bool loggedOn) => { await new Display().LocalSignInWarningPopUpAsync(loggedOn); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.OpenEncryptedEnabled), (bool enabled) => { _openEncryptedToolStripMenuItem.Enabled = enabled; });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RandomRenameEnabled), (bool enabled) => { _renameToolStripMenuItem.Enabled = enabled; });
-            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), (IEnumerable<ActiveFile> files) => { _recentFilesListView.UpdateRecentFiles(files); });
+            _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.RecentFiles), (IEnumerable<ActiveFile> files) => { _recentFilesListView.UpdateRecentFiles(files); ShowRecentFilesBackgroundImage(); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFolders), (IEnumerable<string> folders) => { UpdateWatchedFolders(folders); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.WatchedFoldersEnabled), (bool enabled) => { ConfigureWatchedFoldersMenus(enabled); });
             _mainViewModel.BindPropertyChanged(nameof(_mainViewModel.FolderOperationMode), (FolderOperationMode SecureFolderLevel) => { _optionsIncludeSubfoldersToolStripMenuItem.Checked = SecureFolderLevel == FolderOperationMode.IncludeSubfolders ? true : false; });
@@ -883,12 +883,17 @@ namespace AxCrypt.Desktop.Window
             _oneDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
             _googleDriveToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
             _dropBoxToolStripButton.Click += async (sender, e) => { KnownFolder_OnClick(sender, e); };
+        }
 
+        private void ShowRecentFilesBackgroundImage()
+        {
             if (_recentFilesListView.Items.Count == 0)
             {
-                this._recentFilesTabPage.BackgroundImage = Properties.Resources.recent_files_background;
-                this._recentFilesTabPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                this._recentFilesListView.Controls.Add(_backgroundImage);
+                return;
             }
+
+            this._recentFilesListView.Controls.Clear();
         }
 
         private void _recentFilesContextMenuStrip_Opening(object sender, CancelEventArgs e)

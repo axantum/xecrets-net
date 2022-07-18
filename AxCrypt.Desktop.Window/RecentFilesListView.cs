@@ -123,7 +123,18 @@ namespace AxCrypt.Desktop.Window
 
             _updateRecentFilesInProgress = true;
             this.WithWaitCursor(() => UpdateRecentFilesUnsynchronized(files), () => _updateRecentFilesInProgress = false);
-            this.Visible = Items.Count > 0;
+            ShowHideColumnHeader();
+        }
+
+        private void ShowHideColumnHeader()
+        {
+            if (Items.Count == 0)
+            {
+                this.HeaderStyle = ColumnHeaderStyle.None;
+                return;
+            }
+
+            this.HeaderStyle = ColumnHeaderStyle.Clickable;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
