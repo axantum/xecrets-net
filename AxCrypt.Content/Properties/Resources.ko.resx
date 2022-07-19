@@ -98,6 +98,10 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+  <data name="AaaUtfDummy" xml:space="preserve">
+    <value>TvåÖârärBrà.</value>
+    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
+  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>({0}) '중단' 상태.</value>
   </data>
@@ -215,6 +219,15 @@
   </data>
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID 인증</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>우리의 사이버 보안 여정을 당신과 함께하게 되어 매우 기쁩니다.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>당신의 모바일 기기들을 위해 AxCrypt를 선택하세요!</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>문의사항은  &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt;으로 연락주십시오!</value>
   </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;정지!&lt;/b&gt;
@@ -1668,6 +1681,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="DownloadLinkLabel">
     <value>다운로드</value>
   </data>
+  <data name="DownloadMobileBodyText">
+    <value>&lt;p&gt;언제 어디서나 파일들을 암호화하고 해제하십시오. 모바일 앱은 가장 보편적인 구글드라이브와 드롭박스 등의 클라우드 스토리지 서비스를 지원합니다. (타 서비스 추가 예정)&lt;/p&gt;&lt;p&gt;당신의 보안 파일 또는 공유된 파일은 어느 플랫폼에서든지 구독하지 않고도 볼 수 있습니다. 현재 모바일도 포함입니다! &lt;/p&gt;&lt;p&gt;더 보시기를 원하시면 &lt;a href='#'&gt;여기&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt 모바일</value>
   </data>
@@ -2331,6 +2347,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="FreeLabel">
     <value>무료</value>
   </data>
+  <data name="FreeTrial">
+    <value>무료 체험</value>
+  </data>
   <data name="FullNameLabel">
     <value>성함</value>
   </data>
@@ -2548,6 +2567,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="GetStartedLinkLabel">
     <value>시작해보세요</value>
   </data>
+  <data name="GetStartedLinkLabel2">
+    <value>시작하세요!</value>
+  </data>
   <data name="GetStartedMobileText1">
     <value>AxCrypt 모바일 앱은 Android와 iOS에서 사용할 수 있으며, 전체 버전 데스크탑 앱으로 암호화된 파일을 열어 보세요.</value>
   </data>
@@ -2662,8 +2684,14 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="HomeGetStartedListShareParagraph">
     <value>간단한 클릭으로 보안 강화가 된 파일을 다른 사람에게 공유해보세요.</value>
   </data>
+  <data name="HomeHeroDeliveries2">
+    <value>신뢰할 수 있는 배달</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"매우 간단한 방법을 통한 최고의 암호화 서비스"</value>
+  </data>
+  <data name="HomeHeroRecommended2">
+    <value>추천</value>
   </data>
   <data name="HomeHeroSubheading">
     <value>PCMag Editors' Choice 2022</value>
@@ -2965,8 +2993,14 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
 
 사용자의 비밀번호가 서버에 저장되어 있지 않고, 연결이 항상 암호화되어 있습니다.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>인터뷰</value>
+  </data>
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>AxCrypt에 오신것을 환영합니다!</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;전문가용 AxCrypt를 찾으신다면 &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; 플랜을 추천합니다. 해당 플랜으로 업그레이드하여 당신의 팀워크를 더욱 안전하게 만드십시오. 할인 코드는 &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= "color: #000000"&gt;15% discount&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt; 입니다.</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>시간을 'hh:mm:ss.mmm'을 토대로 작성해주시기 바랍니다.</value>
@@ -3096,6 +3130,9 @@ EU VAT Number SE556967618101</value>
   </data>
   <data name="JobTitleLabel">
     <value>직업</value>
+  </data>
+  <data name="KeepMeUpdatedLinkLabel">
+    <value>업데이트 해주십시오.</value>
   </data>
   <data name="KeyFileBrowseTitle" xml:space="preserve">
     <value>키 파일 선택하기</value>
@@ -3747,6 +3784,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="MobileAppText">
     <value>최소 안드로이드의 4.0.3 버전, 혹은 최소 iOS의 8.0 버전.</value>
   </data>
+  <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
+    <value>민감한 파일들을 직접 당신의 전화기에 &lt;fc&gt;암호화&lt;/fc&gt; 하십시오.</value>
+  </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>매 달</value>
   </data>
@@ -4336,8 +4376,17 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PricingFeatureListViewer">
     <value>뷰어</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>&lt;span&gt;조직&lt;/span&gt; 사용자</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>&lt;span&gt;개인&lt;/span&gt; 사용자</value>
+  </data>
   <data name="PricingLinkLabel">
     <value>Pricing</value>
+  </data>
+  <data name="PricingLinkLabelFeature">
+    <value>우리의 &lt;span&gt;한달 무료&lt;/span&gt; 구독을 체험해보십시오.</value>
   </data>
   <data name="PricingSubheading">
     <value>결제는 어떻게 하고 싶으신가요?</value>
@@ -4782,6 +4831,9 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="ReadAboutTheLatestNewsLabel" xml:space="preserve">
     <value>최신 뉴스 읽기</value>
+  </data>
+  <data name="ReadAboutTheLatestNewsLabel2">
+    <value>우리의 최신 &lt;span&gt;블로그 포스트&lt;/span&gt;를 둘러보십시오.</value>
   </data>
   <data name="ReadMoreAboutBusinessPlanLabel">
     <value>business 플랜에 대해서 더 알아보세요.</value>
