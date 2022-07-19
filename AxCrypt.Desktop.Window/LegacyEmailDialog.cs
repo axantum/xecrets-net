@@ -3,10 +3,8 @@ using AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-
 using Texts = AxCrypt.Content.Texts;
 
 namespace AxCrypt.Desktop.Window
@@ -56,7 +54,7 @@ namespace AxCrypt.Desktop.Window
 
         private static void LaunchHelpPage()
         {
-            Process.Start(@"https://www.axcrypt.net/documentation/get-started/");
+            Core.BrowseUtility.RedirectTo(Texts.LinkToGettingStarted);
         }
 
         private bool AdHocValidationDueToMonoLimitations()

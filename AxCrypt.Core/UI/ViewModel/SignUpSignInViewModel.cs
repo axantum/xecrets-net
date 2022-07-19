@@ -312,7 +312,7 @@ namespace AxCrypt.Core.UI.ViewModel
             PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.ResourceManager.GetString(_welcomeMessage.Name));
             if (result == PopupButtons.Ok)
             {
-                New<IBrowser>().OpenUri(new Uri(Texts.LinkToGettingStarted));
+                BrowseUtility.RedirectTo(Texts.LinkToGettingStarted);
             }
             return AccountStatus.Verified;
         }

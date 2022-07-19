@@ -1,10 +1,9 @@
-﻿using AxCrypt.Abstractions;
-using AxCrypt.Common;
+﻿using AxCrypt.Common;
+using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
-using AxCrypt.Content;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -49,7 +48,7 @@ namespace AxCrypt.Core.UI
             }
 
             await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, msg);
-            New<IBrowser>().OpenUri(new Uri(Resolve.UserSettings.UpdateUrl.ToString()));
+            BrowseUtility.RedirectTo(Resolve.UserSettings.UpdateUrl.ToString());
             return true;
         }
 
@@ -83,7 +82,7 @@ namespace AxCrypt.Core.UI
             PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.NewVersionIsAvailableText.InvariantFormat(version));
             if (result == PopupButtons.Ok)
             {
-                New<IBrowser>().OpenUri(Resolve.UserSettings.UpdateUrl);
+                BrowseUtility.RedirectTo(Resolve.UserSettings.UpdateUrl.ToString());
             }
 
             return true;
@@ -203,7 +202,7 @@ namespace AxCrypt.Core.UI
             PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, Texts.LocalSignInWarningPopUpText);
             if (click == PopupButtons.Ok)
             {
-                New<IBrowser>().OpenUri(New<UserSettings>().AccountWebUrl);
+                BrowseUtility.RedirectToAccountWebUrl();
             }
         }
 

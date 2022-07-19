@@ -54,6 +54,7 @@
     <Compile Include="Algorithm\CryptoTransformingStream.cs" />
     <Compile Include="Algorithm\Implementation\BouncyCastleCryptoFactory.cs" />
     <Compile Include="AxCryptFactory.cs" />
+    <Compile Include="BrowseUtility.cs" />
     <Compile Include="Crypto\Asymmetric\PublicKeyThumbprint.cs" />
     <Compile Include="Crypto\Asymmetric\SignatureHasher.cs" />
     <Compile Include="Crypto\Asymmetric\Signer.cs" />

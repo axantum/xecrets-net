@@ -1,8 +1,5 @@
-using AxCrypt.Abstractions;
 using AxCrypt.Common;
-using AxCrypt.Content;
 using AxCrypt.Core.Crypto;
-using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Service;
 using System;
@@ -42,19 +39,7 @@ namespace AxCrypt.Core.UI
                 tag = (await accountService.AccountAsync()).Tag ?? string.Empty;
             }
 
-            string link = Texts.LinkToAxCryptPremiumPurchasePage.QueryFormat(Resolve.UserSettings.AccountWebUrl, identity.UserEmail, tag);
-            if (fromRenewSubscriptionDialog)
-            {
-                link += "&ref=renewalpopup";
-            }
-
-            New<IBrowser>().OpenUri(new Uri(link));
-        }
-
-        public void RedirectToMyAxCryptIDPage()
-        {
-            string link = "{0}Home/Login?email={1}".QueryFormat(Resolve.UserSettings.AccountWebUrl, New<UserSettings>().UserEmail);
-            New<IBrowser>().OpenUri(new Uri(link));
+            BrowseUtility.RedirectToPurchasePage(identity.UserEmail.Address, fromRenewSubscriptionDialog, tag);
         }
     }
 }
