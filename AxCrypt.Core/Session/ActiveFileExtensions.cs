@@ -1,4 +1,7 @@
-﻿#region Coypright and License
+﻿using System.Collections.Generic;
+using System.Linq;
+
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -33,9 +36,7 @@ using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using static AxCrypt.Abstractions.TypeResolve;
@@ -168,6 +169,42 @@ namespace AxCrypt.Core.Session
             {
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.MasterKeyRemovedWarningText, Common.DoNotShowAgainOptions.MasterKeyRemovedWarning);
             }
+        }
+
+        private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
+        public static string Size(this ActiveFile activeFile, int decimalPlaces = 2)
+        {
+            if (decimalPlaces < 0)
+            {
+                throw new ArgumentOutOfRangeException("decimalPlaces");
+            }
+            long fileLength = activeFile.EncryptedFileInfo.Length();
+            if (fileLength < 0)
+            {
+                return "-" + activeFile.Size(decimalPlaces);
+            }
+            if (fileLength == 0)
+            {
+                return string.Format("{0:n" + decimalPlaces + "} bytes", 0);
+            }
+
+            // mag is 0 for bytes, 1 for KB, 2, for MB, etc.
+            int mag = (int)Math.Log(fileLength, 1024);
+
+            // 1L << (mag * 10) == 2 ^ (10 * mag)
+            // [i.e. the number of bytes in the unit corresponding to mag]
+            decimal adjustedSize = (decimal)fileLength / (1L << (mag * 10));
+
+            // make adjustment when the value is large enough that
+            // it would round up to 1000 or more
+            if (Math.Round(adjustedSize, decimalPlaces) >= 1000)
+            {
+                mag += 1;
+                adjustedSize /= 1024;
+            }
+
+            return string.Format("{0:n" + decimalPlaces + "} {1}", adjustedSize, SizeSuffixes[mag]);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿#region Coypright and License
+﻿using System.Linq;
+
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -26,7 +28,6 @@
 #endregion Coypright and License
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace AxCrypt.Core.Session
@@ -67,6 +68,23 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        private class SizeComparerImpl : ActiveFileComparer
+        {
+            public override int Compare(ActiveFile x, ActiveFile y)
+            {
+                if (x == null)
+                {
+                    throw new ArgumentNullException("x");
+                }
+                if (y == null)
+                {
+                    throw new ArgumentNullException("y");
+                }
+
+                return (ReverseSort ? -1 : 1) * String.Compare(x.Size(), y.Size(), StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         private class DateComparerImpl : ActiveFileComparer
         {
             public override int Compare(ActiveFile x, ActiveFile y)
@@ -103,6 +121,9 @@ namespace AxCrypt.Core.Session
 
         public static ActiveFileComparer EncryptedNameComparer
         { get { return new EncryptedNameComparerImpl(); } }
+
+        public static ActiveFileComparer SizeComparer
+        { get { return new SizeComparerImpl(); } }
 
         public static ActiveFileComparer DecryptedNameComparer
         { get { return new DecryptedNameComparerImpl(); } }
