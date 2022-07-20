@@ -189,7 +189,7 @@ namespace AxCrypt.Desktop.Window
             this._selectedSharedKeyUserPopupLayout.ForeColor = System.Drawing.Color.Black;
             this._selectedSharedKeyUserPopupLayout.BackColor = System.Drawing.Color.White;
             this._selectedSharedKeyUserPopupLayout.Name = "_selectedSharedKeyUserPopupLayout";
-            this._selectedSharedKeyUserPopupLayout.Size = new System.Drawing.Size(130, 32);
+            this._selectedSharedKeyUserPopupLayout.Size = new System.Drawing.Size(130, 64);
             this._selectedSharedKeyUserPopupLayout.Visible = false;
             // 
             // _cancelButton
