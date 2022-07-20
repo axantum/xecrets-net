@@ -49,15 +49,20 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private IEnumerable<string> _filesOrfolderPaths;
 
-        public IEnumerable<UserPublicKey> SharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value.ToList()); } }
+        public IEnumerable<UserPublicKey> SharedWith
+        { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(SharedWith)); } private set { SetProperty(nameof(SharedWith), value.ToList()); } }
 
-        public IEnumerable<UserPublicKey> NotSharedWith { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(NotSharedWith)); } private set { SetProperty(nameof(NotSharedWith), value.ToList()); } }
+        public IEnumerable<UserPublicKey> NotSharedWith
+        { get { return GetProperty<IEnumerable<UserPublicKey>>(nameof(NotSharedWith)); } private set { SetProperty(nameof(NotSharedWith), value.ToList()); } }
 
-        public string NewKeyShare { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
+        public string NewKeyShare
+        { get { return GetProperty<string>(nameof(NewKeyShare)); } set { SetProperty(nameof(NewKeyShare), value); } }
 
-        public AccountStatus NewKeyShareStatus { get { return GetProperty<AccountStatus>(nameof(NewKeyShareStatus)); } set { SetProperty(nameof(NewKeyShareStatus), value); } }
+        public AccountStatus NewKeyShareStatus
+        { get { return GetProperty<AccountStatus>(nameof(NewKeyShareStatus)); } set { SetProperty(nameof(NewKeyShareStatus), value); } }
 
-        public bool IsOnline { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
+        public bool IsOnline
+        { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
 
         public IAsyncAction AddKeyShares { get; private set; }
 
@@ -72,6 +77,8 @@ namespace AxCrypt.Core.UI.ViewModel
         public IAsyncAction ShareFiles { get; private set; }
 
         public IAsyncAction UpdateNewKeyShareStatus { get; private set; }
+
+        public IAsyncAction RefreshKnownContact { get; private set; }
 
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
         {
@@ -114,6 +121,7 @@ namespace AxCrypt.Core.UI.ViewModel
             ShareFolders = new AsyncDelegateAction<object>((o) => ShareFoldersActionAsync());
             ShareFiles = new AsyncDelegateAction<object>((o) => ShareFilesActionAsync());
             UpdateNewKeyShareStatus = new AsyncDelegateAction<object>(async (o) => NewKeyShareStatus = await NewKeyShareStatusAsync());
+            RefreshKnownContact = new AsyncDelegateAction<IEnumerable<EmailAddress>>((upks) => RefreshKnownContactsActionAsync(upks));
         }
 
         private async Task ShareFoldersActionAsync()
@@ -309,6 +317,34 @@ namespace AxCrypt.Core.UI.ViewModel
         private static async Task<EncryptedProperties> EncryptedPropertiesAsync(IDataStore dataStore, LogOnIdentity decryptionIdentity)
         {
             return await Task.Run(() => EncryptedProperties.Create(dataStore, decryptionIdentity));
+        }
+
+        private async Task RefreshKnownContactsActionAsync(IEnumerable<EmailAddress> knownContactsToRefresh)
+        {
+            await RemoveSharedWithContactsActionAsync(knownContactsToRefresh);
+
+            await AddKeySharesActionAsync(knownContactsToRefresh).Free();
+        }
+
+        private async Task RemoveSharedWithContactsActionAsync(IEnumerable<EmailAddress> knownContactsToRefresh)
+        {
+            IEnumerable<UserPublicKey> knownContactsToRemove = SharedWith.Where(nsw => knownContactsToRefresh.Contains(nsw.Email));
+            if (!knownContactsToRemove.Any())
+            {
+                return;
+            }
+
+            HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
+            HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(UserPublicKey.EmailComparer);
+
+            MoveKeyShares(knownContactsToRemove, fromSet, toSet);
+
+            SharedWith = fromSet.OrderBy(a => a.Email.Address);
+
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                knownPublicKeys.Remove(knownContactsToRemove);
+            }
         }
     }
 }

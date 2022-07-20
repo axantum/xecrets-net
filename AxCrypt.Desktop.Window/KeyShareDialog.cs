@@ -115,8 +115,8 @@ namespace AxCrypt.Desktop.Window
             Button unShareSubMenuItemButton = ContextMenuItem(Texts.UnSharePromptText, Resources.unShareIcon, () => UnSharePopupMenuItemAction());
             this._selectedSharedKeyUserPopupLayout.Controls.Add(unShareSubMenuItemButton);
 
-            //FlowLayoutPanel refreshPopupMenuItem = SelectedSharedKeyUserPopup(Texts.RefreshPromptText, Resources.refreshIcon);
-            //this._selectedSharedKeyUserPopupLayout.Controls.Add(refreshPopupMenuItem);
+            Button refreshPopupMenuItemButton = ContextMenuItem(Texts.RefreshPromptText, Resources.refreshIcon, () => RefreshKnownContact());
+            this._selectedSharedKeyUserPopupLayout.Controls.Add(refreshPopupMenuItemButton);
         }
 
         private void InitializeSharedKeyUsersListLayout()
@@ -176,22 +176,9 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
-            if (!New<AxCryptOnlineState>().IsOnline && !CanShareKeyInOfflineFor(addedUserEmailAddress))
-            {
-                await DisplayOfflineWarningMessageAsync();
-                _addNewUserTextBox.Text = string.Empty;
-                _addNewUserTextBox.Focus();
-                return;
-            }
-
             _addButton.Enabled = false;
 
-            AccountStatus accountStatus = AccountStatus.Verified;
-            if (!_viewModel.NotSharedWith.Any(nsw => nsw.Email == addedUserEmailAddress))
-            {
-                accountStatus = await ShareNewContactAsync();
-            }
-
+            AccountStatus accountStatus = await ShareNewContactAsync();
             await ShareSelectedIndices(new List<string>() { addedUserEmailAddress.Address });
 
             ShareKeyUser shareKeyUser = _shareKeyUserList.Single(sku => sku.UserEmail == EmailAddress.Parse(_viewModel.NewKeyShare));
@@ -246,27 +233,13 @@ namespace AxCrypt.Desktop.Window
             SetOkButtonState();
         }
 
-        private bool CanShareKeyInOfflineFor(EmailAddress addedUserEmailAddress)
-        {
-            if (!_viewModel.NotSharedWith.Any())
-            {
-                return false;
-            }
-
-            if (!_viewModel.NotSharedWith.Any(nsw => nsw.Email == addedUserEmailAddress))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         private async Task<AccountStatus> ShareNewContactAsync()
         {
             if (string.IsNullOrEmpty(_viewModel.NewKeyShare))
             {
                 return AccountStatus.Unknown;
             }
+
             if (!AdHocValidationDueToMonoLimitations())
             {
                 return AccountStatus.Unknown;
@@ -295,6 +268,8 @@ namespace AxCrypt.Desktop.Window
                 if (New<AxCryptOnlineState>().IsOffline)
                 {
                     await DisplayOfflineWarningMessageAsync();
+                    _addNewUserTextBox.Text = string.Empty;
+                    _addNewUserTextBox.Focus();
                 }
             }
             catch (BadRequestApiException braex)
@@ -410,6 +385,18 @@ namespace AxCrypt.Desktop.Window
         {
             this._selectedSharedKeyUserPopupLayout.Visible = false;
             this._userEmailAutoSuggestionLayoutPanel.Visible = false;
+        }
+
+        private async Task RefreshKnownContact()
+        {
+            if (_selectedUserEmailForContextMenuOperation == EmailAddress.Empty)
+            {
+                return;
+            }
+
+            await _viewModel.RefreshKnownContact.ExecuteAsync(new List<EmailAddress>() { _selectedUserEmailForContextMenuOperation });
+            this._selectedSharedKeyUserPopupLayout.Visible = false;
+            SetOkButtonState();
         }
 
         #region SelectedFileListItemAndSharedKeyUsersListItemTemplate
