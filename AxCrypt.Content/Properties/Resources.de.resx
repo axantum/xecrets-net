@@ -1739,7 +1739,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Warum erhalte ich "Zugriff Verweigert" und/oder meine Dateinamen sind im grünen text?</value>
   </data>
   <data name="FaqAccessDeniedAnswer1">
-    <value>AxCrypt wird über das Kontextmenü unter der überschrift 'AxCrypt' aufgerufen. Es gibt auch eine integrierte Verschlüsselung in einigen Windows-Versionen, auf die auf ähnliche Weise zugegriffen wird, aber unter der überschrift "Eigenschaften", dann die Schaltfläche "Erweitert" und schließlich das Kontrollkästchen "Inhalte Verschlüsseln, um Daten zu sichern". Diese Verschlüsselung verwendet eine Funktion namens &lt;a href='https://support.microsoft.com/windows' &gt; Verschlüsseln des Dateisystems&lt;/a&gt; oder kurz EFS.</value>
+    <value>AxCrypt wird über das Kontextmenü unter der überschrift 'AxCrypt' aufgerufen. Es gibt auch eine integrierte Verschlüsselung in einigen Windows-Versionen, auf die auf ähnliche Weise zugegriffen wird, aber unter der überschrift "Eigenschaften", dann die Schaltfläche "Erweitert" und schließlich das Kontrollkästchen "Inhalte Verschlüsseln, um Daten zu sichern". Diese Verschlüsselung verwendet eine Funktion namens &lt;a href='https://support.microsoft.com/windows'&gt;Verschlüsseln des Dateisystems&lt;/a&gt; oder kurz EFS.</value>
   </data>
   <data name="FaqAccessDeniedAnswer2">
     <value>Es gibt normalerweise zwei Gründe, warum Nachrichten mit "Zugriff Verweigert" erhalten werden. Beide treten auf, wenn Dateien entweder auf ein neues system verschoben werden oder Windows auf einem vorhandenen system (neu)installiert wird. Eine situation ist ein problem, die andere nicht.</value>
@@ -1841,7 +1841,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Wenn Sie eine Fehlermeldung erhalten “Dateiverschlüsselung für .NET und Mono funktioniert nicht mehr. Ein problem hat dazu geführt, dass das Programm nicht mehr richtig funktioniert. Windows schließt das Programm und benachrichtigt Sie, wenn eine Lösung verfügbar ist. Die wahrscheinlichste Ursache ist eine software heißt "Lavasoft Web Companion". Dies ist nicht mit modernen Windows-Versionen kompatibel und ändert den Zugriff auf das Netzwerk so, dass AxCrypt und andere Programme Abstürzen.</value>
   </data>
   <data name="FaqFileEncryptionNotWorkingAnswer2">
-    <value>Überprüfen Sie, ob Lavasoft Web Companion installiert ist, und deinstallieren Sie es, wenn dies der Fall ist. Wenn Sie immer noch das gleiche problem haben oder die Lavasoft-software nicht installiert haben, Folgen Sie bitte den Anweisungen und &lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/ '&gt;Datei einen vollständigen Fehlerbericht&lt;/a&gt;.</value>
+    <value>Überprüfen Sie, ob Lavasoft Web Companion installiert ist, und deinstallieren Sie es, wenn dies der Fall ist. Wenn Sie immer noch das gleiche problem haben oder die Lavasoft-software nicht installiert haben, Folgen Sie bitte den Anweisungen und &lt;a href='http://www.axcrypt.net/blog/send-complete-error-report/'&gt;Datei einen vollständigen Fehlerbericht&lt;/a&gt;.</value>
   </data>
   <data name="FaqForgotPassword">
     <value>Ich habe mein Passwort vergessen. Was zu tun?</value>
@@ -1919,7 +1919,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Wie melde ich mich an, wenn ich ein vorhandenes Konto habe, für das ich das Passwort nicht kenne?</value>
   </data>
   <data name="FaqSignInWithoutPasswordAnswer1">
-    <value>Wenn Sie gerade AxCrypt 2 gedownloadet, Ihre E-Mail eingegeben und eine Nachricht erhalten Haben, dass Sie bereits ein Konto haben, aber das Passwort nicht kennen, müssen Sie ein &lt;a href= 'https://account.axcrypt.net/en/Home/PasswordReset'&gt;Passwort zurücksetzen&lt;/a&gt;. Klicken Sie auf den link und Folgen Sie den Anweisungen. Wenn Sie bereits ein Sicheres Passwort für Ihre AxCrypt-Dateien verwenden, sollten Sie dieses als Kontopasswort verwenden.</value>
+    <value>Wenn Sie gerade AxCrypt 2 gedownloadet, Ihre E-Mail eingegeben und eine Nachricht erhalten Haben, dass Sie bereits ein Konto haben, aber das Passwort nicht kennen, müssen Sie ein &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Passwort zurücksetzen&lt;/a&gt;. Klicken Sie auf den link und Folgen Sie den Anweisungen. Wenn Sie bereits ein Sicheres Passwort für Ihre AxCrypt-Dateien verwenden, sollten Sie dieses als Kontopasswort verwenden.</value>
   </data>
   <data name="FaqStopFromSecuring">
     <value>Wie kann ich verhindern, dass jemand meine Dateien sichert?</value>
@@ -2428,7 +2428,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Um AxCrypt zu verwenden, müssen Sie &lt;a href='https://account.axcrypt.net/Home/Register'&gt;erstellen Sie ein Konto&lt;/a&gt;. Hier ist ein Schritt-für-Schritt-Video, das wir für Sie erstellt haben, um Ihnen zu Folgen.</value>
   </data>
   <data name="GetStartedInstallingStep1">
-    <value>&lt;a href= '/download'&gt;Download&lt;/a&gt; AxCrypt und installieren Sie es gemäß den Anweisungen des Standardinstallationsassistenten.</value>
+    <value>&lt;a href='/download'&gt;Download&lt;/a&gt; AxCrypt und installieren Sie es gemäß den Anweisungen des Standardinstallationsassistenten.</value>
   </data>
   <data name="GetStartedInstallingStep2">
     <value>Registrieren Sie Ihre E-Mail-Adresse.</value>
@@ -2673,7 +2673,7 @@ bitte beachten Sie die AxCrypt Datenschutzerklärung.</value>
     <value>Melden Sie sich unten kostenlos an, um über unsere Neuigkeiten auf dem Laufenden zu bleiben</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;weitere testimonials finden Sie unter &lt;a href= '/about/awards'&gt;Auszeichnungen &amp; Bewertungen&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;weitere testimonials finden Sie unter &lt;a href='/about/awards'&gt;Auszeichnungen &amp; Bewertungen&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Was andere &lt;span&gt;sagen&lt;/span&gt;</value>
@@ -2994,7 +2994,7 @@ Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer 
     <value>Lesen Sie unseren neuesten Blogbeitrag, um weitere Informationen darüber zu erhalten, wie Sie Ihre Daten schützen können: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
   </data>
   <data name="Introduction1MailText27">
-    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
+    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net"&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
   </data>
   <data name="Introduction1MailText28">
     <value>Folgen Sie uns in unseren sozialen Medien</value>
@@ -3075,7 +3075,7 @@ Ihr Passwort wird nicht auf dem Server gespeichert und die Verbindung ist immer 
     <value>Lesen Sie unseren neuesten Blogbeitrag, um weitere Informationen darüber zu erhalten, wie Sie Ihre Daten schützen können:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
   </data>
   <data name="Introduction2MailText25">
-    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net "&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
+    <value>Kontaktieren Sie uns unter &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href ="mailto:support@axcrypt.net"&gt;support@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
   </data>
   <data name="Introduction2MailText26">
     <value>Folgen Sie uns in unseren sozialen Medien</value>
@@ -3375,17 +3375,8 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/de/Home/Support'&gt;Business Unterstützung&lt;/a&gt;</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/de/Business/TopupSubscription'&gt;Weitere Benutzer hinzufügen&lt;/a&gt;</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
@@ -5112,7 +5103,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Es kann auch möglich sein, dass Sie per Rechnung kaufen, in der Regel abhängig von der Anzahl der Abonnements, die Sie kaufen möchten. Wenn Sie dies tun möchten, wenden Sie sich an die &lt;a href='mailto:reseller@axcrypt.net'&gt;Reselling Team&lt;/a&gt;. Wenn die Zahlung per Banküberweisung erfolgt, kann es länger dauern, bis Ihr Kunde Zugang erhält, da wir zuerst die Zahlung erhalten müssen.</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text1" xml:space="preserve">
-    <value>Der aktuelle Listenpreis pro Mitgliedslizenz für AxCrypt Business finden Sie auf unserer &lt;a href='https://www.axcrypt.net/pricing'&gt;Preisseite&lt; / a&gt;. Sie haben einen persönlichen Rabatt des Wiederverkäufers, der dafür gilt. &lt;br&gt;</value>
+    <value>Der aktuelle Listenpreis pro Mitgliedslizenz für AxCrypt Business finden Sie auf unserer &lt;a href='https://www.axcrypt.net/pricing'&gt;Preisseite&lt;/a&gt;. Sie haben einen persönlichen Rabatt des Wiederverkäufers, der dafür gilt. &lt;br&gt;</value>
   </data>
   <data name="ResellerHelpBillingBlock2Text2" xml:space="preserve">
     <value>Für die Zwecke eines Abonnements wird ein Monat als 30 Tage und ein Jahr als 360 Tage definiert. Wenn ein Abonnement erstellt oder verlängert wird, beträgt der Zeitraum immer einen Monat oder ein Jahr.</value>
@@ -5193,7 +5184,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Hinweis: Es ist völlig in Ordnung, wenn Sie dasselbe Konto in Kombination mit Ihrem eigenen Abonnement verwenden.</value>
   </data>
   <data name="ResellerHelpGettingStartedBlock2Text3">
-    <value>Anmelden bei &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt; / a&gt; um Zugriff auf Ihr Reseller-Konto zu erhalten. Sie sehen Ihr Konto wie im Bild unten gezeigt.</value>
+    <value>Anmelden bei &lt;a href='https://account.axcrypt.net'&gt;account.axcrypt.net&lt;/a&gt;um Zugriff auf Ihr Reseller-Konto zu erhalten. Sie sehen Ihr Konto wie im Bild unten gezeigt.</value>
   </data>
   <data name="ResellerHelpGettingStartedSubTitle" xml:space="preserve">
     <value>Erhalten Sie Zugriff auf Ihr Reseller-Konto</value>
@@ -5262,7 +5253,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Unsere ResellersWiederverkäufer (und ihre Kunden) können sich natürlich auf professionelle technische Unterstützung von AxCrypt verlassen. Online haben wir viele Dokumentationen und Produktinformationen:</value>
   </data>
   <data name="ResellerHelpSupportBlock1Text2" xml:space="preserve">
-    <value>Darüber hinaus steht technischer Unterstützung unter&lt;a href= 'mailto:support@axcrypt.net'&gt; support@axcrypt.net&lt; / a&gt;zur Verfügung. Ihre Zeitzone ist UTC+5: 30 und reagiert normalerweise während der Bürozeiten innerhalb eines Tages.</value>
+    <value>Darüber hinaus steht technischer Unterstützung unter&lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;zur Verfügung. Ihre Zeitzone ist UTC+5: 30 und reagiert normalerweise während der Bürozeiten innerhalb eines Tages.</value>
   </data>
   <data name="ResellerHelpSupportBlock1Text3" xml:space="preserve">
     <value>Natürlich empfehlen wir unseren Resellers immer, AxCrypt zuvor selbst verwendet zu haben, damit sie ihren Kunden bei grundlegenden technischen Fragen helfen können. Ansonsten haben wir auch eine Reihe von Tutorials, die verschiedene Funktionen von AxCrypt erklären. Sie sind auf unserem YouTube-Kanal: &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA&lt;/a&gt;</value>
@@ -5964,7 +5955,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Wir haften nur für Schaden, die auf Fahrlässigkeit von uns zurückzuführen sind. Wir haften nicht für inhärente Schwächen, die in der verwendeten Sicherheitstechnologie entdeckt werden können.</value>
   </data>
   <data name="TermsOfUseBlock17Text4">
-    <value>Ihre Daten werden durch die Verwendung standardisierter starker Verschlüsselungsmethoden vertraulich behandelt, beschrieben unter &lt;a href= '/information/security'&gt;Sicherheit&lt;/a&gt;, &lt;a href= '/information/technical-details' &gt;Technische Details&lt;/a&gt; und in der &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;Quellcode&lt;/a&gt;. Wir garantieren nicht, dass Sie ein ausreichend starkes Passwort wählen.</value>
+    <value>Ihre Daten werden durch die Verwendung standardisierter starker Verschlüsselungsmethoden vertraulich behandelt, beschrieben unter &lt;a href= '/information/security'&gt;Sicherheit&lt;/a&gt;, &lt;a href='/information/technical-details' &gt;Technische Details&lt;/a&gt; und in der &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;Quellcode&lt;/a&gt;. Wir garantieren nicht, dass Sie ein ausreichend starkes Passwort wählen.</value>
   </data>
   <data name="TermsOfUseBlock17Text5">
     <value>Wir stellen nur AxCrypt zur Verfügung und sind niemals verantwortlich für illegale oder betrügerische Handlungen anderer, die Es verwenden. Als Benutzer sind Sie vollständig für Ihre Aktionen mit AxCrypt verantwortlich. Wir haften niemals für Schäden, die durch rechtzeitige Sicherung oder durch vergessene Passwörter hätten verhindert werden können.</value>
@@ -6057,7 +6048,7 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Softwarelizenz</value>
   </data>
   <data name="TermsOfUseBlock7Text1">
-    <value>AxCrypt Free 2.1 für Windows ist freie software; Sie können es unter den Bedingungen der &lt;a href='verteilen und/oder ändern https://www.gnu.org/licenses/gpl-3.0.en.html' &gt; GPL Allgemeine Öffentliche Lizenz Version 3&lt; / a&gt; oder neuere version, wie von der Free Software Foundation veröffentlicht.</value>
+    <value>AxCrypt Free 2.1 für Windows ist freie software; Sie können es unter den Bedingungen der &lt;a href='verteilen und/oder ändern https://www.gnu.org/licenses/gpl-3.0.en.html' &gt; GPL Allgemeine Öffentliche Lizenz Version 3&lt;/a&gt; oder neuere version, wie von der Free Software Foundation veröffentlicht.</value>
   </data>
   <data name="TermsOfUseBlock7Text2">
     <value>AxCrypt Viewer, Premium und Business sind nur unter diesen Nutzungsbedingungen lizenziert, nicht unter GPL. Sie erklären sich damit einverstanden, unsere software nicht zu kopieren, zu ändern, zu bearbeiten, anzupassen, zu reproduzieren oder Maßnahmen zu ergreifen, die unsere software verändern könnten, es sei denn, dies ist für den normalen Gebrauch erforderlich. Sie dürfen AxCrypt nicht weiterverteilen oder weiterverkaufen, es sei denn, dies ist gesondert vereinbart.</value>

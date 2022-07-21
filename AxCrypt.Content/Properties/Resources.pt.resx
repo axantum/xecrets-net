@@ -3495,17 +3495,8 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Suporte Empresarial&lt;/a&gt;</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Adicionar mais utilizadores&lt;/a&gt;</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Para gerir a sua conta, &lt;a&gt;clique aqui&lt;/a&gt;</value>

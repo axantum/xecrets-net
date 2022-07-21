@@ -3444,17 +3444,8 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Home/Support</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Om uw account te beheren, &lt;a&gt;klik hier &lt;/a&gt;</value>
@@ -5109,7 +5100,7 @@ Check uw email &lt;b&gt;{0}&lt;/b&gt; voor een verificatielink.</value>
     <value>Naleving van Regelgeving</value>
   </data>
   <data name="ReleaseNotesDescription">
-    <value>Ga voor volledige details van de Windows Desktop-toepassing en de kernbibliotheek naar de &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt; technische details &lt;/a&gt;. Het wijzigingslogboek voor Android, iOS en Mac verwijst naar niet-openbare probleemtrackers. Cryptografische SHA-256-controlesommen vindt u &lt;a href='/information/cryptographic-hashes-of-files'&gt; hier &lt;/a&gt;.</value>
+    <value>Ga voor volledige details van de Windows Desktop-toepassing en de kernbibliotheek naar de &lt;a href='https://www.axcrypt.net/information/technical-details/'&gt;technische details&lt;/a&gt;. Het wijzigingslogboek voor Android, iOS en Mac verwijst naar niet-openbare probleemtrackers. Cryptografische SHA-256-controlesommen vindt u &lt;a href='/information/cryptographic-hashes-of-files'&gt; hier &lt;/a&gt;.</value>
   </data>
   <data name="ReleaseNotesLinkLabel">
     <value>Release opmerking</value>
