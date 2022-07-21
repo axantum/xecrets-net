@@ -214,13 +214,12 @@ namespace AxCrypt.Desktop.Window
 
         private void createNewAccountLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            string link = string.Format(Texts.LinkToSignUpWebPage, Resolve.UserSettings.AccountWebUrl);
-            Process.Start(link);
+            BrowseUtility.RedirectToAccountWebUrl(Texts.LinkToSignUpWebPage);
         }
 
         private void SignUpSignInDialog_HelpButtonClicked(object sender, CancelEventArgs e)
         {
-            Process.Start(@"https://www.axcrypt.net/information/get-started/windows");
+            BrowseUtility.RedirectTo(Texts.LinkToGettingStarted);
         }
 
         private void ClearErrorProviders()

@@ -3497,17 +3497,8 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Home/Support'&gt;Soporte para Business&lt;/a&gt;</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/en/Business/TopupSubscription'&gt;Agregar más usuarios&lt;/a&gt;</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Para administrar tu cuenta, &lt;a&gt;haz clic aquí&lt;/a&gt;</value>

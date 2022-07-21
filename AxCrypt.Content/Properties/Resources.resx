@@ -2435,6 +2435,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>The selected log type is invalid.</value>
   </data>
+  <data name="GetStartDesktopPageTitle" xml:space="preserve">
+    <value>&lt;span&gt;Encrypt&lt;/span&gt; your files in some clicks!</value>
+  </data>
+  <data name="GetStartDownloadAppText" xml:space="preserve">
+    <value>Download the app</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading" xml:space="preserve">
     <value>Access secured files</value>
   </data>
@@ -2449,6 +2455,93 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GetStartedAxcryptMobileText" xml:space="preserve">
     <value>Use the app with your AxCrypt ID. A Premium subscription is needed to use both Android and iOS apps. When creating a new AxCrypt ID you will automatically get 30-days Premium trial.</value>
+  </data>
+  <data name="GetStartedCloudStorageHeading" xml:space="preserve">
+    <value>Upload from &lt;span&gt;Cloud storages&lt;/span&gt;.</value>
+  </data>
+  <data name="GetStartedCloudStorageText" xml:space="preserve">
+    <value>The Google Drive and DropBox file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud, OneDrive, and others, will be supported soon in the upcoming releases.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading" xml:space="preserve">
+    <value>How to &lt;span&gt;Use&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseIngress" xml:space="preserve">
+    <value>In this quick tutorial we show you the basics functions of AxCrypt! Watch it to learn how to use the program.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1" xml:space="preserve">
+    <value>Start by selecting one or more folders that you’d like to operate on.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows" xml:space="preserve">
+    <value>Right-click to bring up the AxCrypt menu.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep3" xml:space="preserve">
+    <value>To open files for viewing or editing, simply double-click them.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading" xml:space="preserve">
+    <value>&lt;span&gt;Installing AxCrypt&lt;/span&gt; and Setting Up Your AxCrypt ID</value>
+  </data>
+  <data name="GetStartedDesktopInstallingIngress" xml:space="preserve">
+    <value>In order to use AxCrypt you will need to &lt;a href='https://account.axcrypt.net/Home/Register'&gt;create an account&lt;/a&gt;. Here is a step by step video we created for you to follow along.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep1" xml:space="preserve">
+    <value>&lt;a href='/download'&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep2" xml:space="preserve">
+    <value>Register your email address.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep3" xml:space="preserve">
+    <value>Complete the process by entering the activation code and choosing a password.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep4" xml:space="preserve">
+    <value>You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingHeading" xml:space="preserve">
+    <value>Key &lt;span&gt;Sharing&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingIngress" xml:space="preserve">
+    <value>By using the &lt;a href='/information/features'&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep1" xml:space="preserve">
+    <value>Choose the file you want to share.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2" xml:space="preserve">
+    <value>Add or select a contact.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep3" xml:space="preserve">
+    <value>Click OK to give access to your file</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4" xml:space="preserve">
+    <value>Remember that you still have to send the actual file to the recipient!</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementHeading" xml:space="preserve">
+    <value>&lt;span&gt;Password&lt;/span&gt; Management</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementIngress" xml:space="preserve">
+    <value>You can store all your passwords and codes online in a secure manner using the &lt;a href='/information/features'&gt;Password Management&lt;/a&gt; feature. Learn more from video.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1" xml:space="preserve">
+    <value>Login to get access to the password management</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep2" xml:space="preserve">
+    <value>Browse through you existing passwords, or create a new one.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep3" xml:space="preserve">
+    <value>Consider using the suggested password for optimal security.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading" xml:space="preserve">
+    <value>Password &lt;span&gt;Reset&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress" xml:space="preserve">
+    <value>You can now do a password reset. However, after sign in you will not have access to files encrypted with your old password.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1" xml:space="preserve">
+    <value>Go to file options within the application and select “Password Reset” or head directly to &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Password Reset&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2" xml:space="preserve">
+    <value>You will be redirected to our website, where you can request a reset.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3" xml:space="preserve">
+    <value>After verifying, follow the prompt in the email sent to your email address.</value>
   </data>
   <data name="GetStartedEasyAccessHeading" xml:space="preserve">
     <value>Easy access to passwords</value>
@@ -2525,6 +2618,12 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetStartedInstallingVideoTitleWindows" xml:space="preserve">
     <value>AxCrypt: Installing and Setting Up your AxCrypt ID</value>
   </data>
+  <data name="GetStartedKeyShareHeading" xml:space="preserve">
+    <value>&lt;span&gt;Share access&lt;/span&gt; with friends and colleagues</value>
+  </data>
+  <data name="GetStartedKeyShareText" xml:space="preserve">
+    <value>Exchange encrypted data with your team members through our mobile app without providing their own passwords with just one click.</value>
+  </data>
   <data name="GetStartedKeySharingHeading" xml:space="preserve">
     <value>Key Sharing</value>
   </data>
@@ -2563,6 +2662,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GetStartedMobileText4" xml:space="preserve">
     <value>Download AxCrypt for &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android here&lt;/a&gt; and for &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS here.&lt;/a&gt; </value>
+  </data>
+  <data name="GetStartedPasswordHeading" xml:space="preserve">
+    <value>Keep your &lt;span&gt;passwords&lt;/span&gt; save.</value>
   </data>
   <data name="GetStartedPasswordManagementHeading" xml:space="preserve">
     <value>Password Management</value>
@@ -2606,6 +2708,21 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="GetStartedPasswordResetVideoTitleWindows" xml:space="preserve">
     <value>AxCrypt: Password Reset</value>
   </data>
+  <data name="GetStartedPasswordText" xml:space="preserve">
+    <value>With a simple click you can access the AxCrypt online Password Management, which stores all your passwords in a securely encrypted archive online.</value>
+  </data>
+  <data name="GetStartedSecureHeading" xml:space="preserve">
+    <value>&lt;span&gt;Secure&lt;/span&gt; you files in one touch.</value>
+  </data>
+  <data name="GetStartedSecureText" xml:space="preserve">
+    <value>With AxCrypt Mobile Encryption feature, users can encrypt and decrypt data on their Android phone, iPhone, or tablet from anywhere and at any time.</value>
+  </data>
+  <data name="GetStartMobilefootertext" xml:space="preserve">
+    <value>Download our apps to get started</value>
+  </data>
+  <data name="GetStartMobilePageTitle" xml:space="preserve">
+    <value>Advanced &lt;span&gt;encryption&lt;/span&gt; in your pocket!</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
   </data>
@@ -2620,6 +2737,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="GovernmentLinkLabel" xml:space="preserve">
     <value>Government</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Get started</value>
   </data>
   <data name="GuidesLinkLabel" xml:space="preserve">
     <value>Guides</value>
@@ -3497,19 +3617,28 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
   <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Home/Support</value>
+    <value>{0}Home/Support</value>
   </data>
   <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
+    <value>{0}Business/TopupSubscription</value>
+  </data>
+  <data name="LinktoChangePassword" xml:space="preserve">
+    <value>{0}Settings/Password?email={1}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
   </data>
   <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
+    <value>https://www.axcrypt.net/information/guides/get-started</value>
+  </data>
+  <data name="LinkToLoginUrl" xml:space="preserve">
+    <value>{0}Home/Login?email={1}</value>
   </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>To manage your account, &lt;a&gt;click here&lt;/a&gt;</value>
+  </data>
+  <data name="LinkToMobileGetStarted" xml:space="preserve">
+    <value>https://www.axcrypt.net/information/guides/get-started/mobile</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>

@@ -1933,7 +1933,7 @@ Przykro nam, że rozstajesz się z nami i mamy nadzieję, że byłeś zadowolony
     <value>Jak się zalogować, jeśli mam już konto, do którego nie znam hasła?</value>
   </data>
   <data name="FaqSignInWithoutPasswordAnswer1">
-    <value>Jeśli właśnie pobrałeś AxCrypt 2, wprowadziłeś swój adres e-mail i otrzymałeś wiadomość, że masz już konto, ale nie znasz hasła, musisz wystąpić o &lt;a href = 'https: //account.axcrypt.net / pl / Home / PasswordReset '&gt; resetowanie hasła &lt;/a&gt;. Kliknij link i postępuj zgodnie z instrukcjami. Jeśli już używasz silnego hasła do plików AxCrypt, powinieneś rozważyć użycie go jako hasła do konta.</value>
+    <value>Jeśli właśnie pobrałeś AxCrypt 2, wprowadziłeś swój adres e-mail i otrzymałeś wiadomość, że masz już konto, ale nie znasz hasła, musisz wystąpić o &lt;a href='https://account.axcrypt.net/pl/Home/PasswordReset'&gt; resetowanie hasła&lt;/a&gt;. Kliknij link i postępuj zgodnie z instrukcjami. Jeśli już używasz silnego hasła do plików AxCrypt, powinieneś rozważyć użycie go jako hasła do konta.</value>
   </data>
   <data name="FaqStopFromSecuring">
     <value>Jak mogę powstrzymać kogokolwiek przed zabezpieczeniem moich plików?</value>
@@ -3434,17 +3434,8 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Home/Support</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>https://account.axcrypt.net/en/Business/TopupSubscription</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Aby zarządzać swoim kontem, &lt;a&gt; kliknij tutaj &lt;/a&gt;</value>

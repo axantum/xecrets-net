@@ -6623,6 +6623,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Encrypt&lt;/span&gt; your files in some clicks!.
+        /// </summary>
+        public static string GetStartDesktopPageTitle {
+            get {
+                return ResourceManager.GetString("GetStartDesktopPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the app.
+        /// </summary>
+        public static string GetStartDownloadAppText {
+            get {
+                return ResourceManager.GetString("GetStartDownloadAppText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access secured files.
         /// </summary>
         public static string GetStartedAccessSecuredHeading {
@@ -6664,6 +6682,267 @@ namespace AxCrypt.Content.Properties {
         public static string GetStartedAxcryptMobileText {
             get {
                 return ResourceManager.GetString("GetStartedAxcryptMobileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload from &lt;span&gt;Cloud storages&lt;/span&gt;..
+        /// </summary>
+        public static string GetStartedCloudStorageHeading {
+            get {
+                return ResourceManager.GetString("GetStartedCloudStorageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Google Drive and DropBox file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud, OneDrive, and others, will be supported soon in the upcoming releases..
+        /// </summary>
+        public static string GetStartedCloudStorageText {
+            get {
+                return ResourceManager.GetString("GetStartedCloudStorageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to &lt;span&gt;Use&lt;/span&gt;.
+        /// </summary>
+        public static string GetStartedDesktopHowToUseHeading {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopHowToUseHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this quick tutorial we show you the basics functions of AxCrypt! Watch it to learn how to use the program..
+        /// </summary>
+        public static string GetStartedDesktopHowToUseIngress {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopHowToUseIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start by selecting one or more folders that you’d like to operate on..
+        /// </summary>
+        public static string GetStartedDesktopHowToUseStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopHowToUseStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right-click to bring up the AxCrypt menu..
+        /// </summary>
+        public static string GetStartedDesktopHowToUseStep2Windows {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopHowToUseStep2Windows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To open files for viewing or editing, simply double-click them..
+        /// </summary>
+        public static string GetStartedDesktopHowToUseStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopHowToUseStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Installing AxCrypt&lt;/span&gt; and Setting Up Your AxCrypt ID.
+        /// </summary>
+        public static string GetStartedDesktopInstallingHeading {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to use AxCrypt you will need to &lt;a href=&apos;https://account.axcrypt.net/Home/Register&apos;&gt;create an account&lt;/a&gt;. Here is a step by step video we created for you to follow along..
+        /// </summary>
+        public static string GetStartedDesktopInstallingIngress {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;/download&apos;&gt;Download&lt;/a&gt; AxCrypt and install instructed by the standard installation wizard..
+        /// </summary>
+        public static string GetStartedDesktopInstallingStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register your email address..
+        /// </summary>
+        public static string GetStartedDesktopInstallingStep2 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete the process by entering the activation code and choosing a password..
+        /// </summary>
+        public static string GetStartedDesktopInstallingStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can now use AxCrypt’s basic features for free! Additional features are available if you subscribe to &lt;a href=&apos;/premium&apos;&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href=&apos;/business&apos;&gt;AxCrypt Business&lt;/a&gt;..
+        /// </summary>
+        public static string GetStartedDesktopInstallingStep4 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopInstallingStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key &lt;span&gt;Sharing&lt;/span&gt;.
+        /// </summary>
+        public static string GetStartedDesktopKeySharingHeading {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/features&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
+        /// </summary>
+        public static string GetStartedDesktopKeySharingIngress {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the file you want to share..
+        /// </summary>
+        public static string GetStartedDesktopKeySharingStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or select a contact..
+        /// </summary>
+        public static string GetStartedDesktopKeySharingStep2 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click OK to give access to your file.
+        /// </summary>
+        public static string GetStartedDesktopKeySharingStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember that you still have to send the actual file to the recipient!.
+        /// </summary>
+        public static string GetStartedDesktopKeySharingStep4 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopKeySharingStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Password&lt;/span&gt; Management.
+        /// </summary>
+        public static string GetStartedDesktopPasswordManagementHeading {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordManagementHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/features&apos;&gt;Password Management&lt;/a&gt; feature. Learn more from video..
+        /// </summary>
+        public static string GetStartedDesktopPasswordManagementIngress {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordManagementIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login to get access to the password management.
+        /// </summary>
+        public static string GetStartedDesktopPasswordManagementStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordManagementStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse through you existing passwords, or create a new one..
+        /// </summary>
+        public static string GetStartedDesktopPasswordManagementStep2 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordManagementStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consider using the suggested password for optimal security..
+        /// </summary>
+        public static string GetStartedDesktopPasswordManagementStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordManagementStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password &lt;span&gt;Reset&lt;/span&gt;.
+        /// </summary>
+        public static string GetStartedDesktopPasswordResetHeading {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordResetHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can now do a password reset. However, after sign in you will not have access to files encrypted with your old password..
+        /// </summary>
+        public static string GetStartedDesktopPasswordResetIngress {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordResetIngress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to file options within the application and select “Password Reset” or head directly to &lt;a href=&apos;https://account.axcrypt.net/en/Home/PasswordReset&apos;&gt;Password Reset&lt;/a&gt;..
+        /// </summary>
+        public static string GetStartedDesktopPasswordResetStep1 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordResetStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be redirected to our website, where you can request a reset..
+        /// </summary>
+        public static string GetStartedDesktopPasswordResetStep2 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordResetStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After verifying, follow the prompt in the email sent to your email address..
+        /// </summary>
+        public static string GetStartedDesktopPasswordResetStep3 {
+            get {
+                return ResourceManager.GetString("GetStartedDesktopPasswordResetStep3", resourceCulture);
             }
         }
         
@@ -6893,6 +7172,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Share access&lt;/span&gt; with friends and colleagues.
+        /// </summary>
+        public static string GetStartedKeyShareHeading {
+            get {
+                return ResourceManager.GetString("GetStartedKeyShareHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exchange encrypted data with your team members through our mobile app without providing their own passwords with just one click..
+        /// </summary>
+        public static string GetStartedKeyShareText {
+            get {
+                return ResourceManager.GetString("GetStartedKeyShareText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key Sharing.
         /// </summary>
         public static string GetStartedKeySharingHeading {
@@ -7006,6 +7303,15 @@ namespace AxCrypt.Content.Properties {
         public static string GetStartedMobileText4 {
             get {
                 return ResourceManager.GetString("GetStartedMobileText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep your &lt;span&gt;passwords&lt;/span&gt; save..
+        /// </summary>
+        public static string GetStartedPasswordHeading {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordHeading", resourceCulture);
             }
         }
         
@@ -7136,6 +7442,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to With a simple click you can access the AxCrypt online Password Management, which stores all your passwords in a securely encrypted archive online..
+        /// </summary>
+        public static string GetStartedPasswordText {
+            get {
+                return ResourceManager.GetString("GetStartedPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Secure&lt;/span&gt; you files in one touch..
+        /// </summary>
+        public static string GetStartedSecureHeading {
+            get {
+                return ResourceManager.GetString("GetStartedSecureHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt Mobile Encryption feature, users can encrypt and decrypt data on their Android phone, iPhone, or tablet from anywhere and at any time..
+        /// </summary>
+        public static string GetStartedSecureText {
+            get {
+                return ResourceManager.GetString("GetStartedSecureText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download our apps to get started.
+        /// </summary>
+        public static string GetStartMobilefootertext {
+            get {
+                return ResourceManager.GetString("GetStartMobilefootertext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced &lt;span&gt;encryption&lt;/span&gt; in your pocket!.
+        /// </summary>
+        public static string GetStartMobilePageTitle {
+            get {
+                return ResourceManager.GetString("GetStartMobilePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please login to get your subscription! If you don’t have an account yet, you first need to &lt;a href=&quot;{0}Home/Register/&quot;&gt;sign up&lt;/a&gt;..
         /// </summary>
         public static string GetSubscriptionLoginRequiredInfoText {
@@ -7177,6 +7528,15 @@ namespace AxCrypt.Content.Properties {
         public static string GovernmentLinkLabel {
             get {
                 return ResourceManager.GetString("GovernmentLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started.
+        /// </summary>
+        public static string GuidesGetStartedLinkLabelWithPlatform {
+            get {
+                return ResourceManager.GetString("GuidesGetStartedLinkLabelWithPlatform", resourceCulture);
             }
         }
         
@@ -9669,7 +10029,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/en/Home/Support.
+        ///   Looks up a localized string similar to {0}Home/Support.
         /// </summary>
         public static string LinkToBusinessSupportPage {
             get {
@@ -9678,11 +10038,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/en/Business/TopupSubscription.
+        ///   Looks up a localized string similar to {0}Business/TopupSubscription.
         /// </summary>
         public static string LinkToBusinessTopupPage {
             get {
                 return ResourceManager.GetString("LinkToBusinessTopupPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Settings/Password?email={1}.
+        /// </summary>
+        public static string LinktoChangePassword {
+            get {
+                return ResourceManager.GetString("LinktoChangePassword", resourceCulture);
             }
         }
         
@@ -9696,11 +10065,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.axcrypt.net/documentation/get-started/.
+        ///   Looks up a localized string similar to https://www.axcrypt.net/information/guides/get-started.
         /// </summary>
         public static string LinkToGettingStarted {
             get {
                 return ResourceManager.GetString("LinkToGettingStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}Home/Login?email={1}.
+        /// </summary>
+        public static string LinkToLoginUrl {
+            get {
+                return ResourceManager.GetString("LinkToLoginUrl", resourceCulture);
             }
         }
         
@@ -9710,6 +10088,15 @@ namespace AxCrypt.Content.Properties {
         public static string LinkToManageAccountText {
             get {
                 return ResourceManager.GetString("LinkToManageAccountText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.axcrypt.net/information/guides/get-started/mobile.
+        /// </summary>
+        public static string LinkToMobileGetStarted {
+            get {
+                return ResourceManager.GetString("LinkToMobileGetStarted", resourceCulture);
             }
         }
         

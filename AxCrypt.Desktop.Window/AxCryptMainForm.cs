@@ -596,10 +596,10 @@ namespace AxCrypt.Desktop.Window
 
             _cleanDecryptedToolStripMenuItem.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
             _closeAndRemoveOpenFilesToolStripButton.Click += CloseAndRemoveOpenFilesToolStripButton_Click;
-            _feedbackButton.Click += (sender, e) => Process.Start(Texts.LinkToFeedbackWebPage);
-            _helpButton.Click += (sender, e) => Process.Start(Texts.LinkToGettingStarted);
-            _businessPrioritySupportToolStripMenuItem.Click += (sender, e) => Process.Start(Texts.LinkToBusinessSupportPage);
-            _businessAddMoreUsersToolStripMenuItem.Click += (sender, e) => Process.Start(Texts.LinkToBusinessTopupPage);
+            _feedbackButton.Click += (sender, e) => BrowseUtility.RedirectTo(Texts.LinkToFeedbackWebPage);
+            _helpButton.Click += (sender, e) => BrowseUtility.RedirectTo(Texts.LinkToGettingStarted);
+            _businessPrioritySupportToolStripMenuItem.Click += (sender, e) => BrowseUtility.RedirectToAccountWebUrl(Texts.LinkToBusinessSupportPage);
+            _businessAddMoreUsersToolStripMenuItem.Click += (sender, e) => BrowseUtility.RedirectToAccountWebUrl(Texts.LinkToBusinessTopupPage);
             _optionsChangePassphraseToolStripMenuItem.Click += ChangePassphraseToolStripMenuItem_Click;
             _signInToolStripMenuItem.Click += async (sender, e) => await LogOnOrLogOffAndLogOnAgainAsync();
             _notifySignOutToolStripMenuItem.Click += async (sender, e) => await _fileOperationViewModel.IdentityViewModel.LogOnLogOff.ExecuteAsync(null);
@@ -1024,7 +1024,7 @@ namespace AxCrypt.Desktop.Window
             _recentFilesOpenToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.OpenFiles.ExecuteAsync(_mainViewModel.SelectedRecentFiles); };
             _renameToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RandomRenameFiles.ExecuteAsync(null); }, sender, e);
             _restoreAnonymousNamesToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.RandomRename, async (ss, ee) => { await _fileOperationViewModel.RestoreRandomRenameFiles.ExecuteAsync(null); }, sender, e);
-            _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { Process.Start(Texts.LinkToSecretsPageWithUserNameFormat.QueryFormat(Resolve.UserSettings.AccountWebUrl, Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail)); return Task.FromResult<object>(null); }, sender, e); };
+            _secretsToolStripButton.Click += async (sender, e) => { await PremiumFeature_ClickAsync(LicenseCapability.PasswordManagement, (ss, ee) => { BrowseUtility.RedirectToSecretsUrl(Resolve.KnownIdentities.DefaultEncryptionIdentity.UserEmail.Address); return Task.FromResult<object>(null); }, sender, e); };
             _secureDeleteToolStripMenuItem.Click += async (sender, e) => await PremiumFeature_ClickAsync(LicenseCapability.SecureWipe, async (ss, ee) => { await _fileOperationViewModel.WipeFiles.ExecuteAsync(null); }, sender, e);
             _tryBrokenFileToolStripMenuItem.Click += async (sender, e) => { await _fileOperationViewModel.TryBrokenFiles.ExecuteAsync(null); };
             _encryptionUpgradeMenuItem.Click += async (sender, e) => await _fileOperationViewModel.AsyncEncryptionUpgrade.ExecuteAsync(null);
@@ -1104,7 +1104,7 @@ namespace AxCrypt.Desktop.Window
 
         public void RedirectToMyAxCryptIDPage()
         {
-            New<PremiumManager>().RedirectToMyAxCryptIDPage();
+            BrowseUtility.RedirectToMyAxCryptIDPage();
         }
 
         private static async Task SetLegacyOpenMode(FileOperationEventArgs e)
@@ -1441,7 +1441,7 @@ namespace AxCrypt.Desktop.Window
                     break;
 
                 case CommandVerb.Register:
-                    Process.Start(Texts.LinkToSignUpWebPage.QueryFormat(Resolve.UserSettings.AccountWebUrl));
+                    BrowseUtility.RedirectToAccountWebUrl(Texts.LinkToSignUpWebPage);
                     break;
 
                 default:
@@ -1925,12 +1925,12 @@ namespace AxCrypt.Desktop.Window
 
         private void HelpToolStripButton_Click(object sender, EventArgs e)
         {
-            Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
+            BrowseUtility.RedirectTo(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
 
         private void _viewHelpMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
+            BrowseUtility.RedirectTo(Resolve.UserSettings.AxCrypt2HelpUrl.ToString());
         }
 
         /// <summary>

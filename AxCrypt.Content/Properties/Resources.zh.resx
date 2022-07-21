@@ -3420,17 +3420,8 @@ SE-114 29 斯德哥尔摩
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToBusinessSupportPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/zh/首页/支持'&gt;Business支持&lt;/a&gt;</value>
-  </data>
-  <data name="LinkToBusinessTopupPage" xml:space="preserve">
-    <value>&lt;a href='https://account.axcrypt.net/zh/Business/TopupSubscription'&gt;添加更多用户&lt;/a&gt;</value>
-  </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
-  </data>
-  <data name="LinkToGettingStarted" xml:space="preserve">
-    <value>https://www.axcrypt.net/documentation/get-started/</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
