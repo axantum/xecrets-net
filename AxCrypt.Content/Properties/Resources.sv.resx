@@ -3273,7 +3273,7 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
   <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Hem/Registrera dig</value>
+    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Lokal enhetssäkerhet</value>
