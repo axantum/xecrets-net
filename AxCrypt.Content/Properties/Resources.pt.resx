@@ -3504,9 +3504,6 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Home/Register</value>
-  </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Segurança do dispositivo local</value>
   </data>

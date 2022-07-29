@@ -220,11 +220,20 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID 인증</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>마지막 단계...</value>
+  </data>
   <data name="ActivateMailText2">
     <value>우리의 사이버 보안 여정을 당신과 함께하게 되어 매우 기쁩니다.</value>
   </data>
+  <data name="ActivateMailText3">
+    <value>가입을 완료하기 위해서는 이메일 인증이 필요합니다. 이메일 인증은 사용자 본인의 메일주소를 확인해 주며, 본사의 메일 발송을 승인해 줍니다.</value>
+  </data>
   <data name="ActivateMailText4">
     <value>당신의 모바일 기기들을 위해 AxCrypt를 선택하세요!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>본사의 SNS를 팔로우하세요.</value>
   </data>
   <data name="ActivateMailText7">
     <value>문의사항은  &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt;으로 연락주십시오!</value>
@@ -317,6 +326,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>전용 연결 및 홍보 자료에 액세스할 수 있습니다. 마케팅을 통해 캠페인을 시작해보세요.</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>AxCrypt를 추천하여 모든 유료전환에 대한 업계 최상의 커미션을 누리십시오.</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt는 이제 AxCrypt 홍보로 수익을 얻을 수 있는 제휴 기회를 제공합니다. 자, 함께 가보시죠.</value>
@@ -730,6 +742,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BusinessFirstBodyText1">
     <value>AxCrypt는 이제 256비트 AES 암호화를 통해 기업과 조직에 파일 보안을 제공합니다. 사내 파일에 대한 NAT의 클라우드 스토리지 인지도와 키 공유 기능으로 팀원들과 파일을 공유하는 것은 손쉽게 사용할 수 있습니다. 이를 통해 데이터 보호 규정을 준수하는 동시에 비용이 많이 드는 데이터 침해로부터 파일을 보호할 수 있습니다.</value>
+  </data>
+  <data name="BusinessFirstBodyText2">
+    <value>AxCrypt 비즈니스를 사용하면 암호 및 코드를 안전하게 저장하고 관리할 수 있는 암호 관리에 액세스할 수도 있습니다. AxCrypt는 영어, 네덜란드어, 프랑스어, 독일어, 이탈리아어, 한국어, 폴란드어, 포르투갈어, 러시아어, 스페인어, 스웨덴어, 터키어 등을 지원합니다. 당신의 휴대전화에서 AxCrypt 모바일 앱을 사용하면 언제 어디서나 파일을 암호화하고 해제할 수 있습니다.</value>
   </data>
   <data name="BusinessFirstBodyText3" xml:space="preserve">
     <value>더 많은 정보를 원하신다면, &lt;a href='/information/features'&gt;feature page&lt;/a&gt;을 방문해보세요. 이용 약관은 &lt;a href='/information/terms-of-use'&gt;Terms of use&lt;/a&gt;을 참고해주세요.</value>
@@ -1420,6 +1435,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Business 지원팀에서 곧 연락하여 Business 계정 시작을 도와드리겠습니다! 계정으로 이동하려면 [계속]을 클릭하십세요.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>새로 만들기</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>AxCrypt Business에 오신 것을 환영합니다.</value>
   </data>
@@ -1689,6 +1707,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="DownloadMobileBodyText2">
     <value>당신의 기존 보안된 파일이나 공유된 파일은 구독과는 상관없이 언제 어느 플랫폼에서든지 볼 수 있으며, 현재는 모바일 기기를 포함하고 있습니다!</value>
+  </data>
+  <data name="DownloadMobileBodyText3">
+    <value>더보기 &lt;a href={url}&gt;클릭&lt;/a&gt;</value>
   </data>
   <data name="DownloadMobileHeading">
     <value>AxCrypt 모바일</value>
@@ -2300,6 +2321,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>파일 본래의 비밀번호를 박성해 주시기 바랍니다.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>사이즈</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>파일</value>
   </data>
@@ -2462,6 +2486,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>선택한 로고 종류는 유효하지 않습니다.
 </value>
   </data>
+  <data name="GetStartDownloadAppText">
+    <value>앱 다운로드</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>파일 보안 액세스</value>
   </data>
@@ -2476,6 +2503,39 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>나만의 AxCrypt ID로 사용한 앱을 이용해보세요. 안드로이드와 iOS 앱으로 Premium 구독이 가능하며 AxCrypt ID를 생성하시면 자동으로 30일 무료 체험을 즐겨보세요.</value>
+  </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>&lt;span&gt;클라우드 저장소&lt;/span&gt;에서 업로드.</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>구글드라이브와 드롭박스의 파일 암호화는 iOS와 안드로이드 환경 모두에서 지원됩니다. 안드로이드 환경에서의 로컬 저장소 파일 암호화 또는 아이클라우드, 원드라이브와 같은 기타 클라우드 드라이브는 곧 출시되는 버전에서 지원될 예정입니다.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>&lt;span&gt;사용&lt;/span&gt; 방법</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;AxCrypt 설치&lt;/span&gt; 및 아이디 설정</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>공유하고자 하는 파일을 선택하세요.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>연락처 추가 또는 선택</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>수신자에게 여전히 실제 파일을 보내야 한다는 점을 기억하세요!</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>로그인 하여 비밀번호 관리자 엑세스</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>비밀번호 &lt;span&gt;재설정&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>이제 비밀번호 재설정이 가능합니다. 단, 로그인 이후에는 이전 비밀번호로 암호화 파일에 엑세스 할 수 없습니다.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>인증 후 발송된 메일에서 지시한대로 따라하십시오.</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>쉬운 비밀번호 관리</value>
@@ -2633,6 +2693,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: 패스워드 리셋하기</value>
   </data>
+  <data name="GetStartMobilePageTitle">
+    <value>주머니 속의 고급 &lt;span&gt;암호화&lt;/span&gt; !</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>구독 서비스를 이용하시려면 로그인을 해주세요. 계정이 아직 없으시다면 &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;을 클릭해주세요.</value>
   </data>
@@ -2647,6 +2710,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="GovernmentLinkLabel">
     <value>정부</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>시작</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>가이드</value>
@@ -2675,6 +2741,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="HideRecentFilesListTabToolTipText" xml:space="preserve">
     <value>최근 파일 리스트는 비활성화되었습니다. 활성화를 원하시면 옵션을 선택하여 주십시오.</value>
   </data>
+  <data name="HomeGetStartedHeading">
+    <value>AxCrypt &lt;span&gt;시작하기&lt;/span&gt;</value>
+  </data>
   <data name="HomeGetStartedListDownloadHeading">
     <value>1. 다운로드</value>
   </data>
@@ -2693,11 +2762,26 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="HomeGetStartedListShareParagraph">
     <value>간단한 클릭으로 보안 강화가 된 파일을 다른 사람에게 공유해보세요.</value>
   </data>
+  <data name="HomeGetStartedYoutubeDescription">
+    <value>당신의 빠른 진행을 도와줄 &lt;span&gt;튜토리얼&lt;/span&gt;을 시청하세요.</value>
+  </data>
+  <data name="HomeHeroCountries2">
+    <value>대표적 나라들</value>
+  </data>
   <data name="HomeHeroDeliveries2">
     <value>신뢰할 수 있는 배달</value>
   </data>
+  <data name="HomeHeroDownloads2">
+    <value>세계적인 다운로드</value>
+  </data>
   <data name="HomeHeroHeading">
     <value>"매우 간단한 방법을 통한 최고의 암호화 서비스"</value>
+  </data>
+  <data name="HomeHeroHeadingHighlight">
+    <value>"매우 &lt;span&gt;간단한&lt;/span&gt; 설정의 고급 &lt;span&gt;암호화&lt;/span&gt; "</value>
+  </data>
+  <data name="HomeHeroRecommended1">
+    <value>300개 이상의 &lt;span&gt;사이트&lt;/span&gt;</value>
   </data>
   <data name="HomeHeroRecommended2">
     <value>추천</value>
@@ -2710,6 +2794,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="HomeLinkLabel">
     <value>메인</value>
+  </data>
+  <data name="HomeSellingPointAxcryptMobileBody">
+    <value>언제 어디서나 안드로이드폰과 아이폰, 그리고 태블릿에서 파일을 암호화하고 해제하세요.</value>
   </data>
   <data name="HomeSellingPointAxcryptMobileHeading">
     <value>AxCrypt 모바일
@@ -2744,6 +2831,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="HomeSellingPointStrongEncryptionHeading">
     <value>강력한 암호화</value>
+  </data>
+  <data name="HomeStayInTouchHeading">
+    <value>저희와 계속 연락하기</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
     <value>&lt;p&gt;더 많은 테스트모니얼을 보시려면, 이 곳을 확인해주세요&lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
@@ -3011,6 +3101,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="Introduction1MailText10">
     <value>세계 최고의 암호화 소프트웨어</value>
   </data>
+  <data name="Introduction1MailText14">
+    <value>클라우드 저장소</value>
+  </data>
   <data name="Introduction1MailText19">
     <value>더 보기</value>
   </data>
@@ -3023,14 +3116,35 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="Introduction1MailText5">
     <value>당신의 데이터 보안 유지에 관한 더 자세한 방법은 우리의 &lt;strong&gt;&lt;span style="color: #48772c"&gt;블로그 포스트&lt;/span&gt;&lt;/strong&gt;를 살펴보시면 얻을 수 있습니다: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
   </data>
+  <data name="Introduction1MailText9">
+    <value>더 알아보기</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>AxCrypt 모바일은  iOS와 안드로이드 환경 모두에서의 구글 드라이브 파일 암호화 서비스를 지원합니다. 아이클라우드, 드롭박스, 원드라이브 등 기타 클라우드 드라이브 및 로컬 저장소는 추후 출시되는 버전에서 지원될 예정입니다.</value>
+  </data>
   <data name="Introduction2MailText16">
     <value>비밀번호 관리자</value>
   </data>
   <data name="Introduction2MailText20">
     <value>글로벌 이메일 암호화 시장은 2025년 기준 129억 달러 규모가 될 것으로 예상되며, 이는 20.1 퍼센트 증가를 의미한다.</value>
   </data>
+  <data name="Introduction2MailText23">
+    <value>우리의 산업 페이지를 방문하여 본사와 계약을 맺은 다양한 산업 분야들을 확인하시고 그들의 목소리를 들어보세요:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>당신의 데이터 보안을 위한 더 많은 정보를 얻으시려면 우리의 최근 블로그 포스트를 읽어보세요:  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>문의사항은  &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt;으로 연락주세요.</value>
+  </data>
   <data name="Introduction2MailText4">
     <value>&lt;span style= "color: #494949"&gt;전문가용 AxCrypt를 찾으신다면 &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Business&lt;/span&gt;&lt;/strong&gt; 플랜을 추천합니다. 해당 플랜으로 업그레이드하여 당신의 팀워크를 더욱 안전하게 만드십시오. 할인 코드는 &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt; to get a &lt;strong&gt;&lt;span style= "color: #000000"&gt;15% discount&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt; 입니다.</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>&lt;span style="color: #FDBC01"&gt;AxCrypt 구독&lt;/span&gt;의 장점</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>더보기</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>시간을 'hh:mm:ss.mmm'을 토대로 작성해주시기 바랍니다.</value>
@@ -3308,6 +3422,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="LegalLinkLabel" xml:space="preserve">
     <value>법</value>
   </data>
+  <data name="LetsGetStartedTitle" xml:space="preserve">
+    <value>시작합시다!</value>
+  </data>
   <data name="LicenseBusinessNameText" xml:space="preserve">
     <value>Business</value>
     <comment>The general name for the Business plan.</comment>
@@ -3343,9 +3460,6 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
-  </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>로컬 디바이스 보안</value>
@@ -3808,8 +3922,17 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="MobileAppText">
     <value>최소 안드로이드의 4.0.3 버전, 혹은 최소 iOS의 8.0 버전.</value>
   </data>
+  <data name="MobileOnboardingDecryptDescription" xml:space="preserve">
+    <value>데스크탑과 모바일 모두에서 보안된 파일을 &lt;fc&gt;간단히 해제&lt;/fc&gt;</value>
+  </data>
   <data name="MobileOnboardingEncryptDescription" xml:space="preserve">
     <value>민감한 파일들을 직접 당신의 전화기에 &lt;fc&gt;암호화&lt;/fc&gt; 하십시오.</value>
+  </data>
+  <data name="MobileOnboardingOpenFileDescription" xml:space="preserve">
+    <value>휴대전화에서 &lt;fc&gt;AxCrypt 파일&lt;/fc&gt; 열기</value>
+  </data>
+  <data name="MobileOnboardingPasswordManagerDescription" xml:space="preserve">
+    <value>AxCrypt &lt;fc&gt;비밀번호 관리자&lt;/fc&gt; 원클릭 엑세스</value>
   </data>
   <data name="MonthlySubscriptionTitle" xml:space="preserve">
     <value>매 달</value>
@@ -4594,17 +4717,32 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="ProductBusinessHighlights1" xml:space="preserve">
     <value>나머지 팀과의 파일 공유는 우리의 클라우드 저장소 인식 및 사내 파일용 키 공유 기능과 함께라면 아주 쉬운 일입니다. 게다가, 경제적 피해가 큰 데이터 유출로부터 당신의 데이터를 보호함과 동시에 데이터 보호 규정을 준수할 수 있도록 도와줍니다.</value>
   </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>오늘날 AxCrypt는 256비트 AES 암호화를 통한 기업 및 단체용 파일 보안 서비스를 제공합니다.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>&lt;span&gt; 비즈니스 &lt;/span&gt; 구독 &lt;span&gt; 1개월 무료체험을 경험해 보세요.</value>
+  </data>
   <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
     <value>&lt;span&gt; AES-256&lt;/span&gt;으로 더 강력한 암호화</value>
   </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>상품과 기능 설명이 너무 어렵습니다.</value>
   </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>가장 강력한 AES 알고리즘인, AES-256으로 당신의 파일을 암호화 하세요. AES-256 암호화를 통한 모든 단계의 민감/기밀 정보 보호방법은 전 세계적으로 사용되고 있습니다. 단 한번의 클릭으로 새 파일을 자동으로 보호할 수 있을 정도로 폴더 보안이 그 어느 때보다 쉬워졌습니다.</value>
+  </data>
   <data name="ProductPremiumHightlights2" xml:space="preserve">
     <value>당신이 드롭박스나 구글드라이브와 같은 클라우드 스토리지 인지 서비스에 대한 권한이 있더라도 다른 이와의 보안된 파일 공유 작업은 키 공유를 통해서만이 할 수 있습니다. AxCrypt 모바일 앱이 있다면 언제 어느 곳에서나 당신의 휴대전화에서 파일 암호화 혹은 해제 작업을 할 수 있습니다.</value>
   </data>
   <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
     <value> &lt;span&gt; AES-256&lt;/span&gt;으로 더 강력한 암호화</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>보안 폴더의 &lt;span&gt;새 파일 암호화&lt;/span&gt;를 자동으로 하세요.</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>&lt;span&gt;클라우드 저장소 어웨어니스&lt;/span&gt;로 온라인 파일을 보호하세요.</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>그리고 더 많은...</value>
@@ -4645,6 +4783,9 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="ProductTryItForFreeSellingPointStrongerEncryption">
     <value>AES-256 알고리즘을 사용한 강력한 암호화</value>
   </data>
+  <data name="ProductTryItForFreeSellingPointViewYour">
+    <value>모바일 앱으로 즉석에서 파일을 암호화하고 해제하세요</value>
+  </data>
   <data name="ProductTryItForFreeStartButtonLabel">
     <value>지금 무료 체험을 이용해보세요.</value>
   </data>
@@ -4653,6 +4794,15 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>You get:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>누가 &lt;span&gt;뭐라고 해도&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>왜 AxCrypt&lt;span&gt; 비즈니스인가요?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>왜 AxCrypt&lt;span&gt; 프리미엄인가요?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>해독된 파일들 정리 중...</value>
@@ -4888,6 +5038,9 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>최근 파일</value>
+  </data>
+  <data name="RefreshPromptText" xml:space="preserve">
+    <value>새로고침</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>가입에 실패하셨습니다. 이메일 주소를 다시 확인하시고 재시도 해주시기 바랍니다.</value>
@@ -5644,6 +5797,9 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
     <value>계정을 만들고 구독을 신청해보세요.</value>
   </data>
+  <data name="ShareAccessTitle" xml:space="preserve">
+    <value>엑세스 공유</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>새 AxCrypt 사용자</value>
   </data>
@@ -6251,6 +6407,9 @@ AxCrypt 팀</value>
   <data name="TryBusinessPreHeading">
     <value>비지니스 사용자</value>
   </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>대신 AxCrypt 비즈니스 플랜을 사용해 보세요.</value>
+  </data>
   <data name="TryButtonHeadingBusiness">
     <value>business를 경험해보세요</value>
   </data>
@@ -6293,6 +6452,9 @@ AxCrypt 팀</value>
 </value>
     <comment>The name for 'Turkish', in turkish.</comment>
   </data>
+  <data name="TwentyPercentOff">
+    <value>20% 할인</value>
+  </data>
   <data name="TypographyLabel">
     <value>타이포그래피</value>
   </data>
@@ -6311,6 +6473,9 @@ AxCrypt 팀</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>암호화 전체 기능을 보시려면 여기를 클릭해 주세요.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
+    <value>우리의 마법같은 기능들을 언락하세요!</value>
   </data>
   <data name="UnrecognizedError" xml:space="preserve">
     <value>{1} 으로 '{0}'.</value>
