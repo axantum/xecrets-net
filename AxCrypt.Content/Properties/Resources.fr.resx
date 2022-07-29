@@ -2435,6 +2435,12 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>Le type de registre choisi est invalide.</value>
   </data>
+  <data name="GetStartDesktopPageTitle">
+    <value>&lt;span&gt;Chiffrez&lt;/span&gt; vos fichiers en quelques clics!</value>
+  </data>
+  <data name="GetStartDownloadAppText">
+    <value>Téléchargez l'application</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Accédez à vos fichiers sécurisés</value>
   </data>
@@ -2449,6 +2455,93 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Utilisez l'application avec votre AxCrypt ID. Il vous faudra un abonnement Premium pour utiliser l'application, sur Android ou sur iOS. Quand vous créez un nouvel AxCrypt ID, vous recevrez automatiquement 30 jours d'essai Premium gratuit.</value>
+  </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>Téléchargez à partir de &lt;span&gt;stockages cloud&lt;/span&gt;.</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>Le cryptage de fichiers Google Drive et DropBox est pris en charge sur iOS et Android. Le cryptage des fichiers de stockage local ajouté dans Android et d'autres lecteurs cloud, tels que iCloud, OneDrive, et autres, sera bientôt pris en charge dans les prochaines versions.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Comment &lt;span&gt;Utiliser&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>Dans ce rapide tutoriel, nous vous montrons les fonctions de base d'AxCrypt ! Regardez-le pour apprendre à utiliser le programme.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1">
+    <value>Commencez par sélectionner un ou plusieurs dossiers sur lesquels vous souhaitez opérer.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows">
+    <value>Faites un clic droit pour faire apparaître le menu AxCrypt.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep3">
+    <value>Pour ouvrir des fichiers pour les afficher ou les modifier, double-cliquez simplement dessus.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;Installation d'AxCrypt&lt;/span&gt; et configuration de votre identifiant AxCrypt</value>
+  </data>
+  <data name="GetStartedDesktopInstallingIngress">
+    <value>Pour utiliser AxCrypt, vous devrez &lt;a href='https://account.axcrypt.net/Home/Register'&gt;créer un compte&lt;/a&gt;. Voici une vidéo étape par étape que nous avons créée pour que vous puissiez suivre.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep1">
+    <value>&lt;a href='/download'&gt;Téléchargez&lt;/a&gt; AxCrypt et installez-le conformément aux instructions de l'assistant d'installation standard.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep2">
+    <value>Enregistrez votre adresse e-mail.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep3">
+    <value>Terminez le processus en saisissant le code d'activation et en choisissant un mot de passe.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep4">
+    <value>Vous pouvez désormais utiliser gratuitement les fonctionnalités de base d'AxCrypt ! Des fonctionnalités supplémentaires sont disponibles si vous vous abonnez à &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; ou &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingHeading">
+    <value>&lt;span&gt;Partage&lt;/span&gt; de Clé</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingIngress">
+    <value>En utilisant la fonctionnalité &lt;a href='/information/features'&gt;Partage de Clé&lt;/a&gt;, vous pouvez partager vos fichiers sécurisés avec d'autres. Voici un tutoriel sur la façon d'utiliser le Partage de Clé.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>Choisissez le fichier que vous souhaitez partager.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Ajoutez ou sélectionnez un contact.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep3">
+    <value>Cliquez sur OK pour donner accès à votre fichier</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>N'oubliez pas que vous devez toujours envoyer le fichier réel au destinataire!</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementHeading">
+    <value>Gestion des &lt;span&gt;mots de passe&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementIngress">
+    <value>Vous pouvez stocker tous vos mots de passe et codes en ligne de manière sécurisée à l'aide de la fonction &lt;a href='/information/features'&gt;Gestion des mots de passe&lt;/a&gt;. En savoir plus grâce à la vidéo.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Connectez-vous pour accéder à la gestion des mots de passe</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep2">
+    <value>Parcourez vos mots de passe existants, ou créez-en un nouveau.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep3">
+    <value>Pensez à utiliser le mot de passe suggéré pour une sécurité optimale.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>&lt;span&gt;Réinitialiser&lt;/span&gt; mot de passe</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>Vous pouvez maintenant effectuer une réinitialisation du mot de passe. Cependant, après vous être connecté, vous n'aurez pas accès aux fichiers chiffrés avec votre ancien mot de passe.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1">
+    <value>Accédez aux options de fichier dans l'application et sélectionnez "Réinitialisation du mot de passe" ou accédez directement à &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Réinitialisation du mot de passe&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2">
+    <value>Vous serez redirigé vers notre site Web, où vous pourrez demander une réinitialisation.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>Après vérification, suivez l'invite dans l'e-mail envoyé à votre adresse e-mail.</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Accès rapide aux mots de passe</value>
@@ -2524,6 +2617,12 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="GetStartedInstallingVideoTitleWindows">
     <value>AxCrypt : installer et configurer votre AxCrypt ID</value>
+  </data>
+  <data name="GetStartedKeyShareHeading">
+    <value>&lt;span&gt;Partager l'accès&lt;/span&gt; avec des amis et des collègues</value>
+  </data>
+  <data name="GetStartedKeyShareText">
+    <value>Échangez des données cryptées avec les membres de votre équipe via notre application mobile sans fournir leurs propres mots de passe et en un seul clic.</value>
   </data>
   <data name="GetStartedKeySharingHeading">
     <value>Partage de clés</value>
@@ -2606,6 +2705,21 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt : Réinitialisation du mot de passe</value>
   </data>
+  <data name="GetStartedPasswordText">
+    <value>D'un simple clic, vous pouvez accéder à la gestion des mots de passe en ligne AxCrypt, qui stocke tous vos mots de passe dans une archive en ligne sécurisée et cryptée.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>&lt;span&gt;Sécurisez&lt;/span&gt; vos fichiers en un seul clic.</value>
+  </data>
+  <data name="GetStartedSecureText">
+    <value>Avec la fonction AxCrypt Mobile Encryption, les utilisateurs peuvent chiffrer et déchiffrer les données sur leur téléphone Android, iPhone, ou tablette de n'importe où et à tout moment.</value>
+  </data>
+  <data name="GetStartMobilefootertext">
+    <value>Téléchargez nos applications pour commencer</value>
+  </data>
+  <data name="GetStartMobilePageTitle">
+    <value>Le &lt;span&gt;chiffrement&lt;/span&gt; avancé dans votre poche!</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Veuillez vous connecter pour accéder à votre abonnement ! Si vous n'avez pas encore de compte, vous devez d'abord vous &lt;a href="{0}Home/Register/"&gt;inscrire&lt;/a&gt;.</value>
   </data>
@@ -2620,6 +2734,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="GovernmentLinkLabel">
     <value>Gouvernement</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Commencer</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Guides</value>
@@ -3505,9 +3622,6 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
-  </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Sécurité de votre appareil local</value>

@@ -1367,6 +1367,9 @@ Si no aceptas nuestras cookies de sesión temporales, no se puede iniciar la ses
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>¡Nuestro equipo de soporte comercial se comunicará contigo en breve para ayudarte con tu cuenta Business! Haz clic en Continuar para ir a tu cuenta.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Crear nueva</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>¡Felicitaciones! Te damos la bienvenida a AxCrypt Business</value>
   </data>
@@ -2433,6 +2436,12 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>El tipo de registro seleccionado no es válido.</value>
   </data>
+  <data name="GetStartDesktopPageTitle">
+    <value>¡&lt;span&gt;Cifra&lt;/span&gt; tus archivos en solo unos clics!</value>
+  </data>
+  <data name="GetStartDownloadAppText">
+    <value>Descarga la app</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Acceso a archivos protegidos</value>
   </data>
@@ -2447,6 +2456,94 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Usa la app con tu AxCrypt ID. Para utilizarla en iOS y Android se necesita una suscripción Premium . Al crear una nueva AxCrypt ID, obtendrás automáticamente una prueba Premium de 30 días.</value>
+  </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>Carga archivos desde los &lt;span&gt;Almacenamientos en la nube&lt;/span&gt;.</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>El cifrado de archivos de Google Drive y DropBox es compatible con iOS y Android. El cifrado de archivos de almacenamiento local agregado en Android y otras unidades en la nube, como iCloud, OneDrive y otras, se admitirá pronto en las próximas versiones.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Cómo se &lt;span&gt;usa&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>¡En este breve tutorial te mostramos las funciones básicas de AxCrypt! Míralo para aprender a usar el programa.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1">
+    <value>Comienza por seleccionar una o más carpetas en las que le gustaría trabajar.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows">
+    <value>Haz clic derecho para que aparezca el menú de AxCrypt.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep3">
+    <value>Para abrir archivos para verlos o editarlos, simplemente haz doble clic sobre ellos.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;Instalación de AxCrypt&lt;/span&gt; y Configuración de tu AxCrypt ID</value>
+  </data>
+  <data name="GetStartedDesktopInstallingIngress">
+    <value>Para usar AxCrypt, deberás &lt;a href='https://account.axcrypt.net/Home/Register'&gt;crear una cuenta&lt;/a&gt;. Aquí te mostramos un video que creamos para que sigas las instrucciones paso a paso.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep1">
+    <value>&lt;a href='/download'&gt;Descarga&lt;/a&gt; AxCrypt e instálalo siguiendo las instrucciones del asistente de instalación estándar.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep2">
+    <value>Registra tu dirección de correo electrónico.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep3">
+    <value>Completa el proceso ingresando el código de activación y eligiendo una contraseña.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep4">
+    <value>¡Ahora puedes usar las funciones básicas de AxCrypt gratis! Hay funciones adicionales disponibles si te suscribes a &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; o &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingHeading">
+    <value>&lt;span&gt;Intercambio&lt;/span&gt; de contraseña </value>
+  </data>
+  <data name="GetStartedDesktopKeySharingIngress">
+    <value>Al utilizar la función &lt;a href='/information/features'&gt;Compartir clave&lt;/a&gt;, puedes compartir tus archivos protegidos con otras personas. Aquí hay un tutorial sobre cómo usar esta herramienta.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>Selecciona el archivo que quieres compartir.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Agrega o selecciona un contacto.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep3">
+    <value>Haz clic en OK para dar acceso a tu archivo.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>¡Recuerda que todavía tienes que enviar el archivo real al destinatario!</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementHeading">
+    <value>Administración de &lt;span&gt;contraseñas&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementIngress">
+    <value>Puedes almacenar todas tus contraseñas y códigos en línea de manera segura mediante la función &lt;a href='/information/features'&gt;Administración de contraseñas&lt;/a&gt;. Para obtener más información, mira el video.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Inicia sesión para obtener acceso a la administración de contraseñas</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep2">
+    <value>Explora tus contraseñas actuales o crea una nueva.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep3">
+    <value>Ten en cuenta la contraseña sugerida para lograr una seguridad óptima.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>&lt;span&gt;Restablecimiento&lt;/span&gt; de contraseña</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>Ahora puedes hacer un restablecimiento de contraseña. Sin embargo, después de iniciar sesión, no tendrás acceso a los archivos que cifraste con tu contraseña anterior.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1">
+    <value>Ve a las opciones de archivo dentro de la aplicación y selecciona "Restablecimiento de contraseña" o diríjete directamente a &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Restablecimiento de contraseña&lt;/a&gt;..
+</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2">
+    <value>Serás redirigido a nuestro sitio web, donde puedes solicitar un restablecimiento de contraseña.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>Después de verificar, sigue las indicaciones del correo enviado a tu dirección de correo electrónico.</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Acceso simple a las contraseñas</value>
@@ -2523,6 +2620,12 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetStartedInstallingVideoTitleWindows">
     <value>Instalación de AxCrypt y configuración de tu  AxCrypt ID</value>
   </data>
+  <data name="GetStartedKeyShareHeading">
+    <value>&lt;span&gt;Comparte acceso&lt;/span&gt; con amigos y colegas</value>
+  </data>
+  <data name="GetStartedKeyShareText">
+    <value>Intercambia datos cifrados con los miembros de tu equipo a través de nuestra app móvil sin proporcionar tus propias contraseñas con solo un clic.</value>
+  </data>
   <data name="GetStartedKeySharingHeading">
     <value>Uso compartido de claves</value>
   </data>
@@ -2562,6 +2665,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="GetStartedMobileText4">
     <value>Descarga AxCrypt para  &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android aquí&lt;/a&gt; y para &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedPasswordHeading">
+    <value>Mantén tus &lt;span&gt;contraseñas&lt;/span&gt; seguras.</value>
   </data>
   <data name="GetStartedPasswordManagementHeading">
     <value>Administración de contraseñas</value>
@@ -2605,6 +2711,21 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: restablecimiento de contraseña</value>
   </data>
+  <data name="GetStartedPasswordText">
+    <value>Con un simple clic, puedes acceder a la Administración de contraseñas en línea de AxCrypt, que almacena todas tus contraseñas en un archivo cifrado seguro en línea.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>&lt;span&gt;Asegura&lt;/span&gt; tus archivos en un solo clic.</value>
+  </data>
+  <data name="GetStartedSecureText">
+    <value>Con la función AxCrypt Mobile Encryption, los usuarios pueden cifrar y descifrar datos en su teléfono Android, iPhone o tableta desde cualquier lugar y en cualquier momento.</value>
+  </data>
+  <data name="GetStartMobilefootertext">
+    <value>Descarga nuestras apps para empezar</value>
+  </data>
+  <data name="GetStartMobilePageTitle">
+    <value>¡&lt;span&gt;Cifrado&lt;/span&gt; avanzado en tu bolsillo!</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Inicia sesión para obtener tu suscripción. Si aún no tienes una cuenta, primero debes &lt;a href="https://account.axcrypt.net/Home/Register/"&gt; registrarte &lt;/a&gt;.</value>
   </data>
@@ -2619,6 +2740,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   </data>
   <data name="GovernmentLinkLabel">
     <value>Gobierno</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Empezar</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Guías</value>
@@ -3505,9 +3629,6 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
-  </data>
-  <data name="LinkToSignUpWebPage" xml:space="preserve">
-    <value>{0}Home/Register</value>
   </data>
   <data name="LocalDeviceSecurityLabel">
     <value>Seguridad de dispositivo local</value>
