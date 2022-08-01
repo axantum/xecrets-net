@@ -4363,10 +4363,6 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
 
 Veuillez vous connecter à &lt;b&gt;{0}&lt;/b&gt; et finissez le changement d' adresse e-mail ou réinitialisez le mot de passe à partir de ce compte avant de finir le changement.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Vous avez oubliez votre mot de passe? Cliquez ici.</value>
   </data>

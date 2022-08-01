@@ -4152,10 +4152,6 @@ SE-114 29 斯德哥尔摩
 
 请登录&lt;b&gt;{0}&lt;/b&gt;并完成电子邮件更改，或先重置此帐户的密码，然后完成更改。</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>忘记密码？ 点击这里</value>
   </data>

@@ -4187,10 +4187,6 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
     <value>&lt;b&gt;{0}&lt;/b&gt; 의 이메일 계정 변경 사항이 보류 중에 있으므로 이 계정은 비밀번호 변경이 불가능합니다.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>비밀번호를 잊으셨습니까? 여기를 클릭해 주십시오.</value>
   </data>

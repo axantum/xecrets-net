@@ -3973,10 +3973,6 @@ För att återgå till startsidan klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</va
 
 Logga in på &lt;b&gt;{0}&lt;/b&gt; och fullfölj adressbytet first, eller återställ det lösenordet och fullfölj sedan.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Glömt lösenordet? Klicka här</value>
   </data>
