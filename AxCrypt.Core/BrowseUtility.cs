@@ -68,7 +68,12 @@ namespace AxCrypt.Core
         public static void RedirectToAccountWebUrl(string urlTextWithPlaceHolders)
         {
             string link = string.Format(urlTextWithPlaceHolders, AccountWebUriWithLangCode);
-            New<IBrowser>().OpenUri(new Uri(link));
+            UriBuilder url = new UriBuilder(link);
+            if (New<UserSettings>().UserEmail != null) {
+                url.Query = $"email={New<UserSettings>().UserEmail}";
+            }
+
+            New<IBrowser>().OpenUri(url.Uri);
         }
 
         private static string mainSiteUrl = Texts.MainSiteUrl;

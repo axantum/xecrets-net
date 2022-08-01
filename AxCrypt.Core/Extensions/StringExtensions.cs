@@ -436,13 +436,6 @@ namespace AxCrypt.Core.Extensions
             return textIndex == text.Length;
         }
 
-        public static Uri GetPasswordResetUrl(this string userEmail)
-        {
-            UriBuilder url = new UriBuilder(Texts.PasswordResetHyperLink);
-            url.Query = $"email={userEmail}";
-            return url.Uri;
-        }
-
         public static void ProcessChangePassword(this string userEmail)
         {
             BrowseUtility.RedirectToChangePasswordUrl(userEmail);

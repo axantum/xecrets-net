@@ -5,7 +5,6 @@ using AxCrypt.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -209,7 +208,7 @@ namespace AxCrypt.Desktop.Window
 
         private void troubleRememberingLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(_viewModel.PasswordResetUrl.ToString());
+            BrowseUtility.RedirectToAccountWebUrl(Texts.PasswordResetHyperLink);
         }
 
         private void createNewAccountLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

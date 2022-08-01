@@ -1968,8 +1968,7 @@ namespace AxCrypt.Desktop.Window
 
         private void PasswordReset_Click(object sender, EventArgs e)
         {
-            string userEmail = New<UserSettings>().UserEmail.ToString();
-            Process.Start(userEmail.GetPasswordResetUrl().ToString());
+            BrowseUtility.RedirectToAccountWebUrl(Texts.PasswordResetHyperLink);
         }
 
         private void PolicyMenuItem_Click(object sender, EventArgs e)
