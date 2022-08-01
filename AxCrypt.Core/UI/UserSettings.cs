@@ -201,7 +201,7 @@ namespace AxCrypt.Core.UI
 
         public Uri AxCrypt2HelpUrl
         {
-            get { return Load(nameof(AxCrypt2HelpUrl), new Uri("https://www.axcrypt.net/documentation/get-started/")); }
+            get { return Load(nameof(AxCrypt2HelpUrl), new Uri("https://axcrypt.net/information/guides/get-started")); }
             set
             {
                 if (value == null)

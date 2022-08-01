@@ -4,7 +4,6 @@ using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Forms;
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static AxCrypt.Abstractions.TypeResolve;
@@ -128,7 +127,7 @@ namespace AxCrypt.Desktop.Window
 
         private void troubleRememberingLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(_viewModel.PasswordResetUrl.ToString());
+            Core.BrowseUtility.RedirectToAccountWebUrl(Texts.PasswordResetHyperLink);
         }
 
         private void ClearErrorProviders()
