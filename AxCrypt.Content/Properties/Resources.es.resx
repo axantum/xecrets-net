@@ -4370,10 +4370,6 @@ Para volver a la página de inicio, hazclic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.
 
 Por favor, inicia sesión en &lt;b&gt;{0}&lt;/b&gt; y cambia el correo electrónico o, primero, restablece la contraseña de esta cuenta y después cambia el correo electrónico.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>¿Olvidaste tu contraseña? Haga clic aquí</value>
   </data>

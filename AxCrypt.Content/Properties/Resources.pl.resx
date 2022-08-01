@@ -4173,10 +4173,6 @@ Aby powrócić do strony początkowej, kliknij &lt;a href="{1}"&gt; tutaj &lt;/a
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
     <value>Zresetowanie hasła nie jest możliwe dla tego konta, ponieważ oczekuje na zmianę adresu e-mail z &lt;b&gt; {0} &lt;/b&gt;.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Zapomniałeś hasła? Kliknij tutaj</value>
   </data>

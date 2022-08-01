@@ -4191,10 +4191,6 @@ Om terug te keren naar de startpagina, klik &lt;a href="{1}"&gt;hier&lt;/a&gt;.<
 
 Meld u aan bij &lt;b&gt;{0}&lt;/b&gt; en voltooi de emailwijziging, of stel eerst het wachtwoord voor dit account opnieuw in en voltooi de wijziging.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Wachtwoord vergeten? Klik hier</value>
   </data>

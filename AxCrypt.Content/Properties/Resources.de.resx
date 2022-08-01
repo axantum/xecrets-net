@@ -4003,10 +4003,6 @@ Ihre Passwörter werden in einem sicher verschlüsselten Archiv gespeichert und 
 
 Bitte melden Sie sich unter &lt;b&gt;{0}&lt;/b&gt; an und vervollständigen Sie die E-Mail-Änderung, oder setzen Sie das Passwort für dieses Konto zuerst zurück und führen Sie dann die Änderung durch.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Passwort vergessen? Klicken Sie hier</value>
   </data>

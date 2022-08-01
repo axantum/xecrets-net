@@ -4015,10 +4015,6 @@ Başlangıç sayfasına dönmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkl
 
 Lütfen &lt;b&gt;{0}&lt;/b&gt;'e giriş yaparak bu e-mail değişim işlemini tamamlayınız ya da önce bu hesabın parolasını sıfırlayıp daha sonra değişim işlemini tamamlayınız.</value>
   </data>
-  <data name="PasswordResetHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/PasswordReset</value>
-    <comment>The URL to a web page where a password can be reset</comment>
-  </data>
   <data name="PasswordResetLink" xml:space="preserve">
     <value>Şifreni mi unuttun? Buraya tıkla.</value>
   </data>

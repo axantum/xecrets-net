@@ -12111,7 +12111,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://account.axcrypt.net/Home/PasswordReset.
+        ///   Looks up a localized string similar to {0}Home/PasswordReset.
         /// </summary>
         public static string PasswordResetHyperLink {
             get {
