@@ -3375,9 +3375,6 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
     <value>{0}secrets?email={1}&amp;app</value>
   </data>
@@ -3484,9 +3481,6 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Bitte wählen Sie den E-Mail Client:</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Beim aktualisieren der site management-Eigenschaft ist ein parsing-Fehler aufgetreten. Bitte überprüfen Sie, ob Sie das richtige format verwenden.</value>
@@ -5295,9 +5289,6 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
   </data>
   <data name="ResellingLabel">
     <value>Reselling</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Erneut senden</value>

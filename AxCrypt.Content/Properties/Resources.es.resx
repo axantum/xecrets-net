@@ -816,6 +816,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BusinessLinkLabel">
     <value>Business</value>
   </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>Número de teléfono</value>
+  </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Solicitud de soporte prioritario para Business</value>
   </data>
@@ -3621,9 +3624,6 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Para administrar tu cuenta, &lt;a&gt;haz clic aquí&lt;/a&gt;</value>
   </data>
@@ -3733,9 +3733,6 @@ Puedes abrir archivos AxCrypt 1.x heredados, pero a menos que sean convertidos, 
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Por favor, elige un proveedor de correo electrónico:</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Se produjo un error de análisis al actualizar la propiedad de administración del sitio. Verifica si estás usando el formato correcto.</value>
@@ -5761,9 +5758,6 @@ Asunto: Reporte resumido de AxCrypt</value>
   </data>
   <data name="ResellingLabel">
     <value>Distribución</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Reenviar</value>

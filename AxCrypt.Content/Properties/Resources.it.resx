@@ -3499,9 +3499,6 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>&lt;a&gt;Clicca qui&lt;/a&gt; per gestire il tuo account.</value>
   </data>
@@ -3612,9 +3609,6 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Per favore seleziona un'e-mail:</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Si è verificato un errore di analisi durante l'aggiornamento della proprietà di gestione del sito. Verifica di utilizzare il formato corretto.</value>
@@ -5566,9 +5560,6 @@ Oggetto: Rapporto Istantaneo AxCrypt </value>
   </data>
   <data name="ResellingLabel">
     <value>Rivendita</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Invia di nuovo</value>

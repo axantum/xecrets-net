@@ -3270,9 +3270,6 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Hesabınızı yönetmek için, &lt;a&gt;burayı tıklayın&lt;/a&gt;</value>
   </data>
@@ -3381,9 +3378,6 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Lütfen e-posta müşterisini seçin:</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Site yönetimi özelliğini güncelleştirirken ayrıştırma hatası oluştu. Lütfen doğru formatı kullandığınızdan emin olun.</value>
@@ -5331,9 +5325,6 @@ Konu: AxCrypt Report Snapshot</value>
   </data>
   <data name="ResellingLabel">
     <value>Satma</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Tekrar yolla</value>

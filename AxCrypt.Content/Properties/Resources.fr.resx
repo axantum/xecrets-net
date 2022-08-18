@@ -815,6 +815,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BusinessLinkLabel">
     <value>Business</value>
   </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>Numéro de téléphone </value>
+  </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Demande d'assistance Business prioritaire</value>
   </data>
@@ -3614,9 +3617,6 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>Pour gérer votre compte, &lt;a&gt;cliquez ici&lt;/a&gt;</value>
   </data>
@@ -3726,9 +3726,6 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Veuillez sélectionner un email:</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Une erreur d'analyse a eu lieu au moment de mettre à jour les propriétés de gestion du site. Veuillez vérifier que vous utilisez le bon format.</value>
@@ -5756,9 +5753,6 @@ Sujet : Rapport instantané AxCrypt</value>
   </data>
   <data name="ResellingLabel">
     <value>Revente</value>
-  </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
   </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Envoyer de nouveau</value>
