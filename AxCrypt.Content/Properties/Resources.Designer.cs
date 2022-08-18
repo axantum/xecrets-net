@@ -2032,6 +2032,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string BusinessPhoneNumberPlaceholder {
+            get {
+                return ResourceManager.GetString("BusinessPhoneNumberPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Business Priority Support Request.
         /// </summary>
         public static string BusinessPrioritySupportTitle {

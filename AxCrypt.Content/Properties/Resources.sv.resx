@@ -235,6 +235,27 @@
   <data name="ActivateMailSubject" xml:space="preserve">
     <value>AxCrypt ID Verifiering</value>
   </data>
+  <data name="ActivateMailText1">
+    <value>Bara ett steg till...</value>
+  </data>
+  <data name="ActivateMailText2">
+    <value>Vi är exalterade att ha med dig på våran cybersäkerhetsresa.</value>
+  </data>
+  <data name="ActivateMailText3">
+    <value>För att komplettera registreringsprocessen måste du verifiera din mailadress. Genom att göra detta bevisar du att det är du som äger mailadressen och ger oss tillåtelsen att skicka mail till dig.</value>
+  </data>
+  <data name="ActivateMailText4">
+    <value>Skaffa AxCrypt för dina mobila enheter!</value>
+  </data>
+  <data name="ActivateMailText5">
+    <value>Följ oss på Våra Sociala Medier</value>
+  </data>
+  <data name="ActivateMailText6">
+    <value>Läs våran &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;privacy policy&lt;/a&gt; för detaljer.</value>
+  </data>
+  <data name="ActivateMailText7">
+    <value>Kontakta oss på &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
+  </data>
   <data name="ActivateManuallyPageBody" xml:space="preserve">
     <value>&lt;b&gt;Stopp!&lt;/b&gt;
 
@@ -270,6 +291,9 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   <data name="ActiveSubscriptionText" xml:space="preserve">
     <value>Det finns en aktiv prenumeration på detta konto.</value>
   </data>
+  <data name="AddEmailPromptText" xml:space="preserve">
+    <value>Lägg till mail</value>
+  </data>
   <data name="AddFileLabel" xml:space="preserve">
     <value>Öppna AxCrypt-fil</value>
     <comment>Tooltip for "AddFile" button in mobile application</comment>
@@ -281,6 +305,9 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   <data name="AddMoreUsersTitle" xml:space="preserve">
     <value>Lägg till fler användare</value>
   </data>
+  <data name="AddPromptText" xml:space="preserve">
+    <value>Lägg till</value>
+  </data>
   <data name="AddressLabel">
     <value>Adress</value>
   </data>
@@ -291,11 +318,17 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
     <value>Välj en mapp som skall säkras med AxCrypt. Befintliga filer kommer att krypteras.</value>
     <comment>Displayed as prompt, title or description when adding a new secure folder via a folder browser.</comment>
   </data>
+  <data name="AddUserPromptText" xml:space="preserve">
+    <value>Lägg till användare</value>
+  </data>
   <data name="AffiliateAdvantagesHeading">
     <value>AxCrypt Affiliate Marknadsföringsfördelar</value>
   </data>
   <data name="AffiliateAdvantagesSubHeading">
     <value>Oavsett om du är ett företag, bloggare, vloggare, influencer, eller utgivare, erbjuder AxCrypts affiliateprogram några av de bästa belöningarna på marknaden.</value>
+  </data>
+  <data name="AffiliateAdvantagesText1">
+    <value>Generösa provisioner - Vi är stolta att kunna erbjuda en av de bästa provisionerna inom industrin. Kontakta oss för detaljer!</value>
   </data>
   <data name="AffiliateAdvantagesText2">
     <value>Dedikerad Account Manager - Med en dedikerad account manager får all den hjälp du behöver, från installation och setup till enskild rådgivning.</value>
@@ -323,6 +356,9 @@ Välj ett starkt lösenord som är svårgissat, eftersom det kommer att ge åtko
   </data>
   <data name="AffiliateInstructionsStep2">
     <value>Få tillgång till exklusiva anslutningar och kampanjmaterial. Utnyttja våra marknadsföringstillgångar för att få igång dina kampanjer.</value>
+  </data>
+  <data name="AffiliateInstructionsStep3">
+    <value>Hänvisa till AxCrypt och tjäna en av industriernas bästa provisioner på varje betald konvertering</value>
   </data>
   <data name="AffiliateInstructionsSubHeading">
     <value>AxCrypt erbjuder dig nu en affiliatemöjlighet där du får betalt från varje försäljning genom att marknadsföra AxCrypt. Låt oss börja idag!</value>
@@ -366,6 +402,9 @@ Logga nu in med samma lösenord som du angav då.</value>
   <data name="AnnualMonthlySwitcherMonthlyButtonLabel">
     <value>Månadsvist</value>
   </data>
+  <data name="AnnualSubscriptionTitle">
+    <value>Årlig</value>
+  </data>
   <data name="AnonymousRenameMenuText" xml:space="preserve">
     <value>Anonymt Namnbyte</value>
   </data>
@@ -387,6 +426,9 @@ Logga nu in med samma lösenord som du angav då.</value>
   </data>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Lägg till rabattkod</value>
+  </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Tillämpa</value>
   </data>
   <data name="ApplyNowLabel">
     <value>Ansök nu</value>
@@ -768,6 +810,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="BusinessLinkLabel">
     <value>Företag</value>
+  </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>Telefonnummer</value>
   </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Begäran om Företagsprioriterad Support</value>
@@ -1320,6 +1365,9 @@ Om du inte accepterar våra temporära sessionscookies kan du inte logga in och 
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Vår företagssupport kommer att kontakta dig inom kort för att hjälpa dig komma igång med ditt företagskonto! Klicka på fortsätt för att gå till ditt konto.</value>
   </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Skapa ny</value>
+  </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>Grattis och välkommen till AxCrypt Premium!</value>
   </data>
@@ -1536,6 +1584,15 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Ladda ner AxCrypt Appen</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt är kryptering med inga bakdörrar. Utan dina lösenord är filerna borta. Glöm inte ditt lösenord! Ha alltid ordentlig backup för viktiga filer, krypterade eller inte.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures2" xml:space="preserve">
+    <value>Detta är den enda officiella nedladdningssidan för AxCrypt. Kolla upp SH256 hash här.</value>
+  </data>
+  <data name="DownloadAxcryptLatestFeatures3" xml:space="preserve">
+    <value>Tänk på att om du installerar AxCrypt 2 och öppnar gamla filer kommer dessa filer inte längre kunna öppnas i AxCrypt 1.</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt för macOS</value>
   </data>
@@ -1604,6 +1661,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Prova våra prenumerationer i en månad &lt;span&gt;gratis...&lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Du kan kryptera och dekryptera filer på din Android telefin, iPhone eller surfplatta var som helst och när som helst. AxCrypt mobila kryptering stödjer både Android och iOS. AxCrypt stödjer Google Drive Fil kryptering på iOS och Android. Lokal lagringskryptering är endast tillgänglig för Android just nu. Andra molnenheter såsom iCloud, DropBox, OneDrive och andra kommer att stödjas i de kommande uppdateringarna.</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Nederländska)</value>
@@ -2209,6 +2269,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Ange det ursprungliga lösenordet för filen.</value>
     <comment>The header text for the file password dialog.</comment>
   </data>
+  <data name="FileSizeColumnHeaderText" xml:space="preserve">
+    <value>Storlek</value>
+  </data>
   <data name="FileToolStripMenuItemText" xml:space="preserve">
     <value>Arkiv</value>
   </data>
@@ -2264,6 +2327,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="FreeLabel">
     <value>Gratis</value>
+  </data>
+  <data name="FreeTrial">
+    <value>Gratis provperiod</value>
   </data>
   <data name="FullNameLabel">
     <value>Fullständigt namn</value>
@@ -2367,6 +2433,12 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>Den valda loggtypen är ogiltig.</value>
   </data>
+  <data name="GetStartDesktopPageTitle">
+    <value>&lt;span&gt;Kryptera&lt;/span&gt; dina filer med några klickar!</value>
+  </data>
+  <data name="GetStartDownloadAppText">
+    <value>Ladda ner appen</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Få tillgång till säkrade filer</value>
   </data>
@@ -2381,6 +2453,93 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Använd appen med ditt AxCrypt ID. En Premium prenumeration behövs för att kunna använda både Android och iOS appar. Vid skapandet av ett nytt AxCrypt ID får du automatiskt en 30-dagars Premium testperiod.</value>
+  </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>Ladda upp från &lt;span&gt;Molnlagringen&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>Google Drive och DropBox filkrypteringen stöds av både iOS och Android. Fil kryptering för lokal lagring finns på Android och andra molnlagringar såsom iCloud, OneDrive och andra kommer stödjas med senare uppdateringar.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Hur &lt;span&gt;du använder&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>i denna snabba handledningen visar vi basfunktionerna för AxCrypt! Se den or lär hur man använder programmet.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1">
+    <value>Börja genom att välja en eller fler mappar du skulle vilja arbeta på.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows">
+    <value>Högerklicka för att få upp AxCrypt menyn.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep3">
+    <value>För att öppna filer för att se eller ändra, dubbelklicka på dem.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;Installerar AxCrypt&lt;/span&gt; och sätter upp ditt AxCrypt ID</value>
+  </data>
+  <data name="GetStartedDesktopInstallingIngress">
+    <value>För att använda AxCrypt kommer du behöva &lt;a href='https://account.axcrypt.net/Home/Register'&gt; skapa ett konto&lt;/a&gt;. Här är en steg för steg video vi skapade som du kan följa.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep1">
+    <value>&lt;a href='/download'&gt;Ladda ner&lt;/a&gt; AxCrypt och installera instruktionen av standardinstallationsguiden.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep2">
+    <value>Registrera din mailadress</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep3">
+    <value>Komplettera processen genom att skriva in aktiveringskoden och välja ett lösenord.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep4">
+    <value>Du kan nu använda AxCrypts basfunktioner gratis! Extra funktioner är tillgängliga om du prenumererar på &lt;a href='/premium'&gt;AxCrypt Premium&lt;/a&gt; or &lt;a href='/business'&gt;AxCrypt Business&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingHeading">
+    <value>Nyckel&lt;span&gt;Delning&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingIngress">
+    <value>Genom att använda &lt;a href='/information/features'&gt;nyckeldelningen&lt;/a&gt; funktionen kan du dela dina säkra filer med andra. Här är en handledning på hur Nyckeldelningen ska användas.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>Välj filen du vill dela.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Lägg till eller välj kontakt.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep3">
+    <value>Klicka OK för att ge åtkomst till din fil</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>Kom ihåg att du fortfarande måste skicka den faktiska filen till mottagaren!</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementHeading">
+    <value>&lt;span&gt;Lösenords&lt;/span&gt; Hantering</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementIngress">
+    <value>Du kan lagra alla dina lösenord och koder online på ett säkert sätt genom att använda &lt;a href='/information/features'&gt;Lösenordshanteringen&lt;/a&gt; Få veta mer i videon.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Logga in för att få tillgång till lösenordshanteraren</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep2">
+    <value>Bläddra mellan dina existerande lösenord eller skapa en ny.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep3">
+    <value>Överväg att använda det föreslagna lösenordet för optimal säkerhet.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>Lösenords &lt;span&gt;återställning&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>Du kan nu återställa ditt lösenord. Dock, när du loggar in, kommer du inte ha tillgång till filer som krypterades med ditt gamla lösenord.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1">
+    <value>Gå till filalternativ i appen och välj “Lösenordsåterställning” eller gå direkt till &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;Password Reset&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2">
+    <value>Du kommer nu att bli omdirigerad till våran hemsida där du kan begära en återställning.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>Efter verifieringen, följ länken som skickades till dig till din mailadress</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Enkel tillgång till lösenord</value>
@@ -2457,6 +2616,12 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="GetStartedInstallingVideoTitleWindows">
     <value>AxCrypt: Installera och Konfigurera ditt AxCrypt ID</value>
   </data>
+  <data name="GetStartedKeyShareHeading">
+    <value>&lt;span&gt;Dela åtkomst&lt;/span&gt; till vänner och kollegor</value>
+  </data>
+  <data name="GetStartedKeyShareText">
+    <value>Växla krypterad data med dina gruppmedlemmar genom våran mobila app utan egna lösenord med bara ett klick.</value>
+  </data>
   <data name="GetStartedKeySharingHeading">
     <value>Nyckeldelning</value>
   </data>
@@ -2495,6 +2660,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="GetStartedMobileText4">
     <value>Ladda ned AxCrypt för &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android här&lt;/a&gt; och för &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS här.&lt;/a&gt;</value>
+  </data>
+  <data name="GetStartedPasswordHeading">
+    <value>Håll dina &lt;span&gt;lösenord&lt;/span&gt; säkra.</value>
   </data>
   <data name="GetStartedPasswordManagementHeading">
     <value>Lösenordshantering</value>
@@ -2538,6 +2706,21 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: Återställ Lösenord</value>
   </data>
+  <data name="GetStartedPasswordText">
+    <value>Med ett enkelt klick kan du få åtkomst till AxCrypts online lösenordshanterare som lagrar alla dina lösenord i ett säkert krypterat arkiv online.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>&lt;span&gt;Säkra&lt;/span&gt; dina filer med ett klick.</value>
+  </data>
+  <data name="GetStartedSecureText">
+    <value>Med AxCrypt mobila krypterings funktionen kan användare kryptera och dekryptera data på deras Android telefon, iPhone eller surfplatta var som helst när som helst.</value>
+  </data>
+  <data name="GetStartMobilefootertext">
+    <value>Ladda ner våra appar för att komma igång</value>
+  </data>
+  <data name="GetStartMobilePageTitle">
+    <value>Avancerad &lt;span&gt;Kryptering&lt;/span&gt; i din ficka!</value>
+  </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Logga in för att få din prenumeration! Om du inte har ett konto ännu måste du först &lt;a href="{0}Home/Register/"&gt;registrera dig&lt;/a&gt;.</value>
   </data>
@@ -2552,6 +2735,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="GovernmentLinkLabel">
     <value>Myndigheter</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Kom igång</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Guider</value>
@@ -2952,8 +3138,176 @@ Internetåtkomst rekommenderas, och krävs för att starta betalda abonnemang. V
 
 Ditt lösenord lagras inte hos oss, och anslutningen är alltid krypterad.</value>
   </data>
+  <data name="InterviewsLabel">
+    <value>intervjuer</value>
+  </data>
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>Väkommen till AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText1">
+    <value>Tack för att du väljer AxCrypt!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>Världens Bästa Krypterings Mjukvara</value>
+  </data>
+  <data name="Introduction1MailText11">
+    <value>AxCrypt har fått priset "The World's Best Encryption Software" av PC Magazine över de senaste sex åren, inkluderat detta år med en global förekomst på över 20 miljoner nedladdningar.</value>
+  </data>
+  <data name="Introduction1MailText12">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction1MailText13">
+    <value>&lt;span style="font-size: 18px"&gt;Med våran 256-bit kryptering säkrar vi dig att ingen kommer ha tillgång till dina krypterade filer så länge du har kontroll över din egen nyckel. Ta en till på några &lt;strong&gt;&lt;span style="color:gold"&gt;funktioner&lt;/span&gt;&lt;/strong&gt; som kan nyttja dig om du använder ett &lt;strong&gt;&lt;span style="color:gold"&gt;Business eller Premium prenumeration.&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText14">
+    <value>Molnlagring</value>
+  </data>
+  <data name="Introduction1MailText15">
+    <value>AxCrypt gör det enkelt att nå datasäkerhet i molnet. AxCrypt kommer automatiskt att hitta vilka molnlagringar som finns installerade på din dator och skapa en AxCrypt mapp där.</value>
+  </data>
+  <data name="Introduction1MailText16">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction1MailText17">
+    <value>Huvudnyckel</value>
+  </data>
+  <data name="Introduction1MailText18">
+    <value>Huvudnyckeln är en av de viktiga funktionerna som eliminerar risken av att förlora tillgänglig till kritiska filer. Denna fiktionen finns tillgänglig endast för Business-prenumerationer.</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction1MailText2">
+    <value>Inte säker på var du ska börja? Oroa dig inte. För att se till att du får ut det mesta av AxCrypt är vi här för dig:</value>
+  </data>
+  <data name="Introduction1MailText20">
+    <value>Nyckeldelning</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Tillsammans med nyckeldelningsfunktionen tillåter AxCrypt att säkra filer kan öppnas av andra AxCrypt användare med deras egna lösenord</value>
+  </data>
+  <data name="Introduction1MailText22">
+    <value>Lösenordshanteraren</value>
+  </data>
+  <data name="Introduction1MailText23">
+    <value>Med AxCrypts lösenordshanteringsfunktion kan du lagra alla dina lösenord och koder i molnet på ett säkert sätt.</value>
+  </data>
+  <data name="Introduction1MailText24">
+    <value>Med AxCrypt kan du undvika att bli offret för en cyberattack.</value>
+  </data>
+  <data name="Introduction1MailText25">
+    <value>Kika på våran industrisida för att se hur vi betjänar olika företag och vad de säger om oss:&lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText26">
+    <value>Läs våra senate blogginlägg för mer information om hur du kan hålla din data säker: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText27">
+    <value>Kontakta oss på &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
+  </data>
+  <data name="Introduction1MailText28">
+    <value>Följ oss på våra Sociala Medier</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>Här är en guide för dig  &lt;strong&gt;&lt;span style="color: #4d8342;font-size: 16px"&gt; för att sätta igång!&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction1MailText4">
+    <value>Se&lt;strong&gt;våra handledningar&lt;/strong&gt;som kommer att hjälpa dig sätta igång snabbare. Dessa omfattar uppstartsprocessen, nyckelfunktioner för ditt konto, plus några super praktiska tips.</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Ta en titt på &lt;strong&gt;&lt;span style="color: #48772c"&gt;våra blogguppdateringar&lt;/span&gt;&lt;/strong&gt; för mer information om hur du kan hålla ditt data säkert: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none "href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText6">
+    <value>Kika in&lt;strong&gt;&lt;span style="color: #48772c"&gt;våran industrisida&lt;/span&gt;&lt;/strong&gt; för att se hur vi betjänar olika företag och vad de säger om oss: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction1MailText7">
+    <value>Om oss</value>
+  </data>
+  <data name="Introduction1MailText8">
+    <value>Våran mission är att förse individer, mindre team, företagsamheter och större företag med krypteringslösningar som är enkla att använda som aldrig förr. Genom att inkludera nya funktioner siktar vi på att eliminera svårigheten med att använda stark och beprövad kryptografisk teknik.</value>
+  </data>
+  <data name="Introduction1MailText9">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction2MailSubject">
+    <value>Få ut mer av AxCrypt!</value>
+  </data>
+  <data name="Introduction2MailText1">
+    <value>Hej AxCrypt användare!</value>
+  </data>
+  <data name="Introduction2MailText10">
+    <value>AxCrypt gör det enkelt att nå datasäkerhet i molnet. AxCrypt kommer automatiskt att hitta molnlagringstjänster som finns installerade på din dator och skapa en AxCrypt-mapp där.</value>
+  </data>
+  <data name="Introduction2MailText11">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction2MailText12">
+    <value>mobil kryptering</value>
+  </data>
+  <data name="Introduction2MailText13">
+    <value>AxCrypts mobila kryptering stödjer Google Drives filkryptering på iOS och Android. Kryptering för lokal lagring samt andra molnlagringar såsom iCloud, DropBox, etc kommer att stödjas i senare uppdateringar</value>
+  </data>
+  <data name="Introduction2MailText14">
+    <value>Nyckeldelning</value>
+  </data>
+  <data name="Introduction2MailText15">
+    <value>Med nyckeldelningsfunktionen kan användare skicka krypterade filer via mail vilket betyder att filen kan endast bli åtkomlig med en unik nyckel. För mer information, kika in på våran handledningsvideo på YouTube.</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Lösenordshanteraren</value>
+  </data>
+  <data name="Introduction2MailText17">
+    <value>Med AxCrypts lösenordshanterarefunktion kan du lagra alla dina lösenord och koder på vårat moln på ett säkert sätt som ingen förutom dig kan ha tillgång till.</value>
+  </data>
+  <data name="Introduction2MailText18">
+    <value>Varför är det mer nödvändigt än någonsin&lt;strong&gt;att bli krypterad år 2022?&lt;/strong&gt;</value>
+  </data>
+  <data name="Introduction2MailText19">
+    <value>Sedan början av pandemin har det varit en ökning på 300% i rapporterade cyber brott runtom i världen.</value>
+  </data>
+  <data name="Introduction2MailText2">
+    <value>Vi hoppas att du tycker om AxCrypt! Visste du att AxCrypt Business och Premium-prenumerationerna förser dig med mycket mer dataskyddsfunktioner som också hjälper att bygga en säker jobb miljö för ditt team?</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>Till 2025, antar den globala email krypterigsmarknaden att nå 12,9 miljarder dollar vilket representerar en höjning på 20,1 procent.</value>
+  </data>
+  <data name="Introduction2MailText21">
+    <value>Frekvensen av cyber attacker har stigit till 11 sekunder åe2021 och kostnaden för skador på ransomware ökade 57 gånger mer än år 2015.</value>
+  </data>
+  <data name="Introduction2MailText22">
+    <value>Med AxCrypt kan du undvika att bli ett offer för en cyberattack.</value>
+  </data>
+  <data name="Introduction2MailText23">
+    <value>Kika på våran industrisida för att se hur vi betjänar olika företag och vad de säger om oss: &lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/industries"&gt;https://www.axcrypt.net/industries&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText24">
+    <value>Läs våra senaste blogginlägg för mer information om hur du håller din information säker:&lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="https://www.axcrypt.net/blog?ref=0965e19c4cbc22e154f0cccb20cbda40"&gt;https://www.axcrypt.net/blog&lt;/a&gt;</value>
+  </data>
+  <data name="Introduction2MailText25">
+    <value>Kontakta oss på&lt;a style="color: #5f5f5f; font-weight: 800; text-decoration: none" href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
+  </data>
+  <data name="Introduction2MailText26">
+    <value>Följ oss på våra Sociala Medier</value>
+  </data>
+  <data name="Introduction2MailText3">
+    <value>&lt;strong&gt;&lt;span style= "color: #48772c"&gt;AxCrypt Premium&lt;/span&gt;&lt;/strong&gt; &lt;span style= "color: #494949"&gt;ger dig tillgång till ett antal olika funktioner som hjälper dig att skydda dina personuppgifter. Använd rabattkoden &lt;strong&gt;&lt;span style= "color: #48772c"&gt;PREMIUM10&lt;/span&gt;&lt;/strong&gt; för att få &lt;strong&gt;&lt;span style= "color: #48772c"&gt;10%&lt;/span&gt;&lt;/strong&gt; rabatt.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>&lt;span style= "color: #494949"&gt;Om du planerar att använda AxCrypt för professionella sammanhang är då &lt;strong&gt;&lt;span style= "color: #000000"&gt;AxCrypt Företag&lt;/span&gt;&lt;/strong&gt; rätt plan för dig. Uppgradera nu och arbeta med ditt team på ett tryggt och säkert sätt. Använd rabattkoden &lt;strong&gt;&lt;span style= "color: #000000"&gt;BUSINESS15&lt;/span&gt;&lt;/strong&gt;för att få&lt;strong&gt;&lt;span style= "color: #000000"&gt;15% rabatt&lt;/span&gt;&lt;/strong&gt;.&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText5">
+    <value>Fördelar med &lt;span style="color: #FDBC01"&gt;AxCrypt prenumeration&lt;/span&gt;</value>
+  </data>
+  <data name="Introduction2MailText6">
+    <value>Huvudnyckel</value>
+  </data>
+  <data name="Introduction2MailText7">
+    <value>Huvudnyckeln är en av de viktiga funktionerna som eliminerar risken att förlora tillgänglig till kritiska filer. Denna funktion finns tillgänglig endas för Business Business-prenumerationen.</value>
+  </data>
+  <data name="Introduction2MailText8">
+    <value>Läs mer</value>
+  </data>
+  <data name="Introduction2MailText9">
+    <value>Molnlagring</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Ange tid som 'hh:mm:ss.mmm'.</value>
@@ -3263,9 +3617,6 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
   <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
     <value>{0}Home/Login?purchase=true&amp;email={1}&amp;tag={2}</value>
   </data>
-  <data name="LinkToFeedbackWebPage" xml:space="preserve">
-    <value>https://www.axcrypt.net/forums/</value>
-  </data>
   <data name="LinkToManageAccountText" xml:space="preserve">
     <value>&lt;a&gt;Klicka här&lt;/a&gt;, för att hantera ditt konto.</value>
   </data>
@@ -3375,9 +3726,6 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Välj epost-program</value>
     <comment>Header of popup for selecting mail application.</comment>
-  </data>
-  <data name="MainSiteUrl" xml:space="preserve">
-    <value>https://www.axcrypt.net/</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Ett analysfel uppstod vid uppdatering av sidhanteringen. Vänligen kolla att du använder rätt format.</value>
@@ -3725,6 +4073,9 @@ Detta program är licensierat i enlighet med avtalet.
   </data>
   <data name="MoreFeaturesLabel">
     <value>Fler funktioner</value>
+  </data>
+  <data name="MoreFilesLabel" xml:space="preserve">
+    <value>{0} fler filer</value>
   </data>
   <data name="MoreKeyFileToolTop" xml:space="preserve">
     <value>Klicka för att ange namnet på en nyckelfil. Endast relevant om du vet att du använt en nyckelfil när du skyddade filen med den tidigare versionen av AxCrypt.</value>
@@ -4222,6 +4573,9 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PressImagesLabel">
     <value>Pressbilder</value>
   </data>
+  <data name="PressInterviewByPIAText">
+    <value>CTO Jonatan Pettersson intervjuades av privateinternetaccess.com</value>
+  </data>
   <data name="PressLinkLabel">
     <value>Press och media</value>
   </data>
@@ -4314,11 +4668,23 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
   <data name="PricingFeatureListViewer">
     <value>Granskare</value>
   </data>
+  <data name="PricingForOrganizations">
+    <value>För &lt;span&gt;organizations&lt;/span&gt;</value>
+  </data>
+  <data name="PricingForPrivateUsers">
+    <value>För &lt;span&gt;private&lt;/span&gt; användare</value>
+  </data>
   <data name="PricingLinkLabel">
-    <value>Pris</value>
+    <value>Prissättning </value>
+  </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Testa våran prenumeration för &lt;span&gt;en månad gratis&lt;/span&gt;</value>
   </data>
   <data name="PricingSubheading">
     <value>Hur vill du betala?</value>
+  </data>
+  <data name="PricingViewerTierInfo">
+    <value>Du kommer endast att kunna dekryptera redan existerade filer (filer som du själv har krypterat eller filer som andra delat med dig).</value>
   </data>
   <data name="PrimaryReasonForCancelationLabelText" xml:space="preserve">
     <value>Vilka är de primära anledningarna för avbrytandet?</value>
@@ -4496,8 +4862,68 @@ HubSpot är en integrerad mjukvarulösning där vi täcker olika aspekter av vå
   <data name="PrivacyPolicyLinkLabel">
     <value>Integritetspolicy</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Dela filer med resten av teamet är prisbelönt enkelt med våran molnlagringsmedvetenhet och nyckeldelningsfunktionen för filer på plats. Detta tillåter dig att följa data regulationerna medan du försvarar dina filer från dyra dataintrång</value>
+  </data>
+  <data name="ProductBusinessHighlights2" xml:space="preserve">
+    <value>Med AxCrypt Business har du även tillgång till våran lösenordshanterare - där du kan lagra och hantera lösenord och koder säkert. AxCrypt är flerspråkig och stödjer engelska, nederländska, franska, tyska, italienska, koreanska, polska, portugisiska, ryska, spanska, svenska, turkiska och fler kommer. Med AxCrypts mobila app kan du kryptera och dekryptera filer på din telefon var som helst när som helst.</value>
+  </data>
+  <data name="ProductBusinessHighlights3" xml:space="preserve">
+    <value>Fler exklusiva Business funktioner kommer snart. Missa inte!.</value>
+  </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt erbjuder nu filsäkerhet för företag och organisationer - med 256-bits AES kryptering.</value>
+  </data>
+  <data name="ProductBusinessMasterKeySellingPointViews" xml:space="preserve">
+    <value>&lt;span&gt;Huvudnyckeln&lt;/span&gt;eliminerar risken att förlora tillgång till kritiska filer.</value>
+  </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Testa&lt;span&gt;Business&lt;/span&gt;prenumeration&lt;span&gt;en månad gratis&lt;/span&gt;</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Starkare kryptering med &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Produkten och dess funktioner är för komplicerade för mig</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Kryptera dina filer med AES-256 - den starkaste av AES algoritmerna. Den används globalt för att skydda känslig och klassificerad information på alla olika nivåer. Att säkra mappar har aldrig varit enklare, tar bara ett enkelt klick för att automatiskt säkra nya filer.</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Om du också behöver dela säkra filer med andra kommer du ha en nyckeldelning som tar hand om detta för dig, även med tillgång till molnlagringsmedvetenheten för Dropbox, Google Drive, etc. Tillsammans med AxCrypts app kan du kryptera och dekryptera filer på din telefon från var som helst, när som helst.</value>
+  </data>
+  <data name="ProductPremiumHightlights3" xml:space="preserve">
+    <value>Vill du spara lösenord på ett säkert och enkelt sätt? Använd våran lösenordshanterare och generator för att hålla alla dina lösenord säkra i molnet.</value>
+  </data>
+  <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
+    <value>Med AxCrypt Premium har du tillgång till utökade och existerade funktioner!</value>
+  </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>Testa&lt;span&gt;Premium&lt;/span&gt;prenumerationen&lt;span&gt;en månad gratis.&lt;/span&gt;</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Starkare kryptering med &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecure">
+    <value>&lt;span&gt;Kryptera och dekryptera&lt;/span&gt; både från dator och mobil</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;Business Admin tillåter&lt;/span&gt;dig att köpa och hantera licencer för ditt företag.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>Stort&lt;span&gt;business stöd,&lt;/span&gt;ha en egen dedikerad Kontoansvarig</value>
+  </data>
+  <data name="ProductSellingPointsSecureFile" xml:space="preserve">
+    <value>Dela dina säkra filer med&lt;span&gt;Nyckeldelning&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>Kryptera&lt;span&gt;automatiskt nya filer&lt;/span&gt;i säkra mappar</value>
+  </data>
+  <data name="ProductSellingPointsSecureInDevice" xml:space="preserve">
+    <value>&lt;span&gt;Kryptera och dekryptera&lt;/span&gt;både på datorn och telefonen</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Säkra filer online med&lt;span&gt;molnlagringsmedvetenhet&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>Och mycket mer...</value>
@@ -4549,6 +4975,15 @@ HubSpot är en integrerad mjukvarulösning där vi täcker olika aspekter av vå
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>Du erbjuds:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>Vad andra &lt;span&gt;säger&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>Varför AxCrypt&lt;span&gt;BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>Varför AxCrypt&lt;span&gt;PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Rensar öppnade filer...</value>
@@ -4788,6 +5223,9 @@ Vänligen &lt;a href="mailto:business@axcrypt.net"&gt;kontakta oss&lt;/a&gt; så
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Aktuella</value>
+  </data>
+  <data name="RefreshPromptText" xml:space="preserve">
+    <value>Uppdatera</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Misslyckad registrering, kontrollera din inbox och försök igen.</value>
@@ -5279,9 +5717,6 @@ Till: support@axcrypt.net
   <data name="ResellingLabel">
     <value>Återförsäljning</value>
   </data>
-  <data name="ResendActivationHyperLink" xml:space="preserve">
-    <value>https://account.axcrypt.net/Home/Register</value>
-  </data>
   <data name="ResendButtonText" xml:space="preserve">
     <value>Återsänd</value>
     <comment>A button in a verification dialog that causes the verification to be resent.</comment>
@@ -5552,6 +5987,12 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
   <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
     <value>Låt oss sätta upp kontot/prenumerationen</value>
   </data>
+  <data name="ShareAccessTitle" xml:space="preserve">
+    <value>Dela åtkomst</value>
+  </data>
+  <data name="SharedKeyUserListTitle" xml:space="preserve">
+    <value>Alla användare med tillgång till utvalda filer ({0})</value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Ny användare</value>
   </data>
@@ -5559,6 +6000,9 @@ Välj något som är svårt att gissa, eftersom det skyddar allt som har med AxC
     <value>Du kommer att börja säker nyckeldelning med någon som har fått, men ännu inte verifierat en inbjudan att använda AxCrypt.
 
 Det kan vara lämpligt att informera '{0}' direkt om AxCrypt filskydd.</value>
+  </data>
+  <data name="ShareKeyInformationText" xml:space="preserve">
+    <value>Lägg till mottagare till listan på personer som du vill dela filen med.</value>
   </data>
   <data name="ShareKeysFileOpenDialogTitle" xml:space="preserve">
     <value>Välj skyddat dokument att dela</value>
@@ -5698,6 +6142,9 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Din prenumeration kommer förnyas &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>Du kan såklart avbryta när som helst!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Din AxCrypt Premium prenumeration avbröts.</value>
@@ -6159,6 +6606,9 @@ AxCrypt-teamet</value>
   <data name="TryBusinessPreHeading">
     <value>För företagsanvändare</value>
   </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>Testa AxCrypt Business istället!</value>
+  </data>
   <data name="TryButtonHeadingBusiness">
     <value>Prova Företag</value>
   </data>
@@ -6182,6 +6632,9 @@ AxCrypt-teamet</value>
     <value>Prova!</value>
     <comment>Title of "Try It" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="TryOneMonth">
+    <value>&lt;span&gt;Testa&lt;/span&gt; 1-månad</value>
+  </data>
   <data name="TryPremiumHeading">
     <value>Prova Premium</value>
   </data>
@@ -6199,6 +6652,9 @@ AxCrypt-teamet</value>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Turkiska)</value>
     <comment>The name for 'Turkish', in turkish.</comment>
+  </data>
+  <data name="TwentyPercentOff">
+    <value>20% av</value>
   </data>
   <data name="TypographyLabel">
     <value>Typografi</value>
@@ -6237,6 +6693,9 @@ AxCrypt-teamet</value>
   <data name="UnregisterMailSubject" xml:space="preserve">
     <value>AxCrypt ID Raderat</value>
   </data>
+  <data name="UnSharePromptText" xml:space="preserve">
+    <value>Sluta dela</value>
+  </data>
   <data name="UnsubscribeMailFooter" xml:space="preserve">
     <value>För att avbeställa utskick som detta,  &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt; klicka här&lt;/a&gt;.</value>
   </data>
@@ -6264,6 +6723,9 @@ AxCrypt-teamet</value>
   </data>
   <data name="UpgradeSubscriptionTitle" xml:space="preserve">
     <value>Uppgradera till en bättre kryptering!</value>
+  </data>
+  <data name="UpsellBusinessForNotStandardPremiumUsersText" xml:space="preserve">
+    <value>Det verkar som att du kommer från ett företag. Överväg att använda våran Business nivå för att få funktioner som huvudnyckel, företagsadministration etc.</value>
   </data>
   <data name="UsageTipsAnonymousFileHeading">
     <value>Anonyma filnamn</value>

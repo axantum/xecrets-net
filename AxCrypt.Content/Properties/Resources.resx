@@ -813,6 +813,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessLinkLabel" xml:space="preserve">
     <value>Business</value>
   </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Business Priority Support Request</value>
   </data>
