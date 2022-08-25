@@ -6334,23 +6334,11 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Premium &amp; Business Provperiod</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>Vi erbjuder en 30 dagars gratis provperiod för nya användare för AxCrypt Premium eller Business plan. Om du inte gillar produkten kan du avbryta prenumerationen innan provperiodens slut. Detta kan göras närsomhelst. Om du gör det kommer inte provperioden att påverkas utan du kan fortfarande använda alla Premium- och Businessfunktioner under din provperiod. Efter dessa 30 dagar av gratis provperiod kommer vi att debitera ditt kreditkort om du inte har avbrutit din prenumeration. Ingen återbetalning kommer att ske om du inte har avbrutit din prenumeration under provperioden. Vi förbehåller oss rätten att närsomhelst dra tillbaka eller ändra sådana erbjudanden utan förvarning.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>Vi kan erbjuda dig att prova Premium utan kostnad, vilket ger dig tillgång till utökade funktioner under en begränsad period. Sådana erbjudanden görs per person, inte per AxCrypt ID-konto. Vi förbehåller oss rätten att när som helst dra tillbaka eller ändra sådana erbjudanden utan förvarning.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Betalning och förnyelse</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>Vi kommer att förse dig med Premium eller Business plan tjänster efter att ha mottagit betalningen. Dina betalningsuppgifter är aldrig skickade eller lagrade på våra servrar. Din betalda prenumeration kommer automatiskt att förnyas vid slutet av prenumerationsperioden med hjälp av den initiala betalningsmetoden. Om du vill avbryta prenumerationen, måste du göra det innan slutet på din nuvarande prenumerationsperiod. Du kommer då att återgå till Free eller Viewer efter den sista dagen av din prenumerationsperiod.</value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>Vi kan ändra priset på våra betalda prenumerationer när som helst, men det kommer inte att påverka din nuvarande prenumerationsperiod. Prisändringar träder i kraft i början av din nästa prenumerationsperiod. Du accepterar det nya priset genom att fortsätta använda ditt betalda abonnemang efter att prisändringen träder i kraft, eller så kan du välja att tacka nej till det genom att säga upp det innan det träder i kraft.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>Att säga upp din betalda prenumeration kan göras när som helst. Återbetalning erbjuds dock inte. I syfte att testa AxCrypt för att se om det passar dina behov får du en gratis månad i början av din första prenumeration.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Ansvarsfriskrivning från garantier</value>
@@ -6361,23 +6349,14 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock14Heading">
     <value>Utlämnande till tredje part</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>Vi kommer inte att avslöja någon information om dig till tredje part utan ditt uttryckliga samtycke, såvida det inte krävs enligt lag.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Utlämnande till myndigheter och brottsbekämpande myndigheter</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>Teoretiskt, kan vi lagligt tvingas att dela information till statliga myndigheter. Om det krävs enligt lag, fogar vi efter det. Sådan information begränsas per definition till den vi har tillgång till, såsom statistik, åtkomst loggar och krypterade privata nycklar samt lösenordshanteringsdata. Då vi varken har tillgång till dina lösenord, eller krypterad information, kan vi inte lämna ut sådana uppgifter även vid legala krav.</value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>Det är vår övertygelse, även om det förmodligen inte är testat i rättssystemet, att vi inte kan tvingas programmera om AxCrypt på ett sätt som skulle göra det möjligt för oss att avlyssna dina lösenord för att avslöja din information. Om detta skulle hända kommer vi att göra vårt bästa inom våra lagliga rättigheter för att göra detta känt, eventuellt genom att stänga av tjänsten som en sista utväg.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>Immateriella rättigheter</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>"AxCrypt" är registrerat i registret över Europeiska unionens varumärken. Vi äger exklusivt alla rättigheter, titlar och intressen i programvaran och tjänsten, inklusive alla tillhörande immateriella rättigheter.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>Våra ansvar och skyldigheter</value>
@@ -6393,9 +6372,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>Din information hålls konfidentiell genom användning av standardiserade starka krypteringsmetoder, som beskrivs på &lt;a href='/information/security'&gt;Säkerhet&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Tekniska detaljer&lt;/a&gt; a&gt; och i &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;källkoden&lt;/a&gt;. Vi garanterar inte att du väljer ett tillräckligt starkt lösenord.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>Vi erbjuder endast produkten AxCrypt och är aldrig ansvariga för några olagliga eller bedrägliga åtgärder som vidtagits av andra som använder det. Som användare är du helt ansvarig för dina handlingar med AxCrypt. Vi är aldrig ansvariga för skada som kunde ha förhindrats med hjälp av snabb säkerhetskopiering eller som är orsakad av glömda lösenord.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>Vår skyldighet kan aldrig överstiga det belopp som betalats för tjänsten.</value>
@@ -6424,9 +6400,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock1Text1">
     <value>AxCrypt utvecklas och marknadsförs av AxCrypt AB, Birger Jarlsgatan 58, 114 29 Stockholm, Sverige, med organisationsnummer 556967-6181, VAT-nummer SE556967618101.</value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>AxCrypt AB tillhandahåller en nedladdningsbar programvara och onlinetjänster som gemensamt kallas "AxCrypt" för att skydda konfidentialitet genom användning av stark kryptering. Vi gör detta under dessa no-nonsense villkor och undviker långa formuleringar. Juridiska ombud måste tolka avsikten och andan i dessa villkor.</value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>AxCrypt är licensierad till dig under dessa användarvillkor. Genom att använda AxCrypt bekräftar du att du godkänner detta. Du kan vara en individ eller någon form av juridiskt erkänd organisation. Vissa planer är endast tillgängliga för individer eller organisationer.</value>
   </data>
@@ -6435,9 +6408,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>Tjänster som tillhandahålls</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>AxCrypt utför lokal kryptering och dekryptering av filer, samt serverbaserad kryptering och dekryptering av krypteringsnycklar och även en lösenordshanterare om önskad. AxCrypt tillhandahåller olika typer av prenumerationsplaner: AxCrypt Viewer, AxCrypt Free, AxCrypt Premium och AxCrypt Business. Planer erbjuds efter vårt godkännande på utvalda plattformar.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>AxCrypt Viewer Plan</value>
@@ -6448,32 +6418,8 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock3Text2">
     <value>Teknisk support kan erbjudas beroende på tillgänglighet.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>AxCrypt Kostnadsfri Paket</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>AxCrypt Free finns tillgänglig för alla utan kostnad med en open source version av AxCrypt 2.1 för Windows, vilken är licensierad under GPL, version 3. Som ett tillägg till Viewer planen, stöds uppdatering av existerande filer och kryptering av nya filer vid användning av AES-128.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>AxCrypt Premium Plan</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>AxCrypt Premium finnes tillgängligt för köp av alla privatpersoner. Det erbjuds ej till företag eller organisationer; momsavdrag är inte möjligt. Vid (fler än ett) företagsköp av AxCrypt Premium, kommer betalningen återbetalas och prenumerationen avslutas. </value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium erbjuder omfattande funktioner utöver det Konstnadsfria paketet som specificerat på vår &lt;a href='/pricing'&gt;Prissättning&lt;/a&gt;sida.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>Om din Premium-prenumeration tar slut, kommer du att återgå till Gratis eller Viewer planen, den som är mest lämplig.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Teknisk prioriterad e-postsupport erbjuds. Vi garanterar inte att vi löser alla problem.</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>AxCrypt Business Plan</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business finns att köpa för företag och organisationer. Det är inte lämpligt för privatpersoner. Det ger utökade funktioner utöver de andra planerna som specificeras på vår &lt;a href='/pricing'&gt;Priser&lt;/a&gt;-sida. Den innehåller också ett självbetjäningssystem för att tilldela licenser till medlemmarna.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Om din Företagsprenumeration löper ut, faller du tillbaks till Kostnadsfri eller Granskare som det passar.</value>
@@ -6487,17 +6433,11 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock7Text1">
     <value>AxCrypt Free 2.1 för Windows är en fri programvara; du kan omdistribuera den och/eller modifiera den enligt villkoren i &lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;GNU General Public License version 3&lt;/a&gt; eller senare version som publicerats av Free Software Foundation.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>AxCrypt Viewer, Premium och Business licensieras endast under dessa användarvillkor, inte GPL. Du samtycker till att inte kopiera, modifiera, redigera, anpassa, reproducera eller vidta några åtgärder som skulle kunna ändra vår programvara förutom vad som krävs för normal användning. Du får inte distribuera eller sälja AxCrypt vidare, såvida det inte överenskommits separat.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>Ditt ansvar</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>Du samtycker till att endast använda AxCrypt för ändamål som är lagliga, och aldrig på något sätt som kan orsaka oss juridiskt ansvar eller orsaka problem för andra.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>Om du inte följer dessa användarvillkor kan vi stänga av eller avsluta din Premium-plan utan förvarning.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>Personlig Information</value>

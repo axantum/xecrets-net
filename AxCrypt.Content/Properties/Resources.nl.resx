@@ -6108,23 +6108,11 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Premium &amp; Business Proefperiode</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>We bieden een gratis proefperiode van 30 dagen voor het AxCrypt Premium- of Business-abonnement voor nieuwe gebruikers. Als het product u niet bevalt, kunt u het abonnement opzeggen voordat de proefperiode afloopt. Het abonnement opzeggen kan op elk moment. Dit heeft geen invloed op de proefperiode en u kunt tijdens uw proefperiode nog steeds alle functies gebruiken die bij het Business &amp; Premium-abonnement horen. Na de gratis proefperiode van 30 dagen zullen we uw creditcard belasten als u uw abonnement niet hebt opgezegd. Er wordt geen restitutie verleend als u uw abonnement niet hebt opgezegd tijdens de proefperiode. We behouden ons het recht voor om dergelijke aanbiedingen op elk moment zonder voorafgaande kennisgeving in te trekken of te wijzigen.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>We kunnen u aanbieden om Premium gratis te proberen, waardoor u gedurende een beperkte periode toegang krijgt tot uitgebreide functies. Dergelijke aanbiedingen worden gedaan per persoon, niet per AxCrypt ID-account. We behouden ons het recht voor om dergelijke aanbiedingen op elk moment zonder voorafgaande kennisgeving in te trekken of te wijzigen.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Betaling en verlenging</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>We bieden Premium- of Zakelijke-abonnementsservices na ontvangst van de betaling. Uw betalingsgegevens worden nooit verzonden naar of opgeslagen op onze servers. Uw betaalde abonnement wordt automatisch verlengd aan het einde van de abonnementsperiode, gebruikmakend van de initiële betalingsmethode. Als u wilt opzeggen, moet u dit voor het einde van de lopende abonnementsperiode doen. Na de laatste dag van uw huidige abonnementsperiode valt u terug op het Gratis of Viewer abonnement.</value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>We kunnen de prijs van onze betaalde abonnementen op elk moment wijzigen, maar dit heeft geen invloed op uw huidige abonnementsperiode. Prijswijzigingen gaan in bij de start van uw volgende abonnementsperiode. U accepteert de nieuwe prijs door uw betaalde abonnement te blijven gebruiken nadat de prijswijziging van kracht is geworden, of u weigert deze door op te zeggen voordat deze van kracht wordt.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>U kunt uw betaalde abonnement op elk moment opzeggen. Er wordt echter geen restitutie aangeboden. Om AxCrypt uit te proberen om te zien of het aan uw behoeften voldoet, krijgt u een gratis maand bij de start van uw eerste abonnement.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Vrijwaring van garanties</value>
@@ -6135,23 +6123,14 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock14Heading">
     <value>Openbaarmaking aan derden</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>We zullen geen informatie over u, als gevolg van het gebruik van AxCrypt, aan derden bekendmaken zonder uw uitdrukkelijke toestemming, tenzij wettelijk vereist.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Openbaarmaking aan autoriteiten en wetshandhavers</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>In theorie kunnen we wettelijk verplicht zijn om informatie aan overheidsinstanties vrij te geven. Indien wettelijk vereist, zullen wij hieraan voldoen. Dergelijke informatie is per definitie beperkt tot wat we daadwerkelijk hebben, d.w.z. statistieken, toegangslogboeken en versleutelde privésleutels en wachtwoordbeheergegevens. We kennen uw wachtwoord niet, en ook niet welke informatie u hebt versleuteld, en kunnen dit dus ook niet bekendmaken als dit wettelijk verplicht is. </value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>Het is onze overtuiging, hoewel het waarschijnlijk niet is getest in het juridische systeem, dat we niet kunnen worden gedwongen om AxCrypt te herprogrammeren op een manier die het mogelijk zou maken om uw wachtwoorden te onderscheppen om uw informatie vrij te geven. Mocht dit gebeuren, dan zullen we ons best doen om dit binnen onze wettelijke rechten bekend te maken, mogelijk door de service als laatste redmiddel te beëindigen.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>Intellectueel eigendom</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>"AxCrypt" is opgenomen in het register van handelsmerken van de Europese Unie. Wij bezitten exclusief alle rechten, titels en belangen in en op de software en service, inclusief alle bijbehorende intellectuele eigendomsrechten.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>Onze Verantwoordelijkheid en Aansprakelijkheid</value>
@@ -6167,9 +6146,6 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>Uw informatie wordt vertrouwelijk behandeld door het gebruik van gestandaardiseerde sterke coderingsmethoden, beschreven op &lt;a href='/information/security'&gt;Beveiliging&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Technische details&lt;/ a&gt; en in de &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;broncode&lt;/a&gt;. We kunnen niet garanderen dat je een voldoende sterk wachtwoord kiest.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>We bieden alleen AxCrypt en zijn nooit verantwoordelijk voor illegale of frauduleuze acties die worden ondernomen door anderen die het gebruiken. Als gebruiker bent u volledig verantwoordelijk voor uw acties waarbij u AxCrypt gebruikt. Wij zijn nimmer aansprakelijk voor schade die voorkomen had kunnen worden door tijdige back-up, of veroorzaakt door vergeten wachtwoorden.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>Onze aansprakelijkheid kan nooit meer bedragen dan het voor de dienst betaalde bedrag.</value>
@@ -6198,9 +6174,6 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock1Text1">
     <value>AxCrypt wordt gemaakt en op de markt gebracht door AxCrypt AB, Birger Jarlsgatan 58, 114 29 Stockholm, Zweden, bedrijfsregistratienummer 556967-6181, EU-btw-registratienummer SE556967618101. </value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>AxCrypt AB biedt downloadbare software en online services die gezamenlijk "AxCrypt" worden genoemd voor het beschermen van de vertrouwelijkheid door het gebruik van sterke versleuteling. Dat doen we onder deze no-nonsense voorwaarden, waarbij lange juridische formuleringen worden vermeden. Wettelijke vertegenwoordigers moeten de bedoeling en de geest van deze voorwaarden interpreteren.</value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>AxCrypt wordt aan u in licentie gegeven onder deze gebruiksvoorwaarden. Door AxCrypt te gebruiken, bevestigt u hiermee akkoord te gaan. U kunt een particulier zijn of een wettelijk erkende organisatie. Sommige abonnementen zijn alleen beschikbaar voor particulieren of organisaties.</value>
   </data>
@@ -6209,9 +6182,6 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>Aangeboden Diensten</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>AxCrypt voert lokale versleuteling en ontsleuteling van bestanden uit, en server-gebaseerde versleuteling en ontsleuteling van versleutelingssleutels en optioneel een wachtwoordbeheerder. AxCrypt biedt verschillende soorten abonnementen aan: AxCrypt Viewer, AxCrypt Free, AxCrypt Premium en AxCrypt Zakelijk. Abonnementen worden naar onze discretie aangeboden op geselecteerde platforms.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>AxCrypt Viewer-abonnement</value>
@@ -6222,32 +6192,8 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock3Text2">
     <value>Afhankelijk van de beschikbaarheid kan technische ondersteuning worden geboden.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>AxCrypt Gratis Abonnement</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>AxCrypt Gratis is gratis voor iedereen beschikbaar met de open source-versie van AxCrypt 2.1 voor Windows die is gelicentieerd onder GPL, versie 3. Naast het Viewer-abonnement wordt het bijwerken van bestaande en versleuteling van nieuwe bestanden met AES-128 ondersteund.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>AxCrypt Premium Abonnement</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>AxCrypt Premium is te koop voor alle particulieren. Het is niet beschikbaar voor bedrijven en organisaties; geen btw-aftrek mogelijk. In het geval dat een bedrijf (meer dan één) AxCrypt Premium-abonnement koopt in plaats van AxCrypt Business, wordt de betaling terugbetaald en wordt het abonnement geannuleerd. </value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium biedt uitgebreide functies naast het gratis abonnement zoals gespecificeerd op onze &lt;a href='/pricing'&gt;Prijzen&lt;/a&gt; pagina.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>Als uw Premium-abonnement afloopt, valt u terug naar Gratis of Viewer, naargelang het geval.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>E-mailondersteuning met technische prioriteit wordt geboden. We kunnen niet garanderen dat we alle problemen oplossen.</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>AxCrypt Zakelijk Abonnement</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Zakelijk is beschikbaar om te kopen voor bedrijven en organisaties. Het is niet geschikt voor particulieren. Het biedt uitgebreide functies naast de andere abonnementen zoals gespecificeerd op onze &lt;a href='/pricing'&gt;Prijzen &lt;/a&gt; pagina. Het bevat ook een selfservicebeheersysteem om licenties aan leden toe te wijzen.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Als uw Zakelijke abonnement afloopt, valt u terug op het gratis of Viewer abonnement, al naar gelang het geval. </value>
@@ -6261,17 +6207,11 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock7Text1">
     <value>AxCrypt Gratis 2.1 voor Windows is gratis software; u kunt het her-distribueren en/of wijzigen onder de voorwaarden van de &lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;GNU General Public License versie 3&lt;/a&gt; of latere versie zoals gepubliceerd door de Free Software Foundation.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>AxCrypt Viewer, Premium en ZAkelijkzijn alleen gelicentieerd onder deze Gebruiksvoorwaarden, niet onder GPL. U stemt ermee in om onze software niet te kopiëren, aan te passen, te bewerken, te reproduceren of enige actie te ondernemen die onze software zou kunnen wijzigen, behalve zoals vereist voor normaal gebruik. U mag AxCrypt niet her-distribueren of doorverkopen, tenzij afzonderlijk overeengekomen.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>Uw Verantwoordelijkheden</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>U stemt ermee in om AxCrypt alleen te gebruiken voor doeleinden die legaal zijn, en nooit op een manier die ons wettelijke aansprakelijkheid zou kunnen veroorzaken of problemen zou kunnen veroorzaken voor anderen.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>Als u deze gebruiksvoorwaarden niet naleeft, kunnen we uw Premium-abonnement zonder kennisgeving opschorten of beëindigen.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>Persoonlijke Informatie</value>

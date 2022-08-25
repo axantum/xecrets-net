@@ -5930,23 +5930,11 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Premium ve Business Denemesi</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>Yeni kullanıcılar için AxCrypt Premium veya Business planı için 30 günlük ücretsiz deneme sunuyoruz. Ürünü beğenmezseniz, deneme süresi bitmeden aboneliğinizi iptal edebilirsiniz. Aboneliğin iptali herhangi bir zamanda yapılabilir. Bunu yapmak denemeyi etkilemeyecek ve deneme süreniz boyunca Business &amp; Premium aboneliğiyle birlikte gelen tüm özellikleri kullanmaya devam edebileceksiniz. 30 günlük ücretsiz deneme süresinden sonra, aboneliğinizi iptal etmediyseniz kredi kartınızdan ücret tahsil edeceğiz. Deneme süresi boyunca aboneliğinizi iptal etmediyseniz geri ödeme yapılmayacaktır. Bu tür teklifleri önceden haber vermeksizin herhangi bir zamanda geri çekme veya değiştirme hakkını saklı tutarız.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>Size, geniş kapsamlı özelliklere erişmenize izin verecek Premium'u kısa bir süreliğine ücretsiz sunabiliriz. Bu tip teklifler AxCrypt ID hesabı başına değil, kişi başına yapılır. Ön bilgi vermeksizin bu tip teklifleri geri çekme veya düzenleme hakkını saklı tutarız.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Ödeme ve yenileme</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>Ödeme alındıktan sonra Premium veya Business plan hizmetleri sunuyoruz.  Ödeme bilgileriniz sunucularımıza gönderilmez veya sunucularımızda depolanmaz. Ücretli aboneliğiniz, abonelik süresinin bitiminde, ilk ödeme yöntemi kullanılarak otomatik olarak yenilenir.  İptal etmek isterseniz, güncel aboneliğinizin bitiminden önce yapmalısınız. Güncel aboneliğinizin son gününün ardından duruma göre Ücretsiz veya Görüntüleyici plana dönüş yapılır.</value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>Ücretli aboneliklerimizin ücretini herhangi bir zamanda değiştirebiliriz fakat bu değişiklik sizin şu anki abonelik sürenizi etkilemez. Fiyat değişiklikleri bir sonraki abonelik sürenizde geçerli olacaktır. Yeni fiyatı, fiyat değişikliğinin ardından aboneliğinizi devam ettirerek kabul edersiniz veya etkilemeye başlamadan önce iptal ederek reddedersiniz.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>Ücretli aboneliğinizin iptali herhangi bir zamanda yapılabilir. Fakat, geri ödeme yapılmaz. AxCrypt'in ihtiyaçlarınızı karşılayıp karşılamadığını öğrenmeniz için ilk aboneliğinizin birinci ayını ücretsiz kullanabilirsiniz.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Garanti koşulları</value>
@@ -5957,23 +5945,14 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock14Heading">
     <value>Üçüncü taraflara ifşa</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>Yasalar gerektirmedikçe, AxCrypt kullanımından doğan hiçbir bilginizi üçüncü taraflara sizin rızanız olmadan ifşa etmeyeceğiz.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Yetkililer ve emniyet ile bilgi paylaşımı</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>Teorik olarak, kanunlar gereği hükümet yetkilileri ile bilgi paylaşmamız gerekebilir. Bu durumda, kanunlara itaat edeceğiz. Bahsi geçen bilgiler tanım gereği bizde bulunan bilgiler, yani: istatistikler, erişim günlükleri ve şifreli şahsi anahtarlar ve şifre yöneticisi verileri içerir. Şifrelerinize ve şifrelediğiniz bilgilerinize sahip olmadığımız için, kanunlar gerektirse bile paylaşamayız.</value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>Yasal sistemde test edilmemiş olsa da, bilgilerinizi açığa çıkarmak adına şifrelerinizin ifşa edilmesi için AxCrypt'i yeniden programlamaya zorlanmamızın mümkün olmadığını savunuyoruz. Böyle bir durumda, bunu ilan etmek için, son çare olarak hizmeti tamamen kapatmak gerekse bile yasal çerçevede elimizden gelen her şeyi yapacağız.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>Fikri haklar</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>“AxCrypt” Avrupa Birliği Marka Kayıtlarında bulunmaktadır. Yazılım ve servisin bütün hak, isim, menfaatleri, ilgili bütün fikri hakları ile birlikte sadece tarafımıza aittir.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>Sorumluluklarımız ve Yükümlülüklerimiz</value>
@@ -5989,9 +5968,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>Bilgileriniz, &lt;a href='/information/technical-details'&gt;Teknik Ayrıntılar/a&gt; ve &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;kaynak kodunda/a&gt; da belirtildiği gibi standartlaştırılmış güçlü şifreleme yöntemleri ile gizli tutulmaktadır. Yeterli seviyede güçlü bir şifre seçmenizi garanti etmiyoruz.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>Biz sadece AxCrypt'i sunuyoruz ve başkaları tarafından herhangi bir yasadışı veya dolandırıcılık amaçlı kullanımından sorumlu değiliz. Kullanıcı olarak, AxCrypt'i kullanarak yaptığınız her şeyden tamamiyle siz sorumlusunuz. Zamanında alınan yedekler ile önlenebilecek veya unutulan şifreler sebebiyle oluşan herhangi bir hasardan sorumlu değiliz.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>Mali sorumluluğumuz hiçbir zaman hizmet için ödenen miktarı aşamaz.</value>
@@ -6020,9 +5996,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock1Text1">
     <value>AxCrypt, AxCrypt AB, Birger Jarlsgatan 58, 114 29 Stockholm, Sweden, firma kayıt numarası 556967-6181, AB KDV kayıt numarası SE556967618101 tarafından üretilir ve pazarlanır.</value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>AxCrypt AB, güçlü şifreleme kullanarak gizliliği koruyan ve topluca “AxCrypt” adı verilen, indirilebilir yazılım ve çevrimiçi hizmetler sunar. Bunu kuru gürültü yapmadan, uzun hukuki kelimelerden kaçınarak yapıyoruz. Yasal temsilciler, bu terimlerin amacını ve niyetini yorumlamalıdırlar.</value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>AxCrypt, size bu Kullanım Koşulları kapsamında lisanslanmıştır. AxCrypt'i kullanarak bu koşulları kabul ettiğinizi onaylarsınız. Bir birey veya herhangi bir yasal olarak tanınan kuruluş olabilirsiniz. Bazı planlar sadece bireyler veya kuruluşlar içindir.</value>
   </data>
@@ -6031,9 +6004,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>Sağlanılan Hizmetler</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>AxCrypt dosyaların yerel şifreleme ve çözme, şifreleme anahtarlarını sunucu tabanlı şifreleme ve çözme ve seçime bağlı şifre yöneticisi işlemlerini gerçekleştirir. AxCrypt değişik tip abonelik planları sunar: AxCrypt Viewer, AxCrypt Free, AxCrypt Premium ve AxCrypt Business. Planlar seçtiğimiz platformlarda sunulmaktadır.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>AxCrypt Görüntüleyici Plan</value>
@@ -6044,32 +6014,8 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock3Text2">
     <value>Teknik destek sağlanması yoğunluğa bağlıdır.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>AxCrypt Ücretsiz Plan</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>GPL, 3. sürüm kapsamında lisanslı olan AxCrypt Free, Windows için açık kaynaklı AxCrypt 2.1 olarak herkesin erişimine açıktır. Görüntüleyici planın yanı sıra, AES-128 kullanarak mevcut olanların güncelleştirilmesi ve yeni dosyaların şifrelenmesi desteklenir.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>AxCrypt Premium Planı</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>AxCrypt Premium bütün bireyler tarafından satın alınabilir. Firmalara ve kuruluşlara sunulmamaktadır, KDV muaflığı mümkün değildir. Bir firmanın, AxCrypt Business yerine birden fazla AxCrypt Premium aboneliği satın alması durumunda ödeme iade edilip abonelik iptal edilecektir.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium, &lt;a href='/pricing'&gt;Fiyatlandırma&lt;/a&gt; sayfamızda da belirtildiği gibi Ücretsiz planda var olanların yanı sıra ayrıca özellikler de sunmaktadır.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>Eğer Premium aboneliğinizin süresi biterse, duruma göre Ücretsiz veya Görüntüleyiciye geçiş yaparsınız.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Teknik öncelikle e-mail desteği sağlanmaktadır. Bütün sorunlara çözüm bulacağımızı garanti etmiyoruz.</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>AxCrypt Business Planı</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business firmalar ve kuruluşlar için mevcuttur. &lt;a href='/pricing'&gt;Fiyatlandırma&lt;/a&gt; sayfamızda da belirtildiği gibi diğer planlarda var olanların yanı sıra, ayrıca özellikler de sunmaktadır. Üyelere lisans ayırmak adına self-servis yönetimi de içermektedir.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Business aboneliğinizin sonra ermesi durumunda aboneliğiniz, duruma göre Ücretsiz veya Görüntüleyici olacaktır.</value>
@@ -6083,17 +6029,11 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock7Text1">
     <value>Windows için AxCrypt Free 2.1 ücretsiz bir yazılımdır. Özgür Yazılım Vakfı tarafından yayınlanan &lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;GNU 3. sürüm Genel Kamu Lisansı&lt;/a&gt; veya daha güncelinin şartları kapsamında dağıtabilir ve/veya üzerinde düzenleme yapabilirsiniz.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>AxCrypt Viewer, Premium, ve Business GPL değil, sadece bu Kullanım Koşulları altında lisanslanır. Normal kullanım gerektirmediği sürece kopyalamamayı, değiştirmemeyi, düzenlememeyi, adapte etmemeyi, yeniden dağıtmamayı veya yazılımımızı değiştirecek herhangi bir eylemde bulunmamayı kabul edersiniz. Ayrıca anlaşılmadığı sürece, AxCrypt'i yeniden dağıtamazsınız veya bayilik olarak satamazsınız.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>Sorumluluklarınız</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>AxCrypt'i sadece yasal amaçlar için ve hiçbir zaman yasal sorumluklar veya başkaları için sorun teşkil edecek amaçlarla kullanmayı kabul edersiniz.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>Bu Kullanım Koşullarına uymadığınız takdirde ön bilgi vermeden Premium planınızı askıya alabiliriz veya iptal edebiliriz.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>Kişisel Bilgiler</value>
