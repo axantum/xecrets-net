@@ -657,6 +657,93 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>Coût annuel : {0}</value>
   </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Cela va au-delà de la sécurisation des mots de passe&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH3_Text1">
+    <value>Master Key est incroyablement sécurisé ; il peut être considéré comme un système de partage automatique de fichiers avec les responsables de l'entreprise. Les chefs d'entreprise peuvent obtenir des fichiers d'autres employés grâce à elle. Cela élimine le risque de perdre des fichiers importants. Tant que les chefs d'entreprise conservent un enregistrement des mots de passe, aucun papier ne sera jamais perdu à la suite d'une démission ou d'un oubli des employés. Les utilisateurs Business sont les seuls à pouvoir utiliser la fonctionnalité de clé principale. Pour afficher les autres avantages de l'abonnement Business , &lt;a href='https://axcrypt.net/information/features'&gt;cliquez ici&lt;/a&gt;. En savoir plus sur la &lt;a href='https://www.axcrypt.net/blog/master-key'&gt;fonction de clé principale&lt;/a&gt; d'AxCrypt ici</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Clé principale&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Accessible sur divers appareils&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text2">
+    <value>&lt;strong&gt;Vous Pouvez Éviter les Amendes Réglementaires En Utilisant Le Chiffrement :&lt;/strong&gt; Les données confidentielles doivent être chiffrées conformément à certaines lois sur la protection des données,&lt;a href='https://www.lepide.com/blog/5-benefits-of -using-encryption-technology-for-data-protection/'&gt; y compris GDPR et HIPAA &lt;/a&gt;(Loi de 1996 sur la Portabilité et la Responsabilité de l'Assurance Maladie). Lorsqu'un appareil ou un lecteur est perdu ou volé et contient des données non cryptées, l'entreprise est passible de sanctions.</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>Lorsque les données sensibles de votre entreprise sont stockées dans le cloud, le chiffrement peut réduire considérablement le risque de vol de données.</value>
+  </data>
+  <data name="Blog_ICSHRS_H1_Text1">
+    <value>Alors que nous nous adaptons à un nouvel environnement de travail que personne n'aurait jamais imaginé, la pandémie a perturbé les organisations et conduit les responsables des ressources humaines à repenser la façon d'exercer leurs fonctions. Les professionnels des RH se préoccupent non seulement de la santé et du bien-être de leurs employés pendant l'épidémie, mais aussi du traitement sécurisé des formalités administratives et de fournir du confort aux millions de personnes licenciées ou travaillant à distance.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH4_Text1">
+    <value>Le service des ressources humaines peut assister une entreprise dans l'élaboration et la mise en place de restrictions d'accès. Avant même qu'un employé ne soit embauché ou intégré, les RH peuvent établir les données dont ils auront besoin. Ils doivent également s'assurer qu'à la fin de leur contrat, le salarié n'a pas accès à ces informations.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH5_Text1">
+    <value>En cas de violation, le service informatique n'est pas seul responsable de la résolution du problème. C'est aussi une question de ressources humaines, surtout s'il y a des employés impliqués. Les RH sont responsables de la conduite de leurs employés. Cela laisse les organisations ouvertes à la cybercriminalité.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading2">
+    <value>&lt;strong&gt;Élaboration de Politiques &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading4">
+    <value>&lt;strong&gt;Contrôles aux Données et Accès&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_Summary">
+    <value>Les RH sont en charge de nombreuses informations commerciales confidentielles, y compris les informations personnelles des employés, les détails de paiement et d'autres informations qui, si elles sont divulguées, pourraient causer un préjudice important.</value>
+  </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>Importance de la cybersécurité dans le secteur des ressources humaines</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH2_Text1">
+    <value>L'adoption accrue du cloud attire davantage l'attention des pirates éthiques et des opérateurs de cybermenaces. De nombreuses attaques ciblent les vulnérabilités de l'infrastructure cloud, permettant à un attaquant d'exploiter plusieurs cibles avec une seule vulnérabilité. Avec AxCrypt, vous pouvez protéger vos données sur le disque de votre mobile et de votre PC.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH4_Text1">
+    <value>AxCrypt est une société de cybersécurité primée à plusieurs reprises qui propose des solutions de cybersécurité mobiles et PC pour la sécurité personnelle et professionnelle. Le cryptage AxCrypt Mobile va au-delà d'un mot de passe d'écran de verrouillage ordinaire. Il s'agit d'un guichet unique pour protéger toutes vos informations et données personnelles sur vos téléphones mobiles contre les interférences de tiers. Pour ce faire, il stocke les informations de votre téléphone dans un format illisible et confus qui ne peut être lu qu'avec les informations d'identification correctes. Avec le cryptage mobile, vous pouvez être certain que vos données sont protégées même si votre appareil est perdu ou volé. Vous pouvez même échanger des données/fichiers cryptés avec les membres de votre équipe grâce à notre fonction de partage de clé mobile sans fournir vos mots de passe en un seul clic.</value>
+  </data>
+  <data name="Blog_MDPNST_Heading2">
+    <value>Certaines des menaces mobiles à surveiller en 2022</value>
+  </data>
+  <data name="Blog_MDPNST_Summary">
+    <value>Les tendances mondiales en matière de sécurité mobile sont dominées par les campagnes de désinformation, les attaques de la chaîne d'approvisionnement, l'hameçonnage, l'hameçonnage par SMS, l'interception mobile et les logiciels malveillants mobiles.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;Les Règles de Gestion des Données ne sont pas respectées&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH6_Text1">
+    <value>Il n'y a aucune excuse pour ne pas chiffrer maintenant que vos principaux mythes ont été démystifiés. AxCrypt est un logiciel convivial permettant de chiffrer les données sur les appareils mobiles, les ordinateurs et les ordinateurs portables pendant que les données sont en cours d'utilisation, au repos ou en transit. AxCrypt dispose également de diverses fonctionnalités pour répondre à un large éventail d'exigences en matière de sécurité des données.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Essayez un essai gratuit d'un mois, Téléchargez pour les utilisateurs Android ou IOS:</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>Pour la cybersécurité et les affaires en général, les deux dernières années ont été tout sauf typiques.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>Les mots de passe doivent contenir des lettres majuscules et minuscules, des chiffres et des caractères spéciaux (tels que @, £, % et &amp;), et ils doivent comporter au moins dix caractères. Les entreprises doivent établir une politique de sécurité des mots de passe et la mettre à jour fréquemment. De plus, chaque employé de l'organisation doit avoir son propre mot de passe.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Pourquoi Vous Devriez Oganiser Les Mots De Passe De Votre Entreprise.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Quelques Mythes Courants Sur le Chiffrement</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH4_Text1">
+    <value>La plupart des entreprises doivent jouer leurs cartes près de leur poitrine. Les informations sensibles doivent toujours être cryptées pour empêcher les pirates d'y accéder. Les informations financières d'une société peuvent comprendre son compte de revenus et de dépenses, son compte de débiteurs et de créanciers, ses actifs, ses numéros de compte, son historique de paiement, etc. Ces types de données doivent être protégés contre les intrus. Chaque fois que ces données sont exposées par des cybercriminels, l'entreprise court un grand danger d'être lésée et les clients et le personnel qui ont fait confiance à l'organisation avec leurs données sont incommodés.</value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>Quelles Données Votre Entreprise Doit-Elle Chiffrer ?</value>
+  </data>
+  <data name="Blog_TIEDTC_Text1">
+    <value>De nombreuses entreprises ne pensent pas que leurs données doivent être cryptées. Ils comprennent la valeur de cette technologie pour protéger des informations extrêmement sensibles et privées, mais ils ne pensent pas que cela s'applique à eux car ils ne sont pas propriétaires de ces informations. L'un des développements les plus importants en matière de cybersécurité devrait être la sécurité confidentielle. Les informations privées, les données sensibles et la sécurité des communications entre les relations et les entreprises sont toutes protégées par elle.</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>L'importance du Cryptage de Toutes les Données de l'Entreprise</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text1">
+    <value>La plupart des algorithmes de chiffrement contemporains, protocoles, et technologies  utilisent AES 256-bits, qui figure parmi les &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt; techniques de chiffrements les plus sûres et les plus sécurisées&lt;/a&gt; après le chiffrement 128-bits et 192-bits.</value>
+  </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
   </data>
@@ -6371,23 +6458,11 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Essai Premium &amp; Business</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>Nous offrons 30 jours d'essai gratuit pour la formule AxCrypt Premium ou Business pour les nouveaux utilisateurs. Si vous n'appréciez pas le produit, vous pouvez annuler la souscription avant la fin de la période d'essai. L'annulation de la souscription peut être effectuée à tout moment. Cela n'affectera pas la période d'essai et vous pourrez toujours utiliser toutes les fonctionnalités de la formule Business et Premium pendant votre période d'essai. Après les 30 jours d'essai gratuit, nous débiterons votre carte de crédit si vous n'avez pas annulé votre abonnement. Aucun remboursement ne sera effectué si vous n'avez pas annulé votre abonnement pendant la période d'essai. Nous nous réservons le droit de retirer ou de modifier ces offres à tout moment et ce, sans préavis.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>Nous pouvons vous offrir d'essayer Premium gratuitement, en vous donnant accès à des fonctionnalités poussées pour un temps limité. Ces offres sont faites à la personne, pas en fonction de l'AxCrypt ID. Nous nous réservons le droit de retirer ou de modifier ces offres à n'importe quel moment sans préavis.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Paiement et renouvellement</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>Nous vous donnerons accès aux services Premium ou Business après avoir reçu votre paiement. Vos coordonnées bancaires ne sont jamais envoyées ou conservées dans nos serveurs. Votre abonnement payant se renouvellera automatiquement en arrivant à échéance, en utilisant la méthode de paiement initiale. Si vous voulez l'annuler, il faudra le faire avant la fin de votre période d'abonnement actuelle. Vous retournerez à la version gratuite ou spectateur après le dernier jour de votre période d'abonnement actuelle.</value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>Nous pouvons changer le prix de nos abonnements payants n'importe quand, mais cela n'affectera pas votre abonnement actuel. Les changements de prix rentreront en effet au début de votre prochain abonnement. Vous acceptez le nouveau prix en continuant d'utiliser votre abonnement payant après que le changement de prix est entré en vigueur, ou vous le déclinez en l'annulant avant.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>Annuler votre abonnement payant peut être fait n'importe quand. Cependant, nous ne proposons pas de remboursement. Pour essayer AxCrypt et voir si c'est ce dont vous avez besoin, vous bénéficiez d'un mois gratuit au début de votre abonnement initial.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Limitation de garantie</value>
@@ -6398,23 +6473,14 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock14Heading">
     <value>Divulgation à des tiers</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>Nous ne donnerons aucune information sur vous, si vous utilisez AxCrypt, à des tiers sans votre consentement expresse, sauf si la loi l'exige.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Divulgation aux autorités et à la police</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>En théorie, nous pouvons être forcés par la loi de dévoiler des informations aux autorités. Si la loi nous y oblige, nous le ferons. Ces informations, par définition, sont limitées à ce que nous possédons, c'est à dire des statistiques, des registres d'accès, des clés privées chiffrées et les données du gestionnaire de mots de passe. Nous ne connaissons pas votre mot de passe, ni les informations que vous avez chiffrées, et ne pouvons donc pas les dévoiler, même si la loi nous le demande.</value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>Nous pensons véritablement, même si cela pourrait se heurter au système législatif, que nous ne pouvons pas être forcés à reprogrammer AxCrypt de manière à rendre possible l'interception de vos mots de passe pour révéler vos informations. Si cela devait arriver, nous ferons de notre mieux, dans la marge laissée par la loi, pour le faire savoir, notamment en fermant complètement le service, en dernier recours.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>Propriété intellectuelle</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>“AxCrypt” est enregistré au registre des marques déposées de l'Union européenne. Nous détenons l'exclusivité de tous les droits, titres et intérêts du logiciel et du service, y compris tous les droits de propriété intellectuelle associés.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>Nos responsabilités et engagements</value>
@@ -6430,9 +6496,6 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>Vos informations restent confidentielles grâce à l'utilisation de méthodes standard de chiffrement fort, décrites à la page &lt;a href='/information/security'&gt;Sécurité&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Détails techniques&lt;/a&gt; et dans le &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;code source&lt;/a&gt;. Nous ne pouvons pas garantir que vous choisirez un mot de passe suffisamment fort.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>Nous ne faisons que mettre AxCrypt à disposition et ne sommes jamais responsables d'aucune action illégale ou frauduleuse commise par ses utilisateurs. En tant qu'utilisateur, vous êtes entièrement responsable des actions que vous commettez en utilisant AxCrypt. Nous ne sommes jamais responsables des dommages qui auraient pu être évités avec une sauvegarde en temps et en heure, ou causés par des mots de passe oubliés.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>Notre engagement ne peut jamais excéder le montant que vous avez payé pour le service.</value>
@@ -6461,9 +6524,6 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock1Text1">
     <value>La fabrication et le marketing d'AxCrypt sont assurés par AxCrypt AB, Birger Jarlsgatan 58, 114 29 Stockholm, Suède, numéro d'enregistrement 556967-6181, numéro de TVA européenne SE556967618101.</value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>AxCrypt AB propose des logiciels à télécharger et des services en ligne, appelés collectivement “AxCrypt” pour protéger la confidentialité à travers l'utilisation d'un fort chiffrement. Nous le faisons en termes clairs, sans termes juridiques confusants. Les représentants de loi se doivent d'interpréter l'intention et l'esprit de nos conditions.</value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>Vous agrééez AxCrypt par le biais de ces Conditions d'utilisation. En utilisant AxCrypt, vous confirmez que vous les acceptez. Vous pouvez être une personne individuelle ou une personne morale reconnue au niveau légal. Certains abonnements sont réservés aux individus ou aux entreprises. </value>
   </data>
@@ -6472,9 +6532,6 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>Services proposés</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>AxCrypt procède à un chiffrement/déchiffrement local des fichiers ; ainsi qu'à un chiffrement/déchiffrement sur serveur des clés de chiffrement, avec un gestionnaire de mots de passe en option. AxCrypt propose différents types d'abonnements : AxCrypt Viewer, AxCrypt Free, AxCrypt Premium et AxCrypt Business. Les abonnements sont disponibles à notre guise sur des plateformes précises.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>Formule spectateur AxCrypt</value>
@@ -6485,32 +6542,8 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock3Text2">
     <value>Une assistance technique peut vous être apportée en fonction de nos disponibilités.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>Version gratuite d'AxCrypt</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>AxCrypt Free est disponible pour tout le monde sans coûts avec la version open source d'AxCrypt 2.1 pour Windows qui est licenciée sous GPL version 3. En plus de l'option Spectateur, vous pourrez modifier des fichiers existants et en chiffrer de nouveaux avec AES-128.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>AxCrypt version Premium</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>AxCrypt Premium est disponible à l'achat pour toute personne individuelle. Il n'est pas disponible pour les entreprises ou les associations ; aucune remise de TVA n'est possible. Dans le cas où une entreprise achète (plus d'un) abonnement AxCrypt Premium au lieu d'AxCrypt Business, le paiement sera remboursé et l'abonnement sera annulé.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium propose des fonctionnalités supplémentaires par rapport à la version gratuite, comme il est spécifié sur notre page &lt;a href='/pricing'&gt;Tarifs&lt;/a&gt;</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>Si votre abonnement Premium se termine, vous retournerez à la formule gratuite ou spectateur, le cas échéant.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Nous proposons une assistance par e-mail en fonction de la priorité technique. Nous ne garantissons pas de résoudre tous les problèmes.</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>Abonnement Business AxCrypt</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business est disponible à l'achat pour les entreprises et les associations. Cette formule ne convient pas pour des personnes individuelles. Elle offre des fonctionnalités accrues par rapport aux autres formules, comme il est spécifié sur notre page des &lt;a href='/pricing'&gt;Tarifs&lt;/a&gt;. Elle comprend aussi un système de gestion qui vous sera accessible pour attribuer des licences aux membres.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Si votre abonnement Business arrive à sa fin, vous retournerez à votre abonnement gratuit ou spectateur, comme il se doit.</value>
@@ -6524,17 +6557,11 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock7Text1">
     <value>AxCrypt Free 2.1 pour Windows est un logiciel gratuit, que vous pouvez redistribuer et/ou modifier selon la&lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;GNU GPL, Licence Publique Générale, version 3&lt;/a&gt; ou plus récente, selon les publications de la Free Software Foundation.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>AxCrypt Spectateur, Premium et Business ne sont agréés que sous ces conditions d'utilisation, pas sous la GPL. Vous vous engagez à ne pas copier, modifier, corriger, adapter, reproduire, ou n'importe quelle action qui pourrait altérer notre logiciel, sauf celles requises pour un usage normal. Vous n'êtes pas autorisé à redistribuer ou revendre AxCrypt, sauf accord distinct.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>Vos responsabilités</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>Vous acceptez d'utiliser AxCrypt uniquement pour des motifs qui sont légaux, et qui ne pourraient d'aucune façon nous causer des problèmes juridiques ou causer des problèmes à des tiers.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>Si vous ne respectez pas les conditions d'utilisation, nous pouvons suspendre ou annuler votre abonnement Premium sans préavis.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>Informations personnelles</value>

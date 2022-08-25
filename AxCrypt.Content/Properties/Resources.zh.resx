@@ -6008,23 +6008,11 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Premium和Business试用</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>我们为新用户提供AxCrypt Premium或Business订阅的30天免费试用。 如果您不喜欢该产品，您可以在试用结束前取消订阅。 可以随时取消订阅。 这样做不会影响试用，您仍然可以在试用期内使用Business＆Premium订阅附带的所有功能。 免费试用30天后，如果您尚未取消订阅，我们将从您的信用卡中扣除费用。 如果您在试用期内没有取消订阅，则不会退款。 我们保留随时撤销或修改此类优惠的权利，恕不另行通知。</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1" xml:space="preserve">
-    <value>我们可能会为您提供免费试用Premium版，让您在有限的时间内访问扩展功能。 这样的优惠是每人进行的，而不是每个AxCrypt ID帐户。 我们保留随时撤回或修改此类优惠的权利，恕不另行通知。</value>
-  </data>
   <data name="TermsOfUseBlock12Heading" xml:space="preserve">
     <value>付款和续期</value>
   </data>
-  <data name="TermsOfUseBlock12Text1" xml:space="preserve">
-    <value>我们将在收到付款后提供保费或商业计划服务。 您的付款细节永远不会发送到或存储在我们的服务器上。 您的付费订阅将在订阅期结束时自动续订，使用初始付款方式。 如果你想取消，你必须在当前订阅期结束前这样做。 在当前订阅期的最后一天后，您将酌情回复到"Free"或"Viewer"。</value>
-  </data>
   <data name="TermsOfUseBlock12Text2" xml:space="preserve">
     <value>我们可能随时更改付费订阅的价格，但不会影响您当前的订阅期。 价格变动将在下一个订阅期开始时生效。 您可以在价格变更生效后继续使用您的付费订阅来接受新的价格，或者在价格变更生效之前取消订阅来拒绝新的价格。</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3" xml:space="preserve">
-    <value>您可以随时取消付费订阅。 但是，不提供退款。 为了尝试AxCrypt，看看它是否适合您的需求，您可以在初始订阅开始时获得一个免费的一个月。</value>
   </data>
   <data name="TermsOfUseBlock13Heading" xml:space="preserve">
     <value>免责声明</value>
@@ -6035,23 +6023,14 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock14Heading" xml:space="preserve">
     <value>向第三方披露</value>
   </data>
-  <data name="TermsOfUseBlock14Text1" xml:space="preserve">
-    <value>除非法律要求，我们不会在未经您明确同意的情况下向第三方披露任何关于您的信息。</value>
-  </data>
   <data name="TermsOfUseBlock15Heading" xml:space="preserve">
     <value>向当局和执法部门披露</value>
   </data>
   <data name="TermsOfUseBlock15Text1" xml:space="preserve">
     <value>从理论上讲，法律可能会迫使我们向政府机构披露信息。 如果法律要求，我们将遵守。 这些信息的定义仅限于我们实际拥有的信息，即统计信息，访问日志和加密的私钥和密码管理器数据。 我们不知道您的密码，也不知道您加密了哪些信息，因此即使法律要求也无法披露。</value>
   </data>
-  <data name="TermsOfUseBlock15Text2" xml:space="preserve">
-    <value>这是我们的信念，虽然它可能没有在法律体系中进行测试。我们不能被迫重新编程AxCrypt的方式，将有可能拦截您的密码，以披露您的信息。 如果发生这种情况，我们将在我们的合法权利范围内尽最大努力使这一点众所周知，可能通过关闭服务作为最后的手段。</value>
-  </data>
   <data name="TermsOfUseBlock16Heading" xml:space="preserve">
     <value>知识产权</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1" xml:space="preserve">
-    <value>"AxCrypt"被记录在欧盟商标注册。 我们完全拥有软件和服务的所有权利，所有权和利益，包括所有相关的知识产权。</value>
   </data>
   <data name="TermsOfUseBlock17Heading" xml:space="preserve">
     <value>我们的责任和责任</value>
@@ -6067,9 +6046,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="TermsOfUseBlock17Text4" xml:space="preserve">
     <value>您的信息将通过使用标准化的强加密方法来保密，如&lt;a href='/information/security'&gt;安全&lt;/a&gt;,&lt;a href='information/technical-details'&gt;技术细节。&lt;/a&gt;和&lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;源代码&lt;/a&gt;。 我们不保证您选择一个足够强大的密码。</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5" xml:space="preserve">
-    <value>我们只提供AxCrypt，对使用它的其他人采取的任何非法或欺诈行为概不负责。 作为用户，您对使用AxCrypt的行为完全负责。 我们永远不会对及时备份或忘记密码造成的损害负责。</value>
   </data>
   <data name="TermsOfUseBlock17Text6" xml:space="preserve">
     <value>我们的责任不能超过为服务支付的金额。</value>
@@ -6098,9 +6074,6 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock1Text1" xml:space="preserve">
     <value>AxCrypt由AxCrypt AB制造和销售，Birger Jarlsgatan58，114 29斯德哥尔摩，瑞典，公司注册号556967-6181，欧盟增值税注册号SE556967618101。</value>
   </data>
-  <data name="TermsOfUseBlock1Text2" xml:space="preserve">
-    <value>AxCrypt AB提供可下载的软件和在线服务，统称为"AxCrypt"，通过使用强加密来保护机密性。 我们根据这些直截了当的条款这样做，避免冗长的法律措辞。 法定代表人必须解释这些条款的意图和精神。</value>
-  </data>
   <data name="TermsOfUseBlock1Text3" xml:space="preserve">
     <value>AxCrypt根据这些使用条款授权给您。 通过使用AxCrypt，您确认您同意这一点。 您可能是个人或任何形式的法律认可的组织。 有些计划仅适用于个人或组织。</value>
   </data>
@@ -6109,9 +6082,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="TermsOfUseBlock2Heading" xml:space="preserve">
     <value>提供的服务</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1" xml:space="preserve">
-    <value>AxCrypt执行文件的本地加密和解密，以及基于服务器的加密和解密的加密密钥和可选的密码管理器。 AxCrypt提供不同类型的订阅计划：AxCrypt Viewer，AxCryptFree，AxCrypt Premium和AxCryptBusiness。 计划由我们自行决定在特定平台上提供。</value>
   </data>
   <data name="TermsOfUseBlock3Heading" xml:space="preserve">
     <value>AxCrypt Viewer计划</value>
@@ -6122,32 +6092,8 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock3Text2" xml:space="preserve">
     <value>技术支持可能根据可用性提供。</value>
   </data>
-  <data name="TermsOfUseBlock4Heading" xml:space="preserve">
-    <value>AxCrypt Free 计划</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1" xml:space="preserve">
-    <value>AxCrypt Free适用于所有没有成本的开源版本AxCrypt2.1for Windows，根据GPL，版本3授权。 除了查看器计划外，还支持使用AES-128更新现有文件和加密新文件。</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading" xml:space="preserve">
-    <value>AxCrypt Premium计划</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1" xml:space="preserve">
-    <value>AxCrypt Premium版可供所有私人购买。 它不适用于公司和组织;没有增值税扣除是可能的。 如果一个企业购买（多个）AxCrypt Premium订阅而不是AxCrypt Business，付款将被退还，并且订阅将被取消。</value>
-  </data>
-  <data name="TermsOfUseBlock5Text2" xml:space="preserve">
-    <value>AxCrypt Premium除了在我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;页面上指定的Free计划之外，还提供了扩展功能。</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3" xml:space="preserve">
-    <value>如果您的高级订阅用完，您将根据需要回退到"Free"或"Viewer"。</value>
-  </data>
   <data name="TermsOfUseBlock5Text4" xml:space="preserve">
     <value>提供技术优先级电子邮件支持。 我们不保证解决所有问题。</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading" xml:space="preserve">
-    <value>AxCrypt Business计划</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1" xml:space="preserve">
-    <value>AxCrypt Business可供公司和组织购买。 它不适合个人。 除了我们的&lt;a href='/pricing'&gt;定价&lt;/a&gt;页面上指定的其他计划之外，它还提供了扩展功能。 它还包括一个自助管理系统，用于向成员分配许可证。</value>
   </data>
   <data name="TermsOfUseBlock6Text2" xml:space="preserve">
     <value>如果您的Business订阅用完，您将根据需要回退到"Free"或"Viewer"。</value>
@@ -6161,17 +6107,11 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock7Text1" xml:space="preserve">
     <value>AxCrypt Free 2.1 对于 Windows是免费软件; 您可以根据的条款重新分发和/或修改它&lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;GNU通用公共许可证版本3&lt;/a&gt;或更高版本，由自由软件基金会发布。</value>
   </data>
-  <data name="TermsOfUseBlock7Text2" xml:space="preserve">
-    <value>AxCrypt Viewer，Premium和Business仅根据这些使用条款授权，而不是GPL。 您同意不会复制、修改、编辑、改编、复制或采取任何可能更改我们的软件的操作，除非出于正常使用的需要。 除非另有约定，否则您不得重新分发或转售AxCrypt。</value>
-  </data>
   <data name="TermsOfUseBlock8Heading" xml:space="preserve">
     <value>您的责任</value>
   </data>
   <data name="TermsOfUseBlock8Text1" xml:space="preserve">
     <value>您同意使用AxCrypt仅用于合法的目的，绝不会以任何方式导致我们的法律责任或为他人造成问题。</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2" xml:space="preserve">
-    <value>如果您不遵守这些使用条款，我们可能会暂停或终止您的Premium计划，恕不另行通知。</value>
   </data>
   <data name="TermsOfUseBlock9Heading" xml:space="preserve">
     <value>个人信息</value>

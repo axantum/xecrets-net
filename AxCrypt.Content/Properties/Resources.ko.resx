@@ -626,6 +626,70 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BilledYearlyText" xml:space="preserve">
     <value>일년 구독</value>
   </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;단순한 비밀번호 보호 그 이상&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text3">
+    <value>&lt;li&gt;데이터 손실 — 백업되지 않은 하드 드라이브 및 온라인 클라우드 저장소는 데이터 손실을 초래하는 해킹, 손상과 같은 여러 문제에 노출될 수 있습니다.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH3_Text1">
+    <value>모든 장치에 보안암호를 설정하는 것은 필수입니다. 비밀번호는 고유하고 복잡해야 하며, 12자 이상의 숫자, 기호, 대문자, 소문자 및 특수문자를 포함하여야 합니다. 정기적인 비밀번호를 변경은 해커로부터의 공격을 차단하는 데 도움이 됩니다. AxCrypt의 암호 관리 생성기는 당신의 암호가 충분히 강력하고 안전한지 확인해 줍니다.</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading1">
+    <value>&lt;strong&gt;고품질 안티바이러스 소프트웨어&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading3">
+    <value>우수한 사이버 위생상태를 위한 방법</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH3_Text1">
+    <value>마스터 키는 회사 관리자와의 자동 파일 공유 시스템과 같아서 매우 안전합니다. 비즈니스 감독관들은 마스터 키를 통해 다른 직원으로부터 파일을 받을 수 있습니다. 이런 방식은 중요한 파일이 손실될 가능성을 봉쇄합니다. 비즈니스 관리자가 암호 기록을 유지하는 한 직원이 사임하거나 암호를 잊어버린다고 해도 문서소실은 일어나지 않습니다. 마스터 키 기능은 비즈니스 사용자에게만 주어집니다. 다른 비즈니스 구독 혜택을 보려면 &lt;a href='https://axcrypt.net/information/features'&gt;여기를 클릭하세요&lt;/a&gt;. AxCrypt의 &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; 마스터 키 기능&lt;/a&gt;에 대해서도 자세히 알아보세요.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;마스터 키&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;다양한 장치에서 엑세스 가능&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text2">
+    <value>&lt;strong&gt;암호화를 통해 규제 벌금을 피할 수 있습니다:&lt;/strong&gt; 기밀 데이터는 몇몇 데이터 보호법에 따라 암호화되어야 하며, 이는 &lt;a href='https://www.lepide.com/blog/5-benefits-of -using-encryption-technology-for-data-protection/'&gt;GDPR 및 HIPAA를 포함합니다&lt;/a&gt;(Health Insurance Portability and Accountability Act of 1996). 암호화되지 않은 데이터를 포함한 장치 또는 드라이브가 분실되거나 혹은 도난된 경우 해당 기업은 제제를 받을 수 있습니다.</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>귀사의 민감한 데이터를 클라우드에 저장할 때는 데이터 암호화를 통해서 도난 위험을 낮출 수 있습니다.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH2_Text1">
+    <value>증가된 클라우드 채택은 윤리적 해커와 사이버 위협 운영자로 하여금 더욱 정밀한 조사를 하게 합니다. 대부분의 공격은 클라우드 인프라 취약성을 노리므로 공격자는 단일 취약성을 바탕으로 다중의 대상을 공격할 수 있습니다. AxCrypt를 사용하면 모바일 및 PC의 드라이브에 있는 데이터를 보호할 수 있습니다.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH4_Text1">
+    <value>AxCrypt는 개인 및 기업 보안을 위한 모바일 및 PC 사이버 보안 솔루션을 제공하는 다중 수상 경력에 빛나는 사이버 보안 회사입니다. AxCrypt 모바일 암호화는 일반 화면잠금 암호를 넘어선 그 이상의 솔루션입니다. 제3자 간섭으로부터 휴대 전화의 모든 개인 정보 및 데이터를 보호하기 위한 원스톱 서비스입니다. 당신의 모바일 정보는 난해하고 뒤죽박죽인 형식으로 저장되며, 이렇게 암호화된 정보는 올바른 자격 증명으로만 읽을 수 있습니다. 모바일 암호화를 사용하면 장치의 분실 또는 도난의 경우에도 당신의 데이터를 확실하게 보호할 수 있습니다. 모바일 키 공유 기능을 사용하면 암호를 공유하지 않고도 클릭 한 번으로 당신의 팀원들과 암호화된 데이터 혹은 파일을 주고 받을 수 있습니다.</value>
+  </data>
+  <data name="Blog_MDPNST_Heading2">
+    <value>2022년도에 주의해야 할 모바일 위협들</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;데이터 관리 규정 위반&lt;/strong&gt;
+</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>암호는 대문자와 소문자, 숫자 및 특수 문자(예: @, £, 퍼센트 및 &amp;)를 포함해야 하며 길이는 10자 이상이어야 합니다. 기업은 암호 보안 정책을 수립하고 주기적으로 업데이트해야 합니다. 또한 조직의 직원들은 각각의 고유한 암호가 있어야 합니다.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>귀사의 비밀번호를 정리해야 하는 이유.</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH4_Text1">
+    <value>대부분의 기업들은 보안을 유지해야 합니다. 민감정보를 해커로부터 보호하기 위해서는 암호화 상태를 유지해야 합니다. 기업의 재무 정보는 수입 및 지출 계정, 채무자 및 채권자 계정, 자산, 계정 번호, 지불 내역 등을 포함할 수 있습니다. 이러한 종류의 데이터는 침입자로부터 보호되어야 합니다. 이와같은 민감정보가 사이버 범죄자들에게 노출될 때마다 기업은 큰 피해를 입을 수 있으며, 그 기업을 신뢰하는 고객과 직원들은 불편을 겪을 수 있습니다.</value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>귀사에서 암호화해야 하는 데이터는 무엇입니까?</value>
+  </data>
+  <data name="Blog_TIEDTC_Text1">
+    <value>많은 기업들이 데이터 암호화의 필요성을 알지 못합니다. 암호화를 통한 민감한 개인 정보를 보호하는 기술의 가치는 이해하면서도, 그 정보의 소유권이 기업에 없다는 이유로 기술의 필요성은 느끼지 못합니다. 그러나 사이버 보안의 가장 큰 발전 중 하나는 기밀 보안이 될 것으로 예상됩니다. 개인 정보와 민감 데이터, 기업이나 개인간의 커뮤니케이션 보안은 모두 그러한 방식으로 보호됩니다.</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>기업의 모든 데이터 암호화의 중요성</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text1">
+    <value>128/192비트 암호화 이후의 근래의 대부분의 암호화 알고리즘, 프로토콜, 기타 기술들은 &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;가장 안전한 암호화&lt;/a&gt;인 AES 256비트를 사용합니다.</value>
+  </data>
   <data name="BlogLinkLabel">
     <value>블로그</value>
   </data>
@@ -899,6 +963,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="BusinessLinkLabel">
     <value>Business</value>
+  </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>전화번호</value>
   </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Business Priority Support Request </value>
@@ -1310,6 +1377,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="ChineseLanguageSelectionText" xml:space="preserve">
     <value>중국어</value>
   </data>
+  <data name="ChoosePlanPrompt" xml:space="preserve">
+    <value>요금제 선택</value>
+  </data>
   <data name="ChoosePrivateOrBusinessSignUpInfo" xml:space="preserve">
     <value>계정을 시작하려면 AxCrypt를 개인 사용자로 사용할 것인지 아니면 프라이벗 혹은 비즈니스 사용자로 사용할 것인지를 선택하세요.</value>
   </data>
@@ -1663,6 +1733,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>AxCrypt 앱 다운로드</value>
   </data>
+  <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
+    <value>AxCrypt 암호화에는 백도어가 없습니다. 비밀번호가 없다면 파일이 손실될 수 있습니다. 절대로 비밀번호를 분실하지 마세요!  암호화 여부에 관계없이 중요한 파일은 항상 백업해 두세요..</value>
+  </data>
   <data name="DownloadHeroHeadingMac">
     <value>AxCrypt의 macOS 버전</value>
   </data>
@@ -1713,6 +1786,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="DownloadMobileBodyText">
     <value>&lt;p&gt;언제 어디서나 파일들을 암호화하고 해제하십시오. 모바일 앱은 가장 보편적인 구글드라이브와 드롭박스 등의 클라우드 스토리지 서비스를 지원합니다. (타 서비스 추가 예정)&lt;/p&gt;&lt;p&gt;당신의 보안 파일 또는 공유된 파일은 어느 플랫폼에서든지 구독하지 않고도 볼 수 있습니다. 현재 모바일도 포함입니다! &lt;/p&gt;&lt;p&gt;더 보시기를 원하시면 &lt;a href='#'&gt;여기&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="DownloadMobileBodyText1">
+    <value>언제 어디서나 파일을 암호화하고 해제하세요. 모바일 앱은 구글드라이브 또는 드롭박스 등의 가장 일반적인 클라우드 저장소를 지원합니다 (그 외 클라우드 추후 지원 예정).</value>
   </data>
   <data name="DownloadMobileBodyText2">
     <value>당신의 기존 보안된 파일이나 공유된 파일은 구독과는 상관없이 언제 어느 플랫폼에서든지 볼 수 있으며, 현재는 모바일 기기를 포함하고 있습니다!</value>
@@ -1848,6 +1924,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>나가기</value>
+  </data>
+  <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
+    <value>등록된 카드로 지불할 수 없어 구독이 만료되었습니다. 구독을 계속하려면 결제 세부정보를 업데이트하세요.</value>
   </data>
   <data name="ExpireInLabelFirstPart" xml:space="preserve">
     <value>만료</value>
@@ -2528,11 +2607,26 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="GetStartedDesktopHowToUseHeading">
     <value>&lt;span&gt;사용&lt;/span&gt; 방법</value>
   </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>이 튜토리얼은 AxCrypt의 간단한 기능을 빠르게 보여줍니다! 프로그램 사용법을 배우시려면 튜토리얼을 시청해 주세요.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1">
+    <value>작업하려는 하나 이상의 폴더를 선택하여 시작하세요.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows">
+    <value>우클릭으로 AxCrypt 메뉴 불러오기.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep3">
+    <value>보거나 편집할 파일을 열려면 간단히 두 번 클릭 하세요..</value>
+  </data>
   <data name="GetStartedDesktopInstallingHeading">
     <value>&lt;span&gt;AxCrypt 설치&lt;/span&gt; 및 아이디 설정</value>
   </data>
   <data name="GetStartedDesktopInstallingIngress">
     <value>AxCrypt를 사용하기 위해서는 &lt;a href='https://account.axcrypt.net/Home/Register'&gt;계정을 생성해야 합니다&lt;/a&gt;. 다음 동영상은 사용자가 쉽게 따라할 수 있도록 제작된 계정 생성에 관한 단계별 동영상입니다.</value>
+  </data>
+  <data name="GetStartedDesktopInstallingStep4">
+    <value>이제 AxCrypt의 기본 기능을 무료로 사용할 수 있습니다! 추가 기능을 사용하시려면 &lt;a href='/premium'&gt;AxCrypt 프리미엄&lt;/a&gt; 또는 &lt;a href='/business'&gt;AxCrypt 비즈니스&lt;/a&gt;를 구독하세요.</value>
   </data>
   <data name="GetStartedDesktopKeySharingHeading">
     <value>키 &lt;span&gt;공유하기&lt;/span&gt;</value>
@@ -2549,17 +2643,29 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="GetStartedDesktopKeySharingStep4">
     <value>수신자에게 여전히 실제 파일을 보내야 한다는 점을 기억하세요!</value>
   </data>
+  <data name="GetStartedDesktopPasswordManagementHeading">
+    <value>&lt;span&gt;비밀번호&lt;/span&gt; 관리자</value>
+  </data>
   <data name="GetStartedDesktopPasswordManagementIngress">
     <value>&lt;a href='/information/features'&gt;비밀번호 관리&lt;/a&gt; 기능을 사용하여 모든 비밀번호와 코드를 온라인에 안전하게 저장할 수 있습니다. 동영상을 통해서 자세히 알아보세요.</value>
   </data>
   <data name="GetStartedDesktopPasswordManagementStep1">
     <value>로그인 하여 비밀번호 관리자 엑세스</value>
   </data>
+  <data name="GetStartedDesktopPasswordManagementStep3">
+    <value>최적의 보안을 위해서 제안된 암호 사용을 권장합니다.</value>
+  </data>
   <data name="GetStartedDesktopPasswordResetHeading">
     <value>비밀번호 &lt;span&gt;재설정&lt;/span&gt;</value>
   </data>
   <data name="GetStartedDesktopPasswordResetIngress">
     <value>이제 비밀번호 재설정이 가능합니다. 단, 로그인 이후에는 이전 비밀번호로 암호화 파일에 엑세스 할 수 없습니다.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1">
+    <value>앱 내의 파일 옵션으로 이동하여 "비밀번호 리셋"을 선택하거나  &lt;a href='https://account.axcrypt.net/en/Home/PasswordReset'&gt;비밀번호 리셋&lt;/a&gt;으로 바로 이동하세요.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2">
+    <value>리셋 할 수 있는 페이지로 리디렉션 됩니다.</value>
   </data>
   <data name="GetStartedDesktopPasswordResetStep3">
     <value>인증 후 발송된 메일에서 지시한대로 따라하십시오.</value>
@@ -2681,6 +2787,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="GetStartedMobileText4">
     <value>&lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;안드로이드는 이곳&lt;/a&gt;에서 &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS 는 이곳&lt;/a&gt;에서 다운로드 받으세요.</value>
   </data>
+  <data name="GetStartedPasswordHeading">
+    <value>당신의 &lt;span&gt;비빌번호&lt;/span&gt;를 안전하게 보관하세요.</value>
+  </data>
   <data name="GetStartedPasswordManagementHeading">
     <value>패스워드 매니지먼트</value>
   </data>
@@ -2722,6 +2831,12 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   </data>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: 패스워드 리셋하기</value>
+  </data>
+  <data name="GetStartedPasswordText">
+    <value>간단한 클릭만으로 당신의 모든 비밀번호를 암호화된 온라인 아카이브에 저장하는 AxCrypt 온라인 비밀번호 관리자에 엑세스 할 수 있습니다.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>원터치로 파일을 &lt;span&gt;보호하세요.&lt;/span&gt;</value>
   </data>
   <data name="GetStartMobilePageTitle">
     <value>주머니 속의 고급 &lt;span&gt;암호화&lt;/span&gt; !</value>
@@ -4189,6 +4304,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   <data name="OpenToolStripButtonToolTipText" xml:space="preserve">
     <value>보안된 파일을 열기위해 클릭하십시오.</value>
   </data>
+  <data name="OpenWebPageForPurchaseRequest">
+    <value>구매할 수 있는 웹 페이지를 여시겠습니까?</value>
+  </data>
   <data name="OperatingSystemsLabel">
     <value>오퍼레이팅 시스템</value>
   </data>
@@ -4467,6 +4585,9 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
   </data>
   <data name="PremiumFirstBodyText2">
     <value>AxCrypt Premium을 사용하면, 확장된 기능 및 흥미로운 기능에 액세스할 수 있습니다.  AES 알고리즘 중 가장 강력한 AES-256으로 파일을 암호화하시고, 모든 수준의 민감하고 기밀적인 정보를 보호하기 위해 전세계적으로 사용됩니다. 폴더 보안은 한 번의 클릭만으로 새 파일을 자동으로 보호할 수 있어 그 어느 때보다도 쉽게 이용하 실 수 있습니다.</value>
+  </data>
+  <data name="PremiumFirstBodyText3">
+    <value>드롭박스나 구글드라이브의 클라우드 스토리지 어웨어니스에 액세스하더라도, 보안 파일을 다른 사람과 공유해야 하는 경우 키를 공유해야 합니다. AxCrypt 모바일 앱을 사용하면 언제 어디서나 휴대전화로 파일을 암호화 및 해제 할 수 있습니다.</value>
   </data>
   <data name="PremiumFirstBodyText4">
     <value>안전하고 쉬운 방법으로 암호를 저장하고 싶으신가요? 클라우드에서 모든 암호를 안전하게 유지하려면 패스워드 관리 및 생성기를 사용하세요.</value>
@@ -4857,11 +4978,20 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="ProductPremiumHightlightsTitle" xml:space="preserve">
     <value>AxCrypt 프리미엄은 확장되고 흥미로운 기능에 대한 액세스를 제공합니다.</value>
   </data>
+  <data name="ProductPremiumPricingTitle" xml:space="preserve">
+    <value>&lt;span&gt; 1개월 &lt;/span&gt; 무료 &lt;span&gt; 프리미엄 구독 &lt;/span&gt; 을 경험해 보세요.</value>
+  </data>
   <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
     <value> &lt;span&gt; AES-256&lt;/span&gt;으로 더 강력한 암호화</value>
   </data>
   <data name="ProductSellingPointsSecure">
     <value>데스크탑과 모바일 모두에서 &lt;span&gt;암호화 또는 암호화 해제&lt;/span&gt; </value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessAdmin" xml:space="preserve">
+    <value>&lt;span&gt;비즈니스 관리자 권한&lt;/span&gt;을 통해서 기업 라이선스 구매 및 관리를 할 수 있습니다.</value>
+  </data>
+  <data name="ProductSellingPointsSecureBusinessSupport" xml:space="preserve">
+    <value>훌륭한&lt;span&gt; 비즈니스 지원,&lt;/span&gt;전담 계정 관리자 보유</value>
   </data>
   <data name="ProductSellingPointsSecureFile" xml:space="preserve">
     <value>&lt;span&gt;키 공유&lt;/span&gt;를 통한 보안파일 공유</value>
@@ -6272,23 +6402,11 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>프리미엄 &amp; 비즈니스 무료 체험</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>새로운 사용자들에게는 AxCrypt 프리미엄/비즈니스 30일 무료체험 플랜을 제공합니다. 제품이 맘에 들지 않을 시에는 무료체험 종료일 전까지 구독취소를 하시면 됩니다. 구독취소는 언제나 가능하며, 무료체험 기간은 구독취소에 영향을 받지 않습니다. 또한 무료체험에 포함된 비즈니스 &amp; 프리미엄 기능도 변함없이 누릴 수 있습니다. 구독취소를 하지 않으면 30일 체험기간 이후에는 당신의 카드로 요금이 결재되며, 체험 기간 중 구독취소를 하지 않을 시 결재된 요금은 환불 받으실 수 없습니다. 당사는 위와 같은 서비스를 사전 고지 없이 철회하거나 수정할 권리가 있음을 알려드립니다.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>제한된 기간 동안 확장된 기능에 액세스할 수 있도록 Premium 서비스를 무료로 사용해 보세요. AxCrypt ID 계정이 아닌 한 분당 제공된다. 사전 통지 없이 언제든지 그러한 제안을 철회하거나 수정할 권리를 보유합니다.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>결제 및 갱신</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>결제 승락 후, Premium과 Business 플랜을 제공합니다. 결제 정보는 서버에 저장되지 않고, 절대 다른 서버와 공유하지 않습니다. 구독 서비스가 끝날 무렵에는 구독이 자동으로 연장되며, 기존의 결제 정보를 통해 재결제가 이루어집니다. </value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>언제든지 유료 구독 가격을 변경할 수 있지만, 귀하의 현재 구독 기간에는 영향을 미치지 않을 겁니다. 가격 변동은 다음 가입 기간이 시작될 때 적용됩니다. 가격 변동이 발효된 후에도 유료 구독을 계속 사용함으로써 새로운 가격을 받아들이거나, 적용되기 전에 취소하여 구독을 거절하는 경우에 해당됩니다.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>유료 구독을 취소하는 것은 언제든지 가능합니다. 하지만 환불은 불가능합니다. AxCrypt가 자신의 필요에 맞는지 알아보기 위해 처음 구독을 시작할 때 무료 한 달 서비스를 받을 수 있습니다.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>워런티 디스클레이머</value>
@@ -6299,23 +6417,14 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="TermsOfUseBlock14Heading">
     <value>제 3자에게 공개</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>AxCrypt은 법에 의해 요구되지 않는 한, 제3자에게 사용자의 동의 없이 어떠한 정보도 공개하지 않을 것입니다.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>당국 및 법 집행 기관에 공개</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>우리는 법에 의해 정부 당국에 정보를 공개하도록 강요 받을 수도 있습니다. 법률이 요구하면 응해야 할 것이며,  그러한 정보는 통계, 액세스 로그, 암호화된 개인 키 및 암호 관리자 데이터로 제한 될 것입니다. 사용자의 비밀번호와 어떠한 정보를 암호화 했는지는 정부 당국이 요청해도 절대공개되지 않습니다. </value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>비록 합법 검증은 받지 않았지만, AxCrypt는 사용자의 패스워드 노출에 대한 어떤 프로그램에 대해서 강요받지 않을 것 입니다. 만약 이런 일이 일어난다면, 저희는 이것을 알리기 위해 법적 권리 내에서 최선을 다할 것입니다. 최후의 수단으로서 서비스를 중단하는 단계가 오더라도요.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>지적 재산</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>"AxCrypt"는 유럽 연합의 상표 등록부에 기록되어 있습니다. 모든 관련 지적재산권을 포함하여 소프트웨어와 서비스에 대한 모든 권리, 소유권 및 관심을 독점적으로 소유하고 있습니다.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>책임</value>
@@ -6331,9 +6440,6 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>사용자의 정보는 &lt;a href='/information/security'&gt;Security&lt;/a&gt;의 기반으로 강력한 암호화 처리가 되었으며 기밀로 유지됩니다. &lt;a href='/information/technical-details'&gt;테크니컬 디테일&lt;/a&gt;&lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;소스 코드 &lt;/a&gt;. 가장 강력한 비밀번호를 제안하는 것을 보장합니다.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>AxCrypt를 불법적이거나 사기적인 행동에 대해서는 결코 책임지지 않습니다.  AxCrypt의 사용자가 전적으로 책임을 지게 될 것이며 적시에 백업하거나 암호를 잊어버려서 발생할 수 있는 손상에 대해 결코 책임을 지지 않습니다.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>우리의 책임은 결코 서비스에 대해 지불한 금액을 초과할 수 없습니다.</value>
@@ -6362,9 +6468,6 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="TermsOfUseBlock1Text1">
     <value>AxCrypt AB는 스웨덴 스톡홀름의 BirgerJarlsgatan 58, 114 29에 위치합니다. 회사 레지트레이션 넘버는 556967-6181이며, EU VAT 레지스트레이션 넘버는 SE556967618101입니다.</value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>AxCrypt AB는 강력한 암호화를 통해 기밀을 보호하기 위해 "AxCrypt"라고 불리는 다운로드 가능한 소프트웨어와 온라인 서비스를 제공합니다. </value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>AxCrypt는 본 이용 약관에 따라 귀하에게 허가됩니다. AxCrypt를 사용함으로써 당신은 이것에 동의하며 개인 또는 어떤 형태의 합법적으로 인정받는 조직일 수 있습니다. 일부 계획은 개인이나 단체에서만 이용할 수 있습니다.</value>
   </data>
@@ -6373,9 +6476,6 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>제공된 서비스</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>AxCrypt는 파일의 로컬 암호화 및 암호 해독을 수행하고, 암호화 키와 암호 관리자의 서버 기반 암호화와 암호 해독을 선택적으로 수행합니다. AxCrypt는 AxCrypt Viewer, AxCrypt Free, AxCrypt Premium, AxCrypt Business 등 다양한 유형의 가입 계획을 제공하며 선택된 플랫폼을 위한 계획이 제공됩니다.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>AxCrypt 뷰어 플랜</value>
@@ -6386,32 +6486,8 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="TermsOfUseBlock3Text2">
     <value>기술 지원이 제공됩니다. 하지만, 때에 따라 가능하지 않을 수도 있습니다.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>AxCrypt의 무료 플랜</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>GPL 3 버전의 라이센스가 부여된 윈도우스 오픈 소스 버전 AxCrypt 2.1로 AxCrypt를 무료로 이용할 수 있습니다. 뷰어 계획 외에도 AES-128을 이용한 기존 파일 업데이트 및 새 파일 암호화가 지원되는 점을 참고해주세요.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>AxCrypt 프리미엄 플랜</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>AxCrypt Premium은 개인이 단독으로 구매 및 사용 하실 수 있습니다. 회사나 단체를 위한 서비스가 아니며, VAT 면제가 되지 않습니다. 만약, AxCrypt  Premium 구독을 원하시는 비지니스(1명 이상)이라면 AxCrypt Business을 이용해주세요. 전액 환불과 서비스 구독이 취소 될 것 입니다.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>AxCrypt Premium은 &lt;a href='/pricing'&gt;Pricing&lt;/a&gt; 페이지에서 설명된 프리 플랜과 더욱 향상된 디자인을 제공합니다.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>프리미엄 서비스 가입이 만료된 경우 필요에 따라 무료 또는 뷰어로 돌아가세요.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>기술 우선 이메일을 서포트합니다. </value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>AxCrypt 비즈니스 플랜</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>AxCrypt Business 는 기업과 조직을 위해 구매가 가능합니다. 개인을 위한 서비사가 아닙니다. &lt;a href='/pricing'&gt; 페이지에 명시된 다른 계획 외에 확장된 기능을 제공합니다. 사용자에게 라이센스를 제공하는 셀프 서비스 관리 시스템도 포함하고 있다.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Business 구독이 만료되었으면 무료 서비스나 뷰어 서비스로 변경됩니다.</value>
@@ -6426,17 +6502,11 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
   <data name="TermsOfUseBlock7Text1">
     <value>AxCrypt Free 2.1 for Windows는 무료 소프트웨어로,  정보를 재분배하거나 &lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;의 조건에 따라 수정할 수 있습니다. GNU General Public License 버전 3("/a" 이상 버전)은 Free Software Foundation에서 발행한 버전입니다.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>AxCrypt Viewer, Premium 및 Business는 GPL이 아닌 본 이용 약관에 따라만 라이센스가 부여됩니다. 정상적인 사용을 위해  소프트웨어를 변경할 수 있는 어떠한 조치도 복사, 수정, 편집, 수정, 수정, 수정, 수정, 복제 또는 수행하지 않기로 동의하셨습니다. 별도로 합의하지 않는 한 액스크립트를 재배포하거나 재판매할 수 없습니다.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>책임</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>AxCrypt를 합법적인 목적으로만 사용하기로 동의하며, 어떤 식으로든 우리에게 법적 책임을 주거나 다른 사람에게 문제를 일으킬 수 있는 용도로는 절대 사용하지 않습니다.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>본 이용 약관을 준수하지 않을 경우, 사전 통지 없이 Premium 플랜을 중단하거나 종료할 수 있습니다.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>개인 정보</value>
@@ -6610,6 +6680,9 @@ AxCrypt 팀</value>
   </data>
   <data name="UnlockFullEncryptionFeaturesText" xml:space="preserve">
     <value>암호화 전체 기능을 보시려면 여기를 클릭해 주세요.</value>
+  </data>
+  <data name="UnlockMagicalFeaturesDescription" xml:space="preserve">
+    <value>&lt;b&gt;지금 바로 구독하거나 30일 무료 평가판&lt;/b&gt;을 구독하여 당신의 모바일 암호화를 강화하도록 설계된 놀라운 기능에 대해 알아보세요.</value>
   </data>
   <data name="UnlockMagicalFeaturesTitle" xml:space="preserve">
     <value>우리의 마법같은 기능들을 언락하세요!</value>
@@ -6827,6 +6900,9 @@ AxCrypt 팀</value>
   </data>
   <data name="WeakPasswordLabel">
     <value>약한 비밀번호</value>
+  </data>
+  <data name="WelcomeBackTitle" xml:space="preserve">
+    <value>다시 오신 것을 환영합니다!</value>
   </data>
   <data name="WelcomeMailBody0Html" xml:space="preserve">
     <value>AxCrypt에 오신것을 환영합니다!</value>

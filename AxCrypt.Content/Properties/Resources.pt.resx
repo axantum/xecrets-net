@@ -6241,23 +6241,11 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Avaliação Premium &amp; Business</value>
   </data>
-  <data name="TermsOfUseBlock11Text01" xml:space="preserve">
-    <value>Oferecemos 30 dias de avaliação gratuita para novos utilizadores dos planos AxCrypt Premium ou Business. Se não gostar do produto, poderá cancelar a subscrição antes do final do período de avaliação. O cancelamento pode ser feito a qualquer momento. Tal não afectará a avaliação e poderá usufruir de todas as funcionalidades da subscrição Business &amp; Premium durante o período de avaliação. Depois dos 30 dias de avaliação gratuita, debitaremos o seu cartão de crédito se não tiver cancelado a subscrição. Não haverá lugar a reembolso se não tiver cancelado a subscrição durante o período de avaliação. Reservamo-nos o direito de retirar ou modificar estas ofertas a qualquer momento sem aviso prévio.</value>
-  </data>
-  <data name="TermsOfUseBlock11Text1">
-    <value>Podemos oferecer-lhe Premium para experimentar grátis, dando-lhe acesso a funcionalidades alargadas durante um período limitado. Tais ofertas são feitas por pessoa, não por conta AxCrypt ID. Reservamo-nos o direito de retirar ou modificar tais ofertas a qualquer momento sem aviso prévio.</value>
-  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Pagamento e renovação</value>
   </data>
-  <data name="TermsOfUseBlock12Text1">
-    <value>Forneceremos serviços do plano Premium ou Business após recepção de pagamento. Os seus detalhes de pagamento nunca são enviados ou armazenados nos nossos servidores. A sua subscrição paga renovar-se-á automaticamente no final do seu período através do método de pagamento inicial. Reverterá a Free ou Viewer conforme o caso depois do último dia do período da sua subscrição actual.</value>
-  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>Podemos alterar o preço das nossas subscrições pagas a qualquer momento, mas tal não afectará o período da sua subscrição actual. Alterações de preço terão efeito no início do próximo período da sua subscrição. Ao continuar a usar a sua subscrição paga depois da alteração de preço produzir efeito, está a aceitar o novo preço; ao cancelar antes daquele efeito, está a recusá-lo.</value>
-  </data>
-  <data name="TermsOfUseBlock12Text3">
-    <value>Pode cancelar a sua subscrição paga a qualquer momento. Contudo, não são oferecidos reembolsos. Ao experimentar a AxCrypt para ver se se adequa às suas necessidades, obtém um mês grátis no início da sua subscrição inicial.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Isenção de garantias</value>
@@ -6268,23 +6256,14 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlock14Heading">
     <value>Divulgação a terceiros</value>
   </data>
-  <data name="TermsOfUseBlock14Text1">
-    <value>Não divulgaremos nenhuma informação sobre o seu uso da AxCrypt a terceiros sem o seu consentimento explícito, a menos que exigido por lei.</value>
-  </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Divulgação a autoridades e cumprimento da lei</value>
   </data>
   <data name="TermsOfUseBlock15Text1">
     <value>Em teoria, podemos ser forçados por lei a divulgar informação a autoridades governamentais. Se exigido por lei, cumpriremos. Tal informação é, por definição, limitada ao que detemos i.e. estatísticas, registos de acesso e chaves privadas e dados do gestor de palavras-passe cifrados. Não sabemos a sua palavra-passe nem que informação tem cifrada e por isso não podemos divulgá-la mesmo que exigido por lei.</value>
   </data>
-  <data name="TermsOfUseBlock15Text2">
-    <value>Acreditamos que, apesar de provavelmente não estar testado no sistema legal, não podemos ser forçados a reprogramar a AxCrypt de forma a tornar possível interceptar as suas palavras-passe com vista à divulgação de informação. Caso tal aconteça, faremos o nosso melhor, dentro dos nossos direitos legais, para dar a conhecer esta situação, e possivelmente encerrando o serviço em último recurso.</value>
-  </data>
   <data name="TermsOfUseBlock16Heading">
     <value>Propriedade intelectual</value>
-  </data>
-  <data name="TermsOfUseBlock16Text1">
-    <value>A “AxCrypt” está registada no Registo de marcas da União Europeia. Detemos exclusivamente todos os direitos, título e interesse no e em relação ao software e ao serviço, incluindo todos os direitos de propriedade intelectual associados.</value>
   </data>
   <data name="TermsOfUseBlock17Heading">
     <value>As Nossas Responsabilidades</value>
@@ -6300,9 +6279,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   </data>
   <data name="TermsOfUseBlock17Text4">
     <value>A sua informação é mantida confidencial através do uso de métodos padrão de cifragem forte, descritos em &lt;a href='/information/security'&gt;Segurança&lt;/a&gt;, &lt;a href='/information/technical-details'&gt;Detalhes Técnicos&lt;/a&gt; e no &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;código-fonte&lt;/a&gt;. Não garantimos que você escolha uma palavra-passe suficientemente forte.</value>
-  </data>
-  <data name="TermsOfUseBlock17Text5">
-    <value>Fornecemos apenas a AxCrypt e nunca somos responsáveis por quaisquer acções ilegais ou fraudulentas tomadas por utilizadores da AxCrypt. Como utilizador, é inteiramente responsável pelas suas acções ao usar a AxCrypt. Nunca somos responsáveis por danos que possam ser prevenidos por uma cópia de segurança oportuna ou causados por palavras-passe esquecidas.</value>
   </data>
   <data name="TermsOfUseBlock17Text6">
     <value>A nossa responsabilidade nunca pode exceder a quantia paga pelo serviço.</value>
@@ -6331,9 +6307,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlock1Text1">
     <value>A AxCrypt é feita e comercializada pela AxCrypt AB, Birger Jarlsgatan 58, 114 29 Estocolmo, Suécia, empresa com número de registo 556967-6181 e número de registo IVA da UE SE556967618101.</value>
   </data>
-  <data name="TermsOfUseBlock1Text2">
-    <value>A AxCrypt AB disponibiliza software para descarregamento e serviços online, designados colectivamente “AxCrypt”, para proteger a confidencialidade através da utilização de cifragem forte. Fazemo-lo de acordo com estes termos e sem texto absurdo, evitando palavreado legal longo. Os representantes legais devem interpretar a intenção e o espírito destes termos.</value>
-  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>Ao abrigo destes Termos de Utilização, a AxCrypt é-lhe licenciada e, ao usá-la, confirma que concorda com eles. Você pode ser um particular ou qualquer forma de organização legalmente reconhecida. Alguns planos estão apenas disponíveis para particulares ou organizações.</value>
   </data>
@@ -6342,9 +6315,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   </data>
   <data name="TermsOfUseBlock2Heading">
     <value>Serviços Fornecidos</value>
-  </data>
-  <data name="TermsOfUseBlock2Text1">
-    <value>A AxCrypt efectua cifragem e decifragem local de ficheiros e cifragem e decifragem baseada em servidores de chaves de cifragem e, opcionalmente, um gestor de palavras-passe. A AxCrypt fornece tipos diferentes de planos de subscrição: AxCrypt Viewer, AxCrypt Free, AxCrypt Premium e AxCrypt Business. Os planos são oferecidos à nossa descrição em plataformas seleccionadas.</value>
   </data>
   <data name="TermsOfUseBlock3Heading">
     <value>Plano AxCrypt Viewer</value>
@@ -6355,32 +6325,8 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlock3Text2">
     <value>Pode ser fornecido suporte técnico, dependendo da disponibilidade.</value>
   </data>
-  <data name="TermsOfUseBlock4Heading">
-    <value>Plano AxCrypt Free</value>
-  </data>
-  <data name="TermsOfUseBlock4Text1">
-    <value>O AxCrypt Free está disponível para todos sem custos com a versão de código aberto da AxCrypt 2.1 para Windows que é licenciada sob a GPL versão 3. Além do plano Viewer, são suportadas a actualização de ficheiros existentes e a cifragem de novos ficheiros com AES-128.</value>
-  </data>
-  <data name="TermsOfUseBlock5Heading">
-    <value>Plano AxCrypt Premium</value>
-  </data>
-  <data name="TermsOfUseBlock5Text1">
-    <value>O AxCrypt Premium está disponível para compra por particulares. Não está disponível para empresas e organizações e a dedução de IVA não é possível. Caso uma empresa compre mais do que uma subscrição AxCrypt Premium em vez AxCrypt Business, o pagamento será reembolsado e a subscrição será cancelada.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text2">
-    <value>O AxCrypt Premium fornece funcionalidades alargadas além do plano Free, tal como especificado na nossa página &lt;a href='/pricing'&gt;Preços&lt;/a&gt;.</value>
-  </data>
-  <data name="TermsOfUseBlock5Text3">
-    <value>Se a sua subscrição Premium caducar, reverterá à Free ou Viewer conforme apropriado.</value>
-  </data>
   <data name="TermsOfUseBlock5Text4">
     <value>O suporte técnico prioritário é fornecido por email. Não garantimos a resolução de todos os problemas.</value>
-  </data>
-  <data name="TermsOfUseBlock6Heading">
-    <value>Plano AxCrypt Business</value>
-  </data>
-  <data name="TermsOfUseBlock6Text1">
-    <value>O AxCrypt Business está disponível para compra por empresas e organizações. Não é adequado a particulares. Fornece funcionalidades alargadas além dos outros planos, tal como especificado na nossa página &lt;a href='/pricing'&gt;Preços&lt;/a&gt;. Também inclui uma sistema de gestão self-service para alocação de licenças a membros.</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Se a sua subscrição Business caducar, reverterá à Free ou Viewer conforme apropriado.</value>
@@ -6394,17 +6340,11 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlock7Text1">
     <value>A AxCrypt Free 2.1 para Windows é software livre; pode redistribui-lo e/ou modificá-lo segundo os termos da &lt;a href='https://www.gnu.org/licenses/gpl-3.0.en.html'&gt;Licença Pública Geral GNU versão 3&lt;/a&gt; ou superior, tal como publicado pela Fundação para o Software Livre.</value>
   </data>
-  <data name="TermsOfUseBlock7Text2">
-    <value>O AxCrypt Viewer, Premium e Business são licenciados apenas segundo estes Termos de Utilização, não a GPL. Concorda em não copiar, modificar, editar, adaptar, reproduzir ou tomar quaisquer acções que possam alterar o nosso software excepto quanto requerido para uso normal. Não está permitido a redistribuir ou revender a AxCrypt, a menos de acordo em separado.</value>
-  </data>
   <data name="TermsOfUseBlock8Heading">
     <value>As Suas Responsabilidades</value>
   </data>
   <data name="TermsOfUseBlock8Text1">
     <value>Concorda em usar a AxCrypt para fins legais apenas e nunca de forma a nos causar responsabilidades legais ou problemas a outros.</value>
-  </data>
-  <data name="TermsOfUseBlock8Text2">
-    <value>Se não cumprir estes Termos de Utilização, poderemos suspender ou terminar o seu plano Premium sem aviso prévio.</value>
   </data>
   <data name="TermsOfUseBlock9Heading">
     <value>Informação Pessoal</value>
