@@ -629,17 +629,26 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;단순한 비밀번호 보호 그 이상&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H1_Text2">
+    <value>팬데믹 이후 전 세계의 원격 근무자들로 인해 사이버 범죄가 늘게 됨에 따라, 사이버 위생이라는 개념의 중요성이 커졌습니다.</value>
+  </data>
   <data name="Blog_CHHSSO_H2_Text3">
     <value>&lt;li&gt;데이터 손실 — 백업되지 않은 하드 드라이브 및 온라인 클라우드 저장소는 데이터 손실을 초래하는 해킹, 손상과 같은 여러 문제에 노출될 수 있습니다.&lt;/li&gt;</value>
   </data>
   <data name="Blog_CHHSSO_H3_SH3_Text1">
     <value>모든 장치에 보안암호를 설정하는 것은 필수입니다. 비밀번호는 고유하고 복잡해야 하며, 12자 이상의 숫자, 기호, 대문자, 소문자 및 특수문자를 포함하여야 합니다. 정기적인 비밀번호를 변경은 해커로부터의 공격을 차단하는 데 도움이 됩니다. AxCrypt의 암호 관리 생성기는 당신의 암호가 충분히 강력하고 안전한지 확인해 줍니다.</value>
   </data>
+  <data name="Blog_CHHSSO_H3_SH4_Text1">
+    <value>백업파일은 원본과 다른 위치에 보관되어야 하고 정기적 테스트가 이뤄져야 합니다. 개인 파일을 안전하게 저장하려면 별도의 장치에 백업파일을 저장하세요. (클라우드 또는 암호화 된 USB 장치). 데이터의 전송, 사용, 저장 진행 유무에 상관 없이 암호화 작업이 가능한 AxCrypt를 사용하여 드라이브 데이터를 암호화할 수 있습니다. 게다가 데이터가 사무실 이외의 구역으로 전송된 이후에도 암호화 키를 이용하여 컨트롤 할 수 있습니다.</value>
+  </data>
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;고품질 안티바이러스 소프트웨어&lt;/strong&gt;</value>
   </data>
   <data name="Blog_CHHSSO_Heading3">
     <value>우수한 사이버 위생상태를 위한 방법</value>
+  </data>
+  <data name="Blog_GAES256BEWA_H1_SubHeading2">
+    <value>&lt;strong&gt;AxCrypt로 AES 256비트 암호화&lt;/strong&gt;</value>
   </data>
   <data name="Blog_HAVTYB_H1_SH3_Text1">
     <value>마스터 키는 회사 관리자와의 자동 파일 공유 시스템과 같아서 매우 안전합니다. 비즈니스 감독관들은 마스터 키를 통해 다른 직원으로부터 파일을 받을 수 있습니다. 이런 방식은 중요한 파일이 손실될 가능성을 봉쇄합니다. 비즈니스 관리자가 암호 기록을 유지하는 한 직원이 사임하거나 암호를 잊어버린다고 해도 문서소실은 일어나지 않습니다. 마스터 키 기능은 비즈니스 사용자에게만 주어집니다. 다른 비즈니스 구독 혜택을 보려면 &lt;a href='https://axcrypt.net/information/features'&gt;여기를 클릭하세요&lt;/a&gt;. AxCrypt의 &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; 마스터 키 기능&lt;/a&gt;에 대해서도 자세히 알아보세요.</value>
@@ -656,6 +665,27 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_HAVTYB_Summary">
     <value>귀사의 민감한 데이터를 클라우드에 저장할 때는 데이터 암호화를 통해서 도난 위험을 낮출 수 있습니다.</value>
   </data>
+  <data name="Blog_ICSHRS_H1_Text1">
+    <value>팬데믹이 조직을 혼란에 빠뜨리고 인사 관리자로 하여금 직무 수행 방법을 재고하게 함에 따라, 우리는 아무도 상상하지 못했던 새로운 작업 환경에 적응해야 합니다. HR 전문가들은 팬데믹 환경에서 직원의 건강과 웰빙뿐만 아니라, 안전한 문서 작업 처리 방법이나 수백만명에 달하는 해직자 혹은 원격 근무자들을 위한 편의 제공 방법 등도 고민하고 있습니다.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH5_Text1">
+    <value>위반이 발생하는 경우 IT 부서 단독으로 문제 해결에 대한 책임을 지지 않습니다. 특히 직원이 위반된 사건에 관련된 경우 HR 부서의 책임이기도 합니다. HR 부서는 은 직원의 행동에 대한 책임이 있습니다. 이런 사실때문에  조직은 사이버 범죄에 노출되어 있습니다.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading2">
+    <value>&lt;strong&gt;정책 결정 &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading4">
+    <value>&lt;strong&gt;데이터 제어 및 엑세스&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_Summary">
+    <value>HR 분야는 직원 개인 정보와 임금지불 세부 정보 또는 공개될 경우 심각한 피해를 줄 수 있는 비즈니스 비밀 정보들을 담당합니다.</value>
+  </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>HR 분야 사이버 보안의 중요성</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_Text2">
+    <value>&lt;li&gt;캠퍼스 연구의 지적 재산은 상당한 가치가 있습니다.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_MDPNST_H2_SH2_Text1">
     <value>증가된 클라우드 채택은 윤리적 해커와 사이버 위협 운영자로 하여금 더욱 정밀한 조사를 하게 합니다. 대부분의 공격은 클라우드 인프라 취약성을 노리므로 공격자는 단일 취약성을 바탕으로 다중의 대상을 공격할 수 있습니다. AxCrypt를 사용하면 모바일 및 PC의 드라이브에 있는 데이터를 보호할 수 있습니다.</value>
   </data>
@@ -669,11 +699,23 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>&lt;strong&gt;데이터 관리 규정 위반&lt;/strong&gt;
 </value>
   </data>
+  <data name="Blog_MDSCBF_H2_SH6_Text1">
+    <value>암호화에 잘못된 믿음들이 드러났으므로 이제 암호화를 하지 않는 행동에는 변명의 여지가 없습니다. AxCrypt는 데이터 사용 및 전송 유무에 관계 없이, 모바일과 데스크탑 및 노트북을 사용하여 데이터를 암호화 할 수 있는 사용자 친화적인 소프트웨어입니다. AxCrypt는 또한 광범위한 데이터 보안 요구 사항을 충족하는 다양한 기능을 갖추고 있습니다.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>1개월 무료 평가판을 사용해 보세요. 안드로이드 또는 IOS 사용자용 다운로드:</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>전반적으로 사이버 보안 및 비즈니스 측면에서 지난 몇 년은 일반적인 것과는 거리가 멀었습니다.</value>
+  </data>
   <data name="Blog_ROCP_H1_SH3_Text1">
     <value>암호는 대문자와 소문자, 숫자 및 특수 문자(예: @, £, 퍼센트 및 &amp;)를 포함해야 하며 길이는 10자 이상이어야 합니다. 기업은 암호 보안 정책을 수립하고 주기적으로 업데이트해야 합니다. 또한 조직의 직원들은 각각의 고유한 암호가 있어야 합니다.</value>
   </data>
   <data name="Blog_ROCP_Heading2">
     <value>귀사의 비밀번호를 정리해야 하는 이유.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>암호화에 관한 몇몇 일반적인  잘못된 믿음</value>
   </data>
   <data name="Blog_TIEDTC_H1_SH4_Text1">
     <value>대부분의 기업들은 보안을 유지해야 합니다. 민감정보를 해커로부터 보호하기 위해서는 암호화 상태를 유지해야 합니다. 기업의 재무 정보는 수입 및 지출 계정, 채무자 및 채권자 계정, 자산, 계정 번호, 지불 내역 등을 포함할 수 있습니다. 이러한 종류의 데이터는 침입자로부터 보호되어야 합니다. 이와같은 민감정보가 사이버 범죄자들에게 노출될 때마다 기업은 큰 피해를 입을 수 있으며, 그 기업을 신뢰하는 고객과 직원들은 불편을 겪을 수 있습니다.</value>
@@ -689,6 +731,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_TSTE_H2_Text1">
     <value>128/192비트 암호화 이후의 근래의 대부분의 암호화 알고리즘, 프로토콜, 기타 기술들은 &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;가장 안전한 암호화&lt;/a&gt;인 AES 256비트를 사용합니다.</value>
+  </data>
+  <data name="Blog_WENTI_H1_Text1">
+    <value>통신 제공업체, 소프트웨어 개발자 및 관리형 보안 서비스 제공업체는 모두 IT 또는 통신 분야 업체입니다. 연구에 따르면 2021년도 전세계적인 사이버 범죄의 표적은 IT 분야였습니다. 가장 공통적인 침입 수단은 이메일을 통해 이뤄졌으며, 기업들은 매달 평균 600개의 고유한 피싱 이메일을 받은 것으로 알려졌습니다. 기술 산업은 신기술을 가장 먼저 도입하기 때문에 사이버 공격에 특히 취약합니다. 보고서에 따르면 산업 제어 시스템(ICS) 및 운영 기술(OT)에 대한 보안 위협은 2020년 이후 3배 이상 증가했다고 알려졌습니다.</value>
   </data>
   <data name="BlogLinkLabel">
     <value>블로그</value>

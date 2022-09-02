@@ -658,6 +658,315 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} facturados al año</value>
   </data>
+  <data name="Blog_ADGE_H4_SubHeading2">
+    <value>&lt;strong&gt;Uso compartido de claves &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading3">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SH1_Text1">
+    <value>Con un administrador de contraseñas, puedes compartir contraseñas y notas de manera simple y segura con cualquier persona, especialmente cuando no se debe enviar información confidencial por SMS. Administrar quién tiene acceso a determinadas cuentas puede ser difícil para muchas empresas, en especial cuando numerosos empleados requieren acceso a una sola cuenta. Puedes administrar y modificar la contraseña de manera efectiva con la ayuda de un administrador de contraseñas.</value>
+  </data>
+  <data name="Blog_BMYP_H1_SH2_Text1">
+    <value>El hecho de que no necesites tener una excelente memoria es la verdadera ventaja de usar un administrador de contraseñas para aumentar tu seguridad en línea. Esto implica que todos pueden aplicar los consejos de seguridad de contraseñas más recientes.</value>
+  </data>
+  <data name="Blog_BMYP_H1_SH3_Text1">
+    <value>A la gente le gustaría no tener que recordar contraseñas largas que incluyen símbolos, números, signos de puntuación y letras mayúsculas, así como otros requisitos de contraseña de seguridad. Además, se les permite emplear contraseñas complejas que son únicas para cada punto de acceso.</value>
+  </data>
+  <data name="Blog_BMYP_H1_SH4_Text1">
+    <value>Los administradores de contraseñas permiten a los usuarios escribir, recordar y hacer que el nombre de usuario y la contraseña de cada punto de acceso se completen automáticamente. Te permite atender directamente lo más importante sin perder tiempo, ahorrándote tiempo que de otro modo podrías pasar tratando de recordar tus contraseñas o incluso buscando en tu diario para encontrarlas.</value>
+  </data>
+  <data name="Blog_BMYP_H1_SH5_Text1">
+    <value>La seguridad de las contraseñas por sí sola es solo un aspecto de la administración de sus contraseñas. Se puede acceder a los datos de la tarjeta de crédito de forma segura, y las billeteras de criptomonedas también están protegidas. Tu dinero está protegido contra robo al salvaguardar la información asociada con tu cuenta bancaria y tu cuenta Coinbase. Necesitarás proteger tu dinero con un administrador de contraseñas que te permita acceder a él desde cualquier parte del mundo si no puedes permitirte el lujo de perderlo todo.</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading1">
+    <value>&lt;strong&gt;Administración de cuentas compartidas&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading2">
+    <value>&lt;strong&gt;Está bien tener memoria de corto plazo&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading3">
+    <value>&lt;strong&gt;Disfruta usar contraseñas más fuertes&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading4">
+    <value>&lt;strong&gt;Acceso fácil &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Va más allá de asegurar solo contraseñas&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_Heading1">
+    <value>Algunas ventajas de usar un administrador de contraseñas.</value>
+  </data>
+  <data name="Blog_BMYP_Summary">
+    <value>Las preocupaciones respecto a la seguridad son con frecuencia de suma importancia en una época en la que el ciberdelito es el vicio más recurrente.</value>
+  </data>
+  <data name="Blog_BMYP_Text1">
+    <value>Las preocupaciones respecto a la seguridad son con frecuencia de suma importancia en una época en la que el ciberdelito es el vicio más recurrente. Personas de todos los ámbitos de la vida están trabajando arduamente para descubrir soluciones que no solo ofrezcan la mejor protección, sino también técnicas fáciles de usar en respuesta a filtraciones de datos y otras inquietudes. Pese a las reiteradas recomendaciones contra el uso de contraseñas demasiado simples o el reciclaje de la misma contraseña, una encuesta reciente del Pew Research Center determinó que las personas aún corren el riesgo de dañar las filtraciones de datos personales que podrían derivar en el robo financiero o de identidad debido a una mala gestión de contraseñas y una falta de prácticas de seguridad digital.</value>
+  </data>
+  <data name="Blog_BMYP_Text2">
+    <value>La mayoría de las personas han confirmado que utilizan con frecuencia contraseñas idénticas o sorprendentemente similares entre sí. Otras reconocen que usan contraseñas cortas y sencillas que son fáciles de recordar. La mejor manera de recordar las contraseñas es memorizarlas, seguido del método convencional de lápiz y papel para anotar las cosas esenciales en un diario personal. Las contraseñas simples o incluso similares se pueden adivinar rápidamente, y escribirlas en un diario empeora las cosas porque se pueden robar fácilmente. Una de las funciones clave de AxCrypt, el administrador de contraseñas, puede ser la solución a sus preocupaciones respecto a seguridad cibernética.</value>
+  </data>
+  <data name="Blog_BMYP_Title">
+    <value>Beneficios de administrar tus contraseñas</value>
+  </data>
+  <data name="Blog_CSFE_H2_SH2_Text1">
+    <value>La clave maestra es altamente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Permite a los gerentes comerciales recuperar archivos de otros empleados de la compañía. Esto elimina la posibilidad de perder archivos importantes. Ningún documento se perderá nunca ante la renuncia u olvido de las contraseñas de los empleados, siempre y cuando los administradores de la empresa realicen un seguimiento de las credenciales. &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; Conoce más sobre la función de clave maestra de AxCrypt aquí &lt;/a&gt;</value>
+  </data>
+  <data name="Blog_CSFE_H2_SubHeading1">
+    <value>&lt;strong&gt;Uso compartido de claves &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CSFE_H2_SubHeading2">
+    <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SubHeading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Clave maestra&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EHI_H3_SubHeading2">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EHI_H3_SubHeading3">
+    <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading2">
+    <value>&lt;strong&gt;Trabajo en equipo y colaboración&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading1">
+    <value>&lt;strong&gt;Protección de datos frente a la intromisión de terceros&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading2">
+    <value>&lt;strong&gt;Accesibilidad en varios dispositivos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading3">
+    <value>&lt;strong&gt;Uso compartido de claves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading4">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_FOKM_H3_SH4_Text1">
+    <value>La clave maestra es altamente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Permite a los gerentes comerciales recuperar archivos de otros empleados de la compañía. Esto elimina la posibilidad de perder archivos importantes. Ningún documento se perderá nunca ante la renuncia u olvido de las contraseñas de los empleados, siempre y cuando los administradores de la empresa realicen un seguimiento de las credenciales. La función de clave maestra solo está disponible para usuarios Business. &lt;a href='https://axcrypt.net/information/features '&gt; Haz clic aquí &lt;/a&gt;  para conocer más sobre las funciones de suscripción Business. Conoce más sobre la función de clave maestra de AxCrypt &lt;a href= 'https://www.axcrypt.net/blog/master-key'&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_FOKM_H3_SubHeading3">
+    <value>&lt;strong&gt;Uso compartido de claves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_FOKM_H3_SubHeading4">
+    <value>&lt;strong&gt;Clave maestra &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH1_Text1">
+    <value>Todo el mundo está preocupado por mover datos confidenciales a la nube y la mayoría de las organizaciones creen que la nube es riesgosa. Sin embargo, puedes estar seguro de que tus datos estarán seguros sin importar dónde se encuentren si los cifras antes de moverlos a la nube y tienes acceso a las claves de cifrado.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH2_Text1">
+    <value>Puedes transferir archivos utilizando la herramienta de uso compartido de claves sin tener que revelar contraseñas. Para otorgar a compañeros de trabajo específicos acceso a archivos determinados, puedes compartir claves de archivo con ellos. El archivo compartido se puede ver o editar fácilmente. Además, puedes retirar instantáneamente el acceso de la persona al dejar de compartir el archivo.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH3_Text1">
+    <value>La clave maestra es increíblemente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Los supervisores comerciales pueden obtener archivos de otros empleados gracias a esta. Esto elimina la posibilidad de perder archivos importantes. Siempre que los gerentes comerciales mantengan un registro de las contraseñas, nunca se perderán documentos como resultado de la renuncia o el olvido de los empleados. Los usuarios empresariales son los únicos que pueden utilizar la función de clave maestra. Para ver otros beneficios de la suscripción comercial,  &lt;a href='https://axcrypt.net/information/features'&gt;haz clic aquí&lt;/a&gt;. Para más información sobre&lt;a href='https://www.axcrypt.net/blog/master-key'&gt; la función de la clave maestra, haz clic aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH4_Text1">
+    <value>Los datos confidenciales se pueden proteger mediante cifrado. Debido a esto, hay menos probabilidades de que los espías del gobierno y los delincuentes te rastreen. Los datos se pueden cifrar mientras se utilizan, almacenan o transmiten. Si tienes acceso a tus claves de cifrado, puedes mantener el control de tus datos incluso después de que hayan salido de tu oficina.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH5_Text1">
+    <value>Muchas empresas se han esforzado por encontrar una solución para salvaguardar los datos recopilados y comunicados a través de varios dispositivos a medida que los dispositivos digitales han ganado popularidad en los últimos años. Sin embargo, todos tus datos y dispositivos electrónicos están seguros gracias al moderno software de tecnología de cifrado.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH6_Text1">
+    <value>Trabajar con compañeros de equipo en un entorno seguro es una de las mejores funciones de AxCrypt Business. Para evitar cualquier intervención, puedes invitar a tus compañeros de trabajo a comunicarse y compartir datos de forma segura. Consulta nuestro tutorial de YouTube para obtener más detalles sobre el &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt;uso compartido de claves de AxCrypt&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading1">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading2">
+    <value>&lt;strong&gt;Uso compartido de claves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading4">
+    <value>&lt;strong&gt;Protección de datos frente la intromisión de terceros&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Accesibilidad en varios dispositivos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading6">
+    <value>&lt;strong&gt;Colaboración en equipo&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text1">
+    <value>&lt;strong&gt;Implementar el cifrado es económico:&lt;/strong&gt; Casi todos los dispositivos y sistemas operativos que usamos hoy en día tienen tecnología de cifrado incorporada.</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text2">
+    <value>&lt;strong&gt;Puedes evitar multas reglamentarias mediante el cifrado:&lt;/strong&gt; Los datos confidenciales deben cifrarse de acuerdo con algunas leyes de protección de datos, &lt;a href='https://www.lepide.com/blog/5-benefits-of-using-encryption-technology-for-data-protection/'&gt; incluídas GDPR e HIPAA &lt;/a&gt;(Ley de Portabilidad y Responsabilidad de Seguro de Salud de 1996). Cuando un dispositivo o unidad se pierde o es robado y contiene datos sin cifrar, la empresa está sujeta a sanciones.</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text3">
+    <value>&lt;strong&gt;La confianza del consumidor se puede aumentar a través del cifrado:&lt;/strong&gt; Publicitar el hecho de que Tu empresa cumple con estándares de cifrado específicos podría brindarTe una ventaja competitiva a la luz de la disminución actual de la confianza del consumidor.</value>
+  </data>
+  <data name="Blog_HAVTYB_Heading1">
+    <value>El valor que AxCrypt agrega a tu empresa</value>
+  </data>
+  <data name="Blog_HAVTYB_Heading2">
+    <value>Cómo contribuimos a tus resultados</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>Cuando los datos confidenciales de tu empresa se almacenan en la nube, el cifrado puede reducir significativamente el riesgo de robo de datos.</value>
+  </data>
+  <data name="Blog_HAVTYB_Text1">
+    <value>Cuando los datos confidenciales de tu empresa se almacenan en la nube, el cifrado puede reducir significativamente el riesgo de robo de datos. Con el cifrado, es casi imposible llevar a cabo actividades comerciales de una manera que evite que los datos de tu empresa caigan en wrong handmanos equivocadas. Para mantener la privacidad y seguridad de tus datos, independientemente de la ubicación, las corporaciones están implementando el cifrado en sus políticas de seguridad de datos en la nube.</value>
+  </data>
+  <data name="Blog_HAVTYB_Text2">
+    <value>Las empresas que aún no se han dado cuenta de las ventajas de la computación en la nube están comenzando a entender lo importante que es tener una red altamente protegida para la seguridad del almacenamiento en la nube. Las empresas deben elegir a quién comprometen los datos de su empresa después de descubrir estos beneficios porque hay numerosas opciones de cifrado disponibles. Cuando usas AxCrypt, hacemos más que solo proteger la información sobre tu empresa. También nos aseguramos de que tengas una ventaja al mejorar tu empresa.</value>
+  </data>
+  <data name="Blog_HAVTYB_Title">
+    <value>Cómo AxCrypt agrega valor a tu empresa</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading3">
+    <value>&lt;strong&gt;Seguridad en la nube deficiente&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MK_H1_SH2_text1">
+    <value>La clave maestra es altamente segura, puede considerarse como un intercambio automático de archivos con los administradores de la empresa. Aquí los administradores podrán recuperar automáticamente los archivos que tienen la clave maestra aplicada. Esta función está probada y comprobada, y ya la utilizan muchos usuarios. Y sí, es importante que los administradores comerciales tengan mucho cuidado al elegir una buena contraseña. La elección de la contraseña es extremadamente importante, el administrador de la empresa debe asegurarse de que la contraseña sea lo suficientemente segura para proteger los archivos y documentos. Aquí está el enlace a nuestro &lt;a href='https://www.axcrypt.net/support/password-generator'&gt;generador de contraseñas&lt;/a&gt; que puede ayudar a elegir contraseñas seguras y fáciles de recordar.</value>
+  </data>
+  <data name="Blog_MK_Title">
+    <value>Clave maestra</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH1_Text1">
+    <value>Asegúrate de que solo las personas autorizadas tengan acceso a la información crítica para proteger sus datos. También es muy importante verificar y mantener la integridad de tus datos, así como saber exactamente qué datos tienes bajo tu custodia.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH2_Text1">
+    <value>Evita seleccionar la opción "recordar mi contraseña" porque los hackers informáticos pueden representar una amenaza al alterar o eludir la configuración de seguridad del navegador para obtener acceso a las contraseñas en los navegadores web más nuevos. Además, es preferible abstenerse de guardar las contraseñas en documentos públicos o digitales.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>Las contraseñas deben contener letras mayúsculas y minúsculas, números y caracteres especiales (como @, £, porcentaje y &amp;), y deben tener al menos diez caracteres. Las empresas deben establecer una política de seguridad de contraseñas y actualizarla con frecuencia. Además, cada empleado de la organización debe tener su propia contraseña.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH4_Text1">
+    <value>Se agrega una capa adicional de seguridad al procedimiento de contraseña mediante el uso de un sistema de autenticación de múltiples factores. Debido a esto, la solución se puede utilizar para fortalecer la posición de seguridad de tu empresa y protegerla contra vulneraciones de contraseñas. De hecho, implementar este sistema por sí solo puede ayudarte a eliminar el 99 % de las filtraciones de cuentas.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH5_Text1">
+    <value>Un administrador de contraseñas es un instrumento digital seguro que almacena de forma centralizada tu información de inicio de sesión y contraseñas de internet y está protegido por una contraseña maestra única y segura. Además, los administradores de contraseñas pueden crear contraseñas seguras y únicas para ti. Al ayudarte a crear una contraseña específica para cada una de tus cuentas, esta aplicación mejora la seguridad de los datos. Como resultado, si una de tus cuentas se ve comprometida, la contraseña que se usó para acceder a ella no se puede usar para acceder a ninguna otra cuenta.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading1">
+    <value>&lt;strong&gt;Limita el acceso a la información&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading2">
+    <value>&lt;strong&gt;Evita las opciones "Recordar mi contraseña" o "Sugerencia de contraseña"&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading3">
+    <value>&lt;strong&gt;Crea contraseñas fuertes, largas y distintivas&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading4">
+    <value>&lt;strong&gt;Utiliza un sistema de autenticación de múltiples factores&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading5">
+    <value>&lt;strong&gt;Usa un administrador de contraseñas&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H2_Text1">
+    <value>Los servicios de asistencia técnica pierden tiempo recuperando contraseñas, y el tiempo es oro. Incluso si trataron de memorizar las contraseñas, los miembros del personal de la mesa de ayuda las olvidan con frecuencia debido a los cambios frecuentes y al volumen de cuentas que deben administrar. La gestión de contraseñas mediante un navegador no es segura, y guardarlas en una hoja de cálculo diferente es aún menos seguro, ya que normalmente no están sincronizadas con la nube. Los cambios de contraseña se registran y no salvan a una empresa con mala reputación de la &lt;a href='https://itsblossom.com/blog/2019/10/21/employees-revenge-on-bosses/'&gt; venganza de un empleado enojado &lt;/a&gt; que ha dejado la empresa.</value>
+  </data>
+  <data name="Blog_ROCP_Heading1">
+    <value>Cómo una empresa debe organizar sus contraseñas.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Por qué deberías organizar las contraseñas de tu empresa.</value>
+  </data>
+  <data name="Blog_ROCP_Summary">
+    <value>Puede ser difícil hacer un seguimiento de todas las contraseñas y credenciales que adquieres como dueño de una empresa, tanto a nivel individual como profesional.</value>
+  </data>
+  <data name="Blog_ROCP_Text1">
+    <value>Puede ser difícil hacer un seguimiento de todas las contraseñas y credenciales que adquieres como dueño de una empresa, tanto a nivel individual como profesional. Proteger las contraseñas tanto de tu empresa como de tus clientes lo hace aún más difícil. Por un lado, emplear la misma contraseña en todos tus inicios de sesión es arriesgado y puede derivar en el hackeo de tus cuentas comerciales. Por otro lado, debido a que ciertos empleados o consultores son temporales, es posible que no siempre puedas regular quién tiene acceso a qué credenciales dentro de la organización.</value>
+  </data>
+  <data name="Blog_ROCP_Text2">
+    <value>Todos los dueños de empresas necesitan un administrador de contraseñas como AxCrypt, ya que mantener las contraseñas es uno de los aspectos esenciales para operar una empresa exitosa. Este artículo explicará por qué y cómo una empresa debe organizar sus contraseñas.</value>
+  </data>
+  <data name="Blog_ROCP_Title">
+    <value>La importancia de organizar las contraseñas de una empresa</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH1_Text1">
+    <value>La información de los empleados debe protegerse dado el período en el que vivimos, que sigue al impacto de una pandemia mundial que ha empujado a muchas organizaciones a adaptarse a un nuevo tipo de entorno laboral. Todas las empresas, a menos que sean de propiedad única, tienen empleados, y eso conlleva una gran cantidad de datos confidenciales que deben protegerse. La información personal y financiera, las plantillas horarias y el pago de los empleados, los contratos y las licencias médicas son solo algunos ejemplos de datos confidenciales. Proteger dicha información de terceros no autorizados debe ser la principal prioridad de todas las empresas, especialmente cuando se comparte con usuarios externos. Información como esta podría ser beneficiosa para los hackers informáticos. Proteger internamente estos datos del escrutinio público es igual de fundamental. Las organizaciones corren un riesgo significativo de exposición, particularmente a través de su personal.</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH2_Text1">
+    <value>Toda empresa dispondrá, de una forma u otra, de información sobre clientes, contratos de proveedores en detalle y documentos sobre licitaciones y concursos, por citar algunos tipos de datos comerciales. Las regulaciones que rigen la protección de la información del cliente son aplicables a todas las industrias, pero los sectores bancario y de salud son particularmente sensibles a ellas. La relevancia de este tipo de información es con frecuencia socavada y descuidada. Cada vez que se comparte información, así como cuando se envía hacia sistemas internos y desde estos, debe cifrarse porque el no hacerlo podría poner en grave peligro a una corporación. Al compartir dichos datos, las empresas deben tener cuidado porque la información confidencial sobre sus clientes o proveedores podría divulgarse a partes no autorizadas o incluso a empresas rivales.</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH3_Text1">
+    <value>El concepto de asegurar la información legal corporativa está aumentando rápidamente y es bastante sensible debido a los datos que contiene. El volumen de datos que deben cifrarse para que se consideren legalmente relevantes puede ser significativo y variar mucho. Cubriría cosas como políticas y procedimientos de la empresa, correspondencia con abogados, activos, actas de reuniones, acuerdos con proveedores o vendedores, acuerdos de propietarios, acuerdos de contratos independientes y más. Además de la necesidad de mantener seguros los asuntos legales de la empresa en sus arcas, este movimiento aumentará la confianza de los clientes y el personal en la organización. El cifrado de extremo a extremo también es una gran idea cuando se trata de datos altamente confidenciales como estos. El cifrado de datos ofrece una seguridad constante tanto para los datos en reposo como para los datos en tránsito, lo que puede brindar cierta tranquilidad a las personas que manejan la información. Se deben seguir las normas de seguridad para proteger los datos legales.</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH4_Text1">
+    <value>La mayoría de las empresas deben mantener sus planes o ideas en secreto. La información confidencial siempre debe cifrarse para evitar que los hackers informáticos accedan a ella. La información financiera de una corporación puede comprender su cuenta de ingresos y gastos, cuenta de deudores y acreedores, activos, números de cuenta, historial de pagos, etc. Este tipo de datos deben protegerse de los intrusos. Cada vez que los ciberdelincuentes exponen dichos datos, la empresa corre un gran peligro de sufrir daños y los clientes y el personal que confiaron sus datos a la organización sufren inconvenientes.</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SubHeading1">
+    <value>&lt;strong&gt;Datos de recursos humanos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SubHeading2">
+    <value>&lt;strong&gt;Cliente / Información comercial&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SubHeading3">
+    <value>&lt;strong&gt;Información legal&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SubHeading4">
+    <value>&lt;strong&gt;Información financiera&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>¿Qué datos debe cifrar tu empresa?</value>
+  </data>
+  <data name="Blog_TIEDTC_Summary">
+    <value>Muchas empresas no creen que sus datos deban estar cifrados. Comprenden el valor de esta tecnología para proteger información extremadamente confidencial y privada, pero no creen que se aplique a ellos porque no son dueños de esta información.</value>
+  </data>
+  <data name="Blog_TIEDTC_Text1">
+    <value>Muchas empresas no creen que sus datos deban estar cifrados. Comprenden el valor de esta tecnología para proteger información extremadamente confidencial y privada, pero no creen que se aplique a ellos porque no son dueños de esta información. Se espera que uno de los mayores avances en ciberseguridad sea la seguridad confidencial. La información privada, los datos confidenciales y la seguridad de la comunicación entre las relaciones y las empresas están protegidos por esta.</value>
+  </data>
+  <data name="Blog_TIEDTC_Text2">
+    <value>No importa cuán grande o pequeña sea, o a qué industria sirven, cada organización tiene datos importantes. Con frecuencia descubren que tienen considerablemente más de esta información de lo que creen, ya sea que lo sepan o no, en especial después de una auditoría. La comprensión de la utilidad de categorizar los datos y su relevancia recibe poca o ninguna consideración.</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>La importancia de cifrar todos los datos de una empresa</value>
+  </data>
+  <data name="Blog_TSTE_H1_Text1">
+    <value>AES es un cifrado de bloque simétrico con una longitud de clave de 128 bits que cifra un mensaje de 128 bits en un texto cifrado de 128 bits. Las opciones de tamaño de bits de la clave son 128, 192 o 256 en orden ascendente. Es más sencillo de analizar que otros dispositivos que solo tienen un bit de entrada y un bit de salida.</value>
+  </data>
+  <data name="Blog_TSTE_H1_Text2">
+    <value>Además, AES prefiere organizar las cosas en una cuadrícula de 4 por 4 para 128 bits, lo que equivale a 16 bits en una cuadrícula de 4x4, en lugar de una larga línea de bits como podrían hacer la mayoría de los cifrados. AES reemplaza bytes, cambia filas y mezcla columnas de un texto sin formato utilizando una parte de su clave.</value>
+  </data>
+  <data name="Blog_TSTE_H1_Text3">
+    <value>El primer componente es la sustitución, el segundo es la permeación y, finalmente, agregaríamos una clave de ronda al final de cada ronda que es equivalente a la primera ronda. Pero para un cifrado de 128 bits, pasa por 10 de estas rondas, un cifrado de 192 bits, 12, y un cifrado de 256 bits, 14.</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text1">
+    <value>La mayoría de los algoritmos, protocolos y tecnologías de cifrado contemporáneos utilizan AES de 256 bits, que se encuentra entre las técnicas &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;de cifrado más seguras&lt;/a&gt; después del cifrado de 128 y 192 bits.</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text2">
+    <value>Un mensaje cifrado de 256 bits necesitaría dos combinaciones distintas de 256 para descifrarse, lo que hace que sea prácticamente difícil para los hackers informáticos o los crackers informáticos e incluso para las computadoras más rápidas. Sin embargo, también se usa para información confidencial y crítica, como datos financieros, militares o gubernamentales. Por lo general, el cifrado de 256 bits se usa para datos en tránsito, datos en reposo o una red o conexión a internet. Puedes sentirte seguro sabiendo que tus datos están protegidos con el más alto grado de cifrado, AES 256.</value>
+  </data>
+  <data name="Blog_TSTE_Heading1">
+    <value>Un poco de contexto.</value>
+  </data>
+  <data name="Blog_TSTE_Heading2">
+    <value>¿Cuál es el tipo de cifrado más seguro?</value>
+  </data>
+  <data name="Blog_TSTE_Summary">
+    <value>Al fomentar una cultura de seguridad y privacidad, el cifrado se ha establecido en la esfera digital moderna.</value>
+  </data>
+  <data name="Blog_TSTE_Text1">
+    <value>Al fomentar una cultura de seguridad y privacidad, el cifrado se ha establecido en la esfera digital moderna. La cantidad de datos que las diferentes técnicas de cifrado pueden procesar simultáneamente y el tipo de clave necesaria para descifrar los datos varían. DES, AES y RSA son los tres tipos principales de cifrado, pero algunos prevalecen sobre otros. En 2001, el algoritmo de cifrado del Estándar de cifrado avanzado (AES) reemplazó al Estándar de cifrado de datos (DES) como el estándar mundial aceptado para los algoritmos de cifrado. Esto mejoró muchos de los inconvenientes del método anterior. El estándar de cifrado avanzado (AES) ha cumplido hasta ahora los objetivos establecidos para él en el momento de su creación. Los funcionarios de gobierno y otras organizaciones lo utilizan porque es el algoritmo estándar reconocido de la industria y el tipo de cifrado más seguro.</value>
+  </data>
+  <data name="Blog_TSTE_Title">
+    <value>El tipo de cifrado más seguro</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SubHeading2">
+    <value>&lt;strong&gt;Trabajo en equipo y colaboración &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SubHeading3">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SubHeading4">
+    <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H4_SubHeading1">
+    <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H4_SubHeading2">
+    <value>&lt;strong&gt;Uso compartido de claves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_SH2_Text1">
+    <value>La clave maestra es altamente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Permite a los gerentes comerciales recuperar archivos de otros empleados de la compañía. Esto elimina la posibilidad de perder archivos importantes.&lt;a href='https://www.axcrypt.net/blog/master-key'&gt; Conoce más sobre la función de clave maestra de AxCrypt aquí&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_SubHeading1">
+    <value>&lt;strong&gt;Uso compartido de claves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_SubHeading2">
+    <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
   </data>

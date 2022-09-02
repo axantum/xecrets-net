@@ -653,6 +653,39 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} faktureras årligen</value>
   </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Det går bortom säkringen av enbart lösenord&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Huvudnyckel&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Tillgänglig på olika enheter&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>När känslig data från ditt företag är lagrat på molnet kan kryptering väsentligt sänka risken för dataintrång</value>
+  </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>Det viktiga med cybersäkerhet i personalsektorn.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Testa en månads fri användning, ladda ner för Android och iOS användare:</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>Lösenord måste innehålla stora och små bokstäver, siffror, och specialtecken (som @, £, % och &amp;) och dessa måste vara minst 10 tecken långa. Företag borde etablera en lösenord säkerhets policy och uppdatera denna ofta. Dessutom behöver varje medarbetare i företaget sitt eget lösenord.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Varför du borde organisera ditt företags lösenord.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Några Vanliga Myter Om Kryptering</value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>Vilken data borde ditt företag kryptera?</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>Det viktiga med att Kryptera All Data Inom Företaget</value>
+  </data>
   <data name="BlogLinkLabel">
     <value>Blogg</value>
   </data>

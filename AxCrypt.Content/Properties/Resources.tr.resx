@@ -403,6 +403,9 @@ Lütfen aynı şifreyi kullanarak oturum aç.</value>
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>İndirim kodunu girin</value>
   </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
   <data name="ApplyNowLabel">
     <value>Şimdi başvurun</value>
   </data>
@@ -625,6 +628,95 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>Yıllık tutar: {0}</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Sadece şifreleri güvence altına almanın ötesine geçer&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading1">
+    <value>&lt;strong&gt;Yüksek kaliteli virüs koruma yazılımı&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading2">
+    <value>Yaygın siber hijyen konularından bazıları:</value>
+  </data>
+  <data name="Blog_CSFE_H1_Text1">
+    <value>Bir çalışan için bir siber saldırının ne zaman gerçekleştiğini tanımak, bir siber saldırıdan kaçınmaktan daha zor olabilir, ancak birkaç uyarı sinyali vardır. Çalışanlar, saldırıya uğradıklarından korkarlarsa nelere dikkat etmeleri gerektiği konusunda sürekli olarak eğitilmelidir.</value>
+  </data>
+  <data name="Blog_DRATIUIN_Title">
+    <value>Durağan, transit ve kullanımdaki veriler - kısacası</value>
+  </data>
+  <data name="Blog_HAPYD_H3_text1">
+    <value>İnternet üzerinden gönderilen bilgileri karıştırarak, çevrim içi işlemlerde tarayıcınızı şifreleme yazılımı aracılığıyla güvende tutar.  Misyonumuz, bireylere ve küçük ekiplere, kullanımı hiç olmadığı kadar kolay şifreleme çözümleri sunmaktır. Güçlü ve kanıtlanmış kriptografik teknolojinin kullanımındaki zorluğu ortadan kaldırıyoruz.</value>
+  </data>
+  <data name="Blog_HAPYD_Heading3">
+    <value>Burada AxCrypt'te</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH3_Text1">
+    <value>Ana Anahtar inanılmaz derecede güvenlidir; şirket yöneticileri ile otomatik bir dosya paylaşım sistemi olarak düşünülebilir. İş denetçileri bu sayede diğer çalışanlardan dosya alabilmektedir. Bu, önemli dosyaları kaybetme olasılığını ortadan kaldırır. İşletme yöneticileri şifrelerin kaydını tuttuğu sürece, çalışanların istifa etmesi veya unutması sonucu hiçbir kağıt kaybolmaz.Ana anahtar işlevini yalnızca iş kullanıcıları kullanabilir. Diğer ticari abonelik avantajlarını görüntülemek için &lt;ahref='https://axcrypt.net/information/features'&gt;burayı tıklayın&lt;/a&gt;. AxCrypt'in &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; ana anahtar işlevi&lt;/a&gt; hakkında buradan daha fazla bilgi edinin.
+</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Master key&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Çeşitli cihazlardan erişilebilir&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text2">
+    <value>&lt;strong&gt;Şifrelemeyi Kullanarak Yasal Para Cezalarından Kurtulabilirsiniz:&lt;/strong&gt; Kişisel veriler, bazı veri koruma yasalarına uygun olarak şifrelenmelidir,&lt;a href='https://www.lepide.com/blog/5-benefits-of-using-encryption-technology-for-data-protection/'&gt;GDPR ve HIPAA dahil&lt;/a&gt;(1996 Sağlık Sigortası Taşınabilirlik ve Hesap Verebilirlik Yasası)Bir cihaz veya sürücü kaybolduğunda veya çalındığında ve şifrelenmemiş veriler içerdiğinde şirket yaptırımlara tabidir.</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>İşletmenize ait hassas veriler bulutta depolandığında, şifreleme veri hırsızlığı riskini önemli ölçüde azaltabilir.</value>
+  </data>
+  <data name="Blog_ICSHRS_H1_Text1">
+    <value>Hiç kimsenin öngöremediği  yeni bir çalışma ortamına uyum sağlarken, pandemi,  kuruluşları rahatsız etti ve insan kaynakları yöneticilerini görevlerini nasıl yerine getireceklerini yeniden düşünmeye yöneltti. İK yöneticileri sadece salgın sırasında çalışanlarının sağlığı ve esenliği konusunda değil, aynı zamanda evrak işlerini güvenli bir şekilde işlemek ve işten çıkarılan veya uzaktan çalışan milyonlarca insana kolaylık sağlamak konusunda da endişeliler.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH4_Text1">
+    <value>İnsan kaynakları departmanı, bir şirkete erişim kısıtlamaları oluşturma ve uygulama konusunda yardımcı olabilir. Bir çalışan işe alınmadan veya işe başlamadan önce bile İK, ihtiyaç duyacakları verileri belirleyebilir. Ayrıca, sözleşmelerinin sonunda çalışanın bu bilgilere erişimi olmadığından emin olmalıdır.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading2">
+    <value>&lt;strong&gt;Politika Oluşturma &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading4">
+    <value>&lt;strong&gt;Veri Kontrolleri ve Erişim&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_Summary">
+    <value>İK'lar, çalışanların kişisel bilgileri, ödeme ayrıntıları ve ifşa edilmesi halinde önemli zararlar verebilecek olan diğer bilgiler dahil olmak üzere birçok  iş bilgisinin gizliliğinden sorumludur.</value>
+  </data>
+  <data name="Blog_MDPNST_Heading2">
+    <value>2022'de dikkat edilmesi gereken mobil tehditlerden bazıları</value>
+  </data>
+  <data name="Blog_MDPNST_Summary">
+    <value>Dünya çapındaki mobil güvenlik akımları,  yanlış bilgilendirme kampanyaları, tedarik zinciri saldırıları, e-şifre avcılığı, kimlik avı, mobil müdahale ve mobil kötü amaçlı yazılımlar tarafından kontrol edilmektedir.</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>Siber güvenlik ve genel olarak iş dünyası için geçtiğimiz birkaç yılda özgün bir şeyler oldu.</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>Şifreler büyük ve küçük harfler, sayılar ve özel karakterler içermelidir (@,£, yüzde ve &amp; gibi) ve en az on karakter uzunluğunda olmalıdırlar. İşletmeler bir şifre güvenlik politikası oluşturmalı ve bunu sık sık güncellemelidir. Ayrıca, kuruluştaki her çalışanın kendi şifresine sahip olması gerekmektedir.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Şirketinizin Şifrelerini Neden Organize Etmelisiniz?</value>
+  </data>
+  <data name="Blog_SD_Heading2">
+    <value>&lt;h3&gt;Garanti edilen güvenlik&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>Şirketiniz Hangi Verileri Şifrelemelidir?</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>Şirket İçindeki Tüm Verileri Şifrelemenin Önemi</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text1">
+    <value>Çoğu çağdaş şifreleme algoritması, protokolleri ve teknolojileri, 128-bit ve 192-bit şifrelemeden sonra en güvenli ve en emniyetli şifreleme &lt;/a&gt;teknikleri arasında&lt;ahref='https://www.toptenreviews.com/secure-encryption-methods'&gt; yer alan AES 256-bit'i kullanır.</value>
+  </data>
+  <data name="Blog_WTPI_H1_Text3">
+    <value>2006 yılındaki kuruluşundan bu yana WikiLeaks birkaç aşamadan geçti. İzleyicilerinin aktif olarak düzenleyip gönderdiği belge ve dosyaları yayınlamaktan, belirli bir amaca hizmet eden siyasi beyanları yayınlamaya kadar. Artık yasal süreçte, bilgileri analiz etmek, yeniden düzenlemek ve yayınlamak için haber kuruluşlarıyla yakın bir şekilde çalışıyorlar.</value>
+  </data>
+  <data name="Blog_WTPI_H1_Text5">
+    <value>Wikileaks gibi kuruluşlar, uzun yıllardır var olan toplumsal kuralları değiştirir ve bilginin gücünü kullanarak üst düzey hiyerarşik yapıyı değiştirmeye çabalar. Artıları ve eksileri göz önüne alındığında, vatandaşlar olarak eleştirel düşünmek ve her şeyi olduğu gibi kabul etmemek gerçekten önemlidir. Değerler ve amaçlar sürekli evrim halindedir ve bu nedenle değişmeyen temel ilkeler olmamalıdır.
+</value>
+  </data>
+  <data name="Blog_WTPI_Title">
+    <value>WikiLeaks ve bilginin gücü</value>
   </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
@@ -1595,6 +1687,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   <data name="DownloadLinkLabel">
     <value>İndir</value>
   </data>
+  <data name="DownloadMobileBodyText">
+    <value>İstediğiniz zaman ve istediğiniz yerde dosyaları şifreleyin ve şifresini çözün.Mobil uygulamalar, Google Drive ve Dropbox gibi (dahası da gelecek)  en yaygın bulut uygulamalarını destekler. Mevcut bulunan ve sizinle paylaşılmış olan güvenli dosyalarınızı, herhangi bir platformda, abonelik kaydı olmaksızın görüntülemek her zaman için mümkündür. Artık mobil cihazlarda da!</value>
+  </data>
   <data name="DownloadMobileBodyText1">
     <value>Dosyaları istediğiniz zaman istediğiniz yerde şifreleyin ve şifresini çözün. Mobil uygulamalar, Google Drive ve Dropbox gibi en yaygın bulut depolarını destekler (daha fazlası gelecek).</value>
   </data>
@@ -1612,6 +1707,9 @@ Yollarımızın ayrılmasına üzülsek de AxCrypt'teki vaktinden keyif aldığ�
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Aboneliklerimizi bir ay süresince &lt;span&gt;ücretsiz deneyin...&lt;/span&gt;</value>
+  </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Android telefonunuzdaki, iPhone'unuzdaki veya tabletinizdeki dosyaları istediğiniz yerden ve istediğiniz zaman şifreleyebilir ve şifresini çözebilirsiniz. AxCrypt mobil şifreleme hem Android hem de iOS'u destekler. AxCrypt, iOS ve Android'de,  Google Drive Dosya şifrelemesini destekler. Yerel Depolama şifrelemesi şimdilik yalnızca Android'de kullanılabilir. İCloud, DropBox, OneDrive vb. gibi diğer bulut sürücüleri ise gelecek sürümlerde desteklenecektir.</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Hollanda (Hollandaca)</value>
@@ -2380,6 +2478,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>Seçilen günlük türü geçersizdir.</value>
   </data>
+  <data name="GetStartDownloadAppText">
+    <value>Uygulamayı indirin</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Güvenli dosyalara erişin</value>
   </data>
@@ -2394,6 +2495,21 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>AxCrypt ID'niz ile uygulamayı kullanın. Android ve iOS uygulamalarını kullanmak için premium abonelik gerekir. Yeni bir AxCrypt ID oluştururken 30 günlük Premium deneme sürümü otomatik olarak hesabınıza tanımlanır.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Nasıl &lt;span&gt;Kullanılır&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;AxCrypt'i Yükleme&lt;/span&gt; ve AxCrypt Kimliğinizi Oluşturma</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Bir kişi ekleyin veya seçin.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Şifre yönetimine erişmek için giriş yapın</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>Şifre &lt;span&gt;Sıfırla&lt;/span&gt;</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Şifrelere kolay erişim</value>
@@ -2565,6 +2681,9 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
   </data>
   <data name="GovernmentLinkLabel">
     <value>Devlet</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Başla</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Kılavuzlar</value>
@@ -2965,6 +3084,30 @@ Bu bazı işlemlerin çok uzun sürmesine yol açabilir. Lütfen aşağıda şif
   </data>
   <data name="Introduction1MailSubject" xml:space="preserve">
     <value>AxCrypt'e hoş geldin!</value>
+  </data>
+  <data name="Introduction1MailText10">
+    <value>Dünyanın En İyi Şifreleme Yazılımı</value>
+  </data>
+  <data name="Introduction1MailText19">
+    <value>Devamını oku</value>
+  </data>
+  <data name="Introduction1MailText21">
+    <value>Anahtar paylaşımı özelliği ile Axcrypt, güvenli dosyaların diğer Axcrypt kullanıcıları tarafından kendi şifrelerini kullanarak açılmasına olanak sağlar.</value>
+  </data>
+  <data name="Introduction1MailText3">
+    <value>İşte size başlamanız için bir rehber!</value>
+  </data>
+  <data name="Introduction1MailText5">
+    <value>Verilerinizi nasıl güvende tutacağınız hakkında daha fazla bilgi edinmek için blog gönderilerimize bir göz atın:</value>
+  </data>
+  <data name="Introduction2MailText16">
+    <value>Şifre Yöneticisi</value>
+  </data>
+  <data name="Introduction2MailText20">
+    <value>2025 yılına kadar, küresel e-posta şifreleme pazarının yüzde 20,1'lik bir artışa mukabil, 12.9 milyar dolara ulaşması bekleniyor.</value>
+  </data>
+  <data name="Introduction2MailText4">
+    <value>Axcrypt'i profesyonel amaçlarla kullanmayı düşünüyorsanız, o zaman Axcrypt Business sizin için doğru bir planlama. Sürümü şimdi yükseltin ve ekibinizle birlikte güvenli ve kaygısız bir şekilde çalışın.</value>
   </data>
   <data name="Invalid_TimeSpan" xml:space="preserve">
     <value>Lütfen zamanı 'ss:dd:ss.mmm' şeklinde belirt.</value>
@@ -4359,6 +4502,9 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
   <data name="PricingLinkLabel">
     <value>Fiyatlandırma</value>
   </data>
+  <data name="PricingLinkLabelFeature">
+    <value>Aboneliklerimizi bir ay ücretsiz deneyin</value>
+  </data>
   <data name="PricingSubheading">
     <value>Nasıl ödeme yapmak istersiniz?</value>
   </data>
@@ -4541,8 +4687,20 @@ HubSpot, CRM sistemi aracılığıyla iletişim yönetimi dahil, çevrimiçi paz
   <data name="PrivacyPolicyLinkLabel">
     <value>Gizlilik politikası</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Şirket içi dosyalarda, dosyaları ekibin diğer üyeleri ile paylaşmak, bulut depolama bilinirliği ve anahtar paylaşım özelliği sayesinde son derece kolaydır. Bu, dosyalarınızı maliyetli veri ihlallerinden korurken, veri koruma yasalarına da uymanıza olanak sağlar.</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>&lt;span&gt; AES-256&lt;/span&gt; ile daha güçlü şifreleme</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Ürün ve özellikleri benim için çok karmaşık</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Güvenli dosyaları başkalarıyla da paylaşmanız gerekirse, bu işle sizin yerinize ilgilenecek anahtar paylaşımınız olacak, hatta Dropbox, Google Drive vb. bulut depolama alanlarına erişim ile birlikte. Axcrypt mobil uygulama ile,  istediğiniz yerde ve  zamanda, telefonunuzdan dosyalarınızı şifreleyebilecek ve şifresini açabileceksiniz.</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>&lt;span&gt; AES-256&lt;/span&gt; ile daha güçlü şifreleme</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>Ve daha fazlası...</value>
@@ -5741,6 +5899,9 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Aboneliğiniz &lt;b&gt;{0}&lt;/b&gt; tarihinde yenilenecektir.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>Elbette istediğiniz zaman iptal edebilirsiniz!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>AxCrypt Premium aboneliğiniz iptal edilmiştir.</value>
