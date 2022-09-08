@@ -664,6 +664,24 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_ADGE_H4_SubHeading3">
     <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_AMEFH_H1_SH2_Text1">
+    <value>Se produce una fuga de datos cuando se transfiere información confidencial sin querer desde un dispositivo móvil a un servicio de internet. Si el dispositivo no protege los datos de manera efectiva, los datos quedan disponibles para cualquier persona que use la misma red que el dispositivo.</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SH3_Text1">
+    <value>Vivimos en una era en la que todos estamos continuamente conectados a redes que no siempre son seguras. Según investigadores, los dispositivos móviles utilizan casi tres veces más Wi-Fi que los datos. Cerca de una cuarta parte de los dispositivos se conectan a redes Wi-Fi que no son seguras y el 4 % de los dispositivos están sujetos a un ataque de intermediario.</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SubHeading1">
+    <value>&lt;strong&gt;Phishing &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SubHeading2">
+    <value>&lt;strong&gt;Fuga de datos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SubHeading3">
+    <value>&lt;strong&gt;Interferencia Wi-Fi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H2_Text1">
+    <value>&lt;li&gt;AxCrypt ofrece una prueba gratuita de un mes para que aproveches todas las funciones, incluida la de cifrado móvil. Entonces, ¿qué esperas? Regístrate para obtener una prueba gratuita de AxCrypt aquí:&lt;/li&gt;</value>
+  </data>
   <data name="Blog_BMYP_H1_SH1_Text1">
     <value>Con un administrador de contraseñas, puedes compartir contraseñas y notas de manera simple y segura con cualquier persona, especialmente cuando no se debe enviar información confidencial por SMS. Administrar quién tiene acceso a determinadas cuentas puede ser difícil para muchas empresas, en especial cuando numerosos empleados requieren acceso a una sola cuenta. Puedes administrar y modificar la contraseña de manera efectiva con la ayuda de un administrador de contraseñas.</value>
   </data>
@@ -708,6 +726,16 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_BMYP_Title">
     <value>Beneficios de administrar tus contraseñas</value>
+  </data>
+  <data name="Blog_Conclusion_ContactUs_Text1">
+    <value>¡Contáctanos a los correos &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; o &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; si tienes alguna pregunta!</value>
+  </data>
+  <data name="Blog_Conclusion_Feature_Text1">
+    <value>Echa un vistazo a la  &lt;a href='https://axcrypt.net/information/features'&gt;Página de funciones de AxCrypt&lt;/a&gt; para obtener más información sobre cómo AxCrypt puede proteger tus archivos y datos y la &lt;a href='https://www.axcrypt.net/pricing'&gt;Página de precios&lt;/a&gt; para conocer los tipos de suscripciones de cifrado que ofrece AxCrypt.</value>
+  </data>
+  <data name="Blog_Conclusion_SocialMedia_Text1">
+    <value>Sigue a nuestras cuentas en redes sociales para obtener más información sobre las próximas funciones y ofertas &lt;strong&gt; (&lt;a href='https://facebook.com/axcrypt'&gt;Facebook&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;Instagram&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;Twitter&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;Linkedin&lt;/a&gt;)
+</value>
   </data>
   <data name="Blog_CSFE_H2_SH2_Text1">
     <value>La clave maestra es altamente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Permite a los gerentes comerciales recuperar archivos de otros empleados de la compañía. Esto elimina la posibilidad de perder archivos importantes. Ningún documento se perderá nunca ante la renuncia u olvido de las contraseñas de los empleados, siempre y cuando los administradores de la empresa realicen un seguimiento de las credenciales. &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; Conoce más sobre la función de clave maestra de AxCrypt aquí &lt;/a&gt;</value>
@@ -814,8 +842,137 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_HAVTYB_Title">
     <value>Cómo AxCrypt agrega valor a tu empresa</value>
   </data>
+  <data name="Blog_HEIDS_Heading1">
+    <value>&lt;h3&gt;Phishing&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text2">
+    <value>&lt;li&gt;Phishing&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SubHeading3">
+    <value>&lt;strong&gt;Ataques de phishing y smishing &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SH1_Text1">
+    <value>El 57 % de las empresas crea diariamente más de 6.500 archivos que contienen datos confidenciales. Es mucha información, pero también es muy complicada. Además, existe la preocupación de dónde se guardan esos datos y quién tiene acceso a ellos. Al menos 1.000 usuarios inactivos en el 71% de las empresas aún pueden acceder a datos confidenciales.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SH2_Text1">
+    <value>Se ha descubierto que varias empresas han violado regulaciones como CCPA, PCI, HIPAA y GDPR. Además de aumentar su vulnerabilidad a los ataques, tener copias adicionales de sus datos puede dificultar la realización de análisis y la toma de decisiones empresariales. Si se utiliza información desactualizada, podría generar pérdidas monetarias, violaciones de seguridad u otros problemas. AxCrypt garantiza que tu organización cumpla con regulaciones como GDPR e HIPAA, que se refieren a la protección de datos personales y derechos individuales.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SH3_Text1">
+    <value>La seguridad en la nube facilita que los miembros del equipo accedan a archivos y datos desde cualquier ubicación. Por lo tanto, están creciendo en popularidad. Por lo tanto, la seguridad en la nube debe garantizarse porque la mayoría de las soluciones de administración de la nube no incluyen procedimientos de autenticación y cifrado. Con AxCrypt, es fácil lograr la privacidad de los datos en la nube. AxCrypt encontrará automáticamente qué servicios de almacenamiento en la nube están instalados en tu computadora y creará una carpeta AxCrypt.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SH4_Text1">
+    <value>Usamos nuestros smartphones para todo, incluidas las operaciones bancarias, las actividades comerciales y otros fines. Lamentablemente, los ciberdelincuentes pueden utilizar los teléfonos inteligentes como método de ataque. El cifrado de AxCrypt Mobile va más allá de una contraseña de pantalla de bloqueo normal.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading1">
+    <value>&lt;strong&gt;Falta de visibilidad de datos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;Se violan las normas de gestión de datos&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_MDSCBF_H1_SubHeading3">
     <value>&lt;strong&gt;Seguridad en la nube deficiente&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading4">
+    <value>&lt;strong&gt;Los dispositivos móviles se han convertido en el objetivo principal&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH1_Text1">
+    <value>Mucha gente usa esto como una razón para evitar cifrar sus datos. Pero esto es solo un mito. El cifrado puede ser manejado por computadoras de escritorio, teléfonos móviles y tabletas sin ralentizar el dispositivo. Esto se atribuye a los avances considerables en la tecnología de procesamiento en los últimos años. AxCrypt es un software que te permite cifrar, proteger con contraseña y asegurar fácilmente cualquier archivo con unos pocos clics. Utiliza el estándar de cifrado avanzado (AES) de 256 bits más potente. Es liviano en recursos de computadora y funciona sin problemas sin ralentizar tu sistema.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH2_Text1">
+    <value>Muchos usuarios aún sienten que implementar el cifrado en sus dispositivos requiere habilidades profesionales. Esto es simplemente un mito. AxCrypt ofrece cifrado AES de 256 bits, por lo que no tendrás problemas para instalarlo. Incluso si tienes un problema durante la instalación, nuestro equipo de atención al cliente puede ayudarte. Echa un vistazo a nuestros &lt;a href='https://www.youtube.com/channel/UCoSoXBjq6iCG5232fHoWStA'&gt;videos de YouTube para saber cómo usarlo&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH3_Text1">
+    <value>En muchas circunstancias, almacenar datos cifrados en la nube es más seguro que mantenerlos en las instalaciones, donde las personas con privilegios pueden tener un mayor acceso. Si deseas mantener seguros los datos cifrados en la nube, asegúrate de tener la custodia de las claves de cifrado, no tu proveedor de nube. Busca otro servicio en la nube si el actual exige que entregues tus claves. AxCrypt está diseñado para simplificar el cifrado avanzado en múltiples servicios de almacenamiento en la nube, como Google Drive, Dropbox, etc. &lt;a href='https://axcrypt.net/blog/what-is-cloud-computing-and-its-common-threats'&gt;Conoce más sobre la función de cifrado en la nube de AxCrypt aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH4_Text1">
+    <value>Es uno de los conceptos erróneos de cifrado más extendidos. Esto podría deberse a que solo escuchamos sobre hackers informáticos que apuntan a grandes empresas, lo cual tampoco es cierto. De hecho, las pequeñas empresas y los individuos reciben más ciberataques que las grandes empresas. Según una encuesta, las pequeñas empresas representan el 43 % de los ciberataques. Esto se debe principalmente a la falta de fortificación de sus sistemas, exactamente lo que buscan los ciberdelincuentes. Necesitas cifrado sin importar cuán pequeña sea tu empresa.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH5_Text1">
+    <value>Muchas personas y empresas evitan el cifrado porque creen que será demasiado costoso. Una vez más, esto no es cierto. Algunas de las aplicaciones y el software de cifrado pueden parecer costosos al principio. Sin embargo, debes considerar el futuro. Es más una inversión que otra cosa. Toma en cuenta el impacto financiero de una violación de datos. Piensa en las demandas y en tu reputación; podrías poner en peligro el futuro de tu empresa. Eso es algo que no quieres que suceda.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH6_Text1">
+    <value>No hay excusa para no cifrar ahora que se han desmentido los principales mitos. AxCrypt es un software fácil de usar para cifrar datos en dispositivos móviles, computadoras y portátiles mientras los datos están en uso, en reposo o en tránsito. AxCrypt también cuenta con varias funciones para cumplir con una amplia gama de requisitos de seguridad de datos.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text1">
+    <value>Según la encuesta, más de 1.000 cuentas con contraseñas que nunca caducan son utilizadas por el 31% de las empresas. Si los usuarios usan las mismas contraseñas para las cuentas personales y esas cuentas se ven comprometidas, entonces un atacante tiene acceso a la red de tu organización. La función de la clave maestra de AxCrypt permite a los administradores comerciales recuperar archivos de los miembros comerciales. Esto elimina el riesgo de perder el acceso a datos confidenciales. Es una ventanilla única para proteger la información personal y los datos de tu teléfono móvil de la intromisión de terceros.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Aprovecha la prueba gratuita de un mes y descárgala para usuarios de Android o IOS:</value>
+  </data>
+  <data name="Blog_MDSCBF_Heading1">
+    <value>¿Qué desafíos enfrentan las empresas?</value>
+  </data>
+  <data name="Blog_MDSCBF_Heading2">
+    <value>Muchos usuarios anteriores tienen contraseñas para el sistema</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>Para la ciberseguridad y las empresas en general, los últimos años han sido cualquier cosa menos típicos.</value>
+  </data>
+  <data name="Blog_MDSCBF_Text1">
+    <value>Para la ciberseguridad y las empresas en general, los últimos años han sido cualquier cosa menos típicos. El COVID-19 ha alterado las prácticas empresariales y los ciberdelincuentes se han ajustado a estos cambios adaptando sus estrategias al nuevo entorno.</value>
+  </data>
+  <data name="Blog_MDSCBF_Text2">
+    <value>Para 2025, se prevé que el costo del ciberdelito alcance los 10,5 billones de dólares. Se alienta a las organizaciones a aumentar su conciencia sobre la ciberseguridad e implementar mecanismos de defensa más sólidos contra posibles violaciones de la seguridad cibernética en 2022 porque los ataques solo empeorarán.</value>
+  </data>
+  <data name="Blog_MDSCBF_Title">
+    <value>Principales desafíos de seguridad de datos que enfrentan las empresas en 2022</value>
+  </data>
+  <data name="Blog_MEWRECY_H1_SH1_Text1">
+    <value>Al lograr que otros no puedan leer los datos, el cifrado móvil garantiza que los datos de los clientes permanezcan privados y seguros. Los datos que se han cifrado no se pueden recuperar, lo que lo hace más difícil en la situación actual. Los datos del teléfono aún se pueden recuperar incluso si el propietario elimina todo lo que contiene para revenderlo. La única forma de descifrar los datos una vez después del cifrado es restablecer el teléfono de fábrica. Además, la expansión de los pagos digitales, las aplicaciones mejoradas y el intercambio de información a través de dispositivos móviles generan una gran cantidad de datos que deben protegerse de las ciberamenazas. Como resultado, los datos pueden protegerse de estos delitos mediante el uso de software de cifrado móvil, impulsando el mercado hacia adelante.</value>
+  </data>
+  <data name="Blog_MEWRECY_H1_SubHeading1">
+    <value>&lt;strong&gt;Necesidad cada vez mayor de seguridad móvil &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_H1_Text1">
+    <value>Durante el período proyectado, se prevé que el mercado mundial de cifrado móvil crezca a una CAGR del 30,55 %, a USD 5.931,23 millones para 2026. Las implementaciones de cifrado han aumentado en cantidad y alcance en las grandes corporaciones a medida que las organizaciones han reaccionado a las obligaciones reglamentarias y de cumplimiento cada vez más frecuentes y a políticas internas más estrictas.</value>
+  </data>
+  <data name="Blog_MEWRECY_H1_Text2">
+    <value>La proliferación de dispositivos móviles, el aumento y la evolución de amenazas sofisticadas, la mayor adopción de servicios en la nube y la virtualización son razones de suma importancia que agitan la industria del cifrado móvil. La industria está siendo impulsada por la necesidad de un estricto cumplimiento y regulaciones regulatorias y la creciente preocupación por la seguridad de los datos y la privacidad de la propiedad intelectual. Además, la creciente popularidad de la Internet de las cosas entre muchas verticales de usuarios finales es un factor crucial para aumentar el crecimiento del mercado de cifrado móvil.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH1_Text1">
+    <value>Los dispositivos móviles son ahora el objetivo principal de los ataques de phishing. Los estafadores son conscientes de que las personas que trabajan desde casa pasan más tiempo en sus móviles y no toman las mismas medidas de seguridad que tomarían en un PC tradicional. Cualquiera que se acerque a su teléfono o computadora portátil puede acceder fácilmente a los archivos que contiene; sin embargo, con el cifrado, acceder a esos datos es extremadamente difícil.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH2_Text1">
+    <value>Se produce una fuga de datos cuando se transfiere información confidencial sin querer desde un dispositivo móvil a un servicio de internet. Si el dispositivo no protege los datos de manera efectiva, los datos quedan disponibles para cualquier persona que use la misma red que el dispositivo.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH3_Text1">
+    <value>Vivimos en una era en la que todos estamos continuamente conectados a redes que no siempre son seguras. Según investigadores, los dispositivos móviles utilizan casi tres veces más Wi-Fi que los datos. Cerca de una cuarta parte de los dispositivos se conectan a redes Wi-Fi que no son seguras y el 4 % de los dispositivos están sujetos a un ataque de intermediario.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH4_Text1">
+    <value>La pandemia tuvo una influencia significativa en este mercado. Nuestros expertos vigilan de cerca la industria para capturar y evaluar las funciones de cifrado más relevantes para cada tipo de empresa.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH4_Text2">
+    <value>AxCrypt ofrece una prueba gratuita de un mes para que aproveches todas las funciones, incluida la de cifrado móvil. Entonces, ¿qué esperas? Regístrate para obtener una prueba gratuita de AxCrypt aquí:</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SubHeading1">
+    <value>&lt;strong&gt;Phishing&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SubHeading2">
+    <value>&lt;strong&gt;Fuga de datos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SubHeading3">
+    <value>&lt;strong&gt;Interferencia Wi-Fi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SubHeading4">
+    <value>&lt;strong&gt;Protege tu dispositivo móvil con AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_Text1">
+    <value>La cultura de "trae tu propio dispositivo" (BYOD) y su rápida aceptación por parte de las organizaciones ha requerido medidas de seguridad, y se ha descubierto que las organizaciones y las personas que no toman precauciones de seguridad se enfrentan a graves consecuencias como:</value>
+  </data>
+  <data name="Blog_MEWRECY_Heading1">
+    <value>La seguridad de los datos es cada vez más importante</value>
+  </data>
+  <data name="Blog_MEWRECY_Heading2">
+    <value>Consecuencias de utilizar un dispositivo móvil sin protección</value>
+  </data>
+  <data name="Blog_MEWRECY_Summary">
+    <value>La irrupción de la pandemia del COVID-19 ha tenido un impacto significativo en prácticamente todas las empresas a nivel mundial.</value>
+  </data>
+  <data name="Blog_MEWRECY_Text1">
+    <value>La irrupción de la pandemia del COVID-19 ha tenido un impacto significativo en prácticamente todas las empresas a nivel mundial. Además, la tecnología móvil se ha expandido a un ritmo mucho más rápido de lo normal debido a la cuarentena y las restricciones. Sin embargo, como parte de este esfuerzo, los dispositivos móviles han planteado varios problemas críticos de privacidad y seguridad. Para abordar estas preocupaciones, muchas organizaciones se aseguran de que se mantenga un nivel adecuado de seguridad a través del cifrado para evitar la fuga de datos y la manipulación por parte de terceros que no son de confianza.</value>
+  </data>
+  <data name="Blog_MEWRECY_Title">
+    <value>Cifrado móvil para ser testigos de una sólida expansión en los próximos años</value>
   </data>
   <data name="Blog_MK_H1_SH2_text1">
     <value>La clave maestra es altamente segura, puede considerarse como un intercambio automático de archivos con los administradores de la empresa. Aquí los administradores podrán recuperar automáticamente los archivos que tienen la clave maestra aplicada. Esta función está probada y comprobada, y ya la utilizan muchos usuarios. Y sí, es importante que los administradores comerciales tengan mucho cuidado al elegir una buena contraseña. La elección de la contraseña es extremadamente importante, el administrador de la empresa debe asegurarse de que la contraseña sea lo suficientemente segura para proteger los archivos y documentos. Aquí está el enlace a nuestro &lt;a href='https://www.axcrypt.net/support/password-generator'&gt;generador de contraseñas&lt;/a&gt; que puede ayudar a elegir contraseñas seguras y fáciles de recordar.</value>
@@ -874,6 +1031,93 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_ROCP_Title">
     <value>La importancia de organizar las contraseñas de una empresa</value>
   </data>
+  <data name="Blog_SCMAE_H1_Text1">
+    <value>El cifrado es un proceso de cifrado de datos. Es posible que muchos de ustedes no tengan una comprensión profunda respecto al cifrado. Tampoco es tan complejo como parece a primera vista. No es necesario ser un especialista en criptografía para comprender el cifrado o incluso utilizarlo. El cifrado convierte los datos confidenciales en un formato ilegible en su forma más básica.</value>
+  </data>
+  <data name="Blog_SCMAE_H1_Text2">
+    <value>Hay varios malentendidos generalizados con respecto al cifrado, en particular en cuanto al costo, el rendimiento y la comodidad de uso.</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading1">
+    <value>&lt;strong&gt;El cifrado afecta la rapidez del dispositivo&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading2">
+    <value>&lt;strong&gt;El cifrado es demasiado complicado de implementar&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading3">
+    <value>&lt;strong&gt;El cifrado no mejora la seguridad de la nube.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading4">
+    <value>&lt;strong&gt;Solo las grandes organizaciones necesitan cifrado.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading5">
+    <value>&lt;strong&gt;El cifrado es costoso&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading6">
+    <value>&lt;strong&gt;AxCrypt en pocas palabras&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_Heading1">
+    <value>¿Cómo se define el cifrado? </value>
+  </data>
+  <data name="Blog_SCMAE_Heading2">
+    <value>Mitos sobre el cifrado</value>
+  </data>
+  <data name="Blog_SCMAE_Text1">
+    <value>Hay casi 24.000 casos reportados de una violación de datos todos los días. Hackeo de registros hospitalarios, robo de registros gubernamentales, etc. Las transcripciones de la educación se han hecho públicas. Todas las industrias son vulnerables y todas las empresas están expuestas. El resultado puede ser humillante, costoso en el mejor de los casos y financieramente debilitante, con posibles multas, juicios prolongados y la pérdida de la confianza del cliente. Se prevé que el costo del ciberdelito alcance los 10,5 billones de dólares de aquú al 2025.</value>
+  </data>
+  <data name="Blog_SCMAE_Text2">
+    <value>Esta frecuencia cada vez mayor de violaciones de datos enfatiza la importancia del cifrado como última línea de protección.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Algunos mitos comunes sobre el cifrado</value>
+  </data>
+  <data name="Blog_SSING_H1_SH1_Text1">
+    <value>Las actualizaciones para smartphones deben instalarse con frecuencia, pues están destinadas principalmente a corregir las vulnerabilidades a medida que se encuentran porque los hackers informáticos descubren nuevas formas de acceder constantemente. Tu teléfono no está protegido contra este problema si no se actualiza.&lt;a href='https://www.makeuseof.com/safe-use-phone-no-longer-gets-updates/'&gt; Las personas a menudo usan teléfonos obsoletos voluntariamente,&lt;/a&gt;, sin embargo, también puede ocurrir que el fabricante del teléfono ya no ofrezca actualizaciones de seguridad. Cualquiera que sea la razón, un teléfono obsoleto implica un riesgo de seguridad y no debe usarse para nada que sea importante.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH2_Text1">
+    <value>Si la seguridad es importante para ti, es probable que solo descargues apps directamente desde el App Store de Apple o de Google Play Store. La mayoría de las aplicaciones fraudulentas están protegidas por esto, pero incluso estas plataformas tienen fallas. Debido a que estas plataformas son tan populares, las apps maliciosas ocasionalmente se aprueban y, con frecuencia, se usan mucho antes de ser eliminadas. Aunque es difícil evitar este problema, puedes proteger tu teléfono si descargas solo aplicaciones confiables y eliminas todo lo que no necesitas.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH3_Text1">
+    <value>Una página de phishing es un sitio web que aparenta ser confiable, pero que en realidad tiene la intención de robar datos personales. Por lo general, cuando intentas ingresar a una de sus cuentas, se toma tu contraseña.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH3_Text2">
+    <value>Los smartphones están hechos para protegerse contra el malware, pero brindan muy poca defensa contra el phishing. A pesar de que tu teléfono es seguro, si lo usas aún puedes ser víctima de hackeo, así que ten esto en cuenta. Siempre examina cuidadosamente la URL antes de ingresar información personal para evitar páginas fraudulentas.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH4_Text1">
+    <value>Los permisos ofrecen un control completo sobre lo que las aplicaciones pueden realizar. Puedes instalar software malicioso y no podrá hacer nada, siempre que los permisos estén debidamente restringidos. Lamentablemente, los permisos no siempre se utilizan en forma correcta. Instalar una aplicación implica en esencia darle acceso a todos tus datos si no limitas a lo que puede acceder. Incluso con aplicaciones confiables, debes aprobar la menor cantidad de permisos posible para evitar este problema.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH5_Text1">
+    <value>Nadie puede acceder a un smartphone que se ha bloqueado correctamente. Sin embargo, existen muchas otras técnicas para bloquear un teléfono inteligente y la eficiencia varía. Tu código PIN es tan seguro como secreto si lo usas. Muchas personas ingresan sus códigos en público, lo que podría ser contraproducente.</value>
+  </data>
+  <data name="Blog_SSING_H1_SH5_Text2">
+    <value>No importa lo que intentes para detener las invasiones, el reconocimiento facial también puede ser hackeado. La foto del propietario puede usarse para desbloquear teléfonos inteligentes que están cifrados de esta manera. Un PIN que nadie conoce o el desbloqueo con huella dactilar son las dos opciones más seguras para bloquear un smartphone.</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading1">
+    <value>&lt;strong&gt; 1. Tu dispositivo móvil no recibe actualizaciones &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading2">
+    <value>&lt;strong&gt; 2. Las apps auténticas pueden contener malware &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading3">
+    <value>&lt;strong&gt; 3. Los smartphones no brindan protección contra el phishing &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading4">
+    <value>&lt;strong&gt; 4. Haz otorgado demasiados permisos. &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading5">
+    <value>&lt;strong&gt; 5. Tu smartphone no está bloqueado correctamente &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_Heading1">
+    <value>Razones por las que tu smartphone no es tan seguro</value>
+  </data>
+  <data name="Blog_SSING_Text1">
+    <value>Mantener la seguridad de los datos se vuelve más importante a medida que guardamos datos más confidenciales en nuestros dispositivos móviles. Los hackers informáticos que obtienen acceso a nuestros teléfonos ahora tienen más acceso que nunca a nuestra información personal, incluidas direcciones, números de tarjetas de crédito y números de teléfono, así como imágenes y direcciones personales. La seguridad móvil es una precaución que uno toma para protegerse de una variedad de situaciones de riesgo que tienen como objetivo violar tu privacidad y robar cualquier otra información guardada en tu teléfono.</value>
+  </data>
+  <data name="Blog_SSING_Text2">
+    <value>La vulnerabilidad móvil está en su punto más alto en la era digital actual. La cantidad de peligros ocultos para obtener información privada de tu dispositivo móvil es demasiado grande. Afortunadamente, existen soluciones increíbles y eficientes para salvaguardar los datos en tu dispositivo móvil. Teniendo en cuenta que la huella digital de una persona puede contener tantos datos, la ciberseguridad se ha elevado a una prioridad máxima en la vida diaria. Sin la protección adecuada, esa información puede terminar en las manos equivocadas. Contacta a AxCrypt para obtener toda la información que necesitas sobre la seguridad y la ciberseguridad de los teléfonos móviles.</value>
+  </data>
+  <data name="Blog_SSING_Title">
+    <value>Seguridad de smartphones: no es un juego</value>
+  </data>
   <data name="Blog_TIEDTC_H1_SH1_Text1">
     <value>La información de los empleados debe protegerse dado el período en el que vivimos, que sigue al impacto de una pandemia mundial que ha empujado a muchas organizaciones a adaptarse a un nuevo tipo de entorno laboral. Todas las empresas, a menos que sean de propiedad única, tienen empleados, y eso conlleva una gran cantidad de datos confidenciales que deben protegerse. La información personal y financiera, las plantillas horarias y el pago de los empleados, los contratos y las licencias médicas son solo algunos ejemplos de datos confidenciales. Proteger dicha información de terceros no autorizados debe ser la principal prioridad de todas las empresas, especialmente cuando se comparte con usuarios externos. Información como esta podría ser beneficiosa para los hackers informáticos. Proteger internamente estos datos del escrutinio público es igual de fundamental. Las organizaciones corren un riesgo significativo de exposición, particularmente a través de su personal.</value>
   </data>
@@ -912,6 +1156,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_TIEDTC_Title">
     <value>La importancia de cifrar todos los datos de una empresa</value>
+  </data>
+  <data name="Blog_Try_Download_Mobile_App_Text">
+    <value>Aprovecha la prueba gratuita de un mes y descárgala para usuarios de Android o IOS:</value>
   </data>
   <data name="Blog_TSTE_H1_Text1">
     <value>AES es un cifrado de bloque simétrico con una longitud de clave de 128 bits que cifra un mensaje de 128 bits en un texto cifrado de 128 bits. Las opciones de tamaño de bits de la clave son 128, 192 o 256 en orden ascendente. Es más sencillo de analizar que otros dispositivos que solo tienen un bit de entrada y un bit de salida.</value>
