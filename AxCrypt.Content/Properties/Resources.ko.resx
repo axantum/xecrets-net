@@ -626,11 +626,53 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="BilledYearlyText" xml:space="preserve">
     <value>일년 구독</value>
   </data>
+  <data name="Blog_5KFESSAO_H1_Text1">
+    <value>암호화 소프트웨어를 선택할 때에는 귀하의 데이터 보안 또는 보호 방법을 결정짓는 해당 알고리즘을 반드시 살펴봐야 합니다. 초기 이용자들에게는, 암호화 알고리즘은 해커의 빠른 액세스를 저지하기 위해서 일반 텍스트를 암호화 텍스트로 변환합니다.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text2">
+    <value>그러나 모든 코드와 알고리즘은 동일하지 않으므로, 어떤 것은 다른 것보다 더 빠른 속도로 작동합니다. 귀하의 이해를 더 돕기 위해서, 의심할 여지 없이 변함 없는 5가지의 일반적인 암호화 알고리즘 종류는 다음과 같습니다:</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text3">
+    <value>&lt;li&gt;트리플 DES – 대칭 키 방식의 데이터 암호화입니다. 동일한 키를 사용하여 메시지를 암호화하고 해독합니다.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text7">
+    <value>&lt;li&gt;AES – 대칭 암호화 알고리즘이기도 하며, 간편한 구현성 덕에 많은 인기를 얻었습니다. 다른 방식과 비교하면 본 방식의 알고리즘은 훨씬 복잡하며, 이 때문에 더 효과적이라고 여겨집니다.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H2_Text1">
+    <value>부분적으로는, 파일의 컨텐츠 등의 데이터를 암호화하는 것만으로도 보안성을 충분히 확보됩니다. 그러나 그렇게 실제로 저장된 데이터만 암호화 하게 되면 권한이 없는 사용자는 여전히 파일 이름, 보관소 등을 살펴볼 수 있는 엑세스를 가질 수 있습니다.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H4_Text3">
+    <value>북미에서는 기업들이 신원 확인을 위해서 2단계 인증을 사용한다고 밝혀졌습니다. 반면 52%는 단순 인증을 사용합니다.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H5_Text1">
+    <value>일반적으로 직원들은 서로 연관되거나 업무적으로 관련된 정보를 공유합니다. 그러나 이러한 공유 과정에서 일어나는 데이터 보안에 대한 염려는 불가피합니다. 이는 특히 보안 파일을 공유할 우려를 일으키며, 바로 이러한 이유로 암호화 소프트웨어가 가져야 할 필수적인 기능은 파일을 보다 안전하게 공유하고 수신하도록 돕는 것입니다.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H5_Text3">
+    <value>또한 파일 공유와 관련하여 명심해야 할 점은 파일 자체 암호 해독을 피하는 것입니다. 이는 종종 자체 포함 실행 파일인 경우 발생합니다. 그러나 이런 파일들은 강력하게 암호화 된 정보가 포함되어 있기 때문에 안티바이러스 검사는 거의 불가능합니다. 더 자세한 내용은 파일 자체 암호 해독을 피해야 하는 이유를 다룬 본 문서를 참조하십시오.</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading1">
+    <value>&lt;h3&gt;1. 암호화 알고리즘&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading2">
+    <value>&lt;h3&gt;2. 파일 이름 암호화&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading3">
+    <value>&lt;h3&gt;3. 안전한 삭제&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;단순한 비밀번호 보호 그 이상&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CEANK_H2_SubHeading2">
+    <value>&lt;b&gt;PaaS - 서비스로서의 플랫폼&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H5_Text1">
+    <value>암호화는 문제에 대한 솔루션이 될 수 있습니다. 암호화 회사로서, 우리에게 귀하의 데이터 보안은 가장 중요한 관심사입니다. AxCrypt는 데이터를 클라우드까지 암호화하여 높은 수준의 보안을 제공합니다. 당사의 사용자 친화적인 시스템은 그 운영이 용이하고 폭넓은 제어를 보장하며 귀하를 제외한 그 누구도 귀하의 개인 정보에 액세스할 수 없도록 하여 불리한 데이터 침해가 발생하지 않도록 합니다.</value>
+  </data>
   <data name="Blog_CHHSSO_H1_Text2">
     <value>팬데믹 이후 전 세계의 원격 근무자들로 인해 사이버 범죄가 늘게 됨에 따라, 사이버 위생이라는 개념의 중요성이 커졌습니다.</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text1">
+    <value>사이버 위생이 해결하고자 하는 몇가지 이슈들은 다음과 같습니다:</value>
   </data>
   <data name="Blog_CHHSSO_H2_Text3">
     <value>&lt;li&gt;데이터 손실 — 백업되지 않은 하드 드라이브 및 온라인 클라우드 저장소는 데이터 손실을 초래하는 해킹, 손상과 같은 여러 문제에 노출될 수 있습니다.&lt;/li&gt;</value>
@@ -644,8 +686,20 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;고품질 안티바이러스 소프트웨어&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_Heading1">
+    <value>사이버 위생이란 무엇입니까?</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading2">
+    <value>사이버 위생에 관한 몇몇 공통된 이슈들:</value>
+  </data>
   <data name="Blog_CHHSSO_Heading3">
     <value>우수한 사이버 위생상태를 위한 방법</value>
+  </data>
+  <data name="Blog_CSFE_H1_SH1_Text1">
+    <value>직원 사이버 보안 교육은 최근 몇 년 동안 많은 발전을 이루었습니다. 한때 보안 교육은 대부분 IT 보안 전문가만를 대상으로 이루어졌으나 이후 IT 부서 전 직원을 대상으로 확대되었습니다. 기업이 랜섬웨어 및 멀웨어 감염을 예방하기 위해서는 모든 직원이 보안 모범 사례와 좋은 습관에 대해서 적절하게 교육을 받아야 합니다.</value>
+  </data>
+  <data name="Blog_CSFE_H1_Text1">
+    <value>사이버 공격 발생의 인식이 초기단계에서의 회피보다는 어려울 수 있지만, 여기에는 몇 가지 경고 신호가 있습니다. 직원들은 해킹을 당한것 같은 우려가 느껴질 시 체크해야 할 부분들을 지속적으로 교육받아야 합니다.</value>
   </data>
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;AxCrypt로 AES 256비트 암호화&lt;/strong&gt;</value>
@@ -665,8 +719,26 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_HAVTYB_Summary">
     <value>귀사의 민감한 데이터를 클라우드에 저장할 때는 데이터 암호화를 통해서 도난 위험을 낮출 수 있습니다.</value>
   </data>
+  <data name="Blog_HOA_H4_Text1">
+    <value>&lt;b&gt;ZV:&lt;/b&gt; 점점 더 우리 사회의 많은 부분이 연결되어 있으며 미래에는 더더욱 그럴 것입니다. 지난 10년 동안 사물 인터넷(IoT)은 엄청난 화두였음에도 불구하고 실제로는 이렇다 할 영향력을 보여주지는 못했습니다. 그 영향력이란 대부분의 가정에 수많은 사물들이 서로 연결되어 있는 환경을 뜻하며, 이는 때론 어떤 사물들의 연결 상태를 인지하지 못해 그 보안 수준이 낮게 나타나기도 합니다. 낮은 보안수준의 장치들이 많다는 사실은 여러 방면으로의 악의적인 의도에 사용될 수 있는  공격 매개체들이 많이 존재한다는 것을 의미합니다.</value>
+  </data>
+  <data name="Blog_HOA_Heading2">
+    <value>&lt;b&gt;SD: 어떠한 산업 분야가 귀하의 솔루션을 사용하고 있습니까?&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Heading4">
+    <value>&lt;b&gt;SD: 향후 몇 년 동안 사이버 보안 환경이 어떻게 변화할 것으로 예측하십니까?&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Summary">
+    <value>AxCrypt는 원래 개인적인 필요를 충족하기 위해 2001년도에 만들어졌습니다. 당시에는 간단하고 사용하기 쉬운 데이터 보안 솔루션이 존재하지 않았습니다.</value>
+  </data>
+  <data name="Blog_HOA_Text2">
+    <value>AxCrypt는 시장에 진출한 이후 13년 동안 세계에서 가장 인기 있는 암호화 소프트웨어 중 하나로 성장해 왔습니다. 더 개선된 솔루션과 다음 단계로의 발전을 위한 노력으로, 본 저자는 제품을 상용화 하기 위해 공동 설립자인 Zebastian Victorin과 협력하였습니다. 2016년 AxCrypt의 새 버전이 출시되었으며 그 이후로 많은 업데이트를 실행하였습니다.</value>
+  </data>
   <data name="Blog_ICSHRS_H1_Text1">
     <value>팬데믹이 조직을 혼란에 빠뜨리고 인사 관리자로 하여금 직무 수행 방법을 재고하게 함에 따라, 우리는 아무도 상상하지 못했던 새로운 작업 환경에 적응해야 합니다. HR 전문가들은 팬데믹 환경에서 직원의 건강과 웰빙뿐만 아니라, 안전한 문서 작업 처리 방법이나 수백만명에 달하는 해직자 혹은 원격 근무자들을 위한 편의 제공 방법 등도 고민하고 있습니다.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH4_Text1">
+    <value>HR 부서는 회사의 접근 제한을 설정하고 적용하는 데 도움을 줄 수 있습니다. 직원의 고용 및 온보딩 전에도 HR 부서는 필요 데이터를 구축해 둘 수 있습니다. 또한 직원의 계약 만료 시점 기준으로 관련 정보에 엑세스 할 수 없도록 확실히 해둬야 합니다.</value>
   </data>
   <data name="Blog_ICSHRS_H2_SH5_Text1">
     <value>위반이 발생하는 경우 IT 부서 단독으로 문제 해결에 대한 책임을 지지 않습니다. 특히 직원이 위반된 사건에 관련된 경우 HR 부서의 책임이기도 합니다. HR 부서는 은 직원의 행동에 대한 책임이 있습니다. 이런 사실때문에  조직은 사이버 범죄에 노출되어 있습니다.</value>
@@ -683,6 +755,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_ICSHRS_Title">
     <value>HR 분야 사이버 보안의 중요성</value>
   </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text2">
+    <value>암호화를 통해 데이터가 보호되는 방법은 다음과 같습니다:</value>
+  </data>
   <data name="Blog_ITESBETFC_H1_Text2">
     <value>&lt;li&gt;캠퍼스 연구의 지적 재산은 상당한 가치가 있습니다.&lt;/li&gt;</value>
   </data>
@@ -694,6 +769,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_MDPNST_Heading2">
     <value>2022년도에 주의해야 할 모바일 위협들</value>
+  </data>
+  <data name="Blog_MDPNST_Summary">
+    <value>전 세계의 모바일 보안 트렌드는 잘못된 정보 캠페인, 공급망 공격, 피싱, 스미싱, 도청, 멀웨어 등이 지배적입니다.</value>
   </data>
   <data name="Blog_MDSCBF_H1_SubHeading2">
     <value>&lt;strong&gt;데이터 관리 규정 위반&lt;/strong&gt;
@@ -734,6 +812,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_WENTI_H1_Text1">
     <value>통신 제공업체, 소프트웨어 개발자 및 관리형 보안 서비스 제공업체는 모두 IT 또는 통신 분야 업체입니다. 연구에 따르면 2021년도 전세계적인 사이버 범죄의 표적은 IT 분야였습니다. 가장 공통적인 침입 수단은 이메일을 통해 이뤄졌으며, 기업들은 매달 평균 600개의 고유한 피싱 이메일을 받은 것으로 알려졌습니다. 기술 산업은 신기술을 가장 먼저 도입하기 때문에 사이버 공격에 특히 취약합니다. 보고서에 따르면 산업 제어 시스템(ICS) 및 운영 기술(OT)에 대한 보안 위협은 2020년 이후 3배 이상 증가했다고 알려졌습니다.</value>
+  </data>
+  <data name="Blog_WUE_H2_Text2">
+    <value>&lt;h3&gt;암호화 없다면 어떻게 될까요?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_Summary">
+    <value>지금은 디지털 시대입니다. 우리는 기술 발전과 혁신으로 소비되는 세상에 살고 있습니다. 이는 물론 여행 및 커넥티비티 등과 같은 엄청난 기회를 제공했지만 이와 동시에 심각한 위협 및 위험도 제공합니다.</value>
   </data>
   <data name="BlogLinkLabel">
     <value>블로그</value>
