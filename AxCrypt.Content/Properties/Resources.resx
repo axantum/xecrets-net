@@ -469,6 +469,12 @@ Updates to the subscription will be reflected here within a few minutes.</value>
     <value>You do not need to respond or do anything. If you do nothing, no more e-mails will be sent and your AxCrypt ID account will be deleted permanently.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
+  <data name="AutoDeletionMailBodyButton" xml:space="preserve">
+    <value>Verify AxCrypt ID</value>
+  </data>
+  <data name="AutoDeletionMailBodyFreeTrial" xml:space="preserve">
+    <value>You can start your trial of &lt;b&gt;AxCrypt Premium features for 30 days&lt;/b&gt; in the app!</value>
+  </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
     <value>You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you a verification code via e-mail, but you've not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we'll be removing you permanently from our system.</value>
   </data>
@@ -4613,6 +4619,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful.</value>
   </data>
+  <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
+    <value>Let us know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?</value>
+  </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>Your AxCrypt Business subscription has ended.</value>
   </data>
@@ -5049,7 +5058,7 @@ You have been warned, now enjoy!</value>
     <value>Prove that you're a real person and not automated software!</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>You have requested to change your current AxCrypt ID e-mail to &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. To confirm please click the button below.</value>
+    <value>You have requested to reset your AxCrypt ID e-mail to &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. To confirm please click the button below.</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Use your existing password to sign in and then the old AxCrypt ID will be permanently deleted.</value>
@@ -5064,7 +5073,7 @@ You have been warned, now enjoy!</value>
     <value>Your change of AxCrypt ID e-mail has been confirmed! Please sign in to complete the process.</value>
   </data>
   <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Someone has requested a change of e-mail (from an undisclosed source) at &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
+    <value>Someone is requested a change of e-mail (from an undisclosed source) at &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>However, since you already have an AxCrypt ID using this e-mail, the request has been silently ignored.</value>
@@ -5600,6 +5609,15 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="EmailErrorUserNotFound" xml:space="preserve">
     <value>User not found.</value>
+  </data>
+  <data name="EmailFooterText1" xml:space="preserve">
+    <value>Follow Us on Our Social Media</value>
+  </data>
+  <data name="EmailFooterText2" xml:space="preserve">
+    <value>Please read our &lt;a href=\"https://axcrypt.net/information/privacy-policy\" style=\"color: white; font-weight: 600\"&gt;privacy policy&lt;/a&gt; for details.</value>
+  </data>
+  <data name="EmailFooterText3" xml:space="preserve">
+    <value>Contact us at &lt;a href=\"mailto:support@axcrypt.net\" style=\"color: white; font-weight: 600\"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -7611,7 +7629,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:</value>
   </data>
   <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:</value>
+    <value>Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access for the Premium features as:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

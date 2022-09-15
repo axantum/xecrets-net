@@ -1217,9 +1217,6 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Otomatik yazılım değil gerçek bir insan olduğunu doğrula!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>AxCrypt e-posta adresini &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; olarak değiştirme talebinde bulundun. Bu işlemi onaylamak için lütfen aşağıdaki tuşa bas.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Güncel şifrenle bağlan ve eski AxCrypt kimliğin temelli olarak silinecektir.</value>
   </data>
@@ -1231,10 +1228,6 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>AxCrypt kimliği e-posta adresi değişikliğin onaylandı! İşlemin tamamlanması için lütfen oturum aç.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Biri e-posta değişikliği talebinde bulunmuştur (açıklanmayan bir kaynaktan) &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; dan
-&lt;b&gt;{1}&lt;/b&gt; a.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Fakat bu e-posta adresiyle başka bir AxCrypt kimliğin olduğu için talep sessizce görmezden gelinmiştir.</value>
@@ -3488,9 +3481,6 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Aboneliğiniz süresi &lt;b&gt;{0}&lt;/b&gt; tarihinde dolmuştur. Aşağıda örneklendirilen Premium özelliklerine artık erişemezsiniz:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Aboneliğiniz iptal edilmiştir ve &lt;b&gt;{0}&lt;/b&gt; tarihinde sonlanacaktır. Bu tarihten sonra aşağıda örneklendirilen Premium özelliklerine erişemeyeceksiniz:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

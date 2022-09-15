@@ -1111,9 +1111,6 @@
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Докажите, что являетесь человеком,а не автоматизированной компьютерной программой.</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Вы подали запрос на изменение Вашего нынешнего AxCrypt ID адреса электронной почты на &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Для подтверждения, пожалуйста, нажмите на кнопку ниже.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Используете Ваш нынешний пароль для входа в систему, после чего старый AxCrypt ID будет окончательно удалён.</value>
   </data>
@@ -1125,9 +1122,6 @@
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Ваше изменение адреса электронной почты AxCrypt ID было подтверждено! Пожалуйста, войдите в систему для завершения процесса.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Был сделан запрос на изменение адреса электронной почты (с неизвестного источника) с&lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; на &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Поскольку у Вас уже имеется AxCrypt ID с данным адресом электронной почты, запрос был проигнорирован.</value>
@@ -3440,9 +3434,6 @@ SE-114 29 Стокгольм
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Ваша подписка  истекает &lt;b&gt;{0}&lt;/b&gt;. У вас больше не будет доступа к таким функциям Premium подписки, как:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Ваша подписка была отменена и истекает &lt;b&gt;{0}&lt;/b&gt;. После этой даты у вас больше не будет доступа к таким функциям Premium подписки, как:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt; 

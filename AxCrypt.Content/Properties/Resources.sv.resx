@@ -1191,9 +1191,6 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Bevisa att du är en riktig person och inte ett dataprogram!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Du har begärt en ändring av ditt befintliga AxCrypt ID från &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Bekräfta genom att klicka knappen nedan.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Logga in med ditt befintliga lösenord så kommer det gamla kontot att raderas permanent.</value>
   </data>
@@ -1205,9 +1202,6 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Ditt byte av e-postadress är härmed bekräftat! Logga in för att slutföra bytet.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Någon har begärt ändring av e-postadressen (från ett konto vi inte anger) på &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; till &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Men, eftersom du redan har ett AxCrypt ID med den här e-postadressen så har begäran lämnats utan åtgärd.</value>
@@ -3725,9 +3719,6 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Din prenumeration gick ut &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre tillgång till Premium-funktioner som:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Din prenumeration har sagts upp och kommer gå ut &lt;b&gt;{0}&lt;/b&gt;. Efter det kommer du inte längre ha tillgång till Premium-funktioner som:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

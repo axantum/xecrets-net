@@ -1129,9 +1129,6 @@
   <data name="CaptchaLabel" xml:space="preserve">
     <value>证明您是一个真正的人，而不是自动化的软件！</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>您已请求将当前的AxCrypt ID电子邮件更改为&lt;b style="color:#000！重要;"&gt;{0}&lt;/b&gt;。 要确认，请点击下面的按钮。</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>使用您现有的密码登录，然后旧的AxCrypt ID将被永久删除。</value>
   </data>
@@ -1143,9 +1140,6 @@
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>您的AxCrypt ID电子邮件的变化已被确认！ 请登录以完成该过程。</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>有人要求更改电子邮件（来自未公开的来源）&lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; 至&lt;b&gt;{1}&lt;/b&gt;</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>但是，由于您已经使用此电子邮件拥有AxCrypt ID，因此该请求已被静默忽略。</value>
@@ -3492,9 +3486,6 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>您的订阅在&lt;b&gt;{0}&lt;/b&gt;过期。 您不再可以访问Premium功能，如:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>您的订阅已被取消，将在&lt;b&gt;{0}&lt;/b&gt;到期。 在此日期后，您将不再有机会获得Premium功能，如:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
