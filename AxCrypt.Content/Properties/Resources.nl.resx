@@ -1124,9 +1124,6 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Bewijs dat u een echt persoon bent en geen geautomatiseerde software!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>U heeft verzocht om uw huidige AxCrypt ID email te veranderen naar &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Om dit te bevestigen druk alstublieft op de onderstaande knop.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Gebruik uw huidige wachtwoord om aan te melden en dan wordt uw oude AxCrypt ID permanent verwijderd.</value>
   </data>
@@ -1138,9 +1135,6 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Uw wijziging van AxCrypt ID emailadres is bevestigd! Meldt u zich alstublieft aan om het proces te voltooien</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Iemand heeft email wijziging aangevraagd (vanaf een onbekende bron) vanaf &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; naar &lt;b&gt;{1}&lt;/b&gt;</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>U heeft al een AxCrypt ID met dit emailadres en daarom hebben we uw verzoek stilletjes genegeerd.</value>
@@ -3519,9 +3513,6 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Uw abonnement is verlopen op &lt;b&gt;{0}&lt;/b&gt;. U heeft geen toegang meer tot Premium functies zoals:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Uw abonnement is opgezegd en verloopt op &lt;b&gt;{0}&lt;/b&gt;. Na deze datum heeft u geen toegang meer tot Premium functies zoals:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

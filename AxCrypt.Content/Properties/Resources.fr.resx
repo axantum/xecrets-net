@@ -672,11 +672,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_5KFESSAO_H1_Text5">
     <value>&lt;li&gt;Blowfish – c’est un algorithme symétrique mais à usage général. Il est très répandu dans les logiciels cryptographiques en raison de sa vitesse, de sa flexibilité, et de sa compétitivité, entre autres algorithmes de cryptage.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_5KFESSAO_H1_Text6">
+    <value>&lt;li&gt;Twofish - c'est une idée originale de Blowfish. Il est également flexible et utilise une méthode de cryptage symétrique. Cependant, Twofish chiffre les données jusqu'à 256 bits, tandis que son prédécesseur ne chiffre que les données jusqu'à 64 bits.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_5KFESSAO_H1_Text7">
     <value>&lt;li&gt;AES – également un algorithme de cryptage symétrique, il est devenu populaire en raison de son exécution facile. Comparé à d’autres concurrents, il a un algorithme plus complexe et est considéré comme plus efficace.&lt;/li&gt;</value>
   </data>
   <data name="Blog_5KFESSAO_H2_Text1">
     <value>Pour certains, le cryptage des données, telles que le contenu de leurs fichiers, est déjà suffisant pour assurer leur sécurité. Toutefois, si vous chiffrez uniquement les données stockées, les utilisateurs non autorisés peuvent toujours avoir accès à l’affichage des noms de fichiers, des archives, etc.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H2_Text2">
+    <value>En outre, d’autres personnes peuvent tirer des informations de l’accès à vos noms de fichiers. Et pour quelqu’un qui veut protéger les fichiers sensibles de l’entreprise et d’autres données personnelles, cela peut être assez inquiétant.</value>
   </data>
   <data name="Blog_5KFESSAO_H2_Text3">
     <value>Pour cette raison, il est crucial que votre logiciel de cryptage dispose d’une fonctionnalité qui vous permet de chiffrer les noms de fichiers. Cette fonctionnalité devrait empêcher d’autres personnes de voir votre nom de fichier et leur demander une clé ou un mot de passe avant d’y accéder. Si vous voulez une couche de protection supplémentaire à vos fichiers, la fonction de cryptage de nom de fichier peut sans aucun doute être utile.</value>
@@ -726,6 +732,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_5KFESSAO_H6_Text5">
     <value>&lt;li&gt;Est-il compatible avec les applications actuelles que vous utilisez ?&lt;/li&gt;</value>
   </data>
+  <data name="Blog_5KFESSAO_H6_Text6">
+    <value>&lt;li&gt;À quelles couches souhaitez-vous chiffrer les données ?&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H6_Text7">
+    <value>&lt;li&gt;Peut-il récupérer des données chiffrées en cas de perte de clés ?&lt;/li&gt;</value>
+  </data>
   <data name="Blog_5KFESSAO_Heading1">
     <value>&lt;h3&gt;1. Algorithme de cryptage&lt;/h3&gt;</value>
   </data>
@@ -735,8 +747,14 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_5KFESSAO_Heading3">
     <value>&lt;h3&gt;3. Suppression sécurisée&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_5KFESSAO_Heading4">
+    <value>&lt;h3&gt;4.Authentification à deux facteurs&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_5KFESSAO_Heading5">
     <value>&lt;h3&gt;5. Partage de clés&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading6">
+    <value>&lt;h3&gt;Pourquoi un logiciel de chiffrement est-il nécessaire, et quelle est la prochaine étape ?&lt;/h3&gt;</value>
   </data>
   <data name="Blog_5KFESSAO_Summary">
     <value>Avec les progrès numériques d’aujourd’hui, il est inévitable de rencontrer des défis en matière de sécurité de vos fichiers. Pour les entreprises, la protection des données sensibles et des informations personnelles des employés et des clients devrait être leur priorité absolue.</value>
@@ -756,6 +774,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_5KFESSAO_Title">
     <value>5 caractéristiques Clés du Logiciel de Cryptage que vous Devez Connaître</value>
   </data>
+  <data name="Blog_ADGE_Conclusion_TExt1">
+    <value>Considérez le cryptage comme une sorte d’assurance contre les violations de données potentielles. La sécurité peut devenir un atout avec un bloc, un cryptage de niveau entreprise et un outil de gestion des clés. Vous avez la possibilité de migrer vers le cloud public. Si vous souhaitez en savoir plus sur le chiffrement, &lt;a href='https://www.axcrypt.net/information/features'&gt;commencez ici&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_ADGE_H1_Text1">
     <value>Lorsque vous discutez du chiffrement avec quelqu'un qui n'est pas un expert en sécurité, vous obtenez généralement un certain nombre de réponses. Le cryptage est souvent considéré à tort comme une sorte de technologie sinistre. Au lieu de cela, le chiffrement peut aider à atteindre la flexibilité, la conformité, et la confidentialité des données requises par l'ère virtuelle d'aujourd'hui.</value>
   </data>
@@ -764,6 +785,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_ADGE_H2_SH2_Text1">
     <value>L'interception d'e-mails et d'autres contenus n'est qu'un exemple parmi d'autres d'incidents qui se sont produits selon des méthodes moins formelles. Bien que la plupart des e-mails ne suscitent pas suffisamment la curiosité des autres parties pour qu'elles tentent de les intercepter, il y a eu des cas où cela s'est produit. Les e-mails ne sont pas cryptés par défaut lorsqu'ils voyagent de vos serveurs vers le destinataire. Cela implique que si des pirates accèdent à ces informations, ils pourront voir vos e-mails et informations confidentielles.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SH3_Text1">
+    <value>Selon un rapport sur les violations de données, les employés sont directement ou indirectement responsables de 34 % du total des attaques. Le contenu peut être détourné par des employés ou des sous-traitants mécontents pour leur propre bénéfice ou celui d’autrui. Toute faille intentionnelle peut faire tomber toute une organisation avec des millions de données volées. Ce danger peut être atténué en imposant l’ensemble approprié de règles d’accès pour garder les utilisateurs privilégiés dans leurs « couloirs de nage ». Par exemple, la fonctionnalité de la Clé Principale élimine le risque de perdre l’accès aux fichiers critiques. Découvrez la &lt;a href='https://www.axcrypt.net/information/master-key'&gt;fonctionnalité de Clé Principale d’AxCrypt ici&lt;/a&gt;.</value>
   </data>
   <data name="Blog_ADGE_H2_SH4_Text1">
     <value>Si les données ne sont pas cryptées, la conséquence la plus importante sera la compromission d’informations critiques ou confidentielles par une cyberattaque ou une interférence d’un tiers. Si les protocoles ne sont pas en place pour identifier tout type de comportement, les organisations peuvent perdre de grandes quantités de données avant de s’en rendre compte.</value>
@@ -798,6 +822,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_ADGE_H4_SH3_Text1">
     <value>De nombreuses personnes et entreprises hésitent à déplacer des données sensibles vers le cloud parce qu’elles pensent que ce n'est pas sûr. Mais avec AxCrypt, les données sont cryptées en vol, au repos et en stockage. Vous gardez le contrôle sur vos clés de chiffrement, donc même après que les données ont quitté votre bâtiment, vous restez aux commandes.</value>
   </data>
+  <data name="Blog_ADGE_H4_SH3_Text6">
+    <value>Le vol physique d’ordinateurs et de stockage est une possibilité dans de nombreuses entreprises ayant des bureaux distants. Beaucoup d’entre eux ont des données sensibles et vulnérables sur ces serveurs, tels que les conseillers financiers et les comptables fiscaux. Le cryptage des données sur ces serveurs protège contre le vol et la perte de données. Avec la fonctionnalité de clé principale AxCrypt, vous pouvez être assuré que les serveurs distants sont sécurisés et que personne dans les bureaux distants ne peut contrôler l’accès à la clé de chiffrement.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH4_Text1">
+    <value>Supposons que vous deviez déplacer vos opérations d’un fournisseur de cloud à un autre. Vous pouvez arrêter votre ancien ordinateur et le transférer vers le nouveau fournisseur à l’aide du chiffrement, puis demander au système de produire une nouvelle clé. Ensuite, en ordonnant à la machine de déchiqueter l’ancienne clé, vous pouvez vous retirer de l’ancien fournisseur de cloud. Toutes vos données, y compris les copies et les sauvegardes, conservées par le fournisseur précédent seront perdues.</value>
+  </data>
   <data name="Blog_ADGE_H4_SubHeading1">
     <value>&lt;strong&gt;Logiciel libre &lt;/strong&gt;</value>
   </data>
@@ -825,8 +855,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_ADGE_Heading4">
     <value>Les avantages de chiffrement suivants sont fournis avec AxCrypt:</value>
   </data>
+  <data name="Blog_ADGE_Summary">
+    <value>Le cryptage est le processus consistant à transformer du texte brut en texte chiffré, ou à transformer du texte lisible en texte illisible, afin de protéger les données pour que seules certaines personnes puissent y accéder.</value>
+  </data>
   <data name="Blog_ADGE_Title">
     <value>Un guide détaillé du cryptage</value>
+  </data>
+  <data name="Blog_ADSDE_Conclusion_Text1">
+    <value>AxCrypt a reçu le prix du « Meilleur Logiciel de Cryptage au Monde » par PC Magazine au cours des six dernières années, y compris cette année&lt;a href='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt;En savoir plus ici.&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_ADSDE_Conclusion_Text2">
+    <value>AxCrypt fournit un cryptage 256 bits, et nous nous assurons que personne n’a jamais accès à vos fichiers cryptés, tant que vous avez le contrôle de votre propre clé.</value>
+  </data>
+  <data name="Blog_ADSDE_Conclusion_Text3">
+    <value>AxCrypt est conforme aux réglementations telles que le RGPD et la HIPAA qui concernent la protection des données personnelles, les droits individuels, et établissent la norme en matière de protection des données sensibles.</value>
   </data>
   <data name="Blog_ADSDE_H1_Text1">
     <value>Une cyberattaque est une tentative hostile et délibérée d’une partie d’infiltrer les informations d’une autre partie. En règle générale, l’attaquant espère obtenir une sorte d’avantage en interrompant le réseau de la victime. Chaque année, les pirates informatiques s’efforcent de tirer profit des systèmes d’entreprise non protégés, en raison desquels la cybercriminalité a augmenté. Depuis le début de la pandémie, il y a eu une augmentation de 300 % des cybercrimes signalés dans le monde.</value>
@@ -881,6 +923,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_ADSDE_Title">
     <value>L’art de la sécurité des données à l’ère numérique</value>
+  </data>
+  <data name="Blog_AIS_Conclusion_Heading">
+    <value>AxCrypt en bref</value>
   </data>
   <data name="Blog_AMEFH_H1_SH1_Text1">
     <value>Les attaques de phishing ont été multipliées par six pendant la pandémie, et les appareils mobiles sont désormais la cible principale. Les escrocs sont conscients que les personnes qui travaillent à domicile passent plus de temps sur leur mobile et ne prennent pas les mêmes mesures de sécurité que sur un PC traditionnel. Toute personne qui tombe sur votre téléphone ou votre ordinateur portable peut facilement accéder aux fichiers qu’il contient; cependant, avec le cryptage, l’accès à ces données est extrêmement difficile.&lt;br/&gt;&lt;br/&gt;</value>
@@ -945,8 +990,14 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_AMEFH_Title">
     <value>Le Cryptage Mobile AxCrypt est Enfin là!</value>
   </data>
+  <data name="Blog_AOVO_H2_Text1">
+    <value>Nous stockons ce que nous appelons un identifiant AxCrypt qui est associé à votre compte sur nos serveurs. (Techniquement, il s’agit d’une paire de clés de chiffrement RSA-4096.) Cette paire de clés se compose d’un partage public et d’une partie secrète privée. Lorsque nous chiffrons un fichier, nous ne le chiffrons pas vraiment avec votre mot de passe comme clé de chiffrement. Nous cryptons votre fichier avec une clé aléatoire et unique chaque fois qu’un fichier est crypté. Nous appelons cela la clé du fichier maître. C’est cette clé de fichier maître que nous cryptons réellement avec votre mot de passe et ajoutons au fichier crypté. Nous chiffrons également cette même clé de fichier maître avec votre clé de partage publique à partir de votre identifiant AxCrypt, ainsi que les clés de partage publiques de tous les destinataires supplémentaires que vous avez ajoutés avec la fonction de partage de clé.</value>
+  </data>
   <data name="Blog_AOVO_H2_Text10">
     <value>&lt;li&gt;Toute clé secrète privée correspondant à une clé de partage publique utilisée pour chiffrer la clé du fichier maître comme décrit ci-dessus.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text11">
+    <value>&lt;em&gt;Sur le serveur AxCrypt, nous stockons vos identifiants AxCrypt et ceux de tous les autres, qui se composent de la clé de partage publique et de votre clé secrète privée - cryptée sous forme de fichier AxCrypt en utilisant uniquement votre mot de passe pour chiffrer la clé du fichier maître de ce fichier.&lt;/em&gt;</value>
   </data>
   <data name="Blog_AOVO_H2_Text12">
     <value>Enfin, nous pouvons vous dire à quoi sert le serveur!</value>
@@ -960,11 +1011,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_AOVO_H2_Text3">
     <value>&lt;li&gt;Le fichier d’origine crypté avec AES-128/256 à l’aide d’une clé de fichier maître unique aléatoire.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_AOVO_H2_Text4">
+    <value>&lt;li&gt;La clé du fichier maître, chiffrée avec votre mot de passe.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_AOVO_H2_Text5">
     <value>&lt;li&gt;La clé du fichier maître, chiffrée avec votre clé de partage publique.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_H2_Text6">
     <value>&lt;li&gt;Clé de fichier maître, éventuellement chiffrée avec d’autres clés de partage publiques de destinataires.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text7">
+    <value>La particularité du partage public et des paires de clés secrètes privées est que, bien que n’importe qui puisse *chiffrer* les données avec la clé de partage publique, seule la personne connaissant la partie secrète privée peut *déchiffrer*, et même en connaissant la clé de partage publique, il n’est pas possible de savoir la clé secrète privée.</value>
   </data>
   <data name="Blog_AOVO_H2_Text8">
     <value>Pour déchiffrer un fichier crypté AxCrypt, vous devez disposer de l’un des éléments suivants:</value>
@@ -990,14 +1047,23 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_AOVO_Heading4">
     <value>&lt;h3&gt;Gestion des Abonnements&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_AOVO_Summary">
+    <value>AxCrypt En ligne vs. Hors ligne Le fait qu'AxCrypt soit capable de se connecter à Internet suscite des inquiétudes. Dois-je être en ligne pour chiffrer ou déchiffrer mes fichiers avec AxCrypt ? Mes données sont-elles envoyées sur Internet sous quelque forme que ce soit ?</value>
+  </data>
   <data name="Blog_AOVO_Text1">
     <value>Le fait qu’AxCrypt soit capable de se connecter à Internet suscite des inquiétudes.</value>
+  </data>
+  <data name="Blog_AOVO_Text2">
+    <value>&lt;ol style='list-style-position: inside;display: grid;gap: 20%;'&gt;&lt;li&gt;Dois-je être en ligne pour chiffrer ou décrypter mes fichiers avec AxCrypt ?&lt;/li&gt;&lt;li&gt;Mes données sont-elles envoyées sur Internet sous quelque forme que ce soit ?&lt;/li&gt;&lt;li&gt;Pourquoi AxCrypt a-t-il besoin d’être en ligne?&lt;/li&gt;&lt;/ol&gt;</value>
   </data>
   <data name="Blog_AOVO_Text3">
     <value>Les deux premiers sont assez faciles à répondre.</value>
   </data>
   <data name="Blog_AOVO_Text4">
     <value>&lt;li&gt;Non, AxCrypt n’a pas besoin d’être en ligne pour l’installer ou fonctionner.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Text5">
+    <value>&lt;li&gt;Non, vos données ne quittent jamais votre ordinateur – à moins qu’elles n’y résident en premier lieu bien sûr.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_Text6">
     <value>AxCrypt passera automatiquement en mode 'hors ligne' s’il n’est pas possible de se connecter au serveur. Il peut également être démarré avec le –commutateur de ligne de commande hors ligne, ou réglé en permanence hors ligne à l’aide de l'option « Fichier | Options | Toujours Hors Ligne» .</value>
@@ -1059,6 +1125,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_BSTSSCE_H1_SH2_Text2">
     <value>Et n’oubliez pas - si vous avez besoin d’inspiration, vous pouvez utiliser notre générateur de mots de passe. Basé sur l’analyse statistique du texte réel, il produit des mots de passe forts qui ne sont pas absurdes et réellement possibles à retenir et à taper. Vous obtiendrez trois suggestions de force et de complexité décroissantes. Essayez-le en cliquant sur ce lien suivant : &lt;a href='https://www.axcrypt.net/support/password-generator'&gt;https://www.axcrypt.net/support/password-generator&lt;/a&gt; &lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_BSTSSCE_H1_SH2_Text3">
+    <value>Nous avons en outre des fonctionnalités de gestion des mots de passe disponibles. Ne vous inquiétez plus d’essayer de vous souvenir de tous vos différents mots de passe - nous nous en occupons pour vous. Gardez tous vos mots de passe et secrets en sécurité dans notre cloud.&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;</value>
+  </data>
   <data name="Blog_BSTSSCE_H1_SH3_Text1">
     <value>Grâce à notre connaissance du stockage cloud, vos fichiers seront automatiquement sécurisés dans Dropbox, Google Drive, etc. Notre système convivial facilite les opérations, garantit le contrôle le plus élevé possible et garantit que personne d’autre que vous ne peut accéder à vos informations personnelles afin qu’aucune violation de données désavantageuse ne survienne. De plus, nous offrons le cryptage Zero Knowledge. Le cryptage cloud zero knowledge protège votre vie privée, en bref vos données personnelles sont cryptées de la meilleure façon possible et il n’y a aucun moyen pour les fournisseurs de cloud ni pour nous d’identifier votre accréditation. Vous pouvez utiliser notre logiciel de cryptage Cloud en souscrivant à notre abonnement business (pour les entreprises) ou premium (pour les utilisateurs privés).</value>
   </data>
@@ -1076,6 +1145,15 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_BSTSSCE_H1_SubHeading1">
     <value>1. &lt;b&gt;Protégez votre réseau&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_BSTSSCE_H1_SubHeading2">
+    <value>2. &lt;b&gt;Surveillez vos mots de passe&lt;/li&gt;.</value>
+  </data>
+  <data name="Blog_BSTSSCE_H1_SubHeading3">
+    <value>3. &lt;b&gt;Sécurisez vos Données Cloud&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_BSTSSCE_H1_SubHeading4">
+    <value>4. &lt;b&gt;Chiffrez!&lt;/b&gt;</value>
   </data>
   <data name="Blog_BSTSSCE_Heading1">
     <value>&lt;h3&gt;Quelques conseils secrets pour protéger vos données pendant la période des vacances avec AxCrypt&lt;/h3&gt;</value>
@@ -1110,11 +1188,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CEANK_H2_SubHeading2">
     <value>&lt;b&gt;PaaS - Plate-forme en tant que service&lt;/b&gt;</value>
   </data>
+  <data name="Blog_CEANK_H2_SubHeading3">
+    <value>&lt;b&gt;SaaS - Logiciel en tant que Service&lt;/b&gt;</value>
+  </data>
   <data name="Blog_CEANK_H2_Text1">
     <value>La virtualisation est la technologie qui permet l'informatique cloud. En créant une simulation d’un ordinateur physique appelé machines virtuelles, nous mettons en œuvre la capacité des serveurs et des centres de données à stocker des informations.&lt;br/&gt;&lt;br/&gt;Il existe différentes catégories qui caractériseront le stockage informatique sur le cloud</value>
   </data>
   <data name="Blog_CEANK_H2_Text2">
     <value>Il existe différentes catégories qui vont caractériser le stockage informatique cloud, voici les différents services:&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H4_Text1">
+    <value>Les données personnelles sont toutes les informations relatives à une personne identifiable. Des exemples pour cela pourraient être le nom, l’adresse, la profession, le revenu, les opinions politiques, les informations sur les soins de santé et l’adresse IP bien sûr.</value>
   </data>
   <data name="Blog_CEANK_H4_Text2">
     <value>Notre entreprise Suédoise prend la loi sur la protection de la vie privée au cœur de nos préoccupations. Les clients professionnels ou privés ont le droit de demander le niveau de confidentialité de leurs données personnelles lorsqu'elles sont stockées dans le cloud. De plus, si vous travaillez et traitez des données de citoyens européens, le Règlement Général sur la Protection des Données (RGPD) entre en vigueur et il est donc important d'être bien informé. Le RGPD est clairement en faveur du chiffrement car la Commission Européenne a conféré que la protection des données en dehors de l'UE n'est pas assez efficace, la Suisse est néanmoins une exception rare. La politique Américaine à travers la protection des données est un sujet politique qui divise la population. En raison du Patriot Act, les autorités ont le droit d'inspecter intensivement les données personnelles sans même une ordonnance du tribunal. Le problème est alors que la plupart des sociétés de fournisseurs de cloud telles que Dropbox, Microsoft ou Google sont affiliées sur le sol Américain.</value>
@@ -1124,6 +1208,15 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_CEANK_H5_Text2">
     <value>Il est très facile d’assurer la confidentialité des données dans le cloud. AxCrypt trouvera automatiquement les services de Stockage Cloud installés sur votre ordinateur et y créera un dossier AxCrypt. Nous vous facilitons la visualisation et la sécurisation automatiques des fichiers dans ces dossiers. Pour accéder à cette fonctionnalité, consultez un &lt;a href='https://axcrypt.net/business'&gt;abonnement professionnel&lt;/a&gt; si vous faites partie d’une entreprise ou un &lt;a href='https://axcrypt.net/premium'&gt;abonnement premium&lt;/a&gt; si vous êtes un particulier.</value>
+  </data>
+  <data name="Blog_CEANK_H5_Text3">
+    <value>Nous offrons le cryptage Zero Knowledge. Le cryptage cloud zero knowledge protège votre vie privée, en bref vos données personnelles sont cryptées de la meilleure façon possible et il n’y a aucun moyen pour les fournisseurs de cloud ni pour nous d’identifier votre accréditation. Plus fort qu’une forteresse, notre méthode de cryptage gardera toutes vos informations en sécurité. Néanmoins, vous devez vous souvenir de votre mot de passe. Si ils sont oubliés, vos données resteront cryptées pour toujours et donc inutiles.</value>
+  </data>
+  <data name="Blog_CEANK_Heading1">
+    <value>&lt;h3&gt;Qu’est-ce que le cloud ?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_CEANK_Heading4">
+    <value>&lt;h3&gt;Qu’en est-il de la sécurité ?&lt;/h3&gt;</value>
   </data>
   <data name="Blog_CEANK_Heading5">
     <value>&lt;h3&gt;Le chiffrement est une solution&lt;/h3&gt;</value>
@@ -1136,6 +1229,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_CEANK_Title">
     <value>Cryptage cloud - tout ce que vous devez savoir</value>
+  </data>
+  <data name="Blog_CHHSSO_Conclusion_Text1">
+    <value>L’élaboration d’une pratique de cyberhygiène empêchera les pirates informatiques de causer des atteintes à la sécurité ou d’obtenir des renseignements personnels. Il vous aidera également à rester à jour avec les logiciels et les systèmes d’exploitation.</value>
+  </data>
+  <data name="Blog_CHHSSO_Conclusion_Text2">
+    <value>AxCrypt offre un cryptage fort avec un cryptage 256 bits pour sécuriser vos données dans les trois étapes des données; données au repos, en transit, et en cours d’utilisation. Il fournit également un outil de collaboration qui permet aux utilisateurs de partager des fichiers et des données sécurisés avec d’autres utilisateurs d’AxCrypt.</value>
   </data>
   <data name="Blog_CHHSSO_H1_Text1">
     <value>Le terme « cyberhygiène » fait référence aux mesures prises par les utilisateurs pour améliorer la sécurité de leurs activités en ligne et la santé de leur système. L’adoption d’un état d’esprit et de pratiques axés sur la sécurité qui aident les particuliers et les entreprises à minimiser les cyberattaques est appelée cyberhygiène.</value>
@@ -1200,14 +1299,29 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CHHSSO_Title">
     <value>Des habitudes de cyberhygiène pour rester en sécurité en ligne</value>
   </data>
+  <data name="Blog_Conclusion_ContactUs">
+    <value>N’oubliez pas de nous contacter à &lt;a href='mailto:support@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;business@axcrypt.net&lt;/a&gt; si vous avez des questions! Suivez nos poignées de médias sociaux pour les dernières nouvelles.</value>
+  </data>
+  <data name="Blog_Conclusion_ContactUs_ChangeText1">
+    <value>N’hésitez pas à nous contacter à &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; si vous avez des questions!</value>
+  </data>
   <data name="Blog_Conclusion_ContactUs_Text1">
     <value>Contactez-nous à &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; si vous avez des questions!</value>
   </data>
   <data name="Blog_Conclusion_Feature_Text1">
     <value>Consultez la &lt;a href='https://axcrypt.net/information/features'&gt;Page des Fonctionnalités d’AxCrypt&lt;/a&gt; pour en savoir plus sur la façon dont AxCrypt peut sécuriser vos fichiers et vos données et la &lt;a href='https://www.axcrypt.net/pricing'&gt;Page de Tarification&lt;/a&gt; indique le type d’abonnements de cryptage proposés par AxCrypt.</value>
   </data>
+  <data name="Blog_Conclusion_FeaturePage_Text1">
+    <value>&lt;a href='https://axcrypt.net/information/features'&gt;Consultez la Page des Fonctionnalités d’AxCrypt&lt;/a&gt;  pour en savoir plus sur la façon dont AxCrypt peut sécuriser vos fichiers et vos données et la &lt;a href='https://www.axcrypt.net/pricing'&gt;Page de Tarification &lt;/a&gt; qui indique le type d’abonnements de cryptage proposés par AxCrypt.</value>
+  </data>
   <data name="Blog_Conclusion_Heading">
     <value>Conclusion</value>
+  </data>
+  <data name="Blog_Conclusion_HealthCare_Text1">
+    <value>Jetez un coup d’œil à la page des fonctionnalités d’AxCrypt pour en savoir plus sur la façon dont AxCrypt peut sécuriser les fichiers et les données et à la Page de Tarification qui indique le type d’abonnements de cryptage proposés par AxCrypt. &lt;a href=' https://www.axcrypt.net/industries/healthcare'&gt;  En savoir plus sur la façon dont nous servons l’industrie des soins de santé&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Conclusion_IndustryPage_Text1">
+    <value>&lt;a href='https://www.axcrypt.net/industries'&gt;Consultez notre page de l’industrie&lt;/a&gt; pour voir comment nous servons différentes industries et ce qu’elles disent de nous:</value>
   </data>
   <data name="Blog_Conclusion_SocialMedia_Text1">
     <value>Suivez nos médias sociaux pour en savoir plus sur les fonctionnalités et offres à venir &lt;strong&gt; (&lt;a href='https://facebook.com/axcrypt'&gt;Facebook&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;Instagram&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;Twitter&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;Linkedin&lt;/a&gt;)</value>
@@ -1269,6 +1383,18 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CSFE_Title">
     <value>Cybersécurité pour les Employés</value>
   </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text1">
+    <value>Peut-être que les plus grandes vulnérabilités auxquelles la cryptographie à clé publique est confrontée sont des personnes qui perdent accidentellement leurs clés ou révèlent leur clé privée à d’autres personnes.</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text3">
+    <value>Cependant, comme la technologie a tendance à s’améliorer avec le temps, il est possible que quelqu’un puisse inventer un système encore meilleur que la cryptographie à clé publique. Si cela se produit, la plupart des principales crypto-monnaies seront probablement mises à jour pour intégrer les développements. Cela pourrait rendre les crypto-monnaies encore plus sûres, hypothétiquement.</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text4">
+    <value>Alors que de plus en plus de gens commencent à utiliser les crypto-monnaies, un plus grand pourcentage de la population commencera à comprendre à quel point la cryptographie à clé publique et les crypto-monnaies sont précieuses. Une partie de la raison pour laquelle toute cette technologie de cryptographie est développée est qu’il y a un besoin accru de stocker, d’envoyer, et de recevoir de l’argent en toute sécurité sur internet. Les services bancaires en ligne et le commerce en ligne sont à l’origine de ce besoin. Les entreprises et les services bancaires sont tous deux plus efficaces lorsque l’argent peut être transféré en ligne en toute sécurité. La cryptographie à clé publique fait beaucoup pour rendre l’échange et le stockage d’argent numérique plus sûrs. Parce que la cryptographie à clé publique et les crypto-monnaies contribuent à améliorer l’utilisation et le stockage de l’argent numérique, il est très probable que les crypto-monnaies continueront à gagner en popularité de manière significative au cours des prochaines décennies.</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_Heading1">
+    <value>Comment protéger votre clé privée ?</value>
+  </data>
   <data name="Blog_CWELTI_H1_Text1">
     <value>Une crypto-monnaie, ou crypto, est une monnaie numérique décentralisée basée sur la technologie blockchain. Un actif numérique basé sur un réseau qui est distribué sur un grand nombre d’ordinateurs, la crypto-monnaie est sécurisée par cryptographie, ce qui rend presque impossible la contrefaçon ou la double dépense. Il peut être utilisé comme une forme de paiement pour acheter des biens et des services, mais aussi comme un investissement. Comme ce type de monnaie n’est pas réglementé, les acheteurs aiment l’échanger à but lucratif comme ils le feraient pour d’autres actifs comme les actions et les métaux précieux.</value>
   </data>
@@ -1284,6 +1410,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CWELTI_H3_Text3">
     <value>Les blockchains diffèrent des bases de données spécifiques, où les données sont stockées dans des blocs et enchaînées ensemble. Au fur et à mesure que de nouvelles données arrivent, elles sont entrées dans un nouveau bloc. Une fois que le bloc est rempli de données, il est enchaîné sur le bloc précédent, qui enchaîne les données ensemble dans l’ordre chronologique.</value>
   </data>
+  <data name="Blog_CWELTI_H3_Text4">
+    <value>Différents types d'informations peuvent être stockés sur une blockchain, mais l'utilisation la plus courante jusqu'à présent a été comme registre pour les transactions. Dans le cas de Bitcoin, la blockchain est utilisée de manière décentralisée afin qu'aucune personne ou groupe n'ait le contrôle. Au contraire, tous les utilisateurs conservent collectivement le contrôle. Les blockchains décentralisées sont immuables, ce qui signifie que les données saisies sont irréversibles. Pour Bitcoin, cela signifie que les transactions sont enregistrées en permanence et visibles par tous.</value>
+  </data>
   <data name="Blog_CWELTI_H4_Text1">
     <value>L’un des avantages de la crypto-monnaie est que les transferts sont facilités et excluent l’utilisation d’un tiers tel qu’une banque ou une société de carte de crédit. Les échanges sont sécurisés et assurés par des clés publiques ou privées. D’autre part, un inconvénient important serait le blanchiment d’argent et l’évasion fiscale, ce qui rendrait les transactions cryptographiques bien adaptées aux activités illégales.</value>
   </data>
@@ -1293,11 +1422,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CWELTI_H5_Text2">
     <value>La cryptographie implique l'utilisation de différentes techniques de chiffrement qui sont utilisées pour sécuriser un réseau. Il s'agit essentiellement de la pratique consistant à crypter certaines données ou informations afin qu'elles puissent être tenues secrètes vis-à-vis de tiers. En convertissant vos informations privées en un code secret qui masque la véritable signification des informations, vous rendez presque impossible pour un intrus de les décrypter en texte clair. Lorsqu'un message crypté est intercepté par une entité non autorisée, le gonfleur doit deviner les variables qui ont été utilisées pour crypter le message. Le temps et la difficulté de deviner ces informations sont ce qui fait du cryptage un outil de sécurité si précieux.</value>
   </data>
+  <data name="Blog_CWELTI_H5_Text3">
+    <value>Nous avons mis à votre disposition, un lien vers notre logiciel de cryptage &lt;a style='font-weight: 800;' href='/download'&gt;ici&lt;/a&gt;.</value>
+  </data>
   <data name="Blog_CWELTI_H6_Text1">
     <value>Les crypto-monnaies utilisent la cryptographie à trois fins principales: sécuriser les transactions, contrôler la création d’unités supplémentaires, et vérifier le transfert d’actifs. Pour accomplir toutes ces choses, les crypto-monnaies s’appuient sur ce que l’on appelle la « cryptographie à clé publique ».</value>
   </data>
   <data name="Blog_CWELTI_H6_Text2">
     <value>Les différents algorithmes de chiffrement et techniques cryptographiques qui protègent les entrées spécifiques sont par exemple le chiffrement à courbe elliptique, les paires de clés publiques-privées, et les fonctions de hachage.</value>
+  </data>
+  <data name="Blog_CWELTI_H6_Text3">
+    <value>Les clés publiques donnent une adresse aux gens sur l’endroit où envoyer l’argent. Il implique qu’un utilisateur dispose à la fois d’une clé publique et d’une clé privée, cryptée dans un assortiment d’environ 30 chiffres et lettres. Le but de la clé privée est de déverrouiller la clé publique afin de recevoir l’argent qui a été envoyé. De cette façon, seule la personne qui connaît la clé privée peut déverrouiller la clé publique. N’importe qui peut déposer de l’argent sur une clé/adresse publique, mais seules les personnes disposant de la clé privée peuvent accéder à l’argent. Cela permet aux gens de recevoir de l’argent sans que d’autres personnes puissent accéder à l’argent. La cryptographie à clé publique est une merveille technologique et elle change rapidement l’industrie du paiement en ligne.</value>
+  </data>
+  <data name="Blog_CWELTI_H6_Text4">
+    <value>Pour en savoir plus sur le cryptage et vous familiariser avec celui-ci, consultez ce &lt;a style='font-weight: 800;' href='/blog'&gt;lien&lt;/a&gt; avec des articles de blog similaires.</value>
   </data>
   <data name="Blog_CWELTI_H7_Text1">
     <value>Le cryptage est un moyen de faire en sorte que les communications destinées à être privées le restent réellement. Il aidera à protéger les données des clients et à anticiper les menaces. En chiffrant vos données et en les rendant illisibles, vous garantissez la sécurité et la productivité. Même s’il est intercepté, le message sera illisible pour tout acteur qui ne possède pas la bonne clé pour le déchiffrer. Pour tous ceux qui sont fans de cryptographie, de confidentialité, et de sécurité, ce sont des moments très excitants.  Jetez un coup d’œil à nos &lt;a style='font-weight: 800;' href='/business'&gt; produits&lt;/a&gt; et &lt;a style='font-weight: 800;' href='/pricing'&gt;prix&lt;/a&gt; aux pages avec tous les types de fonctionnalités pour crypter et protéger vos informations privées.</value>
@@ -1317,6 +1455,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_CWELTI_Heading5">
     <value>Qu’est-ce que la cryptographie ?</value>
   </data>
+  <data name="Blog_CWELTI_Heading6">
+    <value>Comment la cryptographie est-elle utilisée dans la crypto-monnaie?</value>
+  </data>
   <data name="Blog_CWELTI_Heading7">
     <value>Ici à AxCrypt</value>
   </data>
@@ -1325,6 +1466,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_CWELTI_Title">
     <value>Crypto-monnaie, pourquoi le cryptage y est-il lié?</value>
+  </data>
+  <data name="Blog_DEVFE_Conclusion_Text1">
+    <value>Le monde entier est devenu axé sur internet, il est donc important de tourner votre attention vers la sécurité des données. C’est à vous de déterminer quelle approche de cryptage vous convient le mieux.</value>
   </data>
   <data name="Blog_DEVFE_H1_Text1">
     <value>De nos jours, il est plus important que jamais de protéger l’information dans cette société connectée à internet. Vos données, qu’elles soient personnelles ou professionnelles, risquent constamment de tomber entre de mauvaises mains, ce qui est une raison de plus pour utiliser le meilleur logiciel de cryptage disponible. Le cryptage des données est un élément crucial de la protection des données. C’est le processus de brouillage du texte (appelé texte chiffré) pour le rendre illisible pour un utilisateur non autorisé au niveau le plus élémentaire. Le chiffrement peut être appliqué à des fichiers, dossiers, volumes ou lecteurs entiers individuels sur un ordinateur ou un périphérique USB, ainsi qu’à des informations dans le cloud.</value>
@@ -1398,8 +1542,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_DRATIUIN_H3_Text2">
     <value>Les données en transit circulent constamment sur internet. Cela inclut l’envoi d’e-mails, le téléchargement de documents sur un cloud et la navigation sur internet. Dans la phase de transit, les données sont souvent moins sécurisées, ce qui permet aux pirates d’accéder plus facilement à vos données. Par conséquent, l’utilisation du cryptage AxCrypt est un avantage majeur lors de l’envoi de données d’un réseau à un autre.</value>
   </data>
+  <data name="Blog_DRATIUIN_H3_Text3">
+    <value>Les données utilisées font référence aux données actives qui sont traitées par les applications. Au stade de l’utilisation des données, les données sont plus vulnérables et, par conséquent, de nombreuses entreprises et organisations sont préoccupées par les données sensibles auxquelles les pirates peuvent accéder si les données utilisées ne sont pas protégées. De plus, un problème majeur est que lorsque les pirates ont accès à la mémoire vive (RAM), il leur est plus facile d’accéder à la mémoire et peuvent donc décrypter les données cryptées au repos. Afin de protéger les données en cours d’utilisation, il est important de chiffrer la mémoire, mais aussi d’utiliser des outils qui s’assurent que seules les personnes validées peuvent accéder aux données.</value>
+  </data>
   <data name="Blog_DRATIUIN_H4_Text1">
     <value>Il existe un risque constant que des données sensibles soient accessibles par des pirates. Que les données soient en transit, au repos ou en cours d'utilisation, il est important de protéger les données. L'un des moyens de s'assurer que ces données ne sont pas accessibles par un pirate informatique est le cryptage. Le cryptage est essentiel pour garantir que les données sensibles ne soient pas volées ou interceptées par un tiers. De plus en plus d'entreprises et d'organisations commencent à chiffrer leurs données avant de les déplacer d'un réseau à un autre. Avec la fonction de partage de clé d'AxCrypt, vous pouvez autoriser vos collègues à ouvrir des fichiers sécurisés avec leur propre mot de passe.</value>
+  </data>
+  <data name="Blog_DRATIUIN_Heading1">
+    <value>Qu’est-ce qu’une donnée ?</value>
+  </data>
+  <data name="Blog_DRATIUIN_Heading2">
+    <value>Comment peut-on les utiliser, pourquoi les données sont-elles si importantes de nos jours ?</value>
+  </data>
+  <data name="Blog_DRATIUIN_Heading3">
+    <value>Données au repos, en transit et en cours d’utilisation</value>
   </data>
   <data name="Blog_DRATIUIN_Heading4">
     <value>Comment protéger vos données</value>
@@ -1479,6 +1635,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EDIKPNY_H1_SH5_Text3">
     <value>Nouvelles fonctionnalités linguistiques telles que le Chinois</value>
   </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text4">
+    <value>Nouvelles sections de notre site web axées sur les soins de santé, les finances, le droit, l’éducation et les gouvernements</value>
+  </data>
   <data name="Blog_EDIKPNY_H1_SH5_Text5">
     <value>Boost d'AxCrypt mobile pour que vous puissiez ouvrir vos fichiers cryptés depuis vos téléphones</value>
   </data>
@@ -1491,8 +1650,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EDIKPNY_H1_SH6_Text3">
     <value>Cela étant dit, nous vous souhaitons le meilleur pour 2021.</value>
   </data>
+  <data name="Blog_EDIKPNY_H1_SH6_Text4">
+    <value>Restez en bonne santé!</value>
+  </data>
   <data name="Blog_EDIKPNY_H1_SH6_Text5">
     <value>L'équipe AxCrypt</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SubHeading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Clé Principale&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SubHeading2">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Fonctionnalités du site web et de la langue&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SubHeading3">
+    <value>&lt;h3 style='margin-block: 0;'&gt;Communauté AxCrypt&lt;/h3&gt;</value>
   </data>
   <data name="Blog_EDIKPNY_H1_SubHeading4">
     <value>&lt;h3 style='margin-block: 0;'&gt;À quoi s’attendre pour 2021&lt;/h3&gt;</value>
@@ -1505,6 +1676,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_EDIKPNY_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;Le meilleur de 2020&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EDIKPNY_Summary">
+    <value>Nous sommes prêts à accueillir 2021. Nous tenons à vous remercier de faire partie de notre famille, de nous avoir fait part de vos commentaires en protégeant et en garantissant ensemble les données et les informations privées.</value>
   </data>
   <data name="Blog_EDIKPNY_Text1">
     <value>Bonjour la communauté,</value>
@@ -1641,14 +1815,23 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EIAWII_H1_Text2">
     <value>Comme l’explique l’American Civil Liberties Union, les entreprises réagiront à l’augmentation ultérieure du coût de responsabilité de la fourniture d’un service en ligne en répercutant ce coût sur les consommateurs. Cela se matérialisera par une surveillance et un filtrage accrus des messages privés, dans le but pour les entreprises d’éviter des poursuites coûteuses. En conséquence, la censure est encouragée et la liberté d’expression sur internet devient limitée.</value>
   </data>
+  <data name="Blog_EIAWII_H2_Text1">
+    <value>Une autre mise en garde importante à ce projet de loi est la création nécessaire de portes dérobées. Une porte dérobée lorsque l’on parle de cryptage est essentiellement une fonctionnalité intégrée qui permet à un agent de contourner le cryptage. Dans ce cas, la fonction de porte dérobée donnera au gouvernement la possibilité d’échapper à toute sécurité qu’une personne a placée sur son appareil, permettant ainsi un accès facile aux données personnelles.</value>
+  </data>
   <data name="Blog_EIAWII_H2_Text2">
     <value>Cette loi aura un impact sur tous les utilisateurs d’Internet à l’intérieur des frontières des États-Unis, que le gouvernement soit intéressé ou non par vos données. Lorsque des portes dérobées sont introduites, les agents mal intentionnés ont également la possibilité de récupérer vos données. Comme l’a déclaré l’Electronic Frontier Foundation, « soit le message reste privé pour tout le monde sauf ses destinataires, soit il est disponible pour les autres ». De l’autre côté de l’argument, beaucoup estiment qu’il s’agit d’une condition nécessaire pour assurer la sécurité nationale et la facilité des enquêtes fédérales.</value>
   </data>
   <data name="Blog_EIAWII_H3_Text1">
     <value>Le gouvernement des États-Unis et les grandes entreprises technologiques sont depuis longtemps dans une impasse en ce qui concerne la confidentialité des données et le droit du gouvernement d’accéder à des informations cryptées. Vous vous souvenez peut-être du différend entre Apple et le FBI dans l’affaire San Bernardino. Apple a refusé de créer une porte dérobée pour l’agence fédérale, ce qui a rendu incroyablement difficile pour le FBI d’accéder au téléphone du tireur. Apple est arrivé à cette conclusion car ils estimaient que la création d’une porte dérobée « créerait un dangereux précédent » pour le matériel crypté de tous les utilisateurs d’iPhone.</value>
   </data>
+  <data name="Blog_EIAWII_H3_Text2">
+    <value>Une conclusion semblable a été tirée par le public à la suite de ce projet de loi. Beaucoup craignent que la loi EARN IT ne crée un paysage dangereux pour tous les individus, pas seulement pour les criminels poursuivis par le FBI.</value>
+  </data>
   <data name="Blog_EIAWII_H4_Text1">
     <value>La pandémie mondiale actuelle a rendu le cryptage plus important que jamais. Les particuliers et les entreprises ont accru leur dépendance aux plateformes numériques pour mener leurs opérations quotidiennes. Cela signifie qu’il y a un plus grand risque à mesure que le paysage de la menace s’élargit. Le cryptage est maintenant de plus en plus nécessaire pour empêcher les criminels d’utiliser la pandémie à des fins commerciales et d’accéder à des données personnelles. Par conséquent, s’il y avait un moment pour investir dans le cryptage et assurer la sécurité de vos données, c’est maintenant.</value>
+  </data>
+  <data name="Blog_EIAWII_H4_Text2">
+    <value>Chez AxCrypt, nous sommes très heureux d’avoir nos serveurs basés en Suède, où le gouvernement n’a absolument aucune autorité pour exiger ou demander des données cryptées. Par conséquent, si vous avez investi dans notre logiciel, vous pouvez avoir l’esprit tranquille en sachant que vos données resteront privées et sécurisées. Si vous n’avez pas encore consulté notre logiciel, cliquez ici pour en savoir plus sur nos plans d’abonnement Premium et Business.</value>
   </data>
   <data name="Blog_EIAWII_Heading1">
     <value>&lt;h3&gt;Article 230&lt;/h3&gt;</value>
@@ -1671,14 +1854,29 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EIAWII_Text2">
     <value>EARN IT est une loi de sécurité qui visera essentiellement à repenser la surveillance et le suivi du matériel publié par les utilisateurs sur les plateformes de médias sociaux. Il a été accueilli avec beaucoup de critiques, beaucoup affirmant qu’il aura des effets néfastes sur la vie privée et la sécurité des citoyens américains. Grâce à une surveillance et à un suivi accrus des renseignements personnels, certains soutiennent même que la loi présente des problèmes importants en ce qui concerne la censure et le droit constitutionnel à la vie privée.</value>
   </data>
+  <data name="Blog_EIAWII_Title">
+    <value>EARN IT Act- Qu’est-ce que c’est?,</value>
+  </data>
+  <data name="Blog_EIBM_Conclusion_Text2">
+    <value>Vous voulez en savoir plus? Nous publions des informations intéressantes chaque semaine.</value>
+  </data>
+  <data name="Blog_EIBM_H1_Text1">
+    <value>La cryptographie est l'étude de l'abstraction d'informations auprès d'utilisateurs indésirables. Les techniques de cryptographie sont utilisées depuis longtemps dans les secteurs bancaires pour assurer la sécurité des transactions monétaires, y compris la sécurité des cartes de guichet automatique, des mots de passe informatiques et du commerce électronique.</value>
+  </data>
   <data name="Blog_EIBM_H1_Text2">
     <value>La cryptographie tourne autour du Cryptage et du Décryptage où le Cryptage est un processus dans lequel les données en texte brut sont converties en un texte illisible appelé texte chiffré et le décryptage est le processus de transformation des données qui ont été rendues illisibles à leur forme normale.</value>
   </data>
   <data name="Blog_EIBM_H1_Text3">
     <value>Lorsqu’ils sont entre de mauvaises mains, les informations personnelles peuvent être utilisés comme un outil puissant. L’un des meilleurs moyens de protéger vos données est de les chiffrer. Le chiffrement de bout en bout vous redonne le contrôle et protège vos données contre les fouineurs et les regards indiscrets. Le cryptage est le meilleur moyen de travailler jusqu’à présent pour sécuriser vos données de toute forme d’accès indésirable. En prenant du texte brut et en utilisant des calculs mathématiques pour transformer les données en code, il est converti en texte chiffré, seuls ceux qui ont la clé spéciale peuvent décrypter vos fichiers. Notre système convivial facilite les opérations, garantit le contrôle le plus élevé possible et assure que personne d’autre que vous ne peut accéder à vos informations personnelles afin qu’aucune violation de données désavantageuse ne survienne. Nous proposons des abonnements business et premium. Ne manquez pas notre essai gratuit de 30 jours. Vous pouvez en savoir plus sur nos offres sur notre &lt;a href='/pricing' style='font-weight: 800;'&gt;page de tarification&lt;/a&gt;.</value>
   </data>
+  <data name="Blog_EIBM_H2_SH1_Text1">
+    <value>Utilisez un réseau privé virtuel également abrégé en VPN, qui est un tunnel sécurisé entre deux ou plusieurs appareils. Les VPN sont utilisés pour protéger le trafic web privé contre l’espionnage, les interférences, et la censure. Les PN chiffrent toutes les données que vous envoyez sur internet. Votre VPN masque également votre adresse IP et enfin certains VPN bloquent les sites web malveillants, les publicités, et les trackers.</value>
+  </data>
   <data name="Blog_EIBM_H2_SH2_Text1">
     <value>Des mots de passe forts sont la clé de votre vie numérique. Les mots de passe sont les clés numériques de nos réseaux d'amis, de nos collègues de travail et même de nos services bancaires et de paiement. Les deux mots de passe les plus importants sont ceux de vos comptes de messagerie et de réseaux sociaux. Il est important d'utiliser des mots de passe entièrement nouveaux et uniques pour chaque compte que vous pourriez exécuter, afin d'éviter de compromettre vos données si l'un de vos comptes est piraté. Pour avoir un mot de passe fort, il est extrêmement important de ne pas inclure d'informations personnelles dans vos mots de passe. Les pirates pourraient tenter de se connecter à votre compte en devinant votre mot de passe sur la base des informations personnelles obtenues à partir de vos questions de sécurité. Plus votre mot de passe est court et simple, plus il peut être rapide de trouver la bonne combinaison de caractères et d'accéder à vos informations privées. Un cracker de mot de passe est un programme utilisant une multitude de combinaisons en très peu de temps jusqu'à obtenir un accès complet à tout ce que votre mot de passe protégeait. Utilisez une combinaison de lettres majuscules et minuscules, de symboles et de chiffres.</value>
+  </data>
+  <data name="Blog_EIBM_H2_SH2_Text2">
+    <value>Et n’oubliez pas - si vous avez besoin d’inspiration, vous pouvez utiliser notre &lt;a href='/information/password-generator' style='font-weight: 800;'&gt;Générateur de Mots de Passe AxCrypt&lt;/a&gt;. Basé sur une analyse statistique du texte réel, il produit des mots de passe forts qui ne sont pas absurdes et qu'il est réellement possible de mémoriser et de taper. Vous obtiendrez trois suggestions de force et de complexité décroissantes.</value>
   </data>
   <data name="Blog_EIBM_H2_SH2_Text3">
     <value>Nous avons en outre des fonctionnalités de gestion des mots de passe disponibles. Ne vous inquiétez plus d'essayer de vous souvenir de tous vos différents mots de passe - nous nous en occupons pour vous. Gardez tous vos mots de passe et secrets en sécurité dans notre cloud.</value>
@@ -1692,6 +1890,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EIBM_H2_SubHeading2">
     <value>&lt;strong&gt;1. Protégez votre réseau&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EIBM_H2_SubHeading3">
+    <value>&lt;strong&gt;3. Assurez vos Données Cloud&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EIBM_H2_Text1">
     <value>Outre les informations personnelles identifiables (IPI) évidentes telles que les noms, adresses et numéros de sécurité sociale, le secteur financier traite également régulièrement des données telles que le revenu, le pointage de crédit, l'historique de collecte, les IPI des membres de la famille et les informations personnelles non publiques (IPNP ).</value>
   </data>
@@ -1701,11 +1902,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EIBM_H3_SH2_Text1">
     <value>La carte électronique permet à un titulaire de carte d’effectuer un paiement ou un achat par transfert électronique de fonds. Les types courants de cartes sont les cartes de crédit et les cartes de débit. Toutes les données et communications sont protégées par cryptographie, ce qui rend les cartes à puce et à code pin plus difficiles à pirater.</value>
   </data>
+  <data name="Blog_EIBM_H3_SubHeading1">
+    <value>&lt;strong&gt;Distributeur automatique de billets&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EIBM_H3_SubHeading2">
     <value>&lt;strong&gt;Cartes&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EIBM_H3_Text1">
     <value>Le secteur financier, en particulier, est l'un des meilleurs endroits pour étudier le cryptage et la sécurité des données car leur tâche est si difficile, et le nombre et les types de cryptage sont si variés et pour n'en capturer que quelques-uns, si nous pensons à de simples transactions, celles que vous effectuez chez un commerçant ou un guichet automatique, ou de simples transactions bancaires au guichet.</value>
+  </data>
+  <data name="Blog_EIBM_H3_Text2">
+    <value>Les banques sont confrontées à de nombreux défis et ont besoin d’acquérir le cryptage sous de nombreuses formes différentes pour s’assurer que les cartes, les codes pins et les transactions en cours sont sécurisées. Divers algorithmes de cryptage sont intégrés au réseau de communication pour empêcher les transactions non autorisées. La plupart des institutions financières utilisent ce qu’on appelle la tokenisation qui cryptera une partie des données. L’autre type de chiffrement est lorsque ces données sont en transit. Appelé chiffrement principal, il garantit que la connexion de transit est chiffrée jusqu’à ce qu’elle arrive à la base de données ou au serveur.</value>
   </data>
   <data name="Blog_EIBM_H4_Text1">
     <value>La banque est l'une des principales cibles des pirates informatiques ce qui entraîne une augmentation de la sensibilisation à la cybersécurité au sein de l'industrie. Les violations de données et les cyberattaques menacent les fuites de données et l'affichage d'informations et de données sensibles exposées.</value>
@@ -1715,6 +1922,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_EIBM_H4_Text3">
     <value>Le Wall Street Journal a rapporté que, malgré l’importance et l’accessibilité du cryptage, de nombreuses entreprises ne parviennent toujours pas à chiffrer les informations sensibles. Certaines entreprises, en ne chiffrant qu’un tiers de toutes les données sensibles de l’entreprise, laissent les deux tiers restants sensibles au vol ou à la fraude.</value>
+  </data>
+  <data name="Blog_EIBM_H4_Text4">
+    <value>Les défis qui entravent la croissance du marché et les stratégies d’expansion ont tendance à conduire les entreprises dans le Sécurité du Cloud sur le marché bancaire. Le marché des solutions de sécurité cloud dans le secteur bancaire est appelé à croître.</value>
+  </data>
+  <data name="Blog_EIBM_H5_SH1_Text1">
+    <value>Les informations du client et les transactions de l’entreprise sont également stockées à l’abri des regards indiscrets.</value>
   </data>
   <data name="Blog_EIBM_H5_SH2_Text1">
     <value>L'échange d'une grande quantité de données est simple et facile. Il assure la sécurité des transactions de commerce en ligne sur Internet en permettant par exemple de transmettre des numéros de carte de crédit. Utilisez la clé principale, une fonctionnalité qui permet aux administrateurs d'entreprise de récupérer les fichiers des membres de l'entreprise, éliminant ainsi le risque de perdre l'accès aux fichiers critiques en raison du départ ou de l'oubli des mots de passe des employés.</value>
@@ -1727,6 +1940,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_EIBM_H5_SH5_Text1">
     <value>Prise en charge multilingue de l’Anglais, du Néerlandais, du Français, de l’Allemand, de l’Italien, du Coréen, du Portugais, du Russe, de l’Espagnol, du Suédois et du Turc. Plus à venir.</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading1">
+    <value>&lt;strong&gt;Sécurité, fiabilité et simplicité&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading2">
+    <value>&lt;strong&gt;Travail d’équipe, collaboration&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EIBM_H5_SubHeading3">
     <value>&lt;strong&gt;Sensibilisation au stockage dans le cloud et gestion des mots de passe&lt;/strong&gt;</value>
@@ -1746,6 +1965,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EIBM_Heading2">
     <value>Comment protéger vos données?</value>
   </data>
+  <data name="Blog_EIBM_Heading3">
+    <value>Institutions financières</value>
+  </data>
   <data name="Blog_EIBM_Heading4">
     <value>Institutions financières</value>
   </data>
@@ -1763,6 +1985,15 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_EIBM_Title">
     <value>Cryptage sur le marché bancaire</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_ContactUs">
+    <value>Pour toute demande ou question, vous pouvez contacter &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; Vous pouvez également visiter notre site web &lt;a href='https://www.axcrypt.net/' style='color: #efefef; font-weight: 800;'&gt;https://www.axcrypt.net/&lt;/a&gt;. Suivez nos poignées de médias sociaux pour la dernière mise à jour</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_Heading">
+    <value>L’approche d’AxCrypt</value>
+  </data>
+  <data name="Blog_EITPS_H1_SH1_Text1">
+    <value>En matière de confidentialité des données, les grandes entreprises doivent être plus prudentes. Parce que ces entreprises ont beaucoup de détails sur leurs employés et leurs activités – pour produire leurs ventes et leurs profits – elles doivent compter en grande partie sur la confidentialité et la sécurité.  Le chiffrement est la clé pour reprendre le contrôle des données.</value>
   </data>
   <data name="Blog_EITPS_H1_SH2_Text1">
     <value>La plupart des entreprises recueillent des renseignements numériques auprès de leurs clients; il est de l’obligation de l’entreprise de garder ces données en sécurité, les informations ne doivent pas tomber entre les mains d’autres entreprises ou de cybercriminels.</value>
@@ -1812,6 +2043,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EITPS_H2_SubHeading3">
     <value>&lt;strong&gt;Fonctionne uniquement lorsque le serveur est en panne&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EITPS_H2_SubHeading4">
+    <value>&lt;strong&gt;Compliqué à utiliser&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EITPS_H3_SH_3Text1">
     <value>Avec la fonction de partage de clés, vous pouvez partager des fichiers sans avoir besoin de partager des mots de passe. Au lieu de cela, vous pouvez partager des clés de fichier avec des collègues spécifiques pour leur donner accès à des fichiers particuliers. Ensuite, ils peuvent facilement parcourir ou modifier le fichier partagé. Plus encore, il vous permet de départager le fichier pour supprimer rapidement l’accès de la personne.</value>
   </data>
@@ -1821,8 +2055,14 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EITPS_H3_SH2_Text1">
     <value>Avec la popularité croissante des appareils numériques au cours des dernières années, de nombreuses entreprises ont eu du mal à trouver une solution pour conserver les données enregistrées et transmises via plusieurs appareils. Cependant, les logiciels de technologie de cryptage contemporains permettent de s’assurer que toutes les données et tous vos appareils électroniques sont sécurisés.</value>
   </data>
+  <data name="Blog_EITPS_H3_SH4_Text1">
+    <value>Le déplacement de données sensibles vers le cloud est un sujet de préoccupation pour tout le monde, et la plupart des entreprises estiment que le cloud n’est pas sûr. Cependant, si vous chiffrez les données avant de les envoyer dans le cloud et que vous avez la possession des clés de chiffrement, vous pouvez être assuré que vos données seront en sécurité quel que soit leur environnement.</value>
+  </data>
   <data name="Blog_EITPS_H3_SH5_Text1">
     <value>Le cryptage vous donne la tranquillité d’esprit que vos sauvegardes sont sécurisées. Il y a presque peu de chances de récupérer des données à partir de ces sauvegardes sans accès aux clés de chiffrement. Le cryptage aide également à la destruction sécurisée des données, garantissant que vos fichiers ne peuvent pas être récupérés ou restaurés. Découvrez la fonctionnalité « effacement de fichiers » d’AxCrypt, qui supprime en toute sécurité les fichiers et est disponible pour les abonnés premium et professionnels. Pour en savoir plus, &lt;a href='/information/features' style='font-weight: 800;'&gt;consultez notre page de fonctionnalités&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading1">
+    <value>&lt;strong&gt;Protège les données contre les interférences de tiers&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EITPS_H3_SubHeading2">
     <value>&lt;strong&gt;Accessible sur divers appareils&lt;/strong&gt;</value>
@@ -1833,8 +2073,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_EITPS_H3_SubHeading4">
     <value>&lt;strong&gt;Sécurité du Cloud&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EITPS_H3_SubHeading5">
+    <value>&lt;strong&gt;Sauvegarde sécurisée et Effacement de Fichiers&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EITPS_Heading1">
     <value>Le besoin de sécurité des données</value>
+  </data>
+  <data name="Blog_EITPS_Heading2">
+    <value>Présomptions de chiffrement</value>
+  </data>
+  <data name="Blog_EITPS_Heading3">
+    <value>Le cryptage est Imprenable</value>
+  </data>
+  <data name="Blog_EITPS_Summary">
+    <value>Les entreprises sont vulnérables aux cyberattaques si elles ne comprennent pas la technologie moderne ou ne reconnaissent pas la nécessité de protéger les données. Il est largement admis que la confidentialité des données n’est nécessaire que lorsque quelqu’un a quelque chose à cacher mais ce n’est pas le seul motif.</value>
   </data>
   <data name="Blog_EITPS_Text1">
     <value>&lt;i&gt;Selon Bruce Schneier, spécialiste de la sécurité et de la confidentialité, « le cryptage fonctionne mieux s’il est omniprésent et automatique. Il doit être activé pour tout par défaut, pas une fonctionnalité que vous n’activez que lorsque vous faites quelque chose que vous considérez comme méritant d’être protégé.&lt;/i&gt;</value>
@@ -1917,6 +2169,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_FOKM_H2_Text1">
     <value>La gestion des clés traite de nombreux types de risques de sécurité au-delà du chiffrement, tels que les personnes et les politiques incorrectes, les cyberattaques et le vol de données sur les réseaux. C'est l'un des composants les plus difficiles de la cryptographie. Cela implique également l'élaboration d'une politique du système, la formation des utilisateurs, la collaboration interdépartementale, et une coordination efficace.&lt;br/&gt;</value>
   </data>
+  <data name="Blog_FOKM_H2_Text2">
+    <value>Dans les grandes entreprises, tous les membres ont accès aux données de l’entreprise, la sécurité est donc une préoccupation majeure. La solution est un système de gestion des clés de groupe de multidiffusion qui distribue en toute sécurité des clés individuelles à chaque membre. De cette façon, le matériel chiffré avec la clé d’un seul membre du groupe ne peut être consulté et lu que par ce membre du groupe.</value>
+  </data>
   <data name="Blog_FOKM_H2_Text3">
     <value>La Gestion des Clés comprend également des contrôles visant à garantir que les clés ne sont accessibles qu’au personnel et aux systèmes autorisés, qu’elles ne sont utilisées qu’aux fins prévues et que toutes les activités clés sont enregistrées à des fins d’audit et de conformité.</value>
   </data>
@@ -1949,6 +2204,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_FOKM_Title">
     <value>Principes fondamentaux de la gestion des clés</value>
+  </data>
+  <data name="Blog_GAES256BEWA_Conclusion_Text1">
+    <value>AxCrypt est une assurance contre les potentielles violations de données. La sécurité peut devenir un atout grâce à un bloc, un cryptage de niveau entreprise, et des outils de gestion des mots de passe. Vous avez la possibilité de migrer vers le cloud public. Si vous souhaitez en savoir plus sur le cryptage, &lt;a href='https://www.axcrypt.net/'&gt;commencez ici&lt;/a&gt;</value>
   </data>
   <data name="Blog_GAES256BEWA_H1_SH1_Text1">
     <value>Même les systèmes cryptographiques les plus sécurisés sont vulnérables si un pirate a accès à la clé. Les mots de passe forts, l’authentification multifacteur, les pare-feux, et les logiciels antivirus sont tous des éléments importants de la sécurité globale. La première étape de la défense est un mot de passe fort. AxCrypt offre un générateur de mots de passe fort avec des outils de gestion des mots de passe, ce qui garantit que les mots de passe des utilisateurs sont aussi sécurisés que possible.</value>
@@ -1983,8 +2241,14 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_GAES256BEWA_Title">
     <value>Obtenez le cryptage AES 256 bits avec AxCrypt</value>
   </data>
+  <data name="Blog_HAPYD_CS_H1_SH1_Text1">
+    <value>Lors de la sélection d’un logiciel de cryptage, vous devez examiner ses algorithmes pour déterminer comment vos données seront sécurisées ou protégées. Étant donné que tous les codes ou algorithmes ne sont pas égaux, certains fonctionnent plus rapidement que les autres. L’application AxCrypt utilise l’algorithme AES-256 bits lors de la sécurisation des fichiers.</value>
+  </data>
   <data name="Blog_HAPYD_H1_text1">
     <value>L'interdiction du cryptage de bout en bout pourrait faire partie d'une nouvelle application de la loi prise par certains gouvernements pour divulguer les comportements illégaux afin d'assurer la sécurité nationale. Les entreprises technologiques devraient donc fournir aux autorités les données au repos en tant que données en transit. Cela inclut les informations stockées sur un cloud, les messages, les appels, les e-mails, les vidéoconférences, etc. Sans aucune connaissance spécifique sur la manière de protéger leur vie privée et d'assurer un moyen de communication sécurisé, les citoyens ordinaires seraient les premières victimes de ce système de surveillance autoritaire.</value>
+  </data>
+  <data name="Blog_HAPYD_H1_text2">
+    <value>La vie privée de tous est essentielle pour protéger notre liberté et, par conséquent, la communication confidentielle est fondamentale pour les démocraties libérales.</value>
   </data>
   <data name="Blog_HAPYD_H2_text1">
     <value>Les informations les plus sensibles à protéger comprennent vos numéros de compte bancaire, votre numéro de sécurité sociale, vos numéros d’identification, vos numéros de carte de crédit, et vos mots de passe. L’information financière est une cible évidente. Votre nom complet, votre adresse, vos antécédents professionnels et vos dossiers médicaux sont considérés comme des données personnelles et doivent donc rester confidentiels. L’utilisation de mots de passe forts est un moyen de protéger vos informations en ligne, alors évitez d’utiliser les mêmes mots de passe faciles à déchiffrer, peu importe à quel point vous aimez votre animal de compagnie.</value>
@@ -2000,6 +2264,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_HAPYD_H3_text2">
     <value>Nous sommes une équipe très motivée, créative et efficace qui est passionnée par la création de solutions de sécurité des données simples et fiables pour les individus et les équipes. &lt;a href=' https://www.axcrypt.net'&gt;Consultez notre site web et nos produits&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_Heading1">
+    <value>La communication confidentielle est fondamentale pour les démocraties libérales</value>
   </data>
   <data name="Blog_HAPYD_Heading2">
     <value>Quel type d’information devriez-vous protéger?</value>
@@ -2079,11 +2346,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HEIDS_H1_Text1">
     <value>Exploitation des intérêts d’un individu par un escroc afin d’accéder à des informations restreintes. L'’hameçonnage est de loin la forme la plus enracinée de violation de la sécurité des données dans ce domaine. En raison de sa nature, les victimes de cette forme de violation de données n’ont parfois aucune idée qu’elles se laissent exposer à l’exploitation. La façon dont l’hameçonnage fonctionne est que l’entité ayant l’intention d’accéder à des informations non autorisées incite la victime potentielle à penser qu’elle s’engage avec une entité en ligne légitime; généralement par e-mail pour accéder aux informations souhaitées. La victime, ignorant qu’elle se fait arnaquer, finit par donner elle-même les informations souhaitées. Dans l’esprit de la victime, ils ne donnent que les informations souhaitées à une plate-forme en ligne légitime. Le résultat final est que la personne finit par aider à la violation de données, bien que sans le savoir, en accédant à des liens malveillants ou à des pièces jointes à des e-mails.</value>
   </data>
+  <data name="Blog_HEIDS_H10_Text1">
+    <value>Externaliser ou traiter avec des sous-traitants dont la perspective de la sécurité des données peut être différente de celle de l’organisation qui contacte des fournisseurs externes. L’externalisation est connue pour contribuer aux cas de violation de données. Lorsque les fournisseurs ont accès à des informations jugées sensibles et qu’ils n’en apprécient pas eux-mêmes l’importance, ce qui pourrait entraîner de graves fuites de données.</value>
+  </data>
   <data name="Blog_HEIDS_H2_Text1">
     <value>La mauvaise livraison du courrier est une autre forme d’erreur humaine qui a un impact sur la sécurité des données. Une mauvaise livraison se produit lorsque ceux qui sont chargés de fournir des informations sensibles, intentionnellement ou inconsciemment, finissent par fournir ces informations à des utilisateurs non autorisés. En cette ère de marketing de masse par e-mail et d’autres formes de transfert massif de données, les personnes qui gèrent de tels transferts sont mandatées pour garantir la sécurité des données envoyées. L’utilisation du cryptage dans de tels transferts aide à minimiser l’accessibilité de ces informations si elles se retrouvent chez des destinataires non prévus.</value>
   </data>
   <data name="Blog_HEIDS_H3_Text1">
     <value>Accès non autorisé à des points de vente d’informations tels que des appareils d’entreprise. Ceux qui se voient confier de tels dispositifs devraient les traiter avec l’importance qu’ils méritent. Il n’est pas rare de trouver des employés ayant accès à de tels appareils permettant un accès illimité à leurs amis ou aux membres de leur famille. C’est au cours de ces interactions que les informations peuvent être consultées à l’insu de la personne, ce qui entraîne une violation grave de la sécurité des données. Les propriétaires de tels appareils devraient être formés à l’importance des gadgets en leur possession, car ils sont littéralement les gardiens de ces informations sensibles.</value>
+  </data>
+  <data name="Blog_HEIDS_H4_Text1">
+    <value>Une mauvaise utilisation du mot de passe peut sérieusement saper les données d’une personne ou d’une entreprise. L’accessibilité à ces informations devrait être protégée par mot de passe. En fait, il ne s’agit plus seulement d’avoir un mot de passe. On s’attend à plus, le changement de routine de ces mots de passe garantit que l’accès à ces informations est restreint. Une autre façon serait d’éviter d’utiliser des mots évidents pour les mots de passe. Les personnes chargées de demander des mots de passe devraient éviter de partager de tels mots de passe. Les entreprises devraient souligner à leurs employés l’importance d’utiliser des pratiques appropriées de gestion des mots de passe pour éviter les violations de la sécurité des données.</value>
+  </data>
+  <data name="Blog_HEIDS_H5_Text1">
+    <value>Inadéquation ou, dans certains cas, absence de formation pertinente des personnes chargées de ces données. L'incorporation fréquente de systèmes de gestion de l'information aux membres du personnel qui traitent des informations sensibles minimise le risque d'erreur humaine, car les membres peuvent se référer à leur formation sur les meilleures pratiques employées dans le traitement de ces informations. L'absence de telles directives et attentes exposerait très certainement les employés à des violations de la sécurité des données.</value>
   </data>
   <data name="Blog_HEIDS_H6_Text1">
     <value>Peu sensibilisé aux questions relatives à la sécurité des données. La sécurité doit être soulignée pour tous les membres manipulant les données de l'entreprise. Les problèmes de mise à niveau logicielle qui entraînent des mesures de sécurité améliorées ne sont pas uniquement un problème de gestion. Les meilleurs logiciels internet et de traitement des données doivent être utilisés et les personnes concernées informées de leur importance et de leur utilisation. Des éléments tels que les mises à niveau de la sécurité des données devraient être au premier plan des membres du personnel en collaboration avec le personnel des technologies de l'information concerné. La sécurité des données doit être la responsabilité première de tous les membres du personnel ; c'est l'absence d'une telle prise de conscience qui pourrait entraîner la compromission des données.</value>
@@ -2091,14 +2367,26 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HEIDS_H7_Text1">
     <value>Négligence ou incompétence pure et simple en matière de traitement des données. Dans l’exécution quotidienne de ses fonctions, les procédures définies peuvent être négligées. La nécessité de respecter les objectifs et les délais fera le plus souvent oublier les procédures qu’ils jugent lourdes. Ces raccourcis sont parfois à l'origine de violations de données connues. Il incombe aux personnes chargées de la gestion de s'assurer que les procédures de traitement des données définies sont respectées, quelle que soit la charge de travail. Dans la hâte de terminer les missions, les employés qui ne sont pas soucieux des détails peuvent être responsables de la poursuite des violations de données.</value>
   </data>
+  <data name="Blog_HEIDS_H8_Text1">
+    <value>L'utilisation illimitée des données est un autre facteur qui entraîne la compromission des données. La facilité avec laquelle les personnes accèdent à une ou à toutes les informations doit faire l'objet d'un examen minutieux. En laissant les points d'accès aux données d'une institution occupés et la nécessité d'appliquer plusieurs couches, l'authentification lors de l'accès ou de la demande de certaines données considérées comme sensibles est essentielle pour limiter les fuites de données. L'absence de telles mesures signifie que toute personne y ayant accès peut récupérer toutes les informations qu'elle souhaite pour son usage personnel. La restriction entraîne la responsabilité et la traçabilité, en particulier lorsqu'il s'agit d'informations sensibles.</value>
+  </data>
   <data name="Blog_HEIDS_H9_Text1">
     <value>L’aspect humain associé à l’allocation budgétaire en matière de sécurité des données est parfois à blâmer pour les violations de données. La direction étant toujours à l’affût de mesures de réduction des coûts, la nécessité d’investir et de proposer une approche durable en cas de violation de données pourrait ne pas être appréciée. Cela est particulièrement vrai lorsque ladite entreprise n’a jamais connu de violations de données. L’incapacité à allouer des fonds et à investir dans des mesures de sécurité des données rend l’entreprise vulnérable aux attaques de données, d’autant plus lorsqu’elle est mal préparée lorsque ces attaques se produisent.</value>
+  </data>
+  <data name="Blog_HEIDS_Heading1">
+    <value>&lt;h3&gt;Hameçonnage&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading10">
+    <value>&lt;h3&gt;Externalisation&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HEIDS_Heading2">
     <value>&lt;h3&gt;Erreur de livraison&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HEIDS_Heading3">
     <value>&lt;h3&gt;Accès non autorisé&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading4">
+    <value>&lt;h3&gt;Habitudes de mot de passe&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HEIDS_Heading5">
     <value>&lt;h3&gt;Pas de formation et de lignes directrices&lt;/h3&gt;</value>
@@ -2115,17 +2403,26 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HEIDS_Heading9">
     <value>&lt;h3&gt;Réduction des coûts&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_HEIDS_Summary">
+    <value>Avec l’augmentation des cas signalés de violation de la sécurité des données, l’aspect humain de ces violations doit être reconnu et pris en considération lors de la résolution de ce problème.</value>
+  </data>
   <data name="Blog_HEIDS_Text1">
     <value>Avec l’augmentation des cas signalés de violation de la sécurité des données, l’aspect humain de ces violations doit être reconnu et pris en considération lors de la résolution de ce problème.</value>
   </data>
   <data name="Blog_HEIDS_Text2">
     <value>C’est une idée fausse commune que l’infusion de la cybertechnologie est en soi le principal et peut-être le seul aspect de la protection des données, ignorant ainsi l’élément humain dans la gestion des données ou la mauvaise gestion en cas de violation de données.</value>
   </data>
+  <data name="Blog_HEIDS_Text3">
+    <value>Jetez un coup d’œil aux erreurs suivantes:</value>
+  </data>
   <data name="Blog_HEIDS_Title">
     <value>Erreurs Humaines qui ont un Impact sur la Sécurité des Données</value>
   </data>
   <data name="Blog_HFMICTETP_H1_Text1">
     <value>Il est de bon sens qu’un cryptage plus fort conduise à des informations plus protégées. La plupart du temps, un cryptage 128 bits suffit déjà à sécuriser vos fichiers. Il éloigne les attaques par force brute et rend la plupart des pirates inefficaces lorsqu’ils tentent d’accéder à vos informations.</value>
+  </data>
+  <data name="Blog_HFMICTETP_H1_Text2">
+    <value>Cependant, certains fournisseurs offrent un cryptage 256 bits pour le cryptage des fichiers, qui est la protection la plus premium disponible. Le cryptage 256 bits est utilisé pour protéger les données confidentielles et top secretes à travers le monde, et comme la technologie évolue continuellement, la plupart des secteurs devraient envisager de passer à des méthodes de cryptage plus strictes.</value>
   </data>
   <data name="Blog_HFMICTETP_H1_Text3">
     <value>Les entreprises doivent au moins acquérir un logiciel de cryptage d’entreprise avec un cryptage 128 bits afin que leurs documents ne soient pas vulnérables aux cyberattaques, mais à mesure que ces menaces deviennent plus complexes et que les pirates continuent de rechercher des failles pour violer les données, les établissements peuvent se permettre d’obtenir une tranquillité d’esprit et une sécurité supplémentaires avec un cryptage 256 bits.</value>
@@ -2138,6 +2435,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_HFMICTETP_H3_Text3">
     <value>Heureusement, les logiciels de cryptage d’entreprise sont maintenant facilement disponibles sur le marché, offrant aux organisations une sécurité garantie avec tous leurs fichiers sur n’importe quel appareil.</value>
+  </data>
+  <data name="Blog_HFMICTETP_H3_Text4">
+    <value>Le système fournit aux entreprises des fonctionnalités de cryptage que l’on peut trouver dans les documents hébergés sur un bureau, transformant un scénario injustifié et stressant en une situation gérable et vous donnant la tranquillité d’esprit tout au long de votre processus de gestion de fichiers.</value>
   </data>
   <data name="Blog_HFMICTETP_H3_Text5">
     <value>Si cela ne suffit toujours pas, votre logiciel de chiffrement d’entreprise peut également authentifier les appareils utilisés dans votre établissement, ce qui vous permet de minimiser le risque d’infiltration d’utilisateurs indésirables.</value>
@@ -2157,14 +2457,26 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HFMICTETP_H5_Text3">
     <value>Pour plus de commodité à leurs fonctionnalités robustes de cryptage, certains fournisseurs supervisent le cryptage pour leurs clients. Ils sont également ouverts à donner aux clients la possibilité de gérer leurs propres clés de chiffrement. Si vous recherchez une solution axée sur le cryptage dans le cloud, il serait bon de consulter cette liste de &lt;a href='https://collaboration-software.financesonline.com/c/file-sharing-document-management/'&gt;logiciels de partage de fichiers et de gestion de documents qui offrent une sécurité&lt;/a&gt;.</value>
   </data>
+  <data name="Blog_HFMICTETP_H5_Text4">
+    <value>Peu importe qui facilite ces méthodes de cryptage dans la gestion des fichiers, le meilleur logiciel de cryptage de fichiers sur le marché assure une protection solide grâce à une identification multifactorielle et à une sauvegarde sécurisée en cas de défaillance rencontrée.</value>
+  </data>
+  <data name="Blog_HFMICTETP_H6_Text1">
+    <value>Lors de la gestion des documents, il est évident que le cryptage des fichiers a commencé à jouer un rôle majeur dans les entreprises, quel que soit leur secteur d’activité ou leur taille. Enfin, vous devriez envisager de vous concentrer sur cet aspect afin que vos fichiers soient non seulement organisés et facilement accessibles, mais aussi à l’abri des menaces qui se cachent dans le domaine virtuel.</value>
+  </data>
   <data name="Blog_HFMICTETP_H6_Text2">
     <value>Vous pouvez commencer par rechercher un logiciel de cryptage qui possède des méthodes de cryptage solides qui s’alignent sur les exigences de votre entreprise.</value>
   </data>
   <data name="Blog_HFMICTETP_Heading1">
     <value>&lt;h3&gt;2.Le cryptage fort restera le facteur décisif pour les logiciels de cryptage d’entreprise&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_HFMICTETP_Heading3">
+    <value>&lt;h3&gt;3.Sécurité garantie sur plusieurs appareils&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_HFMICTETP_Heading4">
     <value>&lt;h3&gt;1.Le cryptage devient une priorité absolue&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading5">
+    <value>&lt;h3&gt;5.Cryptage cloud&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HFMICTETP_Heading6">
     <value>&lt;h3&gt;Le cryptage des fichiers est l’avenir&lt;h3&gt;&lt;/h3&gt;</value>
@@ -2220,6 +2532,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HOA_Text2">
     <value>Au cours des 13 années qu'AxCrypt a été sur le marché, il est devenu l'un des logiciels de chiffrement les plus populaires au monde. Pour améliorer encore la solution et faire passer AxCrypt au niveau supérieur, l'auteur s'est associé au co-fondateur Zebastian Victorin pour commercialiser le produit. La nouvelle version d'AxCrypt est sortie en 2016, et depuis lors, de nombreuses mises à jour ont suivi.</value>
   </data>
+  <data name="Blog_HOA_Text3">
+    <value>Ces nombreuses années d’expérience nous ont appris à quel point le besoin d’une solution solide et facile à utiliser est grand. Cela se voit dans les prix que nous avons reçus, et dans la portée mondiale que nous avons. Nous sommes passionnés de continuer à améliorer AxCrypt et à rendre les solutions de sécurité des données simples et fiables pour tout le monde.</value>
+  </data>
   <data name="Blog_HOA_Text4">
     <value>L’un de nos propriétaires, Zebastian Victorin, a eu une &lt;a href='https://www.safetydetectives.com/blog/interview-zebastian-victorin-axcrypt/'&gt;interview exclusive avec SafetyDetectives:&lt;/a&gt; Une équipe d’experts en sécurité en ligne. SafetyDetectives s’engage pleinement à vous donner des avis et des opinions honnêtes, précis, et totalement impartiaux sur tous les derniers logiciels de cybersécurité sur le marché. En savoir plus sur leur travail ici: &lt;a href='https://www.safetydetectives.com'&gt;https://www.safetydetectives.com&lt;/a&gt;</value>
   </data>
@@ -2259,6 +2574,24 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HPDYMP_Title">
     <value>Comment protéger les données de vos téléphones mobiles en 2022</value>
   </data>
+  <data name="Blog_HPYBFC_Conclusion_ContactUs">
+    <value>Vous voulez en savoir plus? Nous publions des informations intéressantes à ce sujet chaque semaine. N’oubliez pas de nous contacter à &lt;a href='mailto:support@axcrypt.net' style='font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net' style='font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; si vous avez des questions!</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_Text1">
+    <value>La sensibilisation à la cybersécurité est un moyen de faire face à ces problèmes qui peuvent entraîner d’énormes pertes commerciales.</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_Text2">
+    <value>En résumé, le cryptage est fondamental pour la sécurité internet contemporaine. C’est un sujet extrêmement compliqué mais nous sommes fiers chez AxCrypt de rendre le processus simple et convivial à utiliser, pour tout le monde. Sécurisez vos programmes et systèmes d’exploitation avec le cryptage. Jetez un coup d’œil à nos différents &lt;a href='/pricing' style='font-weight: 800;'&gt;abonnements et fonctionnalités&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_HPYBFC_H1_Text1">
+    <value>« Scientia potentia est » originaire du latin, ce qui signifie que la connaissance est le pouvoir, est un aphorisme pertinent qui peut être associé au monde d’aujourd’hui. Ce dicton est maintenant plus vrai que jamais, en raison des progrès rapides des technologies de l’information.</value>
+  </data>
+  <data name="Blog_HPYBFC_H1_Text2">
+    <value>En outre, nous voulons continuer à assurer et à sensibiliser le public au cryptage et à la cybersécurité, et nous sommes donc heureux de partager certaines informations sur la façon de vous protéger et de protéger votre entreprise contre les cybermenaces.</value>
+  </data>
+  <data name="Blog_HPYBFC_H2_Text1">
+    <value>En termes simples, une cyberattaque est une attaque lancée par des cybercriminels utilisant un ou plusieurs ordinateurs contre un ou plusieurs ordinateurs ou réseaux. Une cyberattaque peut désactiver de manière malveillante des ordinateurs, voler des données, ou utiliser un ordinateur piraté comme point de lancement pour d’autres attaques afin d’exposer, de modifier, de désactiver, de détruire, de voler ou d’obtenir des informations par le biais d’un accès non autorisé ou d’une utilisation non autorisée d’un actif. Une cyberattaque peut voler, altérer, ou détruire une cible spécifiée en piratant un système sensible. Les cybercriminels utilisent diverses méthodes pour lancer une cyberattaque, notamment des logiciels malveillants, de l'hameçonnage, des logiciels de rançons, des dénis de service, entre autres méthodes.</value>
+  </data>
   <data name="Blog_HPYBFC_H3_Text1">
     <value>&lt;li&gt;Malware&lt;/li&gt;</value>
   </data>
@@ -2283,11 +2616,23 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HPYBFC_H3_Text8">
     <value>&lt;li&gt;Exploits jour-zéro&lt;/li&gt;</value>
   </data>
+  <data name="Blog_HPYBFC_H4_Text1">
+    <value>Une cyberattaque se produit lorsque des cybercriminels tentent d’obtenir un accès illégal à des données électroniques stockées sur un ordinateur ou un réseau. L’intention peut être d’infliger un préjudice à la réputation ou à une personne, ou le vol de données précieuses. Les cyberattaques peuvent cibler des individus, des groupes, des organisations, ou des gouvernements.</value>
+  </data>
+  <data name="Blog_HPYBFC_H4_Text2">
+    <value>Une violation de données est un type d’incident de sécurité. Cela se produit lorsque l’information est consultée sans autorisation. Les informations consultées peuvent inclure des informations personnelles telles que les numéros de Sécurité Sociale, les mots de passe, et les numéros de compte financier.</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SH1_Text1">
+    <value>L’utilisation de mots de passe forts est un moyen de protéger vos informations en ligne, alors évitez d’utiliser les mêmes mots de passe, faciles à déchiffrer, peu importe à quel point vous aimez votre animal de compagnie. Adoptez des symboles, des chiffres et des caractères différents afin que personne ne puisse le deviner en connaissant des informations personnelles vous concernant. Vous pouvez également utiliser le &lt;a href='/information/password-generator' style='font-weight: 800;'&gt;Générateur de Mots de passe AxCrypt&lt;/a&gt; qui produit des mots de passe forts qui ne sont pas absurdes et qu'il est réellement possible de mémoriser et de taper. Vous obtiendrez trois suggestions de force et de complexité décroissantes.</value>
+  </data>
   <data name="Blog_HPYBFC_H5_SH2_Text1">
     <value>Le cryptage est un moyen de faire en sorte que les communications destinées à être privées le restent réellement. Il aidera à protéger les données des clients et à anticiper les menaces. En chiffrant vos données et en les rendant illisibles, vous garantissez la sécurité et la productivité. Même s’il est intercepté, le message sera illisible pour tout acteur qui ne possède pas la bonne clé pour le déchiffrer.</value>
   </data>
   <data name="Blog_HPYBFC_H5_SH3_Text1">
     <value>La sauvegarde des données et du site Web de votre entreprise vous aidera à récupérer toutes les informations que vous perdez en cas de cyberincident ou de problèmes informatiques. Il est essentiel que vous sauvegardiez régulièrement vos données et informations les plus importantes.</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SH3_Text2">
+    <value>Assurez-vous d’utiliser l’authentification multifacteur (MFA). MFA est un processus de sécurité de vérification qui vous oblige à fournir deux preuves ou plus de votre identité avant de pouvoir accéder à votre compte. Par exemple, un système nécessitera un mot de passe et un code envoyés à votre appareil mobile avant que l’accès ne soit accordé. L’authentification multifacteur ajoute une couche de sécurité supplémentaire pour rendre plus difficile pour les attaquants d’accéder à votre appareil ou à vos comptes en ligne.</value>
   </data>
   <data name="Blog_HPYBFC_H5_SH4_Text1">
     <value>Formez chaque nouvel employé à protéger les données précieuses et demandez-lui de signer votre politique d’information. Utilisez des bulletins d’information et/ou des formations continues pour renforcer votre culture de la cybersécurité. Sensibiliser le personnel à la cybersécurité et apprenez leur à accéder aux données de la meilleure manière et en toute sécurité sur chaque appareil. Ils doivent connaître les risques liés à l’utilisation de données avec un réseau non sécurisé. Cela peut sauver l’entreprise d’une perte massive dans les années à venir. Votre entreprise n’est aussi sûre que son maillon le plus faible.</value>
@@ -2331,6 +2676,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HTSCER_H1_Text1">
     <value>Ceci est une instruction étape par étape sur la façon de nous fournir un rapport d’erreur complet. Nous pourrions vous demander de le faire lorsque vous rencontrez des problèmes avec AxCrypt. Les informations que nous obtenons par ce biais nous aideront à vous aider!</value>
   </data>
+  <data name="Blog_HTSCER_H1_Text2">
+    <value>Un rapport d’erreur complet se compose d’un e-mail à support@axcrypt.net avec les pièces jointes suivantes:</value>
+  </data>
   <data name="Blog_HTSCER_H1_Text3">
     <value>&lt;ol style='list-style-position: inside;display: grid;gap: 20%;'&gt;&lt;li&gt;Une capture d’écran de la situation, un message d’erreur ou similaire.&lt;/li&gt;&lt;li&gt;Les fichiers de configuration AxCrypt et le journal des erreurs internes.&lt;/li&gt;&lt;li&gt;Votre journal des Événements Windows. Il s’agit d’un journal de toutes les erreurs signalées par Windows récemment.&lt;/li&gt;&lt;/ol&gt;</value>
   </data>
@@ -2342,6 +2690,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_HTSCER_H1_Text6">
     <value>Pour des instructions détaillées, lisez la suite!</value>
+  </data>
+  <data name="Blog_HTSCER_H2_Text1">
+    <value>Veuillez suivre les instructions de Microsoft sur la façon d’utiliser l’outil Snipping :&lt;a href='https://support.microsoft.com/en-us/help/13776/windows-use-snipping-tool-to-capture-screenshots'&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_HTSCER_H2_Text2">
+    <value>Ne le recadrez pas trop, veuillez afficher les parties pertinentes de l’Explorateur Windows et la fenêtre complète d’AxCrypt le cas échéant.</value>
   </data>
   <data name="Blog_HTSCER_H3_Text1">
     <value>Commencez par ouvrir Windows Explorer, et entrez le chemin d’accès au dossier de configuration AxCrypt: %localappdata%/AxCrypt, puis appuyez sur « Entrée ».</value>
@@ -2379,6 +2733,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_HTSCER_H4_Text9">
     <value>Joignez ce fichier à votre e-mail:</value>
   </data>
+  <data name="Blog_HTSCER_Heading1">
+    <value>&lt;h3&gt;Comment créer un Rapport d’Erreur Complet&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_HTSCER_Heading2">
     <value>&lt;h3&gt;Capture d’écran&lt;/h3&gt;</value>
   </data>
@@ -2387,6 +2744,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_HTSCER_Heading4">
     <value>&lt;h3&gt;Journal des Événements&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HTSCER_Summary">
+    <value>Ceci est une instruction étape par étape sur la façon de nous fournir un rapport d’erreur complet. Nous pourrions vous demander de le faire lorsque vous rencontrez des problèmes avec AxCrypt. Les informations que nous obtenons par ce biais nous aideront à vous aider!</value>
   </data>
   <data name="Blog_HTSCER_Title">
     <value>Comment envoyer un rapport d’erreur complet</value>
@@ -2538,6 +2898,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_LYCWAR_Title">
     <value>Laisser votre ordinateur avec AxCrypt en cours d’exécution</value>
   </data>
+  <data name="Blog_MDPNST_Conclusion_Text1">
+    <value>Cette année, la cybercriminalité ne ralentira pas. Les criminels ont des options illimitées, et leurs méthodes deviennent de plus en plus sophistiquées. Les entreprises ne peuvent plus se permettre de faire des économies, et la surveillance des risques doit être prioritaire pour les téléphones mobiles. Maintenant que vous comprenez la nécessité d'un téléphone crypté, cryptez vos appareils mobiles avec AxCrypt pour protéger vos données contre tout accès non autorisé.</value>
+  </data>
   <data name="Blog_MDPNST_H1_Text1">
     <value>La sécurité mobile est un élément important d'une stratégie de cybersécurité dans le monde d'aujourd'hui. L'adoption généralisée des politiques Apportez-Votre-Propre-Appareil (BYOD) a été le résultat direct de la transition vers le travail à distance. Les entreprises ont peut-être augmenté leur productivité et la rétention de leurs employés en leur permettant de travailler à partir d'appareils personnels, mais elles ont également perdu une visibilité cruciale sur la sécurité et la capacité de répondre aux infections qui compromettent les systèmes et les solutions de l'entreprise.</value>
   </data>
@@ -2582,6 +2945,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_MDPNST_Title">
     <value>Les appareils mobiles posent de nouvelles menaces de sécurité</value>
+  </data>
+  <data name="Blog_MDSCBF_Conclusion_Text1">
+    <value>Selon le « Coût d’une Violation de Données 2021 », il faut 287 jours aux équipes de sécurité pour trouver et arrêter une violation de données. Avec AxCrypt Business, sécurisez les données de votre entreprise avec le cryptage 256 bits le plus puissant.</value>
   </data>
   <data name="Blog_MDSCBF_H1_SH1_Text1">
     <value>57 % des entreprises créent quotidiennement plus de 6 500 fichiers contenant des données sensibles. C'est beaucoup d'informations, mais c'est aussi très compliqué. De plus, il y a la préoccupation de savoir où ces données sont conservées et qui y a accès. Au moins 1 000 utilisateurs inactifs dans 71 % des entreprises peuvent encore accéder aux données sensibles.</value>
@@ -2730,6 +3096,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_MK_H1_SubHeading3">
     <value>&lt;h2 style='margin-block: 0;'&gt;En quelques mots&lt;/h2&gt;</value>
   </data>
+  <data name="Blog_MK_H1_Text1">
+    <value>La Clé Principale permet de récupérer facilement les documents financiers, même si l’utilisateur d’origine a quitté l’entreprise. Tant que l’entreprise a un ou deux administrateurs qui s’assurent de garder une trace de leurs informations d’identification.</value>
+  </data>
+  <data name="Blog_MK_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Clé Principale chez AxCrypt&lt;/h2&gt;</value>
+  </data>
   <data name="Blog_MK_Summary">
     <value>Les entreprises d'aujourd'hui se caractérisent par des changements constants dans les sphères politiques, socials, financières et technologiques. Les entreprises opèrent dans des environnements très dynamiques et imprévisibles.</value>
   </data>
@@ -2744,6 +3116,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_MK_Title">
     <value>Clé principale</value>
+  </data>
+  <data name="Blog_PECA_Conclusion_Text1">
+    <value>AxCrypt offre un cryptage fort avec un cryptage 256 bits pour sécuriser vos données dans les trois étapes des données; données au repos, en transit et en cours d’utilisation. De plus, AxCrypt fournit également à ses utilisateurs un générateur de gestion des mots de passe qui garantit que vos mots de passe sont aussi sécurisés que possible. Il fournit également un outil de collaboration qui permet aux utilisateurs de partager des fichiers et des données sécurisés avec d’autres utilisateurs d’AxCrypt. En plus de cela, AxCrypt aide au partage sécurisé des fichiers avec le partage de clés et les fonctionnalités de clé principale&lt;a href='https://www.axcrypt.net/blog/master-key'&gt; En savoir plus ici &lt;/a&gt;.</value>
   </data>
   <data name="Blog_PECA_H1_Text1">
     <value>AxCrypt a été créé il y a plus de 15 ans avec pour mission d'assurer la sécurité des données de la manière la plus fiable et la plus simple possible. Après toutes ces années, la société est toujours reconnue pour le logiciel le plus facile à utiliser et le plus simple, ce qui en fait le programme de cryptage le plus populaire au monde avec plus de 20 millions de téléchargements dans le monde !</value>
@@ -2787,11 +3162,20 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_PRAA_H1_Text4">
     <value>Ainsi, tant que vous connaissez le mot de passe utilisé pour crypter à l’origine un fichier, vous pouvez le décrypter avec AxCrypt.</value>
   </data>
+  <data name="Blog_PRAA_H1_Text5">
+    <value>Nous utilisons également par défaut le même mot de passe pour le compte en ligne où nous stockons votre statut d’abonnement, vos données de gestionnaire de mots de passe en ligne si utilisé, et votre identifiant AxCrypt qui est principalement utilisé pour la fonction de partage de clés.</value>
+  </data>
   <data name="Blog_PRAA_H2_Text1">
     <value>Si vous utilisez la fonction de changement de mot de passe du web ou de l’application AxCrypt, ce qui se passe c’est que nous modifions le mot de passe des données que nous conservons en ligne, ce qui inclut le recryptage de tout ce que vous pouvez conserver dans le gestionnaire de mots de passe, ainsi que votre identifiant AxCrypt qui est stocké en tant que donnée cryptée AxCrypt dans notre système.</value>
   </data>
   <data name="Blog_PRAA_H2_Text2">
     <value>Pour changer votre mot de passe, vous devez connaître l’ancien, sinon nous ne pouvons pas décrypter les données que nous stockons avant de le chiffrer à nouveau avec votre nouveau mot de passe.</value>
+  </data>
+  <data name="Blog_PRAA_H2_Text3">
+    <value>Nous ne changeons pas réellement le mot de passe de chaque fichier crypté, car pour ce faire nous aurions besoin d’accéder à chacun d’entre eux et de les décrypter avec l’ancien mot de passe, et de re-chiffrer avec le nouveau.</value>
+  </data>
+  <data name="Blog_PRAA_H2_Text4">
+    <value>Mais puisque nous changeons le mot de passe de votre identifiant AxCrypt, vous pourrez en fait ouvrir d’anciens fichiers avec le nouveau mot de passe. Plus d’informations sur la façon dont cela fonctionne réellement dans un autre article.</value>
   </data>
   <data name="Blog_PRAA_H3_Text1">
     <value>Si vous oubliez votre mot de passe, vous perdrez l’accès à tout ce qui est chiffré avec ce mot de passe. Sur le serveur, cela signifie votre identifiant AxCrypt et vos données dans le gestionnaire de mots de passe en ligne.</value>
@@ -2805,8 +3189,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_PRAA_H3_Text4">
     <value>Joyeux AxCrypting!</value>
   </data>
+  <data name="Blog_PRAA_Heading1">
+    <value>&lt;h3&gt;Mots de passe et AxCrypt&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_PRAA_Heading2">
     <value>&lt;h3&gt;Changement de Mot de passe&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_PRAA_Heading3">
+    <value>&lt;h3&gt;Réinitialisation du mot de passe&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_PRAA_Summary">
+    <value>Mots de passe et AxCrypt Lorsqu’un fichier est chiffré avec AxCrypt, une clé très aléatoire de 128 ou 256 bits selon le cas est générée par AxCrypt. Cette clé, qui n’est jamais vraiment vue par personne, est utilisée pour chiffrer le fichier avec AES-128 ou AES-256.</value>
   </data>
   <data name="Blog_PRAA_Title">
     <value>Réinitialisation de Mot de passe et AxCrypt</value>
@@ -2840,6 +3233,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_PYDFCG_Title">
     <value>Protégez vos Données du Grinch de Noël</value>
+  </data>
+  <data name="Blog_ROCP_Conclusion_Text1">
+    <value>Un élément crucial des politiques de sécurité de toute entreprise est la gestion des mots de passe. Les utilisateurs peuvent sécuriser leurs informations de connexion contre les accès non autorisés, ce qui peut protéger l’utilisateur et l’entreprise contre les dangers. AxCrypt offre sa fonction distinctive de gestion des mots de passe, conviviale et fiable, aux particuliers et aux entreprises commerciales. Votre entreprise pourrait être plus organisée pour repousser les cyberattaques avec l’aide d’AxCrypt. Ne cherchez nulle part ailleurs! Pendant que vous vous détendez et profitez de votre tranquillité, laissez AxCrypt s’occuper de tous vos besoins en matière de cybersécurité.</value>
   </data>
   <data name="Blog_ROCP_H1_SH1_Text1">
     <value>Assurez-vous que seules les personnes autorisées ont accès aux informations critiques pour protéger vos données. Il est également très important de vérifier et de maintenir l’intégrité de vos données, ainsi que de savoir exactement quelles données vous avez sous votre garde.</value>
@@ -2891,6 +3287,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_ROCP_Title">
     <value>Pertinence de l’Organisation des Mots de passe d’une Entreprise</value>
+  </data>
+  <data name="Blog_SamePage_AxcryptRunning">
+    <value>Pour le cryptage de fichiers, le meilleur choix serait AxCrypt, un logiciel facile à comprendre et à utiliser en équipe et offrant un cryptage 256 bits haut de gamme qui vous en assure le meilleur rapport qualité-prix. Vous pouvez simplement &lt;a href='https://www.axcrypt.net/blog/leaving-your-computer-with-axcrypt-running'&gt;laisser votre ordinateur avec AxCrypt en cours d’exécution&lt;/a&gt; et vaquer à vos occupations en accomplissant d’autres tâches plus pertinentes sans vous soucier de la sécurité de vos fichiers et documents.</value>
   </data>
   <data name="Blog_SCMAE_H1_Text1">
     <value>Le cryptage est un processus de chiffrement des données. Beaucoup d’entre vous peuvent manquer d’une compréhension approfondie du cryptage. Ce n’est pas non plus aussi complexe qu’il n’y paraît à première vue. Vous n’avez pas besoin d’être un spécialiste de la cryptographie pour comprendre ou même utiliser le cryptage. Le cryptage convertit les données sensibles dans un format illisible dans sa forme la plus élémentaire.</value>
@@ -2955,8 +3354,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_SD_Heading2">
     <value>&lt;h3&gt;Sécurité garantie&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_SD_Heading3">
+    <value>&lt;h3&gt;Porte dérobée de Chiffrement&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_SD_Heading4">
+    <value>&lt;h3&gt;AxCrypt&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_SD_Summary">
     <value>Utilisez-vous Netflix? Si vous avez un compte Netflix, vous avez probablement entendu parler du documentaire récemment sorti « The Social Dilemma », qui aborde les avantages significatifs des médias sociaux.</value>
+  </data>
+  <data name="Blog_SD_Title">
+    <value>Dilemme Social</value>
   </data>
   <data name="Blog_SSING_H1_SH1_Text1">
     <value>Les mises à jour pour smartphones doivent être installées fréquemment. Les mises à jour sont principalement destinées à corriger les vulnérabilités au fur et à mesure qu’elles sont trouvées car les pirates en découvrent constamment de nouvelles. Votre téléphone n’est pas protégé contre ce problème s’il n’est pas mis à jour. &lt;a href='https://www.makeuseof.com/safe-use-phone-no-longer-gets-updates/'&gt; Les gens utilisent souvent des téléphones obsolètes volontairement,&lt;/a&gt; cependant, cela peut également se produire si le fabricant du téléphone n’offre plus de mises à niveau de sécurité. Quelle que soit la raison, un téléphone obsolète offre un risque de sécurité et ne devrait pas être utilisé pour quelque chose de crucial.</value>
@@ -3009,6 +3417,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_SSING_Title">
     <value>Sécurité des Smartphones: Ce N’est Pas Un Jeu</value>
   </data>
+  <data name="Blog_Support_ContactUs">
+    <value>&lt;i&gt;Vous voulez en savoir plus?&lt;/i&gt;  Nous publions des informations intéressantes chaque semaine. Soyez curieux et jetez un coup d’œil à nos articles de blog &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt;  n'oubliez pas de nous contacter à &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt;  si vous avez des questions!</value>
+  </data>
   <data name="Blog_SVL_Summary">
     <value>Certains utilisateurs réagissent instinctivement négativement au modèle d’abonnement AxCrypt Premium. Non pas contre le principe général de payer pour Premium, mais contre les frais récurrents annuels par opposition à une licence « perpétuelle ».</value>
   </data>
@@ -3056,6 +3467,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_SVL_Text7">
     <value>De nombreuses sociétés de logiciels offrent également le pire des deux mondes - une licence et des frais de support annuels! Avec AxCrypt, c’est simple et propre. Un seul coût annuel pour tout cela.</value>
+  </data>
+  <data name="Blog_SVL_Text8">
+    <value>Nous offrons d’abord un Essai Premium de 30 jours, puis vous pouvez choisir si vous souhaitez l’utiliser pendant 6 ou 12 mois supplémentaires à la fois et vous pouvez arrêter à tout moment.</value>
   </data>
   <data name="Blog_SVL_Text9">
     <value>Nos frais d’abonnement annuels s’élèvent actuellement à 30 EUR, tandis que les coûts de licence de la plupart des logiciels de cryptage simples varient entre 35 et 100 EUR. Avec les mises à niveau ajoutées en plus de cela. C’est aussi juste et prévisible parce que vous savez exactement quel est le coût, et qu’il y a un coût. Avec un logiciel sous licence, vous pourriez soudainement être obligé de mettre à niveau parce que votre environnement a changé, peut-être que votre ancien ordinateur est tombé en panne.</value>
@@ -3186,6 +3600,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_TPTWHEG_H1_Text3">
     <value>&lt;ul&gt;&lt;li&gt;Définissez des attentes avec les personnes à la maison, quand vous pouvez être interrompu, pourquoi la vie privée est importante, mais rappelez-vous qu'il est de votre responsabilité de protéger tout le monde&lt;/li&gt;&lt;li&gt;Faites de votre mieux pour séparer le travail et la vie personnelle, ayez conversations confidentielles avec le personnel, etc. dans un espace séparé.&lt;/li&gt;&lt;li&gt;Peu importe à quel point vous pouvez être frustré, ne tombez pas dans le piège de discuter de questions confidentielles avec les personnes à la maison au lieu du collègue de travail à qui vous vous seriez confié normalement.&lt;/li&gt;&lt;li&gt;Ayez si possible un espace séparé et calme pour travailler à la maison et faites attention au travail dans le jardin, les clôtures ont des oreilles.&lt;/li&gt;&lt;li&gt;Prenez connaissance des données personnelles avec lesquelles vous êtes en contact à la fois depuis votre domicile et votre travail, si vous en êtes conscient, vous pouvez en être pleinement conscient.&lt;/li&gt;&lt;/ul&gt;</value>
   </data>
+  <data name="Blog_TPTWHEG_H2_Text1">
+    <value>Lorsque vous apportez votre ordinateur portable et votre téléphone à la maison, vous apportez des caméras et des microphones dans votre nid. Les applications qui les utilisent comme la vidéoconférence sont assez difficiles à configurer, à utiliser et à désactiver sans même tenir compte des pirates et des mauvais acteurs. Non seulement vous ramenez vos yeux et vos oreilles de travail à la maison, mais vous amenez également ceux qui sont à la maison au travail. Avez-vous un haut-parleur d’assistant à domicile? Combien de tablettes et de téléphones y a-t-il dans votre maison?</value>
+  </data>
   <data name="Blog_TPTWHEG_H2_Text2">
     <value>Ils ont tous des microphones et des caméras qui pourraient être actifs. Votre fille pourrait être en appel vidéo avec des amis, votre haut-parleur à domicile pourrait être activé et écouter, vous avez peut-être laissé cette session de réunion web ouverte. Vous pourriez même passer un appel vidéo avec un groupe de clients depuis votre table de cuisine et exposer des photos de vos enfants, de votre adresse personnelle, de l’école de vos enfants, lorsque vous partez en vacances, et que vous protesterez samedi prochain ....... tout cela à partir de ce qui se trouve être coincé sur la porte du réfrigérateur.</value>
   </data>
@@ -3212,6 +3629,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_TPTWHEG_H4_text1">
     <value>Le cryptage peut apparaître comme un sujet très compliqué. En bref, vous transformez du texte brut en un code chiffré que personne ne peut lire sans une clé spéciale pour le déchiffrer. De cette manière, les messages interceptés ou les informations volées ne peuvent pas être compris par un tiers.</value>
+  </data>
+  <data name="Blog_TPTWHEG_H4_text2">
+    <value>AxCrypt s’efforce de rendre le cryptage facile et accessible à tous. Permettant la collaboration au sein d’une entreprise ou la protection des documents stockés sur le cloud, AxCrypt offre de nombreuses fonctionnalités différentes qui amélioreront la façon dont vous sécurisez les informations sensibles.</value>
   </data>
   <data name="Blog_TPTWHEG_H4_text3">
     <value>En savoir plus sur AxCrypt pour protéger vos données personnelles. Avec les abonnements professionnels et premium, vous pouvez dormir paisiblement en laissant vos données au repos sans craindre de fuites.  Jetez un coup d’œil à &lt;a href='https://www.axcrypt.net'&gt; https://www.axcrypt.net&lt;/a&gt; et n’hésitez pas à consulter les différents abonnements &lt;a href='https://www.axcrypt.net/pricing'&gt;https://www.axcrypt.net/pricing&lt;/a&gt;.</value>
@@ -3309,6 +3729,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_UODPCH_Title">
     <value>Utilisation de différents mots de passe considérés comme nuisibles</value>
   </data>
+  <data name="Blog_WAMHIHY_Conclusion_Heading">
+    <value>Soyez payé sans investir!</value>
+  </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text1">
+    <value>Nous changeons la façon dont les gens communiquent et travaillent.</value>
+  </data>
   <data name="Blog_WAMHIHY_H1_SH1_Text1">
     <value>&lt;li&gt;Le marketing d’affiliation ne nécessite aucun investissement financier - Vous n’avez pas besoin d’investir quoi que ce soit dans le marketing d’affiliation. Vous n’avez pas à perdre du temps et de l’argent à créer vos propres produits parce que quelqu’un d’autre a déjà fait le travail préparatoire pour vous.&lt;/li&gt;</value>
   </data>
@@ -3318,11 +3744,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WAMHIHY_H1_SubHeading1">
     <value>&lt;strong&gt;Certains des avantages du Marketing d’Affiliation&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_WAMHIHY_H1_Text1">
+    <value>Le Marketing d’Affiliation est une approche discrète pour gagner de l’argent sans coûts ni investissements initiaux. En raison de l’impact du Covid-19, les gens ont été contraints de rester chez eux. En conséquence, les individus recherchent des moyens simples de gagner de l’argent, et le marketing d’affiliation est l’un d’entre eux.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_WAMHIHY_H2_Text1">
     <value>Une marque réputée et digne de confiance - AxCrypt a reçu le prix du « Meilleur Logiciel de Cryptage au Monde » par PC Magazine au cours des six dernières années et a une présence mondiale.</value>
   </data>
   <data name="Blog_WAMHIHY_H2_Text2">
     <value>Sûr et fiable - AxCrypt est sur le marché depuis plus de 15 ans et a accumulé plus de 20 millions de téléchargements pour devenir l’un des programmes de cryptage les plus populaires au monde.</value>
+  </data>
+  <data name="Blog_WAMHIHY_H2_Text3">
+    <value>Simple et utile - Nous sommes une équipe très motivée, créative, et solide qui se consacre à simplifier les solutions de sécurité des données pour les personnes et les équipes.</value>
   </data>
   <data name="Blog_WAMHIHY_H2_Text4">
     <value>Construire une meilleure réputation - Vous pouvez améliorer votre réputation sur Internet en vous associant à une entreprise réputée et fiable telle que AxCrypt.</value>
@@ -3344,6 +3776,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SH6_Text6">
     <value>AxCrypt parle Anglais, Néerlandais, Français, Allemand, Italien, Coréen, Portugais, Espagnol, Suédois, Turc, Russe, Polonais, Chinois et plus encore à venir.</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SubHeading1">
+    <value>&lt;strong&gt;Sécurité, fiabilité et simplicité&lt;/strong&gt;</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SubHeading2">
     <value>&lt;strong&gt;Travail d’équipe, collaboration &lt;/strong&gt;</value>
@@ -3377,6 +3812,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_WAMHIHY_Text2">
     <value>'Scientia potentia est' provenant d’écrits latins signifiant que la connaissance est le pouvoir est un aphorisme pertinent qui peut être associé au monde d’aujourd’hui. Ce dicton est maintenant plus vrai que jamais, en raison des progrès rapides des technologies de l’information.</value>
+  </data>
+  <data name="Blog_WAMHIHY_Text3">
+    <value>&lt;a href='https://www.axcrypt.net/information/affiliate' style='display: block; width: 50%; padding: 0.8rem; text-align: center; background-color: #48772c; color: #fff; border-radius: 5px; text-decoration: none;'&gt;&lt;strong&gt; Vous pouvez vous Inscrire ici&lt;/strong&gt;&lt;/a&gt;</value>
   </data>
   <data name="Blog_WAMHIHY_Title">
     <value>Qu'est-ce que le marketing d'affiliation, et comment peut-il vous aider?</value>
@@ -3468,6 +3906,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WCACT_Title">
     <value>Qu’est-ce que l'informatique cloud et ses menaces courantes</value>
   </data>
+  <data name="Blog_WENTI_Conclusion_Text1">
+    <value>Alors que la fréquence et la gravité des cyberattaques augmentent, les entreprises informatiques doivent continuer à innover et à montrer la voie en matière de cybersécurité. Les entreprises technologiques, en tant que première ligne de défense pour toutes les organisations, ont la responsabilité de garder une longueur d’avance sur les cyberrisques et de s’assurer que leur propre sécurité est la meilleure disponible.</value>
+  </data>
   <data name="Blog_WENTI_H1_Text1">
     <value>Les fournisseurs de télécommunications, les développeurs de logiciels, et les fournisseurs de services de sécurité gérés font tous partie du secteur de l'informatique et des communications. Selon des études, le secteur informatique était l'industrie la plus ciblée au niveau international en 2021. Le moyen le plus populaire de tentative d'effraction était le courrier électronique, les entreprises recevant en moyenne 600 e-mails de phishing uniques chaque mois. L'industrie technologique étant la première à adopter les nouvelles technologies, la rendant particulièrement vulnérable aux cyberattaques. Selon les rapports, les menaces de sécurité contre les systèmes de contrôle industriels (ICS) et les technologies opérationnelles (OT) ont plus que triplé depuis 2020.</value>
   </data>
@@ -3513,11 +3954,17 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WEROA_Heading1">
     <value>&lt;h3&gt;Pourquoi ne puis-je pas réinitialiser mon mot de passe pour ouvrir mes fichiers ?&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_WEROA_Summary">
+    <value>Attention – c’est un post plutôt technique ;-) C’est seulement pour ceux qui s’intéressent vraiment à certains des rouages internes d’AxCrypt.</value>
+  </data>
   <data name="Blog_WEROA_Text1">
     <value>Nos personnes d’assistance reçoivent relativement souvent des questions, des demandes et parfois même des mots durs sur les raisons pour lesquelles un mot de passe oublié signifie une perte d’informations.</value>
   </data>
   <data name="Blog_WEROA_Text10">
     <value>Pour décrypter un fichier, vous devez connaître le mot de passe.</value>
+  </data>
+  <data name="Blog_WEROA_Text11">
+    <value>Si vous avez chiffré un fichier, et que vous perdez ensuite le mot de passe, le contenu du fichier est perdu.</value>
   </data>
   <data name="Blog_WEROA_Text12">
     <value>C’est aussi simple que cela.</value>
@@ -3564,8 +4011,14 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WIAAI_Text10">
     <value>&lt;li&gt;&lt;em&gt;Les données du fichier sont chiffrées à l’aide d’AES et de la clé de session.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
+  <data name="Blog_WIAAI_Text11">
+    <value>&lt;li&gt;&lt;em&gt;La clé de session est chiffrée avec votre mot de passe, à l’aide d’un algorithme spécial d’encapsulation de clé, avec AES au cœur. Cette clé de session chiffrée est ajoutée au fichier chiffré.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WIAAI_Text12">
     <value>&lt;li&gt;&lt;em&gt;La clé de session est chiffrée avec votre clé publique AxCrypt ID, à l’aide de RSA-4096. Cette clé de session chiffrée est ajoutée au fichier crypté.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text13">
+    <value>&lt;li&gt;&lt;em&gt;La clé de session est chiffrée avec la clé publique d'identité AxCrypt de tous les autres utilisateurs AxCrypt avec lesquels vous avez choisi de partager le fichier. Ces clés de session chiffrées sont ajoutées au fichier chiffré.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
   <data name="Blog_WIAAI_Text14">
     <value>Pour décrypter un fichier, AxCrypt effectue en principe les opérations suivantes:</value>
@@ -3582,20 +4035,35 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WIAAI_Text18">
     <value>La clé privée, lorsqu’elle est cryptée, est en fait cryptée en tant que fichier AxCrypt bien sûr – mais en utilisant uniquement votre mot de passe pour chiffrer la clé de session comme ci-dessus. Nous n’utilisons aucune clé publique pour ce cryptage.</value>
   </data>
+  <data name="Blog_WIAAI_Text19">
+    <value>Normalement, ensuite, le processus est:</value>
+  </data>
   <data name="Blog_WIAAI_Text2">
     <value>En fait, c’est plus que cela. Techniquement, un ID AxCrypt est une paire de clés RSA-4096.</value>
   </data>
   <data name="Blog_WIAAI_Text20">
     <value>&lt;li&gt;&lt;em&gt;Vous créez un compte. Nous générons et créons une paire de clés sur notre serveur, et chiffrons temporairement la clé privée.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
+  <data name="Blog_WIAAI_Text21">
+    <value>&lt;li&gt;&lt;em&gt;Vous définissez votre mot de passe. Nous recryptons la clé privée avec votre mot de passe. À ce stade, personne ne peut récupérer votre clé privée sans connaître votre mot de passe. Pas nous, personne d’autre.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text22">
+    <value>&lt;li&gt;&lt;em&gt;Vous vous connectez avec une application AxCrypt. L’application contacte notre serveur, et télécharge la paire de clés - la clé privée et la clé publique à partir du serveur. La clé privée est chiffrée.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WIAAI_Text23">
     <value>&lt;li&gt;&lt;em&gt;Chaque fois que l'ouverture d'un fichier à l'aide de votre mot de passe de connexion échoue, AxCrypt déchiffre la clé privée et tente de déchiffrer la clé de session comme décrit ci-dessus. Cela vous permettra d'ouvrir les fichiers clés partagés avec vous, ainsi que les fichiers plus anciens chiffrés avec un mot de passe antérieur si vous avez modifié le mot de passe depuis (remarque : modifié - pas réinitialisé).&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text24">
+    <value>Changer votre mot de passe AxCrypt ID signifie en effet que nous prenons votre clé privée, la déchiffrons à l’aide de l’ancien mot de passe, puis la rechiffrons à l’aide du nouveau mot de passe. C’est ainsi qu’un changement de mot de passe vous permettra d’ouvrir d’anciens fichiers cryptés AxCrypt. Notez qu’ils s’ouvriront toujours en utilisant également l’ancien mot de passe! C’est aussi pourquoi vous n’êtes jamais dépendant de nos serveurs. Si vous connaissez le mot de passe d’origine, vous pouvez toujours ouvrir le fichier. Si vous disposez d’une copie synchronisée de la clé privée chiffrée, vous pouvez ouvrir n’importe quel fichier tant que vous disposez du mot de passe actuel.</value>
   </data>
   <data name="Blog_WIAAI_Text25">
     <value>Toute cette gestion des clés est effectuée automatiquement et en coulisses par AxCrypt, de manière totalement transparente tant que vous autorisez AxCrypt à accéder à nos serveurs.</value>
   </data>
   <data name="Blog_WIAAI_Text26">
     <value>Pour les utilisateurs avancés qui comprennent parfaitement les mécanismes ci-dessus, il est possible de faire tout cela sans nos serveurs. Il est possible de générer des paires de clés AxCrypt ID, de les exporter, de les importer, etc. Nous ne recommandons à personne de le faire réellement, car une erreur ou un malentendu peut facilement entraîner une perte de données ou une incapacité à utiliser AxCrypt.</value>
+  </data>
+  <data name="Blog_WIAAI_Text3">
+    <value>Une paire de clés est un concept utilisé dans la cryptographie à clé publique, ou asymétrique. Dans ce type de cryptographie, il existe deux clés associées avec les propriétés suivantes:</value>
   </data>
   <data name="Blog_WIAAI_Text4">
     <value>&lt;li&gt;&lt;em&gt;Une clé publique – cette clé n’est pas secrète et peut être utilisée par n’importe qui pour chiffrer des données. Mais il ne peut pas être utilisé pour décrypter quoi que ce soit! Nous appelons parfois cela une clé de partage.&lt;/em&gt;&lt;/li&gt;</value>
@@ -3639,6 +4107,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WSPPI_H3_Text1">
     <value>L’information, en tant que pouvoir, a des qualités uniques et est devenue prédominante dans notre société. Contrairement aux biens, il ne coûte rien de les déplacer, elles peuvent être partagés encore et encore, sans épuisement tant qu’une partie est intéressée à les divulguer. L’information est la clé de la façon dont la société numérique ajoute de la valeur et redistribue le pouvoir. Dans un monde connecté, l’information gagne en puissance grâce à un stockage permanent et à une large distribution. Pourtant, une fois enregistrées, l’information numérique peut exister pour toujours. Les données ont une valeur précieuse lorsque leur propriétaire peut les assimiler, les affilier, les évaluer et les interpréter. La capacité d’utiliser des données et de les convertir en informations est un moment décisif et critique. Cela crée un écart important et considérable entre ceux qui peuvent utiliser l’information comme ressource et ceux qui ne le peuvent pas.</value>
   </data>
+  <data name="Blog_WSPPI_H3_Text2">
+    <value>De plus, il y a une augmentation exponentielle de nouveaux appareils et applications qui implémentent et permettent d'espionner une personne privée et unique. Cette société hautement connectée évolue constamment de manière radicale, tout comme la fluidité de l'information. Les informations sont collectées par des logiciels informatiques géants et pourraient être diffusées à son détriment. Un préjudice peut être causé en envahissant la vie privée de quelqu'un et en divulguant des connaissances de manière malveillante. Par la suite, le chantage et l'extorsion sont alors des conséquences négatives. A grande échelle, la surveillance et l'analyse de la population permettent déjà de tirer des conclusions sur les comportements des personnes et de les utiliser à des fins malveillantes. En prenant la décision d'assurer la confidentialité de vos informations, vous n'êtes pas le seul à en bénéficier mais d'une certaine manière, vous vous engagez et rendez service à toute la société.</value>
+  </data>
+  <data name="Blog_WSPPI_H4_Text1">
+    <value>Le droit à la vie privée est cité dans la Déclaration Universelle des Droits de l’Homme, dans le cadre juridiquement contraignant du Pacte International Relatif aux Droits Civils et Politiques et dans la Convention relative aux Droits de l’Enfant.</value>
+  </data>
   <data name="Blog_WSPPI_H4_Text2">
     <value>Les droits à la vie privée empêchent les gouvernements d'espionner ses citoyens. Le gouvernement a la responsabilité de protéger ses citoyens, mais il dépasse souvent les bornes en matière de surveillance. Des systèmes anti-démocratiques ou des dictatures pourraient être intéressés par la collecte d'informations privées sur leur population. Ils prétendent lutter contre la cybercriminalité en utilisant un système de surveillance extrêmement pointu mais visent en fait un total despotisme envers ses habitants. Le droit à la vie privée vous permet de vous engager librement dans la politique et protège la liberté d'expression comme si.</value>
   </data>
@@ -3675,6 +4149,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WSPPI_Title">
     <value>Pourquoi devriez-vous protéger vos informations privées?</value>
   </data>
+  <data name="Blog_WTPI_Conclusion_Text2">
+    <value>Un manque d'intimité et une surveillance de masse florissante remodèlent une société qui engendre la conformité, l'obéissance et la soumission. N'acceptez pas de vous faire passer pour une personne inoffensive, inintéressante et non menaçante pour ne pas avoir peur que les gens sachent ce que vous faites. Cette société hautement connectée évolue constamment de manière radicale, tout comme la fluidité de l'information. Les informations sont collectées par des logiciels informatiques géants et pourraient être diffusées à son détriment. Un préjudice peut être causé en envahissant la vie privée de quelqu'un et en divulguant des connaissances de manière malveillante. En prenant la décision de protéger la confidentialité de vos informations, vous n'êtes pas le seul à en bénéficier mais d'une certaine manière, vous vous engagez et rendez service à toute la société.</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text3">
+    <value>Le chiffrement de bout en bout vous redonne le contrôle et protège vos données contre les fouineurs et les regards indiscrets. Le cryptage est le meilleur moyen de travailler jusqu’à présent pour sécuriser vos données de toute forme d’accès indésirable. En prenant du texte brut et en utilisant des calculs mathématiques pour transformer les données en code, il est converti en texte chiffré, seuls ceux qui ont la clé spéciale peuvent décrypter vos fichiers. Notre système convivial facilite les opérations, garantit le contrôle le plus élevé possible et garantit que personne d’autre que vous ne peut accéder à vos informations personnelles afin qu’aucune violation de données désavantageuse ne survienne.</value>
+  </data>
   <data name="Blog_WTPI_H1_Text1">
     <value>WikiLeaks est une organisation internationale à but non lucratif qui publie de nouvelles fuites pour ainsi dire des informations confidentielles non accessibles au grand public. Son objectif est de publier des sources originales parallèlement à nos reportages afin que les lecteurs et les historiens puissent voir des preuves de la vérité. Un autre objectif de l'organisation est de s'assurer que les journalistes et les lanceurs d'alerte ne soient pas poursuivis pour avoir envoyé par courrier électronique des documents sensibles ou classifiés.</value>
   </data>
@@ -3705,14 +4185,23 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WTPI_H2_Text5">
     <value>L’innovation dans l’information n’est pas intrinsèquement mauvaise. L’information est importante et utile pour les prises de décision. Cependant, l’accès à l’information est très inégal. Les gens ordinaires devraient avoir le droit de protéger leurs informations privées afin d’éviter d’être une cible économique d’organisations financières colossales qui bénéficieront de leurs données.</value>
   </data>
+  <data name="Blog_WTPI_Heading1">
+    <value>Qu’est-ce que Wikileaks ?</value>
+  </data>
   <data name="Blog_WTPI_Heading2">
     <value>Liberté contre contrôle</value>
+  </data>
+  <data name="Blog_WTPI_Summary">
+    <value>WikiLeaks est une organisation internationale à but non lucratif qui publie de nouvelles fuites pour ainsi dire des informations confidentielles non accessibles au grand public.</value>
   </data>
   <data name="Blog_WTPI_Title">
     <value>WikiLeaks et le pouvoir de l'information</value>
   </data>
   <data name="Blog_WUE_H1_Text1">
     <value>Alors que la plupart des gens sont familiers avec le terme cryptage, beaucoup ont une idée dépassée et erronée de ce que cela implique réellement. Nous connaissons tous cette scène de film où un gars est assis dans une pièce sombre entourée d’ordinateurs, piratant et cryptant les données d’une grande organisation. Bien que cela se produise bien sûr, ce n’est pas une représentation précise de la façon dont le cryptage est utilisé par les individus pour les activités quotidiennes.</value>
+  </data>
+  <data name="Blog_WUE_H1_Text2">
+    <value>Le cryptage est la technique qui consiste à brouiller ou à chiffrer le matériel dans un fichier particulier afin que seuls les destinataires désignés aient la possibilité de le déchiffrer. Le chiffrement entraîne la substitution du contenu du document par des lettres, des chiffres et des symboles pour créer un chiffrement. Le document original ne sera alors accessible qu’à ceux qui possèdent une clé, qui est composée du modèle dont le chiffrement a été codé. Ainsi, toute personne qui n’a pas accès à cette clé ne pourra pas déchiffrer et comprendre le document.</value>
   </data>
   <data name="Blog_WUE_H2_Text1">
     <value>Le cryptage est absolument nécessaire lors du stockage et du partage d’informations sensibles afin d’échapper au traitement non autorisé et illégal des données personnelles. Comme l’indique &lt;a href='https://theverge.com'&gt;theverge.com&lt;/a&gt;, le cryptage est un élément fondamental de la sécurité du réseau. Rien qu’en 2015, Software Alliance a constaté que 423 millions d’identités avaient été volées. Cela suggère que le cryptage est absolument une composante nécessaire de la vie numérique dans le monde d’aujourd’hui. Des informations privées telles que des données financières et de sécurité sociale sont transmises quotidiennement en ligne. Ainsi, afin de permettre à cette transmission de se produire en toute sécurité, tous les élèves seraient mieux protégés en investissant dans le cryptage.</value>
@@ -3723,17 +4212,29 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WUE_H2_Text3">
     <value>Dans certaines industries, ne pas chiffrer le matériel sensible est punissable. Par exemple, la police du Grand Manchester s’est vu infliger une amende de 150 000 £ lorsqu’une clé USB non cryptée a été volée au domicile d’un agent. L’USB contenait des informations concernant les enquêtes policières en cours et comprenait des informations privées de plus de 1 000 personnes. Le stick n’était pas protégé par mot de passe et complètement non crypté.</value>
   </data>
+  <data name="Blog_WUE_H3_Text1">
+    <value>Dans ce cas, si les fichiers en question avaient été cryptés, les 1 000 personnes dont les informations se trouvaient sur la clé n'auraient pas été mises en danger, et la police n'aurait pas été sanctionnée.</value>
+  </data>
   <data name="Blog_WUE_H4_Text1">
     <value>Chez AxCrypt, nous utilisons Advanced Encryption Standard (AES), qui est un algorithme de cryptage largement considéré comme le plus sécurisé de ceux disponibles. Les services d’abonnement AxCrypt Premium et Business fournissent un cryptage 256 bits, ce qui présente une sécurité pratiquement impossible à contourner. Il faudrait des millions d’années pour le déchiffrer, même pour les ordinateurs les plus rapides disponibles!</value>
   </data>
   <data name="Blog_WUE_H5_Text1">
     <value>Donc, en bref, nous avons besoin de cryptage car, en tant qu'utilisateurs privés ou entreprises, nous sommes confrontés à des violations de données massives, qui augmentent chaque jour qui passe. Le cryptage protège en toute sécurité les données auxquelles vous ne voulez pas que quelqu'un d'autre ait accès. Il peut aider à protéger les données que vous envoyez, recevez et stockez, telles que les messages texte stockés sur votre smartphone, les journaux d'exécution enregistrés sur votre montre de fitness, et les informations bancaires envoyées via votre compte en ligne.</value>
   </data>
+  <data name="Blog_WUE_Heading1">
+    <value>&lt;h3&gt;Qu’est-ce que le chiffrement ?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_Heading2">
+    <value>&lt;h3&gt;Pourquoi le chiffrement est-il important ?&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_WUE_Heading3">
     <value>La sanction a été prononcée sous prétexte que la police du Grand Manchester n’avait pas mis en place de procédures techniques pratiques pour la perte d’informations privées. Il y avait eu une ordonnance qui obligeait les employés à utiliser des clés USB cryptées, mais cette règle n’a jamais été appliquée et il n’y avait aucune restriction sur le téléchargement de matériel sur des disques durs externes.</value>
   </data>
   <data name="Blog_WUE_Heading4">
     <value>&lt;h3&gt;Cryptage chez AxCrypt&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_Heading5">
+    <value>&lt;h3&gt;En quelques mots&lt;/h3&gt;</value>
   </data>
   <data name="Blog_WUE_Summary">
     <value>C'est l'ère numérique. Nous vivons dans un monde dévoré par les avancées technologiques et l'innovation. Bien que cela ait bien sûr présenté de nombreuses opportunités incroyables, telles que les voyages et la connectivité, cela présente également des menaces et des dangers importants.</value>
@@ -3794,6 +4295,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_WYSASDF_Title">
     <value>Pourquoi vous devriez éviter les Fichiers Auto-Décryptants</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text1">
+    <value>&lt;strong&gt;Pourquoi le Zero Trust est-il nécessaire ? &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text2">
+    <value>En raison de la pandémie, Zero Trust a intensifié son jeu. Depuis lors, les entreprises ont commencé à décentraliser leurs données, actifs, applications, et services (DAAS) à différents individus via des fournisseurs d’infrastructure cloud. Et le fait que les facteurs internes soient aujourd’hui responsables de 30% des violations de données, le cadre Zero Trust a été créé pour aider les entreprises numériques à sécuriser des actifs précieux. Selon le modèle Zero Trust, la confiance est une vulnérabilité. Cela indique qu’aucun utilisateur, même s’il s’agit d’un employé, ne peut être digne de confiance.</value>
   </data>
   <data name="Blog_ZTCS_H1_Text1">
     <value>L’objectif principal du modèle Zero Trust est de minimiser la possibilité de risques de travail à distance et de menaces internes, ainsi que de contrôler les interférences de tiers et les risques liés au cloud. Le modèle est un changement significatif par rapport à la stratégie du château et des douves, qui se concentre sur le renforcement du périmètre autour des données pour empêcher les intrus d’entrer tout en faisant implicitement confiance aux initiés. Le concept Zero Trust est simple et direct : Ne jamais faire confiance; toujours vérifier. Cela implique qu’avant d’accéder à des données, chaque utilisateur doit être validé. Chaque demande d’utilisateur, que ce soit à l’intérieur ou à l’extérieur de l’entreprise, doit être vérifiée et approuvée en temps réel.</value>
@@ -4363,9 +4870,6 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Prouvez que vous êtes une personne réelle et non un logiciel automatisé!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Vous avez demandé à modifier votre e-mail actuel du compte AxCrypt  en &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Pour confirmer, s'il vous plaît cliquez sur le bouton ci-dessous.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Saisissez votre mot de passe existant pour vous connecter. Votre ancien compte sera définitivement supprimé.</value>
   </data>
@@ -4377,9 +4881,6 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Votre changement d'adresse e-mail a été confirmé! Connectez-vous pour finir le processus.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Quelqu'un a demandé un changement d'adresse e-mail (à partir d'un compte non divulgué) à &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Cependant, puisque vous avez déjà un compte utilisant cet e-mail, la demande a été ignorée.</value>
@@ -4870,6 +5371,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="DownloadTryMobileSubscription" xml:space="preserve">
     <value>Vous pouvez chiffrer et déchiffrer des fichiers sur votre téléphone, iPhone ou tablette Android de n'importe où et à tout moment. Le chiffrement mobile AxCrypt prend en charge Android et iOS. AxCrypt prend en charge le cryptage Google Drive File sur iOS et Android. Le cryptage du stockage local n'est disponible que sur Android pour le moment. D'autres lecteurs cloud, tels que iCloud, DropBox, OneDrive et autres, seront pris en charge dans les prochaines versions</value>
+  </data>
+  <data name="DownloadViewerPlusHeading">
+    <value>VISIONNEUSE PLUS:</value>
   </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Néerlandais)</value>
@@ -6897,9 +7401,6 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Votre abonnement s'est terminé le &lt;b&gt;{0}&lt;/b&gt;. Vous ne pouvez plus accéder aux fonctionnalités Premium suivantes :</value>
   </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Votre abonnement a été annulé et se terminera le &lt;b&gt;{0}&lt;/b&gt;. Après cette date, vous n'aurez plus accès aux fonctionnalités Premium suivantes :</value>
-  </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
 &lt;li&gt;Applications mobile&lt;/li&gt;
@@ -7292,6 +7793,9 @@ Ce logiciel est livré d'après la licence.
   <data name="Meta-Description-Education">
     <value>Tous vos documents éducatifs ont également besoin de protection. Sécurisez les données des étudiants, les essais, les articles, les réponses aux tests et les résultats de recherche. Protégez-vous contre toutes les menaces de données.</value>
   </data>
+  <data name="Meta-Description-Faq">
+    <value>Vous cherchez des réponses à des besoins généraux ou spécifiques? Cliquez sur le bouton d’assistance pour toutes les réponses à vos questions.</value>
+  </data>
   <data name="Meta-Description-Features">
     <value>En savoir plus sur nos fonctionnalités et les systèmes d’exploitation pris en charge. Nous avons également quelques conseils d’utilisation disponibles et plus sur votre sécurité sur l’application</value>
   </data>
@@ -7316,8 +7820,17 @@ Ce logiciel est livré d'après la licence.
   <data name="Meta-Description-Legal">
     <value>Protégez et sécurisez vos contrats légaux, vos informations client, votre IP et d'autres documents cruciaux qui présentent le plus grand risque de violation.</value>
   </data>
+  <data name="Meta-Description-Premium">
+    <value>Avec AxCrypt Premium, vous pouvez sécuriser vos fichiers personnels en ligne, les chiffrer automatiquement avec une norme de cryptage avancée.</value>
+  </data>
+  <data name="Meta-Description-Pricing">
+    <value>AxCrypt Premium 5 USD/mois et 45 USD/an. Entreprise 12 USD/mois et 119 USD/an. Un mois d'essai gratuit.</value>
+  </data>
   <data name="Meta-Description-Privacypolicy">
     <value>Nous respectons votre vie privée et avons mis en place des mesures strictes pour votre sécurité sur l’application AxCrypt.</value>
+  </data>
+  <data name="Meta-Description-Reseller">
+    <value>Avec le programme revendeur AxCrypt vous pouvez aider vos précieux clients à protéger et sécuriser leurs données. Rejoignez-nous aujourd’hui et profitez des grands avantages.</value>
   </data>
   <data name="Meta-Description-Tech">
     <value>AxCrypt augmente la sécurité des données et réduit les risques de violations et assure une confidentialité absolue de vos documents techniques.</value>
@@ -7337,14 +7850,23 @@ Ce logiciel est livré d'après la licence.
   <data name="Meta-Keywords-Financial">
     <value>cryptage des données financières,sécuriser les documents cruciaux,protéger les informations financières,protéger</value>
   </data>
+  <data name="Meta-Keywords-Government">
+    <value>protection des documents Terrestres,cryptage Gouvernemental,normes de cryptage Gouvernementales,logiciel de cryptage Gouvernemental</value>
+  </data>
   <data name="Meta-Keywords-Healthcare">
     <value>Cryptage pour les soins de santé,protéger les informations de santé des patients,protéger les informations personnelles,cryptage des données de santé,comment crypter les données des patients,meilleur logiciel de cryptage pour les soins de santé,dossiers de santé électroniques</value>
   </data>
   <data name="Meta-Keywords-Home">
     <value>logiciel de cryptage mobile,cryptage de fichiers gratuit,meilleur logiciel de cryptage 2022,outils de cryptage,meilleur logiciel de cryptage de dossiers,meilleur partage de fichiers sécurisé,meilleure gestion des mots de passe</value>
   </data>
+  <data name="Meta-Keywords-Industries">
+    <value>Industries,éducation,soins de santé,juridique,Finance,technologie</value>
+  </data>
   <data name="Meta-Keywords-Legal">
     <value>cryptage pour les services juridiques,cryptage pour les cabinets d'avocats,lois sur le cryptage par pays</value>
+  </data>
+  <data name="Meta-Keywords-Premium">
+    <value>Cryptage AES,fichiers sécurisés en ligne,logiciel de protection de fichiers,norme de cryptage avancée,protection de fichiers en ligne</value>
   </data>
   <data name="Meta-Keywords-Pricing">
     <value>Prix abordable, obtenez un essai gratuit, Essayez un mois gratuitement, logiciel de cryptage gratuit, protection premium de fichiers </value>
@@ -7354,6 +7876,9 @@ Ce logiciel est livré d'après la licence.
   </data>
   <data name="Meta-Keywords-Tech">
     <value>cybersécurité,AES 256,stockage sur le cloud,logiciel de cryptage de Disque,Cryptage pour l’informatique</value>
+  </data>
+  <data name="Meta-Title-Aboutus">
+    <value>Logiciel de chiffrement AxCrypt | Familiarisez-vous avec notre logiciel</value>
   </data>
   <data name="Meta-Title-Blog">
     <value>Blogs sur l’outil de cryptage 128 bits et 256 bits facile à utiliser</value>
@@ -7388,6 +7913,12 @@ Ce logiciel est livré d'après la licence.
   <data name="Meta-Title-Home">
     <value>AxCrypt - Cryptage de fichiers mondialement récompensé et facile à utiliser</value>
   </data>
+  <data name="Meta-Title-Industries">
+    <value>Cryptage de fichiers industriels AxCrypt | Aide les industries à protéger les fichiers importants</value>
+  </data>
+  <data name="Meta-Title-Legal">
+    <value>AxCrypt Légal | Préservez et protégez vos informations juridiques et commerciales essentielles</value>
+  </data>
   <data name="Meta-Title-Premium">
     <value>AxCrypt Premium | Sécurisez vos fichiers personnels sur Windows, Mac, Android et iPhone</value>
   </data>
@@ -7396,6 +7927,9 @@ Ce logiciel est livré d'après la licence.
   </data>
   <data name="Meta-Title-Privacypolicy">
     <value>Politique de confidentialité d'AxCrypt | Nous nous conformons aux politiques RGPD</value>
+  </data>
+  <data name="Meta-Title-Reseller">
+    <value>Devenez revendeur AxCrypt | Offre une solution de chiffrement facile à utiliser</value>
   </data>
   <data name="Meta-Title-Tech">
     <value>Technologie AxCrypt | Le cryptage 256 bits de bout en bout garantit la sécurité de l'espace technique</value>
@@ -7887,6 +8421,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   <data name="PremiumNeededForMobileApp" xml:space="preserve">
     <value>Désolé, mais vous n'avez pas d'abonnement Premium valide. Passez à Premium maintenant pour accéder aux fonctionnalités payantes  qu'AxCrypt vous propose en dehors de l'application, et qui sont aussi nécessaire pour le fonctionnement de l'application.</value>
     <comment>Message displaying when user works with mobile app without premium subscription.</comment>
+  </data>
+  <data name="PremiumPlusHeading">
+    <value>PREMIUM+ :</value>
   </data>
   <data name="PremiumRequiredBuyNowPopup" xml:space="preserve">
     <value>Cette fonctionnalité n'est accessible qu'aux membres Premium ! Voulez-vous que nous vous ouvrions une page web sur laquelle vous pourrez faire un achat ?</value>
@@ -9713,8 +10250,14 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock12Heading">
     <value>Paiement et renouvellement</value>
   </data>
+  <data name="TermsOfUseBlock12Text1" xml:space="preserve">
+    <value>Nous fournirons des services Premium ou Business après réception du paiement. Vos informations de paiement ne sont jamais envoyées ou stockées sur nos serveurs. Votre abonnement payant sera automatiquement renouvelé à la fin de la période d’abonnement, en utilisant le mode de paiement initial. Si vous souhaitez annuler, vous devez le faire avant la fin de la période d’abonnement en cours. Vous serez rétrogradé à la version Gratuite ou Viewer selon le cas après le dernier jour de votre période d’abonnement actuelle.</value>
+  </data>
   <data name="TermsOfUseBlock12Text2">
     <value>Nous pouvons changer le prix de nos abonnements payants n'importe quand, mais cela n'affectera pas votre abonnement actuel. Les changements de prix rentreront en effet au début de votre prochain abonnement. Vous acceptez le nouveau prix en continuant d'utiliser votre abonnement payant après que le changement de prix est entré en vigueur, ou vous le déclinez en l'annulant avant.</value>
+  </data>
+  <data name="TermsOfUseBlock12Text3" xml:space="preserve">
+    <value>L’annulation de votre abonnement payant peut être effectuée à tout moment. Cependant, les remboursements ne sont pas offerts. Pour essayer AxCrypt pour voir s’il répond à vos besoins, vous bénéficiez d’un mois gratuit au début de votre abonnement initial.</value>
   </data>
   <data name="TermsOfUseBlock13Heading">
     <value>Limitation de garantie</value>
@@ -9724,6 +10267,9 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   </data>
   <data name="TermsOfUseBlock14Heading">
     <value>Divulgation à des tiers</value>
+  </data>
+  <data name="TermsOfUseBlock14Text1" xml:space="preserve">
+    <value>Nous ne divulguerons aucune information vous concernant à des tiers sans votre consentement explicite, sauf si la loi l’exige.</value>
   </data>
   <data name="TermsOfUseBlock15Heading">
     <value>Divulgation aux autorités et à la police</value>
@@ -9788,6 +10334,9 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock1Text1">
     <value>La fabrication et le marketing d'AxCrypt sont assurés par AxCrypt AB, Birger Jarlsgatan 58, 114 29 Stockholm, Suède, numéro d'enregistrement 556967-6181, numéro de TVA européenne SE556967618101.</value>
   </data>
+  <data name="TermsOfUseBlock1Text2" xml:space="preserve">
+    <value>AxCrypt AB fournit des logiciels téléchargeables et des services en ligne appelés collectivement « AxCrypt » pour protéger la confidentialité à l'aide d'un cryptage fort. Nous le faisons selon ces termes simples, en évitant de longs libellés juridiques. Les représentants légaux doivent interpréter l'intention et l'esprit de ces termes.</value>
+  </data>
   <data name="TermsOfUseBlock1Text3">
     <value>Vous agrééez AxCrypt par le biais de ces Conditions d'utilisation. En utilisant AxCrypt, vous confirmez que vous les acceptez. Vous pouvez être une personne individuelle ou une personne morale reconnue au niveau légal. Certains abonnements sont réservés aux individus ou aux entreprises. </value>
   </data>
@@ -9817,6 +10366,9 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   </data>
   <data name="TermsOfUseBlock4Text2">
     <value>AxCrypt Gratuit est disponible gratuitement pour tous les utilisateurs Windows avec la version open source d'AxCrypt 2.1 sous licence GPL, version 3. En plus du plan Viewer, la mise à jour des fichiers existants et le cryptage des nouveaux fichiers à l'aide d'AES-128 sont pris en charge.</value>
+  </data>
+  <data name="TermsOfUseBlock5Heading" xml:space="preserve">
+    <value>Premium</value>
   </data>
   <data name="TermsOfUseBlock5Text1" xml:space="preserve">
     <value>AxCrypt Premium est disponible à l’achat pour tous les particuliers uniquement. Pas idéal pour un usage professionnel.</value>

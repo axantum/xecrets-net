@@ -1118,9 +1118,6 @@ Zostałeś ostrzeżony, przyjemności!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Udowodnij, że jesteś człowiekiem a nie programem!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Zmieniłeś Twój obecny email dla AxCrypt ID na &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Kliknij poniższy przycisk aby potwierdzić.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Użyj istniejącego hasła, aby się zalogować, wtedy stary AxCrypt ID zostanie trwale usunięty.</value>
   </data>
@@ -1132,9 +1129,6 @@ Zostałeś ostrzeżony, przyjemności!</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Zmiana adresu email dla Twojego AxCrypt ID została potwierdzona! Zaloguj się, aby zakończyć proces.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Ktoś zażądał zmiany adresu email (z nieujawnionego źródła) w &lt;a href="{0}" style="color: # 86b96e; text-decoration: none;"&gt; AxCrypt.net &lt;/a&gt; na &lt; B&gt; {1} &lt;/ b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Jednak ponieważ masz już AxCrypt ID dla tego adresu email, żądanie zostało zignorowane.</value>
@@ -3509,9 +3503,6 @@ Włącz automatyczną konwersję plików AxCrypt 1.x (zalecane)?</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Twoja subskrypcja wygasła &lt;b&gt; {0} &lt;/b&gt;. Nie masz już dostępu do funkcji Premium, takich jak:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Twoja subskrypcja została anulowana i wygaśnie &lt;b&gt;{0}&lt;/b&gt;. Po tej dacie nie będziesz już mieć dostępu do funkcji Premium, takich jak:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

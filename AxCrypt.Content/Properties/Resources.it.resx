@@ -1150,9 +1150,6 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Dimostra di essere una persona reale e non un software automatico!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Hai chiesto di cambiare la tua attuale e-mail di AxCrypt ID con &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. Per favore, clicca il pulsante sotto per confermare.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Usa la tua password corrente per connetterti e in seguito il vecchio AxCrypt ID sarà cancellato definitivamente.</value>
   </data>
@@ -1164,9 +1161,6 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Il tuo cambio di indirizzo e-mail per AxCrypt ID è stato confermato! Per favore connettiti per completare il processo.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Qualcuno ha richiesto un cambio di e-mail (da un account sconosciuto) in &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; a &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Comunque, dal momento che già possiedi un AxCrypt ID associato a questo indirizzo e-mail, la richiesta è stata ignorata.</value>
@@ -3574,9 +3568,6 @@ Abilitare la conversione automatica dei file AxCrypt 1.x (azione raccomandata)?<
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>La tua iscrizione è scaduta il &lt;b&gt;{0}&lt;/b&gt;. Non hai più accesso alle funzionalità Premium come:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>La tua iscrizione è stata annullata e scadrà il &lt;b&gt;{0}&lt;/b&gt;. Dopo questa data non avrai più accesso alle funzionalità Premium come:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

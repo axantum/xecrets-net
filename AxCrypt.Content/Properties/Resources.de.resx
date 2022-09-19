@@ -1119,9 +1119,6 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Beweisen Sie, dass Sie eine reale Person und keine automatisierte Software sind!</value>
   </data>
-  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Sie haben angefragt Ihre aktuelle mit der AxCrypt ID verbundene E-Mail zu &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt; zu ändern. Bitte klicken Sie auf den Button unterhalb um dies zu bestätigen.</value>
-  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Benutzen Sie Ihr aktuelles Passwort um sich anzumelden und dann wird Ihre alte AxCrypt ID permanent gelöscht.</value>
   </data>
@@ -1133,9 +1130,6 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Ihre Änderung der AxCrypt ID E-Mail wurde bestätigt! Bitte melden Sie sich an um den Prozess zu abzuschließen.</value>
-  </data>
-  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Eine Änderung der E-Mail wurde erbeten (von einer nicht genannten Quelle) von &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; zu &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Da Sie bereits eine AxCrypt ID mit dieser E-Mail besitzen, wurde Ihre Anfrage ignoriert.</value>
@@ -3447,9 +3441,6 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Ihr Abonnement ist am &lt;b&gt;{0}&lt;/b&gt;abgelaufen. Sie haben keinen Zugriff mehr auf Premium-Funktionen wie:</value>
-  </data>
-  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Ihr Abonnement wurde gekündigt und läuft mit &lt;b&gt;{0}&lt;/b&gt;. Nach diesem Datum haben Sie keinen Zugriff mehr auf Premium-Funktionen wie:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;

@@ -1044,6 +1044,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verify AxCrypt ID.
+        /// </summary>
+        public static string AutoDeletionMailBodyButton {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailBodyButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can start your trial of &lt;b&gt;AxCrypt Premium features for 30 days&lt;/b&gt; in the app!.
+        /// </summary>
+        public static string AutoDeletionMailBodyFreeTrial {
+            get {
+                return ResourceManager.GetString("AutoDeletionMailBodyFreeTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You gave us your e-mail as part of installing or using AxCrypt, through an app or the web. We sent you a verification code via e-mail, but you&apos;ve not used it. If you do not immediately verify your AxCrypt ID account by using the verification code we&apos;ll be removing you permanently from our system..
         /// </summary>
         public static string AutoDeletionMailBodyIntro {
@@ -13435,6 +13453,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Let us know what you think about AxCrypt - Will you continue to use it and is there something that you would like to see improved?.
+        /// </summary>
+        public static string BusinessExpiredMailBodyHtml {
+            get {
+                return ResourceManager.GetString("BusinessExpiredMailBodyHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your AxCrypt Business subscription has ended..
         /// </summary>
         public static string BusinessExpiredMailSubject {
@@ -14578,7 +14605,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have requested to change your current AxCrypt ID e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
+        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
         /// </summary>
         public static string ChangeEmailConfirmMailBody1 {
             get {
@@ -14623,7 +14650,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Someone has requested a change of e-mail (from an undisclosed source) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
+        ///   Looks up a localized string similar to Someone is requested a change of e-mail (from an undisclosed source) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
         /// </summary>
         public static string ChangeEmailExistMailBody1 {
             get {
@@ -16177,6 +16204,33 @@ namespace AxCrypt.Content.Properties {
         public static string EmailErrorUserNotFound {
             get {
                 return ResourceManager.GetString("EmailErrorUserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow Us on Our Social Media.
+        /// </summary>
+        public static string EmailFooterText1 {
+            get {
+                return ResourceManager.GetString("EmailFooterText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please read our &lt;a href=\&quot;https://axcrypt.net/information/privacy-policy\&quot; style=\&quot;color: white; font-weight: 600\&quot;&gt;privacy policy&lt;/a&gt; for details..
+        /// </summary>
+        public static string EmailFooterText2 {
+            get {
+                return ResourceManager.GetString("EmailFooterText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us at &lt;a href=\&quot;mailto:support@axcrypt.net\&quot; style=\&quot;color: white; font-weight: 600\&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        /// </summary>
+        public static string EmailFooterText3 {
+            get {
+                return ResourceManager.GetString("EmailFooterText3", resourceCulture);
             }
         }
         
@@ -22000,7 +22054,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. After this date you will no longer have access to Premium features like:.
+        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access for the Premium features as:.
         /// </summary>
         public static string MailBodySubscriptionExpiryText {
             get {
