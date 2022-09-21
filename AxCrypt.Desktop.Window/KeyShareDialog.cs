@@ -176,13 +176,19 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
+            if (New<AxCryptOnlineState>().IsOffline && !await AddShareKeyWhenOffline(addedUserEmailAddress))
+            {
+                return;
+            }
+
+            AccountStatus accountStatus = AccountStatus.Verified;
+            if (!New<AxCryptOnlineState>().IsOffline)
+            {
+                accountStatus = await ShareNewContactAsync();
+            }
             _addButton.Enabled = false;
 
-            AccountStatus accountStatus = await ShareNewContactAsync();
-            await ShareSelectedIndices(new List<string>() { addedUserEmailAddress.Address });
-
-            ShareKeyUser shareKeyUser = _shareKeyUserList.Single(sku => sku.UserEmail == EmailAddress.Parse(_viewModel.NewKeyShare));
-            shareKeyUser = new ShareKeyUser(EmailAddress.Parse(_viewModel.NewKeyShare), accountStatus);
+            ShareKeyUser shareKeyUser = new ShareKeyUser(EmailAddress.Parse(_viewModel.NewKeyShare), accountStatus);
 
             if (_shareKeyUserList.Count == 6)
             {
@@ -198,6 +204,18 @@ namespace AxCrypt.Desktop.Window
             SetOkButtonState();
             _addNewUserTextBox.Text = string.Empty;
             _addNewUserTextBox.Focus();
+        }
+
+        private async Task<bool> AddShareKeyWhenOffline(EmailAddress userEmail)
+        {
+            if (!_viewModel.NotSharedWith.Any(ur => ur.Email == userEmail))
+            {
+                await DisplayOfflineWarningMessageAsync();
+                return false;
+            }
+
+            await _viewModel.AddKeyShares.ExecuteAsync(new List<EmailAddress> { userEmail });
+            return true;
         }
 
         private async Task UnSharePopupMenuItemAction()
@@ -423,9 +441,7 @@ namespace AxCrypt.Desktop.Window
             {
                 Name = "fileName",
                 Text = selectedFileName,
-                Padding = new Padding(0, 2, 0, 0),
                 Font = FormStyles.OpenSans9Dot5Regular,
-                TextAlign = ContentAlignment.MiddleCenter,
                 Size = new System.Drawing.Size(textWidth, 28),
                 AutoEllipsis = true
             };
@@ -434,7 +450,7 @@ namespace AxCrypt.Desktop.Window
             {
                 FlowDirection = FlowDirection.LeftToRight,
                 BackColor = FormStyles.GreenColor,
-                Padding = new System.Windows.Forms.Padding(3, 3, 0, 3),
+                Padding = new System.Windows.Forms.Padding(2, 3, 1, 3),
                 Name = "selectedFileItem",
                 Size = new System.Drawing.Size(150, 28),
                 Controls =
