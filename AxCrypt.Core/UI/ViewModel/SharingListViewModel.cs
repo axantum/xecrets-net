@@ -341,6 +341,11 @@ namespace AxCrypt.Core.UI.ViewModel
 
             SharedWith = fromSet.OrderBy(a => a.Email.Address);
 
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return;
+            }
+
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.Remove(knownContactsToRemove);
