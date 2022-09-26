@@ -3462,7 +3462,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It is essential to have secure passwords for all of your devices. Your passwords should be unique and complicated, with at least 12 characters, including numbers, symbols, capital, lowercase letters, and symbols. Changing your passwords regularly — will help keep hackers at bay. AxCrypt provides a password management generator that ensures their passwords are strong and secure..
+        ///   Looks up a localized string similar to It is essential to have secure passwords for all of your devices. Your passwords should be unique and complicated, with at least 12 characters, including numbers, capital, lowercase letters, and symbols. Changing your passwords regularly — will help keep hackers at bay. AxCrypt provides a password management generator that ensures their passwords are strong and secure..
         /// </summary>
         public static string Blog_CHHSSO_H3_SH3_Text1 {
             get {
@@ -19043,7 +19043,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep your &lt;span&gt;passwords&lt;/span&gt; save..
+        ///   Looks up a localized string similar to Keep your &lt;span&gt;passwords&lt;/span&gt; saved..
         /// </summary>
         public static string GetStartedPasswordHeading {
             get {

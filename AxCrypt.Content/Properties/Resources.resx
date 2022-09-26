@@ -1285,7 +1285,7 @@ You have been warned, now enjoy!</value>
     <value>Encryption transforms plain text into ciphertext or converts readable text into unreadable text to protect data so that only certain people can access it. Encryption scrambles or encrypts data and then utilizes a key to unscramble or decrypt the information for the receiving party. It proves to be a successful method of safeguarding sensitive data. Data on computers and storage devices and data in transit through networks are all protected with encryption.</value>
   </data>
   <data name="Blog_CHHSSO_H3_SH3_Text1" xml:space="preserve">
-    <value>It is essential to have secure passwords for all of your devices. Your passwords should be unique and complicated, with at least 12 characters, including numbers, symbols, capital, lowercase letters, and symbols. Changing your passwords regularly — will help keep hackers at bay. AxCrypt provides a password management generator that ensures their passwords are strong and secure.</value>
+    <value>It is essential to have secure passwords for all of your devices. Your passwords should be unique and complicated, with at least 12 characters, including numbers, capital, lowercase letters, and symbols. Changing your passwords regularly — will help keep hackers at bay. AxCrypt provides a password management generator that ensures their passwords are strong and secure.</value>
   </data>
   <data name="Blog_CHHSSO_H3_SH4_Text1" xml:space="preserve">
     <value>Backups should be kept in a distinct location from the originals and tested regularly. To securely save personal files, create a backup on a separate device (e.g., the cloud or an encrypted USB). You can encrypt your drive data with AxCrypt, which encrypts data in transit, rest, and storage. In addition, you retain control over your encryption keys, allowing you to keep command even after data has left your building.</value>
@@ -6576,7 +6576,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Download AxCrypt for &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android here&lt;/a&gt; and for &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS here.&lt;/a&gt; </value>
   </data>
   <data name="GetStartedPasswordHeading" xml:space="preserve">
-    <value>Keep your &lt;span&gt;passwords&lt;/span&gt; save.</value>
+    <value>Keep your &lt;span&gt;passwords&lt;/span&gt; saved.</value>
   </data>
   <data name="GetStartedPasswordManagementHeading" xml:space="preserve">
     <value>Password Management</value>

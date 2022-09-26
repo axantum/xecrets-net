@@ -2754,7 +2754,7 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
     <value>"Oldukça &lt;span&gt;basit&lt;/span&gt; bir ortamda ileri düzey &lt;span&gt;şifreleme&lt;/span&gt;"</value>
   </data>
   <data name="HomeHeroRecommended1">
-    <value>300'den fazla&lt;span&gt;site&lt;/span&gt;</value>
+    <value>300+&lt;span&gt;sites&lt;/span&gt;</value>
   </data>
   <data name="HomeHeroRecommended2">
     <value>öneriler</value>

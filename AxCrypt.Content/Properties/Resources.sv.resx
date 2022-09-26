@@ -465,6 +465,12 @@ Logga nu in med samma lösenord som du angav då.</value>
     <value>Du behöver inte svara eller göra någonting. Om du inte gör något, kommer inga fler e-postmeddelanden att skickas och ditt AxCrypt ID-konto raderas permanent.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
+  <data name="AutoDeletionMailBodyButton" xml:space="preserve">
+    <value>Verifiera AxCrypt-ID</value>
+  </data>
+  <data name="AutoDeletionMailBodyFreeTrial" xml:space="preserve">
+    <value>Du kan starta din provperiod för &lt;b&gt;AxCrypts Premium-funktioner under 30 dagar&lt;/b&gt; i appen!</value>
+  </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
     <value>Vi fick din e-post-address när du installerade AxCrypt, eller via vår webbsida. En verifieringskod skickades då till dig, men du har inte använt den. Därför kommer vi att radera ditt konto om du inte snarast verifierar ditt konto genom att använda verifieringskoden.</value>
   </data>
@@ -656,6 +662,15 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;Det går bortom säkringen av enbart lösenord&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H3_SH3_Text1">
+    <value>Det är viktigt att ha säkra lösenord för alla dina enheter. Dina lösenord borde vara unika och komplicerade, med minst 12 tecken, inklusive siffror, stora och små bokstäver och symboler. Att byta dina lösnord regelbundet - hjälper att hålla hackare på avstånd. AxCrypt förser dig med en lösenordshanteringsgenerator som säkerställer att lösenorden är starka och säkra:</value>
+  </data>
+  <data name="Blog_Conclusion_FeaturePage_Text1">
+    <value>&lt;a href='https://axcrypt.net/information/features'&gt;Ta en titt på AxCrypts funktionssida&lt;/a&gt; för att få veta mer om hur AxCrypt kan säkra dina filer och data och &lt;a href='https://www.axcrypt.net/pricing'&gt;prissidan&lt;/a&gt; som visar vilken typ av krypteringsabonnemang AxCrypt erbjuder.</value>
+  </data>
+  <data name="Blog_EIBM_H5_SH5_Text1">
+    <value>Flerspråkig support för engelska, nederländska, franska, tyska, italienska, koreanska, mandarin, polska, portugisiska, ryska, spanska, svenska, turkiska med fler som kommer.</value>
+  </data>
   <data name="Blog_HAVTYB_H1_SubHeading3">
     <value>&lt;strong&gt;Huvudnyckel&lt;/strong&gt;</value>
   </data>
@@ -668,8 +683,17 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_ICSHRS_Title">
     <value>Det viktiga med cybersäkerhet i personalsektorn.</value>
   </data>
+  <data name="Blog_MDPNST_Conclusion_Text1">
+    <value>Detta år kommer inte cyberbrotten att lugna sig. De kriminella har oändliga alternativ och deras metoder blir alltmer sofistikerade. Företag har inte längre råd att ta genvägar och riskövervakning måste bli prioriterat för mobiltelefoner. Nu när du förstår nödvändigheten med krypterade mobiltelefoner, kryptera mobila enheter med AxCrypt är att skydda din data från obehörig åtkomst.</value>
+  </data>
+  <data name="Blog_MDSCBF_Conclusion_Text1">
+    <value>Enligt "Cost of a Data Breach 2021" tar det säkerhetsteam 287 dagar att hitta och stoppa dataintrång. Med AxCrypt Företag säkra mitt företags data med den starkaste 256-bit krypteringen.</value>
+  </data>
   <data name="Blog_MDSCBF_H2_Text2">
     <value>Testa en månads fri användning, ladda ner för Android och iOS användare:</value>
+  </data>
+  <data name="Blog_ROCP_Conclusion_Text1">
+    <value>En viktig komponent av alla olika företags säkerhetspolicyer är lösenordshantering. Användare kan säkra sin inloggningsinformation mot obehörig åtkomst vilket kan skydda användaren och företaget mot faror. AxCrypt erbjuder sin distinkta lösenordshanteringsfunktion vilket är användarvänlig och pålitlig både för individen och kommersiella företag. Ditt företag kunde vara mer organiserat till att avvärja cyberattacker med hjälp av AxCrypt. Titta ingen annanstans! Medan du slappnar av och tar in lugnet, låt AxCrypt ta hand om alla dina cybersäkerhetsbehov.</value>
   </data>
   <data name="Blog_ROCP_H1_SH3_Text1">
     <value>Lösenord måste innehålla stora och små bokstäver, siffror, och specialtecken (som @, £, % och &amp;) och dessa måste vara minst 10 tecken långa. Företag borde etablera en lösenord säkerhets policy och uppdatera denna ofta. Dessutom behöver varje medarbetare i företaget sitt eget lösenord.</value>
@@ -757,6 +781,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Din AxCrypt Business-prenumeration {0} har avslutats. Vi hoppas innerligt att du har njutit av att använda AxCrypt och funnit det användbart.</value>
+  </data>
+  <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
+    <value>Berätta för oss vad du tycker om AxCrypt - Kommer du fortsätta att använda det och är det något du skulle vilja se en förbättring av?</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>Din AxCrypt Business-prenumeration har avslutats.</value>
@@ -1191,6 +1218,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Bevisa att du är en riktig person och inte ett dataprogram!</value>
   </data>
+  <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
+    <value>Du har begärt att återställa din AxCrypt-ID email till &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. För att bekräfta vänligen tryck på knappen nedan.</value>
+  </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Logga in med ditt befintliga lösenord så kommer det gamla kontot att raderas permanent.</value>
   </data>
@@ -1202,6 +1232,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="ChangeEmailConfirmSuccess" xml:space="preserve">
     <value>Ditt byte av e-postadress är härmed bekräftat! Logga in för att slutföra bytet.</value>
+  </data>
+  <data name="ChangeEmailExistMailBody1" xml:space="preserve">
+    <value>Någon har begärt en ändring av email (av en ej avsjöjbar källa) på &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Men, eftersom du redan har ett AxCrypt ID med den här e-postadressen så har begäran lämnats utan åtgärd.</value>
@@ -1692,6 +1725,9 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   <data name="DownloadTryMobileSubscription" xml:space="preserve">
     <value>Du kan kryptera och dekryptera filer på din Android telefin, iPhone eller surfplatta var som helst och när som helst. AxCrypt mobila kryptering stödjer både Android och iOS. AxCrypt stödjer Google Drive Fil kryptering på iOS och Android. Lokal lagringskryptering är endast tillgänglig för Android just nu. Andra molnenheter såsom iCloud, DropBox, OneDrive och andra kommer att stödjas i de kommande uppdateringarna.</value>
   </data>
+  <data name="DownloadViewerPlusHeading">
+    <value>TITTARE PLUS:</value>
+  </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Nederländska)</value>
     <comment>The name of the Dutch language for selection.</comment>
@@ -1731,6 +1767,15 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
   </data>
   <data name="EmailErrorUserNotFound" xml:space="preserve">
     <value>Användaren hittades inte.</value>
+  </data>
+  <data name="EmailFooterText1" xml:space="preserve">
+    <value>Följ Oss på Våra Sociala Medier </value>
+  </data>
+  <data name="EmailFooterText2" xml:space="preserve">
+    <value>Vänligen läs våran &lt;ahref=\"https://axcrypt.net/information/privacy-policy\"style=\"color: white; font-weight: 600\"&gt;säkerhetspolicy&lt;/a&gt;för detaljer.</value>
+  </data>
+  <data name="EmailFooterText3" xml:space="preserve">
+    <value>Kontakta oss på &lt;ahref=\"mailto:support@axcrypt.net\" style=\"color: white; font-weight: 600\"&gt;support@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
   </data>
   <data name="EmailLabel">
     <value>E-post</value>
@@ -2830,7 +2875,7 @@ Om du av någon anledning inte kommer ihåg lösenordet, måste du återställa 
     <value>pålitlig leverans</value>
   </data>
   <data name="HomeHeroDownloads1">
-    <value>20 miljoner+</value>
+    <value>20M+</value>
   </data>
   <data name="HomeHeroDownloads2">
     <value>nedladdningar globalt</value>
@@ -3719,6 +3764,9 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
     <value>Din prenumeration gick ut &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre tillgång till Premium-funktioner som:</value>
+  </data>
+  <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
+    <value>Din prenumeration har blivit avslutad och kommer sluta gälla &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre åtkomst åt Premium-funktionerna:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
