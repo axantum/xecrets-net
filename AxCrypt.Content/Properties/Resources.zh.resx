@@ -1872,10 +1872,10 @@
     <value>所有这一切都说，有一个特殊的情况下，我们可能会帮助你。 如果你认为你知道你的密码，但不完全，或者如果它少于5个字符长-那么我们可以编写和适应一个特殊的程序，将自动尝试多种组合。 这就是所谓的蛮力攻击。</value>
   </data>
   <data name="FaqForgotPasswordAnswer4" xml:space="preserve">
-    <value>AxCrypt是专门设计来对抗蛮力攻击，并且做得相当好，所以这只会在尝试的组合数量非常小时起作用，比方说不到一百万。</value>
+    <value>AxCrypt是专门设计来对抗 &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;蛮力&lt;/strong&gt;&lt;/a&gt; 攻击，并且做得相当好，所以这只会在尝试的组合数量非常小时起作用，比方说不到一百万。</value>
   </data>
   <data name="FaqForgotPasswordAnswer5" xml:space="preserve">
-    <value>如果您认为你可能是在一个位置，您可以缩小可能的组合足以让我们，那么有一个轻微的机会，使用一个实用程序，将尝试根据您提供的模式很多可能性 请联系支持，如果想尝试蛮力实用程序。</value>
+    <value>如果您认为你可能是在一个位置，您可以缩小可能的组合足以让我们，那么有一个轻微的机会，使用一个实用程序，将尝试根据您提供的模式很多可能性 请 &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;联系支持&lt;/strong&gt;&lt;/a&gt;，如果想尝试蛮力实用程序。</value>
   </data>
   <data name="FaqHowLargeFileSupport" xml:space="preserve">
     <value>如何支持大文件？</value>

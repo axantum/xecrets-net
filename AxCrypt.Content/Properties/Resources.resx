@@ -5839,10 +5839,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>All that being said, there is a special case where we could possibly help you. If you think you know your password, but not quite, or if it’s less than 5 characters long – then we can write and adapt a special program that will try many combinations automatically. This is called a brute force attack.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4" xml:space="preserve">
-    <value>AxCrypt is specifically engineered to counter brute force attacks, and does it rather well, so this will only work when the number of combinations to try is very small, let’s say less than a million.</value>
+    <value>AxCrypt is specifically engineered to counter &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;brute force&lt;/strong&gt;&lt;/a&gt; attacks, and does it rather well, so this will only work when the number of combinations to try is very small, let’s say less than a million.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5" xml:space="preserve">
-    <value>If you think you may be in a position where you can narrow down the possible combinations enough for us, then there is a slight chance to recover the password using a utility that will attempt to try many possibilities according to a pattern you provide. Please contact support if would like to try the brute force utility.</value>
+    <value>If you think you may be in a position where you can narrow down the possible combinations enough for us, then there is a slight chance to recover the password using a utility that will attempt to try many possibilities according to a pattern you provide. Please &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;contact support&lt;/strong&gt;&lt;/a&gt; if would like to try the brute force utility.</value>
   </data>
   <data name="FaqHowLargeFileSupport" xml:space="preserve">
     <value>How are large files supported?</value>
@@ -7662,6 +7662,15 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Please select mail client:</value>
     <comment>Header of popup for selecting mail application.</comment>
+  </data>
+  <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
+    <value>{{useremail}} has the following feedback...</value>
+  </data>
+  <data name="MailGunHelloTitle" xml:space="preserve">
+    <value>Hello {{useremail}}</value>
+  </data>
+  <data name="MailGunPremiumSupportTitle" xml:space="preserve">
+    <value>{{useremail}} would like help with...</value>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>https://www.axcrypt.net/</value>

@@ -1920,10 +1920,10 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>Com base nisto, há um caso especial em que poderemos ajudá-la(o). Se acha que sabe qual é a sua palavra-passe ou se a palavra-passe tem menos de 5 caracteres – então poderemos escrever e adaptar um programa especial que tentará muitas combinações automaticamente. Tal é chamado ataque de força bruta.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>A AxCrypt é desenvolvida especificamente para responder a ataques de força bruta e fá-lo bastante bem, portanto isto só funcionará se o número de combinações for muito pequena, digamos, menos de um milhão.</value>
+    <value>A AxCrypt é desenvolvida especificamente para responder a ataques de &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;força bruta&lt;/strong&gt;&lt;/a&gt; e fá-lo bastante bem, portanto isto só funcionará se o número de combinações for muito pequena, digamos, menos de um milhão.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Se achar que pode restringir as combinações possíveis, então há uma pequena chance de recuperação da palavra-passe através de um utilitário que tentará muitas possibilidades de acordo com um padrão que nos forneça. Por favor, contacte o suporte se desejar tentar o utilitário de força bruta.</value>
+    <value>Se achar que pode restringir as combinações possíveis, então há uma pequena chance de recuperação da palavra-passe através de um utilitário que tentará muitas possibilidades de acordo com um padrão que nos forneça. Por favor, &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;contacte o suport&lt;/strong&gt;&lt;/a&gt;e se desejar tentar o utilitário de força bruta.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>Como são suportados ficheiros grandes?</value>

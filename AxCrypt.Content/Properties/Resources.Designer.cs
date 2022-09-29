@@ -16883,7 +16883,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is specifically engineered to counter brute force attacks, and does it rather well, so this will only work when the number of combinations to try is very small, let’s say less than a million..
+        ///   Looks up a localized string similar to AxCrypt is specifically engineered to counter &lt;a href=&apos;/axcrypt-brute-force&apos;&gt;&lt;strong&gt;brute force&lt;/strong&gt;&lt;/a&gt; attacks, and does it rather well, so this will only work when the number of combinations to try is very small, let’s say less than a million..
         /// </summary>
         public static string FaqForgotPasswordAnswer4 {
             get {
@@ -16892,7 +16892,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you think you may be in a position where you can narrow down the possible combinations enough for us, then there is a slight chance to recover the password using a utility that will attempt to try many possibilities according to a pattern you provide. Please contact support if would like to try the brute force utility..
+        ///   Looks up a localized string similar to If you think you may be in a position where you can narrow down the possible combinations enough for us, then there is a slight chance to recover the password using a utility that will attempt to try many possibilities according to a pattern you provide. Please &lt;a href=\&quot;mailto:support@axcrypt.net\&quot;&gt;&lt;strong&gt;contact support&lt;/strong&gt;&lt;/a&gt; if would like to try the brute force utility..
         /// </summary>
         public static string FaqForgotPasswordAnswer5 {
             get {
@@ -22130,6 +22130,33 @@ namespace AxCrypt.Content.Properties {
         public static string MailClientPromptHeader {
             get {
                 return ResourceManager.GetString("MailClientPromptHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {{useremail}} has the following feedback....
+        /// </summary>
+        public static string MailGunFeedbackTitleWithUser {
+            get {
+                return ResourceManager.GetString("MailGunFeedbackTitleWithUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello {{useremail}}.
+        /// </summary>
+        public static string MailGunHelloTitle {
+            get {
+                return ResourceManager.GetString("MailGunHelloTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {{useremail}} would like help with....
+        /// </summary>
+        public static string MailGunPremiumSupportTitle {
+            get {
+                return ResourceManager.GetString("MailGunPremiumSupportTitle", resourceCulture);
             }
         }
         

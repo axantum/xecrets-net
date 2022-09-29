@@ -661,11 +661,89 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_5KFESSAO_Heading5">
     <value>&lt;h3&gt;5. Uso compartido de claves&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_ADGE_Conclusion_Heading">
+    <value>&lt;strong&gt;Empieza a usar AxCrypt...&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_Conclusion_TExt1">
+    <value>Considera el cifrado como una especie de seguro contra posibles filtraciones de datos. La seguridad puede convertirse en un activo con una herramienta de administración de claves y cifrado de nivel empresarial. Tienes la opción de pasar a la nube pública. Si te interesa obtener más información sobre el cifrado, &lt;a href='https://www.axcrypt.net/information/features'&gt;haz clic aquí&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H1_Text1">
+    <value>Cuando hables sobre el cifrado con alguien que no es un experto en seguridad, normalmente obtendrás varias respuestas. El cifrado se malinterpreta con frecuencia como una especie de tecnología siniestra. Por el contrario, el cifrado puede ayudar a lograr la flexibilidad, el cumplimiento y la privacidad de datos que requiere la era virtual actual.</value>
+  </data>
+  <data name="Blog_ADGE_H1_Text2">
+    <value>El cifrado es el proceso de transformar texto sin formato en texto cifrado, o cambiar texto legible en texto ilegible, con el fin de proteger los datos para que solo ciertas personas puedan acceder a ellos. El cifrado codifica o cifra los datos y luego utiliza una clave para descifrar o descifrar la información para la parte receptora. Demuestra ser un método exitoso para salvaguardar datos confidenciales. Los datos en las computadoras y los dispositivos de almacenamiento, así como los datos en tránsito a través de las redes, están todos protegidos con cifrado.</value>
+  </data>
+  <data name="Blog_ADGE_H2_SH2_Text1">
+    <value>La interceptación de correos electrónicos y otros contenidos es solo un ejemplo de una serie de incidentes que han ocurrido en métodos menos formales. Si bien la mayoría de los correos electrónicos no despiertan la curiosidad de teceros lo suficiente como para intentar interceptarlos, ha habido casos en los que esto ha sucedido. Los correos electrónicos no están cifrados de forma predeterminada cuando viajan desde tus servidores hasta el destinatario. Esto implica que si los hackers informáticos obtienen acceso a esta información, podrán ver tus correos electrónicos e información confidencial.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SH3_Text1">
+    <value>Según un informe de vulneración de datos, los empleados son directa o indirectamente responsables del 34 % del total de ataques. El contenido puede ser malversado por empleados o contratistas descontentos para su propio beneficio o el de otros. Cualquier escapatoria intencional puede hacer caer a toda una organización con millones de datos robados. Este peligro se puede mitigar imponiendo el conjunto apropiado de reglas de acceso para mantener a los usuarios privilegiados en sus “carriles de nado”. Por ejemplo, la función de clave maestra elimina el riesgo de perder el acceso a archivos críticos. Echa un vistazo a &lt;a href='https://www.axcrypt.net/information/master-key'&gt;la función de clave maestra de AxCrypt aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_ADGE_H2_SH4_Text1">
+    <value>Si los datos no están cifrados, la consecuencia más significativa será el compromiso de información crítica o confidencial por un ciberataque o interferencia de un tercero. Si no existen protocolos para identificar cualquier tipo de comportamiento, las organizaciones pueden perder grandes cantidades de datos antes de darse cuenta.</value>
+  </data>
+  <data name="Blog_ADGE_H2_SH5_Text1">
+    <value>Con más empresas moviéndose a la nube, las medidas de seguridad deben verificarse y actualizarse constantemente para proteger los datos de las fugas. A pesar de que los programas en la nube como Google o Microsoft están bien equipados con seguridad, el usuario sigue siendo una fuente importante de errores, software malicioso y ataques fraudulentos.</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading2">
+    <value>&lt;strong&gt;Los correos electrónicos pueden ser hackeados&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading3">
+    <value>&lt;strong&gt;Amenaza interna&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading4">
+    <value>&lt;strong&gt;Actividad maliciosa de terceros&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading5">
+    <value>&lt;strong&gt;Vulnerabilidad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H3_Text1">
+    <value>Para comenzar el proceso de cifrado, debes recopilar los datos que deseas cifrar. Luego, el algoritmo usará la clave de cifrado para modificar los datos en la entrada y enviar el resultado. El texto resultante sería un texto codificado que solo podría leer la persona con la clave; luego podrías transferir dicho texto a un segundo interlocutor a través de cualquier medio, o conservar los datos cifrados para uso futuro. Por lo general, las claves se crean con generadores de números aleatorios o algoritmos informáticos.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H3_Text2">
+    <value>AxCrypt te permite aprovechar la flexibilidad de la virtualización mientras mantienes el control sobre tus datos. Elimina de manera única las barreras para adoptar una solución de cifrado.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH1_Text1">
+    <value>AxCrypt te proporciona un software gratuito con un cifrado sólido de 256 bits. Esto aumenta la seguridad de los datos y minimiza el peligro de infracciones. Si tienes una organización grande, puedes revisar nuestro &lt;a href='https://www.axcrypt.net/business'&gt;plan Business aquí&lt;/a&gt; que cuenta con funciones más avanzadas.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH2_Text1">
+    <value>Con la función de uso compartido de claves, AxCrypt ha simplificado la apertura de archivos con cualquier miembro del equipo con el que compartas la clave, lo que te permite colaborar con tu equipo incluso si están separados por miles de kilómetros.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH3_Text1">
+    <value>Muchas personas y empresas dudan en mover datos confidenciales a la nube porque creen que no es seguro. Pero con AxCrypt, los datos se cifran en tránsito, en reposo y almacenados. Tú mantienes el control sobre tus claves de cifrado, por lo que incluso después de que los datos hayan salido de tu edificio, tú permaneces al mando.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH3_Text6">
+    <value>El robo físico de computadoras y almacenamiento es una posibilidad en muchas empresas con oficinas remotas. Muchos de estos tienen datos confidenciales y vulnerables en estos servidores, como asesores financieros y contadores fiscales. El cifrado de datos en estos servidores protege contra el robo y la pérdida de datos. Con la funcionalidad de clave maestra de AxCrypt, puedes estar seguro de que los servidores remotos son seguros y que nadie en las oficinas remotas puede controlar el acceso a la clave de cifrado.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH4_Text1">
+    <value>Supongamos que necesitas mover tus operaciones de un proveedor de nube a otro. Puedes apagar tu computadora anterior y transferirla al nuevo proveedor mediante cifrado, y luego indicarle al sistema que produzca una nueva clave. Luego, al ordenar a la máquina que destruya la clave anterior, puedes prescindir del antiguo proveedor de la nube. Se perderán todos tus datos, incluidas las copias y copias de seguridad que conservaba el proveedor anterior.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading1">
+    <value>&lt;strong&gt;Software gratuito&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ADGE_H4_SubHeading2">
     <value>&lt;strong&gt;Uso compartido de claves &lt;/strong&gt;</value>
   </data>
   <data name="Blog_ADGE_H4_SubHeading3">
     <value>&lt;strong&gt;Seguridad en la nube&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading4">
+    <value>&lt;strong&gt;Desmantelamiento sencillo&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading5">
+    <value>&lt;strong&gt;Las estaciones de trabajo remotas son seguras&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_Heading1">
+    <value>¿Qué es el cifrado y cómo funciona?</value>
+  </data>
+  <data name="Blog_ADGE_Heading3">
+    <value>Al cifrar tus datos, puedes medir estos efectos y obtener una ventaja competitiva</value>
+  </data>
+  <data name="Blog_ADGE_Heading4">
+    <value>Los beneficios de cifrado de AxCrypt son:</value>
+  </data>
+  <data name="Blog_ADGE_Title">
+    <value>Una guía detallada sobre el cifrado</value>
   </data>
   <data name="Blog_ADSDE_Conclusion_Text1">
     <value>AxCrypt ha sido galardonado como "El mejor software de cifrado del mundo" por PC Magazine durante los últimos seis años, incluido este año. &lt;a href ='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt;Para saber más, haz clic aquí&lt;/a&gt;.</value>
@@ -928,6 +1006,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_CHHSSO_Title">
     <value>Hábitos de higiene cibernética para mantenerse seguro en línea</value>
   </data>
+  <data name="Blog_Conclusion_ContactUs">
+    <value>No olvides contactarnos al correo&lt;a href='mailto:support@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;support@axcrypt.net&lt;/a&gt; o al &lt;a href='mailto:business@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;business@axcrypt.net&lt;/a&gt; si tienes alguna pregunta. Sigue nuestros identificadores de redes sociales para conocer las últimas novedades.</value>
+  </data>
   <data name="Blog_Conclusion_ContactUs_ChangeText1">
     <value>¡No dudes en contactarnos en &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; o &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; si tienes alguna pregunta!</value>
   </data>
@@ -1097,8 +1178,65 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_CWELTI_Title">
     <value>Criptomoneda, ¿por qué el cifrado está vinculado?</value>
   </data>
+  <data name="Blog_DEVFE_Conclusion_Text1">
+    <value>El mundo entero se ha centrado en internet, por lo tanto, es importante que centres tu atención en la seguridad de los datos. Depende totalmente de ti determinar qué enfoque de cifrado es mejor para ti.</value>
+  </data>
+  <data name="Blog_DEVFE_H1_Text1">
+    <value>Hoy en día es más importante que nunca mantener la información segura en esta sociedad conectada a internet. Tus datos, ya sean personales o profesionales, corren el riesgo constante de caer en las manos equivocadas, razón de más para utilizar el mejor software de encriptación disponible. El cifrado de datos es un componente crucial para proteger los datos. Es el proceso de codificar texto (llamado texto cifrado) para hacerlo ilegible para un usuario no autorizado en el nivel más básico. El cifrado se puede aplicar a archivos individuales, carpetas, volúmenes o unidades completas en una computadora o dispositivo USB, así como información en la nube.</value>
+  </data>
+  <data name="Blog_DEVFE_H1_Text2">
+    <value>Así como la tecnología de seguridad está tomando medidas para aumentar la seguridad de tu información, los hackers informáticos están encontrando nuevas formas de evitarlas. Para vencerlos, siempre se están desarrollando nuevas técnicas de cifrado. Analicemos los métodos y tipos de cifrado populares y cómo pueden ayudarte.</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SH1_Text1">
+    <value>Un sistema de cifrado de archivos o carpetas cifra determinadas carpetas, archivos o volúmenes. Esto permite a los usuarios controlar quién tiene acceso a qué información. Es una forma de conservar grandes cantidades de datos o proteger datos confidenciales no solo a través de internet, sino también en tránsito, uso y almacenamiento. Dado que el cifrado de archivos utiliza menos recursos, tiene un impacto menor en el rendimiento del sistema. Un sistema de cifrado basado en archivos es similar a una caja de seguridad guardada en la bóveda de un banco. Incluso si se rompe la bóveda, cada caja tiene su propia capa de protección dentro que requiere un esfuerzo concentrado para romper. De manera similar, si tu dispositivo es víctima de hackeo, pérdida o robo, un tercero no podrá abrir tus archivos y carpetas, ya que cada archivo está cifrado y nadie podrá acceder a ellos sin la clave. AxCrypt es un ejemplo de un software gratuito de cifrado de archivos/carpetas de código abierto disponible para Windows, Android, iOS e incluso macOS. AxCrypt hace que los datos sean más seguros, ya sea que estén siendo transportados o estém en reposo. Los usuarios pueden tomar el control total de sus datos.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SH2_Text1">
+    <value>El cifrado de disco completo (FDE) es, como su nombre lo indica, cifrado a nivel de disco. Cuando se escriben o se leen datos en un disco, se cifran automáticamente. Cifra todos los archivos del disco duro, incluido el sistema operativo y el sistema de archivos. Solo se usa para mantener los archivos seguros mientras están almacenados o no en tránsito. El cifrado de disco completo funciona de manera similar a cerrar las puertas exteriores de una casa, pero no las habitaciones internas. Por supuesto, es una buena idea asegurar la entrada principal para que los atacantes no puedan acceder fácilmente, pero si logran entrar, tendrán acceso completo a todo lo que hay dentro. De la misma manera, el cifrado de disco protege la información en su totalidad al convertirla en un código ilegible que es difícil de entender para las personas que no tengan autorización.&lt;strong&gt;Hay dos tipos principales de cifrado de disco, que veremos en detalle a continuación. &lt;/strong&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SH3_Text1">
+    <value>BitLocker es una tecnología de cifrado de disco completo incluida en los sistemas operativos Windows más nuevos (Windows 10) que cifra los datos en los discos duros mediante el cifrado AES (128 y 256 bits). Cuando el Cifrado de unidad BitLocker está activado y el usuario agrega nuevos archivos, BitLocker los cifrará automáticamente. BitLocker con protección TPM evita la alteración fuera del sistema operativo de los componentes de arranque mediante el uso de la medición estática de raíz de confianza. BitLocker requiere que el usuario ingrese una clave de recuperación solo cuando se daña el disco o cuando pierde el PIN o la contraseña.</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SH4_Text1">
+    <value>FileVault es una función de cifrado de disco completo de Apple integrada en macOS. FileVault, como BitLocker para Windows, proporciona un cifrado sólido para archivos y datos en computadoras Mac, lo que protege todo el disco y todo su contenido. Cuando FileVault está encendido, funciona silenciosamente en segundo plano, cifrando todos los datos del dispositivo sobre la marcha y sin causar interrupciones.</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading1">
+    <value>&lt;strong&gt;Cifrado de archivos y carpetas&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading2">
+    <value>&lt;strong&gt;Cifrado de disco &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading3">
+    <value>&lt;strong&gt;Cifrado de disco con BitLocker  &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading4">
+    <value>&lt;strong&gt;Cifrado de disco con FileVault&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text1">
+    <value>Tanto BitLocker como FileVault son software de cifrado de disco que funcionan de la misma manera, pero en diferentes sistemas operativos. Ambos sirven para proteger los datos en las estaciones de trabajo y los dispositivos móviles en el almacenamiento y son capaces de cifrar discos duros completos, incluidas las unidades del sistema y de datos.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text2">
+    <value>El cifrado de disco completo de FileVault (FileVault 2) utiliza el cifrado XTS-AES-128 con una clave de 256 bits para ayudar a evitar el acceso no autorizado a la información en macOS. FileVault codifica la información almacenada en tu Mac para que no se pueda leer a menos que se ingrese la contraseña de inicio de sesión.</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text3">
+    <value>BitLocker admite discos duros cifrados con hardware de cifrado integrado, lo que permite a los administradores gestionarlos con las mismas herramientas de administración de BitLocker. El cifrado basado en archivos es un cifrado transparente que llena los espacios donde el cifrado de disco completo se queda corto. Cuando BitLocker está habilitado en una unidad del sistema y la PC tiene un TPM, puedes solicitar que los usuarios escriban un PIN antes de que BitLocker desbloquee la unidad. Con el cifrado de disco, los datos solo están protegidos mientras están en el disco; si un usuario elimina un archivo de un dispositivo cifrado, ese archivo ya no está protegido. Además, si se hackea físicamente todo el sistema, el cifrado del disco no es fiable. Como resultado, para la gran mayoría de los casos, el enfoque de cifrado basado en archivos es la mejor opción.</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text4">
+    <value>AxCrypt funciona con el cifrado de archivos y es mejor para proteger los datos en el almacenamiento en la nube y cuando deseas compartir tus datos cifrados. AxCrypt utiliza cifrado de 256 bits para proteger tus datos en las tres fases de su ciclo de vida: en reposo, en tránsito y en uso. AxCrypt permite que otros usuarios de AxCrypt abran archivos protegidos con sus propias contraseñas y también es más fácil proteger tus activos en línea. AxCrypt cifra automáticamente los datos en Google Drive, Dropbox y otros proveedores de almacenamiento en la nube. Los usuarios pueden enviar un archivo cifrado por correo electrónico, lo que significa que incluso si el correo electrónico es hackeado, el archivo cifrado no se verá comprometido y solo se puede acceder a él con una clave única. Además, proporciona una herramienta de colaboración que permite a los usuarios compartir archivos y datos seguros con otros usuarios con funciones de uso compartido de claves. Obtén más información sobre la función de administración de claves de AxCrypt aquí: &lt;a href='https://axcrypt.net/blog/fundamentals-of-key-management'&gt;https://axcrypt.net/blog/fundamentals-of-key-management&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text5">
+    <value>Además, AxCrypt proporciona funciones como administración de contraseñas, generador de contraseñas que genera contraseñas y garantiza que las contraseñas sean lo más seguras posible, borrado de archivos, etc. &lt;a href='https://axcrypt.net/information/features'&gt; Obtén más sobre las funciones de AxCrypt aquí&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_Heading1">
+    <value>¿Por qué es necesario cifrar los datos?</value>
+  </data>
   <data name="Blog_DEVFE_Heading2">
     <value>Diferentes tipos de cifrado</value>
+  </data>
+  <data name="Blog_DEVFE_Heading3">
+    <value>¿En qué se diferencia AxCrypt de BitLocker y FileVault?</value>
+  </data>
+  <data name="Blog_DEVFE_Title">
+    <value>Cifrado de disco vs cifrado de archivos</value>
   </data>
   <data name="Blog_DRATIUIN_Conclusion_Text1">
     <value>AxCrypt ofrece un cifrado sólido de 256 bits para proteger tus datos en las tres etapas de datos: en reposo, en tránsito y en uso. Además, AxCrypt también proporciona a sus usuarios un generador de administración de contraseñas que garantiza que sus contraseñas sean lo más seguras posible. El uso del software de cifrado de AxCrypt también proporciona una herramienta de colaboración que permite a los usuarios compartir archivos y datos protegidos con otros usuarios de AxCrypt. Echa un vistazo a nuestra &lt;a href='/pricing' style='color: #efefef; font-weight: 800;'&gt;página de funciones&lt;/a&gt; para saber más sobre cómo AxCrypt puede proteger tus archivos y datos, y la &lt;a href='https://www.axcrypt.net/pricing' style='color: #efefef; font-weight: 800;'&gt;página de precios&lt;/a&gt; que muestra qué tipos de suscripciones de cifrado ofrece AxCrypt.</value>
@@ -1319,8 +1457,26 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_Feature_Conclusion_Text1">
     <value>&lt;a href='https://www.axcrypt.net/information/features'&gt;Echa un vistazo a la página de funciones de AxCrypt para que veas lo que ofrecemos&lt;/a&gt;</value>
   </data>
+  <data name="Blog_FOKM_Conclusion_Text1">
+    <value>La adquisición de la administración de claves es una decisión estratégica a largo plazo que la empresa debe gestionar. Permite acceder a tus claves mediante autorización. Como resultado, tomar la mejor decisión es crucial. Con AxCrypt es un procedimiento simple que da tranquilidad a las personas que están preocupadas porque otros tengan fácil acceso a su negocio.</value>
+  </data>
   <data name="Blog_FOKM_Conclusion_Text2">
     <value>AxCrypt ha sido galardonado como "El mejor software de cifrado del mundo" por PC Magazine durante los últimos seis años, incluido este año. AxCrypt tiene presencia a nivel mundial y más de 20 millones de descargas. &lt;a href ='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt;Para saber más, haz clic aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_FOKM_Conclusion_Text3">
+    <value>AxCrypt ofrece un cifrado sólido de 256 bits para proteger tus datos en las tres etapas de datos: datos en reposo, en tránsito y en uso. Además, AxCrypt también proporciona a sus usuarios un generador de administración de contraseñas que garantiza que sus contraseñas sean lo más seguras posible. También proporciona una herramienta de colaboración que permite a los usuarios compartir archivos y datos protegidos con otros usuarios de AxCrypt.</value>
+  </data>
+  <data name="Blog_FOKM_H1_Text1">
+    <value>La seguridad eficaz de los datos se basa en la administración de claves, también conocida como KMS. Es el proceso de administrar o gestionar claves criptográficas. Una característica crítica de cualquier KMS es su capacidad para manejar claves sistemáticamente a lo largo de su ciclo de vida: generación de claves, importación/exportación de claves, distribución de claves, uso de claves, actualización de claves, copia de seguridad de claves, revocación de claves y eliminación de claves. Los datos se cifran y descifran mediante claves de cifrado, por lo tanto, la pérdida o el compromiso de cualquier clave de cifrado genera la protección de los datos. También garantiza la transmisión segura de datos a través de una conexión a internet y no solo incluye control de acceso, sino también monitoreo y registro del acceso, uso y contexto de cada clave.</value>
+  </data>
+  <data name="Blog_FOKM_H2_Text1">
+    <value>La administración de claves se ocupa de numerosos tipos de riesgos de seguridad más allá del cifrado, como personas y políticas incorrectas, ataques cibernéticos y robo de datos en las redes. Es uno de los componentes más difíciles de la criptografía. También implica el desarrollo de una política de sistema, capacitación de usuarios, colaboración interdepartamental y coordinación efectiva.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_FOKM_H2_Text2">
+    <value>En las grandes corporaciones, todos los miembros tienen acceso a los datos de la empresa, por lo que la seguridad es una preocupación importante. La solución es un sistema de administración de claves de grupo de multidifusión que distribuye de forma segura claves individuales a cada miembro. De esta manera, solo ese miembro del grupo puede acceder al material cifrado con la clave.</value>
+  </data>
+  <data name="Blog_FOKM_H2_Text3">
+    <value>La administración de claves también incluye controles para garantizar que las claves solo sean accesibles para el personal y los sistemas autorizados, que solo se utilicen para los fines previstos y que todas las actividades clave se registren con fines de auditoría y cumplimiento.</value>
   </data>
   <data name="Blog_FOKM_H3_SH3_Text1">
     <value>El uso compartido de claves es una función que te permite mantener tus datos seguros mientras los compartes con tus colegas. Te permite colaborar y conectarte con otros miembros sin poner en peligro la confidencialidad de tus datos. Con la función de uso compartido de claves de AxCrypt, puedes otorgar acceso a los datos a cualquier persona y retirarlos cuando lo desees; ni siquiera tienes que revelar tu contraseña. Para obtener más información sobre cómo compartir claves de AxCrypt, consulta nuestro tutorial para compartir claves en &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt; YouTube&lt;/a&gt;.</value>
@@ -1333,6 +1489,21 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_FOKM_H3_SubHeading4">
     <value>&lt;strong&gt;Clave maestra &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_FOKM_H3_Text1">
+    <value>Para la seguridad y el cumplimiento, la administración adecuada de claves es esencial. Podrás decidir quién tiene acceso a qué secciones de tus datos. También evita la pérdida de claves que no están en uso. Debido al mantenimiento de registros, sabrás cuándo se retiran las claves y a qué lugares se ha accedido y cuándo. AxCrypt cuenta con una serie de funciones que lo convierten en una buena solución de administración de claves.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_FOKM_Heading1">
+    <value>¿Qué es la administración de claves?</value>
+  </data>
+  <data name="Blog_FOKM_Heading2">
+    <value>Importancia de la administración de claves</value>
+  </data>
+  <data name="Blog_FOKM_Heading3">
+    <value>Ventajas de la administración de claves con AxCrypt</value>
+  </data>
+  <data name="Blog_FOKM_Title">
+    <value>Aspectos básicos de la administración de claves</value>
   </data>
   <data name="Blog_GAES256BEWA_Conclusion_Text1">
     <value>AxCrypt es un seguro contra posibles filtraciones de datos. La seguridad puede convertirse en un activo con un cifrado sólido de nivel empresarial y herramientas de administración de contraseñas. Tienes la opción de pasar a la nube pública. Si te interesa obtener más información sobre el cifrado, &lt;a href='https://www.axcrypt.net/'&gt;empieza aquí&lt;/a&gt;</value>
@@ -1735,6 +1906,36 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_MK_Title">
     <value>Clave maestra</value>
+  </data>
+  <data name="Blog_PECA_Conclusion_Text1">
+    <value>AxCrypt ofrece un cifrado sólido de 256 bits para proteger tus datos en las tres etapas de datos: datos en reposo, en tránsito y en uso. Además, AxCrypt también proporciona a sus usuarios un generador de administración de contraseñas que garantiza que sus contraseñas sean lo más seguras posible. También proporciona una herramienta de colaboración que permite a los usuarios compartir archivos y datos protegidos con otros usuarios de AxCrypt. Además de esto, AxCrypt ayuda a compartir archivos de forma segura con funciones de clave maestra y uso compartido de claves. &lt;a href= 'https://www.axcrypt.net/blog/master-key'&gt;Haz clic aquí para obtener más información&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_PECA_H1_Text1">
+    <value>AxCrypt fue creado hace más de 15 años con la misión de brindar seguridad de datos de la manera más confiable y simple posible. ¡Después de todos esos años, la compañía aún es reconocida por ser el software más simple y fácil de usar, lo que lo convierte en el programa de cifrado más popular del mundo con más de 20 millones de descargas!</value>
+  </data>
+  <data name="Blog_PECA_H1_Text2">
+    <value>La misión de AxCrypt es proporcionar a las personas, los equipos pequeños, las empresas y las empresas soluciones de cifrado que son más fáciles de usar que nunca. Mediante la introducción de nuevas funciones, nuestro objetivo es eliminar la complejidad del uso de tecnología criptográfica sólida y comprobada. La seguridad, la confiabilidad y la simplicidad son cruciales para nosotros. Con nuestro cifrado de 256 bits, nos aseguramos de que nadie tenga acceso a tus archivos cifrados, siempre que tengas el control de tu propia clave.</value>
+  </data>
+  <data name="Blog_PECA_H2_Text1">
+    <value>Un foso comercial es una importante ventaja competitiva que distingue a una empresa de sus competidores. Como resultado, con el tiempo, AxCrypt ha lanzado una serie de funciones adicionales como la clave maestra, la administración de contraseñas, el uso compartido de claves, el borrado de archivos, etc. para seguir prosperando y satisfaciendo las necesidades de sus clientes mientras obtiene una ventaja competitiva. &lt;a href='https://axcrypt.net/information/features'&gt;Haz clic aquí para obtener más información sobre las funciones de AxCrypt&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_PECA_H2_Text2">
+    <value>Algunas de las nuevas funciones que AxCrypt lanzó este año son la clave maestra, una nueva interfaz de usuario que está disponible en aplicaciones Windows/Mac/Mobile y soporte para el idioma mandarín. La clave maestra se puede ver como un acceso automático de archivos cifrados con los administradores de la empresa. Permite a los administradores comerciales recuperar archivos de otros miembros de la empresa. Esto evita la posibilidad de perder datos comerciales. &lt;a href=' https://www.axcrypt.net/blog/master-key'&gt;Haz clic aquí para conocer más sobre la función de clave maestra de AxCrypt&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_PECA_Heading1">
+    <value>Cifrado fácil con AxCrypt</value>
+  </data>
+  <data name="Blog_PECA_Heading2">
+    <value>Ventaja competitiva</value>
+  </data>
+  <data name="Blog_PECA_Text1">
+    <value>“&lt;i&gt;Esta excelente herramienta de cifrado te permite proteger tus archivos con cifrado de primer nivel, y lo hace con la máxima simplicidad”. Neil Rubenking, editor técnico de PC Magazine&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_PECA_Text2">
+    <value>Una vez más, AxCrypt ha sido honrado con el premio PCMag Editors Choice Award por ofrecer la mejor solución de cifrado de su clase. AxCrypt ha sido galardonado como "El mejor software de cifrado del mundo" por PC Magazine durante los últimos seis años, y una vez más ha sorprendido a todos al ser reconocido por producir la mejor solución de cifrado de su clase y recibir el premio a la elección de los editores de PCMag. Para tener una visión más completa,  &lt;a href ='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt; lee aquí&lt;/a&gt;lea más aquí. PC Magazine ofrece a los profesionales de la tecnología de la información revisiones y avances del hardware y las aplicaciones más nuevos. Es una guía completa del mundo digital. Los consumidores reconocen y confían en la autoridad de PC Mag, y las designaciones elegidas por el editor ayudan a los consumidores a distinguir y seleccionar el mejor producto para sus necesidades.</value>
+  </data>
+  <data name="Blog_PECA_Title">
+    <value>Premio a la elección de los editores de PCMag</value>
   </data>
   <data name="Blog_Pricing_Conclusion_Text1">
     <value>Echa un vistazo a la &lt;a href=' https://www.axcrypt.net/pricing'&gt; página de precios&lt;/a&gt; que muestra qué tipo de suscripciones de cifrado ofrece AxCrypt.</value>
@@ -2211,6 +2412,48 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_WENTI_Title">
     <value>¿Por qué es necesario el cifrado en la industria tecnológica?</value>
   </data>
+  <data name="Blog_ZTCS_Conclusion_Text1">
+    <value>&lt;strong&gt;¿Por qué el enfoque de confianza cero es necesario &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text2">
+    <value>Debido a la pandemia, el enfoque de confianza cero ha intensificado su nivel. Desde ahora, las empresas han comenzado a descentralizar sus datos, activos, aplicaciones y servicios (DAAS) a diferentes personas a través de proveedores de infraestructura en la nube. Y debido a que los factores internos son responsables del 30 % de las filtraciones de datos en la actualidad, se creó el marco de cero confianza para ayudar a las empresas digitales a proteger activos valiosos. Según el modelo de cero confianza, la confianza es sinónimo de vulnerabilidad. Indica que no se puede confiar en ningún usuario, aunque sea un empleado.</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text3">
+    <value>Según los estudios, los métodos de cero confianza dan como resultado un 50 % menos de infracciones y un 40 % menos de gasto en tecnología, ya que todo está interconectado. Las empresas que adoptaron el enfoque de cero confianza tenían el doble de confianza en su capacidad para llevar al mercado modelos comerciales innovadores y experiencias de consumo.</value>
+  </data>
+  <data name="Blog_ZTCS_H1_Text1">
+    <value>El objetivo principal del modelo de confianza cero es minimizar la posibilidad de riesgos de trabajo remoto y amenazas internas, así como controlar la intromisión de terceros y el riesgo de la nube. El modelo es un cambio significativo de la estrategia del castillo y el foso, que se enfoca en fortalecer el perímetro alrededor de los datos para mantener alejados a los extraños mientras confía implícitamente en los internos. El concepto de confianza cero es simple y directo: Nunca confíes; verifica siempre. Esto implica que antes de poder acceder a cualquier dato, cada usuario debe ser validado. Cada solicitud de usuario, ya sea dentro o fuera de la empresa, debe ser verificada y aprobada en tiempo real.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH1_Text1">
+    <value>El marco del modelo de cero confianza se basa en la verificación antes que la confiabilidad; por lo tanto, la identificación del usuario, así como la identidad y la seguridad del dispositivo, se validan en múltiples etapas. Una vez establecidos, los inicios de sesión y las conexiones caducan periódicamente, lo que requiere que los usuarios y los dispositivos se vuelvan a verificar de manera regular.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH2_Text1">
+    <value>La confianza cero implica otorgar a los usuarios solo el nivel de acceso que necesitan, reduciendo la exposición de cada usuario a las áreas vulnerables de la red. Esto requiere una gestión cuidadosa de los permisos de los usuarios.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH3_Text1">
+    <value>El sistema de cero confianza realiza un seguimiento de cuántos dispositivos diferentes intentan conectarse a su red, verifica que cada uno esté permitido y evalúa cada uno para certificar que no ha sido hackeado; mientras usa MFA para autenticar a cada usuario mediante autorización de 2 factores. Estos factores reducen aún más la superficie de ataque de la red.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH4_Text1">
+    <value>La microsegmentación es el método adoptado por el enfoque de cero confianza para dividir los perímetros de seguridad en pequeñas zonas distintas para que las diferentes secciones de la red puedan tener acceso independiente. Sin autorización adicional, una persona o programa con acceso a una de las zonas no podrá acceder a ninguna de las otras; evitando así efectivamente el movimiento lateral de atacantes desconocidos.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading1">
+    <value>&lt;strong&gt;Autenticación y monitoreo persistente&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading2">
+    <value>&lt;strong&gt;Sobre una base de "necesidad de saber"&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading3">
+    <value>&lt;strong&gt;Acceso a dispositivos y autenticación multifactorial &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading4">
+    <value>&lt;strong&gt;Microsegmentación&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_Text1">
+    <value>La cero confianza protege a las fuerzas de trabajo remotas de mejor manera que los enfoques tradicionales, y los beneficios van más allá de la seguridad para aumentar la productividad y la agilidad. En este artículo, veremos algunas de las funciones de seguridad más importantes del enfoque de cero confianza.</value>
+  </data>
+  <data name="Blog_ZTCS_H3_SH1_Text1">
+    <value>El uso compartido de claves te permite colaborar y conectarte con otros miembros sin poner en peligro la confidencialidad de tus datos. Con la función de uso compartido de claves de AxCrypt, puedes otorgar acceso a los datos a cualquier persona y retirarlos cuando lo desees; ni siquiera tienes que revelar tu propia contraseña. Para obtener más información sobre la función de uso compartido de claves de AxCrypt, echa un vistazo a nuestro tutorial en &lt;a href=' https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt; YouTube &lt;/a&gt;</value>
+  </data>
   <data name="Blog_ZTCS_H3_SH2_Text1">
     <value>La clave maestra es altamente segura; se puede considerar como un sistema automático de intercambio de archivos con los gerentes de la empresa. Permite a los gerentes comerciales recuperar archivos de otros empleados de la compañía. Esto elimina la posibilidad de perder archivos importantes.&lt;a href='https://www.axcrypt.net/blog/master-key'&gt; Conoce más sobre la función de clave maestra de AxCrypt aquí&lt;/a&gt;</value>
   </data>
@@ -2219,6 +2462,24 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_ZTCS_H3_SubHeading2">
     <value>&lt;strong&gt;Clave maestra&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_Text1">
+    <value>Las ventajas de utilizar una arquitectura de cero confianza se extienden mucho más allá de la seguridad. Todo esto, sin embargo, puede ser en vano si no se ejecuta con éxito. Este modelo tiene que ver con el cifrado y el control de acceso, los cuales se basan en la criptografía. La criptografía, a su vez, se basa en claves. La protección de la criptografía se volverá inútil si una clave se ve comprometida. Como resultado, las claves deben estar protegidas en todo momento y mantenerse correctamente para una seguridad óptima.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_Text2">
+    <value>AxCrypt, como la confianza cero, protege tus datos contra virus, phishing y piratería, y cuando se usan juntos, puede crear la máxima protección. AxCrypt es contemporáneo, escalable y proporciona un sistema de gestión de claves empresariales compatible con la nube. Tiene una serie de funciones que lo convierten en una buena solución de administración de claves.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Heading1">
+    <value>¿Qué es el enfoque de confianza cero?</value>
+  </data>
+  <data name="Blog_ZTCS_Heading2">
+    <value>Conceptos clave del enfoque de cero confianza</value>
+  </data>
+  <data name="Blog_ZTCS_Heading3">
+    <value>¿Cómo podría ayudar AxCrypt a implementar la cero confianza?</value>
+  </data>
+  <data name="Blog_ZTCS_Title">
+    <value>Ciberseguridad de confianza cero</value>
   </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
@@ -3490,10 +3751,10 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
     <value>Dicho esto, hay un caso especial en el que es posible que podamos ayudarte. Si crees saber tu contraseña, pero no del todo, o si esta tiene menos de 5 caracteres, entonces podemos escribir y adaptar un programa especial que probará muchas combinaciones de manera automática. A esto se le llama ataque de fuerza bruta.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>AxCrypt está diseñado específicamente para contrarrestar los ataques de fuerza bruta y lo hace bastante bien, por lo que esto solo funcionará cuando la cantidad de combinaciones para probar sea muy pequeña, digamos menos de un millón.</value>
+    <value>AxCrypt está diseñado específicamente para contrarrestar los ataques de &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;fuerza bruta&lt;/strong&gt;&lt;/a&gt; y lo hace bastante bien, por lo que esto solo funcionará cuando la cantidad de combinaciones para probar sea muy pequeña, digamos menos de un millón.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Si crees poder reducir las combinaciones posibles lo suficiente para nosotros, entonces existe una pequeña posibilidad de recuperar la contraseña usando una herramienta que intentará probar muchas posibilidades de acuerdo con un patrón que proporciones. Ponte en contacto con el servicio de soporte técnico si deseas probar la herramienta de fuerza bruta.</value>
+    <value>Si crees poder reducir las combinaciones posibles lo suficiente para nosotros, entonces existe una pequeña posibilidad de recuperar la contraseña usando una herramienta que intentará probar muchas posibilidades de acuerdo con un patrón que proporciones. Ponte en &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;contacto con el servicio&lt;/strong&gt;&lt;/a&gt; de soporte técnico si deseas probar la herramienta de fuerza bruta.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>¿Qué soporte tienen los archivos grandes?</value>

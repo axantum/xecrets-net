@@ -5839,10 +5839,10 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Ceci étant dit, il reste un cas spécial dans lequel nous pourrions possiblement vous aider. Si vous pensez vous rappeler de votre mot de passe, mais pas tout à fait, ou s'il fait moins de 5 caractères, nous pouvons alors écrire et adapter un programme spécial qui essayera beaucoup de combinaisons automatiquement. Cela s'appelle une attaque de force brute.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>AxCrypt est spécialement préparé pour résister aux attaques de force brute, et il le fait plutôt bien, donc cela ne marchera que pour un nombre de combinaisons relativement petit, c'est à dire moins d'un million.</value>
+    <value>AxCrypt est spécialement préparé pour résister aux attaques &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;de force brute&lt;/strong&gt;&lt;/a&gt;, et il le fait plutôt bien, donc cela ne marchera que pour un nombre de combinaisons relativement petit, c'est à dire moins d'un million.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Si vous pensez que vous seriez capable de nous préciser au maximum les combinaisons possibles, il y aurait alors une petite chance de récupérer le mot de passe en utilisant un outil qui essayera de nombreuses possibilités à partir d'un modèle que vous nous fournirez. Veuillez contacter l'assistance si vous voulez essayez l'outil de force brute.</value>
+    <value>Si vous pensez que vous seriez capable de nous préciser au maximum les combinaisons possibles, il y aurait alors une petite chance de récupérer le mot de passe en utilisant un outil qui essayera de nombreuses possibilités à partir d'un modèle que vous nous fournirez. Veuillez &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;contacter l'assistance&lt;/strong&gt;&lt;/a&gt; si vous voulez essayez l'outil de force brute.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>Comment sont pris en charge les fichiers lourds ?</value>

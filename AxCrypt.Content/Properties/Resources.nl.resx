@@ -1870,10 +1870,10 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Dat gezegd hebbende, is er een speciaal geval waarin we u mogelijk kunnen helpen. Als u denkt uw wachtwoord te kennen, maar niet helemaal, of als het minder dan 5 tekens lang is, dan kunnen we een speciaal programma schrijven en aanpassen dat automatisch veel combinaties zal proberen. Dit wordt een brute force-aanval genoemd.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>AxCrypt is speciaal ontworpen om aanvallen met brute kracht tegen te gaan, en doet het redelijk goed, dus dit zal alleen werken als het aantal te proberen combinaties erg klein is, laten we zeggen minder dan een miljoen.</value>
+    <value>AxCrypt is speciaal ontworpen om aanvallen met &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;brute kracht&lt;/strong&gt;&lt;/a&gt; tegen te gaan, en doet het redelijk goed, dus dit zal alleen werken als het aantal te proberen combinaties erg klein is, laten we zeggen minder dan een miljoen.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Als u denkt dat u zich in een positie bevindt waarin u de mogelijke combinaties voldoende voor ons kunt beperken, dan is er een kleine kans om het wachtwoord te herstellen met behulp van een hulpprogramma dat zal proberen vele mogelijkheden uit te proberen volgens een door u verstrekt patroon. Neem contact op met de ondersteuning als u het hulpprogramma brute force wilt proberen.</value>
+    <value>Als u denkt dat u zich in een positie bevindt waarin u de mogelijke combinaties voldoende voor ons kunt beperken, dan is er een kleine kans om het wachtwoord te herstellen met behulp van een hulpprogramma dat zal proberen vele mogelijkheden uit te proberen volgens een door u verstrekt patroon. &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;Neem contact op met de ondersteuning&lt;/strong&gt;&lt;/a&gt; als u het hulpprogramma brute force wilt proberen.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>Hoe worden grote bestanden ondersteund?</value>
