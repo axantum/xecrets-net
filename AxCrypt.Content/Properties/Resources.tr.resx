@@ -1965,10 +1965,10 @@ Dikkat: Tehlikeli Bölge!</value>
     <value>Bütün bunlara rağmen, size yardımcı olabileceğimiz özel bir durum var. Eğer şifrenizi bildiğiniz düşünüyorsanız ama tam olarak doğru değil ise veya şifreniz 5 karakterden kısa ise birden fazla kombinasyonu otomatik olarak deneyecek özel bir program yazıp durumunuza adapte edebiliriz. Buna kaba kuvvet saldırısı denir.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>AxCrypt özellikle kaba kuvvet saldırılarına karşı tasarlandığı ve bu savunmayı da oldukça iyi yaptığı için bu sadece denenmesi gereken kombinasyon çok küçük, örneğin 1 milyondan az olduğunda işe yarar.</value>
+    <value>AxCrypt özellikle &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;kaba kuvvet&lt;/strong&gt;&lt;/a&gt; saldırılarına karşı tasarlandığı ve bu savunmayı da oldukça iyi yaptığı için bu sadece denenmesi gereken kombinasyon çok küçük, örneğin 1 milyondan az olduğunda işe yarar.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Eğer mümkün olan kombinasyonları yeterince daraltabileceğinizi düşünüyorsanız, bize sağladığınız şablona göre mümkün olan bütün kombinasyonları deneyebilen bir araç yardımı ile şifrenizin kurtarılma şansı az da olsa vardır. Eğer kaba kuvvet yöntemini denemek istiyorsanız lütfen desteğe başvurun.</value>
+    <value>Eğer mümkün olan kombinasyonları yeterince daraltabileceğinizi düşünüyorsanız, bize sağladığınız şablona göre mümkün olan bütün kombinasyonları deneyebilen bir araç yardımı ile şifrenizin kurtarılma şansı az da olsa vardır. Eğer kaba kuvvet yöntemini denemek istiyorsanız lütfen &lt;a href=\"mailto:support@axcrypt.net\"&gt;&lt;strong&gt;desteğe başvurun.&lt;/strong&gt;&lt;/a&gt;</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>Büyük dosya desteği nasıl?</value>

@@ -424,6 +424,9 @@ Per favore connettiti usando la stessa password che avevi già utilizzato.</valu
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Inserisci il codice sconto</value>
   </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Invia richiesta</value>
+  </data>
   <data name="ApplyNowLabel">
     <value>Applica ora</value>
   </data>
@@ -458,6 +461,9 @@ Gli aggiornamenti all'abbonamento verranno riportati qui in pochi minuti.</value
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>Non c'è bisogno di rispondere o fare qualcosa. Se non fai nulla, non verranno più inviate e-mail e il tuo account AxCrypt ID verrà eliminato definitivamente.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyButton" xml:space="preserve">
+    <value>Verifica ID AxCrypt</value>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
     <value>Ci hai fornito il tuo indirizzo e-mail durante l'installazione o l'utilizzo di AxCrypt, attraverso l'app o il sito. Ti abbiamo inviato un codice di verifica via e-mail, ma non l'hai ancora utilizzato. Se non verifichi immediatamente il tuo account AxCrypt ID utilizzando il codice di verifica ti rimuoveremo definitivamente dal nostro sistema.</value>
@@ -647,6 +653,273 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   </data>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} fatturati annualmente</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading1">
+    <value>&lt;h3&gt;1. Algoritmo di cifratura&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading2">
+    <value>&lt;h3&gt;2. Cifratura del noem del file&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading3">
+    <value>&lt;h3&gt;3. Cancellazione sicura&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading4">
+    <value>&lt;strong&gt;Attività malevola da terzi &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading2">
+    <value>&lt;strong&gt;Condivisione chiavi &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading3">
+    <value>&lt;strong&gt;Sicurezza del cloud&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading4">
+    <value>&lt;strong&gt;Disattivazione semplice&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_Heading1">
+    <value>Cos'è la crittografia e come funziona?</value>
+  </data>
+  <data name="Blog_ADGE_Title">
+    <value>Una guida completa alla crittografia</value>
+  </data>
+  <data name="Blog_ADSDE_Heading3">
+    <value>Cripta i tuoi file, cartelle e PDF sui tuoi dispositivi.</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SubHeading3">
+    <value>&lt;strong&gt;interferenza Wi-Fi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_Title">
+    <value>AxCrypt Mobile Encryption è finalmente qui!</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Va oltre la semplice sicurezza delle password&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text1">
+    <value>Di seguito alcuni dei problemi che l'igiene informatica intende risolvere:</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading1">
+    <value>&lt;strong&gt;Antivirus di alta qualità&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading1">
+    <value>Cos'è l'Igiene Informatica?</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading2">
+    <value>Alcuni dei problemi più comuni di igiene informatica:</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading3">
+    <value>Metodi per assicurarsi una buona Igiene Informatica</value>
+  </data>
+  <data name="Blog_CSFE_H1_Text1">
+    <value>Riconoscere quando è avvenuto un attacco informatico può essere più difficile per un dipendente che evitarle uno fin dall'inizio, ma ci sono alcuni segnali di allarme. I dipendenti dovrebbero essere formati costantemente sui segnali da ricercare se temono di aver subito un attacco.</value>
+  </data>
+  <data name="Blog_CWELTI_H5_Text1">
+    <value>Il termine "criptovaluta" deriva dai termini "crittografia" e "valuta". </value>
+  </data>
+  <data name="Blog_CWELTI_Heading1">
+    <value>Cos'è una criptovaluta?</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading2">
+    <value>&lt;strong&gt;Crittografia disco &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_Heading3">
+    <value>In che modo AxCrypt si differenzia da BitLocker e FileVault?</value>
+  </data>
+  <data name="Blog_DRATIUIN_Title">
+    <value>I dati memorizzati, in transito e in uso - in breve</value>
+  </data>
+  <data name="Blog_EAB_H1_Text4">
+    <value>Buona crittografia con AxCrypt!</value>
+  </data>
+  <data name="Blog_EAB_Text8">
+    <value>Una password rubata d'altra parte è relativamente banale da cambiare.</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH4_Text1">
+    <value>Nuove sfide per il nostro team e grandi novità per voi!</value>
+  </data>
+  <data name="Blog_EDIKPNY_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Il meglio del 2020&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EHI_Heading2">
+    <value>Perché è importante per le strutture sanitarie usare la crittografia?</value>
+  </data>
+  <data name="Blog_EIBM_H3_SubHeading2">
+    <value>&lt;strong&gt;Carte&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_SH2_Text1">
+    <value>Rende semplice e facile lo scambio di grosse quantità di dati. Assicura la sicurezza delle transazioni di e-commerce via Internet, per esempio rendendo possibile la trasmissione dei numeri delle carte di credito. Usa la funzionalità Master Key, che permette agli amministratori di recuperare i file degli altri membri della società, eliminando così il rischio di perdere l'accesso a file importanti quando gli impiegati perdono o lasciano le loro password.</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading3">
+    <value>&lt;strong&gt;Cifratura dei file in cloud e gestione password&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_Heading1">
+    <value>Informazioni introduttive sulla crittografia</value>
+  </data>
+  <data name="Blog_EIBM_Heading2">
+    <value>Come proteggere i tuoi dati?</value>
+  </data>
+  <data name="Blog_EIBM_Summary">
+    <value>Nel mondo della finanza, la sicurezza dei dati è una questione seria. La crittografia rende possibili diversi tipi di attività economiche che non sarebbero altrimenti possibili.</value>
+  </data>
+  <data name="Blog_EITPS_H2_SubHeading2">
+    <value>&lt;strong&gt;Riduce la produttività&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H2_SubHeading3">
+    <value>&lt;strong&gt;Funziona solo quando il server è inattivo&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading2">
+    <value>&lt;strong&gt;Accessibile da diversi dispositivi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_GAES256BEWA_H1_SubHeading2">
+    <value>&lt;strong&gt;La crittografia AES 256 bit con AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_Heading3">
+    <value>Alla AxCrypt</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SH3_Text1">
+    <value>Master Key è incredibilmente sicuro; puoi pensarlo come un sistema automatico di condivisione file con i manager aziendali. Grazie a questo sistema i supervisori possono ricevere i file dagli altri dipendenti, eliminando il rischio di perdere file importanti. Fintanto che i manager conservano un elenco delle passwords, nessuno documento verrà mai perso a seguito delle dimissioni o dimenticanze dei dipendenti. Gli utenti dell'azienda sono i soli a poter utilizzare la funzionalità Master key. Per dare un'occhiata agli altri vantaggi dell'abbonamento business  vai alla pagina: &lt;a href='https://axcrypt.net/information/features'&gt;click here&lt;/a&gt;. Maggiori informazioni sulla &lt;a href='https://www.axcrypt.net/blog/master-key'&gt; funzionalità Master key&lt;/a&gt; di AxCrypt la trovi qui</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Master key&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Accessibile su diversi dispositivi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H2_Text2">
+    <value>&lt;strong&gt;Puoi evitare sanzioni per mancato rispetto delle normative utilizzando la crittografia:&lt;/strong&gt; I dati riservati devono essere criptati secondo le normative sulla protezione dei dati,&lt;a href='https://www.lepide.com/blog/5-benefits-of-using-encryption-technology-for-data-protection/'&gt; inclusi il GDPR e il HIPAA &lt;/a&gt;(Health Insurance Portability and Accountability Act del 1996). IN caso di perdita o furto di un dispositivo o drive che contiene dati non criptati, la società incorre in sanzioni.</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>Quando conservi dati sensibili dalla tua azienda in cloud, la crittografia può ridurre significativamente il rischio di furto dei dati. </value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading1">
+    <value>&lt;h3&gt;2.La crittografia forte rimarrà il fattore chiave del software di crittografia per aziende&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HPDYMP_Heading2">
+    <value>Rischio connesso a dati non protetti</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text4">
+    <value>&lt;li&gt;Rifiuto del servizio&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text6">
+    <value>&lt;li&gt;Cryptojacking&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text8">
+    <value>&lt;li&gt;Exploit zero-day&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H1_Text1">
+    <value>Mentre ci adattiamo a un nuovo ambiente di lavoro che nessuno avrebbe mai immaginato, la pandemia ha sconvolto le organizzazioni e ha portato i responsabili delle risorse umane a ripensare a come svolgere le proprie mansioni. I professionisti delle risorse umane sono preoccupati non solo per la salute e il benessere dei loro dipendenti durante l'epidemia, ma anche per l'elaborazione dei documenti in modo sicuro e per dare conforto ai milioni di persone che sono state licenziate o che lavorano da remoto.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH4_Text1">
+    <value>Il reparto risorse umane può assistere l'azienda nella definizione e nell'implementazione delle restrizioni di accesso. Già prima dell'assunzione o dell'inserimento di un dipendente, il reparto risorse umane può stabilire i dati di cui avranno bisogno. Devono inoltre assicurarsi che, al termine del contratto, il dipendente non abbia accesso a queste informazioni.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading2">
+    <value>&lt;strong&gt;Elaborazione della politica &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading4">
+    <value>&lt;strong&gt;Controllo e accesso ai dati&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_Summary">
+    <value>Gli uffici HR sono responsabili di moltissime informazioni riservate, incluse le informazioni personali dei dipendenti, i dati di pagamento e altri informazioni che, se scoperte o divulgate, potrebbero arrecare danni significativi.</value>
+  </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>Importanza della sicurezza informatica nel settore delle risorse umane</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text2">
+    <value>La crittografia protegge i dati nei seguenti modi:</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text4">
+    <value>&lt;li&gt;Anche se i dati cadono nella mani sbagliate a causa di una violazione derivante da un errore dell'utente&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_Text2">
+    <value>&lt;li&gt;La proprietà intellettuale derivata dalla ricerca universitaria è molto preziosa.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_LYCWAR_Text13">
+    <value>Buona crittografia con AxCrypt!</value>
+  </data>
+  <data name="Blog_MDPNST_Heading2">
+    <value>Alcune minacce per i dispositivi mobile a cui far attenzione nel 2022 </value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;Le regole di gestione dati sono state violate&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH6_Text1">
+    <value>Adesso che i maggiori luoghi comuni sulla cifratura sono stati sfatati, non hai più scuse per non utilizzarla. AxCrypt è un software di facile utilizzo per criptare dati su dispositivi mobile, computer e portatili mentre i dati stessi vengono usati oppure sono conservati sul dispositivo o sono in transito verso altri dispositivi. AxCrypt offre anche diverse funzionalità studiate per soddisfare una vasta gamma di requisiti di sicurezza dei dati.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Prova un mese gratis, download per utenti Android o IOS:</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>Per la sicurezza informatica e le società in generale, gli ultimi due anni sono stati tutt'altro che tipici. </value>
+  </data>
+  <data name="Blog_MK_H1_SubHeading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Cos'è Master key?&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_MK_H1_SubHeading2">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Master key è sicura?&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_PECA_Heading1">
+    <value>La crittografia diventa semplice con AxCrypt</value>
+  </data>
+  <data name="Blog_PRAA_Heading2">
+    <value>&lt;h3&gt;Cambio Password&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SH3_Text1">
+    <value>Le password devono contenere lettere maiuscole e minuscole, numeri e caratteri speciali (come @, £, % e &amp;) e devono essere lunghe almeno dieci caratteri. Le aziende devono stabilire una politica di sicurezza delle password e aggiornarla frequentemente. Inoltre, ogni dipendente dell'azienda deve avere una propria password.</value>
+  </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Perché dovresti organizzare le password della tua azienda.</value>
+  </data>
+  <data name="Blog_SamePage_AxcryptRunning">
+    <value>Per la cifratura dei file la scelta migliore sarebbe AxCrypt, un software facile da imparare e utilizzare in team, che offre una crittografia a 256-bit e ti assicura un ottimo rapporto qualità/prezzo. Puoi semplicemente &lt;a href='https://www.axcrypt.net/blog/leaving-your-computer-with-axcrypt-running'&gt;lasciare che AxCrypt giri sul tuo computer&lt;/a&gt; e continuare la tua giornata, concentrandoti su altri compiti più importanti senza doverti preoccupare della sicurezza dei tuoi file e documenti.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Alcuni luoghi comuni sulla cifratura</value>
+  </data>
+  <data name="Blog_SSING_Summary">
+    <value>Mantenere la sicurezza dei dati diventa più importante man mano che aumentano i dati sensibili che teniamo sui nostri dispositivi mobili</value>
+  </data>
+  <data name="Blog_Support_ContactUs">
+    <value>&lt;i&gt;Vuoi saperne di più?&lt;/i&gt; Ogni settimana pubblichiamo informazioni interessanti. Sii curioso e dai un'occhiata al nostro blog &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt;  don’t forget to contact us at &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; or &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; if you have any questions! </value>
+  </data>
+  <data name="Blog_TAYBS_Heading2">
+    <value>Dai una sbirciatina al 2022 </value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>Quali dati dovrebbe criptare la tua azienda?</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>L'importanza di criptare tutti i dati dell'azienda</value>
+  </data>
+  <data name="Blog_TPTWHEG_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;1. Considera il tuo ambiente domestico&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_TSTE_H2_Text1">
+    <value>La maggior parte degli odierni algoritmi, protocolli e tecnologie di cifratura usano la crittografia AES 256-bit, che è tra &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;le tecniche di cifratura più sicure&lt;/a&gt; dopo la crittografia a 128-bit e a 192-bit.</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SH5_Text5">
+    <value>AxCrypt assicura che la tua azienda rispetti le normative come il Regolamento generale sulla protezione dei dati (GDPR).</value>
+  </data>
+  <data name="Blog_WAMHIHY_Title">
+    <value>Cos'è l'Affiliate Marketing e come può aiutarti?</value>
+  </data>
+  <data name="Blog_WCACT_H1_Text2">
+    <value>il 79% delle aziende hanno subito almeno una violazione dei dati in cloud nei 18 messi precedenti e il 43% hanno denunciato 10 o più violazioni in quel periodo.</value>
+  </data>
+  <data name="Blog_WCACT_H3_Text4">
+    <value>Migliore protezione contro l'accesso non autorizzato da parte di altri utenti di un cloud pubblico.</value>
+  </data>
+  <data name="Blog_WCACT_H4_SubHeading1">
+    <value>&lt;strong&gt;Sicurezza del cloud&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text3">
+    <value>La crittografia end-to-end ti restituisce il controllo e protegge i tuoi dati da ficcanaso e occhi indiscreti. La crittografia è il miglior modo per mettere al sicuro i tuoi dati da qualsiasi forma di accesso indesiderato. Utilizzando calcoli matematici che trasformano i dati in codice, il testo del file viene convertito in testo cifrato, che solo chi possiede la chiave speciale può decifrare. Il nostro sistema è facile da utilizzare, permette di semplificare le operazioni, garantisce il massimo controllo possibile e assicura che nessuno tranne te possa accedere alle tue informazioni personali, evitando violazioni di dati che potrebbero portare a grossi svantaggi.</value>
+  </data>
+  <data name="Blog_WTPI_Heading2">
+    <value>Libertà vs. controllo </value>
+  </data>
+  <data name="Blog_WTPI_Title">
+    <value>WikiLeaks e il potere dell'informazione</value>
+  </data>
+  <data name="Blog_ZTCS_Title">
+    <value>Sicurezza informatica Zero Trust</value>
   </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
@@ -1638,6 +1911,9 @@ il servizio personale diretto e il supporto sono in inglese.</value>
   <data name="DownloadTryCtaHeading">
     <value>Prova i nostri abbonamenti per un mese &lt;span&gt;gratuitamente...&lt;/span&gt;</value>
   </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>Puoi criptare e decriptare i file sul tuo telefono Android, iPhone o tablet da qualsiasi luogo e in qualsiasi momento. La crittografia mobile di AxCrypt supporta sia Android che iOS. AxCrypt supporta la crittografia dei file di Google Drive su iOS e Android. La crittografia in locale è disponibile per ora solo su Android. Altri cloud, come iCloud, DropBox, OneDrive e altri, saranno supportati nelle prossime versioni.</value>
+  </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Olandese)</value>
     <comment>The name of the Dutch language for selection.</comment>
@@ -1906,10 +2182,10 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
     <value>Detto questo, c'è un caso speciale in cui potremmo verosimilmente aiutarti. Se pensi di conoscere la tua password ma non del tutto, o se è lunga meno di 5 caratteri - possiamo scrivere e adattare un programma speciale che proverà automaticamente molte combinazioni. Questo è chiamato attacco di forza bruta.</value>
   </data>
   <data name="FaqForgotPasswordAnswer4">
-    <value>AxCrypt è progettato specificamente per contrastare gli attacchi di forza bruta e lo fa abbastanza bene, infatti l'attacco funziona solamente quando il numero di combinazioni da provare è molto piccolo, diciamo meno di un milione.</value>
+    <value>AxCrypt è progettato specificamente per contrastare gli attacchi di &lt;a href='/axcrypt-brute-force'&gt;&lt;strong&gt;forza bruta&lt;/strong&gt;&lt;/a&gt; e lo fa abbastanza bene, infatti l'attacco funziona solamente quando il numero di combinazioni da provare è molto piccolo, diciamo meno di un milione.</value>
   </data>
   <data name="FaqForgotPasswordAnswer5">
-    <value>Se pensi di essere in grado di restringere abbastanza il numero di possibili combinazioni per noi, allora c'è una piccola possibilità di recuperare la password usando un'utilità che tenterà di provare molte possibilità secondo lo schema da te fornito. Contatta l'assistenza se desideri provare l'utilità di forza bruta.</value>
+    <value>Se pensi di essere in grado di restringere abbastanza il numero di possibili combinazioni per noi, allora c'è una piccola possibilità di recuperare la password usando un'utilità che tenterà di provare molte possibilità secondo lo schema da te fornito. &lt;a href=\"mailto:support@axcrypt.net\"&gt;Contatta l'assistenza&lt;/strong&gt;&lt;/a&gt; se desideri provare l'utilità di forza bruta.</value>
   </data>
   <data name="FaqHowLargeFileSupport">
     <value>Come vengono supportati i file di grandi dimensioni?</value>
@@ -2429,6 +2705,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>Il tipo di registro selezionato non è valido.</value>
   </data>
+  <data name="GetStartDownloadAppText">
+    <value>Scarica l'App</value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Accedi ai file protetti</value>
   </data>
@@ -2443,6 +2722,21 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Usa l'app con il tuo AxCrypt ID. è necessario un abbonamento Premium  per usare entrambe le app Android e iOS. Quando crei un nuovo AxCrypt ID otterrai automaticamente una prova Premium di 30 giorni.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Come &lt;span&gt;Usare&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;Installare AxCrypt&lt;/span&gt; and impostare il tuo AxCrypt ID</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Aggiungi o seleziona un contatto.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Effettua il login per accedere alla gestione password</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>Reset &lt;span&gt;Password&lt;/span&gt;</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Accesso semplice alle password</value>
@@ -2615,6 +2909,9 @@ Effettua il backup di tutti i tuoi file importanti - protetti e senza protezione
   </data>
   <data name="GovernmentLinkLabel">
     <value>Governo </value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Inizia</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Guide</value>
@@ -3950,6 +4247,27 @@ Questo programma è autorizzato secondo l'accordo.
     <value>Ora sei disiscritto dalle mail riguardanti notizie e informazioni</value>
     <comment>The main message displayed when unsubscribed</comment>
   </data>
+  <data name="Meta-Description-Aboutus">
+    <value>Scopri di più sul nostro software semplice, affidabile e pluripremiato e sulla nostra vision.</value>
+  </data>
+  <data name="Meta-Description-Legal">
+    <value>Proteggi e metti al sicuro i tuoi contratti, le informazioni sui clienti, gli IP e altri documenti molto importanti che sono più a rischio di violazione.</value>
+  </data>
+  <data name="Meta-Keywords-Financial">
+    <value>la crittografia dei dati finanziari, proteggere i documenti più importanti, proteggere le informazioni finanziarie, proteggere</value>
+  </data>
+  <data name="Meta-Keywords-Legal">
+    <value>crittografia per l'ambito legale, per gli studi legali, per le leggi adottate dal paese</value>
+  </data>
+  <data name="Meta-Title-Features">
+    <value>Caratteristiche di AxCrypt | Impara a conoscere il nostro software</value>
+  </data>
+  <data name="Meta-Title-Premium">
+    <value>AxCrypt Premium | Metti al sicuro i tuoi file su Windows, Mac, Android e iPhone</value>
+  </data>
+  <data name="Meta-Title-Tech">
+    <value>AxCrypt Tech | La crittografia end-to-end a 256-bit assicura la sicurezza in ambito tecnico</value>
+  </data>
   <data name="MetadataRetentionLabel">
     <value>Conservazione dei metadati</value>
   </data>
@@ -4770,8 +5088,23 @@ HubSpot è una soluzione software integrata che copre vari aspetti delle nostre 
   <data name="PrivacyPolicyLinkLabel">
     <value>Informativa sulla privacy</value>
   </data>
+  <data name="ProductBusinessHighlights1" xml:space="preserve">
+    <value>Condividere i file con il resto del team è  estremamente facile grazie alla nostra funzione di cifratura dei file  in cloud e condivisione delle chiavi per i file in loco. Questo ti permette di rispettare le normative sulla protezione dei dati e di proteggere i tuoi file da costose violazioni dei dati.</value>
+  </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Una cifratura più forte con &lt;span&gt; l'AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Prodotto e funzionalità troppo complicati per me</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Se hai bisogno di condividere file protetti con altre persone, hai a disposizione la funzionalità di condivisione delle chiavi, anche con accesso alla cifratura dei file nei cloud Dropbox, Google Drive, ecc. Con la app AxCrypt, puoi criptare e decriptare i file sul tuo telefono, da qualsiasi luogo e in qualsiasi momento.</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Una cifratura più forte con &lt;span&gt; l'AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Metti al sicuro i file online con &lt;span&gt;la cifratura dei file in cloud&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>E molto altro ancora...</value>
@@ -5971,6 +6304,9 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Il tuo abbonamento si rinnoverà il &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>Puoi cancellare il tuo abbonamento in ogni momento!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Il tuo abbonamento AxCrypt Premium è stato cancellato.</value>
