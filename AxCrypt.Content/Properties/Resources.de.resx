@@ -650,6 +650,15 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ADGE_H3_Text1">
     <value>Um mit der Verschlüsselung zu beginnen, müssen Sie die Daten sammeln, die Sie verschlüsseln möchten. Der Algorithmus verwendet dann den Verschlüsselungsschlüssel, um die Daten in der Eingabe zu ändern und das Ergebnis zu senden. Die Ausgabe wäre ein verschlüsselter Text, der nur von der Person mit dem Schlüssel gelesen werden könnte; Sie könnten dann die Ausgabe über ein beliebiges Medium an die zweite Partei übertragen oder die verschlüsselten Daten für die zukünftige Verwendung aufbewahren. Schlüssel werden normalerweise mit Zufallszahlengeneratoren oder Computeralgorithmen generiert.&lt;br/&gt;</value>
   </data>
+  <data name="Blog_ADGE_H4_SubHeading2">
+    <value>&lt;strong&gt;Schlüsselfreigabe &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading3">
+    <value>&lt;strong&gt;Cloud-Sicherheit&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading4">
+    <value>&lt;strong&gt;Einfache Stilllegung&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ADGE_Heading1">
     <value>Was ist Verschlüsselung und wie funktioniert sie?</value>
   </data>
@@ -662,11 +671,35 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ADSDE_Conclusion_Text2">
     <value>AxCrypt bietet eine 256-Bit-Verschlüsselung und wir stellen sicher, dass niemand jemals Zugriff auf Ihre verschlüsselten Dateien erhält, solange Sie die Kontrolle über Ihren eigenen Schlüssel haben.</value>
   </data>
+  <data name="Blog_ADSDE_H2_SH1_Text2">
+    <value>Gründe für Cyberangriffe sind Aufklärung, Spionage, um sich einen unfairen Wettbewerbsvorteil zu verschaffen, und intellektuelle Herausforderungen. Finanziell motivierte Cyberkriminelle streben nach finanziellem Gewinn durch Datendiebstahl oder Geschäftsunterbrechungen. Ebenso werden die persönlich motivierten, wie aktuelle oder ehemalige Mitarbeiter, die Vergeltung suchen, auch auf Geld und Daten abzielen.</value>
+  </data>
+  <data name="Blog_ADSDE_H3_Text1">
+    <value>Der Passwortschutz Ihres Geräts reicht nicht aus, um Ihre Daten zu schützen. Die Verschlüsselung Ihrer Daten mit einer Dateikennwortschutzsoftware stellt sicher, dass nur Personen mit dem eindeutigen Schlüssel Zugriff auf Ihre Dateien haben. Jeder, der die Dateien oder PDF-Dateien sehen möchte, muss den eindeutigen Schlüssel kennen, den Sie zum Schutz der Dateien verwendet haben.</value>
+  </data>
   <data name="Blog_ADSDE_H3_Text2">
     <value>Sie müssen sich fragen, wie Sie eine PDF-Datei, Ordner und andere Dokumente mit einem Passwort schützen können? Keine Sorge, mit AxCrypt können Sie PDF-Dokumente und andere Dateitypen schützen. Erstellen Sie mit dem AxCrypt-Passwortgenerator sichere Passwörter, die von niemandem gehackt werden können. Für weitere Informationen &lt;a href= 'https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt; watch our YouTube tutorial &lt;/a&gt;</value>
   </data>
+  <data name="Blog_ADSDE_Heading3">
+    <value>Verschlüsseln Sie Ihre Dateien, Ordner und PDFs auf Ihren Geräten.</value>
+  </data>
   <data name="Blog_AIS_Conclusion_Heading">
     <value>AxCrypt in Kürze</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SubHeading3">
+    <value>&lt;strong&gt;WLAN-Störungen&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H2_Text6">
+    <value>AxCrypt wurde in den letzten sechs Jahren und auch in diesem Jahr vom PC Magazine als "Die beste Verschlüsselungssoftware der Welt" ausgezeichnet und verfügt über eine globale Präsenz mit über &lt;a href='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium '&gt; 20 million downloads &lt;/a&gt; AxCrypt bietet eine starke Verschlüsselung mit 256-Bit-Verschlüsselung, um Ihre Daten in den drei Phasen der Daten zu sichern. ruhende Daten, bei der Übertragung und im Gebrauch. Darüber hinaus bietet es seinen Benutzern einen Passwortverwaltungsgenerator, der sicherstellt, dass ihre Passwörter so sicher wie möglich sind. Darüber hinaus bietet AxCrypt ein Collaboration-Tool, mit dem Benutzer gesicherte Dateien und Daten mit anderen AxCrypt-Benutzern teilen können.</value>
+  </data>
+  <data name="Blog_AMEFH_SH1_Text1">
+    <value>Die mobile Verschlüsselung geht über ein normales Passwort für den Sperrbildschirm hinaus. Es ist eine zentrale Anlaufstelle, um alle Ihre persönlichen Informationen und Daten auf Ihren Mobiltelefonen vor neugierigen Blicken zu schützen oder wenn Ihr Mobiltelefon verloren geht oder gestohlen wird. Die Verschlüsselung speichert die Informationen Ihres Telefons in einem unlesbaren, durcheinandergebrachten Format, das nur mit den richtigen Anmeldeinformationen gelesen werden kann. Dies bedeutet, dass, wenn Ihr Telefon in die falschen Hände gerät, niemand die Daten entschlüsseln kann, es sei denn, er kennt Ihr Passwort.</value>
+  </data>
+  <data name="Blog_AMEFH_Summary">
+    <value>In diesem digitalen Zeitalter verstehen wir, wie wichtig es ist, Daten zu schützen.Daher freuen wir uns, Ihnen zu Beginn des neuen Jahres mitteilen zu können, dass AxCrypt nach intensiver Entwicklung endlich die mobile Verschlüsselungsfunktion für Geschäfts- und Premium-Benutzer eingeführt hat.</value>
+  </data>
+  <data name="Blog_AMEFH_Title">
+    <value>AxCrypt Mobile Verschlüsselung ist endlich da!</value>
   </data>
   <data name="Blog_AOVO_H2_Text5">
     <value>&lt;li&gt;Der Masterdateischlüssel, verschlüsselt mit Ihrem öffentlichen Freigabeschlüssel.&lt;/li&gt;</value>
@@ -767,6 +800,15 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_CWELTI_Conclusion_H1_Text4">
     <value>Da immer mehr Menschen Kryptowährungen verwenden, wird ein größerer Prozentsatz der Bevölkerung verstehen, wie wertvoll Kryptographie mit öffentlichen Schlüsseln und Kryptowährungen sind. Ein Teil des Grundes, warum all diese Kryptographietechnologien entwickelt werden, liegt darin, dass ein erhöhter Bedarf besteht, Geld sicher im Internet zu speichern, zu senden und zu empfangen. Online-Banking und E-Commerce treiben diesen Bedarf voran. Geschäft und Bankwesen sind beide effizienter, wenn Geld sicher online überwiesen werden kann. Die Kryptographie mit öffentlichen Schlüsseln trägt viel dazu bei, den Austausch und die Speicherung von digitalem Geld sicherer zu machen. Da Public-Key-Kryptographie und Kryptowährungen dazu beitragen, die Verwendung und Speicherung von digitalem Geld zu verbessern, ist es sehr wahrscheinlich, dass Kryptowährungen in den nächsten Jahrzehnten weiter an Popularität gewinnen werden.</value>
   </data>
+  <data name="Blog_CWELTI_H5_Text1">
+    <value>Das Wort "Kryptowährung" leitet sich von den Wörtern "Kryptographie" und "Währung" ab.</value>
+  </data>
+  <data name="Blog_CWELTI_H5_Text2">
+    <value>Kryptographie impliziert die Verwendung verschiedener Verschlüsselungstechniken, die zur Sicherung eines Netzwerks verwendet werden. Es ist im Wesentlichen die Praxis, bestimmte Daten oder Informationen zu verschlüsseln, damit sie vor Dritten geheim gehalten werden können. Indem Sie Ihre privaten Informationen in einen Geheimcode umwandeln, der die wahre Bedeutung der Informationen verbirgt, machen Sie es einem Eindringling fast unmöglich, sie in Klartext zu entschlüsseln. Wenn eine verschlüsselte Nachricht von einer nicht autorisierten Entität abgefangen wird, muss der Inflator die Variablen erraten, die zum Verschlüsseln der Nachricht verwendet wurden. Die Zeit und die Schwierigkeit, diese Informationen zu erraten, machen die Verschlüsselung zu einem so wertvollen Sicherheitstool.</value>
+  </data>
+  <data name="Blog_CWELTI_Heading1">
+    <value>Was ist Kryptowährung?</value>
+  </data>
   <data name="Blog_CWELTI_Summary">
     <value>Eine Kryptowährung oder Krypto ist dezentrales digitales Geld, das auf der Blockchain-Technologie basiert. Kryptowährung ist ein digitales Asset, das auf einem Netzwerk basiert, das über eine große Anzahl von Computern verteilt ist.</value>
   </data>
@@ -799,6 +841,21 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EAB_Text8">
     <value>Ein gestohlenes Passwort hingegen ist vergleichsweise trivial zu ändern.</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH2_Text1">
+    <value>Unsere Website wurde erweitert und leicht modifiziert, um Ihnen das Klicken und Suchen nach Informationen zu erleichtern. Wir freuen uns auch sehr, Ihnen verschiedene Sprachen zur Verfügung stellen zu können. AxCrypt ist in 12 Sprachen verfügbar und zählt.</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH4_Text1">
+    <value>Neue Herausforderungen für unser Team und spannende Neuigkeiten für Sie!</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text2">
+    <value>Blogbeiträge auf Englisch und Französisch verfügbar</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text3">
+    <value>Neue Sprachfunktionen wie Chinesisch</value>
+  </data>
+  <data name="Blog_EDIKPNY_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Das Beste von 2020&lt;/h2&gt;</value>
   </data>
   <data name="Blog_EFPECT_H1_SH1_Text1">
     <value>Bei Lösegeldangriffen stehlen Hacker die Daten eines Unternehmens und verschlüsseln sie dann, damit sie nicht mehr darauf zugreifen können. Cyberkriminelle erpressen dann die Firma, indem sie drohen, ihre vertraulichen Informationen preiszugeben, sofern kein Lösegeld gezahlt wird. Im Jahr 2017 haben Ransomware-Angriffe erheblich zugenommen. Im gegenwärtigen Umfeld wird die Bedrohung durch Ransomware jedoch mit dem technologischen Fortschritt immer schwerwiegender.</value>
@@ -893,6 +950,15 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;AES 256 Bit Verschlüsselung mit AxCrypt&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_HAPYD_H1_text1">
+    <value>Das Verbot der Ende-zu-Ende-Verschlüsselung könnte Teil einer neuen Strafverfolgung sein, die von bestimmten Regierungen ergriffen wird, um illegale Verhaltensweisen zur Gewährleistung der nationalen Sicherheit offenzulegen. Technologieunternehmen müssten daher ruhende Behördendaten als Daten im Transit bereitstellen. Dazu gehören Informationen, die in einer Cloud gespeichert sind, Nachrichten, Anrufe, E-Mails, Videokonferenzen usw. Ohne spezifisches Wissen darüber, wie sie ihre Privatsphäre schützen und eine sichere Art der Kommunikation gewährleisten können, wären normale Bürger die ersten Opfer dieses autoritativen Überwachungssystems.</value>
+  </data>
+  <data name="Blog_HAPYD_H2_text3">
+    <value>Heute verlassen sich die meisten von uns auf diese digitale Welt, da ein großer Teil unseres Lebens online stattfindet. Neue Technologien bringen zweifellos eine Vielzahl von Vorteilen mit sich, aber Sie müssen sich auch ihrer Nachteile bewusst sein und folglich die Augen offen halten, um Ihre Privatsphäre und Sicherheit zu schützen. Alle Ihre Aktivitäten hinterlassen eine Spur von Daten. Sie werden von Dienstleistern gesammelt, gespeichert und möglicherweise weitergegeben.</value>
+  </data>
+  <data name="Blog_HAPYD_Heading3">
+    <value>Hier bei AxCrypt</value>
+  </data>
   <data name="Blog_HAVTYB_H1_SH3_Text1">
     <value>Hauptschlüssel ist unglaublich sicher; Es kann als automatisches Dateifreigabesystem mit den Managern des Unternehmens betrachtet werden. Geschäftsvorgesetzte können dank dieser Funktion Dateien von anderen Mitarbeitern abrufen. Dies eliminiert die Möglichkeit, wichtige Dateien zu verlieren. Solange die Geschäftsleiter die Passwörter protokollieren, gehen niemals Papiere verloren, wenn Mitarbeiter kündigen oder sie vergessen. Geschäftsbenutzer sind die einzigen, die die Hauptschlüsselfunktionalität nutzen können. So zeigen Sie andere Vorteile des Business-Abonnements an &lt;a href='https://axcrypt.net/information/features '&gt;click here&lt;/a&gt;. Erfahren Sie mehr über die&lt;a href='https://www.axcrypt.net/blog/master-key '&gt; master key function&lt;/a&gt; von AxCrypt hier</value>
   </data>
@@ -910,6 +976,12 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_HAVTYB_Summary">
     <value>Wenn sensible Daten aus Ihrem Unternehmen in der Cloud gespeichert sind, kann die Verschlüsselung das Risiko eines Datendiebstahls erheblich senken.</value>
+  </data>
+  <data name="Blog_HPDYMP_H3_Text2">
+    <value>Probieren Sie eine einmonatige kostenlose Testversion aus &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Android&lt;/a&gt; oder &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;iOS&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_HPDYMP_Heading2">
+    <value>Risiko im Zusammenhang mit ungeschützten Daten</value>
   </data>
   <data name="Blog_HPYBFC_Conclusion_Text2">
     <value>Zusammenfassend lässt sich sagen, dass Verschlüsselung für die heutige Internetsicherheit von grundlegender Bedeutung ist. Es ist ein äußerst kompliziertes Thema, aber wir bei AxCrypt sind stolz darauf, den Prozess für alle einfach und benutzerfreundlich zu gestalten. Sichern Sie Ihre Programme und Betriebssysteme mit Verschlüsselung. Schauen Sie sich unsere verschiedenen &lt;a href='/pricing' style='font-weight: 800;'&gt;subscriptions and features&lt;/a&gt;.</value>
@@ -1046,6 +1118,15 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_MEWRECY_H2_SubHeading3">
     <value>&lt;strong&gt;WLAN-Störungen&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_MK_H1_SubHeading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Was ist Hauptschlüssel?&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_MK_H1_SubHeading2">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Ist der Hauptschlüssel sicher?&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_MK_Summary">
+    <value>Die heutigen Unternehmen sind durch ständige Veränderungen in politischen, sozialen, finanziellen und technologischen Bereichen gekennzeichnet. Unternehmen agieren in einem sehr dynamischen und unvorhersehbaren Umfeld.</value>
+  </data>
   <data name="Blog_PECA_H1_Text1">
     <value>AxCrypt wurde vor über 15 Jahren mit dem Ziel gegründet, Datensicherheit auf zuverlässige und einfachste Weise zu gewährleisten. Nach all den Jahren ist das Unternehmen immer noch für die benutzerfreundlichste und einfachste Software bekannt und damit mit über 20 Millionen Downloads weltweit das beliebteste Verschlüsselungsprogramm der Welt!</value>
   </data>
@@ -1094,6 +1175,18 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_SVL_Title">
     <value>Abonnement vs. Lizenz</value>
   </data>
+  <data name="Blog_TAYBS_H1_SH3_Text1">
+    <value>Wir arbeiten ständig daran, unsere Software benutzerfreundlicher zu gestalten. Wir haben die Benutzeroberfläche für Windows, Mac, iOS und Android aktualisiert und unsere mobile App verbessert, um Benutzern den Zugriff auf verschlüsselte Daten von überall und jederzeit zu erleichtern.&lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Download now for Android &lt;/a&gt; and &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;Download now for iOS &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SH6_Text1">
+    <value>Wir haben auch unser Branchensegment für 2021 angekündigt, das den Benutzern hilft, besser zu verstehen, wie wir verschiedene Branchen bedienen. Wir verstehen, wie wichtig es ist, ein Gefühl für die Erfahrung von AxCrypt von jemandem zu bekommen, der es zuvor verwendet hat. Aus diesem Grund haben wir dieses Jahr zusätzliche Testimonials hinzugefügt, damit Sie mehr über unsere App erfahren können.&lt;a href='ttps://www.axcrypt.net/industries'&gt; You may get more information here&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_Heading2">
+    <value>Kleiner Vorgeschmack auf 2022</value>
+  </data>
+  <data name="Blog_TAYBS_Title">
+    <value>Toast auf ein weiteres Jahr der Sicherung!</value>
+  </data>
   <data name="Blog_TIEDTC_H1_SH1_Text1">
     <value>Mitarbeiterinformationen müssen in der Zeit, in der wir leben, geschützt werden, die auf die Auswirkungen einer globalen Pandemie folgt, die viele Organisationen dazu veranlasst hat, sich auf eine neue Art von Arbeitsumgebung einzustellen. Jedes Unternehmen, es sei denn, es handelt sich um ein Einzelunternehmen, hat Mitarbeiter und damit viele sensible Daten, die geschützt werden müssen. Persönliche und finanzielle Informationen, Arbeitszeitnachweise und Zahlungen für Mitarbeiter, Verträge und Krankschreibungen sind nur einige Beispiele für sensible Daten. Der Schutz solcher Informationen vor Unbefugten sollte für jedes Unternehmen oberste Priorität haben, insbesondere wenn sie an externe Benutzer weitergegeben werden. Informationen wie diese könnten für Hacker von Vorteil sein. Die interne Sicherung dieser Daten vor öffentlicher Kontrolle ist ebenso wichtig, wie wichtige Organisationen einem erheblichen Expositionsrisiko ausgesetzt sind, insbesondere durch ihr Personal.</value>
   </data>
@@ -1111,6 +1204,30 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_TIEDTC_Title">
     <value>Die Bedeutung der Verschlüsselung aller Daten im Unternehmen</value>
+  </data>
+  <data name="Blog_TPTWHEG_H1_Text3">
+    <value>&lt;ul&gt;&lt;li&gt;Setzen Sie Erwartungen mit denen zu Hause, wenn Sie unterbrochen werden können, warum Privatsphäre wichtig ist, aber denken Sie daran, dass es Ihre Verantwortung ist, alle zu schützen&lt;/li&gt;&lt;li&gt;Bemühen Sie sich nach besten Kräften, Arbeit und Privatleben zu trennen, führen Sie vertrauliche Gespräche mit Mitarbeitern usw. in einem separaten Raum.&lt;/li&gt;&lt;li&gt;Egal wie frustriert Sie sein mögen, tappen Sie nicht in die Falle, vertrauliche Angelegenheiten mit denen zu Hause zu besprechen, anstatt mit dem Arbeitskollegen, dem Sie sich normalerweise anvertrauen würden.&lt;/li&gt;&lt;li&gt; Wenn möglich, haben Sie einen separaten, ruhigen Raum für die Arbeit zu Hause und achten Sie auf die Arbeit im Garten, zäune haben Ohren.&lt;/li&gt;&lt;li&gt;Machen Sie sich bewusst, mit welchen persönlichen Daten Sie sowohl von zu Hause als auch von Ihrer Arbeit aus in Kontakt stehen. Wenn Sie sich dessen bewusst sind, können Sie sich dessen bewusst sein.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="Blog_TPTWHEG_H2_Text3">
+    <value>Es ist wichtig, dass Sie diese Risiken ernst nehmen, Informationen, die zu Hause bleiben sollten, sollten nur dort bleiben und auch für die Arbeit.</value>
+  </data>
+  <data name="Blog_TPTWHEG_H2_text4">
+    <value>&lt;ul&gt;&lt;li&gt;Seien Sie sich Ihrer Umgebung und dem, was Sie senden, sehr bewusst. Wenn Sie in einem gemeinsam genutzten Bereich arbeiten müssen, stellen Sie sicher, dass Sie keine Bilder, Briefe oder andere Dinge freilegen, die ein Fremder nicht sehen soll&lt;/li&gt;&lt;li&gt;Berücksichtigen Sie die Geräte in Ihrem Zuhause, arbeiten Sie nicht in der Nähe von Familienmitgliedern, die Anrufe tätigen, arbeiten Sie nicht in der Nähe von Heimassistenten und stellen Sie sicher, dass Ihre Konferenzsitzungen nach Abschluss geschlossen sind.&lt;/li&gt;&lt;li&gt;Denken Sie unbedingt an die Hintergründe, wenn Sie so stolz auf Ihr Homeoffice sind, dass Sie es auf Facebook posten müssen, stellen Sie sicher, dass nichts in diesem Bild ist, das Ihre oder die Daten einer anderen Person preisgibt&lt;/ li&gt;&lt;li&gt;Bedenken Sie, dass Ihr Arbeitgeber Sie überwachen könnte, alles von Mikrofonen, worauf Sie zugreifen, Tastenanschlägen, Ihrer Kamera, wie lange Ihre Sitzungen dauern, Screenshots, Webprotokoll kann überwacht werden, und obwohl dies aus Bewertungsperspektive besorgniserregend sein kann, kann es bei der Arbeit von zu Hause aus auch personenbezogene Daten erfassen.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="Blog_TPTWHEG_H3_text1">
+    <value>Nachdem versprochen wurde, dass dies kein Techno-Blog sein wird, gibt es einige Überlegungen außerhalb Ihres Laptops, die Sie nur beachten müssen. Wenn Sie im Büro arbeiten, hat Ihr Sicherheitsteam Richtlinien eingerichtet, Netzwerke geschützt, bösartige E-Mails gefiltert und alle Arten von cleveren Sicherheitssystemen angewendet, um Bedrohungen für das Unternehmen zu reduzieren.</value>
+  </data>
+  <data name="Blog_TPTWHEG_H3_text3">
+    <value>&lt;ul&gt;&lt;li&gt;Wenn Ihr Arbeitgeber ein VPN bereitstellt (eine Möglichkeit, seine Sicherheit auf Ihre Umgebung auszudehnen), verwenden Sie es religiös. Wir wissen, dass es langweilig ist, aber lesen Sie die Sicherheits- und Governance-Richtlinien, die sie Ihnen zur Verfügung stellen, und halten Sie sich daran&lt;/li&gt;&lt;li&gt;Seien Sie besonders wachsam, wenn Sie E-Mails jeglicher Art öffnen. Überlegen Sie, ob es legitim aussieht, es gab mehrere Betrugsfälle, bei denen festgestellt wurde, dass aufgrund der Sperrung nicht standardmäßige Prozesse übernommen wurden und beispielsweise Gelder nur dieses eine Mal auf ein anderes Konto überwiesen werden müssen&lt;/li&gt;&lt;li&gt;· Wenn Sie an Ihrem Heim-PC arbeiten, gehen Sie noch sorgfältiger mit Arbeitsdaten und Arbeits-E-Mails um. Seien Sie auf keinen Fall versucht, Arbeitsdaten in persönlichen Cloud-Konten zu speichern, und speichern Sie keine persönlichen Daten in Arbeitsspeicher-Ablagesystemen.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="Blog_TPTWHEG_H4_text1">
+    <value>Verschlüsselung kann ein sehr kompliziertes Thema sein. Kurz gesagt, Sie verwandeln Klartext in einen Chiffriercode, den niemand ohne einen speziellen Schlüssel zum Entschlüsseln lesen kann. Auf diese Weise können abgefangene Nachrichten oder gestohlene Informationen von Dritten nicht verstanden werden.</value>
+  </data>
+  <data name="Blog_TPTWHEG_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;1. Betrachten Sie Ihre häusliche Umgebung&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_TPTWHEG_Text3">
+    <value>Wenn Sie zu Hause arbeiten, müssen Sie jedoch Ihre Arbeitsweise ändern. Einer dieser Bereiche ist der Schutz Ihrer eigenen und anderer personenbezogener Daten. Bei Privacy1 möchten wir die Dinge einfach halten und Ihnen helfen, die Risiken auf prägnante Weise zu verstehen. Daher haben wir eine Liste der Top-3-Tipps zum Datenschutz für Heimarbeiter zusammengestellt, um Ihre Familie, Kunden und Arbeitgeber zu schützen. Keine Sorge, es ist kein technisches Blabla in Bezug auf Cybersicherheit, nur ein paar Punkte, die jeder in allen Arten von Jobs nutzen kann, um bei der Arbeit zu Hause sicher zu sein.</value>
   </data>
   <data name="Blog_TSTE_H1_Text2">
     <value>Darüber hinaus bevorzugt AES die Anordnung von Dingen in einem 4 x 4-Raster für ein 128-Bit, was 16 Bit in einem 4 x 4-Raster entspricht, im Gegensatz zu einer langen Bitreihe, wie es die meisten Chiffren tun könnten. AES ersetzt Bytes, verschiebt Zeilen und mischt Spalten aus einem einfachen Text, indem es einen Teil seines Schlüssels verwendet.</value>
@@ -1139,6 +1256,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WAMHIHY_Summary">
     <value>Affiliate-Marketing beinhaltet die Werbung für ein Produkt oder eine Dienstleistung über einen Blog, Social-Media-Plattformen oder eine Website. Wenn jemand etwas über den eindeutigen Link kauft, der mit seiner Empfehlung verknüpft ist (z. B. Empfehlungscode), erhält der Partner eine Provision.</value>
   </data>
+  <data name="Blog_WAMHIHY_Title">
+    <value>Was ist Affiliate-Marketing und wie kann es Ihnen helfen?</value>
+  </data>
   <data name="Blog_WCACT_H1_Text2">
     <value>79% der Unternehmen haben in den letzten 18 Monaten mindestens einen Verstoß gegen Cloud-Daten festgestellt, und 43% haben in diesem Zeitraum 10 oder mehr Verstöße gemeldet.</value>
   </data>
@@ -1156,6 +1276,21 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WENTI_H4_Text2">
     <value>&lt;strong&gt;Passwort-Manager&lt;/ strong&gt; - Mit der AxCrypt Passwort-Manager-Funktion können Sie alle Ihre Passwörter und Codes sicher in unserer Cloud speichern. Für weitere Informationen, &lt;a href='https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt;watch our tutorial&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_WENTI_H4_Text5">
+    <value>&lt;strong&gt;Cloud-Speicher&lt;/strong&gt; - Mit AxCrypt ist es sehr einfach, Datenschutz in der Cloud zu erreichen. AxCrypt findet automatisch, welche Cloud-Speicherdienste auf Ihrem Computer installiert sind, und erstellt dort einen AxCrypt-Ordner. Wir machen es Ihnen leicht, die Dateien in diesen Ordnern automatisch anzuzeigen und zu sichern.</value>
+  </data>
+  <data name="Blog_WSPPI_H2_Text2">
+    <value>Privatsphäre ist eine soziale Norm. Wir geben Passwörter in unsere Geräte und Schlösser an Badezimmertüren ein, um unsere Privatsphäre zu schützen, und sogar Bürger, die sagen, dass sie sich nicht darum kümmern, verwenden sie, um zu verhindern, dass Menschen in ihr Privatleben eindringen. Die einzigen Menschen, die Privatsphäre suchen, sind per Definition schlechte Menschen. Trotzdem haben wir als Menschen, nicht nur Terroristen und Kriminelle, wir alle — Dinge zu verbergen. Wir alle brauchen private Momente, die wir aus hartnäckigen, eindringlichen und neugierigen Blicken heraushalten können.</value>
+  </data>
+  <data name="Blog_WSPPI_H2_Text3">
+    <value>Personenbezogene Daten betreffen fast alles, einschließlich der Nachrichten und Inhalte, die wir im Internet sehen. Ohne das Wissen, wofür Daten verwendet werden, sind wir in der heutigen Welt praktisch hilflos. Das Internet sollte ein Werkzeug der Befreiung und Demokratisierung sein, kann aber auf beispiellose Weise genutzt werden, um eine wahllose Massenüberwachung zu ermöglichen. Ein Mangel an Privatsphäre und blühende Massenüberwachung gestalten eine Gesellschaft um, die Konformität, Gehorsam und Unterwerfung hervorbringt. Stimmen Sie nicht zu, sich zu einer harmlosen, uninteressanten und nicht bedrohlichen Person zu machen, um keine Angst vor Menschen zu haben, die wissen, was Sie tun.</value>
+  </data>
+  <data name="Blog_WSPPI_H4_Text3">
+    <value>Datenschutzrechte halten Gruppen davon ab, personenbezogene Daten für ihre eigenen Ziele zu verwenden. Auch Unternehmen stürmen auf die Bühne. Indem sie wissen, woran Kunden interessiert sind, passen sie ihre Werbekampagnen an verschiedene Zielgruppen an, die Sie auf personalisierte Weise ansprechen, um den Konsum der Kunden zu steigern.</value>
+  </data>
+  <data name="Blog_WSPPI_Text1">
+    <value>Privatsphäre ist ein Grundrecht, das Teil liberaler Demokratien und Freiheit ist. Es sollte um jeden Preis geschützt werden. Leider gibt es viele Leute da draußen, die böswillige Zwecke verfolgen, und die Datenbanken, die Ihre privaten Informationen enthalten, sind eine perfekte und effiziente Möglichkeit, Ihre Schwachstellen kennenzulernen. Zum Schutz Ihrer sensiblen Informationen lernen und erwerben Sie Wissen darüber, was personenbezogene Daten eigentlich sind, warum sie geschützt werden und wie Sie strenge Datenschutzrechte durchsetzen können.</value>
   </data>
   <data name="Blog_WTPI_Conclusion_Text3">
     <value>Die Ende-zu-Ende-Verschlüsselung gibt Ihnen die Kontrolle zurück und schützt Ihre Daten vor Schnüfflern und neugierigen Blicken. Verschlüsselung ist bisher der beste Weg, um Ihre Daten vor unerwünschten Zugriffen jeglicher Art zu schützen. Indem Sie Klartext verwenden und mathematische Berechnungen verwenden, um Daten in Code umzuwandeln, werden sie in Chiffretext konvertiert. Nur diejenigen, die über den speziellen Schlüssel verfügen, können Ihre Dateien entschlüsseln. Unser benutzerfreundliches System ermöglicht eine einfache Bedienung, garantiert höchstmögliche Kontrolle und stellt sicher, dass niemand außer Ihnen auf Ihre persönlichen Daten zugreifen kann, so dass keine nachteilige Datenschutzverletzung entsteht.</value>
@@ -6537,6 +6672,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="TermsOfUseBlock3Text2">
     <value>Je nach Verfügbarkeit kann technischer support geleistet werden.</value>
+  </data>
+  <data name="TermsOfUseBlock4Text1" xml:space="preserve">
+    <value>AxCrypt Viewer ist für alle macOS- und mobilen Benutzer kostenlos verfügbar. Mit dem Plan können Sie Dateien anzeigen und entschlüsseln sowie Daten im Kennwortmanager anzeigen, aber nicht ändern.</value>
   </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Technische Priorität E-Mail-support wird zur Verfügung gestellt. Wir garantieren nicht, alle Probleme zu lösen.</value>
