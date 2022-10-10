@@ -10536,7 +10536,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To make sure you get the most out of using AxCrypt, we have released new tutorials that will help you get started faster. They cover key features of your account, &lt;a href=&apos;https://www.axcrypt.net/information/get-started/windows&apos;&gt;plus some super handy tips &lt;/a&gt;.
+        ///   Looks up a localized string similar to To make sure you get the most out of using AxCrypt, we have released new tutorials that will help you get started faster. They cover key features of your account, &lt;a href=&apos;https://www.axcrypt.net/information/guides/get-started&apos;&gt;plus some super handy tips &lt;/a&gt;.
         /// </summary>
         public static string Blog_TAYBS_H1_SH5_Text1 {
             get {
@@ -11427,7 +11427,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key is one of the significant features which enables business administrators to recover files of the business members. This eliminates the risk of losing access to critical files. &lt;a href=&apos;https://www.axcrypt.net/support/master-key&apos;&gt;Read more here&lt;/a&gt;..
+        ///   Looks up a localized string similar to Master key is one of the significant features which enables business administrators to recover files of the business members. This eliminates the risk of losing access to critical files. &lt;a href=&apos;https://www.axcrypt.net/information/master-key&apos;&gt;Read more here&lt;/a&gt;..
         /// </summary>
         public static string Blog_WAMHIHY_H3_SH4_Text4 {
             get {
@@ -13795,7 +13795,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please read the full &lt;a href=&quot;https://www.axcrypt.net/information/license/&quot;&gt;terms of use&lt;/a&gt; and the &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;pricing schedule&lt;/a&gt; before purchase..
+        ///   Looks up a localized string similar to Please read the full &lt;a href=&quot;https://www.axcrypt.net/information/terms-of-use/&quot;&gt;terms of use&lt;/a&gt; and the &lt;a href=&quot;https://www.axcrypt.net/pricing/&quot;&gt;pricing schedule&lt;/a&gt; before purchase..
         /// </summary>
         public static string BusinessSubscriptionConditionsText {
             get {
@@ -13948,7 +13948,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Read more &lt;a href=&quot;https://www.axcrypt.net/support/axcrypt-business/&quot;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to Read more &lt;a href=&quot;https://www.axcrypt.net/information/axcrypt-business&quot;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string BusinessSubscriptionInstructionsLinkText {
             get {
@@ -16217,7 +16217,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please read our &lt;a href=\&quot;https://axcrypt.net/information/privacy-policy\&quot; style=\&quot;color: white; font-weight: 600\&quot;&gt;privacy policy&lt;/a&gt; for details..
+        ///   Looks up a localized string similar to Please read our &lt;a href=&quot;https://axcrypt.net/information/privacy-policy&quot; style=&quot;color: white; font-weight: 600&quot;&gt;privacy policy&lt;/a&gt; for details..
         /// </summary>
         public static string EmailFooterText2 {
             get {
@@ -16226,7 +16226,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact us at &lt;a href=\&quot;mailto:support@axcrypt.net\&quot; style=\&quot;color: white; font-weight: 600\&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
+        ///   Looks up a localized string similar to Contact us at &lt;a href=&quot;mailto:support@axcrypt.net&quot; style=&quot;color: white; font-weight: 600&quot;&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!.
         /// </summary>
         public static string EmailFooterText3 {
             get {
@@ -16748,7 +16748,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href=&apos;/support/legacy-downloads&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href=&apos;/information/legacy-downloads&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string FaqDifference1_2Answer2 {
             get {
@@ -18818,7 +18818,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have any burning issues or questions, check our &lt;a href=&apos;/support/faq&apos;&gt;frequently asked questions&lt;/a&gt; page..
+        ///   Looks up a localized string similar to If you have any burning issues or questions, check our &lt;a href=&apos;/information/faq&apos;&gt;frequently asked questions&lt;/a&gt; page..
         /// </summary>
         public static string GetStartedInfoNote2Text1 {
             get {
@@ -19677,7 +19677,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;For more testimonials, head over to &lt;a href=&apos;/about/awards&apos;&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;For more testimonials, head over to &lt;a href=&apos;/information/awards&apos;&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string HomeWhatOtherSayTestimonialsText {
             get {
@@ -22134,7 +22134,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {{useremail}} has the following feedback....
+        ///   Looks up a localized string similar to {{user_email}} has the following feedback....
         /// </summary>
         public static string MailGunFeedbackTitleWithUser {
             get {
@@ -22143,7 +22143,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello {{useremail}}.
+        ///   Looks up a localized string similar to Hello {{user_email}}.
         /// </summary>
         public static string MailGunHelloTitle {
             get {
@@ -22152,7 +22152,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {{useremail}} would like help with....
+        ///   Looks up a localized string similar to {{user_email}} would like help with....
         /// </summary>
         public static string MailGunPremiumSupportTitle {
             get {
@@ -22458,7 +22458,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href=&quot;https://axcrypt.net/support/master-key&quot; target=&quot;_blank&quot;&gt;For more information, click here&lt;/a&gt;..
+        ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href=&quot;https://axcrypt.net/information/master-key&quot; target=&quot;_blank&quot;&gt;For more information, click here&lt;/a&gt;..
         /// </summary>
         public static string MasterKeyHelpText1 {
             get {
@@ -28141,7 +28141,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get started: &lt;a href=&apos;https://www.axcrypt.net/information/get-started/windows/&apos;&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;.
+        ///   Looks up a localized string similar to Get started: &lt;a href=&apos;https://www.axcrypt.net/information/guides/get-started&apos;&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;.
         /// </summary>
         public static string ResellerHelpSupportBlock1ListItem3 {
             get {

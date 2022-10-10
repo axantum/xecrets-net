@@ -3643,7 +3643,7 @@ You have been warned, now enjoy!</value>
     <value>AxCrypt is multilingual, and this year we added Mandarin support. To make the user experience more convenient, we also began publishing our blogs in French.</value>
   </data>
   <data name="Blog_TAYBS_H1_SH5_Text1" xml:space="preserve">
-    <value>To make sure you get the most out of using AxCrypt, we have released new tutorials that will help you get started faster. They cover key features of your account, &lt;a href='https://www.axcrypt.net/information/get-started/windows'&gt;plus some super handy tips &lt;/a&gt;</value>
+    <value>To make sure you get the most out of using AxCrypt, we have released new tutorials that will help you get started faster. They cover key features of your account, &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;plus some super handy tips &lt;/a&gt;</value>
   </data>
   <data name="Blog_TAYBS_H1_SH6_Text1" xml:space="preserve">
     <value>We also announced our industry segment in 2021, which helps users better understand how we serve various industries. We understand how vital it is to get a feel of AxCrypt's experience from someone who has used it previously. As a result, we've included additional testimonials this year to help you learn more about our app.&lt;a href='ttps://www.axcrypt.net/industries'&gt; You may get more information here&lt;/a&gt;</value>
@@ -3940,7 +3940,7 @@ You have been warned, now enjoy!</value>
     <value>It is very easy to accomplish data privacy in the cloud. AxCrypt will automatically find what Cloud Storage services are installed on your computer and create an AxCrypt folder there. Automatically secure your files/documents on multiple cloud storage services such as Google Drive,One Drive, Dropbox etc and manage the access to your passwords seamlessly wherever you are.</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SH4_Text4" xml:space="preserve">
-    <value>Master key is one of the significant features which enables business administrators to recover files of the business members. This eliminates the risk of losing access to critical files. &lt;a href='https://www.axcrypt.net/support/master-key'&gt;Read more here&lt;/a&gt;.</value>
+    <value>Master key is one of the significant features which enables business administrators to recover files of the business members. This eliminates the risk of losing access to critical files. &lt;a href='https://www.axcrypt.net/information/master-key'&gt;Read more here&lt;/a&gt;.</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SH5_Text5" xml:space="preserve">
     <value>AxCrypt ensures your organization stays compliant with regulations like the General Data Protection Regulation (GDPR). </value>
@@ -4742,7 +4742,7 @@ You have been warned, now enjoy!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Please read the full &lt;a href="https://www.axcrypt.net/information/license/"&gt;terms of use&lt;/a&gt; and the &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; before purchase.</value>
+    <value>Please read the full &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;terms of use&lt;/a&gt; and the &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; before purchase.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -4807,7 +4807,7 @@ You have been warned, now enjoy!</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Read more &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;here&lt;/a&gt;.</value>
+    <value>Read more &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;here&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -5614,10 +5614,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Follow Us on Our Social Media</value>
   </data>
   <data name="EmailFooterText2" xml:space="preserve">
-    <value>Please read our &lt;a href=\"https://axcrypt.net/information/privacy-policy\" style=\"color: white; font-weight: 600\"&gt;privacy policy&lt;/a&gt; for details.</value>
+    <value>Please read our &lt;a href="https://axcrypt.net/information/privacy-policy" style="color: white; font-weight: 600"&gt;privacy policy&lt;/a&gt; for details.</value>
   </data>
   <data name="EmailFooterText3" xml:space="preserve">
-    <value>Contact us at &lt;a href=\"mailto:support@axcrypt.net\" style=\"color: white; font-weight: 600\"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
+    <value>Contact us at &lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight: 600"&gt;support@axcrypt.net&lt;/a&gt; if you have any questions!</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -5794,7 +5794,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>AxCrypt 1.x is a legacy version. That means it is outdated and there is no longer any support for it, whereas AxCrypt 2.x is the version that we are continuously working on to keep improving it. It’s absolutely not recommended to use 1.x. We recommend all users, old and new, to always use the most current released version of AxCrypt, which can be downloaded &lt;a href='/download'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2" xml:space="preserve">
-    <value>For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href='/support/legacy-downloads'&gt;here&lt;/a&gt;.</value>
+    <value>For users that have a specific need for the legacy downloads (usage at own risk), they can be found &lt;a href='/information/legacy-downloads'&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller" xml:space="preserve">
     <value>What are the major differences between the standalone version and installer version of AxCrypt?</value>
@@ -6501,7 +6501,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Verify that the download is undamaged and authentic by checking the digital signature. Right-click the downloaded file in Windows Explorer, and select ‘Properties’ and the ‘Digital Signatures’ tab. Then select the digital signature and click ‘Details’. Ensure that the digital signature is shown as ‘OK’ and that the signer is ‘AxCrypt AB’.</value>
   </data>
   <data name="GetStartedInfoNote2Text1" xml:space="preserve">
-    <value>If you have any burning issues or questions, check our &lt;a href='/support/faq'&gt;frequently asked questions&lt;/a&gt; page.</value>
+    <value>If you have any burning issues or questions, check our &lt;a href='/information/faq'&gt;frequently asked questions&lt;/a&gt; page.</value>
   </data>
   <data name="GetStartedInfoNote2Text2" xml:space="preserve">
     <value>Please report bugs and comments to us. You’re welcome to request support as well. For other issues, please send us an email.</value>
@@ -6791,7 +6791,7 @@ please see the AxCrypt Privacy Policy.</value>
     <value>Sign up below for free to stay updated with our news</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText" xml:space="preserve">
-    <value>&lt;p&gt;For more testimonials, head over to &lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;For more testimonials, head over to &lt;a href='/information/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading" xml:space="preserve">
     <value>What others &lt;span&gt;say&lt;/span&gt;</value>
@@ -7664,13 +7664,13 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <comment>Header of popup for selecting mail application.</comment>
   </data>
   <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
-    <value>{{useremail}} has the following feedback...</value>
+    <value>{{user_email}} has the following feedback...</value>
   </data>
   <data name="MailGunHelloTitle" xml:space="preserve">
-    <value>Hello {{useremail}}</value>
+    <value>Hello {{user_email}}</value>
   </data>
   <data name="MailGunPremiumSupportTitle" xml:space="preserve">
-    <value>{{useremail}} would like help with...</value>
+    <value>{{user_email}} would like help with...</value>
   </data>
   <data name="MainSiteUrl" xml:space="preserve">
     <value>https://www.axcrypt.net/</value>
@@ -7772,7 +7772,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>If Master key is disabled, business administrators will not be able to open files encrypted by their business members.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;For more information, click here&lt;/a&gt;.</value>
+    <value>Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href="https://axcrypt.net/information/master-key" target="_blank"&gt;For more information, click here&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Files which were encrypted &lt;b&gt;before&lt;/b&gt; enabling master key will not be possible to open without the original encryption credentials.</value>
@@ -9799,7 +9799,7 @@ Subject: AxCrypt Report Snapshot</value>
     <value>Business subscription: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Get started: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Get started: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Usage tips: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
