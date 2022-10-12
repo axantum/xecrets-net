@@ -3624,6 +3624,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Have a Look at the &lt;a href=&apos;/information/features&apos;&gt;feature page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data..
+        /// </summary>
+        public static string Blog_Conclusion_Feature {
+            get {
+                return ResourceManager.GetString("Blog_Conclusion_Feature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Have a Look at the &lt;a href=&apos;https://axcrypt.net/information/features&apos;&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure yor files ans data and the &lt;a href=&apos;https://www.axcrypt.net/pricing&apos;&gt;Pricing Page&lt;/a&gt; shows which type of encryption subscriptions AxCrypt offers..
         /// </summary>
         public static string Blog_Conclusion_Feature_Text1 {
@@ -3737,6 +3746,222 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_Conclusion_Text1 {
             get {
                 return ResourceManager.GetString("Blog_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As we are all aware, cyber-attacks have increased immensely and evolve every day. Cyber resilience helps the organization maintain service and business continuity by reducing any cyber disasters. Even now, many organizations are still not adequate in dealing with cyber incidents.  Enjoy the benefits of choking cyber-attacks..
+        /// </summary>
+        public static string Blog_CRI_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a Look at the &lt;a href=&apos;/information/features&apos;&gt;feature page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data..
+        /// </summary>
+        public static string Blog_CRI_FeaturePage {
+            get {
+                return ResourceManager.GetString("Blog_CRI_FeaturePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Identify:&lt;/strong&gt;This phase involves getting to understand the various cybersecurity flaws that exist inside the networks, systems, users, and data, as well as your ICT skills that might be in danger.&lt;strong&gt;.
+        /// </summary>
+        public static string Blog_CRI_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Protect:&lt;/strong&gt; It is very important to provide the best tiers of security regarding the confidentiality, integrity, and availability of data privacy, benefiting from providing the best protection against cyberattacks, unauthorized access, and systemic failure..
+        /// </summary>
+        public static string Blog_CRI_H1_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Detect:&lt;/strong&gt;It is very important to identify beforehand if someone is getting ready to act maliciously against you. And this can be availed by continual monitoring of network and data systems, which enables recognizing anomalies, unexpected issues, and potential cybersecurity incidents..
+        /// </summary>
+        public static string Blog_CRI_H1_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Respond:&lt;/strong&gt;In this phase, implementation of proper disaster planning and appropriate actions to resolve a real-time cyber security incident must be ensured, so that it doesn’t affect business continuity even though you are the victim of a cyber-attack..
+        /// </summary>
+        public static string Blog_CRI_H1_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Recover:&lt;/strong&gt;This is the final phase where the main objective is to identify appropriate actions in restoring the service or operations affected by a cyber security breach and mitigate its consequences. If the attack had been prevented, it would have been much easier to restore the integrity of the system at the earliest. This phase also identifies the future activities involved in supporting the resilience of an organization&apos;s cybersecurity infrastructure..
+        /// </summary>
+        public static string Blog_CRI_H1_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Five key pillars of cyber resilience:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_CRI_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is crucial for an organization to create a more robust cyber strategy to resist the flood of threats and attacks from all over the world. Cyber resilience is the capacity to foresee, tolerate, and recover from any cyberthreats and data breaches. They also control system attacks through online resources. The main aim of cyber resilience is to secure organizational functionality and endure all the crises, dangers, adversities, emergencies and difficulties that are both known and unforeseen. Cyber resilienc [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_CRI_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Augmented Systems Security:&lt;/strong&gt;Cyber ​​resilience is not only used for responding to and surviving an attack, but also helps in developing strategies for improvising IT governance, critical asset security and data privacy. Resilience also helps in avoiding the various outcomes faced due to natural disasters or reducing human error..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Minimal Financial Loss:&lt;/strong&gt;One of the main advantages of cyber resilience is decreased downtime and financial losses. Cyber resilience provides a plan which helps minimize business disruption and hence reduce financial losses in a timely and accurate manner..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Swift Recovery Time:&lt;/strong&gt;Apart from these, cyber resilience also accelerates the recovery process, supporting you to get your business back up and running as quickly as possible..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Reputation Protection:&lt;/strong&gt;Each employee is liable for protecting sensitive data and hard assets of the organization, ensuring an appropriate incident response, in turn reducing the risk factors. Poor cyber resilience can irreversibly damage an organization&apos;s reputation..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Better IT Team:&lt;/strong&gt;Cyber resilience improves IT department operations, enabling them to respond to threats and helping them to run daily operations smoothly..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Improved Customer Confidence:&lt;/strong&gt;Cyber incidents damage a company’s reputation. Cyber resilience can reassure customer confidence by providing the assurance of keeping their data secured. This increases customer confidence and in turn increases the sales of the organization..
+        /// </summary>
+        public static string Blog_CRI_H2_SH1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SH1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Benefits of having Cyber Resilience&lt;strong&gt;:.
+        /// </summary>
+        public static string Blog_CRI_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowadays the security environment is changing persistently. Organizations and individuals are targeted by hackers and disasters and hence it is a major aspect to keep the data and credentials cyber-safe. Cyber security is the best way to achieve business continuity. Implementing resilience of the information architecture of an organization reduces the likelihood of an attack, in turn minimizing and reducing the damage. Cyber resilience not only reduces existing threats but also lowers long-term threats from [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_CRI_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is Cyber Resilience?.
+        /// </summary>
+        public static string Blog_CRI_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why do you require Cyber Resilience?.
+        /// </summary>
+        public static string Blog_CRI_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In today&apos;s modern world, cyberattacks like malware, phishing, password and SQL injection attacks have increased enormously..
+        /// </summary>
+        public static string Blog_CRI_Summary {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In today&apos;s modern world, cyberattacks like malware, phishing, password and SQL injection attacks have increased enormously. The main target of hackers is stealing or deleting confidential data from a computer network, database, or personal devices. According to Cybersecurity Ventures, it is said, by 2025 cybercrime will cost the global economy $10.5 trillion every year. And it is very vital to develop a strong reaction to this issue given the scope of this criminal conduct. Cyber-attacks are so crucial that [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_CRI_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some of the major factors that affect business due to cyber-attack are:&lt;li&gt;Immeasurable downtime&lt;/li&gt;&lt;li&gt;Data loss&lt;/li&gt;&lt;li&gt;Information threat&lt;/li&gt;&lt;li&gt;Confidentiality and privacy breaches&lt;/li&gt;&lt;li&gt;Financial loss&lt;/li&gt;&lt;li&gt;Loss of intellectual property&lt;/li&gt;&lt;li&gt;Reputational damage&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_CRI_Text1_Follows_steps {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Text1_Follows_steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyber resilience implementation is one method of securing systems from cyber threats..
+        /// </summary>
+        public static string Blog_CRI_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyber Resilience Importance.
+        /// </summary>
+        public static string Blog_CRI_Title {
+            get {
+                return ResourceManager.GetString("Blog_CRI_Title", resourceCulture);
             }
         }
         
@@ -12390,6 +12615,249 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Defenders must be alert even in 2022 and 2023, as it would be an improved version of 2021. Individuals and organizations should safeguard their networks against security threats with the right strategies. Contact AxCrypt now and shield your data from cyber-attack..
+        /// </summary>
+        public static string Blog_WICS_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Corporate and personal data protection against cyber-attacks and data breaches.&lt;/li&gt;&lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Data and Network Protection.&lt;/li&gt;&lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Prevent access by unauthorized users.&lt;/li&gt;&lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Better crash recovery.&lt;/li&gt;&lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Continuity of service and hence productivity is increased on a larger scale.&lt;/li&gt;&lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Protection  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H1_SH1_steps {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H1_SH1_steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Benefits of cybersecurity&lt;strong&gt;.
+        /// </summary>
+        public static string Blog_WICS_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The importance of cybersecurity increases rapidly due to the increased number of internet users with both sensitive or confidential data.  Cyber threats are increasing immensely, &lt;strong&gt;$1 trillion in accordance to the survey&lt;/strong&gt;&lt;a href=&apos;https://www.pwc.com/gx/en/issues/cybersecurity/global-digital-trust-insights.html&apos;&gt; (2022 Global Digital Trust Insights Survey&lt;/a&gt; and organizations expect risks to grow continually. The issue is made even worse by the increase in the quantity and level of sophisticat [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is where encryption plays a major role. Encryption protects private data and sensitive data and improves the security of communication between client applications and servers. If the data is encrypted, hackers or any unauthorized person or entity would not be able to read it. Encryption is a cyber security measure that protects private and personal information by using unique codes that scramble the information and make it impossible for intruders to read. Despite a data breach, encryption ensures the  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Information Security:&lt;/strong&gt; protects the integrity and privacy of data both during storage and transmission, unauthorized access, including inspection, modification, storage, disconnection or destruction. The main purpose is in ensuring the security and privacy of critical information, such as customer account information, financial information or intellectual property.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt;&lt;strong&gt;Application Security:&lt;/strong&gt; Nowadays applications are accessed through various channels/networks and connected to the cloud. Hence the vulnerability of breaches are at a higher end. Focusing on protecting software and devices against threats, AxCrypt provides applications within applications themselves.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt;&lt;strong&gt;Network Security:&lt;/strong&gt; is the practice of protecting a computer network from intruders, whether targeted attackers or opportunistic malware. It ensures in securing customer information and data, securing shared information and reliable usage, as well as protecting against cyber threats. AxCrypt reduces overall costs and protects organizations from costly losses resulting from data breaches or other security breaches.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt;&lt;strong&gt;Cloud Security:&lt;/strong&gt; is all about creating secure cloud architectures and applications for businesses using cloud service providers like Amazon Web Services, Google, Azure, Rack space, etc.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt;&lt;strong&gt;Mobile Security:&lt;/strong&gt; In this digital world mobile security is a big deal as more and more people rely on mobile devices. Businesses that use mobile devices have to use mobile security measures, so as to protect the data stored on these devices against various threats. This subdomain protects organizational and personal information stored on mobile devices such as tablets, mobile phones and laptops against various threats like unauthorized access, loss or th [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Identity and access management&lt;/li&gt;&lt;li&gt;Firewalls&lt;/li&gt;&lt;li&gt;Endpoint detection and response&lt;/li&gt;&lt;li&gt;Antimalware&lt;/li&gt;&lt;li&gt;Intrusion prevention/detection systems&lt;/li&gt;&lt;li&gt;Data loss prevention&lt;/li&gt;&lt;li&gt;Security information and event management&lt;/li&gt;&lt;li&gt;Encryption tools&lt;/li&gt;&lt;li&gt;Vulnerability scanners&lt;/li&gt;&lt;li&gt;Virtual private networks&lt;/li&gt;&lt;li&gt;Cloud workload protection platform&lt;/li&gt;&lt;li&gt;Cloud access security broker&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SH2_steps {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SH2_steps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Cyber security purposes are:.
+        /// </summary>
+        public static string Blog_WICS_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Common tools used for Cybersecurity measures are:&lt;strong&gt;.
+        /// </summary>
+        public static string Blog_WICS_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To create a sturdy defence against potential cyber-attacks, it is important that the business, people, processes and technology are designed to work together. Cyber ​​security includes techniques, processes and methods to protect computer systems, data and networks from attack. Cybersecurity is designed so as to provide multiple levels of protection across all computers, networks and software that the organization uses. Cybersecurity systems are able to detect, investigate and eliminate potential system wea [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2726&apos;;&quot;&gt;&lt;strong&gt;IoT Attacks:&lt;/strong&gt; Internet of Things is the most vulnerable threat in the present time. Every computing, digital, and mechanical device that is capable of transmitting data over an internet network are IoT like; desktop, laptop, mobile phone, smart security devices, etc. Securing IoT devices is one of the biggest cyber security challenges, as access to these devices can open doors to other malicious purposes.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H3_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2726&apos;;&quot;&gt;&lt;strong&gt;Ransomware Attacks:&lt;/strong&gt; As the name specifies it involves hacking a user&apos;s data and ceasing access to it until the ransom is paid. Ransomware attacks are critical for both individual and business users. Business users won’t be able to access data for their daily operations. Most of the time it has been observed, the ransomware attackers do not release information even after the payment is made, but instead try to extort more money.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WICS_H3_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2726&apos;;&quot;&gt;&lt;strong&gt;Cloud Attack:&lt;/strong&gt; Cloud services are used drastically for personal and professional needs. Hacking cloud platforms to steal user data is also one of the cyber security challenges for individuals and businesses. We are all aware of the infamous iCloud hack that exposed the private photos of celebrities. If such an attack is made against the company&apos;s data, it can pose a huge threat to the organization and even lead to its collapse. Hence it is mandatory to c [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H3_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2726&apos;;&quot;&gt;&lt;strong&gt;Phishing Attack:&lt;/strong&gt; Phishing is a social media attack used to steal user information, login credentials and credit card numbers. Hackers use it for online shopping and illegal money transfers. Google has officially released a statement about how it  blocks more than 100 million phishing &lt;a href=&apos;https://cloud.google.com/blog/products/identity-security/protecting-against-cyber-threats-during-covid-19-and-beyond&apos;&gt;https://cloud.google.com/blog/products/identi [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H3_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2726&apos;;&quot;&gt;&lt;strong&gt;Cryptocurrency and Blockchain attacks:&lt;/strong&gt;Digital currency or wallets have become a prime target for hackers. The growth of this new technology has revolutionized physical currency, but creating many serious security challenges too. According to Fincen&apos;s report, 177 unique digital wallet addresses were used for the ransomware attacks. It is important organizations must be aware of the security issues associated with these technologies and ensure that they c [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_H3_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most common cyber security challenges faced are:.
+        /// </summary>
+        public static string Blog_WICS_H3_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Being in the era of digitalization, cybersecurity becomes indispensable. The situation has worsened since the pandemic. According to a report by the ITRC’s the The number of &lt;a href= &apos;https://www.idtheftcenter.org/notified&apos;&gt;data breaches&lt;/a&gt; have increased immensely in the first half of 2021 alone and still continuing to be at a higher end. Growing statistics show that cybersecurity will be a major challenge in the coming years..
+        /// </summary>
+        public static string Blog_WICS_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why is encryption important in cyber security?.
+        /// </summary>
+        public static string Blog_WICS_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyber Security Purpose:.
+        /// </summary>
+        public static string Blog_WICS_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Cyber Security Challenges faced:.
+        /// </summary>
+        public static string Blog_WICS_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Being part of the digital world, it is very important to protect systems, networks, servers, mobile devices, personal data, professional data and programmes from cyber threats..
+        /// </summary>
+        public static string Blog_WICS_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Being part of the digital world, it is very important to protect systems, networks, servers, mobile devices, personal data, professional data and programmes from cyber threats.Cyberattack generally aims on accessing, changing, or destroying sensitive information and extraction of money from users; or intruding normal business processes. Cyber criminals are shrewd and searching for delegate points in systems to crack and exploit. This is where cybersecurity is important. Cyber security is the act of providin [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICS_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is Cyber Security?.
+        /// </summary>
+        public static string Blog_WICS_Title {
+            get {
+                return ResourceManager.GetString("Blog_WICS_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What is personal data? Which kind of information should you protect specially from companies or industries which operate it?.
         /// </summary>
         public static string Blog_WSPPI_H1_Text1 {
@@ -13327,7 +13795,7 @@ namespace AxCrypt.Content.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;Welcome to AxCrypt Business.&lt;/p&gt;
-        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {0}. You now have access to the subscriber benefits of AxCrypt!&lt;/p&gt;.
+        ///&lt;p&gt;You were added to an AxCrypt Business subscription by {addedby_user_email}. You now have access to the subscriber benefits of AxCrypt!&lt;/p&gt;.
         /// </summary>
         public static string BusinessAddedMailBodyHtml {
             get {
@@ -13444,7 +13912,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription {bus_sub_name} has ended. We sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiredMailBody0Html {
             get {
@@ -13480,7 +13948,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your AxCrypt Business subscription {0} is soon coming to an end. We sincerely hope you have enjoyed using AxCrypt and found it useful..
+        ///   Looks up a localized string similar to Your AxCrypt Business subscription {bus_sub_name} is soon coming to an end. We sincerely hope you have enjoyed using AxCrypt and found it useful..
         /// </summary>
         public static string BusinessExpiresSoonMailBody0Html {
             get {
@@ -13678,7 +14146,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have been added as a user of AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;..
+        ///   Looks up a localized string similar to You have been added as a user of AxCrypt File Security by &lt;b&gt;{addedby_user_email}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href=&quot;{download_url}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{account_web_url}&lt;/b&gt;..
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
             get {
@@ -14605,7 +15073,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{0}&lt;/b&gt;. To confirm please click the button below..
+        ///   Looks up a localized string similar to You have requested to reset your AxCrypt ID e-mail to &lt;b style=&quot;color: #000 !important;&quot;&gt;{email_change_to}&lt;/b&gt;. To confirm please click the button below..
         /// </summary>
         public static string ChangeEmailConfirmMailBody1 {
             get {
@@ -14650,7 +15118,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Someone is requested a change of e-mail (from an undisclosed source) at &lt;a href=&quot;{0}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;..
+        ///   Looks up a localized string similar to Someone is requested a change of e-mail (from an undisclosed source) at &lt;a href=&quot;{info_site_url}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{email_change_to}&lt;/b&gt;..
         /// </summary>
         public static string ChangeEmailExistMailBody1 {
             get {
@@ -14668,7 +15136,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ignore this e-mail or report it to {0}. No harm is done, and no information has been disclosed..
+        ///   Looks up a localized string similar to Ignore this e-mail or report it to {axc_support_email}. No harm is done, and no information has been disclosed..
         /// </summary>
         public static string ChangeEmailExistMailBody3 {
             get {
@@ -15014,7 +15482,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have any questions, please first contact {0}..
+        ///   Looks up a localized string similar to If you have any questions, please first contact {addedby_user_email}..
         /// </summary>
         public static string ContactBusinessInviterMailBodyText {
             get {
@@ -18049,6 +18517,15 @@ namespace AxCrypt.Content.Properties {
         public static string FreeTrial {
             get {
                 return ResourceManager.GetString("FreeTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FREE TRIAL.
+        /// </summary>
+        public static string FreeTrialLabel {
+            get {
+                return ResourceManager.GetString("FreeTrialLabel", resourceCulture);
             }
         }
         
@@ -22017,7 +22494,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feel free to contact us if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{0}&quot;&gt;{0}&lt;/a&gt; ..
+        ///   Looks up a localized string similar to Feel free to contact us if you have any questions or feedback. Also see our FAQ and Forum on our website at &lt;a href=&quot;{info_site_url}&quot;&gt;{info_site_url}&lt;/a&gt; ..
         /// </summary>
         public static string MailBodyOutroHtml {
             get {
@@ -22045,7 +22522,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription expired on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access to Premium features like:.
+        ///   Looks up a localized string similar to Your subscription expired on &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. You no longer have access to Premium features like:.
         /// </summary>
         public static string MailBodySubscriptionExpiredText {
             get {
@@ -22054,7 +22531,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{0}&lt;/b&gt;. You no longer have access for the Premium features as:.
+        ///   Looks up a localized string similar to Your subscription has been cancelled and will expire on &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. You no longer have access for the Premium features as:.
         /// </summary>
         public static string MailBodySubscriptionExpiryText {
             get {
