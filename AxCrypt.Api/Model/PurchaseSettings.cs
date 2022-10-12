@@ -2,7 +2,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AxCrypt.Api.Model
 {
@@ -35,6 +34,9 @@ namespace AxCrypt.Api.Model
 
         [JsonProperty("tax_rates")]
         public string TaxRates { get; set; }
+
+        [JsonProperty("micro_payment_product_id")]
+        public string MicroPaymentProductId { get; set; }
 
         public IEnumerable<string> PremiumProductIdList
         {
