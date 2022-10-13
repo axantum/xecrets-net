@@ -654,8 +654,8 @@
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;欢迎到AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;您是通过{0}添加到AxCrypt Business订阅的，所以只要您是有效成员，您现在就可以访问AxCrypt的订阅者福利。&lt;/p&gt;
-&lt;p&gt;如果您有任何问题，请先联系{0}。&lt;/p&gt;</value>
+&lt;p&gt;您是通过{addedby_user_email}添加到AxCrypt Business订阅的，所以只要您是有效成员，您现在就可以访问AxCrypt的订阅者福利。&lt;/p&gt;
+&lt;p&gt;如果您有任何问题，请先联系{addedby_user_email}。&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -697,7 +697,7 @@
     <value>企业邮箱</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>您的AxCrypt Business订阅{0}已结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
+    <value>您的AxCrypt Business订阅{bus_sub_name}已结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>您的AxCrypt业务订阅已结束。</value>
@@ -706,7 +706,7 @@
     <value>作为管理员，您必须在AxCrypt帐户web的管理模块中为您的团队续订订阅。使用下面的按钮直接去那里。 不要忘记通知您的团队，您将更新！</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>您的AxCrypt Business订阅{0}即将结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
+    <value>您的AxCrypt Business订阅{bus_sub_name}即将结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>当您的Business订阅续订后，您和您的团队可以继续享受:</value>
@@ -772,8 +772,8 @@
     <value>为公司制造</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;您已被&lt;b&gt;{0}&lt;/b&gt;添加为AxCrypt文件安全性的用户。 要开始保护您的文件，只需&lt;a href="{1}"style="color:#86b96e;text-decoration:none;"&gt;下载&lt;/a&gt;并安装AxCrypt。 使用&lt;b&gt;{2}&lt;/b&gt;登录AxCrypt，输入以下验证码并设置您的个人秘密密码。&lt;/p&gt;
-&lt;p&gt;如果您有任何问题，请先联系{0}。&lt;/p&gt;</value>
+    <value>&lt;p&gt;您已被&lt;b&gt;{addedby_user_email}&lt;/b&gt;添加为AxCrypt文件安全性的用户。 要开始保护您的文件，只需&lt;a href="{download_url}"style="color:#86b96e;text-decoration:none;"&gt;下载&lt;/a&gt;并安装AxCrypt。 使用&lt;b&gt;{account_web_url}&lt;/b&gt;登录AxCrypt，输入以下验证码并设置您的个人秘密密码。&lt;/p&gt;
+&lt;p&gt;如果您有任何问题，请先联系{addedby_user_email}。&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -817,7 +817,7 @@
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>请阅读完整的&lt;a href="https://www.axcrypt.net/information/license/"&gt;使用条款&lt;/a&gt;和&lt;a href="https://www.axcrypt.net/pricing/"&gt;定价时间表&lt;/a&gt;购买前。</value>
+    <value>请阅读完整的&lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;使用条款&lt;/a&gt;和&lt;a href="https://www.axcrypt.net/pricing/"&gt;定价时间表&lt;/a&gt;购买前。</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -882,7 +882,7 @@
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>阅读更多&lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;这里&lt;/a&gt;。</value>
+    <value>阅读更多&lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;这里&lt;/a&gt;。</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1145,7 +1145,7 @@
     <value>但是，由于您已经使用此电子邮件拥有AxCrypt ID，因此该请求已被静默忽略。</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>忽略此电子邮件或将其报告给{0}。 没有造成伤害，也没有透露任何信息。</value>
+    <value>忽略此电子邮件或将其报告给{axc_support_email}。 没有造成伤害，也没有透露任何信息。</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt ID 电子邮件更改请求</value>
@@ -1260,7 +1260,7 @@
     <value>对所有剩余的文件执行此操作？</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>如果您有任何问题，请先联系{0}。</value>
+    <value>如果您有任何问题，请先联系{addedby_user_email}。</value>
   </data>
   <data name="ContactHeading" xml:space="preserve">
     <value>联系</value>
@@ -1827,7 +1827,7 @@
     <value>&lt;a href='/download'&gt;here&lt;/a&gt;AxCrypt1.x是旧版本。 这意味着它已经过时，不再有任何支持，而AxCrypt2.x是我们不断努力不断改进的版本。 绝对不建议使用1.x。我们建议所有新老用户始终使用最新发布的AxCrypt版本，可以在这里下载&lt;a href='/download'&gt;&lt;/a&gt;。</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2" xml:space="preserve">
-    <value>对于对传统下载有特定需求的用户（使用风险自担），可以在这里找到&lt;a href='/support/legacy-downloads'&gt;&lt;/a&gt;。</value>
+    <value>对于对传统下载有特定需求的用户（使用风险自担），可以在这里找到&lt;a href='/information/legacy-downloads'&gt;&lt;/a&gt;。</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller" xml:space="preserve">
     <value>AxCrypt的独立版本和安装程序版本之间的主要区别是什么？</value>
@@ -2432,7 +2432,7 @@
     <value>通过检查数字签名来验证下载是否完好无损和可信。 在Windows资源管理器中右键单击下载的文件，然后选择"属性"和"数字签名"选项卡。 然后选择数字签名，然后单击"详细信息"。 确保数字签名显示为"OK"，并且签名者是"AxCrypt AB"。</value>
   </data>
   <data name="GetStartedInfoNote2Text1" xml:space="preserve">
-    <value>如果您有任何迫切的问题或疑问，请查看我们的&lt;a href='/support/faq'&gt;常见问题&lt;/a&gt;页面。</value>
+    <value>如果您有任何迫切的问题或疑问，请查看我们的&lt;a href='/information/faq'&gt;常见问题&lt;/a&gt;页面。</value>
   </data>
   <data name="GetStartedInfoNote2Text2" xml:space="preserve">
     <value>请报告错误和意见给我们。 您也可以请求支持。 对于其他问题，请给我们发电子邮件。</value>
@@ -2690,7 +2690,7 @@
     <value>请在下面免费注册，随时了解我们的最新消息</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText" xml:space="preserve">
-    <value>&lt;p&gt;欲了解更多推荐，请前往&lt;a href='/about/awards'&gt;奖项与评论&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;欲了解更多推荐，请前往&lt;a href='/information/awards'&gt;奖项与评论&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading" xml:space="preserve">
     <value>别人&lt;span&gt;怎么说&lt;/span&gt;</value>
@@ -3474,7 +3474,7 @@ SE-114 29 斯德哥尔摩
     <value>如果目前还不清楚您为什么会收到这个AxCrypt.net，您可以忽略此电子邮件或将其报告给{0}。</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>如果您有任何问题或反馈，请随时与我们联系。 也可以在我们的网站上查看我们的常见问题和论坛&lt;a href="{0}"&gt;{0}&lt;/a&gt;。</value>
+    <value>如果您有任何问题或反馈，请随时与我们联系。 也可以在我们的网站上查看我们的常见问题和论坛&lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt;。</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -3485,7 +3485,7 @@ SE-114 29 斯德哥尔摩
 - AxCrypt团队</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>您的订阅在&lt;b&gt;{0}&lt;/b&gt;过期。 您不再可以访问Premium功能，如:</value>
+    <value>您的订阅在&lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;过期。 您不再可以访问Premium功能，如:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -5347,7 +5347,7 @@ SE-114 29 斯德哥尔摩
     <value>Business订阅:&lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>开始使用:&lt;a href='https://www.axcrypt.net/信息/开始使用/windows/'&gt;https://www.axcrypt.net/信息/开始使用:/windows&lt;/a&gt;</value>
+    <value>开始使用:&lt;a href='https://www.axcrypt.net/信息/guides/开始使用'&gt;https://www.axcrypt.net/信息/guides/开始使用:&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>使用技巧:&lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>

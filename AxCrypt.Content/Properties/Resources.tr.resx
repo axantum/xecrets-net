@@ -745,8 +745,8 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;AxCrypt Business'a hoş geldin.&lt;/p&gt; 
-&lt;p&gt;{0} tarafından AxCrypt Business üyeliğine eklendin, artık geçerli bir üyeliğin bulunduğu sürece abone ayrıcalıklarına erişimin bulunmaktadır.&lt;/p&gt; 
-&lt;p&gt;Soruların için lütfen önce {0} ile iletişime geç.&lt;/p&gt;</value>
+&lt;p&gt;{addedby_user_email} tarafından AxCrypt Business üyeliğine eklendin, artık geçerli bir üyeliğin bulunduğu sürece abone ayrıcalıklarına erişimin bulunmaktadır.&lt;/p&gt; 
+&lt;p&gt;Soruların için lütfen önce {addedby_user_email} ile iletişime geç.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -797,7 +797,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Yönetici olarak, ekibin için aboneliği AxCrypt hesap ağının yönetici modülü üzerinden yenilemen gerekiyor. Doğrudan modüle gitmek için aşağıdaki butonu kullan. Yenileme yaptığını ekibine haber vermeyi unutma!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>AxCrypt Business aboneliğin {0} yakında sona erecektir. AxCrypt'i kullanmanın tadını çıkardığını ve onu kullanışlı bulduğunu içtenlikle umuyorum.</value>
+    <value>AxCrypt Business aboneliğin {bus_sub_name} yakında sona erecektir. AxCrypt'i kullanmanın tadını çıkardığını ve onu kullanışlı bulduğunu içtenlikle umuyorum.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Business aboneliğin yenilendiğinde, sen ve ekibin şunların tadını çıkarmaya devam edebilir:</value>
@@ -860,8 +860,8 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Firmalar için uygun</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;&lt;b&gt;{0}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendiniz. Dosyalarınızı korumaya başlamak için &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;indirin&lt;/a&gt; ve AxCrypt'i kurun. &lt;b&gt;{2}&lt;/b&gt; ile AxCrypt oturumunuzu açın, aşağıdaki doğrulama kodunu girip gizli kişisel şifrenizi belirleyin.&lt;/p&gt; 
-&lt;p&gt;Sorularınız için lütfen önce {0} ile iletişime geçin.&lt;/p&gt;</value>
+    <value>&lt;p&gt;&lt;b&gt;{addedby_user_email}&lt;/b&gt; tarafından AxCrypt File Security kullanıcısı olarak eklendiniz. Dosyalarınızı korumaya başlamak için &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;indirin&lt;/a&gt; ve AxCrypt'i kurun. &lt;b&gt;{account_web_url}&lt;/b&gt; ile AxCrypt oturumunuzu açın, aşağıdaki doğrulama kodunu girip gizli kişisel şifrenizi belirleyin.&lt;/p&gt; 
+&lt;p&gt;Sorularınız için lütfen önce {addedby_user_email} ile iletişime geçin.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -905,7 +905,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/information/license/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/pricing/"&gt;fiyatlandırma programı&lt;/a&gt; oku.</value>
+    <value>Satın almadan önce lütfen bütün &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;kullanım şartları&lt;/a&gt; ve &lt;a href="https://www.axcrypt.net/pricing/"&gt;fiyatlandırma programı&lt;/a&gt; oku.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -970,7 +970,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Devamını oku &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;here&lt;/a&gt;.</value>
+    <value>Devamını oku &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;here&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1233,7 +1233,7 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
     <value>Fakat bu e-posta adresiyle başka bir AxCrypt kimliğin olduğu için talep sessizce görmezden gelinmiştir.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Bu e-postayı görmezden gel veya {0}'a bildir. Hasar olmayıp hiç bilgi paylaşımı yapılmamıştır.</value>
+    <value>Bu e-postayı görmezden gel veya {axc_support_email}'a bildir. Hasar olmayıp hiç bilgi paylaşımı yapılmamıştır.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt kimliği e-posta adresi değiştirme talebi</value>
@@ -1352,7 +1352,7 @@ Bundan sonra &lt;b&gt;{0}&lt;/b&gt; ve var olan şifreni kullanarak oturum açab
     <value>Bütün dosyalar için aynısı yapılsın mı ?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>Herhangi bir sorunuz varsa, lütfen önce {0} ile iletişime geçin.</value>
+    <value>Herhangi bir sorunuz varsa, lütfen önce {addedby_user_email} ile iletişime geçin.</value>
   </data>
   <data name="ContactHeading">
     <value>İletişim</value>
@@ -1920,7 +1920,7 @@ Dikkat: Tehlikeli Bölge!</value>
     <value>AxCrypt 1.x eski sürümdür. Bu da güncel olmadığı ve destek sağlanmadığı anlamına gelir. AxCrypt 2.x ise üzerinde çalıştığımız ve sürekli güncellediğimiz sürümdür. 1.x sürümün kullanılması kesinlikle önerilmez. Eski veya yeni bütün kullanıcılarımıza en güncel olan ve &lt;a href='/download'&gt;buradan&lt;/a&gt; indirebileceğiniz AxCrypt sürümünü tavsiye ediyoruz.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Eski sürümlere ihtiyacı olan kullanıcılar (sorumluluk size aittir), &lt;a href='/support/legacy-downloads'&gt;buradan&lt;/a&gt; indirebilirler.</value>
+    <value>Eski sürümlere ihtiyacı olan kullanıcılar (sorumluluk size aittir), &lt;a href='/information/legacy-downloads'&gt;buradan&lt;/a&gt; indirebilirler.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>AxCrypt'in bağımsız ve yükleyici sürümleri arasındaki büyük farklar nelerdir?</value>
@@ -2550,7 +2550,7 @@ href='https://account.axcrypt.net/en/Home/Login'&gt;AxCrypt ID'm&lt;/a&gt; adres
     <value>İndirdiğiniz dosyanın hasarsız ve orijinal olduğundan emin olmak için dijital imzasını kontrol edin. Windows Explorer'da indirdiğiniz dosyaya sağ tıklayın, "Özellikler" kısmında "Dijital İmzalar" sekmesine gidin. Daha sonra dijital imzayı seçin ve "Ayrıntılar" seçeneğine tıklayın. Dijital imzanın "Sorunsuz" ve imzalayanın "AxCrypt AB" olduğundan emin olun.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Acil bir sorununuz veya sorunuz varsa &lt;a href='/support/faq'&gt;sık sorulan sorular&lt;/a&gt; sayfamızı ziyaret edin.</value>
+    <value>Acil bir sorununuz veya sorunuz varsa &lt;a href=/information/faq'&gt;sık sorulan sorular&lt;/a&gt; sayfamızı ziyaret edin.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Lütfen hataları ve yorumlarınızı bize bildirin. Destek talebinde de bulunabilirsiniz. Diğer sorunlar için lütfen bize e-mail atın.</value>
@@ -2814,7 +2814,7 @@ Herhangi bir nedenden dolayı şifreni bilmiyor veya hatırlamıyorsan bir şifr
     <value>Yeniliklerimizden haberdar olmak için aşağıdan ücretsiz üye olun</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;Diğer referanslar için &lt;a href='/about/awards'&gt;ödüller &amp; incelemeler'e&lt;/a&gt;  gidin&lt;/p&gt;</value>
+    <value>&lt;p&gt;Diğer referanslar için &lt;a href='/information/awards'&gt;ödüller &amp; incelemeler'e&lt;/a&gt;  gidin&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Başkalarının &lt;span&gt;söylediği&lt;/span&gt;</value>
@@ -3469,7 +3469,7 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
     <value>Niye AxCrypt.net'ten bunu aldığını bilmiyorsan bu e-postayı görmezden gelebilir veya {0} a bildirebilirsin.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Herhangi bir sorun ve geri dönüşün varsa benimle iletişime geç lütfen. Sitemizde FAQ ve Forum u ziyaret et &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>Herhangi bir sorun ve geri dönüşün varsa benimle iletişime geç lütfen. Sitemizde FAQ ve Forum u ziyaret et &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -3480,7 +3480,7 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
  -  AxCrypt Ekibi</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>Aboneliğiniz süresi &lt;b&gt;{0}&lt;/b&gt; tarihinde dolmuştur. Aşağıda örneklendirilen Premium özelliklerine artık erişemezsiniz:</value>
+    <value>Aboneliğiniz süresi &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt; tarihinde dolmuştur. Aşağıda örneklendirilen Premium özelliklerine artık erişemezsiniz:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -3609,7 +3609,7 @@ AxCrypt 1.x dosyaları için otomatik çeviriyi devreye sok (önerilir)?</value>
     <value>Ana anahtar devre dışı bırakılırsa, işletme yöneticileri işletme üyeleri tarafından şifrelenen dosyaları açamaz.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Ana anahtar, işletme yöneticilerinin işletme üyeleri tarafından şifrelenmiş dosyaları açmasını sağlar. Üyenin, dosyalarına uygulanmadan önce ana anahtarı onaylaması gerektiğini unutmayın. Ana anahtarı kimin onayladığını kullanıcı tablosunda görebilirsiniz. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;Daha fazla bilgi için burayı tıklayın&lt;/a&gt;.</value>
+    <value>Ana anahtar, işletme yöneticilerinin işletme üyeleri tarafından şifrelenmiş dosyaları açmasını sağlar. Üyenin, dosyalarına uygulanmadan önce ana anahtarı onaylaması gerektiğini unutmayın. Ana anahtarı kimin onayladığını kullanıcı tablosunda görebilirsiniz. &lt;a href="https://axcrypt.net/information/master-key" target="_blank"&gt;Daha fazla bilgi için burayı tıklayın&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Ana anahtarı etkinleştirmeden &lt;b&gt;önce&lt;/b&gt; şifrelenmiş dosyalar, orijinal şifreleme kimlik bilgileri olmadan açılamaz.</value>
@@ -5407,7 +5407,7 @@ Konu: AxCrypt Report Snapshot</value>
     <value>Business aboneliği: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Başlayın: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Başlayın: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Kullanım ipuçları: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>

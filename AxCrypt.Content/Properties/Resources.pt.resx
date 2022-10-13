@@ -684,8 +684,8 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Bem vindo ao AxCrypt Business.&lt;/p&gt; 
-&lt;p&gt;Você foi adicionado a uma subscrição AxCrypt Business por {0}, por isso tem agora acesso aos benefícios de assinante AxCrypt enquanto se mantiver um membro válido.&lt;/p&gt; 
-&lt;p&gt;Se tiver dúvidas, entre primeiro em contato connosco {0}.&lt;/p&gt;</value>
+&lt;p&gt;Você foi adicionado a uma subscrição AxCrypt Business por {addedby_user_email}, por isso tem agora acesso aos benefícios de assinante AxCrypt enquanto se mantiver um membro válido.&lt;/p&gt; 
+&lt;p&gt;Se tiver dúvidas, entre primeiro em contato connosco {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -727,7 +727,7 @@ Está avisada(o), agora desfrute!</value>
     <value>Email empresarial</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>A sua subscrição AxCrypt Business {0} terminou. Esperamos sinceramente que tenha gostado de usar a AxCrypt e que lhe tenha sido útil.</value>
+    <value>A sua subscrição AxCrypt Business {bus_sub_name} terminou. Esperamos sinceramente que tenha gostado de usar a AxCrypt e que lhe tenha sido útil.</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>A sua subscrição AxCrypt Business terminou.</value>
@@ -736,7 +736,7 @@ Está avisada(o), agora desfrute!</value>
     <value>Como administrador, você deve renovar a subscrição para o seu team no módulo de administração da conta web do AxCrypt. Utilize o botão em baixo para aceder diretamente. Não se esqueça de informar o seu team de que irá proceder à renovação.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>A sua inscrição AxCrypt Business {0} está chegando ao fim. Esperamos que você tenha gostado de utilizar o AxCrypt e que lhe tenha sido útil.</value>
+    <value>A sua inscrição AxCrypt Business {bus_sub_name} está chegando ao fim. Esperamos que você tenha gostado de utilizar o AxCrypt e que lhe tenha sido útil.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Quando a sua subscrição Business for renovada você e o seu team podem continuar a desfrutar de:</value>
@@ -802,8 +802,8 @@ Está avisada(o), agora desfrute!</value>
     <value>Feito para empresas</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;Você foi adicionado como utilizador do AxCrypt File Security por &lt;b&gt;{0}&lt;/b&gt;. Para começar a proteger os seus ficheiros &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;baixe&lt;/a&gt; simplesmente e instale o AxCrypt. Registre-se ao AxCrypt com &lt;b&gt;{2}&lt;/b&gt;, introduza o código de verificação em baixo e configure a sua senha pessoal.&lt;/p&gt; 
-&lt;p&gt;Se tiver dúvidas, entre primeiro em contato connosco {0}.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Você foi adicionado como utilizador do AxCrypt File Security por &lt;b&gt;{addedby_user_email}&lt;/b&gt;. Para começar a proteger os seus ficheiros &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;baixe&lt;/a&gt; simplesmente e instale o AxCrypt. Registre-se ao AxCrypt com &lt;b&gt;{account_web_url}&lt;/b&gt;, introduza o código de verificação em baixo e configure a sua senha pessoal.&lt;/p&gt; 
+&lt;p&gt;Se tiver dúvidas, entre primeiro em contato connosco {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -847,7 +847,7 @@ Está avisada(o), agora desfrute!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Por favor, leia os &lt;a href="https://www.axcrypt.net/information/license/"&gt;termos de utilização&lt;/a&gt; na íntegra e o &lt;a href="https://www.axcrypt.net/pricing/"&gt;ciclo de preços&lt;/a&gt; antes de comprar.</value>
+    <value>Por favor, leia os &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;termos de utilização&lt;/a&gt; na íntegra e o &lt;a href="https://www.axcrypt.net/pricing/"&gt;ciclo de preços&lt;/a&gt; antes de comprar.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -912,7 +912,7 @@ Está avisada(o), agora desfrute!</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Leia mais &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;aqui&lt;/a&gt;.</value>
+    <value>Leia mais &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;aqui&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1175,7 +1175,7 @@ Está avisada(o), agora desfrute!</value>
     <value>No entanto, como você já tem um ID AxCrypt com este email, o seu pedido foi silenciosamente ignorado.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Ignore este e-mail ou reporte-o para {0}. Nenhum mal foi feito, e nenhuma informação foi revelada.</value>
+    <value>Ignore este e-mail ou reporte-o para {axc_support_email}. Nenhum mal foi feito, e nenhuma informação foi revelada.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Solicitação de mudança do e-mail ID AxCrypt</value>
@@ -1296,7 +1296,7 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua senha existent
     <value>Fazer isso para todos os arquivos restantes?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>Se tiver alguma questão, por favor, contacte primeiro {0}.</value>
+    <value>Se tiver alguma questão, por favor, contacte primeiro {addedby_user_email}.</value>
   </data>
   <data name="ContactHeading">
     <value>Contacto</value>
@@ -1875,7 +1875,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>A AxCrypt 1.x é uma versão antiga. Tal quer dizer que está desactualizada e que não é mais suportada, enquanto que a AxCrypt 2.x é a versão em que estamos continuamente a trabalhar para continuar a melhorá-la. Não é de todo recomendado usar a 1.x. Recomendamos a todos os utilizadores, antigos e novos, que usem sempre a versão mais actualizada da AxCrypt que pode ser descarregada &lt;a href='/download'&gt;aqui&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Utilizadores que precisem especificamente de descarregamentos antigos (utilização por sua conta e risco) poderão encontrá-los &lt;a href='/support/legacy-downloads'&gt;aqui&lt;/a&gt;.</value>
+    <value>Utilizadores que precisem especificamente de descarregamentos antigos (utilização por sua conta e risco) poderão encontrá-los &lt;a href='/information/legacy-downloads'&gt;aqui&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>Quais são as principais diferenças entre a versão autónoma e a versão de instalação da AxCrypt?</value>
@@ -2489,7 +2489,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>Verifique que o ficheiro descarregado não está danificado e que é autêntico através da assinatura digital. No Windows Explorer, faça duplo clique no ficheiro que descarregou, seleccione ‘Propriedades’ e o separador ‘Assinaturas Digitais’. Depois, seleccione a assinatura digital e clique em ‘Detalhes’. Certifique-se de que a assinatura digital é mostrada como ‘OK’ e que o assinante é ‘AxCrypt AB’.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Se tiver problemas ou questões prementes, verifique a nossa página &lt;a href='/support/faq'&gt;perguntas frequentes&lt;/a&gt;.</value>
+    <value>Se tiver problemas ou questões prementes, verifique a nossa página &lt;a href='/information/faq'&gt;perguntas frequentes&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Por favor, reporte-nos bugs e comentários. Não hesite em solicitar suporte também. Para outras questões, envie-nos um e-email, por favor.</value>
@@ -2752,7 +2752,7 @@ por favor, veja a Política de Privacidade da AxCrypt.</value>
     <value>Adira grátis abaixo para se manter actualizada(o) com as nossa notícias</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;Para mais testemunhos, vá até &lt;a href='/about/awards'&gt;prémios &amp; críticas&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Para mais testemunhos, vá até &lt;a href='/information/awards'&gt;prémios &amp; críticas&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>O que outros &lt;span&gt;dizem&lt;/span&gt;</value>
@@ -3552,7 +3552,7 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
     <value>Se não é certo porque você está recebendo isso do AxCrypt.net, você pode ignorar este e-mail ou reportá-lo para {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Fique à vontade para entrar em contato conosco caso tenha dúvidas ou feedback. Veja também nosso FAQ e o fórum no nosso site &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>Fique à vontade para entrar em contato conosco caso tenha dúvidas ou feedback. Veja também nosso FAQ e o fórum no nosso site &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -3563,7 +3563,7 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
  -  A Equipe AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>A sua subscrição expirou em &lt;b&gt;{0}&lt;/b&gt;. Já não tem acesso a funcionalidades Premium, tais como:</value>
+    <value>A sua subscrição expirou em &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. Já não tem acesso a funcionalidades Premium, tais como:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -3693,7 +3693,7 @@ Permitir conversão automática dos arquivos de AxCrypt 1.x (recomendado)?</valu
     <value>Se a Chave-Mestra estiver desactivada, os administradores não poderão abrir ficheiros cifrados por membros da empresa.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>A chave-mestra permite aos administradores abrir ficheiros cifrados por membros da empresa. Note que os membros devem aprovar a chave-mestra antes de a aplicarem aos seus ficheiros. Pode ver quem aprovou a chave-mestra na tabela de utilizadores. Para mais informação, clique &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;aqui&lt;/a&gt;.</value>
+    <value>A chave-mestra permite aos administradores abrir ficheiros cifrados por membros da empresa. Note que os membros devem aprovar a chave-mestra antes de a aplicarem aos seus ficheiros. Pode ver quem aprovou a chave-mestra na tabela de utilizadores. Para mais informação, clique &lt;a href="https://axcrypt.net/information/master-key" target="_blank"&gt;aqui&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Ficheiros cifrados &lt;b&gt;antes&lt;/b&gt; da activação da chave-mestra não poderão ser abertos sem as credenciais de cifragem originais.</value>
@@ -5555,7 +5555,7 @@ Assunto: Relatório de Erros AxCrypt</value>
     <value>Subscrição Business: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Iniciar: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Iniciar: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Dicas de utilização: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>

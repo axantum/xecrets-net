@@ -648,8 +648,8 @@
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Добро пожаловать на AxCrypt Business.&lt;/p&gt;
-&lt;p&gt; Вы были добавлены аккаунтом {0} в участники подписки на AxCrypt Business, поэтому теперь у Вас есть доступ к привилегиям AxCrypt пользователя, пока Вы являетесь действующим подписчиком.&lt;/p&gt;
-&lt;p&gt; В случае возникновения вопросов, пожалуйста, соединитесь в первую очередь с {0}.&lt;/p&gt;</value>
+&lt;p&gt; Вы были добавлены аккаунтом {addedby_user_email} в участники подписки на AxCrypt Business, поэтому теперь у Вас есть доступ к привилегиям AxCrypt пользователя, пока Вы являетесь действующим подписчиком.&lt;/p&gt;
+&lt;p&gt; В случае возникновения вопросов, пожалуйста, соединитесь в первую очередь с {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -688,7 +688,7 @@
     <value>Бизнес-почта</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>Ваша подписка на AxCrypt Business {0} истекла. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
+    <value>Ваша подписка на AxCrypt Business {bus_sub_name} истекла. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>Ваша подписка AxCrypt Business истекла.</value>
@@ -697,7 +697,7 @@
     <value>Как администратор, вы должны продлить подписку для вашей команды в административном модуле веб-аккауна  AxCrypt. Используйте кнопку ниже, чтобы перейти прямо туда. Не забудьте сообщить своей команде, что вы будете обновлять!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ваша подписка на AxCrypt Business {0} скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
+    <value>Ваша подписка на AxCrypt Business {bus_sub_name} скоро подходит к концу. Мы искренне надеемся, что вам понравился AxCrypt и вы нашли его полезным.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Когда ваша Business подписка обновляется, вы и ваша команда можете продолжать пользоваться:</value>
@@ -760,8 +760,8 @@
     <value>Сделано для компаний</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt; Вы были добавлены аккаунтом &lt;b&gt;{0}&lt;/b&gt; в пользователи AxCrypt File Security. Чтобы начать защиту файлов, просто &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;загрузите&lt;/a&gt; и установите AxCrypt. Войдите в AxCrypt с помощью &lt;b&gt; {2} &lt;/ b&gt;, &lt;p&gt;, ниже введите верификационный код и установите персональный пароль.&lt;/p&gt;
-&lt;p&gt; Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь в первую очередь с с {0}. &lt;/ p&gt;</value>
+    <value>&lt;p&gt; Вы были добавлены аккаунтом &lt;b&gt;{addedby_user_email}&lt;/b&gt; в пользователи AxCrypt File Security. Чтобы начать защиту файлов, просто &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;загрузите&lt;/a&gt; и установите AxCrypt. Войдите в AxCrypt с помощью &lt;b&gt; {account_web_url} &lt;/ b&gt;, &lt;p&gt;, ниже введите верификационный код и установите персональный пароль.&lt;/p&gt;
+&lt;p&gt; Если у вас есть какие-либо вопросы, пожалуйста, свяжитесь в первую очередь с с {addedby_user_email}. &lt;/ p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessLabel">
@@ -802,7 +802,7 @@
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Пожалуйста, тщательно ознакомьтесь с &lt;a href="https://www.axcrypt.net/information/license/"&gt;terms of use&lt;/a&gt; и &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; перед покупкой.</value>
+    <value>Пожалуйста, тщательно ознакомьтесь с &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;terms of use&lt;/a&gt; и &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; перед покупкой.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -867,7 +867,7 @@
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Узнайте больше &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;здесь&lt;/a&gt;.</value>
+    <value>Узнайте больше &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;здесь&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1127,7 +1127,7 @@
     <value>Поскольку у Вас уже имеется AxCrypt ID с данным адресом электронной почты, запрос был проигнорирован.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Проигнорируйте данное электроном письмо или сообщите о нём {0}. Никакого ущерба не было нанесено, и никакая информация не была обнародована.</value>
+    <value>Проигнорируйте данное электроном письмо или сообщите о нём {axc_support_email}. Никакого ущерба не было нанесено, и никакая информация не была обнародована.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Запрос на изменение адреса электронной почты AxCrypt ID</value>
@@ -1798,7 +1798,7 @@
     <value>AxCrypt 1.x - это устаревшая версия, она устарела и больше не поддерживается. AxCrypt 2.x - это версия, над которой мы постоянно работаем продолжаем ее улучшать. Абсолютно не рекомендуется использовать версию 1.x. Мы рекомендуем всем пользователям, старым и новым, всегда использовать самую последнюю выпущенную версию AxCrypt, которую можно скачать &lt;a href='/download'&gt;здесь&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Для пользователей, которым нужны устаревшие загрузки (использование на свой страх и риск), их можно найти &lt;a href='/support/legacy-downloads'&gt;здесь&lt;/a&gt;.</value>
+    <value>Для пользователей, которым нужны устаревшие загрузки (использование на свой страх и риск), их можно найти &lt;a href='/information/legacy-downloads'&gt;здесь&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>Какие основные различия между автономной версией AxCrypt и версией для установщика?</value>
@@ -2403,7 +2403,7 @@
     <value>Убедитесь, что скачивание подлинно, проверив цифровую подпись. Щелкните правой кнопкой мыши на загруженный файл в Проводнике Windows и выберите пункт "Свойства", далее вкладку "Цифровые подписи", затем нажмите "Подробнее’. Убедитесь, что цифровая подпись отображается как "ОК’, а подписавшийся как "AxCrypt AB".</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Если у вас есть какие-либо проблемы или вопросы, проверьте нашу страницу &lt;a href='/support/faq'&gt;Часто задаваемые вопросы &lt;/a&gt;.</value>
+    <value>Если у вас есть какие-либо проблемы или вопросы, проверьте нашу страницу &lt;a href='/information/faq'&gt;Часто задаваемые вопросы &lt;/a&gt;.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Пожалуйста, сообщайте нам об ошибках и проблемах. Вы можете обратиться в поддержку к любое время. По другим вопросам, пожалуйста, пишите на наш email.</value>
@@ -2660,7 +2660,7 @@
     <value>Бесплатно зарегистрируйтесь ниже, чтобы быть в курсе наших новостей</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;Больше отзывов по ссылке &lt;a href='/about/awards'&gt;награды и отзывы&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Больше отзывов по ссылке &lt;a href='/information/awards'&gt;награды и отзывы&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Что &lt;span&gt;говорят&lt;/span&gt; другие</value>
@@ -3422,7 +3422,7 @@ SE-114 29 Стокгольм
     <value>Если Вы не знаете причины, по которой Вы получили это от AxCrypt.net, Вы можете проигнорировать данное электронное письмо или отослать о нём рапорт {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Будем рады ответь Вам на любые Ваши вопросы и обратную связь. Смотрите также наши FAQ и Forum на нашей веб странице &lt;a href="{0}"&gt;{0}&lt;/a&gt;.</value>
+    <value>Будем рады ответь Вам на любые Ваши вопросы и обратную связь. Смотрите также наши FAQ и Forum на нашей веб странице &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt;.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -3433,7 +3433,7 @@ SE-114 29 Стокгольм
  -  Команда AxCrypt</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>Ваша подписка  истекает &lt;b&gt;{0}&lt;/b&gt;. У вас больше не будет доступа к таким функциям Premium подписки, как:</value>
+    <value>Ваша подписка  истекает &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. У вас больше не будет доступа к таким функциям Premium подписки, как:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt; 
@@ -5180,7 +5180,7 @@ SE-114 29 Стокгольм
     <value>Business подписка: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Начать:&lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Начать:&lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Полезные советы: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
