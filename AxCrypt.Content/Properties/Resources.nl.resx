@@ -98,6 +98,10 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+  <data name="AaaUtfDummy" xml:space="preserve">
+    <value>Två Öâr är Brà.</value>
+    <comment>A text containing non-Ansi characters to make Phraseapp download behave. Does not need translation, but should be there.</comment>
+  </data>
   <data name="AbortedFileStatus" xml:space="preserve">
     <value>Status 'Afgebroken' ({0}).</value>
   </data>
@@ -399,6 +403,9 @@ Meld u alstublieft met het zelfde wachtwoord die u eerder hebt gebruikt aan.</va
   <data name="ApplyDiscountCodePrompt" xml:space="preserve">
     <value>Voer de kortingscode in</value>
   </data>
+  <data name="ApplyLabel" xml:space="preserve">
+    <value>Toepassen </value>
+  </data>
   <data name="ApplyNowLabel">
     <value>Solliciteer nu</value>
   </data>
@@ -622,6 +629,18 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} jaarlijks gefactureerd</value>
   </data>
+  <data name="Blog_PRAA_H1_Text3">
+    <value>Dit ontwerp, dat een standaard ''good practice'' is voor encryptie, betekent ook dat we spannende dingen kunnen doen door diezelfde master encryptie sleutel op andere manieren te versleutelen. Dat doen we ook, maar dat is geen onderwerp voor dit artikel.</value>
+  </data>
+  <data name="Blog_PRAA_H3_Text1">
+    <value>Als u uw wachtwoord vergeet, verliest u de toegang tot alles wat ooit versleuteld is met dat wachtwoord. Op de server betekent dit uw AxCrypt ID en uw gegevens in de online wachtwoordbeheerder.</value>
+  </data>
+  <data name="Blog_PRAA_Heading2">
+    <value>&lt;h3&gt;Wachtwoordswijziging&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WYSASDF_Text6">
+    <value>&lt;li&gt;Omdat het per definitie sterk gecodeerde informatie bevat, bijvoorbeeld een andere uitvoerbare software, is het onmogelijk te screenen met anti virus software. Het kan letterlijk elk niveau van slechtheid bevatten. &lt;/li&gt;</value>
+  </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
   </data>
@@ -649,8 +668,8 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Welkom bij AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;U bent toegevoegd aan een AxCrypt Business abonnement door {0}. U heeft nu toegang tot de voordelen voor AxCrypt abonnees, zolang u een geldig lid bent.&lt;/p&gt;
-&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0}.&lt;/p&gt;</value>
+&lt;p&gt;U bent toegevoegd aan een AxCrypt Business abonnement door {addedby_user_email}. U heeft nu toegang tot de voordelen voor AxCrypt abonnees, zolang u een geldig lid bent.&lt;/p&gt;
+&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -692,7 +711,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Zakelijke email</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Business abonnement {0} is beëindigd. We hopen dat je AxCrypt met plezier hebt gebruikt en dat het nuttig was.</value>
+    <value>Uw AxCrypt Business abonnement {bus_sub_name} is beëindigd. We hopen dat je AxCrypt met plezier hebt gebruikt en dat het nuttig was.</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>Uw AxCrypt Business abonnement is beëindigd.</value>
@@ -701,7 +720,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Als administrator moet u het abonnement voor uw team vernieuwen in de beheermodule van het AxCrypt-accountweb. Gebruik de onderstaande knop om er direct heen te gaan. Vergeet niet uw team ervan op de hoogte te stellen dat u gaat vernieuwen!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Uw AxCrypt Business {0} abonnement verloopt binnenkort. We hopen dat u AxCrypt leuk en handig vond om te gebruiken.</value>
+    <value>Uw AxCrypt Business {bus_sub_name} abonnement verloopt binnenkort. We hopen dat u AxCrypt leuk en handig vond om te gebruiken.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Wanneer uw Business abonnement wordt vernieuwd, kunt u en uw team blijven genieten van:</value>
@@ -767,8 +786,8 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Gemaakt voor bedrijven</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{0}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{2}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
-&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {0}.&lt;/p&gt;</value>
+    <value>&lt;p&gt;U bent toegevoegd als gebruiker van AxCrypt File Security door &lt;b&gt;{addedby_user_email}&lt;/b&gt;. Om te beginnen met het beveiligen van uw bestanden&lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; en installeer AxCrypt. Log in bij AxCrypt met &lt;b&gt;{account_web_url}&lt;/b&gt;, voer hieronder de verificatiecode in, en stel uw eigen persoonlijke geheime wachtwoord in.&lt;/p&gt; 
+&lt;p&gt;Als u een vraag heeft, neem dan graag eerst contact op met {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -812,7 +831,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Gelieve de volledige &lt;a href="https://www.axcrypt.net/information/license/"&gt;gebruiksvoorwaarden&lt;/a&gt; en &lt;a href="https://www.axcrypt.net/pricing/"&gt;prijsschema&lt;/a&gt; lezen voor de aanschaf.</value>
+    <value>Gelieve de volledige &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;gebruiksvoorwaarden&lt;/a&gt; en &lt;a href="https://www.axcrypt.net/pricing/"&gt;prijsschema&lt;/a&gt; lezen voor de aanschaf.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -877,7 +896,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Lees &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;hier&lt;/a&gt; meer.</value>
+    <value>Lees &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;hier&lt;/a&gt; meer.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1140,7 +1159,7 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>U heeft al een AxCrypt ID met dit emailadres en daarom hebben we uw verzoek stilletjes genegeerd.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Negeer deze mail of rapporteer het naar {0}. Er is geen schade veroorzaakt en geen informatie is vrijgegeven.</value>
+    <value>Negeer deze mail of rapporteer het naar {axc_support_email}. Er is geen schade veroorzaakt en geen informatie is vrijgegeven.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt ID Email Wijziging Aanvraag</value>
@@ -1261,7 +1280,7 @@ U moet deze stappen volgen om het proces te voltooien.</value>
     <value>Doe dit voor alle overgebleven bestanden?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>Als u vragen heeft, neem alstublieft eerst contact op met {0}.</value>
+    <value>Als u vragen heeft, neem alstublieft eerst contact op met {addedby_user_email}.</value>
   </data>
   <data name="ContactHeading">
     <value>Contact</value>
@@ -1610,6 +1629,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="DownloadTryCtaHeading">
     <value>Probeer onze abonnementen voor één maand &lt;span&gt;for free...&lt;/span&gt;</value>
   </data>
+  <data name="DownloadTryMobileSubscription" xml:space="preserve">
+    <value>U kunt bestanden op uw Android-telefoon, iPhone of tablet overal en altijd versleutelen en ontsleutelen. AxCrypt mobiele encryptie ondersteunt zowel Android als iOS. AxCrypt ondersteunt Google Drive bestandsversleuteling op iOS en Android . Lokale opslag encryptie is voorlopig alleen beschikbaar op Android. Andere cloud drives, zoals iCloud, DropBox, OneDrive, en anderen, zullen worden ondersteund in de komende releases.</value>
+  </data>
   <data name="DutchLanguageSelection" xml:space="preserve">
     <value>Nederlands (Nederlands)</value>
     <comment>The name of the Dutch language for selection.</comment>
@@ -1825,7 +1847,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>AxCrypt 1.x is een oudere versie. Dat betekent dat het verouderd is en er geen ondersteuning meer voor is, terwijl AxCrypt 2.x de versie is waar we continu aan werken om het te blijven verbeteren. Het wordt absoluut niet aanbevolen om 1.x te gebruiken. We raden alle gebruikers, oud en nieuw, aan om altijd de meest recente versie van AxCrypt te gebruiken, die &lt;a href='/download'&gt;hier&lt;/a&gt; kan worden gedownload.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Voor gebruikers die een specifieke behoefte hebben aan de legacy downloads (gebruik op eigen risico), kunnen ze &lt;a href='/support/legacy-downloads'&gt;hier&lt;/a&gt; gevonden worden.</value>
+    <value>Voor gebruikers die een specifieke behoefte hebben aan de legacy downloads (gebruik op eigen risico), kunnen ze &lt;a href='/information/legacy-downloads'&gt;hier&lt;/a&gt; gevonden worden.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>Wat zijn de belangrijkste verschillen tussen de zelfstandige versie en de installatieversie van AxCrypt?</value>
@@ -2378,6 +2400,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="GetLogErrorLogType" xml:space="preserve">
     <value>Het geselecteerde logtype is ongeldig.</value>
   </data>
+  <data name="GetStartDownloadAppText">
+    <value>Download de app </value>
+  </data>
   <data name="GetStartedAccessSecuredHeading">
     <value>Toegang tot beveiligde bestanden</value>
   </data>
@@ -2392,6 +2417,21 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="GetStartedAxcryptMobileText">
     <value>Gebruik de app met je AxCrypt ID. Een Premium abonnement is nodig om zowel de Android als iOS app te gebruiken. Wanneer je een nieuwe AxCrypt ID aanmaakt, krijg je automatisch een Premium proefperiode van 30 dagen.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseHeading">
+    <value>Hoe te &lt;span&gt; Gebruiken&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopInstallingHeading">
+    <value>&lt;span&gt;AxCrypt Installeren&lt;/span&gt; en uw  AxCrypt-ID Instellen</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep2">
+    <value>Een contactpersoon toevoegen of selecteren.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordManagementStep1">
+    <value>Inloggen om toegang te krijgen tot het wachtwoordbeheer</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetHeading">
+    <value>Wachtwoord &lt;span&gt; Reset&lt;/span&gt;</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Makkelijke toegang tot wachtwoorden</value>
@@ -2439,7 +2479,7 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
     <value>Controleer of de download onbeschadigd en authentiek is door de digitale handtekening te controleren. Klik met de rechtermuisknop op het gedownloade bestand in Windows Explorer en selecteer 'Eigenschappen' en het tabblad 'Digitale handtekeningen'. Selecteer vervolgens de digitale handtekening en klik op ‘Details’. Zorg ervoor dat de digitale handtekening wordt weergegeven als 'OK' en dat de ondertekenaar 'AxCrypt AB' is.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Als je brandende problemen of vragen hebt, bekijk dan onze &lt;a href='/support/faq'&gt;veelgestelde vragen&lt;/a&gt; pagina.</value>
+    <value>Als je brandende problemen of vragen hebt, bekijk dan onze &lt;a href='/information/faq'&gt;veelgestelde vragen&lt;/a&gt; pagina.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Meld bugs en opmerkingen aan ons. Je kunt ook om ondersteuning vragen. Voor andere problemen kun je ons een e-mail sturen.</value>
@@ -2701,7 +2741,7 @@ Voor meer informatie over hoe we de informatie gebruiken die u hier indient, zie
     <value>Schrijf u hieronder gratis in om op de hoogte te blijven van ons nieuws</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;Ga voor meer getuigenissen naar &lt;a href='/about/awards'&gt;prijzen en recensies&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Ga voor meer getuigenissen naar &lt;a href='/information/awards'&gt;prijzen en recensies&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Wat anderen &lt;span&gt;zeggen&lt;/span&gt;</value>
@@ -3501,7 +3541,7 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
     <value>Als u niet weer waarom u dit onvangt van AxCrypt.net, kunt u deze email negeren of rapporteren naar {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Heeft u vragen of feedback? Neem dan contact met ons op. Kijk ook naar onze FAQ en Forum op onze website via &lt;a href="{0}"&gt;{0}&lt;/a&gt; .</value>
+    <value>Heeft u vragen of feedback? Neem dan contact met ons op. Kijk ook naar onze FAQ en Forum op onze website via &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -3512,7 +3552,7 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
 - Het AxCrypt Team</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>Uw abonnement is verlopen op &lt;b&gt;{0}&lt;/b&gt;. U heeft geen toegang meer tot Premium functies zoals:</value>
+    <value>Uw abonnement is verlopen op &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. U heeft geen toegang meer tot Premium functies zoals:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -3642,7 +3682,7 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
     <value>Als de master sleutel is uitgeschakeld, kunnen bedrijfsbeheerders geen bestanden openen die door hun bedrijfsleden zijn versleuteld.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Met de master sleutel kunnen bedrijfsbeheerders bestanden openen die zijn versleuteld door de leden van het bedrijf. Let op, het lid moet eerst de master sleutel goedkeuren voordat deze op hun bestanden wordt toegepast. In de gebruikerstabel kunt u zien wie de goedgekeurde hoofdsleutel heeft. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;Klik hier voor meer informatie&lt;/a&gt;.</value>
+    <value>Met de master sleutel kunnen bedrijfsbeheerders bestanden openen die zijn versleuteld door de leden van het bedrijf. Let op, het lid moet eerst de master sleutel goedkeuren voordat deze op hun bestanden wordt toegepast. In de gebruikerstabel kunt u zien wie de goedgekeurde hoofdsleutel heeft. &lt;a href="https://axcrypt.net/information/master-key" target="_blank"&gt;Klik hier voor meer informatie&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Bestanden die &lt;b&gt;vóór&lt;/b&gt; het inschakelen van de mastersleutel zijn versleuteld, kunnen niet worden geopend zonder de oorspronkelijke versleutelingsreferenties.</value>
@@ -4714,8 +4754,17 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   <data name="PrivacyPolicyLinkLabel">
     <value>Privacybeleid</value>
   </data>
+  <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Sterkere encryptie met &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Product en functies zijn te ingewikkeld voor mij</value>
+  </data>
+  <data name="ProductPremiumHightlights2" xml:space="preserve">
+    <value>Als u ook beveiligde bestanden moet delen met anderen kan het delen van sleutels dat voor u regelen, zelfs met toegang tot cloudopslag in Dropbox, Google Drive, enz. Met de AxCrypt mobiele app kunt u bestanden versleutelen en ontsleutelen op uw telefoon, overal en altijd.</value>
+  </data>
+  <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
+    <value>Sterkere encryptie met &lt;span&gt; AES-256&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>En veel meer...</value>
@@ -5432,7 +5481,7 @@ Onderwerp: AxCrypt Rapport Snapshot </value>
     <value>Zakelijk abonnement: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Begin: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Begin: &lt;a href='https://www.axcrypt.net/information/guides/get-started/'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Gebruikstips: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt; </value>
@@ -5910,6 +5959,9 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   </data>
   <data name="SubscriptionAutoRenewOn" xml:space="preserve">
     <value>Uw abonnement wordt verlengd op &lt;b&gt;{0}&lt;/b&gt;.</value>
+  </data>
+  <data name="SubscriptionCancelAtAnyTimeText">
+    <value>U kunt natuurlijk op elk moment opzeggen!</value>
   </data>
   <data name="SubscriptionCancelledMailSubject" xml:space="preserve">
     <value>Uw AxCrypt Premium abonnement is opgezegd.</value>

@@ -638,6 +638,24 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} jährlich berechnet</value>
   </data>
+  <data name="Blog_5KFESSAO_H1_Text7">
+    <value>&lt;li&gt;AES - auch ein symmetrischer Verschlüsselungsalgorithmus, der wegen seiner einfachen Implementierung populär wurde. Im Vergleich zu anderen Wettbewerbern hat es einen komplexeren Algorithmus und gilt als effektiver.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H2_Text1">
+    <value>Für einige reicht die Verschlüsselung von Daten, z. B. des Inhalts ihrer Dateien, bereits aus, um ihre Sicherheit zu gewährleisten. Wenn Sie jedoch nur die tatsächlich gespeicherten Daten verschlüsseln, haben nicht autorisierte Benutzer möglicherweise weiterhin Zugriff auf Dateinamen, Archive und dergleichen.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H4_Text3">
+    <value>Nordamerika gab an, dass ihr Unternehmen eine Zwei-Faktor-Authentifizierung verwendet, um ihre Identität zu überprüfen. Auf der anderen Seite verwenden 52% ein Single-On.</value>
+  </data>
+  <data name="Blog_5KFESSAO_H5_Text1">
+    <value>In der Regel teilen Mitarbeiter relevante und arbeitsbezogene Informationen miteinander. Es ist jedoch unvermeidlich, sich während des Freigabeprozesses Gedanken über die Sicherheit der Daten zu machen. Da dies Bedenken hinsichtlich der Freigabe gesicherter Dateien aufwirft, ist es für eine Verschlüsselungssoftware unglaublich wichtig, über eine Funktion zu verfügen, mit der Sie Dateien sicherer freigeben und empfangen können.</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading2">
+    <value>&lt;h3&gt;2. Dateinamenverschlüsselung&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading3">
+    <value>&lt;h3&gt;3. Sicheres Löschen&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_ADGE_H1_Text1">
     <value>Wenn Sie die Verschlüsselung mit jemandem besprechen, der kein Sicherheitsexperte ist, erhalten Sie normalerweise eine Reihe von Antworten. Verschlüsselung wird häufig als eine Art finstere Technologie missverstanden. Stattdessen kann Verschlüsselung dazu beitragen, Flexibilität, Compliance und Datenschutz zu erreichen, die das heutige virtuelle Zeitalter erfordert.</value>
   </data>
@@ -854,6 +872,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EDIKPNY_H1_SH5_Text3">
     <value>Neue Sprachfunktionen wie Chinesisch</value>
   </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text5">
+    <value>Boost von AxCrypt Mobile, damit Sie Ihre verschlüsselten Dateien von Ihren Handys aus öffnen können</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH6_Text5">
+    <value>Das AxCrypt-Team</value>
+  </data>
   <data name="Blog_EDIKPNY_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;Das Beste von 2020&lt;/h2&gt;</value>
   </data>
@@ -955,6 +979,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_HAPYD_H2_text3">
     <value>Heute verlassen sich die meisten von uns auf diese digitale Welt, da ein großer Teil unseres Lebens online stattfindet. Neue Technologien bringen zweifellos eine Vielzahl von Vorteilen mit sich, aber Sie müssen sich auch ihrer Nachteile bewusst sein und folglich die Augen offen halten, um Ihre Privatsphäre und Sicherheit zu schützen. Alle Ihre Aktivitäten hinterlassen eine Spur von Daten. Sie werden von Dienstleistern gesammelt, gespeichert und möglicherweise weitergegeben.</value>
+  </data>
+  <data name="Blog_HAPYD_H3_text1">
+    <value>Die Sicherheit Ihres Browsers durch Verschlüsselungssoftware schützt Online-Transaktionen, da Informationen, die über das Internet gesendet werden, verschlüsselt werden. Unsere Mission ist es, Einzelpersonen und kleinen Teams Verschlüsselungslösungen zur Verfügung zu stellen, die einfacher zu bedienen sind als je zuvor. Wir beseitigen die Komplexität durch den Einsatz starker und bewährter kryptografischer Technologien.</value>
   </data>
   <data name="Blog_HAPYD_Heading3">
     <value>Hier bei AxCrypt</value>
@@ -1160,6 +1187,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_SCMAE_Title">
     <value>Einige verbreitete Mythen über Verschlüsselung</value>
   </data>
+  <data name="Blog_SD_H1_Text1">
+    <value>Verwenden Sie Netflix? Wenn Sie einen Netflix-Account haben, haben Sie wahrscheinlich von der kürzlich veröffentlichten Dokumentation "The Social Dilemma" gehört, die die wesentlichen Vorteile von Social Media berührt. Google, Apple, YouTube, Facebook und all diese Tools haben wunderbare Dinge Wirklichkeit werden lassen. Die Wiedervereinigung von Familienmitgliedern, die Ermöglichung einer effektiven Kommunikation und die Verbesserung unserer Konnektivität sind nur einige der bedeutsamen systemischen Veränderungen, die diese innovative Branche mit sich gebracht hat. Dennoch hat diese zunehmende Polarisierung nicht nur Vorteile. Wie in der Dokumentation hervorgehoben, sind die Menschen manchmal etwas zu naïv in Bezug auf die Kehrseite der Münze.</value>
+  </data>
+  <data name="Blog_SD_Summary">
+    <value>Verwenden Sie Netflix? Wenn Sie einen Netflix-Account haben, haben Sie wahrscheinlich von der kürzlich veröffentlichten Dokumentation "The Social Dilemma" gehört, die die wesentlichen Vorteile von Social Media berührt.</value>
+  </data>
   <data name="Blog_SSING_H1_SubHeading3">
     <value>&lt;strong&gt; 3. Smartphones bieten keinen Schutz vor Phishing &lt;/strong&gt;</value>
   </data>
@@ -1298,6 +1331,21 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WTPI_H1_Text3">
     <value>Seit seiner Gründung im Jahr 2006 hat WikiLeaks mehrere Phasen durchlaufen. Von der Veröffentlichung von Dokumenten und Dateien, die das Publikum aktiv veröffentlichen und bearbeiten kann, bis hin zur Veröffentlichung politischer Erklärungen zu einem bestimmten Zweck arbeiten sie jetzt eng mit Nachrichtenorganisationen zusammen, um Informationen in einem formellen Prozess zu analysieren, zu redigieren und zu veröffentlichen.</value>
   </data>
+  <data name="Blog_WTPI_H1_Text5">
+    <value>Organisationen wie Wikileaks verändern die langjährigen Prinzipien der Gesellschaft und bemühen sich, hochhierarchische Systeme zu modifizieren, indem sie die Macht der Information nutzen. Vor- und Nachteile werden berücksichtigt, Es ist wirklich wichtig, als Bürger ein kritischer Denker zu sein und nicht alles für selbstverständlich zu halten. Werte und Zwecke entwickeln sich ständig weiter und sollten daher nicht immer Grundprinzipien sein.</value>
+  </data>
+  <data name="Blog_WTPI_H2_Text1">
+    <value>Was ist der Wert von Informationen? Wie wird es gemessen? Welche Art von Informationen, basierend auf welchen Annahmen, ist legitim? Und wessen Meinung zählt?</value>
+  </data>
+  <data name="Blog_WTPI_H2_Text4">
+    <value>Wissenszuwachs wird zum Schlüssel für wirtschaftlichen und politischen Input. Die Rolle der Information stellt berechtigten Begünstigten Ausweise zur Verfügung, die die Erfüllung ihrer eigenen Rechte verlangen können. Das Eigentum an Informationen vermittelt in den Augen des Eigentümers ein Gefühl der Unparteilichkeit oder reflektierter Interessen; während Informationen, die anderen gehören.</value>
+  </data>
+  <data name="Blog_WTPI_Heading2">
+    <value>Freiheit versus Kontrolle</value>
+  </data>
+  <data name="Blog_WTPI_Title">
+    <value>WikiLeaks und die Macht der Informationen</value>
+  </data>
   <data name="Blog_WYSASDF_Text11">
     <value>&lt;li&gt;Ein weiterer Anwendungsfall sind in sich geschlossene Backups. Das ist theoretisch keine schlechte Idee, aber Windows hat eine harte Grenze von 2 GB Größe .exe , so große Backups sind auf diese Weise nicht möglich.&lt;/li&gt;</value>
   </data>
@@ -1346,8 +1394,8 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Willkommen  zu AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;Sie wurden von {0} zu einem AxCrypt Business Abonnement hinzugefügt. Sie haben jetzt Zugang zu den Subscriber-Vorteilen solange Sie ein gültiges Mitglied sind. &lt;/p&gt;
-&lt;p&gt; Falls Sie irgendwelche Fragen haben, kontaktieren Sie bitte zuerst {0}.&lt;/p&gt;</value>
+&lt;p&gt;Sie wurden von {addedby_user_email} zu einem AxCrypt Business Abonnement hinzugefügt. Sie haben jetzt Zugang zu den Subscriber-Vorteilen solange Sie ein gültiges Mitglied sind. &lt;/p&gt;
+&lt;p&gt;Falls Sie irgendwelche Fragen haben, kontaktieren Sie bitte zuerst {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -1386,7 +1434,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Business Email</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>Ihr AxCrypt Business Abonnement {0} ist beendet. Wir hoffen aufrichtig, dass Sie die Verwendung von AxCrypt genossen Haben und es nützlich fanden.</value>
+    <value>Ihr AxCrypt Business Abonnement {bus_sub_name} ist beendet. Wir hoffen aufrichtig, dass Sie die Verwendung von AxCrypt genossen Haben und es nützlich fanden.</value>
   </data>
   <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
     <value>Lassen Sie uns wissen, was Sie über AxCrypt denken - Werden Sie es weiterhin verwenden und gibt es etwas, das Sie gerne verbessert sehen würden?</value>
@@ -1398,7 +1446,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Als Administrator müssen Sie das Abonnement für Ihr Team im Administrationsmodul ihres AxCrypt-Web-Accounts erneuern.  Benutzen Sie die folgende Schaltfläche um direkt zu Ihrem Account zu kommen. Vergessen Sie nicht Ihr Team über die Erneuerung zu informieren!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ihr AxCrypt Businessabonnement {0} endet bald. Wir hoffen Ihnen hat AxCrypt gefallen.</value>
+    <value>Ihr AxCrypt Businessabonnement {bus_sub_name} endet bald. Wir hoffen Ihnen hat AxCrypt gefallen.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Sobald ihr Businnesabonnement erneuert ist, können ihr Team und Sie sich zurücklegen und genießen:</value>
@@ -1461,8 +1509,8 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Gemacht für Firmen</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;Sie wurden als ein Benutzer von AxCrypt File Security von &lt;b&gt;{0}&lt;/b&gt; hinzugefürt . Um ihre Dateien zu sichern  &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;laden&lt;/a&gt; and installieren Sie AxCrypt. Melden Sie sich bei AxCrypt mit &lt;b&gt;{2}&lt;/b&gt; an, geben Sie den Verifizierungscode ein und legen Sie ihr eigenes geheimes Passwort fest.&lt;/p&gt; 
-&lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren Sie bitte zuerst {0}.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Sie wurden als ein Benutzer von AxCrypt File Security von &lt;b&gt;{addedby_user_email}&lt;/b&gt; hinzugefürt . Um ihre Dateien zu sichern  &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;laden&lt;/a&gt; and installieren Sie AxCrypt. Melden Sie sich bei AxCrypt mit &lt;b&gt;{account_web_url}&lt;/b&gt; an, geben Sie den Verifizierungscode ein und legen Sie ihr eigenes geheimes Passwort fest.&lt;/p&gt; 
+&lt;p&gt;Falls Sie irgendwelche Fragen haben, bitte kontaktieren Sie bitte zuerst {addedby_user_email}.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessLabel">
@@ -1503,7 +1551,7 @@ Sie wurden gewarnt, jetzt genießen!
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Bitte lesen sie die ganzen &lt;ahref="https://www.axcrypt.net/information/license/"&gt;Nutzungshinweise&lt;/a&gt; und das &lt;a href="https://www.axcrypt.net/pricing/"&gt;Preisschema&lt;/a&gt; vor dem Einkauf.</value>
+    <value>Bitte lesen sie die ganzen &lt;ahref="https://www.axcrypt.net/information/terms-of-use/"&gt;Nutzungshinweise&lt;/a&gt; und das &lt;a href="https://www.axcrypt.net/pricing/"&gt;Preisschema&lt;/a&gt; vor dem Einkauf.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -1568,7 +1616,7 @@ Sie wurden gewarnt, jetzt genießen!
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>&lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;Hier&lt;/a&gt;. mehr lesen.</value>
+    <value>&lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;Hier&lt;/a&gt;. mehr lesen.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1828,7 +1876,7 @@ Sie wurden gewarnt, jetzt genießen!
     <value>Da Sie bereits eine AxCrypt ID mit dieser E-Mail besitzen, wurde Ihre Anfrage ignoriert.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Ignorieren Sie diese E-Mail oder melden Sie sie an {0}. Es ist kein Schaden erfolgt und es wurden keine Informationen offen gelegt.</value>
+    <value>Ignorieren Sie diese E-Mail oder melden Sie sie an {axc_support_email}. Es ist kein Schaden erfolgt und es wurden keine Informationen offen gelegt.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Anfrage zur Änderung der AxCrypt ID E-Mail</value>
@@ -2501,7 +2549,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>AxCrypt 1.x ist eine Legacy-Version. Das bedeutet, es ist veraltet und es gibt keine Unterstützung mehr dafür, während AxCrypt 2.x ist die Version, an der wir kontinuierlich arbeiten, um Sie weiter zu verbessern. Es wird absolut nicht empfohlen, 1.x zu verwenden. Wir empfehlen allen Benutzern, alt und neu, immer die aktuellste Version von AxCrypt zu verwenden, die werden kann &lt;a href='/download'&gt;hier gedownloadet &lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>Für Benutzer, die einen bestimmten Bedarf an legacy-downloaden haben (Nutzung auf eigenes Risiko), finden Sie &lt;a href='/support/legacy-downloads'&gt;hier&lt;/a&gt;.</value>
+    <value>Für Benutzer, die einen bestimmten Bedarf an legacy-downloaden haben (Nutzung auf eigenes Risiko), finden Sie &lt;a href='/information/legacy-downloads'&gt;hier&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>Was sind die Hauptunterschiede zwischen der standalone-version und der installer-version von AxCrypt?</value>
@@ -3124,7 +3172,7 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Überprüfen Sie, ob der Download unbeschädigt und authentisch ist, indem Sie die digitale Signatur überprüfen. Klicken Sie im Windows Explorer mit der rechten Maustaste auf die heruntergeladene Datei und wählen Sie "Eigenschaften" und die Registerkarte "Digitale Signaturen". Wählen Sie dann die digitale Signatur aus und klicken Sie auf "Details". Stellen Sie sicher, dass die digitale Signatur als "OK"angezeigt wird und dass der Unterzeichner "AxCrypt AB" ist.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Wenn Sie brennende Probleme oder Fragen haben, besuchen Sie unsere &lt;a href='/support/faq'&gt;Häufig gestellte Fragen&lt;/a&gt; Seite.</value>
+    <value>Wenn Sie brennende Probleme oder Fragen haben, besuchen Sie unsere &lt;a href='/information/faq'&gt;Häufig gestellte Fragen&lt;/a&gt; Seite.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Bitte melden Sie uns Fehler und Kommentare. Gerne können Sie auch Unterstützung anfordern. Für andere Fragen, bitte senden Sie uns eine E-Mail.</value>
@@ -3384,7 +3432,7 @@ bitte beachten Sie die AxCrypt Datenschutzerklärung.</value>
     <value>Melden Sie sich unten kostenlos an, um über unsere Neuigkeiten auf dem Laufenden zu bleiben</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;weitere testimonials finden Sie unter &lt;a href='/about/awards'&gt;Auszeichnungen &amp; Bewertungen&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;weitere testimonials finden Sie unter &lt;a href='/information/awards'&gt;Auszeichnungen &amp; Bewertungen&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Was andere &lt;span&gt;sagen&lt;/span&gt;</value>
@@ -4146,7 +4194,7 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
     <value>Wenn es unklar ist, warum Sie dies von AxCrypt.net empfangen, können Sie diese E-Mail ignorieren oder einen Bericht an {0} schicken.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Zögern Sie nicht, mich zu kontaktieren, falls Sie Fragen oder Feedback haben. Sehen Sie sich auch unser FAQ und das Forum auf unserer Webseite unter &lt;a href="{0}"&gt;{0}&lt;/a&gt; an.</value>
+    <value>Zögern Sie nicht, mich zu kontaktieren, falls Sie Fragen oder Feedback haben. Sehen Sie sich auch unser FAQ und das Forum auf unserer Webseite unter &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt; an.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -4157,7 +4205,7 @@ Automatische Konvertierung von AxCrypt 1.x Dateien aktivieren (empfohlen)?</valu
  -  Das AxCrypt Team</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>Ihr Abonnement ist am &lt;b&gt;{0}&lt;/b&gt;abgelaufen. Sie haben keinen Zugriff mehr auf Premium-Funktionen wie:</value>
+    <value>Ihr Abonnement ist am &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;abgelaufen. Sie haben keinen Zugriff mehr auf Premium-Funktionen wie:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -4434,6 +4482,39 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="MessageUnsubscribedConfirmation" xml:space="preserve">
     <value>Sie sind jetzt von den Neuheiten und Informationen per E-Mail ausgetragen .</value>
     <comment>The main message displayed when unsubscribed</comment>
+  </data>
+  <data name="Meta-Description-Aboutus">
+    <value>Lesen Sie mehr über unsere preisgekrönte, einfache und zuverlässige Verschlüsselungssoftware und unsere Vision.</value>
+  </data>
+  <data name="Meta-Description-Government">
+    <value>Als Regierung können Sie sich auf AxCrypt verlassen, um Bedrohungen durch eine Vielzahl von Akteuren, Kriminellen, ausländischen Geheimdiensten und repressiven Regierungen entgegenzuwirken.</value>
+  </data>
+  <data name="Meta-Description-Home">
+    <value>Benutzerfreundliche, fortschrittliche Dateiverschlüsselungssoftware für Ihre geschäftlichen und persönlichen Daten mit Cloud-Speicher, mobiler Verschlüsselung und Passwortmanager. Jetzt kostenlos testen</value>
+  </data>
+  <data name="Meta-Description-Legal">
+    <value>Schützen und sichern Sie Ihre rechtlichen Verträge, Kundeninformationen, geistiges Eigentum und andere wichtige Dokumente, bei denen das höchste Verletzungsrisiko besteht.</value>
+  </data>
+  <data name="Meta-Keywords-Blog">
+    <value>so verschlüsseln Sie Dateien,wie wird Verschlüsselung verwendet?,So schützen Sie Daten auf Ihrem Handy,Mythen über Verschlüsselung,So schützen Sie Ihr Unternehmen vor Cyberbedrohungen</value>
+  </data>
+  <data name="Meta-Keywords-Financial">
+    <value>Finanzdatenverschlüsselung, wichtige Dokumente sichern, Finanzinformationen schützen, schützen</value>
+  </data>
+  <data name="Meta-Keywords-Healthcare">
+    <value>Verschlüsselung für das Gesundheitswesen,Patientengesundheitsinformationen schützen,persönliche Informationen schützen,Verschlüsselung von Gesundheitsdaten,So verschlüsseln Sie Patientendaten,beste Verschlüsselungssoftware für das Gesundheitswesen,elektronische Patientenakten</value>
+  </data>
+  <data name="Meta-Keywords-Legal">
+    <value>verschlüsselung für Juristen,Verschlüsselung für Anwaltskanzleien,Verschlüsselungsgesetze nach Ländern</value>
+  </data>
+  <data name="Meta-Title-Features">
+    <value>AxCrypt-Funktionen | Erfahren Sie mehr über unsere Software</value>
+  </data>
+  <data name="Meta-Title-Premium">
+    <value>AxCrypt Premium | Sichere persönliche Dateien auf Windows, Mac, Android und iPhone</value>
+  </data>
+  <data name="Meta-Title-Tech">
+    <value>AxCrypt Tech | Ende-zu-Ende-256-Bit-Verschlüsselung sorgt für Sicherheit im technischen Bereich</value>
   </data>
   <data name="MetadataRetentionLabel">
     <value>Metadaten-Aufbewahrung</value>
@@ -5936,7 +6017,7 @@ Natürlich wird Ihnen keine Lizenz zugewiesen.</value>
     <value>Business Abonnement: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Erste Schritte: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Erste Schritte: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Tipps zur Verwendung: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
@@ -6577,6 +6658,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
     <value>Bedingungen</value>
     <comment>Clickable text of link to Terms And Conditions in mobile application</comment>
   </data>
+  <data name="TermsOfUseBlock011Text1">
+    <value>Keiner Einzelperson oder Organisation ist es gestattet, Versuche mehrmals mit derselben oder einer anderen ID durchzuführen. Wenn festgestellt wird, dass diese natürliche oder juristische Person verpflichtet wäre, für die zusätzlich zum ersten Versuch in Anspruch genommenen Dienstleistungen zu zahlen. Wenn Sie diese Testbedingungen nicht einhalten, sind wir berechtigt, Ihren Plan ohne Vorankündigung auszusetzen.</value>
+  </data>
   <data name="TermsOfUseBlock10Heading">
     <value>Updates zu AxCrypt</value>
   </data>
@@ -6628,6 +6712,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock17Text4">
     <value>Ihre Daten werden durch die Verwendung standardisierter starker Verschlüsselungsmethoden vertraulich behandelt, beschrieben unter &lt;a href= '/information/security'&gt;Sicherheit&lt;/a&gt;, &lt;a href='/information/technical-details' &gt;Technische Details&lt;/a&gt; und in der &lt;a href='https://bitbucket.org/axcryptab/axcrypt-net'&gt;Quellcode&lt;/a&gt;. Wir garantieren nicht, dass Sie ein ausreichend starkes Passwort wählen.</value>
   </data>
+  <data name="TermsOfUseBlock17Text5" xml:space="preserve">
+    <value>Wir stellen nur AxCrypt zur Verfügung und sind niemals verantwortlich für illegale oder betrügerische Handlungen anderer, die es verwenden. Als Benutzer sind Sie allein für Ihre Handlungen mit AxCrypt verantwortlich. Wir haften niemals für Schäden, die durch rechtzeitiges Backup hätten verhindert werden können oder durch vergessene Passwörter verursacht wurden.</value>
+  </data>
   <data name="TermsOfUseBlock17Text6">
     <value>Unsere Haftung darf niemals den für die Dienstleistung gezahlten Betrag überschreiten.</value>
   </data>
@@ -6675,6 +6762,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="TermsOfUseBlock4Text1" xml:space="preserve">
     <value>AxCrypt Viewer ist für alle macOS- und mobilen Benutzer kostenlos verfügbar. Mit dem Plan können Sie Dateien anzeigen und entschlüsseln sowie Daten im Kennwortmanager anzeigen, aber nicht ändern.</value>
+  </data>
+  <data name="TermsOfUseBlock4Text2">
+    <value>AxCrypt Free ist für alle Windows-Benutzer kostenlos mit der Open-Source-Version von AxCrypt 2.1 verfügbar, die unter der GPL, Version 3, lizenziert ist. Zusätzlich zum Viewer-Plan wird die Aktualisierung vorhandener und die Verschlüsselung neuer Dateien mit AES-128 unterstützt.</value>
   </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Technische Priorität E-Mail-support wird zur Verfügung gestellt. Wir garantieren nicht, alle Probleme zu lösen.</value>

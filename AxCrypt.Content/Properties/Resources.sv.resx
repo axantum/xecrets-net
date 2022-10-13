@@ -705,6 +705,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_Business_Premium_Subscription">
     <value>&lt;i&gt;Vill du veta mer?&lt;/i&gt; Vi släpper intressant information varje vecka. Va nyfiken och ta en titt på våra blogginlägg &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt; glöm inte kontakta oss på &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; eller &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
   </data>
+  <data name="Blog_Business_PricingPage">
+    <value>Vi erbjuder företags- och premiumabonnemang, missa inte våran 30 dagars provperiod. Du kan läsa mer om våra erbjudanden här: &lt;a href='https://www.axcrypt.net/pricing'&gt;https://www.axcrypt.net/pricing&lt;/a&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_H2_Text1">
     <value>Några utav de problem som cyberhygien ska lösa är följande:</value>
   </data>
@@ -738,6 +741,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_Conclusion_FeaturePage_Text1">
     <value>&lt;a href='https://axcrypt.net/information/features'&gt;Ta en titt på AxCrypts funktionssida&lt;/a&gt; för att få veta mer om hur AxCrypt kan säkra dina filer och data och &lt;a href='https://www.axcrypt.net/pricing'&gt;prissidan&lt;/a&gt; som visar vilken typ av krypteringsabonnemang AxCrypt erbjuder.</value>
   </data>
+  <data name="Blog_Conclusion_Heading">
+    <value>Slutsats</value>
+  </data>
   <data name="Blog_Conclusion_HealthCare_Text1">
     <value>Ta en titt på AxCrypts Feature sida för att få veta mer om hur AxCrypt kan säkra filer och data samt prissidan som visar vilken typ av krypteringsabonnemang AxCrypt erbjuder. &lt;ahref=' https://www.axcrypt.net/industries/healthcare'&gt; Läs mer om hur vi betjänar sjukvårdsbranschen&lt;/a&gt;</value>
   </data>
@@ -749,6 +755,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_Conclusion_SignUp">
     <value>&lt;a href='https://www.axcrypt.net/information/affiliate'&gt;&lt;strong&gt; Du kan signa upp här:&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Conclusion_Text">
+    <value>Vill du veta mer? Vi släpper intressant information gällande detta varje vecka. Var nyfiken och ta en titt på våra blogginlägg &lt;a style='color: #efefef; font-weight: 800;' href='https://axcrypt.net/support/blog'&gt;https://axcrypt.net/support/blog&lt;/a&gt;. Glöm inte kontakta oss på  &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; eller &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
   </data>
   <data name="Blog_CWELTI_Conclusion_Heading1">
     <value>Hur man skyddar sin egen nyckel?</value>
@@ -767,6 +776,12 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_DEVFE_Heading3">
     <value>Hur är AxCrypt annorlunda från BitLocker och FileVault?</value>
+  </data>
+  <data name="Blog_Download_AxcryptHere">
+    <value>Integriteten för din data är ditt ansvar - ta beslutet att kontrollera var och hur du lagrar dina personliga uppgifter. Säkra dina dokument med AxCrypt och var säker på bevarad konfidentialitet från din dator till molntjänsten och tillbaka till din dator. Ladda ner AxCrypt här:&lt;a href='https://www.axcrypt.net/download'&gt;https://www.axcrypt.net/download&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Download_IOS_Window">
+    <value>AxCrypt erbjuder allt detta, du kan ladda ner mjukvaran för Windows, macOS men även på Android under länken: &lt;a href='https://www.axcrypt.net/download'&gt;https://www.axcrypt.net/download&lt;/a&gt;</value>
   </data>
   <data name="Blog_DRATIUIN_Conclusion_Heading">
     <value>Kort sagt, här på AxCrypt</value>
@@ -833,6 +848,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_EITPS_H3_SubHeading2">
     <value>&lt;strong&gt;Åtkomlig på olika enheter &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EVA_H3_Text6">
+    <value>Glad AxCrypting!</value>
   </data>
   <data name="Blog_Feature_Conclusion_Text1">
     <value>&lt;a href='https://www.axcrypt.net/information/features'&gt; Kika på AxCrypts funktionssida för att se vad vi erbjuder&lt;/a&gt;</value>
@@ -915,6 +933,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_LYCWAR_Text13">
     <value>Glad AxCrypting!</value>
   </data>
+  <data name="Blog_LYCWAR_Title">
+    <value>Lämna din dator med AxCrypt igång</value>
+  </data>
   <data name="Blog_MDPNST_Conclusion_Text1">
     <value>Detta år kommer inte cyberbrotten att lugna sig. De kriminella har oändliga alternativ och deras metoder blir alltmer sofistikerade. Företag har inte längre råd att ta genvägar och riskövervakning måste bli prioriterat för mobiltelefoner. Nu när du förstår nödvändigheten med krypterade mobiltelefoner, kryptera mobila enheter med AxCrypt är att skydda din data från obehörig åtkomst.</value>
   </data>
@@ -990,8 +1011,35 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_ROCP_Title">
     <value>Relevansen av att Organisera ett Företags Lösenord</value>
   </data>
+  <data name="Blog_SamePage_AxcryptRunning">
+    <value>För filkryptering hade det bästa alternativet varit AxCrypt, en mjukvara som är enkel att få grepp om och arbeta med som ett team och som erbjuder premium 256-bitars kryptering som säkerställer att du får valuta för pengarna. Du kan bara &lt;a href='https://www.axcrypt.net/blog/leaving-your-computer-with-axcrypt-running'&gt;lämna din dator med AxCrypt igång&lt;/a&gt; och gå fortsätta med dagen med att utföra andra mer relevanta uppgifter utan att vara orolig för säkerheten av dina filer och dokument.</value>
+  </data>
   <data name="Blog_SCMAE_Title">
     <value>Några Vanliga Myter Om Kryptering</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading1">
+    <value>&lt;strong&gt; 1. Din Mobila Enhet Tar Inte Emot Uppdateringar &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading2">
+    <value>&lt;strong&gt; 2. Autentiska appar kan innehålla skadlig programvara &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading3">
+    <value>&lt;strong&gt; 3. Smartphones skyddar inte mot nätfiske &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading4">
+    <value>&lt;strong&gt; 4. För Många behörigheter Har beviljats Av Dig. &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading5">
+    <value>&lt;strong&gt; 5. Din Smartphone Är Inte ordentligt Låst &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SSING_Heading1">
+    <value>Anledningar Till Varför Din Smartphone Inte Är Så Säker</value>
+  </data>
+  <data name="Blog_SSING_Summary">
+    <value>Att bibehålla datasäkerheten blir viktigare då vi lagrar känsligare data på våra mobila enheter</value>
+  </data>
+  <data name="Blog_SSING_Title">
+    <value>Smartphone-säkerhet: Det Är Inte Ett Spel</value>
   </data>
   <data name="Blog_Support_ContactUs">
     <value>&lt;i&gt;Vill du veta mer?&lt;/i&gt; Vi släpper ny intressant information varje vecka. Va nyfiken och titta på våra blogginlägg &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt; glöm inte att kontakta oss på &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; eller &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; om du har några frågor!</value>
@@ -1004,6 +1052,10 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_TAYBS_Title">
     <value>Skål för ännu ett år av att vara säkra!</value>
+  </data>
+  <data name="Blog_Techiespad_Document">
+    <value>Med tanke på alla ovanstående faktorer, &lt;a href='https://techiespad.com/'&gt;Techiespadteam&lt;/a&gt;
+föreslås att du överväger användningen av en krypteringsprogramvara som hjälper dig skydda din data. Med denna typ av mjukvara är din data kraftigt krypterad; ett sätt att säkerställa att tredje parter inte får tillgång till det utan uttryckligt tillstånd. Lösenordshanteringen är också enkel plus att du kan  se till att din data är säkert på molnplattformar såsom Dropbox och Google Drive.</value>
   </data>
   <data name="Blog_Technical_Document">
     <value>Alla ovanstående är en förenklad version av processen. Många extra detaljer är inkluderade för att försäkra säkerhet, och för att hantera olika synkroniseringsscenarier, lösenordsåterställningshändelser m.m. För alla detaljer läs &lt;a href='https://www.axcrypt.net/information/technical/'&gt;teknisk dokumentation&lt;/a&gt;.</value>
@@ -1020,6 +1072,18 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_TSTE_H2_Text1">
     <value>De mest samtida krypteringsalgoritmer, protokoll och tekniker använder AES 256-bit, vilket är bland annat de &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt; säkraste krypterings&lt;/a&gt; teknikerna efter 128-bits och 192-bits krypteringarna.</value>
   </data>
+  <data name="Blog_UODPCH_Text9">
+    <value>Glad AxCrypting!</value>
+  </data>
+  <data name="Blog_UODPCH_Title">
+    <value>Användning av olika lösenord anses vara skadligt</value>
+  </data>
+  <data name="Blog_WAMHIHY_Conclusion_Heading">
+    <value>Få betalt utan att investera!</value>
+  </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text1">
+    <value>Vi förändrar sättet människor kommunicerar och jobbar på.</value>
+  </data>
   <data name="Blog_WAMHIHY_Conclusion_Text3">
     <value>Vill du lära dig mer om AxCrypt och ansluta dig till vårat affiliate-marknadsföringsprogram?</value>
   </data>
@@ -1031,6 +1095,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_WCACT_H4_SubHeading1">
     <value>&lt;strong&gt;Molnsäkerhet&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text4">
+    <value>&lt;strong&gt;Kort&lt;/strong&gt;&lt;br /&gt;Sammanfattningsvis, kryptering är fundamentalt till modern internetsäkerhet. Det är ett extremt komplicerat ämne men vi på AxCrypt är stolta över att göra processen så enkel och användarvänlig som möjligt för alla.</value>
   </data>
   <data name="Blog_WTPI_Heading2">
     <value>Frihet kontra kontroll</value>
@@ -1071,8 +1138,8 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>&lt;p&gt;Välkomment till AxCrypt Business.&lt;/p&gt;
-&lt;p&gt;Du har blivit adderad som medlem till ett AxCrypt Business abonnemang av {0}, så nu har du tillgång till alla fördelar med Business-abonnemanget så länge du är kvar som medlem.&lt;/p&gt; 
-&lt;p&gt;Om du har några frågor, kontakta {0} i första hand.&lt;/p&gt;</value>
+&lt;p&gt;Du har blivit adderad som medlem till ett AxCrypt Business abonnemang av {addedby_user_email}, så nu har du tillgång till alla fördelar med Business-abonnemanget så länge du är kvar som medlem.&lt;/p&gt; 
+&lt;p&gt;Om du har några frågor, kontakta {addedby_user_email} i första hand.&lt;/p&gt;</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -1114,7 +1181,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Företagsemail</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>Din AxCrypt Business-prenumeration {0} har avslutats. Vi hoppas innerligt att du har njutit av att använda AxCrypt och funnit det användbart.</value>
+    <value>Din AxCrypt Business-prenumeration {bus_sub_name} har avslutats. Vi hoppas innerligt att du har njutit av att använda AxCrypt och funnit det användbart.</value>
   </data>
   <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
     <value>Berätta för oss vad du tycker om AxCrypt - Kommer du fortsätta att använda det och är det något du skulle vilja se en förbättring av?</value>
@@ -1126,7 +1193,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Som administratör måste du förnya abonnemanget för teamet administrationsmodulen på vår webbplats. Klicka på knappen nedan för att gå direkt dit. Glöm inte att informera teamet om att du kommer att förnya!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>Ditt AxCrypt Business-abonnemang {0} tar snart slut. Vi hoppas verkligen att du har haft mycket nytta av och nöje med AxCrypt.</value>
+    <value>Ditt AxCrypt Business-abonnemang {bus_sub_name} tar snart slut. Vi hoppas verkligen att du har haft mycket nytta av och nöje med AxCrypt.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>När du förnyar ditt Business-abonnemang kan du och ditt team fortsätta använda:</value>
@@ -1192,8 +1259,8 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Gjord för företag</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>&lt;p&gt;Du har blivit tillagd som AxCrypt-användare av &lt;b&gt;{0}&lt;/b&gt;. Börja med att &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt. Logga på AxCrypt med &lt;b&gt;{2}&lt;/b&gt;, ange din verifikationskod nedan och sätt ditt personliga hemliga lösenord.&lt;/p&gt;
-&lt;p&gt;Om du har några frågor, kontakta {0} i första hand.&lt;/p&gt;</value>
+    <value>&lt;p&gt;Du har blivit tillagd som AxCrypt-användare av &lt;b&gt;{addedby_user_email}&lt;/b&gt;. Börja med att &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;ladda ned&lt;/a&gt; och installera AxCrypt. Logga på AxCrypt med &lt;b&gt;{account_web_url}&lt;/b&gt;, ange din verifikationskod nedan och sätt ditt personliga hemliga lösenord.&lt;/p&gt;
+&lt;p&gt;Om du har några frågor, kontakta {addedby_user_email} i första hand.&lt;/p&gt;</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -1240,7 +1307,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>Läs de fullständiga &lt;a href="https://www.axcrypt.net/information/license/"&gt;villkoren&lt;/a&gt; och &lt;a href="https://www.axcrypt.net/pricing/"&gt;prissättning&lt;/a&gt; före köp.</value>
+    <value>Läs de fullständiga &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;villkoren&lt;/a&gt; och &lt;a href="https://www.axcrypt.net/pricing/"&gt;prissättning&lt;/a&gt; före köp.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -1305,7 +1372,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>Läs mer &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt;här&lt;/a&gt;.</value>
+    <value>Läs mer &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt;här&lt;/a&gt;.</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -1553,7 +1620,7 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Bevisa att du är en riktig person och inte ett dataprogram!</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>Du har begärt att återställa din AxCrypt-ID email till &lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;. För att bekräfta vänligen tryck på knappen nedan.</value>
+    <value>Du har begärt att återställa din AxCrypt-ID email till &lt;b style="color: #000 !important;"&gt;{email_change_to}&lt;/b&gt;. För att bekräfta vänligen tryck på knappen nedan.</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>Logga in med ditt befintliga lösenord så kommer det gamla kontot att raderas permanent.</value>
@@ -1568,13 +1635,13 @@ Du har blivit varnad, njut nu av programvaran!</value>
     <value>Ditt byte av e-postadress är härmed bekräftat! Logga in för att slutföra bytet.</value>
   </data>
   <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>Någon har begärt en ändring av email (av en ej avsjöjbar källa) på &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{1}&lt;/b&gt;.</value>
+    <value>Någon har begärt en ändring av email (av en ej avsjöjbar källa) på &lt;a href="{info_site_url}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt; to &lt;b&gt;{email_change_to}&lt;/b&gt;.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>Men, eftersom du redan har ett AxCrypt ID med den här e-postadressen så har begäran lämnats utan åtgärd.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>Strunta i det här mejlet eller rapportera det till {0}. Ingen skada är skedd, och ingen information har kommit ut.</value>
+    <value>Strunta i det här mejlet eller rapportera det till {axc_support_email}. Ingen skada är skedd, och ingen information har kommit ut.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>Byte av E-postadress till AxCrypt ID</value>
@@ -1695,7 +1762,7 @@ Du måste slutföra dessa steg för att processen skall fullföljas.</value>
     <value>Gör detta för alla återstående filer?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>Om du har några frågor, kontakta först {0}.</value>
+    <value>Om du har några frågor, kontakta först {addedby_user_email}.</value>
   </data>
   <data name="ContactHeading">
     <value>Kontakt</value>
@@ -2289,7 +2356,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>AxCrypt 1.x är en äldre version. Det betyder att den är föråldrad och att det inte längre finns något stöd för den, medan AxCrypt 2.x är versionen som vi kontinuerligt arbetar på för att fortsätta att förbättra den. Det rekommenderas inte att du använder 1.x. Vi rekommenderar alla användare, gamla som nya, att alltid använda den senaste versionen av AxCrypt, som kan laddas ner &lt;a href='/download'&gt;här&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>För användare som har ett specifikt behov av äldre nedladdningar (använd den på egen risk), kan de hittas &lt;a href='/support/legacy-downloads'&gt;här&lt;/a&gt;.</value>
+    <value>För användare som har ett specifikt behov av äldre nedladdningar (använd den på egen risk), kan de hittas &lt;a href='/information/legacy-downloads'&gt;här&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>Vad är de största skillnaderna mellan den fristående versionen och installationsversionen av AxCrypt?</value>
@@ -2996,7 +3063,7 @@ Vi är ledsna att du lämnar oss, men vi hoppas du uppskattat AxCrypt.</value>
     <value>Kontrollera att nedladdningen är oskadad och autentisk genom att kontrollera den digitala signaturen. Högerklicka på den nedladdade filen i Utforskaren i Windows och välj "Egenskaper" och fliken "Digitala signaturer". Välj sedan den digitala signaturen och klicka på "Detaljer". Se till att den digitala signaturen visas som 'OK' och att undertecknaren är 'AxCrypt AB'.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>Om du har några brådskande problem eller frågor, kolla vår sida med &lt;a href='/support/faq'&gt;vanliga frågor&lt;/a&gt;.</value>
+    <value>Om du har några brådskande problem eller frågor, kolla vår sida med &lt;a href='/information/faq'&gt;vanliga frågor&lt;/a&gt;.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>Vänligen rapportera buggar och kommentarer till oss. Du får dessutom fritt be om stöd. Kontakta oss gärna vid andra besvär.</value>
@@ -3285,7 +3352,7 @@ För mer information om hur vi använder informationen du skickar in här, vänl
     <value>Registrera dig nedan gratis för att hålla dig uppdaterad om våra nyheter</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;För fler rekommendationer, gå till &lt;a href='/about/awards'&gt;utmärkelser och recensioner&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;För fler rekommendationer, gå till &lt;a href='/information/awards'&gt;utmärkelser och recensioner&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>Vad andra &lt;span&gt;säger&lt;/span&gt;</value>
@@ -4089,7 +4156,7 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
     <value>Om du inte vet varför du får det här från AxCrypt.net, strunta i det här mejlet eller rapportera det till {0}.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>Kontakta oss gärna om du har några frågor eller synpunkter. Titta gärna på vår FAQ och vårt Forum på hemsidan &lt;a href={0}"&gt;{0}&lt;/a&gt; .</value>
+    <value>Kontakta oss gärna om du har några frågor eller synpunkter. Titta gärna på vår FAQ och vårt Forum på hemsidan &lt;a href={info_site_url}"&gt;{info_site_url}&lt;/a&gt; .</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -4100,10 +4167,10 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
  -  AxCrypt-teamet</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>Din prenumeration gick ut &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre tillgång till Premium-funktioner som:</value>
+    <value>Din prenumeration gick ut &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. Du har inte längre tillgång till Premium-funktioner som:</value>
   </data>
   <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>Din prenumeration har blivit avslutad och kommer sluta gälla &lt;b&gt;{0}&lt;/b&gt;. Du har inte längre åtkomst åt Premium-funktionerna:</value>
+    <value>Din prenumeration har blivit avslutad och kommer sluta gälla &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;. Du har inte längre åtkomst åt Premium-funktionerna:</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -4135,6 +4202,15 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Välj epost-program</value>
     <comment>Header of popup for selecting mail application.</comment>
+  </data>
+  <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
+    <value>{{useremail}} har följande feedback..</value>
+  </data>
+  <data name="MailGunHelloTitle" xml:space="preserve">
+    <value>Hej {{useremail}}</value>
+  </data>
+  <data name="MailGunPremiumSupportTitle" xml:space="preserve">
+    <value>{{useremail}} skulle behöva hjälp med.. </value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Ett analysfel uppstod vid uppdatering av sidhanteringen. Vänligen kolla att du använder rätt format.</value>
@@ -4233,7 +4309,7 @@ Aktivera automatisk konvertering av AxCrypt 1.x-filer nu (rekommenderas)?</value
     <value>Om Master key är inaktiverad kommer företagsadministratörer inte att kunna öppna filer krypterade av sina företagsmedlemmar.</value>
   </data>
   <data name="MasterKeyHelpText1" xml:space="preserve">
-    <value>Master key gör det möjligt för företagsadministratörer att öppna filer krypterade av företagets medlemmar. Observera att medlemmarna först måste godkänna master key innan den börjar att fungera på filerna. Du kan se vem som har godkänt master key i användartabellen. &lt;a href="https://axcrypt.net/support/master-key" target="_blank"&gt;Klicka här för mer information&lt;/a&gt;.</value>
+    <value>Master key gör det möjligt för företagsadministratörer att öppna filer krypterade av företagets medlemmar. Observera att medlemmarna först måste godkänna master key innan den börjar att fungera på filerna. Du kan se vem som har godkänt master key i användartabellen. &lt;a href="https://axcrypt.net/information/master-key" target="_blank"&gt;Klicka här för mer information&lt;/a&gt;.</value>
   </data>
   <data name="MasterKeyHelpText2" xml:space="preserve">
     <value>Filer som krypterades &lt;b&gt;innan&lt;/b&gt; master key är aktiverad kommer inte att kunna öppnas utan de ursprungliga krypteringsuppgifterna.</value>
@@ -6070,7 +6146,7 @@ Till: support@axcrypt.net
     <value>Business-prenumeration: &lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>Kom igång: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt;</value>
+    <value>Kom igång: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>Användarförslag: &lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>

@@ -665,14 +665,23 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_5KFESSAO_Heading3">
     <value>&lt;h3&gt;3. 안전한 삭제&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_ADGE_Conclusion_Heading">
+    <value>&lt;strong&gt;AxCrypt 시작하기...&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ADGE_H1_Text1">
     <value>보안에 관한 비전문가와 암호화에 대해 논의하다보면 여러 일반적인 반응을 볼 수 있습니다. 종종 암호화는 일종의 불길한 기술로 오해되기도 합니다. 그러나, 암호화 기술은 오늘날의 가상 시대에 필요한 유연성, 규정 준수, 데이터 개인 정보 보호 등을 달성 하는 데 도움이 될 수 있습니다.</value>
   </data>
   <data name="Blog_ADGE_H2_SH2_Text1">
     <value>이메일 및 기타 콘텐츠를 가로채는 것은 좀더 공식적이지 않은 방법으로 발생한 여러 사건의 한 예일 뿐입니다. 대부분의 이메일은 제3자가 가로챌만한 흥미로운 내용들이 아님에도 불구하고 그런 이메일들은 종종 가로채지는 경우가 발생합니다. 이메일이 서버에서 전송될 때는 기본적으로 암호화되지 않습니다. 이는 해커가 이 정보에 액세스할 경우 귀하의 이메일과 기밀 정보를 볼 수 있음을 의미합니다.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_ADGE_H2_SH4_Text1">
+    <value>데이터가 암호화되지 않은 경우 사이버 공격이나 제3자의 간섭으로 인해 중요 또는 기밀 정보가 손상되는 심각한 결과가 발생할 수 있습니다. 그러한 종류의 위협들을 식별할 수 있는 프로토콜이 없으면 조직은 이를 인지하지 못한채 많은 양의 데이터를 잃을 수 있습니다.</value>
+  </data>
   <data name="Blog_ADGE_H2_SubHeading4">
     <value>&lt;strong&gt;제3자의 악의적인 활동 &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH1_Text1">
+    <value>AxCrypt는 256비트 강력한 암호화가 포함된 무료 소프트웨어를 제공합니다. 이는 데이터 보안을 강화하고 침해 위험을 최소화합니다. 대규모 조직의 경우, 우리의 &lt;a href='https://www.axcrypt.net/business'&gt;사업 계획&lt;/a&gt;을 검토하여 고급 기능을 살펴볼 수 있습니다.</value>
   </data>
   <data name="Blog_ADGE_H4_SubHeading1">
     <value>&lt;strong&gt;무료 소프트웨어 &lt;/strong&gt;</value>
@@ -698,8 +707,14 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_ADSDE_Conclusion_Text2">
     <value>AxCrypt는 256비트 암호화를 제공하며 귀하의 키를 스스로 제어하는 한 누구도 암호화된 파일에 액세스하지 못하도록 합니다.</value>
   </data>
+  <data name="Blog_ADSDE_Conclusion_Text3">
+    <value>AxCrypt는 개인 데이터 보호, 개인 권리와 관련된 GDPR 및 HIPAA와 같은 규정을 준수하고 민감한 데이터 보호 표준을 설정합니다.</value>
+  </data>
   <data name="Blog_ADSDE_H2_SH1_Text2">
     <value>사이버 공격의 원인으로는 정찰, 부당한 경쟁 우위 확보를 위한 염탐, 지적 도전 등이 있습니다. 경제적 이익으로 동기부여된 사이버 범죄자는 데이터 절도 또는 영업 방해를 통해 재정적 이득을 추구합니다. 마찬가지로, 앙심 을 품은 현직 또는 전직 직원들도 돈과 데이터를 목표로 삼을 수 있습니다.</value>
+  </data>
+  <data name="Blog_ADSDE_H2_SubHeading1">
+    <value>&lt;strong&gt;사이버 범죄의 현실&lt;/strong&gt;</value>
   </data>
   <data name="Blog_ADSDE_H3_Text1">
     <value>장치를 암호로 보호하는 것만으로는 데이터를 보호할 수 없습니다. 파일 암호 보안 소프트웨어로 데이터를 암호화하면 고유한 키를 가진 개인만이 파일에 대한 액세스 권한를 가집니다. 타인이 파일이나 pdf에 접근하기 위해서는 파일을 보안에 사용된 고유 키가 필요합니다.</value>
@@ -707,8 +722,14 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_ADSDE_H3_Text2">
     <value>pdf 파일 및 폴더 등 기타 문서를 암호화 하여 보호하는 방법이 궁금하십니까? AxCrypt를 사용하면 pdf 문서 및 다른 파일 형식을 보호할 수 있으므로 걱정하지 마십시오. 누구도 해킹할 수 없는 AxCrypt 비밀번호 생성기로 강력한 비밀번호를 만드세요. 자세한 내용은 &lt;a href= 'https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt; 유투브 튜토리얼&lt;/a&gt;을 시청하십시오.</value>
   </data>
+  <data name="Blog_ADSDE_Heading1">
+    <value>사이버 공격이란 무엇인가요?</value>
+  </data>
   <data name="Blog_ADSDE_Heading3">
     <value>장치에서 파일, 폴더, PDF를 암호화합니다.</value>
+  </data>
+  <data name="Blog_ADSDE_Title">
+    <value>디지털 시대의 데이터 보안 기술</value>
   </data>
   <data name="Blog_AIS_Conclusion_Heading">
     <value>간단히 말해서 AxCrypt</value>
@@ -764,6 +785,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_BSTSSCE_H1_SH4_Text3">
     <value>요약하자면 암호화는 현대 인터넷 보안의 기본입니다. 비록 매우 복잡한 일이지만, AxCrypt는 모든 사람이 사용하기 쉽고 친숙한 프로세스를 만드는 것을 자랑스럽게 생각합니다. &lt;br/&gt;&lt;br/&gt;&lt;/li&gt;&lt;/ol&gt;</value>
   </data>
+  <data name="Blog_Business_Premium_Subscription">
+    <value>&lt;i&gt;더 알고 싶으신가요?&lt;/i&gt; 매주 흥미로운 정보가 공개됩니다. 관심을 갖고 우리의 블로그 포스트&lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt;를 둘러보세요. 문의사항은 &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; 또는 &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt;으로 연락 주세요!</value>
+  </data>
+  <data name="Blog_Business_PricingPage">
+    <value>우리는 비즈니스 및 프리미엄 구독을 제공하며, 이와 관련된 30일 무료 평가판을 놓치지 마세요. 자세한 내용은 &lt;a href='https://www.axcrypt.net/pricing'&gt;https://www.axcrypt.net/pricing&lt;/a&gt;에서 확인할 수 있습니다.</value>
+  </data>
   <data name="Blog_CEANK_H1_Heading2">
     <value>&lt;h3&gt;클라우드의 일부 특성&lt;/h3&gt;</value>
   </data>
@@ -791,6 +818,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_CHHSSO_H2_Text3">
     <value>&lt;li&gt;데이터 손실 — 백업되지 않은 하드 드라이브 및 온라인 클라우드 저장소는 데이터 손실을 초래하는 해킹, 손상과 같은 여러 문제에 노출될 수 있습니다.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H2_Text4">
+    <value>&lt;li&gt;오래된 소프트웨어는 당신의 기기를 사이버 위협에 더욱 취약하게 만들 수 있습니다.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_H3_SH3_Text1">
     <value>모든 장치에 보안암호를 설정하는 것은 필수입니다. 비밀번호는 고유하고 복잡해야 하며, 12자 이상의 숫자, 기호, 대문자, 소문자 및 특수문자를 포함하여야 합니다. 정기적인 비밀번호를 변경은 해커로부터의 공격을 차단하는 데 도움이 됩니다. AxCrypt의 암호 관리 생성기는 당신의 암호가 충분히 강력하고 안전한지 확인해 줍니다.</value>
   </data>
@@ -815,6 +845,18 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_CHHSSO_Summary">
     <value>"사이버 위생"이라는 용어는 사용자가 온라인 보안 및 시스템 상태를 개선하기 위해 취하는 조치를 의미합니다.</value>
   </data>
+  <data name="Blog_Conclusion_ContactUs">
+    <value>문의사항은 &lt;a href='mailto:support@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;support@axcrypt.net&lt;/a&gt; 또는 &lt;a href='mailto:business@axcrypt.net' style='font-weight: 800; color: #efefef;'&gt;business@axcrypt.net&lt;/a&gt;으로 연락 주시는 것을 잊지 마세요! 우리의 SNS계정을 팔로우하여 최신정보를 놓치지 마세요.</value>
+  </data>
+  <data name="Blog_Conclusion_ContactUs_ChangeText1">
+    <value>문의사항은 &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt; 또는 &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt;으로 연락주세요!</value>
+  </data>
+  <data name="Blog_Conclusion_ContactUs_Support">
+    <value>문의사항은 &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;으로 연락주세요.</value>
+  </data>
+  <data name="Blog_Conclusion_Download_ContactUs">
+    <value>&lt;a href=' https://www.axcrypt.net/information/axcrypt'&gt;여기에서 AxCrypt를 다운로드하십시오:&lt;/a&gt;. 자세한 내용은 &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;으로 문의하세요.</value>
+  </data>
   <data name="Blog_Conclusion_Feature2_Text1">
     <value>&lt;a href='https://axcrypt.net/information/features '&gt;AxCrypt 특징 페이지&lt;/a&gt;를 눌러 AxCrypt의 파일 및 데이터 보안 방법에 대해 알아보세요. &lt;a href='https://www.axcrypt.net/pricing'&gt;가격 페이지&lt;/a&gt;에서는 AxCrypt의 구독 정책을  알아보실 수 있습니다. AxCrypt 프리미엄과 비즈니스의 10% 가격할인을 얻으시려면,&lt;a href='https://www.wethrift.com/axcrypt'&gt; 여기를 눌러주세요&lt;/a&gt;.</value>
   </data>
@@ -830,23 +872,53 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_Conclusion_ReadBlogPost_Text1">
     <value>데이터 보안에 관한 더 많은 정보를 위해서 &lt;a href='https://www.axcrypt.net/blog'&gt;우리의 최신 블로그 포스트를 읽어 보세요&lt;/a&gt;:</value>
   </data>
+  <data name="Blog_Conclusion_SignUp">
+    <value>&lt;a href='https://www.axcrypt.net/information/affiliate'&gt;&lt;strong&gt; 여기에서 가입할 수 있습니다:&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Conclusion_SocialMedia">
+    <value>SNS를 팔로우하여 AxCrypt의 소식을 더는 놓치지 마세요. 우리는 (&lt;a href='https://facebook.com/axcrypt'&gt;페이스북&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;인스타그램&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;트위터&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;링크드인&lt;/a&gt;) 서비스를 제공 중입니다. 유용한 링크, 새로운 이벤트 및 본사에 대한 정보를 얻을 수 있습니다.</value>
+  </data>
   <data name="Blog_Conclusion_Text1">
     <value>휴대폰 사업의 급속한 발전과 클라우드 서비스 및 앱의 출현으로 인해 휴대폰은 더 많은  위험에 노출되고 있습니다. 소비자들의 스마트폰 사용이 증가함에도 불구하고 관련된 모바일 보안은 아직 그 수준에 이르지 못했습니다.</value>
+  </data>
+  <data name="Blog_CRI_FeaturePage">
+    <value>AxCrypt가 파일과 데이터를 보호하는 방법에 대해 자세히 알아보려면 &lt;a href='/information/features'&gt;기능 페이지&lt;/a&gt;를 살펴보십시오.</value>
+  </data>
+  <data name="Blog_CRI_H1_SubHeading1">
+    <value>&lt;strong&gt;사이버 복원력의 5가지 핵심 요소:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text5">
+    <value>&lt;strong&gt;더 나은 IT 팀:&lt;/strong&gt;사이버 복원력은 IT 부서 운영을 개선하여 위협에 대응하고 일상적인 운영을 원활하게 실행할 수 있도록 지원합니다.</value>
   </data>
   <data name="Blog_CSFE_H1_SH1_Text1">
     <value>직원 사이버 보안 교육은 최근 몇 년 동안 많은 발전을 이루었습니다. 한때 보안 교육은 대부분 IT 보안 전문가만를 대상으로 이루어졌으나 이후 IT 부서 전 직원을 대상으로 확대되었습니다. 기업이 랜섬웨어 및 멀웨어 감염을 예방하기 위해서는 모든 직원이 보안 모범 사례와 좋은 습관에 대해서 적절하게 교육을 받아야 합니다.</value>
   </data>
+  <data name="Blog_CSFE_H1_SubHeading1">
+    <value>&lt;strong&gt;직원을 위한 사이버 보안을 달성하는 방법은 무엇입니까?&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CSFE_H1_Text1">
     <value>사이버 공격 발생의 인식이 초기단계에서의 회피보다는 어려울 수 있지만, 여기에는 몇 가지 경고 신호가 있습니다. 직원들은 해킹을 당한것 같은 우려가 느껴질 시 체크해야 할 부분들을 지속적으로 교육받아야 합니다.</value>
+  </data>
+  <data name="Blog_CSFE_H2_SH1_Text2">
+    <value>이제 AxCrypt 모바일 앱으로 모바일에서 AxCrypt 키 공유 기능을 사용하세요. 지금 다운로드하세요.</value>
   </data>
   <data name="Blog_CSFE_Heading1">
     <value>사이버 보안 인식이란 무엇이며 왜 중요한가요?</value>
   </data>
+  <data name="Blog_CSFE_Summary">
+    <value>사이버 범죄자들은 최신 보호 기술과 기술을 뛰어넘는, 직원의 전자우편 편지함과 브라우저에 침투할 수 있는 새로운 방법을 지속적으로 고안하고 있습니다.</value>
+  </data>
   <data name="Blog_CSFE_Title">
     <value>직원을 위한 사이버 보안</value>
   </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text1">
+    <value>아마도 공개 키 암호화가 직면한 가장 큰 취약점은 사람들이 실수로 키를 분실하거나 다른 사람에게 개인 키를 공개하는 것입니다.</value>
+  </data>
   <data name="Blog_CWELTI_Conclusion_H1_Text3">
     <value>그러나 기술은 시간이 지남에 따라 향상되는 경향이 있기 때문에 누군가는 공개 키 암호방식보다 더 나은 시스템을 발명할 수 있습니다. 그때는 많은 주요 암호화폐가 그 시스템을 통합하여 업데이트될 것입니다. 이는 가상 화폐를 훨씬 더 안전하게 만들 수 있는 길입니다.</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_Heading1">
+    <value>당신의 개인 키를 보호하는 방법은?</value>
   </data>
   <data name="Blog_CWELTI_H5_Text1">
     <value>"암호화폐"라는 단어는 "암호화"와 "통화"라는 단어에서 파생되었습니다.</value>
@@ -871,6 +943,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_DEVFE_Heading3">
     <value>AxCrypt는 BitLocker 와 FileVault과 비교해 어떤 차이점이 있습니까?</value>
+  </data>
+  <data name="Blog_DRATIUIN_Conclusion_Heading">
+    <value>간단히 말해서 여기 AxCrypt에서</value>
   </data>
   <data name="Blog_DRATIUIN_H2_Text1">
     <value>데이터는 다양한 방식으로 사용될 수 있습니다. 예를 들어, 데이터 수집은 회사와 조직에 특히 유용할 수 있습니다. 데이터 수집은 고객의 요구, 행동 및 변동을 더 잘 이해하는 데 사용될 수 있습니다. 문제는 많은 기업들이 지나치게 많은 데이터를 수집하여 분석해야 할 적정 데이터를 찾기 어렵다는 것입니다. 또한 데이터에는 회사나 개인이 타인과 공유하고 싶지 않은 민감한 정보가 포함될 수 있습니다. 그렇기에 중요한 개인 정보가 포함된 민감한 데이터는 항상 암호화되어야 합니다. 이에 AxCrypt는 데이터를 보호하는 기능을 제공합니다. 이러한 기능에는 키 공유, 암호 관리자, 암호 생성기 및 강력한 AES-256 암호화 서비스 등이 포함됩니다.</value>
@@ -914,8 +989,14 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_EFPECT_H1_SH4_Text1">
     <value>클라우드 서비스는 유연성, 효율성 및 비용 절감과 같은 몇 가지 장점이 있지만 사이버 범죄자의 주요 타겟이 됩니다. 이에 기업은 클라우드 컴퓨팅의 보안 영향을 평가하고 현재 인프라의 약점을 확인해야 합니다.</value>
   </data>
+  <data name="Blog_EFPECT_H1_SubHeading3">
+    <value>&lt;strong&gt;내부자 위협 증가&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EFPECT_H2_SH2_Text1">
     <value>향후 몇 년 동안 초기 암호화 후 장기간 안전하게 보관해야 하는 데이터가 포함된 워크스테이션에는 사후양자 암호화가 필요할 것입니다. 양자 컴퓨터는 구성하기가 매우 어렵습니다. 많은 시도에도 불구하고 기존 컴퓨터를 능가할 수 있는 것은 아직 구축되지 않았습니다. 그러나 기사에 따르면, 양자 기계는 향후 10~20년 내에 현실이 될 수 있습니다. 양자 암호화는 수학적 암호화와 달리 양자 물리학을 사용하여 안전한 데이터를 전달하며 실제로 해킹할 수 없습니다. 양자 암호화는 대칭 암호화 키의 배포를 보호하기 위한 양자 역학 기반 접근 방식이며, 양자 키 배포(QKD)가 더 정확한 용어입니다. 다른 QKD 기술은 전송된 광자를 모니터링하려는 도청자가 전송을 방해할 수 있도록 설계되었습니다.</value>
+  </data>
+  <data name="Blog_EFPECT_Heading1">
+    <value>새로운 위협</value>
   </data>
   <data name="Blog_EFPECT_Summary">
     <value>암호화는 기업 비밀, 식별 데이터, 금융 거래, 민감한 개인 정보 및 디지털 방식으로 저장된 기타 형태의 자산 데이터를 보호하는 데 필수적입니다.</value>
@@ -925,6 +1006,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_EHI_Heading2">
     <value>의료 산업에 암호화를 사용해야 하는 중요한 이유는 무엇입니까?</value>
+  </data>
+  <data name="Blog_EIBM_Conclusion_Heading">
+    <value>연락처 정보</value>
+  </data>
+  <data name="Blog_EIBM_Conclusion_Text1">
+    <value>&lt;a style='color: #efefef; font-weight: 800;' href='/business'&gt;여기&lt;/a&gt;에서 AxCrypt 기능을 한눈에 볼 수 있습니다.</value>
   </data>
   <data name="Blog_EIBM_Conclusion_Text2">
     <value>더 알고 싶으신가요? 매주 흥미로운 정보가 공개됩니다.</value>
@@ -965,6 +1052,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_EVA_H2_Text4">
     <value>그렇기 때문에 복호화 키는 비밀로 유지되어야 합니다. 복호화 키를 분실한 경우 암호화된 콘텐츠는 복구 불가능한 이유이기도 합니다.</value>
   </data>
+  <data name="Blog_Feature_Conclusion_Text1">
+    <value>&lt;a href='https://www.axcrypt.net/information/features'&gt;AxCrypt 기능 페이지에서 AxCrypt가 제공하는 서비스에 대해서 알아보세요.&lt;/a&gt;</value>
+  </data>
   <data name="Blog_FOKM_H1_Text1">
     <value>효과적인 데이터 보안은 KMS라고도 하는 키 관리를 기반으로 하며, 이는 암호화 키를 관리하거나 관리하는 프로세스입니다. 모든 KMS의 중요한 기능은 키 생성, 키 불러오기/내보내기, 키 배포, 키 사용, 키 업데이트, 키 백업, 키 해지, 키 삭제 등으로, 그 수명주기 동안 키를 체계적으로 처리할 수 있는 능력입니다. 데이터는 암호화 키를 사용하여 암호화되고 해독되므로, 어떤 암호화 키의 손실 또는 손상도 데이터 보호로 이어집니다. 또한 인터넷 연결을 통한 데이터의 안전한 전송을 보장하며 액세스 제어뿐만 아니라 각 키의 액세스, 사용 및 컨텍스트에 대한 모니터링, 로그인 등을 포함합니다.</value>
   </data>
@@ -982,6 +1072,33 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;AxCrypt로 AES 256비트 암호화&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_Conclusion_Heading1">
+    <value>그렇다면 데이터 암호화 소프트웨어를 선택할 때 고려해야 할 특정 요소는 무엇입니까?</value>
+  </data>
+  <data name="Blog_HAPYD_CS_H1_SH1_Text1">
+    <value>암호화 소프트웨어를 선택할 때 데이터의 보안 또는 보호 방법을 결정하는 해당 알고리즘에 대해서 조사해 봐야 합니다. 모든 코드나 알고리즘이 같지 않기 때문에 일부는 다른 것보다 더 빠르게 작동합니다. AxCrypt 응용 프로그램은 파일 보안에 있어 AES-256비트 알고리즘을 사용합니다.</value>
+  </data>
+  <data name="Blog_HAPYD_CS_H1_SH2_Text1">
+    <value>암호화 소프트웨어에 파일 이름을 암호화하여 문서와 그 내용을 비밀로 유지하는 기능이 있어야 합니다.</value>
+  </data>
+  <data name="Blog_HAPYD_CS_H1_SH3_Text1">
+    <value>현재 파일의 모든 정보를 보호하는 만큼 삭제하려는 파일의 데이터도 보호할 수 있습니다. 그 정보에는 다른 파일에 대한 민감하거나 관련된 콘텐츠가 포함될 수 있으므로 삭제 프로세스까지 해당 파일을 보호하는 것이 중요합니다.</value>
+  </data>
+  <data name="Blog_HAPYD_CS_H1_SH4_Text1">
+    <value>일반적으로 직원들은 관련 정보 및 업무 관련 정보를 서로 공유합니다. 키 공유 기능을 사용하면 암호를 공유할 필요 없이 파일을 공유할 수 있습니다. 대신 특정 동료와 파일 키를 공유하여 특정 파일에 대한 액세스 권한을 부여할 수 있습니다. 그리고 공유 파일을 쉽게 찾아보거나 편집할 수도 있습니다.</value>
+  </data>
+  <data name="Blog_HAPYD_CS_SubHeading1">
+    <value>&lt;strong&gt;암호화 알고리즘&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_CS_SubHeading2">
+    <value>&lt;strong&gt;파일 이름 암호화&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_CS_SubHeading3">
+    <value>&lt;strong&gt;보안 삭제&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_CS_SubHeading4">
+    <value>&lt;strong&gt;키 공유&lt;/strong&gt;</value>
   </data>
   <data name="Blog_HAPYD_H1_text1">
     <value>종단 간 암호화 금지는 불법 행위를 공개하여 국가 안보를 보장하기 위해서 특정 정부가 취한 새로운 법 집행의 일부일 수 있습니다. 따라서 기술 회사는 미사용 데이터를 전송 중인 데이터로 취급하여 당국에 제공해야 합니다. 여기에는 클라우드에 저장된 정보, 메시지, 전화, 이메일, 화상 회의 정보 등이 포함됩니다. 개인 정보를 보호하고 안전한 통신 방법을 보장하는 방법에 대한 구체적인 지식이 없는 일반 시민들은 이 권위 있는 감시 시스템의 첫 번째 희생자가 될 것입니다.</value>
@@ -1052,6 +1169,18 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_HPDYMP_Heading2">
     <value>보안되지 않은 데이터와 관련되 위험</value>
   </data>
+  <data name="Blog_HPDYMP_Heading3">
+    <value>AxCrypt로 휴대폰 데이터를 어떻게 안전하게 보호할 수 있습니까?</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_ContactUs">
+    <value>더 알고 싶으신가요? 이와 관련된 새로운 정보가 매주 출시됩니다. 문의사항은 &lt;a href='mailto:support@axcrypt.net' style='font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; 또는 &lt;a href='mailto:business@axcrypt.net' style='font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt;으로 연락주세요!</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_Heading">
+    <value>사이버 보안 인식 제고</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_Text1">
+    <value>사이버 보안 인식을 높임이는 것은 막대한 비즈니스 손실을 초래할 수 있는 문제들에 대처하는 방법입니다.</value>
+  </data>
   <data name="Blog_HPYBFC_Conclusion_Text2">
     <value>요약하면 암호화는 현대 인터넷 보안의 기본입니다. 복잡한 주제일 수 있지만, 자랑스럽게도 AxCrypt에서는 모든 사람이 사용하기 쉽고 친숙한 프로세스를 제공합니다. 암호화로 프로그램과 운영 체제를 보호하십시오. AxCrypt의 &lt;a href='/pricing' style='font-weight: 800;'&gt;구독 서비스와 기능&lt;/a&gt;에 대해 알아보세요.</value>
   </data>
@@ -1082,6 +1211,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_ICSHRS_H1_Text1">
     <value>팬데믹이 조직을 혼란에 빠뜨리고 인사 관리자로 하여금 직무 수행 방법을 재고하게 함에 따라, 우리는 아무도 상상하지 못했던 새로운 작업 환경에 적응해야 합니다. HR 전문가들은 팬데믹 환경에서 직원의 건강과 웰빙뿐만 아니라, 안전한 문서 작업 처리 방법이나 수백만명에 달하는 해직자 혹은 원격 근무자들을 위한 편의 제공 방법 등도 고민하고 있습니다.</value>
   </data>
+  <data name="Blog_ICSHRS_H2_SH2_Text1">
+    <value>HR은 규칙을 잘 문서화하고 모든 직원이 규칙을 인지하도록 해야 합니다. 여기에는 위협을 보고하고 효과적으로 대응하는 등의 기업과 데이터를 보호하기 위한 프로토콜이 포함됩니다.</value>
+  </data>
   <data name="Blog_ICSHRS_H2_SH4_Text1">
     <value>HR 부서는 회사의 접근 제한을 설정하고 적용하는 데 도움을 줄 수 있습니다. 직원의 고용 및 온보딩 전에도 HR 부서는 필요 데이터를 구축해 둘 수 있습니다. 또한 직원의 계약 만료 시점 기준으로 관련 정보에 엑세스 할 수 없도록 확실히 해둬야 합니다.</value>
   </data>
@@ -1093,6 +1225,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_ICSHRS_H2_SubHeading4">
     <value>&lt;strong&gt;데이터 제어 및 엑세스&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading6">
+    <value>&lt;strong&gt;AxCrypt를 사용한 256비트 암호화&lt;/strong&gt;</value>
   </data>
   <data name="Blog_ICSHRS_Summary">
     <value>HR 분야는 직원 개인 정보와 임금지불 세부 정보 또는 공개될 경우 심각한 피해를 줄 수 있는 비즈니스 비밀 정보들을 담당합니다.</value>
@@ -1118,8 +1253,14 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_LYCWAR_Text13">
     <value>행복한 AxCrypting!</value>
   </data>
+  <data name="Blog_MDPNST_H2_SH1_Text1">
+    <value>보고서에 따르면 뱅킹 앱의 사용 증가로 인해 악성코드 공격의 수가 두 배로 증가했습니다. 2021년에는 해커가 감시, 자격 증명 도용 및 악성 광고와 같은 전략을 사용하여 스마트폰을 타겟으로 하는 맬웨어 공격이 크게 증가했습니다.</value>
+  </data>
   <data name="Blog_MDPNST_H2_SH2_Text1">
     <value>증가된 클라우드 채택은 윤리적 해커와 사이버 위협 운영자로 하여금 더욱 정밀한 조사를 하게 합니다. 대부분의 공격은 클라우드 인프라 취약성을 노리므로 공격자는 단일 취약성을 바탕으로 다중의 대상을 공격할 수 있습니다. AxCrypt를 사용하면 모바일 및 PC의 드라이브에 있는 데이터를 보호할 수 있습니다.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH3_Text1">
+    <value>2021년 첫 6개월 동안 모바일 스미싱은 온라인 트래픽 증가로 인해 700% 이상 증가했습니다. 올해 모바일 스미싱 공격은 더욱 복잡해지고 효과적일 것으로 예상되며, 악성 웹 링크 클릭, 감염된 파일 오픈, SMS 메시지로 유인 등의 방법을 사용할 것입니다.</value>
   </data>
   <data name="Blog_MDPNST_H2_SH4_Text1">
     <value>AxCrypt는 개인 및 기업 보안을 위한 모바일 및 PC 사이버 보안 솔루션을 제공하는 다중 수상 경력에 빛나는 사이버 보안 회사입니다. AxCrypt 모바일 암호화는 일반 화면잠금 암호를 넘어선 그 이상의 솔루션입니다. 제3자 간섭으로부터 휴대 전화의 모든 개인 정보 및 데이터를 보호하기 위한 원스톱 서비스입니다. 당신의 모바일 정보는 난해하고 뒤죽박죽인 형식으로 저장되며, 이렇게 암호화된 정보는 올바른 자격 증명으로만 읽을 수 있습니다. 모바일 암호화를 사용하면 장치의 분실 또는 도난의 경우에도 당신의 데이터를 확실하게 보호할 수 있습니다. 모바일 키 공유 기능을 사용하면 암호를 공유하지 않고도 클릭 한 번으로 당신의 팀원들과 암호화된 데이터 혹은 파일을 주고 받을 수 있습니다.</value>
@@ -1132,6 +1273,9 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_MDPNST_Summary">
     <value>전 세계의 모바일 보안 트렌드는 잘못된 정보 캠페인, 공급망 공격, 피싱, 스미싱, 도청, 멀웨어 등이 지배적입니다.</value>
+  </data>
+  <data name="Blog_MDPNST_Title">
+    <value>모바일 장치는 새로운 보안 위협을 야기합니다.</value>
   </data>
   <data name="Blog_MDSCBF_Conclusion_Text1">
     <value>"2021년 데이터 침해 비용"에 따르면 보안 팀이 데이터 침해를 발견하고 이를 해결하는 데 통상 287일이 소요된다고 합니다. AxCrypt 비즈니스를 사용하면 가장 강력한 256비트 암호화로 기업의 데이터를 보호할 수 있습니다.</value>
@@ -1154,6 +1298,15 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_MDSCBF_Summary">
     <value>전반적으로 사이버 보안 및 비즈니스 측면에서 지난 몇 년은 일반적인 것과는 거리가 멀었습니다.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH2_Text1">
+    <value>데이터 유출은 민감한 정보가 모바일 장치에서 의도하지 않은 인터넷 서비스로 전송될 때 발생합니다. 장치가 데이터를 효과적으로 보호하지 못하면 동일한 네트워크를 사용하는 모든 사람이 데이터에 엑세스 할 수 있게 됩니다.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH4_Text1">
+    <value>팬데믹은 이 시장에 큰 영향을 미쳤습니다. 당사 전문가들은 각 비즈니스 유형에 가장 관련성이 높은 암호화 기능을 포착하고 평가하기 위해 업계를 예의주시합니다.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH4_Text2">
+    <value>AxCrypt는 모바일 암호화 기능을 포함한 모든 기능을 사용해 볼 수 있는 1개월 무료 평가판을 제공합니다. 기다리지 마세요! 여기에서 AxCrypt 무료 평가판에 등록하십시오.</value>
   </data>
   <data name="Blog_MEWRECY_H2_SubHeading2">
     <value>&lt;strong&gt;데이터 유출&lt;/strong&gt;</value>
@@ -1191,8 +1344,14 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_PRAA_Heading2">
     <value>&lt;h3&gt;비밀번호 변경&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_Pricing_Conclusion_Text1">
+    <value>AxCrypt &lt;a href=' https://www.axcrypt.net/pricing'&gt;요금 페이지&lt;/a&gt;는 AxCrypt의 암호화 구독 플랜을 보여줍니다.</value>
+  </data>
   <data name="Blog_PYDFCG_Conclusion_Text1">
     <value>사이버 위협이 증가함에 따라 정보를 안전하게 보호하는 것이 그 어느 때보다 중요합니다. AxCrypt 사용 시 사이버 보안에 선제적으로 대처할 수 있어 관련 위험을 최소화하므로 귀하는 편안한 휴일을 즐길 수 있습니다.</value>
+  </data>
+  <data name="Blog_Review_CompareCamp">
+    <value>암호화 소프트웨어를 선택하는 것은 처음에는 복잡할 수 있습니다. 그러나 장기적 관점에선 매우 유익할 것입니다. 암호화 서비스를 시작하기 위한 방법에 대해서는 &lt;a href='https://comparecamp.com/axcrypt-review-pricing-pros-cons-features/'&gt;AxCrypt&lt;/a&gt;를 살펴보시길 바랍니다.</value>
   </data>
   <data name="Blog_ROCP_H1_SH3_Text1">
     <value>암호는 대문자와 소문자, 숫자 및 특수 문자(예: @, £, 퍼센트 및 &amp;)를 포함해야 하며 길이는 10자 이상이어야 합니다. 기업은 암호 보안 정책을 수립하고 주기적으로 업데이트해야 합니다. 또한 조직의 직원들은 각각의 고유한 암호가 있어야 합니다.</value>
@@ -1221,6 +1380,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_SD_Summary">
     <value>넷플릭스를 이용하시나요? Netflix 계정이 있는 경우 소셜 미디어의 중요한 이점을 다룬 최근 공개된 다큐멘터리 "소셜 딜레마"에 대해 들어본 적이 있을 것입니다.</value>
   </data>
+  <data name="Blog_SSING_H1_SH5_Text2">
+    <value>해커의 침입을 막으려는 어떤 노력에도 불구하고 안면 인식과 같은 보안시스템 또한 해킹될 수 있습니다. 소유자의 사진은 이러한 방식으로 암호화된 스마트폰의 잠금을 해제하는 데 사용될 수 있습니다. 아무도 모르는 PIN번호 또는 지문인식은 스마트 폰 보안을 위한 가장 안전한 방법들 중 하나입니다.</value>
+  </data>
+  <data name="Blog_SSING_H1_SubHeading2">
+    <value>&lt;strong&gt; 2. 정품 앱에 맬웨어가 포함될 수 있음 &lt;/strong&gt;</value>
+  </data>
   <data name="Blog_SSING_H1_SubHeading3">
     <value>&lt;strong&gt; 3. 스마트폰은 피싱에 대한 보안장치가 없습니다&lt;/strong&gt;</value>
   </data>
@@ -1236,20 +1401,38 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_SVL_Title">
     <value>구독 vs 라이선스</value>
   </data>
+  <data name="Blog_TAYBS_Conclusion_Heading_Text">
+    <value>새해는 앞으로 나아간다는 것입니다</value>
+  </data>
   <data name="Blog_TAYBS_Conclusion_text1">
     <value>2022년에는 데이터 유출이 증가할 것입니다. 따라서 우리 모두 데이터 보안에 대한 인식을 높이기 위한 결의를 합시다. 이에 우리는 다가오는 새해에 맞춰 새로운 제안과 서비스를 제공하게 된 것을 기쁘게 생각합니다.</value>
   </data>
   <data name="Blog_TAYBS_H1_SH3_Text1">
     <value>우리는 소프트웨어를 보다 사용자 친화적으로 만들기 위해 항상 노력하고 있습니다. 윈도우, Mac, iOS, 안드로이드에서 사용할 수 있는 UI를 업데이트하고 사용자가 언제 어디서나 암호화된 데이터에 더 쉽게 액세스할 수 있도록 모바일 앱을 개선했습니다.&lt;a href='https://play.google. com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;안드로이드용 다운로드 &lt;/a&gt; 또는 &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt; iOS용 다운로드 &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_TAYBS_H1_SH4_Text1">
+    <value>AxCrypt는 여러 언어를 지원하며, 올해 우리는 중국어 지원을 추가했습니다. 또한 사용자의 보다 편리한 경험을 위해  프랑스어로 블로그를 게시하기 시작했습니다.</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SH5_Text1">
+    <value>당신의 빠른 시작을 위한 AxCrypt 사용을 최대한 활용할 수 있도록 해주는 새로운 자습서를 출시했습니다. 계정의 주요 기능과 &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;매우 편리한 몇 가지 팁 &lt;/a&gt;을 다룹니다.</value>
+  </data>
   <data name="Blog_TAYBS_H1_SH6_Text1">
     <value>또한 2021년에 산업 지원 분야를 발표함으로써, 사용자는 우리가 다양한 산업분야에 서비스를 지원한다는 것을 더 잘 이해할 수 있게 되었습니다. 우리는 AxCrypt의 서비스를 사용한 적이 있는 사람들이 AxCrypt의 서비스를 경험할 수 있도록 해 주는 것이 얼마나 중요한지 잘 알고 있습니다. 그래서, 올해에는 앱에 대해 자세히 알아보는 데 도움이 되는 사용 후기를 추가하였습니다.&lt;a href='ttps://www.axcrypt.net/industries'&gt; 관련 정보는 여기에서 알아볼 수 있습니다.&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H1_Text1">
+    <value>AxCrypt는 2022년의 성공적인 시작을 기원합니다. 우리는 매우 고무되어있으며, 소프트웨어를 단순화하기 위한 향후 업데이트 및 개선 사항 또한 기대합니다. 하지만 먼저 2021년을 살펴보고 지금까지 우리가 성취한 업적들을 살펴보겠습니다.</value>
   </data>
   <data name="Blog_TAYBS_Heading2">
     <value>2022년 엿보기</value>
   </data>
   <data name="Blog_TAYBS_Title">
     <value>또 다른 해의 안전을 빕시다!</value>
+  </data>
+  <data name="Blog_Technical_Document">
+    <value>위의 것들은 프로세스의 단순화된 버전입니다. 보안을 보장하고 다양한 동기화 시나리오, 비밀번호 재설정 이벤트 등을 처리하기 위해 실제로 많은 추가 세부 정보들이 포함되어 있습니다. 자세한 내용은 &lt;a href='https://www.axcrypt.net/information/technical/'&gt;기술 문서를 참조하세요&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_TIEDTC_Conclusion_Text1">
+    <value>인터넷 범죄의 증가율과 기업 손상 위험을 낮추려면 정보의 양은 상관없이 해커로부터 모든 정보를 보호해야 합니다.</value>
   </data>
   <data name="Blog_TIEDTC_H1_SH4_Text1">
     <value>대부분의 기업들은 보안을 유지해야 합니다. 민감정보를 해커로부터 보호하기 위해서는 암호화 상태를 유지해야 합니다. 기업의 재무 정보는 수입 및 지출 계정, 채무자 및 채권자 계정, 자산, 계정 번호, 지불 내역 등을 포함할 수 있습니다. 이러한 종류의 데이터는 침입자로부터 보호되어야 합니다. 이와같은 민감정보가 사이버 범죄자들에게 노출될 때마다 기업은 큰 피해를 입을 수 있으며, 그 기업을 신뢰하는 고객과 직원들은 불편을 겪을 수 있습니다.</value>
@@ -1278,6 +1461,15 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_UODPCH_Text2">
     <value>게다가 사적인 용도에도 사용자는 다른 파일에 대해 다른 암호를 설정하기도 합니다. 그러나 이는 *더 안전하다고* 느낄 수는 있지만, 사실 기껏해야 어떤 보안도 추가적으로 조취되지도 않았을 뿐더러, 최악의 경우에는 보안이 *덜* 되어 있는 상황을 야기하기도 합니다.</value>
   </data>
+  <data name="Blog_WAMHIHY_Conclusion_Heading">
+    <value>투자하지 않고 수익을 얻으십시오!</value>
+  </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text1">
+    <value>우리는 사람들 의사소통 및 일하는 방식을 바꿉니다.</value>
+  </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text3">
+    <value>AxCrypt에 대해 자세히 알아보고 제휴 마케팅 프로그램에 참여하고 싶으신가요?</value>
+  </data>
   <data name="Blog_WAMHIHY_H2_Text4">
     <value>더 나은 평판 구축 - AxCrypt와 같이 평판이 좋고 신뢰할 수 있는 회사와 제휴하여 귀하의 인터넷 평판을 높일 수 있습니다.</value>
   </data>
@@ -1288,7 +1480,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>AxCrypt를 사용하면 제3의 AxCrypt 사용자가 본인의 암호를 사용하여 보안 파일을 열 수 있습니다. AxCrypt의 정보 교환 기술은 수상 경력에 빛나며, 쉽고 빠르고 위험하지 않습니다.</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SH4_Text4">
-    <value>마스터 키는 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있도록 하는 중요한 기능을 가지고 있습니다. 이는 중요한 파일에 대한 액세스 권한을 잃을 위험을 없애줍니다. &lt;a href='https://www.axcrypt.net/support/master-key'&gt;이곳에서 더 알아보기&lt;/a&gt;.</value>
+    <value>마스터 키는 비즈니스 관리자가 비즈니스 구성원의 파일을 복구할 수 있도록 하는 중요한 기능을 가지고 있습니다. 이는 중요한 파일에 대한 액세스 권한을 잃을 위험을 없애줍니다. &lt;a href='https://www.axcrypt.net/information/master-key'&gt;이곳에서 더 알아보기&lt;/a&gt;.</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SH5_Text5">
     <value>AxCrypt는 조직이 일반 데이터 보호 규정(GDPR)과 같은 규정들을 준수할 수 있도록 도와줍니다.</value>
@@ -1302,11 +1494,26 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   <data name="Blog_WCACT_H1_Text2">
     <value>기업의 79%는 지난 18개월 동안 최소 1회의 클라우드 데이터 침해를 경험했으며 43%는 해당 기간 동안 10건 이상의 침해를 보고했습니다.</value>
   </data>
+  <data name="Blog_WCACT_H2_SH1_Text1">
+    <value>클라우드 컴퓨팅에 가장 널리 퍼진 위험은 데이터 유출 또는 손실로 이어지는 데이터 유출입니다. 데이터 침해는 회사가 클라우드 네트워크에 불법적으로 액세스하는 해커의 표적이 될 때 발생합니다. &lt;br/&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_SubHeading2">
+    <value>&lt;strong&gt;서비스 거부 공격&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H3_Text3">
+    <value>데이터 개인 정보 보호 및 보호에 관한 규제 표준을 준수합니다.</value>
+  </data>
   <data name="Blog_WCACT_H3_Text4">
     <value>다른 공용 클라우드 테넌트의 무단 데이터 액세스는 보안이 더 용이합니다.</value>
   </data>
+  <data name="Blog_WCACT_H3_Text5">
+    <value>기업이 특정 상황에서 보안 위반 또는 기타 보안 사건을 공개하지 않아도 되도록 허용합니다.</value>
+  </data>
   <data name="Blog_WCACT_H4_SubHeading1">
     <value>&lt;strong&gt;클라우드 보안&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_Heading2">
+    <value>클라우드 데이터는 얼마나 취약합니까?</value>
   </data>
   <data name="Blog_WCACT_Summary">
     <value>클라우드 컴퓨팅은 인터넷을 사용하여 언제든지 액세스할 수 있는 데이터 공유 공간을 제공합니다. 원격 작업이 증가함에 따라 클라우드는 비용을 낮추는 동시에 더 큰 유연성과 효율성을 제공하게 되었습니다.</value>
@@ -1319,6 +1526,12 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_WENTI_H4_Text5">
     <value>&lt;strong&gt;클라우드 저장소&lt;/strong&gt; - AxCrypt를 사용하면 클라우드 내 데이터 프라이버시를 손쉽게 보장할 수 있습니다. AxCrypt는 자동으로 컴퓨터에 설치된 클라우드 저장소 서비스 종류를 인지하고 그곳에 AxCrypt 폴더를 생성합니다. 이러한 방식으로 생성된 폴더에 있는 파일들은 자동으로 손쉽게 접근하거나 보안을 유지할 수 있습니다.</value>
+  </data>
+  <data name="Blog_WENTI_Heading2">
+    <value>발전을 위한 암호화</value>
+  </data>
+  <data name="Blog_WENTI_Heading3">
+    <value>영지식 암호화는 데이터 보안에 어떤 도움이 됩니까?</value>
   </data>
   <data name="Blog_WENTI_Title">
     <value>기술 산업분야에서 암호화가 필요한 이유는 무엇입니까?</value>
@@ -1340,6 +1553,18 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="Blog_WIAAI_Title">
     <value>AxCrypt 아이디는 무엇인가요?</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading1">
+    <value>주요 사이버 보안 목적은 다음과 같습니다:</value>
+  </data>
+  <data name="Blog_WICS_Heading3">
+    <value>사이버 보안이 직면한 주요 과제:</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text1">
+    <value>객관성은 어렵고 정보는 유연하기 때문에 사용자에 따라 다른 의미를 갖습니다. 이런 이유로 정보는 다양한 방법으로 악용될 수 있습니다. 정확함 없는 데이터 활용은 다음과 같은 다양한 실패 이유를 숨김니다: 부적절하고 형편없는 정보 수집, 신뢰성, 거짓과 선전의 날조 등이며, 이는 정보 남용에 대한 몇 가지 예일 뿐입니다.</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text4">
+    <value>&lt;strong&gt;간단히&lt;/strong&gt;&lt;br /&gt;요약하자면 암호화는 현대 인터넷 보안의 기본입니다. 이는 매우 복잡한 주제일 수 있으나 AxCrypt는 자랑스럽게도 모든 사람이 사용하기 쉽고 친숙한 프로세스를 만들었습니다.</value>
   </data>
   <data name="Blog_WTPI_H1_Text3">
     <value>위키리크스는 2006년 설립 이후 여러 단계를 거쳤습니다. 대중이 적극적으로 게시 및 편집할 수 있는 문서 및 파일들의 포스팅부터 특정 목적과 관련된 정치적 성명 발표에 이르기까지, 이제 그들은 공식 프로세스를 통해 뉴스 기관과 긴밀하게 협력하여 정보를 분석, 수정 및 게시합니다.</value>
@@ -1416,8 +1641,8 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
   </data>
   <data name="BusinessAddedMailBodyHtml" xml:space="preserve">
     <value>AxCrypt Business에 오신것을 환영합니다.
- {0}에 의해 AxCrypt Business에 추가되셨으며, AxCrypt의 유효 회원이실 경우에 한해 향후 구독자 혜택을 받으실 수 있습니다.
-관련 문의사항은 {0}로 연락 부탁드립니다.</value>
+ {addedby_user_email}에 의해 AxCrypt Business에 추가되셨으며, AxCrypt의 유효 회원이실 경우에 한해 향후 구독자 혜택을 받으실 수 있습니다.
+관련 문의사항은 {addedby_user_email}로 연락 부탁드립니다.</value>
     <comment>The main body of the email sent to an existing user that has been added as a business user by an admin. The purpose is note that the user has a contact (the admin) and that the user can use all functions in AxCrypt. Paragraphs should be in &lt;p&gt; ... &lt;/p&gt; tags. {0} will be replaced by the recipient email, {1} by the administrator email.</comment>
   </data>
   <data name="BusinessAddedMailSubject" xml:space="preserve">
@@ -1459,7 +1684,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>비즈니스 이메일</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
-    <value>AxCrypt Business {0} 구독이 만료되었습니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
+    <value>AxCrypt Business {bus_sub_name} 구독이 만료되었습니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
   </data>
   <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
     <value>AxCrypt에 대한 의견을 알려주세요. 계속 사용할 의향이 있으신가요? 또는 개선되었으면 하는 점이 있습니까?</value>
@@ -1471,7 +1696,7 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>관리자는 AxCrypt 계정 웹의 관리 모듈에서 팀의 구독을 갱신해야합니다. 아래 버튼을 사용하여 바로 이동하십시오. 팀에 갱신 할 것을 알리는 것을 잊지 마십시오!</value>
   </data>
   <data name="BusinessExpiresSoonMailBody0Html" xml:space="preserve">
-    <value>AxCrypt Business {0} 구독이 곧 만료됩니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
+    <value>AxCrypt Business {bus_sub_name} 구독이 곧 만료됩니다. AxCrypt 사용이 즐겁고 유용한 경험이 되었기를 진심으로 바랍니다.</value>
   </data>
   <data name="BusinessExpiresSoonMailBody2Html" xml:space="preserve">
     <value>Business 구독이 갱신되면 당신과 팀이 다음과 같은 경험을 즐길 수 있으십니다:</value>
@@ -1534,8 +1759,8 @@ AxCrypt ID 이메일 인증의 링크 클릭이 작동하지 않았습니다. (�
     <value>회사를 위한 서비스</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
-    <value>{0}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{1}" style="color: #86b96e; text-decoration: none;"&gt;다운로드 &lt;/a&gt; 를 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
-문의사항은 {0}으로 연락 주시기 바랍니다.</value>
+    <value>{addedby_user_email}에 의해 AxCrypt File Security 사용자로 추가되셨습니다. 파일 보호를 시작하시려면 &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;다운로드 &lt;/a&gt; 를 하시고  AxCrypt를 설치하시기 바랍니다. &lt;b&gt;로  AxCrypt에 로그인하시고, 아래 표기된 인증번호를 입력하신 후 개인비밀번호를 지정하시기 바랍니다.
+문의사항은 {addedby_user_email}으로 연락 주시기 바랍니다.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
   </data>
   <data name="BusinessInvitationMasterKeyInfoMailBodyIntro" xml:space="preserve">
@@ -1701,7 +1926,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <comment>A short label, preferrably one word, use to label the number of member licenses still unused for the subscription, i.e. available.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsText" xml:space="preserve">
-    <value>구매 전 &lt;a href="https://www.axcrypt.net/information/license/"&gt;terms of use&lt;/a&gt; 전체와 &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; 를 읽어 보시기 바랍니다.</value>
+    <value>구매 전 &lt;a href="https://www.axcrypt.net/information/terms-of-use/"&gt;terms of use&lt;/a&gt; 전체와 &lt;a href="https://www.axcrypt.net/pricing/"&gt;pricing schedule&lt;/a&gt; 를 읽어 보시기 바랍니다.</value>
     <comment>The text describing the conditions of purchase. Will include link(s) to the content site for fuller details.</comment>
   </data>
   <data name="BusinessSubscriptionConditionsTitle" xml:space="preserve">
@@ -1766,7 +1991,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <comment>The title for the information page for business subscriptions</comment>
   </data>
   <data name="BusinessSubscriptionInstructionsLinkText" xml:space="preserve">
-    <value>&lt;/a&gt;에서 &lt;a href="https://www.axcrypt.net/support/axcrypt-business/"&gt; 관련하여 더 읽기</value>
+    <value>&lt;/a&gt;에서 &lt;a href="https://www.axcrypt.net/information/axcrypt-business"&gt; 관련하여 더 읽기</value>
     <comment>A sentence directing the user to click a hyperlink to learn more about AxCrypt Busines subscriptions.</comment>
   </data>
   <data name="BusinessSubscriptionManageMenu" xml:space="preserve">
@@ -2014,7 +2239,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>자동화 소프크웨어가 아닌 실재 인물이라는 입증을 해주시기 바랍니다!</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
-    <value>&lt;b style="color: #000 !important;"&gt;{0}&lt;/b&gt;로 당신의 AxCrypt ID 이메일 초기화 요청이 있었습니다. 아래의 버튼을 눌러 확인하세요.</value>
+    <value>&lt;b style="color: #000 !important;"&gt;{email_change_to}&lt;/b&gt;로 당신의 AxCrypt ID 이메일 초기화 요청이 있었습니다. 아래의 버튼을 눌러 확인하세요.</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>존재하는 비밀번호를 작성하고 로그인해주시기 바랍니다. 이전 AxCrypt ID는 완전히 삭제됩니다.</value>
@@ -2029,13 +2254,13 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>AxCrypt ID 이메일 주소 변경이 인증되셨습니다! 완전한 완료를 위해 로그인 해주시기 바랍니다.</value>
   </data>
   <data name="ChangeEmailExistMailBody1" xml:space="preserve">
-    <value>알려지지 않은 출처로부터 &lt;a href="{0}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;의 이메일 변경요청이 &lt;b&gt;{1}&lt;/b&gt;로 도착하였습니다.</value>
+    <value>알려지지 않은 출처로부터 &lt;a href="{info_site_url}" style="color: #86b96e; text-decoration: none;"&gt;AxCrypt.net&lt;/a&gt;의 이메일 변경요청이 &lt;b&gt;{email_change_to}&lt;/b&gt;로 도착하였습니다.</value>
   </data>
   <data name="ChangeEmailExistMailBody2" xml:space="preserve">
     <value>작성하신 이메일 주소를 이미 사용중인 AxCrypt ID가 있어 요청하신것을 고려하지 않았습니다.</value>
   </data>
   <data name="ChangeEmailExistMailBody3" xml:space="preserve">
-    <value>이 메일을 무시하거나 {0}에 알리시기 바랍니다. 모든 정보는 안전하게 보관되어있습니다.</value>
+    <value>이 메일을 무시하거나 {axc_support_email}에 알리시기 바랍니다. 모든 정보는 안전하게 보관되어있습니다.</value>
   </data>
   <data name="ChangeEmailExistMailSubject" xml:space="preserve">
     <value>AxCrypt ID 이메일 주소 변경 요청</value>
@@ -2152,7 +2377,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>남은 모든 파일에 하시겠습니까?</value>
   </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
-    <value>문의사항이 있으시면, ‪{0}‬으로 연락주세요.</value>
+    <value>문의사항이 있으시면, ‪{addedby_user_email}‬으로 연락주세요.</value>
   </data>
   <data name="ContactHeading">
     <value>연락</value>
@@ -2504,6 +2729,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="DownloadNavHeading">
     <value>다른 플랫폼</value>
   </data>
+  <data name="DownloadPrimiumPlusHeading">
+    <value>프리미엄 플러스:</value>
+  </data>
   <data name="DownloadTryCtaHeading">
     <value>한 달 &lt;span&gt;무료...&lt;/span&gt; 서비스를 즐겨보세요.</value>
   </data>
@@ -2737,7 +2965,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>AxCrypt 1.x는 레거시 버전입니다. 더 이상 그것에 대한 지원은 없습니다.  AxCrypt 2.x을 기능 향상을 위해 노력하며, 1.x를 사용하는 것은 절대 권장하지 않습니다. 최신 버전의  AxCrypt을 다운로드 하는 것을 추천합니다.</value>
   </data>
   <data name="FaqDifference1&amp;2Answer2">
-    <value>legacy 다운로드에 대한 특정 요구가 있는 사용자의 경우, 이곳에서 &lt;a href='/support/legacy-downloads'&gt;&lt;/a&gt;.</value>
+    <value>legacy 다운로드에 대한 특정 요구가 있는 사용자의 경우, 이곳에서 &lt;a href='/information/legacy-downloads'&gt;&lt;/a&gt;.</value>
   </data>
   <data name="FaqDifferenceStandaloneInstaller">
     <value>standalone 버전과 installer 버전의 차이점은 무엇인가요?</value>
@@ -3188,6 +3416,9 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
   <data name="FreeTrial">
     <value>무료 체험</value>
   </data>
+  <data name="FreeTrialLabel" xml:space="preserve">
+    <value>무료 체험판</value>
+  </data>
   <data name="FullNameLabel">
     <value>성함</value>
   </data>
@@ -3430,7 +3661,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>디지털 서명을 확인하고 다운로드가 손상되지 않았는지 확인하세요. 윈도우스 탐색기에서 다운로드한 파일을 마우스 오른쪽 버튼으로 누르고 '속성'과 '디지털 서명' 탭을 선택하세요. 그런 다음 디지털 서명을 선택하고 '상세 정보'를 클릭하세요. 디지털 서명이 '확인'으로 표시되고 서명자가 'AxCrypt AB'로 표시되는지 마지막으로 확인해주세요.</value>
   </data>
   <data name="GetStartedInfoNote2Text1">
-    <value>어떠한 이슈나 질문이 있으시다면, &lt;a href='/support/faq'&gt;frequently asked questions&lt;/a&gt;페이지를 확인해주세요.</value>
+    <value>어떠한 이슈나 질문이 있으시다면, &lt;a href='/information/faq'&gt;frequently asked questions&lt;/a&gt;페이지를 확인해주세요.</value>
   </data>
   <data name="GetStartedInfoNote2Text2">
     <value>버그가 발생하면 코멘트를 남겨주시고, 서비스 이용에 도움이 필요하시면 언제든지 이메일을 보내주세요.</value>
@@ -3698,7 +3929,7 @@ You have been invited by &lt;b&gt;{0}&lt;/b&gt;. Note, this business has the fea
     <value>저희와 계속 연락하기</value>
   </data>
   <data name="HomeWhatOtherSayTestimonialsText">
-    <value>&lt;p&gt;더 많은 테스트모니얼을 보시려면, 이 곳을 확인해주세요&lt;a href='/about/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;더 많은 테스트모니얼을 보시려면, 이 곳을 확인해주세요&lt;a href='/information/awards'&gt;awards &amp; reviews&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="HomeWhatOthersSayHeading">
     <value>다른 이들의 &lt;span&gt;의견&lt;/span&gt;</value>
@@ -4455,7 +4686,7 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
     <value>AxCrypt.net으로부터 알 수없는 이메일을 받으셨다면, 이 이메일을 무시하거나 {0}에 알리시기 바랍니다.</value>
   </data>
   <data name="MailBodyOutroHtml" xml:space="preserve">
-    <value>궁금한 점이 있으시면 저희 팀한테 문의 해주시기 바랍니다. 저희 사이트에 있는 FAQ와 포럼을 &lt;a href="{0}"&gt;{0}&lt;/a&gt;에 방문해 주시기 바랍니다.</value>
+    <value>궁금한 점이 있으시면 저희 팀한테 문의 해주시기 바랍니다. 저희 사이트에 있는 FAQ와 포럼을 &lt;a href="{info_site_url}"&gt;{info_site_url}&lt;/a&gt;에 방문해 주시기 바랍니다.</value>
     <comment>This is the common last paragraph above the signature in emails. {0} is the content web site root.</comment>
   </data>
   <data name="MailBodySignature" xml:space="preserve">
@@ -4466,10 +4697,10 @@ AxCrypt 1.x 파일을 자동적으로 전환하시겠습니까 (추천)?</value>
  -  AxCrypt 팀</value>
   </data>
   <data name="MailBodySubscriptionExpiredText" xml:space="preserve">
-    <value>구독 서비스가 &lt;b&gt;{0}&lt;/b&gt;에 만료됩니다. 다음과 같은 Premium의 서비스를 즐길 수 없습니다.</value>
+    <value>구독 서비스가 &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;에 만료됩니다. 다음과 같은 Premium의 서비스를 즐길 수 없습니다.</value>
   </data>
   <data name="MailBodySubscriptionExpiryText" xml:space="preserve">
-    <value>구독이 취소되었으며 &lt;b&gt;{0}&lt;/b&gt;에 만료됩니다. 이후 귀하는 다음과 같은 프리미엄 기능에 더 이상 액세스할 수 없습니다.</value>
+    <value>구독이 취소되었으며 &lt;b&gt;{subs_expiration_datetime}&lt;/b&gt;에 만료됩니다. 이후 귀하는 다음과 같은 프리미엄 기능에 더 이상 액세스할 수 없습니다.</value>
   </data>
   <data name="MailBodySubscriptionFeaturesHtml" xml:space="preserve">
     <value>&lt;ul&gt;
@@ -6493,7 +6724,7 @@ HubSpot은 CRM 시스템을 통한 연락처 관리 등 온라인 마케팅 활�
     <value>비즈니스 구독:&lt;a href='https://www.axcrypt.net/information/axcrypt-business'&gt;https://www.axcrypt.net/information/axcrypt-business&lt;/a&gt;</value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem3" xml:space="preserve">
-    <value>시작하기: &lt;a href='https://www.axcrypt.net/information/get-started/windows/'&gt;https://www.axcrypt.net/information/get-started/windows&lt;/a&gt; </value>
+    <value>시작하기: &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;https://www.axcrypt.net/information/guides/get-started&lt;/a&gt; </value>
   </data>
   <data name="ResellerHelpSupportBlock1ListItem4" xml:space="preserve">
     <value>사용 팁:&lt;a href='https://www.axcrypt.net/information/usage-tips'&gt;https://www.axcrypt.net/information/usage-tips&lt;/a&gt;</value>
