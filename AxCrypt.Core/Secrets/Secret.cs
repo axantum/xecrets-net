@@ -31,8 +31,6 @@
 #endregion License
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AxCrypt.Core.Secrets
 {
@@ -54,34 +52,101 @@ namespace AxCrypt.Core.Secrets
             {
                 throw new ArgumentNullException("secret");
             }
+
             Id = secret.Id;
-            Title = secret.Title;
-            Description = secret.Description;
-            TheSecret = secret.TheSecret;
+            Type = secret.Type;
+            Password = secret.Password;
+            Card = secret.Card;
+            Note = secret.Note;
             EncryptionKey = secret.EncryptionKey;
             CreatedUtc = secret.CreatedUtc;
             UpdatedUtc = secret.UpdatedUtc;
+            DeletedUtc = secret.DeletedUtc;
         }
 
-        public Secret(Guid id, string title, string description, string theSecret)
+        public Secret(Guid id, SecretPassword secretPassword)
         {
             Id = id;
-            Title = title;
-            Description = description;
-            TheSecret = theSecret;
+            Password = secretPassword;
+            Type = AxCrypt.Api.Model.Secret.SecretType.Password;
         }
 
-        public Secret(Guid id, string title, string description, string theSecret, EncryptionKey encryptionKey)
-            : this(id, title, description, theSecret)
+        public Secret(Guid id, SecretPassword password, EncryptionKey encryptionKey)
+            : this(id, password)
         {
             EncryptionKey = encryptionKey;
         }
 
-        public Secret(Guid id, string title, string description, string theSecret, EncryptionKey encryptionKey, DateTime createdUtc, DateTime updatedUtc)
-            : this(id, title, description, theSecret, encryptionKey)
+        public Secret(Guid id, SecretPassword password, EncryptionKey encryptionKey, DateTime createdUtc, DateTime updatedUtc, DateTime deletedUtc)
+            : this(id, password, encryptionKey)
         {
             CreatedUtc = createdUtc;
             UpdatedUtc = updatedUtc;
+            DeletedUtc = deletedUtc;
+        }
+
+        public Secret(Guid id, SecretCard secretCard)
+        {
+            Id = id;
+            Card = secretCard;
+            Type = AxCrypt.Api.Model.Secret.SecretType.Card;
+        }
+
+        public Secret(Guid id, SecretCard secretCard, EncryptionKey encryptionKey)
+            : this(id, secretCard)
+        {
+            EncryptionKey = encryptionKey;
+        }
+
+        public Secret(Guid id, SecretCard secretCard, EncryptionKey encryptionKey, DateTime createdUtc, DateTime updatedUtc, DateTime deletedUtc)
+            : this(id, secretCard, encryptionKey)
+        {
+            CreatedUtc = createdUtc;
+            UpdatedUtc = updatedUtc;
+            DeletedUtc = deletedUtc;
+        }
+
+        public Secret(Guid id, SecretNote secretNote)
+        {
+            Id = id;
+            Note = secretNote;
+            Type = AxCrypt.Api.Model.Secret.SecretType.Note;
+        }
+
+        public Secret(Guid id, SecretNote secretNote, EncryptionKey encryptionKey)
+            : this(id, secretNote)
+        {
+            EncryptionKey = encryptionKey;
+        }
+
+        public Secret(Guid id, SecretNote secretNote, EncryptionKey encryptionKey, DateTime createdUtc, DateTime updatedUtc, DateTime deletedUtc)
+            : this(id, secretNote, encryptionKey)
+        {
+            CreatedUtc = createdUtc;
+            UpdatedUtc = updatedUtc;
+            DeletedUtc = deletedUtc;
+        }
+
+        private Guid _id;
+
+        /// <summary>
+        /// The unique id used for this secret
+        /// </summary>
+        public Guid Id
+        {
+            get { return _id; }
+            set { _id = value; }
+        }
+
+        private int _dbid;
+
+        /// <summary>
+        /// The unique id used for this secret
+        /// </summary>
+        public int DBId
+        {
+            get { return _dbid; }
+            set { _dbid = value; }
         }
 
         private EncryptionKey _encryptionKey;
@@ -96,45 +161,39 @@ namespace AxCrypt.Core.Secrets
             set { _encryptionKey = value; }
         }
 
-        private Guid _id;
+        private AxCrypt.Api.Model.Secret.SecretType _secretType;
 
         /// <summary>
-        /// The unique id used for this secret
+        /// The secret type
         /// </summary>
-        public Guid Id
+        public AxCrypt.Api.Model.Secret.SecretType Type
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _secretType; }
+            set { _secretType = value; }
         }
 
-        private string _title;
+        private SecretPassword _password;
 
-        public string Title
+        public SecretPassword Password
         {
-            get { return _title ?? String.Empty; }
-            set { _title = value; }
+            get { return _password; }
+            set { _password = value; }
         }
 
-        private string _description;
+        private SecretCard _card;
 
-        /// <summary>
-        /// A (long) description, not necessarily unique, for this secret
-        /// </summary>
-        public string Description
+        public SecretCard Card
         {
-            get { return _description ?? String.Empty; }
-            set { _description = value; }
+            get { return _card; }
+            set { _card = value; }
         }
 
-        private string _theSecret;
+        private SecretNote _note;
 
-        /// <summary>
-        /// The (short) actual secret - it may be any text
-        /// </summary>
-        public string TheSecret
+        public SecretNote Note
         {
-            get { return _theSecret ?? String.Empty; }
-            set { _theSecret = value; }
+            get { return _note; }
+            set { _note = value; }
         }
 
         private DateTime _createdUtc = DateTime.MinValue;
@@ -153,16 +212,12 @@ namespace AxCrypt.Core.Secrets
             set { _updatedUtc = value; }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this instance is empty.
-        /// </summary>
-        /// <value><c>true</c> if this instance is empty; otherwise, <c>false</c>.</value>
-        public bool IsEmpty
+        private DateTime _deletedUtc = DateTime.MinValue;
+
+        public DateTime DeletedUtc
         {
-            get
-            {
-                return String.IsNullOrEmpty(Title) && String.IsNullOrEmpty(Description) && String.IsNullOrEmpty(TheSecret);
-            }
+            get { return _deletedUtc; }
+            set { _deletedUtc = value; }
         }
 
         #region IEquatable<Secret> Members

@@ -45,12 +45,11 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Xml;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Desktop
 {
-    public class XmlSecretsReaderWriter : ISecretsReader, ISecretsWriter
+    public class XmlSecretsReaderWriter : ISecretsReader, ISecretsWriter, ISecretsDBConverter
     {
         #region Private classes
 
@@ -82,6 +81,43 @@ namespace AxCrypt.Desktop
             {
                 return base.DecryptPassphrase();
             }
+        }
+
+        private static class SecretXMLElementNames
+        {
+            public const string Secrets = "Secrets";
+
+            public const string Secret = "Secret";
+
+            public const string Password = "Password";
+
+            public const string Card = "Card";
+
+            public const string Note = "Note";
+
+            public const string Title = "Title";
+
+            public const string PasswordUrl = "Url";
+
+            public const string Description = "Description";
+
+            public const string PasswordUsername = "Username";
+
+            public const string TheSecret = "TheSecret";
+
+            public const string CardNumber = "Number";
+
+            public const string NameOnCard = "NameOnCard";
+
+            public const string SecurityCode = "SecurityCode";
+
+            public const string ExpirationDate = "ExpirationDate";
+
+            public const string CreationDate = "CreationDate";
+
+            public const string LastUpdateUtc = "LastUpdateUtc";
+
+            public const string DeletedUtc = "DeletedUtc";
         }
 
         #endregion Private classes
@@ -291,6 +327,130 @@ namespace AxCrypt.Desktop
 
         #endregion ISecretsWriter Members
 
+        #region ISecretsDBConverter Members
+
+        /*
+         *  Convert DB XML Secret strings to Secrets and Secrets Collection to XML Secret strings
+         */
+
+        public IEnumerable<Tuple<Secret, string>> SecretsXMLDocList(IEnumerable<Secret> secrets)
+        {
+            IList<Tuple<Secret, string>> migratedSecrets = new List<Tuple<Secret, string>>();
+
+            // Explicitly set the way the XML is written.
+            XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+            xmlWriterSettings.OmitXmlDeclaration = false;
+            xmlWriterSettings.Indent = true;
+            xmlWriterSettings.IndentChars = "  ";
+            xmlWriterSettings.CloseOutput = false;
+
+            foreach (Secret secret in secrets)
+            {
+                XmlDocument document = CreateDocumentFromSecrets(new List<Secret>() { secret });
+                string xmlDocumentStr = "";
+
+                using (StringWriter stringWriter = new StringWriter())
+                {
+                    using (XmlWriter xmlTextWriter = XmlWriter.Create(stringWriter, xmlWriterSettings))
+                    {
+                        document.WriteTo(xmlTextWriter);
+                        xmlTextWriter.Flush();
+                        xmlDocumentStr = stringWriter.GetStringBuilder().ToString();
+                    }
+
+                    stringWriter.Flush();
+                }
+
+                migratedSecrets.Add(Tuple.Create(secret, xmlDocumentStr));
+            }
+
+            return migratedSecrets;
+        }
+
+        public SecretCollection SecretsFromXMLDocList(IEnumerable<KeyValuePair<int, string>> secretsXml, IEnumerable<EncryptionKey> keys)
+        {
+            if (keys == null)
+            {
+                throw new ArgumentNullException(nameof(keys));
+            }
+
+            // Accumulate decrypted secrets here.
+            SecretCollection secrets = new SecretCollection();
+
+            foreach (KeyValuePair<int, string> secretXml in secretsXml)
+            {
+                // Get a copy of the collection so we can remove keys as we use them.
+                EncryptionKeyCollection unusedKeys = new EncryptionKeyCollection("");
+                unusedKeys.AddRange(keys);
+
+                XmlDocument SecretXMLDocument = GetDocumentFromString(secretXml.Value);
+
+                XmlNodeList nodeList = GetXecretsSession(SecretXMLDocument).SelectNodes("XecretsSession");
+                foreach (XmlNode node in nodeList)
+                {
+                    SecretCollection decryptedSessionSecrets = AttemptDecryptXecretsSessionElement(unusedKeys, (XmlElement)node);
+                    if (decryptedSessionSecrets.Count > 0)
+                    {
+                        decryptedSessionSecrets[0].DBId = secretXml.Key;
+                    }
+                    secrets.AddRange(decryptedSessionSecrets);
+                }
+            }
+            secrets.OriginalCount = secrets.Count;
+            return secrets;
+        }
+
+        private static XmlDocument GetDocumentFromString(string secretXmlStr)
+        {
+            // Setup the reader settings
+            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+            xmlReaderSettings.CloseInput = false;
+            xmlReaderSettings.ConformanceLevel = ConformanceLevel.Document;
+            xmlReaderSettings.IgnoreComments = true;
+            xmlReaderSettings.ValidationType = ValidationType.None;
+
+            // Actually load the document from the string
+            StringReader stringReader = new StringReader(secretXmlStr);
+            XmlReader reader = XmlReader.Create(stringReader, xmlReaderSettings);
+
+            XmlDocument document = CreateNewDocument();
+            try
+            {
+                document.Load(reader);
+            }
+            catch (XmlException)
+            {
+                // We turn this into a FormatException, since that is the 'controlled' exception that may
+                // happen when we try a data stream for conformance.
+                throw new FormatException($"{nameof(GetDocumentFromString)} - Error loading XML - not the right format");
+            }
+
+            return document;
+        }
+
+        public byte[] GetRawXMLDoc(IEnumerable<Secret> secrets)
+        {
+            XmlDocument xmlDocument = CreateDocumentFromSecrets(secrets);
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+                xmlWriterSettings.OmitXmlDeclaration = false;
+                xmlWriterSettings.Indent = true;
+                xmlWriterSettings.IndentChars = "  ";
+                xmlWriterSettings.CloseOutput = false;
+
+                using (XmlWriter writer = XmlWriter.Create(stream, xmlWriterSettings))
+                {
+                    xmlDocument.Save(writer);
+                }
+
+                return stream.ToArray();
+            }
+        }
+
+        #endregion ISecretsDBConverter Members
+
         #region Private Helpers
 
         private SecretCollection AttemptDecryptXecretsSessionElement(EncryptionKeyCollection keyCollection, XmlElement xecretsSessionElement)
@@ -489,17 +649,46 @@ namespace AxCrypt.Desktop
         /// <returns></returns>
         private static XmlElement CreateSecretsElement(XmlDocument document, IEnumerable<Secret> secrets)
         {
-            XmlElement secretsElement = document.CreateElement("Secrets");
+            XmlElement secretsElement = document.CreateElement(SecretXMLElementNames.Secrets);
             foreach (Secret secret in secrets)
             {
-                XmlElement secretElement = document.CreateElement("Secret");
+                XmlElement secretElement = document.CreateElement(SecretXMLElementNames.Secret);
 
                 secretElement.Attributes.Append(document.CreateAttribute("Id")).Value = secret.Id.ToString("N");
-                secretElement.AppendChild(document.CreateElement("Title")).InnerText = secret.Title;
-                secretElement.AppendChild(document.CreateElement("Description")).InnerText = secret.Description;
-                secretElement.AppendChild(document.CreateElement("TheSecret")).InnerText = secret.TheSecret;
-                secretElement.AppendChild(document.CreateElement("CreationDate")).InnerText = secret.CreatedUtc.ToString(CultureInfo.InvariantCulture);
-                secretElement.AppendChild(document.CreateElement("LastUpdateUtc")).InnerText = secret.UpdatedUtc.ToString(CultureInfo.InvariantCulture);
+                secretElement.Attributes.Append(document.CreateAttribute("Type")).Value = ((int)secret.Type).ToString();
+
+                if (secret.Type == AxCrypt.Api.Model.Secret.SecretType.Legacy || secret.Type == AxCrypt.Api.Model.Secret.SecretType.Password)
+                {
+                    XmlElement passwordElement = document.CreateElement(SecretXMLElementNames.Password);
+                    passwordElement.AppendChild(document.CreateElement(SecretXMLElementNames.Title)).InnerText = secret.Password.Title;
+                    passwordElement.AppendChild(document.CreateElement(SecretXMLElementNames.PasswordUrl)).InnerText = secret.Password.Url;
+                    passwordElement.AppendChild(document.CreateElement(SecretXMLElementNames.Description)).InnerText = secret.Password.Description;
+                    passwordElement.AppendChild(document.CreateElement(SecretXMLElementNames.PasswordUsername)).InnerText = secret.Password.Username;
+                    passwordElement.AppendChild(document.CreateElement(SecretXMLElementNames.TheSecret)).InnerText = secret.Password.TheSecret;
+
+                    secretElement.AppendChild(passwordElement);
+                }
+
+                if (secret.Type == AxCrypt.Api.Model.Secret.SecretType.Card)
+                {
+                    XmlElement cardElement = document.CreateElement(SecretXMLElementNames.Card);
+                    cardElement.AppendChild(document.CreateElement(SecretXMLElementNames.CardNumber)).InnerText = secret.Card.Number;
+                    cardElement.AppendChild(document.CreateElement(SecretXMLElementNames.Description)).InnerText = secret.Card.Description;
+                    cardElement.AppendChild(document.CreateElement(SecretXMLElementNames.NameOnCard)).InnerText = secret.Card.NameOnCard;
+                    cardElement.AppendChild(document.CreateElement(SecretXMLElementNames.SecurityCode)).InnerText = secret.Card.SecurityCode;
+                    cardElement.AppendChild(document.CreateElement(SecretXMLElementNames.ExpirationDate)).InnerText = secret.Card.ExpirationDate;
+
+                    secretElement.AppendChild(cardElement);
+                }
+
+                if (secret.Type == AxCrypt.Api.Model.Secret.SecretType.Note)
+                {
+                    XmlElement noteElement = document.CreateElement(SecretXMLElementNames.Note);
+                    noteElement.AppendChild(document.CreateElement(SecretXMLElementNames.Description)).InnerText = secret.Note.Description;
+                    noteElement.AppendChild(document.CreateElement(SecretXMLElementNames.Note)).InnerText = secret.Note.Note;
+
+                    secretElement.AppendChild(noteElement);
+                }
 
                 secretsElement.AppendChild(secretElement);
             }
@@ -515,33 +704,81 @@ namespace AxCrypt.Desktop
                 XmlElement secretElement = (XmlElement)node;
 
                 Guid id = new Guid(secretElement.Attributes["Id"].Value);
+                int secretTypeVal = int.Parse(secretElement.Attributes["Type"]?.Value ?? "1"); // Legacy = "1" is by default
+                AxCrypt.Api.Model.Secret.SecretType secretType = (AxCrypt.Api.Model.Secret.SecretType)secretTypeVal;
                 string title = String.Empty;
+                string passwordUrl = String.Empty;
                 string description = String.Empty;
+                string passwordUsername = String.Empty;
                 string theSecret = String.Empty;
+
+                string cardNumber = String.Empty;
+                string nameOnCard = String.Empty;
+                string securityCode = String.Empty;
+                string expirationDate = String.Empty;
+
+                string note = String.Empty;
+
                 DateTime creationDate = DateTime.MinValue;
                 DateTime lastUpdateUtc = DateTime.MinValue;
+                DateTime deletedUtc = DateTime.MinValue;
+
+                secretElement = CreateSecretElement(secretElement, secretType);
+
                 foreach (XmlNode textElement in secretElement.ChildNodes)
                 {
                     switch (textElement.Name)
                     {
-                        case "Title":
+                        case SecretXMLElementNames.Title:
                             title = WebUtility.HtmlDecode(textElement.InnerText);
                             break;
 
-                        case "Description":
+                        case SecretXMLElementNames.PasswordUrl:
+                            passwordUrl = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.Description:
                             description = WebUtility.HtmlDecode(textElement.InnerText);
                             break;
 
-                        case "TheSecret":
+                        case SecretXMLElementNames.PasswordUsername:
+                            passwordUsername = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.TheSecret:
                             theSecret = WebUtility.HtmlDecode(textElement.InnerText);
                             break;
 
-                        case "CreationDate":
+                        case SecretXMLElementNames.CardNumber:
+                            cardNumber = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.NameOnCard:
+                            nameOnCard = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.SecurityCode:
+                            securityCode = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.ExpirationDate:
+                            expirationDate = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.Note:
+                            note = WebUtility.HtmlDecode(textElement.InnerText);
+                            break;
+
+                        case SecretXMLElementNames.CreationDate:
                             creationDate = DateTime.Parse(WebUtility.HtmlDecode(textElement.InnerText), CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
                             break;
 
-                        case "LastUpdateUtc":
+                        case SecretXMLElementNames.LastUpdateUtc:
                             lastUpdateUtc = DateTime.Parse(WebUtility.HtmlDecode(textElement.InnerText), CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+                            break;
+
+                        case SecretXMLElementNames.DeletedUtc:
+                            deletedUtc = DateTime.Parse(WebUtility.HtmlDecode(textElement.InnerText), CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
                             break;
 
                         default:
@@ -553,10 +790,49 @@ namespace AxCrypt.Desktop
                     }
                 }
 
-                secrets.Add(new InternalSecret(new Secret(id, title, description, theSecret, key, creationDate, lastUpdateUtc)));
+                if (secretType == Api.Model.Secret.SecretType.Legacy || secretType == Api.Model.Secret.SecretType.Password)
+                {
+                    SecretPassword secretPassword = new SecretPassword(title, passwordUrl, description, passwordUsername, theSecret);
+                    secrets.Add(new InternalSecret(new Secret(id, secretPassword, key, creationDate, lastUpdateUtc, deletedUtc)));
+                    continue;
+                }
+
+                if (secretType == Api.Model.Secret.SecretType.Card)
+                {
+                    SecretCard secretCard = new SecretCard(cardNumber, description, nameOnCard, securityCode, expirationDate);
+                    secrets.Add(new InternalSecret(new Secret(id, secretCard, key, creationDate, lastUpdateUtc, deletedUtc)));
+                    continue;
+                }
+
+                if (secretType == Api.Model.Secret.SecretType.Note)
+                {
+                    SecretNote secretNote = new SecretNote(description, note);
+                    secrets.Add(new InternalSecret(new Secret(id, secretNote, key, creationDate, lastUpdateUtc, deletedUtc)));
+                    continue;
+                }
             }
 
             return secrets;
+        }
+
+        private static XmlElement CreateSecretElement(XmlElement secretElement, Api.Model.Secret.SecretType secretType)
+        {
+            switch (secretType)
+            {
+                case Api.Model.Secret.SecretType.Legacy:
+                    return secretElement;
+
+                case Api.Model.Secret.SecretType.Password:
+                    return (XmlElement)secretElement.SelectSingleNode(SecretXMLElementNames.Password);
+
+                case Api.Model.Secret.SecretType.Card:
+                    return (XmlElement)secretElement.SelectSingleNode(SecretXMLElementNames.Card);
+
+                case Api.Model.Secret.SecretType.Note:
+                    return (XmlElement)secretElement.SelectSingleNode(SecretXMLElementNames.Note);
+            }
+
+            return secretElement;
         }
 
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "KeyDerviation")]
