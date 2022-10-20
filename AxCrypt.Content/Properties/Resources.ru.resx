@@ -5907,9 +5907,6 @@ SE-114 29 Стокгольм
   <data name="TermsOfUseBlock2Heading">
     <value>Предоставляемые Услуги</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>AxCrypt режим Просмотра</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Просмотр доступен для всех и без каких-либо затрат. Этот план позволяет просматривать и расшифровывать файлы, а также просматривать, но не изменять данные в диспетчере паролей.</value>
   </data>

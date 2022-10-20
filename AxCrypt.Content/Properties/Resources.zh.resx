@@ -6074,9 +6074,6 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock2Heading" xml:space="preserve">
     <value>提供的服务</value>
   </data>
-  <data name="TermsOfUseBlock3Heading" xml:space="preserve">
-    <value>AxCrypt Viewer计划</value>
-  </data>
   <data name="TermsOfUseBlock3Text1" xml:space="preserve">
     <value>AxCrypt Viewer适用于所有人，无需成本。 该计划使您能够查看和解密文件，并在密码管理器中查看但不修改数据。</value>
   </data>

@@ -10556,9 +10556,6 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock2Text1" xml:space="preserve">
     <value>AxCrypt effectue le chiffrement et le déchiffrement locaux des fichiers, ainsi que le chiffrement et le déchiffrement basés sur le serveur des clés de chiffrement et éventuellement du gestionnaire de mots de passe.</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>Formule spectateur AxCrypt</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer est disponible pour tout le monde gratuitement. Cette option vous permet de regarder et de déchiffrer des fichiers, et de regarder sans modifier des données dans le gestionnaire de mots de passe.</value>
   </data>

@@ -10580,9 +10580,6 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="TermsOfUseBlock2Text1" xml:space="preserve">
     <value>AxCrypt realiza el cifrado y descifrado local de archivos, y el cifrado y descifrado basado en servidor de claves de cifrado y, opcionalmente, un administrador de contraseñas.</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>Plan Viewer de AxCrypt</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer está disponible para todos, sin costo. El plan te permite ver y descifrar archivos y visualizarlos, pero no modificar datos en el administrador de contraseñas.</value>
   </data>
