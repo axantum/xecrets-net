@@ -6903,9 +6903,6 @@ För att återgå till startsidan, klicka &lt;a href="{1}"&gt;här&lt;/a&gt;.</v
   <data name="TermsOfUseBlock2Heading">
     <value>Tjänster som tillhandahålls</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>AxCrypt Viewer Plan</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer är tillgänglig för alla, utan kostnad. Planen gör det möjligt för dig att visa och dekryptera filer samt visa men inte ändra data i lösenordshanteraren.</value>
   </data>

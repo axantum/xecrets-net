@@ -441,6 +441,12 @@ Updates van het abonnement worden hier binnen enkele minuten weergegeven.</value
     <value>U hoeft niet te reageren of iets te doen. Wanneer u niks doet worden er geen emails meer verzonden en wordt uw AxCrypt ID permanent verwijderd.</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
   </data>
+  <data name="AutoDeletionMailBodyButton" xml:space="preserve">
+    <value>Verifiëer AxCrypt ID </value>
+  </data>
+  <data name="AutoDeletionMailBodyFreeTrial" xml:space="preserve">
+    <value>U kunt uw proefperiode van &lt;b&gt;AxCrypt Premium-functies gedurende 30 dagen&lt;/b&gt; starten in de app!</value>
+  </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
     <value>U heeft uw email gegeven tijdens het installeren of gebruik maken van de AxCrypt applicatie of website. Wij hebben u een verificatiecode verzonden via email, maar u heeft deze code nog niet gebruikt. Als u uw AxCrypt ID account niet onmiddelijk verifieert met de verificatiecode zullen wij u permanent uit ons systeem verwijderen.</value>
   </data>
@@ -629,6 +635,207 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0} jaarlijks gefactureerd</value>
   </data>
+  <data name="Blog_5KFESSAO_H4_Text3">
+    <value>Noord-Amerika verklaarde dat hun bedrijf tweefactor authenticatie gebruikt om hun identiteit te verifiëren. Daarentegen gebruikt 52% een single-on.</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading3">
+    <value>&lt;h3&gt;3. Veilige verwijdering &lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H2_SubHeading4">
+    <value>&lt;strong&gt;Schadelijke activiteit door derden &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading2">
+    <value>&lt;strong&gt;Het delen van Sleutels /strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading3">
+    <value>&lt;strong&gt;Cloud Beveiliging&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading4">
+    <value>&lt;strong&gt;Eenvoudige ontmanteling&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADGE_Heading1">
+    <value>Wat is versleuteling en hoe werkt het?</value>
+  </data>
+  <data name="Blog_ADGE_Title">
+    <value>Een gedetailleerde gids voor encryptie</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text5">
+    <value>&lt;li&gt;De hoofdbestandssleutel, versleuteld met uw openbare deelsleutel.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text6">
+    <value>&lt;li&gt;De hoofdbestandssleutel, optioneel versleuteld met openbare deelsleutels van andere ontvangers.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Heading3">
+    <value>&lt;h3&gt;Wachtwoord Management&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_BMYP_H1_SubHeading5">
+    <value>&lt;strong&gt;Het gaat verder dan het  enkel beschermen van wachtwoorden&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BSTSSCE_H1_SH3_Text2">
+    <value>Start uw 30 daagse gratis proefperiode nu! Lees hier meer over onze producten: &lt;a href='https://www.axcrypt.net/about/'&gt;https://www.axcrypt.net/about/&lt;/a&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H1_Heading2">
+    <value>&lt;h3&gt; Enkele Karakteristieken van de Cloud&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_SubHeading2">
+    <value>&lt;b&gt;PaaS - Platform als en Dienst&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_Text2">
+    <value>Er zijn verschillende categorieën die cloudopslag computergebruik karakteriseren, hier zijn de verschillende diensten:&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H1_Text2">
+    <value>Als concept is cyberhygiëne sinds de pandemie belangrijker geworden, aangezien personen die op afstand werken over de hele wereld de cybercriminaliteit hebben verhoogd.</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text1">
+    <value>Enkele van de problemen die cyberhygiëne moet oplossen, zijn de volgende:</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text3">
+    <value>&lt;li&gt;Gegevensverlies — niet-geback-upte harde schijven en online cloudopslag kunnen worden blootgesteld aan hackeen, schade of andere problemen die leiden tot gegevensverlies.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading1">
+    <value>&lt;strong&gt;Hoogwaardige antivirussoftware&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading1">
+    <value>Wat is cyberhygiëne?</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading2">
+    <value>Enkele veelvoorkomende problemen met cyberhygiëne:</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading3">
+    <value>Methoden om een ​​Goede Cyberhygiëne te Garanderen</value>
+  </data>
+  <data name="Blog_CRI_FeaturePage">
+    <value>Neem een ​​kijkje op de &lt;a href='/information/features'&gt;functiepagina&lt;/a&gt; om meer te weten te komen over hoe AxCrypt uw ​​bestanden en gegevens kan beveiligen.</value>
+  </data>
+  <data name="Blog_CRI_H1_SubHeading1">
+    <value>&lt;strong&gt;Vijf belangrijke pijlers van cyberweerbaarheid:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_Heading3">
+    <value>Waarin verschilt AxCrypt van BitLocker en FileVault?</value>
+  </data>
+  <data name="Blog_DRATIUIN_Title">
+    <value>Gegevens in rust, onderweg en in gebruik - in het kort</value>
+  </data>
+  <data name="Blog_EAB_H1_Text2">
+    <value>Een vingerafdruk is uniek, maar niet geheim en niet te veranderen. Het is totaal ongeschikt om direct of indirect als coderingssleutel te gebruiken.</value>
+  </data>
+  <data name="Blog_EAB_H1_Text4">
+    <value>Veel plezier met AxCrypten!</value>
+  </data>
+  <data name="Blog_EAB_Text8">
+    <value>Een gestolen wachtwoord daarentegen is relatief triviaal om te veranderen.</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH4_Text1">
+    <value>Nieuwe uitdagingen voor ons team en opwindend nieuws voor jou!</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text2">
+    <value>Blogposts zijn beschikbaar in het Engels en Frans </value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text3">
+    <value>Nieuwe taalfuncties zoals Chinees </value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text5">
+    <value>Boost van AxCrypt mobiel zodat u uw gecodeerde bestanden vanaf uw telefoons kunt openen</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH6_Text5">
+    <value>Het AxCrypt team </value>
+  </data>
+  <data name="Blog_EDIKPNY_Heading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Beste van 2020&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EIBM_Conclusion_Text2">
+    <value>Wilt u meer leren? We geven elke week interessante informatie vrij. </value>
+  </data>
+  <data name="Blog_EIBM_H3_SubHeading2">
+    <value>&lt;strong&gt;Kaarten&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_Heading1">
+    <value>Inleiding tot cryptografie</value>
+  </data>
+  <data name="Blog_EIBM_Heading2">
+    <value>Hoe beschermt u uw gegevens?</value>
+  </data>
+  <data name="Blog_EIBM_Summary">
+    <value>In de financiële wereld is gegevensbeveiliging een serieuze zaak. Versleuteling maakt verschillende soorten economische activiteiten mogelijk die anders niet mogelijk zouden zijn.</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_Heading">
+    <value>AxCrypt 's aanpak </value>
+  </data>
+  <data name="Blog_EITPS_H2_SubHeading2">
+    <value>&lt;strong&gt;Vermindert de Productiviteit&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H2_SubHeading3">
+    <value>&lt;strong&gt;Werkt alleen als de server niet beschikbaar is&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H3_SubHeading2">
+    <value>&lt;strong&gt;Toegankelijk op verschillende apparaten&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading3">
+    <value>&lt;strong&gt;Master sleutel&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_H1_SubHeading5">
+    <value>&lt;strong&gt;Toegankelijk op verschillende apparaten&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAVTYB_Summary">
+    <value>Wanneer gevoelige gegevens van uw bedrijf in de cloud worden opgeslagen, kan versleuteling het risico op gegevensdiefstal aanzienlijk verkleinen.</value>
+  </data>
+  <data name="Blog_HEIDS_Heading3">
+    <value>&lt;h3&gt;Ongeautoriseerde toegang&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading5">
+    <value>&lt;h3&gt;Geen training en richtlijnen&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading8">
+    <value>&lt;h3&gt;Onbeperkt datagebruik&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Title">
+    <value>Menselijke Fouten die Gegevensbeveiliging Beïnvloeden</value>
+  </data>
+  <data name="Blog_HFMICTETP_H6_Text2">
+    <value>U kunt beginnen met het zoeken naar coderingssoftware met solide coderingsmethoden die zijn afgestemd op uw zakelijke eisen.</value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading1">
+    <value>&lt;h3&gt;2.Sterke encryptie blijft de beslissende factor voor ondernemings encryptiesoftware&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text4">
+    <value>&lt;li&gt;Ontekking van dienst&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text6">
+    <value>&lt;li&gt;Versleutelverbetering&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading2">
+    <value>&lt;strong&gt;Beleid Maken &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SubHeading4">
+    <value>&lt;strong&gt;Gegevensbeheer en Toegang&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>Belang van cybersecurity in de human resources-sector</value>
+  </data>
+  <data name="Blog_MDPNST_Heading2">
+    <value>Enkele van de mobiele bedreigingen om op te letten in 2022</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;Data Management Voorschriften zijn Geschonden&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Probeer een gratis proefperiode van een maand, Download voor Android- of IOS-gebruikers:</value>
+  </data>
+  <data name="Blog_MDSCBF_Summary">
+    <value>Voor cyberbeveiliging en het bedrijfsleven in het algemeen waren de afgelopen jaren allesbehalve normaal.</value>
+  </data>
+  <data name="Blog_MK_H1_SubHeading1">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Wat is Mastersleutel &lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_MK_H1_SubHeading2">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Is Mastersleutel veilig?&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_PECA_Heading1">
+    <value>Versleuteling gemakkelijk gemaakt met AxCrypt</value>
+  </data>
+  <data name="Blog_PECA_Text1">
+    <value>"&lt;i&gt;Met deze uitstekende versleutelingstool kun je je bestanden beschermen met hoogwaardige versleuteling, en dat met de grootst mogelijke eenvoud." Neil Rubenking, technisch redacteur van PC Magazine&lt;/i&gt;</value>
+  </data>
   <data name="Blog_PRAA_H1_Text3">
     <value>Dit ontwerp, dat een standaard ''good practice'' is voor encryptie, betekent ook dat we spannende dingen kunnen doen door diezelfde master encryptie sleutel op andere manieren te versleutelen. Dat doen we ook, maar dat is geen onderwerp voor dit artikel.</value>
   </data>
@@ -638,8 +845,59 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_PRAA_Heading2">
     <value>&lt;h3&gt;Wachtwoordswijziging&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_ROCP_Heading2">
+    <value>Waarom U De Wachtwoorden Van Uw Bedrijf Zou Moeten Organiseren.</value>
+  </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Enkele Veelvoorkomende Mythes Over Versleuteling</value>
+  </data>
+  <data name="Blog_SD_Heading2">
+    <value>&lt;h3&gt;Gegarandeerde beveiliging&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_SD_Summary">
+    <value>Gebruik je Netflix? Als je een Netflix-account hebt, heb je vast wel eens gehoord van de onlangs verschenen documentaire “The Social Dilemma”, die de grote voordelen van sociale media aankaart.</value>
+  </data>
+  <data name="Blog_SVL_Title">
+    <value>Abonnement versus Licentie </value>
+  </data>
+  <data name="Blog_TIEDTC_Heading1">
+    <value>Welke Data Zou Uw Bedrijf Moeten Beveiligen?</value>
+  </data>
+  <data name="Blog_TIEDTC_Title">
+    <value>Het Belang van het Beveiligen van Alle Data In Het Bedrijf</value>
+  </data>
+  <data name="Blog_WAMHIHY_H3_SH5_Text5">
+    <value>AxCrypt zorgt ervoor dat uw organisatie blijft voldoen aan regelgeving zoals de Algemene Verordening Gegevensbescherming (AVG).</value>
+  </data>
+  <data name="Blog_WAMHIHY_Title">
+    <value>Wat is gelieerde marketing en hoe kan het je helpen?</value>
+  </data>
+  <data name="Blog_WEROA_Text12">
+    <value>Zo simpel is het. </value>
+  </data>
+  <data name="Blog_WEROA_Text13">
+    <value>Vergeet of verlies uw wachtwoord niet!</value>
+  </data>
+  <data name="Blog_WIAAI_Summary">
+    <value>Waarschuwing - dit is een nogal technische post ;-) Het is alleen voor diegenen die echt geïnteresseerd zijn in de innerlijke werking van AxCrypt.</value>
+  </data>
+  <data name="Blog_WIAAI_Text7">
+    <value>Wanneer we een bestand versleutelen met AxCrypt, doen we dit met AES-128/-256. Dit is een symmetrisch sterk coderingsalgoritme, met een enkele sleutel die wordt gebruikt voor zowel codering als decodering.</value>
+  </data>
+  <data name="Blog_WIAAI_Title">
+    <value>Wat is een AxCrypt ID?</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading1">
+    <value>Belangrijke cyberbeveiligingsdoeleinden zijn:</value>
+  </data>
+  <data name="Blog_WICS_Heading3">
+    <value>Grote uitdagingen op het gebied van cyberbeveiliging:</value>
+  </data>
   <data name="Blog_WYSASDF_Text6">
     <value>&lt;li&gt;Omdat het per definitie sterk gecodeerde informatie bevat, bijvoorbeeld een andere uitvoerbare software, is het onmogelijk te screenen met anti virus software. Het kan letterlijk elk niveau van slechtheid bevatten. &lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text1">
+    <value>&lt;strong&gt;Waarom is Zero Trust nodig&lt;/strong&gt;</value>
   </data>
   <data name="BlogLinkLabel">
     <value>Blog</value>
@@ -712,6 +970,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>Uw AxCrypt Business abonnement {bus_sub_name} is beëindigd. We hopen dat je AxCrypt met plezier hebt gebruikt en dat het nuttig was.</value>
+  </data>
+  <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
+    <value>Laat ons weten wat je van AxCrypt vindt - Blijf je het gebruiken en is er iets dat je graag verbeterd zou willen zien?</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>Uw AxCrypt Business abonnement is beëindigd.</value>
@@ -1343,6 +1604,9 @@ Wanneer u onze tijdelijke cookies sessie niet accepteert kunt u zich niet aanmel
   </data>
   <data name="CreateBusinessWithOtherPaymentMethodsSuccess" xml:space="preserve">
     <value>Onze zakelijke support neemt binnenkort contact met u op om u op weg te helpen met uw zakelijke account! Klik op doorgaan om naar uw account te gaan.</value>
+  </data>
+  <data name="CreateNewPrompt" xml:space="preserve">
+    <value>Maak nieuw</value>
   </data>
   <data name="CreatePremiumSuccess" xml:space="preserve">
     <value>Gefeliciteerd en welkom bij AxCrypt Premium!</value>
@@ -2298,6 +2562,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="FreeTrial">
     <value>Gratis proefperiode</value>
   </data>
+  <data name="FreeTrialLabel" xml:space="preserve">
+    <value>GRATIS PROEFVERSIE </value>
+  </data>
   <data name="FullNameLabel">
     <value>Volledige naam</value>
   </data>
@@ -2603,6 +2870,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="GovernmentLinkLabel">
     <value>Overheid</value>
+  </data>
+  <data name="GuidesGetStartedLinkLabelWithPlatform" xml:space="preserve">
+    <value>Begin</value>
   </data>
   <data name="GuidesLinkLabel">
     <value>Gidsen</value>
@@ -3585,6 +3855,9 @@ Het automatisch converteren van AxCrypt 1.x bestanden inschakelen (aanbevolen)?<
     <value>Kies alstublieft uw email client:</value>
     <comment>Header of popup for selecting mail application.</comment>
   </data>
+  <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
+    <value>{{user_email}} heeft de volgende feedback...</value>
+  </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Er is een parseerfout opgetreden bij het bijwerken van de sitebeheer eigenschap. Controleer of u het juiste format gebruikt.</value>
   </data>
@@ -3988,6 +4261,9 @@ De licentie voor dit programma is conform de overeenkomst.
   <data name="NameLabel">
     <value>Naam</value>
   </data>
+  <data name="NameOnCardPrompt" xml:space="preserve">
+    <value>Naam op de kaart</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
@@ -4294,6 +4570,9 @@ Witte ruimte en gedeeltes die gelijk staan aan veelvoorkomende wachtwoorden word
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Wachtwoord is niet sterk genoeg om aanbevolen te worden.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
+  </data>
+  <data name="PasswordUrlPrompt" xml:space="preserve">
+    <value>URL</value>
   </data>
   <data name="PastIncidentsHeading">
     <value>Incidenten uit het verleden</value>
@@ -4754,6 +5033,9 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   <data name="PrivacyPolicyLinkLabel">
     <value>Privacybeleid</value>
   </data>
+  <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
+    <value>AxCrypt biedt nu bestandsbeveiliging voor bedrijven en organisaties - met 256-bit AES-codering.</value>
+  </data>
   <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
     <value>Sterkere encryptie met &lt;span&gt; AES-256&lt;/span&gt;</value>
   </data>
@@ -4765,6 +5047,12 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   </data>
   <data name="ProductPremiumSellingPointsStrongerEncrypt" xml:space="preserve">
     <value>Sterkere encryptie met &lt;span&gt; AES-256&lt;/span&gt;</value>
+  </data>
+  <data name="ProductSellingPointsSecureFolder" xml:space="preserve">
+    <value>Automatisch &lt;span&gt;nieuwe bestanden versleutelen&lt;/span&gt; in beveiligde mappen</value>
+  </data>
+  <data name="ProductSellingPointsSecureStorageAwareness" xml:space="preserve">
+    <value>Beveilig bestanden online met &lt;span&gt;bewustzijn van cloudopslag&lt;/span&gt;</value>
   </data>
   <data name="ProductTryItForFreeAndMuch">
     <value>En veel meer...</value>
@@ -5055,6 +5343,9 @@ Alstublieft &lt;a href="mailto:premium@axcrypt.net"&gt;contacteer ons&lt;/a&gt; 
   </data>
   <data name="RecentFilesTabPageText" xml:space="preserve">
     <value>Recente Bestanden</value>
+  </data>
+  <data name="RefreshPromptText" xml:space="preserve">
+    <value>Vernieuwen </value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Registratie mislukt. Check alstublieft uw email en probeer het nog eens.</value>
@@ -5813,6 +6104,9 @@ Kies iets dat moeilijk te raden is, sinds het de wachtwoorden beschermd in de on
   <data name="SetupAccountOrSubscriptionLabel" xml:space="preserve">
     <value>Laten we het account/abonnement instellen</value>
   </data>
+  <data name="ShareAccessTitle" xml:space="preserve">
+    <value>Deel toegang </value>
+  </data>
   <data name="SharedWithUnverfiedMessageTitle" xml:space="preserve">
     <value>Nieuwe AxCrypt Gebruiker</value>
   </data>
@@ -6226,9 +6520,6 @@ Ga naar de startpagina en klik &lt;a href="{1}"&gt;hier&lt;/a&gt; .</value>
   <data name="TermsOfUseBlock2Heading">
     <value>Aangeboden Diensten</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>AxCrypt Viewer-abonnement</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer is voor iedereen beschikbaar, zonder kosten. Met het plan kunt u bestanden bekijken en ontsleutelen en u kunt gegevens bekijken, maar niet wijzigen in de wachtwoordbeheerder.</value>
   </data>
@@ -6361,6 +6652,9 @@ Het AxCrypt Team</value>
   </data>
   <data name="TryBusinessPreHeading">
     <value>Voor zakelijke gebruikers</value>
+  </data>
+  <data name="TryBusinessPrompt" xml:space="preserve">
+    <value>Probeer  in plaats daarvan AxCrypt Business!</value>
   </data>
   <data name="TryButtonHeadingBusiness">
     <value>Probeer zakelijk</value>
@@ -6622,6 +6916,9 @@ Het AxCrypt Team</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verifieer Wachtwoord</value>
+  </data>
+  <data name="ViewNoteTitle" xml:space="preserve">
+    <value>Opmerking Bekijken </value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Waarschuwing!</value>

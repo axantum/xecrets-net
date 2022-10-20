@@ -6156,9 +6156,6 @@ Anasayfaya gitmek için &lt;a href="{1}"&gt;buraya&lt;/a&gt; tıkla.</value>
   <data name="TermsOfUseBlock2Heading">
     <value>Sağlanılan Hizmetler</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>AxCrypt Görüntüleyici Plan</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer ücretsizdir ve herkes tarafından kullanılabilir.  Bu plan dosyaları görüntülemenizi ve çözmenizi sağlar fakat şifre yöneticisindeki verileri değiştirme imkanı tanımaz.</value>
   </data>

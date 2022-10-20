@@ -6574,9 +6574,6 @@ Per andare alla pagina iniziale, clicca &lt;a href="{1}"&gt;qui&lt;/a&gt; .</val
   <data name="TermsOfUseBlock2Heading">
     <value>Servizi Forniti</value>
   </data>
-  <data name="TermsOfUseBlock3Heading">
-    <value>Piano AxCrypt Viewer</value>
-  </data>
   <data name="TermsOfUseBlock3Text1">
     <value>AxCrypt Viewer è disponibile per tutti, senza costi. Il piano consente di visualizzare e decriptare i file e di visualizzare ma non di modificare i dati nel gestore delle password.</value>
   </data>
