@@ -7457,6 +7457,9 @@ Sign in to AxCrypt with {2}, enter the 6-digit verification code and set your se
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>Invoice number</value>
+  </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
     <value>Reference</value>
     <comment>The payment provider reference id of the transaction</comment>
