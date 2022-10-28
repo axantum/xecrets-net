@@ -8600,7 +8600,7 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
     <value>Tu suscripción al servicio AxCrypt Premium está a punto de finalizar. Esperamos sinceramente que hayas disfrutado las características que ofrecemos y que te hayan parecido útiles.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Nos gustaría que siguieras usando las funciones Premium. Amplía la suscripción &lt;a href="{0}Home/Purchase?email={1}"&gt;ahora&lt;/a&gt;.</value>
+    <value>Nos gustaría que siguieras usando las funciones Premium. Amplía la suscripción &lt;a href="{account_web_url}es/Home/Login?purchase=True?email={{user_email}}"&gt;ahora&lt;/a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

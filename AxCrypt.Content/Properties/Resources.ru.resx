@@ -4109,7 +4109,7 @@ SE-114 29 Стокгольм
     <value>Ваша подписка на AxCrypt Premium скоро подходит к концу. Мы искренне надеемся, что Вам понравилось пользоваться нашими функциями, и что они были Вам полезными.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Мы были бы рады продлить Вашу подписку на функции Premium. Продлить Вашу подписку &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; .</value>
+    <value>Мы были бы рады продлить Вашу подписку на функции Premium. Продлить Вашу подписку &lt;a href="{account_web_url}ru/Home/Login?purchase=True?email={{user_email}}"&gt;now&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

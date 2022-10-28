@@ -8574,7 +8574,7 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
     <value>Votre abonnement AxCrypt Premium touche bientôt à sa fin. Nous espérons sincèrement que vous avez aimé utiliser AxCrypt, et que vous avez trouvé l'application utile.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Nous serions ravis que vous continuiez à utiliser nos fonctionnalités Premium. Prolongez votre abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;maintenant&lt;/a&gt;.</value>
+    <value>Nous serions ravis que vous continuiez à utiliser nos fonctionnalités Premium. Prolongez votre abonnement &lt;a href="{account_web_url}fr/Home/Login?purchase=True?email={{user_email}}"&gt;maintenant&lt;/a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

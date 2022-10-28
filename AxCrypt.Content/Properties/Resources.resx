@@ -295,6 +295,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   <data name="ActiveSubscriptionText" xml:space="preserve">
     <value>There is an active subscription on this account.</value>
   </data>
+  <data name="AddCardTitle" xml:space="preserve">
+    <value>Add Card</value>
+  </data>
   <data name="AddEmailPromptText" xml:space="preserve">
     <value>Add email</value>
   </data>
@@ -308,6 +311,12 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="AddMoreUsersTitle" xml:space="preserve">
     <value>Add more users</value>
+  </data>
+  <data name="AddNoteTitle" xml:space="preserve">
+    <value>Add Note</value>
+  </data>
+  <data name="AddPasswordTitle" xml:space="preserve">
+    <value>Add Password</value>
   </data>
   <data name="AddPromptText" xml:space="preserve">
     <value>Add</value>
@@ -5315,6 +5324,12 @@ You have been warned, now enjoy!</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Prove that you're a real person and not automated software!</value>
   </data>
+  <data name="CardNumberPrompt" xml:space="preserve">
+    <value>Card number</value>
+  </data>
+  <data name="CardPrompt" xml:space="preserve">
+    <value>Card</value>
+  </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
     <value>You have requested to reset your AxCrypt ID e-mail to &lt;b style="color: #000 !important;"&gt;{email_change_to}&lt;/b&gt;. To confirm please click the button below.</value>
   </data>
@@ -5846,6 +5861,15 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Access key shared files</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="EditCardTitle" xml:space="preserve">
+    <value>Edit Card</value>
+  </data>
+  <data name="EditNoteTitle" xml:space="preserve">
+    <value>Edit Note</value>
+  </data>
+  <data name="EditPasswordTitle" xml:space="preserve">
+    <value>Edit Password </value>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>You are limited to read-only access! Only users with a valid subscription plan are allowed to edit or create new password entries.</value>
   </data>
@@ -5953,6 +5977,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="ExpirationDatePrompt" xml:space="preserve">
+    <value>Expiration date</value>
   </data>
   <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
     <value>Your subscription expired due to not being able to charge your card. To continue the subscription, update your payment details.</value>
@@ -7072,6 +7099,9 @@ If you want to view or update the file contents, please decrypt it separately, a
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>'{0}' was not encrypted due to technical restrictions. This may be caused by the file extension, location or other properties.</value>
+  </data>
+  <data name="ImportBusinessUserHelpText" xml:space="preserve">
+    <value>You can add more users easily by importing a &lt;b&gt;.txt or.csv&lt;/b&gt; file that has a list of email addresses.</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Import AxCrypt ID with sharing and access keys.</value>
@@ -8501,6 +8531,9 @@ This program is licensed according to the agreement.
   <data name="NameLabel" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NameOnCardPrompt" xml:space="preserve">
+    <value>Name on card</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
@@ -8548,6 +8581,9 @@ Your documents are still safely encrypted with your password.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>You do not have a valid subscription, so you are not using the highest level of security. Click to upgrade!</value>
+  </data>
+  <data name="NoteContentPrompt" xml:space="preserve">
+    <value>Note</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
     <value>Note</value>
@@ -8813,6 +8849,9 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Password is not strong enough to be recommended.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
   </data>
+  <data name="PasswordUrlPrompt" xml:space="preserve">
+    <value>URL</value>
+  </data>
   <data name="PastIncidentsHeading" xml:space="preserve">
     <value>Past incidents</value>
   </data>
@@ -8880,7 +8919,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>Your AxCrypt Premium subscription is coming to an end soon. We sincerely hope you have enjoyed using our features and found them useful.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>We’d love for you to continue using our Premium features. Extend your subscription &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; .</value>
+    <value>We’d love for you to continue using our Premium features. Extend your subscription &lt;a href="{account_web_url}en/Home/Login?purchase=True?email={{user_email}}"&gt;now&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -9640,6 +9679,12 @@ Please &lt;a href="mailto:premium@axcrypt.net"&gt;contact us&lt;/a&gt; and we wi
   <data name="RefreshPromptText" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="RefundCreditHelpText" xml:space="preserve">
+    <value>Refund may take from 5 to 10 business days to show up on your credit/debit card – depending on your bank.</value>
+  </data>
+  <data name="RefundProcessedInfo" xml:space="preserve">
+    <value>We've processed your refund at {0}.</value>
+  </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Registration failed. Please check your e-mail and try again.</value>
   </data>
@@ -10334,6 +10379,9 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SecurityBlock7Text5" xml:space="preserve">
     <value>The HIPAA Security Standard does allow the use of encryption as the basis for Access Control, that is to say to protect the privacy of data at rest (stored on a hard disk as opposed to traversing the Internet for example). AxCrypt will meet most organizations requirements here too.</value>
   </data>
+  <data name="SecurityCodePrompt" xml:space="preserve">
+    <value>Security code</value>
+  </data>
   <data name="SecurityDescriptionText" xml:space="preserve">
     <value>In order to achieve good security, it’s beneficial to understand a little bit about how to best use AxCrypt with passwords and local PC security. There are also some details on the algorithms and methods used in AxCrypt below.</value>
   </data>
@@ -10862,9 +10910,6 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="TermsOfUseBlock2Text1" xml:space="preserve">
     <value>AxCrypt performs local encryption and decryption of files, and server-based encryption and decryption of encryption keys and optionally a password manager.</value>
   </data>
-  <data name="TermsOfUseBlock3Heading" xml:space="preserve">
-    <value>AxCrypt Viewer Plan</value>
-  </data>
   <data name="TermsOfUseBlock3Text1" xml:space="preserve">
     <value>AxCrypt Viewer is available for all, without cost. The plan enables you to view and decrypt files, and to view but not modify data in the password manager.</value>
   </data>
@@ -11369,6 +11414,9 @@ The AxCrypt Team</value>
   <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
     <value>Use necessary cookies only</value>
   </data>
+  <data name="UserNamePrompt" xml:space="preserve">
+    <value>Username</value>
+  </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>You have updated AxCrypt. Unfortunately, your configuration must be reset. After restarting, your preferences and settings will unfortunately be lost. We apologize for the inconvenience. Your encrypted files are still safe and ok.</value>
   </data>
@@ -11385,6 +11433,15 @@ The AxCrypt Team</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Verify Password</value>
+  </data>
+  <data name="ViewCardTitle" xml:space="preserve">
+    <value>View Card</value>
+  </data>
+  <data name="ViewNoteTitle" xml:space="preserve">
+    <value>View Note</value>
+  </data>
+  <data name="ViewPasswordTitle" xml:space="preserve">
+    <value>View Password</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warning!</value>
