@@ -4961,7 +4961,7 @@ Mellanslag och delar av ordet som består av vanliga lösenord bortses ifrån oc
     <value>Ditt Premium-abonnemang löper snart ut. Vi hoppas verkligen att du har gillat Premium-funktionerna, och att du haft nytta av dem.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Vi skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Fortsätt prenumerationen &lt;a href="{0}Home/Purchase?email={1}"&gt;här&lt;/a&gt; .</value>
+    <value>Vi skulle verkligen gilla om du fortsätter använda våra Premium-funktioner. Fortsätt prenumerationen &lt;a href="{account_web_url}sv/Home/Login?purchase=True?email={{user_email}}"&gt;här&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

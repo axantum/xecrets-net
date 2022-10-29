@@ -25623,7 +25623,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{0}Home/Purchase?email={1}&quot;&gt;now&lt;/a&gt; ..
+        ///   Looks up a localized string similar to We’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{account_web_url}en/Home/Login?purchase=True?email={{user_email}}&quot;&gt;now&lt;/a&gt; ..
         /// </summary>
         public static string PremiumExpiresSoonMailBody1Html {
             get {

@@ -1071,6 +1071,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_CHHSSO_Conclusion_Text2">
     <value>A AxCrypt oferece cifragem forte de 256 bits para proteger os seus dados em repouso, em trânsito e em uso. Fornece ainda uma ferramenta de colaboração que permite aos utilizadores partilhar ficheiros e dados protegidos com outros utilizadores AxCrypt.</value>
   </data>
+  <data name="Blog_CHHSSO_H1_Text1">
+    <value>O termo “ciber-higiene” refere-se a medidas tomadas por utilizadores para melhorar a sua segurança online e saúde do sistema. Adoptar uma mentalidade focada na segurança e práticas que ajudam os indivíduos e as empresas a minimizar ciberataques designa-se ciber-higiene.</value>
+  </data>
   <data name="Blog_CHHSSO_H1_Text2">
     <value>Como conceito, a ciber-higiene ganhou importância desde a pandemia. Com pessoas a trabalhar remotamente em todo o mundo, o cibercrime aumentou.</value>
   </data>
@@ -1101,11 +1104,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;Software anti-vírus de alta qualidade&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H3_SubHeading2">
+    <value>&lt;strong&gt;Cifragem&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_H3_SubHeading3">
     <value>&lt;strong&gt;Um gestor de palavras-passe mais forte&lt;/strong&gt;</value>
   </data>
   <data name="Blog_CHHSSO_H3_SubHeading4">
     <value>&lt;strong&gt;Cópias de segurança regulares&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_Text1">
+    <value>Em 2023, espera-se que os cibercriminosos roubem 33 mil milhões de registos. Como resultado, uma boa ciber-higiene é uma prática comum que pode ajudá-la(o) a manter os seus dados seguros e protegidos online.</value>
   </data>
   <data name="Blog_CHHSSO_Heading1">
     <value>O que é a Ciber-Higiene?</value>
@@ -1230,6 +1239,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_CSFE_Text1">
     <value>Aproximadamente 85% das violações de dados são causadas por erro humano, frequentemente devido à falta de conhecimento sobre a ameaça ou o que procurar. Ao se capacitar o pessoal com o conhecimento de que precisam, a consciência da cibersegurança pode ajudar os negócios a prevenir muitos ataques.</value>
   </data>
+  <data name="Blog_CSFE_Text2">
+    <value>Os cibercriminosos estão continuamente a inventar novas formas de ultrapassar as últimas técnicas de protecção e tecnologias, e de aceder a caixas de entrada e navegadores de trabalhadores. Em 2021 apenas, os humanos envolveram-se em 85% das violações de dados, com 94% de malware enviado por email. Pode reduzir consideravelmente a probabilidade de um incidente ou violação de segurança treinando os seus trabalhadores a identificar estes assaltos.</value>
+  </data>
   <data name="Blog_CSFE_Title">
     <value>Cibersegurança para Trabalhadores</value>
   </data>
@@ -1242,8 +1254,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_CWELTI_H1_Text1">
     <value>A criptomoeda ou cripto é dinheiro digital descentralizado baseado em tecnologia blockchain. É um activo digital baseado numa rede distribuída por um grande número de computadores. A criptomoeda é protegida por criptografia, o que a torna praticamente impossível de contrafazer ou duplicar. Pode ser usada como forma de pagamento de bens e serviços, mas também como investimento. Como este tipo de moeda não é regulado, os compradores gostam de trocá-la por lucro tal como fariam com outros activos como acções e metais preciosos.</value>
   </data>
+  <data name="Blog_CWELTI_H2_Text2">
+    <value>Não há uma autoridade central que fixa e mantém o valor da criptomoeda. É um meio de troca que é digital, cifrado e descentralizado. Essa prova criptográfica surge sob a forma de transacções que são verificadas e registadas numa espécie de programa chamado blockchain. Mais de 6.700 criptomoedas diferentes são transaccionadas publicamente, sendo as mais populares a Bitcoin e a Ethereum. A maior parte dos apoiantes das criptomoedas gostam do facto de estas moedas, além de serem descentralizadas e mais seguras através do processo blockchain, removerem os bancos centrais da gestão do fornecimento do dinheiro, protegendo-o de interferência e manipulação governamental. Muitas empresas emitiram as suas próprias moedas, frequentemente designadas tokens, que podem ser transaccionadas pelos bens ou serviços que as empresas fornecem.</value>
+  </data>
+  <data name="Blog_CWELTI_H3_Text1">
+    <value>O blockchain é um livro de contabilidade aberto e distribuído que regista as transacções em código impostas por uma rede díspar de computadores. Os blockchains são métodos organizacionais de garantia de integridade de dados transaccionais e desempenham um papel fundamental nas bolas de criptomoedas.</value>
+  </data>
   <data name="Blog_CWELTI_H3_Text2">
     <value>A base de dados é uma colecção de informação armazenada electronicamente num computador. Os dados precisam de ser estruturados e, se necessário, filtrados para se encontrar informação específica.</value>
+  </data>
+  <data name="Blog_CWELTI_H3_Text3">
+    <value>Os blockchains diferem de bases de dados específicas em que os dados são armazenados em blocos e cadeias. Quando chegam novos dados, entram num bloco novo. Quando o bloco estiver preenchido com dados, é encadeado ao anterior, ficando os dados juntos por ordem cronológica.</value>
   </data>
   <data name="Blog_CWELTI_H4_Text1">
     <value>Uma das vantagens das criptomoedas é a maior facilidade de transferências, sem necessidade de utilização de um terceiro como um banco ou uma empresa de cartões de crédito. As trocas são seguras e garantidas por chaves públicas e privadas. Por outro lado, uma desvantagem significativa é a lavagem de dinheiro e evasão fiscal, tornando as cripto-transacções adequadas para actividades ilegais.</value>
@@ -1257,11 +1278,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_CWELTI_H6_Text1">
     <value>As criptomoedas usam criptografia com três objectivos principais: proteger transacções, controlar a criação de unidades adicionais e verificar a transferência de activos. Para conseguir todas estas coisas, as criptomoedas dependem do que se designa "criptografia de chave pública".</value>
   </data>
+  <data name="Blog_CWELTI_H6_Text2">
+    <value>Os vários algoritmos de cifragem e técnicas criptográficas que protegem as entradas específicas são, por exemplo, a cifragem de curva elíptica, pares de chaves públicas e privadas e funções de hashing.</value>
+  </data>
   <data name="Blog_CWELTI_H7_Text1">
     <value>A cifragem é uma forma de fazer com que as comunicações privadas sejam efectivamente privadas. Ajuda a proteger dados de clientes e a antecipar ameaças. Ao cifrar os seus dados e torná-los ilegíveis, garante segurança e produtividade. Mesmo se interceptada, a mensagem estará ilegível para qualquer actor que não possua a chave certa para a decifrar. Para qualquer pessoa que seja fã de criptografia, privacidade e segurança, estes são tempos muito empolgantes. Dê uma olhadela nas nossas páginas do &lt;a style='font-weight: 800;' href='/business'&gt;produto&lt;/a&gt; e &lt;a style='font-weight: 800;' href='/pricing'&gt;preços&lt;/a&gt; com todos os tipos de funcionalidades para cifrar e proteger a sua informação privada.</value>
   </data>
   <data name="Blog_CWELTI_Heading1">
     <value>O que é a criptomoeda?</value>
+  </data>
+  <data name="Blog_CWELTI_Heading2">
+    <value>Como funcionam as criptomoedas?</value>
   </data>
   <data name="Blog_CWELTI_Heading3">
     <value>O blockchain explicado</value>
@@ -1290,6 +1317,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_DEVFE_H1_Text2">
     <value>Ao mesmo tempo que a tecnologia de segurança está a tomar passos para aumentar a segurança da sua informação, os hackers estão a encontrar novas formas de as contornar para derrubar as novas técnicas de cifragem que vão sendo desenvolvidas. Vamo-nos debruçar sobre os métodos e tipos de cifragem mais populares e de como estes a(o) podem ajudar.</value>
   </data>
+  <data name="Blog_DEVFE_H2_SH1_Text1">
+    <value>Um sistema de cifragem de ficheiros ou pastas cifra pastas, ficheiros ou volumes específicos. Isto permite aos utilizadores controlar quem tem acesso a que informação. É uma forma de preservar grandes quantidades de dados ou proteger dados sensíveis não apenas na inernet mas também em trânsito, uso e armazenamento. Desde que a cifragem de ficheiros usa menos recursos, tem um impacto mais baixo no desempenho do sistema. Um sistema de cifragem baseado em ficheiros é similar a um cofre guardado numa caixa-forte de uma caixa-forte de um banco. Mesmo que a caixa-forte seja arrombada, cada cofre tem a sua camada de protecção que requer esforço concentrado para a quebrar. Da mesma forma, se o seu dispositivo é pirateado, perdido ou roubado, um terceiro não será capaz de abrir os seus ficheiros e pastas uma vez que cada ficheiro está cifrado e ninguém poderá aceder-lhes sem a chave. A AxCrypt é um exemplo de software de código aberto de cifragem de ficheiros/pastas disponível para Windows, Android, iOS e até macOS. A AxCrypt torna os dados mais seguros, estejam eles a ser transportados ou em repouso. Os utilizadores têm controlo total dos seus dados.&lt;br/&gt;</value>
+  </data>
   <data name="Blog_DEVFE_H2_SH2_Text1">
     <value>A cifragem total do disco (FDE) é, como o nome indica, cifragem a nível do disco. Quando os dados são escritos ou lidos de um disco, eles são automaticamente cifrados. A FDE cifra todos os ficheiros no disco rígido, incluindo o sistema operativo e o sistema de ficheiros. É usado apenas para manter os ficheiros seguros quando estão em repouso, não em trânsito. A cifragem total do disco funciona de uma forma similar a trancar-se as portas externas de uma casa mas não as das divisões internas. Claro que é uma boa ideia proteger a entrada da frente para que atacantes não possam obter acesso facilmente, mas, se conseguem, terão acesso a todo o interior da casa. Da mesma forma, a cifragem do disco protege a informação como um todo, transformando-a num código ilegível difícil de perceber por indivíduos não autorizados. &lt;strong&gt;Há dois tipos principais de cifragem de disco que, de seguida, iremos descrever em detalhe.&lt;/strong&gt;&lt;br/&gt;</value>
   </data>
@@ -1308,8 +1338,14 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_DEVFE_H2_SubHeading4">
     <value>&lt;strong&gt;Cifragem de disco com o FileVault&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_DEVFE_H3_Text1">
+    <value>O BitLocker e o FileVault são opções de software de cifragem de disco que funciona da mesma forma mas em diferentes sistemas operativos. Ambos servem para proteger dados armazenados em estações de trabalho e dispositivos móveis e são capazes de cifrar discos rígidos inteiros, incluindo unidades tanto de sistema como de dados.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_DEVFE_H3_Text2">
     <value>A cifragem total de disco FileVault (FileVault 2) usa cifragem XTS-AES-128 com uma chave de 256 bits para ajudar a prevenir acesso não autorizado a informação no macOS. O FileVault codifica a informação armazenada no seu Mac de forma a que não possa ler lida a menos que palavra-passe do utilizador seja introduzida.</value>
+  </data>
+  <data name="Blog_DEVFE_H3_Text3">
+    <value>O BitLocker suporta discos rígidos cifrados com cifragem por hardware incorporada, permitindo a administradores geri-los usando as mesmas ferramentas de administração do BitLocker. A cifragem baseada em ficheiros é transparente e preenche as falhas da cifragem total de disco. Quando o BitLocker é activado numa unidade de sistema e o PC tem um TPM, você pode escolher requerer dos utilizadores a introdução de um PIN antes do BitLocker desbloquear a unidade. Com cifragem de disco, os dados estão apenas protegidos enquanto no disco; se um utilizador remover um ficheiro do disco, esse ficheiro não estará mais protegido. Além disso, se todo o sistema é fisicamente pirateado, a cifragem de disco deixa de ser de confiança. Como resultado, para a maior parte dos casos, a cifragem baseada em ficheiros é a melhor opção.</value>
   </data>
   <data name="Blog_DEVFE_H3_Text4">
     <value>A AxCrypt trabalha com cifragem de ficheiros e é melhor para proteger dados armazenados na nuvem e quando você quer partilhar os seus dados cifrados. A AxCrypt usa cifragem de 256 bits para proteger os seus dados de nas três fases do seu ciclo de vida: em repouso, em trânsito e em uso. A AxCrypt permite que ficheiros protegidos possam ser abertos por outros utilizadores AxCrypt com as suas próprias palavras-passe e torna também mais fácil salvaguardar os seus activos online. A AxCrypt cifra automaticamente os dados no Google Drive, Dropbox e noutros fornecedores de armazenamento na nuvem. Os utilizadores podem enviar um ficheiro cifrado via email, o que quer dizer que, mesmo que o email seja atacado, o ficheiro cifrado não é comprometido, pois só poderá ser acedido com uma chave única. Além disso, fornece uma ferramenta de colaboração que permite aos utilizadores partilhar ficheiros e dados protegidos com outros utilizadores com funcionalidades de partilha de chaves. Leia mais sobre a funcionalidade de gestão de chaves da AxCrypt aqui: &lt;a href='https://axcrypt.net/blog/fundamentals-of-key-management'&gt;https://axcrypt.net/blog/fundamentals-of-key-management&lt;/a&gt;</value>
@@ -1329,11 +1365,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_DEVFE_Summary">
     <value>Nos dias de hoje, é mais importante que nunca manter a informação segura nesta sociedade conectada através da internet. Os seus dados, sejam pessoais ou profissionais, estão constantemente em risco de escaparem para as mãos erradas, razão ainda mais forte para se usar o melhor software de cifragem disponível.</value>
   </data>
+  <data name="Blog_DEVFE_Title">
+    <value>Cifragem de disco Vs Cifragem de ficheiros</value>
+  </data>
   <data name="Blog_Download_AxcryptHere">
     <value>A privacidade dos seus dados é da sua responsabilidade - tome a decisão de controlar onde e como guardar a sua informação pessoal. Proteja os seus documentos com o AxCrypt e fique segura(o) da preservação de confidencialidade desde o seu PC ao serviço na nuvem e de volta ao seu PC. Descarregue o AxCrypt aqui:&lt;a href='https://www.axcrypt.net/download'&gt;https://www.axcrypt.net/download&lt;/a&gt;</value>
   </data>
   <data name="Blog_DRATIUIN_Conclusion_Text1">
     <value>A AxCrypt oferece cifragem forte de 256 bits para proteger os seus dados nas três fases dos dados: em repouso, em trânsito e em uso. Além disso, fornece aos seus utilizadores um gerador de palavras-passe que garante que as suas palavras-passe são o mais seguras possível. Fornece ainda uma ferramenta de colaboração que permite aos utilizadores partilhar ficheiros e dados protegidos com outros utilizadores AxCrypt. Dê uma olhadela na &lt;a href='https://axcrypt.net/information/features '&gt;Página de Funcionalidades AxCrypt&lt;/a&gt; para descobrir mais sobre como a AxCrypt pode proteger ficheiros e dados e na &lt;a href='https://www.axcrypt.net/pricing'&gt;Página de Preços&lt;/a&gt; que mostra os tipos de subscrições de cifragem que a AxCrypt oferece.800;'&gt;</value>
+  </data>
+  <data name="Blog_DRATIUIN_H1_Text1">
+    <value>Hoje em dia, os dados têm uma papel muito importante, especialmente nos negócios e organizações. Há diferentes tipos de dados e dos dados podem ser colocados em diferentes categorias, tais como dados financeiros, dados estatísticos e dados científicos. Além disso, os dados podem ser categorizados em duas subcategorias diferentes, dados estruturados e não estruturados. Os dados estruturados podem ser lidos e interpretados por humanos, isto é, dados transaccionais, dados pessoais e dados web, enquanto que os dados não estruturados são dados que programas de computador processam.</value>
   </data>
   <data name="Blog_DRATIUIN_H2_Text1">
     <value>Os dados podem ser usados muitas maneiras diferentes. Por exemplo, a recolha de dados pode ser especialmente benéfica para empresas e organizações. A recolha de dados pode ser usada para se perceber melhor as necessidades de clientes, comportamentos e abandonos. O problema é que muitas empresas detêm demasiados dados e depois têm dificuldade em encontrar os dados certos para analisar. Além disso, os dados podem conter informação sensível que as empresas ou indivíduos não querem partilhar com mais ninguém. Dados sensíveis que contenham a sua importante informação privada devem ser constantemente cifrados. Assim, a AxCrypt oferece-lhe funcionalidades que protegem os seus dados. Estas funcionalidades incluem, por exemplo, partilha de chaves, um gestor de palavras-passe, um gerador de palavras-passe e cifragem forte AES de 256 bits.</value>
@@ -1346,6 +1388,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_DRATIUIN_H4_Text1">
     <value>Há um risco constante de acesso a dados sensíveis por hackers. Estejam os dados em trânsito, em repouso ou em uso, é importante protegê-los. Uma forma de garantir que os dados não são acedidos por um hacker é a cifragem. A cifragem é essencial para garantir que dados sensíveis não são roubados ou interceptados por estranhos. Cada vez mais empresas e organizações começam a cifrar os seus dados antes de os transmitir. Com a funcionalidade de partilha de chaves da AxCrypt, pode permitir que os seus colegas abram ficheiros protegidos com as suas próprias palavras-passe.</value>
+  </data>
+  <data name="Blog_DRATIUIN_Heading4">
+    <value>Como proteger os seus dados</value>
   </data>
   <data name="Blog_DRATIUIN_Summary">
     <value>A recolha de dados pode ser usada para se perceber melhor as necessidades de clientes, comportamentos e abandonos. O problema é que muitas empresas detêm demasiados dados e depois têm dificuldade em encontrar os dados certos para analisar.</value>
@@ -1434,6 +1479,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EDIKPNY_Text4">
     <value>A função principal da AxCrypt continua a ser cifragem confiável de ficheiros e documentos. Simples e agradável de usar por qualquer pessoa, pode cifrar a sua informação privada na nuvem e acedê-la de qualquer lado. A Axcrypt funciona no PC, macOS, iOS and Android. Pode aceder aos seus dados de forma segura com o seu laptop, tablet ou telemóvel.</value>
   </data>
+  <data name="Blog_EDIKPNY_Title">
+    <value>Cifrar dados é a chave para um ano novo pacífico</value>
+  </data>
   <data name="Blog_EFPECT_Conclusion_Text1">
     <value>A narrativa da cifragem é um desenvolvimento sem fim. A tecnologia está sempre a tentar encontrar novas formas de manter os dados seguros e protegidos de todos os tipos de ataques online e offline. Então, qual é o futuro da cifragem e como irá lidar com a nova era tecnológica estabelecida? Não há dúvida que, hoje em dia, toda a gente precisa muito de cifrar ficheiros e tornar as comunicações mais privadas.</value>
   </data>
@@ -1446,8 +1494,14 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EFPECT_H1_SH2_Text1">
     <value>A inteligência artificial e a aprendizagem automática estão a tornar-se cada vez mais revolucionárias e competentes. Enquanto que a IA oferece às organizações potencial significativo para melhorarem a detecção de ameaças, a inovação e a maior aplicação desta tecnologia têm implicações tanto positivas como negativas. As redes criminais estão a usar a IA para automatizar os seus ataques com estratégias como envenenamento de dados e roubo de modelo.</value>
   </data>
+  <data name="Blog_EFPECT_H1_SH3_Text1">
+    <value>Nos próximos anos, os negócios terão de prestar mais atenção à possibilidade de ataques internos e roubos de dados pelos seus próprios trabalhadores. As ameaças internas devem ser tratadas com seriedade e vistas como preocupação real por agentes de segurança e deve-se perguntar às empresas se têm as ferramentas certas para detectar e as parar.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_EFPECT_H1_SH4_Text1">
     <value>Apesar dos serviços na nuvem terem várias vantagens tais como flexibilidade, eficiência e poupança de custos, são um alvo proeminente de cibercriminosos. As organizações precisarão de avaliar as implicações de segurança da computação na nuvem e identificar fraquezas na sua infra-estrutura actual.</value>
+  </data>
+  <data name="Blog_EFPECT_H1_SubHeading1">
+    <value>&lt;strong&gt;O Aumento Contínuo do Ransomware&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EFPECT_H1_SubHeading3">
     <value>&lt;strong&gt;O Aumento das Ameaças Internas&lt;/strong&gt;</value>
@@ -1464,6 +1518,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EFPECT_Summary">
     <value>A cifragem é essencial à protecção de segredos de negócio, dados de identificação, transacções financeiras, informação pessoal sensível e outras formas de dados proprietário que são armazenados digitalmente.</value>
   </data>
+  <data name="Blog_EFPECT_Text1">
+    <value>A tecnologia move-se a um ritmo rápido e os sistemas de cifragem devem continuar a evoluir para responder ao cibercrime avançado. A cifragem é essencial à protecção de segredos de negócio, dados de identificação, transacções financeiras, informação pessoal sensível e outras formas de dados proprietário que são armazenados digitalmente. Uma nova era na segurança da informação dependerá de novas abordagens à cifragem tais como criptografia pós-quântica, distribuição de chaves quânticas e cifragem homomórfica, juntamente com métodos criptográficos tradicionais. Estes métodos avançados deverão ser implementados para garantir a segurança global da informação.</value>
+  </data>
   <data name="Blog_EFPECT_Text2">
     <value>A pandemia e o teletrabalho reforçaram a nossa dependência na tecnologia internet e não vale a pena olhar para trás, o progresso da digitalização traz consigo novos riscos aos dados. Os hackers tornaram-se mais proficientes na sua abordagem de obtenção de acesso a dados protegidos. Nesta artigo, olharemos para as novas ameaças ao ambiente digital assim como para as próximas abordagens de cifragem.</value>
   </data>
@@ -1473,11 +1530,20 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EHI_Conclusion_Text1">
     <value>Devido à falta de cifragem de dados médicos, informação de seguros de saúde e números de segurança social, todos estes dados ficam expostos a terceiros. Proteja a informação da sua empresa e dos seus pacientes com a AxCrypt.</value>
   </data>
+  <data name="Blog_EHI_H1_Text1">
+    <value>Tem havido muitas violações de dados de grande notoriedade na indústria dos cuidados de saúde nos últimos cinco anos. Sem se entrar nas nuances de cada situação, o resultado tem sido centenas de milhões de registos de pacientes comprometidos e potencialmente vendidos na dark web. O incidente Anthem em 2015 é apenas um exemplo.&lt;br/&gt;</value>
+  </data>
   <data name="Blog_EHI_H1_Text2">
     <value>O sector dos cuidados de saúde é constituído por não apenas hospitais e farmácias mas também centros de investigação e laboratórios. Todos eles contêm informação sensível de pacientes, relatórios médicos e dados de investigação médica, por exemplo, estudos e vacinas para o coronavírus. Com o avanço da tecnologia, os cibercriminosos tornam-se mais sofisticados e a informação sensível pode cair nas mãos erradas se não for protegida adequadamente. Portanto, a necessidade de cifragem tornou-se prevalecente em hospitais, lares de idosos e estabelecimentos de reabilitação. As organizações de cuidados de saúde devem estabelecer medidas de segurança completas para salvaguardar os dados de números crescentes de ameaças de forma a proteger apropriadamente a informação de hackers.&lt;br/&gt;</value>
   </data>
+  <data name="Blog_EHI_H2_Text1">
+    <value>Desde a pandemia global que a indústria dos cuidados de saúde assistiu a um aumento de 51% no volume total de registos expostos. Na primeira metade de 2021, as violações de dados cresceram ainda mais, com o sector dos cuidados de saúde no topo da lista das indústrias mais violadas.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_EHI_H2_Text2">
     <value>As empresas de cuidados de saúde não podem depender de medidas de segurança básicas como firewalls e palavras-passe para se protegerem de hackers e cibercriminosos modernos. Este problema persistirá e continuará a colocar em perigo inúmeras vidas até que medidas de segurança actualizadas sejam adoptadas no sector dos cuidados de saúde.</value>
+  </data>
+  <data name="Blog_EHI_H2_Text3">
+    <value>A cifragem não só melhora a cibersegurança das organizações mas também apoia outros elementos tais como a assistência a instituições de cuidados de saúde através da redução de custos em processos e desenvolvimento de sistemas. Os trabalhadores dos cuidados de saúde podem ver a cifragem como uma maçada desnecessária entre o seu trabalho e os seus pacientes, mas é, na realidade, uma solução excepcional de longo prazo para todos. Felizmente, a AxCrypt é uma solução de cifragem que é tanto fácil de usar como de confiança.</value>
   </data>
   <data name="Blog_EHI_H3_SH1_Text1">
     <value>A AxCrypt permite que ficheiros protegidos sejam abertos por outros utilizadores AxCrypt com as suas próprias palavras-passe. Desta forma, profissionais de saúde podem facilmente partilhar informação médica de forma segura. Para mais infomação sobre a partilha de chaves AxCrypt, veja o nosso tutorial de partilha de chaves em &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFS'&gt; YouTube&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
@@ -1485,17 +1551,35 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EHI_H3_SH2_Text1">
     <value>A AxCrypt descobre automaticamente os serviços de Armazenamento na Nuvem instalados no seu computador e cria uma pasta AxCrypt. Irá automaticamente proteger todos os ficheiros/documentos nos múltiplos serviços de armazenamento na nuvem tais como Google Drive, One Drive, Dropbox, etc.</value>
   </data>
+  <data name="Blog_EHI_H3_SH4_Text1">
+    <value>A AxCrypt garante que a sua organização cumpre com regulamentos como o RGPD (Regulamento Geral sobre a Protecção de Dados) e a Health Insurance Portability and Accountability Act (HIPAA) que dizem respeito à protecção de dados pessoais e direitos individuais, e definem o padrão de protecção de dados sensíveis de pacientes.</value>
+  </data>
   <data name="Blog_EHI_H3_SubHeading1">
     <value>&lt;strong&gt;Colaboração em equipa usando a partilha de chaves&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EHI_H3_SubHeading3">
+    <value>&lt;strong&gt;Chave-mestra&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EHI_H3_SubHeading4">
     <value>&lt;strong&gt;Em conformidade com o RGPD e a HIPAA&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EHI_Heading1">
+    <value>Porquê que as indústrias dos Cuidados de Saúde se tornaram um alvo preferencial de ciberataques</value>
+  </data>
   <data name="Blog_EHI_Heading2">
     <value>Porque é importante usar cifragem nas indústrias de cuidados de saúde?</value>
   </data>
+  <data name="Blog_EHI_Heading3">
+    <value>Como pode a AxCrypt ajuda a indústria dos cuidados de saúde a proteger dados?</value>
+  </data>
   <data name="Blog_EHI_Summary">
     <value>Os cuidados de saúde são um sector global que processa e transmite continuamente grandes volumes de informação vital numa base regular através de uma variedade de canais e meios.</value>
+  </data>
+  <data name="Blog_EHI_Text1">
+    <value>Os cuidados de saúde são um sector global que processa e transmite continuamente grandes volumes de informação vital numa base regular através de uma variedade de canais e meios. Devido à pandemia e ao crescimento na digitalização, os dados de cuidados de saúde e as práticas têm constantemente adoptado formatos mais electrónicos e automatizados. Todos os dias, a quantidade de dados de cuidados de saúde transmitida e processada é calculada em terabytes. Como resultado, os dados de cuidados de saúde tornaram-se o principal enfoque das violações de segurança e do cibercrime.</value>
+  </data>
+  <data name="Blog_EHI_Title">
+    <value>Cifragem na indústria dos cuidados de saúde</value>
   </data>
   <data name="Blog_EIAWII_H2_Text2">
     <value>Esta lei terá impacto em todos os utilizadores da internet dentro das fronteiras dos Estados Unidos, independentemente do governo estar interessado ou não nos seus dados. Quando surgirem portas de serviço, agentes mal intencionados terão também a oportunidade de extrair os seus dados. Tal como declarado pela Electronic Frontier Foundation, “ou a mensagem se mantém privada para todos menos os seus destinatários ou estará disponível para outros”. Do outro lado do argumento, muitos sentem que esta é um condição necessária para garantir a segurança nacional e facilidade de investigações federais.</value>
@@ -1578,6 +1662,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EIBM_H5_SH3_Text1">
     <value>O volume de tráfego de dados aumentou significativamente. A informação viaja regularmente até diferentes domínios de rede, à medida que a banca de retalho adopta ambientes multi-nuvem e interage com diferentes nós. Aceda a todos os seus documentos e sincronize-os com os seus dispositivos, enquanto protege os seus ficheiros de violações de dados dispendiosas.</value>
   </data>
+  <data name="Blog_EIBM_H5_SH4_Text1">
+    <value>Em conformidade com regulamentos domésticos e internacionais de que as empresas podem e devem precisar, dá a volta a violações sempre que o mercado flutua, exibe informação empresarial relevante quando ocorrem controlos internos, uma vez que apenas indivíduos autorizados têm acesso, e evita as multas consideráveis associadas à não conformidade.</value>
+  </data>
   <data name="Blog_EIBM_H5_SH5_Text1">
     <value>Suporte multilingue para inglês, neerlandês, francês, alemão, italiano, coreano, mandarim, polaco, português, russo, espanhol, sueco, turco e mais no futuro.</value>
   </data>
@@ -1586,6 +1673,12 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_EIBM_H5_SubHeading4">
     <value>&lt;strong&gt;Em conformidade com o regulamento de protecção de dados&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading5">
+    <value>&lt;strong&gt;Multilingue&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_Text1">
+    <value>Na banca, há requisitos fortes de segurança de dados. Em suma, a cifragem é fundamental para a segurança da internet contemporânea. É um assunto extremamente complicado, mas nós, na AxCrypt, orgulhamo-nos de torná-lo um processo simples e fácil de usar por qualquer pessoa.</value>
   </data>
   <data name="Blog_EIBM_Heading1">
     <value>Introdução à criptografia</value>
@@ -1716,6 +1809,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EVA_H2_Text2">
     <value>Não há software que imponha segurança, os dados são transformados através de cifragem numa forma que não revela o conteúdo real. Para reverter a transformação, para decifrá-la, é necessária a chave criptográfica correcta. Se se fornecer uma chave errada, o software de decifragem falha. Não há como contornar isto, seja sendo-se um administrador ou acedendo-se a dados através de canais alternativos.</value>
   </data>
+  <data name="Blog_EVA_H2_Text3">
+    <value>Isto também quer dizer que, ao contrário do controlo de acesso, qualquer pessoa que tenha a chave certa pode decifrar os dados. Não interessa quem você é ou diz ser. Se tem esta chave, pode decifrar.</value>
+  </data>
   <data name="Blog_EVA_H2_Text4">
     <value>É por isso que a chave de decifragem deve ser mantida secreta. É também por isso que o conteúdo cifrado é irremediavelmente perdido se a chave de decifragem for perdida.</value>
   </data>
@@ -1731,11 +1827,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EVA_H3_Text3">
     <value>Isto também significa que, se dois utilizadores tiverem a mesma palavra-passe, eles poderão decifrar ficheiros um do outro. Essa é outra razão para escolher uma palavra-passe mesmo longa, boa e forte, para que este risco seja reduzido para efectivamente zero.</value>
   </data>
+  <data name="Blog_EVA_H3_Text4">
+    <value>Uma das razões de verificarmos a palavra-passe para cifragem é a redução do risco de erro de digitação, algo que infelizmente acontece muitas vezes com AxCrypt 1. Mesmo com o requisito de dupla digitação da palavra-passe.</value>
+  </data>
   <data name="Blog_EVA_Heading1">
     <value>&lt;h3&gt;Controlo de Acesso&lt;/h3&gt;</value>
   </data>
   <data name="Blog_EVA_Heading2">
     <value>&lt;h3&gt;Cifragem&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_EVA_Heading3">
+    <value>&lt;h3&gt;Início de Sessão em AxCrypt 2&lt;/h3&gt;</value>
   </data>
   <data name="Blog_EVA_Summary">
     <value>Uma fonte comum de confusão é a diferença entre cifragem e controlo de acesso, e o que o AxCrypt 2 Sign In é. O controlo de acesso ocorre quando são dada permissões a uma determinada identidade por outra que lhe é superior (que está autorizada) para executar acções como ler um ficheiro.</value>
@@ -1797,6 +1899,12 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_FOKM_Title">
     <value>Fundamentos de gestão de chaves</value>
   </data>
+  <data name="Blog_GAES256BEWA_H1_SH2_Text1">
+    <value>A AxCrypt oferece cifragem forte de 256 bits para proteger os seus dados nas três fases dos dados: em repouso, em trânsito e em uso. A AxCrypt é uma solução simples e flexível que está optimizada para proteger servidores virtuais, estações de trabalho, dados de empresas e unidades de armazenamento na nuvem — estando todos protegidos com o algoritmo de cifragem mais forte da indústria. Permite-lhe armazenar os seus ficheiros e pastas utilizando múltiplos níveis de cifragem e uma única chave pessoal protegida por palavra-passe. Emprega uma variedade de implementações de AES-256 para cifrar e proteger eficazmente os seus dados. Além disso, com a funcionalidade de partilha de chaves da AxCrypt, pode dar e revogar acesso a dados a qualquer pessoa e sempre que desejar; nem sequer tem de divulgar a palavra-passe. É uma das formas mais seguras de proteger dados em trânsito. Para compreender melhor a funcionalidade de partilha de chaves AxCrypt, veja o nosso &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt;tutorial no YouTube&lt;/a&gt; de partilha de chaves.</value>
+  </data>
+  <data name="Blog_GAES256BEWA_H1_SubHeading1">
+    <value>&lt;strong&gt;A AES-256 é segura?&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;Cifragem AES de 256 bits com a AxCrypt&lt;/strong&gt;</value>
   </data>
@@ -1805,6 +1913,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_GAES256BEWA_H1_Text2">
     <value>Os cibercriminosos estão constantemente à procura de pontos fracos para explorar. Como podem os utilizadores ter total confiança de que os seus dados estão seguros, independentemente de onde estão armazenados, em especial neste mundo cada vez mais conectado? A cifragem é um dos métodos mais prevalecentes de salvaguarda de informação sensível. A cifragem funciona tornando texto comum em texto cifrado que consiste em caracteres aparentemente aleatórios  e que apenas podem ser decifrados por quem tem a chave única.</value>
+  </data>
+  <data name="Blog_GAES256BEWA_Heading1">
+    <value>Porque é necessária cifragem AES de 256 bits?</value>
   </data>
   <data name="Blog_GAES256BEWA_Summary">
     <value>O AES é um algoritmo simétrico, o que quer dizer que usa a mesma chave para cifragem e decifragem. A técnica foi construída para acomodar tamanhos de chaves de 128, 192 e 256 bits.</value>
@@ -1835,6 +1946,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_HAPYD_CS_SubHeading3">
     <value>&lt;strong&gt;Remoção segura&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HAPYD_CS_SubHeading4">
+    <value>&lt;strong&gt;Partilha de chaves&lt;/strong&gt;</value>
   </data>
   <data name="Blog_HAPYD_H1_text1">
     <value>A interdição de cifragem ponta a ponta pode fazer parte da aplicação de novas leis por parte de certos governos como forma de divulgar comportamentos ilegais e garantir a segurança nacional. Neste caso, as empresas tecnológicas teriam de fornecer às autoridades dados em repouso e em trânsito. Tal incluiria informação armazenada na nuvem, mensagens, chamadas telefónicas, emails, videoconferências, etc. Sem conhecimento específico sobre como salvaguardar a sua privacidade e usar formas seguras de comunicação, os cidadãos comuns seriam as primeiras vítimas deste sistema de vigilância autoritário.</value>
@@ -2070,14 +2184,23 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_HPYBFC_H3_Text1">
     <value>&lt;li&gt;Malware&lt;/li&gt;</value>
   </data>
+  <data name="Blog_HPYBFC_H3_Text2">
+    <value>&lt;li&gt;Phishing&lt;/li&gt;</value>
+  </data>
   <data name="Blog_HPYBFC_H3_Text3">
     <value>&lt;li&gt;Ransomware&lt;/li&gt;</value>
   </data>
   <data name="Blog_HPYBFC_H3_Text4">
     <value>&lt;li&gt;Negação de serviço&lt;/li&gt;</value>
   </data>
+  <data name="Blog_HPYBFC_H3_Text5">
+    <value>&lt;li&gt;Man in the middle&lt;/li&gt;</value>
+  </data>
   <data name="Blog_HPYBFC_H3_Text6">
     <value>&lt;li&gt;Cripto-sequestro&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text7">
+    <value>&lt;li&gt;Injecção de SQL&lt;/li&gt;</value>
   </data>
   <data name="Blog_HPYBFC_H3_Text8">
     <value>&lt;li&gt;Ataques de dia zero&lt;/li&gt;</value>
@@ -2087,6 +2210,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_HPYBFC_H5_SH3_Text1">
     <value>Fazer cópias de segurança dos dados do seu negócio e sítio web ajudá-la(o)-á a recuperar qualquer informação que perca caso haja um ciberincidente ou problemas com o computador. É essencial que faça cópias dos seus dados e informação mais importante com regularidade.</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SH4_Text1">
+    <value>Dê formação a cada novo trabalhador para proteger dados valiosos e faça com assinem a sua política de informação. Utilize newsletters e/ou formação contínua para reforçar a sua cultura de cibersegurança. Aumente a consciência da cibersegurança do pessoal e ensine-o como aceder a dados da forma mais segura em cada dispositivo. Eles devem saber os riscos de usarem dados numa rede desprotegida. Tal pode poupar a empresa de uma enorme perda durante vários anos. O seu negócio só é tão seguro quanto o seu ponto mais fraco.</value>
   </data>
   <data name="Blog_HPYBFC_H5_SubHeading1">
     <value>&lt;strong&gt;Proteja o seu hardware&lt;/strong&gt;</value>
@@ -2103,8 +2229,20 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_HPYBFC_H5_Text1">
     <value>Aqui estão algumas dicas para o caso de encontrar ciberameaças.</value>
   </data>
+  <data name="Blog_HPYBFC_Heading1">
+    <value>A AxCrypt deseja-lhe uma Páscoa sensacional!</value>
+  </data>
   <data name="Blog_HPYBFC_Heading2">
     <value>O que é um ciberataque?</value>
+  </data>
+  <data name="Blog_HPYBFC_Heading3">
+    <value>Os negócios conhecem a realidade destes oito tipos de ciberataques:</value>
+  </data>
+  <data name="Blog_HPYBFC_Heading4">
+    <value>Quão diferentes são os ciberataques das violações de dados?</value>
+  </data>
+  <data name="Blog_HPYBFC_Heading5">
+    <value>Como é que você se protege?</value>
   </data>
   <data name="Blog_HPYBFC_Summary">
     <value>Em latim, 'Scientia potentia est' significa conhecimento é poder. É um aforismo relevante que pode ser associado ao mundo de hoje. Este dito é agora mais verdadeiro que nunca, dados os rápidos avanços das tecnologias de informação.</value>
@@ -2178,6 +2316,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_ICSHRS_H2_SubHeading2">
     <value>&lt;strong&gt;Elaboração de Políticas &lt;/strong&gt;</value>
   </data>
+  <data name="Blog_ICSHRS_H2_SubHeading3">
+    <value>&lt;strong&gt; Práticas de Recrutamento &lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ICSHRS_H2_SubHeading4">
     <value>&lt;strong&gt;Controlos de Dados e Acesso&lt;/strong&gt;</value>
   </data>
@@ -2223,11 +2364,26 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_ITESBETFC_H1_Text2">
     <value>&lt;li&gt;A propriedade intelectual de investigação universitária tem muito valor.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_ITESBETFC_H1_Text3">
+    <value>&lt;li&gt;Informação pessoal de estudantes e trabalhadores&lt;/li&gt;</value>
+  </data>
   <data name="Blog_ITESBETFC_H1_Text4">
     <value>&lt;li&gt;O poder de processamento dos computadores&lt;/li&gt;</value>
   </data>
+  <data name="Blog_ITESBETFC_Heading1">
+    <value>Porque é que os hackers estão a atacar institutos de educação?</value>
+  </data>
+  <data name="Blog_ITESBETFC_Summary">
+    <value>Institutos de educação tornaram-se mais expostos a ciberataques como resultado de maior utilização de tecnologia de ensino e aprendizagem.</value>
+  </data>
   <data name="Blog_ITESBETFC_Text1">
     <value>Institutos de educação tornaram-se mais exposos a ciberataques como resultado de maior utilização de tecnologia de ensino e aprendizagem. De acordo com relatórios ( Em vez de adicionar uma hiperligação a um recurso, mencionar o nome aqui e.g. de acordo com o tipo de estudo de Oxford), o sector da educação representou 62% dos aproximadamente 5,8 milhões de casos de malware reportados.</value>
+  </data>
+  <data name="Blog_ITESBETFC_Text2">
+    <value>Portanto, as escolas hoje em dia requerem um sistema forte e confiável que garanta a privacidade e segurança dos dados dos seus estudantes assim como a conformidade legal das suas escolas, face ao armazenamento rapidamente crescente de dados de estudantes, um aumento das ameaças de violações de dados e a crescente quantidade de legislação de privacidade de dados. Estes requisitos pode ser cumpridos via cifragem de dados.</value>
+  </data>
+  <data name="Blog_ITESBETFC_Title">
+    <value>O Sector Educacional está a tornar-se um alvo fácil de Ciberataques?</value>
   </data>
   <data name="Blog_LYCWAR_Text1">
     <value>Quando usa a AxCrypt 2, tem de, em primeiro lugar, “iniciar sessão” – depois da primeira vez, é só introduzir a palavra-passe. Uma vez que a AxCrypt é uma aplicação de cifragem de ficheiros baseada em palavras-passe, tal faz sentido. Mesmo que a palavra-passe seja realmente a única coisa necessária para decifrar um ficheiro, nós decidimos usar a metáfora “iniciar sessão” por um número de razões, entre as quais tornar mais difícil cometer um erro fatal, como por vezes acontecia com a AxCrypt 1 ao escrever-se de forma errada a palavra-passe duas vezes ao cifrar um ficheiro novo. Por vezes, isto levou a perda de dados, o que é mau.</value>
@@ -2243,6 +2399,12 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_LYCWAR_Text2">
     <value>Uma vez iniciada uma sessão no AxCrypt 2, assim permanecerá até que a termine ou a protecção de ecrã se active ou o dispositivo adormeça ou você desligue o dispositivo.</value>
+  </data>
+  <data name="Blog_LYCWAR_Text3">
+    <value>Isto é feito com design cuidadoso para tornar a AxCrypt 2 o mais conveniente possível de usar, isto é, reduz o número de vezes que uma palavra-passe tem de ser introduzida. Isto, acreditamos, fará com que se use mais e assim se protejam mais ficheiros. Se fosse inconveniente, você não usaria tantas vezes.</value>
+  </data>
+  <data name="Blog_LYCWAR_Text4">
+    <value>Contudo, agora e então obtemos feedback de utilizadores a dizer “&lt;em&gt;Mas e se alguém se aproxima do meu computador? Todos os meus ficheiros estão desprotegidos.&lt;/em&gt;“.</value>
   </data>
   <data name="Blog_LYCWAR_Text6">
     <value>É tão simples quanto isto. A segurança é sobre uma cadeia de medidas e é a mais fraca que controla a força do sistema.</value>
@@ -2271,6 +2433,12 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_MDPNST_H2_SubHeading2">
     <value>&lt;strong&gt;Os Serviços na Nuvem são ainda um alvo primário &lt;/strong&gt;</value>
   </data>
+  <data name="Blog_MDPNST_H2_SubHeading3">
+    <value>&lt;strong&gt;Ataques de Phishing e Smishing &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SubHeading4">
+    <value>&lt;strong&gt;Cifragem Móvel com AxCrypt&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_MDPNST_Heading1">
     <value>Os telemóveis tornaram-se uma nova frente para os crimes</value>
   </data>
@@ -2279,6 +2447,12 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_MDPNST_Summary">
     <value>As tendências mundiais da segurança móvel são dominadas por campanhas de desinformação, ataques a cadeias de fornecimento, phishing, intercepção móvel e malware móvel.</value>
+  </data>
+  <data name="Blog_MDPNST_Text1">
+    <value>Com a ampla adopção do trabalho remoto durante a pandemia COVID-19, a superfície do ataque móvel cresceu, com 97% das organizações a enfrentarem agora ameaças móveis de várias vulnerabilidades conhecidas. Você deve proteger os seus dados móveis para manter a sua informação empresarial e pessoal segura.</value>
+  </data>
+  <data name="Blog_MDPNST_Text2">
+    <value>As tendências mundiais da segurança móvel são dominadas por campanhas de desinformação, ataques a cadeias de fornecimento, phishing, smishing, intercepção móvel e malware móvel.</value>
   </data>
   <data name="Blog_MDPNST_Title">
     <value>Os dispositivos móveis colocam novas ameaças de segurança</value>
@@ -2301,8 +2475,14 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_MDSCBF_H1_SubHeading4">
     <value>&lt;strong&gt;Os Dispositivos Móveis Tornaram-se o Alvo Principal&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_MDSCBF_H2_SH1_Text1">
+    <value>Muitas pessoas usam isto como razão para evitar cifrar os seus dados. Mas isto é apenas um mito. A cifragem pode ser processada por computadores de secretária, telemóveis e tablets sem tornar os dispositivos lentos. Tal atribui-se a avanços consideráveis na tecnologia de processamento nos últimos anos. A AxCrypt é uma solução de software que lhe permite facilmente cifrar e proteger por palavra-passe qualquer ficheiro com alguns cliques. Usa 256-bit Advanced Encryption Standard (AES), a cifragem mais forte de todas. Utiliza poucos recursos do computador e executa sem problemas e sem abrandar o seu sistema.</value>
+  </data>
   <data name="Blog_MDSCBF_H2_SH3_Text1">
     <value>Em muitas circunstâncias, armazenar dados cifrados na nuvem é mais seguro que guardá-los localmente onde pessoas internas têm mais acesso. Se quiser manter dados cifrados na nuvem seguros, tenha a certeza de que tem você, não o fornecedor da nuvem, custódia das chaves de cifragem. Procure por outros fornecedores de serviços na nuvem se o actual exige que lhe entregue as suas chaves. A AxCrypt está desenhada para simplificar a cifragem avançada em vários serviços de armazenamento na nuvem tais como o Google Drive, o Dropbox, etc. &lt;a href='https://axcrypt.net/blog/what-is-cloud-computing-and-its-common-threats'&gt;Leia mais sobre a funcionalidade de cifragem na nuvem da AxCrypt aqui&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH4_Text1">
+    <value>É uma das ideias erradas mais espalhadas sobre a cifragem. Tal pode dever-se a ouvirmos apenas sobre hackers que atacam grandes empresas, o que também não é verdade. De facto, as pequenas empresas e os indivíduos são mais atacados do que as grandes empresas. De acordo com um inquérito, as pequenas empresas são alvo de 43% dos ciberataques. Isto deve-se primariamente à falta de fortificação dos seus sistemas - exactamente o que os cibercriminosos procuram. Você precisa de cifragem, independentemente de quão pequena a sua empresa é.</value>
   </data>
   <data name="Blog_MDSCBF_H2_SH5_Text1">
     <value>Muitos indivíduos e empresas evitam a cifragem porque acreditam que seja muito dispendiosa. Uma vez mais, isto não é verdade. Algumas aplicações de software de cifragem podem parecer caras à primeira vista. No entanto, você deve considerar o futuro. Mais do que qualquer outra coisa, trata-se de um investimento. Considero o impacto financeiro de uma violação de dados. Pense nos processos judiciais e na sua reputação: poderá comprometer o futuro da sua empresa. Isto é algo que você não quer que aconteça.</value>
@@ -2337,6 +2517,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_MDSCBF_Title">
     <value>Os Maiores Desafios de Segurança de Dados com que as Empresas Se Deparam em 2022</value>
   </data>
+  <data name="Blog_MEWRECY_H1_SH1_Text1">
+    <value>Ao tornar os dados ilegíveis, a cifragem móvel garante que os dados dos clientes mantêm-se privados e seguros. Os dados que foram cifrados não podem ser obtidos, tornando tal ainda mais difícil na actual situação. Os dados no telefone ainda podem ser recuperados mesmo que o proprietário apague tudo para o revender. A única forma de decifrar dados uma vez depois da cifragem é através de um reset de fábrica. Além disso, com a expansão dos pagamentos digitais, aplicações melhoradas e troca de informação via dispositivos móveis, gera-se uma grande quantidade de dados que devem ser protegidos de ciberameaças. Como resultado, os dados podem proteger destes crimes usando-se software de cifragem móvel, impulsionando o mercado.</value>
+  </data>
   <data name="Blog_MEWRECY_H1_SubHeading1">
     <value>&lt;strong&gt;Necessidade crescente de segurança móvel&lt;/strong&gt;</value>
   </data>
@@ -2345,6 +2528,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_MEWRECY_H1_Text2">
     <value>A proliferação de dispositivos móveis, o aumento e evolução de ameaças sofisticadas, o aumento da adopção de serviços na nuvem e a virtualização são razões importantíssimas de disrupção do negócio da cifragem móvel. A indústria é movida pela necessidade de conformidade estrita, regulamentos e preocupações crescentes com a segurança de dados e a privacidade de propriedade intelectual. Além disso, a popularidade crescente da Internet das Coisas, de entre muitos segmentos de mercado de utilizadores finais, é um factor crucial para o crescimento do mercado de cifragem móvel.</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SH1_Text1">
+    <value>Os dispositivos móveis são agora o alvo principal de ataques de phishing. Perpetradores de esquemas sabem que as pessoas que trabalham a partir de casa passam mais tempo com o seu telemóvel e que não tomam as mesmas medidas de segurança que tomariam se estivessem num PC tradicional. Qualquer pessoa que se depare com o seu telefone ou portátil pode facilmente aceder aos ficheiros neles contidos; com cifragem, contudo, aceder a esses dados é extremamente difícil.</value>
   </data>
   <data name="Blog_MEWRECY_H2_SH2_Text1">
     <value>Uma fuga de dados ocorre quando informação sensível é transferida de forma intencional de um dispositivo móvel para um serviço internet. Se o dispositivo não protege os dados eficazmente, os dados tornam-se disponíveis a qualquer pessoa que use a mesma rede do dispositivo.</value>
@@ -2364,8 +2550,20 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_MEWRECY_H2_SubHeading3">
     <value>&lt;strong&gt;Interferência Wi-Fi&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_MEWRECY_H2_SubHeading4">
+    <value>&lt;strong&gt;Proteja o seu telemóvel com AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MEWRECY_Summary">
+    <value>A emergência da pandemia COVID-19 teve um impacto significativo em praticamente todos os negócios em todo o mundo.</value>
+  </data>
   <data name="Blog_MEWRECY_Title">
     <value>Assistir-se-á a uma Expansão Robusta da Cifragem Móvel nos Próximos Anos</value>
+  </data>
+  <data name="Blog_MK_H1_SH1_text1">
+    <value>A chave-mestra é uma funcionalidade que permite aos administradores recuperar ficheiros de colaboradores. Isto elimina o risco de perda de acesso a ficheiros críticos. Enquanto que a empresa tiver um ou um par de administradores que mantenham as suas credenciais, não haverá ficheiros perdidos por haver trabalhadores que se esqueçam das suas palavras-passe ou por saírem da empresa.</value>
+  </data>
+  <data name="Blog_MK_H1_SH2_text1">
+    <value>A Chave-Mestra é altamente segura e pode ser vista como uma partilha automática de ficheiros com os administradores da empresa. Os gestores de negócios serão capazes de recuperar automaticamente ficheiros onde foi aplicada a Chave-Mestra. Esta funcionalidade foi testada e comprovada e é já usada por muitos utilizadores. E sim, é importante que os administradores seja extra-cuidadosos ao escolher uma boa palavra-passe. A escolha da palavra-passe é extremamente importante, os administradores devem certificar-se de que a palavra-passe é suficientemente forte para proteger ficheiros e documentos. Aqui está a hiperligação para o nosso &lt;a href='https://www.axcrypt.net/support/password-generator'&gt;gerador de palavras&lt;/a&gt; que pode ajudar a escolher palavras-passe que são tanto fortes quanto fáceis de lembrar.</value>
   </data>
   <data name="Blog_MK_H1_SH3_text1">
     <value>Portanto, em resumo, para se lidar com mudanças constantes, as organizações devem ser extra-cuidadosas para sustentar o seu negócio. Quando se trata de segurança, a cifragem é um aspecto importante. Em situações em que uma pessoa deixa uma empresa, torna-se difícil para a empresa voltar a obter os seus dados protegidos. A chave-mestra resolve isto e ajuda a manter os seus dados seguros tanto de intrusos como de palavras-passe esquecidas por pessoas que saem da empresa.</value>
@@ -2390,6 +2588,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_MK_Text3">
     <value>A AxCrypt adicionou uma nova funcionalidade que é a solução para o problema acima referido e chama-se &lt;b&gt;Chave-mestra&lt;/b&gt; juntamente com as suas outras funcionalidades como Advanced Encryption Standard, Detecção de Armazenamento na Nuvem e partilha de chaves. Já está disponível nas plataformas Windows, Mac, Android e iOS.</value>
+  </data>
+  <data name="Blog_MK_Title">
+    <value>Chave-mestra</value>
   </data>
   <data name="Blog_PECA_H1_Text1">
     <value>A AxCrypt foi criada há mais de 15 anos com a missão de fornecer segurança de dados de forma confiável e o mais simples possível. Depois de todos estes anos, a empresa é ainda reconhecida pelo software mais simples e fácil de usar, tornando-o o programa de cifragem mais popular do mundo com mais de 20 milhões de downloads!</value>
@@ -2519,6 +2720,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_SCMAE_H2_SubHeading3">
     <value>&lt;strong&gt;A cifragem não melhora a segurança na nuvem.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SCMAE_H2_SubHeading5">
+    <value>&lt;strong&gt;A cifragem é cara&lt;/strong&gt;</value>
   </data>
   <data name="Blog_SCMAE_H2_SubHeading6">
     <value>&lt;strong&gt;AxCrypt em Resumo&lt;/strong&gt;</value>
@@ -2748,6 +2952,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_TPTWHEG_H4_text1">
     <value>A cifragem pode surgir como um assunto muito complicado. Em resumo, você transforma texto claro num cibercódigo que ninguém pode ler sem uma chave especial de decifração. Desta forma, mensagens interceptadas ou informação furtada não poderão ser lidas por terceiros.</value>
   </data>
+  <data name="Blog_TPTWHEG_H4_text3">
+    <value>Leia mais sobre a AxCrypt para proger os seus dados pessoais. Com as subscrições Business e Premium, pode dormir em paz, deixando os seus dados em repouso e sem receio de fuga. Dê uma olhadela em &lt;a href='https://www.axcrypt.net'&gt;https://www.axcrypt.net&lt;/a&gt; e nas diferentes subscrições &lt;a href='https://www.axcrypt.net/pricing'&gt;https://www.axcrypt.net/pricing&lt;/a&gt;.</value>
+  </data>
   <data name="Blog_TPTWHEG_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;1. Tenha em consideração o seu ambiente em casa&lt;/h2&gt;</value>
   </data>
@@ -2793,11 +3000,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_TSTE_Title">
     <value>O Tipo Mais Seguro de Cifragem</value>
   </data>
+  <data name="Blog_UODPCH_Summary">
+    <value>Na versão anterior da AxCrypt, era por vezes necessário usar palavras-passe diferentes para ficheiros diferentes. Obviamente, você precisaria de partilhar a palavra-passe também, algo que você não quer.</value>
+  </data>
   <data name="Blog_UODPCH_Text2">
     <value>Além disso, houve utilizadores que definiram palavras-passe diferentes para diferentes ficheiros, mesmo sendo estes para uso privado apenas. Isto pode *dar a ideia* de ser mais seguro, mas, na melhor das hipótese, não adiciona segurança e, na pior, provoca uma situação com *menos* segurança.</value>
   </data>
   <data name="Blog_UODPCH_Text5">
     <value>Usar muitas palavras-passe tende, na realidade, a diminuir a segurança prática, porque é mais inconveniente, a barreira contra a sua utilização é maior e também é simplesmente mais difícil controlar muitas palavras-chave fortes. Portanto, a situação típica será muitas palavras-passe fracas. Em vez disso, o que dizemos é que se você conseguir tomar conta de uma única palavra-passe forte para todos os seus ficheiros, nós tornamos a utilização conveniente, uma vez que não tem de a introduzir muitas vezes. Em termos práticos, isto tende a aumentar a segurança no geral.</value>
+  </data>
+  <data name="Blog_UODPCH_Text7">
+    <value>Portanto, em vez de usar diferentes palavras-passe para ficheiros diferentes, defina uma palavra-passe boa e forte e use-a. Com AxCrypt 2, apenas terá de escrevê-la uma vez por sessão e depois tem acesso imediato a todos os seus ficheiros. Uma palavra-passe para controlar tudo...</value>
   </data>
   <data name="Blog_WAMHIHY_Conclusion_Text3">
     <value>Quer aprender mais sobre a AxCrypt e juntar-se ao nosso programa de marketing de afiliados?</value>
@@ -2874,17 +3087,35 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WAMHIHY_Title">
     <value>O que é o marketing de afiliados e como a(o) pode ajudar?</value>
   </data>
+  <data name="Blog_WBFAHPI_Conclusion_Text2">
+    <value>Nós na AxCrypt estamos sempre alerta em relação a segurança de dados. O nosso sistema de segurança é verdadeiramente poderoso, fornecemos cifragem AES-128 e AES-256, a mais forte de todas, demorando uma eternidade para se quebrar a palavra-passe. Devido ao processo de cifragem mais forte que usamos, funciona como um escudo e protege todos os dados de ataques de força bruta.</value>
+  </data>
   <data name="Blog_WBFAHPI_H1_SH3_Text1">
     <value>O password spraying é uma forma de ataque de força bruta reversa em que um atacante inicia sessão na aplicação em força bruta com base numa lista de utilizadores com palavras-passe predefinidas. Este ataque é usado normalmente em áreas onde o(a) administrador(a) configura uma palavra-passe predefinida para os novos utilizadores. Normalmente, os atacantes tentam adivinhar as palavras-passe. Contudo, ao contrário de um ataque de força bruta que se foca numa única conta, neste caso, os ataques de injecção de palavras-passe têm como alvo múltiplas contas ao mesmo tempo. Os atacantes obtêm acesso a uma grande número de contas (nomes de utilizador) com algumas palavras-passe comuns.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH5_Text1">
+    <value>Neste tipo de ataque, os hackers combinam um método de ataque de dicionário com um ataque de força bruta simples. Os hackers normalmente sabem o nome de utilizador e portanto perpetram um ataque de dicionário e métodos de força bruta simples para encontrar a combinação de credenciais. Este procedimento envolve a escolha de palavras comuns de um dicionário e a sua substituição por números e caracteres aleatórios. Esta abordagem combinada é mais eficaz.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading5">
+    <value>&lt;li&gt;&lt;strong&gt;Ataques de Força Bruta Híbrida:&lt;/strong&gt;&lt;/li&gt;</value>
   </data>
   <data name="Blog_WBFAHPI_H1_Type_Text1">
     <value>Uma ameaça muito comum nesta era da web é o ataque de força bruta. Em cibersegurança, um ataque de força bruta é uma tentativa de encontrar uma palavra-chave tentando sistematicamente todas as combinações possíveis de letras, números e símbolos até que a combinação certa seja encontrada. As palavras-passe não são o único recurso que pode ser atacado por força bruta: as hiperligações e directorias, os nomes de utilizador e os emails são também outros alvos comuns.</value>
   </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text1">
+    <value>O sucesso de um ataque de força bruta é calculado em relação ao tempo despendido até se quebrar uma palavra-passe. O tempo necessário a quebrar uma palavra-passe aumenta exponencialmente com o comprimento da palavra-passe. Estima-se que 15 milhões de empresas-chave precisariam de 9 minutos por segundo para quebrar uma palavra-passe de 7 dígitos. Uma palavra-passe de 13 dígitos precisaria de mais de 350.000 anos.</value>
+  </data>
   <data name="Blog_WBFAHPI_H2_SH2_Text2">
     <value>&lt;li&gt;Recomenda-se nunca usar palavras-passe-padrão, mas é melhor usar palavras-passe criadas por si. O melhor é criar palavras-passe únicas que contenham pelo menos 15 dígitos e várias palavras-chave. As palavras-passe longas que consistem em palavras/caracteres aleatórios são mais seguras e fáceis de quebrar.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text3">
+    <value>&lt;li&gt;Muitos sítios web permitem um número infinito de tentativas de início de sessão. Recomenda-se que o administrador do sítio instale uma extensão que limite o número de tentativas de conexão ao domínio, prevenindo assim ataques de força bruta. Mesmo um administrador pode permitir ataques de força bruta via SSH, pelo que é melhor prevenir o acesso via SSH activando-se “DenyUsers root” e “PermitRootLogin no”.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WBFAHPI_H2_SH2_Text4">
     <value>&lt;li&gt; Recomenda-se o uso de autenticação de dois ou mais factores, em que o utilizador deve verificar a sua autenticidade antes de lhe ser dados acesso ao sistema. Se a A2F for activada, será pedido ao utilizador um código único atribuído a um número de telemóvel para verificar a sua autenticidade antes de obter acesso à rede.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Houve várias tentativas falhadas de início de sessão a partir do mesmo endereço IP.&lt;/li&gt;</value>
   </data>
   <data name="Blog_WBFAHPI_Heading1">
     <value>O que é um ataque de força bruta?</value>
@@ -2904,11 +3135,20 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WCACT_H2_SH3_Text1">
     <value>Um atacante num sistema de nuvem pode ocorrer por causa de um cliente ou trabalhador com acesso alargado ou pode ser o resultado de ignorância ou simplesmente erro humano. Assim, os administradores devem estabelecer designs de segurança de alto nível com níveis distintos de acesso a serviços na nuvem para evitar comportamento malicioso por alguém de dentro.</value>
   </data>
+  <data name="Blog_WCACT_H2_SubHeading1">
+    <value>&lt;strong&gt;Violações de Dados&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_WCACT_H2_SubHeading2">
     <value>&lt;strong&gt;Ataques de negação de serviço&lt;/strong&gt;</value>
   </data>
   <data name="Blog_WCACT_H2_SubHeading3">
     <value>&lt;strong&gt;Ataques internos&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_SubHeading4">
+    <value>&lt;strong&gt;Fuga de Credenciais&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_Text1">
+    <value>Tendo em conta que a tecnologia na nuvem ainda está a ser activamente desenvolvida, há um número de falhas que os hackers e pessoas internas hostis podem explorar. Portanto, é crítico saber onde é que o seu sistema pode ser vulnerável e o que pode fazer sobre isso.</value>
   </data>
   <data name="Blog_WCACT_H3_Text1">
     <value>Os utilizadores da nuvem devem implementar medidas de segurança para proteger os seus dados sensíveis de ciberataques. A cifragem é um dos métodos mais eficazes de segurança de dados, baralhando a informação de qualquer sistema, base de dados ou ficheiro e tornando-a difícil de ler por terceiros que não tenham a chave. Ao usar cifragem e sistemas apropriados de gestão de chaves, as empresas podem garantir que apenas os utilizadores autorizados têm acesso a dados sensíveis. Os dados cifrados são ilegíveis e praticamente não têm valor sem a sua chave, mesmo que sejam perdidos, roubados ou acedidos sem autorização.&lt;br/&gt;</value>
@@ -3099,6 +3339,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WSPPI_H1_Text3">
     <value>Os dados pessoais são qualquer informação que se relacione com um indivíduo vivo identificado. De acordo com esta definição, os dados pessoais poderão incluir um nome e apelido, uma morada de casa, registos médicos, um número de cartão de identificação, etc.</value>
   </data>
+  <data name="Blog_WSPPI_H2_Text1">
+    <value>Porquê que a privacidade é importante? Esta questão surgiu no contexto de um debate global. As violações de privacidade são muitas vezes pequenos incómodos. Há mesmo algum mal real na vigilância em massa? Só as pessoas envolvidas em más acções poderão ter uma razão para se esconder e preocupar com privacidade.</value>
+  </data>
   <data name="Blog_WSPPI_H2_Text2">
     <value>A privacidade é uma normal social. Nos usamos palavras-passe nos nossos dispositivos e fechaduras nas portas das casas de banho para ajudar a salvaguardar a nossa privacidade e mesmo cidadãos que dizem que não estar preocupados com ela usam-nas para prevenir pessoas de entrar no seu domínio pessoal. As únicas pessoas que procurarão privacidade são, por definição, más. No entanto, nós, como seres humanos, não apenas terroristas e criminosos, todos nós, temos coisas a esconder. Todos nós precisamos de momentos privados longe longe de olhares persistentes, insistentes e inquisitivos.</value>
   </data>
@@ -3114,6 +3357,12 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WSPPI_H4_Text3">
     <value>Os direitos de privacidade inibem grupos de usar dados pessoais para atingir os seus objectivos. As empresas entram em cena também. Ao saber dos interesses dos seus clientes, procuram ajustar as suas campanhas de publicidade a diferentes grupos-alvo, chegando até eles de forma personalizada e fomentando assim o seu consumo.</value>
   </data>
+  <data name="Blog_WSPPI_H4_Text4">
+    <value>E por último mas não menos importante, os direitos de privacidade garantem e protegem as suas finanças. Os hackers e os criminosos são também grandes actores neste campo. Actividades ilícitas e fraudulentas são possíveis através da aquisição de dados que logo causam cenários problemáticos. Sem estas restrições, há maior probabilidade de os cibercriminosos roubaram e abusarem de dados sem haver consequências.</value>
+  </data>
+  <data name="Blog_WSPPI_H5_Text1">
+    <value>Depois de ler este artigo, não poderá dizer que não estava a contar. A comunicação confidencial é fundamental para as democracias liberais. Quando nas mãos erradas, a informação pessoal pode ser manejada como uma ferramenta poderosa. Uma das melhores formas de proteger os seus dados é cifrando-os. A cifragem de ponta a ponta devolve-lhe o controlo e protege os seus dados de espionagem e olhares alheios. A cifragem é a melhor forma de proteger os seus dados de qualquer forma de acesso indesejável. Ao usarem-se cálculos matemáticos para transformar texto claro em texto cifrado, apenas quem tiver uma chave especial poderá decifrar os seus ficheiros. O nosso sistema é amigo do utilizador, tornando as operações fáceis, garantindo o maior controlo possível e garantindo que ninguém senão você pode aceder à sua informação pessoal por forma a que nenhuma violação de dados desvantajosa ocorra.</value>
+  </data>
   <data name="Blog_WSPPI_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;O que são dados pessoais&lt;/h2&gt;</value>
   </data>
@@ -3126,8 +3375,17 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WSPPI_Heading4">
     <value>&lt;h2 style='margin-block: 0;'&gt;Direitos de privacidade&lt;/h2&gt;</value>
   </data>
+  <data name="Blog_WSPPI_Heading5">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Como proteer os seus dados pessoais&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_WSPPI_Summary">
+    <value>A privacidade é um direito fundamental que faz parte de democracias liberais e da liberdade.</value>
+  </data>
   <data name="Blog_WSPPI_Text1">
     <value>A privacidade é um direito fundamental que faz parte de democracias liberais e da liberdade. Deve ser protegido a todo o custo. Infelizmente, há muitas pessoas com propósitos maliciosos e bases de dados que contêm a sua informação privada são uma forma perfeita e eficiente de ficar a saber dos seus pontos fracos. Para proteger a sua informação sensível, aprenda e adquira conhecimento sobre o que os dados pessoais são na realidade, porque os deve proteger e como fazer cumprir direitos estritos de privacidade.</value>
+  </data>
+  <data name="Blog_WSPPI_Title">
+    <value>Porque deve proteger a sua informação privada?</value>
   </data>
   <data name="Blog_WTPI_Conclusion_Text1">
     <value>A objectividade é difícil, a informação significa diferentes coisas a diferentes utilizadores pois é maleável. Pode ser explorada de diferentes formas. A falta de precisão na exploração de dados esconde uma variedade de razões que levam ao fracasso: metodologias de recolha inapropriadas ou mal implementadas; credibilidade; e a fabricação de mentiras e propaganda são apenas alguns exemplos de abuso da informação.</value>
@@ -3137,6 +3395,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_WTPI_Conclusion_Text4">
     <value>&lt;strong&gt;Em suma&lt;/strong&gt;&lt;br /&gt;A cifragem é fundamental para a segurança da internet contemporânea. É um assunto extremamente complicado mas nós, na AxCrypt, orgulhamo-nos de torná-lo um processo simples e fácil de usar por qualquer pessoa.</value>
+  </data>
+  <data name="Blog_WTPI_H1_Text1">
+    <value>A WikiLeaks é uma organização internacional sem fins lucrativos que publica novas fugas de informação confidencial inacessível ao público em geral. O seu propósito é publicar material da fonte original em conjunto com outras notícias para que leitores e historiadores possam ver a evidência da verdade. Outro dos objectivos da organização é assegurar que jornalistas e informadores não são julgados por enviarem email com documentos sensíveis e classificados.</value>
   </data>
   <data name="Blog_WTPI_H1_Text2">
     <value>O WikiLeaks é geralmente representado em público por Julian Assange que tem sido descrito como a alma e coração desta organização. Os voluntários e fundadores originais foram uma vez descritos como uma equipa de dissidentes, jornalistas, matemáticos e tecnólogos de start-ups dos Estados Unidos, Taiwan, Europa, Austrália e África do Sul. Desde 2009, o website tem mais de 1.200 voluntários registados.</value>
@@ -3246,8 +3507,20 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_ZTCS_H2_SH1_Text1">
     <value>O enquadramento do modelo Zero Trust é baseado na verificação antes da confiança: a identificação do utilizador assim como a identidade do dispositivo e a segurança são validadas em várias etapas. Uma vez estabelecida, inícios de sessão e conexões expiram periodicamente, exigindo aos utilizadores e dispositivos re-verificação regular.&lt;br/&gt;</value>
   </data>
+  <data name="Blog_ZTCS_H2_SH2_Text1">
+    <value>O Zero Trust envolve dar aos utilizadores apenas o nível de acesso que requerem, reduzindo a exposição de cada um às áreas vulneráveis da rede. Isto requer gestão cuidadosa de permissões de utilizador.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH3_Text1">
+    <value>O sistema Zero Trust controla como os diferentes dispositivos se tentam ligar à sua rede, verifica que cada um é permitido e avalia cada um para se certificar de que não foi pirateado, enquanto faz uso de MFA para autenticar cada utilizador através de autorização de 2 factores. Estes factores reduzem ainda mais a superfície de ataque da rede.</value>
+  </data>
   <data name="Blog_ZTCS_H2_SH4_Text1">
     <value>A micro-segmentação é o método adoptado pelo Zero Trust para dividir perímetros de segurança em pequenas zonas distintas por forma a que diferentes secções da rede possam ter acesso independente. Sem autorização adicional, uma pessoa ou programa com acesso a uma das zonas não terá acesso às restantes. Assim, previnem-se eficazmente movimentos laterais de atacantes desconhecidos.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading2">
+    <value>&lt;strong&gt;Em função do que “precisa de saber”&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading3">
+    <value>&lt;strong&gt;Acesso a dispositivos e autenticação multi-factor&lt;/strong&gt;</value>
   </data>
   <data name="Blog_ZTCS_H2_SubHeading4">
     <value>&lt;strong&gt;Micro-segmentação&lt;/strong&gt;</value>
@@ -3258,6 +3531,9 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_ZTCS_H3_SH1_Text1">
     <value>A partilha de chaves permite-lhe colaborar e ligar-se a outras pessoas sem pôr em risco a confidencialidade dos seus dados. Ao usar a funcionalidade de partilha de chaves da AxCrypt, pode dar e revogar o acesso a dados a qualquer pessoa e sempre que desejar; nem sequer tem de divulgar a palavra-passe. Para mais informação sobre a partilha de chaves AxCrypt, veja o nosso tutorial de partilha de chaves no &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt;YouTube&lt;/a&gt;</value>
   </data>
+  <data name="Blog_ZTCS_H3_SH2_Text1">
+    <value>A Chave-Mestra é altamente segura e pode ser vista como uma partilha automática de ficheiros com os administradores da empresa. Permite aos gestores de negócios recuperar ficheiros de outros membros da empresa. Isto evita a possibilidade de perda de ficheiros vitais. Leia mais sobre a chave-mestra da AxCrypt &lt;a href= 'https://www.axcrypt.net/blog/master-key'&gt;aqui&lt;/a&gt;.</value>
+  </data>
   <data name="Blog_ZTCS_H3_SubHeading1">
     <value>&lt;strong&gt;Partilha de chaves&lt;/strong&gt;</value>
   </data>
@@ -3266,6 +3542,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_ZTCS_H3_Text1">
     <value>As vantagens de se usar uma arquitectura Zero Trust vão bem além da segurança. Tudo isto, contudo, pode ser em vão se não for executado com sucesso. Este modelo é todo ele sobre cifragem e controlo de acesso, dependendo ambos de criptografia. A criptografia, por seu turno, é baseada em chaves. A protecção da criptografia será inútil se uma chave ficar comprometida. Como resultado, as chaves devem, para segurança óptima, ser guardadas de forma segura a toda a hora e ser devidamente mantidas.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H3_Text2">
+    <value>A AxCrypt, tal como o Zero Trust, protege os seus dados de vírus, phishing e hacking, e quando usados em combinação, você pode ter máxima protecção. A AxCrypt é um sistema contemporâneo e escalável, e fornece um sistema empresarial de gestão de chaves amigo da nuvem. Tem um número de características que a tornam uma boa solução de gestão de chaves.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="Blog_ZTCS_Heading1">
     <value>O que é a abordagem Zero Trust?</value>
@@ -5107,6 +5386,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="GetStartedDesktopHowToUseHeading">
     <value>Como &lt;span&gt;Usar&lt;/span&gt;</value>
   </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>Neste tutorial rápido, mostramos-lhe as funções básicas da AxCrypt! Veja-o para aprender como usar o programa.</value>
+  </data>
   <data name="GetStartedDesktopHowToUseStep1">
     <value>Comece por seleccionar uma ou mais pastas em que gostaria de operar.</value>
   </data>
@@ -5284,6 +5566,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="GetStartedMobileText4">
     <value>Descarregue a AxCrypt para &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv'&gt;Android aqui&lt;/a&gt; e para &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS aqui.&lt;/a&gt;</value>
   </data>
+  <data name="GetStartedPasswordHeading">
+    <value>Mantenha as suas &lt;span&gt;palavras-passe&lt;/span&gt; guardadas.</value>
+  </data>
   <data name="GetStartedPasswordManagementHeading">
     <value>Gestão de Palavras-Passe</value>
   </data>
@@ -5325,6 +5610,12 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>Redefinição de Palavra-Passe</value>
+  </data>
+  <data name="GetStartedPasswordText">
+    <value>Com um simples clique, pode aceder à Gestão de Palavras-Passe AxCrypt online que armazena todas as suas palavras-passe num arquivo online cifrado de forma segura.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>&lt;span&gt;Proteja&lt;/span&gt; os seus ficheiros com um toque.</value>
   </data>
   <data name="GetStartMobilePageTitle">
     <value>&lt;span&gt;Cifragem&lt;/span&gt; avançada no seu bolso!</value>
@@ -6708,6 +6999,9 @@ Este programa é licenciado de acordo com a licença.
   <data name="Meta-Description-Financial">
     <value>Proteja as suas palavras-passe e informação financeira e elimine o risco de perder acesso a ficheiros críticos. Apenas utilizadores autorizados poderão aceder-lhe.</value>
   </data>
+  <data name="Meta-Description-Getstarted">
+    <value>Vamos guiá-la(o) para se iniciar na app AxCrypt e vamos mostrar-lhe como descarregar e usar a app nos seus dispositivos.</value>
+  </data>
   <data name="Meta-Description-Government">
     <value>Como governo, pode confiar na AxCrypt para contrariar ameaças de uma ampla gama de actores, criminosos, serviços de inteligência estrangeiros e governos repressivos.</value>
   </data>
@@ -6734,6 +7028,12 @@ Este programa é licenciado de acordo com a licença.
   </data>
   <data name="Meta-Keywords-Business">
     <value>gestor de palavras-passe,software de armazenamento na nuvem,proteger os seus ficheiros,armazenar e gerir palavras-passe</value>
+  </data>
+  <data name="Meta-Keywords-Download">
+    <value>descarregar software de cifragem,cifrar ficheiros,decifrar ficheiros,cifragem de 256 bits,segurança de ficheiros,software móvel de protecção de ficheiros</value>
+  </data>
+  <data name="Meta-Keywords-Education">
+    <value>Cifragem para educação,cifragem para a universidade,proteger formulários com questões online,proteja relatórios online,proteger documento educacional,proteger ficheiros</value>
   </data>
   <data name="Meta-Keywords-Financial">
     <value>cifragem de dados financeiros,proteja documentos cruciais,proteja informação financeira,proteger</value>
@@ -6762,6 +7062,12 @@ Este programa é licenciado de acordo com a licença.
   <data name="Meta-Title-Business">
     <value>AxCrypt Business | Proteja ficheiros de negócio | Cifragem de 256 bits</value>
   </data>
+  <data name="Meta-Title-Download">
+    <value>Descarregue a AxCrypt | Cifre e Decifre Ficheiros | Móvel, PC, Nuvem</value>
+  </data>
+  <data name="Meta-Title-Education">
+    <value>AxCrypt Educação | Protega os seus documentos de educação com cifragem de 256 bits</value>
+  </data>
   <data name="Meta-Title-Faq">
     <value>AxCrypt FAQ | Ligue-se a nós para todas as perguntas</value>
   </data>
@@ -6774,8 +7080,20 @@ Este programa é licenciado de acordo com a licença.
   <data name="Meta-Title-Getstarted">
     <value>Guias AxCrypt | O seu guia para soluções de cibersegurança</value>
   </data>
+  <data name="Meta-Title-Government">
+    <value>AxCrypt Governo | Partilhar documentos do governo e dados em segurança</value>
+  </data>
+  <data name="Meta-Title-Healthcare">
+    <value>AxCrypt Cuidados de Saúde | Proteger a informação de saúde dos pacientes | Registos de saúde electrónicos</value>
+  </data>
+  <data name="Meta-Title-Home">
+    <value>AxCrypt - Cifragem de ficheiros galardoada globalmente e fácil de usar</value>
+  </data>
   <data name="Meta-Title-Premium">
     <value>AxCrypt Premium | Proteja ficheiros pessoais em Windows, Mac, Android e iPhone</value>
+  </data>
+  <data name="Meta-Title-Pricing">
+    <value>Plano de Preços AxCrypt | Software de cifragem acessível e fácil de usar</value>
   </data>
   <data name="Meta-Title-Privacypolicy">
     <value>Política de privacidade da AxCrypt | Nós estamos em conformidade com as políticas RGPD</value>
@@ -7225,7 +7543,7 @@ Os espaços em branco e as partes que são iguais às senhas comuns são ignorad
     <value>Sua assinatura do AxCrypt Premium acabará em breve. Esperamos que você tenha gostado de usar nossas funções e tenha achado-as úteis.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Gostaríamos muito que você continuasse usando nossos serviços Premium! Amplie a sua assinatura &lt;a href="{0}Home/Purchase?email={1}"&gt;agora&lt;a&gt;.</value>
+    <value>Gostaríamos muito que você continuasse usando nossos serviços Premium! Amplie a sua assinatura &lt;a href="{account_web_url}pt/Home/Login?purchase=True?email={{user_email}}"&gt;agora&lt;a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -9250,6 +9568,9 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TermsOfUseBlockMicroPayH1Text1">
     <value>Ao aderir ao período experimental, para validar o seu cartão de crédito/débito, a AxCrypt cobra-lhe um montante mínimo, dependendo da moeda em que está a pagar. Uma vez validado o cartão de crédito/débito, iniciaremos de imediato o reembolso do montante cobrado, mas, dependendo do seu banco, podem decorrer 8-10 dias úteis para se reflectir na fonte do pagamento.</value>
   </data>
+  <data name="TermsOfUseBlockMicroPayHeading1">
+    <value>Custo único de reembolso</value>
+  </data>
   <data name="TermsOfUseBlockNew11Text1">
     <value>Não será dado nenhum reembolso se não tiver cancelado a sua subscrição durante o período de avaliação de 30 dias, apenas sob determinadas circunstâncias técnicas. Reservamo-nos o direito de levantar ou modificar tais ofertas a qualquer momento sem aviso prévio.</value>
   </data>
@@ -9406,6 +9727,12 @@ A equipe AxCrypt</value>
   <data name="TSTMNL_Business_IACSCA_Text10" xml:space="preserve">
     <value>A AxCrypt permite-me proteger qualquer tipo de ficheiro (sem a obrigação de formatos específicos mesmo no armazenamento de palavras-passe) de forma simples e segura e aceder aos meus dados de qualquer dispositivo. Mas, acima de tudo, apenas tenho de partilhar as chaves de acesso com a minha equipa e não ficheiros completos ou cópias de dados!</value>
   </data>
+  <data name="TSTMNL_Business_JSMM_Text8" xml:space="preserve">
+    <value>Estávamos à procura de uma forma de armazenar cópias de segurança de dados financeiros sensíveis num dos nossos fornecedores de serviços na nuvem e de não arriscar a exposição aos seus trabalhadores ou forças externas. Decidimos que cifrar as cópias antes de movê-las para a plataforma na nuvem resolveria o problema. No entanto, o processo de cifragem precisava de ser mais simples e fácil, caso contrário não seria executado. Além disso, queríamos uma rede de segurança caso uma pessoa deixasse a empresa e nos deixasse com ficheiros cifrados. A AxCrypt forneceu uma solução de cifragem que é super-fácil de usar e, com a conta da empresa, podemos implementar uma chave-mestra que permitirá à equipa de TI decifrar quaisquer ficheiros caso haja utilizadores que deixam os ficheiros cifrados ou se esquecem de palavras-passe. Agora, a nossa pessoa da área financeira trabalha feliz sem ter de lutar com um processo de cifragem oneroso para conseguir a segurança necessária!</value>
+  </data>
+  <data name="TSTMNL_Business_JTJT_Text7" xml:space="preserve">
+    <value>As minhas agências de tradução exigem que eu cifre todos os documentos (fonte e tradução). A AxCrypt permite-me fazer isto de forma conveniente e fácil!</value>
+  </data>
   <data name="TSTMNL_Business_WREGNSA_Text4" xml:space="preserve">
     <value>Estávamos à procura de uma ferramenta simples de cifragem que pudéssemos disponibilizar aos nossos utilizadores sem que tivessem de ter muita formação. A AxCrypt simplesmente fez-nos isso. Além do documento inicial \"como\" que escrevi em poucos minutos, não tenho de dar muito apoio aos utilizadores. A AxCrypt torna-o tão fácil.</value>
   </data>
@@ -9420,6 +9747,12 @@ A equipe AxCrypt</value>
   </data>
   <data name="TSTMNL_Industries_BSAST_Text4" xml:space="preserve">
     <value>Quando é feita correctamente, a cifragem forte é inquebrável. Qualquer fraqueza da cifragem será explorada — por hackers, criminosos e governos estrangeiros. Muitos dos ataques que se vêem nas notícias podem ser atribuídos a cifragem fraca ou — ainda pior — inexistente.</value>
+  </data>
+  <data name="TSTMNL_Industries_LPAJFA_Text1" xml:space="preserve">
+    <value>Umas das coisas que acho ser verdade é que a cifragem, na realidade, é capaz de proteger as nossas comunicações, que cada indivíduo pode usar cifragem e que é acessível...</value>
+  </data>
+  <data name="TSTMNL_Industries_PCMAGBEES_Text4" xml:space="preserve">
+    <value>A AxCrypt torna tudo relacionado com cifragem simples, portanto não se surpreenda ao saber que até a troca PKI de dados seguros é simples (...) Por estas razões, a AxCrypt junta-se à CertainSafe como a Editors’ Choice para cifragem.</value>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (turco)</value>

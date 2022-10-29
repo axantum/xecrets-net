@@ -305,6 +305,9 @@ Wählen Sie etwas, das schwer zu erraten ist, da das Passwort all Ihre Passwört
   <data name="AddMoreUsersTitle" xml:space="preserve">
     <value>Weitere Benutzer hinzufügen</value>
   </data>
+  <data name="AddNoteTitle" xml:space="preserve">
+    <value>Notiz hinzufügen</value>
+  </data>
   <data name="AddPromptText" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
@@ -707,6 +710,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_5KFESSAO_Text3">
     <value>Laut einer Umfrage von &lt;a href='https://www.statista.com/statistics/529981/worldwide-enterprise-encryption-data-types/'&gt;Statista&lt;/a&gt; verschlüsseln 52% der Befragten Mitarbeiter- oder Personaldaten in ihren Unternehmen. Durch den Verschlüsselungsprozess werden Ihre Daten verborgen, indem sie in Codes übersetzt werden, um sie vor unbefugten Benutzern zu verbergen. Es gibt verschiedene Dateiverschlüsselungsmethoden, mit denen Sie dies tun können.</value>
   </data>
+  <data name="Blog_5KFESSAO_Title">
+    <value>5 Schlüsselfunktionen von Verschlüsselungssoftware, die Sie kennen sollten</value>
+  </data>
   <data name="Blog_ADGE_H1_Text1">
     <value>Wenn Sie die Verschlüsselung mit jemandem besprechen, der kein Sicherheitsexperte ist, erhalten Sie normalerweise eine Reihe von Antworten. Verschlüsselung wird häufig als eine Art finstere Technologie missverstanden. Stattdessen kann Verschlüsselung dazu beitragen, Flexibilität, Compliance und Datenschutz zu erreichen, die das heutige virtuelle Zeitalter erfordert.</value>
   </data>
@@ -742,6 +748,15 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_ADGE_Heading1">
     <value>Was ist Verschlüsselung und wie funktioniert sie?</value>
+  </data>
+  <data name="Blog_ADGE_Heading2">
+    <value>Folgen ungeschützter Daten</value>
+  </data>
+  <data name="Blog_ADGE_Heading3">
+    <value>Durch die Verschlüsselung Ihrer Daten können Sie diese Effekte messen und sich einen Wettbewerbsvorteil verschaffen</value>
+  </data>
+  <data name="Blog_ADGE_Heading4">
+    <value>Die folgenden Verschlüsselungsvorteile sind mit AxCrypt verbunden:</value>
   </data>
   <data name="Blog_ADGE_Title">
     <value>Eine detaillierte Anleitung zur Verschlüsselung</value>
@@ -785,17 +800,38 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_AMEFH_H1_SubHeading3">
     <value>&lt;strong&gt;WLAN-Störungen&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_AMEFH_H2_Text1">
+    <value>&lt;li&gt;AxCrypt bietet eine einmonatige kostenlose Testversion an, um alle Funktionen auszuprobieren, einschließlich der neuesten mobilen Verschlüsselungsfunktion. Worauf warten Sie also noch? Melden Sie sich hier für eine kostenlose Testversion von AxCrypt an:&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H2_Text3">
+    <value>&lt;li&gt;Lokaler Speicher und andere Cloud-Laufwerke wie iCloud, OneDrive und andere werden in Kürze in den kommenden Versionen unterstützt.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H2_Text4">
+    <value>&lt;li&gt;&lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Laden Sie die mobile Verschlüsselung von AxCrypt für Android hier herunter&lt;/a&gt;&lt;/li&gt;</value>
+  </data>
   <data name="Blog_AMEFH_H2_Text6">
     <value>AxCrypt wurde in den letzten sechs Jahren und auch in diesem Jahr vom PC Magazine als "Die beste Verschlüsselungssoftware der Welt" ausgezeichnet und verfügt über eine globale Präsenz mit über &lt;a href='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium '&gt; 20 million downloads &lt;/a&gt; AxCrypt bietet eine starke Verschlüsselung mit 256-Bit-Verschlüsselung, um Ihre Daten in den drei Phasen der Daten zu sichern. ruhende Daten, bei der Übertragung und im Gebrauch. Darüber hinaus bietet es seinen Benutzern einen Passwortverwaltungsgenerator, der sicherstellt, dass ihre Passwörter so sicher wie möglich sind. Darüber hinaus bietet AxCrypt ein Collaboration-Tool, mit dem Benutzer gesicherte Dateien und Daten mit anderen AxCrypt-Benutzern teilen können.</value>
   </data>
+  <data name="Blog_AMEFH_Heading1">
+    <value>Warum wird mobile Verschlüsselung benötigt?</value>
+  </data>
+  <data name="Blog_AMEFH_Heading2">
+    <value>Mobile Verschlüsselung mit AxCrypt</value>
+  </data>
   <data name="Blog_AMEFH_SH1_Text1">
     <value>Die mobile Verschlüsselung geht über ein normales Passwort für den Sperrbildschirm hinaus. Es ist eine zentrale Anlaufstelle, um alle Ihre persönlichen Informationen und Daten auf Ihren Mobiltelefonen vor neugierigen Blicken zu schützen oder wenn Ihr Mobiltelefon verloren geht oder gestohlen wird. Die Verschlüsselung speichert die Informationen Ihres Telefons in einem unlesbaren, durcheinandergebrachten Format, das nur mit den richtigen Anmeldeinformationen gelesen werden kann. Dies bedeutet, dass, wenn Ihr Telefon in die falschen Hände gerät, niemand die Daten entschlüsseln kann, es sei denn, er kennt Ihr Passwort.</value>
+  </data>
+  <data name="Blog_AMEFH_SubHeading1">
+    <value>&lt;strong&gt;Was ist mobile Verschlüsselung?&lt;/strong&gt;</value>
   </data>
   <data name="Blog_AMEFH_Summary">
     <value>In diesem digitalen Zeitalter verstehen wir, wie wichtig es ist, Daten zu schützen.Daher freuen wir uns, Ihnen zu Beginn des neuen Jahres mitteilen zu können, dass AxCrypt nach intensiver Entwicklung endlich die mobile Verschlüsselungsfunktion für Geschäfts- und Premium-Benutzer eingeführt hat.</value>
   </data>
   <data name="Blog_AMEFH_Title">
     <value>AxCrypt Mobile Verschlüsselung ist endlich da!</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text10">
+    <value>&lt;li&gt;Jeder private geheime Schlüssel, der einem öffentlichen Freigabeschlüssel entspricht, der zum Verschlüsseln des Masterdateischlüssels wie oben beschrieben verwendet wird.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_H2_Text13">
     <value>&lt;ol style='list-style-position: inside;display: grid;gap: 20%;'&gt;&lt;li&gt;Um öffentliche Freigabeschlüssel für jeden verfügbar zu machen, der möglicherweise verschlüsselte Daten für jemand anderen verfügbar machen möchte.Wenn Sie also ein neues Gerät kaufen oder AxCrypt neu installieren müssen, können Sie es wieder auf Ihr Gerät übertragen.&lt;/li&gt;&lt;li&gt;, um die globale Passwortänderung für Sie zu aktivieren. Wenn Sie Ihr Passwort auf unserem Server ändern, werden wir Ihren privaten Schlüssel dort mit dem neuen Passwort neu verschlüsseln und dies bedeutet, dass alle Ihre bereits verschlüsselten Dateien jetzt mit dem neuen Passwort entschlüsselbar sind! Sehr praktisch. Sie können sie natürlich auch mit dem Originalkennwort entschlüsseln, das bei der Verschlüsselung der Datei verwendet wurde.&lt;/li&gt;&lt;/ol&gt;</value>
@@ -809,17 +845,32 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_AOVO_H2_Text6">
     <value>&lt;li&gt;Der Masterdateischlüssel, optional verschlüsselt mit den öffentlichen Freigabeschlüsseln anderer Empfänger.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_AOVO_H2_Text8">
+    <value>Um eine mit AxCrypt verschlüsselte Datei zu entschlüsseln, benötigen Sie entweder:</value>
+  </data>
   <data name="Blog_AOVO_H2_Text9">
     <value>&lt;li&gt;Das ursprüngliche Passwort, um den Masterdateischlüssel zu entschlüsseln.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_Heading1">
     <value>&lt;h1&gt;AxCrypt Online im Vergleich zu Offline&lt;/h1&gt;</value>
   </data>
+  <data name="Blog_AOVO_Heading2">
+    <value>&lt;h3&gt;Schlüsselverwaltung&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_AOVO_Heading3">
     <value>&lt;h3&gt;Passwortverwaltung&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_AOVO_Text1">
+    <value>Es gibt einige Bedenken hinsichtlich der Tatsache, dass AxCrypt eine Verbindung zum Internet herstellen kann.</value>
+  </data>
   <data name="Blog_AOVO_Text3">
     <value>Die ersten beiden sind leicht zu beantworten.</value>
+  </data>
+  <data name="Blog_AOVO_Text4">
+    <value>&lt;li&gt;Nein, AxCrypt muss nicht online sein, um es zu installieren oder zu betreiben.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Title">
+    <value>AxCrypt Online im Vergleich zu Offline</value>
   </data>
   <data name="Blog_BMYP_H1_SH2_Text1">
     <value>Die Tatsache, dass Sie kein hervorragendes Gedächtnis benötigen, ist der wahre Vorteil der Verwendung eines Passwort-Managers, um Ihre Online-Sicherheit zu erhöhen. Dies bedeutet, dass jeder die neuesten Passwortsicherheitshinweise anwenden kann.</value>
@@ -854,6 +905,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_BSTSSCE_H1_SH4_Text3">
     <value>Zusammenfassend lässt sich sagen, dass Verschlüsselung für die heutige Internetsicherheit von grundlegender Bedeutung ist. Es ist ein äußerst kompliziertes Thema, aber wir bei AxCrypt sind stolz darauf, den Prozess für alle einfach und benutzerfreundlich zu gestalten.&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;&lt;/ol&gt;</value>
   </data>
+  <data name="Blog_BSTSSCE_H1_SubHeading1">
+    <value>1. &lt;b&gt;Schützen Sie Ihr Netzwerk&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_BSTSSCE_Summary">
     <value>AxCrypt wünscht Ihnen frohe Weihnachten und einen guten Start ins Jahr 2021. Unser Team hat sich für die Weihnachtszeit ein paar Tipps ausgedacht, um Ihre Daten bestmöglich zu schützen.</value>
   </data>
@@ -871,6 +925,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_CEANK_H2_SH1_Text1">
     <value>Anbieter vermieten Basisspeicherkapazität auf virtuellen Servern nach Bedarf, anstatt eine teure Hardware zu kaufen. Beispiele dafür können SaaS-Anwendungen wie Salesforce, MailChimp und Slack sein. SaaS ist wie das Mieten eines Hauses: Der Vermieter unterhält das Haus, aber der Mieter darf es meistens nutzen.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_SubHeading1">
+    <value>&lt;b&gt;IaaS - Infrastruktur als Dienstleistung&lt;/b&gt;</value>
   </data>
   <data name="Blog_CEANK_H2_SubHeading2">
     <value>&lt;b&gt;PaaS - Platform-as-a-Service&lt;/b&gt;</value>
@@ -899,6 +956,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_CHHSSO_H2_Text4">
     <value>&lt;li&gt;Veraltete Software kann Ihr Gerät anfälliger für Cyberbedrohungen machen.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H2_Text5">
+    <value>&lt;li&gt;Ältere Antiviren - Sicherheitssoftware, die nicht auf dem neuesten Stand gehalten wurde, schützt Sie weniger effektiv vor den neuesten Cyber-Gefahren.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_H3_SH3_Text1">
     <value>Es ist wichtig, sichere Passwörter für alle Ihre Geräte zu haben. Ihre Passwörter sollten eindeutig und kompliziert sein und mindestens 12 Zeichen enthalten, einschließlich Zahlen, Großbuchstaben, Kleinbuchstaben und Symbolen. Wenn Sie Ihre Passwörter regelmäßig ändern, können Sie Hacker in Schach halten. AxCrypt bietet einen Passwortverwaltungsgenerator, der sicherstellt, dass ihre Passwörter sicher und sicher sind.</value>
   </data>
@@ -910,6 +970,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_CHHSSO_H3_SubHeading3">
     <value>&lt;strong&gt;Ein starker Passwort-Manager&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading4">
+    <value>&lt;strong&gt;Regelmäßige Sicherung&lt;/strong&gt;</value>
   </data>
   <data name="Blog_CHHSSO_Heading1">
     <value>Was ist Cyberhygiene?</value>
@@ -923,6 +986,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_CHHSSO_Summary">
     <value>Der Begriff "Cyberhygiene" bezieht sich auf die Maßnahmen, die Benutzer ergreifen, um ihre Online-Sicherheit und den Systemzustand zu verbessern.</value>
   </data>
+  <data name="Blog_Conclusion_ContactUs_Support">
+    <value>kontaktieren Sie uns &lt;a href='mailto:support@axcrypt.net '&gt;support@axcrypt.net &lt;/a&gt; für alle Fragen.</value>
+  </data>
   <data name="Blog_Conclusion_ContactUs_Text1">
     <value>Kontaktieren Sie uns unter &lt;a href='mailto:support@axcrypt.net '&gt;support@axcrypt.net &lt;/a&gt; oder &lt;a href='mailto:business@axcrypt.net '&gt;business@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
   </data>
@@ -932,6 +998,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_Conclusion_FeaturePage_Text1">
     <value>&lt;a href='https://axcrypt.net/information/features'&gt;Have a look at AxCrypt Feature Page&lt;/a&gt; um mehr darüber zu erfahren, wie AxCrypt Ihre Dateien und Daten sichern kann und die &lt;a href='https://www.axcrypt.net/pricing '&gt;Pricing Page &lt;/a&gt;, die zeigt, welche Art von Verschlüsselungsabonnements AxCrypt anbietet.</value>
   </data>
+  <data name="Blog_Conclusion_FuturePageText">
+    <value>&lt;a href='https://axcrypt.net/information/features'&gt;Schauen Sie sich die AxCrypt-Funktionsseite&lt;/a&gt; an, um mehr darüber zu erfahren, wie AxCrypt Ihre Dateien und Daten sichern kann </value>
+  </data>
   <data name="Blog_Conclusion_HealthCare_Text1">
     <value>Werfen Sie einen Blick auf die AxCrypt-Funktionsseite, um mehr darüber zu erfahren, wie AxCrypt Dateien und Daten sichern kann, und auf die Preisseite, die zeigt, welche Art von Verschlüsselungsabonnements AxCrypt anbietet.&lt;a href=' https://www.axcrypt.net/industries/healthcare'&gt;  Read more about how we serve the healthcare industry&lt;/a&gt;</value>
   </data>
@@ -940,6 +1009,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_Conclusion_ReadBlogPost_Text1">
     <value>&lt;a href='https://www.axcrypt.net/blog'&gt;Read our latest blog post &lt;/a&gt;  weitere Informationen zum Schutz Ihrer Daten:</value>
+  </data>
+  <data name="Blog_Conclusion_SocialMedia_Text1">
+    <value>Folgen Sie unseren Social-Media-Handles, um mehr über bevorstehende Funktionen und Angebote zu erfahren &lt;strong&gt; (&lt;a href='https://facebook.com/axcrypt'&gt;Facebook&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;Instagram&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;Twitter&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;Linkedin&lt;/a&gt;)</value>
   </data>
   <data name="Blog_Conclusion_Text1">
     <value>Aufgrund der schnellen Entwicklung des Mobiltelefongeschäfts und des Aufkommens von Cloud-Diensten und Apps sind Mobiltelefone zunehmend anfälliger. Im Gegensatz zur zunehmenden Verbreitung von Smartphones hat die mobile Sicherheit Millionen von Verbrauchern noch nicht erreicht.</value>
@@ -992,8 +1064,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_CSFE_H2_SH2_Text1">
     <value>Der Hauptschlüssel ist sehr sicher und kann als automatische Freigabe von Dateien mit den Administratoren des Unternehmens angesehen werden. Es ermöglicht Geschäftsführern, Dateien von anderen Mitgliedern des Unternehmens wiederherzustellen. Dies vermeidet die Möglichkeit, wichtige Dateien zu verlieren. Es gehen niemals Dokumente verloren, wenn Mitarbeiter die Kennwörter kündigen oder vergessen, solange die Unternehmensadministratoren die Anmeldeinformationen im Auge behalten.&lt;a href='https://www.axcrypt.net/blog/master-key '&gt; Read more about AxCrypt's master key feature here &lt;/a&gt;</value>
   </data>
+  <data name="Blog_CSFE_H2_SubHeading2">
+    <value>&lt;strong&gt;Hauptschlüssel&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CSFE_Heading1">
     <value>Was ist Cybersicherheitsbewusstsein und warum ist es wichtig?</value>
+  </data>
+  <data name="Blog_CSFE_Heading2">
+    <value>Wie profitieren AxCrypt-Mitarbeiter?</value>
   </data>
   <data name="Blog_CSFE_Summary">
     <value>Cyberkriminelle entwickeln ständig neue Wege, um über die neuesten Schutztechniken und -technologien hinaus in die Posteingänge und Browser der Mitarbeiter vorzudringen.</value>
@@ -1010,6 +1088,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_CWELTI_H1_Text1">
     <value>Eine Kryptowährung oder Krypto ist dezentrales digitales Geld, das auf der Blockchain-Technologie basiert. Kryptowährung ist ein digitales Asset, das auf einem Netzwerk basiert, das auf einer großen Anzahl von Computern verteilt ist und durch Kryptografie gesichert ist, was Fälschungen oder Doppelausgaben nahezu unmöglich macht. Es kann als Zahlungsmittel für den Kauf von Waren und Dienstleistungen, aber auch als Investition verwendet werden. Da diese Art von Währung nicht reguliert ist, handeln Käufer sie gerne mit Gewinn, wie sie es bei anderen Vermögenswerten wie Aktien und Edelmetallen tun würden.</value>
   </data>
+  <data name="Blog_CWELTI_H3_Text2">
+    <value>Eine Datenbank ist eine Sammlung von Informationen, die elektronisch auf einem Computersystem gespeichert sind. Daten müssen strukturiert und bei Bedarf gefiltert werden, um spezifische Informationen zu finden.</value>
+  </data>
   <data name="Blog_CWELTI_H5_Text1">
     <value>Das Wort "Kryptowährung" leitet sich von den Wörtern "Kryptographie" und "Währung" ab.</value>
   </data>
@@ -1021,6 +1102,18 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_CWELTI_Heading1">
     <value>Was ist Kryptowährung?</value>
+  </data>
+  <data name="Blog_CWELTI_Heading3">
+    <value>Blockchain erklärt</value>
+  </data>
+  <data name="Blog_CWELTI_Heading4">
+    <value>Vor- und Nachteile von Kryptowährungen</value>
+  </data>
+  <data name="Blog_CWELTI_Heading5">
+    <value>Was ist Kryptographie?</value>
+  </data>
+  <data name="Blog_CWELTI_Heading7">
+    <value>Hier bei AxCrypt</value>
   </data>
   <data name="Blog_CWELTI_Summary">
     <value>Eine Kryptowährung oder Krypto ist dezentrales digitales Geld, das auf der Blockchain-Technologie basiert. Kryptowährung ist ein digitales Asset, das auf einem Netzwerk basiert, das über eine große Anzahl von Computern verteilt ist.</value>
@@ -1052,6 +1145,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_DEVFE_H3_Text4">
     <value>AxCrypt arbeitet mit Dateiverschlüsselung und eignet sich am besten zum Schutz von Daten im Cloud-Speicher und wenn Sie Ihre verschlüsselten Daten freigeben möchten. AxCrypt verwendet eine 256-Bit-Verschlüsselung, um Ihre Daten in allen drei Phasen ihres Lebenszyklus zu schützen: im Ruhezustand, bei der Übertragung und bei der Verwendung. Mit AxCrypt können gesicherte Dateien von anderen AxCrypt-Benutzern mit ihren eigenen Passwörtern geöffnet werden, und es ist auch einfacher, Ihre Online-Assets zu schützen. AxCrypt verschlüsselt automatisch Daten auf Google Drive, Dropbox und anderen Cloud-Speicheranbietern. Benutzer können eine verschlüsselte Datei per E-Mail senden, was bedeutet, dass selbst wenn die E-Mail gehackt wird, die verschlüsselte Datei nicht kompromittiert wird und nur mit einem eindeutigen Schlüssel darauf zugegriffen werden kann. Darüber hinaus bietet es ein Tool für die Zusammenarbeit, mit dem Benutzer gesicherte Dateien und Daten mit wichtigen Freigabefunktionen für andere Benutzer freigeben können. Lesen Sie hier mehr über die Schlüsselverwaltungsfunktion von AxCrypt: &lt;a href='https://axcrypt.net/blog/fundamentals-of-key-management'&gt;https://axcrypt.net/blog/fundamentals-of-key-management&lt;/a&gt;</value>
   </data>
+  <data name="Blog_DEVFE_Heading1">
+    <value>Warum ist es notwendig, Daten zu verschlüsseln?</value>
+  </data>
   <data name="Blog_DEVFE_Heading3">
     <value>Wie unterscheidet sich AxCrypt von BitLocker und FileVault?</value>
   </data>
@@ -1082,8 +1178,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EAB_H1_Text4">
     <value>Glückliche AxCrypting!</value>
   </data>
+  <data name="Blog_EAB_Heading1">
+    <value>&lt;h3&gt;Biometrie zur Verschlüsselung&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_EAB_Summary">
     <value>Es gibt mehrere grundlegende Probleme bei der Verwendung von biometrischen Daten wie Fingerabdrücken, Gesichtserkennung usw. zur Authentifizierung. Noch problematischer ist es, wenn es um Verschlüsselung geht. Es gibt zwei Hauptprobleme bei der Verwendung von Biometrie zur Authentifizierung.</value>
+  </data>
+  <data name="Blog_EAB_Text1">
+    <value>Es gibt mehrere grundlegende Probleme bei der Verwendung von biometrischen Daten wie Fingerabdrücken, Gesichtserkennung usw. zur Authentifizierung. Noch problematischer ist es, wenn es um Verschlüsselung geht.</value>
   </data>
   <data name="Blog_EAB_Text2">
     <value>Es gibt zwei Hauptprobleme bei der Verwendung von Biometrie zur Authentifizierung.</value>
@@ -1094,11 +1196,20 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EAB_Text8">
     <value>Ein gestohlenes Passwort hingegen ist vergleichsweise trivial zu ändern.</value>
   </data>
+  <data name="Blog_EAB_Title">
+    <value>Verschlüsselung und Biometrie</value>
+  </data>
   <data name="Blog_EDIKPNY_H1_SH2_Text1">
     <value>Unsere Website wurde erweitert und leicht modifiziert, um Ihnen das Klicken und Suchen nach Informationen zu erleichtern. Wir freuen uns auch sehr, Ihnen verschiedene Sprachen zur Verfügung stellen zu können. AxCrypt ist in 12 Sprachen verfügbar und zählt.</value>
   </data>
+  <data name="Blog_EDIKPNY_H1_SH3_Text1">
+    <value>Wir haben 900'000 eindeutige AxCrypt-Benutzer erreicht. Ein großer Meilenstein für uns, der uns sehr stolz und dankbar für Ihre engagierte Unterstützung und Ihr Engagement für unsere Software macht.</value>
+  </data>
   <data name="Blog_EDIKPNY_H1_SH4_Text1">
     <value>Neue Herausforderungen für unser Team und spannende Neuigkeiten für Sie!</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SH5_Text1">
+    <value>Neue Tutorial-Videos in verschiedenen Sprachen (Englisch, Deutsch, Französisch und Spanisch)</value>
   </data>
   <data name="Blog_EDIKPNY_H1_SH5_Text2">
     <value>Blogbeiträge auf Englisch und Französisch verfügbar</value>
@@ -1120,6 +1231,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EDIKPNY_H1_SubHeading4">
     <value>&lt;h3 style='margin-block: 0;'&gt;Was für 2021 zu erwarten ist&lt;/ h3&gt;</value>
+  </data>
+  <data name="Blog_EDIKPNY_H1_SubHeading6">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Entspannen Sie sich mehr, sorgen Sie sich weniger&lt;/h2&gt;</value>
   </data>
   <data name="Blog_EDIKPNY_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;Das Beste von 2020&lt;/h2&gt;</value>
@@ -1145,6 +1259,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EFPECT_H1_SubHeading3">
     <value>&lt;strong&gt;Zunahme von Insider-Bedrohungen&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EFPECT_H1_SubHeading4">
+    <value>&lt;strong&gt;Remote- und Cloud-Angriffe&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EFPECT_H2_SH2_Text1">
     <value>In den nächsten Jahren werden Workstations, die Daten enthalten, die nach der Erstverschlüsselung für längere Zeit sicher aufbewahrt werden müssen, eine Post-Quanten-Kryptographie erfordern. Quantencomputer sind extrem schwierig zu konstruieren. Es wurde noch keiner konstruiert, der trotz vieler Versuche einen herkömmlichen Computer übertreffen kann. Dem Artikel zufolge könnten Quantenmaschinen jedoch innerhalb der nächsten 10 bis 20 Jahre Realität werden. Die Quantenkryptographie verwendet im Gegensatz zur mathematischen Verschlüsselung die Quantenphysik, um sichere Daten zu übermitteln, und ist wirklich nicht hackbar. Quantenkryptographie ist ein quantenmechanischer Ansatz zur Sicherung der Verteilung symmetrischer Verschlüsselungsschlüssel. Quantenschlüsselverteilung ist ein genauerer Begriff dafür (QSV). Die verschiedenen QSV-Techniken sollen sicherstellen, dass jeder Lauscher, der versucht, die übertragenen Photonen zu überwachen, die Übertragung stören würde.</value>
   </data>
@@ -1154,8 +1271,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EFPECT_Summary">
     <value>Verschlüsselung ist für den Schutz von Geschäftsgeheimnissen, Identifikationsdaten, Finanztransaktionen, sensiblen persönlichen Informationen und anderen Formen von geschützten Daten, die digital gespeichert werden, unerlässlich.</value>
   </data>
+  <data name="Blog_EFPECT_Title">
+    <value>Verschlüsselung aus der Zukunftsperspektive und aufkommende Cyberbedrohungen</value>
+  </data>
   <data name="Blog_EHI_H3_SH1_Text1">
     <value>Mit AxCrypt können gesicherte Dateien von anderen AxCrypt-Benutzern mit ihren eigenen Passwörtern geöffnet werden. Auf diese Weise können Mitarbeiter des Gesundheitswesens medizinische Informationen auf einfache und sichere Weise austauschen. Weitere Informationen zum AxCrypt-Schlüssel und zum Teilen finden Sie in unserem Tutorial zum Teilen von Schlüsseln unter &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFS'&gt; YouTube&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_EHI_H3_SubHeading1">
+    <value>&lt;strong&gt;Teamwork mit Schlüsselfreigabe&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EHI_H3_SubHeading4">
+    <value>&lt;strong&gt;DSGVO- und HIPAA-konform&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EHI_Heading2">
     <value>Warum ist es wichtig, Verschlüsselung für die Gesundheitsbranche zu verwenden?</value>
@@ -1165,6 +1291,12 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EIAWII_H3_Text1">
     <value>Die Regierung der Vereinigten Staaten und größere Technologieunternehmen befinden sich seit langem in einer Pattsituation in Bezug auf den Datenschutz und das Recht der Regierung, auf verschlüsselte Informationen zuzugreifen. Sie erinnern sich vielleicht an den Streit zwischen Apple und dem FBI im Fall San Bernardino. Apple weigerte sich, eine Hintertür für die Bundesbehörde zu schaffen, was es für das FBI unglaublich schwierig machte, auf das Telefon des Schützen zuzugreifen. Apple kam zu diesem Schluss, da die Schaffung einer Hintertür "einen gefährlichen Präzedenzfall" für das verschlüsselte Material aller iPhone-Nutzer schaffen würde.</value>
+  </data>
+  <data name="Blog_EIAWII_Heading1">
+    <value>&lt;h3&gt;Abschnitt 230&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_EIAWII_Heading2">
+    <value>&lt;h3&gt;Verschlüsselungs-Backdoor&lt;/h3&gt;</value>
   </data>
   <data name="Blog_EIAWII_Heading4">
     <value>&lt;h3&gt;Verschlüsselung während einer Pandemie&lt;/h3&gt;</value>
@@ -1190,6 +1322,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EIBM_H2_SH2_Text3">
     <value>Wir haben außerdem Funktionen zur Passwortverwaltung zur Verfügung. Machen Sie sich keine Sorgen mehr, dass Sie sich all Ihre verschiedenen Passwörter merken müssen - wir kümmern uns darum für Sie. Bewahren Sie alle Ihre Passwörter und Geheimnisse in unserer Cloud sicher auf.</value>
   </data>
+  <data name="Blog_EIBM_H2_SubHeading2">
+    <value>&lt;strong&gt;1. Schützen Sie Ihr Netzwerk&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EIBM_H2_Text1">
     <value>Abgesehen von den offensichtlichen personenbezogenen Daten (PII) wie Namen, Adressen und Sozialversicherungsnummern verarbeitet die Finanzbranche regelmäßig auch Daten wie Einkommen, Kreditwürdigkeit, Sammlungshistorie und PII von Familienmitgliedern sowie nicht öffentliche personenbezogene Daten (NPI).</value>
   </data>
@@ -1211,6 +1346,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EIBM_H5_SH5_Text1">
     <value>Mehrsprachige Unterstützung für Englisch, Niederländisch, Französisch, Deutsch, Italienisch, Koreanisch, Chinesisch, Polnisch, Portugiesisch, Russisch, Spanisch, Schwedisch, Türkisch und mehr.</value>
   </data>
+  <data name="Blog_EIBM_H5_SubHeading3">
+    <value>&lt;strong&gt;Bewusstsein für Cloud-Speicher und Passwortverwaltung&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EIBM_H5_SubHeading4">
+    <value>&lt;strong&gt;Datenschutzkonform&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EIBM_Heading1">
     <value>Einführung in die Kryptographie</value>
   </data>
@@ -1219,6 +1360,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EIBM_Summary">
     <value>In der Finanzwelt ist Datensicherheit ein ernstes Geschäft.Verschlüsselung ermöglicht verschiedene Arten von wirtschaftlichen Aktivitäten, die sonst nicht möglich wären.</value>
+  </data>
+  <data name="Blog_EIBM_Title">
+    <value>Verschlüsselung im Bankenmarkt</value>
   </data>
   <data name="Blog_EITPS_Conclusion_ContactUs">
     <value>Für jede Anfrage oder Frage können Sie sich an diese wenden &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; or &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; Sie können auch unsere Website besuchen  &lt;a href='https://www.axcrypt.net/' style='color: #efefef; font-weight: 800;'&gt;https://www.axcrypt.net/&lt;/a&gt;. Folgen Sie unseren Social-Media-Handles für das neueste Update</value>
@@ -1229,8 +1373,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EITPS_H1_SH2_Text1">
     <value>Die meisten Unternehmen sammeln digitale Informationen von ihren Kunden; Es ist die Pflicht des Unternehmens, diese Daten sicher aufzubewahren, Informationen sollten nicht in die Hände anderer Unternehmen oder Cyberkrimineller gelangen.</value>
   </data>
+  <data name="Blog_EITPS_H1_SubHeading1">
+    <value>&lt;strong&gt;Große Unternehmen müssen beim Datenschutz vorsichtig sein&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EITPS_H1_SubHeading5">
+    <value>&lt;strong&gt;Jede Wi-Fi-Verbindung kann von einem Eindringling abgefangen werden&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EITPS_H2_SH2_Text1">
     <value>Viele Menschen gehen davon aus, dass die Verschlüsselung von Daten die Zeit zum Abrufen und Untersuchen von Informationen verlängert und die Effizienz verringert.</value>
+  </data>
+  <data name="Blog_EITPS_H2_SubHeading1">
+    <value>&lt;strong&gt;Hohe Kosten&lt;/strong&gt;</value>
   </data>
   <data name="Blog_EITPS_H2_SubHeading2">
     <value>&lt;strong&gt;Reduziert die Produktivität&lt;/strong&gt;</value>
@@ -1244,11 +1397,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EITPS_H3_SubHeading2">
     <value>&lt;strong&gt;Zugriff auf verschiedene Geräte&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_EITPS_H3_SubHeading3">
+    <value>&lt;strong&gt;Schlüsselfreigabe&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EITPS_Heading1">
     <value>Das Bedürfnis nach Datensicherheit</value>
   </data>
   <data name="Blog_EITPS_Text1">
     <value>&lt;i&gt;Bruce Schneier, Spezialist für Sicherheit und Datenschutz, sagt: “Verschlüsselung funktioniert am besten, wenn sie allgegenwärtig und automatisch ist. Es sollte standardmäßig für alles aktiviert sein, nicht für eine Funktion, die Sie nur aktivieren, wenn Sie etwas tun, das Sie für schützenswert halten.”&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_EITPS_Title">
+    <value>Verschlüsselung ist nicht das Problem, sondern die Lösung</value>
   </data>
   <data name="Blog_EVA_H1_Text3">
     <value>Wenn Sie den Zugriff auf eine Datei mithilfe der Zugriffssteuerung einschränken, z. B. wenn Sie eine Datei auf einem Netzwerkserver oder in Ihrem Cloud-Speicher speichern, liegt es in der Verantwortung des Betriebssystems oder Cloud-Speicherservers, Sie nach Anmeldeinformationen (z. B. einem Kennwort) zu fragen, um nachzuweisen, wer Sie sind, und dann die Einschränkungen durchzusetzen, die Sie für Ihre Dateien festgelegt haben. Die Authentifizierung kann beispielsweise durch eine 2-Faktor-Authentifizierung verstärkt werden.</value>
@@ -1258,6 +1417,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EVA_H2_Text2">
     <value>Es gibt keine Software, die die Sicherheit erzwingt, die Daten werden mit Verschlüsselung in eine Form umgewandelt, die nichts über den wirklichen Inhalt preisgibt. Um die Transformation rückgängig zu machen, um sie zu entschlüsseln, ist der richtige kryptografische Schlüssel erforderlich. Wenn der falsche Schlüssel angegeben wird, kann die Entschlüsselungssoftware nur fehlschlagen. Es gibt keine Umgehung, indem Sie Administrator sind oder über Rückkanäle auf die Daten zugreifen.</value>
+  </data>
+  <data name="Blog_EVA_H2_Text3">
+    <value>Dies bedeutet auch, dass im Gegensatz zur Zugriffskontrolle jeder, der den richtigen Schlüssel besitzt, die Daten entschlüsseln kann. Es spielt keine Rolle, wer Sie sind oder zu sein behaupten. Wenn Sie den Schlüssel haben, können Sie ihn entschlüsseln.</value>
   </data>
   <data name="Blog_EVA_H2_Text4">
     <value>Deshalb muss der Entschlüsselungsschlüssel geheim gehalten werden. Das ist auch der Grund, warum der verschlüsselte Inhalt unwiederbringlich verloren geht, wenn der Entschlüsselungsschlüssel verloren geht.</value>
@@ -1274,14 +1436,26 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EVA_H3_Text3">
     <value>Das bedeutet auch, dass, wenn zwei Benutzer tatsächlich dasselbe Passwort haben, sie sich gegenseitig Dateien entschlüsseln können. Das ist ein weiterer Grund, ein wirklich langes, gutes und sicheres Passwort zu wählen, damit dieses Risiko effektiv auf Null reduziert wird.</value>
   </data>
+  <data name="Blog_EVA_H3_Text4">
+    <value>Einer der Gründe, warum wir das Passwort für die Verschlüsselung überhaupt überprüfen, besteht darin, das Risiko zu verringern, dass Sie das Passwort beim Verschlüsseln von Dateien falsch eingeben, was bei AxCrypt 1 leider allzu häufig vorkommt. Auch mit der Anforderung, es zweimal einzugeben.</value>
+  </data>
+  <data name="Blog_EVA_Heading1">
+    <value>&lt;h3&gt;Zugangskontrolle&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_EVA_Heading2">
     <value>&lt;h3&gt;Verschlüsselung&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_EVA_Heading3">
+    <value>&lt;h3&gt;AxCrypt 2 Anmelden&lt;/h3&gt;</value>
   </data>
   <data name="Blog_EVA_Summary">
     <value>Eine Quelle der allgemeinen Verwirrung ist der Unterschied zwischen Verschlüsselung und Zugriffskontrolle und worum es bei der AxCrypt 2-Anmeldung geht.Zugriffskontrolle liegt vor, wenn eine bestimmte Identität von einer höheren Behörde Berechtigungen erhält (autorisiert ist), um Aktionen wie das Lesen einer Datei auszuführen.</value>
   </data>
   <data name="Blog_EVA_Text1">
     <value>Eine Quelle der allgemeinen Verwirrung ist der Unterschied zwischen &lt;strong&gt;Verschlüsselung&lt;/strong&gt; und &lt;strong&gt;Zugriffskontrolle&lt;/strong&gt; und worum es bei der AxCrypt 2 &lt;strong&gt;Anmeldung&lt;/strong&gt; geht.</value>
+  </data>
+  <data name="Blog_EVA_Title">
+    <value>Verschlüsselung vs. Authentifizierung</value>
   </data>
   <data name="Blog_Feature_Conclusion_Text1">
     <value>&lt;a href='https://www.axcrypt.net/information/features'&gt;Check out AxCrypt’s feature page to see what we offer&lt;/a&gt;</value>
@@ -1307,6 +1481,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_FOKM_H3_SH4_Text1">
     <value>Der Hauptschlüssel ist sehr sicher und kann als automatische Freigabe von Dateien mit den Administratoren des Unternehmens angesehen werden. Es ermöglicht Geschäftsführern, Dateien von anderen Mitgliedern des Unternehmens wiederherzustellen. Dies vermeidet die Möglichkeit, wichtige Dateien zu verlieren. Es gehen niemals Dokumente verloren, wenn Mitarbeiter die Kennwörter kündigen oder vergessen, solange die Unternehmensadministratoren die Anmeldeinformationen im Auge behalten. Die Hauptschlüsselfunktion ist nur für Geschäftsbenutzer verfügbar. &lt;a href='https://axcrypt.net/information/features '&gt;  Click here &lt;/a&gt;, um weitere Funktionen für Business-Abonnements zu überprüfen. Lesen Sie mehr über Axcrypts Hauptschlüssel &lt;a href= 'https://www.axcrypt.net/blog/master-key '&gt;feature here&lt;/a&gt;.</value>
   </data>
+  <data name="Blog_FOKM_H3_SubHeading4">
+    <value>&lt;strong&gt;Hauptschlüssel&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_FOKM_H3_Text1">
     <value>Für Sicherheit und Compliance ist eine ordnungsgemäße Schlüsselverwaltung unerlässlich. Sie können entscheiden, wer Zugriff auf welche Bereiche Ihrer Daten hat. Es verhindert auch den Verlust von Schlüsseln, die nicht verwendet werden. Aufgrund der Aufzeichnungen wissen Sie, wann die Schlüssel herausgenommen wurden und wann auf welche Orte zugegriffen wurde. AxCrypt hat eine Reihe von Eigenschaften, die es zu einer guten Schlüsselverwaltungslösung machen.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
@@ -1324,6 +1501,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_GAES256BEWA_Text1">
     <value>AES ist ein symmetrischer Algorithmus, dh er verwendet denselben Schlüssel für die Verschlüsselung und Entschlüsselung. Die Technik wurde für Schlüsselgrößen von 128, 192 und 256 Bit entwickelt. Es ist bekannt als der stärkste und robusteste Verschlüsselungsstandard, der heute kommerziell verfügbar ist.</value>
+  </data>
+  <data name="Blog_GAES256BEWA_Title">
+    <value>Holen Sie sich AES 256-Bit-Verschlüsselung mit AxCrypt</value>
   </data>
   <data name="Blog_HAPYD_Conclusion_Heading1">
     <value>Was sind also die spezifischen Elemente, die man bei der Auswahl einer Datenverschlüsselungssoftware berücksichtigen sollte?</value>
@@ -1349,8 +1529,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HAPYD_H3_text2">
     <value>Wir sind ein hochmotiviertes, kreatives und leistungsstarkes Team, das mit Leidenschaft Datensicherheitslösungen für Einzelpersonen und Teams einfach und zuverlässig macht. &lt;a href=' https://www.axcrypt.net'&gt;Check out our website and products&lt;/a&gt;</value>
   </data>
+  <data name="Blog_HAPYD_Heading2">
+    <value>Welche Art von Informationen sollten Sie schützen?</value>
+  </data>
   <data name="Blog_HAPYD_Heading3">
     <value>Hier bei AxCrypt</value>
+  </data>
+  <data name="Blog_HAPYD_Summary">
+    <value>Das Verbot der Ende-zu-Ende-Verschlüsselung könnte Teil einer neuen Strafverfolgung sein, die von bestimmten Regierungen ergriffen wird, um illegale Verhaltensweisen zur Gewährleistung der nationalen Sicherheit offenzulegen.</value>
+  </data>
+  <data name="Blog_HAPYD_Title">
+    <value>Wie AxCrypt Ihre Daten schützt</value>
   </data>
   <data name="Blog_HAVTYB_H1_SH3_Text1">
     <value>Hauptschlüssel ist unglaublich sicher; Es kann als automatisches Dateifreigabesystem mit den Managern des Unternehmens betrachtet werden. Geschäftsvorgesetzte können dank dieser Funktion Dateien von anderen Mitarbeitern abrufen. Dies eliminiert die Möglichkeit, wichtige Dateien zu verlieren. Solange die Geschäftsleiter die Passwörter protokollieren, gehen niemals Papiere verloren, wenn Mitarbeiter kündigen oder sie vergessen. Geschäftsbenutzer sind die einzigen, die die Hauptschlüsselfunktionalität nutzen können. So zeigen Sie andere Vorteile des Business-Abonnements an &lt;a href='https://axcrypt.net/information/features '&gt;click here&lt;/a&gt;. Erfahren Sie mehr über die&lt;a href='https://www.axcrypt.net/blog/master-key '&gt; master key function&lt;/a&gt; von AxCrypt hier</value>
@@ -1379,6 +1568,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HAVTYB_H2_Text3">
     <value>&lt;strong&gt;Das Vertrauen der Verbraucher kann durch Verschlüsselung erhöht werden:&lt;/strong&gt; Werbung dafür, dass Ihr Unternehmen bestimmte Verschlüsselungsstandards einhält, könnte Ihnen angesichts des aktuellen Vertrauensverlusts der Verbraucher einen Wettbewerbsvorteil verschaffen.</value>
   </data>
+  <data name="Blog_HAVTYB_Heading1">
+    <value>Der Mehrwert von AxCrypt für Ihr Unternehmen</value>
+  </data>
   <data name="Blog_HAVTYB_Summary">
     <value>Wenn sensible Daten aus Ihrem Unternehmen in der Cloud gespeichert sind, kann die Verschlüsselung das Risiko eines Datendiebstahls erheblich senken.</value>
   </data>
@@ -1405,6 +1597,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_HEIDS_Heading5">
     <value>&lt;h3&gt;Keine Schulung und Richtlinien&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading6">
+    <value>&lt;h3&gt;Bewusstsein&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HEIDS_Heading8">
     <value>&lt;h3&gt;Uneingeschränkte Datennutzung&lt;/h3&gt;</value>
@@ -1447,6 +1642,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HFMICTETP_Text3">
     <value>Diese Fähigkeit der Dateiverschlüsselungssoftware verändert das Dateiverwaltungsspiel, da sie die Dokumentensicherheit verbessert, indem sie Daten vor neugierigen Blicken, Abhörben von Benutzern, Cyberkriminellen und heimlichen Organisationen schützt.</value>
   </data>
+  <data name="Blog_HFMICTETP_Title">
+    <value>Wie sich die Dateiverwaltung dank Verschlüsselungssoftware verändert - Ein Überblick über die neuesten Trends und Vorhersagen</value>
+  </data>
   <data name="Blog_HOA_H2_Text2">
     <value>&lt;b&gt;ZV:&lt;/b&gt; Wir haben viele Privatpersonen, die AxCrypt verwenden. Bei den Unternehmen sehen wir hauptsächlich Finanzdienstleistungen, staatliche Institutionen (Verwaltung, Bildung, Gesundheitswesen) und IT-Unternehmen.</value>
   </data>
@@ -1456,8 +1654,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HOA_H4_Text1">
     <value>&lt;b&gt;ZV:&lt;/b&gt; Immer mehr Teile unserer Gesellschaft sind vernetzt, aber in Zukunft wird es noch mehr sein. Das Internet der Dinge (IOT) ist seit einem Jahrzehnt ein Thema, aber es hat noch keine wirklichen Auswirkungen. Wenn diese Auswirkungen eintreten, bedeutet dies, dass jeder Haushalt über zahlreiche angeschlossene Geräte verfügt, von denen Sie möglicherweise nicht einmal wissen, dass sie angeschlossen und daher sehr schlecht geschützt sind. Schlechter geschützte Geräte bedeuten mehr Angriffsvektoren, die für eine Vielzahl bösartiger Absichten verwendet werden können.</value>
   </data>
+  <data name="Blog_HOA_Heading1">
+    <value>&lt;b&gt;SD: Was ist die Flaggschiff-Software von AxCrypt?&lt;/b&gt;</value>
+  </data>
   <data name="Blog_HOA_Heading2">
     <value>&lt;b&gt;SD: Welche Branchen nutzen Ihre Lösungen?&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Heading3">
+    <value>&lt;b&gt;SD: Was ist heute die schlimmste Cyberbedrohung?&lt;/b&gt;</value>
   </data>
   <data name="Blog_HOA_Heading4">
     <value>&lt;b&gt;SD: Wie wird sich die Cybersicherheitslandschaft in den nächsten Jahren verändern?&lt;/b&gt;</value>
@@ -1467,6 +1671,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_HOA_Text2">
     <value>In den 13 Jahren, in denen AxCrypt auf dem Markt ist, hat es sich zu einer der weltweit beliebtesten Verschlüsselungssoftware entwickelt. Um die Lösung weiter zu verbessern und AxCrypt auf die nächste Stufe zu heben, hat sich der Autor mit Mitbegründer Zebastian Victorin zusammengetan, um das Produkt zu kommerzialisieren. Die neue Version von AxCrypt wurde 2016 veröffentlicht, und seitdem folgten viele Updates.</value>
+  </data>
+  <data name="Blog_HOA_Title">
+    <value>Geschichte des Axcrypt</value>
   </data>
   <data name="Blog_HPDYMP_H3_Text2">
     <value>Probieren Sie eine einmonatige kostenlose Testversion aus &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Android&lt;/a&gt; oder &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;iOS&lt;/a&gt;.</value>
@@ -1480,6 +1687,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HPYBFC_Conclusion_Text2">
     <value>Zusammenfassend lässt sich sagen, dass Verschlüsselung für die heutige Internetsicherheit von grundlegender Bedeutung ist. Es ist ein äußerst kompliziertes Thema, aber wir bei AxCrypt sind stolz darauf, den Prozess für alle einfach und benutzerfreundlich zu gestalten. Sichern Sie Ihre Programme und Betriebssysteme mit Verschlüsselung. Schauen Sie sich unsere verschiedenen &lt;a href='/pricing' style='font-weight: 800;'&gt;subscriptions and features&lt;/a&gt;.</value>
   </data>
+  <data name="Blog_HPYBFC_H3_Text1">
+    <value>&lt;li&gt;Schadsoftware&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text3">
+    <value>&lt;li&gt;Erpressersoftware&lt; / li&gt;</value>
+  </data>
   <data name="Blog_HPYBFC_H3_Text4">
     <value>&lt;li&gt;Diensteverweigerung&lt;/li&gt;</value>
   </data>
@@ -1492,8 +1705,20 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HPYBFC_H5_SH3_Text1">
     <value>Durch das Sichern der Daten und der Website Ihres Unternehmens können Sie alle Informationen wiederherstellen, die Sie verlieren, wenn Sie einen Cybervorfall erleben oder Computerprobleme haben. Es ist wichtig, dass Sie Ihre wichtigsten Daten und Informationen regelmäßig sichern.</value>
   </data>
+  <data name="Blog_HPYBFC_H5_SubHeading1">
+    <value>&lt;strong&gt;Sichern Sie Ihre Hardware&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SubHeading2">
+    <value>&lt;strong&gt;Verschlüsselung&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SubHeading3">
+    <value>&lt;strong&gt;Datensicherung&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_HPYBFC_H5_SubHeading4">
     <value>&lt;strong&gt;Sensibilisierung für Cybersicherheit&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_Text1">
+    <value>Hier sind einige Tipps, wenn Sie auf Cyberbedrohungen stoßen.</value>
   </data>
   <data name="Blog_HPYBFC_Heading2">
     <value>Was ist ein Cyberangriff?</value>
@@ -1501,14 +1726,23 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HPYBFC_Summary">
     <value>'Scientia potentia est' stammt aus dem Lateinischen und bedeutet Wissen ist Macht, ist ein relevanter Aphorismus, der mit der heutigen Welt in Verbindung gebracht werden kann. Dieses Diktum ist heute aufgrund der rasanten Fortschritte in der Informationstechnologie wahrer denn je.</value>
   </data>
+  <data name="Blog_HPYBFC_Title">
+    <value>So schützen Sie Ihr Unternehmen vor Cyberbedrohungen</value>
+  </data>
   <data name="Blog_HTSCER_H1_Text1">
     <value>Dies ist eine Schritt-für-Schritt-Anleitung, wie Sie uns einen vollständigen Fehlerbericht zur Verfügung stellen. Wir bitten Sie möglicherweise, dies zu tun, wenn Sie Probleme mit AxCrypt haben. Die Informationen, die wir dadurch erhalten, helfen uns, Ihnen zu helfen!</value>
+  </data>
+  <data name="Blog_HTSCER_H1_Text4">
+    <value>Daher sollte die E-Mail eine Beschreibung des Problems und die folgenden Anhänge enthalten:</value>
   </data>
   <data name="Blog_HTSCER_H1_Text6">
     <value>Für detaillierte Anweisungen lesen Sie weiter!</value>
   </data>
   <data name="Blog_HTSCER_H4_Text1">
     <value>Schließlich benötigen wir eine Kopie Ihres Ereignisprotokolls, da hier Programmabstürze aufgezeichnet werden. Gehen Sie wie folgt vor:</value>
+  </data>
+  <data name="Blog_HTSCER_H4_Text2">
+    <value>Klicken Sie auf Ihre Startschaltfläche / Windows-Schaltfläche und geben Sie Folgendes ein:</value>
   </data>
   <data name="Blog_HTSCER_H4_Text3">
     <value>eventvwr</value>
@@ -1519,14 +1753,23 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_HTSCER_H4_Text5">
     <value>Erweitern Sie den Windows-Knoten, klicken Sie mit der rechten Maustaste auf den Knoten 'Anwendung' und wählen Sie 'Alle Ereignisse speichern unter ...'.</value>
   </data>
+  <data name="Blog_HTSCER_H4_Text6">
+    <value>Speichern Sie unter 'Dokumente' und nennen Sie die Datei 'AxCrypt'.</value>
+  </data>
   <data name="Blog_HTSCER_H4_Text7">
     <value>Auswählen, um englische (US) Nachrichtentexte einzuschließen:</value>
+  </data>
+  <data name="Blog_HTSCER_H4_Text9">
+    <value>Hängen Sie diese Datei an Ihre E-Mail an:</value>
   </data>
   <data name="Blog_HTSCER_Heading2">
     <value>&lt;h3&gt;Screenshot&lt;/h3&gt;</value>
   </data>
   <data name="Blog_HTSCER_Heading3">
     <value>&lt;h3&gt;AxCrypt Konfigurationsdateien und Fehlerprotokoll&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HTSCER_Heading4">
+    <value>&lt;h3&gt;Ereignisprotokoll&lt;/h3&gt;</value>
   </data>
   <data name="Blog_ICSHRS_H1_Text1">
     <value>Während wir uns an ein neues Arbeitsumfeld anpassen, das sich vielleicht noch niemand vorgestellt hat, hat die Pandemie Organisationen gestört und Personalmanager dazu veranlasst, die Erfüllung ihrer Aufgaben zu überdenken. Personalfachleute sorgen sich nicht nur um die Gesundheit und das Wohlbefinden ihrer Mitarbeiter während der Epidemie, sondern auch um die sichere Bearbeitung von Papierkram und die Bereitstellung von Komfort für die Millionen von Menschen, die entlassen wurden oder aus der Ferne arbeiten.</value>
@@ -1552,6 +1795,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ICSHRS_H2_SubHeading6">
     <value>&lt;strong&gt;256-Bit-Verschlüsselung mit AxCrypt&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_ICSHRS_Heading1">
+    <value>Wie funktioniert die HR-Branche im digitalen Zeitalter?</value>
+  </data>
+  <data name="Blog_ICSHRS_Heading2">
+    <value>Bedarf und Verantwortlichkeiten für Cybersicherheit im HR-Bereich</value>
+  </data>
   <data name="Blog_ICSHRS_Summary">
     <value>HRs ist für viele vertrauliche Geschäftsinformationen verantwortlich, einschließlich personenbezogener Daten von Mitarbeitern, Zahlungsdetails und anderer Informationen, die bei Offenlegung erheblichen Schaden anrichten könnten.</value>
   </data>
@@ -1573,8 +1822,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ITESBETFC_H1_SH1_Text4">
     <value>&lt;li&gt;Auch wenn Daten aufgrund eines Benutzerfehlers in die falschen Hände geraten&lt;/li&gt;</value>
   </data>
+  <data name="Blog_ITESBETFC_H1_SubHeading1">
+    <value>&lt;strong&gt;Wie schützt man Daten?&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ITESBETFC_H1_Text2">
     <value>&lt;li&gt;Geistiges Eigentum aus der Campusforschung ist sehr wertvoll.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_Text4">
+    <value>&lt;li&gt;Die Rechenleistung von Computern&lt;/li&gt;</value>
   </data>
   <data name="Blog_LYCWAR_Text1">
     <value>Wenn Sie AxCrypt 2 verwenden, müssen Sie sich zuerst "anmelden" – nach dem ersten Mal müssen Sie nur noch Ihr Passwort eingeben. Da AxCrypt eine kennwortbasierte Dateiverschlüsselungsanwendung ist, ist dies sinnvoll. Auch wenn das Passwort wirklich das einzige ist, was zum Entschlüsseln einer Datei benötigt wird, haben wir uns aus verschiedenen Gründen für die Metapher "Anmelden" entschieden, unter anderem, um es schwieriger zu machen, einen fatalen Fehler zu machen, der manchmal bei AxCrypt 1 passiert ist, nämlich das Passwort beim Verschlüsseln einer neuen Datei zweimal falsch einzugeben. Dies würde manchmal zu Datenverlust führen, und das ist schlecht.</value>
@@ -1590,6 +1845,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_LYCWAR_Text2">
     <value>Sobald Sie bei AxCrypt 2 angemeldet sind, bleibt es angemeldet, bis Sie sich abmelden oder der Bildschirmschoner aktiv wird oder das Gerät in den Ruhezustand wechselt oder Sie sich von Ihrem Benutzerkonto abmelden oder das Gerät ausschalten.</value>
+  </data>
+  <data name="Blog_LYCWAR_Text4">
+    <value>Ab und zu erhalten wir jedoch Rückmeldungen von Benutzern, die besagen: “Aber was ist, wenn jemand an meinen Computer geht? Dann sind alle meine Dateien ungeschützt.&lt;/em&gt;“.</value>
   </data>
   <data name="Blog_LYCWAR_Text6">
     <value>So einfach ist das. Bei der Sicherheit geht es um eine Kette von Maßnahmen, und es ist die schwächste, die die Stärke des Systems kontrolliert.</value>
@@ -1617,6 +1875,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_MDPNST_H2_SubHeading2">
     <value>&lt;strong&gt;Cloud-Dienste sind immer noch ein primäres Ziel &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDPNST_Heading1">
+    <value>Mobiltelefone sind zu einer neuen Front für Verbrechen geworden</value>
   </data>
   <data name="Blog_MDPNST_Heading2">
     <value>Einige der mobilen Bedrohungen, auf die Sie im Jahr 2022 achten sollten</value>
@@ -1660,6 +1921,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_MDSCBF_Title">
     <value>Große Herausforderungen für die Datensicherheit, mit denen Unternehmen im Jahr 2022 konfrontiert sind</value>
   </data>
+  <data name="Blog_MEWRECY_H1_SubHeading1">
+    <value>&lt;strong&gt;Wachsender Bedarf an mobiler Sicherheit &lt;/strong&gt;</value>
+  </data>
   <data name="Blog_MEWRECY_H1_Text1">
     <value>Für den prognostizierten Zeitraum wird ein Wachstum des globalen Marktes für mobile Verschlüsselung mit einer jährlichen Wachstumsrate von 30,55 Prozent auf 5.931,23 Millionen US-Dollar bis 2026 prognostiziert. Verschlüsselungsbereitstellungen haben in großen Unternehmen an Menge und Umfang zugenommen, da Organisationen auf zunehmend vorherrschende regulatorische und Compliance-Verpflichtungen und strengere interne Richtlinien reagiert haben.</value>
   </data>
@@ -1671,6 +1935,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_MEWRECY_H2_SH4_Text2">
     <value>AxCrypt bietet eine einmonatige kostenlose Testversion an, um alle Funktionen, einschließlich der mobilen Verschlüsselungsfunktion, auszuprobieren. Worauf warten Sie also noch? Melden Sie sich hier für eine kostenlose Testversion von AxCrypt an:</value>
+  </data>
+  <data name="Blog_MEWRECY_H2_SubHeading1">
+    <value>&lt;strong&gt;Phishing&lt;/strong&gt;</value>
   </data>
   <data name="Blog_MEWRECY_H2_SubHeading2">
     <value>&lt;strong&gt;Datenverlust&lt;/strong&gt;</value>
@@ -1714,6 +1981,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_PECA_Text2">
     <value>AxCrypt wurde erneut mit dem PCMag Editors Choice Award für die Bereitstellung der klassenbesten Verschlüsselungslösung ausgezeichnet. AxCrypt wurde in den letzten sechs Jahren vom PC Magazine als “Die beste Verschlüsselungssoftware der Welt" ausgezeichnet und hat erneut alle überrascht, indem es für die Herstellung der klassenbesten Verschlüsselungslösung ausgezeichnet und mit dem PCMag Editors Choice Award ausgezeichnet wurde. Zur vollständigen Überprüfung &lt;a href ='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium '&gt; read more here&lt;/a&gt;Das PC Magazine bietet Fachleuten der Informationstechnologie Bewertungen und Vorschauen der neuesten Hardware und Anwendungen. Es ist ein umfassender Leitfaden für die digitale Welt. Verbraucher erkennen und vertrauen der Autorität von PCMag, und die Auswahlbezeichnungen des Herausgebers helfen den Verbrauchern bei der Unterscheidung und Auswahl des besten Produkts für ihre Anforderungen.</value>
   </data>
+  <data name="Blog_PECA_Title">
+    <value>PCMag Editors Choice Award</value>
+  </data>
   <data name="Blog_PRAA_H1_Text1">
     <value>Wenn eine Datei mit AxCrypt verschlüsselt wird, wird von AxCrypt ein sehr zufälliger 128- oder 256-Bit-Schlüssel generiert. Dieser Schlüssel, der von niemandem wirklich gesehen wird, wird verwendet, um die Datei mit AES-128 oder AES-256 zu verschlüsseln. Diesen Schlüssel nennen wir den Master-Verschlüsselungsschlüssel.</value>
   </data>
@@ -1741,6 +2011,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_PYDFCG_Conclusion_Text1">
     <value>Angesichts zunehmender Cyberbedrohungen ist es wichtiger denn je, Ihre Informationen sicher zu verwahren. Sie können die Feiertage in dem Wissen genießen, dass Risiken minimiert werden, indem Sie die Cybersicherheit mit AxCrypt proaktiv angehen.</value>
   </data>
+  <data name="Blog_PYDFCG_Heading1">
+    <value>Warum ist es wichtig, Daten während der Feiertage sicher aufzubewahren?</value>
+  </data>
   <data name="Blog_Review_CompareCamp">
     <value>Die Auswahl einer Verschlüsselungssoftware kann zunächst kompliziert sein. Es wird sich jedoch auf lange Sicht als unglaublich vorteilhaft für Sie herausstellen. Wenn Sie nach einem Beispiel suchen, wo Sie anfangen sollen, können Sie erkunden &lt;a href=' https://comparecamp.com/axcrypt-review-pricing-pros-cons-features /'&gt;AxCrypt&lt;/a&gt;.</value>
   </data>
@@ -1756,11 +2029,26 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ROCP_H1_SubHeading1">
     <value>&lt;strong&gt;Informationszugriff einschränken&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_ROCP_H1_SubHeading2">
+    <value>&lt;strong&gt;Deaktivieren Sie die Optionen 'Passwort merken' oder Hinweise&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading3">
+    <value>&lt;strong&gt;Erstellen Sie starke, lange und unverwechselbare Passwörter&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading4">
+    <value>&lt;strong&gt;Nutzen Sie ein Multi-Faktor-Authentifizierungssystem.&lt;/stark&gt;</value>
+  </data>
+  <data name="Blog_ROCP_H1_SubHeading5">
+    <value>&lt;strong&gt;Verwenden Sie einen Passwort-Manager&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ROCP_Heading1">
     <value>Wie sollte ein Unternehmen seine Passwörter organisieren.</value>
   </data>
   <data name="Blog_ROCP_Heading2">
     <value>Warum Sie die Passwörter Ihres Unternehmens organisieren sollten.</value>
+  </data>
+  <data name="Blog_ROCP_Summary">
+    <value>Es kann schwierig sein, alle Passwörter und Anmeldeinformationen, die Sie als Geschäftsinhaber erwerben, sowohl individuell als auch beruflich im Auge zu behalten.</value>
   </data>
   <data name="Blog_ROCP_Text1">
     <value>Es kann schwierig sein, alle Passwörter und Anmeldeinformationen, die Sie als Geschäftsinhaber erwerben, sowohl individuell als auch beruflich im Auge zu behalten. Der Schutz der Passwörter sowohl Ihres Unternehmens als auch Ihrer Kunden macht es noch schwieriger. Einerseits ist die Verwendung des gleichen Passworts für alle Ihre Anmeldungen riskant und kann zum Hacken Ihrer Geschäftskonten führen. Andererseits können Sie aufgrund der befristeten Tätigkeit bestimmter Mitarbeiter oder Berater möglicherweise nicht immer regeln, wer Zugriff auf welche Anmeldeinformationen innerhalb der Organisation hat.</value>
@@ -1822,8 +2110,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_SSING_H1_SubHeading4">
     <value>&lt;strong&gt; 4. Sie haben zu viele Berechtigungen erteilt.  &lt;/strong&gt;</value>
   </data>
+  <data name="Blog_SSING_H1_SubHeading5">
+    <value>&lt;stark&gt; 5. Ihr Smartphone ist nicht richtig gesperrt &lt;/strong&gt;</value>
+  </data>
   <data name="Blog_SSING_Summary">
     <value>Die Aufrechterhaltung der Datensicherheit wird immer wichtiger, da wir sensiblere Daten auf unseren Mobilgeräten aufbewahren</value>
+  </data>
+  <data name="Blog_SSING_Title">
+    <value>Smartphone-Sicherheit: Es ist kein Spiel</value>
   </data>
   <data name="Blog_Support_ContactUs">
     <value>&lt;i&gt;Sie wollen mehr erfahren?&lt;/i&gt; Wir veröffentlichen jede Woche interessante Informationen. Seien Sie neugierig und schauen Sie sich unsere Blogbeiträge an &lt;a href='https://www.axcrypt.net/support/blog &gt;https://www.axcrypt.net/support/blog &lt;/a&gt; vergessen Sie nicht, uns unter &lt;a href='mailto:support@axcrypt.net &gt;support@axcrypt.net &lt;/a&gt;  zu kontaktieren oder &lt;a href='mailto:business@axcrypt.net '&gt;business@axcrypt.net &lt;/a&gt; wenn Sie Fragen haben!</value>
@@ -1831,8 +2125,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_SVL_Text1">
     <value>Abonnement vs. Lizenz</value>
   </data>
+  <data name="Blog_SVL_Text10">
+    <value>Wenn Sie eine Software für 79 EURO gekauft haben, bleiben Sie bei diesen Kosten, auch wenn Sie nach 6 oder 12 Monaten Ihre Meinung ändern. Sie erhalten keine Rückerstattung für die Hälfte des Preises, weil Sie die Softwarelizenz nicht mehr verwenden möchten.</value>
+  </data>
   <data name="Blog_SVL_Text11">
     <value>Wir haben das Jahresabonnement bewusst auf einem Niveau festgesetzt, so dass 2-3 Jahre ungefähr auf dem Niveau der typischen entsprechenden Softwarelizenz liegen. Ja, es gibt günstigere lizenzierte Software. Es gibt auch viele teurere Optionen.</value>
+  </data>
+  <data name="Blog_SVL_Text12">
+    <value>Die meisten Softwarelizenzen sind auf eine oder eine festgelegte Anzahl von Installationen beschränkt. Das AxCrypt-Abonnement ist persönlich, aber auf beliebig vielen Geräten gültig.</value>
   </data>
   <data name="Blog_SVL_Text15">
     <value>Es gibt auch Vorteile für das Lizenzmodell, aber im Moment haben wir wirklich das Gefühl, dass es sowohl für Sie als auch für uns besser ist!</value>
@@ -1873,8 +2173,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_TAYBS_H1_SH6_Text1">
     <value>Wir haben auch unser Branchensegment für 2021 angekündigt, das den Benutzern hilft, besser zu verstehen, wie wir verschiedene Branchen bedienen. Wir verstehen, wie wichtig es ist, ein Gefühl für die Erfahrung von AxCrypt von jemandem zu bekommen, der es zuvor verwendet hat. Aus diesem Grund haben wir dieses Jahr zusätzliche Testimonials hinzugefügt, damit Sie mehr über unsere App erfahren können.&lt;a href='ttps://www.axcrypt.net/industries'&gt; You may get more information here&lt;/a&gt;</value>
   </data>
+  <data name="Blog_TAYBS_H1_SubHeading3">
+    <value>&lt;strong&gt;Verbesserte Benutzeroberfläche und die neue Version der mobilen App&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SubHeading6">
+    <value>&lt;strong&gt;Referenzen und Branchensegment &lt;/strong&gt;</value>
+  </data>
   <data name="Blog_TAYBS_H1_Text1">
     <value>AxCrypt wünscht Ihnen einen erfolgreichen Start ins Jahr 2022. Wir sind begeistert und freuen uns auf zukünftige Updates und Verbesserungen, um unsere Software zu vereinfachen. Aber zuerst werfen wir einen Blick auf 2021 und sehen, was wir bisher erreicht haben.</value>
+  </data>
+  <data name="Blog_TAYBS_Heading1">
+    <value>Ein kurzer Überblick über 2021</value>
   </data>
   <data name="Blog_TAYBS_Heading2">
     <value>Kleiner Vorgeschmack auf 2022</value>
@@ -1884,6 +2193,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_Technical_Document">
     <value>All dies ist eine vereinfachte Version des Prozesses. Viele zusätzliche Details sind tatsächlich enthalten, um die Sicherheit zu gewährleisten und verschiedene Synchronisationsszenarien, Ereignisse zum Zurücksetzen von Passwörtern usw. zu handhaben. Für vollständige Details lesen Sie die &lt;a href='https://www.axcrypt.net/information/technical /'&gt;technical documentation&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_TIEDTC_Conclusion_Text1">
+    <value>Jede noch so kleine Information muss vor Hackern geschützt werden, um die steigende Rate der Internetkriminalität und die Wahrscheinlichkeit, dass Unternehmen kompromittiert werden, zu senken.</value>
   </data>
   <data name="Blog_TIEDTC_H1_SH1_Text1">
     <value>Mitarbeiterinformationen müssen in der Zeit, in der wir leben, geschützt werden, die auf die Auswirkungen einer globalen Pandemie folgt, die viele Organisationen dazu veranlasst hat, sich auf eine neue Art von Arbeitsumgebung einzustellen. Jedes Unternehmen, es sei denn, es handelt sich um ein Einzelunternehmen, hat Mitarbeiter und damit viele sensible Daten, die geschützt werden müssen. Persönliche und finanzielle Informationen, Arbeitszeitnachweise und Zahlungen für Mitarbeiter, Verträge und Krankschreibungen sind nur einige Beispiele für sensible Daten. Der Schutz solcher Informationen vor Unbefugten sollte für jedes Unternehmen oberste Priorität haben, insbesondere wenn sie an externe Benutzer weitergegeben werden. Informationen wie diese könnten für Hacker von Vorteil sein. Die interne Sicherung dieser Daten vor öffentlicher Kontrolle ist ebenso wichtig, wie wichtige Organisationen einem erheblichen Expositionsrisiko ausgesetzt sind, insbesondere durch ihr Personal.</value>
@@ -1945,11 +2257,20 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_TPTWHEG_Heading2">
     <value>&lt;h2 style='margin-block: 0;'&gt;2. Was zu hören und was zu sehen ist&lt;/h2&gt;</value>
   </data>
+  <data name="Blog_TPTWHEG_Heading4">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Verschlüsseln Sie Ihre Daten mit AxCrypt&lt;/h2&gt;</value>
+  </data>
   <data name="Blog_TPTWHEG_Summary">
     <value>Eine Sache, die diese schreckliche Pandemie zum Besseren verändert hat, ist die Fähigkeit der Menschen, zu Hause zu arbeiten, und die Erkenntnis der Arbeitgeber, dass es nicht so beängstigend ist, dies zuzulassen.</value>
   </data>
   <data name="Blog_TPTWHEG_Text3">
     <value>Wenn Sie zu Hause arbeiten, müssen Sie jedoch Ihre Arbeitsweise ändern. Einer dieser Bereiche ist der Schutz Ihrer eigenen und anderer personenbezogener Daten. Bei Privacy1 möchten wir die Dinge einfach halten und Ihnen helfen, die Risiken auf prägnante Weise zu verstehen. Daher haben wir eine Liste der Top-3-Tipps zum Datenschutz für Heimarbeiter zusammengestellt, um Ihre Familie, Kunden und Arbeitgeber zu schützen. Keine Sorge, es ist kein technisches Blabla in Bezug auf Cybersicherheit, nur ein paar Punkte, die jeder in allen Arten von Jobs nutzen kann, um bei der Arbeit zu Hause sicher zu sein.</value>
+  </data>
+  <data name="Blog_TPTWHEG_Title">
+    <value>Top 3 Datenschutztipps für die Arbeit von zu Hause aus - Mitarbeiterhandbuch</value>
+  </data>
+  <data name="Blog_Try_Download_Mobile_App_Text">
+    <value>Probieren Sie eine einmonatige kostenlose Testversion aus, die Sie für Android- oder IOS-Benutzer herunterladen können:</value>
   </data>
   <data name="Blog_TSTE_H1_Text2">
     <value>Darüber hinaus bevorzugt AES die Anordnung von Dingen in einem 4 x 4-Raster für ein 128-Bit, was 16 Bit in einem 4 x 4-Raster entspricht, im Gegensatz zu einer langen Bitreihe, wie es die meisten Chiffren tun könnten. AES ersetzt Bytes, verschiebt Zeilen und mischt Spalten aus einem einfachen Text, indem es einen Teil seines Schlüssels verwendet.</value>
@@ -1972,6 +2293,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_UODPCH_Text5">
     <value>Die Verwendung vieler Passwörter verringert tatsächlich die praktische Sicherheit, da es unbequemer ist, die Barriere gegen die Verwendung höher ist und es einfach zu schwierig ist, viele sichere Passwörter im Auge zu behalten. Die typische Situation sind also viele schwache Passwörter. Stattdessen sagen wir, dass, wenn Sie ein sicheres Passwort für alle Ihre Dateien verwenden können, wir es bequem machen werden, da Sie es nicht sehr oft eingeben müssen. Dies wird in der Praxis tendenziell die Sicherheit insgesamt erhöhen.</value>
   </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text3">
+    <value>Sie möchten mehr über AxCrypt erfahren und an unserem Affiliate-Marketing-Programm teilnehmen?</value>
+  </data>
   <data name="Blog_WAMHIHY_H1_SH1_Text2">
     <value>&lt;li&gt;Affiliate-Marketing hat Null Risiken bei hohem Umsatz - Sie haben nichts zu verlieren, da Affiliate-Marketing keine Investitionen in Ihrem Namen beinhaltet. Stattdessen profitieren Sie einfach davon als Provision ohne Investition.&lt;/li&gt;</value>
   </data>
@@ -1993,14 +2317,23 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WAMHIHY_H3_SH5_Text5">
     <value>AxCrypt stellt sicher, dass Ihr Unternehmen Vorschriften wie die Datenschutz-Grundverordnung (DSGVO) einhält.</value>
   </data>
+  <data name="Blog_WAMHIHY_H3_SH6_Text6">
+    <value>AxCrypt spricht Englisch, Niederländisch, Französisch, Deutsch, Italienisch, Koreanisch, Portugiesisch, Spanisch, Schwedisch, Türkisch, Russisch, Polnisch, Chinesisch und mehr.</value>
+  </data>
   <data name="Blog_WAMHIHY_H3_SubHeading2">
     <value>&lt;strong&gt;Teamwork, Zusammenarbeit &lt;/strong&gt;</value>
   </data>
   <data name="Blog_WAMHIHY_H3_SubHeading3">
     <value>&lt;strong&gt;Cloud-Sicherheit&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_WAMHIHY_H3_SubHeading6">
+    <value>&lt;strong&gt;Mehrsprachig&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_WAMHIHY_Heading1">
     <value>Warum ist Affiliate-Marketing in den letzten Jahren so populär geworden?</value>
+  </data>
+  <data name="Blog_WAMHIHY_Heading2">
+    <value>Vorteile, ein AxCrypt-Partner zu werden</value>
   </data>
   <data name="Blog_WAMHIHY_Heading3">
     <value>Sehen Sie sich einige der wichtigsten Funktionen von AxCrypt an</value>
@@ -2014,6 +2347,15 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WAMHIHY_Title">
     <value>Was ist Affiliate-Marketing und wie kann es Ihnen helfen?</value>
   </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading5">
+    <value>&lt;li&gt;&lt;strong&gt;Hybride Brute-Force-Angriffe:&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Es wurden zahlreiche fehlgeschlagene Anmeldeversuche von derselben IP-Adresse aus versucht.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_Heading1">
+    <value>Was ist ein Brute-Force-Angriff?</value>
+  </data>
   <data name="Blog_WCACT_Conclusion_Text1">
     <value>Nehmen Sie sich die Zeit, Ihre Datenschutzanforderungen zu bewerten und die richtigen und effizienten Verschlüsselungsdienste zu untersuchen, um die Vorteile der Cloud-Verschlüsselung zu nutzen. Verschlüsselung in der Cloud ist laut Sicherheitsexperten ein kritischer Ansatz für die Informationssicherheit. AxCrypt verfügt auch über eine Vielzahl von Funktionen, um die unterschiedlichsten Anforderungen an die Datensicherheit zu erfüllen.</value>
   </data>
@@ -2025,6 +2367,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WCACT_H2_SubHeading2">
     <value>&lt;strong&gt;Denial-of-Service-Angriffe&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_SubHeading3">
+    <value>&lt;strong&gt;Insider-Angriffe&lt;/strong&gt;</value>
   </data>
   <data name="Blog_WCACT_H3_Text1">
     <value>Cloud-Nutzer müssen Sicherheitsmaßnahmen implementieren, um ihre sensiblen Daten vor Cyberangriffen zu schützen. Die Verschlüsselung ist eine der effektivsten Datensicherheitsmethoden, bei der die Informationen eines Systems, einer Datenbank oder einer Datei so verschlüsselt werden, dass sie von Dritten ohne den Schlüssel nur schwer verstanden werden können. Unternehmen können durch Verschlüsselung und ordnungsgemäße Schlüsselverwaltungssysteme sicherstellen, dass nur autorisierte Benutzer Zugriff auf sensible Daten haben. Verschlüsselte Daten sind ohne ihren Schlüssel unleserlich und praktisch wertlos, auch wenn sie verloren gehen, gestohlen oder unbefugt abgerufen werden.&lt;br/&gt;</value>
@@ -2050,6 +2395,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WCACT_H4_SubHeading2">
     <value>&lt;strong&gt;Schlüsselfreigabe&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_WCACT_H4_SubHeading3">
+    <value>&lt;strong&gt;DSGVO-konform&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_WCACT_Heading2">
     <value>Wie sind Cloud-Daten anfällig?</value>
   </data>
@@ -2073,6 +2421,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WENTI_Heading3">
     <value>Wie kann Zero-Knowledge-Verschlüsselung bei der Datensicherheit helfen?</value>
+  </data>
+  <data name="Blog_WENTI_Heading4">
+    <value>AxCrypt zur Rettung</value>
   </data>
   <data name="Blog_WENTI_Title">
     <value>Warum ist Verschlüsselung in der Technologiebranche notwendig?</value>
@@ -2100,6 +2451,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WIAAI_Text10">
     <value>&lt;li&gt;&lt;em&gt;Die Dateidaten werden mit AES und dem Sitzungsschlüssel verschlüsselt.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text12">
+    <value>&lt;li&gt;&lt;em&gt;Der Sitzungsschlüssel wird mit Ihrem öffentlichen AxCrypt-ID-Schlüssel mit RSA-4096 verschlüsselt. Dieser verschlüsselte Sitzungsschlüssel wird der verschlüsselten Datei hinzugefügt.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
   <data name="Blog_WIAAI_Text15">
     <value>&lt;li&gt;&lt;em&gt;Nehmen Sie Ihr Passwort, suchen Sie den Sitzungsschlüssel, der mit einem Passwort oben verschlüsselt ist, und versuchen Sie, es zu entschlüsseln. Bei Erfolg wird der entschlüsselte Sitzungsschlüssel zum Entschlüsseln der Datei verwendet.&lt;/em&gt;&lt;/li&gt;</value>
@@ -2143,17 +2497,29 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WICS_H3_SH1_Text5">
     <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Kryptowährungs- und Blockchain-Angriffe:&lt;/strong&gt;Digitale Währungen oder Geldbörsen sind zu einem Hauptziel für Hacker geworden. Das Wachstum dieser neuen Technologie hat die physische Währung revolutioniert, aber auch viele ernsthafte Sicherheitsherausforderungen mit sich gebracht. Laut dem Bericht von Fincen wurden 177 eindeutige digitale Brieftaschenadressen für die Ransomware-Angriffe verwendet. Es ist wichtig, dass Unternehmen sich der Sicherheitsprobleme bewusst sind, die mit diesen Technologien verbunden sind, und sicherstellen, dass sie nicht von Hackern angegriffen und ausgenutzt werden können.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_WICS_H3_SubHeading1">
+    <value>Die häufigsten Herausforderungen für die Cybersicherheit sind:</value>
+  </data>
+  <data name="Blog_WICS_Heading1">
+    <value>Warum ist Verschlüsselung für die Cybersicherheit wichtig?</value>
+  </data>
   <data name="Blog_WICS_Heading3">
     <value>Große Herausforderungen für die Cybersicherheit:</value>
   </data>
   <data name="Blog_WICS_Summary">
     <value>Als Teil der digitalen Welt ist es sehr wichtig, Systeme, Netzwerke, Server, mobile Geräte, persönliche Daten, berufliche Daten und Programme vor Cyberbedrohungen zu schützen.</value>
   </data>
+  <data name="Blog_WICS_Title">
+    <value>Was ist Cybersicherheit?</value>
+  </data>
   <data name="Blog_WSPPI_H1_Text1">
     <value>Was sind personenbezogene Daten? Welche Art von Informationen sollten Sie besonders vor Unternehmen oder Branchen schützen, die sie betreiben?</value>
   </data>
   <data name="Blog_WSPPI_H1_Text2">
     <value>Personenbezogene Daten haben keine strenge Definition, sie variieren von Land zu Land und das damit verbundene Gesetz ist nicht auf allen Kontinenten gleich.</value>
+  </data>
+  <data name="Blog_WSPPI_H1_Text3">
+    <value>Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte lebende Person beziehen. Nach dieser Definition können personenbezogene Daten einen Vor- und Nachnamen, eine Wohnadresse, Krankenakten, eine Ausweisnummer usw. umfassen.</value>
   </data>
   <data name="Blog_WSPPI_H2_Text2">
     <value>Privatsphäre ist eine soziale Norm. Wir geben Passwörter in unsere Geräte und Schlösser an Badezimmertüren ein, um unsere Privatsphäre zu schützen, und sogar Bürger, die sagen, dass sie sich nicht darum kümmern, verwenden sie, um zu verhindern, dass Menschen in ihr Privatleben eindringen. Die einzigen Menschen, die Privatsphäre suchen, sind per Definition schlechte Menschen. Trotzdem haben wir als Menschen, nicht nur Terroristen und Kriminelle, wir alle — Dinge zu verbergen. Wir alle brauchen private Momente, die wir aus hartnäckigen, eindringlichen und neugierigen Blicken heraushalten können.</value>
@@ -2169,6 +2535,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WSPPI_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;Was sind personenbezogene Daten&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_WSPPI_Heading2">
+    <value>&lt;h2 style='margin-block: 0;'&gt;Warum meine Daten schützen, wenn ich nichts zu verbergen habe?&lt;/h2&gt;</value>
   </data>
   <data name="Blog_WSPPI_Heading3">
     <value>&lt;h2 style='margin-block: 0;'&gt;Information ist Macht&lt;/h2&gt;</value>
@@ -2218,6 +2587,12 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WUE_Summary">
     <value>Dies ist das digitale Zeitalter. Wir leben in einer Welt, die von technologischem Fortschritt und Innovation geprägt ist. Während dies natürlich viele erstaunliche Möglichkeiten wie Reisen und Konnektivität eröffnet hat, birgt es auch erhebliche Bedrohungen und Gefahren.</value>
   </data>
+  <data name="Blog_WUE_Title">
+    <value>Warum Verschlüsselung verwenden?</value>
+  </data>
+  <data name="Blog_WYSASDF_Text1">
+    <value>AxCrypt 2 unterstützt eine Funktion namens &lt;em&gt;Selbstentschlüsselnde Dateien&lt;/em&gt;, die in AxCrypt 1.x unterstützt wurde, nicht mehr.</value>
+  </data>
   <data name="Blog_WYSASDF_Text11">
     <value>&lt;li&gt;Ein weiterer Anwendungsfall sind in sich geschlossene Backups. Das ist theoretisch keine schlechte Idee, aber Windows hat eine harte Grenze von 2 GB Größe .exe , so große Backups sind auf diese Weise nicht möglich.&lt;/li&gt;</value>
   </data>
@@ -2227,14 +2602,29 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WYSASDF_Text13">
     <value>Mit AxCrypt 2 haben wir eine eigenständige, installationsfreie Version mit vollem Funktionsumfang anstelle des extrem eingeschränkten Selbstentschlüsselers von AxCrypt 1 erstellt. Dies kann für alle Szenarien verwendet werden, in denen der Selbstentschlüsseler verwendet wurde, mit minimalem Mehraufwand.</value>
   </data>
+  <data name="Blog_WYSASDF_Text14">
+    <value>Mit AxCrypt 2 verfügen wir über eine Schlüsselfreigabetechnologie, mit der Sie Dateien für andere Empfänger verschlüsseln und freigeben können, ohne Kennwörter freizugeben.</value>
+  </data>
+  <data name="Blog_WYSASDF_Text16">
+    <value>Glückliche AxCrypting!</value>
+  </data>
   <data name="Blog_WYSASDF_Text2">
     <value>Was ist eine &lt;em&gt;selbstentschlüsselnde Datei&lt;/em&gt;? Es ist zwei Dinge in einem: Es ist ein in sich geschlossenes ausführbares Programm (a.exe), mit gesicherten Daten (a.axx-Datei) eingebettet oder angehängt.</value>
+  </data>
+  <data name="Blog_WYSASDF_Text4">
+    <value>Nun, so ziemlich alles.</value>
+  </data>
+  <data name="Blog_WYSASDF_Text5">
+    <value>&lt;li&gt;Der Selbstentschlüsseler ist ein ausführbares Programm, das alles enthalten kann, und der Empfänger muss darauf vertrauen, dass es das tut, was der Absender behauptet. Dies sollte der Empfänger nicht leichtfertig tun.&lt;/li&gt;</value>
   </data>
   <data name="Blog_WYSASDF_Text6">
     <value>&lt;li&gt;Da es definitionsgemäß stark verschlüsselte Informationen enthält, z. B. eine andere ausführbare Software, ist es unmöglich, sie durch Antivirensoftware zu überprüfen. Es kann buchstäblich jede Ebene von Schlechtem enthalten.&lt;/li&gt;</value>
   </data>
   <data name="Blog_WYSASDF_Text9">
     <value>&lt;li&gt;Das Vermächtnis AxCrypt 1.die x-Verschlüsselung unterstützt nur Passwörter, sodass Sie immer noch das Problem haben, das Passwort an den Empfänger zu übertragen. Wenn Sie mehr als einen Empfänger haben, gerät dies schnell völlig außer Kontrolle.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WYSASDF_Title">
+    <value>Warum Sie selbstentschlüsselnde Dateien vermeiden sollten</value>
   </data>
   <data name="Blog_ZTCS_Conclusion_Text1">
     <value>&lt;strong&gt;Warum ist Zero Trust erforderlich? &lt;/strong&gt;</value>
@@ -2260,8 +2650,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ZTCS_H3_SH1_Text1">
     <value>Mit der Schlüsselfreigabe können Sie zusammenarbeiten und sich mit anderen Mitgliedern verbinden, ohne die Vertraulichkeit Ihrer Daten zu gefährden. Mit der Schlüsselfreigabefunktion von AxCrypt können Sie jedem Datenzugriff gewähren und ihn jederzeit zurückziehen. Sie müssen nicht einmal Ihr eigenes Passwort preisgeben. Weitere Informationen zur AxCrypt-Schlüsselfreigabe finden Sie in unserem Tutorial zur Schlüsselfreigabe auf&lt;a href=' https://www.youtube.com/watch?v=TUVWbmiEFSs '&gt; YouTube &lt;/a&gt;</value>
   </data>
+  <data name="Blog_ZTCS_H3_SubHeading1">
+    <value>&lt;strong&gt;Schlüsselfreigabe&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ZTCS_H3_SubHeading2">
     <value>&lt;strong&gt;Hauptschlüssel&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Heading1">
+    <value>Was ist der Zero Trust Ansatz?,</value>
+  </data>
+  <data name="Blog_ZTCS_Heading2">
+    <value>Schlüsselkonzepte von Zero Trust</value>
   </data>
   <data name="Blog_ZTCS_Heading3">
     <value>Wie könnte AxCrypt helfen, Zero Trust zu implementieren?</value>
@@ -2417,6 +2816,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="BusinessLinkLabel">
     <value>Business</value>
+  </data>
+  <data name="BusinessPhoneNumberPlaceholder" xml:space="preserve">
+    <value>Telefonnummer</value>
   </data>
   <data name="BusinessPrioritySupportTitle" xml:space="preserve">
     <value>Antrag Auf Unterstützung Der Businesspriorität</value>
@@ -3260,6 +3662,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
     <value>Zugang zu gemeinsamen Dateien</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="EditNoteTitle" xml:space="preserve">
+    <value>Notiz bearbeiten</value>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Sie sind auf den Lesezugriff beschränkt. Nur Benutzer mit einem gültigem Abonnementplan können Passwörter ändern, oder neue Passworteinträge erstellen.</value>
   </data>
@@ -4034,8 +4439,23 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="GetStartedDesktopHowToUseHeading">
     <value>Wie man &lt;span&gt;benutzt&lt;/span&gt;</value>
   </data>
+  <data name="GetStartedDesktopHowToUseIngress">
+    <value>In diesem kurzen Tutorial zeigen wir Ihnen die grundlegenden Funktionen von AxCrypt! Sehen Sie es sich an, um zu lernen, wie man das Programm benutzt.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep1">
+    <value>Wählen Sie zunächst einen oder mehrere Ordner aus, die Sie bearbeiten möchten.</value>
+  </data>
+  <data name="GetStartedDesktopHowToUseStep2Windows">
+    <value>Klicken Sie mit der rechten Maustaste, um das AxCrypt-Menü aufzurufen.</value>
+  </data>
   <data name="GetStartedDesktopInstallingHeading">
     <value>&lt;span&gt;Installieren von AxCrypt&lt;/span&gt; und Einrichten Ihrer AxCrypt-ID</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingHeading">
+    <value>Schlüssel &lt;span&gt;Freigabe&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingIngress">
+    <value>Mit der Funktion &lt;a href='/information/features'&gt;Key Sharing&lt;/a&gt; können Sie Ihre gesicherten Dateien für andere freigeben. Hier ist ein Tutorial zur Verwendung der Schlüsselfreigabe.</value>
   </data>
   <data name="GetStartedDesktopKeySharingStep1">
     <value>Wählen Sie die Datei aus, die Sie freigeben möchten.</value>
@@ -4052,11 +4472,20 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="GetStartedDesktopPasswordManagementStep1">
     <value>Melden Sie sich an, um Zugriff auf die Passwortverwaltung zu erhalten</value>
   </data>
+  <data name="GetStartedDesktopPasswordManagementStep3">
+    <value>Erwägen Sie die Verwendung des vorgeschlagenen Kennworts für optimale Sicherheit.</value>
+  </data>
   <data name="GetStartedDesktopPasswordResetHeading">
     <value>Passwort &lt;span&gt;Zurücksetzen&lt;/span&gt;</value>
   </data>
   <data name="GetStartedDesktopPasswordResetIngress">
     <value>Sie können jetzt ein Passwort zurücksetzen. Nach der Anmeldung haben Sie jedoch keinen Zugriff mehr auf Dateien, die mit Ihrem alten Kennwort verschlüsselt wurden.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep1">
+    <value>Gehen Sie zu den Dateioptionen in der Anwendung und wählen Sie "Passwort zurücksetzen" oder gehen Sie direkt zu &lt;a href ='https://account.axcrypt.net/en/Home/PasswordReset '&gt;Password Reset&lt;/a&gt;.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep2">
+    <value>Sie werden auf unsere Website weitergeleitet, wo Sie einen Reset anfordern können.</value>
   </data>
   <data name="GetStartedDesktopPasswordResetStep3">
     <value>Befolgen Sie nach der Überprüfung die Eingabeaufforderung in der E-Mail, die an Ihre E-Mail-Adresse gesendet wurde.</value>
@@ -4178,6 +4607,9 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   <data name="GetStartedMobileText4">
     <value>AxCrypt für &lt;a href= 'https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x&amp;hl=sv' &gt; Android hier&lt;/a&gt; und für &lt;a href='https://itunes.apple.com/se/app/axcrypt/id1157695909?mt=8'&gt;iOS hier.&lt;/a&gt;</value>
   </data>
+  <data name="GetStartedPasswordHeading">
+    <value>Bewahren Sie Ihre &lt;span&gt;Passwörter&lt;/span&gt; auf.</value>
+  </data>
   <data name="GetStartedPasswordManagementHeading">
     <value>Passwortverwaltung</value>
   </data>
@@ -4219,6 +4651,12 @@ Wir bedauern Sie gehen zu sehen und hoffen, dass Sie Ihre Zeit mit AxCrypt genos
   </data>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: Passwort Zurücksetzen</value>
+  </data>
+  <data name="GetStartedPasswordText">
+    <value>Mit einem einfachen Klick können Sie auf die AxCrypt Online-Passwortverwaltung zugreifen, die alle Ihre Passwörter in einem sicher verschlüsselten Archiv online speichert.</value>
+  </data>
+  <data name="GetStartedSecureHeading">
+    <value>&lt;span&gt; Sichern&lt;/span&gt; Sie Ihre Dateien mit einem Tastendruck.</value>
   </data>
   <data name="GetStartMobilePageTitle">
     <value>Erweiterte &lt;span&gt;Verschlüsselung&lt;/span&gt; in Ihrer Tasche!</value>
@@ -5442,8 +5880,17 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="Meta-Description-Blog">
     <value>Lesen Sie Blogs über Verschlüsselung, Datensicherheit, wie AxCrypt bei der Sicherung Ihrer Daten hilft und erfahren Sie, wie Sie sich und Ihr Unternehmen vor Cyberbedrohungen schützen können.</value>
   </data>
+  <data name="Meta-Description-Business">
+    <value>Schützen, teilen und speichern Sie Ihre Dateien und Passwörter mit der AxCrypt Business Share Key- und Passwort-Manager-Funktion. Mehrere Sprachen und Geräte werden unterstützt.</value>
+  </data>
   <data name="Meta-Description-Download">
     <value>Holen Sie sich AxCrypt mit 256-Bit-Verschlüsselung, um Ihre Dateien auf lokalem und Cloud-Speicher zu schützen. Download für Android, Windows, iOS und Mac. Holen Sie sich eine kostenlose Testversion.</value>
+  </data>
+  <data name="Meta-Description-Education">
+    <value>Alle Ihre Bildungsdokumente brauchen auch Schutz. Sichere Schülerdaten, Aufsätze, Papiere, Testantworten und Forschungsergebnisse. Schützen Sie sich vor allen Datenbedrohungen.</value>
+  </data>
+  <data name="Meta-Description-Financial">
+    <value>Sichern Sie Ihre Passwörter und Finanzinformationen und vermeiden Sie das Risiko, den Zugriff auf wichtige Dateien zu verlieren. Nur autorisierte Benutzer können darauf zugreifen.</value>
   </data>
   <data name="Meta-Description-Government">
     <value>Als Regierung können Sie sich auf AxCrypt verlassen, um Bedrohungen durch eine Vielzahl von Akteuren, Kriminellen, ausländischen Geheimdiensten und repressiven Regierungen entgegenzuwirken.</value>
@@ -5454,14 +5901,23 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="Meta-Description-Home">
     <value>Benutzerfreundliche, fortschrittliche Dateiverschlüsselungssoftware für Ihre geschäftlichen und persönlichen Daten mit Cloud-Speicher, mobiler Verschlüsselung und Passwortmanager. Jetzt kostenlos testen</value>
   </data>
+  <data name="Meta-Description-Industries">
+    <value>AxCrypt 256-Bit-Verschlüsselungssoftware hilft Branchen wie Technologie, Bildung, Gesundheit, Recht, Finanzen und vielem mehr. Um die volle Kontrolle über Ihre Daten zurückzugewinnen und digitales Vertrauen zu erleben.</value>
+  </data>
   <data name="Meta-Description-Legal">
     <value>Schützen und sichern Sie Ihre rechtlichen Verträge, Kundeninformationen, geistiges Eigentum und andere wichtige Dokumente, bei denen das höchste Verletzungsrisiko besteht.</value>
+  </data>
+  <data name="Meta-Description-Privacypolicy">
+    <value>Wir respektieren Ihre Privatsphäre und haben strenge Maßnahmen für Ihre Sicherheit in der AxCrypt-App ergriffen.</value>
   </data>
   <data name="Meta-Description-Tech">
     <value>AxCrypt erhöht die Datensicherheit, reduziert das Risiko von Sicherheitsverletzungen und gewährleistet den absoluten Schutz Ihrer technischen Dokumente.</value>
   </data>
   <data name="Meta-Keywords-Blog">
     <value>so verschlüsseln Sie Dateien,wie wird Verschlüsselung verwendet?,So schützen Sie Daten auf Ihrem Handy,Mythen über Verschlüsselung,So schützen Sie Ihr Unternehmen vor Cyberbedrohungen</value>
+  </data>
+  <data name="Meta-Keywords-Business">
+    <value>Passwort-Manager, Cloud-Speichersoftware, Schützen Sie Ihre Dateien, speichern und verwalten Sie Passwörter</value>
   </data>
   <data name="Meta-Keywords-Financial">
     <value>Finanzdatenverschlüsselung, wichtige Dokumente sichern, Finanzinformationen schützen, schützen</value>
@@ -5487,14 +5943,26 @@ Ohne Premium können Sie nur  verschlüsselte Dateien sehen und dauerhaft entsch
   <data name="Meta-Title-Blog">
     <value>Blogs zu benutzerfreundlichen 128-Bit- und 256-Bit-Verschlüsselungstools</value>
   </data>
+  <data name="Meta-Title-Business">
+    <value>AxCrypt Business | Sichere Geschäftsdateien | 256-Bit-Verschlüsselung</value>
+  </data>
+  <data name="Meta-Title-Faq">
+    <value>AxCrypt FAQ | Kontaktieren Sie uns für alle Fragen</value>
+  </data>
   <data name="Meta-Title-Features">
     <value>AxCrypt-Funktionen | Erfahren Sie mehr über unsere Software</value>
+  </data>
+  <data name="Meta-Title-Financial">
+    <value>AxCrypt Finanziell | Schützen und teilen Sie Finanzinformationen mit 256-Bit-Verschlüsselung</value>
   </data>
   <data name="Meta-Title-Getstarted">
     <value>AxCrypt-Anleitungen | Ihr Leitfaden für Cybersicherheitslösungen</value>
   </data>
   <data name="Meta-Title-Premium">
     <value>AxCrypt Premium | Sichere persönliche Dateien auf Windows, Mac, Android und iPhone</value>
+  </data>
+  <data name="Meta-Title-Privacypolicy">
+    <value>AxCrypt Datenschutzrichtlinie | Wir halten uns an die DSGVO-Richtlinien</value>
   </data>
   <data name="Meta-Title-Tech">
     <value>AxCrypt Tech | Ende-zu-Ende-256-Bit-Verschlüsselung sorgt für Sicherheit im technischen Bereich</value>
@@ -5912,7 +6380,7 @@ Leerraum und Teile, die gleich zu üblichen Passwörtern sind werden ignoriert u
     <value>Ihr AxCrypt Premium Abonnement läuft bald ab. Ich hoffe aufrichtig, dass Sie unsere Dienste gerne genutzt haben und diese nützlich fanden.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Es wäre großartig, wenn Sie weiterhin unsere Premium Dienste nutzen würden.  Verlängern Sie ihr Abonnement &lt;a href="{0}Home/Purchase?email={1}"&gt;anmelden&lt;/a&gt; jetzt.</value>
+    <value>Es wäre großartig, wenn Sie weiterhin unsere Premium Dienste nutzen würden.  Verlängern Sie ihr Abonnement &lt;a href="{account_web_url}de/Home/Login?purchase=True?email={{user_email}}"&gt;anmelden&lt;/a&gt; jetzt.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
@@ -6590,6 +7058,9 @@ Eine Rechnung Ihres Einkaufs wurde an Ihre E-Mail geschickt.</value>
   </data>
   <data name="RefundCreditHelpText" xml:space="preserve">
     <value>Es kann 5 bis 10 Werktage dauern, bis die Rückerstattung auf Ihrer Kredit– /Debitkarte angezeigt wird - abhängig von Ihrer Bank.</value>
+  </data>
+  <data name="RefundProcessedInfo" xml:space="preserve">
+    <value>Wir haben Ihre Rückerstattung bei {0} bearbeitet.</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Registrierung fehlgeschlagen. Bitte überprüfen Sie Ihre E-Mail und versuchen Sie es dann erneut.</value>
@@ -7761,17 +8232,26 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock3Text2">
     <value>Je nach Verfügbarkeit kann technischer support geleistet werden.</value>
   </data>
+  <data name="TermsOfUseBlock4Heading" xml:space="preserve">
+    <value>Free</value>
+  </data>
   <data name="TermsOfUseBlock4Text1" xml:space="preserve">
     <value>AxCrypt Viewer ist für alle macOS- und mobilen Benutzer kostenlos verfügbar. Mit dem Plan können Sie Dateien anzeigen und entschlüsseln sowie Daten im Kennwortmanager anzeigen, aber nicht ändern.</value>
   </data>
   <data name="TermsOfUseBlock4Text2">
     <value>AxCrypt Free ist für alle Windows-Benutzer kostenlos mit der Open-Source-Version von AxCrypt 2.1 verfügbar, die unter der GPL, Version 3, lizenziert ist. Zusätzlich zum Viewer-Plan wird die Aktualisierung vorhandener und die Verschlüsselung neuer Dateien mit AES-128 unterstützt.</value>
   </data>
+  <data name="TermsOfUseBlock5Text1" xml:space="preserve">
+    <value>AxCrypt Premium ist nur für Privatpersonen erhältlich. Nicht ideal für den professionellen Einsatz.</value>
+  </data>
   <data name="TermsOfUseBlock5Text3" xml:space="preserve">
     <value>Im Falle eines abgelaufenen Premium-Abonnements werden Sie gegebenenfalls auf Kostenlos oder Viewer herabgestuft.</value>
   </data>
   <data name="TermsOfUseBlock5Text4">
     <value>Technische Priorität E-Mail-support wird zur Verfügung gestellt. Wir garantieren nicht, alle Probleme zu lösen.</value>
+  </data>
+  <data name="TermsOfUseBlock6Heading" xml:space="preserve">
+    <value>Business</value>
   </data>
   <data name="TermsOfUseBlock6Text2">
     <value>Wenn Ihr Business-Abonnement abläuft, greifen Sie gegebenenfalls auf Free oder Viewer zurück.</value>
@@ -7802,6 +8282,12 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="TermsOfUseBlock9Text2">
     <value>Siehe unsere &lt;a href='/information/privacy-policy'&gt;Datenschutzerklärung&lt;/a&gt; für details darüber, was und wie wir verarbeiten, bedeutet die Annahme dieser Nutzungsbedingungen auch die Annahme unserer Datenschutzerklärung</value>
+  </data>
+  <data name="TermsOfUseBlockAxcryptPlanHeading1">
+    <value>AxCrypt-Pläne</value>
+  </data>
+  <data name="TermsOfUseBlockMicroPayHeading1">
+    <value>Einmalige erstattungsfähige Gebühr</value>
   </data>
   <data name="TermsOfUseBlockNew11Text1">
     <value>Es wird keine Rückerstattung gewährt, wenn Sie Ihr Abonnement während des Testzeitraums von 30 Tagen nicht gekündigt haben. Rückerstattungen werden nur unter bestimmten technischen Umständen gewährt. Wir behalten uns das Recht vor, solche Angebote jederzeit ohne vorherige Ankündigung zurückzuziehen oder zu ändern.</value>
@@ -7937,6 +8423,18 @@ Das AxCrypt Team</value>
   <data name="TryPremiumToolTip" xml:space="preserve">
     <value>Sie verwenden nicht das höchste Sicherheitsniveau. Klicken Sie jetzt kostenlos zu versuchen!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
+  </data>
+  <data name="TSTMNL_Business_JTJT_Text7" xml:space="preserve">
+    <value>Meine Übersetzungsagenturen verlangen von mir, dass ich alle Dokumente (Quelle und Übersetzung) verschlüssele. AxCrypt bietet eine bequeme und benutzerfreundliche Möglichkeit, dies zu tun!</value>
+  </data>
+  <data name="TSTMNL_Home_TechDogs_Text5" xml:space="preserve">
+    <value>Axcrypt ist ein praktisches und benutzerfreundliches Tool zur Dateiverschlüsselung und Ordnerverschlüsselung und funktioniert für Android, Windows und iOS.</value>
+  </data>
+  <data name="TSTMNL_Home_TechRader_Text2" xml:space="preserve">
+    <value>Der Ansatz von AxCrypt in Zivil macht das Verschlüsseln von Dateien zum Kinderspiel.</value>
+  </data>
+  <data name="TSTMNL_Home_TechRader_Text3" xml:space="preserve">
+    <value>AxCrypt ist ein kostengünstiges und effektives Verschlüsselungswerkzeug .. sie haben eine günstige und lohnenswerte Dateiverschlüsselungssoftware.</value>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkisch</value>
@@ -8142,6 +8640,9 @@ Das AxCrypt Team</value>
   <data name="UsageTipsTargetUseListItem6">
     <value>Entwickler können AxCrypt integrieren, indem Sie die .NET core-Bibliothek integrieren, die über eine programmatische API verfügt, die einfach zu verwenden ist. Holen Sie sich den Quellcode von Bitbucket oder über NuGet.</value>
   </data>
+  <data name="UserNamePrompt" xml:space="preserve">
+    <value>Benutzernamen</value>
+  </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Sie haben AxCrypt aktualisiert. Unglücklicherweise muss Ihre Konfiguration zurückgesetzt werden. Nach dem Neustart werden Ihre Einstellungen und Präferenzen leider verloren sein. Wir entschuldigen uns für diese Unannehmlichkeiten. Ihre verschlüsselten Dateien sind immer noch sicher und in Ordnung.</value>
   </data>
@@ -8164,6 +8665,9 @@ Das AxCrypt Team</value>
   </data>
   <data name="ViewNoteTitle" xml:space="preserve">
     <value>Hinweis anzeigen</value>
+  </data>
+  <data name="ViewPasswordTitle" xml:space="preserve">
+    <value>Passwort anzeigen</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warnung!</value>

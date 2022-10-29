@@ -8737,7 +8737,7 @@ Białe miejsca i części występujące w popularnych hasłach są ignorowane i 
     <value>Twoja subskrypcja AxCrypt Premium wkrótce wygasa. Mam szczerą nadzieję, że korzystałeś z naszych funkcji i okazały się one przydatne.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Bardzo chcielibyśmy, abyś nadal używał naszych funkcji Premium. Przedłuż subskrypcję &lt;a href="{0}Home/Purchase?email={1}"&gt;teraz&lt;/a&gt;.</value>
+    <value>Bardzo chcielibyśmy, abyś nadal używał naszych funkcji Premium. Przedłuż subskrypcję &lt;a href="{account_web_url}pl/Home/Login?purchase=True?email={{user_email}}"&gt;teraz&lt;/a&gt;.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

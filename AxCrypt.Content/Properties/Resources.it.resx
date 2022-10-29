@@ -4694,7 +4694,7 @@ Gli spazi bianchi e le parti uguali a password comuni vengono ignorate e non agg
     <value>Il tuo abbonamento AxCrypt Premium sta per scadere. Speriamo sinceramente che tu abbia apprezzato utilizzare le nostre funzionalità e che tu le abbia trovate utili.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Sarebbe fantastico se continuassi ad utilizzare le nostre funzionalità Premium. Rinnova il tuo abbonamento &lt;a href="{0}Home/Purchase?email={1}"&gt;ora&lt;/a&gt; .</value>
+    <value>Sarebbe fantastico se continuassi ad utilizzare le nostre funzionalità Premium. Rinnova il tuo abbonamento &lt;a href="{account_web_url}it/Home/Login?purchase=True?email={{user_email}}"&gt;ora&lt;/a&gt; .</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">

@@ -4288,7 +4288,7 @@ Boşluklar ve yaygın şifrelere denk kısımlar sayılmaz ve şifreyi daha gü�
     <value>AxCrypt Premium üyeliğin yakında sona ermek üzere. Özellikleri kullanmaktan keyif alıp kullanışlı bulduğunu umarım.</value>
   </data>
   <data name="PremiumExpiresSoonMailBody1Html" xml:space="preserve">
-    <value>Premium özelliklerimizi kullanabilmeye devam etmeni çok isterim. Üyeliğini &lt;a href="{0}Home/Purchase?email={1}"&gt;now&lt;/a&gt; uzat.</value>
+    <value>Premium özelliklerimizi kullanabilmeye devam etmeni çok isterim. Üyeliğini &lt;a href="{account_web_url}tr/Home/Login?purchase=True?email={{user_email}}"&gt;now&lt;/a&gt; uzat.</value>
     <comment>{0} is the root URL to the account site. {1} is the URL-encoded e-mail adress.</comment>
   </data>
   <data name="PremiumExpiresSoonMailBody2Html" xml:space="preserve">
