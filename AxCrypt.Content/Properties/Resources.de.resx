@@ -767,6 +767,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_ADSDE_Conclusion_Text2">
     <value>AxCrypt bietet eine 256-Bit-Verschlüsselung und wir stellen sicher, dass niemand jemals Zugriff auf Ihre verschlüsselten Dateien erhält, solange Sie die Kontrolle über Ihren eigenen Schlüssel haben.</value>
   </data>
+  <data name="Blog_ADSDE_H2_SH1_Text1">
+    <value>Cyberangriffe auf Unternehmen oder Einzelpersonen werden von kriminellen Gruppen, staatlichen Akteuren oder Privatpersonen initiiert. Cyberkriminelle zielen in erster Linie auf sensible personenbezogene Daten, geschäftliche Finanzdaten, Kundendatenbanken (einschließlich personenbezogener Daten [PII], E-Mail-Adressen und Anmeldeinformationen), geistiges Eigentum und IT-Dienste (z. B. Zahlungsabwicklung) ab.</value>
+  </data>
   <data name="Blog_ADSDE_H2_SH1_Text2">
     <value>Gründe für Cyberangriffe sind Aufklärung, Spionage, um sich einen unfairen Wettbewerbsvorteil zu verschaffen, und intellektuelle Herausforderungen. Finanziell motivierte Cyberkriminelle streben nach finanziellem Gewinn durch Datendiebstahl oder Geschäftsunterbrechungen. Ebenso werden die persönlich motivierten, wie aktuelle oder ehemalige Mitarbeiter, die Vergeltung suchen, auch auf Geld und Daten abzielen.</value>
   </data>
@@ -775,6 +778,12 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_ADSDE_H2_SubHeading1">
     <value>&lt;strong&gt;Die Realität der Cyberkriminalität&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ADSDE_H2_Text1">
+    <value>Die Welt wird von Online-Communities, Online-Transaktionen, Cloud Computing und automatisierten Verfahren dominiert. Um Kontrollverlust, illegale Offenlegung, rechtswidrigen Erwerb und Zugriff für unbefugte Zwecke zu vermeiden, ist es wichtig, Daten zu schützen. Mit fortschreitender Technologie entstehen neue Angriffstypen, Tools und Strategien, die es Angreifern ermöglichen, kompliziertere oder gut kontrollierte Systeme, einschließlich Mobiltelefone, zu durchbrechen.</value>
+  </data>
+  <data name="Blog_ADSDE_H3_SH2_Text1">
+    <value>Wir erkennen, wie sich Mobiltelefone zu einem wesentlichen Bestandteil unseres Lebens entwickelt haben und wie wichtig es ist, unterwegs sicher von Ihrem Mobiltelefon aus auf Daten zuzugreifen. Ergreifen Sie die Gelegenheit und greifen Sie mit der AxCrypt Mobile App auf Ihre wichtigen verschlüsselten Dateien zu, egal wo Sie sich befinden. Verfügbar für Android und iOS.&lt;a href ='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x '&gt;Download now for Android &lt;/a&gt; und &lt;a href ='https://apps.apple.com/us/app/axcrypt/id1157695909 '&gt;Download now for ios &lt;/a&gt;</value>
   </data>
   <data name="Blog_ADSDE_H3_Text1">
     <value>Der Passwortschutz Ihres Geräts reicht nicht aus, um Ihre Daten zu schützen. Die Verschlüsselung Ihrer Daten mit einer Dateikennwortschutzsoftware stellt sicher, dass nur Personen mit dem eindeutigen Schlüssel Zugriff auf Ihre Dateien haben. Jeder, der die Dateien oder PDF-Dateien sehen möchte, muss den eindeutigen Schlüssel kennen, den Sie zum Schutz der Dateien verwendet haben.</value>
@@ -796,6 +805,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_AMEFH_H1_SH1_Text1">
     <value>Phishing-Angriffe haben sich während der Pandemie versechsfacht, und mobile Geräte sind jetzt das Hauptziel. Betrüger sind sich bewusst, dass Menschen, die von zu Hause aus arbeiten, mehr Zeit auf ihrem Handy verbringen und nicht die gleichen Sicherheitsmaßnahmen ergreifen wie auf einem herkömmlichen PC. Jeder, der über Ihr Telefon oder Ihren Laptop stolpert, kann problemlos auf die darin enthaltenen Dateien zugreifen.&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SH3_Text1">
+    <value>Wir leben in einer Zeit, in der wir alle ständig mit Netzwerken verbunden sind, die nicht immer sicher sind. Laut Forschern nutzen mobile Geräte Wi-Fi fast dreimal so viel wie Daten. Fast ein Viertel der Geräte verbindet sich mit ungesicherten WLAN-Netzwerken, und 4% der Geräte sind einem Man-in-the-Middle-Angriff ausgesetzt.</value>
   </data>
   <data name="Blog_AMEFH_H1_SubHeading3">
     <value>&lt;strong&gt;WLAN-Störungen&lt;/strong&gt;</value>
@@ -896,6 +908,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_BSTSSCE_H1_SH1_Text1">
     <value>Verwenden Sie ein virtuelles privates Netzwerk (VPN). VPNs werden verwendet, um den privaten Webverkehr vor Schnüffelei, Störungen und Zensur zu schützen. PNs verschlüsseln alle Daten, die Sie über das Internet senden. Ihr VPN maskiert auch Ihre IP-Adresse und schließlich blockieren einige VPNs schädliche Websites, Anzeigen und Tracker.&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;</value>
   </data>
+  <data name="Blog_BSTSSCE_H1_SH2_Text1">
+    <value>Sichere Passwörter sind der Schlüssel zu Ihrem digitalen Leben. Passwörter sind die digitalen Schlüssel zu unseren Freundesnetzwerken, unseren Arbeitskollegen und sogar zu unseren Bank- und Zahlungsdiensten. Die beiden wichtigsten Passwörter sind die für Ihre E-Mail- und Social-Network-Konten. Es ist wichtig, für jedes Konto, das Sie möglicherweise ausführen, völlig neue und eindeutige Kennwörter zu verwenden, damit Sie Ihre Daten nicht gefährden, wenn eines Ihrer Konten gehackt wird. Um ein sicheres Passwort zu haben, ist es äußerst wichtig, keine persönlichen Informationen in Ihre Passwörter aufzunehmen. Hacker könnten versuchen, sich bei Ihrem Konto anzumelden, indem sie Ihr Passwort anhand persönlicher Informationen erraten, die Sie aus Ihren Sicherheitsfragen erhalten haben. Je kürzer und weniger komplex Ihr Passwort ist, desto schneller können Sie die richtige Zeichenkombination finden und auf Ihre privaten Informationen zugreifen. Ein Passwort-Cracker ist ein Programm, das eine Vielzahl von Kombinationen in sehr kurzer Zeit verwendet, bis es vollen Zugriff auf alles erhält, was Ihr Passwort schützt. Verwenden Sie eine Kombination aus Groß- und Kleinbuchstaben, Symbolen und Zahlen.</value>
+  </data>
   <data name="Blog_BSTSSCE_H1_SH3_Text2">
     <value>Starten Sie jetzt Ihre 30-tägige kostenlose Testversion! Lesen Sie hier mehr über unsere Produkte: &lt;a href='https://www.axcrypt.net/about /'&gt;https://www.axcrypt.net/about /&lt;/a&gt;&lt;/li&gt;</value>
   </data>
@@ -931,6 +946,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_CEANK_H2_SubHeading2">
     <value>&lt;b&gt;PaaS - Platform-as-a-Service&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_Text1">
+    <value>Virtualisierung ist die Technologie, die Cloud Computing ermöglicht. Durch die Erstellung einer Simulation eines physischen Computers, der als virtuelle Maschine bezeichnet wird, implementieren wir die Kapazität von Servern und Rechenzentren, um Informationen zu speichern.&lt;br/&gt;&lt;br/&gt;Es gibt verschiedene Kategorien, die das Computing von Cloud-Speichern charakterisieren</value>
   </data>
   <data name="Blog_CEANK_H2_Text2">
     <value>Es gibt verschiedene Kategorien, die den Cloud-Speicher charakterisieren, hier sind die verschiedenen Dienste:&lt;br/&gt;</value>
@@ -1241,6 +1259,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EDIKPNY_Text1">
     <value>Hallo Community,</value>
   </data>
+  <data name="Blog_EDIKPNY_Text2">
+    <value>Wir sind bereit, 2021 willkommen zu heißen. Wir möchten uns bei Ihnen bedanken, dass Sie Teil unserer Familie sind und uns Feedback geben, um Daten und private Informationen gemeinsam zu schützen und sicherzustellen. Wir freuen uns sehr, weitere Updates und Verbesserungen zu entwickeln, um Ihre Erfahrung mit unserer Software zu erleichtern.</value>
+  </data>
   <data name="Blog_EDIKPNY_Text4">
     <value>Die Kernfunktion von AxCrypt bleibt und bleibt die zuverlässige Verschlüsselung von Dateien und Dokumenten. Einfach und angenehm für alle zu bedienen, können Sie Ihre privaten Informationen in der Cloud verschlüsseln und von überall darauf zugreifen. Axcrypt funktioniert mit PC, Mac OS, wie iOS und Androids. Egal was Sie tun, Sie können mit Ihrem Laptop, Ihrem Tablet oder Ihrem Handy sicher auf Ihre Daten zugreifen.</value>
   </data>
@@ -1271,6 +1292,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_EFPECT_Summary">
     <value>Verschlüsselung ist für den Schutz von Geschäftsgeheimnissen, Identifikationsdaten, Finanztransaktionen, sensiblen persönlichen Informationen und anderen Formen von geschützten Daten, die digital gespeichert werden, unerlässlich.</value>
   </data>
+  <data name="Blog_EFPECT_Text2">
+    <value>Die Pandemie und die Fernarbeit haben unsere Abhängigkeit von der Internettechnologie verstärkt, und es gibt kein Zurück mehr, da der Fortschritt der Digitalisierung neue Risiken für Daten mit sich bringt. Hacker sind in ihrem Ansatz, Zugang zu geschützten Daten zu erhalten, kompetenter geworden. In diesem Artikel betrachten wir die neuen Bedrohungen für die digitale Umgebung sowie kommende Verschlüsselungsansätze.</value>
+  </data>
   <data name="Blog_EFPECT_Title">
     <value>Verschlüsselung aus der Zukunftsperspektive und aufkommende Cyberbedrohungen</value>
   </data>
@@ -1285,6 +1309,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_EHI_Heading2">
     <value>Warum ist es wichtig, Verschlüsselung für die Gesundheitsbranche zu verwenden?</value>
+  </data>
+  <data name="Blog_EHI_Summary">
+    <value>Das Gesundheitswesen ist ein globaler Sektor, der kontinuierlich und regelmäßig große Mengen lebenswichtiger Informationen über eine Vielzahl von Kanälen und Einrichtungen verarbeitet und überträgt.</value>
   </data>
   <data name="Blog_EIAWII_H2_Text2">
     <value>Dieses Gesetz betrifft alle Internetnutzer innerhalb der Grenzen der Vereinigten Staaten, unabhängig davon, ob die Regierung an Ihren Daten interessiert ist oder nicht. Wenn Hintertüren eingeführt werden, erhalten böswillige Agenten auch die Möglichkeit, Ihre Daten abzurufen. Wie von der Electronic Frontier Foundation angegeben, "bleibt die Nachricht entweder für alle außer ihren Empfängern privat oder sie steht anderen zur Verfügung". Auf der anderen Seite des Arguments sind viele der Ansicht, dass dies eine notwendige Voraussetzung für die Gewährleistung der nationalen Sicherheit und die Erleichterung der Ermittlungen des Bundes ist.</value>
@@ -1496,6 +1523,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;AES 256 Bit Verschlüsselung mit AxCrypt&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_GAES256BEWA_H1_Text1">
+    <value>Das National Institute of Standards and Technology (NIST) erkannte die Notwendigkeit einer Alternative zum Datenverschlüsselungsstandard (DES), der anfällig für Brute-Force-Angriffe wurde, und so wurde der Advanced Encryption Standard (AES) geschaffen. Die US-amerikanische National Security Agency (NSA) hat AES als erste öffentlich zugängliche Chiffre zum Schutz von streng geheimem Material zugelassen.&lt;a href='https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard '&gt;Learn More&lt;/a&gt;</value>
+  </data>
   <data name="Blog_GAES256BEWA_H1_Text2">
     <value>Cyberkriminelle sind ständig auf der Suche nach Schwachstellen, die sie ausnutzen können. Wie können Benutzer volles Vertrauen haben, dass ihre Daten sicher sind, unabhängig davon, wo sie gespeichert sind, insbesondere in dieser zunehmend vernetzten Welt? Verschlüsselung ist eine der am weitesten verbreiteten Methoden zum Schutz sensibler Informationen. Die Verschlüsselung funktioniert, indem gewöhnlicher Text in Chiffretext umgewandelt wird, der aus scheinbar zufälligen Zeichen besteht. Es kann nur von denen entschlüsselt werden, die den eindeutigen Schlüssel besitzen.</value>
   </data>
@@ -1674,6 +1704,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_HOA_Title">
     <value>Geschichte des Axcrypt</value>
+  </data>
+  <data name="Blog_HPDYMP_H1_Text1">
+    <value>Mobiltelefone sind zu einem festen Bestandteil unseres täglichen Lebens geworden. Sie sind infolge der globalen Pandemie und der Zunahme der Fernarbeit zum Hauptziel von Hackern geworden. Es gibt viele unentdeckte Risiken, die versuchen, private Daten auf Ihrem Mobilgerät abzurufen. Wenn es um die auf einem Telefon gespeicherten Informationen geht, unterschätzen viele Menschen ihren wahren Wert. Ihr Telefon enthält alle Ihre persönlichen Informationen und fungiert gleichzeitig als Datenbank und Social-Media-Hub.</value>
   </data>
   <data name="Blog_HPDYMP_H3_Text2">
     <value>Probieren Sie eine einmonatige kostenlose Testversion aus &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Android&lt;/a&gt; oder &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;iOS&lt;/a&gt;.</value>
@@ -1966,6 +1999,9 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_MK_Text1">
     <value>Die heutigen Unternehmen sind durch ständige Veränderungen in politischen, sozialen, finanziellen und technologischen Bereichen gekennzeichnet. Unternehmen agieren in einem sehr dynamischen und unvorhersehbaren Umfeld. Organisationen müssen sich nun an diese häufigen Veränderungen anpassen. Die Einführung intelligenter Technologien als sich ändernde Strategien ist für Unternehmen unerlässlich, um Erfolg und Überleben zu sichern.</value>
   </data>
+  <data name="Blog_MK_Text2">
+    <value>Stellen Sie sich nun eine Situation vor, in der ein wichtiges Finanzdokument nach dem Erstellen des jährlichen Umsatzberichts verschlüsselt wird. Im folgenden Jahr wird ein neues Finanzteam eingerichtet, und wenn es Zeit für den Jahresbericht ist, stellen sie fest, dass das Finanzdokument, das das vorherige Team verwendet hat, jetzt mit Anmeldeinformationen verschlüsselt ist, auf die niemand mehr zugreifen kann.</value>
+  </data>
   <data name="Blog_MK_Text3">
     <value>AxCrypt hat jetzt eine neue Funktion hinzugefügt, die eine Lösung für das oben genannte Problem namens &lt;b&gt;Hauptschlüssel&lt;/b&gt; zusammen mit seinen anderen Funktionen wie Erweiterter Verschlüsselungsstandard, Cloud-Speicher-Bewusstsein und Schlüsselfreigabe darstellt. Es ist jetzt für Windows-, Mac-, Android- und iOS-Plattformen verfügbar.</value>
   </data>
@@ -2011,8 +2047,14 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_PYDFCG_Conclusion_Text1">
     <value>Angesichts zunehmender Cyberbedrohungen ist es wichtiger denn je, Ihre Informationen sicher zu verwahren. Sie können die Feiertage in dem Wissen genießen, dass Risiken minimiert werden, indem Sie die Cybersicherheit mit AxCrypt proaktiv angehen.</value>
   </data>
+  <data name="Blog_PYDFCG_H2_SH1_Text2">
+    <value>Mit AxCrypt können Sie Daten auf verschiedenen Geräten wie Windows und Mac sichern und gleichzeitig mit unserer mobilen App unterwegs darauf zugreifen. Jetzt herunterladen: CTA</value>
+  </data>
   <data name="Blog_PYDFCG_Heading1">
     <value>Warum ist es wichtig, Daten während der Feiertage sicher aufzubewahren?</value>
+  </data>
+  <data name="Blog_PYDFCG_Text1">
+    <value>Möge eure Weihnachtsfest so fröhlich und reichlich sein wie das des Weihnachtsmanns! AxCrypt wünscht Ihnen und Ihrer Familie frohe Weihnachten! Dieses Jahr helfen wir dem Weihnachtsmann, Geschenke auszuliefern, weil die meisten von Ihnen Datensicherheit auf ihre Wunschliste geschrieben haben!</value>
   </data>
   <data name="Blog_Review_CompareCamp">
     <value>Die Auswahl einer Verschlüsselungssoftware kann zunächst kompliziert sein. Es wird sich jedoch auf lange Sicht als unglaublich vorteilhaft für Sie herausstellen. Wenn Sie nach einem Beispiel suchen, wo Sie anfangen sollen, können Sie erkunden &lt;a href=' https://comparecamp.com/axcrypt-review-pricing-pros-cons-features /'&gt;AxCrypt&lt;/a&gt;.</value>
@@ -2082,6 +2124,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_SD_H1_Text1">
     <value>Verwenden Sie Netflix? Wenn Sie einen Netflix-Account haben, haben Sie wahrscheinlich von der kürzlich veröffentlichten Dokumentation "The Social Dilemma" gehört, die die wesentlichen Vorteile von Social Media berührt. Google, Apple, YouTube, Facebook und all diese Tools haben wunderbare Dinge Wirklichkeit werden lassen. Die Wiedervereinigung von Familienmitgliedern, die Ermöglichung einer effektiven Kommunikation und die Verbesserung unserer Konnektivität sind nur einige der bedeutsamen systemischen Veränderungen, die diese innovative Branche mit sich gebracht hat. Dennoch hat diese zunehmende Polarisierung nicht nur Vorteile. Wie in der Dokumentation hervorgehoben, sind die Menschen manchmal etwas zu naïv in Bezug auf die Kehrseite der Münze.</value>
+  </data>
+  <data name="Blog_SD_H2_Text1">
+    <value>Alles, was Sie online tun, wird verfolgt, gemessen und analysiert. Vielleicht haben Sie das Gefühl, dass es jetzt an der Zeit ist, Ihre persönliche Sicherheit ernster zu nehmen. Es ist an der Zeit, die Gefahren zu verstehen, wenn Ihre persönlichen Daten an diejenigen weitergegeben werden, die ein Hintergedanken haben. Hacker können leicht anfällige Verstöße gegen Ihren Computer ausnutzen und auf Ihre E-Mails, Dokumente oder Dateien zugreifen, um sie später für böswillige Zwecke zu verwenden. Um eine Verletzung Ihrer persönlichen Daten zu vermeiden und eine vollständige Online-Sicherheit und Sicherheit zu gewährleisten, verschlüsseln Sie Ihre Dateien mit AxCrypt, um Ihre privaten Daten zu schützen!</value>
   </data>
   <data name="Blog_SD_H3_Text1">
     <value>Indem Sie Ihre privaten Informationen in einen Geheimcode umwandeln, der die wahre Bedeutung der Informationen verbirgt, machen Sie es einem Eindringling fast unmöglich, sie in Klartext zu entschlüsseln. Wenn eine verschlüsselte Nachricht von einer nicht autorisierten Entität abgefangen wird, muss der Inflator die Variablen erraten, die zum Verschlüsseln der Nachricht verwendet wurden. Die Zeit und die Schwierigkeit, diese Informationen zu erraten, machen die Verschlüsselung zu einem so wertvollen Sicherheitstool; Nehmen Sie die Daten, führen Sie sie durch einen Verschlüsselungsalgorithmus, und sie sind für jeden unlesbar, der nicht den richtigen Schlüssel besitzt, um den Vorgang umzukehren. Verschlüsselung wird vom Militär und von Regierungen eingesetzt und ist eine seit langem bewährte Methode, um Daten während der Übertragung und ruhende Daten zu schützen und den Zugriff einzuschränken, wenn die Zugriffskontrollen nicht ausreichen. Nur wenige Technologien kommen einer nahezu unzerbrechlichen Datensicherheit so nahe wie die Verschlüsselung. Die Verwendung von Verschlüsselung ist fast so alt wie die Kunst der Kommunikation selbst und bietet Vertraulichkeit, Authentifizierung und Integrität.</value>
@@ -2181,6 +2226,12 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_TAYBS_H1_Text1">
     <value>AxCrypt wünscht Ihnen einen erfolgreichen Start ins Jahr 2022. Wir sind begeistert und freuen uns auf zukünftige Updates und Verbesserungen, um unsere Software zu vereinfachen. Aber zuerst werfen wir einen Blick auf 2021 und sehen, was wir bisher erreicht haben.</value>
+  </data>
+  <data name="Blog_TAYBS_H2_Text3">
+    <value>&lt;li&gt;AxCrypt wird endlich die mobile Verschlüsselungsfunktion für Business- und Premium-Benutzer einführen. Jetzt können Sie auf Ihrem Android-Handy, iOS oder Tablet von überall und jederzeit verschlüsseln und entschlüsseln.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H2_Text6">
+    <value>&lt;li&gt;Mit der Weiterentwicklung der Technologie und um mit unserer App einen nahtlosen und bequemen Service zu bieten, werden wir weiterhin an neuen Designs und Benutzeroberflächen für Mobilgeräte und Desktops arbeiten.&lt;/li&gt;</value>
   </data>
   <data name="Blog_TAYBS_Heading1">
     <value>Ein kurzer Überblick über 2021</value>
@@ -2347,8 +2398,20 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WAMHIHY_Title">
     <value>Was ist Affiliate-Marketing und wie kann es Ihnen helfen?</value>
   </data>
+  <data name="Blog_WBFAHPI_H1_SH3_Text1">
+    <value>Das Sprühen von Passwörtern ist eine Form des umgekehrten Brute-Force-Angriffs, bei dem sich der Angreifer Brute-Force basierend auf einer Liste von Benutzernamen mit Standardkennwörtern bei der Anwendung anmeldet. Dieser Angriff wird normalerweise in Bereichen eingesetzt, in denen der Administrator ein Standardkennwort für die neuen Benutzer festlegt. Normalerweise versuchen Angreifer, die Passwörter zu erraten. Im Gegensatz zu einem Brute-Force-Angriff, der sich auf ein einzelnes Konto konzentriert, zielen Passwortinjektionsangriffe in diesem Fall jedoch auf mehrere Konten gleichzeitig ab. Hier erhalten die Angreifer Zugriff auf eine große Anzahl von Konten (Benutzernamen) mit wenigen gängigen Passwörtern.</value>
+  </data>
   <data name="Blog_WBFAHPI_H1_SubHeading5">
     <value>&lt;li&gt;&lt;strong&gt;Hybride Brute-Force-Angriffe:&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_Type_Text1">
+    <value>Eine sehr häufige Bedrohung in diesem Web-Zeitalter sind Brute-Force-Angriffe. Ein Brute-Force-Angriff in der Cybersicherheit ist ein Versuch, ein Passwort zu finden, indem systematisch alle möglichen Kombinationen von Buchstaben, Zahlen und Symbolen ausprobiert werden, bis Sie die richtige funktionierende Kombination gefunden haben. Passwörter sind nicht die einzige Ressource, die brutal erzwungen werden kann: Links und Verzeichnisse, Benutzernamen und E-Mails sind ebenfalls häufige Ziele.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text2">
+    <value>&lt;li&gt;Es wird immer empfohlen, keine Standardpasswörter zu verwenden, aber es ist besser, Ihre eigenen erstellten Passwörter zu verwenden. Am besten erstellen Sie eindeutige Passwörter, die mindestens 15 Ziffern und mehrere Schlüsselwörter enthalten. Lange Passwörter, die aus zufälligen Wörtern/Zeichen bestehen, sind sicherer und einfacher für das Knacken von Passwörtern.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text4">
+    <value>&lt;li&gt; Es wird empfohlen, eine Zwei-Faktor- oder Multi-Faktor-Authentifizierung zu verwenden, bei der der Benutzer seine Authentizität überprüfen muss, bevor er Zugriff auf das System gewährt. Wenn 2FA aktiviert ist, wird der Benutzer aufgefordert, einen eindeutigen Code einzugeben, der einer Mobiltelefonnummer zugewiesen ist, um deren Echtheit zu überprüfen, bevor er Zugriff auf das Netzwerk erhält.&lt;/li&gt;</value>
   </data>
   <data name="Blog_WBFAHPI_H2_Text2">
     <value>&lt;li style="list-style-type: '\27A3';"&gt; Es wurden zahlreiche fehlgeschlagene Anmeldeversuche von derselben IP-Adresse aus versucht.&lt;/li&gt;</value>
@@ -2359,11 +2422,17 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WCACT_Conclusion_Text1">
     <value>Nehmen Sie sich die Zeit, Ihre Datenschutzanforderungen zu bewerten und die richtigen und effizienten Verschlüsselungsdienste zu untersuchen, um die Vorteile der Cloud-Verschlüsselung zu nutzen. Verschlüsselung in der Cloud ist laut Sicherheitsexperten ein kritischer Ansatz für die Informationssicherheit. AxCrypt verfügt auch über eine Vielzahl von Funktionen, um die unterschiedlichsten Anforderungen an die Datensicherheit zu erfüllen.</value>
   </data>
+  <data name="Blog_WCACT_H1_Text1">
+    <value>Cloud Computing nutzt das Internet, um einen gemeinsamen Datenpool bereitzustellen, auf den jederzeit zugegriffen werden kann. Mit dem Aufkommen der Fernarbeit bietet die Cloud mehr Flexibilität und Effizienz bei gleichzeitiger Senkung der Kosten. Viele Einzelpersonen und Unternehmen haben bereits ihre betriebliche Effizienz verbessert und gleichzeitig die IT-Ausgaben durch den Einsatz von Cloud Computing gesenkt. Die COVID-19-Pandemie hat die lang erwartete breite Akzeptanz von Cloud-Systemen, einschließlich Multi-Cloud- und Hybrid-Installationen, beschleunigt. Während Cloud Computing unbestreitbare Vorteile mit sich bringt, ist es dennoch anfällig für Bedrohungen von innen und außen.</value>
+  </data>
   <data name="Blog_WCACT_H1_Text2">
     <value>79% der Unternehmen haben in den letzten 18 Monaten mindestens einen Verstoß gegen Cloud-Daten festgestellt, und 43% haben in diesem Zeitraum 10 oder mehr Verstöße gemeldet.</value>
   </data>
   <data name="Blog_WCACT_H2_SH1_Text1">
     <value>Die häufigste Gefahr für Cloud Computing sind Datenschutzverletzungen, die zu Datenlecks oder -verlusten führen. Ein Datenverstoß tritt auf, wenn ein Unternehmen von Hackern angegriffen wird, die illegalen Zugriff auf ihr Cloud-Netzwerk erhalten. &lt;br/&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_SH3_Text1">
+    <value>Ein Angreifer in einem Cloud-System kann auf einen Kunden oder Mitarbeiter mit breitem Zugriff zurückzuführen sein, oder es kann das Ergebnis von Unwissenheit oder einfachem menschlichem Fehler sein. Daher sollten Administratoren Sicherheitsdesigns auf hoher Ebene mit unterschiedlichen Zugriffsgraden auf Cloud-Dienste einrichten, um böswilliges Verhalten eines Insiders zu vermeiden.</value>
   </data>
   <data name="Blog_WCACT_H2_SubHeading2">
     <value>&lt;strong&gt;Denial-of-Service-Angriffe&lt;/strong&gt;</value>
@@ -2482,17 +2551,29 @@ Sie wurden gewarnt, jetzt genießen!
   <data name="Blog_WIAAI_Title">
     <value>Was ist eine AxCrypt ID?</value>
   </data>
+  <data name="Blog_WICS_Conclusion_Text1">
+    <value>Verteidiger müssen auch in den Jahren 2022 und 2023 wachsam sein, da es sich um eine verbesserte Version von 2021 handeln würde. Einzelpersonen und Organisationen sollten ihre Netzwerke mit den richtigen Strategien vor Sicherheitsbedrohungen schützen. Kontaktieren Sie AxCrypt jetzt und schützen Sie Ihre Daten vor Cyberangriffen.</value>
+  </data>
+  <data name="Blog_WICS_H1_SH1_steps">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Schutz von Unternehmens- und personenbezogenen Daten vor Cyberangriffen und Datenschutzverletzungen.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Daten- und Netzwerkschutz.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Verhindern Sie den Zugriff durch nicht autorisierte Benutzer.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Bessere Wiederherstellung nach Abstürzen.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Die Kontinuität des Dienstes und damit die Produktivität werden in größerem Maßstab gesteigert.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Schutz von Endbenutzern und Endgeräten.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Cybersicherheit hilft Kosten und Zeit zu sparen. Kosten für Datenverlust, Wiederherstellung und Ausfallzeiten aufgrund der Wiederaufnahme des Betriebs führen zu hohen Kosten. In Übereinstimmung mit der &lt;a href='https://www.hiscox.com/articles/average-annual-cost-cyber-attacks-us-small-business-25k-reveals-hiscox'&gt; Hiscox Cyber Readiness Report 2021&lt;/ a&gt;, Die durchschnittlichen Kosten eines einzelnen Cyberangriffs für den Kleinunternehmenssektor bei American betragen 25,612 USD.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Es verdient den geschäftlichen Ruf der Organisation. Besseres Vertrauen in das Image des Unternehmens und das Vertrauen von Entwicklern, Partnern, Kunden, Stakeholdern und Mitarbeitern.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WICS_H1_Text1">
     <value>Die Bedeutung der Cybersicherheit nimmt aufgrund der gestiegenen Anzahl von Internetnutzern mit sensiblen oder vertraulichen Daten rasant zu. Cyberbedrohungen nehmen immens zu, &lt;strong&gt; 1 Billion US-Dollar in Übereinstimmung mit der Umfrage&lt;/strong&gt;&lt;a href='https://www.pwc.com/gx/en/issues/cybersecurity/global-digital-trust-insights.html '&gt; (2022 Global Digital Trust Insights Survey)&lt;/a&gt; und Organisationen erwarten, dass die Risiken kontinuierlich zunehmen. Das Problem wird durch die zunehmende Anzahl und Komplexität von Cyberbedrohungen und Angriffsmethoden noch verschärft. Unternehmen setzen Verfahren zur Unterstützung der Cybersicherheit ein, um sich vor Phishing-Betrug, Ransomware-Angriffen, Identitätsdiebstahl, Datenverletzungen und Geldverlusten zu schützen.</value>
   </data>
   <data name="Blog_WICS_H1_Text2">
     <value>Hier spielt die Verschlüsselung eine große Rolle. Verschlüsselung schützt private und sensible Daten und verbessert die Sicherheit der Kommunikation zwischen Clientanwendungen und Servern. Wenn die Daten verschlüsselt sind, können Hacker oder unbefugte Personen oder Organisationen sie nicht lesen. Verschlüsselung ist eine Cybersicherheitsmaßnahme, die private und persönliche Informationen schützt, indem eindeutige Codes verwendet werden, die die Informationen verschlüsseln und es Eindringlingen unmöglich machen, sie zu lesen. Trotz einer Datenschutzverletzung gewährleistet die Verschlüsselung die Sicherheit der privaten Informationen eines Unternehmens, selbst wenn Angreifer die Firewall umgehen.</value>
   </data>
+  <data name="Blog_WICS_H2_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Mobile Sicherheit:&lt;/strong&gt; In dieser digitalen Welt ist mobile Sicherheit eine große Sache, da immer mehr Menschen auf mobile Geräte angewiesen sind. Unternehmen, die mobile Geräte verwenden, müssen mobile Sicherheitsmaßnahmen anwenden, um die auf diesen Geräten gespeicherten Daten vor verschiedenen Bedrohungen zu schützen. Diese Subdomain schützt organisatorische und persönliche Informationen, die auf Mobilgeräten wie Tablets, Mobiltelefonen und Laptops gespeichert sind, vor verschiedenen Bedrohungen wie unbefugtem Zugriff, Verlust oder Diebstahl von Geräten, Malware, Viren usw.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WICS_H2_SubHeading1">
     <value>Wichtige Cybersicherheitszwecke sind:</value>
   </data>
   <data name="Blog_WICS_H2_Text1">
     <value>Um eine robuste Abwehr gegen potenzielle Cyberangriffe zu schaffen, ist es wichtig, dass Unternehmen, Mitarbeiter, Prozesse und Technologie so konzipiert sind, dass sie zusammenarbeiten. Cybersicherheit umfasst Techniken, Prozesse und Methoden zum Schutz von Computersystemen, Daten und Netzwerken vor Angriffen. Cybersicherheit ist so konzipiert, dass sie mehrere Schutzebenen für alle Computer, Netzwerke und Software bietet, die das Unternehmen verwendet. Cybersicherheitssysteme sind in der Lage, potenzielle Systemschwächen und -schwachstellen zu erkennen, zu untersuchen und zu beseitigen, bevor ein Hacker oder Malware sie ausnutzt.</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text3">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Cloud-Angriff:&lt;/strong&gt; Cloud-Dienste werden drastisch für persönliche und berufliche Bedürfnisse genutzt. Das Hacken von Cloud-Plattformen, um Benutzerdaten zu stehlen, ist auch eine der Herausforderungen für die Cybersicherheit für Einzelpersonen und Unternehmen. Wir alle kennen den berüchtigten iCloud-Hack, der die privaten Fotos von Prominenten enthüllte. Wenn ein solcher Angriff auf die Unternehmensdaten durchgeführt wird, kann dies eine große Bedrohung für die Organisation darstellen und sogar zu deren Zusammenbruch führen. Daher ist es zwingend erforderlich, viele Aspekte der Cloud-Sicherheit und des Datenschutzes zu berücksichtigen, um sensible Daten zu schützen.&lt;/li&gt;</value>
   </data>
   <data name="Blog_WICS_H3_SH1_Text5">
     <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Kryptowährungs- und Blockchain-Angriffe:&lt;/strong&gt;Digitale Währungen oder Geldbörsen sind zu einem Hauptziel für Hacker geworden. Das Wachstum dieser neuen Technologie hat die physische Währung revolutioniert, aber auch viele ernsthafte Sicherheitsherausforderungen mit sich gebracht. Laut dem Bericht von Fincen wurden 177 eindeutige digitale Brieftaschenadressen für die Ransomware-Angriffe verwendet. Es ist wichtig, dass Unternehmen sich der Sicherheitsprobleme bewusst sind, die mit diesen Technologien verbunden sind, und sicherstellen, dass sie nicht von Hackern angegriffen und ausgenutzt werden können.&lt;/li&gt;</value>
@@ -2526,6 +2607,9 @@ Sie wurden gewarnt, jetzt genießen!
   </data>
   <data name="Blog_WSPPI_H2_Text3">
     <value>Personenbezogene Daten betreffen fast alles, einschließlich der Nachrichten und Inhalte, die wir im Internet sehen. Ohne das Wissen, wofür Daten verwendet werden, sind wir in der heutigen Welt praktisch hilflos. Das Internet sollte ein Werkzeug der Befreiung und Demokratisierung sein, kann aber auf beispiellose Weise genutzt werden, um eine wahllose Massenüberwachung zu ermöglichen. Ein Mangel an Privatsphäre und blühende Massenüberwachung gestalten eine Gesellschaft um, die Konformität, Gehorsam und Unterwerfung hervorbringt. Stimmen Sie nicht zu, sich zu einer harmlosen, uninteressanten und nicht bedrohlichen Person zu machen, um keine Angst vor Menschen zu haben, die wissen, was Sie tun.</value>
+  </data>
+  <data name="Blog_WSPPI_H3_Text1">
+    <value>Information als Macht hat einige einzigartige Eigenschaften und ist in unserer Gesellschaft vorherrschend geworden. Im Gegensatz zu Waren kostet es nichts, sich zu bewegen, es kann immer wieder geteilt werden, ohne Erschöpfung, solange eine Partei daran interessiert ist, es preiszugeben. Informationen sind der Schlüssel dafür, wie die digitale Gesellschaft Mehrwert schafft und Macht neu verteilt. In einer vernetzten Welt gewinnen Informationen durch permanente Speicherung und weite Verbreitung an Macht. Einmal aufgezeichnete digitale Informationen können jedoch für immer existieren. Daten haben einen kostbaren Wert, wenn ihr Besitzer sie aufnehmen, verknüpfen, bewerten und interpretieren kann. Die Fähigkeit, Daten zu nutzen und in Informationen umzuwandeln, ist ein entscheidender, kritischer Punkt. Es entsteht eine große und beträchtliche Kluft zwischen denen, die Informationen als Ressource nutzen können, und denen, die dies nicht können.</value>
   </data>
   <data name="Blog_WSPPI_H4_Text2">
     <value>Datenschutzrechte hindern die Regierungen daran, ihre Bürger auszuspionieren. Die Regierung hat die Verantwortung, ihre Bürger zu schützen, aber sie überschreitet oft die Grenze, wenn es um Überwachung geht. Antidemokratische Systeme oder Diktaturen könnten daran interessiert sein, die privaten Informationen ihrer Bevölkerung zu sammeln. Sie geben vor, die Cyberkriminalität mit einem extrem scharfen Überwachungssystem zu bekämpfen, zielen aber in Wirklichkeit auf einen totalen Despotismus gegenüber ihren Bewohnern ab. Das Recht auf Privatsphäre lässt Sie sich frei in der Politik engagieren und schützt die Meinungsfreiheit als ob.</value>
@@ -8142,6 +8226,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock11Heading1" xml:space="preserve">
     <value>Premium &amp; Business-Testversion</value>
   </data>
+  <data name="TermsOfUseBlock11Text1" xml:space="preserve">
+    <value>Wir bieten 30 Tage kostenlose Testversion für den AxCrypt Premium- oder Business-Plan für neue Benutzer. Wenn Ihnen das Produkt nicht gefällt, können Sie das Abonnement vor Ablauf der Testphase kündigen. Die Kündigung des Abonnements kann jederzeit erfolgen. Dies wirkt sich nicht auf die Testversion aus und Sie können während Ihres Testzeitraums weiterhin alle Funktionen des Business- und Premium-Abonnements nutzen. Nach Ablauf der 30-tägigen kostenlosen Testversion belasten wir Ihre Kredit- / Debitkarten, wenn Sie Ihr Abonnement nicht gekündigt haben.</value>
+  </data>
   <data name="TermsOfUseBlock12Heading">
     <value>Zahlung und Verlängerung</value>
   </data>
@@ -8244,6 +8331,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock5Text1" xml:space="preserve">
     <value>AxCrypt Premium ist nur für Privatpersonen erhältlich. Nicht ideal für den professionellen Einsatz.</value>
   </data>
+  <data name="TermsOfUseBlock5Text2" xml:space="preserve">
+    <value>AxCrypt Premium bietet erweiterte Funktionen zusätzlich zum Free Plan, wie auf unserer Preisseite angegeben.</value>
+  </data>
   <data name="TermsOfUseBlock5Text3" xml:space="preserve">
     <value>Im Falle eines abgelaufenen Premium-Abonnements werden Sie gegebenenfalls auf Kostenlos oder Viewer herabgestuft.</value>
   </data>
@@ -8265,6 +8355,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   <data name="TermsOfUseBlock7Text1">
     <value>AxCrypt Free 2.1 für Windows ist freie software; Sie können es unter den Bedingungen der &lt;a href='verteilen und/oder ändern https://www.gnu.org/licenses/gpl-3.0.en.html' &gt; GPL Allgemeine Öffentliche Lizenz Version 3&lt;/a&gt; oder neuere version, wie von der Free Software Foundation veröffentlicht.</value>
   </data>
+  <data name="TermsOfUseBlock7Text2" xml:space="preserve">
+    <value>AxCrypt Viewer, Premium und Business werden nur unter diesen Nutzungsbedingungen lizenziert, nicht unter der GPL. Sie stimmen zu, unsere Software nicht zu kopieren, zu modifizieren, zu bearbeiten, anzupassen, zu reproduzieren oder Maßnahmen zu ergreifen, die unsere Software verändern könnten, es sei denn, dies ist für den normalen Gebrauch erforderlich. Sie dürfen AxCrypt nur weitergeben oder weiterverkaufen, wenn Sie unser autorisierter Wiederverkaufspartner sind.</value>
+  </data>
   <data name="TermsOfUseBlock7Text3">
     <value>Weitere Informationen finden Sie unter - &lt;a href='/information/reseller'&gt;https://www.axcrypt.net/information/reseller&lt;/a&gt;</value>
   </data>
@@ -8285,6 +8378,9 @@ Um zur Startseite zu gehen, klicken Sie &lt;a href="{1}"&gt;hier&lt;/a&gt;</valu
   </data>
   <data name="TermsOfUseBlockAxcryptPlanHeading1">
     <value>AxCrypt-Pläne</value>
+  </data>
+  <data name="TermsOfUseBlockMicroPayH1Text1">
+    <value>Während Sie sich für die Testversion anmelden, um Ihre Kredit- / Debitkarte zu validieren, berechnet AxCrypt Ihnen einen Mindestbetrag, abhängig von der Währung, in der Sie bezahlen. Sobald die Kredit- / Debitkarte validiert ist, werden wir die Rückerstattung des belasteten Betrags sofort veranlassen, aber abhängig von Ihrer Bank kann es 8-10 Werktage dauern, bis die Quelle der Zahlung angezeigt wird.</value>
   </data>
   <data name="TermsOfUseBlockMicroPayHeading1">
     <value>Einmalige erstattungsfähige Gebühr</value>
@@ -8424,8 +8520,23 @@ Das AxCrypt Team</value>
     <value>Sie verwenden nicht das höchste Sicherheitsniveau. Klicken Sie jetzt kostenlos zu versuchen!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
   </data>
+  <data name="TSTMNL_Business_BSALP_Text3" xml:space="preserve">
+    <value>Unsere Kunden lagern die Installation und den Betrieb ihrer IT-Umgebung an uns aus. Es ist daher äußerst wichtig, dass diese Informationen bestmöglich und mit den aktuellsten Methoden geschützt werden. AxCrypt hilft uns, mit einem hohen Schutzniveau zu arbeiten, aber dennoch einfach und effizient.</value>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text11" xml:space="preserve">
+    <value>Ich benutze AxCrypt seit vielen Jahren, es gibt mir die Gewissheit, dass sensible Informationen geschützt sind und dass wenn wir nicht mehr benötigte Informationen löschen, dies auf sichere und zuverlässige Weise geschieht. Das Produkt integriert sich sehr gut und wird zu einer einfach zu bedienenden Erweiterung des Betriebssystems!</value>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text9" xml:space="preserve">
+    <value>AxCrypt war wunderbar, um alle Verschlüsselungsanforderungen meines kleinen Unternehmens zu erfüllen. Als Unternehmen, das im Bereich der psychiatrischen Versorgung tätig ist, sind Datensicherheit und -schutz für uns von größter Bedeutung, und wir haben festgestellt, dass das Produkt von AxCrypt eine leistungsstarke und effektive und dennoch benutzerfreundliche Lösung ist!</value>
+  </data>
+  <data name="TSTMNL_Business_IACSCA_Text10" xml:space="preserve">
+    <value>Mit AxCrypt kann ich jede Art von Datei (ohne die Verpflichtung zu bestimmten Formaten, auch bei der Speicherung von Passwörtern) auf einfache und sichere Weise schützen und von jedem Gerät aus auf meine Daten zugreifen. vor allem aber kann ich nur die Datenzugriffsschlüssel für mein Team freigeben und nicht die gesamte Datei oder Kopien von Daten!</value>
+  </data>
   <data name="TSTMNL_Business_JTJT_Text7" xml:space="preserve">
     <value>Meine Übersetzungsagenturen verlangen von mir, dass ich alle Dokumente (Quelle und Übersetzung) verschlüssele. AxCrypt bietet eine bequeme und benutzerfreundliche Möglichkeit, dies zu tun!</value>
+  </data>
+  <data name="TSTMNL_Business_WREGNSA_Text4" xml:space="preserve">
+    <value>Wir waren auf der Suche nach einem einfachen Verschlüsselungstool, das wir unseren Benutzern zur Verfügung stellen können, ohne viel Schulung durchführen zu müssen. AxCrypt hat das einfach für uns gemacht. Abgesehen von einem anfänglichen "How to" -Dokument, das ich in wenigen Minuten eingegeben habe, muss ich den Benutzern nicht viel Unterstützung bieten. AxCrypt macht das so einfach.</value>
   </data>
   <data name="TSTMNL_Home_TechDogs_Text5" xml:space="preserve">
     <value>Axcrypt ist ein praktisches und benutzerfreundliches Tool zur Dateiverschlüsselung und Ordnerverschlüsselung und funktioniert für Android, Windows und iOS.</value>
@@ -8435,6 +8546,9 @@ Das AxCrypt Team</value>
   </data>
   <data name="TSTMNL_Home_TechRader_Text3" xml:space="preserve">
     <value>AxCrypt ist ein kostengünstiges und effektives Verschlüsselungswerkzeug .. sie haben eine günstige und lohnenswerte Dateiverschlüsselungssoftware.</value>
+  </data>
+  <data name="TSTMNL_Industries_BSAST_Text4" xml:space="preserve">
+    <value>Wenn es richtig gemacht wird, ist starke Verschlüsselung unzerbrechliche Verschlüsselung. Jede Schwachstelle in der Verschlüsselung wird ausgenutzt - von Hackern, Kriminellen und ausländischen Regierungen. Viele der Hacks, die die Nachrichten machen, können auf schwache oder — noch schlimmer — nicht vorhandene Verschlüsselung zurückgeführt werden.</value>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkisch</value>

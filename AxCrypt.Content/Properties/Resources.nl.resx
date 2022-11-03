@@ -719,6 +719,12 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_ADSDE_H2_SH1_Text2">
     <value>Redenen voor cyberaanvallen zijn onder meer verkenning, spionage om een ​​oneerlijk concurrentievoordeel te verwerven en intellectuele uitdaging. Financieel gemotiveerde cybercriminelen streven naar financieel gewin door gegevensdiefstal of verstoring van de bedrijfsvoering. Evenzo zullen de persoonlijk gemotiveerden, zoals huidige of voormalige werknemers die vergelding zoeken, zich ook richten op geld en gegevens.</value>
   </data>
+  <data name="Blog_ADSDE_H2_SH2_Text1">
+    <value>Het beveiligen van pdf-bestanden, mappen en andere gegevens is een noodzaak geworden in ons digitale tijdperk. Iedereen met toegang tot een gebruikersdatabase op de servers van een bedrijf (inclusief hackers) zou eenvoudig alle opgeslagen wachtwoorden kunnen onderzoeken als de wachtwoorden niet versleuteld waren. Met de vooruitgang van de technologie verbeteren hackers hun spel op het gebied van rondsnuffelen in gegevens. Hier zijn een paar tips om uw gegevens te beschermen..&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADSDE_H2_SubHeading1">
+    <value>&lt;strong&gt;De realiteit van Cybercriminaliteit&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_ADSDE_H3_Text1">
     <value>Uw apparaat met een wachtwoord beveiligen is onvoldoende om uw gegevens te beschermen. Door uw gegevens te versleutelen met software voor bestandswachtwoordbeveiliging, zorgt u ervoor dat alleen de personen met de unieke sleutel toegang hebben tot uw bestanden. Iedereen die de bestanden of pdf wil zien, moet de unieke sleutel kennen die je hebt gebruikt om de bestanden te beveiligen.</value>
   </data>
@@ -776,11 +782,21 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_BMYP_H1_SH3_Text1">
     <value>Mensen zouden graag geen lange wachtwoorden hoeven te onthouden die symbolen, cijfers, leestekens en hoofdletters bevatten, evenals andere beveiligingswachtwoordvereisten  Bovendien mogen ze complexe wachtwoorden gebruiken die uniek zijn voor elk toegangspunt.</value>
   </data>
+  <data name="Blog_BMYP_H1_SubHeading1">
+    <value>&lt;strong&gt;Management van Gedeelde Accounts&lt;/strong&gt;
+</value>
+  </data>
   <data name="Blog_BMYP_H1_SubHeading3">
     <value>&lt;strong&gt;Veel plezier met het gebruik van sterkere wachtwoorden&lt;/strong&gt;</value>
   </data>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;Het gaat verder dan het  enkel beschermen van wachtwoorden&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_Summary">
+    <value>Beveiliging is vaak van het grootste belang in een tijdperk waarin cybercriminaliteit de meest voorkomende ondeugd is.</value>
+  </data>
+  <data name="Blog_BMYP_Title">
+    <value>Voordelen van Wachtwoordbeheer</value>
   </data>
   <data name="Blog_BSTSSCE_H1_SH1_Text1">
     <value>Gebruik een virtueel particulier netwerk (VPN). VPN's worden gebruikt om privé webverkeer te beschermen tegen snuffelen, interferentie en censuur. PN's versleutelen alle gegevens die u via internet verzendt. U VPN maskeert ook uw IP-adres en tot slot blokkeren sommige VPN's kwaadaardige websites, advertenties en trackers.&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;</value>
@@ -942,11 +958,20 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_EFPECT_H1_SH1_Text1">
     <value>Bij losgeldaanvallen nemen hackers de gegevens van een bedrijf en versleutelen deze zodat ze er geen toegang meer toe hebben. Cybercriminelen zullen het bedrijf vervolgens chanteren door te dreigen met het onthullen van de vertrouwelijke informatie, tenzij er losgeld wordt betaald. In 2017 namen deze ransomware-aanvallen aanzienlijk toe. In de huidige omgeving wordt de dreiging van ransomware echter veel ernstiger naarmate de technologie vordert.</value>
   </data>
+  <data name="Blog_EFPECT_H1_SH2_Text1">
+    <value>Kunstmatige intelligentie en machinaal leren worden steeds revolutionairder en capabeler. Hoewel AI organisaties aanzienlijke mogelijkheden biedt om hun dreigingsdetectie te verbeteren, hebben de innovatie en de ruimere toepassing van deze technologie zowel positieve als negatieve gevolgen. Criminele netwerken gebruiken AI om hun aanvallen te automatiseren, en ze maken daarbij gebruik van strategieën als data vergiftiging en modeldiefstal.</value>
+  </data>
   <data name="Blog_EFPECT_H1_SH4_Text1">
     <value>Hoewel cloudservices verschillende voordelen hebben, zoals flexibiliteit, efficiëntie en kostenbesparingen, blijven ze een prominent doelwit voor cybercriminelen. Organisaties zullen de beveiligingsimplicaties van cloud computing moeten beoordelen en eventuele zwakke punten in hun huidige infrastructuur moeten identificeren.</value>
   </data>
+  <data name="Blog_EFPECT_H1_SubHeading3">
+    <value>&lt;strong&gt;Toename van Bedreigingen van Binnenuit&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_EFPECT_H2_SH2_Text1">
     <value>In de komende jaren zullen werkstations die gegevens bevatten die na de eerste versleuteling gedurende lange tijd veilig moeten worden bewaard, post-kwantumcryptografie vereisen. Quantumcomputers zijn buitengewoon moeilijk te bouwen. Er is nog geen enkele gebouwd die, ondanks vele pogingen, beter kan presteren dan een traditionele computer. Maar volgens het artikel kunnen kwantummachines binnen 10 tot 20 jaar werkelijkheid worden. Kwantumcryptografie maakt, in tegenstelling tot wiskundige codering, gebruik van kwantumfysica om veilige gegevens over te brengen en is echt onhackbaar. Kwantumcryptografie is een op kwantummechanica gebaseerde benadering voor het beveiligen van de distributie van symmetrische coderingssleutels. Kwantumsleuteldistributie oftewel Quantum key distribution is een nauwkeuriger term ervoor (QKD). De verschillende QKD-technieken zijn ontworpen om ervoor te zorgen dat elke afluisteraar die probeert de uitgezonden fotonen te controleren, de transmissie zou verstoren.</value>
+  </data>
+  <data name="Blog_EFPECT_Heading1">
+    <value>Opkomende Bedreigingen</value>
   </data>
   <data name="Blog_EFPECT_Summary">
     <value>Encryptie is essentieel bij het beschermen van handelsgeheimen, identificatiegegevens, financiële transacties, gevoelige persoonlijke informatie en andere vormen van eigendomsgegevens die digitaal worden opgeslagen.</value>
@@ -1070,11 +1095,17 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_HAVTYB_H1_SubHeading5">
     <value>&lt;strong&gt;Toegankelijk op verschillende apparaten&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_HAVTYB_H1_SubHeading6">
+    <value>&lt;strong&gt;Team Samenwerking&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_HAVTYB_H2_Text2">
     <value>&lt;strong&gt;U Kunt Wettelijke Boetes Vermijden door Encryptie te Gebruiken:&lt;/strong&gt; Vertrouwelijke gegevens moeten worden versleuteld in overeenstemming met bepaalde wetten inzake gegevensbescherming,&lt;a href='https://www.lepide.com/blog/5-benefits-of -using-encryption-technology-for-data-protection&gt; inclusief AVG en HIPAA &lt;/a&gt; (Health Insurance Portability and Accountability Act van 1996). Wanneer een apparaat of schijf zoekraakt of wordt gestolen en niet-versleutelde gegevens bevat, is het bedrijf onderworpen aan sancties.</value>
   </data>
   <data name="Blog_HAVTYB_Summary">
     <value>Wanneer gevoelige gegevens van uw bedrijf in de cloud worden opgeslagen, kan versleuteling het risico op gegevensdiefstal aanzienlijk verkleinen.</value>
+  </data>
+  <data name="Blog_HAVTYB_Title">
+    <value>Hoe AxCrypt Waarde Toevoegt Aan Uw Bedrijf</value>
   </data>
   <data name="Blog_HEIDS_H1_Text1">
     <value>Exploitatie van de interesse van een persoon door een oplichter om toegang te krijgen tot beperkte informatie. Phishing is verreweg de meest diepgewortelde vorm van inbreuk op de gegevensbeveiliging op dit gebied. Door zijn aard hebben de slachtoffers van deze vorm van datalek soms geen idee dat ze zichzelf blootstellen aan uitbuiting. De manier waarop phishing werkt, is dat de entiteit met de bedoeling toegang te krijgen tot ongeautoriseerde informatie, het potentiële slachtoffer laat denken dat ze contact hebben met een legitieme online entiteit; meestal via e-mail om toegang te krijgen tot de gewenste informatie. Het slachtoffer, die zich er niet van bewust is dat hij/zij wordt opgelicht, geeft uiteindelijk zelf de gewenste informatie. In de ogen van het slachtoffer geven ze alleen de gewenste informatie door aan een legitiem online platform. Het eindresultaat is dat de persoon uiteindelijk helpt bij het datalek, zij het onbewust, door toegang te krijgen tot kwaadaardige links of e-mailbijlagen.</value>
@@ -1344,8 +1375,20 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_ROCP_H1_SH3_Text1">
     <value>Wachtwoorden moeten hoofdletters en kleine letters, cijfers en speciale tekens (zoals @, £, procent en &amp;) bevatten en moeten ten minste tien tekens lang zijn. Bedrijven moeten een wachtwoordbeveiligingsbeleid opstellen en dit regelmatig bijwerken. Bovendien moet elke medewerker in de organisatie een eigen wachtwoord hebben.</value>
   </data>
+  <data name="Blog_ROCP_H1_SubHeading1">
+    <value>&lt;strong&gt;Beperkte Toegang tot Informatie&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_Heading1">
+    <value>Hoe Moet een Bedrijf zijn Wachtwoorden Organiseren.</value>
+  </data>
   <data name="Blog_ROCP_Heading2">
     <value>Waarom U De Wachtwoorden Van Uw Bedrijf Zou Moeten Organiseren.</value>
+  </data>
+  <data name="Blog_ROCP_Text1">
+    <value>Het kan moeilijk zijn om alle wachtwoorden en referenties bij te houden die u als ondernemer verwerft, zowel individueel als professioneel. Het beschermen van de wachtwoorden van zowel uw bedrijf als uw klanten maakt het nog moeilijker. Enerzijds is het gebruik van hetzelfde wachtwoord voor al uw aanmeldingen riskant en kan het leiden tot het hacken van uw bedrijfsaccounts. Anderzijds kunt u, omdat bepaalde werknemers of consultants tijdelijk zijn, niet altijd regelen wie binnen de organisatie toegang heeft tot welke inloggegevens.</value>
+  </data>
+  <data name="Blog_ROCP_Text2">
+    <value>Elke bedrijfseigenaar heeft een wachtwoordmanager zoals AxCrypt nodig, omdat het bijhouden van wachtwoorden een van de essentiële aspecten is van het runnen van een succesvol bedrijf. Dit artikel legt uit waarom en hoe een bedrijf zijn wachtwoorden moet organiseren.</value>
   </data>
   <data name="Blog_SamePage_AxcryptRunning">
     <value>Voor bestandscodering is AxCrypt de beste keuze, een software die gemakkelijk te begrijpen is en waarmee u als een team kunt werken en die premium 256-bits codering biedt die ervoor zorgt dat u waar voor uw geld krijgt. U kunt gewoon &lt;a href='https://www.axcrypt.net/blog/leaving-your-computer-with-axcrypt-running'&gt;uw computer met AxCrypt aan laten staan&lt;/a&gt; en de dag doorwerken met andere meer relevante taken zonder u zorgen te maken over de veiligheid van uw bestanden en documenten.</value>
@@ -1446,8 +1489,17 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_TPTWHEG_Text3">
     <value>Als u thuis werkt, moet u echter wel uw manier van werken veranderen. Een van die gebieden betreft de bescherming van uw eigen persoonsgegevens en die van anderen. Bij Privacy1 houden we het graag simpel en helpen we u de risico's op een beknopte manier te begrijpen. Daarom hebben we een lijst samengesteld met Top 3 tips voor privacy voor thuiswerkers om uw gezin, klanten en werkgever te helpen beschermen. Maakt u zich geen zorgen, het is geen technische blabla over cyberbeveiliging, slechts een paar punten die iedereen, in alle soorten banen, kan gebruiken om veilig thuis te blijven werken.</value>
   </data>
+  <data name="Blog_TSTE_H1_Text2">
+    <value>Bovendien geeft AES de voorkeur aan een 4 bij 4 raster voor een 128 bit, wat overeenkomt met 16 bits in een 4x4 raster, in tegenstelling tot een lange rij bits zoals bij de meeste cijfers. AES vervangt bytes, verschuift rijen en mengt kolommen van een platte tekst door een deel van zijn sleutel te gebruiken.</value>
+  </data>
+  <data name="Blog_TSTE_H1_Text3">
+    <value>De eerste component is de substitutie, de tweede is de permeatie, en tenslotte voegen we aan het eind van elke ronde een rondesleutel toe die gelijk is aan de eerste ronde. Maar voor een 128-bits encryptie worden 10 van deze rondes doorlopen, voor een 192-bits encryptie 12, en voor een 256-bits encryptie 14.</value>
+  </data>
   <data name="Blog_TSTE_H2_Text1">
     <value>De meeste hedendaagse coderingsalgoritmen, protocollen en technologieën gebruiken AES 256-bit, wat een van de &lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;veiligste en meest veilige coderings&lt;/a&gt; technieken is na 128-bits en 192-bits encryptie.</value>
+  </data>
+  <data name="Blog_TSTE_Title">
+    <value>Het Veiligste Type Encryptie</value>
   </data>
   <data name="Blog_UODPCH_Text2">
     <value>Bovendien kwam het voor dat gebruikers verschillende wachtwoorden voor verschillende bestanden instelden, ook al waren ze alleen voor privégebruik. Dit kan veiliger *voelen*, maar in feite voegt het in het beste geval geen beveiliging toe en in het slechtste geval veroorzaakt het een situatie met *minder* beveiliging.</value>
@@ -1473,11 +1525,41 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_WCACT_H1_Text2">
     <value>79% van de bedrijven heeft in de afgelopen 18 maanden ten minste één datalek in de cloud ondervonden en 43% heeft in die periode 10 of meer inbreuken gemeld.</value>
   </data>
+  <data name="Blog_WCACT_H2_SH1_Text1">
+    <value>Het meest voorkomende gevaar voor cloud computing zijn data inbreuken, die leiden tot datalekken of verlies. Er is sprake van een datalek wanneer een bedrijf het doelwit is van hackers die illegale toegang krijgen tot hun cloudnetwerk. &lt;br/&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H2_SubHeading2">
+    <value>&lt;strong&gt;Ontkenning van service-aanvallen&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H3_Text1">
+    <value>Cloudgebruikers moeten beveiligingsmaatregelen nemen om hun gevoelige gegevens te beschermen tegen cyberaanvallen. Encryptie is een van de meest effectieve methoden voor gegevensbeveiliging, waarbij de informatie van een systeem, database of bestand zodanig wordt vervormd dat het zonder de sleutel voor derden moeilijk te begrijpen is. Bedrijven kunnen garanderen dat alleen geautoriseerde gebruikers toegang hebben tot gevoelige gegevens door gebruik te maken van codering en goede sleutelbeheersystemen. Versleutelde gegevens zijn onleesbaar en praktisch waardeloos zonder de sleutel, zelfs als ze verloren gaan, gestolen worden of zonder toestemming worden geopend.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H3_Text3">
+    <value>Naleving van de wettelijke normen inzake privacy en bescherming van gegevens.</value>
+  </data>
   <data name="Blog_WCACT_H3_Text4">
     <value>Ongeautoriseerde gegevenstoegang van andere openbare cloud-huurders is beter beschermd.</value>
   </data>
+  <data name="Blog_WCACT_H3_Text5">
+    <value>Hiermee kan een bedrijf voorkomen dat het in bepaalde omstandigheden beveiligingsinbreuken of andere beveiligingsincidenten moet melden.</value>
+  </data>
+  <data name="Blog_WCACT_H4_SH1_Text1">
+    <value>Met AxCrypt is het heel eenvoudig om gegevensprivacy in de cloud te realiseren. AxCrypt zal automatisch vinden welke Cloud Storage-services op uw computer zijn geïnstalleerd en daar een AxCrypt-map maken. We maken het u gemakkelijk om de bestanden in deze mappen automatisch te bekijken en te beveiligen.</value>
+  </data>
+  <data name="Blog_WCACT_H4_SH3_Text1">
+    <value>AxCrypt zorgt ervoor dat uw organisatie in overeenstemming blijft met regelgeving zoals de Algemene Verordening Gegevensbescherming (AVG), die gaat over de bescherming van persoonsgegevens en individuele rechten.</value>
+  </data>
   <data name="Blog_WCACT_H4_SubHeading1">
     <value>&lt;strong&gt;Cloud beveiliging&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_H4_SubHeading2">
+    <value>&lt;strong&gt;Het Delen van Sleutels&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WCACT_Heading2">
+    <value>Hoe zijn cloudgegevens kwetsbaar?</value>
+  </data>
+  <data name="Blog_WCACT_Heading4">
+    <value>Cloud encryptie gemakkelijk gemaakt met AxCrypt</value>
   </data>
   <data name="Blog_WCACT_Summary">
     <value>Cloud computing maakt gebruik van internet om een ​​gedeelde datapool te bieden die op elk moment toegankelijk is. Met de opkomst van werken op afstand biedt de cloud meer flexibiliteit en efficiëntie, terwijl ook de kosten worden verlaagd.</value>
@@ -1613,6 +1695,18 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="Blog_ZTCS_H2_SH1_Text1">
     <value>Het raamwerk van het Zero Trust-model is gebaseerd op verificatie vóór betrouwbaarheid; daarom worden zowel gebruikersidentificatie als apparaatidentiteit en beveiliging allemaal in meerdere fasen gevalideerd. Eenmaal tot stand gebracht, verlopen aanmeldingen en verbindingen periodiek, waardoor gebruikers en apparaten regelmatig opnieuw moeten worden geverifieerd.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH4_Text1">
+    <value>Micro-segmentatie is de door Zero Trust gebruikte methode om beveiligingsperimeters in kleine afzonderlijke zones te verdelen, zodat verschillende delen van het netwerk onafhankelijke toegang hebben. Zonder aanvullende autorisatie kan een persoon of programma met toegang tot een van de zones geen toegang krijgen tot een van de andere zones; zo wordt laterale beweging van onbekende aanvallers effectief voorkomen.</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SubHeading4">
+    <value>&lt;strong&gt;Micro-segmentatie&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_H2_Text1">
+    <value>Zero Trust beveiligt externe werkkrachten beter dan traditionele benaderingen, en de voordelen gaan verder dan beveiliging en verhogen de productiviteit en wendbaarheid. In dit artikel bekijken we enkele van de belangrijkste beveiligingsfuncties van Zero Trust.</value>
+  </data>
+  <data name="Blog_ZTCS_Heading3">
+    <value>Hoe kan AxCrypt helpen om Zero Trust te implementeren?</value>
   </data>
   <data name="Blog_ZTCS_Title">
     <value>Zero Trust Cyber Security</value>
@@ -3406,20 +3500,38 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   <data name="GetStartedAxcryptMobileText">
     <value>Gebruik de app met je AxCrypt ID. Een Premium abonnement is nodig om zowel de Android als iOS app te gebruiken. Wanneer je een nieuwe AxCrypt ID aanmaakt, krijg je automatisch een Premium proefperiode van 30 dagen.</value>
   </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>Uploaden vanuit &lt;span&gt;Cloud opslagplaatsen&lt;/span&gt;.</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>De Google Drive en DropBox bestandsversleuteling worden ondersteund op zowel iOS als Android. Lokale opslag bestandscodering toegevoegd in Android en andere cloud drives, zoals iCloud, OneDrive, en anderen, zullen binnenkort worden ondersteund in de komende releases.</value>
+  </data>
   <data name="GetStartedDesktopHowToUseHeading">
     <value>Hoe te &lt;span&gt; Gebruiken&lt;/span&gt;</value>
   </data>
   <data name="GetStartedDesktopInstallingHeading">
     <value>&lt;span&gt;AxCrypt Installeren&lt;/span&gt; en uw  AxCrypt-ID Instellen</value>
   </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>Kies het bestand dat u wilt delen.</value>
+  </data>
   <data name="GetStartedDesktopKeySharingStep2">
     <value>Een contactpersoon toevoegen of selecteren.</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>Vergeet niet dat u nog steeds het eigenlijke bestand naar de ontvanger moet sturen!</value>
   </data>
   <data name="GetStartedDesktopPasswordManagementStep1">
     <value>Inloggen om toegang te krijgen tot het wachtwoordbeheer</value>
   </data>
   <data name="GetStartedDesktopPasswordResetHeading">
     <value>Wachtwoord &lt;span&gt; Reset&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>U kunt nu een wachtwoord reset doen. Na aanmelding heeft u echter geen toegang meer tot bestanden die met uw oude wachtwoord zijn versleuteld.</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>Volg na verificatie de aanwijzingen in de e-mail die naar uw e-mailadres is gestuurd.</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>Makkelijke toegang tot wachtwoorden</value>
@@ -3576,6 +3688,9 @@ We vinden het jammer dat u ons verlaat en hopen dat u genoten heeft van uw tijd 
   </data>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt: wachtwoord opnieuw instellen</value>
+  </data>
+  <data name="GetStartMobilePageTitle">
+    <value>Geavanceerde &lt;span&gt;encryptie&lt;/span&gt; in uw zak!</value>
   </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>Log in om u te abonneren! Als u nog geen account heeft, moet u eerst naar &lt;a href="{0}Home/Register/"&gt;sign up&lt;/a&gt;.</value>
@@ -5797,11 +5912,17 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   <data name="ProductBusinessHightlightsTitle" xml:space="preserve">
     <value>AxCrypt biedt nu bestandsbeveiliging voor bedrijven en organisaties - met 256-bit AES-codering.</value>
   </data>
+  <data name="ProductBusinessPricingTitle" xml:space="preserve">
+    <value>Probeer het &lt;span&gt; Business &lt;/span&gt;-abonnement voor &lt;span&gt; een maand gratis. &lt;/span&gt;</value>
+  </data>
   <data name="ProductBusinessSellingPointsStrongerEncrypt" xml:space="preserve">
     <value>Sterkere encryptie met &lt;span&gt; AES-256&lt;/span&gt;</value>
   </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Product en functies zijn te ingewikkeld voor mij</value>
+  </data>
+  <data name="ProductPremiumHightlights1" xml:space="preserve">
+    <value>Versleutel uw bestanden met AES-256 - het sterkste AES-algoritme. Het wordt wereldwijd gebruikt om gevoelige en geclassificeerde informatie van alle niveaus te beschermen. Het beveiligen van mappen was nog nooit zo eenvoudig: met één klik worden nieuwe bestanden automatisch beveiligd.</value>
   </data>
   <data name="ProductPremiumHightlights2" xml:space="preserve">
     <value>Als u ook beveiligde bestanden moet delen met anderen kan het delen van sleutels dat voor u regelen, zelfs met toegang tot cloudopslag in Dropbox, Google Drive, enz. Met de AxCrypt mobiele app kunt u bestanden versleutelen en ontsleutelen op uw telefoon, overal en altijd.</value>
@@ -5865,6 +5986,15 @@ HubSpot is een geïntegreerde softwareoplossing waarmee we verschillende aspecte
   </data>
   <data name="ProductTryItForFreeYouGet">
     <value>U krijgt:</value>
+  </data>
+  <data name="ProductWhatOthersSayTitle" xml:space="preserve">
+    <value>Wat anderen &lt;span&gt;zeggen&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptBusiness" xml:space="preserve">
+    <value>Waarom AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;</value>
+  </data>
+  <data name="ProductWhyAxcryptPremium" xml:space="preserve">
+    <value>Waarom AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;</value>
   </data>
   <data name="ProgressIndicatorCleanupMessage" xml:space="preserve">
     <value>Gedecrypteerde bestanden opschonen...</value>
