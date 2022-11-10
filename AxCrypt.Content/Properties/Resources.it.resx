@@ -681,6 +681,15 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_ADGE_Title">
     <value>Una guida completa alla crittografia</value>
   </data>
+  <data name="Blog_ADSDE_H2_SH1_Text2">
+    <value>I motivi degli attacchi informatici includono ricognizione, spionaggio per acquisire un vantaggio competitivo sleale e una sfida intellettuale. Motivati economicamente i criminali informatici cercano guadagno economico attraverso il furto di dati o l'interruzione dell'attività.  Allo stesso modo, i criminali con motivi personali, come dipendenti attuali o ex dipendenti che cercano la retribuzione, prenderanno di mira denaro e dati.</value>
+  </data>
+  <data name="Blog_ADSDE_H3_Text1">
+    <value>Mantenere il tuo dispositivo protetto da una password non è sufficiente per proteggere i tuoi dati. Crittografare i tuoi dati con il software di protezione File Password garantisce che soltanto le persone con la chiave univoca abbiamo accesso ai tuoi file. Chiunque voglia vedere i file o i pdf dovrà conoscere la chiave univoca che tu hai usato per proteggere i file.</value>
+  </data>
+  <data name="Blog_ADSDE_H3_Text2">
+    <value>Ti starai chiedendo come proteggere con una password un file PDF, cartelle e altri documenti? Non preoccuparti, usando AxCrypt puoi proteggere i documenti PDF e altri tipi di file. Crea password complesse con il generatore di password AxCrypt impossibile da hackerare da chiunque. Per ulteriori informazioni, &lt;a href= 'https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt; watch our YouTube tutorial &lt;/a&gt;</value>
+  </data>
   <data name="Blog_ADSDE_Heading3">
     <value>Cripta i tuoi file, cartelle e PDF sui tuoi dispositivi.</value>
   </data>
@@ -693,8 +702,20 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;Va oltre la semplice sicurezza delle password&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H1_Text2">
+    <value>Come concetto, l'igiene informatica è cresciuta in importanza dalla pandemia, poiché il numero di persone che lavorano da remoto a livello mondiale ha aumentato il crimine informatico.</value>
+  </data>
   <data name="Blog_CHHSSO_H2_Text1">
     <value>Di seguito alcuni dei problemi che l'igiene informatica intende risolvere:</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text3">
+    <value>&lt;li&gt;Perdita dati - gli hard drive su cui non è stato eseguito il backup e l'archiviazione cloud online potrebbero essere esposti a pirateria informatica, danni, o altri problemi che risultano in una perdita di dati.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH3_Text1">
+    <value>È essenziale avere password sicure per tutti i tuoi dispositivi. Le tue password dovrebbero essere uniche e complicate, con almeno 12 caratteri, includendo numeri, lettere maiuscole, minuscole e simboli. Cambiare le tue password regolarmente, aiuterà a tenere a bada gli hacker. AxCrypt fornisce un generatore di gestione delle password che garantisce che le password siano forti e sicure.</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH4_Text1">
+    <value>I backup devono essere conservati in un luogo diverso dagli originali e testati regolarmente. Per salvare in modo sicuro i file personali, crea un backup su un dispositivo separato (es. il cloud oppure una chiavetta USB crittografata). Puoi crittografare i dati del tuo drive con AxCrypt, che crittografa i dati in transito, a riposo e di archiviazione. Inoltre, mantieni il controllo sulle tue chiavi di crittografia consentendoti di mantenere il comando persino dopo che i dati hanno lasciato il tuo edificio.</value>
   </data>
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;Antivirus di alta qualità&lt;/strong&gt;</value>
@@ -707,6 +728,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   </data>
   <data name="Blog_CHHSSO_Heading3">
     <value>Metodi per assicurarsi una buona Igiene Informatica</value>
+  </data>
+  <data name="Blog_CSFE_H1_SH1_Text1">
+    <value>La formazione dei dipendenti sulla sicurezza informatica ha fatto molta strada in questi anni. Una volta la formazione sulla sicurezza era destinata soltanto agli specialisti di sicurezza informatica, ma in seguito è stata ampliata per comprendere tutto il personale informatico. Se l'azienda vuole evitare ransomware e malware, tutto il personale deve essere adeguatamente istruito riguardo alle migliori pratiche di sicurezza e alle buone abitudini.</value>
   </data>
   <data name="Blog_CSFE_H1_Text1">
     <value>Riconoscere quando è avvenuto un attacco informatico può essere più difficile per un dipendente che evitarle uno fin dall'inizio, ma ci sono alcuni segnali di allarme. I dipendenti dovrebbero essere formati costantemente sui segnali da ricercare se temono di aver subito un attacco.</value>
@@ -737,6 +761,21 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   </data>
   <data name="Blog_EDIKPNY_Heading1">
     <value>&lt;h2 style='margin-block: 0;'&gt;Il meglio del 2020&lt;/h2&gt;</value>
+  </data>
+  <data name="Blog_EFPECT_H1_SH1_Text1">
+    <value>Negli attacchi ransom, gli hacker prendono i dati di un'azienda e poi li crittografano in modo che non possano più accedervi. I criminali informatici ricatteranno allora l'azienda minacciando di rivelare le sue informazioni confidenziali a meno che non paghino un riscatto. Nel 2017, gli attacchi ransomware sono aumentati considerevolmente. Tuttavia, nell'ambiente attuale, la minaccia del ransomware sta diventando molto più seria con l'avanzare della tecnologia.</value>
+  </data>
+  <data name="Blog_EFPECT_H1_SH4_Text1">
+    <value>Nonostante i servizi cloud abbiano numerosi vantaggi come flessibilità, efficienza e risparmio sui costi, restano un obiettivo notevole per i criminali informatici. Le organizzazioni dovranno valutare le implicazioni di cloud computing e identificare eventuali punti deboli nella loro attuale infrastruttura.</value>
+  </data>
+  <data name="Blog_EFPECT_H2_SH2_Text1">
+    <value>Nei prossimi anni, le workstation che contengono i dati che devono essere mantenuti al sicuro per lunghi periodi di tempo dopo una crittografia iniziale richiederà una crittografia post-quantistica. I computer quantistici sono estremamente difficili da costruire. Non ne è ancora stato costruito uno in grado di superare un computer tradizionale, nonostante tanti tentativi. Ma secondo l'articolo, le macchine quantistiche potrebbero diventare una realtà entro i prossimi 10-20 anni. La crittografia quantistica, a differenza della crittografia matematica, utilizza la fisica quantistica per trasmettere dati sicuri ed è davvero inattaccabile. La crittografia quantistica è un approccio basato sulla meccanica quantistica per salvaguardare la distribuzione delle chiavi di crittografia simmetrica. La distribuzione a chiave quantistica è un termine più accurato per questo (QKD). Le diverse tecniche QKD sono progettate per assicurare l'interruzione della trasmissione nel caso in cui qualsiasi intercettatore tenti di rilevare i fotoni trasmessi.</value>
+  </data>
+  <data name="Blog_EFPECT_Summary">
+    <value>La crittografia è essenziale per proteggere segreti commerciali, dati identificativi, transazioni finanziarie, informazioni personali sensibili, e altre forme di dati privati che sono archiviati digitalmente.</value>
+  </data>
+  <data name="Blog_EHI_H3_SH1_Text1">
+    <value>AxCrypt permette l'apertura di file da parte di altri utenti AxCrypt con le loro password. In questo modo, gli operatori sanitari possono facilmente condividere le informazioni mediche in modo sicuro. Per ulteriori informazioni su AxCrypt key, consulta il nostro tutorial sulla condivisione della chiave su &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFS'&gt; YouTube&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="Blog_EHI_Heading2">
     <value>Perché è importante per le strutture sanitarie usare la crittografia?</value>
@@ -810,6 +849,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_ICSHRS_H2_SH4_Text1">
     <value>Il reparto risorse umane può assistere l'azienda nella definizione e nell'implementazione delle restrizioni di accesso. Già prima dell'assunzione o dell'inserimento di un dipendente, il reparto risorse umane può stabilire i dati di cui avranno bisogno. Devono inoltre assicurarsi che, al termine del contratto, il dipendente non abbia accesso a queste informazioni.</value>
   </data>
+  <data name="Blog_ICSHRS_H2_SH5_Text1">
+    <value>In caso di violazione, il dipartimento IT non è il solo responsabile della risoluzione del problema. È anche un problema delle risorse umane, soprattutto se sono coinvolti degli impiegati. HR è responsabile della condotta dei propri dipendenti. Questo rende le organizzazioni più vulnerabili alla criminalità informatica.</value>
+  </data>
   <data name="Blog_ICSHRS_H2_SubHeading2">
     <value>&lt;strong&gt;Elaborazione della politica &lt;/strong&gt;</value>
   </data>
@@ -825,6 +867,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_ITESBETFC_H1_SH1_Text2">
     <value>La crittografia protegge i dati nei seguenti modi:</value>
   </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text3">
+    <value>&lt;li&gt;Soltanto i destinatari approvati hanno accesso per vedere i messaggi dal momento in cui sono stati creati, attraverso l'intero ciclo di vita, indipendentemente da dove vadano o con chi siano condivisi.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_ITESBETFC_H1_SH1_Text4">
     <value>&lt;li&gt;Anche se i dati cadono nella mani sbagliate a causa di una violazione derivante da un errore dell'utente&lt;/li&gt;</value>
   </data>
@@ -834,8 +879,17 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_LYCWAR_Text13">
     <value>Buona crittografia con AxCrypt!</value>
   </data>
+  <data name="Blog_MDPNST_H2_SH2_Text1">
+    <value>Una maggiore adozione del cloud attrae una maggior indagine da parte degli operatori di attacchi informatici. Molti degli attacchi mirano alle vulnerabilità dell'infrastruttura cloud, permettendo ad un malintenzionato di colpire più obiettivi con un'unica vulnerabilità. Con AxCrypt puoi proteggere i tuoi dati sul drive del tuo dispositivo mobile e del PC.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH4_Text1">
+    <value>AxCrypt è una società di sicurezza informatica pluripremiata che offre soluzioni per la sicurezza informatica su dispositivi mobili e PC per la sicurezza personale e aziendale.  La crittografia AxCrypt Mobile va oltre una normale password di blocco schermata. È un blocco univoco per salvaguardare tutte le tue informazioni personali e i dati sui tuoi telefoni cellulari da interferenze da parte di terzi. Lo rende possibile memorizzando le informazioni del tuo telefono in un formato illeggibile e confuso, che può essere letto solo con le credenziali corrette. Con la crittografia mobile puoi essere sicuro che i tuoi dati sono protetti anche se il tuo dispositivo viene perso o rubato. Puoi persino scambiare i dati/files crittografati con i membri del tuo gruppo tramite la nostra funzione di condivisione della mobile key senza fornire le tue password con un solo click.</value>
+  </data>
   <data name="Blog_MDPNST_Heading2">
     <value>Alcune minacce per i dispositivi mobile a cui far attenzione nel 2022 </value>
+  </data>
+  <data name="Blog_MDPNST_Summary">
+    <value>Le tendenze di sicurezza mobile in tutto il mondo sono dominate da campagne di disinformazione, attacchi alla filiera, phishing, smishing, intercettazione e malware della rete mobile.</value>
   </data>
   <data name="Blog_MDSCBF_H1_SubHeading2">
     <value>&lt;strong&gt;Le regole di gestione dati sono state violate&lt;/strong&gt;</value>
@@ -855,8 +909,14 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_MK_H1_SubHeading2">
     <value>&lt;h2 style='margin-block: 0;'&gt;Master key è sicura?&lt;/h2&gt;</value>
   </data>
+  <data name="Blog_PECA_H1_Text1">
+    <value>AxCrypt è stato creato 15 anni fa con la missione di fornire la sicurezza dei dati in modo affidabile e il più semplicemente possibile. Dopo tutti questi anni l'azienda è ancora nota per il software più facile e semplice da usare, rendendolo il programma di crittografia più conosciuto nel mondo con oltre 20 milioni di download in tutto il mondo!</value>
+  </data>
   <data name="Blog_PECA_Heading1">
     <value>La crittografia diventa semplice con AxCrypt</value>
+  </data>
+  <data name="Blog_PECA_Text1">
+    <value>"&lt;i&gt;Questo eccellente strumento di crittografia ti permette di proteggere i tuoi file con una crittografia di alto livello, e lo fa con estrema facilità." Neil Rubenking, editore del PC Magazine&lt;/i&gt;</value>
   </data>
   <data name="Blog_PRAA_Heading2">
     <value>&lt;h3&gt;Cambio Password&lt;/h3&gt;</value>
@@ -879,11 +939,25 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_Support_ContactUs">
     <value>&lt;i&gt;Vuoi saperne di più?&lt;/i&gt; Ogni settimana pubblichiamo informazioni interessanti. Sii curioso e dai un'occhiata al nostro blog &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt;  don’t forget to contact us at &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; or &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; if you have any questions! </value>
   </data>
+  <data name="Blog_TAYBS_H1_SH3_Text1">
+    <value>Siamo sempre al lavoro per rendere il nostro software più user-friendly. Abbiamo aggiornato l'Interfaccia Utente su Windows, Mac, iOS e Android e migliorato la nostra Mobile App per rendere più semplice per gli utenti l'accesso ai dati crittografati da qualsiasi luogo e in qualsiasi momento.&lt;a
+href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;
+Download now for Android&lt;/a&gt; and &lt;a  href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;Download now for iOS &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SH6_Text1">
+    <value>Abbiamo anche annunciato il nostro segmento di settore nel 2021, che ci aiuta a capire meglio come servire le diverse aziende. Comprendiamo quanto sia vitale avere un'idea dell'esperienza di AxCrypt da qualcuno che lo ha già usato. Come risultato, abbiamo incluso varie testimonianze quest'anno per aiutarti a conoscere meglio la nostra app.&lt;a href='ttps://www.axcrypt.net/industries'&gt; You may get more information here&lt;/a&gt;</value>
+  </data>
   <data name="Blog_TAYBS_Heading2">
     <value>Dai una sbirciatina al 2022 </value>
   </data>
+  <data name="Blog_TIEDTC_H1_SH4_Text1">
+    <value>La maggior parte delle aziende deve giocare le proprie carte da vicino. Le informazioni sensibili dovrebbero sempre essere crittografate per prevenire che gli hacker ne abbiano accesso. Le informazioni finanziarie di un'azienda potrebbero comprendere il conto delle entrate e delle spese, il conto dei debitori e dei creditori, le attività, i numeri di conto, la cronologia e così via. Questi tipi di dati devono essere protetti dai criminali. Ogni volta che questi dati vengono scoperti dai criminali informatici, l'azienda è in grave pericolo di essere danneggiata e i clienti e il personale che hanno posto la loro fiducia nell'organizzazione per i propri dati sono infastiditi. </value>
+  </data>
   <data name="Blog_TIEDTC_Heading1">
     <value>Quali dati dovrebbe criptare la tua azienda?</value>
+  </data>
+  <data name="Blog_TIEDTC_Text1">
+    <value>Molte aziende non credono che i loro dati debbano essere crittografati. Comprendono che il valore di questa tecnologia per proteggere le informazioni estremamente sensibili e private, ma non pensano che si possa applicare a loro perchè non hanno queste informazioni. Uno dei maggiori sviluppi nella sicurezza informatica dovrebbe essere la sicurezza della segretezza. Le informazioni private, i dati sensibili e la sicurezza della comunicazione tra relazioni e aziende sono tutte protette da questo.</value>
   </data>
   <data name="Blog_TIEDTC_Title">
     <value>L'importanza di criptare tutti i dati dell'azienda</value>
@@ -909,6 +983,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_WCACT_H4_SubHeading1">
     <value>&lt;strong&gt;Sicurezza del cloud&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_WCACT_Summary">
+    <value>Il clud computing utilizza internet per fornire un pool condiviso di dati a cui si può avere accesso in qualsiasi momento. Con l'aumento del lavoro da remoto, il cloud fornisce maggiore flessibilità ed efficacia riducendo le spese.</value>
+  </data>
   <data name="Blog_WTPI_Conclusion_Text3">
     <value>La crittografia end-to-end ti restituisce il controllo e protegge i tuoi dati da ficcanaso e occhi indiscreti. La crittografia è il miglior modo per mettere al sicuro i tuoi dati da qualsiasi forma di accesso indesiderato. Utilizzando calcoli matematici che trasformano i dati in codice, il testo del file viene convertito in testo cifrato, che solo chi possiede la chiave speciale può decifrare. Il nostro sistema è facile da utilizzare, permette di semplificare le operazioni, garantisce il massimo controllo possibile e assicura che nessuno tranne te possa accedere alle tue informazioni personali, evitando violazioni di dati che potrebbero portare a grossi svantaggi.</value>
   </data>
@@ -917,6 +994,9 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   </data>
   <data name="Blog_WTPI_Title">
     <value>WikiLeaks e il potere dell'informazione</value>
+  </data>
+  <data name="Blog_ZTCS_H2_SH1_Text1">
+    <value>Il framework del modello Zero Trust si basa sulla verifica prima dell'affidabilità; per questo motivo sia l'identificazione utente che l'identità e la sicurezza del dispositivo, sono tutte validate in più passaggi. Una volta stabiliti, gli accessi e le connessioni scadono periodicamente, richiedendo una nuova verifica degli utenti e dei dispositivi su base regolare.&lt;br/&gt;</value>
   </data>
   <data name="Blog_ZTCS_Title">
     <value>Sicurezza informatica Zero Trust</value>
