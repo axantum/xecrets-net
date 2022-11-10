@@ -689,11 +689,20 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_ADGE_H2_SH2_Text1">
     <value>Het onderscheppen van e-mails en andere inhoud is slechts één voorbeeld van een aantal incidenten die op minder formele wijze hebben plaatsgevonden. Hoewel de meeste e-mails de nieuwsgierigheid van andere partijen niet genoeg prikkelen om te proberen deze te onderscheppen, zijn er gevallen geweest waarin dit is gebeurd. E-mails worden niet standaard versleuteld omdat ze van uw servers naar de ontvanger gaan. Dit houdt in dat als hackers toegang krijgen tot deze informatie, ze uw e-mails en vertrouwelijke informatie kunnen bekijken.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_ADGE_H2_SH4_Text1">
+    <value>Als de gegevens niet versleuteld zijn, is het belangrijkste gevolg het in gevaar brengen van kritieke of vertrouwelijke informatie door een cyberaanval of inmenging van een derde partij. Als er geen protocollen zijn om elke vorm van gedrag vast te stellen, kunnen organisaties grote hoeveelheden gegevens kwijtraken voordat ze het in de gaten hebben.</value>
+  </data>
   <data name="Blog_ADGE_H2_SubHeading4">
     <value>&lt;strong&gt;Schadelijke activiteit door derden &lt;/strong&gt;</value>
   </data>
   <data name="Blog_ADGE_H3_Text1">
     <value>Om het versleutelingsproces te starten, moet u de gegevens verzamelen die u wilt versleutelen. Het algoritme gebruikt vervolgens de coderingssleutel om de gegevens in de invoer te wijzigen en het resultaat te verzenden. De output zou een vervormde tekst zijn die alleen kan worden gelezen door de persoon met de sleutel; u kunt de output vervolgens via elk medium naar de tweede partij overbrengen of de versleutelde gegevens bewaren voor toekomstig gebruik. Sleutels worden meestal gegenereerd met generatoren voor willekeurige getallen of computeralgoritmen.&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_ADGE_H4_SH1_Text1">
+    <value>AxCrypt biedt u gratis software met 256-bit sterke codering. Dit verhoogt de gegevensbeveiliging en minimaliseert het gevaar van inbreuken. Als u een grote organisatie heeft, kunt u ons &lt;a href='https://www.axcrypt.net/business'&gt;bedrijfsplan hier&lt;/a&gt; bekijken, dat meer geavanceerde functies heeft.</value>
+  </data>
+  <data name="Blog_ADGE_H4_SubHeading1">
+    <value>&lt;strong&gt;Gratis Software &lt;/strong&gt;</value>
   </data>
   <data name="Blog_ADGE_H4_SubHeading2">
     <value>&lt;strong&gt;Het delen van Sleutels /strong&gt;</value>
@@ -731,11 +740,20 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_ADSDE_H3_Text2">
     <value>U vraagt ​​zich vast af hoe u een pdf-bestand, mappen en andere documenten met een wachtwoord kunt beveiligen? Maak u zich geen zorgen, door AxCrypt te gebruiken, kunt u  pdf-documenten en andere bestandstypen beschermen. Maak sterke wachtwoorden met de AxCrypt-wachtwoordgenerator die door niemand te hacken is. Voor meer informatie, &lt;a href= 'https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt; bekijk onze YouTube-tutorial &lt;/a&gt;</value>
   </data>
+  <data name="Blog_ADSDE_Heading1">
+    <value>Wat is een cyber aanval?</value>
+  </data>
   <data name="Blog_ADSDE_Heading3">
     <value>Versleutel uw bestanden, mappen en pdf's op uw apparaten.</value>
   </data>
+  <data name="Blog_ADSDE_Title">
+    <value>De kunst van gegevensbeveiliging in het digitale tijdperk</value>
+  </data>
   <data name="Blog_AIS_Conclusion_Heading">
     <value>AxCrypt in het kort</value>
+  </data>
+  <data name="Blog_AMEFH_H1_SH1_Text1">
+    <value>Het aantal phishingaanvallen is tijdens de pandemie verzesvoudigd en mobiele apparaten zijn nu het primaire doelwit. Oplichters zijn zich ervan bewust dat mensen die thuis werken meer tijd op hun mobiel doorbrengen en niet dezelfde veiligheidsmaatregelen nemen als op een traditionele pc. Iedereen die je telefoon of laptop tegenkomt, heeft gemakkelijk toegang tot de bestanden die erin staan; met encryptie is toegang tot die gegevens echter extreem moeilijk.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
   <data name="Blog_AMEFH_H1_SubHeading3">
     <value>&lt;strong&gt;Wi-Fi storing&lt;/strong&gt;</value>
@@ -828,6 +846,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_CHHSSO_H2_Text3">
     <value>&lt;li&gt;Gegevensverlies — niet-geback-upte harde schijven en online cloudopslag kunnen worden blootgesteld aan hackeen, schade of andere problemen die leiden tot gegevensverlies.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H2_Text4">
+    <value>&lt;li&gt;Verouderde software kan uw apparaat kwetsbaarder maken voor cyberdreigingen.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_H3_SH3_Text1">
     <value>Het is essentieel om veilige wachtwoorden te hebben voor al uw apparaten. Uw wachtwoorden moeten uniek en ingewikkeld zijn, met ten minste 12 tekens, inclusief cijfers, hoofdletters, kleine letters en symbolen. Door uw wachtwoorden regelmatig te wijzigen, houdt u hackers op afstand. AxCrypt biedt een generator voor wachtwoordbeheer die ervoor zorgt dat hun wachtwoorden sterk en veilig zijn.</value>
   </data>
@@ -837,6 +858,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;Hoogwaardige antivirussoftware&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H3_SubHeading3">
+    <value>&lt;strong&gt;Een sterke wachtwoordmanager&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_Heading1">
     <value>Wat is cyberhygiëne?</value>
   </data>
@@ -845,6 +869,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="Blog_CHHSSO_Heading3">
     <value>Methoden om een ​​Goede Cyberhygiëne te Garanderen</value>
+  </data>
+  <data name="Blog_CHHSSO_Summary">
+    <value>De term "cyberhygiëne" verwijst naar de maatregelen die gebruikers nemen om hun online beveiliging en systeemgezondheid te verbeteren.</value>
   </data>
   <data name="Blog_Conclusion_FeaturePage_Text1">
     <value>&lt;a href='https://axcrypt.net/information/features'&gt;Bekijk de AxCrypt-functiepagina&lt;/a&gt; voor meer informatie over hoe AxCrypt uw bestanden en gegevens kan beveiligen en de &lt;a href='https ://www.axcrypt.net/pricing'&gt;Prijspagina &lt;/a&gt; die laat zien welk type versleutelingsabonnementen AxCrypt aanbiedt.</value>
@@ -882,8 +909,29 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_CSFE_H1_SH1_Text1">
     <value>De training op het gebied van cybersecurity van medewerkers heeft de afgelopen jaren een lange weg afgelegd. Beveiligingstraining was ooit vooral bedoeld voor IT-beveiligingsspecialisten, maar werd later uitgebreid tot al het IT-personeel. Als het bedrijf ransomware en malware wil vermijden, moet al het personeel voldoende worden opgeleid in best practices en goede gewoonten op het gebied van beveiliging.</value>
   </data>
+  <data name="Blog_CSFE_H1_SubHeading1">
+    <value>&lt;strong&gt;Hoe bereik je cybersecurity voor werknemers?&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CSFE_H1_Text1">
     <value>Het herkennen van wanneer een cyberaanval heeft plaatsgevonden kan voor een medewerker moeilijker zijn dan het vermijden ervan, maar er zijn een paar waarschuwingssignalen. Werknemers moeten voortdurend worden geïnformeerd over waar ze op moeten letten als ze bang zijn dat ze zijn gehackt.</value>
+  </data>
+  <data name="Blog_CSFE_H2_SH1_Text1">
+    <value>Het delen van sleutels is een functie waarmee u uw gegevens veilig kunt houden en deze ook kunt delen met uw collega's. Het stelt u in staat om samen te werken en contact te leggen met andere leden zonder de vertrouwelijkheid van uw gegevens in gevaar te brengen. Met behulp van AxCrypt's functie voor het delen van sleutels kunt u iedereen toegang geven tot gegevens en deze intrekken wanneer u maar wilt; u hoeft niet eens uw wachtwoord vrij te geven. Raadpleeg voor meer informatie over het delen van AxCrypt-sleutels, onze tutorial over het delen van sleutels op &lt;a href='https://www.youtube.com/watch?v=TUVWbmiEFSs'&gt; YouTube&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_CSFE_H2_SH1_Text2">
+    <value>Gebruik nu de AxCrypt Key Sharing functie op uw mobiele telefoons met de AxCrypt mobiele app. Download nu</value>
+  </data>
+  <data name="Blog_CSFE_H2_SH2_Text1">
+    <value>Master Key is zeer veilig, het kan worden gezien als het automatisch delen van bestanden met de beheerders van het bedrijf. Hiermee kunnen bedrijfsmanagers bestanden herstellen van andere leden van het bedrijf. Dit vermijdt de mogelijkheid om vitale bestanden te verliezen. Er gaan nooit documenten verloren doordat werknemers ontslag nemen of de wachtwoorden vergeten, zolang de bedrijfsbeheerders de inloggegevens bijhouden.&lt;a href='https://www.axcrypt.net/blog/master-key'&gt; Lees meer over de hoofdsleutelfunctie van AxCrypt hier &lt;/a&gt;</value>
+  </data>
+  <data name="Blog_CSFE_Heading1">
+    <value>Wat is Cybersecurity Awareness en waarom is het belangrijk?</value>
+  </data>
+  <data name="Blog_CSFE_Summary">
+    <value>Cybercriminelen bedenken voortdurend nieuwe manieren om voorbij de nieuwste beveiligingstechnieken en -technologieën in de inboxen en browsers van werknemers te komen.</value>
+  </data>
+  <data name="Blog_CSFE_Title">
+    <value>Cyberbeveiliging voor Werknemers</value>
   </data>
   <data name="Blog_CWELTI_Conclusion_H1_Text3">
     <value>Omdat technologie echter de neiging heeft om in de loop van de tijd te verbeteren, is het mogelijk dat iemand een systeem kan uitvinden dat zelfs beter is dan cryptografie met openbare sleutels. Als dit gebeurt, zullen veel van de belangrijkste cryptocurrencies waarschijnlijk worden bijgewerkt om de ontwikkelingen op te nemen. Dit zou cryptocurrencies hypothetisch nog veiliger kunnen maken.</value>
@@ -906,8 +954,17 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_DEVFE_Conclusion_Text1">
     <value>De hele wereld is internetgericht geworden, daarom is het belangrijk om uw aandacht te richten op gegevensbeveiliging. Het is geheel aan u om te bepalen welke encryptie-aanpak voor u het beste is.</value>
   </data>
+  <data name="Blog_DEVFE_H1_Text2">
+    <value>Net zoals de beveiligingstechnologie stappen onderneemt om de veiligheid van uw informatie te verhogen, vinden hackers nieuwe manieren om ze te omzeilen, om hen te verslaan worden steeds nieuwe versleutelingstechnieken ontwikkeld. Laten we eens duiken in populaire encryptiemethoden, typen, en hoe het u kan helpen.</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SH2_Text1">
+    <value>Volledige schijfversleuteling (FDE) is, zoals de naam al aangeeft, versleuteling op schijfniveau. Wanneer gegevens worden geschreven naar of gelezen van een schijf, worden deze automatisch gecodeerd. Het versleutelt alle bestanden op de harde schijf, inclusief het besturingssysteem en het bestandssysteem. Het wordt alleen gebruikt om bestanden veilig te bewaren terwijl ze in opslag zijn of niet onderweg zijn. Volledige schijfversleuteling werkt op dezelfde manier als het vergrendelen van de buitendeuren van een huis, maar niet van de interne kamers. Het is natuurlijk een goed idee om de vooringang te beveiligen, zodat aanvallers niet gemakkelijk toegang kunnen krijgen, maar als ze erin slagen om binnen te komen, hebben ze volledige toegang tot alles binnenin. Op dezelfde manier beveiligt schijfversleuteling de informatie als geheel door alles om te zetten in een onleesbare code die moeilijk te begrijpen is voor onbevoegde personen.&lt;strong&gt;Er zijn twee hoofdtypen schijfversleuteling, die we in detail zullen bespreken hieronder.&lt;/strong&gt;&lt;br/&gt;</value>
+  </data>
   <data name="Blog_DEVFE_H2_SubHeading2">
     <value>&lt;strong&gt;Schijf encryptie &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_DEVFE_H2_SubHeading3">
+    <value>&lt;strong&gt;Schijfversleuteling met BitLocker &lt;/strong&gt;</value>
   </data>
   <data name="Blog_DEVFE_Heading3">
     <value>Waarin verschilt AxCrypt van BitLocker en FileVault?</value>
@@ -1065,14 +1122,29 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_FOKM_H2_Text1">
     <value>Sleutelbeheer houdt zich bezig met verschillende soorten beveiligingsrisico's die verder gaan dan encryptie, zoals mensen en onjuist beleid, cyberaanvallen en gegevensdiefstal op netwerken. Het is een van de moeilijkste onderdelen van cryptografie. Het omvat ook het ontwikkelen van een systeembeleid, gebruikerstraining, interdepartementale samenwerking en effectieve coördinatie.&lt;br/&gt;</value>
   </data>
+  <data name="Blog_FOKM_H2_Text3">
+    <value>Sleutelbeheer omvat ook controles om te garanderen dat sleutels alleen toegankelijk zijn voor geautoriseerd personeel en systemen, dat ze alleen worden gebruikt voor de beoogde doeleinden en dat alle sleutelactiviteiten worden vastgelegd voor audit- en nalevingsdoeleinden.</value>
+  </data>
   <data name="Blog_FOKM_H3_SH4_Text1">
     <value>Master Key is zeer veilig, het kan worden gezien als een automatische deling van bestanden met de beheerders van het bedrijf. Hiermee kunnen bedrijfsmanagers bestanden van andere leden van het bedrijf herstellen. Dit vermijdt de mogelijkheid om vitale bestanden te verliezen. Er gaan nooit documenten verloren doordat werknemers stoppen of wachtwoorden vergeten, zolang de bedrijfsbeheerders de inloggegevens bijhouden. Hoofdsleutelfunctie is alleen beschikbaar voor zakelijke gebruikers. &lt;a href='https://axcrypt.net/information/features '&gt; Klik hier &lt;/a&gt; om meer zakelijke abonnementsfuncties te bekijken. Lees meer over de hoofdsleutel van AxCrypt &lt;a href= 'https://www.axcrypt.net/blog/master-key'&gt;functie hier&lt;/a&gt;.</value>
   </data>
   <data name="Blog_FOKM_H3_Text1">
     <value>Voor beveiliging en naleving is goed sleutelbeheer essentieel. U kunt bepalen wie toegang heeft tot welke delen van uw gegevens. Het voorkomt ook het verlies van sleutels die niet in gebruik zijn. Door de administratie weet u wanneer de sleutels worden uitgenomen en welke plaatsen zijn betreden en wanneer. AxCrypt heeft een aantal kenmerken die het een goede oplossing voor sleutelbeheer maken.&lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_FOKM_Heading1">
+    <value>Wat is Sleutelbeheer</value>
+  </data>
+  <data name="Blog_FOKM_Title">
+    <value>Grondbeginselen van Sleutelbeheer</value>
+  </data>
   <data name="Blog_GAES256BEWA_H1_SubHeading2">
     <value>&lt;strong&gt;AES 256 bit-Encryptie met AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_GAES256BEWA_H1_Text2">
+    <value>Cybercriminelen zijn voortdurend op zoek naar zwakke plekken om uit te buiten. Hoe kunnen gebruikers er volledig op vertrouwen dat hun gegevens veilig zijn, ongeacht waar ze zijn opgeslagen, vooral in deze steeds meer verbonden wereld? Encryptie is een van de meest gebruikte methoden om gevoelige informatie te beveiligen. Encryptie werkt door gewone tekst om te zetten in cijfertekst, die bestaat uit schijnbaar willekeurige tekens. Het kan alleen worden ontcijferd door degenen die de unieke sleutel bezitten.</value>
+  </data>
+  <data name="Blog_GAES256BEWA_Text1">
+    <value>AES is een symmetrisch algoritme, wat betekent dat dezelfde sleutel wordt gebruikt voor versleuteling en ontsleuteling. De techniek is geschikt voor sleutelgroottes van 128, 192 en 256 bits. Het staat bekend als de sterkste en meest robuuste encryptiestandaard die momenteel commercieel verkrijgbaar is.</value>
   </data>
   <data name="Blog_HAPYD_H1_text1">
     <value>Het verbod op end-to-end-encryptie zou deel kunnen uitmaken van een nieuwe wetshandhaving die door bepaalde regeringen is opgenomen om illegaal gedrag openbaar te maken om de nationale veiligheid te waarborgen. Technologiebedrijven zouden daarom gegevens in rust aan autoriteiten moeten verstrekken als gegevens in transit. Dit omvat informatie die is opgeslagen in een cloud, berichten, oproepen, e-mails, videoconferenties enz. Zonder specifieke kennis over het beschermen van hun privacy en het verzekeren van een veilige manier van communiceren, zouden gewone burgers de eerste slachtoffers zijn van dit autoritaire bewakingssysteem.</value>
@@ -1188,6 +1260,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_HPDYMP_Heading2">
     <value>Risico in verband met onbeschermde gegevens</value>
   </data>
+  <data name="Blog_HPDYMP_Heading3">
+    <value>Hoe kunt u uw telefoongegevens veilig houden met AxCrypt?</value>
+  </data>
   <data name="Blog_HPYBFC_Conclusion_Text2">
     <value>Samengevat, encryptie is van fundamenteel belang voor de hedendaagse internetbeveiliging. Het is een extreem ingewikkeld onderwerp, maar we zijn er trots op dat AxCrypt het proces voor iedereen eenvoudig en gebruiksvriendelijk maakt. Beveilig uw programma's en besturingssystemen met encryptie. Bekijk onze verschillende &lt;a href='/pricing' style='font-weight: 800;'&gt;abonnementen en functies&lt;/a&gt;.</value>
   </data>
@@ -1282,8 +1357,14 @@ U bent gewaarschuwd! Geniet van de beta!</value>
     <value>Een grotere acceptatie van de cloud trekt meer aandacht van ethische hackers en operators van cyberbedreigingen. Veel van de aanvallen zijn gericht op kwetsbaarheden in de cloudinfrastructuur, waardoor een aanvaller meerdere doelen kan misbruiken door een enkele kwetsbaarheid. Met AxCrypt kunt u uw gegevens op de schijf op uw mobiel en pc beschermen.
 </value>
   </data>
+  <data name="Blog_MDPNST_H2_SH3_Text1">
+    <value>In de eerste zes maanden van 2021 steeg mobile smishing met meer dan 700%, als gevolg van meer online verkeer. Dit jaar zullen mobiele smishing-aanvallen naar verwachting ingewikkelder en effectiever worden, waarbij mensen worden gelokt om op kwaadaardige weblinks te klikken, geïnfecteerde bestanden en zelfs sms-berichten te openen.</value>
+  </data>
   <data name="Blog_MDPNST_H2_SH4_Text1">
     <value>AxCrypt is een meermaals bekroond cyberbeveiligingsbedrijf dat mobiele en pc-cyberbeveiligingsoplossingen biedt voor persoonlijke en zakelijke beveiliging. AxCrypt Mobile encryptie gaat verder dan een normaal wachtwoord voor het vergrendelscherm. Het is een alles-in-één voor het beschermen van al uw persoonlijke informatie en gegevens op uw mobiele telefoons tegen inmenging van derden. Het doet dit door de informatie van uw telefoon op te slaan in een onleesbaar, verward formaat dat alleen kan worden gelezen met de juiste inloggegevens. Met mobiele encryptie kunt u er zeker van zijn dat uw gegevens worden beschermd, zelfs als uw apparaat verloren of gestolen raakt. U kunt zelfs versleutelde gegevens/bestanden uitwisselen met uw teamleden via onze functie voor het delen van mobiele sleutels zonder uw wachtwoorden op te geven met slechts één klik.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SubHeading2">
+    <value>&lt;strong&gt;Cloud Services is nog steeds een primair doelwit &lt;/strong&gt;.</value>
   </data>
   <data name="Blog_MDPNST_Heading2">
     <value>Enkele van de mobiele bedreigingen om op te letten in 2022</value>
@@ -1438,8 +1519,17 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_TAYBS_H1_SH3_Text1">
     <value>We werken er altijd aan om onze software gebruiksvriendelijker te maken. We hebben de gebruikersinterface die beschikbaar is op Windows, Mac, iOS en Android geüpdatet en onze mobiele app verbeterd om het voor gebruikers gemakkelijker te maken om overal en altijd toegang te krijgen tot versleutelde gegevens.&lt;a href='https://play.google. com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Nu downloaden voor Android &lt;/a&gt; en &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt; Nu downloaden voor iOS &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;</value>
   </data>
+  <data name="Blog_TAYBS_H1_SH4_Text1">
+    <value>AxCrypt is meertalig en dit jaar hebben we ondersteuning voor Mandarijn toegevoegd. Om de gebruikerservaring gemakkelijker te maken, zijn we onze blogs ook in het Frans gaan publiceren.</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SH5_Text1">
+    <value>Om ervoor te zorgen dat u het meeste uit het gebruik van AxCrypt haalt, hebben we nieuwe tutorials uitgebracht waarmee u sneller aan de slag kunt. Ze behandelen de belangrijkste functies van uw account, &lt;a href='https://www.axcrypt.net/information/guides/get-started'&gt;plus enkele superhandige tips &lt;/a&gt;</value>
+  </data>
   <data name="Blog_TAYBS_H1_SH6_Text1">
     <value>We hebben ook ons ​​branchesegment aangekondigd in 2021, waardoor gebruikers beter begrijpen hoe we verschillende industrieën bedienen. We begrijpen hoe belangrijk het is om een ​​idee te krijgen van de ervaring met AxCrypt van iemand die het eerder heeft gebruikt. Daarom hebben we dit jaar extra getuigenissen toegevoegd om u te helpen meer te weten te komen over onze app.&lt;a href='ttps://www.axcrypt.net/industries'&gt; Mogelijk krijgt u hier meer informatie&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_TAYBS_H1_Text1">
+    <value>AxCrypt wenst u een voorspoedige start van het jaar 2022. We zijn opgetogen en kijken uit naar toekomstige updates en verbeteringen om onze software te vereenvoudigen. Maar laten we eerst eens kijken naar 2021 en kijken wat we tot nu toe hebben bereikt.</value>
   </data>
   <data name="Blog_TAYBS_Heading2">
     <value>Sneak Peek in 2022</value>
@@ -1510,8 +1600,20 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   <data name="Blog_WAMHIHY_H1_SH1_Text2">
     <value>&lt;li&gt;Affiliate marketing heeft geen risico's met hoge inkomsten - U heeft niets te verliezen omdat affiliate marketing geen investering voor u met zich meebrengt. In plaats daarvan profiteert u er gewoon van als commissie zonder investering.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_WAMHIHY_H2_Text1">
+    <value>Een gerenommeerd en vertrouwd merk - AxCrypt is de afgelopen zes jaar door PC Magazine uitgeroepen tot "The World's Best Encryption Software" en is wereldwijd aanwezig.</value>
+  </data>
+  <data name="Blog_WAMHIHY_H2_Text4">
+    <value>Bouw een betere reputatie op - U kunt uw reputatie op internet verbeteren door samen te werken met een gerenommeerd en betrouwbaar bedrijf zoals AxCrypt.</value>
+  </data>
   <data name="Blog_WAMHIHY_H3_SH5_Text5">
     <value>AxCrypt zorgt ervoor dat uw organisatie blijft voldoen aan regelgeving zoals de Algemene Verordening Gegevensbescherming (AVG).</value>
+  </data>
+  <data name="Blog_WAMHIHY_Heading1">
+    <value>Waarom is Affiliate Marketing de laatste jaren zo populair?</value>
+  </data>
+  <data name="Blog_WAMHIHY_Heading3">
+    <value>Bekijk enkele van de belangrijke functies van AxCrypt</value>
   </data>
   <data name="Blog_WAMHIHY_Summary">
     <value>Affiliate marketing omvat het promoten van een product of dienst via een blog, social media platforms of een website. Wanneer iemand iets koopt via de unieke link die aan zijn/haar verwijzing is gekoppeld (bijvoorbeeld: verwijzingscode), ontvangt de aangeslotene een commissie.</value>
@@ -1572,6 +1674,15 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="Blog_WENTI_H4_Text5">
     <value>&lt;strong&gt;Cloudopslag&lt;/strong&gt; - Met AxCrypt is het heel eenvoudig om gegevens privacy in de cloud te realiseren. AxCrypt zal automatisch vinden welke Cloud Storage-services op uw computer zijn geïnstalleerd en daar een AxCrypt-map maken. We maken het u gemakkelijk om de bestanden in deze mappen automatisch te bekijken en te beveiligen.</value>
+  </data>
+  <data name="Blog_WENTI_Heading2">
+    <value>Encryptie voor Vooruitgang</value>
+  </data>
+  <data name="Blog_WENTI_Heading3">
+    <value>Hoe kan Zero-Knowledge-encryptie helpen bij gegevensbeveiliging?</value>
+  </data>
+  <data name="Blog_WENTI_Title">
+    <value>Waarom is encryptie noodzakelijk in de tech-industrie?</value>
   </data>
   <data name="Blog_WEROA_Text12">
     <value>Zo simpel is het. </value>
@@ -1704,6 +1815,9 @@ U bent gewaarschuwd! Geniet van de beta!</value>
   </data>
   <data name="Blog_ZTCS_H2_Text1">
     <value>Zero Trust beveiligt externe werkkrachten beter dan traditionele benaderingen, en de voordelen gaan verder dan beveiliging en verhogen de productiviteit en wendbaarheid. In dit artikel bekijken we enkele van de belangrijkste beveiligingsfuncties van Zero Trust.</value>
+  </data>
+  <data name="Blog_ZTCS_H3_SubHeading2">
+    <value>&lt;strong&gt;Hoofdsleutel&lt;/strong&gt;</value>
   </data>
   <data name="Blog_ZTCS_Heading3">
     <value>Hoe kan AxCrypt helpen om Zero Trust te implementeren?</value>
