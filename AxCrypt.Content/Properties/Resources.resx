@@ -4527,6 +4527,99 @@ You have been warned, now enjoy!</value>
   <data name="Blog_WICS_Title" xml:space="preserve">
     <value>What is Cyber Security?</value>
   </data>
+  <data name="Blog_WIPM_H1_Text1" xml:space="preserve">
+    <value>When a new account is created, it is mandatory for us to create long and strong passwords. As we use lots of websites and applications nowadays, 90% chances are that we don’t remember all of the passwords we have created. Fortunately, technology has changed and you don't have to remember all the passwords.</value>
+  </data>
+  <data name="Blog_WIPM_H1_Text2" xml:space="preserve">
+    <value>Password management tools are applications that help with creation, storing and quickly filling in the passwords when required. They securely store user credentials in cloud or on-premise storage and help users stay secure online by following best practices for creating and managing passwords. AxCrypt password manager generates complex passwords on demand. The tools then link passwords to specific accounts and store them securely in encrypted form. The basic purpose of a password manager is to help us manage our passwords and keep our login details safe wherever we log in. Password managers minimize the risk of the user forgetting the password and the risk of the password being exposed to malicious parties. AxCrypt password management software combines convenience and &lt;a href='https://axcrypt.net/blog/what-is-cyber-security'&gt;&lt;strong&gt;security&lt;/strong&gt;&lt;/a&gt; at a competitive price, ensuring your online experience in a fast-paced digital world.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text1" xml:space="preserve">
+    <value>In this IT era, it is crucial to store your data in a secure system, protecting from cyber threats.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text2" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt Password Manager stores all your passwords and documents in a secure private repository, that you can access with one click on all your devices.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text3" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt works on the zero-knowledge principle, which means neither AxCrypt nor anyone else will know anything about your data.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text4" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt generates the strongest 256bit Master Key.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text5" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt warns if you use weak or duplicate passwords.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text6" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt generates a supernumerary, unique secure password that provides 100% protection and provides both 128-bit and 256-bit encryption.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text7" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Non visible Strongest Master Key phrase generated automatically.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text8" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt technology is so vast that we have password manager for windows, password manager for mac and password manager for mobile phones too.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading1" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Password memorizing:&lt;/strong&gt; The major use of password manager is, you just have to remember the master password instead of hundreds of passwords.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading2" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;High security password generation:&lt;/strong&gt; While using password manager, automatic generated password is created which is random, long, alphanumeric, and nearly impossible to guess. Complex algorithms, encryption and other methods are used to keep your credentials and passwords safe. Strong and unique passwords are generated.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading3" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Time saving:&lt;/strong&gt; Apart from creating and storing unique passwords, password manager also automatically fills in credentials, speeding up the process and thus saving time.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading4" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Cross platform synchronization:&lt;/strong&gt; AxCrypt password manager is capable of syncing onto both IOS and Android OS. Regardless of the platform, password access is possible using AxCrypt.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading5" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Adding Information:&lt;/strong&gt; AxCrypt password manager also has another feature. It helps in not only storing passwords but also additional information like credit/debit card details, secure notes, address fields, contact numbers and more.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading6" xml:space="preserve">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Secured password sharing:&lt;/strong&gt;It is not recommended in sending passwords through text, instant messages or email because plain text can be intercepted, or easily found in your messages, inbox or sent folder and can be hacked. Passwords shared using a piece of paper are hard to keep track of or easily lost. Sharing using AxCrypt provides peace of mind to you because your strong and unique passwords reach only to your intended recipient(s), and with the access rights that you choose.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading7" xml:space="preserve">
+    <value>&lt;strong&gt;Why AxCrypt Password Manager:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text_Benefits" xml:space="preserve">
+    <value>&lt;strong&gt;Benefits of password manager:&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text1" xml:space="preserve">
+    <value>It is impossible for a human memory to hold dozens and dozens of passwords. Most people try to use the simplest possible password, such as “12356789” or  “password123” etc. Some remember one great random password and use it for everything. Due to this simple usage of passwords, it is most likely that you might be the latest victim of identity theft. Remarkably, as years passed by, technology has immensely advanced, but more and more data is lost every second.</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text2" xml:space="preserve">
+    <value>Password management allows individuals and businesses to store and manage all their passwords in one secure place. Individuals no longer have to remember multiple passwords. The only password a user has to remember is the one master password which is used to open the password manager. A password manager can remember all the infinite passwords for you.</value>
+  </data>
+  <data name="Blog_WIPM_Heading1" xml:space="preserve">
+    <value>What is a password manager?</value>
+  </data>
+  <data name="Blog_WIPM_Heading2" xml:space="preserve">
+    <value>Why to use a password manager?</value>
+  </data>
+  <data name="Blog_WIPM_Summary" xml:space="preserve">
+    <value>When a new account is created, it is mandatory for us to create long and strong passwords. As we use lots of websites and applications nowadays, 90% chances are that we don’t remember all of the passwords we have created.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway" xml:space="preserve">
+    <value>Takeaway:</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_FeaturePage" xml:space="preserve">
+    <value>If you are looking ahead for a secure, all-in-one password management solution and interested in knowing more about us. Have a Look at the &lt;a href='https://axcrypt.net/information/features'&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure yor files ans data.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text1" xml:space="preserve">
+    <value>Passwords are the protectors of our credentials and information. Just like the front door of a house or business, if the door key is lost, anyone at any time can walk in, resulting in various disasters. Similarly, passwords manage and act as the key in protecting our credentials and hence the key should be unique and strong for each and every user.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text2" xml:space="preserve">
+    <value>Worried on how to use the password manager? Not to worry, Axcrypt is with you. AxCrypt makes password management possible within the secure environment of user’s AxCrypt managed Mac and Windows &amp; Mobile devices. Employees can easily and securely manage their own credentials without the need for guidance from IT. </value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text3" xml:space="preserve">
+    <value>We focus on our customer experience alone.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text4" xml:space="preserve">
+    <value>AxCrypt is trusted by millions of people and we enjoy high rankings across the globe. AxCrypt has attained a 4.53 rating for 2022. Axcrypt has also been announced as the best encryption software for the year 2022.</value>
+  </data>
+  <data name="Blog_WIPM_Text1" xml:space="preserve">
+    <value>At an early age, only a handful of passwords were used by an individual. But now, the era has changed. In this digital era, technology has made our lives easier. From ordering food from a favourite restaurant, business meetings at home, online purchases, etc., everything is now possible just at the click of a button on our smartphones in this online world. As and when our life and tasks have become easier, manage passwords associated with these applications has become an important aspect too. The only complication is remembering passwords associated with all the applications. Each and every application or website requires a password to login. Most of the time, it is impossible to remember them all. In accordance with the Google Online Security Survey, it has been found that more than 50 percent of respondents reused the same password for various accounts, which has made the life of hackers easy. According to &lt;a href='https://www.itgovernance.co.uk/blog/list-of-data-breaches-and-cyber-attacks-in-august-2022-97-million-records-breached'&gt;&lt;strong&gt;records&lt;/strong&gt;&lt;/a&gt;, there were almost 97 million data breaches and cyber security risks during August 2022. Surveys specify that every 32 seconds, a hacker attacks someone online.  In accordance with the Verizon Data Breach Investigations report, 80 percent of data breaches are caused by weak or reused passwords. This is where the password manager plays the most important role. </value>
+  </data>
+  <data name="Blog_WIPM_Title" xml:space="preserve">
+    <value>What is a password manager? How secure is password manager software?</value>
+  </data>
   <data name="Blog_WSPPI_H1_Text1" xml:space="preserve">
     <value>What is personal data? Which kind of information should you protect specially from companies or industries which operate it?</value>
   </data>
@@ -8759,6 +8852,9 @@ To return to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>The password is not good enough to be acceptable.</value>
   </data>
+  <data name="PasswordResetCrtNewPwd" xml:space="preserve">
+    <value>3. Create new password</value>
+  </data>
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
     <value>Password reset is not possible for this account, since there is a pending change of e-mail from &lt;b&gt;{0}&lt;/b&gt;.
 
@@ -8792,6 +8888,10 @@ Enter your e-mail below to a send an verification or password reset link to the 
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Password reset</value>
   </data>
+  <data name="PasswordResetSentVrfMail" xml:space="preserve">
+    <value>2. Sent verification email</value>
+    <comment>The key has been added to get the translated text for all languages on Password Reset page.</comment>
+  </data>
   <data name="PasswordResetShortLink" xml:space="preserve">
     <value>Forgot password</value>
     <comment>Text of link to Forgot password screen in mobile app</comment>
@@ -8800,6 +8900,9 @@ Enter your e-mail below to a send an verification or password reset link to the 
     <value>An attempt to send the AxCrypt ID verification code to &lt;b&gt;{0}&lt;/b&gt; has been made. Please check your e-mail inbox.
 
 If you appear not to receive it, check that it does not get caught by your anti-spam measures, and that {0} is correct.</value>
+  </data>
+  <data name="PasswordResetVerifyAccEMail" xml:space="preserve">
+    <value>1. Verify account email</value>
   </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>AxCrypt has a sophisticated password strength evaluator based on measuring the actual strength of the password. It must also be at least 8 effective characters long.
@@ -10625,6 +10728,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
     <value>1-month free trial included</value>
+  </data>
+  <data name="SubscriptionLevelText" xml:space="preserve">
+    <value>Level</value>
+    <comment>Text 'Level' for Subscription information section in page My Axcrypt ID</comment>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valid until {1}.</value>

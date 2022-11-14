@@ -20,7 +20,7 @@ namespace AxCrypt.Content.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -13191,6 +13191,285 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When a new account is created, it is mandatory for us to create long and strong passwords. As we use lots of websites and applications nowadays, 90% chances are that we don’t remember all of the passwords we have created. Fortunately, technology has changed and you don&apos;t have to remember all the passwords..
+        /// </summary>
+        public static string Blog_WIPM_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password management tools are applications that help with creation, storing and quickly filling in the passwords when required. They securely store user credentials in cloud or on-premise storage and help users stay secure online by following best practices for creating and managing passwords. AxCrypt password manager generates complex passwords on demand. The tools then link passwords to specific accounts and store them securely in encrypted form. The basic purpose of a password manager is to help us manag [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WIPM_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this IT era, it is crucial to store your data in a secure system, protecting from cyber threats..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt Password Manager stores all your passwords and documents in a secure private repository, that you can access with one click on all your devices..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt works on the zero-knowledge principle, which means neither AxCrypt nor anyone else will know anything about your data..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt generates the strongest 256bit Master Key..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt warns if you use weak or duplicate passwords..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt generates a supernumerary, unique secure password that provides 100% protection and provides both 128-bit and 256-bit encryption..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Non visible Strongest Master Key phrase generated automatically..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt technology is so vast that we have password manager for windows, password manager for mac and password manager for mobile phones too..
+        /// </summary>
+        public static string Blog_WIPM_H2_SH7_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SH7_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Password memorizing:&lt;/strong&gt; The major use of password manager is, you just have to remember the master password instead of hundreds of passwords.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;High security password generation:&lt;/strong&gt; While using password manager, automatic generated password is created which is random, long, alphanumeric, and nearly impossible to guess. Complex algorithms, encryption and other methods are used to keep your credentials and passwords safe. Strong and unique passwords are generated.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Time saving:&lt;/strong&gt; Apart from creating and storing unique passwords, password manager also automatically fills in credentials, speeding up the process and thus saving time.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Cross platform synchronization:&lt;/strong&gt; AxCrypt password manager is capable of syncing onto both IOS and Android OS. Regardless of the platform, password access is possible using AxCrypt.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Adding Information:&lt;/strong&gt; AxCrypt password manager also has another feature. It helps in not only storing passwords but also additional information like credit/debit card details, secure notes, address fields, contact numbers and more.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading5 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; &lt;strong&gt;Secured password sharing:&lt;/strong&gt;It is not recommended in sending passwords through text, instant messages or email because plain text can be intercepted, or easily found in your messages, inbox or sent folder and can be hacked. Passwords shared using a piece of paper are hard to keep track of or easily lost. Sharing using AxCrypt provides peace of mind to you because your strong and unique passwords reach only to your intended recipient(s), and with the acces [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading6 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Why AxCrypt Password Manager:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_SubHeading7 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_SubHeading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Benefits of password manager:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIPM_H2_Text_Benefits {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_Text_Benefits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is impossible for a human memory to hold dozens and dozens of passwords. Most people try to use the simplest possible password, such as “12356789” or  “password123” etc. Some remember one great random password and use it for everything. Due to this simple usage of passwords, it is most likely that you might be the latest victim of identity theft. Remarkably, as years passed by, technology has immensely advanced, but more and more data is lost every second..
+        /// </summary>
+        public static string Blog_WIPM_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password management allows individuals and businesses to store and manage all their passwords in one secure place. Individuals no longer have to remember multiple passwords. The only password a user has to remember is the one master password which is used to open the password manager. A password manager can remember all the infinite passwords for you..
+        /// </summary>
+        public static string Blog_WIPM_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is a password manager?.
+        /// </summary>
+        public static string Blog_WIPM_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why to use a password manager?.
+        /// </summary>
+        public static string Blog_WIPM_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When a new account is created, it is mandatory for us to create long and strong passwords. As we use lots of websites and applications nowadays, 90% chances are that we don’t remember all of the passwords we have created..
+        /// </summary>
+        public static string Blog_WIPM_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Takeaway:.
+        /// </summary>
+        public static string Blog_WIPM_Takeaway {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are looking ahead for a secure, all-in-one password management solution and interested in knowing more about us. Have a Look at the &lt;a href=&apos;https://axcrypt.net/information/features&apos;&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure yor files ans data..
+        /// </summary>
+        public static string Blog_WIPM_Takeaway_FeaturePage {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway_FeaturePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords are the protectors of our credentials and information. Just like the front door of a house or business, if the door key is lost, anyone at any time can walk in, resulting in various disasters. Similarly, passwords manage and act as the key in protecting our credentials and hence the key should be unique and strong for each and every user..
+        /// </summary>
+        public static string Blog_WIPM_Takeaway_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worried on how to use the password manager? Not to worry, Axcrypt is with you. AxCrypt makes password management possible within the secure environment of user’s AxCrypt managed Mac and Windows &amp; Mobile devices. Employees can easily and securely manage their own credentials without the need for guidance from IT. .
+        /// </summary>
+        public static string Blog_WIPM_Takeaway_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We focus on our customer experience alone..
+        /// </summary>
+        public static string Blog_WIPM_Takeaway_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is trusted by millions of people and we enjoy high rankings across the globe. AxCrypt has attained a 4.53 rating for 2022. Axcrypt has also been announced as the best encryption software for the year 2022..
+        /// </summary>
+        public static string Blog_WIPM_Takeaway_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Takeaway_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At an early age, only a handful of passwords were used by an individual. But now, the era has changed. In this digital era, technology has made our lives easier. From ordering food from a favourite restaurant, business meetings at home, online purchases, etc., everything is now possible just at the click of a button on our smartphones in this online world. As and when our life and tasks have become easier, manage passwords associated with these applications has become an important aspect too. The only compl [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WIPM_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is a password manager? How secure is password manager software?.
+        /// </summary>
+        public static string Blog_WIPM_Title {
+            get {
+                return ResourceManager.GetString("Blog_WIPM_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What is personal data? Which kind of information should you protect specially from companies or industries which operate it?.
         /// </summary>
         public static string Blog_WSPPI_H1_Text1 {
@@ -25231,6 +25510,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 3. Create new password.
+        /// </summary>
+        public static string PasswordResetCrtNewPwd {
+            get {
+                return ResourceManager.GetString("PasswordResetCrtNewPwd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password reset is not possible for this account, since there is a pending change of e-mail from &lt;b&gt;{0}&lt;/b&gt;.
         ///
         ///Please sign in to &lt;b&gt;{0}&lt;/b&gt; and complete the email change, or reset the password for this account first and then complete the change..
@@ -25309,6 +25597,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2. Sent verification email.
+        /// </summary>
+        public static string PasswordResetSentVrfMail {
+            get {
+                return ResourceManager.GetString("PasswordResetSentVrfMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot password.
         /// </summary>
         public static string PasswordResetShortLink {
@@ -25325,6 +25622,15 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordResetSuccess {
             get {
                 return ResourceManager.GetString("PasswordResetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Verify account email.
+        /// </summary>
+        public static string PasswordResetVerifyAccEMail {
+            get {
+                return ResourceManager.GetString("PasswordResetVerifyAccEMail", resourceCulture);
             }
         }
         
@@ -30523,6 +30829,15 @@ namespace AxCrypt.Content.Properties {
         public static string SubscriptionFreeTrialIndicatorText {
             get {
                 return ResourceManager.GetString("SubscriptionFreeTrialIndicatorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string SubscriptionLevelText {
+            get {
+                return ResourceManager.GetString("SubscriptionLevelText", resourceCulture);
             }
         }
         
