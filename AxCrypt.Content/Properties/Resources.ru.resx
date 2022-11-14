@@ -1642,6 +1642,9 @@
   <data name="EmptySecretTruncatedDescriptionLinkText" xml:space="preserve">
     <value>[Нет Описания]</value>
   </data>
+  <data name="EnableMasterKeyPrompt" xml:space="preserve">
+    <value>Включить Мастер-ключ</value>
+  </data>
   <data name="EncryptedFoldersToolStripMenuItemText" xml:space="preserve">
     <value>Защищённые Файлы</value>
   </data>
@@ -3481,6 +3484,15 @@ SE-114 29 Стокгольм
   </data>
   <data name="MasterKeyBlock3Text1">
     <value>Мастер-ключ можно включить из &lt;a href='https://account.axcrypt.net/ru/Business/ManageSubscriptionMembers'&gt;страница управления подпиской&lt;/a&gt;.</value>
+  </data>
+  <data name="MasterKeyHelpText1" xml:space="preserve">
+    <value>Мастер-ключ позволяет бизнес-администраторам открывать файлы, зашифрованные другими участниками бизнес подписки. Обратите внимание, что участник сначала должен утвердить мастер-ключ, прежде чем он будет применен к его файлам. Вы можете увидеть, кто утвердил мастер-ключ в таблице пользователей.</value>
+  </data>
+  <data name="MasterKeyHelpText2" xml:space="preserve">
+    <value>Файлы, которые были зашифрованы&lt;b&gt;до&lt;/b&gt; включения мастер-ключа, невозможно будет открыть без исходных учетных данных шифрования.</value>
+  </data>
+  <data name="MasterKeyTitle" xml:space="preserve">
+    <value>Мастер-ключ</value>
   </data>
   <data name="McErrArgument" xml:space="preserve">
     <value>Внутренняя ошибка, недопустимый аргумент функции в %4</value>
