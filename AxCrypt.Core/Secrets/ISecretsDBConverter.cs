@@ -1,4 +1,5 @@
 using System.Text;
+using System;
 
 #region License
 
@@ -28,46 +29,24 @@ using System.Text;
 
 #endregion License
 
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace AxCrypt.Core.Secrets
 {
-    public class SecretCollection : KeyedCollection<Guid, Secret>
+    public interface ISecretsDBConverter
     {
-        protected override Guid GetKeyForItem(Secret item)
-        {
-            if (item == null)
-            {
-                throw new ArgumentNullException(nameof(item));
-            }
-
-            return item.Id;
-        }
-
-        public void AddRange(IEnumerable<Secret> secrets)
-        {
-            if (secrets == null)
-            {
-                throw new ArgumentNullException(nameof(secrets));
-            }
-
-            foreach (Secret secret in secrets)
-            {
-                Add(secret);
-            }
-        }
-
-        private int _originalCount;
+        /// <summary>
+        /// Generates an encrypted XMLDocument string for each secrets for database migration.
+        /// </summary>
+        /// <param name="secrets">The secrets.</param>
+        IEnumerable<Tuple<Secret, string>> SecretsXMLDocList(IEnumerable<Secret> secrets);
 
         /// <summary>
-        /// If this collection is the result of a filtering operating, this is the original count.
+        /// Generates an encrypted XMLDocument string for each secrets for database migration.
         /// </summary>
-        public int OriginalCount
-        {
-            get { return _originalCount; }
-            set { _originalCount = value; }
-        }
+        /// <param name="secrets">The secrets.</param>
+        SecretCollection SecretsFromXMLDocList(IEnumerable<KeyValuePair<int, string>> secrets, IEnumerable<EncryptionKey> keys);
+
+        byte[] GetRawXMLDoc(IEnumerable<Secret> secrets);
     }
 }

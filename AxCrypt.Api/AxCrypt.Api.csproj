@@ -74,6 +74,8 @@
     <Compile Include="Model\PrivateKeyStatus.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />
+    <Compile Include="Model\Secret\SecretApiModel.cs" />
+    <Compile Include="Model\Secret\SecretType.cs" />
     <Compile Include="Model\SlackPayload.cs" />
     <Compile Include="Implementation\AbstractTypeSerializer.cs" />
     <Compile Include="Implementation\CustomSerializer.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Model\SubscriptionLevel.cs" />
     <Compile Include="Model\SubscriptionProduct.cs" />
     <Compile Include="Model\UserAccounts.cs" />
+    <Compile Include="Model\User\MigrateApiModel.cs" />
+    <Compile Include="Model\User\UserApiModel.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Model\ApiStatus.cs" />

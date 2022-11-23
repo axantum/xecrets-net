@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+
 #region License
 
 /*
@@ -26,11 +29,7 @@
 
 #endregion License
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Collections;
 
 namespace AxCrypt.Core.Secrets
 {
