@@ -10420,6 +10420,12 @@ Subject: AxCrypt Report Snapshot</value>
     <value>Set email</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
+  <data name="SettingDeleteUsrCnfrmText" xml:space="preserve">
+    <value>Are you sure that you want to delete your account?</value>
+  </data>
+  <data name="SettingDelPwdCfmText" xml:space="preserve">
+    <value>If &lt;span&gt;yes&lt;/span&gt; please enter &lt;span&gt;password:&lt;/span&gt;</value>
+  </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>This will delete your AxCrypt ID permanently from the system. &lt;span class="red"&gt;All data associated with your AxCrypt ID, including saved password entries, will also be deleted.&lt;/span&gt;
 
