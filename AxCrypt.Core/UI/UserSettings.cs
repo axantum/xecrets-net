@@ -325,6 +325,12 @@ namespace AxCrypt.Core.UI
             set { Store(nameof(SecretsSortOrder), (int)value); }
         }
 
+        public SecretsFilter SecretsFilter
+        {
+            get { return (SecretsFilter)Load(nameof(SecretsFilter), (int)SecretsFilter.All); }
+            set { Store(nameof(SecretsFilter), (int)value); }
+        }
+
         public TimeSpan LongOperationThreshold
         {
             get { return Load(nameof(LongOperationThreshold), TimeSpan.FromSeconds(10)); }
