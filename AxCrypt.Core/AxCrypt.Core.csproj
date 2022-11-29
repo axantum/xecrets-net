@@ -238,8 +238,9 @@
     <Compile Include="UI\ProgressBackgroundEventArgs.cs" />
     <Compile Include="UI\ProgressTotals.cs" />
     <Compile Include="UI\RegexEmailParser.cs" />
-    <Compile Include="UI\SecretsFilter.cs" />
-    <Compile Include="UI\SecretsSortOrder.cs" />
+    <Compile Include="UI\Secret\SecretsShareVisibility.cs" />
+    <Compile Include="UI\Secret\SecretsFilter.cs" />
+    <Compile Include="UI\Secret\SecretsSortOrder.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\StatusChecker.cs" />
