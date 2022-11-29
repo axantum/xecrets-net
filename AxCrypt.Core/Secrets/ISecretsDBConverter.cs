@@ -45,7 +45,7 @@ namespace AxCrypt.Core.Secrets
         /// Generates an encrypted XMLDocument string for each secrets for database migration.
         /// </summary>
         /// <param name="secrets">The secrets.</param>
-        SecretCollection SecretsFromXMLDocList(IEnumerable<KeyValuePair<int, string>> secrets, IEnumerable<EncryptionKey> keys);
+        SecretCollection SecretsFromXMLDocList(IEnumerable<Api.Model.Secret.SecretApiModel> secrets, IEnumerable<EncryptionKey> keys);
 
         byte[] GetRawXMLDoc(IEnumerable<Secret> secrets);
     }

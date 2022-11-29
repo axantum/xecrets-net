@@ -367,7 +367,7 @@ namespace AxCrypt.Desktop
             return migratedSecrets;
         }
 
-        public SecretCollection SecretsFromXMLDocList(IEnumerable<KeyValuePair<int, string>> secretsXml, IEnumerable<EncryptionKey> keys)
+        public SecretCollection SecretsFromXMLDocList(IEnumerable<Api.Model.Secret.SecretApiModel> secretsList, IEnumerable<EncryptionKey> keys)
         {
             if (keys == null)
             {
@@ -377,13 +377,13 @@ namespace AxCrypt.Desktop
             // Accumulate decrypted secrets here.
             SecretCollection secrets = new SecretCollection();
 
-            foreach (KeyValuePair<int, string> secretXml in secretsXml)
+            foreach (Api.Model.Secret.SecretApiModel secret in secretsList)
             {
                 // Get a copy of the collection so we can remove keys as we use them.
                 EncryptionKeyCollection unusedKeys = new EncryptionKeyCollection("");
                 unusedKeys.AddRange(keys);
 
-                XmlDocument SecretXMLDocument = GetDocumentFromString(secretXml.Value);
+                XmlDocument SecretXMLDocument = GetDocumentFromString(secret.TheSecret);
 
                 XmlNodeList nodeList = GetXecretsSession(SecretXMLDocument).SelectNodes("XecretsSession");
                 foreach (XmlNode node in nodeList)
@@ -391,7 +391,10 @@ namespace AxCrypt.Desktop
                     SecretCollection decryptedSessionSecrets = AttemptDecryptXecretsSessionElement(unusedKeys, (XmlElement)node);
                     if (decryptedSessionSecrets.Count > 0)
                     {
-                        decryptedSessionSecrets[0].DBId = secretXml.Key;
+                        decryptedSessionSecrets[0].DBId = secret.Id;
+                        decryptedSessionSecrets[0].CreatedUtc = secret.CreatedUtc;
+                        decryptedSessionSecrets[0].UpdatedUtc = secret.UpdatedUtc;
+                        decryptedSessionSecrets[0].DeletedUtc = secret.DeletedUtc ?? DateTime.MinValue;
                     }
                     secrets.AddRange(decryptedSessionSecrets);
                 }
