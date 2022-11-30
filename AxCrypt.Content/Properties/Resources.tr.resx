@@ -629,20 +629,70 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="BilledYearlyText" xml:space="preserve">
     <value>Yıllık tutar: {0}</value>
   </data>
+  <data name="Blog_AMEFH_H1_SubHeading3">
+    <value>&lt;strong&gt; Wi-Fi engelleme&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AMEFH_H2_Text6">
+    <value>AxCrypt, PC Magazine(dergisi)  tarafından son altı yıldır ve bu yıl da dahil olmak üzere “Dünyanın En İyi Şifreleme Yazılımı” ödülüne layık görülmüştür ve AxCrypt, verilerinizin üç veri aşamasında güvenliğini sağlamak için 256 bit şifreleme ile güçlü şifreleme sunar; bekleyen, aktarılan ve kullanımdaki veriler.
+  &lt;a href='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-özel'&gt;20 milyon indirme &lt;/a&gt;
+  Ayrıca, kullanıcılarına, şifrelerinin olabildiğince güvenli olmasını sağlayan bir şifre yönetimi oluşturucu da sağlar. Ayrıca AxCrypt, kullanıcıların güvenli dosyaları ve verileri diğer AxCrypt kullanıcılarıyla paylaşmasına olanak tanıyan bir işbirliği aracı sağlar.
+</value>
+  </data>
+  <data name="Blog_AMEFH_SH1_Text1">
+    <value>Mobil şifreleme, normal bir kilit ekranı parolasının ötesine geçer. Cep telefonunuzdaki tüm kişisel bilgilerinizi ve verilerinizi meraklı gözlerden veya cep telefonunuzun kaybolması veya çalınmasından korumak için tek adres. Şifreleme, telefonunuzun bilgilerini yalnızca doğru kimlik bilgileriyle okunabilen okunamaz, karışık bir biçimde saklar. Bu, telefonunuz yanlış ellere geçerse, şifrenizi bilmedikçe hiç kimsenin verilerin şifresini çözemeyeceği anlamına gelir.</value>
+  </data>
+  <data name="Blog_AMEFH_Summary">
+    <value>Bu dijital çağda, verileri korumanın ne kadar kritik olduğunu anlıyoruz, bu nedenle yeni yılın başlamasıyla birlikte, yoğun geliştirmenin ardından AxCrypt'in nihayet Business ve Premium kullanıcıları için mobil şifreleme özelliğini başlattığını duyurmaktan heyecan duyuyoruz.</value>
+  </data>
+  <data name="Blog_AMEFH_Title">
+    <value>AxCrrypt mobiş şifreleme sonunda burada!</value>
+  </data>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;Sadece şifreleri güvence altına almanın ötesine geçer&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CHHSSO_H1_Text2">
+    <value>Bir kavram olarak siber hijyenin , dünya çapında uzaktan çalışan bireyler siber suçları artırdığından, pandemiden bu yana önemi arttı.
+</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text1">
+    <value>Siber hijyenin çözmeyi amaçladığı sorunlardan bazıları şunlardır:</value>
+  </data>
+  <data name="Blog_CHHSSO_H2_Text3">
+    <value>&lt;Ii&gt;Data loss --- Yedeklenmemiş sabit diskler ve çevrimiçi bulut depolama, bilgisayar korsanlığına, hasara veya veri kaybına neden olan diğer sorunlara maruz kalabilir &lt;/Ii&gt;
+</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH3_Text1">
+    <value>Tüm cihazlarınız için güvenli şifrelere sahip olmak çok önemlidir. Parolalarınız, sayılar, büyük, küçük harfler ve semboller dahil olmak üzere en az 12 karakterden oluşan benzersiz ve karmaşık olmalıdır. Parolalarınızı düzenli olarak değiştirmek, bilgisayar korsanlarını uzak tutmanıza yardımcı olur. AxCrypt, parolalarının güçlü ve güvenli olmasını sağlayan bir parola yönetimi oluşturucu sağlar.</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH4_Text1">
+    <value>Yedekler, orijinallerinden farklı bir yerde tutulmalı ve düzenli olarak test edilmelidir. Kişisel dosyaları güvenli bir şekilde kaydetmek için ayrı bir cihazda (ör. bulut veya şifreli bir USB) bir yedekleme oluşturun. AxCrypt ile sürücü verilerinizi kullanılan, kullanımda olmayan ve depolanmış verileri şifreleyebilirsiniz. Ek olarak, şifreleme anahtarlarınız üzerinde kontrole sahip olursunuz ve veriler binanızı terk ettikten sonra bile kontrolü elinizde tutmanıza olanak tanır.</value>
   </data>
   <data name="Blog_CHHSSO_H3_SubHeading1">
     <value>&lt;strong&gt;Yüksek kaliteli virüs koruma yazılımı&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_Heading1">
+    <value>Siber temizlik nedir?</value>
+  </data>
   <data name="Blog_CHHSSO_Heading2">
     <value>Yaygın siber hijyen konularından bazıları:</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading3">
+    <value>İyi siber hijyen sağlama yöntemleri</value>
+  </data>
+  <data name="Blog_CSFE_H1_SH1_Text1">
+    <value>Siber güvenlik istihdam eğitimleri son yıllarda çok yol kat etti. Güvenlik eğitimi bir zamanlar  BT güvenlik uzmanları için belirlenmişti, ancak daha sonra tüm BT personelini kapsayacak şekilde genişletildi. Firma ödenekli(zorunlu) yazılımlarından ve kötü amaçlı yazılımlardan kaçınmak istiyorsa, tüm personelin en iyi güvenlik uygulamaları ve iyi alışkanlıklar konusunda yeterince eğitilmesi gerekir.</value>
   </data>
   <data name="Blog_CSFE_H1_Text1">
     <value>Bir çalışan için bir siber saldırının ne zaman gerçekleştiğini tanımak, bir siber saldırıdan kaçınmaktan daha zor olabilir, ancak birkaç uyarı sinyali vardır. Çalışanlar, saldırıya uğradıklarından korkarlarsa nelere dikkat etmeleri gerektiği konusunda sürekli olarak eğitilmelidir.</value>
   </data>
+  <data name="Blog_DRATIUIN_H4_Text1">
+    <value>Hassas verilere bilgisayar korsanları tarafından erişilmesi için sürekli bir risk vardır. Veriler ister aktarılıyor, ister kullanılmasın veya kullanımda olsun, verilerin korunması önemlidir. Bu verilere bir bilgisayar korsanı tarafından erişilmediğinden emin olmanın bir yolu şifrelenmesidir. Şifreleme, hassas verilerin bir yabancı tarafından çalınmamasını veya ele geçirilmemesin için gereklidir. Giderek işletmeler ve kuruluşlar, verilerini bir ağdan diğerine geçmeden önce şifrelemeye başlıyor. AxCrypt'in anahtar paylaşma özelliği ile iş arkadaşlarınızın kendi şifreleri ile güvenli dosyaları açmasına izin verebilirsiniz.</value>
+  </data>
   <data name="Blog_DRATIUIN_Title">
     <value>Durağan, transit ve kullanımdaki veriler - kısacası</value>
+  </data>
+  <data name="Blog_GAES256BEWA_H1_SubHeading2">
+    <value>&lt;strong&gt;AxCrypt ile AES 256 bit Şifreleme&lt;/strong&gt;</value>
   </data>
   <data name="Blog_HAPYD_H3_text1">
     <value>İnternet üzerinden gönderilen bilgileri karıştırarak, çevrim içi işlemlerde tarayıcınızı şifreleme yazılımı aracılığıyla güvende tutar.  Misyonumuz, bireylere ve küçük ekiplere, kullanımı hiç olmadığı kadar kolay şifreleme çözümleri sunmaktır. Güçlü ve kanıtlanmış kriptografik teknolojinin kullanımındaki zorluğu ortadan kaldırıyoruz.</value>
@@ -666,11 +716,33 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="Blog_HAVTYB_Summary">
     <value>İşletmenize ait hassas veriler bulutta depolandığında, şifreleme veri hırsızlığı riskini önemli ölçüde azaltabilir.</value>
   </data>
+  <data name="Blog_HPDYMP_H3_Text2">
+    <value>Bu link ile bir aylık ücretsiz deneyin.
+&lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Android&lt;/a&gt; or &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;iOS&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_HPDYMP_Heading2">
+    <value>Korunmayan verilerle ilgili risk</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text4">
+    <value>&lt;Li&gt;Servis reddi &lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H3_Text6">
+    <value>&lt;li&gt;Şifreleme/kripto hırsızlığı&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_HPYBFC_H5_SH3_Text1">
+    <value>İşletmenizin verilerini ve web sitesini yedeklemek, bir siber saldırı yaşarsanız veya bilgisayar sorunları yaşarsanız kaybettiğiniz bilgileri kurtarmanıza yardımcı olur. En önemli verilerinizi ve bilgilerinizi düzenli olarak yedeklemeniz çok önemlidir.</value>
+  </data>
+  <data name="Blog_HPYBFC_Summary">
+    <value>Bilgi güçtür anlamına gelen Latince kökenli 'Scientia potentia est', günümüz dünyasıyla ilişkilendirilebilecek ilgili bir aforizmadır. Bilgi teknolojisindeki hızlı gelişmelerin bir sonucu olarak, bu hüküm şimdi her zamankinden daha doğrudur.</value>
+  </data>
   <data name="Blog_ICSHRS_H1_Text1">
     <value>Hiç kimsenin öngöremediği  yeni bir çalışma ortamına uyum sağlarken, pandemi,  kuruluşları rahatsız etti ve insan kaynakları yöneticilerini görevlerini nasıl yerine getireceklerini yeniden düşünmeye yöneltti. İK yöneticileri sadece salgın sırasında çalışanlarının sağlığı ve esenliği konusunda değil, aynı zamanda evrak işlerini güvenli bir şekilde işlemek ve işten çıkarılan veya uzaktan çalışan milyonlarca insana kolaylık sağlamak konusunda da endişeliler.</value>
   </data>
   <data name="Blog_ICSHRS_H2_SH4_Text1">
     <value>İnsan kaynakları departmanı, bir şirkete erişim kısıtlamaları oluşturma ve uygulama konusunda yardımcı olabilir. Bir çalışan işe alınmadan veya işe başlamadan önce bile İK, ihtiyaç duyacakları verileri belirleyebilir. Ayrıca, sözleşmelerinin sonunda çalışanın bu bilgilere erişimi olmadığından emin olmalıdır.</value>
+  </data>
+  <data name="Blog_ICSHRS_H2_SH5_Text1">
+    <value>Bir ihlal oluştuğunda, sorunun çözümünden yalnıza BT departmanı sorumlu değildir. Özellikle çalışanlarla alakalıysa, bir insan kaynakları sorunudur. İK, çalışanların yönetiminden sorumludur. Bu, siber suça karşı organizasyonu açık hale getirir.</value>
   </data>
   <data name="Blog_ICSHRS_H2_SubHeading2">
     <value>&lt;strong&gt;Politika Oluşturma &lt;/strong&gt;</value>
@@ -681,11 +753,41 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="Blog_ICSHRS_Summary">
     <value>İK'lar, çalışanların kişisel bilgileri, ödeme ayrıntıları ve ifşa edilmesi halinde önemli zararlar verebilecek olan diğer bilgiler dahil olmak üzere birçok  iş bilgisinin gizliliğinden sorumludur.</value>
   </data>
+  <data name="Blog_ICSHRS_Title">
+    <value>İnsan kaynakları alanında siber güvenliğin önemi</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text2">
+    <value>Şifreleme, verileri aşağıdaki şekillerde korur:</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text3">
+    <value>&lt;li&gt;Nereye gittiklerinden veya kiminle paylaşıldıklarından bağımsız olarak, yalnızca onaylı alıcılar oluşturuldukları andan itibaren tüm yaşam döngüleri boyunca iletileri görüntüleme erişimine sahiptir.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text4">
+    <value>&lt;li&gt;Kullanıcı hatası nedeniyle veriler yanlış kişilerin eline geçse bile&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_Text2">
+    <value>&lt; li&gt;Kampüs araştırmalarından elde edilen fikri mülkiyet oldukça değerlidir.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH2_Text1">
+    <value>Artan bulut benimsemesi, etik bilgisayar korsanlarından ve siber tehdit çalışanlarından daha fazla inceleme çekiyor. Saldırıların çoğu, bulut altyapısı güvenlik açıklarını hedef alarak bir saldırganın tek bir güvenlik açığıyla çoklu hedeflerden yararlanmasına olanak tanır. AxCrypt ile mobil ve  bilgisayarındaki verileri koruyabilirsin.</value>
+  </data>
+  <data name="Blog_MDPNST_H2_SH4_Text1">
+    <value>AxCrypt, kişisel ve iş güvenliği için mobil ve bilgisayar siber güvenlik çözümü sunan çok ödüllü bir siber güvenik şirketidir. AxCrypt, mobil şifreleme, normal bir kilit ekranı şifrelemesinin ötesindedir. Telefonunuzdaki tüm kişisel bilgilerinizi ve verilerinizi üçüncü taraf müdahalesinden korumak için entegre bir şirkettir.  Bunu, telefonunuzun bilgileri okunamayan karışık bir şekilde tutar ve sadece doğru kimlik bilgisiyle okunur. halde saklar. Mobil şifreleme ile cihazınız kaybolsa veya çalınsa bile verilerinizin korunduğundan emin olabilirsiniz. Mobil anahtar paylaşım özelliğimiz sayesinde ekip üyelerinizle, şifrenizi paylaşmadan tek tıklama ile şifrelenmiş veri/dosyaları paylaşabilir ve değiştirebilirsiniz.</value>
+  </data>
   <data name="Blog_MDPNST_Heading2">
     <value>2022'de dikkat edilmesi gereken mobil tehditlerden bazıları</value>
   </data>
   <data name="Blog_MDPNST_Summary">
     <value>Dünya çapındaki mobil güvenlik akımları,  yanlış bilgilendirme kampanyaları, tedarik zinciri saldırıları, e-şifre avcılığı, kimlik avı, mobil müdahale ve mobil kötü amaçlı yazılımlar tarafından kontrol edilmektedir.</value>
+  </data>
+  <data name="Blog_MDSCBF_H1_SubHeading2">
+    <value>&lt;strong&gt;Veri yönetimi kuralları ihlal edildi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_SH6_Text1">
+    <value>Büyük mitleriniz çürütüldüğüne göre artık şifrelemek için hiçbir mazeret yok. AxCrypt, mobil cihazlar, bilgisayarlar ve laptoplar kullanımdayken, beklerken veya transfer sürecindeyken verileri şifreleyen kullanıcı dostu bir yazılımdır. AxCrypt, ayrıca çok çeşitli veri güvenliği gereksinimlerini karşılamak için çeşitli özelliklere sahiptir.</value>
+  </data>
+  <data name="Blog_MDSCBF_H2_Text2">
+    <value>Bir ay ücretsiz dene Android ve IOS kullanıcıları için indirme</value>
   </data>
   <data name="Blog_MDSCBF_Summary">
     <value>Siber güvenlik ve genel olarak iş dünyası için geçtiğimiz birkaç yılda özgün bir şeyler oldu.</value>
@@ -696,17 +798,48 @@ Uyarıldın, şimdi uygulamanın tadını çıkarma zamanı!</value>
   <data name="Blog_ROCP_Heading2">
     <value>Şirketinizin Şifrelerini Neden Organize Etmelisiniz?</value>
   </data>
+  <data name="Blog_SCMAE_Title">
+    <value>Şifreleme hakkında bazı yaygın(ortak) mitler</value>
+  </data>
   <data name="Blog_SD_Heading2">
     <value>&lt;h3&gt;Garanti edilen güvenlik&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_TAYBS_H1_SH3_Text1">
+    <value>Yazılımımızı daha kullanıcı dostu hale getirmek için her zaman çalışıyoruz. Windows, Mac, iOS ve Android'de bulunan kullanıcı arayüzünü güncelledik ve Mobil Uygulamamızı, kullanıcıların şifrelenmiş verilere herhangi bir yerden herhangi bir zamanda erişmesini kolaylaştıracak şekilde geliştirdik. 
+&lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Download now for Android &lt;/a&gt; and &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;Download now for iOS &lt;/a&gt;&lt;br/&gt;&lt;br/&gt;
+</value>
+  </data>
+  <data name="Blog_TAYBS_H1_SH6_Text1">
+    <value>2021'de, kullanıcıların çeşitli sektörlere nasıl hizmet verdiğimizi daha iyi anlamalarına yardımcı olan sektör segmentimizi de duyurduk. AxCrypt'i daha önce kullanmış birinden deneyim almanın ne kadar önemli olduğunu anlıyoruz. Sonuç olarak, uygulamamız hakkında daha fazla bilgi edinmenize yardımcı olmak için bu yıl ek referanslar ekledik.
+&lt;a href='ttps://www.axcrypt.net/industries'&gt; Buradan daha fazla bilgi edinebilirsiniz&lt;/a&gt;
+</value>
+  </data>
+  <data name="Blog_TAYBS_Title">
+    <value>Güvende olmanın bir yılına daha kutla!</value>
+  </data>
+  <data name="Blog_TIEDTC_H1_SH4_Text1">
+    <value>Çoğu işletme kartlarını göğüslerine yakın oynamak zorundadır. Hassas bilgiler, bilgisayar korsanlarının erişmesini önlemek için her zaman şifrelenmelidir. .  Bir şirketin finansal bilgileri; gelir ve gider hesabını, borçlu ve alacaklı hesabını, varlıklarını, hesap numaralarını, ödeme geçmişini vb. içerebilir. Bu tür verilerin izinsiz erişimlerden korunması gerekir. Bu tür veriler siber suçlular tarafından  her ifşa edildiğinde, şirket muazzam bir zarara uğrama tehlikesiyle karşı karşıyadır ve  şirketde verileri olan müşteriler ve personeller bundan rahatsız olur.</value>
+  </data>
   <data name="Blog_TIEDTC_Heading1">
     <value>Şirketiniz Hangi Verileri Şifrelemelidir?</value>
+  </data>
+  <data name="Blog_TIEDTC_Text1">
+    <value>Bir çok işletme verilerinin şifrelenmesi gerekliliğini düşünmemektedir. Son derece hassas ve gizli bilgilerin korunması için bu teknolojinin değerini anlıyorlar ancak bu teknolojinin kendi bünyesinde olmamasından dolayı buna başvurmayı düşünmüyorlar. Siber güvenlikteki en büyük gelişmelerden biri, mahrem güvenlik olması beklenmektedir. Özel bilgi, hassas veri ve  bağlantı ve iş arasındaki güvenliğin tamamen bu teknoloji tarafından korunmaktadır.</value>
   </data>
   <data name="Blog_TIEDTC_Title">
     <value>Şirket İçindeki Tüm Verileri Şifrelemenin Önemi</value>
   </data>
   <data name="Blog_TSTE_H2_Text1">
     <value>Çoğu çağdaş şifreleme algoritması, protokolleri ve teknolojileri, 128-bit ve 192-bit şifrelemeden sonra en güvenli ve en emniyetli şifreleme &lt;/a&gt;teknikleri arasında&lt;ahref='https://www.toptenreviews.com/secure-encryption-methods'&gt; yer alan AES 256-bit'i kullanır.</value>
+  </data>
+  <data name="Blog_WENTI_H1_Text1">
+    <value>Telekomünikasyon sağlayıcıları, yazılım geliştiricileri ve yönetilen güvenlik hizmeti sağlayıcılarının tümü, BT ve iletişim sektörünün parçasıdır. Araştırmalara göre, BT sektörü 2021'de uluslararası alanda en çok hedef alınan sektör oldu. Hırsızlık girişiminin en popüler yolu e-postaydı ve işletmeler her ay ortalama 600 benzersiz sahte e-posta alıyordu. Teknoloji endüstrisi yeni teknolojileri ilk benimseyen sektör olduğundan, bu da onu siber saldırılara karşı özellikle savunmasız hale getiriyor. Raporlara göre, endüstriyel kontrol sistemlerine (ICS) ve operasyonel teknolojiye (OT) yönelik güvenlik tehditleri 2020'den bu yana üç kattan fazla arttı.</value>
+  </data>
+  <data name="Blog_WENTI_H4_Text2">
+    <value>&lt;strong&gt;Şifre Yöneticisi&lt;/strong&gt; - AxCrypt şifre yöneticisi özelliği ile tüm şifrelerinizi ve kodlarınızı bulutumuzda güvenli bir şekilde saklayabilirsiniz. Daha fazla bilgi için &lt;a href='https://www.youtube.com/watch?v=sLvY5lMK7wA'&gt;eğitimimizi izleyin&lt;/a&gt;..</value>
+  </data>
+  <data name="Blog_WENTI_H4_Text5">
+    <value>&lt;strong&gt;Bulut Depolama&lt;/strong&gt; - AxCrypt ile bulutta veri gizliliğini gerçekleştirmek çok kolaydır. AxCrypt, bilgisayarınızda hangi Bulut Depolama hizmetlerinin yüklü olduğunu otomatik olarak bulur ve orada bir AxCrypt klasörü oluşturur. Bu klasörlerdeki dosyaları otomatik olarak görüntülemenizi ve güvende tutmanızı kolaylaştırıyoruz.</value>
   </data>
   <data name="Blog_WTPI_H1_Text3">
     <value>2006 yılındaki kuruluşundan bu yana WikiLeaks birkaç aşamadan geçti. İzleyicilerinin aktif olarak düzenleyip gönderdiği belge ve dosyaları yayınlamaktan, belirli bir amaca hizmet eden siyasi beyanları yayınlamaya kadar. Artık yasal süreçte, bilgileri analiz etmek, yeniden düzenlemek ve yayınlamak için haber kuruluşlarıyla yakın bir şekilde çalışıyorlar.</value>

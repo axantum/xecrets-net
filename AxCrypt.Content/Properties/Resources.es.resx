@@ -1340,6 +1340,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_Conclusion_Download_ContactUs">
     <value>&lt;a href=' https://www.axcrypt.net/information/axcrypt'&gt;Descarga AxCrypt aquí:&lt;/a&gt;. Para obtener más información puedes ponerte en contacto al correo &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
+  <data name="Blog_Conclusion_Feature">
+    <value>Echa un vistazo a la &lt;a href='/information/features'&gt;página de funciones&lt;/a&gt; para obtener más información sobre cómo AxCrypt puede proteger tus archivos y datos.</value>
+  </data>
   <data name="Blog_Conclusion_Feature_Text1">
     <value>Echa un vistazo a la  &lt;a href='https://axcrypt.net/information/features'&gt;Página de funciones de AxCrypt&lt;/a&gt; para obtener más información sobre cómo AxCrypt puede proteger tus archivos y datos y la &lt;a href='https://www.axcrypt.net/pricing'&gt;Página de precios&lt;/a&gt; para conocer los tipos de suscripciones de cifrado que ofrece AxCrypt.</value>
   </data>
@@ -1379,6 +1382,9 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="Blog_Conclusion_Text1">
     <value>Debido al rápido desarrollo del negocio de la telefonía móvil y la llegada de los servicios y aplicaciones en la nube, los teléfonos móviles son cada vez más vulnerables. En contraste con el crecimiento de la adopción de teléfonos inteligentes, la seguridad móvil aún no ha llegado a millones de consumidores.</value>
+  </data>
+  <data name="Blog_CRI_FeaturePage">
+    <value>Echa un vistazo a la &lt;a href='/information/features'&gt;página de funciones&lt;/a&gt; para obtener más información sobre cómo AxCrypt puede proteger tus archivos y datos.</value>
   </data>
   <data name="Blog_CSFE_H1_SH1_Text1">
     <value>La formación de los empleados en ciberseguridad ha recorrido un largo camino en los últimos años. La capacitación en seguridad alguna vez se designó principalmente para especialistas en seguridad de TI, pero luego se amplió para abarcar a todo el personal de TI. Si la empresa quiere evitar el ransomware y el malware, todo el personal debe recibir la formación adecuada en las mejores prácticas y buenos hábitos de seguridad.</value>
@@ -4272,6 +4278,84 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   <data name="Blog_WIAAI_Title">
     <value>¿Qué es un AxCrypt ID?</value>
   </data>
+  <data name="Blog_WICS_Conclusion_Text1">
+    <value>Los defensores deben estar alerta incluso en 2022 y 2023, ya que sería una versión mejorada de 2021. Las personas y las organizaciones deben proteger sus redes contra las amenazas de seguridad con las estrategias adecuadas. Póngase en contacto con AxCrypt ahora y proteja sus datos de ciberataques.</value>
+  </data>
+  <data name="Blog_WICS_H1_SH1_steps">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Protección de datos corporativos y personales contra ciberataques y filtraciones de datos.&lt;/li&gt;&lt;li style="list-style-type: '\2714' ;"&gt; Protección de datos y redes.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Evitar el acceso de usuarios no autorizados.&lt;/li&gt;&lt;li style="list-style-type : '\2714';"&gt; Mejor recuperación ante fallas.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; La continuidad del servicio y, por lo tanto, la productividad aumenta a mayor escala.&lt;/li &lt;li style="list-style-type: '\2714';"&gt; Protección de usuarios finales y dispositivos finales.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Ciberseguridad ayuda en el ahorro de costos y tiempo. Los costos de pérdida de datos, recuperación y tiempo de inactividad debido a la reanudación de las operaciones conducen a un alto costo. De acuerdo con el &lt;a href='https://www.hiscox.com/articles/average-annual-cost-cyber-attacks-us-small-business-25k-reveals-hiscox'&gt;Hiscox Cyber ​​Readiness Report 2021&lt; /a&gt;, el costo promedio de un solo ataque cibernético para el sector de pequeñas empresas en American es de $25.612.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Gana la reputación comercial de la organización . Mayor confianza en la imagen de la empresa y la confianza de los desarrolladores, socios, clientes, partes interesadas y empleados.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H1_SubHeading1">
+    <value>&lt;strong&gt;Beneficios de la ciberseguridad&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_WICS_H1_Text1">
+    <value>La importancia de la ciberseguridad crece rápidamente debido al aumento del número de usuarios de internet con datos sensibles o confidenciales. Las ciberamenazas están aumentando enormemente, &lt;strong&gt;1 billón de dólares según la encuesta&lt;/strong&gt;&lt;a href='https://www.pwc.com/gx/en/issues/cybersecurity/global-digital-trust-insights .html'&gt; (Encuesta Global Digital Trust Insights de 2022&lt;/a&gt; y las organizaciones esperan que los riesgos sigan aumentando. El problema empeora aún más por el incremento en la cantidad y el nivel de sofisticación de las amenazas cibernéticas y las metodologías de ataque. Las empresas emplean procedimientos de ayuda de ciberseguridad para protegerse contra estafas de phishing, ataques de ransomware, robo de identidad, vulneraciones de datos y pérdidas monetarias.</value>
+  </data>
+  <data name="Blog_WICS_H1_Text2">
+    <value>Aquí es donde el cifrado juega un papel importante. El cifrado protege los datos privados y los datos confidenciales y mejora la seguridad de la comunicación entre las aplicaciones del cliente y los servidores. Si los datos están cifrados, los hackers informáticos o cualquier persona o entidad no autorizada no podrán leerlos. El cifrado es una medida de ciberseguridad que protege la información privada y personal mediante el uso de códigos únicos que codifican la información y hacen imposible que los intrusos la lean. Aunque se produzca una vulneración a los datos, el cifrado garantiza la seguridad de la información privada de una organización, incluso si los atacantes eluden el firewall.</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text1">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Seguridad de la información:&lt;/strong&gt; protege la integridad y la privacidad de los datos durante el almacenamiento y la transmisión, acceso no autorizado, incluida la inspección, la modificación, el almacenamiento, la desconexión o la destrucción. El objetivo principal es garantizar la seguridad y la privacidad de la información crítica, como la información de la cuenta del cliente, la información financiera o la propiedad intelectual.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Seguridad de las aplicaciones:&lt;/strong&gt; Hoy en día se accede a las aplicaciones a través de varios canales/redes y se conectan a la nube. Por lo tanto, el riesgo a la vulnerabilidad de datos se encuentra en un extremo superior. Centrándose en proteger el software y los dispositivos contra las amenazas, AxCrypt proporciona aplicaciones dentro de las propias aplicaciones.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Seguridad de red:&lt;/strong&gt; es la práctica de proteger una red informática de intrusos, ya sean atacantes dirigidos o malware oportunista. Garantiza la seguridad de la información y los datos del cliente, la seguridad de la información compartida y el uso confiable, así como la protección contra las amenazas cibernéticas. AxCrypt reduce los costos generales y protege a las organizaciones de costosas pérdidas resultantes de vulneraciones de datos u otras violaciones de seguridad.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Seguridad en la nube:&lt;/strong&gt; se trata de crear arquitecturas y aplicaciones seguras en la nube para empresas que utilizan proveedores de servicios en la nube como Amazon Web Services, Google, Azure, espacio en rack, etc.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Seguridad móvil:&lt;/strong&gt; En este mundo digital, la seguridad móvil es un gran problema, ya que cada vez más personas confían en los dispositivos móviles. Las empresas que usan dispositivos móviles deben usar medidas de seguridad móvil para proteger los datos almacenados en estos dispositivos contra diversas amenazas. Este subdominio protege la información personal y de la organización almacenada en dispositivos móviles como tabletas, teléfonos móviles y computadoras portátiles contra diversas amenazas como el acceso no autorizado, la pérdida o el robo de dispositivos, malware, virus, etc.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH2_steps">
+    <value>&lt;li&gt;Gestión de acceso e identidad&lt;/li&gt;&lt;li&gt;Firewalls&lt;/li&gt;&lt;li&gt;Detección y respuesta de endpoints&lt;/li&gt;&lt;li&gt;Antimalware&lt;/li&gt;&lt;li&gt;Sistemas de prevención/detección de intrusiones&lt;/li&gt; &lt;li&gt;Prevención de pérdida de datos&lt;/li&gt;&lt;li&gt;Información de seguridad y gestión de eventos&lt;/li&gt;&lt;li&gt;Herramientas de cifrado&lt;/li&gt;&lt;li&gt;Escáneres de vulnerabilidad&lt;/li&gt;&lt;li&gt;Redes privadas virtuales&lt;/li&gt; &lt;li&gt;Plataforma de protección de cargas de trabajo en la nube&lt;/li&gt;&lt;li&gt;Agente de seguridad de acceso a la nube&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading1">
+    <value>Los principales propósitos de la ciberseguridad son:</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading2">
+    <value>&lt;strong&gt;Las herramientas comunes utilizadas para las medidas de ciberseguridad son:&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_Text1">
+    <value>Para crear una defensa sólida contra posibles ciberataques, es importante que la empresa, las personas, los procesos y la tecnología estén diseñados para trabajar juntos. La ciberseguridad incluye técnicas, procesos y métodos para proteger de ataques a los sistemas informáticos, los datos y las redes. La ciberseguridad está diseñada para proporcionar múltiples niveles de protección en todas las computadoras, redes y software que utiliza la organización. Los sistemas de ciberseguridad son capaces de detectar, investigar y eliminar posibles debilidades y vulnerabilidades del sistema antes de que un hacker o malware las explote.</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text1">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Ataques IoT:&lt;/strong&gt; Internet de las cosas es la amenaza más vulnerable en la actualidad. Todos los dispositivos informáticos, digitales y mecánicos que pueden transmitir datos a través de una red de Internet son similares a IoT; computadora de escritorio, computadora portátil, teléfono móvil, dispositivos de seguridad inteligentes, etc. Proteger los dispositivos IoT es uno de los mayores desafíos de la ciberseguridad, ya que el acceso a estos dispositivos puede abrir puertas a otros fines maliciosos.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text2">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Ataques de ransomware:&lt;/strong&gt; como su nombre lo especifica, implica hackear los datos de un usuario y bloquear el acceso hasta que se pague el rescate. Los ataques de ransomware son críticos tanto para usuarios individuales como comerciales. Los usuarios comerciales no podrán acceder a los datos para sus operaciones diarias. Se ha observado que la mayoría de las veces, los atacantes de ransomware no divulgan información incluso después de que se realiza el pago, sino que intentan extorsionar pidiendo más dinero.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text3">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Ataque en la nube:&lt;/strong&gt; los servicios en la nube se usan drásticamente para necesidades personales y profesionales. Hackear plataformas en la nube para robar datos de usuarios también es uno de los desafíos de  la ciberseguridad para individuos y empresas. Todos conocemos el infame hackeo de iCloud que expuso las fotos privadas de las celebridades. Si se realiza un ataque de este tipo contra los datos de la empresa, puede representar una gran amenaza para la organización e incluso provocar su colapso. Por lo tanto, es obligatorio considerar muchos aspectos de la seguridad en la nube y la protección de datos para mantener protegidos los datos confidenciales.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text4">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Ataque de phishing:&lt;/strong&gt; El phishing es un ataque a las redes sociales que se utiliza para robar información del usuario, credenciales de inicio de sesión y números de tarjetas de crédito. Los hackers informáticos lo usan para compras en línea y transferencias ilegales de dinero. Google ha publicado oficialmente una declaración sobre cómo bloquea más de 100 millones de correos electrónicos de phishing todos los días: &lt;a href='https://cloud.google.com/blog/products/identity-security/protecting-against-cyber-threats-during-covid-19-and-beyond'&gt;https://cloud.google.com/blog/products/identity-security/protecting-against-cyber-threats-during-covid-19-and-beyond&lt;/a&gt; </value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Ataques de criptomonedas y cadena de bloques:&lt;/strong&gt;La moneda digital o las billeteras se han convertido en un objetivo principal para los hackers informáticos. El crecimiento de esta nueva tecnología ha revolucionado la moneda física, pero también ha creado muchos desafíos serios de seguridad. Según el informe de Fincen, se utilizaron 177 direcciones de billetera digital únicas para los ataques de ransomware. Es importante que las organizaciones sean conscientes de los problemas de seguridad asociados con estas tecnologías y se aseguren de que los hackers informáticos no puedan atacarlas ni explotarlas.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SubHeading1">
+    <value>Los desafíos de ciberseguridad más comunes que se enfrentan son:</value>
+  </data>
+  <data name="Blog_WICS_H3_Text1">
+    <value>Viviendo en la era de la digitalización, la ciberseguridad se vuelve indispensable. La situación ha empeorado desde la pandemia. Según un informe de ITRC, el número de &lt;a href= 'https://www.idtheftcenter.org/notified'&gt;vulneraciones de datos&lt;/a&gt; ha aumentado enormemente solo en la primera mitad de 2021 y sigue siendo en un extremo superior. Las crecientes estadísticas muestran que la ciberseguridad será un gran desafío en los próximos años.</value>
+  </data>
+  <data name="Blog_WICS_Heading1">
+    <value>¿Por qué el cifrado es importante en ciberseguridad?</value>
+  </data>
+  <data name="Blog_WICS_Heading2">
+    <value>Propósito de la ciberseguridad:</value>
+  </data>
+  <data name="Blog_WICS_Heading3">
+    <value>Principales desafíos enfrentados de ciberseguridad:</value>
+  </data>
+  <data name="Blog_WICS_Text1">
+    <value>Siendo parte del mundo digital, es muy importante proteger los sistemas, las redes, los servidores, los dispositivos móviles, los datos personales, los datos profesionales y los programas de amenazas cibernéticas. Por lo general, el ciberataque tiene como objetivo acceder, cambiar o destruir información confidencial y extraer dinero de usuarios; o entrometerse en los procesos comerciales normales. Los ciberdelincuentes son astutos y buscan puntos delegados en los sistemas para descifrarlos y explotarlos. Aquí es donde la ciberseguridad juega un papel importante. La ciberseguridad es el acto de brindar defensa a los dispositivos conectados a internet contra ataques mortales de hackers informáticos, spammers y ciberdelincuentes.</value>
+  </data>
+  <data name="Blog_WICS_Title">
+    <value>¿Qué es la ciberseguridad?</value>
+  </data>
   <data name="Blog_WSPPI_H1_Text1">
     <value>¿Qué son los datos personales? ¿Qué tipo de información debes proteger especialmente de las empresas o industrias que la utilizan?</value>
   </data>
@@ -5067,6 +5151,12 @@ Ya fuiste notificado, así que ¡ahora disfruta!</value>
   </data>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>¡Demuestra que eres una persona real y no un software automatizado!</value>
+  </data>
+  <data name="CardNumberPrompt" xml:space="preserve">
+    <value>Número de tarjeta</value>
+  </data>
+  <data name="CardPrompt" xml:space="preserve">
+    <value>Tarjeta</value>
   </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
     <value>Has solicitado restablecer tu correo electrónico de AxCrypt ID a &lt;b style="color: #000 !important;"&gt;{email_change_to}&lt;/b&gt;. Para confirmar, haz clic en el botón de abajo.</value>
@@ -6257,6 +6347,9 @@ Nos entristece que te vayas. ¡Esperamos que hayas disfrutado de AxCrypt!</value
   <data name="FreeTrial">
     <value>Prueba gratis</value>
   </data>
+  <data name="FreeTrialLabel" xml:space="preserve">
+    <value>PRUEBA GRATUITA</value>
+  </data>
   <data name="FullNameLabel">
     <value>Nombre completo</value>
   </data>
@@ -7315,6 +7408,9 @@ Inicia sesión en AxCrypt con {2}, introduce el código de verificación de 6 d�
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Importe</value>
   </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>Número de la factura</value>
+  </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
     <value>Referencia</value>
     <comment>The payment provider reference id of the transaction</comment>
@@ -8227,6 +8323,9 @@ Este programa se licencia según el acuerdo.
   <data name="NameLabel">
     <value>Nombre</value>
   </data>
+  <data name="NameOnCardPrompt" xml:space="preserve">
+    <value>Nombre que aparece en la tarjeta</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>Comentarios</value>
   </data>
@@ -8274,6 +8373,9 @@ Tus documentos siguen encriptados de manera segura con tu contraseña.</value>
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>No cuentas con una suscripción Premium, así que no estás accediendo al nivel más alto de seguridad. ¡Haz clic para actualizarla!</value>
+  </data>
+  <data name="NoteContentPrompt" xml:space="preserve">
+    <value>Nota</value>
   </data>
   <data name="NoteLabel">
     <value>Nota</value>
@@ -8532,6 +8634,9 @@ Los espacios en blanco, y partes que sean iguales a contraseñas comunes son ign
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>La contraseña no es suficientemente fuerte.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
+  </data>
+  <data name="PasswordUrlPrompt" xml:space="preserve">
+    <value>URL</value>
   </data>
   <data name="PastIncidentsHeading">
     <value>Incidentes anteriores</value>
@@ -10052,6 +10157,9 @@ Asunto: Reporte resumido de AxCrypt</value>
   <data name="SecurityBlock7Text5">
     <value>El estándar de seguridad HIPAA permite el uso de cifrado como base para el control de acceso, es decir, para proteger la privacidad de los datos en reposo (almacenados en un disco duro en lugar de recorrer Internet, por ejemplo). AxCrypt también cumplirá con los requisitos de la mayoría de las organizaciones aquí.</value>
   </data>
+  <data name="SecurityCodePrompt" xml:space="preserve">
+    <value>Código de seguridad</value>
+  </data>
   <data name="SecurityDescriptionText">
     <value>Para lograr un nivel de seguridad apropiado, resulta útil entender cómo se puede usar  AxCrypt de una mejor manera a través de contraseñas y seguridad de PC local. A continuación, se muestran algunos detalles sobre los algoritmos y métodos utilizados en AxCrypt.</value>
   </data>
@@ -10652,6 +10760,9 @@ Para ir a la página de inicio, haz clic &lt;a href="{1}"&gt;aquí&lt;/a&gt;.</v
   <data name="TermsOfUseBlock9Text2">
     <value>Para conocer más detalles sobre qué es lo que procesamos y cómo lo hacemos, consulta nuestra &lt;a href='/information/privacy-policy'&gt; Política de privacidad&lt;/a&gt;. Aceptar estos Términos de uso también significa aceptar nuestra política de privacidad.</value>
   </data>
+  <data name="TermsOfUseBlockAxcryptPlanHeading1">
+    <value>Planes de AxCrypt</value>
+  </data>
   <data name="TermsOfUseBlockNew11Text1">
     <value>No se proporcionará ningún reembolso si no has cancelado tu suscripción durante el período de prueba de 30 días. El reembolso se otorgará solo bajo ciertas circunstancias técnicas. Nos reservamos el derecho de retirar o modificar dichas ofertas en cualquier momento sin previo aviso.</value>
   </data>
@@ -11005,6 +11116,9 @@ El Equipo de AxCrypt</value>
   </data>
   <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
     <value>Usa solo las cookies necesarias</value>
+  </data>
+  <data name="UserNamePrompt" xml:space="preserve">
+    <value>Nombre de usuario</value>
   </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Has actualizado AxCrypt. Desafortunadamente, tu configuración debe ser reiniciada. Después de reiniciar, por desgracia, se perderán tus preferencias y tu configuración. Nos disculpamos por el inconveniente. De todos modos, tus archivos cifrados siguen estando protegidos.</value>

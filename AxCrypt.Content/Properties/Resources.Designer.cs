@@ -20,7 +20,7 @@ namespace AxCrypt.Content.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -6063,6 +6063,132 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to However, many lawyers overlook some of the simpler cybersecurity measures, such as data encryption. Most of the law firms are concerned and do the needful to protect the office networks, but do not provide much attention in protecting client’s data stored on their devices. If these data are not protected that would lead to major problems..
+        /// </summary>
+        public static string Blog_EILI_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thinking of how to avoid the threat of data breach? No need to worry. Contact AxCrypt. Solution for all your data threat problems and maintaining client confidentiality..
+        /// </summary>
+        public static string Blog_EILI_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More than ever before, as and when technology has become part of our lives, more than 80% of our personal and confidential information is transmitted over the Internet, exposed or disclosed. Hence, it is very important to understand the data security software required. Lots of legal industries have recently suffered major data breaches and gone through massive damage, resulting in high-profile lawsuits. .
+        /// </summary>
+        public static string Blog_EILI_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption solutions for law firms deal with legislation to ensure the security and confidential transmission of information and policies to keep secure cryptographic systems out of the hands of unauthorized individuals and hackers..
+        /// </summary>
+        public static string Blog_EILI_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Having access to that information of the clients, lawyers have to have responsibility in protecting it too..
+        /// </summary>
+        public static string Blog_EILI_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is required that lawyers must observe the attorney-client privilege, that is, any information shared by the client to their lawyer should remain confidential and hence any testimony or information provided by the lawyer is inadmissible in court.Lawyers have access to trade secrets, intellectual property, and fictional skeletons of their clients &apos; closets. Also, as file sharing through email or the internet has made it easy to communicate with customers, they also carry significant risks, especially in re [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_EILI_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attorneys who do not use encryption on laptops, smartphones, and portable devices should consider the question: Is failure to employ what many consider to be a no-brainer solution taking competent and reasonable measures?” the &lt;a href =&apos;https://www.americanbar.org/groups/law_practice/publications/techreport/2021/cybersecurity/&apos;&gt; &lt;strong&gt;ABA wrote in its 2021 TechReport.&lt;/strong&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_EILI_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Law firms who experienced a data breach were mainly due to weak, reused or stolen passwords. Legal work requires a high level of confidentiality and security. It is necessary for law firm&apos;s software to be protected with secure password and authentication protocol, especially while working remotely. Reduce this risk and associated costs by remembering one password – AxCrypt takes care of password management for law firm security and makes your law life easier and meets regulations..
+        /// </summary>
+        public static string Blog_EILI_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importance of encryption in legal industry:.
+        /// </summary>
+        public static string Blog_EILI_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Encryption for lawyers be provided attention?.
+        /// </summary>
+        public static string Blog_EILI_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In today’s era, data is a very important aspect and hence data security also has to be provided priority for all individuals and organizations, including IT firms, government firms, factories, businesses as well as in law firms..
+        /// </summary>
+        public static string Blog_EILI_Summary {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In today’s era, data is a very important aspect and hence data security also has to be provided priority for all individuals and organizations, including IT firms, government firms, factories, businesses as well as in law firms. The legal profession is particularly vulnerable to lawyers&apos; highly sensitive client information to be kept safe. Legal industries are very important as the responsibilities increase and hence encryption in the legal industry for credential data is too crucial. Lawyers need to be sma [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_EILI_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From recent years analysis it has been found that hackers have increasingly targeted law firms. It was reported that almost 2.6 terabytes of data, including 2.2 million PDF files and 3 million databases were hacked. Yet, data security in the legal industry is low; many law firms even now don’t use the most basic encryption..
+        /// </summary>
+        public static string Blog_EILI_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption in legal industry.
+        /// </summary>
+        public static string Blog_EILI_Title {
+            get {
+                return ResourceManager.GetString("Blog_EILI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For any enquiry or question you can contact &lt;a href=&apos;mailto:support@axcrypt.net&apos; style=&apos;color: #efefef; font-weight: 800;&apos;&gt;support@axcrypt.net&lt;/a&gt; or &lt;a href=&apos;mailto:business@axcrypt.net&apos; style=&apos;color: #efefef; font-weight: 800;&apos;&gt;business@axcrypt.net&lt;/a&gt; You can also visit our website &lt;a href=&apos;https://www.axcrypt.net/&apos; style=&apos;color: #efefef; font-weight: 800;&apos;&gt;https://www.axcrypt.net/&lt;/a&gt;. Follow our social media handles for the latest update.
         /// </summary>
         public static string Blog_EITPS_Conclusion_ContactUs {
@@ -11832,6 +11958,312 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organizations cannot prevent &lt;a href=&apos;&apos;&gt;&lt;strong&gt;password attacks,&lt;/strong&gt;&lt;/a&gt; but it is possible to avoid them. By staying vigilant, practicing good password hygiene, and protecting your network, you can stop brute force attacks, no matter how many threat attempts are tried. Most importantly, strong passwords and regular password changes are also an effective countermeasure against these types of brute force attack in cyber security..
+        /// </summary>
+        public static string Blog_WBFAHPI_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We AxCrypt are always alert when it comes to data security. Our security system is really powerful, so we provide AES-128 and the strongest AES-256 encryption, which takes forever to crack the password. Due to the strongest encryption process we use; it acts as a shield and protects all data from brute force attacks..
+        /// </summary>
+        public static string Blog_WBFAHPI_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our clients love us because we never compromise on data-breach and provide the best cyber security system. Enhance your data security by working with experts. Don’t wait to lose your data. Contact AxCrypt today and download our latest version to experience the best..
+        /// </summary>
+        public static string Blog_WBFAHPI_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most commonly there are 5 types of brute force attack.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH1_Following {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH1_Following", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this kind of brute force attack, attackers try multiple passwords to target a specific set of identities. Here, hackers try to guess manually or use trial and error method, with regards to the user&apos;s login credentials without using any software and hence, this method is time and resource intensive. Hackers try to generate all possible characters, numbers and special characters. This method is only effective for short powers, but terrible for slightly longer ones..
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password spraying is a form of reverse brute force attack where the attacker brute force logs into the application based on a list of usernames with default passwords. This attack is normally used in areas where the admin sets a default password for the new users. Normally, attackers try to guess the passwords. However, unlike a brute-force attack, which focuses on a single account, in this case, password injection attacks target multiple accounts at a time. Here the attackers gain access to a large number  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From the name itself, it is obvious - it basically uses a large number of predefined popular phrases or terms normally found in a dictionary. In general, a good password list can improve the success rate of attackers, but here they often require multiple attempts against potential targets. The drawback of this kind of attack is that it is time-consuming and has a low probability compared to newer powerful attack methods..
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this kind of attack, hackers combine a dictionary attack method with a simple brute force attack. Hackers normally would know the username, so they perform a dictionary attack and simple brute force methods to find the account login combination. This procedure involves choosing common words from a dictionary and replacing them with random numbers or characters. This combined approach is more effective..
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A credential “stuffing” attack involves stuffing passwords that have been hijacked or otherwise exposed by cybercriminals used in login fields of multiple websites. This attack is successful when users use the same username and password combination or reuse passwords for different social media accounts and profiles. Stolen credentials are sold and traded between cybercriminals on the dark web..
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SH6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SH6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Types of brute force attack:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;Simple/Traditional Attacks:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;Reverse Brute Force Attacks:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;Dictionary Attacks:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;Hybrid Brute Force Attacks:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading5 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;Credential Stuffing Attacks:&lt;/strong&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_SubHeading6 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_SubHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A very common threat in this web era is brute force attack. A brute force attack in cyber security is an attempt to find a password by systematically trying all possible combinations of letters, numbers and symbols until you find the right working combination. Passwords aren&apos;t the only resource that can be brute-forced: links and directories, usernames and emails are other common targets too..
+        /// </summary>
+        public static string Blog_WBFAHPI_H1_Type_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H1_Type_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The success of a brute force attack is calculated in regard to the time taken to successfully crack a password. As the length of the password increases, the time required to crack also increases exponentially. It is estimated, 15 million key companies would need 9 minutes per second to crack a seven-digit password. A 13-digit password would last over 350,000 years..
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;It is always recommended not to use standard passwords, but it is better to use your own created passwords. The best thing is to create unique passwords that contain at least 15 numbers and several keywords. Long passwords consisting of random words/characters are more secure and easier for password cracking.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SH2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SH2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Lots of websites allow an infinite number of login attempts. It is recommended that the site administrator installs a plugin that limits the number of attempts to connect to the domain, by further preventing brute force attacks. Even a root user can allow brute force attacks on solid shell (SSH) connections, hence it is better to prevent users from accessing SSH by enabling “DenyUsers root” and “PermitRootLogin no”.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SH2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SH2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt; It is recommended to have two-factor or multi-factor authentication, where the user must verify his authenticity before granting access to the system. If 2FA is activated, the user will be asked to enter a unique code assigned to a mobile phone number to verify its authenticity, before getting access to the network.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SH2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SH2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The benefit of using CAPTCHA is that it protects against account takeovers, illegal purchases and other similar scenarios. CAPTCHAs prefer 100% security response.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SH2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SH2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;A web application firewall (WAF) limits the number of requests a resource can make to a URL space in a given time period. In addition to brute-force attacks to steal session tokens, WAF also protects against denial-of-service (DOS) attacks that consume server resources and block vulnerability scanning tools that check the computer network for errors.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Sh2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Sh2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;How to prevent brute force attack:&lt;/syrong&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An attacker can always find the password through a brute-force attack. Depending on the length and complexity of the password, there can be trillions of possible combinations and hence it might take years to crack the target passwords..
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Numerous failed login attempts were tried from the same IP address.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Login attempts using different usernames.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Login attempts using different usernames&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Unusual pattern of failed login attempts&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Unusual bandwidth&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WBFAHPI_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is brute force attack?.
+        /// </summary>
+        public static string Blog_WBFAHPI_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to investigate brute force attack:.
+        /// </summary>
+        public static string Blog_WBFAHPI_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The cost of a data breach is complicated to quantify, but as more and more organizations fall victim to attacks, the potential financial impact becomes more apparent..
+        /// </summary>
+        public static string Blog_WBFAHPI_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The cost of a data breach is complicated to quantify, but as more and more organizations fall victim to attacks, the potential financial impact becomes more apparent. IBM&apos;s &lt;a href=&apos;https://www.ibm.com/reports/data-breach&apos;&gt;&lt;strong&gt;latest data breach cost report&lt;/strong&gt;&lt;/a&gt; found that the average cost of a data breach worldwide will reach an all-time high of $.35 million in 2022..
+        /// </summary>
+        public static string Blog_WBFAHPI_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is brute force attack and How to prevent it?.
+        /// </summary>
+        public static string Blog_WBFAHPI_Title {
+            get {
+                return ResourceManager.GetString("Blog_WBFAHPI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Take the time to evaluate your data protection needs and investigate the proper and efficient encryption services to take advantage of the benefits of cloud encryption. Encryption in the cloud is a critical approach to information security, according to security experts. AxCrypt also has a variety of features to meet a wide range of data security requirements..
         /// </summary>
         public static string Blog_WCACT_Conclusion_Text1 {
@@ -12638,6 +13070,357 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_WIAAI_Title {
             get {
                 return ResourceManager.GetString("Blog_WIAAI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Data is accessible anywhere and anytime, as it is stored on the cloud network..
+        /// </summary>
+        public static string Blog_WICE_AD_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; No compromise in security; data is protected as it moves in and out of cloud-based applications or with the end user..
+        /// </summary>
+        public static string Blog_WICE_AD_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Meets the encryption requirements of regulatory standards such as HIPAA and GDPR..
+        /// </summary>
+        public static string Blog_WICE_AD_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Trust and privacy for the organization is increased by the use of powerful cloud security encryption..
+        /// </summary>
+        public static string Blog_WICE_AD_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Cloud computing has increased flexibility in terms of jobs. Remote work has increased, making it easier for employees to access critical business applications anywhere in the world. Data in the cloud is encrypted and shared with your remote workers only during business hours. Once the office workers have logged out, the information becomes completely useless to anyone..
+        /// </summary>
+        public static string Blog_WICE_AD_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; Data breaches are almost impossible, even if someone steals the data, it is impossible for them to read as it is in encrypted form..
+        /// </summary>
+        public static string Blog_WICE_AD_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\27A3&apos;;&quot;&gt; In case of any disaster, data is safe in the cloud storage. Data is easily available to keep running the operation..
+        /// </summary>
+        public static string Blog_WICE_AD_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_AD_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Advantages of cloud encryption:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_WICE_Advantages {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Advantages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Cloud encryption protects data regardless of whether it is stored or transmitted. Round the clock, cloud encryption prevents unauthorized access..
+        /// </summary>
+        public static string Blog_WICE_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; It’s not only external access we have to be alert of, but also internal data theft. Business partners or contractors or even employees with malicious intention can either damage or even engage in data breach. Cloud encryption protects and helps prevent employees from harming business..
+        /// </summary>
+        public static string Blog_WICE_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; It has been viewed that APIs with weak security protocols introduce cloud-based security risk during data transfer, which in turn provides unauthorized access to cybercriminals looking to steal data. Cloud encryption services help in reducing the risks posed by insecure APIs and prevent sensitive data from falling into the wrong hands, even in the event of a leak..
+        /// </summary>
+        public static string Blog_WICE_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; The sudden rise in usage of remote workplaces has increased cybercriminals tremendously as hackers insert malicious packets as local traffic and import them into an organization&apos;s cloud database using illegal methods. Nevertheless, when cloud data is encrypted, it becomes almost impossible to steal or modify it..
+        /// </summary>
+        public static string Blog_WICE_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Nowadays, multiple devices are used and transferring data through these devices creates another susceptibility. Using cloud encryption, none of the information will be available without a decryption key.
+        /// </summary>
+        public static string Blog_WICE_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Cloud encryption is not just a secure solution for sharing and storing data. It is also configured to meet internal organizational constraints and relevant regulatory authorities, such as the Federal Information Security Management Act (FISMA), Federal Information Processing Standards (FIPS), Health Insurance Portability and Accountability Act (HIPAA), and Payment Card Industry Data Security Standard (PCI/DSS)..
+        /// </summary>
+        public static string Blog_WICE_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to According to the &lt;a href=&apos;https://www.mcafee.com/blogs/enterprise/cloud-security/6-cloud-security-issues-that-businesses-experience/&apos;&gt;&lt;strong&gt; Cloud Security Alliance&apos;s Cloud Adoption Practices and Priorities Survey report,&lt;/strong&gt;&lt;/a&gt; 34% of organizations are avoiding the cloud, as their IT experts don’t have the knowledge and experience to meet cloud service requirements. Most of the enterprises have three to four clouds, creating complexity and hence technical knowledge and relevant experience is mandat [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICE_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Differences in cloud platforms make data encryption a stumbling block. The cloud platform has three models: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). These models perform different tasks to secure huge amounts of data. As these models are different, encryption methods become complicated and makes it burdensome for the cloud service provider of an organization to maintain and perform various encryption processes..
+        /// </summary>
+        public static string Blog_WICE_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the IT era, the most dangerous concern facing us is: Data Breach. It is a critical issue which has to be addressed proactively. If data is not handled properly, it opens your business up to huge compliance risks. It is your responsibility to protect your customer and employee data..
+        /// </summary>
+        public static string Blog_WICE_H2_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In encryption, key management is the most challenging issue. Key management is the process of protecting encryption keys against loss, unauthorized use, and corruption. Key management requires extreme attention and hence, most of the time, organizations avoid adopting encryption..
+        /// </summary>
+        public static string Blog_WICE_H2_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;i&gt;&lt;Strong&gt;1. Incompetence in IT:&lt;/strong&gt;&lt;/i&gt;.
+        /// </summary>
+        public static string Blog_WICE_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;i&gt;&lt;Strong&gt;2. Usage of different Cloud Platforms:&lt;/strong&gt;&lt;/i&gt;.
+        /// </summary>
+        public static string Blog_WICE_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;i&gt;&lt;Strong&gt;3. Data breach:&lt;/strong&gt;&lt;/i&gt;.
+        /// </summary>
+        public static string Blog_WICE_H2_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;i&gt;&lt;Strong&gt;4. Key Management:&lt;/strong&gt;&lt;/i&gt;.
+        /// </summary>
+        public static string Blog_WICE_H2_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;i&gt;&lt;Strong&gt;5. Unsecured API:&lt;/strong&gt;&lt;/i&gt;.
+        /// </summary>
+        public static string Blog_WICE_H2_SubHeading5 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_SubHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As and when online data transfers increase, threats and sophisticated new attacks also emerge. Hence, it is even more important for businesses to embrace security first. Let’s look at some of the biggest challenges faced this year..
+        /// </summary>
+        public static string Blog_WICE_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The major danger in using clouds is that there are so many different potential entry points for attackers. Even though the cloud is seen as technically secure and reliable, intruders can intercept data by hacking into less secure APIs, creating lots of vulnerabilities..
+        /// </summary>
+        public static string Blog_WICE_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why cloud encryption needed:.
+        /// </summary>
+        public static string Blog_WICE_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Challenges of cloud encryption:.
+        /// </summary>
+        public static string Blog_WICE_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the era of multiple platforms cloud services have become the best model in providing storage, computing and networking resources..
+        /// </summary>
+        public static string Blog_WICE_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key Takeaway:.
+        /// </summary>
+        public static string Blog_WICE_Takeaway {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No more wasting your time. Contact AxCrypt today and download our latest version to experience the best from &lt;a href=&apos;https://www.axcrypt.net/download/&apos;&gt;Download | AxCrypt - File Security Made Easy.&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Download_Version {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Download_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Although there are both advantages and challenges faced by cloud storage security, it still tops among the best data protection tools. Looking for the best cloud encryption tool. A few points are listed in order to protect cloud data:.
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Always encrypt sensitive data before being transferred from the organization to the cloud provider..
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Make sure sensitive data is encrypted during use, at rest or in transit..
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Never give decryption keys to the cloud service provider or employees..
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; Data should be encrypted using random length keys and strong approved algorithms..
+        /// </summary>
+        public static string Blog_WICE_Takeaway_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Takeaway_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the era of multiple platforms cloud services have become the best model in providing storage, computing and networking resources. The survey specifies that more than 2 billion users currently use cloud storage to store various types of information or credential data. Due to the huge usage of cloud services, it is necessary that data stored in the cloud is protected and secure. When data is stored on a cloud, we no longer have complete control over what happens to our data. For example, if we are running  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICE_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credibility and security are among the most important obstacles cloud administrators face. Multiple cyber-attacks and security breaches also occur in cloud storage. Hence, cloud security is the biggest concern for cloud storage as data privacy risks grow..
+        /// </summary>
+        public static string Blog_WICE_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud encryption is the process of converting customer data into encrypted text using encryption algorithms and stored in the cloud. It is a data security process where plaintext data is encoded into unreadable ciphertext to keep it secure within or between cloud environments. It has been observed that cloud computing is often far more secure than traditional computing. Using cloud encryption management tools, your personal business information is provided with cloud security, protecting you from access of  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WICE_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is cloud encryption?.
+        /// </summary>
+        public static string Blog_WICE_Title {
+            get {
+                return ResourceManager.GetString("Blog_WICE_Title", resourceCulture);
             }
         }
         
@@ -22002,6 +22785,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice number.
+        /// </summary>
+        public static string InvoiceNumber {
+            get {
+                return ResourceManager.GetString("InvoiceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference.
         /// </summary>
         public static string InvoiceOrderNr {
@@ -25614,7 +26406,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{0}Home/Purchase?email={1}&quot;&gt;now&lt;/a&gt; ..
+        ///   Looks up a localized string similar to We’d love for you to continue using our Premium features. Extend your subscription &lt;a href=&quot;{account_web_url}en/Home/Login?purchase=True?email={{user_email}}&quot;&gt;now&lt;/a&gt; ..
         /// </summary>
         public static string PremiumExpiresSoonMailBody1Html {
             get {
@@ -31598,11 +32390,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt provides different types of subscription plans: AxCrypt Viewer, AxCrypt Free, AxCrypt Premium and AxCrypt Business. Plans are offered at our discretion on select platforms..
+        /// </summary>
+        public static string TermsOfUseBlockAxcryptPlanH1Text1 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlockAxcryptPlanH1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Plans.
         /// </summary>
         public static string TermsOfUseBlockAxcryptPlanHeading {
             get {
                 return ResourceManager.GetString("TermsOfUseBlockAxcryptPlanHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Plans.
+        /// </summary>
+        public static string TermsOfUseBlockAxcryptPlanHeading1 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlockAxcryptPlanHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While signing up for the trial, to validate your credit/debit card, AxCrypt will charge you a minimum amount depending on the currency you are paying in. Once the credit/debit card is validated, we will initiate the refund of the charged amount immediately, but depending upon your bank it might take 8-10 business days to reflect in the source of the payment..
+        /// </summary>
+        public static string TermsOfUseBlockMicroPayH1Text1 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlockMicroPayH1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One-time refundable charge.
+        /// </summary>
+        public static string TermsOfUseBlockMicroPayHeading1 {
+            get {
+                return ResourceManager.GetString("TermsOfUseBlockMicroPayHeading1", resourceCulture);
             }
         }
         
@@ -31996,6 +32824,195 @@ namespace AxCrypt.Content.Properties {
         public static string TryPremiumToolTip {
             get {
                 return ResourceManager.GetString("TryPremiumToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our customers outsource the installation and operation of their IT environment to us. It is therefore extremely important that this information is protected in the best possible way and with the most up-to-date methods. AxCrypt helps us to work with a high level of protection but still in a simple and efficient way..
+        /// </summary>
+        public static string TSTMNL_Business_BSALP_Text3 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_BSALP_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nous avions non seulement un besoin interne, mais nous cherchions également une solution solide pour nos clients afin de protéger nos données en les chiffrant, les rendant ainsi inutilisables en cas de vol. epuis de longues années, nous utilisions la version gratuite d&apos;AxCrypt, ce qui nous a décidés à passer à la version payante est la possibilité d&apos;utiliser AxCrypt en réseau, c&apos;est-à-dire d&apos;accéder à plusieurs à nos données toutes en les gardant chiffrées. Nous avons déjà chiffré toutes nos données adminis [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TSTMNL_Business_DCDCIST_Text6 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_DCDCIST_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is a very easy to use and user friendly encryption software that helps us to     encrypt our sensitive files and folders thereby achieving regulatory compliance..
+        /// </summary>
+        public static string TSTMNL_Business_DLHISG_Text5 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_DLHISG_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top solution. There [is] some sensitive information (personnel files, board information) [that] needs to be better protected within the organization. AxCrypt allows [us] to transfer this type of sensitive information by e-mail and to store this information on company drives. Once installed, AxCrypt is perfectly usable for all stakeholders involved. Different security groups (HR/Board/...) could be created..
+        /// </summary>
+        public static string TSTMNL_Business_DPCVBA_Text1 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_DPCVBA_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I have been using AxCrypt for many years, it gives me peace of mind that sensitive information is protected, and that when we delete any information that is no longer required, it is done in a secure and reliable way. The product integrates very well and becomes an easy to use extension of the operating system.!.
+        /// </summary>
+        public static string TSTMNL_Business_DPECN_Text11 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_DPECN_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has been wonderful for meeting all of the encryption needs of my small business. As a company working in the mental healthcare space, data safety and security are of paramount importance to us, and we have found AxCrypt&apos;s product to be a powerful and effective yet user-friendly solution. !.
+        /// </summary>
+        public static string TSTMNL_Business_DPECN_Text9 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_DPECN_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were seduced by the ergonomics of the product and its ease of use. It helped us to secure (encrypt) our important and confidential documents. The key sharing functions allow us to share the decryption with other accounts easily. The business version allows a very simple and practical management of accounts and licenses.
+        /// </summary>
+        public static string TSTMNL_Business_EDTDIPTSAS_Text2 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_EDTDIPTSAS_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt allows me to protect any type of file (without the obligation of specific formats even in the storage of passwords) in a simple and safe way and to access my data from any device. but above all I can only share the data access keys with my team and not the entire file or copies of data.!.
+        /// </summary>
+        public static string TSTMNL_Business_IACSCA_Text10 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_IACSCA_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were looking for a way to store backups of sensitive financial data with one of our cloud providers and not risk exposure to their employees or outside forces. We decided that encrypting the backups before moving them to the cloud platform would solve that problem. However, the encryption process needed to be simple and easy to do or it would not be done. Furthermore, we wanted a safety net in case that person left the company and left us with encrypted files. AxCrypt provided an encryption solution that [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TSTMNL_Business_JSMM_Text8 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_JSMM_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My translation agencies require me to encrypt all documents (source and translation). AxCrypt provides a convenient, user-friendly way to do this. !.
+        /// </summary>
+        public static string TSTMNL_Business_JTJT_Text7 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_JTJT_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We were looking for a simple encryption tool that we could roll out to our users without having to provide a lot of training. AxCrypt just did that for us. Outside of an initial \&quot;how to\&quot; document that I typed up in about a few minutes, I don’t have to provide much support to the users. AxCrypt makes that so easy..
+        /// </summary>
+        public static string TSTMNL_Business_WREGNSA_Text4 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Business_WREGNSA_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .. as far as overall paid services go, you will be hard-pressed to find anything better..
+        /// </summary>
+        public static string TSTMNL_Home_GreenGeeks_Text4 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Home_GreenGeeks_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium makes encryption simple enough for any user, and it even offers public key cryptography for secure sharing of encrypted files..
+        /// </summary>
+        public static string TSTMNL_Home_PCMag_Text1 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Home_PCMag_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A handy and easy-to-use file encryption and folder encryption tool, Axcrypt works for android, Windows and iOs..
+        /// </summary>
+        public static string TSTMNL_Home_TechDogs_Text5 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Home_TechDogs_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s plainclothes approach makes encrypting files a breeze..
+        /// </summary>
+        public static string TSTMNL_Home_TechRader_Text2 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Home_TechRader_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is an inexpensive and effective encryption tool .. you’re in for a cheap and worthwhile file encryption software..
+        /// </summary>
+        public static string TSTMNL_Home_TechRader_Text3 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Home_TechRader_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it’s done right, strong encryption is unbreakable encryption. Any weakness in encryption will be exploited — by hackers, criminals, and foreign governments. Many of the hacks that make the news can be attributed to weak or — even worse — nonexistent encryption..
+        /// </summary>
+        public static string TSTMNL_Industries_BSAST_Text4 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Industries_BSAST_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption works. Properly implemented strong crypto systems are one of the few things that you can rely on..
+        /// </summary>
+        public static string TSTMNL_Industries_ESFCIC_Text3 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Industries_ESFCIC_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One of the things that I think is true is that encryption actually is able to secure our communications, that every individual can use encryption, and that it&apos;s accessible....
+        /// </summary>
+        public static string TSTMNL_Industries_LPAJFA_Text1 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Industries_LPAJFA_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt makes everything about encryption simple, so you shouldn’t be surprised to learn that it even makes PKI exchange of secure data simple(…) For these reasons, AxCrypt joins CertainSafe as an Editors’ Choice for encryption..
+        /// </summary>
+        public static string TSTMNL_Industries_PCMAGBEES_Text4 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Industries_PCMAGBEES_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Without encryption, you and I wouldn&apos;t be able to do our banking online. We wouldn&apos;t be able to buy things online, because your credit cards - they&apos;ve probably been ripped off anyway, but they would be ripped off left and right every day if there wasn&apos;t encryption..
+        /// </summary>
+        public static string TSTMNL_Industries_TCA_Text2 {
+            get {
+                return ResourceManager.GetString("TSTMNL_Industries_TCA_Text2", resourceCulture);
             }
         }
         
