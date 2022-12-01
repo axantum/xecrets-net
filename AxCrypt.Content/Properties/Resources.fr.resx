@@ -1338,6 +1338,9 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_Conclusion_Download_ContactUs">
     <value>&lt;a href=' https://www.axcrypt.net/information/axcrypt'&gt;Téléchargez AxCrypt ici:&lt;/a&gt;. Pour plus d’informations, vous pouvez contacter &lt;a href='mailto:support@axcrypt.net'&gt;support@axcrypt.net&lt;/a&gt;</value>
   </data>
+  <data name="Blog_Conclusion_Feature">
+    <value>Consultez la &lt;a href='/information/features'&gt;page des fonctionnalités&lt;/a&gt; pour en savoir plus sur la manière dont AxCrypt peut sécuriser vos fichiers et vos données.</value>
+  </data>
   <data name="Blog_Conclusion_Feature_Text1">
     <value>Consultez la &lt;a href='https://axcrypt.net/information/features'&gt;Page des Fonctionnalités d’AxCrypt&lt;/a&gt; pour en savoir plus sur la façon dont AxCrypt peut sécuriser vos fichiers et vos données et la &lt;a href='https://www.axcrypt.net/pricing'&gt;Page de Tarification&lt;/a&gt; indique le type d’abonnements de cryptage proposés par AxCrypt.</value>
   </data>
@@ -1376,6 +1379,78 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_Conclusion_Text1">
     <value>En raison du développement rapide de l’activité de téléphonie mobile et de l’avènement des services et applications cloud, les téléphones mobiles sont de plus en plus vulnérables. Contrairement à la croissance de l’adoption des smartphones, la sécurité mobile n’a pas encore atteint des millions de consommateurs.</value>
+  </data>
+  <data name="Blog_CRI_Conclusion_Text1">
+    <value>Comme nous le savons tous, les cyberattaques ont énormément augmenté et évoluent chaque jour. La cyber-résilience aide l'organisation à maintenir la continuité des services et des activités en réduisant les cyber-catastrophes. Même maintenant, de nombreuses organisations ne sont toujours pas adéquates pour faire face aux cyberincidents. Profitez des avantages des cyberattaques étouffantes.</value>
+  </data>
+  <data name="Blog_CRI_FeaturePage">
+    <value>Consultez la &lt;a href='/information/features'&gt;page des fonctionnalités&lt;/a&gt; pour en savoir plus sur la façon dont AxCrypt peut sécuriser vos fichiers et vos données.</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text1">
+    <value>&lt;strong&gt;Identifier :&lt;/strong&gt;Cette phase consiste à comprendre les différentes failles de cybersécurité qui existent à l'intérieur des réseaux, des systèmes, des utilisateurs et des données, ainsi que vos compétences en TIC qui pourraient être en danger.&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text2">
+    <value>&lt;strong&gt;Protéger :&lt;/strong&gt; Il est très important de fournir les meilleurs niveaux de sécurité concernant la confidentialité, l'intégrité et la disponibilité de la confidentialité des données, en bénéficiant de la meilleure protection contre les cyberattaques, les accès non autorisés et les défaillances systémiques.</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text3">
+    <value>&lt;strong&gt;Détecter :&lt;/strong&gt; Il est très important d'identifier à l'avance si quelqu'un s'apprête à agir de manière malveillante contre vous. Et cela peut être mis à profit par une surveillance continue du réseau et des systèmes de données, ce qui permet de reconnaître les anomalies, les problèmes inattendus et les incidents potentiels de cybersécurité.</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text4">
+    <value>&lt;strong&gt;Répondre : &lt;/strong&gt; Dans cette phase, la mise en œuvre d'une planification appropriée en cas de catastrophe et des actions appropriées pour résoudre un incident de cybersécurité en temps réel doivent être assurées, afin que cela n'affecte pas la continuité des activités, même si vous êtes victime d'un une cyber-attaque.</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text5">
+    <value>&lt;strong&gt;Récupération&lt;/strong&gt; : Il s'agit de la phase finale où l'objectif principal est d'identifier les actions appropriées pour restaurer le service ou les opérations affectées par une faille de cybersécurité et atténuer ses conséquences. Si l'attaque avait été prévenue, il aurait été beaucoup plus facile de restaurer l'intégrité du système au plus tôt. Cette phase identifie également les activités futures impliquées dans le soutien de la résilience de l'infrastructure de cybersécurité d'une organisation.</value>
+  </data>
+  <data name="Blog_CRI_H1_SubHeading1">
+    <value>&lt;strong&gt;Cinq piliers clés de la cyber-résilience :&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CRI_H1_Text1">
+    <value>Il est crucial pour une organisation de créer une cyber-stratégie plus robuste pour résister au flot de menaces et d'attaques du monde entier. La cyber-résilience est la capacité de prévoir, de tolérer et de se remettre de toute cybermenace et violation de données. Ils contrôlent également les attaques du système via des ressources en ligne. L'objectif principal de la cyber-résilience est de sécuriser la fonctionnalité organisationnelle et de supporter toutes les crises, dangers, adversités, urgences et difficultés connues et imprévues. La cyber-résilience est un nouveau paradigme de sécurité qui stimule une stratégie de sécurité proactive comprenant la planification, la réponse et la récupération à des cyber-attaques sans affecter les opérations commerciales régulières, la continuité des activités et l'accélération des activités.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text1">
+    <value>&lt;strong&gt;Sécurité augmentée des systèmes :&lt;/strong&gt; La cyber-résilience n'est pas seulement utilisée pour répondre et survivre à une attaque, mais aide également à développer des stratégies pour improviser la gouvernance informatique, la sécurité des actifs critiques et la confidentialité des données. La résilience aide également à éviter les divers résultats rencontrés en raison de catastrophes naturelles ou à réduire l'erreur humaine.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text2">
+    <value>&lt;strong&gt;Perte financière minimale :&lt;/strong&gt; L'un des principaux avantages de la cyber-résilience est la réduction des temps d'arrêt et des pertes financières. La cyber-résilience fournit un plan qui aide à minimiser les interruptions d'activité et donc à réduire les pertes financières de manière rapide et précise.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text3">
+    <value>&lt;strong&gt;Temps de Récupération Rapide :&lt;/strong&gt;En dehors de cela, la cyber-résilience accélère également le processus de récupération, vous aidant à remettre votre entreprise en marche le plus rapidement possible.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text4">
+    <value>&lt;strong&gt;Protection de la rRputation :&lt;/strong&gt; Chaque employé est responsable de la protection des données sensibles et des actifs matériels de l'organisation en assurant une réponse appropriée aux incidents, réduisant ainsi les facteurs de risque. Une cyber-résilience médiocre peut nuire de manière irréversible à la réputation d'une organisation.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text5">
+    <value>&lt;strong&gt;Meilleure Équipe Informatique&lt;/strong&gt; : La cyber-résilience améliore les opérations des services informatiques, leur permettant de répondre aux menaces et les aidant à exécuter les opérations quotidiennes en douceur.</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text6">
+    <value>&lt;strong&gt;Amélioration de la Confiance des Clients :&lt;/strong&gt; Les cyberincidents nuisent à la réputation d'une entreprise. La cyber-résilience peut rassurer les clients en leur donnant l'assurance de garder leurs données sécurisées. Cela augmente la confiance des clients et, à son tour, augmente les ventes de l'organisation.</value>
+  </data>
+  <data name="Blog_CRI_H2_SubHeading1">
+    <value>&lt;strong&gt;Avantages de la Cyber-Résilience&lt;strong&gt; :</value>
+  </data>
+  <data name="Blog_CRI_H2_Text1">
+    <value>De nos jours, l'environnement de sécurité évolue constamment. Les organisations et les individus sont ciblés par les pirates et les catastrophes et c'est donc un aspect majeur de garder les données et les informations d'identification cybersécurisées. La cybersécurité est le meilleur moyen d'assurer la continuité des activités. La mise en œuvre de la résilience de l'architecture de l'information d'une organisation réduit la probabilité d'une attaque, minimisant et réduisant à son tour les dommages. La cyber-résilience réduit non seulement les menaces existantes, mais réduit également les menaces à long terme de diverses technologies de pointe telles que l'intelligence artificielle, l'informatique quantique, le memcomputing ou l'IoT.</value>
+  </data>
+  <data name="Blog_CRI_Heading1">
+    <value>Qu'est-ce que la Cyber-Résilience ?</value>
+  </data>
+  <data name="Blog_CRI_Heading2">
+    <value>Pourquoi avez-vous besoin de Cyber-Résilience ?</value>
+  </data>
+  <data name="Blog_CRI_Summary">
+    <value>Dans le monde moderne d'aujourd'hui, les cyberattaques telles que les logiciels malveillants, l’hameçonnage, les mots de passes et les attaques par injection SQL ont considérablement augmenté.</value>
+  </data>
+  <data name="Blog_CRI_Text1">
+    <value>Dans le monde moderne d'aujourd'hui, les cyberattaques telles que les logiciels malveillants, l'hameçonnage, les attaques par injection SQL et de mots de passe ont considérablement augmenté. La cible principale des pirates est de voler ou de supprimer des données confidentielles d'un réseau informatique, d'une base de données ou d'appareils personnels. Selon Cybersecurity Ventures, on dit que d'ici 2025, la cybercriminalité coûtera à l'économie mondiale 10,5 trillions de dollars chaque année. Et il est très important de développer une réaction forte à cette question compte tenu de l'ampleur de cette conduite criminelle. Les cyberattaques sont si cruciales qu'elles peuvent désactiver, détruire ou perturber les systèmes informatiques. Ils peuvent même contrôler l'ensemble du système et peuvent changer, modifier, bloquer, effacer ou voler les données qui y sont stockées. Normalement créé et initié par une personne ou un groupe utilisant une ou plusieurs tactiques d'attaque via Internet.</value>
+  </data>
+  <data name="Blog_CRI_Text1_Follows_steps">
+    <value>Certains des principaux facteurs qui affectent les entreprises en raison d'une cyberattaque sont :&lt;li&gt;Temps d'indisponibilité incommensurable&lt;/li&gt;&lt;li&gt;Perte de données&lt;/li&gt;&lt;li&gt;Menace d'informations&lt;/li&gt;&lt;li&gt;Violations de la confidentialité et de la vie privée&lt; /li&gt;&lt;li&gt;Perte financière&lt;/li&gt;&lt;li&gt;Perte de propriété intellectuelle&lt;/li&gt;&lt;li&gt;Atteinte à la réputation&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_CRI_Text2">
+    <value>La mise en œuvre de la cyber-résilience est une méthode de sécurisation des systèmes contre les cyber-menaces.</value>
+  </data>
+  <data name="Blog_CRI_Title">
+    <value>Importance de la Cyber-Résilience</value>
   </data>
   <data name="Blog_CSFE_H1_SH1_Text1">
     <value>La formation des employés à la cybersécurité a parcouru un long chemin ces dernières années. La formation à la sécurité était autrefois principalement destinée aux spécialistes de la sécurité informatique, mais elle a ensuite été étendue à l'ensemble du personnel informatique. Si l'entreprise veut éviter les logiciels de rançons et les logiciels malveillants, tout le personnel doit être correctement formé aux meilleures pratiques de sécurité et aux bonnes habitudes.</value>
@@ -3990,6 +4065,108 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="Blog_WAMHIHY_Title">
     <value>Qu'est-ce que le marketing d'affiliation, et comment peut-il vous aider?</value>
   </data>
+  <data name="Blog_WBFAHPI_Conclusion_Text1">
+    <value>Les organisations ne peuvent pas empêcher les &lt;a href=''&gt;&lt;strong&gt;attaques par mot de passe&lt;/strong&gt;&lt;/a&gt;, mais il est possible de les éviter. En restant vigilant, en pratiquant une bonne hygiène des mots de passe et en protégeant votre réseau, vous pouvez arrêter les attaques par force brute, quel que soit le nombre de tentatives de menace. Plus important encore, des mots de passe forts et des changements de mot de passe réguliers constituent également une contre-mesure efficace contre ces types d'attaques par force brute dans le domaine de la cybersécurité.</value>
+  </data>
+  <data name="Blog_WBFAHPI_Conclusion_Text2">
+    <value>Nous, AxCrypt, sommes toujours vigilants en matière de sécurité des données. Notre système de sécurité est vraiment puissant, nous fournissons donc le cryptage AES-128 et le cryptage AES-256 le plus fort, qui prend une éternité pour déchiffrer le mot de passe. En raison du processus de cryptage le plus puissant que nous utilisons ; il agit comme un bouclier et protège toutes les données des attaques par force brute.</value>
+  </data>
+  <data name="Blog_WBFAHPI_Conclusion_Text3">
+    <value>Nos clients nous aiment parce que nous ne faisons jamais de compromis sur la violation de données et fournissons le meilleur système de cybersécurité. Améliorez la sécurité de vos données en travaillant avec des experts. N'attendez pas de perdre vos données. Contactez AxCrypt aujourd'hui et téléchargez notre dernière version pour profiter du meilleur.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH1_Following">
+    <value>Il existe le plus souvent 5 types d'attaques par force brute</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH2_Text2">
+    <value>Dans ce type d'attaque par force brute, les attaquants essaient plusieurs mots de passe pour cibler un ensemble spécifique d'identités. Ici, les pirates essaient de deviner manuellement ou utilisent la méthode d'essai et d'erreur pour trouver les informations d'identification de connexion de l'utilisateur sans utiliser de logiciel et, par conséquent, cette méthode prend beaucoup de temps et de ressources. Les pirates tentent de générer tous les caractères, chiffres et caractères spéciaux possibles. Cette méthode n'est efficace que pour les mots de passe courts, mais terrible pour les mots de passe un peu plus longs.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH3_Text1">
+    <value>La pulvérisation de mot de passe est une forme d'attaque par force brute inversée dans laquelle l'attaquant se connecte à l'application en se basant sur une liste de noms d'utilisateur avec des mots de passe par défaut. Cette attaque est normalement utilisée dans les zones où l'administrateur définit un mot de passe par défaut pour les nouveaux utilisateurs. Normalement, les attaquants essaient de deviner les mots de passe. Cependant, contrairement à une attaque par force brute, qui se concentre sur un seul compte, dans ce cas, les attaques par injection de mot de passe ciblent plusieurs comptes à la fois. Ici, les attaquants accèdent à un grand nombre de comptes (noms d'utilisateur) avec quelques mots de passe communs.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH4_Text1">
+    <value>D'après le nom lui-même, c'est évident - elle utilise essentiellement un grand nombre de phrases ou de termes populaires prédéfinis que l'on trouve normalement dans un dictionnaire. En général, une bonne liste de mots de passe peut améliorer le taux de réussite des attaquants, mais ici, ils nécessitent souvent plusieurs tentatives contre des cibles potentielles. L'inconvénient de ce type d'attaque est qu'elle prend du temps et a une faible probabilité par rapport aux nouvelles méthodes d'attaque puissantes.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH5_Text1">
+    <value>Dans ce type d'attaque, les pirates combinent une méthode d'attaque par dictionnaire avec une simple attaque par force brute. Les pirates connaissent normalement le nom d'utilisateur, ils effectuent donc une attaque par dictionnaire et de simples méthodes de force brute pour trouver la combinaison de connexion au compte. Cette procédure consiste à choisir des mots courants dans un dictionnaire et à les remplacer par des nombres ou des caractères aléatoires. Cette approche combinée est plus efficace.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SH6_Text1">
+    <value>Une attaque de « bourrage » d'informations d'identification consiste à bourrer des mots de passe qui ont été piratés ou autrement exposés par des cybercriminels et utilisés dans les champs de connexion de plusieurs sites web. Cette attaque réussit lorsque les utilisateurs utilisent la même combinaison de nom d'utilisateur et de mot de passe ou réutilisent des mots de passe pour différents comptes et profils de médias sociaux. Les identifiants volés sont vendus et échangés entre cybercriminels sur le dark web.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading1">
+    <value>&lt;strong&gt;Types d'attaque par force brute :&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading2">
+    <value>&lt;li&gt;&lt;strong&gt;Attaques Simples/Traditionnelles :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading3">
+    <value>&lt;li&gt;&lt;strong&gt;Attaques par Force Brute Inversée :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading4">
+    <value>&lt;li&gt;&lt;strong&gt;Attaques de Dictionnaire :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading5">
+    <value>&lt;li&gt;&lt;strong&gt;Attaques par Force Brute Hybride :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_SubHeading6">
+    <value>&lt;li&gt;&lt;strong&gt;Attaques de Bourrage d'Informations d'Identification :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_Type_Text1">
+    <value>Une menace très courante à l'ère du web est l'attaque par force brute. Une attaque par force brute en cybersécurité est une tentative de trouver un mot de passe en essayant systématiquement toutes les combinaisons possibles de lettres, de chiffres et de symboles jusqu'à ce que vous trouviez la bonne combinaison de travail. Les mots de passe ne sont pas la seule ressource qui peut être forcée : les liens et les répertoires, les noms d'utilisateur et les e-mails sont également d'autres cibles courantes.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text1">
+    <value>Le succès d'une attaque par force brute est calculé en fonction du temps nécessaire pour casser avec succès un mot de passe. À mesure que la longueur du mot de passe augmente, le temps nécessaire pour le craquer augmente également de façon exponentielle. On estime que 15 millions d'entreprises clés auraient besoin de 9 minutes par seconde pour déchiffrer un mot de passe à sept chiffres. Un mot de passe à 13 chiffres durerait plus de 350 000 ans.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text2">
+    <value>&lt;li&gt;Il est toujours recommandé de ne pas utiliser de mots de passe standard, mais il est préférable d'utiliser vos propres mots de passe créés. Le mieux est de créer des mots de passe uniques contenant au moins 15 chiffres et plusieurs mots-clés. Les mots de passe longs composés de mots/caractères aléatoires sont plus sûrs et plus difficiles à déchiffrer.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text3">
+    <value>&lt;li&gt;De nombreux sites Web autorisent un nombre infini de tentatives de connexion. Il est recommandé que l'administrateur du site installe un plugin qui limite le nombre de tentatives de connexion au domaine, en empêchant davantage les attaques par force brute. Même un utilisateur root peut autoriser les attaques par force brute sur les connexions Solid Shell (SSH). Il est donc préférable d'empêcher les utilisateurs d'accéder à SSH en activant "DenyUsers root" et "PermitRootLogin no".&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text4">
+    <value>&lt;li&gt; Il est recommandé d'avoir une authentification à deux ou plusieurs facteurs, où l'utilisateur doit vérifier son authenticité avant d'accorder l'accès au système. Si 2FA est activé, l'utilisateur sera invité à entrer un code unique attribué à un numéro de téléphone mobile pour vérifier son authenticité, avant d'avoir accès au réseau.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text5">
+    <value>&lt;li&gt;L'avantage d'utiliser CAPTCHA est qu'il protège contre les prises de contrôle de compte, les achats illégaux et d'autres scénarios similaires. Les CAPTCHA préfèrent une réponse de sécurité à 100 %.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Sh2_Text6">
+    <value>&lt;li&gt;Un pare-feu d'application Web (WAF) limite le nombre de requêtes qu'une ressource peut effectuer sur un espace URL au cours d'une période donnée. En plus des attaques par force brute pour voler les jetons de session, WAF protège également contre les attaques par déni de service (DoS) qui consomment les ressources du serveur et bloquent les outils d'analyse des vulnérabilités qui vérifient les erreurs du réseau informatique.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SubHeading1">
+    <value>&lt;strong&gt;Comment empêcher une attaque par force brute :&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text1">
+    <value>Un attaquant peut toujours trouver le mot de passe via une attaque par force brute. En fonction de la longueur et de la complexité du mot de passe, il peut y avoir des milliards de combinaisons possibles et il peut donc falloir des années pour déchiffrer les mots de passe cibles.</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; De nombreuses tentatives de connexion infructueuses ont été tentées à partir de la même adresse IP.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Tentatives de connexion avec différents noms d'utilisateur.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Tentatives de connexion avec différents noms d'utilisateurs&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Modèle inhabituel de tentatives de connexion infructueuses&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Bande passante inhabituelle&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_Heading1">
+    <value>Qu'est-ce qu'une attaque par force brute ?</value>
+  </data>
+  <data name="Blog_WBFAHPI_Heading2">
+    <value>Comment enquêter sur une attaque par force brute :</value>
+  </data>
+  <data name="Blog_WBFAHPI_Summary">
+    <value>Le coût d'une violation de données est compliqué à quantifier, mais à mesure que de plus en plus d'organisations sont victimes d'attaques, l'impact financier potentiel devient plus apparent.</value>
+  </data>
+  <data name="Blog_WBFAHPI_Text1">
+    <value>Le coût d'une violation de données est compliqué à quantifier, mais à mesure que de plus en plus d'organisations sont victimes d'attaques, l'impact financier potentiel devient plus apparent. Le &lt;a href='https://www.ibm.com/reports/data-breach'&gt;&lt;strong&gt;dernier rapport sur les coûts des violations de données&lt;/strong&gt;&lt;/a&gt; d'IBM a révélé que le coût moyen d'une violation de données dans le monde va atteindre un sommet historique de 35 million de dollars en 2022.</value>
+  </data>
+  <data name="Blog_WBFAHPI_Title">
+    <value>Qu'est-ce qu'une attaque par force brute et comment l'empêcher ?</value>
+  </data>
   <data name="Blog_WCACT_Conclusion_Text1">
     <value>Prenez le temps d'évaluer vos besoins en matière de protection des données et recherchez les services de chiffrement appropriés et efficaces pour tirer parti des avantages du chiffrement dans le cloud. Selon les experts en sécurité, le chiffrement dans le cloud est une approche essentielle de la sécurité des informations. AxCrypt dispose également d'une variété de fonctionnalités pour répondre à un large éventail d'exigences de sécurité des données.</value>
   </data>
@@ -4259,6 +4436,180 @@ Vous êtes prévenus, profitez-en bien !</value>
   </data>
   <data name="Blog_WIAAI_Title">
     <value>Qu’est-ce qu’un identifiant AxCrypt ?</value>
+  </data>
+  <data name="Blog_WICS_Conclusion_Text1">
+    <value>Les défenseurs doivent être vigilants même en 2022 et 2023, car il s'agirait d'une version améliorée de 2021. Les individus et les organisations devraient protéger leurs réseaux contre les menaces de sécurité avec les bonnes stratégies. Contactez AxCrypt maintenant et protégez vos données des cyberattaques.</value>
+  </data>
+  <data name="Blog_WICS_H1_SH1_steps">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Protection des données d'entreprise et personnelles contre les cyberattaques et les violations de données.&lt;/li&gt;&lt;li style="list-style-type: '\2714' ;"&gt; Protection des données et du réseau.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Empêcher l'accès par des utilisateurs non autorisés.&lt;/li&gt;&lt;li style="list-style-type : '\2714';"&gt; Meilleure reprise sur incident.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; La continuité du service et donc la productivité sont augmentées à plus grande échelle.&lt;/li &gt;&lt;li style="list-style-type: '\2714';"&gt; Protection des utilisateurs finaux et des appareils finaux.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; La cybersécurité aide à économiser des coûts et du temps. Les coûts de perte de données, de récupération et de temps d'arrêt dus à la reprise des opérations entraînent des coûts élevés. Conformément au &lt;a href='https://www.hiscox.com/articles/average-annual-cost-cyber-attacks-us-small-business-25k-reveals-hiscox'&gt;Hiscox Cyber ​​Readiness Report 2021&lt; /a&gt;, le coût moyen d'une seule cyberattaque pour le secteur des petites entreprises chez American est de 25 612 $.&lt;/li&gt;&lt;li style="list-style-type: '\2714';"&gt; Il impact la réputation commerciale de l'organisation . Une meilleure confiance dans l'image de l'entreprise et la confiance des développeurs, partenaires, clients, parties prenantes et employés.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H1_SubHeading1">
+    <value>&lt;strong&gt;Avantages de la cybersécurité&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_WICS_H1_Text1">
+    <value>L'importance de la cybersécurité augmente rapidement en raison du nombre croissant d'internautes disposant de données sensibles ou confidentielles. Les cybermenaces augmentent énormément, &lt;strong&gt;1 trillion de dollars selon l'enquête&lt;/strong&gt;&lt;a href='https://www.pwc.com/gx/en/issues/cybersecurity/global-digital-trust-insights .html'&gt; (2022 Global Digital Trust Insights Survey&lt;/a&gt; et les organisations s'attendent à une croissance continue des risques. Le problème est encore aggravé par l'augmentation de la quantité et du niveau de sophistication des cybermenaces et des méthodologies d'attaque. Les entreprises utilisent la cybersécurité pour aider les procédures à se protéger contre les escroqueries par hameçonnage, les attaques de ransomware, le vol d'identité, les violations de données et les pertes monétaires.</value>
+  </data>
+  <data name="Blog_WICS_H1_Text2">
+    <value>C'est là que le cryptage joue un rôle majeur. Le chiffrement protège les données privées et les données sensibles et améliore la sécurité des communications entre les applications clientes et les serveurs. Si les données sont cryptées, les pirates ou toute personne ou entité non autorisée ne pourraient pas les lire. Le cryptage est une mesure de cybersécurité qui protège les informations privées et personnelles en utilisant des codes uniques qui brouillent les informations et empêchent les intrus de les lire. Malgré une violation de données, le cryptage garantit la sécurité des informations privées d'une organisation, même si les attaquants contournent le pare-feu.</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text1">
+    <value>&lt;li style="list-style-type : '\27A3' ;"&gt; &lt;strong&gt;Sécurité de l'Information :&lt;/strong&gt; elle protège l'intégrité et la confidentialité des données pendant le stockage et la transmission, l'accès non autorisé, y compris l'inspection, la modification, le stockage, la déconnexion ou la destruction. L'objectif principal est d'assurer la sécurité et la confidentialité des informations critiques, telles que les informations de compte client, les informations financières ou la propriété intellectuelle.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text2">
+    <value>&lt;li style="list-style-type : '\27A3' ;"&gt;&lt;strong&gt;Sécurité des Applications :&lt;/strong&gt; De nos jours, les applications sont accessibles via différents canaux/réseaux et connectées au cloud. Par conséquent, la vulnérabilité des violations est à un niveau supérieur. En se concentrant sur la protection des logiciels et des appareils contre les menaces, AxCrypt fournit des applications au sein des applications elles-mêmes.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text3">
+    <value>&lt;li style="list-style-type : '\27A3' ;"&gt;&lt;strong&gt;Sécurité du réseau :&lt;/strong&gt; est la pratique consistant à protéger un réseau informatique contre les intrus, qu'il s'agisse d'attaquants ciblés ou de logiciels malveillants opportunistes. Il assure la sécurisation des informations et des données des clients, la sécurisation des informations partagées et une utilisation fiable, ainsi que la protection contre les cybermenaces. AxCrypt réduit les coûts globaux et protège les organisations contre les pertes coûteuses résultant de violations de données ou d'autres failles de sécurité.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Sécurité Cloud :&lt;/strong&gt; consiste à créer des architectures et des applications cloud sécurisées pour les entreprises utilisant des fournisseurs de services cloud tels qu'Amazon Web Services, Google, Azure, Rack space, etc.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;Sécurité Mobile :&lt;/strong&gt; Dans ce monde numérique, la sécurité mobile est un gros problème, car de plus en plus de personnes dépendent des appareils mobiles. Les entreprises qui utilisent des appareils mobiles doivent utiliser des mesures de sécurité mobiles, afin de protéger les données stockées sur ces appareils contre diverses menaces. Ce sous-domaine protège les informations organisationnelles et personnelles stockées sur les appareils mobiles tels que les tablettes, les téléphones portables et les ordinateurs portables contre diverses menaces telles que l'accès non autorisé, la perte ou le vol d'appareils, les logiciels malveillants, les virus, etc.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SH2_steps">
+    <value>&lt;li&gt;Gestion des identités et des accès&lt;/li&gt;&lt;li&gt;Pare-feux&lt;/li&gt;&lt;li&gt;Détection des terminaux et réponse&lt;/li&gt;&lt;li&gt;Antimalware&lt;/li&gt;&lt;li&gt;Systèmes de détection/prévention des intrusions&lt;/li&gt; &lt;li&gt;Prévention des pertes de données&lt;/li&gt;&lt;li&gt;Informations de sécurité et gestion des événements&lt;/li&gt;&lt;li&gt;Outils de chiffrement&lt;/li&gt;&lt;li&gt;Scanners de vulnérabilité&lt;/li&gt;&lt;li&gt;Réseaux privés virtuels&lt;/li&gt; &lt;li&gt;Plate-forme de protection de la charge de travail dans le cloud&lt;/li&gt;&lt;li&gt;Courtier de sécurité d'accès au cloud&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading1">
+    <value>Les principaux objectifs de la Cybersécurité sont :</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading2">
+    <value>&lt;strong&gt;Les outils couramment utilisés pour les mesures de Cybersécurité sont :&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_Text1">
+    <value>Pour créer une défense solide contre les cyberattaques potentielles, il est important que l'entreprise, les personnes, les processus et la technologie soient conçus pour fonctionner ensemble. La cybersécurité comprend des techniques, des processus et des méthodes pour protéger les systèmes informatiques, les données et les réseaux contre les attaques. La cybersécurité est conçue de manière à fournir plusieurs niveaux de protection sur tous les ordinateurs, réseaux et logiciels utilisés par l'organisation. Les systèmes de cybersécurité sont capables de détecter, d'enquêter et d'éliminer les faiblesses et vulnérabilités potentielles du système avant qu'un pirate ou un logiciel malveillant ne les exploite.</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text1">
+    <value>&lt;li style="list-style-type : '\2726' ;"&gt;&lt;strong&gt;Attaques IoT :&lt;/strong&gt; L'Internet des Objets est la menace la plus vulnérable à l'heure actuelle. Chaque appareil informatique, numérique et mécanique capable de transmettre des données sur un réseau Internet ressemble à l'IoT ; ordinateur de bureau, ordinateur portable, téléphone mobile, appareils de sécurité intelligents, etc. La sécurisation des appareils IoT est l'un des plus grands défis en matière de cybersécurité, car l'accès à ces appareils peut ouvrir la porte à d'autres fins malveillantes.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text2">
+    <value>&lt;li style="list-style-type : '\2726' ;"&gt;&lt;strong&gt;Attaques de Ransomware :&lt;/strong&gt; Comme son nom l'indique, il s'agit de pirater les données d'un utilisateur et d'en cesser l'accès jusqu'au paiement de la rançon. Les attaques de ransomwares sont critiques pour les utilisateurs individuels et professionnels. Les utilisateurs professionnels ne pourront pas accéder aux données pour leurs opérations quotidiennes. La plupart du temps, on l'a observé, les attaquants de ransomware ne divulguent pas d'informations même après le paiement, mais essaient plutôt d'extorquer plus d'argent.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text3">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;Cloud Attack :&lt;/strong&gt; les services cloud sont utilisés de manière drastique pour les besoins personnels et professionnels. Le piratage des plates-formes cloud pour voler les données des utilisateurs est également l'un des défis de la cybersécurité pour les particuliers et les entreprises. Nous sommes tous au courant du piratage infâme d'iCloud qui a exposé les photos privées de célébrités. Si une telle attaque est menée contre les données de l'entreprise, elle peut constituer une menace énorme pour l'organisation et même conduire à son effondrement. Il est donc obligatoire de prendre en compte de nombreux aspects de la sécurité du cloud et de la protection des données pour protéger les données sensibles.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text4">
+    <value>&lt;li style="list-style-type : '\2726' ;"&gt;&lt;strong&gt;Attaque d'Hameçonnage :&lt;/strong&gt; l'hameçonnage est une attaque de médias sociaux utilisée pour voler les informations des utilisateurs, les identifiants de connexion et les numéros de carte de crédit. Les pirates l'utilisent pour les achats en ligne et les transferts d'argent illégaux. Google a officiellement publié une déclaration sur la façon dont il bloque plus de 100 millions de d'hameçonnage &lt;a href='https://cloud.google.com/blog/products/identity-security/protecting-against-cyber-threats-during-covid- 19-and-beyond'&gt;https://cloud.google.com/blog/products/identity-security/protecting-against-cyber-threats-during-covid-19-and-beyond&lt;/a&gt; e-mails tous les jours. &lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text5">
+    <value>&lt;li style="list-style-type : '\2726' ;"&gt;&lt;strong&gt;Attaques de crypto-monnaie et de Blockchain :&lt;/strong&gt; La monnaie numérique ou les portefeuilles sont devenus une cible de choix pour les pirates. La croissance de cette nouvelle technologie a révolutionné la monnaie physique, mais crée également de nombreux problèmes de sécurité sérieux. Selon le rapport de Fincen, 177 adresses de portefeuille numérique uniques ont été utilisées pour les attaques de ransomware. Il est important que les entreprises soient conscientes des problèmes de sécurité associés à ces technologies et s'assurent qu'elles ne peuvent pas être attaquées et exploitées par des pirates.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SubHeading1">
+    <value>Les défis les plus courants en matière de cybersécurité rencontrés sont les suivants :</value>
+  </data>
+  <data name="Blog_WICS_H3_Text1">
+    <value>A l'ère de la digitalisation, la cybersécurité devient indispensable. La situation s'est aggravée depuis la pandémie. Selon un rapport de l'ITRC, le nombre de &lt;a href= 'https://www.idtheftcenter.org/notified'&gt;violations de données&lt;/a&gt; a considérablement augmenté au cours du seul premier semestre 2021 et continue d'être à une extrémité supérieure. Les statistiques croissantes montrent que la cybersécurité sera un défi majeur dans les années à venir.</value>
+  </data>
+  <data name="Blog_WICS_Heading1">
+    <value>Pourquoi le chiffrement est-il important dans la cybersécurité ?</value>
+  </data>
+  <data name="Blog_WICS_Heading2">
+    <value>Objectif de la Cybersécurité :</value>
+  </data>
+  <data name="Blog_WICS_Heading3">
+    <value>Principaux Défis de Cybersécurité rencontrés :</value>
+  </data>
+  <data name="Blog_WICS_Summary">
+    <value>Faisant partie du monde numérique, il est très important de protéger les systèmes, les réseaux, les serveurs, les appareils mobiles, les données personnelles, les données professionnelles et les programmes contre les cybermenaces.</value>
+  </data>
+  <data name="Blog_WICS_Text1">
+    <value>Faisant partie du monde numérique, il est très important de protéger les systèmes, les réseaux, les serveurs, les appareils mobiles, les données personnelles, les données professionnelles et les programmes contre les cybermenaces. Les cyberattaques visent généralement à accéder, modifier ou détruire des informations sensibles et à extraire de l'argent des utilisateurs; ou s'immiscer dans des processus commerciaux normaux. Les cybercriminels sont astucieux et recherchent des points délégués dans les systèmes à craquer et à exploiter. C'est là que la cybersécurité est importante. La cybersécurité consiste à assurer la défense des appareils connectés à Internet contre les attaques mortelles des pirates, des spammeurs et des cybercriminels.</value>
+  </data>
+  <data name="Blog_WICS_Title">
+    <value>Qu'est-ce que la cybersécurité ?</value>
+  </data>
+  <data name="Blog_WIPM_H1_Text1">
+    <value>Lorsqu'un nouveau compte est créé, il est obligatoire pour nous de créer des mots de passe longs et forts. Comme nous utilisons beaucoup de sites web et d'applications de nos jours, il y a 90 % de chances que nous ne nous souvenions pas de tous les mots de passe que nous avons créés. Heureusement, la technologie a changé et vous n'avez pas à vous souvenir de tous les mots de passe.</value>
+  </data>
+  <data name="Blog_WIPM_H1_Text2">
+    <value>Les outils de gestion de mots de passe sont des applications qui aident à créer, stocker et remplir rapidement les mots de passe si nécessaire. Ils stockent en toute sécurité les informations d'identification des utilisateurs dans le cloud ou sur site et aident les utilisateurs à rester en sécurité en ligne en suivant les meilleures pratiques de création et de gestion des mots de passe. Le gestionnaire de mots de passe AxCrypt génère des mots de passe complexes à la demande. Les outils lient ensuite les mots de passe à des comptes spécifiques et les stockent en toute sécurité sous forme cryptée. L'objectif fondamental d'un gestionnaire de mots de passe est de nous aider à gérer nos mots de passe et à protéger nos informations de connexion partout où nous nous connectons. Les gestionnaires de mots de passe minimisent le risque que l'utilisateur oublie le mot de passe et le risque que le mot de passe soit exposé à des parties malveillantes. Le logiciel de gestion de mot de passe AxCrypt combine commodité et &lt;a href='https://axcrypt.net/blog/what-is-cyber-security'&gt;&lt;strong&gt;sécurité&lt;/strong&gt;&lt;/a&gt; à un prix compétitif, garantissant votre expérience en ligne dans un monde numérique en évolution rapide.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text1">
+    <value>En cette ère informatique, il est crucial de stocker vos données dans un système sécurisé, protégeant des cybermenaces.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text2">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt Password Manager stocke tous vos mots de passe et documents dans un référentiel privé sécurisé, auquel vous pouvez accéder en un clic sur tous vos appareils.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text3">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt fonctionne sur le principe de la connaissance zéro, ce qui signifie que ni AxCrypt ni personne d'autre ne saura rien de vos données.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt génère la Clé Principale 256 bits la plus puissante.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt vous avertit si vous utilisez des mots de passe faibles ou en double.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text6">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt génère un mot de passe sécurisé unique surnuméraire qui offre une protection à 100 % et fournit un cryptage 128 bits et 256 bits.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text7">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; La phrase de Clé Principale la plus forte non visible générée automatiquement.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text8">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; La technologie AxCrypt est si vaste que nous avons également un gestionnaire de mots de passe pour Windows, un gestionnaire de mots de passe pour Mac et aussi un gestionnaire de mots de passe pour les téléphones mobiles.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading1">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Mémorisation du mot de passe :&lt;/strong&gt; L'utilisation majeure du gestionnaire de mots de passe est qu'il vous suffit de vous souvenir du mot de passe principal au lieu de centaines de mots de passe. &lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading2">
+    <value>&lt;li style="list-style-type : '\27A3' ;"&gt; &lt;strong&gt;Génération de mot de passe haute sécurité :&lt;/strong&gt; Lors de l'utilisation du gestionnaire de mots de passe, un mot de passe généré automatiquement est créé. Il est aléatoire, long, alphanumérique et presque impossible à deviner. Des algorithmes complexes, un cryptage et d'autres méthodes sont utilisés pour protéger vos informations d'identification et vos mots de passe. Des mots de passe forts et uniques sont générés.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Gain de temps :&lt;/strong&gt; Outre la création et le stockage de mots de passe uniques, le gestionnaire de mots de passe remplit également automatiquement les informations d'identification, accélérant le processus et donc faisant gagner du temps.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading4">
+    <value>&lt;li style="list-style-type : '\27A3' ;"&gt; &lt;strong&gt;Synchronisation multiplateforme :&lt;/strong&gt; le gestionnaire de mots de passe AxCrypt est capable de se synchroniser sur les systèmes d'exploitation iOS et Android. Quelle que soit la plate-forme, l'accès par mot de passe est possible avec AxCrypt.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Ajout d'informations :&lt;/strong&gt; le gestionnaire de mots de passe AxCrypt possède également une autre fonctionnalité. Il permet non seulement de stocker les mots de passe, mais également des informations supplémentaires telles que les détails de la carte de crédit/débit, les notes sécurisées, les champs d'adresse, les numéros de contact, etc.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Partage de mot de passe sécurisé :&lt;/strong&gt; il n'est pas recommandé d'envoyer des mots de passe par SMS, messages instantanés ou e-mail car le texte brut peut être intercepté, ou facilement trouvé dans vos messages, votre boîte de réception ou votre dossier d'envoi et peut être piraté. Les mots de passe partagés à l'aide d'un morceau de papier sont difficiles à suivre ou facilement perdus. Le partage à l'aide d'AxCrypt vous offre la tranquillité d'esprit car vos mots de passe forts et uniques ne parviennent qu'au(x) destinataire(s) prévu(s) et avec les droits d'accès que vous choisissez.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading7">
+    <value>&lt;strong&gt;Pourquoi le Gestionnaire de Mots de passe d'AxCrypt :&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text_Benefits">
+    <value>&lt;strong&gt;Avantages du gestionnaire de mots de passe :&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text1">
+    <value>Il est impossible pour une mémoire humaine de contenir des dizaines et des dizaines de mots de passe. La plupart des gens essaient d'utiliser le mot de passe le plus simple possible, tel que "12356789" ou "password123", etc. Certains se souviennent d'un mot de passe aléatoire et l'utilisent pour tout. En raison de cette simple utilisation de mots de passe, il est fort probable que vous soyez la dernière victime d'un vol d'identité. Remarquablement, au fil des années, la technologie a énormément progressé, mais de plus en plus de données sont perdues à chaque seconde.</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text2">
+    <value>La gestion des mots de passe permet aux particuliers et aux entreprises de stocker et de gérer tous leurs mots de passe dans un seul endroit sécurisé. Les individus n'ont plus à se souvenir de plusieurs mots de passe. Le seul mot de passe dont un utilisateur doit se souvenir est le mot de passe principal utilisé pour ouvrir le gestionnaire de mots de passe. Un gestionnaire de mots de passe peut se souvenir de tous les mots de passe pour vous.</value>
+  </data>
+  <data name="Blog_WIPM_Heading1">
+    <value>Qu'est-ce qu'un gestionnaire de mots de passe ?</value>
+  </data>
+  <data name="Blog_WIPM_Heading2">
+    <value>Pourquoi utiliser un gestionnaire de mots de passe ?</value>
+  </data>
+  <data name="Blog_WIPM_Summary">
+    <value>Lorsqu'un nouveau compte est créé, il est obligatoire pour nous de créer des mots de passe longs et forts. Comme nous utilisons beaucoup de sites web et d'applications de nos jours, il y a 90 % de chances que nous ne nous souvenions pas de tous les mots de passe que nous avons créés.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway">
+    <value>À emporter:</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_FeaturePage">
+    <value>Si vous êtes à la recherche d'une solution de gestion de mots de passe tout-en-un sécurisée et que vous souhaitez en savoir plus sur nous, consultez la &lt;a href='https://axcrypt.net/information/features'&gt;page des Fonctionnalités d'AxCrypt&lt;/a&gt; pour en savoir plus sur la manière dont AxCrypt peut sécuriser vos fichiers et vos données.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text1">
+    <value>Les mots de passe sont les protecteurs de nos identifiants et informations. Tout comme la porte d'entrée d'une maison ou d'une entreprise, si la clé de la porte est perdue, n'importe qui à tout moment peut entrer, entraînant diverses catastrophes. De même, les mots de passe gèrent et agissent comme la clé de la protection de nos informations d'identification et, par conséquent, la clé doit être unique et solide pour chaque utilisateur.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text2">
+    <value>Vous vous demandez comment utiliser le gestionnaire de mots de passe ? Ne vous inquiétez pas, Axcrypt est avec vous. AxCrypt rend la gestion des mots de passe possible dans l'environnement sécurisé des appareils Mac, Windows et Mobile gérés par l'utilisateur AxCrypt. Les employés peuvent facilement et en toute sécurité gérer leurs propres informations d'identification sans avoir besoin d'être guidés par le service informatique.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text3">
+    <value>Nous nous concentrons uniquement sur notre expérience client.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text4">
+    <value>AxCrypt est approuvé par des millions de personnes et nous bénéficions de classements élevés à travers le monde. AxCrypt a atteint une note de 4,53 pour 2022. Axcrypt a également été annoncé comme le meilleur logiciel de chiffrement pour l'année 2022.</value>
+  </data>
+  <data name="Blog_WIPM_Text1">
+    <value>À un âge précoce, seule une poignée de mots de passe étaient utilisés par un individu. Mais maintenant, l'époque a changé. À l'ère du numérique, la technologie nous facilite la vie. De la commande de nourriture à un restaurant préféré, des réunions d'affaires à la maison, des achats en ligne, etc., tout est désormais possible d'un simple clic sur nos smartphones dans ce monde en ligne. Au fur et à mesure que notre vie et nos tâches sont devenues plus faciles, gérer les mots de passe associés à ces applications est également devenu un aspect important. La seule complication est la mémorisation des mots de passe associés à toutes les applications. Chaque application ou site Web nécessite un mot de passe pour se connecter. La plupart du temps, il est impossible de tous les retenir. Conformément à l'enquête Google sur la sécurité en ligne, il a été constaté que plus de 50 % des personnes interrogées réutilisaient le même mot de passe pour différents comptes, ce qui a facilité la vie des pirates. Selon &lt;a href='https://www.itgovernance.co.uk/blog/list-of-data-breaches-and-cyber-attacks-in-august-2022-97-million-records-breached'&gt; &lt;strong&gt;records&lt;/strong&gt;&lt;/a&gt;, il y a eu près de 97 millions de violations de données et de risques de cybersécurité en août 2022. Les enquêtes précisent que toutes les 32 secondes, un pirate attaque quelqu'un en ligne. Selon le rapport Verizon Data Breach Investigations, 80 % des violations de données sont causées par des mots de passe faibles ou réutilisés. C'est là que le gestionnaire de mots de passe joue le rôle le plus important.</value>
+  </data>
+  <data name="Blog_WIPM_Title">
+    <value>Qu'est-ce qu'un gestionnaire de mots de passe ? Dans quelle mesure le logiciel de gestion de mots de passe est-il sécurisé ?</value>
   </data>
   <data name="Blog_WSPPI_H1_Text1">
     <value>Qu’est-ce qu’une donnée personnelle ? Quel type d’information devriez-vous protéger spécialement contre les entreprises ou les industries qui les exploitent?</value>
@@ -5056,6 +5407,12 @@ Vous êtes prévenus, profitez-en bien !</value>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>Prouvez que vous êtes une personne réelle et non un logiciel automatisé!</value>
   </data>
+  <data name="CardNumberPrompt" xml:space="preserve">
+    <value>Numéro de carte</value>
+  </data>
+  <data name="CardPrompt" xml:space="preserve">
+    <value>Carte</value>
+  </data>
   <data name="ChangeEmailConfirmMailBody1" xml:space="preserve">
     <value>Vous avez demandé à réinitialiser votre e-mail d'identifiant AxCrypt sur &lt;b style="color: #000 !important;"&gt;{email_change_to}&lt;/b&gt;. Pour confirmer, veuillez cliquer sur le bouton ci-dessous.</value>
   </data>
@@ -5588,6 +5945,15 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
     <value>Accès aux fichiers partagés</value>
     <comment>Title of "Easy to work" slide on Onboarding screen in mobile application.</comment>
   </data>
+  <data name="EditCardTitle" xml:space="preserve">
+    <value>Modifier la Carte</value>
+  </data>
+  <data name="EditNoteTitle" xml:space="preserve">
+    <value>Éditer la Note</value>
+  </data>
+  <data name="EditPasswordTitle" xml:space="preserve">
+    <value>Modifier le Mot de passe</value>
+  </data>
   <data name="EditSecretErrorIsReadOnly" xml:space="preserve">
     <value>Accès limité à la consultation ! Seuls les abonnés possédant un abonnement valide sont autorisés à modifier ou créer de nouveaux mots de passe.</value>
   </data>
@@ -5695,6 +6061,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="ExitToolStripMenuItemText" xml:space="preserve">
     <value>Quitter</value>
+  </data>
+  <data name="ExpirationDatePrompt" xml:space="preserve">
+    <value>Date d'expiration</value>
   </data>
   <data name="ExpiredUpdatePaymentDetailsWarning" xml:space="preserve">
     <value>Votre abonnement a expiré car nous n'avons pas pu débiter votre carte. Pour continuer l'abonnement, mettez à jour vos informations de paiement.</value>
@@ -6244,6 +6613,9 @@ Nous sommes désolés de vous voir partir, mais espérons néanmoins qu'AxCrypt 
   </data>
   <data name="FreeTrial">
     <value>Essai gratuit</value>
+  </data>
+  <data name="FreeTrialLabel" xml:space="preserve">
+    <value>ESSAI GRATUIT</value>
   </data>
   <data name="FullNameLabel">
     <value>Nom et prénom</value>
@@ -6812,6 +7184,9 @@ Si vous voulez visionner ou mettre à jour le contenu de ce document, veuillez l
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>L'encryptage de '{0}' a échoué à cause de restrictions techniques. Il est possible que cela ait été causé par le format du fichier, son emplacement, ou d'autres propriétés.</value>
   </data>
+  <data name="ImportBusinessUserHelpText" xml:space="preserve">
+    <value>Vous pouvez facilement ajouter d'autres utilisateurs en important un fichier &lt;b&gt;.txt ou.csv&lt;/b&gt; contenant une liste d'adresses e-mail.</value>
+  </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>Importer AxCrypt ID avec les clefs de partage et d'accès.</value>
   </data>
@@ -7299,6 +7674,9 @@ Connectez-vous à AxCrypt avec {2}, entrez le code de vérification à 6 chiffre
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>Montant</value>
   </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>Numéro de facture</value>
+  </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
     <value>Référence</value>
     <comment>The payment provider reference id of the transaction</comment>
@@ -7638,6 +8016,15 @@ Activer la conversion automatique des fichiers AxCrypt 1.x (recommandé)?</value
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>Veuillez sélectionner un email:</value>
     <comment>Header of popup for selecting mail application.</comment>
+  </data>
+  <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
+    <value>{{user_email}} a les commentaires suivants...</value>
+  </data>
+  <data name="MailGunHelloTitle" xml:space="preserve">
+    <value>Bonjour {{user_email}}</value>
+  </data>
+  <data name="MailGunPremiumSupportTitle" xml:space="preserve">
+    <value>{{user_email}} aimerait de l'aide pour...</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>Une erreur d'analyse a eu lieu au moment de mettre à jour les propriétés de gestion du site. Veuillez vérifier que vous utilisez le bon format.</value>
@@ -8201,6 +8588,9 @@ Ce logiciel est livré d'après la licence.
   <data name="NameLabel">
     <value>Nom</value>
   </data>
+  <data name="NameOnCardPrompt" xml:space="preserve">
+    <value>Nom sur la carte</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>Commentaires</value>
   </data>
@@ -8248,6 +8638,9 @@ Vos documents sont toujours chiffrés en toute sécurité avec votre mot de pass
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>Vous n'avez pas d'abonnement Premium. Vous n'utilisez donc pas le plus haut niveau de sécurité. Cliquez pour améliorer!</value>
+  </data>
+  <data name="NoteContentPrompt" xml:space="preserve">
+    <value>Remarque</value>
   </data>
   <data name="NoteLabel">
     <value>Note</value>
@@ -8423,6 +8816,9 @@ Pour revenir à la page d'accueil, cliquez &lt;a href="{1}"&gt;ici&lt;/a&gt;</va
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>Le mot de passe est trop faible pour être accepté.</value>
   </data>
+  <data name="PasswordResetCrtNewPwd" xml:space="preserve">
+    <value>3. Créer un nouveau mot de passe</value>
+  </data>
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
     <value>La réinitialisation du mot de passe n'est pas possible pour ce compte, parce qu'un changement d'adresse e-mail est en cours depuis &lt;b&gt;{0}&lt;/b&gt;.
 
@@ -8450,6 +8846,10 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation ou u
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Réinitialiser le mot de passe</value>
   </data>
+  <data name="PasswordResetSentVrfMail" xml:space="preserve">
+    <value>2. Envoyer un e-mail de vérification</value>
+    <comment>The key has been added to get the translated text for all languages on Password Reset page.</comment>
+  </data>
   <data name="PasswordResetShortLink" xml:space="preserve">
     <value>Mot de passe oublié</value>
     <comment>Text of link to Forgot password screen in mobile app</comment>
@@ -8458,6 +8858,9 @@ Saisissez votre email ci-dessous, afin d'y recevoir votre lien d'activation ou u
     <value>Un code de vérification a été envoyé à &lt;b&gt;{0}&lt;/b&gt;. Veuillez consulter votre boîte mails.
 
 Si vous ne semblez pas l'avoir reçu, vérifiez que l'email n'a pas été identifié comme spam, et que l'adresse {0} est correcte.</value>
+  </data>
+  <data name="PasswordResetVerifyAccEMail" xml:space="preserve">
+    <value>1. Vérifiez l'e-mail du compte</value>
   </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>AxCrypt possède un évaluateur de forces  de mots de passe sophistiqué, basé sur la mesure de la force actuelle du mot de passe. Ce doit également être d'une longueur de 8 caractères, au minimum. 
@@ -8506,6 +8909,9 @@ Les espaces et les associations présentes dans les mots de passe les plus commu
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>Le mot de passe n'est pas assez fort pour être recommandé.</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
+  </data>
+  <data name="PasswordUrlPrompt" xml:space="preserve">
+    <value>URL</value>
   </data>
   <data name="PastIncidentsHeading">
     <value>Incidents précédents</value>
@@ -9335,6 +9741,12 @@ Les entreprises et associations doivent créer un &lt;a href="https://account.ax
   <data name="RefreshPromptText" xml:space="preserve">
     <value>Rafraîchir</value>
   </data>
+  <data name="RefundCreditHelpText" xml:space="preserve">
+    <value>Le remboursement peut prendre de 5 à 10 jours ouvrables pour apparaître sur votre carte de crédit/débit, selon votre banque.</value>
+  </data>
+  <data name="RefundProcessedInfo" xml:space="preserve">
+    <value>Nous avons traité votre remboursement à {0}.</value>
+  </data>
   <data name="RegisterError" xml:space="preserve">
     <value>Échec de l'enregistrement. S'il vous plaît vérifier votre e-mail et essayer à nouveau.</value>
   </data>
@@ -10028,6 +10440,9 @@ Sujet : Rapport instantané AxCrypt</value>
   <data name="SecurityBlock7Text5">
     <value>Les standards de sécurité HIPAA n'autorisent pas l'utilisation du chiffrement comme base pour le contrôle des accès, c'est à dire pour protéger la confidentialité de données qui sont stables (stockées sur un disque dur au lieu de traverser Internet, par exemple). À ce sujet aussi, AxCrypt respecte la majorité des demandes des entreprises. </value>
   </data>
+  <data name="SecurityCodePrompt" xml:space="preserve">
+    <value>Code de sécurité</value>
+  </data>
   <data name="SecurityDescriptionText">
     <value>Pour arriver à un bon niveau de sécurité, il est bénéfique de comprendre quelques trucs sur la meilleure utilisation possible d'AxCrypt avec des mots de passe, et la sécurité locale de votre PC. Vous trouverez aussi ci-dessous des détails sur les algorithmes et les méthodes utilisées pour AxCrypt.</value>
   </data>
@@ -10067,6 +10482,12 @@ Sujet : Rapport instantané AxCrypt</value>
   <data name="SetEmailLabel" xml:space="preserve">
     <value>Définir votre email</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
+  </data>
+  <data name="SettingDeleteUsrCnfrmText" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer votre compte ?</value>
+  </data>
+  <data name="SettingDelPwdCfmText" xml:space="preserve">
+    <value>Si &lt;span&gt;oui&lt;/span&gt; veuillez saisir le &lt;span&gt;mot de passe :&lt;/span&gt;</value>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Cette action va supprimer votre compte AxCrypt ID de notre système. &lt;span class="red"&gt;Toutes les données associées à votre compte, y compris vos mots de passe, seront également supprimées.&lt;/span&gt;
@@ -10271,6 +10692,10 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   </data>
   <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
     <value>Essai gratuit d'un mois inclus</value>
+  </data>
+  <data name="SubscriptionLevelText" xml:space="preserve">
+    <value>Niveau</value>
+    <comment>Text 'Level' for Subscription information section in page My Axcrypt ID</comment>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} valide jusqu'au {1}.</value>
@@ -10628,6 +11053,21 @@ Pour aller à la page d'accueil, cliquer &lt;a href="{1}"&gt;ici&lt;/a&gt;.</val
   <data name="TermsOfUseBlock9Text2">
     <value>Référez-vous à notre &lt;a href='/information/privacy-policy'&gt;Politique de confidentialité&lt;/a&gt; pour voir les détails de ce que nous traitons et comment. Accepter ces conditions d'utilisation veut aussi dire accepter notre politique de confidentialité.</value>
   </data>
+  <data name="TermsOfUseBlockAxcryptPlanH1Text1">
+    <value>AxCrypt propose différents types de plans d'abonnement : AxCrypt Viewer, AxCrypt Free, AxCrypt Premium et AxCrypt Business. Les forfaits sont offerts à notre discrétion sur les plateformes sélectionnées.</value>
+  </data>
+  <data name="TermsOfUseBlockAxcryptPlanHeading" xml:space="preserve">
+    <value>Forfaits AxCrypt</value>
+  </data>
+  <data name="TermsOfUseBlockAxcryptPlanHeading1">
+    <value>Forfaits AxCrypt</value>
+  </data>
+  <data name="TermsOfUseBlockMicroPayH1Text1">
+    <value>Lors de l'inscription à l'essai, pour valider votre carte de crédit/débit, AxCrypt vous facturera un montant minimum en fonction de la devise dans laquelle vous payez. Une fois la carte de crédit/débit validée, nous lancerons immédiatement le remboursement du montant facturé. Mais en fonction de votre banque, cela peut prendre 8 à 10 jours ouvrables pour être reflété dans la source du paiement.</value>
+  </data>
+  <data name="TermsOfUseBlockMicroPayHeading1">
+    <value>Frais remboursables en une seule fois</value>
+  </data>
   <data name="TermsOfUseBlockNew11Text1">
     <value>Aucun remboursement ne sera effectué si vous n’avez pas annulé votre abonnement pendant la période d’essai de 30 jours. Le remboursement ne sera accordé que dans certaines circonstances techniques. Nous nous réservons le droit de retirer ou de modifier ces offres à tout moment sans préavis.</value>
   </data>
@@ -10771,6 +11211,69 @@ L'équipe AxCrypt</value>
   <data name="TryPremiumToolTip" xml:space="preserve">
     <value>Vous n'utilisez pas le niveau maximum de sécurité. Cliquez ici pour l'essayer gratuitement !</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
+  </data>
+  <data name="TSTMNL_Business_BSALP_Text3" xml:space="preserve">
+    <value>Nos clients nous confient l'installation et l'exploitation de leur environnement informatique. Il est donc extrêmement important que ces informations soient protégées de la meilleure façon possible et avec les méthodes les plus récentes. AxCrypt nous aide à travailler avec un haut niveau de protection mais toujours de manière simple et efficace.</value>
+  </data>
+  <data name="TSTMNL_Business_DCDCIST_Text6" xml:space="preserve">
+    <value>We not only had an internal need, but we were also looking for a solid solution for our customers to protect our data by encrypting it, thus rendering it unusable in the event of theft. For many years, we have been using the free version of AxCrypt, what made us decide to switch to the paid version is the possibility of using AxCrypt in a network, that is to say to access our data together all while keeping them encrypted. We have already encrypted all our administrative data, now we will encrypt all our technical data. We are satisfied to have chosen AxCrypt as an encryption solution, because moreover its price is very correct in relation to the security provided!</value>
+  </data>
+  <data name="TSTMNL_Business_DLHISG_Text5" xml:space="preserve">
+    <value>AxCrypt est un logiciel de cryptage très facile à utiliser et convivial qui nous aide à crypter nos fichiers et dossiers sensibles, atteignant ainsi la conformité réglementaire.</value>
+  </data>
+  <data name="TSTMNL_Business_DPCVBA_Text1" xml:space="preserve">
+    <value>Meilleure solution. Il [existe] certaines informations sensibles (dossiers du personnel, informations du conseil d'administration) [qui] doivent être mieux protégées au sein de l'organisation. AxCrypt [nous] permet de transférer ce type d'informations sensibles par e-mail et de stocker ces informations sur les disques de l'entreprise. Une fois installé, AxCrypt est parfaitement utilisable pour toutes les parties prenantes impliquées. Différents groupes de sécurité (RH/Conseil/...) peuvent être créés.</value>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text11" xml:space="preserve">
+    <value>J'utilise AxCrypt depuis de nombreuses années, cela me donne la tranquillité d'esprit que les informations sensibles sont protégées et que lorsque nous supprimons des informations qui ne sont plus nécessaires, cela se fait de manière sécurisée et fiable. Le produit s'intègre très bien et devient une extension facile à utiliser du système d'exploitation.!</value>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text9" xml:space="preserve">
+    <value>AxCrypt a été formidable pour répondre à tous les besoins de chiffrement de ma petite entreprise. En tant qu'entreprise travaillant dans le domaine de la santé mentale, la sûreté et la sécurité des données sont d'une importance primordiale pour nous, et nous avons trouvé que le produit d'AxCrypt était une solution puissante et efficace tout en étant conviviale. !</value>
+  </data>
+  <data name="TSTMNL_Business_EDTDIPTSAS_Text2" xml:space="preserve">
+    <value>Nous avons été séduits par l'ergonomie du produit et sa facilité d'utilisation. Cela nous a aidés à sécuriser (chiffrer) nos documents importants et confidentiels. Les fonctions de partage de clés nous permettent de partager facilement le décryptage avec d'autres comptes. La version business permet une gestion très simple et pratique des comptes et des licences</value>
+  </data>
+  <data name="TSTMNL_Business_IACSCA_Text10" xml:space="preserve">
+    <value>AxCrypt me permet de protéger tout type de fichier (sans obligation de formats spécifiques même dans le stockage des mots de passe) de manière simple et sûre et d'accéder à mes données depuis n'importe quel appareil. Mais surtout je ne peux partager avec mon équipe que les clés d'accès aux données et non l'intégralité du fichier ou des copies de données.!</value>
+  </data>
+  <data name="TSTMNL_Business_JSMM_Text8" xml:space="preserve">
+    <value>Nous recherchions un moyen de stocker des sauvegardes de données financières sensibles avec l'un de nos fournisseurs de cloud sans risquer d'exposer leurs employés ou des forces extérieures. Nous avons décidé que chiffrer les sauvegardes avant de les déplacer vers la plate-forme cloud résoudrait ce problème. Cependant, le processus de cryptage devait être simple et facile à faire, sinon il ne serait pas fait. De plus, nous voulions un filet de sécurité au cas où cette personne quitterait l'entreprise et nous laisserait des fichiers cryptés. AxCrypt a fourni une solution de cryptage extrêmement facile à utiliser, et avec le compte de l'entreprise, nous pouvons implémenter une clé principale qui permettra au service informatique de décrypter tous les fichiers en cas de problèmes résultant d'utilisateurs laissant des fichiers cryptés ou oubliant des mots de passe. Notre responsable financier s'acquitte désormais de son travail sans avoir à se débattre avec un processus de cryptage onéreux pour fournir la sécurité nécessaire. !</value>
+  </data>
+  <data name="TSTMNL_Business_JTJT_Text7" xml:space="preserve">
+    <value>Mes agences de traduction me demandent de crypter tous les documents (source et traduction). AxCrypt fournit un moyen pratique et convivial de le faire. !</value>
+  </data>
+  <data name="TSTMNL_Business_WREGNSA_Text4" xml:space="preserve">
+    <value>Nous recherchions un outil de chiffrement simple que nous pourrions déployer auprès de nos utilisateurs sans avoir à fournir beaucoup de formation. AxCrypt vient de le faire pour nous. En dehors d'un document \"comment faire\" initial que j'ai tapé en quelques minutes environ, je n'ai pas à fournir beaucoup d'assistance aux utilisateurs. AxCrypt rend cela si facile.</value>
+  </data>
+  <data name="TSTMNL_Home_GreenGeeks_Text4" xml:space="preserve">
+    <value>.. en ce qui concerne les services payants, vous aurez du mal à trouver mieux.</value>
+  </data>
+  <data name="TSTMNL_Home_PCMag_Text1" xml:space="preserve">
+    <value>AxCrypt Premium rend le cryptage suffisamment simple pour tout utilisateur, et il offre même une cryptographie à clé publique pour un partage sécurisé des fichiers cryptés.</value>
+  </data>
+  <data name="TSTMNL_Home_TechDogs_Text5" xml:space="preserve">
+    <value>Un outil de cryptage de fichiers et de cryptage de dossiers pratique et facile à utiliser, AxCrypt fonctionne pour Android, Windows et iOs.</value>
+  </data>
+  <data name="TSTMNL_Home_TechRader_Text2" xml:space="preserve">
+    <value>L'approche en civil d'AxCrypt facilite le cryptage des fichiers.</value>
+  </data>
+  <data name="TSTMNL_Home_TechRader_Text3" xml:space="preserve">
+    <value>AxCrypt est un outil de cryptage peu coûteux et efficace .. vous êtes dans un logiciel de cryptage de fichiers bon marché et utile.</value>
+  </data>
+  <data name="TSTMNL_Industries_BSAST_Text4" xml:space="preserve">
+    <value>Lorsqu'il est bien fait, un cryptage fort est un cryptage incassable. Toute faiblesse du cryptage sera exploitée par — des pirates, des criminels et des gouvernements étrangers. Bon nombre des piratages qui font l'actualité peuvent être attribués à un cryptage faible ou — pire encore — inexistant.</value>
+  </data>
+  <data name="TSTMNL_Industries_ESFCIC_Text3" xml:space="preserve">
+    <value>Le cryptage fonctionne. Des systèmes de cryptographie solides correctement mis en œuvre sont l'une des rares choses sur lesquelles vous pouvez compter.</value>
+  </data>
+  <data name="TSTMNL_Industries_LPAJFA_Text1" xml:space="preserve">
+    <value>Une des choses que je pense être vraie est que le cryptage est en fait capable de sécuriser nos communications, que chaque individu peut utiliser le cryptage, et qu'il est accessible...</value>
+  </data>
+  <data name="TSTMNL_Industries_PCMAGBEES_Text4" xml:space="preserve">
+    <value>AxCrypt simplifie tout ce qui concerne le chiffrement, vous ne devriez donc pas être surpris d'apprendre qu'il simplifie même l'échange PKI de données sécurisées (…) Pour ces raisons, AxCrypt rejoint CertainSafe en tant que Choix des Éditeurs pour le chiffrement.</value>
+  </data>
+  <data name="TSTMNL_Industries_TCA_Text2" xml:space="preserve">
+    <value>Sans cryptage, vous et moi ne serions pas en mesure d'effectuer nos opérations bancaires en ligne. Nous ne serions pas en mesure d'acheter des choses en ligne, parce que vos cartes de crédit - elles ont probablement été piratées de toute façon, mais elles seraient piratées à gauche et à droite tous les jours s'il n'y avait pas de cryptage.</value>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Türkçe (Turc)</value>
@@ -10982,6 +11485,9 @@ L'équipe AxCrypt</value>
   <data name="UseNecessaryCookiesOnlyPromptText" xml:space="preserve">
     <value>N'utilisez que les cookies nécessaires</value>
   </data>
+  <data name="UserNamePrompt" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
   <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
     <value>Vous avez mis à jour AxCrypt. Ceci nécessite une remise à zéro de vos paramètres. Nous vous prions d'accepter nos excuses pour la gène occasionnée. Vos fichiers restent protégés.</value>
   </data>
@@ -10998,6 +11504,15 @@ L'équipe AxCrypt</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>Vérifier Mot de Passe</value>
+  </data>
+  <data name="ViewCardTitle" xml:space="preserve">
+    <value>Voir la Carte</value>
+  </data>
+  <data name="ViewNoteTitle" xml:space="preserve">
+    <value>Afficher la note</value>
+  </data>
+  <data name="ViewPasswordTitle" xml:space="preserve">
+    <value>Afficher le Mot de passe</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Attention!</value>

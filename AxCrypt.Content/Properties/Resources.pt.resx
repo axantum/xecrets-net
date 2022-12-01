@@ -4529,6 +4529,99 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WICS_Title">
     <value>O que é a Cibersegurança?</value>
   </data>
+  <data name="Blog_WIPM_H1_Text1">
+    <value>Quando se cria uma nova conta, é obrigatório usar palavras-passe longas e fortes. Por acedermos a muitos sítios web e usarmos muitas aplicações, há 90% de probabilidade de não nos lembrarmos de todas as palavras-passe. Felizmente, a tecnologia mudou e não tem de se lembrar de todas as palavras-passe.</value>
+  </data>
+  <data name="Blog_WIPM_H1_Text2">
+    <value>As ferramentas de gestão de palavras-passe são aplicações que ajudam a criar, armazenar e preencher rapidamente campos de palavras-passe quando necessário. Ao seguirem as melhores práticas de criação e gestão de palavras-passe, armazenam de forma segura as credenciais na nuvem ou em armazenamento local e ajudam os utilizadores a manterem-se seguros online. O gestor de palavras-passe AxCrypt gera palavras-passe complexas a pedido. Estas ferramentas fazem corresponder contas às respectivas palavras-passe e armazenam-nas de forma segura e cifrada. O propósito básico de um gestor de palavras-passe é ajudar-nos a gerir as nossas palavras-passe e a manter as nossas credenciais seguras onde quer que nos autentiquemos. Os gestores de palavras-passe minimizam os riscos de esquecimento e exposição a terceiros. O software de gestão de palavras-passe da AxCrypt combina conveniência e &lt;a href='https://axcrypt.net/blog/what-is-cyber-security'&gt;&lt;strong&gt;segurança&lt;/strong&gt;&lt;/a&gt; a um preço competitivo, garantindo a sua experiência online num mundo digital de ritmo acelerado.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text1">
+    <value>Nesta era de TI, é crucial armazenar os seus dados num sistema seguro, protegendo-os de ciberameaças.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text2">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; O Gestor de Palavras-Passe AxCrypt armazena todas as suas palavras-passe e documentos num repositório privado e seguro que pode aceder através de um clique em todos os seus dispositivos.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text3">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A AxCrypt segue o princípio de conhecimento zero, o que significa que nem a AxCrypt nem mais ninguém saberá algo dos seus dados.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A AxCrypt gera a Chave-Mestra mais forte de 256 bits.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A AxCrypt avisa-a(o) se usar palavras-passe fracas ou duplicadas.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text6">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A AxCrypt gera uma palavra-passe segura, única e supranumerária que fornece protecção de 100% e cifragem de 128 e 256 bits.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text7">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Frase de Chave-Mestra invisível e forte gerada automaticamente.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text8">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A tecnologia AxCrypt é tão vasta que temos gestores de palavras-passe para Windows, Mac e telemóveis.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading1">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Memorização de palavras-passe:&lt;/strong&gt; A utilização principal de um gestor de palavras-passe prende-se com a lembrança da palavra-passe-mestra apenas em vez da de centenas de palavras-passe.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Geração de palavras-passe de alta segurança:&lt;/strong&gt; o gestor de palavras-passe gera automaticamente palavras-passe aleatórias, longas, alfanuméricas e quase impossíveis de adivinhar. Para manter as suas credenciais e palavras-passe seguras, são usados algoritmos complexos, cifragem e outros métodos. São geradas palavras-passe fortes e únicas.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Poupança de tempo:&lt;/strong&gt; Além da criação e armazenamento de palavras-passe únicas, o gestor de palavras-passe também preenche automaticamente campos de credenciais, acelerando o processo de autenticação e poupando-se assim tempo.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Sincronização multi-plataforma:&lt;/strong&gt; O gestor de palavras-passe AxCrypt é capaz de sincronizar tanto em iOS como em Android. Independentemente da plataforma, a AxCrypt possibilita o acesso a palavras-passe.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Adicionar informação:&lt;/strong&gt; O gestor de palavras-passe AxCrypt tem também outra funcionalidade. Ajuda não só a armazenar palavras-passe mas também informação adicional como detalhes de cartões de crédito/débito, notas seguras, campos de endereço, números de contacto e mais.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; &lt;strong&gt;Partilha segura de palavras-passe:&lt;/strong&gt;Não é recomendável enviar palavras-passe em SMSs, mensagens instantâneas ou email, porque o texto claro pode ser interceptado ou facilmente encontrado nas suas mensagens, caixa de entrada ou de saída, e pode ser atacado. As palavras-passe partilhadas através de papel são difíceis de seguir e fáceis de perder. Partilhar através da AxCrypt dá-lhe paz de espírito, porque as suas palavras-passe fortes e únicas chegam apenas ao(s) destinatário(s) pretendido(s) e com os direitos de acesso que escolher.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_SubHeading7">
+    <value>&lt;strong&gt;Porquê o Gestor de Palavras-Passe AxCrypt:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text_Benefits">
+    <value>&lt;strong&gt;Benefícios do gestor de palavras-passe:&lt;/strong&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text1">
+    <value>É impossível a memória humana manter dúzias e dúzias de palavras-passe. A maioria das pessoas tenta usar a palavra-passe mais simples, como “12356789” ou “password123”, etc. Algumas pessoas memorizam uma palavra-passe longa e aleatória e usam-na para tudo. Dada esta utilização simples de palavras-passe, o mais provável é que se seja a última vítima de roubo de identidade. Surpreendentemente, à medida que os anos passam, a tecnologia avança imenso, mas cada vez se perdem mais dados a cada segundo.</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text2">
+    <value>A gestão de palavras-passe permite a indivíduos e empresas armazenar e gerir todas as suas palavras-passe num único sítio seguro. As pessoas não têm de se lembrar de múltiplas palavras-passe. A única palavra-passe de que um utilizador tem de se lembrar é a palavra-passe-mestra que é usada para abrir o gestor de palavras-passe. Um gestor de palavras-passe pode lembrar-se de todas as palavras-passe por si.</value>
+  </data>
+  <data name="Blog_WIPM_Heading1">
+    <value>O que é um gestor de palavras-passe?</value>
+  </data>
+  <data name="Blog_WIPM_Heading2">
+    <value>Porquê usar um gestor de palavras-passe?</value>
+  </data>
+  <data name="Blog_WIPM_Summary">
+    <value>Quando se cria uma nova conta, é obrigatório usar palavras-passe longas e fortes. Por acedermos a muitos sítios web e usarmos muitas aplicações, há 90% de probabilidade de não nos lembrarmos de todas as palavras-passe.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway">
+    <value>Conclusão:</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_FeaturePage">
+    <value>Se está à procura de uma solução segura e multifuncional de gestão de palavras-passe e interessada(o) em saber mais sobre nós, dê uma olhadela na &lt;a href='https://axcrypt.net/information/features'&gt;Página de Funcionalidades AxCrypt&lt;/a&gt; para saber mais sobre como a AxCrypt pode proteger os seus ficheiros e dados.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text1">
+    <value>As palavras-asse são as protectoras das nossas credenciais e informação. Tal como a porta de entrada de uma casa ou empresa, se a chave da porta se perder, qualquer pessoa pode entrar a qualquer momento, o que pode resultar em vários desastres. Do mesmo modo, as palavras-passe agem como uma chave, ao protegerem as nossas credenciais e portanto devem ser únicas e fortes.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text2">
+    <value>Preocupada(o) em como usar o gestor de palavras-passe? Não se preocupe, a AxCrypt está consigo. A AxCrypt torna a gestão de palavras-passe possível no ambiente seguro dos dispositivos Mac, Windows e móveis geridos pela AxCrypt. Os trabalhadores podem gerir as suas próprias credenciais facilmente, em segurança e sem necessidade de orientação da equipa de TI.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text3">
+    <value>Focamo-nos apenas na experiência dos nossos clientes.</value>
+  </data>
+  <data name="Blog_WIPM_Takeaway_Text4">
+    <value>Milhões de pessoas confiam na AxCrypt e nós desfrutamos de rankings elevados em todo o globo. A AxCrypt obteve a classificação de 4,53 em 2022. A Axcrypt foi também considerada o melhor software de cifragem em 2022.</value>
+  </data>
+  <data name="Blog_WIPM_Text1">
+    <value>Antigamente, uma pessoa detinha só um punhado de palavras-passe. Mas agora a era mudou. Nesta era digital, a tecnologia tornou as nossas vidas mais fáceis. Desde encomendas de comida de restaurantes, reuniões de negócios em casa, compras online, etc., agora, neste mundo online, tudo é possível através do clique num botão nos nossos smartphones. À medida que as nossas vidas e tarefas se vão tornando mais fáceis, gerir palavras-passe associadas a aplicações tornou-se um aspecto relevante. A única complicação é recordar as palavras-passe associadas a todas as aplicações. Cada aplicação ou sítio web requer uma palavra-passe de autenticação. Na maior parte das vezes, é impossível uma pessoa lembrar-se de todas. De acordo com o Google Online Security Survey, mais de 50 por cento dos inquiridos reutilizaram a mesma palavra-passe em várias contas, o que tornou a vida dos hackers mais fácil. De acordo com &lt;a href='https://www.itgovernance.co.uk/blog/list-of-data-breaches-and-cyber-attacks-in-august-2022-97-million-records-breached'&gt;&lt;strong&gt;registos&lt;/strong&gt;&lt;/a&gt;, houve quase 97 milhões de violações de dados e riscos de cibersegurança em Agosto de 2022. Os inquéritos especificam que, a cada 32 segundos, um hacker ataca alguém online. De acordo com o relatório Verizon Data Breach Investigations, 80 por cento das violações de dados são causadas por palavras-passe fracas ou reutilizadas. É aqui que o gestor de palavras-passe desempenha o papel mais importante.</value>
+  </data>
+  <data name="Blog_WIPM_Title">
+    <value>O que é um gestor de palavras-passe? Quão seguro é o software de gestão de palavras-passe?</value>
+  </data>
   <data name="Blog_WSPPI_H1_Text1">
     <value>O que são dados pessoais? Que tipo de informação deve você proteger, em especial, de empresas e indústrias que a tratam?</value>
   </data>
@@ -8732,6 +8825,9 @@ Para retornar à página inicial, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;</val
   <data name="PasswordPolicyViolation" xml:space="preserve">
     <value>A palavra-passe não é suficientemente boa para ser aceitável.</value>
   </data>
+  <data name="PasswordResetCrtNewPwd" xml:space="preserve">
+    <value>3. Criar palavra-passe nova</value>
+  </data>
   <data name="PasswordResetFailedWhenPendingEmailChange" xml:space="preserve">
     <value>A redefinição de palavra-passe não é possível para esta conta, uma vez que há uma alteração pendente de email de &lt;b&gt;{0}&lt;/b&gt;.
 
@@ -8759,6 +8855,10 @@ Insira seu e-mail abaixo para que lhe enviemos link para ativar ou ressetar sua 
   <data name="PasswordResetPageTitle" xml:space="preserve">
     <value>Redefinir palavra-passe</value>
   </data>
+  <data name="PasswordResetSentVrfMail" xml:space="preserve">
+    <value>2. Enviar email de verificação</value>
+    <comment>The key has been added to get the translated text for all languages on Password Reset page.</comment>
+  </data>
   <data name="PasswordResetShortLink" xml:space="preserve">
     <value>Esqueceu-se da palavra-passe</value>
     <comment>Text of link to Forgot password screen in mobile app</comment>
@@ -8767,6 +8867,9 @@ Insira seu e-mail abaixo para que lhe enviemos link para ativar ou ressetar sua 
     <value>Foi feita uma tentativa de enviar um código de verificação de ID AxCrypt para &lt;b&gt;{0}&lt;/b&gt;. Por favor, verifique a caixa de entrada do seu e-mail.
 
 Se você não recebeu nada, verifique se não está na sua pasta de Lixo Eletrônico, e que {0} está correto.</value>
+  </data>
+  <data name="PasswordResetVerifyAccEMail" xml:space="preserve">
+    <value>1. Verificar email da conta</value>
   </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>O AxCrypt possui um sofisticado avaliador de força de palavra-passe com base na medição da força real da palavra-passe. Também deve ter no mínimo 8 caracteres efetivos.
@@ -10383,6 +10486,12 @@ Assunto: Relatório de Erros AxCrypt</value>
     <value>Configure um e-mail</value>
     <comment>Title of SetEmail step on SignUp page in mobile application</comment>
   </data>
+  <data name="SettingDeleteUsrCnfrmText" xml:space="preserve">
+    <value>Tem a certeza de que deseja apagar a sua conta?</value>
+  </data>
+  <data name="SettingDelPwdCfmText" xml:space="preserve">
+    <value>Se &lt;span&gt;sim&lt;/span&gt;, por favor, introduza a &lt;span&gt;palavra-passe:&lt;/span&gt;</value>
+  </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Aqui você pode deletar permanentemente seu ID AxCrypt do sistema. &lt;span class="red"&gt;Todos os dados associados ao seu ID AxCrypt, incluindo suas palavras-passe, também serão deletados.&lt;/span&gt;</value>
   </data>
@@ -10584,6 +10693,10 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   </data>
   <data name="SubscriptionFreeTrialIndicatorText" xml:space="preserve">
     <value>Avaliação gratuita de 1 mês incluída</value>
+  </data>
+  <data name="SubscriptionLevelText" xml:space="preserve">
+    <value>Nível</value>
+    <comment>Text 'Level' for Subscription information section in page My Axcrypt ID</comment>
   </data>
   <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
     <value>{0} válido até {1}.</value>
