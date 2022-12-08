@@ -273,6 +273,9 @@
   <data name="ActiveSubscriptionText" xml:space="preserve">
     <value>这个帐户有一个活跃的订阅。</value>
   </data>
+  <data name="AddCardTitle" xml:space="preserve">
+    <value>添加银行卡</value>
+  </data>
   <data name="AddEmailPromptText" xml:space="preserve">
     <value>添加电子邮件</value>
   </data>
@@ -437,6 +440,12 @@
   <data name="AutoDeletionEmailOutro" xml:space="preserve">
     <value>你不需要回应或做任何事情。 如果你什么都不做，没有更多的电子邮件将被发送，您的AxCrypt ID帐户将被永久删除。</value>
     <comment>The final text in the auto deletion e-mail, stating that if you do nothing no more e-mail will be sent and the account will be deleted.</comment>
+  </data>
+  <data name="AutoDeletionMailBodyButton" xml:space="preserve">
+    <value>验证AxCrypt ID</value>
+  </data>
+  <data name="AutoDeletionMailBodyFreeTrial" xml:space="preserve">
+    <value>您可以在应用程序中开始试用&lt;b&gt;AxCrypt高级功能30天&lt;/b&gt;！</value>
   </data>
   <data name="AutoDeletionMailBodyIntro" xml:space="preserve">
     <value>您在安装或使用AxCrypt时，通过应用程序或网络向我们发送电子邮件。 我们通过电子邮件向您发送了验证码，但您没有使用它。 如果您没有立即使用验证码验证您的AxCrypt ID帐户，我们将永久将您从我们的系统中删除。</value>
@@ -627,6 +636,39 @@
   <data name="BilledYearlyText" xml:space="preserve">
     <value>{0}每年计费</value>
   </data>
+  <data name="Blog_5KFESSAO_H1_Text1">
+    <value>选择加密软件时，您必须查看其算法以确定如何保护或保护您的数据。 对于初学者来说，加密算法将纯文本转换为加密文本，以防止黑客快速访问它们。</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text2">
+    <value>但是，由于并非所有代码或算法都是相同的，因此有些代码或算法的执行速度比其他代码快。 为了更好地帮助您，这里有5种常见的加密算法，这些算法无疑是牢不可破的:</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text3">
+    <value>&lt;li&gt;三重DES-它是一种用于数据加密的对称密钥方法。 它使用相同的密钥来加密和解密消息。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H1_Text7">
+    <value>&lt;li&gt;AES-也是一种对称加密算法，它因其易于实现而变得流行。 与其他竞争对手相比，它具有更复杂的算法，被认为更有效。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H2_Text1">
+    <value>对于一些人来说，加密数据（如文件内容）已经足以确保其安全性。 但是，如果您只对存储的实际数据进行加密，则未经授权的用户仍可能有权查看文件名、存档等。</value>
+  </data>
+  <data name="Blog_5KFESSAO_H4_Text3">
+    <value>北美表示，他们的公司使用双因素身份验证来验证他们的身份。 另一方面，52％使用单on。</value>
+  </data>
+  <data name="Blog_5KFESSAO_H5_Text1">
+    <value>通常，员工彼此共享相关和工作相关的信息。 然而，在共享过程中担心数据的安全性是不可避免的。 由于这引起了对共享安全文件的关注，因此加密软件具有可让您更安全地共享和接收文件的功能非常重要。</value>
+  </data>
+  <data name="Blog_5KFESSAO_H5_Text3">
+    <value>此外，在文件共享方面，您必须记住的一件事是避免自解密文件。 通常，这些是自包含的可执行文件。 但是，由于这些包含强烈加密的信息，因此几乎不可能进行防病毒筛查。 要了解更多信息，您可以阅读这篇文章，了解为什么您应该避免自我解密文件。</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading1">
+    <value>&lt;h3&gt;1． 加密算法&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading2">
+    <value>&lt;h3&gt;2． 文件名加密&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Heading3">
+    <value>&lt;h3&gt;3． 安全删除&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_ADGE_H1_Text1">
     <value>当您与不是安全专家的人讨论加密时，您通常会收到许多回复。 加密经常被误解为某种险恶的技术。 相反，加密可以帮助实现当今虚拟时代所需的灵活性，合规性和数据隐私。</value>
   </data>
@@ -654,6 +696,9 @@
   <data name="Blog_ADGE_Title">
     <value>加密的详细指南</value>
   </data>
+  <data name="Blog_ADSDE_Conclusion_Text1">
+    <value>AxCrypt在过去六年中被PC Magazine评为"世界上最好的加密软件"，包括今年&lt;a href ='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt;Read more here.&lt;/a&gt;</value>
+  </data>
   <data name="Blog_ADSDE_Conclusion_Text2">
     <value>AxCrypt提供256位加密，我们确保没有人可以访问您的加密文件，只要您控制自己的密钥。</value>
   </data>
@@ -672,11 +717,32 @@
   <data name="Blog_AIS_Conclusion_Heading">
     <value>简言之，AxCrypt</value>
   </data>
+  <data name="Blog_AMEFH_H1_SubHeading3">
+    <value>&lt;strong&gt;无线上网干扰&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_AMEFH_H2_Text6">
     <value>AxCrypt在过去六年（包括今年）被PC杂志评为"世界上最好的加密软件"，并且在全球范围内拥有超过&lt;a href='https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt;2000 million downloads&lt;/a&gt;AxCrypt提供256位加密的强大加密功能，以在数据的三个阶段保护您的数据;静态数据，传输数据和使用数据。 此外，它还为用户提供了一个密码管理生成器，以确保他们的密码尽可能安全。 此外，AxCrypt提供了一个协作工具，允许用户与其他AxCrypt用户共享安全文件和数据。</value>
   </data>
+  <data name="Blog_AMEFH_SH1_Text1">
+    <value>移动加密超越了常规锁屏密码。 这是一个一站式的保护您的所有个人信息和数据在您的手机从窥探或如果您的手机丢失或被盗。 加密以不可读，混乱的格式存储您的手机信息，只能使用正确的凭据读取。 这意味着，如果您的手机落入坏人之手，除非他们知道您的密码，否则没有人能够破译任何数据。</value>
+  </data>
+  <data name="Blog_AMEFH_Summary">
+    <value>在这个数字时代，我们明白保护数据是多么的重要，因此在新的一年开始时，我们很高兴地宣布，经过大量的发展，AxCrypt终于为商业和高级用户推出了移动加密功能。</value>
+  </data>
+  <data name="Blog_AMEFH_Title">
+    <value>AxCrypt移动加密终于来了！</value>
+  </data>
+  <data name="Blog_AOVO_Heading1">
+    <value>&lt;h1&gt;AxCrypt在线vs.离线&lt;/h1&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Text3">
+    <value>前两个很容易回答。</value>
+  </data>
   <data name="Blog_BMYP_H1_SubHeading5">
     <value>&lt;strong&gt;它不仅仅是保护密码&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BMYP_Title">
+    <value>管理密码的好处</value>
   </data>
   <data name="Blog_BSTSSCE_H1_SH1_Text1">
     <value>使用虚拟专用网络(VPN)。 Vpn用于保护私人网络流量免受窥探，干扰和审查。 PNs加密您通过互联网发送的所有数据。 您的VPN还会屏蔽您的IP地址，最后一些Vpn会阻止恶意网站，广告和跟踪器。&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;</value>
@@ -690,8 +756,14 @@
   <data name="Blog_CEANK_H1_Heading2">
     <value>&lt;H3&gt;云的一些特征&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_CEANK_H2_SubHeading2">
+    <value>&lt;b&gt;PaaS-平台即服务&lt;/b&gt;</value>
+  </data>
   <data name="Blog_CEANK_H2_Text2">
     <value>有不同的类别，将表征计算云存储，这里是不同的服务：&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H5_Text1">
+    <value>加密可以解决您的问题。 作为一家加密公司，您的数据安全是我们最关心的问题。 AxCrypt通过加密您的数据一直到云提供高级别的安全性。 我们的用户友好的系统使操作变得容易，保证尽可能高的控制，并确保除了您之外没有人可以访问您的个人信息，从而不会出现不利的数据泄露。</value>
   </data>
   <data name="Blog_CHHSSO_H1_Text2">
     <value>作为一个概念，网络卫生自大流行以来变得越来越重要，因为在世界各地远程工作的个人增加了网络犯罪。</value>
@@ -702,11 +774,29 @@
   <data name="Blog_CHHSSO_H2_Text3">
     <value>&lt;li&gt;数据丢失-未打包的硬盘驱动器和在线云存储可能会受到黑客攻击，损坏或导致数据丢失的其他问题的影响。&lt;/li&gt;</value>
   </data>
+  <data name="Blog_CHHSSO_H3_SH3_Text1">
+    <value>为您的所有设备提供安全密码至关重要。 您的密码应该是唯一和复杂的，至少有12个字符，包括数字，大写字母，小写字母和符号。 定期更改您的密码-将有助于防止黑客。 AxCrypt提供了一个密码管理生成器,以确保他们的密码是强大和安全的.</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SH4_Text1">
+    <value>备份应保存在与原始文件不同的位置，并定期进行测试。 要安全保存个人文件，请在单独的设备（例如云或加密USB）上创建备份。 您可以使用AxCrypt加密驱动器数据，AxCrypt会对传输、休息和存储中的数据进行加密。 此外，您可以保留对加密密钥的控制，即使数据离开建筑物后，也可以保留命令。</value>
+  </data>
+  <data name="Blog_CHHSSO_H3_SubHeading1">
+    <value>&lt;strong&gt;高品质的杀毒软件&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_CHHSSO_Heading1">
     <value>什么是网络卫生？</value>
   </data>
   <data name="Blog_CHHSSO_Heading2">
     <value>一些常见的网络卫生问题:</value>
+  </data>
+  <data name="Blog_CHHSSO_Heading3">
+    <value>确保良好网络卫生的方法</value>
+  </data>
+  <data name="Blog_Conclusion_FeaturePage_Text1">
+    <value>&lt;a href='https://axcrypt.net/information/features'&gt;Have a look at AxCrypt Feature Page &lt;/a&gt; 要了解更多关于AxCrypt如何保护您的文件和数据以及&lt;a href='https://www.axcrypt.net/pricing'&gt;Pricing Page&lt;/a&gt;显示AxCrypt提供的加密订阅类型。</value>
+  </data>
+  <data name="Blog_Conclusion_HealthCare_Text1">
+    <value>查看AxCrypt功能页面，了解有关AxCrypt如何保护文件和数据的更多信息，以及显示AxCrypt提供哪种类型加密订阅的定价页面。&lt;a href=' https://www.axcrypt.net/industries/healthcare'&gt;  Read more about how we serve the healthcare industry&lt;/a&gt;</value>
   </data>
   <data name="Blog_Conclusion_IndustryPage_Text1">
     <value>&lt;a href='https://www.axcrypt.net/industries'&gt;Check out our industry page&lt;/a&gt;看看我们如何为不同的行业服务，以及他们对我们的评价:</value>
@@ -714,11 +804,47 @@
   <data name="Blog_Conclusion_Text1">
     <value>由于手机业务的快速发展以及云服务和应用程序的出现，手机越来越容易受到攻击。 与智能手机采用率的增长相反，移动安全尚未达到数百万消费者。</value>
   </data>
+  <data name="Blog_CRI_FeaturePage">
+    <value>查看&lt;a href='/information/features'&gt;feature page&lt;/a&gt;以了解有关AxCrypt如何保护您的文件和数据的更多信息。</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text1">
+    <value>&lt;strong&gt;识别：&lt;/strong&gt;这个阶段涉及了解网络，系统，用户和数据内部存在的各种网络安全缺陷，以及您可能处于危险中的ICT技能。&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text3">
+    <value>&lt;strong&gt;检测：&lt;/strong&gt;事先确定是否有人准备对您进行恶意行为是非常重要的。 这可以通过对网络和数据系统的持续监控来实现，这可以识别异常、意外问题和潜在的网络安全事件。</value>
+  </data>
+  <data name="Blog_CRI_H1_SH1_Text4">
+    <value>&lt;strong&gt;回应：&lt;/strong&gt;在此阶段，必须确保实施适当的灾难规划和适当的行动来解决实时网络安全事件，以便即使您是网络攻击的受害者，也不会影响业务连续性。</value>
+  </data>
+  <data name="Blog_CRI_H1_SubHeading1">
+    <value>&lt;strong&gt;网络韧性的五大支柱：&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text2">
+    <value>&lt;strong&gt;最小的财务损失：&lt;/strong&gt;网络弹性的主要优势之一是减少停机时间和财务损失。 网络弹性提供了一个计划，帮助最大限度地减少业务中断，从而及时准确地减少财务损失。</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text4">
+    <value>&lt;strong&gt;声誉保护：&lt;/strong&gt;每位员工都有责任保护组织的敏感数据和硬资产，确保适当的事件响应，从而降低风险因素。 糟糕的网络弹性可能会不可逆转地损害组织的声誉。</value>
+  </data>
+  <data name="Blog_CRI_H2_SH1_Text5">
+    <value>&lt;strong&gt;更好的IT团队：&lt;/strong&gt;网络弹性改善了IT部门的运营，使他们能够应对威胁，并帮助他们顺利运行日常运营。</value>
+  </data>
+  <data name="Blog_CRI_Summary">
+    <value>在当今的现代世界中，恶意软件，网络钓鱼，密码和SQL注入攻击等网络攻击已经大大增加。</value>
+  </data>
+  <data name="Blog_CRI_Text1_Follows_steps">
+    <value>由于网络攻击而影响业务的一些主要因素是：&lt;li&gt;不可估量的停机时间&lt;/li&gt;&lt;li&gt;数据丢失&lt;/li&gt;&lt;li&gt;信息威胁&lt;/li&gt;&lt;li&gt;保密和隐私泄露&lt;/li&gt;&lt;li&gt;财务损失&lt;/li&gt;&lt;li&gt;知识产权损失&lt;/li&gt;&lt;li&gt;名誉损失&lt;/li&gt;</value>
+  </data>
   <data name="Blog_CSFE_H1_SH1_Text1">
     <value>近年来，员工网络安全培训已经走了很长的路。 安全培训曾经主要是为IT安全专家指定的，但后来扩展到包括所有IT人员。 如果公司想要避免勒索软件和恶意软件，所有人员都必须接受安全最佳实践和良好习惯的充分教育。</value>
   </data>
   <data name="Blog_CSFE_H1_Text1">
     <value>识别网络攻击何时发生对员工来说可能比一开始就避免网络攻击更困难，但有一些警告信号。 员工应该不断接受教育，了解如果他们担心自己被黑客攻击，应该寻找什么。</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text3">
+    <value>然而，由于技术往往会随着时间的推移而改进，因此有人可能会发明一个比公钥加密更好的系统。 如果发生这种情况，那么许多主要的加密货币可能会被更新以纳入发展。 这可能会使加密货币更加安全，假设。</value>
+  </data>
+  <data name="Blog_CWELTI_Conclusion_H1_Text4">
+    <value>随着越来越多的人开始使用加密货币，更大比例的人口将开始了解公钥加密和加密货币的价值。 所有这些加密技术正在开发的部分原因是因为越来越需要在互联网上安全地存储，发送和接收资金。 网上银行和电子商务正在推动这一需求。 当资金可以安全地在线转移时，商业和银行业务都更有效率。 公钥密码学正在做很多工作，使数字货币交换和存储更安全。 由于公钥密码学和加密货币正在帮助改善数字货币的使用和存储，因此加密货币很可能在未来几十年内继续大幅普及。</value>
   </data>
   <data name="Blog_CWELTI_H5_Text1">
     <value>"加密货币"一词来源于"密码学"和"货币"一词。</value>
@@ -801,6 +927,24 @@
   <data name="Blog_EHI_Heading2">
     <value>为什么对医疗保健行业使用加密很重要？</value>
   </data>
+  <data name="Blog_EIAWII_H2_Text2">
+    <value>该法案将影响美国境内的所有互联网用户，无论政府是否对您的数据感兴趣。 当后门被引入时，不怀好意的代理也被提供了检索数据的机会。 正如电子前沿基金会所说，"要么信息对除其接收者之外的所有人都是私有的，要么它对其他人是可用的"。 在论点的另一面，许多人认为这是确保国家安全和便于联邦调查的必要条件。</value>
+  </data>
+  <data name="Blog_EIAWII_H3_Text1">
+    <value>美国政府和大型科技公司长期以来一直在数据隐私和政府访问加密信息的权利方面陷入僵局。 你可能还记得苹果和联邦调查局在圣贝纳迪诺案件中的争议。 苹果拒绝为联邦机构创建后门，使联邦调查局访问射手的手机具有令人难以置信的挑战性。 苹果得出这一结论，因为他们认为为所有iPhone用户的加密材料创建后门"将开创一个危险的先例"。</value>
+  </data>
+  <data name="Blog_EIAWII_Text2">
+    <value>EARN IT是一项安全法案，基本上将致力于重新设计用户在社交媒体平台上发布的材料的监视和监控。 它遭到了很多批评，许多人认为它会对美国公民的隐私和安全产生不利影响。 通过加强对个人信息的监督和监测，一些人甚至认为该法案在审查制度和宪法隐私权方面存在重大问题。</value>
+  </data>
+  <data name="Blog_EIBM_Conclusion_Text2">
+    <value>你想知道更多吗？ 我们每周发布有趣的信息。</value>
+  </data>
+  <data name="Blog_EIBM_H2_SH2_Text1">
+    <value>强密码是您数字生活的关键。 密码是我们的朋友网络，我们的同事，甚至我们的银行和支付服务的数字密钥。 最重要的两个密码是您的电子邮件和社交网络帐户的密码。 为您可能运行的每个帐户使用全新且唯一的密码非常重要，因此如果您的某个帐户遭到黑客攻击，您可以避免泄露您的数据。 要拥有一个强密码，在密码中不要包含任何个人信息是非常重要的。 黑客可能会根据从您的安全问题中获得的个人信息猜测您的密码来尝试登录您的帐户。 您的密码越短、越不复杂，就能越快地找到正确的字符组合并访问您的私人信息。 密码破解器是一个在很短的时间内使用多种组合的程序，直到完全访问您的密码所保护的任何内容。 使用大写和小写字母，符号和数字的组合。</value>
+  </data>
+  <data name="Blog_EIBM_H2_SH2_Text3">
+    <value>我们还提供了密码管理功能。 不要再担心尝试记住所有不同的密码-我们会为您处理。 将您的所有密码和秘密安全保存在我们的云中。</value>
+  </data>
   <data name="Blog_EIBM_H2_Text1">
     <value>除了明显的个人身份信息（PII），如姓名，地址和社会安全号码外，金融业还定期处理包括收入，信用评分，收集历史记录以及家庭成员PII和非公开个人信息（NPI）</value>
   </data>
@@ -821,6 +965,21 @@
   </data>
   <data name="Blog_EIBM_Summary">
     <value>在金融领域，数据安全是一项严肃的业务。加密可以实现各种类型的经济活动，否则这些活动是不可能的。</value>
+  </data>
+  <data name="Blog_EILI_H1_Text1">
+    <value>随着技术成为我们生活的一部分，我们80%以上的个人和机密信息通过互联网传输、暴露或披露，这比以往任何时候都要多。 因此，了解所需的数据安全软件非常重要。 许多法律行业最近遭受了重大数据泄露并遭受了巨大的破坏，导致了高调的诉讼。</value>
+  </data>
+  <data name="Blog_EILI_H1_Text3">
+    <value>获得客户的信息后，律师也有责任保护客户的信息。</value>
+  </data>
+  <data name="Blog_EILI_H2_Text1">
+    <value>律师必须遵守律师-委托人的特权,即委托人向其律师提供的任何资料都应保密,因此律师提供的任何证词或资料在法庭上是不可接受的。律师可以获得商业秘密，知识产权和客户壁橱的虚构骨架。 此外，由于通过电子邮件或互联网共享文件使与客户沟通变得容易，因此它们也存在重大风险，特别是在保密方面。 律师必须认真对待这种保护客户信息的风险。 未能正确保护客户数据的律师可能会失去客户，损害他们的声誉，或者也可能因数据泄露而被指控犯有不当行为。 由于律师数据包含您想要的关于客户的所有信息，平均而言网络安全较少，律师事务所已成为黑客社区的主要目标。</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_ContactUs">
+    <value>如有任何查询或问题，请联络 &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt;或 &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt;  您也可以访问我们的网站&lt;a href='https://www.axcrypt.net/' style='color: #efefef; font-weight: 800;'&gt;https://www.axcrypt.net/&lt;/a&gt;。 跟随我们的社交媒体处理最新更新</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_Heading">
+    <value>AxCrypt的方法</value>
   </data>
   <data name="Blog_EITPS_H2_SubHeading2">
     <value>&lt;strong&gt;降低生产率&lt;/strong&gt;</value>
@@ -879,11 +1038,71 @@
   <data name="Blog_HAVTYB_H1_SubHeading5">
     <value>&lt;strong&gt;可在各种设备中访问&lt;/strong&gt;</value>
   </data>
+  <data name="Blog_HAVTYB_H1_SubHeading6">
+    <value>&lt;strong&gt;团队协作&lt;/strong&gt;</value>
+  </data>
   <data name="Blog_HAVTYB_H2_Text2">
     <value>&lt;strong&gt;您可以使用加密来避免监管罚款：&lt;/strong&gt;机密数据必须根据一些数据保护法进行加密，&lt;a href='https://www.lepide.com/blog/5-benefits-of-using-encryption-technology-for-data-protection/'&gt;including GDPR and HIPAA&lt;/a&gt;（1996年健康保险可移植性和责任法案) 。 当设备或驱动器丢失或被盗且包含未加密数据时，公司将受到制裁。</value>
   </data>
   <data name="Blog_HAVTYB_Summary">
     <value>当企业的敏感数据存储在云中时，加密可以显着降低数据被盗的风险。</value>
+  </data>
+  <data name="Blog_HAVTYB_Title">
+    <value>AxCrypt如何为您的业务增值</value>
+  </data>
+  <data name="Blog_HEIDS_Heading3">
+    <value>&lt;h3&gt;未经授权的访问&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading5">
+    <value>&lt;h3&gt;没有培训和指南&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading8">
+    <value>&lt;h3&gt;不受限制的数据使用&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Title">
+    <value>影响数据安全的人为错误</value>
+  </data>
+  <data name="Blog_HFMICTETP_H1_Text3">
+    <value>企业至少需要购买一个具有128位加密的企业加密软件，这样他们的文档就不会受到网络攻击，但随着这些威胁变得更加复杂，黑客继续寻找漏洞来破坏数据，企业可以通过256位加密获得额外的安心和安全。</value>
+  </data>
+  <data name="Blog_HFMICTETP_H3_Text5">
+    <value>如果这还不够，您的企业加密软件还可以对您的企业中使用的设备进行身份验证，这样您就可以最大限度地减少来自不需要的用户的渗透风险。</value>
+  </data>
+  <data name="Blog_HFMICTETP_H4_Text2">
+    <value>无论您的文件在管道上的哪个位置，如果您在购买加密软件时使用可用的加密方法，则不会成为问题。 无论是在休息还是在运动中，您都可以轻松地知道您的组织的数据受到保护，免受可能的虚拟威胁。</value>
+  </data>
+  <data name="Blog_HFMICTETP_H5_Text1">
+    <value>由于云计算彻底改变了文档管理，越来越多的组织正在寻找企业加密软件，该软件提供云加密解决方案来对传输中的信息进行编码。</value>
+  </data>
+  <data name="Blog_HFMICTETP_H5_Text2">
+    <value>当数据从基于云的平台和存储移动到有权访问该信息的用户时，部署了强大的加密代码以保护文件免受外部用户的影响，这些用户可以在文件往返云或文档保存到云存储时拦截信息。</value>
+  </data>
+  <data name="Blog_HFMICTETP_H6_Text2">
+    <value>您可以从寻找一个加密软件开始，该软件具有可靠的加密方法，以满足您的业务需求。</value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading1">
+    <value>&lt;h3&gt;2．强大的加密将仍然是企业加密软件的决定因素&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_Text2">
+    <value>在表面层面上，企业加密软件通过将数据转换为只能由授权用户破译的代码来保护各方之间传输的信息。 有了一个可靠的平台，用户可以放心地知道他们的信息是安全的，不管它有多敏感，也不管它被存放在哪里。</value>
+  </data>
+  <data name="Blog_HOA_H4_Text1">
+    <value>&lt;b&gt;ZV：&lt;/b&gt;我们社会的联系越来越多，但未来更是如此。 物联网（IoT）在过去十年中一直是一个话题，但它尚未真正产生影响。 当这种影响到来时，这意味着每个家庭都会有许多连接设备，其中一些您甚至可能没有意识到连接，因此保护得很差。 更多的保护不善的设备意味着更多的攻击媒介，可以用于大量的恶意意图。</value>
+  </data>
+  <data name="Blog_HOA_Heading2">
+    <value>&lt;b&gt;SD：哪些行业使用您的解决方案？&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Heading4">
+    <value>&lt;b&gt;SD：未来几年网络安全格局将如何变化？&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Summary">
+    <value>AxCrypt最初是为了满足个人需要而创建的,早在2001年. 目前还没有任何简单易用的数据安全解决方案。</value>
+  </data>
+  <data name="Blog_HOA_Text2">
+    <value>在AxCrypt上市的13年里，它已经发展成为世界上最流行的加密软件之一。 为了进一步改进解决方案并将AxCrypt提升到一个新的水平，作者与联合创始人Zebastian Victorin合作，将该产品商业化。 AxCrypt的新版本于2016年发布，从那时起，许多更新随之而来。</value>
+  </data>
+  <data name="Blog_HPYBFC_Conclusion_Text2">
+    <value>总之，加密是当代互联网安全的基础。 这是一个非常复杂的主题，但我们很自豪AxCrypt使这个过程简单和友好的使用，为每个人。 使用加密保护您的程序和操作系统。 看看我们的不同&lt;a href='/pricing' style='font-weight: 800;'&gt;subscriptions and features&lt;/a&gt;.</value>
   </data>
   <data name="Blog_HPYBFC_H3_Text4">
     <value>&lt;li&gt;拒绝服务&lt;/li&gt;</value>
@@ -926,6 +1145,12 @@
   </data>
   <data name="Blog_ICSHRS_Title">
     <value>网络安全在人力资源领域的重要性</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_SH1_Text2">
+    <value>加密通过以下方式保护数据:</value>
+  </data>
+  <data name="Blog_ITESBETFC_H1_Text2">
+    <value>&lt;li&gt;来自校园研究的知识产权相当有价值。&lt;/li&gt;</value>
   </data>
   <data name="Blog_LYCWAR_Text1">
     <value>当您使用AxCrypt2时，首先您必须"登录"-在第一次之后，这只是输入您的密码。 由于AxCrypt是一个基于密码的文件加密应用程序，这是有道理的。 即使密码确实是解密文件所需的唯一内容，我们还是出于多种原因决定使用"登录"比喻，其中包括使AxCrypt1有时发生的致命错误变得更加困难，即在加密新文 这有时会导致数据丢失，这很糟糕。</value>
@@ -999,8 +1224,23 @@
   <data name="Blog_ROCP_H1_SH3_Text1">
     <value>密码必须包含大小写字母、数字和特殊字符（如@、£、百分比和&amp;），并且长度必须至少为十个字符。 企业应建立密码安全策略并经常更新。 此外，组织中的每位员工都需要拥有自己的密码。</value>
   </data>
+  <data name="Blog_ROCP_H1_SubHeading1">
+    <value>&lt;strong&gt;限制信息访问&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ROCP_Heading1">
+    <value>一个公司应该如何组织它的密码。</value>
+  </data>
   <data name="Blog_ROCP_Heading2">
     <value>为什么你应该组织你公司的密码。</value>
+  </data>
+  <data name="Blog_ROCP_Text1">
+    <value>跟踪您作为企业主获得的所有密码和凭据可能很困难，无论是个人还是专业。 保护您的企业和客户的密码变得更加困难。 一方面，在您的所有登录中使用相同的密码是有风险的，并可能导致您的企业帐户被黑客入侵。 另一方面，由于某些员工或顾问是临时的，您可能并不总是能够规范谁可以访问组织内的哪些凭据。</value>
+  </data>
+  <data name="Blog_ROCP_Text2">
+    <value>每个企业主都需要像AxCrypt这样的密码管理器，因为维护密码是运营成功业务的重要方面之一。 本文将解释为什么以及如何企业应该组织其密码。</value>
+  </data>
+  <data name="Blog_SamePage_AxcryptRunning">
+    <value>对于文件加密，最好的选择是AxCrypt，这是一款易于掌握和团队合作的软件，并提供优质的256位加密，可确保您获得收益。 你可以只&lt;a href='https://www.axcrypt.net/blog/leaving-your-computer-with-axcrypt-running'&gt;leave your computer with AxCrypt running&lt;/a&gt;，然后继续完成其他更相关的任务，而不必担心文件和文档的安全性。</value>
   </data>
   <data name="Blog_SCMAE_Title">
     <value>关于加密的一些常见神话</value>
@@ -1025,6 +1265,9 @@
   </data>
   <data name="Blog_SSING_Summary">
     <value>随着我们在移动设备上保留更敏感的数据，维护数据的安全性变得更加重要</value>
+  </data>
+  <data name="Blog_Support_ContactUs">
+    <value>&lt;i&gt;您想了解更多？&lt;/i&gt;我们每周都会发布有趣的信息。 好奇，看看我们的博客文章&lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt; 别忘了与我们联络 &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; 或 &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; 如果您有任何问题！</value>
   </data>
   <data name="Blog_SVL_Text7">
     <value>许多软件公司还提供最糟糕的两个世界–许可证和年度支持费！ 使用AxCrypt，它简单而干净。 这一切的一年费用。</value>
@@ -1080,8 +1323,17 @@
   <data name="Blog_TPTWHEG_Text3">
     <value>然而，在家工作时，你确实需要改变你的工作方式。 其中一个领域是保护您自己和他人的个人数据。 在Privacy1，我们喜欢保持简单，并帮助您以简洁的方式了解风险，因此，我们为家庭工作者编制了一份顶级3隐私提示列表，以帮助保护您的家人，客户和雇主。 别担心，这不是关于网络安全的技术废话，只是所有类型工作的每个人都可以在家工作时保持安全的几点。</value>
   </data>
+  <data name="Blog_TSTE_H1_Text2">
+    <value>此外，AES更喜欢在4乘4网格中为128位排列事物，这相当于4x4网格中的16位，而不是大多数密码可以做的长行位。 AES通过使用其密钥的一部分来替换字节、移位行和混合纯文本中的列。</value>
+  </data>
+  <data name="Blog_TSTE_H1_Text3">
+    <value>第一个组件是替换，第二个是渗透，最后，我们将在每轮结束时添加一个相当于第一轮的圆形键。 但是对于128位加密，它会经过这些轮次的10，192位加密，12和256位加密，14。</value>
+  </data>
   <data name="Blog_TSTE_H2_Text1">
     <value>大多数当代加密算法，协议和技术使用AES256位，这是&lt;a href='https://www.toptenreviews.com/secure-encryption-methods'&gt;safest and most secure encryption&lt;/a&gt;128位和192位加密后技术。</value>
+  </data>
+  <data name="Blog_TSTE_Title">
+    <value>最安全的加密类型</value>
   </data>
   <data name="Blog_UODPCH_Text2">
     <value>此外，碰巧用户会为不同的文件设置不同的密码，即使它们仅用于私人使用。 这可能*感觉*更安全，但实际上充其量它没有增加安全性，最坏的情况是它会导致*更少*安全性的情况。</value>
@@ -1101,6 +1353,24 @@
   <data name="Blog_WAMHIHY_Title">
     <value>什么是联盟营销,它如何帮助您?</value>
   </data>
+  <data name="Blog_WBFAHPI_H1_SH3_Text1">
+    <value>密码喷涂是一种反向蛮力攻击的形式，攻击者根据具有默认密码的用户名列表暴力登录到应用程序。 此攻击通常用于管理员为新用户设置默认密码的区域。 通常，攻击者试图猜测密码。 但是，与暴力破解攻击（专注于单个帐户）不同，在这种情况下，密码注入攻击一次针对多个帐户。 在这里，攻击者可以使用一些常用密码访问大量帐户（用户名）。</value>
+  </data>
+  <data name="Blog_WBFAHPI_H1_Type_Text1">
+    <value>在这个网络时代，一个非常常见的威胁是暴力攻击。 网络安全中的蛮力攻击是试图通过系统地尝试字母，数字和符号的所有可能组合来找到密码，直到找到正确的工作组合。 密码并不是唯一可以暴力强制的资源：链接和目录，用户名和电子邮件也是其他常见的目标。</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text2">
+    <value>&lt;li&gt;总是建议不要使用标准密码，但最好使用自己创建的密码。 最好的办法是创建包含至少15个数字和几个关键字的唯一密码。 由随机单词/字符组成的长密码更安全，更容易破解密码。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text4">
+    <value>&lt;li&gt;建议进行双因素或多因素身份验证，其中用户必须在授予对系统的访问权限之前验证其真实性。 如果2FA被激活，用户将被要求输入一个唯一的代码分配给一个移动电话号码，以验证其真实性，然后才能进入网络。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; 从同一个IP地址尝试了许多失败的登录尝试。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_Heading1">
+    <value>什么是蛮力攻击？</value>
+  </data>
   <data name="Blog_WCACT_H1_Text2">
     <value>79%的企业在过去18个月内至少遭遇过一次云数据泄露，43%的企业在此期间报告了10次或更多的数据泄露。</value>
   </data>
@@ -1113,6 +1383,96 @@
   <data name="Blog_WCACT_Summary">
     <value>云计算使用互联网提供可随时访问的共享数据池。 随着远程工作的兴起，云提供了更大的灵活性和效率，同时也降低了费用。</value>
   </data>
+  <data name="Blog_WEROA_Text12">
+    <value>就这么简单。</value>
+  </data>
+  <data name="Blog_WEROA_Text13">
+    <value>不要忘记或丢失您的密码！</value>
+  </data>
+  <data name="Blog_WEROA_Text14">
+    <value>如果这不是你要找的，你不应该使用加密。</value>
+  </data>
+  <data name="Blog_WEROA_Text5">
+    <value>加密需要您的密码，然后将其用作一个非常复杂的算法的控制参数，将您的文件转换为完全不同的东西。 如果它是很好的加密（和AxCrypt是）的结果将是这样的，除了关于大小的一点点之外，任何关于原始内容的内容都不能导出。 即使大小也不能非常可靠地从AxCrypt加密的文件中确定，因为它也在加密之前应用压缩。</value>
+  </data>
+  <data name="Blog_WIAAI_Summary">
+    <value>警告-这是一个相当技术性的帖子;-)这只适用于那些真正对AxCrypt的一些内部工作感兴趣的人。</value>
+  </data>
+  <data name="Blog_WIAAI_Text7">
+    <value>当我们使用AxCrypt加密任何文件时，我们使用AES-128/-256进行加密。 这是一种对称的强加密算法，单个密钥用于加密和解密。</value>
+  </data>
+  <data name="Blog_WIAAI_Title">
+    <value>什么是AxCrypt ID？</value>
+  </data>
+  <data name="Blog_WICE_AD_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; 在安全性方面没有妥协；数据在进出基于云的应用程序或与最终用户一起移动时受到保护。</value>
+  </data>
+  <data name="Blog_WICE_AD_Text3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; 符合HIPAA和GDPR等监管标准的加密要求。</value>
+  </data>
+  <data name="Blog_WICE_AD_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; 云计算在工作方面增加了灵活性。 远程工作有所增加，使员工可以更轻松地在世界任何地方访问关键业务应用程序。 云中的数据仅在工作时间进行加密并与远程工作人员共享。 一旦上班族已经注销，信息变得完全无用的任何人。</value>
+  </data>
+  <data name="Blog_WICE_AD_Text6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; 数据泄露几乎是不可能的，即使有人窃取数据，他们也不可能以加密形式读取数据。</value>
+  </data>
+  <data name="Blog_WICE_H1_Text1">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; 云加密保护数据，无论它是存储还是传输。 全天候，云加密可防止未经授权的访问。</value>
+  </data>
+  <data name="Blog_WICE_Heading1">
+    <value>为什么需要云加密:</value>
+  </data>
+  <data name="Blog_WICE_Text3">
+    <value>云加密是使用加密算法将客户数据转换为加密文本并存储在云中的过程。 它是一个数据安全过程，其中明文数据被编码为不可读的密文，以确保云环境内或云环境之间的安全。 据观察，云计算通常比传统计算安全得多。 使用云加密管理工具，您的个人商业信息提供云安全，保护您免受未经授权的方的访问。 AxCrypt是保护云存储数据在传输或静止时免受网络攻击的最佳加密软件。</value>
+  </data>
+  <data name="Blog_WICS_Conclusion_Text1">
+    <value>即使在2022年和2023年，防御者也必须保持警惕，因为这将是2021年的改进版本。 个人和组织应该用正确的策略来保护他们的网络免受安全威胁。 立即联系AxCrypt并保护您的数据免受网络攻击。</value>
+  </data>
+  <data name="Blog_WICS_H1_SH1_steps">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; 保护企业和个人数据免受网络攻击和数据泄露。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;数据和网络保护。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;防止未经授权的用户访问。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;更好的崩溃恢复。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;服务的连续性，从而更大规模地提高生产力。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;保护终端用户和终端设备。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;网络安全有助于节省成本和时间。 由于恢复操作而导致的数据丢失，恢复和停机的成本导致高成本。 根据&lt;a href='https://www.hiscox.com/articles/average-annual-cost-cyber-attacks-us-small-business-25k-reveals-hiscox'&gt;Hiscox Cyber Readiness Report 2021&lt;/a&gt;，美国小企业部门的单一网络攻击平均成本为25,612美元。&lt;/li&gt;&lt;li style="list-style-type:'\2714';"&gt;它赢得了组织的商业信誉。 对公司形象和开发人员，合作伙伴，客户，利益相关者和员工的信任更有信心。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H1_Text1">
+    <value>由于拥有敏感或机密数据的互联网用户数量的增加，网络安全的重要性迅速增加。  网络威胁正在急剧增加，&lt;strong&gt;根据调查&lt;/strong&gt;&lt;a href='https://www.pwc.com/gx/en/issues/cybersecurity/global-digital-trust-insights.html'&gt;（2022 Global Digital Trust Insights Survey&lt;/a&gt;和组织预计风险将持续增长。 网络威胁和攻击方法的数量和复杂程度的增加使问题更加严重。 公司采用网络安全帮助程序来保护自己免受网络钓鱼诈骗、勒索软件攻击、身份盗窃、数据泄露和金钱损失。</value>
+  </data>
+  <data name="Blog_WICS_H1_Text2">
+    <value>这就是加密发挥主要作用的地方。 加密保护私有数据和敏感数据，并提高客户端应用程序和服务器之间通信的安全性。 如果数据被加密，黑客或任何未经授权的个人或实体将无法读取它。 加密是一种网络安全措施，通过使用独特的代码来保护私人和个人信息，这些代码会扰乱信息并使入侵者无法阅读。 尽管存在数据泄露，即使攻击者绕过防火墙，加密也能确保组织私人信息的安全性。</value>
+  </data>
+  <data name="Blog_WICS_H2_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt;&lt;strong&gt;移动安全：&lt;/strong&gt;在这个数字世界中，随着越来越多的人依赖移动设备，移动安全是一件大事。 使用移动设备的企业必须使用移动安全措施，以保护存储在这些设备上的数据免受各种威胁。 此子域保护存储在移动设备（如平板电脑，手机和笔记本电脑）上的组织和个人信息，以防止未经授权的访问，设备丢失或被盗，恶意软件，病毒等各种威胁。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H2_SubHeading1">
+    <value>主要的网络安全目的是:</value>
+  </data>
+  <data name="Blog_WICS_H2_Text1">
+    <value>为了建立一个强大的防御潜在的网络攻击，重要的是业务，人员，流程和技术的设计是协同工作。 网络安全包括保护计算机系统、数据和网络免受攻击的技术、过程和方法。 网络安全的设计是为了在组织使用的所有计算机、网络和软件中提供多层次的保护。 网络安全系统能够在黑客或恶意软件利用它们之前检测、调查和消除潜在的系统弱点和漏洞。</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text3">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;云攻击：&lt;/strong&gt;云服务大量用于个人和专业需求。 黑客攻击云平台窃取用户数据也是个人和企业面临的网络安全挑战之一。 我们都知道臭名昭着的iCloud黑客暴露了名人的私人照片。 如果针对公司的数据进行此类攻击，则可能对组织构成巨大威胁，甚至导致其崩溃。 因此，必须考虑云安全和数据保护的许多方面，以保护敏感数据。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_H3_SH1_Text5">
+    <value>&lt;li style="list-style-type: '\2726';"&gt;&lt;strong&gt;加密货币和区块链攻击：&lt;/strong&gt;数字货币或钱包已成为黑客的主要目标。 这项新技术的发展彻底改变了实物货币，但也带来了许多严重的安全挑战。 根据Fincen的报告，勒索软件攻击使用了177个唯一的数字钱包地址。 重要的是，组织必须意识到与这些技术相关的安全问题，并确保它们不会被黑客攻击和利用。&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WICS_Heading3">
+    <value>面临的主要网络安全挑战:</value>
+  </data>
+  <data name="Blog_WICS_Summary">
+    <value>作为数字世界的一部分，保护系统，网络，服务器，移动设备，个人数据，专业数据和程序免受网络威胁非常重要。</value>
+  </data>
+  <data name="Blog_WIPM_H1_Text1">
+    <value>当创建一个新帐户时，我们必须创建长而强的密码。 由于我们现在使用许多网站和应用程序，90％的机会是我们不记得我们创建的所有密码。 幸运的是，技术已经改变，你不必记住所有的密码。</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text7">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; 非可见最强主密钥短语自动生成。</value>
+  </data>
+  <data name="Blog_WIPM_H2_Text2">
+    <value>密码管理允许个人和企业在一个安全的地方存储和管理他们的所有密码。 个人不再需要记住多个密码。 用户必须记住的唯一密码是用于打开密码管理器的一个主密码。 密码管理器可以为您记住所有无限的密码。</value>
+  </data>
+  <data name="Blog_WIPM_Heading2">
+    <value>为什么要使用密码管理器？</value>
+  </data>
+  <data name="Blog_WIPM_Title">
+    <value>什么是密码管理器？ 密码管理软件的安全性如何？</value>
+  </data>
   <data name="Blog_WSPPI_H2_Text2">
     <value>隐私是一种社会规范。 我们在我们的设备上设置密码，并在浴室门上设置锁，以帮助保护我们的隐私，甚至公民说他们不被它困扰，使用它们来阻止人们进入他们的私人领域。 根据定义，唯一会寻求隐私的人是坏人。 然而，我们作为人类不仅仅是恐怖分子和罪犯，我们所有人—都有隐藏的东西。 我们都需要私人的时刻，我们可以保持持久，坚持和好奇的外观。</value>
   </data>
@@ -1124,6 +1484,9 @@
   </data>
   <data name="Blog_WSPPI_Text1">
     <value>隐私是一项基本权利，是自由民主和自由的一部分。 它应该不惜一切代价得到保护。 不幸的是，有很多人有恶意的目的，包含你的私人信息的数据库是一个完美和有效的方式来了解你的弱点。 为了保护您的敏感信息，学习和获取有关个人数据实际是什么，为什么要保护它以及如何执行严格的隐私权的知识。</value>
+  </data>
+  <data name="Blog_WTPI_Conclusion_Text3">
+    <value>端到端加密为您提供了反向控制，并保护您的数据不受窥探者和窥探者的侵害。 加密是迄今为止保护任何形式的不需要访问的数据的最佳工作方式。 通过采用纯文本并使用数学计算将数据转换为代码，将其转换为密文，只有拥有特殊密钥的人才能解密您的文件。 我们的用户友好的系统使操作变得容易，保证尽可能高的控制，并确保除了您之外没有人可以访问您的个人信息，从而不会出现不利的数据泄露。</value>
   </data>
   <data name="Blog_WTPI_H1_Text3">
     <value>自2006年成立以来，维基解密经历了几个阶段。 从发布其受众可以积极发布和编辑的文件和文件到发布与特定目的相关的政治声明，他们现在与新闻机构密切合作，在正式过程中分析，编辑和发布信</value>
@@ -1143,6 +1506,12 @@
   <data name="Blog_WTPI_Title">
     <value>维基解密与信息的力量</value>
   </data>
+  <data name="Blog_WUE_H2_Text2">
+    <value>&lt;h3&gt;没有加密会发生什么？&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_Summary">
+    <value>这是数字时代。 我们生活在一个充满技术进步和创新的世界。 虽然这当然带来了许多惊人的机会，如旅行和连接，但它也带来了重大的威胁和危险。</value>
+  </data>
   <data name="Blog_WYSASDF_Text11">
     <value>&lt;li&gt;另一个用例是自包含备份。 这在理论上不是一个坏主意，但Windows有任何2gb大小的硬限制.exe，所以大型备份是不可能这样做的。&lt;/li&gt;</value>
   </data>
@@ -1157,6 +1526,9 @@
   </data>
   <data name="Blog_ZTCS_Conclusion_Text1">
     <value>&lt;strong&gt;为什么需要零信任？ &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ZTCS_Conclusion_Text2">
+    <value>由于大流行，零信任已经加强了它的游戏。 从现在开始，公司已经开始通过云基础设施提供商将其数据，资产，应用程序和服务（DAAS）分散到不同的个人。 如今，内部因素造成了30%的数据泄露，零信任框架的创建是为了帮助数字企业保护有价值的资产。 根据零信任模型，信任是脆弱性。 它表明没有用户，即使他们是员工，也是可以信任的。</value>
   </data>
   <data name="Blog_ZTCS_H2_SH1_Text1">
     <value>零信任模型的框架基于可信性之前的验证;因此用户识别以及设备身份和安全性都在多个阶段进行验证。 一旦建立，登录和连接定期超时，要求用户和设备定期重新验证。&lt;br/&gt;</value>
@@ -1235,6 +1607,9 @@
   </data>
   <data name="BusinessExpiredMailBody0Html" xml:space="preserve">
     <value>您的AxCrypt Business订阅{bus_sub_name}已结束。 我们真诚地希望您喜欢使用AxCrypt，并发现它很有用。</value>
+  </data>
+  <data name="BusinessExpiredMailBodyHtml" xml:space="preserve">
+    <value>让我们知道您对AxCrypt的看法 - 您是否会继续使用它，是否有您希望看到改进的东西？</value>
   </data>
   <data name="BusinessExpiredMailSubject" xml:space="preserve">
     <value>您的AxCrypt业务订阅已结束。</value>
@@ -1665,6 +2040,9 @@
   </data>
   <data name="CaptchaLabel" xml:space="preserve">
     <value>证明您是一个真正的人，而不是自动化的软件！</value>
+  </data>
+  <data name="CardNumberPrompt" xml:space="preserve">
+    <value>银行卡号</value>
   </data>
   <data name="ChangeEmailConfirmMailBody2" xml:space="preserve">
     <value>使用您现有的密码登录，然后旧的AxCrypt ID将被永久删除。</value>
@@ -2194,6 +2572,9 @@
   </data>
   <data name="EmailErrorUserNotFound" xml:space="preserve">
     <value>未找到用户。</value>
+  </data>
+  <data name="EmailFooterText3" xml:space="preserve">
+    <value>联系我们&lt;a href="mailto:support@axcrypt.net" style="color: white; font-weight::600"&gt;support@axcrypt.net&lt;/a&gt;如果您有任何问题！</value>
   </data>
   <data name="EmailLabel">
     <value>电子邮件</value>
@@ -2809,6 +3190,9 @@
   <data name="FreeTrial">
     <value>免费试用</value>
   </data>
+  <data name="FreeTrialLabel" xml:space="preserve">
+    <value>免费试用</value>
+  </data>
   <data name="FullNameLabel">
     <value>全名</value>
   </data>
@@ -2929,20 +3313,38 @@
   <data name="GetStartedAxcryptMobileText">
     <value>使用应用程序与您的AxCrypt ID。 使用Android和iOS应用程序需要高级订阅。 创建新的AxCrypt ID时，您将自动获得30天Premium试用版。</value>
   </data>
+  <data name="GetStartedCloudStorageHeading">
+    <value>从&lt;span&gt;云存储&lt;/span&gt;上传。</value>
+  </data>
+  <data name="GetStartedCloudStorageText">
+    <value>IOS和Android都支持谷歌驱动器和DropBox文件加密。 在即将发布的版本中，安卓和其他云驱动器（如iCloud，OneDrive等）中添加的本地存储文件加密将很快得到支持。</value>
+  </data>
   <data name="GetStartedDesktopHowToUseHeading">
     <value>如何&lt;span&gt;使用&lt;/span&gt;</value>
   </data>
   <data name="GetStartedDesktopInstallingHeading">
     <value>&lt;span&gt;安装AxCrypt&lt;/span&gt;并设置您的AxCrypt ID</value>
   </data>
+  <data name="GetStartedDesktopKeySharingStep1">
+    <value>选择要共享的文件。</value>
+  </data>
   <data name="GetStartedDesktopKeySharingStep2">
     <value>添加或选择联系人。</value>
+  </data>
+  <data name="GetStartedDesktopKeySharingStep4">
+    <value>请记住，您仍然必须将实际文件发送给收件人！</value>
   </data>
   <data name="GetStartedDesktopPasswordManagementStep1">
     <value>登录以访问密码管理</value>
   </data>
   <data name="GetStartedDesktopPasswordResetHeading">
     <value>密码&lt;span&gt;重置&lt;/span&gt;</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetIngress">
+    <value>您现在可以进行密码重置。 但是，登录后，您将无法访问使用旧密码加密的文件。</value>
+  </data>
+  <data name="GetStartedDesktopPasswordResetStep3">
+    <value>验证后，按照发送到您的电子邮件地址的电子邮件中的提示进行操作。</value>
   </data>
   <data name="GetStartedEasyAccessHeading">
     <value>方便地获得密码</value>
@@ -3099,6 +3501,9 @@
   </data>
   <data name="GetStartedPasswordResetVideoTitleWindows">
     <value>AxCrypt：密码重置</value>
+  </data>
+  <data name="GetStartMobilePageTitle">
+    <value>高级&lt;span&gt;加密&lt;/span&gt;在你的口袋里！</value>
   </data>
   <data name="GetSubscriptionLoginRequiredInfoText" xml:space="preserve">
     <value>请登录以获取您的订阅！ 如果您还没有帐户，您首先需要&lt;a href="{0}Home/Register/"&gt;注册&lt;/a&gt;。</value>
@@ -3269,6 +3674,9 @@
   </data>
   <data name="IgnoreFileWarningText" xml:space="preserve">
     <value>由于技术限制，'{0}'未加密。 这可能是由文件扩展名，位置或其他属性引起的。</value>
+  </data>
+  <data name="ImportBusinessUserHelpText" xml:space="preserve">
+    <value>您可以通过导入轻松添加更多用户包含电子邮件地址列表的&lt;b&gt;.txt或.csv&lt;/b&gt;文件。</value>
   </data>
   <data name="ImportMyPrivateKeyToolStripMenuItemText" xml:space="preserve">
     <value>使用共享和访问密钥导入AxCrypt ID。</value>
@@ -3753,6 +4161,9 @@
   <data name="InvoiceLineTotalHeadline" xml:space="preserve">
     <value>金额</value>
   </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>发票编号</value>
+  </data>
   <data name="InvoiceOrderNr" xml:space="preserve">
     <value>引用</value>
     <comment>The payment provider reference id of the transaction</comment>
@@ -4078,6 +4489,12 @@ SE-114 29 斯德哥尔摩
   <data name="MailClientPromptHeader" xml:space="preserve">
     <value>请选择邮件客户端:</value>
     <comment>Header of popup for selecting mail application.</comment>
+  </data>
+  <data name="MailGunFeedbackTitleWithUser" xml:space="preserve">
+    <value>{{user_email}}有以下反馈...</value>
+  </data>
+  <data name="MailGunPremiumSupportTitle" xml:space="preserve">
+    <value>{{user_email}} 我想帮忙...</value>
   </data>
   <data name="ManagementErrorParsing" xml:space="preserve">
     <value>更新站点管理属性时发生分析错误。 请检查您使用的格式是否正确。</value>
@@ -4515,6 +4932,9 @@ SE-114 29 斯德哥尔摩
   <data name="NameLabel">
     <value>姓名</value>
   </data>
+  <data name="NameOnCardPrompt" xml:space="preserve">
+    <value>银行卡上的姓名</value>
+  </data>
   <data name="NavigationPaneFeedback" xml:space="preserve">
     <value>反馈</value>
   </data>
@@ -4559,6 +4979,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="NoPremiumWarning" xml:space="preserve">
     <value>您没有Premium订阅，因此您没有使用最高级别的安全。 点击升级！</value>
+  </data>
+  <data name="NoteContentPrompt" xml:space="preserve">
+    <value>注意事项</value>
   </data>
   <data name="NoteLabel">
     <value>注意</value>
@@ -4762,6 +5185,9 @@ SE-114 29 斯德哥尔摩
 
 如果您似乎没有收到它，请检查它没有被您的反垃圾邮件措施捕获，并且{0}是正确的。</value>
   </data>
+  <data name="PasswordResetVerifyAccEMail" xml:space="preserve">
+    <value>1. 验证帐户电子邮件</value>
+  </data>
   <data name="PasswordRulesInfo" xml:space="preserve">
     <value>AxCrypt具有基于测量密码的实际强度复杂的密码强度评估器。 它还必须至少有8个有效字符长。
 
@@ -4809,6 +5235,9 @@ SE-114 29 斯德哥尔摩
   <data name="PasswordStrengthWeakTip" xml:space="preserve">
     <value>密码不够强大，不建议使用。</value>
     <comment>Status 'Orange'. It's almost an ok password, but it's not good enough to be really recommended.</comment>
+  </data>
+  <data name="PasswordUrlPrompt" xml:space="preserve">
+    <value>网址</value>
   </data>
   <data name="PastIncidentsHeading">
     <value>过去的事件</value>
@@ -5529,6 +5958,9 @@ SE-114 29 斯德哥尔摩
   </data>
   <data name="RefreshPromptText" xml:space="preserve">
     <value>刷新</value>
+  </data>
+  <data name="RefundCreditHelpText" xml:space="preserve">
+    <value>退款可能需要5到10个工作日才能显示在您的信用卡/借记卡上–取决于您的银行。</value>
   </data>
   <data name="RegisterError" xml:space="preserve">
     <value>注册失败。 请检查您的电子邮件，然后再试一次。</value>
@@ -6716,6 +7148,12 @@ SE-114 29 斯德哥尔摩
   <data name="TermsOfUseBlock9Text2">
     <value>请参阅我们的&lt;a href='/information/privacy-policy'&gt;隐私政策&lt;/a&gt;了解我们处理内容和方式的详细信息，接受这些使用条款也意味着接受我们的隐私政策。</value>
   </data>
+  <data name="TermsOfUseBlockAxcryptPlanHeading1">
+    <value>AxCrypt计划</value>
+  </data>
+  <data name="TermsOfUseBlockMicroPayH1Text1">
+    <value>在注册试用版时，为了验证您的信用卡/借记卡，AxCrypt将根据您支付的货币向您收取最低金额。 一旦信用卡/借记卡被验证，我们将立即开始退款，但根据您的银行，可能需要8-10个工作日才能反映付款来源。</value>
+  </data>
   <data name="TermsOfUseDescription">
     <value>这些是AxCrypt的使用条款</value>
   </data>
@@ -6850,6 +7288,21 @@ AxCrypt团队</value>
   <data name="TryPremiumToolTip" xml:space="preserve">
     <value>您没有使用最高级别的安全性。 点击免费试用吧!</value>
     <comment>A tooltip explaining that a user can get a free trial of premium by clicking on the link.</comment>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text11" xml:space="preserve">
+    <value>我已经使用AxCrypt多年了，它让我安心敏感信息受到保护，并且当我们删除任何不再需要的信息时，它是以安全可靠的方式完成的。 该产品集成得非常好，成为操作系统的易于使用的扩展。!</value>
+  </data>
+  <data name="TSTMNL_Business_DPECN_Text9" xml:space="preserve">
+    <value>AxCrypt非常适合满足我的小企业的所有加密需求。 作为一家在精神保健领域工作的公司，数据安全和安全对我们来说至关重要，我们发现AxCrypt的产品是一个强大而有效但用户友好的解决方案。 !</value>
+  </data>
+  <data name="TSTMNL_Business_IACSCA_Text10" xml:space="preserve">
+    <value>AxCrypt允许我以简单安全的方式保护任何类型的文件（即使在存储密码时也没有特定格式的义务），并从任何设备访问我的数据。 但最重要的是，我只能与我的团队共享数据访问密钥，而不是整个文件或数据副本。!</value>
+  </data>
+  <data name="TSTMNL_Business_WREGNSA_Text4" xml:space="preserve">
+    <value>我们正在寻找一个简单的加密工具，我们可以推出给我们的用户，而无需提供大量的培训。 AxCrypt只是为我们做的。 除了我在几分钟内输入的初始"如何"文档之外，我不必为用户提供太多支持。 AxCrypt使这很容易。</value>
+  </data>
+  <data name="TSTMNL_Industries_BSAST_Text4" xml:space="preserve">
+    <value>当它做得正确时，强大的加密是牢不可破的加密。 加密的任何弱点都将被黑客，犯罪分子和外国政府利用。 许多制作新闻的黑客可以归因于弱或-甚至更糟-不存在的加密。</value>
   </data>
   <data name="TurkishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>土耳其语</value>
@@ -7074,6 +7527,12 @@ AxCrypt团队</value>
   </data>
   <data name="VerifyPasswordPrompt" xml:space="preserve">
     <value>验证密码</value>
+  </data>
+  <data name="ViewCardTitle" xml:space="preserve">
+    <value>查看银行卡</value>
+  </data>
+  <data name="ViewNoteTitle" xml:space="preserve">
+    <value>查看说明</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>警告！</value>
