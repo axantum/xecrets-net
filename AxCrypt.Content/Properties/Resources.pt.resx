@@ -2152,6 +2152,48 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EIBM_Title">
     <value>Cifragem no mercado bancário</value>
   </data>
+  <data name="Blog_EILI_Conclusion_Text1">
+    <value>Contudo, muitos advogados ignoram algumas das medidas de cibersegurança mais simples, tais como cifragem de dados. A maioria dos escritórios de advogados está preocupada e faz o que é necessário para proteger as suas redes, mas não presta muita atenção à protecção dos dados dos seus clientes armazenados nos seus dispositivos. A falta de protecção de dados pode causar grandes problemas.</value>
+  </data>
+  <data name="Blog_EILI_Conclusion_Text2">
+    <value>A pensar em como evitar a ameaça de violações de dados? Não precisa de se preocupar. Contacte a AxCrypt. A solução para todos os seus problemas de ameaças de dados e manutenção da confidencialidade dos seus clientes.</value>
+  </data>
+  <data name="Blog_EILI_H1_Text1">
+    <value>Mais do que nunca, e ao passo que a tecnologia se vai tornando parte das nossas vidas, mais de 80% da nossa informação pessoal e confidencial é transmitida pela internet, exposta e divulgada. Assim, é muito importante perceber que é obrigatório usar software de segurança de dados. Muitos escritórios de advogados sofreram recentemente violações de dados que causaram imensos danos e que resultaram em processos judiciais de grande notoriedade.</value>
+  </data>
+  <data name="Blog_EILI_H1_Text2">
+    <value>As soluções de cifragem para escritórios de advogados lidam com legislação para assegurar a segurança e transmissão confidencial de informação e políticas para manter sistemas criptográficos fora das mãos de indivíduos não autorizados e de hackers.</value>
+  </data>
+  <data name="Blog_EILI_H1_Text3">
+    <value>Ao terem acesso a essa informação dos clientes, os advogados devem ter também a responsabilidade de a proteger.</value>
+  </data>
+  <data name="Blog_EILI_H2_Text1">
+    <value>É obrigatório que os advogados observem o privilégio advogado-cliente, isto é, qualquer informação partilhada pelo cliente com o seu advogado deve permanecer confidencial e portanto qualquer testemunho ou informação fornecida pelo advogado em tribunal é inadmissível. Os advogados têm acesso a segredos comerciais, propriedade intelectual e esqueletos ficcionais dos armários dos seus clientes. Além disso, com a partilha de ficheiros através de email ou da internet a tornar fácil a comunicação com clientes, os advogados comportam riscos significativos, especialmente em relação a confidencialidade. Este risco de protecção da informação de clientes deve ser levada a sério pelos advogados. Os advogados que não protejam os dados dos seus clientes de forma apropriada podem perder clientes, sofrer danos de reputação ou serem acusados de negligência como resultado de uma violação de dados. Por conterem os dados de advogados toda a informação de um cliente e por haver, em média, menos cibersegurança, os escritórios de advogados tornaram-se um alvo principal da comunidade hacker.</value>
+  </data>
+  <data name="Blog_EILI_H2_Text2">
+    <value>Os advogados que não usem cifragem em laptops, smartphones e dispositivos portáteis devem considerar a questão: A falha em empregar o que muitos consideram ser uma solução óbvia está a tomar medidas competentes e razoáveis?” &lt;a href ='https://www.americanbar.org/groups/law_practice/publications/techreport/2021/cybersecurity/'&gt; &lt;strong&gt;escreveu a ABA no seu TechReport de 2021.&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_EILI_H2_Text3">
+    <value>Os escritórios de advogados vítimas de violações de dados foram-no principalmente devido a palavras-passe fracas, reutilizadas ou roubadas. O trabalho jurídico requer um elevado nível de confidencialidade e segurança. É necessário que o software do escritório de advogados esteja protegido por um protocolo de palavras-passe e autenticação seguras, especialmente durante o teletrabalho. Reduza este risco e os custos associados ao lembrar-se de uma só palavra-passe – a AxCrypt toma conta da gestão de palavras-passe para segurança do escritório de advogados e torna a sua vida jurídica mais fácil para que cumpra com as regulamentações.</value>
+  </data>
+  <data name="Blog_EILI_Heading1">
+    <value>A importância da cifragem no sector jurídico:</value>
+  </data>
+  <data name="Blog_EILI_Heading2">
+    <value>Porque deve ser dada atenção à Cifragem para advogados?</value>
+  </data>
+  <data name="Blog_EILI_Summary">
+    <value>Na era actual, os dados são um aspecto muito importante e portanto a sua segurança deve ser prioritária para todos os indivíduos e organizações, incluindo firmas de TI, firmas governamentais, fábricas, negócios e escritórios de advogados.</value>
+  </data>
+  <data name="Blog_EILI_Text1">
+    <value>Na era actual, os dados são um aspecto muito importante e portanto a sua segurança deve ser prioritária para todos os indivíduos e organizações, incluindo firmas de TI, firmas governamentais, fábricas, negócios e escritórios de advogados. Os advogados são particularmente vulneráveis, pois detêm informação altamente sensível de clientes e que deve ser mantida segura. O sector jurídico é muito importante, pois envolve grande responsabilidade, e portanto a cifragem de dados de credenciais neste sector é crucial. Os advogados devem ser suficientemente inteligentes para proteger a informação sensível de clientes, algo que não é feito pela maioria dos escritórios.</value>
+  </data>
+  <data name="Blog_EILI_Text2">
+    <value>Da análise de anos recentes, descobriu-se que aumentaram os ataques de hackers a escritórios de advogados. Foi reportado que quase 2,6 terabytes de dados, incluindo 2.2 milhões de ficheiros PDF e 3 milhões e bases de dados, foram atacados. Ainda assim, a segurança de dados no sector jurídico é baixo; muitos escritórios de advogados, mesmo hoje em dia, não usam a mais básica das cifragens.</value>
+  </data>
+  <data name="Blog_EILI_Title">
+    <value>Cifragem no sector jurídico</value>
+  </data>
   <data name="Blog_EITPS_Conclusion_ContactUs">
     <value>Para qualquer pedido ou questão, pode contactar &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; Pode também visitar o nosso sítio web &lt;a href='https://www.axcrypt.net/' style='color: #efefef; font-weight: 800;'&gt;https://www.axcrypt.net/&lt;/a&gt;. Siga os nossos nomes nas redes sociais para saber das últimas novidades</value>
   </data>
@@ -4447,6 +4489,123 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_WIAAI_Title">
     <value>O que é um AxCrypt ID?</value>
+  </data>
+  <data name="Blog_WICE_AD_Text1">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Os dados estão acessíveis a partir de qualquer lugar e em qualquer momento, pois estão armazenados na rede da nuvem.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Sem compromissos de segurança; os dados são protegidos consoante entram e saem de aplicações na nuvem ou com o utilizador final.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Cumpre os requisitos de cifragem de normas regulatórias como o HIPAA e o RGPD.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; A confiança e a privacidade da organização aumentam com o uso de cifragem de segurança na nuvem poderosa.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text5">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; A computação na nuvem aumentou a flexibilidade laboral. O teletrabalho aumentou, tornando mais fácil o acesso de trabalhadores a aplicações de negócio críticas a partir de qualquer parte do mundo. Os dados na nuvem são cifrados e partilhados com os seus colegas remotos durante as horas de negócio apenas. Uma vez que os trabalhadores terminam as suas sessões, a informação é completamente inútil para qualquer pessoa.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; As violações de dados são quase impossíveis, mesmo se alguém rouba dados, pois é impossível lê-los, dado estarem cifrados.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text7">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Em caso de desastre, os dados permanecem seguros no armazenamento na nuvem e facilmente disponíveis para se manterem as operações.</value>
+  </data>
+  <data name="Blog_WICE_Advantages">
+    <value>&lt;strong&gt;Vantagens da cifragem na nuvem:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WICE_H1_Text1">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A cifragem na nuvem protege tanto dados armazenados como transmitidos. 24 horas por dia, a cifragem na nuvem previne o acesso não autorizado.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text2">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Devemos estar alertas não apenas em relação ao acesso externo mas também ao roubo interno de dados. Parceiros de negócio ou prestadores de serviço ou mesmo colaboradores com intenções maliciosas podem causar danos ou mesmo participar em violações de dados. A cifragem na nuvem protege e ajuda a prevenir os colaboradores de causarem danos de negócio.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text3">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Observou-se que APIs com protocolos de segurança fracos introduzem riscos de segurança na nuvem durante a transmissão de dados, o que por sua vez permite acesso não autorizado a cibercriminosos à procura de roubar dados. Os serviços de cifragem na nuvem ajudam a reduzir os riscos colocados pelas APIs não seguras e previnem que dados sensíveis caiam em mãos erradas, mesmo em caso de fuga.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; O crescimento repentino do teletrabalho faz aumentar tremendamente os cibercriminosos, com hackers a inserir pacotes maliciosos em tráfego local e a importá-los na base de dados da organização na nuvem através de métodos ilegais. No entanto, quando os dados na nuvem são cifrados, é praticamente impossível roubá-los ou modificá-los.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Hoje em dia, são usados múltiplos dispositivos, e transferir dados através deles cria outra susceptibilidade. Ao usar-se cifragem na nuvem, nenhuma informação ficará disponível sem uma chave de decifragem.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text6">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; A cifragem na nuvem não é apenas uma solução segura de partilha e armazenamento de dados. Está também configurada para ir ao encontro de restrições organizacionais internas e autoridades reguladoras relevantes, tais como Federal Information Security Management Act (FISMA), Federal Information Processing Standards (FIPS), Health Insurance Portability e Accountability Act (HIPAA), e Payment Card Industry Data Security Standard (PCI/DSS).</value>
+  </data>
+  <data name="Blog_WICE_H2_SH1_Text1">
+    <value>De acordo com o &lt;a href='https://www.mcafee.com/blogs/enterprise/cloud-security/6-cloud-security-issues-that-businesses-experience/'&gt;&lt;strong&gt; relatório Cloud Security Alliance's Cloud Adoption Practices and Priorities Survey,&lt;/strong&gt;&lt;/a&gt;, 34% das organizações evitam a nuvem, porque os seus especialistas de TI não têm o conhecimento e a experiência necessários para ir ao encontro dos requisitos dos serviços na nuvem. A maioria das empresas têm três a quatro nuvens, criando-se complexidade e sendo obrigatórios conhecimento técnico e experiência relevante.</value>
+  </data>
+  <data name="Blog_WICE_H2_SH2_Text1">
+    <value>As diferenças entre as plataformas na nuvem fazem da cifragem de dados uma pedra no caminho. A plataforma na nuvem tem três modelos: Infrastructure as a Service (IaaS), Platform as a Service (PaaS) e Software as a Service (SaaS). Estes modelos executam diferentes tarefas para proteger grandes quantidades de dados. Sendo estes modelos diferentes, os métodos de cifragem tornam-se complicados e um fardo para o fornecedor de serviços na nuvem manter e executar vários processos de cifragem.</value>
+  </data>
+  <data name="Blog_WICE_H2_SH3_Text1">
+    <value>Na era das TI, a preocupação mais perigosa com que nos deparamos é: Violação de Dados. É um problema crítico que deve ser abordado proactivamente. Se os dados não forem lidados de forma apropriada, abre-se o seu negócio para riscos de conformidade enormes. É sua responsabilidade proteger os dados dos seus clientes e trabalhadores.</value>
+  </data>
+  <data name="Blog_WICE_H2_SH4_Text1">
+    <value>O problema mais desafiante em cifragem é a gestão de chaves. A gestão de chaves é o processo de protecção de chaves de cifragem de perda, uso não autorizado e corrupção. A gestão de dados requer atenção extrema e, portanto, na maioria das vezes, as organizações evitam adoptar a cifragem.</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading1">
+    <value>&lt;i&gt;&lt;Strong&gt;1. Incompetência em TI:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading2">
+    <value>&lt;i&gt;&lt;Strong&gt;2. Utilização de diferentes Plataformas de Nuvem:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading3">
+    <value>&lt;i&gt;&lt;Strong&gt;3. Violação de dados:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading4">
+    <value>&lt;i&gt;&lt;Strong&gt;4. Gestão de Chaves:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading5">
+    <value>&lt;i&gt;&lt;Strong&gt;5. API não segura:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_Text1">
+    <value>À medida que aumentam as transferências de dados online, emergem ameaças e novos ataques sofisticados. Portanto, é ainda mais importante que os negócios abracem a segurança. Olhemos para alguns dos maiores desafios enfrentados este ano.</value>
+  </data>
+  <data name="Blog_WICE_H2_Text5">
+    <value>O maior perigo de se usar a nuvem é que há muitos potenciais pontos de entrada para os atacantes. Apesar da nuvem ser vista como tecnicamente segura e fiável, os intrusos podem interceptar dados, atacando APIs menos seguras e criando muitas vulnerabilidades.</value>
+  </data>
+  <data name="Blog_WICE_Heading1">
+    <value>Porque é necessária a cifragem na nuvem:</value>
+  </data>
+  <data name="Blog_WICE_Heading2">
+    <value>Desafios da cifragem na nuvem:</value>
+  </data>
+  <data name="Blog_WICE_Summary">
+    <value>Na era de múltiplas plataformas, os serviços na nuvem tornaram-se o melhor modelo de fornecimento de recursos de armazenamento, computação e rede.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway">
+    <value>Conclusão Principal:</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Download_Version">
+    <value>Não gaste mais do seu tempo. Contacte hoje mesmo a AxCrypt e experimente o melhor, descarregando a nossa última versão de &lt;a href='https://www.axcrypt.net/download/'&gt;Download | AxCrypt - Segurança Fácil de Ficheiros.&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text1">
+    <value>Apesar de haver vantagens e desafios enfrentados pela segurança de armazenamento na nuvem, ainda figura no topo das melhores ferramentas de protecção de dados. À procura da melhor ferramenta de cifragem na nuvem. São listados alguns pontos da protecção de dados na nuvem:</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text2">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Cifra sempre dados sensíveis antes de serem transferidos da organização para o fornecedor de nuvem.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text3">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Certifique-se de que os dados sensíveis são cifrados enquanto em uso, repouso e trânsito.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Nunca forneça chaves de decifragem ao fornecedor de serviços na nuvem ou a trabalhadores.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Os dados devem ser cifrados com chaves de comprimento aleatório e algoritmos fortes e aprovados.</value>
+  </data>
+  <data name="Blog_WICE_Text1">
+    <value>Na era de múltiplas plataformas, os serviços na nuvem tornaram-se o melhor modelo de fornecimento de recursos de armazenamento, computação e rede. O inquérito especifica que mais de 2 mil milhões de utilizadores usam actualmente armazenamento na nuvem para guardar vários tipos de dados e credenciais. Dado o elevado uso de serviços na nuvem, é necessário que os dados armazenados na nuvem estejam protegidos e seguros. Quando os dados são armazenados na nuvem, não temos controlo completo em relação ao que lhes acontece. Por exemplo, se executarmos uma aplicação numa nuvem híbrida ou pública, somos forçados a confiar em terceiros e os nossos dados ficam expostos. Portanto, é obrigatório escolher o melhor fornecedor de serviço na nuvem por alguém que entenda a sua responsabilidade em relação a segurança.</value>
+  </data>
+  <data name="Blog_WICE_Text2">
+    <value>A credibilidade e a segurança estão entre os obstáculos mais relevantes com que os administradores da nuvem se deparam. Múltiplos ciberataques e violações de segurança ocorrem também no armazenamento na nuvem. Portanto, a segurança na nuvem é a maior preocupação para o armazenamento na nuvem, à medida que crescem os riscos de privacidade de dados.</value>
+  </data>
+  <data name="Blog_WICE_Text3">
+    <value>A cifragem na nuvem é o processo de conversão de dados de clientes em texto cifrado através de algoritmos de cifragem e armazenamento na nuvem. É um processo de segurança de dados em que texto não codificado é transformado em texto cifrado ilegível por forma a mantê-lo seguro no ambiente da nuvem e entre diferentes ambientes de nuvem. Tem-se observado frequentemente que a computação na nuvem é muito mais segura do que a computação tradicional. Ao usar ferramentas de gestão de cifragem na nuvem, a sua informação de negócio é fornecida com segurança da nuvem, protegendo-a(o) de acesso não autorizado. A AxCrypt é o melhor software de cifragem para protecção de ciberataques de dados armazenados na nuvem tanto em trânsito como em repouso.</value>
+  </data>
+  <data name="Blog_WICE_Title">
+    <value>O que é a cifragem na nuvem?</value>
   </data>
   <data name="Blog_WICS_Conclusion_Text1">
     <value>Os defensores devem estar alerta mesmo em 2022 e 2023, pois seria uma versão melhorada de 2021. Indivíduos e organizações devem proteger as suas redes de ameaças de segurança usando estratégias adequadas. Contacte já a AxCrypt e proteja os seus dados de ciberataques.</value>

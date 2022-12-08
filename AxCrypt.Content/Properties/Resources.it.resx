@@ -930,6 +930,21 @@ Il piano Business è destinato alle organizzazioni, non ai privati.</value>
   <data name="Blog_HFMICTETP_Heading1">
     <value>&lt;h3&gt;2.La crittografia forte rimarrà il fattore chiave del software di crittografia per aziende&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_HOA_H4_Text1">
+    <value>&lt;b&gt;ZV:&lt;/b&gt; La nostra società è sempre più connessa, ma lo sarà ancora di più in futuro. L'Internet of Things (IoT) è stato un argomento nell'ultimo decennio, ma non ha ancora avuto un vero impatto. Quando si verificherà questo impatto, significa che ogni famiglia avrà numerosi dispositivi connessi, alcuni dei quali potresti non rendertene nemmeno conto che siano connessi e quindi molto poco protetti. Dispositivi meno protetti significano più vettori di attacco che possono essere utilizzati per una grande moltitudine di intenti dannosi.</value>
+  </data>
+  <data name="Blog_HOA_Heading2">
+    <value>&lt;b&gt;SD: Quali settori utilizzano le tue soluzioni?&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Heading4">
+    <value>&lt;b&gt;SD: Come cambierà il panorama della sicurezza informatica nei prossimi anni?&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_HOA_Summary">
+    <value>AxCrypt è stato originariamente creato per soddisfare un'esigenza personale, nel 2001. Non esistevano ancora soluzioni per la sicurezza dei dati che fossero semplici e facili da usare.</value>
+  </data>
+  <data name="Blog_HOA_Text2">
+    <value>Durante i 13 anni in cui AxCrypt è stato sul mercato, è cresciuto fino a diventare uno dei software di crittografia più famosi al mondo. Per migliorare ulteriormente la soluzione e portare AxCrypt al livello successivo, l'autore ha collaborato con il co-fondatore Zebastian Victorin per commercializzare il prodotto. La nuova versione di AxCrypt è stata rilasciata nel 2016 e da allora sono seguiti molti aggiornamenti.</value>
+  </data>
   <data name="Blog_HPDYMP_H3_Text2">
     <value>Hai un mese di prova gratuito su &lt;a href='https://play.google.com/store/apps/details?id=net.axcrypt.axcrypt2x'&gt;Android&lt;/a&gt; or &lt;a href='https://apps.apple.com/us/app/axcrypt/id1157695909'&gt;iOS&lt;/a&gt;.</value>
   </data>
@@ -1207,6 +1222,12 @@ Download now for Android&lt;/a&gt; and &lt;a  href='https://apps.apple.com/us/ap
   </data>
   <data name="Blog_WTPI_Title">
     <value>WikiLeaks e il potere dell'informazione</value>
+  </data>
+  <data name="Blog_WUE_H2_Text2">
+    <value>&lt;h3&gt;Cosa succede senza crittografia?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_Summary">
+    <value>Questa è l'era digitale. Viviamo in un mondo consumato dai progressi tecnologici e dall'innovazione. Sebbene questo ovviamente abbia presentato molte opportunità straordinarie, come i viaggi e la connettività, presenta anche minacce e pericoli significativi.</value>
   </data>
   <data name="Blog_WYSASDF_Text11">
     <value>&lt;li&gt;Un altro caso d'uso sono i backup autonomi. In teoria non è una cattiva idea, ma Windows ha un limite fisso di 2 GB di dimensione di qualsiasi file .exe , quindi non è possibile eseguire backup di grandi dimensioni in questo modo.&lt;/li&gt;</value>

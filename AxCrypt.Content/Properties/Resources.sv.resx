@@ -687,6 +687,15 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_5KFESSAO_H5_Text1">
     <value>Vanligtvis delar anställda relevant och arbetsrelaterad information med varandra. Det är dock oundvikligt att oroa sig för datasäkerheten under delningsprocessen. Eftersom detta väcker oro för att dela säkra filer är det otroligt viktigt för en krypteringsmjukvara att ha en funktion som låter dig dela och ta emot filer säkrare.</value>
   </data>
+  <data name="Blog_5KFESSAO_H6_Text5">
+    <value>&lt;li&gt;Är det kompatibelt med de aktuella programmen du använder?&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H6_Text6">
+    <value>&lt;li&gt;I vilka lager vill du kryptera data?&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_H6_Text7">
+    <value>&lt;li&gt;Kan det återställa krypterad data när nycklar tappas bort?&lt;/li&gt;</value>
+  </data>
   <data name="Blog_5KFESSAO_Heading1">
     <value>Krypteringsalgoritm</value>
   </data>
@@ -695,6 +704,9 @@ Du har blivit varnad, njut nu av programvaran!</value>
   </data>
   <data name="Blog_5KFESSAO_Heading3">
     <value>&lt;h3&gt;3. Säker radering&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_5KFESSAO_Title">
+    <value>5 nyckelfunktioner i krypteringsmjukvaran du bör vara medveten om</value>
   </data>
   <data name="Blog_ADGE_Conclusion_Heading">
     <value>&lt;strong&gt;Börja med AxCrypt...&lt;/strong&gt;</value>
@@ -811,14 +823,45 @@ Du har blivit varnad, njut nu av programvaran!</value>
   <data name="Blog_AMEFH_Title">
     <value>AxCrypts mobila kryptering är äntligen här!</value>
   </data>
+  <data name="Blog_AOVO_H2_Text12">
+    <value>Äntligen kan vi berätta vad servern används till!</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text2">
+    <value>En AxCrypt-krypterad fil består av följande:</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text3">
+    <value>&lt;li&gt;Originalfilen är krypterad med AES-128/256, med en slumpmässig unik huvudfilnyckel.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text4">
+    <value>&lt;li&gt;Masterfilnyckeln, krypterad med ditt lösenord.&lt;/li&gt;</value>
+  </data>
   <data name="Blog_AOVO_H2_Text5">
     <value>&lt;li&gt;Master-filnyckeln, krypterad med din offentliga delningsnyckel.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_H2_Text6">
     <value>li&gt;Masterfilnyckeln, eventuellt krypterad med andra mottagares offentliga delningsnycklar.&lt;/li&gt;</value>
   </data>
+  <data name="Blog_AOVO_H2_Text8">
+    <value>För att dekryptera en AxCrypt-krypterad fil måste du ha något av:</value>
+  </data>
+  <data name="Blog_AOVO_H2_Text9">
+    <value>&lt;li&gt;Det ursprungliga lösenordet, för att dekryptera huvudfilnyckeln.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Heading1">
+    <value>&lt;h1&gt;AxCrypt Online vs. Offline&lt;/h1&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Heading2">
+    <value>&lt;h3&gt;Nyckelhantering&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_AOVO_Heading3">
     <value>&lt;h3&gt;Lösenordshantering&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Heading4">
+    <value>&lt;h3&gt;Prenumerationshantering&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Summary">
+    <value>AxCrypt Online vs Offline 
+Det finns en viss oro över det faktum att AxCrypt kan ansluta till Internet. Behöver man vara online för att kryptera eller dekryptera mina filer med AxCrypt? Skickas mina uppgifter över Internet i någon form?</value>
   </data>
   <data name="Blog_AOVO_Text1">
     <value>Det finns en viss oro över det faktum att AxCrypt kan ansluta till Internet.</value>
@@ -835,6 +878,9 @@ De två första är lätta att svara på.</value>
   </data>
   <data name="Blog_AOVO_Text5">
     <value>&lt;li&gt;Nej, din information lämnar aldrig din dator – såvida den inte finns där i första hand, förstås.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_AOVO_Title">
+    <value>AxCrypt Online vs. Offline</value>
   </data>
   <data name="Blog_BMYP_Conclusion_Text1">
     <value>I den moderna världen är det en stor utmaning att förhindra verkliga brottslingar från att komma åt dina konton och system. På Axcrypt kommer vi ihåg dina lösenord åt dig, hjälper dig att skapa säkra lösenord och loggar in dig automatiskt på hela webben.</value>
@@ -889,6 +935,18 @@ De två första är lätta att svara på.</value>
   </data>
   <data name="Blog_Business_PricingPage">
     <value>Vi erbjuder företags- och premiumabonnemang, missa inte våran 30 dagars provperiod. Du kan läsa mer om våra erbjudanden här: &lt;a href='https://www.axcrypt.net/pricing'&gt;https://www.axcrypt.net/pricing&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_SH3_Text1">
+    <value>I den här modellen hyr ett företag de servrar och lagring som de behöver från en molnleverantör. De använder sedan molninfrastrukturen för att bygga sina applikationer. IaaS-leverantörer inkluderar DigitalOcean, Google Compute Engine och OpenStack. IaaS är som ett företag som arrenderar en tomt.</value>
+  </data>
+  <data name="Blog_CEANK_H2_SubHeading1">
+    <value>&lt;b&gt;IaaS - Infrastruktur som Service&lt;/b&gt;</value>
+  </data>
+  <data name="Blog_CEANK_H2_Text2">
+    <value>Det finns olika kategorier som kommer att känneteckna datormolnlagring, här är de olika tjänsterna:&lt;br/&gt;</value>
+  </data>
+  <data name="Blog_CEANK_Heading4">
+    <value>&lt;h3&gt;Vad sägs om säkerheten?&lt;/h3&gt;</value>
   </data>
   <data name="Blog_CHHSSO_Conclusion_Text1">
     <value>Att utveckla en praxis för cyberhygien kommer att förhindra hackare från att orsaka säkerhetsintrång eller få tillgång till personlig information. Det hjälper dig också att hålla dig uppdaterad med programvara och operativsystem.</value>
@@ -989,6 +1047,9 @@ De två första är lätta att svara på.</value>
   <data name="Blog_Conclusion_FeaturePage_Text1">
     <value>&lt;a href='https://axcrypt.net/information/features'&gt;Ta en titt på AxCrypts funktionssida&lt;/a&gt; för att få veta mer om hur AxCrypt kan säkra dina filer och data och &lt;a href='https://www.axcrypt.net/pricing'&gt;prissidan&lt;/a&gt; som visar vilken typ av krypteringsabonnemang AxCrypt erbjuder.</value>
   </data>
+  <data name="Blog_Conclusion_FuturePageText">
+    <value>&lt;a href='https://axcrypt.net/information/features'&gt;Ta en titt på AxCrypt Feature Page&lt;/a&gt; för att ta reda på mer om hur AxCrypt kan säkra dina filer och data</value>
+  </data>
   <data name="Blog_Conclusion_Heading">
     <value>Slutsats</value>
   </data>
@@ -1003,6 +1064,9 @@ De två första är lätta att svara på.</value>
   </data>
   <data name="Blog_Conclusion_SignUp">
     <value>&lt;a href='https://www.axcrypt.net/information/affiliate'&gt;&lt;strong&gt; Du kan signa upp här:&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Conclusion_SocialMedia">
+    <value>Missa inte längre några nyheter om AxCrypt genom att kolla in och följa våra sociala medier. Vi är aktiva på (&lt;a href='https://facebook.com/axcrypt'&gt;Facebook&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;Instagram&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;Twitter&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;Linkedin&lt;/a&gt;) Du hittar användbara länkar, lär dig om nya evenemang och får en inblick i vårt kontor.</value>
   </data>
   <data name="Blog_Conclusion_SocialMedia_Text1">
     <value>Följ våra sociala medier för att lära dig fler kommande funktioner och erbjudanden&lt;strong&gt; (&lt;a href='https://facebook.com/axcrypt'&gt;Facebook&lt;/a&gt;, &lt;a href='https://instagram.com/axcrypt'&gt;Instagram&lt;/a&gt;, &lt;a href='https://twitter.com/axcrypt'&gt;Twitter&lt;/a&gt;, &lt;a href='https://linkedin.com/company/axcrypt'&gt;Linkedin&lt;/a&gt;)</value>
@@ -1021,6 +1085,9 @@ De två första är lätta att svara på.</value>
   </data>
   <data name="Blog_CRI_H2_SH1_Text5">
     <value>&lt;strong&gt;Bättre IT-team:&lt;/strong&gt;Cybermotstånd förbättrar IT-avdelningens verksamhet, vilket gör det möjligt för dem att reagera på hot och hjälpa dem att driva den dagliga verksamheten smidigt.</value>
+  </data>
+  <data name="Blog_CRI_H2_SubHeading1">
+    <value>&lt;strong&gt;Fördelar med att ha cyberresiliens&lt;strong&gt;:</value>
   </data>
   <data name="Blog_CRI_Heading1">
     <value>Vad är cyberresiliens?</value>
@@ -1217,6 +1284,15 @@ De två första är lätta att svara på.</value>
   <data name="Blog_EHI_Title">
     <value>Kryptering inom sjukvården.</value>
   </data>
+  <data name="Blog_EIAWII_H3_Text2">
+    <value>En liknande slutsats har dragits av allmänheten i kölvattnet av detta lagförslag. Många oroar sig för att EARN IT Act kommer att skapa en farlig miljö för alla individer, inte bara för kriminella som jagas av FBI.</value>
+  </data>
+  <data name="Blog_EIAWII_H4_Text1">
+    <value>Den nuvarande pandemin har gjort kryptering mer avgörande än någonsin tidigare. Både individer och företag har ökat sitt beroende av digitala plattformar för att sköta sin dagliga verksamhet. Detta har inneburit att det finns en större risk i takt med att hotbilden blir bredare. Kryptering är nu alltmer nödvändigt för att förhindra brottslingar från att använda pandemin för kommersiell vinning och komma åt personuppgifter. Därför, om det någonsin fanns en tid att investera i kryptering och säkerställa säkerheten för din data, så är det nu.</value>
+  </data>
+  <data name="Blog_EIAWII_Heading4">
+    <value>&lt;h3&gt;Kryptering under en pandemi&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_EIBM_Conclusion_Heading">
     <value>Kontaktuppgifter</value>
   </data>
@@ -1271,6 +1347,19 @@ De två första är lätta att svara på.</value>
   <data name="Blog_EIBM_Title">
     <value>Kryptering på bankmarknaden</value>
   </data>
+  <data name="Blog_EILI_H1_Text3">
+    <value>Med tillgång till den informationen om klienterna måste advokater också ha ansvar för att skydda den.</value>
+  </data>
+  <data name="Blog_EILI_Heading1">
+    <value>Vikten av kryptering i juridisk industri:</value>
+  </data>
+  <data name="Blog_EILI_Heading2">
+    <value>Varför uppmärksammas kryptering för advokater?</value>
+  </data>
+  <data name="Blog_EILI_Title">
+    <value>
+Kryptering i juridisk industri</value>
+  </data>
   <data name="Blog_EITPS_Conclusion_ContactUs">
     <value>För en förfrågning eller fråga khan du kontakta oss på &lt;a href='mailto:support@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;support@axcrypt.net&lt;/a&gt; eller &lt;a href='mailto:business@axcrypt.net' style='color: #efefef; font-weight: 800;'&gt;business@axcrypt.net&lt;/a&gt; Du kan också besöka vår webbplats &lt;a href='https://www.axcrypt.net/' style='color: #efefef; font-weight: 800;'&gt;https://www.axcrypt.net/&lt;/a&gt;. Följ oss på våra sociala medier för senaste uppdateringarna</value>
   </data>
@@ -1279,6 +1368,9 @@ De två första är lätta att svara på.</value>
   </data>
   <data name="Blog_EITPS_Conclusion_Heading">
     <value>AxCrypts närmande</value>
+  </data>
+  <data name="Blog_EITPS_Conclusion_Text1">
+    <value>AxCrypt ger hög säkerhet till din data hela vägen till molnet. Vårt användarvänliga system möjliggör enkel drift, garanterar högsta möjliga kontroll och säkerställer att ingen annan än du kan komma åt din personliga information så att inga ogynnsamma dataintrång uppstår.</value>
   </data>
   <data name="Blog_EITPS_H1_SH1_Text1">
     <value>När det gäller datasekretess måste stora företag vara mer försiktiga. Eftersom dessa företag har många detaljer om sina anställda och sin verksamhet – för att producera sin försäljning och vinst – måste de till stor del förlita sig på integritet och säkerhet. Kryptering är nyckeln till att ta tillbaka datakontrollen.</value>
@@ -1372,6 +1464,12 @@ Behovet av datasäkerhet</value>
   <data name="Blog_Feature_Conclusion_Text1">
     <value>&lt;a href='https://www.axcrypt.net/information/features'&gt; Kika på AxCrypts funktionssida för att se vad vi erbjuder&lt;/a&gt;</value>
   </data>
+  <data name="Blog_FOKM_Conclusion_Text2">
+    <value>AxCrypt har tilldelats "Världens bästa krypteringsmjukvara" av PC Magazine under de senaste sex åren inkluderat i år och har en global närvaro med över 20 miljoner nedladdningar &lt;a href= 'https://in.pcmag.com/security-from-pc-mag/106866/axcrypt-premium'&gt; Read more here&lt;/a&gt;.</value>
+  </data>
+  <data name="Blog_FOKM_Conclusion_Text3">
+    <value>AxCrypt erbjuder stark kryptering med 256-bitars kryptering för att säkra dina data i de tre stadierna av data; data i vila, vid transitering och vid användning. Dessutom tillhandahåller AxCrypt sina användare en lösenordshanteringsgenerator som säkerställer att dina lösenord är så säkra som möjligt. Vi tillhandahåller också ett samarbetsverktyg som tillåter användare att dela säkra filer och data med andra AxCrypt-användare.</value>
+  </data>
   <data name="Blog_FOKM_Heading3">
     <value>Fördelar med nyckelhantering med AxCrypt</value>
   </data>
@@ -1456,6 +1554,24 @@ Behovet av datasäkerhet</value>
   <data name="Blog_HAVTYB_Title">
     <value>Hur AxCrypt Lägger Till Värde Till Ditt Företag</value>
   </data>
+  <data name="Blog_HEIDS_Heading6">
+    <value>&lt;h3&gt;Medvetenhet&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading7">
+    <value>&lt;h3&gt;Att inte kunna hantera data&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HEIDS_Heading9">
+    <value>&lt;h3&gt;Kostnadssänkning&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_H3_Text2">
+    <value>Men många av dem kämpar fortfarande med att leta efter en lösning för att skydda data som lagras och förs över dessa enheter. Hot fortsätter att lura trots bekvämligheten och därmed potentiella risker och förluster för alla organisationer.</value>
+  </data>
+  <data name="Blog_HFMICTETP_H3_Text3">
+    <value>Lyckligtvis är nu krypteringsmjukvara för företag lättillgängligt på marknaden, vilket ger organisationer garanterad säkerhet för alla sina filer på alla enheter.</value>
+  </data>
+  <data name="Blog_HFMICTETP_H3_Text4">
+    <value>Systemet förser företag med funktioner för kryptering som kan hittas i dokument som finns på skrivbordet, vilket gör ett omotiverat och stressigt scenario till en hanterbar situation och ger dig sinnesro under hela filhanteringsprocessen.</value>
+  </data>
   <data name="Blog_HFMICTETP_H3_Text5">
     <value>Om detta fortfarande inte räcker, kan ditt företags krypteringsmjukvara också autentisera enheterna som används i din anläggning, så att du kan minimera risken för infiltration från oönskade användare.</value>
   </data>
@@ -1468,14 +1584,50 @@ Behovet av datasäkerhet</value>
   <data name="Blog_HFMICTETP_Heading1">
     <value>&lt;h3&gt;2. Stark kryptering kommer att förbli den avgörande faktorn för programvara för företagskryptering&lt;/h3&gt;</value>
   </data>
+  <data name="Blog_HFMICTETP_Heading3">
+    <value>&lt;h3&gt;3. Garanterad säkerhet på flera enheter&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading4">
+    <value>&lt;h3&gt;1.Kryptering blir en högsta prioritet&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_Heading6">
+    <value>&lt;h3&gt;Filkryptering är framtiden&lt;h3&gt;</value>
+  </data>
+  <data name="Blog_HFMICTETP_Summary">
+    <value>Du är på ett krigsfält mot online hot som kan påverka din organisation. Fienden du bekämpar är goda gamla datorvirus.</value>
+  </data>
+  <data name="Blog_HFMICTETP_Text4">
+    <value>Listan vi har lagt upp här ger en titt på de senaste trenderna inom filhantering som filkryptering. Den innehåller också förutsägelser om hur företag kommer att övervaka sina dokument och tillgångar med hjälp av innovativa metoder och pålitliga lösningar.</value>
+  </data>
+  <data name="Blog_HFMICTETP_Title">
+    <value>Hur filhanteringen förändras tack vare krypteringsprogramvaran – en översikt över de senaste trenderna och förutsägelserna</value>
+  </data>
+  <data name="Blog_HOA_H1_Text1">
+    <value>&lt;b&gt;ZV:&lt;/b&gt; Filkryptering! Vår vision: säkerhet, tillförlitlighet och enkelhet. Allt vi gör görs med detta som högsta prioritet. Vår filkrypteringsmjukvara är tillgänglig gratis, och vi lägger till ytterligare ett lager av funktioner i AxCrypt Premium och Business. Detta inkluderar en lösenordshanterare och nyckeldelning.</value>
+  </data>
+  <data name="Blog_HOA_H2_Text2">
+    <value>&lt;b&gt;ZV:&lt;/b&gt;Många privatpersoner använder AxCrypt. När det gäller företag ser vi främst finansiella tjänster, statliga institutioner (förvaltning, utbildning, hälsovård) och IT-företag.</value>
+  </data>
+  <data name="Blog_HOA_H4_Text1">
+    <value>&lt;b&gt;ZV:&lt;/b&gt; Allt mer i vårt samhälle hänger ihop, och det kommer öka ännu mer i framtiden. Internet of Things (IoT) har varit ett ämne under det senaste decenniet, men det har ännu inte fått någon effekt. När denna påverkan kommer betyder det att varje hushåll kommer att ha många anslutna enheter, en del kanske du inte ens inser är ansluta, och därför är mycket dåligt skyddade. Mer dåligt skyddade enheter innebär fler kryphål som kan användas för en hel mängd skadliga syften.</value>
+  </data>
   <data name="Blog_HOA_Heading2">
     <value>Vilka branscher använder era lösningar?</value>
+  </data>
+  <data name="Blog_HOA_Heading3">
+    <value>&lt;b&gt;SD: Vilket är det värsta cyber hotet idag?&lt;/b&gt;</value>
   </data>
   <data name="Blog_HOA_Heading4">
     <value>&lt;b&gt;SD: Hur kommer cybersäkerhetssituationen att förändras under de närmaste åren?&lt;/b&gt;</value>
   </data>
   <data name="Blog_HOA_Summary">
     <value>AxCrypt skapades ursprungligen för att tillgodose ett personligt behov, redan 2001. Det fanns då inte riktigt några befintliga datasäkerhetslösningar ännu som var både enkla och lätta att använda.</value>
+  </data>
+  <data name="Blog_HOA_Text1">
+    <value>AxCrypt skapades ursprungligen för att tillgodose ett personligt behov, redan 2001. Det fanns då inte riktigt några befintliga säkerhetslösningar ännu som var både enkla och lätta att använda. Den första författaren hade ett behov av att dela konfidentiell data online, och det var då AxCrypt började. Den första versionen utvecklades 2001.</value>
+  </data>
+  <data name="Blog_HOA_Title">
+    <value>Axcrypts historia</value>
   </data>
   <data name="Blog_HPDYMP_H2_Text2">
     <value>Hackare har nu möjlighet att lyssna på chattar och hacka sig in i all data på din telefon. Utan din tillåtelse kan dina sociala mediekonton, bankkonton, känsliga bilder, privata textmeddelanden med mera nås av dem.</value>
@@ -1567,6 +1719,9 @@ Behovet av datasäkerhet</value>
   <data name="Blog_HTSCER_H4_Text9">
     <value>Bifoga denna fil till din e-post:</value>
   </data>
+  <data name="Blog_HTSCER_Heading1">
+    <value>&lt;h3&gt;Hur man gör en fullständig felrapport&lt;/h3&gt;</value>
+  </data>
   <data name="Blog_HTSCER_Heading2">
     <value>&lt;h3&gt;Skärmdump&lt;/h3&gt;</value>
   </data>
@@ -1575,6 +1730,12 @@ Behovet av datasäkerhet</value>
   </data>
   <data name="Blog_HTSCER_Heading4">
     <value>&lt;h3&gt;Händelselogg&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_HTSCER_Summary">
+    <value>Det här är en steg-för-steg-instruktion om hur du ger oss en komplett felrapport. Vi kan be dig att göra detta när du har problem med AxCrypt. Informationen vi får av detta hjälper oss att hjälpa dig!</value>
+  </data>
+  <data name="Blog_HTSCER_Title">
+    <value>Hur man skickar en fullständig felrapport</value>
   </data>
   <data name="Blog_ICSHRS_H1_Text1">
     <value>Medan vi anpassar oss till en ny arbetsmiljö som ingen kanske har tänkt sig, har pandemin tvingat organisationer och personalchefer att tänka om hur vi ska utföra våra arbetsuppgifter. HR-personal är oroliga inte bara för sina anställdas hälsa och välbefinnande under pandemin, utan också över att hantera pappersarbete på ett säkert sätt och ge stöd till de miljontals människor som har blivit uppsagda eller arbetar på distans.</value>
@@ -2023,6 +2184,15 @@ Behovet av datasäkerhet</value>
   <data name="Blog_SVL_Text17">
     <value>Glad AxCrypting!</value>
   </data>
+  <data name="Blog_SVL_Text2">
+    <value>Vissa användare reagerar instinktivt negativt på AxCrypt Premium-prenumerationsmodellen. Inte mot den allmänna principen att betala för Premium, utan den årliga återkommande avgiften i motsats till en "evig" licens</value>
+  </data>
+  <data name="Blog_SVL_Text3">
+    <value>Jag förstår det, men jag skulle vilja diskutera varför vi gör på det här sättet. I slutändan är vi naturligtvis alltid öppna för förändringar, så kommentarer är välkomna. Använd våra &lt;a href='http://www.axcrypt.net/forums/forum/community/'&gt;forum&lt;/a&gt; för det, och hänvisa till det här blogginlägget så att vi vet din utgångspunkt.</value>
+  </data>
+  <data name="Blog_SVL_Text4">
+    <value>Det finns flera anledningar till att vi föredrar en årlig prenumeration framför en "evig" licens, men här är sammanfattningen:</value>
+  </data>
   <data name="Blog_SVL_Text7">
     <value>Många mjukvaruföretag erbjuder också det värsta av två världar – en licens och en årlig supportavgift! Med AxCrypt är det enkelt och rimligt. En enda årlig kostnad för det hela.</value>
   </data>
@@ -2203,6 +2373,9 @@ När du jobbar på kontoret kommer säkerhetsteamet ha satt upp policyer, skydda
   <data name="Blog_WAMHIHY_Conclusion_Text1">
     <value>Vi förändrar sättet människor kommunicerar och jobbar på.</value>
   </data>
+  <data name="Blog_WAMHIHY_Conclusion_Text2">
+    <value>Vi har köpt en möjlighet för affiliate marknadsföring som gör att vi kan följa vår dröm om oberoende utan att behöva oroa oss för ekonomin, hantera team eller liknande. Så nu börjar vi.</value>
+  </data>
   <data name="Blog_WAMHIHY_Conclusion_Text3">
     <value>Vill du lära dig mer om AxCrypt och ansluta dig till vårat affiliate-marknadsföringsprogram?</value>
   </data>
@@ -2230,8 +2403,14 @@ När du jobbar på kontoret kommer säkerhetsteamet ha satt upp policyer, skydda
   <data name="Blog_WBFAHPI_Conclusion_Text3">
     <value>Våra kunder älskar oss eftersom vi aldrig kompromissar med dataintrång och tillhandahåller det bästa cybersäkerhetssystemet. Förbättra din datasäkerhet genom att arbeta med experter. Vänta inte med att förlora din data. Kontakta AxCrypt idag och ladda ner vår senaste version för att uppleva det bästa.</value>
   </data>
+  <data name="Blog_WBFAHPI_H2_SH2_Text3">
+    <value>&lt;li&gt;Många hemsidor tillåter ett oändligt antal inloggningsförsök. Det rekommenderas att webbplatsadministratören installerar ett plugin som begränsar antalet försök att ansluta till domänen, genom att ytterligare förhindra brute force-attacker. Även en root-användare kan tillåta brute force-attacker på solid shell-anslutningar (SSH), därför är det bättre att förhindra användare från att komma åt SSH genom att aktivera "DenyUsers root" och "PermitRootLogin no".&lt;/li&gt;</value>
+  </data>
   <data name="Blog_WBFAHPI_H2_SH2_Text5">
     <value>&lt;li&gt;Fördelen med att använda CAPTCHA är att det skyddar mot kontoövertaganden, illegala köp och liknande scenarier. CAPTCHA:er get ett 100 % säkerhetssvar.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text1">
+    <value>En hackare kan alltid lokalisera lösenordet genom en brute-force attack. Beroende på lösenordets längd och komplexitet kan det finnas biljoner möjliga kombinationer och det kan därför ta åratal att knäcka mållösenordet.</value>
   </data>
   <data name="Blog_WBFAHPI_H2_Text2">
     <value>&lt;li style="list-stil-typ: '\27A3';"&gt; Många misslyckade inloggningsförsök från samma IP-adress.&lt;/li&gt;</value>
@@ -2244,6 +2423,12 @@ När du jobbar på kontoret kommer säkerhetsteamet ha satt upp policyer, skydda
   </data>
   <data name="Blog_WBFAHPI_H2_Text5">
     <value>&lt;li style="list-style-type: '\27A3';"&gt; Ovanligt mönster av misslyckade inloggningsförsök&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_H2_Text6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Ovanlig bandbredd&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WBFAHPI_Heading2">
+    <value>Hur man undersöker en brute force attack:</value>
   </data>
   <data name="Blog_WBFAHPI_Summary">
     <value>Kostnaden för ett dataintrång är komplicerad att uppskatta, men i takt med att fler och fler organisationer faller offer för attacker blir den potentiella ekonomiska effekten mer uppenbar.</value>
@@ -2302,11 +2487,170 @@ När du jobbar på kontoret kommer säkerhetsteamet ha satt upp policyer, skydda
   <data name="Blog_WENTI_Title">
     <value>Varför är kryptering nödvändigt i teknikindustrin?</value>
   </data>
+  <data name="Blog_WEROA_Heading1">
+    <value>&lt;h3&gt;Varför kan jag inte återställa mitt lösenord för att få öppna mina filer?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WEROA_Summary">
+    <value>Varning – det här är ett rätt tekniskt inlägg ;-) Det är bara för de som verkligen är intresserade av några av AxCrypts inre funktioner.</value>
+  </data>
+  <data name="Blog_WEROA_Text1">
+    <value>Vår support får relativt ofta frågor, krav och ibland även hårda ord om varför ett glömt lösenord innebär förlust av informationen.</value>
+  </data>
+  <data name="Blog_WEROA_Text10">
+    <value>För att dekryptera en fil måste du kunna lösenordet.</value>
+  </data>
+  <data name="Blog_WEROA_Text11">
+    <value>Om du har krypterat en fil och sedan tappar bort lösenordet går filens innehåll förlorat.</value>
+  </data>
+  <data name="Blog_WEROA_Text12">
+    <value>Så enkelt är det.</value>
+  </data>
+  <data name="Blog_WEROA_Text13">
+    <value>Glöm inte eller tappa bort ditt lösenord!</value>
+  </data>
   <data name="Blog_WEROA_Text14">
     <value>Om detta inte är vad du letar efter ska du inte använda kryptering.</value>
   </data>
+  <data name="Blog_WEROA_Text2">
+    <value>Det här är vad kryptering handlar om!</value>
+  </data>
+  <data name="Blog_WEROA_Text4">
+    <value>Med kryptering är det annorlunda.</value>
+  </data>
+  <data name="Blog_WEROA_Text5">
+    <value>Kryptering tar ditt lösenord och använder det sedan som en kontrollerande parameter till en komplex algoritm som omvandlar din fil till något annat. Om det är bra kryptering (och AxCrypt är det) kommer resultatet bli att ingenting om det ursprungliga innehållet kan härledas förutom lite om storleken. Inte ens storleken kan mycket tillförlitligt bestämmas från en AxCrypt-krypterad fil, eftersom den också tillämpar komprimering före kryptering.</value>
+  </data>
+  <data name="Blog_WEROA_Text6">
+    <value>En krypterad fil omvandlas faktiskt "fysiskt" med hjälp av kryptering. Efter kryptering är filen helt annorlunda än originalet. Det enda sättet att omvandla det tillbaka till det ursprungliga innehållet är att tillämpa krypteringen omvänt. För att göra detta måste rätt lösenord anges.</value>
+  </data>
+  <data name="Blog_WEROA_Text8">
+    <value>Antingen fungerar dekrypteringen för att rätt lösenord angavs, eller så fungerar den inte för att fel lösenord användes.</value>
+  </data>
+  <data name="Blog_WEROA_Text9">
+    <value>Med AxCrypt känner vi inte till ditt lösenord.</value>
+  </data>
+  <data name="Blog_WEROA_Title">
+    <value>What encryption really is about</value>
+  </data>
   <data name="Blog_WIAAI_Summary">
     <value>Varning – detta är ett ganska tekniskt inlägg ;-) Det är bara för dem som verkligen är intresserade av några av AxCrypts inre funktioner.</value>
+  </data>
+  <data name="Blog_WIAAI_Text1">
+    <value>Varning – det här är ett rätt tekniskt inlägg ;-) Det är bara för dem som verkligen är intresserade av några av AxCrypts inre funktioner.</value>
+  </data>
+  <data name="Blog_WIAAI_Text10">
+    <value>&lt;li&gt;&lt;em&gt;Fildata krypteras med AES och sessionsnyckeln.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text2">
+    <value>Egentligen är det mer än så. Tekniskt sett är ett AxCrypt-ID ett RSA-4096-nyckelpar.</value>
+  </data>
+  <data name="Blog_WIAAI_Text20">
+    <value>&lt;li&gt;&lt;em&gt;Du registrerar dig för ett konto. Vi genererar och skapar ett nyckelpar på vår server och krypterar den privata nyckeln tillfälligt.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text21">
+    <value>&lt;li&gt;&lt;em&gt;Du ställer in ditt lösenord. Vi krypterar om den privata nyckeln med ditt lösenord. Vid det här laget kan ingen återställa din privata nyckel utan att känna till ditt lösenord. Inte vi, inte någon annan.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text22">
+    <value>&lt;li&gt;&lt;em&gt;Du loggar in med en AxCrypt-app. Appen kontaktar vår server och laddar ner nyckelparet – både privata och publika nycklar från servern. Den privata nyckeln hålls krypterad.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text25">
+    <value>All denna nyckelhantering görs automatiskt och bakom kulisserna av AxCrypt, helt transparent så länge du tillåter AxCrypt att komma åt våra servrar.</value>
+  </data>
+  <data name="Blog_WIAAI_Text26">
+    <value>För avancerade användare som till fullo förstår ovanstående mekanismer är det möjligt att göra allt detta utan våra servrar. Det är möjligt att generera AxCrypt ID-nyckelpar, exportera och importera dem etc. Vi rekommenderar ingen att faktiskt göra detta, eftersom ett misstag eller missförstånd lätt kan leda till dataförlust eller oförmåga att använda AxCrypt.</value>
+  </data>
+  <data name="Blog_WIAAI_Text4">
+    <value>&lt;li&gt;&lt;em&gt;En offentlig nyckel – denna nyckel är icke-hemlig och kan användas av vem som helst för att kryptera data. Men det kan inte användas för att dekryptera någonting! Vi kallar det ibland för en delningsnyckel.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text5">
+    <value>&lt;li&gt;&lt;em&gt;En privat nyckel – denna nyckel måste vara hemlig och krävs för att dekryptera all data som krypteras med den offentliga nyckeln. Vi kallar det ibland för en hemlig nyckel.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text6">
+    <value>
+&lt;li&gt;&lt;em&gt;När man känner till den publika nyckeln är det beräkningsmässigt omöjligt (dvs. omöjligt i lekmannatermer) att härleda den privata nyckeln.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Text7">
+    <value>När vi krypterar en fil med AxCrypt gör vi det med AES-128/-256. Detta är en symmetrisk stark krypteringsalgoritm, med en enda nyckel som används för både kryptering och dekryptering.</value>
+  </data>
+  <data name="Blog_WIAAI_Text8">
+    <value>Processen när AxCrypt krypterar en fil är i princip följande:</value>
+  </data>
+  <data name="Blog_WIAAI_Text9">
+    <value>&lt;li&gt;&lt;em&gt;En slumpmässig 128- eller 256-bitars sessionsnyckel genereras för varje gång en fil krypteras.&lt;/em&gt;&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIAAI_Title">
+    <value>Vad är ett AxCrypt ID?</value>
+  </data>
+  <data name="Blog_WICE_AD_Text1">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Data är tillgänglig var som helst och när som helst, eftersom den lagras i molnnätverket.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text2">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Ingen kompromiss med säkerheten; data skyddas när den rör sig in och ut från molnbaserade applikationer eller med slutanvändaren.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text3">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Uppfyller krypteringskraven i regulatoriska standarder som HIPAA och GDPR.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text4">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Förtroende och integritet för organisationen ökas genom användningen av kraftfull molnsäkerhetskryptering.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text6">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; Dataintrång är nästan omöjligt, och även om någon stjäl data är det omöjligt för dem att läsa eftersom det är i krypterad form.</value>
+  </data>
+  <data name="Blog_WICE_AD_Text7">
+    <value>&lt;li style="list-style-type: '\27A3';"&gt; I händelse av katastrof är datan säker i molnlagringen. Datan är sedan lättillgänglig för att fortsätta köra operationen.</value>
+  </data>
+  <data name="Blog_WICE_Advantages">
+    <value>&lt;strong&gt;Fördelar med molnkryptering:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WICE_H1_Text1">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Molnkryptering skyddar data oavsett om den lagras eller överförs. Molnkryptering förhindrar
+obehörig åtkomst dygnet runt.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Den plötsliga ökningen av att arbeta på distans har ökat mängden cyberkriminella enormt eftersom hackare infogar skadliga paket som lokal trafik och importerar dem till en organisations molndatabas med olagliga metoder. Men, när molndata krypteras, blir det nästan omöjligt att stjäla eller modifiera det.</value>
+  </data>
+  <data name="Blog_WICE_H1_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Nuförtiden används flera enheter, och överföring av information via dessa enheter skapar en annan mottaglighet. Med molnkryptering kommer ingen av informationen att vara tillgänglig utan en dekrypteringsnyckel</value>
+  </data>
+  <data name="Blog_WICE_H2_SH4_Text1">
+    <value>Inom kryptering är nyckelhantering den mest utmanande delen. Nyckelhantering är processen för att skydda krypteringsnycklar mot förlust, obehörig användning och korruption. Nyckelhantering kräver noggrann uppmärksamhet och därför undviker organisationer för det mesta att använda kryptering.</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading4">
+    <value>&lt;i&gt;&lt;Strong&gt;4. Nyckelhantering::&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_SubHeading5">
+    <value>&lt;i&gt;&lt;Strong&gt;5. Osäkert API:&lt;/strong&gt;&lt;/i&gt;</value>
+  </data>
+  <data name="Blog_WICE_H2_Text5">
+    <value>Den största faran med att använda moln är att det finns så många olika potentiella ingångspunkter för angripare. Även om molnet ses som tekniskt säkert och pålitligt, kan inkräktare fånga upp data genom att hacka sig in i mindre säkra API:er, vilket skapar massor av sårbarheter.</value>
+  </data>
+  <data name="Blog_WICE_Heading1">
+    <value>
+Varför behövs molnkryptering:</value>
+  </data>
+  <data name="Blog_WICE_Summary">
+    <value>I en tid med flera olika plattformar har molntjänster blivit den bästa modellen för att tillhandahålla lagrings-, dator- och nätverksresurser.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text2">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Kryptera alltid känslig data innan den överförs från organisationen till molnleverantören.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text3">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Se till att känslig data är krypterad under användning, i vila eller under transport.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text4">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Ge aldrig dekrypteringsnycklar till molntjänstleverantören eller anställda.</value>
+  </data>
+  <data name="Blog_WICE_Takeaway_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Data bör krypteras med nycklar av slumpmässig längd och starka godkända algoritmer.</value>
+  </data>
+  <data name="Blog_WICE_Text2">
+    <value>Trovärdighet och säkerhet är bland de viktigaste hindren som molnadministratörer möter. Flera cyberattacker och säkerhetsintrång förekommer också i molnlagring. Därför är molnsäkerhet det största bekymret för molnlagring eftersom riskerna för datasekretess växer.</value>
+  </data>
+  <data name="Blog_WICE_Text3">
+    <value>Molnkryptering är processen att konvertera kunddata till krypterad text med hjälp av krypteringsalgoritmer som lagras i molnet. Det är en datasäkerhetsprocess där klartextdata kodas till oläsbar chiffertext för att hålla den säker inom eller mellan molnmiljöer. Det har observerats att molnanvändning ofta är mycket säkrare än traditionell datoranvändning. Med hjälp av hanteringsverktyg för molnkryptering tillhandahålls din personliga affärsinformation med molnsäkerhet, vilket skyddar dig från åtkomst av obehöriga parter. AxCrypt är den bästa krypteringsmjukvaran för att skydda molnlagringsdata från cyberattacker under transport eller vila.</value>
+  </data>
+  <data name="Blog_WICE_Title">
+    <value>Vad är molnkryptering?</value>
   </data>
   <data name="Blog_WICS_H1_SubHeading1">
     <value>&lt;strong&gt;Fördelar med cybersäkerhet&lt;strong&gt;</value>
@@ -2357,8 +2701,14 @@ Vad är cybersäkerhet?</value>
   <data name="Blog_WIPM_H2_SH7_Text2">
     <value>AxCrypt Password Manager lagrar alla dina lösenord och dokument i ett säkert privat arkiv som du kan komma åt med ett enda klick på alla dina enheter.</value>
   </data>
+  <data name="Blog_WIPM_H2_SH7_Text5">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; AxCrypt varnar om du använder försvaga eller dubbla lösenord.</value>
+  </data>
   <data name="Blog_WIPM_H2_SH7_Text6">
     <value>AxCrypt genererar ett övertaligt, unikt, säkert lösenord som ger 100 % skydd och ger både 128-bitars och 256-bitars kryptering.</value>
+  </data>
+  <data name="Blog_WIPM_H2_SH7_Text7">
+    <value>&lt;li style="list-style-type: '\2714';"&gt; Ej synlig Starkaste huvudnyckelfras genereras automatiskt.</value>
   </data>
   <data name="Blog_WIPM_H2_SH7_Text8">
     <value>AxCrypt-tekniken är så omfattande att vi har lösenordshanteraren för Windows, lösenordshanteraren för mac och även lösenordshanteraren för mobiltelefoner.</value>
@@ -2390,6 +2740,9 @@ Vad är cybersäkerhet?</value>
   <data name="Blog_WIPM_Takeaway_FeaturePage">
     <value>Om du letar efter en säker, allt-i-ett lösning för lösenordshantering och är intresserad av att veta mer om oss. Ta en titt på &lt;a href='https://axcrypt.net/information/features'&gt;AxCrypt-funktionssida&lt;/a&gt; för att ta reda på mer om hur AxCrypt kan säkra dina filer och data.</value>
   </data>
+  <data name="Blog_WIPM_Takeaway_Text1">
+    <value>Lösenord skyddar våra uppgifter och information. Precis som ytterdörren till ett hus eller kontor, skulle dörrnyckeln tappas bort, kan vem som helst när som helst gå in, vilket resulterar i olika missöden. På samma sätt hanterar och fungerar lösenord som nyckeln för att skydda våra uppgifter och därför bör nyckeln vara unik och stark för varje användare.</value>
+  </data>
   <data name="Blog_WIPM_Takeaway_Text2">
     <value>Orolig för hur man använder lösenordshanteraren? Oroa dig inte, Axcrypt hjälper dig. AxCrypt gör lösenordshantering möjlig i den säkra miljön för användarens AxCrypt-hanterade Mac- och Windows- och mobilenheter. Anställda kan enkelt och säkert hantera sin egen information utan behov av vägledning från IT.</value>
   </data>
@@ -2411,8 +2764,17 @@ Vad är cybersäkerhet?</value>
   <data name="Blog_WTPI_Title">
     <value>Wikileaks och makten av information</value>
   </data>
+  <data name="Blog_WUE_H1_Text1">
+    <value>Även om de flesta känner till termen kryptering, har många en förlegad och missriktad uppfattning om vad det faktiskt innebär. Vi är alla bekanta med den där filmscenen där någon kille sitter i ett mörkt rum omgiven av datorer och hackar och krypterar en stor organisations data. Även om detta naturligtvis händer, är det inte en korrekt bild av hur kryptering används av individer för dagliga aktiviteter.</value>
+  </data>
   <data name="Blog_WUE_H2_Text2">
     <value>&lt;h3&gt;Vad händer utan kryptering?&lt;/h3&gt;</value>
+  </data>
+  <data name="Blog_WUE_H3_Text1">
+    <value>I det här fallet, om filerna i fråga hade krypterats, skulle de 1 000 personer vars information fanns på usb pinnen inte ha utsatts för fara, och polisen skulle inte ha hanterat påföljden.</value>
+  </data>
+  <data name="Blog_WUE_H5_Text1">
+    <value>Så kort sagt, vi behöver kryptering eftersom vi som privata användare eller företag har att göra med massiva dataintrång som ökar för varje dag som går. Kryptering skyddar säkert data som du inte vill att någon annan ska ha åtkomst till. Det kan hjälpa till att skydda data som du skickar, tar emot och lagrar som textmeddelanden som lagras på din smartphone, löploggar sparade på din träningsklocka och bankinformation som skickas via ditt bankkonto.</value>
   </data>
   <data name="Blog_WYSASDF_Text1">
     <value>AxCrypt 2 stöder inte längre en funktion som heter &lt;em&gt;Self Decrypting Files&lt;/em&gt; som stöddes i AxCrypt 1.x.</value>
@@ -7893,6 +8255,9 @@ Till: support@axcrypt.net
   </data>
   <data name="SettingDeleteUsrCnfrmText" xml:space="preserve">
     <value>Är du säker på att du vill ta bort ditt konto?</value>
+  </data>
+  <data name="SettingDelPwdCfmText" xml:space="preserve">
+    <value>Om &lt;span&gt;ja&lt;/span&gt; ange &lt;span&gt;lösenord:&lt;/span&gt;</value>
   </data>
   <data name="SettingsDeletePageBody" xml:space="preserve">
     <value>Detta raderar ditt AxCrypt ID permanent. &lt;span class="red"&gt;All information tas bort, vilket innefattar sparade lösenordsposter.&lt;/span&gt;
