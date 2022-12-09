@@ -15235,6 +15235,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UPDATE.
+        /// </summary>
+        public static string BusinessInformationUpdate {
+            get {
+                return ResourceManager.GetString("BusinessInformationUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have been added as a user of AxCrypt File Security by &lt;b&gt;{addedby_user_email}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href=&quot;{download_url}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{account_web_url}&lt;/b&gt;..
         /// </summary>
         public static string BusinessInvitationMailBodyIntro {
@@ -30175,6 +30184,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All items.
+        /// </summary>
+        public static string SecretsAllItems {
+            get {
+                return ResourceManager.GetString("SecretsAllItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to password management..
         /// </summary>
         public static string SecretsButtonToolTipText {
@@ -30189,6 +30207,15 @@ namespace AxCrypt.Content.Properties {
         public static string SecretsCopytoClipboard {
             get {
                 return ResourceManager.GetString("SecretsCopytoClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recently added.
+        /// </summary>
+        public static string SecretsRecentlyAdded {
+            get {
+                return ResourceManager.GetString("SecretsRecentlyAdded", resourceCulture);
             }
         }
         
