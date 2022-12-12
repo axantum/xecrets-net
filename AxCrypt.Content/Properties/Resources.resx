@@ -5213,6 +5213,9 @@ You have been warned, now enjoy!</value>
   <data name="BusinessHeroSubheading" xml:space="preserve">
     <value>Made for companies</value>
   </data>
+  <data name="BusinessInformationUpdate" xml:space="preserve">
+    <value>UPDATE</value>
+  </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>You have been added as a user of AxCrypt File Security by &lt;b&gt;{addedby_user_email}&lt;/b&gt;. To start securing your files, accept this invitation and set your personal secret password. Then &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;download&lt;/a&gt; and install the AxCrypt application. Sign in to AxCrypt with &lt;b&gt;{account_web_url}&lt;/b&gt;.</value>
     <comment>The intro to the email sent out to a member being added by an administrator, if the user does not have an account at all.</comment>
@@ -10482,11 +10485,17 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Search passwords here...</value>
   </data>
+  <data name="SecretsAllItems" xml:space="preserve">
+    <value>All items</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Go to password management.</value>
   </data>
   <data name="SecretsCopytoClipboard" xml:space="preserve">
     <value>Copy to clipboard</value>
+  </data>
+  <data name="SecretsRecentlyAdded" xml:space="preserve">
+    <value>Recently added</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Sort By</value>
