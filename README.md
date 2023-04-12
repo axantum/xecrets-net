@@ -1,8 +1,8 @@
 # README #
 
-AxCrypt 2.1.x - Portable Open Source Encryption in C# for .NET/Mono.
+Xecrets AxCrypt 2.1.x - Portable Open Source Encryption in C# for .NET/Mono based on AxCrypt.
 
-### AxCrypt 2.1.x ###
+### Xecrets AxCrypt 2.1.x ###
 
 Although the software is in release status, internal API:s may break at any moment. Use with care.
 
@@ -18,9 +18,9 @@ Unit tests require a NUnit-compatible unit test runner.
 Talk to me. Due to the nature of the application, pull requests are audited very carefully.
 Before requesting a pull it's best if we discuss things.
 
-Minimum requirements is that FxCop/Static Code Analysis passes without warnings, as well as
-compilation. There should be tests covering every line of code in Axantum.AxCrypt.Core.
+Minimum requirements is that Static Code Analysis passes without warnings, as well as
+compilation. There should be tests covering every line of code in AxCrypt.Core.
 
 ### Contact ###
 
-Contact Us, AxCrypt AB via support@axcrypt.net .
+Contact Us, Axantum Software AB via xecrets@axantum.com .
