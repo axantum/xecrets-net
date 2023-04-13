@@ -26,9 +26,9 @@ namespace AxCrypt.Core.Service
     /// </summary>
     public class DeviceAccountService : IAccountService
     {
-        private IAccountService _localService;
+        private readonly IAccountService _localService;
 
-        private IAccountService _remoteService;
+        private readonly IAccountService _remoteService;
 
         public DeviceAccountService(IAccountService localService, IAccountService remoteService)
         {
@@ -189,20 +189,20 @@ namespace AxCrypt.Core.Service
                 }
 
                 IList<UserKeyPair> allKeys = remoteKeys.Union(localKeys).ToList();
-                if (allKeys.Count() == 0)
+                if (allKeys.Count == 0)
                 {
-                    UserKeyPair currentKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
+                    UserKeyPair? currentKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
                     if (currentKeyPair != null)
                     {
                         remoteKeys.Add(currentKeyPair);
                     }
                     allKeys = remoteKeys;
                 }
-                if (allKeys.Count() > remoteKeys.Count())
+                if (allKeys.Count > remoteKeys.Count)
                 {
                     await _remoteService.SaveAsync(allKeys).Free();
                 }
-                if (allKeys.Count() > localKeys.Count())
+                if (allKeys.Count > localKeys.Count)
                 {
                     await _localService.SaveAsync(allKeys).Free();
                 }
@@ -215,13 +215,13 @@ namespace AxCrypt.Core.Service
             return localKeys;
         }
 
-        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        public async Task<UserKeyPair?> CurrentKeyPairAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline)
             {
                 try
                 {
-                    UserKeyPair currentUserKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
+                    UserKeyPair? currentUserKeyPair = await _remoteService.CurrentKeyPairAsync().Free();
                     return currentUserKeyPair;
                 }
                 catch (ApiException aex)
@@ -242,19 +242,19 @@ namespace AxCrypt.Core.Service
             await _localService.PasswordResetAsync(verificationCode).Free();
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email)
         {
             return await OtherUserPublicKeysAsync(() => _localService.OtherPublicKeyAsync(email), () => _remoteService.OtherPublicKeyAsync(email)).Free();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public async Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters)
         {
             return await OtherUserPublicKeysAsync(() => _localService.OtherUserInvitePublicKeyAsync(email, null), () => _remoteService.OtherUserInvitePublicKeyAsync(email, customParameters)).Free();
         }
 
-        private async Task<UserPublicKey> OtherUserPublicKeysAsync(Func<Task<UserPublicKey>> localServiceOtherUserPublicKey, Func<Task<UserPublicKey>> remoteServiceOtherUserPublicKey)
+        private static async Task<UserPublicKey?> OtherUserPublicKeysAsync(Func<Task<UserPublicKey?>> localServiceOtherUserPublicKey, Func<Task<UserPublicKey?>> remoteServiceOtherUserPublicKey)
         {
-            UserPublicKey publicKey = await localServiceOtherUserPublicKey().Free();
+            UserPublicKey? publicKey = await localServiceOtherUserPublicKey().Free();
             if (New<AxCryptOnlineState>().IsOffline)
             {
                 return NonNullPublicKey(publicKey);
@@ -263,10 +263,8 @@ namespace AxCrypt.Core.Service
             try
             {
                 publicKey = await remoteServiceOtherUserPublicKey().Free();
-                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-                {
-                    knownPublicKeys.AddOrReplace(publicKey);
-                }
+                using var knownPublicKeys = New<KnownPublicKeys>();
+                knownPublicKeys.AddOrReplace(publicKey);
             }
             catch (ApiException aex)
             {
@@ -276,7 +274,7 @@ namespace AxCrypt.Core.Service
             return publicKey;
         }
 
-        private static UserPublicKey NonNullPublicKey(UserPublicKey publicKey)
+        private static UserPublicKey NonNullPublicKey(UserPublicKey? publicKey)
         {
             if (publicKey != null)
             {
@@ -382,7 +380,7 @@ namespace AxCrypt.Core.Service
             return await _localService.CreateSubscriptionAsync(skTransactions).Free();
         }
 
-        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
             if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
             {

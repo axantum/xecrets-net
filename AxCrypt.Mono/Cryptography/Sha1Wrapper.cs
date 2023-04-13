@@ -1,5 +1,7 @@
 ﻿using AxCrypt.Abstractions.Algorithm;
 using AxCrypt.Core.Algorithm;
+using AxCrypt.Core.Runtime;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +12,7 @@ namespace AxCrypt.Mono.Cryptography
 {
     public class Sha1Wrapper : Sha1
     {
-        private System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
+        private readonly System.Security.Cryptography.HashAlgorithm _hashAlgorithm;
 
         public Sha1Wrapper(System.Security.Cryptography.HashAlgorithm hashAlgorithm)
         {
@@ -34,7 +36,7 @@ namespace AxCrypt.Mono.Cryptography
 
         public override byte[] Hash()
         {
-            return _hashAlgorithm.Hash;
+            return _hashAlgorithm.Hash ?? throw new InternalErrorException("Hash is null.");
         }
 
         public override int HashSize
@@ -67,7 +69,7 @@ namespace AxCrypt.Mono.Cryptography
             get { return _hashAlgorithm.OutputBlockSize; }
         }
 
-        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset)
         {
             return _hashAlgorithm.TransformBlock(inputBuffer, inputOffset, inputCount, outputBuffer, outputOffset);
         }

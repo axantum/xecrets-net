@@ -33,7 +33,7 @@ namespace AxCrypt.Abstractions
     {
         public ErrorStatus ErrorStatus { get; set; }
 
-        public string DisplayContext { get; set; }
+        public string DisplayContext { get; set; } = string.Empty;
 
         protected AxCryptException()
             : base()

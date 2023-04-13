@@ -40,7 +40,7 @@ namespace AxCrypt.Core.Crypto
     /// </summary>
     public class EncryptionParameters
     {
-        private LogOnIdentity _identity;
+        private LogOnIdentity? _identity;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptionParameters"/> class.
@@ -77,10 +77,10 @@ namespace AxCrypt.Core.Crypto
         {
             foreach (UserPublicKey userPublicKey in publicKeys)
             {
-                UserPublicKey existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
+                UserPublicKey? existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
                 if (existingKey != null)
                 {
-                    _publicKeys.Remove(existingKey);
+                    _ = _publicKeys.Remove(existingKey);
                 }
                 _publicKeys.Add(userPublicKey);
             }
@@ -99,7 +99,7 @@ namespace AxCrypt.Core.Crypto
         /// <value>
         /// The passphrase.
         /// </value>
-        public Passphrase Passphrase { get { return _identity.Passphrase; } }
+        public Passphrase Passphrase { get { return _identity!.Passphrase; } }
 
         private List<UserPublicKey> _publicKeys;
 
@@ -131,6 +131,6 @@ namespace AxCrypt.Core.Crypto
         /// <value>
         /// The master key.
         /// </value>
-        public UserPublicKey PublicMasterKey { get; set; }
+        public UserPublicKey? PublicMasterKey { get; set; }
     }
 }

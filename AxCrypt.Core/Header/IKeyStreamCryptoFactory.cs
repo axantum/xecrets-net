@@ -40,6 +40,6 @@ namespace AxCrypt.Core.Header
         /// </summary>
         /// <param name="keyStreamOffset">The key stream offset to use.</param>
         /// <returns>An ICrypto instance, initialized with key and iv, or null if no valid key is set.</returns>
-        ICrypto Crypto(long keyStreamOffset);
+        ICrypto? Crypto(long keyStreamOffset);
     }
 }

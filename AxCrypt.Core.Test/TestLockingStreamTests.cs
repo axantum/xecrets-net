@@ -27,7 +27,7 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Core.IO;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Fake;
 using NUnit.Framework;
 using System;

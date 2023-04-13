@@ -3,6 +3,7 @@ using AxCrypt.Core.Algorithm;
 using AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -10,7 +11,8 @@ namespace AxCrypt.Mono.Cryptography
 {
     public class AesWrapper : Aes
     {
-        private System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
+        [AllowNull]
+        private readonly System.Security.Cryptography.SymmetricAlgorithm _symmetricAlgorithm;
 
         private AesWrapper()
         {
@@ -96,24 +98,15 @@ namespace AxCrypt.Mono.Cryptography
         {
             get
             {
-                switch (_symmetricAlgorithm.Mode)
+                return _symmetricAlgorithm.Mode switch
                 {
-                    case System.Security.Cryptography.CipherMode.CBC:
-                        return CipherMode.CBC;
-
-                    case System.Security.Cryptography.CipherMode.CFB:
-                        return CipherMode.CFB;
-
-                    case System.Security.Cryptography.CipherMode.CTS:
-                        return CipherMode.CTS;
-
-                    case System.Security.Cryptography.CipherMode.ECB:
-                        return CipherMode.ECB;
-
-                    case System.Security.Cryptography.CipherMode.OFB:
-                        return CipherMode.OFB;
-                }
-                return CipherMode.None;
+                    System.Security.Cryptography.CipherMode.CBC => CipherMode.CBC,
+                    System.Security.Cryptography.CipherMode.CFB => CipherMode.CFB,
+                    System.Security.Cryptography.CipherMode.CTS => CipherMode.CTS,
+                    System.Security.Cryptography.CipherMode.ECB => CipherMode.ECB,
+                    System.Security.Cryptography.CipherMode.OFB => CipherMode.OFB,
+                    _ => CipherMode.None,
+                };
             }
             set
             {

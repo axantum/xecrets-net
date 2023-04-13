@@ -29,13 +29,13 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Session;
-using AxCrypt.Core.Test.Properties;
 using AxCrypt.Fake;
+
 using NUnit.Framework;
-using System;
-using System.IO;
-using System.Linq;
+
 using System.Text;
+
+using Xecrets.File.Core.Test.Properties;
 
 using static AxCrypt.Abstractions.TypeResolve;
 

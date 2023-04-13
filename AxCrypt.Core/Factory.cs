@@ -25,10 +25,12 @@
 
 #endregion Coypright and License
 
-using Axantum.AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
+using AxCrypt.Core.Extensions;
 
 namespace Axantum.AxCrypt.Core
 {
@@ -51,13 +53,13 @@ namespace Axantum.AxCrypt.Core
             }
         }
 
-        private Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
 
         private Factory()
         {
         }
 
-        private static Factory _instance = new Factory();
+        private static readonly Factory _instance = new Factory();
 
         /// <summary>
         /// Gets the singleton instance of the Factory
@@ -120,8 +122,7 @@ namespace Axantum.AxCrypt.Core
 
         private void SetAndDisposeIfDisposable(Type type, object value)
         {
-            object o;
-            if (_mapping.TryGetValue(type, out o))
+            if (_mapping.TryGetValue(type, out object? o))
             {
                 DisposeIfDisposable(o);
             }
@@ -136,14 +137,12 @@ namespace Axantum.AxCrypt.Core
         /// <returns>A singleton instance of the given type.</returns>
         public TResult Singleton<TResult>() where TResult : class
         {
-            object o;
-            if (!_mapping.TryGetValue(typeof(TResult), out o))
+            if (!_mapping.TryGetValue(typeof(TResult), out object? o))
             {
                 throw new ArgumentException("Unregistered singleton. Initialize with 'FactoryRegistry.Singleton<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
             }
 
-            TResult value = o as TResult;
-            if (value != null)
+            if (o is TResult value)
             {
                 return value;
             }
@@ -205,8 +204,7 @@ namespace Axantum.AxCrypt.Core
 
         private Func<TResult> GetTypeFactory<TResult>()
         {
-            object function;
-            if (!_mapping.TryGetValue(typeof(TResult), out function))
+            if (!_mapping.TryGetValue(typeof(TResult), out object? function))
             {
                 throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}>(() => {{ return new {0}(); }});'".InvariantFormat(typeof(TResult)));
             }
@@ -215,8 +213,7 @@ namespace Axantum.AxCrypt.Core
 
         private Func<TArgument, TResult> GetTypeFactory<TArgument, TResult>()
         {
-            object function;
-            if (!_mapping.TryGetValue(typeof(TResult), out function))
+            if (!_mapping.TryGetValue(typeof(TResult), out object? function))
             {
                 throw new ArgumentException("Unregistered type factory. Initialize with 'Factory.Instance.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".InvariantFormat(typeof(TArgument), typeof(TResult)));
             }
@@ -237,8 +234,7 @@ namespace Axantum.AxCrypt.Core
 
         private static void DisposeIfDisposable(object o)
         {
-            IDisposable disposable = o as IDisposable;
-            if (disposable != null)
+            if (o is IDisposable disposable)
             {
                 disposable.Dispose();
             }

@@ -26,11 +26,14 @@
 #endregion Coypright and License
 
 using AxCrypt.Abstractions;
-using AxCrypt.Api.Implementation;
 using AxCrypt.Core.Ipc;
+
 using NUnit.Framework;
-using System;
-using System.Linq;
+
+using System.Text.Json;
+
+using Xecrets.File.Api.Implementation;
+using Xecrets.File.Core;
 
 namespace AxCrypt.Core.Test
 {
@@ -40,7 +43,12 @@ namespace AxCrypt.Core.Test
         [SetUp]
         public static void Setup()
         {
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer());
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+            };
+
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(new JsonSourceGenerationContext(options)));
         }
 
         [TearDown]

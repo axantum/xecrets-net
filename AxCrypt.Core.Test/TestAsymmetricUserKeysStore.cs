@@ -95,8 +95,9 @@ namespace AxCrypt.Core.Test
             UserKeyPair userKeyPair = new UserKeyPair(EmailAddress.Parse("svante@axantum.com"), 512);
 
             await store.ImportAsync(userKeyPair);
-            Assert.That((await store.AllKeyPairsAsync()).First().KeyPair.PrivateKey, Is.Not.Null);
-            Assert.That((await store.AllKeyPairsAsync()).First().KeyPair.PublicKey, Is.Not.Null);
+            var allKeyPairs = await store.AllKeyPairsAsync();
+            Assert.That(allKeyPairs.First().KeyPair.PrivateKey, Is.Not.Null);
+            Assert.That(allKeyPairs.First().KeyPair.PublicKey, Is.Not.Null);
 
             IAsymmetricKeyPair keyPair = (await store.AllKeyPairsAsync()).First().KeyPair;
 

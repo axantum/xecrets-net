@@ -38,11 +38,6 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         public BouncyCastlePaddingHash(int keyBits)
         {
-            if (keyBits >= 2048)
-            {
-                _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
-                return;
-            }
             if (keyBits < 1024)
             {
                 _digest = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
@@ -53,6 +48,8 @@ namespace AxCrypt.Core.Crypto.Asymmetric
                 _digest = new Org.BouncyCastle.Crypto.Digests.Sha256Digest();
                 return;
             }
+
+            _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
         }
 
         public string AlgorithmName

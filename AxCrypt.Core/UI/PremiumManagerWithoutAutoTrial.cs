@@ -12,7 +12,7 @@ namespace AxCrypt.Core.UI
     {
         protected override Task<PlanState> TryPremium(LogOnIdentity identity, PlanInformation planInformation, NameOf startTrialMessage)
         {
-            if (planInformation == null)
+            if (planInformation == null!)
             {
                 throw new ArgumentNullException(nameof(planInformation));
             }

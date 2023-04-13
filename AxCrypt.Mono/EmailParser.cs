@@ -18,15 +18,14 @@ namespace AxCrypt.Mono
         {
             foreach (string email in new RegexEmailParser().Extract(text))
             {
-                string address;
-                if (TryParseInternal(email, out address))
+                if (TryParseInternal(email, out string? address))
                 {
-                    yield return address;
+                    yield return address!;
                 }
             }
         }
 
-        public bool TryParse(string email, out string address)
+        public bool TryParse(string email, out string? address)
         {
             if (! new RegexEmailParser().TryParse(email, out address))
             {
@@ -36,7 +35,7 @@ namespace AxCrypt.Mono
             return TryParseInternal(email, out address);
         }
 
-        private bool TryParseInternal(string email, out string address)
+        private static bool TryParseInternal(string email, out string? address)
         {
             try
             {

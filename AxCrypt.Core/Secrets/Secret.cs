@@ -1,4 +1,4 @@
-#if DEBUG
+﻿#if DEBUG
 #define CODE_ANALYSIS
 #endif
 
@@ -31,6 +31,7 @@
 #endregion License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Core.Secrets
 {
@@ -149,6 +150,7 @@ namespace AxCrypt.Core.Secrets
             set { _dbid = value; }
         }
 
+        [AllowNull]
         private EncryptionKey _encryptionKey;
 
         /// <summary>
@@ -172,6 +174,7 @@ namespace AxCrypt.Core.Secrets
             set { _secretType = value; }
         }
 
+        [AllowNull]
         private SecretPassword _password;
 
         public SecretPassword Password
@@ -180,6 +183,7 @@ namespace AxCrypt.Core.Secrets
             set { _password = value; }
         }
 
+        [AllowNull]
         private SecretCard _card;
 
         public SecretCard Card
@@ -188,6 +192,7 @@ namespace AxCrypt.Core.Secrets
             set { _card = value; }
         }
 
+        [AllowNull]
         private SecretNote _note;
 
         public SecretNote Note
@@ -222,7 +227,7 @@ namespace AxCrypt.Core.Secrets
 
         #region IEquatable<Secret> Members
 
-        public bool Equals(Secret other)
+        public bool Equals(Secret? other)
         {
             if (other == null)
             {

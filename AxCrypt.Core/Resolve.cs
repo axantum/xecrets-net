@@ -23,7 +23,6 @@
  * http://www.axcrypt.net for more information about the author.
 */
 
-using System.Collections.Generic;
 using System.Reflection;
 
 #endregion Coypright and License
@@ -35,14 +34,13 @@ using AxCrypt.Core.Portable;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
-using System;
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Rest;
-using AxCrypt.Api.Implementation;
 using AxCrypt.Core.IO;
 using static AxCrypt.Abstractions.TypeResolve;
+using Xecrets.File.Api.Implementation;
+using Xecrets.File.Core;
 
 namespace AxCrypt.Core
 {
@@ -88,9 +86,8 @@ namespace AxCrypt.Core
             TypeMap.Register.New<int, Salt>((size) => new Salt(size));
             TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
             TypeMap.Register.New<IterationCalculator>(() => new IterationCalculator());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
         }
-
         public static KnownIdentities KnownIdentities
         {
             get { return New<KnownIdentities>(); }

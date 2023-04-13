@@ -36,6 +36,6 @@ namespace AxCrypt.Core.Crypto.Asymmetric
     {
         IAsymmetricPublicKey PublicKey { get; }
 
-        IAsymmetricPrivateKey PrivateKey { get; }
+        IAsymmetricPrivateKey? PrivateKey { get; }
     }
 }

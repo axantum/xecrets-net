@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace AxCrypt.Abstractions.Rest
 {
     public interface IRestCaller
@@ -49,7 +43,6 @@ namespace AxCrypt.Abstractions.Rest
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
         string UrlEncode(string value);
     }
 }

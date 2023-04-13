@@ -25,16 +25,11 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace AxCrypt.Abstractions
 {
     public class TypeRegister
     {
-        private IDictionary<Type, object> _mapping;
+        private readonly IDictionary<Type, object> _mapping;
 
         public TypeRegister(IDictionary<Type, object> mapping)
         {
@@ -93,8 +88,7 @@ namespace AxCrypt.Abstractions
                 throw new ArgumentException("A plain 'object' cannot be registered as a type.", nameof(type));
             }
 
-            object o;
-            if (_mapping.TryGetValue(type, out o))
+            if (_mapping.TryGetValue(type, out object? o))
             {
                 DisposeIfDisposable(o);
             }
@@ -113,10 +107,9 @@ namespace AxCrypt.Abstractions
             _mapping.Clear();
         }
 
-        private static void DisposeIfDisposable(object o)
+        private static void DisposeIfDisposable(object? o)
         {
-            IDisposable disposable = o as IDisposable;
-            if (disposable != null)
+            if (o is IDisposable disposable)
             {
                 disposable.Dispose();
             }

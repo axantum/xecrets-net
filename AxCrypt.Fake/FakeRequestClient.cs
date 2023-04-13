@@ -38,6 +38,6 @@ namespace AxCrypt.Fake
             return FakeDispatcher(command);
         }
 
-        public Func<CommandServiceEventArgs, CommandStatus> FakeDispatcher { get; set; }
+        public Func<CommandServiceEventArgs, CommandStatus> FakeDispatcher { get; set; } = (command) => CommandStatus.Unknown;
     }
 }

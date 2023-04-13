@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Crypto

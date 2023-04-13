@@ -3,6 +3,7 @@ using AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,14 @@ namespace AxCrypt.Mono
 {
     public class ProcessMonitor : IDisposable
     {
+        [AllowNull]
         private DelayedAction _action;
 
         private readonly object _lock = new object();
 
         private HashSet<int> _processIds;
 
-        private int _currentSessionId;
+        private readonly int _currentSessionId;
 
         public ProcessMonitor()
         {
@@ -30,10 +32,9 @@ namespace AxCrypt.Mono
             _action.StartIdleTimer();
         }
 
-        private async void CheckProcesses(object sender, EventArgs e)
+        private async void CheckProcesses(object? sender, EventArgs e)
         {
-            bool processHasExited = false;
-            processHasExited = CheckForExitedProcesses();
+            bool processHasExited  = CheckForExitedProcesses();
 
             if (processHasExited)
             {

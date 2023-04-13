@@ -39,7 +39,7 @@ namespace AxCrypt.Core.Service
     /// </summary>
     public class KeyPairService : IDisposable
     {
-        private Task _running;
+        private Task? _running;
 
         private bool _disposed = false;
 
@@ -49,7 +49,7 @@ namespace AxCrypt.Core.Service
 
         private int _keyBits;
 
-        private Queue<IAsymmetricKeyPair> _keyPairs = new Queue<IAsymmetricKeyPair>();
+        private readonly Queue<IAsymmetricKeyPair> _keyPairs = new Queue<IAsymmetricKeyPair>();
 
         public KeyPairService()
         {
@@ -66,7 +66,7 @@ namespace AxCrypt.Core.Service
                 throw new ArgumentOutOfRangeException(nameof(preGenerationTargetCount));
             }
 #if DEBUG
-            if (keyBits != 768 && keyBits != 4096)
+            if (keyBits is not 768 and not 4096)
 #else
             if (keyBits != 4096)
 #endif

@@ -59,24 +59,20 @@ namespace AxCrypt.Core.UI
 
         public string DisplayName { get; private set; }
 
-        private KnownFolderKind _knownFolderKind;
+        private readonly KnownFolderKind _knownFolderKind;
 
         public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl)
-            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, null)
+            : this(knownFolderInfo, myFolderName, knownFolderKind, providerUrl, string.Empty)
         {
         }
 
         public KnownFolder(IDataContainer knownFolderInfo, string myFolderName, KnownFolderKind knownFolderKind, Uri providerUrl, string displayName)
         {
-            if (knownFolderInfo == null)
-            {
-                throw new ArgumentNullException("knownFolderInfo");
-            }
             if (myFolderName == null)
             {
-                throw new ArgumentNullException("myFolderName");
+                throw new ArgumentNullException(nameof(myFolderName));
             }
-            Folder = knownFolderInfo;
+            Folder = knownFolderInfo ?? throw new ArgumentNullException(nameof(knownFolderInfo));
             My = knownFolderInfo.FolderItemInfo(myFolderName);
             _knownFolderKind = knownFolderKind;
             ProviderUrl = providerUrl;
@@ -88,7 +84,7 @@ namespace AxCrypt.Core.UI
         {
             if (knownFolder == null)
             {
-                throw new ArgumentNullException("knownFolder");
+                throw new ArgumentNullException(nameof(knownFolder));
             }
             Folder = knownFolder.Folder;
             My = knownFolder.My;

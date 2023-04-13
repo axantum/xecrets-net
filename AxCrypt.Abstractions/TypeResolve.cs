@@ -34,7 +34,7 @@ namespace AxCrypt.Abstractions
 {
     public class TypeResolve
     {
-        private IDictionary<Type, object> _mapping;
+        private readonly IDictionary<Type, object> _mapping;
 
         public TypeResolve(IDictionary<Type, object> mapping)
         {
@@ -79,20 +79,17 @@ namespace AxCrypt.Abstractions
 
         private TResult NewInternal<TResult>() where TResult : class
         {
-            object o;
-            if (!_mapping.TryGetValue(typeof(TResult), out o))
+            if (!_mapping.TryGetValue(typeof(TResult), out object? o))
             {
                 throw new ArgumentException("Unregistered type. Initialize with 'TypeMap.Register.[Singleton|New]<{0}>(() => {{ return new {0}(); }});'".Format(typeof(TResult)));
             }
 
-            TResult value = o as TResult;
-            if (value != null)
+            if (o is TResult value)
             {
                 return value;
             }
 
-            Func<TResult> function = o as Func<TResult>;
-            if (function != null)
+            if (o is Func<TResult> function)
             {
                 return function();
             }
@@ -117,8 +114,7 @@ namespace AxCrypt.Abstractions
 
         private TResult CreateInternal<TArgument, TResult>(TArgument argument)
         {
-            object o;
-            if (!_mapping.TryGetValue(typeof(Tuple<TArgument, TResult>), out o))
+            if (!_mapping.TryGetValue(typeof(Tuple<TArgument, TResult>), out object? o))
             {
                 throw new ArgumentException("Unregistered type factory. Initialize with 'TypeMap.Register<{0}, {1}>((argument) => {{ return new {0}(argument); }});'".Format(typeof(TArgument), typeof(TResult)));
             }

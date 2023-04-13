@@ -46,15 +46,11 @@ namespace AxCrypt.Fake
             OnRequest(new RequestCommandEventArgs(command));
         }
 
-        public event EventHandler<RequestCommandEventArgs> Request;
+        public event EventHandler<RequestCommandEventArgs>? Request;
 
         protected virtual void OnRequest(RequestCommandEventArgs e)
         {
-            EventHandler<RequestCommandEventArgs> handler = Request;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Request?.Invoke(this, e);
         }
     }
 }

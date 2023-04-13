@@ -27,29 +27,27 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Ipc
 {
     public class CommandService : IDisposable
     {
+        [AllowNull]
         private IRequestServer _server;
-        private IRequestClient _client;
+
+        private readonly IRequestClient _client;
 
         public CommandService(IRequestServer server, IRequestClient client)
         {
-            if (server == null)
-            {
-                throw new ArgumentNullException("server");
-            }
-
-            _server = server;
+            _server = server ?? throw new ArgumentNullException(nameof(server));
             _client = client;
 
             _server.Request += HandleServerRequest;
         }
 
-        private void HandleServerRequest(object sender, RequestCommandEventArgs e)
+        private void HandleServerRequest(object? sender, RequestCommandEventArgs e)
         {
             OnReceived(e.Command);
         }
@@ -71,15 +69,11 @@ namespace AxCrypt.Core.Ipc
             _server.Start();
         }
 
-        public event EventHandler<CommandServiceEventArgs> Received;
+        public event EventHandler<CommandServiceEventArgs>? Received;
 
         protected virtual void OnReceived(CommandServiceEventArgs e)
         {
-            EventHandler<CommandServiceEventArgs> handler = Received;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Received?.Invoke(this, e);
         }
 
         public void Dispose()

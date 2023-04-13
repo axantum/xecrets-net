@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Runtime
@@ -36,12 +37,13 @@ namespace AxCrypt.Core.Runtime
     /// </summary>
     public class DelayedAction : IDisposable
     {
+        [AllowNull]
         private IDelayTimer _timer;
 
         /// <summary>
         /// The action to perform after the specified idle time.
         /// </summary>
-        public event EventHandler Action;
+        public event EventHandler? Action;
 
         protected virtual void OnAction()
         {
@@ -54,17 +56,12 @@ namespace AxCrypt.Core.Runtime
         /// <param name="minimumIdleTime">The minium time of idle before actually performing the action.</param>
         public DelayedAction(IDelayTimer timer, TimeSpan minimumIdleTime)
         {
-            if (timer == null)
-            {
-                throw new ArgumentNullException("timer");
-            }
-
-            _timer = timer;
+            _timer = timer ?? throw new ArgumentNullException(nameof(timer));
             _timer.SetInterval(minimumIdleTime);
             _timer.Elapsed += HandleTimerElapsedEvent;
         }
 
-        private void HandleTimerElapsedEvent(object sender, EventArgs e)
+        private void HandleTimerElapsedEvent(object? sender, EventArgs e)
         {
             if (_timer != null)
             {

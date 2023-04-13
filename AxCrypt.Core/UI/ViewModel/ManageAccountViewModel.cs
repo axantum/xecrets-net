@@ -31,6 +31,7 @@ using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,17 +48,20 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public bool LastChangeStatus { get { return GetProperty<bool>(nameof(LastChangeStatus)); } private set { SetProperty(nameof(LastChangeStatus), value); } }
 
+        [AllowNull]
         public IAsyncAction ChangePassphraseAsync { get; private set; }
 
         public Func<bool, Task> ChangePasswordCompleteAsync { get; set; } = (success) => Constant.CompletedTask;
 
+        [AllowNull]
         private AccountStorage _accountStorage;
 
         public static async Task<ManageAccountViewModel> CreateAsync(AccountStorage accountStorage)
         {
-            ManageAccountViewModel vm = new ManageAccountViewModel();
-
-            vm._accountStorage = accountStorage;
+            var vm = new ManageAccountViewModel
+            {
+                _accountStorage = accountStorage
+            };
 
             await vm.InitializePropertyValuesAsync();
 

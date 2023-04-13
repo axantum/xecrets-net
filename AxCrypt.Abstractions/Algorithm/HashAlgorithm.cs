@@ -55,7 +55,7 @@ namespace AxCrypt.Abstractions.Algorithm
 
         public abstract int OutputBlockSize { get; }
 
-        public abstract int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset);
+        public abstract int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset);
 
         public abstract byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount);
 

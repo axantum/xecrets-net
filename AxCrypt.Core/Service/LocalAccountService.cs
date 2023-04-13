@@ -50,25 +50,16 @@ namespace AxCrypt.Core.Service
     {
         private static readonly Task _completedTask = Task.FromResult(true);
 
-        private static Regex _userKeyPairFilePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$");
+        private static readonly Regex _userKeyPairFilePattern = new Regex(@"^Keys-([\d]+)-txt\.axx$");
 
-        private IDataContainer _workContainer;
+        private readonly IDataContainer _workContainer;
 
         public static readonly string FileName = "UserAccounts.txt";
 
         public LocalAccountService(LogOnIdentity identity, IDataContainer workContainer)
         {
-            if (identity == null)
-            {
-                throw new ArgumentNullException(nameof(identity));
-            }
-            if (workContainer == null)
-            {
-                throw new ArgumentNullException(nameof(workContainer));
-            }
-
-            Identity = identity;
-            _workContainer = workContainer;
+            Identity = identity ?? throw new ArgumentNullException(nameof(identity));
+            _workContainer = workContainer ?? throw new ArgumentNullException(nameof(workContainer));
         }
 
         public IAccountService Refresh()
@@ -147,7 +138,7 @@ namespace AxCrypt.Core.Service
             return Task.FromResult(TryLoadUserKeyPairs());
         }
 
-        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        public async Task<UserKeyPair?> CurrentKeyPairAsync()
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -155,7 +146,7 @@ namespace AxCrypt.Core.Service
             }
 
             UserAccount userAccount = LoadUserAccount();
-            UserKeyPair keyPair = userAccount.AccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).OrderByDescending(ukp => ukp.Timestamp).FirstOrDefault();
+            UserKeyPair? keyPair = userAccount.AccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).OrderByDescending(ukp => ukp!.Timestamp).FirstOrDefault();
             if (keyPair == null)
             {
                 AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(Identity));
@@ -176,7 +167,7 @@ namespace AxCrypt.Core.Service
             await Task.Run(() =>
             {
                 UserAccounts userAccounts = LoadUserAccounts();
-                UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                UserAccount? existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
                 if (existingUserAccount == null)
                 {
                     existingUserAccount = new UserAccount(Identity.UserEmail.Address);
@@ -203,7 +194,7 @@ namespace AxCrypt.Core.Service
             await Task.Run(() =>
             {
                 UserAccounts userAccounts = LoadUserAccounts();
-                UserAccount existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
+                UserAccount? existingUserAccount = userAccounts.Accounts.FirstOrDefault(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
                 if (existingUserAccount == null)
                 {
                     existingUserAccount = new UserAccount(Identity.UserEmail.Address);
@@ -229,10 +220,8 @@ namespace AxCrypt.Core.Service
             }
             userAccountsToSave.Accounts.Add(userAccount);
 
-            using (StreamWriter writer = new StreamWriter(_workContainer.FileItemInfo("UserAccounts.txt").OpenWrite()))
-            {
-                userAccountsToSave.SerializeTo(writer);
-            }
+            using StreamWriter writer = new StreamWriter(_workContainer.FileItemInfo("UserAccounts.txt").OpenWrite());
+            userAccountsToSave.SerializeTo(writer);
         }
 
         public Task<bool> ChangePassphraseAsync(Passphrase passphrase)
@@ -252,7 +241,7 @@ namespace AxCrypt.Core.Service
             if (!userKeys.Any())
             {
                 IEnumerable<UserKeyPair> fromKeyPairFiles = UserKeyPair.Load(UserKeyPairFiles(), Identity.UserEmail, Identity.Passphrase);
-                fromKeyPairFiles = userKeys.Where(uk => !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == uk.KeyPair.PublicKey.Thumbprint));
+                fromKeyPairFiles = userKeys.Where(ukp => ukp is not null && !userAccountKeys.Any(ak => new PublicKeyThumbprint(ak.Thumbprint) == ukp.KeyPair.PublicKey.Thumbprint));
                 userKeys.AddRange(fromKeyPairFiles);
             }
 
@@ -266,7 +255,7 @@ namespace AxCrypt.Core.Service
 
         private IEnumerable<UserKeyPair> LoadValidUserKeysFromAccountKeys(IEnumerable<AccountKey> userAccountKeys)
         {
-            return userAccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).Where(ak => ak != null);
+            return userAccountKeys.Select(ak => ak.ToUserKeyPair(Identity.Passphrase)).Where(ukp => ukp != null).Cast<UserKeyPair>();
         }
 
         private UserAccount LoadUserAccount()
@@ -275,8 +264,10 @@ namespace AxCrypt.Core.Service
             IEnumerable<UserAccount> users = accounts.Accounts.Where(ua => EmailAddress.Parse(ua.UserName) == Identity.UserEmail);
             if (!users.Any())
             {
-                UserAccount userAccount = new UserAccount(Identity.UserEmail.Address);
-                userAccount.AccountSource = AccountSource.Local;
+                UserAccount userAccount = new UserAccount(Identity.UserEmail.Address)
+                {
+                    AccountSource = AccountSource.Local
+                };
                 return userAccount;
             }
             users.First().AccountSource = AccountSource.Local;
@@ -308,16 +299,11 @@ namespace AxCrypt.Core.Service
                 return new UserAccounts();
             }
 
-            using (StreamReader reader = new StreamReader(UserAccountsStore.OpenRead()))
-            {
-                UserAccounts accounts = UserAccounts.DeserializeFrom(reader);
-                if (accounts == null)
-                {
-                    accounts = new UserAccounts();
-                }
+            using var reader = new StreamReader(UserAccountsStore.OpenRead());
+            UserAccounts? accounts = UserAccounts.DeserializeFrom(reader);
+            accounts ??= new UserAccounts();
 
-                return accounts;
-            }
+            return accounts;
         }
 
         public Task PasswordResetAsync(string verificationCode)
@@ -330,7 +316,7 @@ namespace AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email)
         {
             if (Identity.UserEmail == EmailAddress.Empty)
             {
@@ -339,15 +325,13 @@ namespace AxCrypt.Core.Service
 
             return await Task.Run(() =>
             {
-                using (KnownPublicKeys knowPublicKeys = New<KnownPublicKeys>())
-                {
-                    UserPublicKey publicKey = knowPublicKeys.PublicKeys.Where(pk => pk.Email == email).FirstOrDefault();
-                    return publicKey;
-                }
+                using var knowPublicKeys = New<KnownPublicKeys>();
+                UserPublicKey? publicKey = knowPublicKeys.PublicKeys.Where(pk => pk.Email == email).FirstOrDefault();
+                return publicKey;
             }).Free();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public async Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters)
         {
             return await OtherPublicKeyAsync(email);
         }
@@ -362,7 +346,7 @@ namespace AxCrypt.Core.Service
             throw new InvalidOperationException("Premium creation cannot be started locally.");
         }
 
-        public Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
             throw new InvalidOperationException("In app purchase member cannot be getting locally.");
         }

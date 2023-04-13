@@ -1,4 +1,4 @@
-﻿using AxCrypt.Content.Properties;
+﻿using Xecrets.File.Content.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace AxCrypt.Content
 {
     public class Texts : Resources
     {
-        private static Lazy<ResourceManager> _resourceManager = new Lazy<ResourceManager>(() => new ContentResourceManager());
+        private static readonly Lazy<ResourceManager> _resourceManager = new Lazy<ResourceManager>(() => new ContentResourceManager());
 
         public static new ResourceManager ResourceManager { get { return _resourceManager.Value; } }
     }

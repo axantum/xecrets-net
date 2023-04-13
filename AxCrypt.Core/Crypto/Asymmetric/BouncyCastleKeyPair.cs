@@ -25,7 +25,8 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
+using AxCrypt.Api.Model;
+
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -37,17 +38,17 @@ using System.Text;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
-    [JsonObject(MemberSerialization.OptIn)]
     internal class BouncyCastleKeyPair : IAsymmetricKeyPair
     {
         public BouncyCastleKeyPair(int bits)
         {
             AsymmetricCipherKeyPair keyPair = GenerateKeyPair(bits);
-            SetKeys(keyPair.Public, keyPair.Private);
+
+            PublicKey = new BouncyCastlePublicKey(keyPair.Public);
+            PrivateKey = new BouncyCastlePrivateKey(keyPair.Private);
         }
 
-        [JsonConstructor]
-        public BouncyCastleKeyPair(BouncyCastlePublicKey publicKey, BouncyCastlePrivateKey privateKey)
+        public BouncyCastleKeyPair(BouncyCastlePublicKey publicKey, BouncyCastlePrivateKey? privateKey)
         {
             PublicKey = publicKey;
             PrivateKey = privateKey;
@@ -57,20 +58,14 @@ namespace AxCrypt.Core.Crypto.Asymmetric
         {
             AsymmetricKeyParameter publicKeyParameter = new RsaKeyParameters(false, new BigInteger(n), new BigInteger(e));
             AsymmetricKeyParameter privateKeyParameter = new RsaPrivateCrtKeyParameters(new BigInteger(n), new BigInteger(e), new BigInteger(d), new BigInteger(p), new BigInteger(q), new BigInteger(dp), new BigInteger(dq), new BigInteger(qinv));
-            SetKeys(publicKeyParameter, privateKeyParameter);
-        }
 
-        private void SetKeys(AsymmetricKeyParameter publicKeyParameter, AsymmetricKeyParameter privateKeyParameter)
-        {
             PublicKey = new BouncyCastlePublicKey(publicKeyParameter);
             PrivateKey = new BouncyCastlePrivateKey(privateKeyParameter);
         }
 
-        [JsonProperty("publickey")]
         public IAsymmetricPublicKey PublicKey { get; private set; }
 
-        [JsonProperty("privatekey")]
-        public IAsymmetricPrivateKey PrivateKey { get; private set; }
+        public IAsymmetricPrivateKey? PrivateKey { get; private set; }
 
         private static AsymmetricCipherKeyPair GenerateKeyPair(int bits)
         {
@@ -82,22 +77,22 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return keyPair;
         }
 
-        public bool Equals(IAsymmetricKeyPair other)
+        public bool Equals(IAsymmetricKeyPair? other)
         {
-            if ((object)other == null)
+            if (other == null)
             {
                 return false;
             }
-            if (Object.ReferenceEquals(PrivateKey, null))
+            if (ReferenceEquals(PrivateKey, null))
             {
-                return Object.ReferenceEquals(other.PrivateKey, null);
+                return ReferenceEquals(other.PrivateKey, null);
             }
             return PrivateKey.Equals(other.PrivateKey) && PublicKey.Equals(other.PublicKey);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            IAsymmetricKeyPair other = obj as IAsymmetricKeyPair;
+            var other = obj as IAsymmetricKeyPair;
             if (other == null)
             {
                 return false;
@@ -108,14 +103,14 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         public override int GetHashCode()
         {
-            return PrivateKey.GetHashCode() ^ PublicKey.GetHashCode();
+            return (PrivateKey?.GetHashCode() ?? 0) ^ PublicKey.GetHashCode();
         }
 
         public static bool operator ==(BouncyCastleKeyPair left, BouncyCastleKeyPair right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (left is null)
             {
-                return Object.ReferenceEquals(right, null);
+                return ReferenceEquals(right, null);
             }
 
             return left.Equals(right);

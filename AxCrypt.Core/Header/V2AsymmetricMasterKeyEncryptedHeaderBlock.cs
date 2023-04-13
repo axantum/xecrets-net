@@ -25,7 +25,7 @@ namespace AxCrypt.Core.Header
             return CopyTo(block);
         }
 
-        public IAsymmetricPublicKey MasterPublicKey
+        public IAsymmetricPublicKey? MasterPublicKey
         {
             get
             {

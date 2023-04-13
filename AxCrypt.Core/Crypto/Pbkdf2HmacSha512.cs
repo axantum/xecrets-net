@@ -25,13 +25,10 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
-using System;
-using System.Diagnostics.CodeAnalysis;
+
 using System.Text;
 
 using static AxCrypt.Abstractions.TypeResolve;
@@ -39,11 +36,9 @@ using static AxCrypt.Abstractions.TypeResolve;
 namespace AxCrypt.Core.Crypto
 {
     /// <summary>Implements password-based key derivation functionality, PBKDF2, by using a pseudo-random number generator based on <see cref="T:System.Security.Cryptography.HMACSHA512" />.</summary>
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Pbkdf")]
-    [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha")]
     public class Pbkdf2HmacSha512
     {
-        private byte[] _bytes;
+        private byte[]? _bytes;
 
         /// <summary>Initializes a new instance of the <see cref="T:System.Security.Cryptography.Rfc2898DeriveBytes" /> class using a password, a salt, and number of iterations to derive the key.</summary>
         /// <param name="password">The password used to derive the key. </param>
@@ -54,15 +49,15 @@ namespace AxCrypt.Core.Crypto
         {
             if (password == null)
             {
-                throw new ArgumentNullException("password");
+                throw new ArgumentNullException(nameof(password));
             }
             if (salt == null)
             {
-                throw new ArgumentNullException("salt");
+                throw new ArgumentNullException(nameof(salt));
             }
             if (derivationIterations <= 0)
             {
-                throw new ArgumentOutOfRangeException("derivationIterations", "Must be greater than 0.");
+                throw new ArgumentOutOfRangeException(nameof(derivationIterations), "Must be greater than 0.");
             }
 
             _bytes = F(password, salt, derivationIterations);
@@ -82,17 +77,17 @@ namespace AxCrypt.Core.Crypto
             return bytes;
         }
 
-        private static readonly byte[] _empty = new byte[0];
+        private static readonly byte[] _empty = Array.Empty<byte>();
 
         private static byte[] F(string password, Salt salt, int derivationIterations)
         {
             HMAC hmacsha512 = New<HMACSHA512>().Initialize(new SymmetricKey(new UTF8Encoding(false).GetBytes(password)));
 
-            hmacsha512.TransformBlock(salt.GetBytes(), 0, salt.Length, null, 0);
+            _ = hmacsha512.TransformBlock(salt.GetBytes(), 0, salt.Length, null, 0);
             byte[] iBytes = 1.GetBigEndianBytes();
 
-            hmacsha512.TransformBlock(iBytes, 0, iBytes.Length, null, 0);
-            hmacsha512.TransformFinalBlock(_empty, 0, 0);
+            _ = hmacsha512.TransformBlock(iBytes, 0, iBytes.Length, null, 0);
+            _ = hmacsha512.TransformFinalBlock(_empty, 0, 0);
 
             byte[] u = hmacsha512.Hash();
             byte[] un = u;
@@ -100,8 +95,8 @@ namespace AxCrypt.Core.Crypto
             for (int c = 2; c <= derivationIterations; ++c)
             {
                 hmacsha512.Initialize();
-                hmacsha512.TransformBlock(u, 0, u.Length, null, 0);
-                hmacsha512.TransformFinalBlock(_empty, 0, 0);
+                _ = hmacsha512.TransformBlock(u, 0, u.Length, null, 0);
+                _ = hmacsha512.TransformFinalBlock(_empty, 0, 0);
                 u = hmacsha512.Hash();
                 for (int i = 0; i < u.Length; i++)
                 {

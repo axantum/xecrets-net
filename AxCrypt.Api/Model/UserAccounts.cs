@@ -1,16 +1,11 @@
 ﻿using AxCrypt.Abstractions;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+
+using System.Text.Json.Serialization;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class UserAccounts
     {
         public UserAccounts()
@@ -18,10 +13,10 @@ namespace AxCrypt.Api.Model
             Accounts = new List<UserAccount>();
         }
 
-        [JsonProperty("accounts")]
-        public IList<UserAccount> Accounts { get; private set; }
+        [JsonPropertyName("accounts")]
+        public IList<UserAccount> Accounts { get; set; }
 
-        public void SetAccount(UserAccount account)
+        public void SetAccount(UserAccount? account)
         {
             if (account == null)
             {
@@ -51,7 +46,7 @@ namespace AxCrypt.Api.Model
             writer.Write(value);
         }
 
-        public static UserAccounts DeserializeFrom(TextReader reader)
+        public static UserAccounts? DeserializeFrom(TextReader reader)
         {
             if (reader == null)
             {

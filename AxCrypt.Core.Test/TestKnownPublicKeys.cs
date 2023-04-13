@@ -29,7 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Session;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using Moq;
@@ -156,7 +156,7 @@ namespace AxCrypt.Core.Test
 
             Assert.That(userPublicKey1, Is.Not.EqualTo(userPublicKey2), "Checking that the two public keys really are different.");
 
-            storeMock.ResetCalls();
+            storeMock.Invocations.Clear();
             using (KnownPublicKeys knownPublicKeys = KnownPublicKeys.Load(storeMock.Object, Resolve.Serializer))
             {
                 Assert.That(knownPublicKeys.PublicKeys.Count(), Is.EqualTo(2), "There should be two entries now.");

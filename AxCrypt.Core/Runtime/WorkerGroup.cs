@@ -29,6 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Portable;
 using AxCrypt.Core.UI;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace AxCrypt.Core.Runtime
     {
         private class ThreadWorkerWrapper : IThreadWorker
         {
-            private IThreadWorker _worker;
+            private readonly IThreadWorker _worker;
 
             public ThreadWorkerWrapper(IThreadWorker worker)
             {
@@ -86,7 +87,7 @@ namespace AxCrypt.Core.Runtime
             /// Raised just before asynchronous execution starts. Runs on the
             /// original thread, typically the GUI thread.
             /// </summary>
-            public event EventHandler<ThreadWorkerEventArgs> Prepare
+            public event EventHandler<ThreadWorkerEventArgs>? Prepare
             {
                 add { _worker.Prepare += value; }
                 remove { _worker.Prepare -= value; }
@@ -96,7 +97,7 @@ namespace AxCrypt.Core.Runtime
             /// Raised when asynchronous execution starts. Runs on a different
             /// thread than the caller thread. Do not interact with the GUI here.
             /// </summary>
-            public Func<ThreadWorkerEventArgs, Task> WorkAsync
+            public Func<ThreadWorkerEventArgs, Task>? WorkAsync
             {
                 get { return _worker.WorkAsync; }
                 set { _worker.WorkAsync = value; }
@@ -106,13 +107,13 @@ namespace AxCrypt.Core.Runtime
             /// Raised when all is done. Runs on the original thread, typically
             /// the GUI thread.
             /// </summary>
-            public event EventHandler<ThreadWorkerEventArgs> Completing
+            public event EventHandler<ThreadWorkerEventArgs>? Completing
             {
                 add { _worker.Completing += value; }
                 remove { _worker.Completing -= value; }
             }
 
-            public event EventHandler<ThreadWorkerEventArgs> Completed
+            public event EventHandler<ThreadWorkerEventArgs>? Completed
             {
                 add { _worker.Completed += value; }
                 remove { _worker.Completed -= value; }
@@ -126,14 +127,16 @@ namespace AxCrypt.Core.Runtime
             #endregion IThreadWorker Members
         }
 
+        [AllowNull]
         private ISemaphore _concurrencyControlSemaphore;
 
-        private int _maxConcurrencyCount;
+        private readonly int _maxConcurrencyCount;
 
         private bool _disposed = false;
 
         private bool _finished = false;
 
+        [AllowNull]
         private ISingleThread _singleThread;
 
         private readonly object _finishedLock = new object();
@@ -172,7 +175,7 @@ namespace AxCrypt.Core.Runtime
         {
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
             _concurrencyControlSemaphore = Resolve.Portable.Semaphore(maxConcurrent, maxConcurrent);
@@ -261,7 +264,7 @@ namespace AxCrypt.Core.Runtime
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The <see cref="ThreadWorkerEventArgs"/> instance containing the event data.</param>
-        private void HandleThreadWorkerCompletedEvent(object sender, ThreadWorkerEventArgs e)
+        private void HandleThreadWorkerCompletedEvent(object? sender, ThreadWorkerEventArgs e)
         {
             if (e.Result.ErrorStatus != ErrorStatus.Success)
             {
@@ -273,8 +276,7 @@ namespace AxCrypt.Core.Runtime
                     }
                 }
             }
-            IDisposable disposable = sender as IDisposable;
-            if (disposable != null)
+            if (sender is IDisposable disposable)
             {
                 disposable.Dispose();
             }

@@ -38,23 +38,18 @@ namespace AxCrypt.Fake
     {
         public void Time(TimeSpan value)
         {
-            FakeNow fakeNow = New<INow>() as FakeNow;
-            if (fakeNow != null)
+            if (New<INow>() is FakeNow fakeNow)
             {
                 fakeNow.NowIs(fakeNow.Utc + value);
             }
             OnElapsed(new SleepEventArgs(value));
         }
 
-        public event EventHandler<SleepEventArgs> Elapsed;
+        public event EventHandler<SleepEventArgs>? Elapsed;
 
         protected virtual void OnElapsed(SleepEventArgs e)
         {
-            EventHandler<SleepEventArgs> handler = Elapsed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Elapsed?.Invoke(this, e);
         }
     }
 }

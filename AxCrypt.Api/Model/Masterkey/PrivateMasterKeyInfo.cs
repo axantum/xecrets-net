@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,24 +6,23 @@ using System.Text;
 
 namespace AxCrypt.Api.Model.Masterkey
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class PrivateMasterKeyInfo : IEquatable<PrivateMasterKeyInfo>
     {
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
 
-        [JsonProperty("key")]
-        public string PrivateKey { get; set; }
+        [JsonPropertyName("key")]
+        public string? PrivateKey { get; set; }
 
-        [JsonProperty("user")]
-        public string UserEmail { get; set; }
+        [JsonPropertyName("user")]
+        public string? UserEmail { get; set; }
 
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        [JsonPropertyName("status")]
+        public string? Status { get; set; }
 
-        public bool Equals(PrivateMasterKeyInfo other)
+        public bool Equals(PrivateMasterKeyInfo? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
@@ -49,7 +48,7 @@ namespace AxCrypt.Api.Model.Masterkey
             return true;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(PrivateMasterKeyInfo) != obj.GetType())
             {
@@ -62,7 +61,7 @@ namespace AxCrypt.Api.Model.Masterkey
 
         public override int GetHashCode()
         {
-            return Timestamp.GetHashCode() ^ Status.GetHashCode() ^ UserEmail.GetHashCode() ^ PrivateKey.GetHashCode();
+            return Timestamp.GetHashCode() ^ Status!.GetHashCode() ^ UserEmail!.GetHashCode() ^ PrivateKey!.GetHashCode();
         }
 
         public static bool operator ==(PrivateMasterKeyInfo left, PrivateMasterKeyInfo right)

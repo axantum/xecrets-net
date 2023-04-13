@@ -37,11 +37,11 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class KnownFoldersViewModel : ViewModelBase
     {
-        private FileSystemState _fileSystemState;
+        private readonly FileSystemState _fileSystemState;
 
-        private SessionNotify _sessionNotify;
+        private readonly SessionNotify _sessionNotify;
 
-        private KnownIdentities _knownIdentities;
+        private readonly KnownIdentities _knownIdentities;
 
         public KnownFoldersViewModel(FileSystemState fileSystemState, SessionNotify sessionNotify, KnownIdentities knownIdentities)
         {
@@ -49,7 +49,9 @@ namespace AxCrypt.Core.UI.ViewModel
             _sessionNotify = sessionNotify;
             _knownIdentities = knownIdentities;
 
-            InitializePropertyValues();
+            KnownFolders = Array.Empty<KnownFolder>();
+            UpdateState = new AsyncDelegateAction<object>(async (object o) => KnownFolders = await UpdateEnabledStateAsync(KnownFolders));
+
             SubscribeToModelEvents();
         }
 
@@ -61,12 +63,6 @@ namespace AxCrypt.Core.UI.ViewModel
         public IAsyncAction UpdateState { get; private set; }
 
         public IEnumerable<KnownFolder> KnownFolders { get { return GetProperty<IEnumerable<KnownFolder>>(nameof(KnownFolders)); } set { SetProperty(nameof(KnownFolders), value.ToList()); } }
-
-        private void InitializePropertyValues()
-        {
-            KnownFolders = new KnownFolder[0];
-            UpdateState = new AsyncDelegateAction<object>(async (object o) => KnownFolders = await UpdateEnabledStateAsync(KnownFolders));
-        }
 
         private async Task EnsureKnownFoldersWatched(IEnumerable<KnownFolder> folders)
         {
@@ -90,7 +86,7 @@ namespace AxCrypt.Core.UI.ViewModel
             await _fileSystemState.Save();
         }
 
-        private async Task<IEnumerable<KnownFolder>> UpdateEnabledStateAsync(IEnumerable<KnownFolder> knownFolders)
+        private Task<IEnumerable<KnownFolder>> UpdateEnabledStateAsync(IEnumerable<KnownFolder> knownFolders)
         {
             List<KnownFolder> updatedFolders = new List<KnownFolder>();
             bool hasCloudStorageAwareness = New<LicensePolicy>().Capabilities.Has(LicenseCapability.CloudStorageAwareness);
@@ -99,7 +95,7 @@ namespace AxCrypt.Core.UI.ViewModel
                 KnownFolder updated = new KnownFolder(folder, hasCloudStorageAwareness && _knownIdentities.LoggedOnWatchedFolders.Any(f => f.Path == folder.My.FullName));
                 updatedFolders.Add(updated);
             }
-            return updatedFolders;
+            return Task.FromResult(updatedFolders.AsEnumerable());
         }
 
         private async Task HandleKnownFolderAffectingEventsAsync(SessionNotification notification)

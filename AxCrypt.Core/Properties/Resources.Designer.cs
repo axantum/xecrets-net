@@ -8,9 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AxCrypt.Core.Properties {
+namespace Xecrets.File.Core.Properties {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace AxCrypt.Core.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -40,7 +39,7 @@ namespace AxCrypt.Core.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AxCrypt.Core.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Xecrets.File.Core.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -88,12 +87,14 @@ namespace AxCrypt.Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to # Version 2016062300, Last Updated Thu Jun 23 07:07:01 2016 UTC
+        ///   Looks up a localized string similar to # Version 2017050101, Last Updated Tue May  2 07:07:01 2017 UTC
         ///AAA
         ///AARP
+        ///ABARTH
         ///ABB
         ///ABBOTT
         ///ABBVIE
+        ///ABC
         ///ABLE
         ///ABOGADO
         ///ABUDHABI
@@ -114,45 +115,38 @@ namespace AxCrypt.Core.Properties {
         ///AERO
         ///AETNA
         ///AF
+        ///AFAMILYCOMPANY
         ///AFL
+        ///AFRICA
         ///AG
         ///AGAKHAN
         ///AGENCY
         ///AI
         ///AIG
+        ///AIGO
         ///AIRBUS
         ///AIRFORCE
         ///AIRTEL
         ///AKDN
         ///AL
+        ///ALFAROMEO
         ///ALIBABA
         ///ALIPAY
         ///ALLFINANZ
+        ///ALLSTATE
         ///ALLY
         ///ALSACE
         ///ALSTOM
         ///AM
+        ///AMERICANEXPRESS
+        ///AMERICANFAMILY
+        ///AMEX
+        ///AMFAM
         ///AMICA
         ///AMSTERDAM
         ///ANALYTICS
         ///ANDROID
-        ///ANQUAN
-        ///ANZ
-        ///AO
-        ///APARTMENTS
-        ///APP
-        ///APPLE
-        ///AQ
-        ///AQUARELLE
-        ///AR
-        ///ARAMCO
-        ///ARCHI
-        ///ARMY
-        ///ARPA
-        ///ARTE
-        ///AS
-        ///ASIA
-        ///ASSOCIA [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string tlds_alpha_by_domain {
             get {

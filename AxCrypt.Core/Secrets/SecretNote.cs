@@ -13,7 +13,7 @@ namespace AxCrypt.Core.Secrets
             Note = note;
         }
 
-        private string _description;
+        private string? _description;
 
         /// <summary>
         /// A (long) description, not necessarily unique, for this secret
@@ -24,7 +24,7 @@ namespace AxCrypt.Core.Secrets
             set { _description = value; }
         }
 
-        private string _note;
+        private string? _note;
 
         /// <summary>
         /// The (short) actual secret - it may be any text

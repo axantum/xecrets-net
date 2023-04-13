@@ -33,7 +33,6 @@ using System.Text;
 
 namespace AxCrypt.Abstractions.Algorithm
 {
-    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "HMACSHA", Justification = "This is standard casing in the .NET framework.")]
     public abstract class AxCryptHMACSHA1 : HMAC
     {
     }

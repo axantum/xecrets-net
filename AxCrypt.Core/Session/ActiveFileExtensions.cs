@@ -160,7 +160,7 @@ namespace AxCrypt.Core.Session
             LogOnIdentity logOnIdentity = New<KnownIdentities>().DefaultEncryptionIdentity;
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business) && logOnIdentity.MasterKeyPair != null)
             {
-                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair.PublicKey);
+                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair!.PublicKey!);
                 parameters.PublicMasterKey = new UserPublicKey(logOnIdentity.UserEmail, publicKey);
                 return;
             }

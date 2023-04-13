@@ -26,7 +26,6 @@
 #endregion Coypright and License
 
 using AxCrypt.Abstractions;
-using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
@@ -44,11 +43,8 @@ using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
-    [JsonObject(MemberSerialization.OptIn)]
     internal class BouncyCastlePrivateKey : IAsymmetricPrivateKey
     {
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET serializer uses it.")]
-        [JsonProperty("pem")]
         private string _serializedKey
         {
             get
@@ -68,7 +64,6 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             Key = privateKey;
         }
 
-        [JsonConstructor]
         public BouncyCastlePrivateKey(string pem)
         {
             Key = FromPem(pem);
@@ -76,25 +71,21 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         private static AsymmetricKeyParameter FromPem(string pem)
         {
-            using (TextReader reader = new StringReader(pem))
-            {
-                PemReader pemReader = new PemReader(reader);
+            using TextReader reader = new StringReader(pem);
+            PemReader pemReader = new PemReader(reader);
 
-                return ((AsymmetricCipherKeyPair)pemReader.ReadObject()).Private;
-            }
+            return ((AsymmetricCipherKeyPair)pemReader.ReadObject()).Private;
         }
 
         private string ToPem()
         {
-            using (TextWriter writer = new StringWriter(CultureInfo.InvariantCulture))
-            {
-                PemWriter pem = new PemWriter(writer);
-                pem.WriteObject(Key);
-                return writer.ToString();
-            }
+            using TextWriter writer = new StringWriter(CultureInfo.InvariantCulture);
+            PemWriter pem = new PemWriter(writer);
+            pem.WriteObject(Key);
+            return writer.ToString() ?? throw new InvalidOperationException("TextWriter.ToString() returned null!");
         }
 
-        public byte[] TransformRaw(byte[] buffer)
+        public byte[]? TransformRaw(byte[] buffer)
         {
             if (buffer == null)
             {
@@ -121,11 +112,11 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return TransformInternal(buffer, cipher);
         }
 
-        public byte[] Transform(byte[] buffer)
+        public byte[]? Transform(byte[] buffer)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
@@ -136,7 +127,7 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return TransformInternal(buffer, cipher);
         }
 
-        private byte[] TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
+        private byte[]? TransformInternal(byte[] buffer, IAsymmetricBlockCipher cipher)
         {
             int rsaKeyBitLength = ((RsaKeyParameters)Key).Modulus.BitLength;
 
@@ -157,19 +148,18 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return ToPem();
         }
 
-        public bool Equals(IAsymmetricPrivateKey other)
+        public bool Equals(IAsymmetricPrivateKey? other)
         {
-            if ((object)other == null)
+            if (other == null)
             {
                 return false;
             }
             return ToString().Equals(other.ToString());
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            IAsymmetricPrivateKey other = obj as IAsymmetricPrivateKey;
-            if (other == null)
+            if (obj is not IAsymmetricPrivateKey other)
             {
                 return false;
             }
@@ -184,9 +174,9 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         public static bool operator ==(BouncyCastlePrivateKey left, BouncyCastlePrivateKey right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (left is null)
             {
-                return Object.ReferenceEquals(right, null);
+                return ReferenceEquals(right, null);
             }
 
             return left.Equals(right);

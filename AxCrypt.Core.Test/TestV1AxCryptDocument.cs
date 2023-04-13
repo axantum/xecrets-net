@@ -30,7 +30,7 @@ using AxCrypt.Core.Header;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Reader;
 using AxCrypt.Core.Runtime;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using NUnit.Framework;
@@ -349,10 +349,10 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestDecryptWithKeyFileShortTextFile()
         {
-            Passphrase passphrase = Passphrase.Create("p", Resources.My_Key_File);
+            Passphrase passphrase = Passphrase.Create("p", Resources.my_key_file);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Passphrase__p____My_Keyfile_txt));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.passphrase__p____my_keyfile_txt));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -366,10 +366,10 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestDecryptWithKeyFilePdfFile()
         {
-            Passphrase passphrase = Passphrase.Create("b", Resources.My_Key_File);
+            Passphrase passphrase = Passphrase.Create("b", Resources.my_key_file);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources._2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources._2003_05_28_pcworld_axcrypt__b____my_keyfile_pdf));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {
@@ -382,10 +382,10 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestDecryptWithKeyFileImageFile()
         {
-            Passphrase passphrase = Passphrase.Create("a", Resources.My_Key_File);
+            Passphrase passphrase = Passphrase.Create("a", Resources.my_key_file);
             using (V1AxCryptDocument document = new V1AxCryptDocument())
             {
-                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg));
+                bool keyIsOk = document.Load(passphrase, new V1Aes128CryptoFactory().CryptoId, FakeDataStore.ExpandableMemoryStream(Resources.foto_2015_05_19_23_19_08__a____my_keyfile_jpg));
                 Assert.That(keyIsOk, Is.True, "The passphrase provided is correct!");
                 using (MemoryStream plaintextStream = new MemoryStream())
                 {

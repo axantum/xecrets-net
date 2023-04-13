@@ -41,7 +41,7 @@ namespace AxCrypt.Mono.Portable
 
         public string GetDirectoryName(string path)
         {
-            return Path.GetDirectoryName(path);
+            return Path.GetDirectoryName(path) ?? string.Empty;
         }
 
         public string GetExtension(string path)
@@ -66,7 +66,7 @@ namespace AxCrypt.Mono.Portable
 
         public string GetPathRoot(string path)
         {
-            return Path.GetPathRoot(path);
+            return Path.GetPathRoot(path) ?? string.Empty;
         }
 
         public string GetRandomFileName()

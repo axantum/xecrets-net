@@ -43,7 +43,7 @@ namespace AxCrypt.Core.Service
 {
     public class ApiAccountService : IAccountService
     {
-        private AxCryptApiClient _apiClient;
+        private readonly AxCryptApiClient _apiClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAccountService"/> class.
@@ -51,12 +51,7 @@ namespace AxCrypt.Core.Service
         /// <param name="apiClient">The API client to use.</param>
         public ApiAccountService(AxCryptApiClient apiClient)
         {
-            if (apiClient == null)
-            {
-                throw new ArgumentNullException(nameof(apiClient));
-            }
-
-            _apiClient = apiClient;
+            _apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
         }
 
         public IAccountService Refresh()
@@ -102,7 +97,7 @@ namespace AxCrypt.Core.Service
         /// </value>
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
-            if (String.IsNullOrEmpty(email.Address))
+            if (string.IsNullOrEmpty(email.Address))
             {
                 return AccountStatus.Unknown;
             }
@@ -191,7 +186,7 @@ namespace AxCrypt.Core.Service
             try
             {
                 IList<AccountKey> apiAccountKeys = (await _apiClient.MyAccountAsync().Free()).AccountKeys;
-                return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).ToList();
+                return apiAccountKeys.Select(k => k.ToUserKeyPair(Identity.Passphrase)).Where(ukp => ukp != null).Cast<UserKeyPair>().ToList();
             }
             catch (UnauthorizedException uaex)
             {
@@ -199,7 +194,7 @@ namespace AxCrypt.Core.Service
             }
         }
 
-        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        public async Task<UserKeyPair?> CurrentKeyPairAsync()
         {
             if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {
@@ -208,7 +203,7 @@ namespace AxCrypt.Core.Service
 
             try
             {
-                AccountKey accountKey = await _apiClient.MyAccountKeysCurrentAsync().Free();
+                AccountKey? accountKey = await _apiClient.MyAccountKeysCurrentAsync().Free();
                 if (accountKey == null)
                 {
                     return null;
@@ -280,14 +275,14 @@ namespace AxCrypt.Core.Service
             await _apiClient.PutAllAccountsUserPasswordAsync(verificationCode);
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email)
         {
-            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free()).ToUserPublicKey();
+            return (await _apiClient.GetAllAccountsOtherUserPublicKeyAsync(email.Address).Free())!.ToUserPublicKey();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public async Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters)
         {
-            return (await _apiClient.PostAllAccountsOtherUserInvitePublicKeyAsync(email.Address, customParameters).Free()).ToUserPublicKey();
+            return (await _apiClient.PostAllAccountsOtherUserInvitePublicKeyAsync(email.Address, customParameters).Free())!.ToUserPublicKey();
         }
 
         public async Task<bool> CreateSubscriptionAsync(StoreKitTransaction[] skTransactions)
@@ -300,7 +295,7 @@ namespace AxCrypt.Core.Service
             return await _apiClient.PostCreateSubscriptionAsync(skTransactions);
         }
 
-        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
             if (string.IsNullOrEmpty(_apiClient.Identity.User))
             {

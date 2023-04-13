@@ -48,15 +48,15 @@ namespace AxCrypt.Core
 
         DateTime LastWriteTimeUtc { get; set; }
 
-        DecryptionParameter DecryptionParameter { get; set; }
+        DecryptionParameter? DecryptionParameter { get; set; }
 
-        EncryptedProperties Properties { get; }
+        EncryptedProperties? Properties { get; }
 
         ICryptoFactory CryptoFactory { get; }
 
         IEnumerable<UserPublicKey> AsymmetricRecipients { get; }
 
-        IAsymmetricPublicKey AsymmetricMasterKey { get; }
+        IAsymmetricPublicKey? AsymmetricMasterKey { get; }
 
         bool Load(Passphrase passphrase, Guid cryptoId, Headers headers);
 

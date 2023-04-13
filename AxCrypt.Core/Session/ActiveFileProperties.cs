@@ -25,13 +25,12 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using System;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Session
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileProperties : IEquatable<ActiveFileProperties>
     {
         public ActiveFileProperties(DateTime lastActivityTimeUtc, DateTime lastEncryptionWriteTimeUtc, Guid cryptoId)
@@ -41,22 +40,22 @@ namespace AxCrypt.Core.Session
             CryptoId = cryptoId;
         }
 
-        [JsonProperty("cryptoId")]
-        public Guid CryptoId { get; private set; }
+        [JsonPropertyName("cryptoId")]
+        public Guid CryptoId { get; set; }
 
-        [JsonProperty("lastActivityTimeUtc")]
-        public DateTime LastActivityTimeUtc { get; private set; }
+        [JsonPropertyName("lastActivityTimeUtc")]
+        public DateTime LastActivityTimeUtc { get; set; }
 
         /// <summary>
         /// Records the Last Write Time that was valid at the most recent encryption update of the encrypted file.
         /// </summary>
 
-        [JsonProperty("lastEncryptionWriteTimeUtc")]
-        public DateTime LastEncryptionWriteTimeUtc { get; private set; }
+        [JsonPropertyName("lastEncryptionWriteTimeUtc")]
+        public DateTime LastEncryptionWriteTimeUtc { get; set; }
 
-        public bool Equals(ActiveFileProperties other)
+        public bool Equals(ActiveFileProperties? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -64,7 +63,7 @@ namespace AxCrypt.Core.Session
             return CryptoId == other.CryptoId && LastActivityTimeUtc == other.LastActivityTimeUtc && LastEncryptionWriteTimeUtc == other.LastEncryptionWriteTimeUtc;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(ActiveFileProperties) != obj.GetType())
             {
@@ -80,20 +79,20 @@ namespace AxCrypt.Core.Session
             return CryptoId.GetHashCode() ^ LastActivityTimeUtc.GetHashCode() ^ LastEncryptionWriteTimeUtc.GetHashCode();
         }
 
-        public static bool operator ==(ActiveFileProperties left, ActiveFileProperties right)
+        public static bool operator ==(ActiveFileProperties? left, ActiveFileProperties? right)
         {
             if (Object.ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if (left is null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(ActiveFileProperties left, ActiveFileProperties right)
+        public static bool operator !=(ActiveFileProperties? left, ActiveFileProperties? right)
         {
             return !(left == right);
         }

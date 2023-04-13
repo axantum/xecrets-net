@@ -92,23 +92,23 @@ namespace AxCrypt.Core.Extensions
         {
             if (!dataStore.IsEncrypted())
             {
-                return null;
+                return null!;
             }
 
             OpenFileProperties properties = OpenFileProperties.Create(dataStore);
             if (properties.IsLegacyV1)
             {
-                return null;
+                return null!;
             }
 
             if (properties.V2AsymetricKeyWrapCount <= 1 && !properties.V2AsymetricMasterKey)
             {
-                return null;
+                return null!;
             }
 
             if (decryptIdentity == LogOnIdentity.Empty)
             {
-                return null;
+                return null!;
             }
 
             using (Stream stream = dataStore.OpenRead())
@@ -117,7 +117,7 @@ namespace AxCrypt.Core.Extensions
                 {
                     if (!document.PassphraseIsValid)
                     {
-                        return null;
+                        return null!;
                     }
 
                     return document;
@@ -145,7 +145,7 @@ namespace AxCrypt.Core.Extensions
             return document.AsymmetricMasterKey != null;
         }
 
-        public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)
+        public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey?> privateKeys)
         {
             if (privateKeys == null)
             {
@@ -295,7 +295,7 @@ namespace AxCrypt.Core.Extensions
                 return true;
             }
 
-            ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(dataStore.FullName);
+            ActiveFile? activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(dataStore.FullName);
             if (activeFile?.Status == ActiveFileStatus.AssumedOpenAndDecrypted)
             {
                 return true;
@@ -305,7 +305,7 @@ namespace AxCrypt.Core.Extensions
         }
 
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", MessageId = "1#", Justification = "The Out pattern is used in the .NET framework.")]
-        public static LogOnIdentity TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
+        public static LogOnIdentity? TryFindPassphrase(this IDataStore fileInfo, out Guid cryptoId)
         {
             cryptoId = Guid.Empty;
             if (!fileInfo.IsEncrypted())
@@ -316,7 +316,7 @@ namespace AxCrypt.Core.Extensions
             foreach (LogOnIdentity knownKey in Resolve.KnownIdentities.Identities)
             {
                 IEnumerable<DecryptionParameter> decryptionParameters = fileInfo.DecryptionParameters(knownKey.Passphrase, knownKey.GetPrivateKeys());
-                DecryptionParameter decryptionParameter = New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
+                DecryptionParameter? decryptionParameter = New<AxCryptFactory>().FindDecryptionParameter(decryptionParameters, fileInfo);
                 if (decryptionParameter != null)
                 {
                     cryptoId = decryptionParameter.CryptoId;
@@ -333,7 +333,7 @@ namespace AxCrypt.Core.Extensions
                 try
                 {
                     Guid cryptoId;
-                    LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
+                    LogOnIdentity? logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
                     if (logOnIdentity != null)
                     {
                         return true;

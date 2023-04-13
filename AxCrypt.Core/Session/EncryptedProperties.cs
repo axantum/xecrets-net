@@ -32,6 +32,7 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -55,13 +56,14 @@ namespace AxCrypt.Core.Session
 
         public bool IsValid { get; set; }
 
-        public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; } = new UserPublicKey[0];
+        public IEnumerable<UserPublicKey> SharedKeyHolders { get; private set; } = Array.Empty<UserPublicKey>();
 
+        [AllowNull]
         public FileMetaData FileMetaData { get; private set; }
 
-        public DecryptionParameter DecryptionParameter { get; set; }
+        public DecryptionParameter? DecryptionParameter { get; set; }
 
-        public IAsymmetricPublicKey MasterPublicKey { get; set; }
+        public IAsymmetricPublicKey? MasterPublicKey { get; set; }
 
         /// <summary>
         /// Factory method to instantiate an EncryptedProperties instance. It is required and assumed that the
@@ -78,15 +80,13 @@ namespace AxCrypt.Core.Session
         {
             if (encrypted == null)
             {
-                throw new ArgumentNullException("encrypted");
+                throw new ArgumentNullException(nameof(encrypted));
             }
 
             try
             {
-                using (Stream stream = encrypted.OpenRead())
-                {
-                    return Create(stream, identity);
-                }
+                using Stream stream = encrypted.OpenRead();
+                return Create(stream, identity);
             }
             catch (FileNotFoundException fnfex)
             {
@@ -99,14 +99,14 @@ namespace AxCrypt.Core.Session
         {
             if (identity == null)
             {
-                throw new ArgumentNullException("identity");
+                throw new ArgumentNullException(nameof(identity));
             }
             if (identity == LogOnIdentity.Empty)
             {
                 return Invalid;
             }
 
-            EncryptedProperties properties = new EncryptedProperties(null);
+            EncryptedProperties properties = new EncryptedProperties(string.Empty);
             using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(identity.DecryptionParameters(), stream))
             {
                 if (!document.PassphraseIsValid)
@@ -114,10 +114,12 @@ namespace AxCrypt.Core.Session
                     return Invalid;
                 }
 
-                properties = new EncryptedProperties(document.FileName);
-                properties.SharedKeyHolders = document.AsymmetricRecipients;
-                properties.MasterPublicKey = document.AsymmetricMasterKey;
-                properties.DecryptionParameter = document.DecryptionParameter;
+                properties = new EncryptedProperties(document.FileName)
+                {
+                    SharedKeyHolders = document.AsymmetricRecipients,
+                    MasterPublicKey = document.AsymmetricMasterKey,
+                    DecryptionParameter = document.DecryptionParameter
+                };
                 properties.FileMetaData.CreationTimeUtc = document.CreationTimeUtc;
                 properties.FileMetaData.LastWriteTimeUtc = document.LastWriteTimeUtc;
                 properties.FileMetaData.LastAccessTimeUtc = document.LastAccessTimeUtc;
@@ -131,7 +133,7 @@ namespace AxCrypt.Core.Session
         {
             if (document == null)
             {
-                throw new ArgumentNullException("document");
+                throw new ArgumentNullException(nameof(document));
             }
 
             if (!document.PassphraseIsValid)
@@ -139,9 +141,11 @@ namespace AxCrypt.Core.Session
                 return Invalid;
             }
 
-            EncryptedProperties properties = new EncryptedProperties(document.FileName);
-            properties.DecryptionParameter = document.DecryptionParameter;
-            properties.IsValid = document.PassphraseIsValid;
+            EncryptedProperties properties = new EncryptedProperties(document.FileName)
+            {
+                DecryptionParameter = document.DecryptionParameter,
+                IsValid = document.PassphraseIsValid
+            };
             properties.FileMetaData.CreationTimeUtc = document.CreationTimeUtc;
             properties.FileMetaData.LastAccessTimeUtc = document.LastAccessTimeUtc;
             properties.FileMetaData.LastWriteTimeUtc = document.LastWriteTimeUtc;

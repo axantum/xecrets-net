@@ -48,8 +48,8 @@ namespace AxCrypt.Mono.Test
         [Test]
         public static void TestIt()
         {
-            string listened = null;
-            DelegateTraceListener listener = new DelegateTraceListener("Test Listener", (string message) => { listened = message; });
+            string? listened = null;
+            DelegateTraceListener listener = new DelegateTraceListener("Test Listener", (string message) => listened = message);
 
             listener.Write(1);
             Assert.That(listened, Is.Null, "The listener should buffer until a new line is received.");

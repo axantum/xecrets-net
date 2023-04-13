@@ -38,7 +38,7 @@ namespace AxCrypt.Fake
 {
     public class FakeProgressBackground : IProgressBackground
     {
-        private string _name;
+        private string _name = string.Empty;
 
         public async Task WorkAsync(string name, Func<IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> completeAsync, IProgressContext progress)
         {
@@ -46,7 +46,7 @@ namespace AxCrypt.Fake
 
             Busy = true;
             OnWorkStatusChanged();
-            FileOperationContext status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
+            FileOperationContext status = new FileOperationContext(string.Empty, ErrorStatus.Unknown);
             try
             {
                 status = await Task.Run(async () => await workAsync(progress).Free());
@@ -68,15 +68,11 @@ namespace AxCrypt.Fake
             }
         }
 
-        public event EventHandler WorkStatusChanged;
+        public event EventHandler? WorkStatusChanged;
 
         protected virtual void OnWorkStatusChanged()
         {
-            EventHandler handler = WorkStatusChanged;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            WorkStatusChanged?.Invoke(this, new EventArgs());
         }
 
         public bool Busy

@@ -25,30 +25,28 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Crypto
 {
     /// <summary>
     /// A salt for the Symmetrical Key Wrap. Instances of this class are immutable.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class Salt
     {
-        [JsonProperty("salt")]
-        private readonly byte[] _salt;
+        [JsonPropertyName("salt")]
+        public byte[] SaltForJson { get { return _salt!; } set { _salt = (byte[])value.Clone(); } }
+
+        [MaybeNull]
+        private byte[] _salt;
 
         /// <summary>
         /// An instance of KeyWrapSalt with all zeroes.
         /// </summary>
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "The reference type 'Salt' is, in fact, immutable.")]
-        public static readonly Salt Zero = new Salt(new byte[0]);
+        public static readonly Salt Zero = new Salt(Array.Empty<byte>());
 
-        [JsonConstructor]
-        private Salt()
+        public Salt()
         {
         }
 
@@ -60,7 +58,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (size < 0)
             {
-                throw new ArgumentOutOfRangeException("size");
+                throw new ArgumentOutOfRangeException(nameof(size));
             }
             _salt = Resolve.RandomGenerator.Generate(size / 8);
         }
@@ -73,7 +71,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (salt == null)
             {
-                throw new ArgumentNullException("salt");
+                throw new ArgumentNullException(nameof(salt));
             }
             _salt = (byte[])salt.Clone();
         }
@@ -86,7 +84,7 @@ namespace AxCrypt.Core.Crypto
         {
             get
             {
-                return _salt.Length;
+                return _salt?.Length ?? throw new InvalidOperationException("Internal Program Error, _salt was null.");
             }
         }
 
@@ -96,7 +94,7 @@ namespace AxCrypt.Core.Crypto
         /// <returns>Returns the bytes of the salt.</returns>
         public byte[] GetBytes()
         {
-            return (byte[])_salt.Clone();
+            return (byte[])(_salt?.Clone() ?? throw new InvalidOperationException("Internal Program Error, _salt was null."));
         }
     }
 }

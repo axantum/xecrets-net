@@ -47,7 +47,7 @@ namespace AxCrypt.Core.Reader
 
         protected override IAxCryptDocument Document()
         {
-            base.Document();
+            _ = base.Document();
             return new V2AxCryptDocument(this);
         }
 
@@ -96,6 +96,8 @@ namespace AxCrypt.Core.Reader
 
                 case HeaderBlockType.EncryptedDataPart:
                     return new EncryptedDataPartBlock(dataBlock);
+
+                default: break;
             }
             return new UnrecognizedHeaderBlock(headerBlockType, dataBlock);
         }
@@ -103,7 +105,7 @@ namespace AxCrypt.Core.Reader
         public override IAxCryptDocument Document(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
             V2AxCryptDocument v2Document = new V2AxCryptDocument(this);
-            v2Document.Load(passphrase, cryptoId, headers);
+            _ = v2Document.Load(passphrase, cryptoId, headers);
             return v2Document;
         }
 
@@ -115,7 +117,7 @@ namespace AxCrypt.Core.Reader
                 return v2Document;
             }
 
-            v2Document.Load(privateKey, cryptoId, headers);
+            _ = v2Document.Load(privateKey, cryptoId, headers);
             return v2Document;
         }
     }

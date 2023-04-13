@@ -36,7 +36,7 @@ namespace AxCrypt.Core.IO
 {
     public sealed class FileLocker
     {
-        private Dictionary<string, FileLockManager> _lockedFiles = new Dictionary<string, FileLockManager>();
+        private readonly Dictionary<string, FileLockManager> _lockedFiles = new Dictionary<string, FileLockManager>();
 
         public FileLock Acquire(IDataItem dataItem)
         {
@@ -51,17 +51,17 @@ namespace AxCrypt.Core.IO
         {
             if (dataItem == null)
             {
-                throw new ArgumentNullException("dataItem");
+                throw new ArgumentNullException(nameof(dataItem));
             }
 
             FileLockManager fileLockManager;
             lock (_lockedFiles)
             {
                 fileLockManager = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
-                fileLockManager.IncrementReferenceCount();
+                _ = fileLockManager.IncrementReferenceCount();
             }
             FileLock fileLock = fileLockManager.GetFileLock();
-            fileLockManager.DecrementReferenceCount();
+            _ = fileLockManager.DecrementReferenceCount();
             return fileLock;
         }
 
@@ -69,24 +69,23 @@ namespace AxCrypt.Core.IO
         {
             if (dataItem == null)
             {
-                throw new ArgumentNullException("dataItem");
+                throw new ArgumentNullException(nameof(dataItem));
             }
 
             FileLockManager fileLockManager;
             lock (_lockedFiles)
             {
                 fileLockManager = GetOrCreateFileLockUnsafe(dataItem.FullName, timeout);
-                fileLockManager.IncrementReferenceCount();
+                _ = fileLockManager.IncrementReferenceCount();
             }
             FileLock fileLock = await fileLockManager.GetFileLockAsync();
-            fileLockManager.DecrementReferenceCount();
+            _ = fileLockManager.DecrementReferenceCount();
             return fileLock;
         }
 
         private FileLockManager GetOrCreateFileLockUnsafe(string fullName, TimeSpan timeout)
         {
-            FileLockManager fileLockManager = null;
-            if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
+            if (!_lockedFiles.TryGetValue(fullName, out FileLockManager? fileLockManager))
             {
                 fileLockManager = new FileLockManager(fullName, timeout, this);
                 _lockedFiles[fullName] = fileLockManager;
@@ -98,14 +97,14 @@ namespace AxCrypt.Core.IO
         {
             if (dataStoreParameters == null)
             {
-                throw new ArgumentNullException("dataStoreParameters");
+                throw new ArgumentNullException(nameof(dataStoreParameters));
             }
 
             foreach (IDataStore dataStore in dataStoreParameters)
             {
                 if (dataStore == null)
                 {
-                    throw new ArgumentNullException("dataStoreParameters");
+                    throw new ArgumentNullException(nameof(dataStoreParameters));
                 }
 
                 if (IsLocked(dataStore.FullName))
@@ -124,8 +123,7 @@ namespace AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                FileLockManager fileLockManager;
-                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
+                if (!_lockedFiles.TryGetValue(fullName, out FileLockManager? fileLockManager))
                 {
                     return false;
                 }
@@ -138,8 +136,7 @@ namespace AxCrypt.Core.IO
         {
             lock (_lockedFiles)
             {
-                FileLockManager fileLockManager;
-                if (!_lockedFiles.TryGetValue(fullName, out fileLockManager))
+                if (!_lockedFiles.TryGetValue(fullName, out FileLockManager? fileLockManager))
                 {
                     return true;
                 }
@@ -147,7 +144,7 @@ namespace AxCrypt.Core.IO
                 if (fileLockManager.DecrementReferenceCount() == 0)
                 {
                     fileLockManager.Dispose();
-                    _lockedFiles.Remove(fullName);
+                    _ = _lockedFiles.Remove(fullName);
                     return true;
                 }
 

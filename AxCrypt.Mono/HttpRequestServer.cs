@@ -27,8 +27,11 @@
 
 using AxCrypt.Core;
 using AxCrypt.Core.Ipc;
+using AxCrypt.Core.Runtime;
+
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -42,6 +45,7 @@ namespace AxCrypt.Mono
 
         internal static readonly Uri Url = new Uri($"http://localhost:53414/AxCrypt/{_sessionId}/");
 
+        [AllowNull]
         private HttpListener _listener;
 
         public void Start()
@@ -50,17 +54,17 @@ namespace AxCrypt.Mono
 
             _listener.Prefixes.Add(Url.ToString());
             _listener.Start();
-            _listener.BeginGetContext(ListenerCallback, _listener);
+            _ = _listener.BeginGetContext(ListenerCallback, _listener);
         }
 
         private void ListenerCallback(IAsyncResult result)
         {
-            HttpListener listener = (HttpListener)result.AsyncState;
+            HttpListener listener = result.AsyncState as HttpListener ?? throw new InternalErrorException("AsyncState was null.");
             if (!listener.IsListening)
             {
                 return;
             }
-            HttpListenerContext context = null;
+            HttpListenerContext? context = null;
             try
             {
                 context = listener.EndGetContext(result);
@@ -71,7 +75,7 @@ namespace AxCrypt.Mono
             }
             if (listener.IsListening)
             {
-                listener.BeginGetContext(ListenerCallback, listener);
+                _ = listener.BeginGetContext(ListenerCallback, listener);
             }
             if (context == null)
             {
@@ -85,11 +89,9 @@ namespace AxCrypt.Mono
             RequestCommandEventArgs args = ReadCommand(request);
             try
             {
-                using (HttpListenerResponse response = context.Response)
-                {
-                    response.StatusCode = (int)HttpStatusCode.OK;
-                    response.StatusDescription = "OK";
-                }
+                using HttpListenerResponse response = context.Response;
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.StatusDescription = "OK";
             }
             catch (HttpListenerException)
             {
@@ -100,13 +102,11 @@ namespace AxCrypt.Mono
 
         private static RequestCommandEventArgs ReadCommand(HttpListenerRequest request)
         {
-            using (TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8))
-            {
-                string requestJson = reader.ReadToEnd();
-                CommandServiceEventArgs requestArgs = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(requestJson);
-                RequestCommandEventArgs args = new RequestCommandEventArgs(requestArgs);
-                return args;
-            }
+            using TextReader reader = new StreamReader(request.InputStream, Encoding.UTF8);
+            string requestJson = reader.ReadToEnd();
+            CommandServiceEventArgs requestArgs = Resolve.Serializer.Deserialize<CommandServiceEventArgs>(requestJson) ?? throw new InvalidOperationException("Could not deserialize CommandServiceEventArgs.");
+            RequestCommandEventArgs args = new RequestCommandEventArgs(requestArgs);
+            return args;
         }
 
         public void Shutdown()
@@ -114,15 +114,11 @@ namespace AxCrypt.Mono
             DisposeInternal();
         }
 
-        public event EventHandler<RequestCommandEventArgs> Request;
+        public event EventHandler<RequestCommandEventArgs>? Request;
 
         protected virtual void OnRequest(RequestCommandEventArgs e)
         {
-            EventHandler<RequestCommandEventArgs> handler = Request;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Request?.Invoke(this, e);
         }
 
         public void Dispose()

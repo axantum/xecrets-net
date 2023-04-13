@@ -38,9 +38,9 @@ namespace AxCrypt.Core.Session
 {
     public class SessionNotify
     {
-        private List<Func<SessionNotification, Task>> _priorityCommands = new List<Func<SessionNotification, Task>>();
+        private readonly List<Func<SessionNotification, Task>> _priorityCommands = new List<Func<SessionNotification, Task>>();
 
-        private List<Func<SessionNotification, Task>> _commands = new List<Func<SessionNotification, Task>>();
+        private readonly List<Func<SessionNotification, Task>> _commands = new List<Func<SessionNotification, Task>>();
 
         private TaskCompletionSource<bool> _queueEmpty;
 
@@ -62,7 +62,7 @@ namespace AxCrypt.Core.Session
         {
             lock (_priorityCommands)
             {
-                _priorityCommands.Remove(priorityCommand);
+                _ = _priorityCommands.Remove(priorityCommand);
             }
         }
 
@@ -78,13 +78,13 @@ namespace AxCrypt.Core.Session
         {
             lock (_commands)
             {
-                _commands.Remove(command);
+                _ = _commands.Remove(command);
             }
         }
 
         public async Task SynchronizeAsync()
         {
-            await _queueEmpty.Task;
+            _ = await _queueEmpty.Task;
         }
 
         private readonly Queue<SessionNotification> _notificationQueue = new Queue<SessionNotification>();
@@ -115,7 +115,7 @@ namespace AxCrypt.Core.Session
                 await NotifyInternal(notification);
                 lock (_notificationQueue)
                 {
-                    _notificationQueue.Dequeue();
+                    _ = _notificationQueue.Dequeue();
                 }
             }
         }
@@ -128,7 +128,7 @@ namespace AxCrypt.Core.Session
             }
             SessionNotification[] notifications = _notificationQueue.ToArray();
             _notificationQueue.Clear();
-            SessionNotification currentNotification = null;
+            SessionNotification? currentNotification = null;
             foreach (SessionNotification notification in notifications)
             {
                 if (currentNotification == null)

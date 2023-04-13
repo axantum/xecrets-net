@@ -14,8 +14,6 @@ namespace AxCrypt.Core.Runtime
     {
         protected SynchronizationContext Context { get; }
 
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "SyncronizationContext")]
-        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IUIThread")]
         protected UIThreadBase()
         {
             if (SynchronizationContext.Current == null)
@@ -35,7 +33,6 @@ namespace AxCrypt.Core.Runtime
 
         public abstract void RestartApplication();
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public void SendTo(Action action)
         {
             if (IsOn)
@@ -55,7 +52,7 @@ namespace AxCrypt.Core.Runtime
                 }
             }
 
-            Exception exception = null;
+            Exception? exception = null;
             Context.Send((state) =>
             {
                 try
@@ -90,7 +87,7 @@ namespace AxCrypt.Core.Runtime
                 }
             }
 
-            TaskCompletionSource<Exception> completion = new TaskCompletionSource<Exception>();
+            var completion = new TaskCompletionSource<Exception?>();
             Context.Send(async (state) =>
             {
                 try
@@ -112,7 +109,7 @@ namespace AxCrypt.Core.Runtime
             Context.Post((state) => action(), null);
         }
 
-        private static void HandleException(Exception exception)
+        private static void HandleException(Exception? exception)
         {
             if (exception is AxCryptException)
             {

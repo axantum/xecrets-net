@@ -33,26 +33,32 @@ using System.Collections.Generic;
 using System.Linq;
 
 using static AxCrypt.Abstractions.TypeResolve;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Core.Crypto
 {
+    [UnconditionalSuppressMessage("TrimAnalysis", "IL2077", Justification = "Silence the warnings, but be aware that dynamic plugin loading is broken when trimming is enabled.")]
     public class CryptoFactory
     {
         public static readonly int DerivationIterations = 1000;
 
-        private Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
+        private readonly Dictionary<Guid, CryptoFactoryCreator> _factories = new Dictionary<Guid, CryptoFactoryCreator>();
 
         public CryptoFactory()
         {
         }
 
+        [UnconditionalSuppressMessage("TrimAnalysis", "IL2072", Justification = "Silence the warnings, but be aware that dynamic plugin loading is broken when trimming is enabled.")]
         public CryptoFactory(IEnumerable<Assembly> extraAssemblies)
         {
-            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
+            Add(() => new V1Aes128CryptoFactory());
+            Add(() => new V2Aes128CryptoFactory());
+            Add(() => new V2Aes256CryptoFactory());
 
+            IEnumerable<Type> types = TypeDiscovery.Interface(typeof(ICryptoFactory), extraAssemblies);
             foreach (Type type in types)
             {
-                Add(() => Activator.CreateInstance(type) as ICryptoFactory);
+                Add(() => (ICryptoFactory)(Activator.CreateInstance(type) ?? throw new InvalidOperationException("Internal Program Error, CreateInstance() returned null.")));
             }
         }
 
@@ -60,7 +66,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (factory == null)
             {
-                throw new ArgumentNullException("factory");
+                throw new ArgumentNullException(nameof(factory));
             }
 
             lock (_factories)
@@ -83,22 +89,21 @@ namespace AxCrypt.Core.Crypto
             {
                 return New<ICryptoPolicy>().DefaultCryptoFactory(_factories.Values);
             }
-            CryptoFactoryCreator factory;
             lock (_factories)
             {
-                if (_factories.TryGetValue(id, out factory))
+                if (_factories.TryGetValue(id, out var factory))
                 {
                     return factory();
                 }
             }
-            throw new ArgumentException("CryptoFactory not found.", "id");
+            throw new ArgumentException("CryptoFactory not found.", nameof(id));
         }
 
         public ICryptoFactory Create(ICryptoPolicy policy)
         {
             if (policy == null)
             {
-                throw new ArgumentNullException("policy");
+                throw new ArgumentNullException(nameof(policy));
             }
 
             lock (_factories)
@@ -119,8 +124,10 @@ namespace AxCrypt.Core.Crypto
                 Guid defaultId = Preferred.CryptoId;
                 Guid legacyId = Legacy.CryptoId;
 
-                List<Guid> orderedIds = new List<Guid>();
-                orderedIds.Add(defaultId);
+                var orderedIds = new List<Guid>
+                {
+                    defaultId
+                };
                 lock (_factories)
                 {
                     orderedIds.AddRange(_factories.Values.Where(f => f().CryptoId != defaultId && f().CryptoId != legacyId).Select(f => f().CryptoId));

@@ -44,7 +44,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (passphrase == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException(nameof(passphrase));
             }
 
             DerivationSalt = salt;

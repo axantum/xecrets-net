@@ -28,6 +28,7 @@
 using AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -35,6 +36,7 @@ namespace AxCrypt.Fake
 {
     public class FakeLauncher : ILauncher
     {
+        [AllowNull]
         private string _path;
 
         public virtual void Launch(string path)
@@ -46,11 +48,7 @@ namespace AxCrypt.Fake
 
         protected virtual void OnExited(EventArgs e)
         {
-            EventHandler handler = Exited;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Exited?.Invoke(this, e);
         }
 
         public void RaiseExited()
@@ -60,7 +58,7 @@ namespace AxCrypt.Fake
 
         #region ILauncher Members
 
-        public event EventHandler Exited;
+        public event EventHandler? Exited;
 
         public bool HasExited { get; set; }
 
@@ -71,7 +69,7 @@ namespace AxCrypt.Fake
             get { return _path; }
         }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         #endregion ILauncher Members
 

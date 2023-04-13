@@ -30,20 +30,16 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI.ViewModel
 {
     public class ImportPrivateKeysViewModel : ViewModelBase, IPasswordEntry
     {
-        private UserSettings _userSettings;
+        private readonly UserSettings _userSettings;
 
-        private KnownIdentities _knownIdentities;
+        private readonly KnownIdentities _knownIdentities;
 
         public bool ShowPassword { get { return GetProperty<bool>(nameof(ShowPassword)); } set { SetProperty(nameof(ShowPassword), value); } }
 
@@ -58,19 +54,15 @@ namespace AxCrypt.Core.UI.ViewModel
             _userSettings = userSettings;
             _knownIdentities = knownIdentities;
 
-            InitializePropertyValues();
+            ImportFile = new AsyncDelegateAction<object>((o) => ImportFileActionAsync());
+            ImportSuccessful = true;
+            ShowPassword = _userSettings.DisplayDecryptPassphrase;
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
 
         public IAsyncAction ImportFile { get; private set; }
-
-        private void InitializePropertyValues()
-        {
-            ImportFile = new AsyncDelegateAction<object>((o) => ImportFileActionAsync());
-            ImportSuccessful = true;
-            ShowPassword = _userSettings.DisplayDecryptPassphrase;
-        }
 
         private void BindPropertyChangedEvents()
         {
@@ -124,14 +116,13 @@ namespace AxCrypt.Core.UI.ViewModel
         {
             IDataStore privateKeyData = New<IDataStore>(PrivateKeyFileName);
             Passphrase passphrase = new Passphrase(PasswordText);
-            UserKeyPair keyPair;
-            if (!UserKeyPair.TryLoad(privateKeyData.ToArray(), passphrase, out keyPair))
+            if (!UserKeyPair.TryLoad(privateKeyData.ToArray(), passphrase, out UserKeyPair? keyPair))
             {
                 ImportSuccessful = false;
                 return;
             }
 
-            LogOnIdentity identity = new LogOnIdentity(keyPair.UserEmail, passphrase);
+            LogOnIdentity identity = new LogOnIdentity(keyPair!.UserEmail, passphrase);
             AccountStorage store = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             await store.ImportAsync(keyPair);
             ImportSuccessful = true;

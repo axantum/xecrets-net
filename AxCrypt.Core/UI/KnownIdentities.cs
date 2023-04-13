@@ -32,6 +32,7 @@ using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,11 +42,13 @@ namespace AxCrypt.Core.UI
 {
     public class KnownIdentities
     {
-        private List<LogOnIdentity> _logOnIdentities;
+        private readonly List<LogOnIdentity> _logOnIdentities;
 
-        private FileSystemState _fileSystemState;
+        [AllowNull]
+        private readonly FileSystemState _fileSystemState;
 
-        private SessionNotify _notificationMonitor;
+        [AllowNull]
+        private readonly SessionNotify _notificationMonitor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KnownIdentities"/> class. Only for use by mocking frameork.
@@ -193,7 +196,7 @@ namespace AxCrypt.Core.UI
             }
         }
 
-        private List<SymmetricKeyThumbprint> _knownThumbprints;
+        private readonly List<SymmetricKeyThumbprint> _knownThumbprints;
 
         /// <summary>
         /// Add a thumb print to the list of known thumb prints
@@ -204,7 +207,7 @@ namespace AxCrypt.Core.UI
         {
             lock (_knownThumbprints)
             {
-                if (_knownThumbprints.Contains(identity.Passphrase.Thumbprint))
+                if (_knownThumbprints.Contains(identity.Passphrase.Thumbprint ?? throw new InternalErrorException("Thumbprint was null.")))
                 {
                     return false;
                 }
@@ -219,7 +222,7 @@ namespace AxCrypt.Core.UI
             {
                 if (!IsLoggedOn)
                 {
-                    return new WatchedFolder[0];
+                    return Array.Empty<WatchedFolder>();
                 }
                 return _fileSystemState.WatchedFolders.Where(wf => wf.Tag.Matches(DefaultEncryptionIdentity.Tag));
             }

@@ -35,7 +35,7 @@ namespace AxCrypt.Api
             Timeout = timeout;
         }
 
-        public async Task<ApiVersion> ApiVersionAsync(string appPlatform, string appVersion)
+        public async Task<ApiVersion?> ApiVersionAsync(string appPlatform, string appVersion)
         {
             Uri resource = BaseUrl.PathCombine($"global/apiversion?AppPlatform={appPlatform ?? ""}&AppVersion={appVersion ?? ""}&UserCulture={CultureInfo.CurrentUICulture.Name}");
 
@@ -44,13 +44,13 @@ namespace AxCrypt.Api
             {
                 restResponse = await Caller.RestAsync(new RestIdentity(), new RestRequest(resource, Timeout)).Free();
                 ApiCaller.EnsureStatusOk(restResponse);
-                ApiVersion apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
+                ApiVersion? apiVersion = Serializer.Deserialize<ApiVersion>(restResponse.Content);
                 return apiVersion;
             }
             return ApiVersion.Zero;
         }
 
-        public async Task<IList<CultureInfo>> GetCultureInfoListAsync()
+        public async Task<IList<CultureInfo>?> GetCultureInfoListAsync()
         {
             Uri resource = BaseUrl.PathCombine("global/support/cultures");
 
@@ -61,13 +61,13 @@ namespace AxCrypt.Api
                 return DeserialieWorkAroundForCultureInfoPclFrameworkProblems(restResponse);
             }
 
-            return await Task.FromResult((IList<CultureInfo>)null); ;
+            return await Task.FromResult((IList<CultureInfo>?)null); ;
         }
 
         private static IList<CultureInfo> DeserialieWorkAroundForCultureInfoPclFrameworkProblems(RestResponse restResponse)
         {
-            IList<string> cultureInfoStrings = Serializer.Deserialize<IList<string>>(restResponse.Content);
-            return cultureInfoStrings.Select(cit => new CultureInfo(cit)).ToList();
+            IList<string>? cultureInfoStrings = Serializer.Deserialize<IList<string>>(restResponse.Content);
+            return cultureInfoStrings?.Select(cit => new CultureInfo(cit)).ToList() ?? throw new InvalidOperationException("API error, response could not be deserialized.");
         }
     }
 }

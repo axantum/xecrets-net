@@ -32,6 +32,7 @@ using Org.BouncyCastle.Crypto.Macs;
 using Org.BouncyCastle.Crypto.Parameters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -70,6 +71,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             }
         }
 
+        [AllowNull]
         private byte[] _key;
 
         public override byte[] Key()
@@ -111,6 +113,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             throw new NotImplementedException();
         }
 
+        [AllowNull]
         private byte[] _hash;
 
         public override byte[] Hash()
@@ -118,7 +121,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             if (_hash == null)
             {
                 _hash = new byte[OutputBlockSize];
-                _hmac.DoFinal(_hash, 0);
+                _ = _hmac.DoFinal(_hash, 0);
             }
             return (byte[])_hash.Clone();
         }
@@ -157,7 +160,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             get { return _hmac.GetUnderlyingDigest().GetDigestSize(); }
         }
 
-        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset)
         {
             _hmac.BlockUpdate(inputBuffer, inputOffset, inputCount);
             return inputCount;

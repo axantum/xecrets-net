@@ -9,7 +9,7 @@ namespace AxCrypt.Common
     {
         private bool? _isOnline;
 
-        public event EventHandler OnlineStateChanged;
+        public event EventHandler? OnlineStateChanged;
 
         public bool IsFirstSignIn { get; set; } = true;
 

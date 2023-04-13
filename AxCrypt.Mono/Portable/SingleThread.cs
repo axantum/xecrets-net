@@ -27,6 +27,7 @@
 
 using AxCrypt.Core.Portable;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace AxCrypt.Mono.Portable
 {
     public class SingleThread : ISingleThread
     {
+        [AllowNull]
         private SemaphoreSlim _singleThreadSemaphore = new SemaphoreSlim(1, 1);
 
         public virtual Task Enter()
@@ -44,7 +46,7 @@ namespace AxCrypt.Mono.Portable
 
         public virtual void Leave()
         {
-            _singleThreadSemaphore.Release();
+            _ = _singleThreadSemaphore.Release();
         }
 
         public void Dispose()

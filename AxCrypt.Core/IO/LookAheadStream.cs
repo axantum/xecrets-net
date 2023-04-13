@@ -28,6 +28,7 @@
 using AxCrypt.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace AxCrypt.Core.IO
@@ -37,11 +38,12 @@ namespace AxCrypt.Core.IO
     /// </summary>
     public class LookAheadStream : Stream
     {
+        [AllowNull]
         private Stream _inputStream;
 
         private bool _disposed = false;
 
-        private Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
+        private readonly Stack<ByteBuffer> _pushBack = new Stack<ByteBuffer>();
 
         /// <summary>
         /// Implement a stream wrapper with push back capability thus enabling look ahead.
@@ -51,7 +53,7 @@ namespace AxCrypt.Core.IO
         {
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
             if (!inputStream.CanRead)
             {
@@ -168,7 +170,7 @@ namespace AxCrypt.Core.IO
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             if (buffer.Length == 0)
@@ -205,8 +207,10 @@ namespace AxCrypt.Core.IO
             int count = Read(buffer, 0, buffer.Length);
             if (count > 0)
             {
-                ByteBuffer ahead = new ByteBuffer(buffer);
-                ahead.AvailableForRead = count;
+                ByteBuffer ahead = new ByteBuffer(buffer)
+                {
+                    AvailableForRead = count
+                };
                 _pushBack.Push(ahead);
                 return false;
             }

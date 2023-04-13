@@ -20,7 +20,6 @@ namespace AxCrypt.Core.Session
         {
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public static OpenFileProperties Create(IDataStore dataStore)
         {
             if (dataStore == null)
@@ -34,15 +33,13 @@ namespace AxCrypt.Core.Session
                 {
                     return new OpenFileProperties();
                 }
-                using (Stream stream = dataStore.OpenRead())
-                {
-                    return Create(stream);
-                }
+                using Stream stream = dataStore.OpenRead();
+                return Create(stream);
             }
             catch (Exception ex)
             {
                 ex.RethrowFileOperation(dataStore.FullName);
-                return null;
+                return null!; // This is never reached, the exception is rethrown
             }
         }
 

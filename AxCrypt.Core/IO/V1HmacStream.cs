@@ -30,6 +30,7 @@ using AxCrypt.Abstractions.Algorithm;
 using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 using static AxCrypt.Abstractions.TypeResolve;
@@ -38,6 +39,7 @@ namespace AxCrypt.Core.IO
 {
     public class V1HmacStream : Stream
     {
+        [AllowNull]
         private HashAlgorithm _hmac;
 
         public Stream ChainedStream { get; protected set; }
@@ -64,13 +66,13 @@ namespace AxCrypt.Core.IO
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             _hmac = New<AxCryptHMACSHA1>().Initialize(key); ;
             ChainedStream = chainedStream;
         }
 
-        private V1Hmac _hmacResult = null;
+        private V1Hmac? _hmacResult;
 
         /// <summary>
         /// Get the calculated HMAC
@@ -83,7 +85,7 @@ namespace AxCrypt.Core.IO
                 EnsureNotDisposed();
                 if (_hmacResult == null)
                 {
-                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
+                    _ = _hmac.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
                     byte[] result = new byte[16];
                     Array.Copy(_hmac.Hash(), 0, result, 0, result.Length);
                     _hmacResult = new V1Hmac(result);
@@ -156,7 +158,7 @@ namespace AxCrypt.Core.IO
             {
                 throw new InvalidOperationException("Cannot add to the HMAC once it has been finalized.");
             }
-            _hmac.TransformBlock(buffer, offset, count, null, 0);
+            _ = _hmac.TransformBlock(buffer, offset, count, null, 0);
             _count += count;
         }
 
@@ -187,7 +189,7 @@ namespace AxCrypt.Core.IO
         {
             if (dataStream == null)
             {
-                throw new ArgumentNullException("dataStream");
+                throw new ArgumentNullException(nameof(dataStream));
             }
             EnsureNotDisposed();
             byte[] buffer = new byte[OS.Current.StreamBufferSize];

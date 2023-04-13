@@ -27,7 +27,6 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Api.Implementation;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
@@ -35,18 +34,18 @@ using AxCrypt.Core.IO;
 using AxCrypt.Core.Portable;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Fake;
 using AxCrypt.Mono;
 using AxCrypt.Mono.Portable;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+
+using Xecrets.File.Api.Implementation;
+using Xecrets.File.Core;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Test
@@ -74,7 +73,7 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.Singleton<ISettingsStore>(() => new SettingsStore(null));
             TypeMap.Register.Singleton<UserSettings>(() => (new FakeUserSettings(new IterationCalculator())).Initialize());
 
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
             TypeMap.Register.New<KnownPublicKeys>(() => KnownPublicKeys.Load(knownPublicKeysStore, Resolve.Serializer));
             TypeMap.Register.New<ILogging>(() => new Logging());
             TypeMap.Register.New<string, IDataStore>((path) => new FakeDataStore(path));

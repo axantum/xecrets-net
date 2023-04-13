@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,24 +6,23 @@ using System.Text;
 
 namespace AxCrypt.Api.Model.Masterkey
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class MasterKeyPairInfo : IEquatable<MasterKeyPairInfo>
     {
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
 
-        [JsonProperty("thumbprint")]
-        public string Thumbprint { get; set; }
+        [JsonPropertyName("thumbprint")]
+        public string? Thumbprint { get; set; }
 
-        [JsonProperty("public")]
-        public string PublicKey { get; set; }
+        [JsonPropertyName("public")]
+        public string? PublicKey { get; set; }
 
-        [JsonProperty("private")]
-        public IList<PrivateMasterKeyInfo> PrivateKeys { get; set; }
+        [JsonPropertyName("private")]
+        public IList<PrivateMasterKeyInfo>? PrivateKeys { get; set; }
 
-        public bool Equals(MasterKeyPairInfo other)
+        public bool Equals(MasterKeyPairInfo? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
@@ -41,10 +40,10 @@ namespace AxCrypt.Api.Model.Masterkey
                 return false;
             }
 
-            return PrivateKeys.SequenceEqual(other.PrivateKeys);
+            return PrivateKeys!.SequenceEqual(other.PrivateKeys!);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(MasterKeyPairInfo) != obj.GetType())
             {
@@ -57,23 +56,23 @@ namespace AxCrypt.Api.Model.Masterkey
 
         public override int GetHashCode()
         {
-            return Timestamp.GetHashCode() ^ Thumbprint.GetHashCode() ^ PublicKey.GetHashCode() ^ PrivateKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
+            return Timestamp.GetHashCode() ^ Thumbprint!.GetHashCode() ^ PublicKey!.GetHashCode() ^ PrivateKeys!.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
         }
 
-        public static bool operator ==(MasterKeyPairInfo left, MasterKeyPairInfo right)
+        public static bool operator ==(MasterKeyPairInfo? left, MasterKeyPairInfo? right)
         {
             if (Object.ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(MasterKeyPairInfo left, MasterKeyPairInfo right)
+        public static bool operator !=(MasterKeyPairInfo? left, MasterKeyPairInfo? right)
         {
             return !(left == right);
         }

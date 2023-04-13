@@ -47,7 +47,7 @@ namespace AxCrypt.Core.Test
     {
         private class TestKnownImageProvider : IKnownFolderImageProvider
         {
-            public static Bitmap Image { get; } = new Bitmap(32, 32);
+            public static object Image { get; } = new byte[137];
 
             public object GetImage(KnownFolderKind folderKind)
             {
@@ -77,7 +77,6 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestNormalConstructor()
         {
-            Bitmap image = new Bitmap(32, 32);
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
             IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
 

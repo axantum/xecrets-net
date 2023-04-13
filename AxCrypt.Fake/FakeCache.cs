@@ -29,7 +29,7 @@ namespace AxCrypt.Fake
 
         public Task UpdateItemAsync(Func<Task> updateFunction, params ICacheKey[] dependencies)
         {
-            return Task.FromResult<object>(null);
+            return Task.CompletedTask;
         }
 
         public Task<T> UpdateItemAsync<T>(Func<Task<T>> updateFunction, params ICacheKey[] dependencies)

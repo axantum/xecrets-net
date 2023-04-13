@@ -1,4 +1,4 @@
-#if DEBUG
+﻿#if DEBUG
 #define CODE_ANALYSIS
 #endif
 
@@ -44,7 +44,7 @@ namespace AxCrypt.Core.Secrets
     /// </remarks>
     public class EncryptionKey : IEquatable<EncryptionKey>
     {
-        private byte[] _bytes;
+        private readonly byte[] _bytes;
 
         /// <summary>
         /// Encrypts a string for use in this AppDomain. The string can only be decrypted in the
@@ -55,7 +55,7 @@ namespace AxCrypt.Core.Secrets
         {
             if (passphrase == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException(nameof(passphrase));
             }
 
             _bytes = New<TransientProtectedData>().Protect(passphrase);
@@ -65,7 +65,7 @@ namespace AxCrypt.Core.Secrets
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             _bytes = key._bytes;
         }
@@ -75,10 +75,9 @@ namespace AxCrypt.Core.Secrets
         /// in the lifetime of this AppDomain.
         /// </summary>
         /// <returns>The original string</returns>
-        protected internal string DecryptPassphrase()
+        protected internal string? DecryptPassphrase()
         {
-            string keyString;
-            if (!New<TransientProtectedData>().TryUnprotect(_bytes, out keyString))
+            if (!New<TransientProtectedData>().TryUnprotect(_bytes, out string? keyString))
             {
                 return null;
             }
@@ -100,7 +99,7 @@ namespace AxCrypt.Core.Secrets
                 return false;
             }
 
-            return String.Compare(key1.DecryptPassphrase(), key2.DecryptPassphrase(), StringComparison.Ordinal) == 0;
+            return string.Equals(key1.DecryptPassphrase(), key2.DecryptPassphrase(), StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -109,14 +108,14 @@ namespace AxCrypt.Core.Secrets
         /// <param name="key1">The key1.</param>
         /// <param name="key2">The key2.</param>
         /// <returns>The result of the operator.</returns>
-        public static bool operator ==(EncryptionKey key1, EncryptionKey key2)
+        public static bool operator ==(EncryptionKey? key1, EncryptionKey? key2)
         {
-            if (System.Object.ReferenceEquals(key1, key2))
+            if (ReferenceEquals(key1, key2))
             {
                 return true;
             }
 
-            if (((object)key1) == null || ((object)key2 == null))
+            if (((object?)key1) == null || ((object?)key2 == null))
             {
                 return false;
             }
@@ -135,7 +134,7 @@ namespace AxCrypt.Core.Secrets
             return !(key1 == key2);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as EncryptionKey);
         }
@@ -154,7 +153,7 @@ namespace AxCrypt.Core.Secrets
         /// <returns>
         /// true if the current object is equal to the other parameter; otherwise, false.
         /// </returns>
-        public bool Equals(EncryptionKey other)
+        public bool Equals(EncryptionKey? other)
         {
             return this == other;
         }

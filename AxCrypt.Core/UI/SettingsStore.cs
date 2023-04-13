@@ -8,7 +8,7 @@ namespace AxCrypt.Core.UI
 {
     public class SettingsStore : StreamSettingsStore
     {
-        private IDataStore _persistanceFileInfo;
+        private readonly IDataStore? _persistanceFileInfo;
 
         public SettingsStore(IDataStore dataStore)
         {
@@ -27,7 +27,7 @@ namespace AxCrypt.Core.UI
 
         public override void Clear()
         {
-            using (New<FileLocker>().Acquire(_persistanceFileInfo))
+            using (New<FileLocker>().Acquire(_persistanceFileInfo!))
             {
                 if (_persistanceFileInfo != null)
                 {

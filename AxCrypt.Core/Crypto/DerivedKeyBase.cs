@@ -26,18 +26,21 @@
 #endregion Coypright and License
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Crypto
 {
     public abstract class DerivedKeyBase : IDerivedKey
     {
+        [AllowNull]
         public SymmetricKey DerivedKey
         {
             get;
             protected set;
         }
 
+        [AllowNull]
         public Salt DerivationSalt
         {
             get;
@@ -53,9 +56,9 @@ namespace AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="other">The instance to compare to</param>
         /// <returns>true if the keys are equivalent</returns>
-        public bool Equals(IDerivedKey other)
+        public bool Equals(IDerivedKey? other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (other is null)
             {
                 return false;
             }
@@ -64,10 +67,9 @@ namespace AxCrypt.Core.Crypto
 
         #endregion IEquatable<SymmetricKey> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            IDerivedKey other = obj as IDerivedKey;
-            if (other == null)
+            if (obj is not IDerivedKey other)
             {
                 return false;
             }
@@ -77,7 +79,7 @@ namespace AxCrypt.Core.Crypto
 
         public override int GetHashCode()
         {
-            return DerivedKey.GetHashCode();
+            return DerivedKey?.GetHashCode() ?? throw new InvalidOperationException("Internal Program Error, GetHashCode called on an object without a DerivedKey set.");
         }
     }
 }

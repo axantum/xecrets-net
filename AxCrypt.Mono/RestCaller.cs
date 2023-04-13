@@ -56,11 +56,11 @@ namespace AxCrypt.Mono
         {
             if (identity == null)
             {
-                throw new ArgumentNullException("identity");
+                throw new ArgumentNullException(nameof(identity));
             }
             if (request == null)
             {
-                throw new ArgumentNullException("request");
+                throw new ArgumentNullException(nameof(request));
             }
 
             if (!New<IInternetState>().Connected)
@@ -75,7 +75,7 @@ namespace AxCrypt.Mono
                     case "GET":
                         if (request.Content.Text.Length > 0)
                         {
-                            throw new ArgumentException("You can't send content with a GET request.", "request");
+                            throw new ArgumentException("You can't send content with a GET request.", nameof(request));
                         }
                         return await SendGetAsync(identity, request).Free();
 
@@ -102,7 +102,7 @@ namespace AxCrypt.Mono
             }
             catch (HttpRequestException hrex)
             {
-                New<IInternetState>().Clear();
+                _ = New<IInternetState>().Clear();
                 throw new OfflineApiException(ExceptionMessage("Offline", request), hrex);
             }
         }
@@ -126,50 +126,41 @@ namespace AxCrypt.Mono
 
         private static async Task<RestResponse> SendGetAsync(RestIdentity identity, RestRequest request)
         {
-            string content = String.Empty;
-            using (HttpClient client = CreateHttpClient())
+            using HttpClient client = CreateHttpClient();
+            PrepareClient(client, identity, request);
+
+            HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).Free();
+            var content = await httpResponse.Content.ReadAsStringAsync().Free();
+            if (content.Length > 0 && httpResponse.Content?.Headers?.ContentType?.MediaType != "application/json")
             {
-                PrepareClient(client, identity, request);
-
-                HttpResponseMessage httpResponse = await client.GetAsync(request.Url.PathAndQuery).Free();
-                content = await httpResponse.Content.ReadAsStringAsync().Free();
-                if (content.Length > 0 && httpResponse.Content?.Headers?.ContentType?.MediaType != "application/json")
-                {
-                    throw new HttpRequestException("Expected Media Type 'application/json'.");
-                }
-
-                return new RestResponse(httpResponse.StatusCode, content);
+                throw new HttpRequestException("Expected Media Type 'application/json'.");
             }
+
+            return new RestResponse(httpResponse.StatusCode, content);
         }
 
         private static async Task<RestResponse> SendPutAsync(RestIdentity identity, RestRequest request)
         {
-            string content = String.Empty;
-            using (HttpClient client = CreateHttpClient())
-            {
-                PrepareClient(client, identity, request);
+            using HttpClient client = CreateHttpClient();
+            PrepareClient(client, identity, request);
 
-                StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).Free();
-                content = await httpResponse.Content.ReadAsStringAsync().Free();
+            StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
+            HttpResponseMessage httpResponse = await client.PutAsync(request.Url.PathAndQuery, httpContent).Free();
+            var content = await httpResponse.Content.ReadAsStringAsync().Free();
 
-                return new RestResponse(httpResponse.StatusCode, content);
-            }
+            return new RestResponse(httpResponse.StatusCode, content);
         }
 
         private static async Task<RestResponse> SendPostAsync(RestIdentity identity, RestRequest request)
         {
-            string content = String.Empty;
-            using (HttpClient client = CreateHttpClient())
-            {
-                PrepareClient(client, identity, request);
+            using HttpClient client = CreateHttpClient();
+            PrepareClient(client, identity, request);
 
-                StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
-                HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).Free();
-                content = await httpResponse.Content.ReadAsStringAsync().Free();
+            StringContent httpContent = new StringContent(request.Content.Text, Encoding.UTF8, "application/json");
+            HttpResponseMessage httpResponse = await client.PostAsync(request.Url.PathAndQuery, httpContent).Free();
+            var content = await httpResponse.Content.ReadAsStringAsync().Free();
 
-                return new RestResponse(httpResponse.StatusCode, content);
-            }
+            return new RestResponse(httpResponse.StatusCode, content);
         }
 
         private static async Task<RestResponse> SendDeleteAsync(RestIdentity identity, RestRequest request)
@@ -206,8 +197,10 @@ namespace AxCrypt.Mono
 
         private static HttpClient CreateHttpClient()
         {
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.Proxy = WebRequest.DefaultWebProxy;
+            HttpClientHandler clientHandler = new HttpClientHandler
+            {
+                Proxy = WebRequest.DefaultWebProxy ?? throw new InvalidOperationException("DefaultWebProxy was null.")
+            };
             clientHandler.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
             return new HttpClient(clientHandler);
         }

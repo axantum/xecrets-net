@@ -38,12 +38,10 @@ namespace AxCrypt.Core.Crypto
     /// </summary>
     public class SymmetricKey : IEquatable<SymmetricKey>, ISymmetricKey
     {
-        private byte[] _symmetricKey;
+        private readonly byte[] _symmetricKey;
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
         public static readonly SymmetricKey Zero128 = new SymmetricKey(new byte[16]);
 
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is immutable.")]
         public static readonly SymmetricKey Zero256 = new SymmetricKey(new byte[32]);
 
         /// <summary>
@@ -62,7 +60,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             _symmetricKey = (byte[])key.Clone();
         }
@@ -91,9 +89,9 @@ namespace AxCrypt.Core.Crypto
         /// </summary>
         /// <param name="other">The instance to compare to</param>
         /// <returns>true if the keys are equivalent</returns>
-        public bool Equals(SymmetricKey other)
+        public bool Equals(SymmetricKey? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -102,7 +100,7 @@ namespace AxCrypt.Core.Crypto
 
         #endregion IEquatable<SymmetricKey> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(SymmetricKey) != obj.GetType())
             {
@@ -127,7 +125,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (right == null)
             {
-                throw new ArgumentNullException("right");
+                throw new ArgumentNullException(nameof(right));
             }
 
             byte[] leftBytes = GetBytes();
@@ -140,20 +138,20 @@ namespace AxCrypt.Core.Crypto
             return result;
         }
 
-        public static bool operator ==(SymmetricKey left, SymmetricKey right)
+        public static bool operator ==(SymmetricKey? left, SymmetricKey? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if (left is null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(SymmetricKey left, SymmetricKey right)
+        public static bool operator !=(SymmetricKey? left, SymmetricKey? right)
         {
             return !(left == right);
         }
@@ -162,11 +160,11 @@ namespace AxCrypt.Core.Crypto
         {
             if (left == null)
             {
-                throw new ArgumentNullException("left");
+                throw new ArgumentNullException(nameof(left));
             }
             if (right == null)
             {
-                throw new ArgumentNullException("right");
+                throw new ArgumentNullException(nameof(right));
             }
 
             return left.Add(right);

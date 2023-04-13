@@ -45,13 +45,13 @@ namespace AxCrypt.Mono.Test
     [TestFixture]
     public static class TestDataStore
     {
-        private static string _tempPath;
+        private static string _tempPath = null!;
 
         [SetUp]
         public static void Setup()
         {
             _tempPath = Path.Combine(Path.GetTempPath(), "AxCrypt.Mono.Test.TestDataStore");
-            Directory.CreateDirectory(_tempPath);
+            _ = Directory.CreateDirectory(_tempPath);
 
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<IReport>(() => new FakeReport());
@@ -73,12 +73,9 @@ namespace AxCrypt.Mono.Test
         [Test]
         public static void TestDataStoreNullArgument()
         {
-            Assert.Throws<ArgumentNullException>(() =>
+            _ = Assert.Throws<ArgumentNullException>(() =>
             {
-                DataStore ds = new DataStore(null);
-
-                // Avoid FxCop error
-                Object.Equals(ds, null);
+                DataStore ds = new DataStore(null!);
             });
         }
 
@@ -91,12 +88,37 @@ namespace AxCrypt.Mono.Test
                 return;
             }
 
-            Assert.Throws<FileOperationException>(() =>
+            Assert.DoesNotThrow(() =>
             {
-                DataStore ds = new DataStore("A?bad*filename.txt");
+                string goodFileName = Path.Combine(Path.GetTempPath(), "GoodName.txt");
+                DataStore ds = new DataStore(goodFileName);
+                try
+                {
+                    using (ds.OpenWrite())
+                    {
+                    }
+                }
+                finally
+                {
+                    ds.Delete();
+                }
+            });
 
-                // Avoid FxCop error
-                Object.Equals(ds, null);
+            _ = Assert.Throws<IOException>(() =>
+            {
+
+                string badFileName = Path.Combine(Path.GetTempPath(), "A?bad*filename.txt");
+                DataStore ds = new DataStore(badFileName);
+                try
+                {
+                    using (ds.OpenWrite())
+                    {
+                    }
+                }
+                finally
+                {
+                    ds.Delete();
+                }
             });
         }
 
@@ -118,7 +140,7 @@ namespace AxCrypt.Mono.Test
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
+        [Test]
         public static void TestDataStoreMethods()
         {
             string tempFileName = Path.GetTempFileName();
@@ -127,19 +149,15 @@ namespace AxCrypt.Mono.Test
             {
                 using (Stream writeStream = ds.OpenWrite())
                 {
-                    using (TextWriter writer = new StreamWriter(writeStream))
-                    {
-                        writer.Write("This is AxCrypt!");
-                    }
+                    using TextWriter writer = new StreamWriter(writeStream);
+                    writer.Write("This is AxCrypt!");
                 }
                 using (Stream readStream = ds.OpenRead())
                 {
-                    using (TextReader reader = new StreamReader(readStream))
-                    {
-                        string text = reader.ReadToEnd();
+                    using TextReader reader = new StreamReader(readStream);
+                    string text = reader.ReadToEnd();
 
-                        Assert.That(text, Is.EqualTo("This is AxCrypt!"), "What was written should be read.");
-                    }
+                    Assert.That(text, Is.EqualTo("This is AxCrypt!"), "What was written should be read.");
                 }
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);

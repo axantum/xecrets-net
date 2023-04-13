@@ -8,7 +8,7 @@ namespace AxCrypt.Common
 {
     public class VersionUpdateKind
     {
-        private Version _currentVersion;
+        private Version? _currentVersion;
 
         private Version _newVersion;
 
@@ -50,7 +50,7 @@ namespace AxCrypt.Common
             };
         }
 
-        public Version CurrentVersion { get { return _currentVersion; } }
+        public Version? CurrentVersion { get { return _currentVersion; } }
 
         public Version NewVersion { get { return _newVersion; } }
 
@@ -58,6 +58,10 @@ namespace AxCrypt.Common
         {
             get
             {
+                if (_currentVersion == null)
+                {
+                    throw new InvalidOperationException("Internal program error, CurrentVersion is null.");
+                }
                 return _unreliableVersions.IsInRange(_currentVersion);
             }
         }
@@ -66,6 +70,10 @@ namespace AxCrypt.Common
         {
             get
             {
+                if (_currentVersion == null)
+                {
+                    throw new InvalidOperationException("Internal program error, CurrentVersion is null.");
+                }
                 return _insecureVersions.IsInRange(_currentVersion);
             }
         }

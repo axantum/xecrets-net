@@ -1,14 +1,9 @@
-﻿using AxCrypt.Common;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
+
+using AxCrypt.Common;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class AccountTip
     {
         public AccountTip()
@@ -18,16 +13,16 @@ namespace AxCrypt.Api.Model
             ButtonStyle = StartupTipButtonStyle.Unknown;
         }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
-        [JsonProperty("level")]
+        [JsonPropertyName("level")]
         public StartupTipLevel Level { get; set; }
 
-        [JsonProperty("button_style")]
+        [JsonPropertyName("button_style")]
         public StartupTipButtonStyle ButtonStyle { get; set; }
 
-        [JsonProperty("url")]
-        public Uri Url { get; set; }
+        [JsonPropertyName("url")]
+        public Uri? Url { get; set; }
     }
 }

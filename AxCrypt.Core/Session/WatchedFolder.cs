@@ -30,11 +30,9 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.UI;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -45,18 +43,17 @@ namespace AxCrypt.Core.Session
     /// automatic encryption of files for example. Instances of this class are
     /// immutable
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
-    public class WatchedFolder : IDisposable
+    public class WatchedFolder : IDisposable, IJsonOnDeserialized
     {
-        [JsonProperty("path")]
-        public string Path { get; private set; }
+        [JsonPropertyName("path")]
+        public string Path { get; set; } = String.Empty;
 
+        [AllowNull]
         private IFileWatcher _fileWatcher;
 
-        public event EventHandler<FileWatcherEventArgs> Changed;
+        public event EventHandler<FileWatcherEventArgs>? Changed;
 
-        [JsonConstructor]
-        private WatchedFolder()
+        public WatchedFolder()
         {
             Tag = IdentityPublicTag.Empty;
             KeyShares = new List<EmailAddress>();
@@ -67,15 +64,11 @@ namespace AxCrypt.Core.Session
         {
             if (path == null)
             {
-                throw new ArgumentNullException("path");
-            }
-            if (publicTag == null)
-            {
-                throw new ArgumentNullException("publicTag");
+                throw new ArgumentNullException(nameof(path));
             }
 
             Path = path.NormalizeFolderPath();
-            Tag = publicTag;
+            Tag = publicTag ?? throw new ArgumentNullException(nameof(publicTag));
             InitializeFileWatcher();
         }
 
@@ -94,27 +87,28 @@ namespace AxCrypt.Core.Session
             InitializeFileWatcher();
         }
 
-        [JsonProperty("publicTag")]
+        [JsonPropertyName("publicTag")]
         public IdentityPublicTag Tag
         {
             get;
-            private set;
+            set;
         }
 
-        [JsonProperty("keyShares")]
+        [JsonPropertyName("keyShares")]
         public IEnumerable<EmailAddress> KeyShares
         {
             get;
-            private set;
+            set;
         }
 
-        [JsonProperty("isDeleted")]
+        [JsonPropertyName("isDeleted")]
         public bool IsDeleted
         {
             get;
             set;
         }
 
+        [JsonIgnore]
         public bool IsKnownFolder
         {
             get
@@ -123,9 +117,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
+        public void OnDeserialized()
         {
             InitializeFileWatcher();
         }
@@ -140,7 +132,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        private void _fileWatcher_FileChanged(object sender, FileWatcherEventArgs e)
+        private void _fileWatcher_FileChanged(object? sender, FileWatcherEventArgs e)
         {
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
             {
@@ -163,7 +155,7 @@ namespace AxCrypt.Core.Session
         {
             if (watchedFolder == null)
             {
-                throw new ArgumentNullException("watchedFolder");
+                throw new ArgumentNullException(nameof(watchedFolder));
             }
 
             return Matches(watchedFolder.Path);

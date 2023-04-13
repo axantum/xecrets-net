@@ -32,13 +32,13 @@ namespace AxCrypt.Core.Ipc
 {
     public class CommandHandler
     {
-        private static ArgumentBundles _bundles = new ArgumentBundles();
+        private static readonly ArgumentBundles _bundles = new ArgumentBundles();
 
         public void RequestReceived(object sender, CommandServiceEventArgs e)
         {
             if (e == null)
             {
-                throw new ArgumentNullException("e");
+                throw new ArgumentNullException(nameof(e));
             }
 
             switch (e.Verb)
@@ -65,15 +65,11 @@ namespace AxCrypt.Core.Ipc
             }
         }
 
-        public event EventHandler<CommandCompleteEventArgs> CommandComplete;
+        public event EventHandler<CommandCompleteEventArgs>? CommandComplete;
 
         protected virtual void OnCommandComplete(CommandCompleteEventArgs e)
         {
-            EventHandler<CommandCompleteEventArgs> handler = CommandComplete;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            CommandComplete?.Invoke(this, e);
         }
     }
 }

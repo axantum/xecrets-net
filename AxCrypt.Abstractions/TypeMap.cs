@@ -25,10 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace AxCrypt.Abstractions
 {
     /// <summary>
@@ -40,12 +36,12 @@ namespace AxCrypt.Abstractions
         /// <summary>
         /// The instance. There can be only one.
         /// </summary>
-        private static TypeMap _instance = new TypeMap();
+        private static readonly TypeMap _instance = new TypeMap();
 
         /// <summary>
         /// The type map
         /// </summary>
-        private Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, object> _mapping = new Dictionary<Type, object>();
 
         private TypeMap()
         {

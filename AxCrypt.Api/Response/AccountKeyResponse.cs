@@ -1,13 +1,12 @@
 ﻿using AxCrypt.Api.Model;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Response
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class AccountKeyResponse : ResponseBase
     {
         public AccountKeyResponse()
@@ -15,7 +14,7 @@ namespace AxCrypt.Api.Response
             KeyPair = new AccountKey[0];
         }
 
-        [JsonProperty("keypair")]
-        public IList<AccountKey> KeyPair { get; private set; }
+        [JsonPropertyName("keypair")]
+        public IList<AccountKey> KeyPair { get; set; }
     }
 }

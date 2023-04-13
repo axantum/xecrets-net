@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace AxCrypt.Core.Secrets
             ExpirationDate = expirationDate;
         }
 
+        [AllowNull]
         private string _number;
 
         public string Number
@@ -24,6 +26,7 @@ namespace AxCrypt.Core.Secrets
             set { _number = value; }
         }
 
+        [AllowNull]
         private string _description;
 
         /// <summary>
@@ -35,6 +38,7 @@ namespace AxCrypt.Core.Secrets
             set { _description = value; }
         }
 
+        [AllowNull]
         private string _nameOnCard;
 
         public string NameOnCard
@@ -43,6 +47,7 @@ namespace AxCrypt.Core.Secrets
             set { _nameOnCard = value; }
         }
 
+        [AllowNull]
         private string _securityCode;
 
         public string SecurityCode
@@ -51,6 +56,7 @@ namespace AxCrypt.Core.Secrets
             set { _securityCode = value; }
         }
 
+        [AllowNull]
         private string _expirationDate;
 
         public string ExpirationDate

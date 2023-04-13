@@ -40,13 +40,13 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class IdentityViewModel : ViewModelBase
     {
-        private FileSystemState _fileSystemState;
+        private readonly FileSystemState _fileSystemState;
 
-        private KnownIdentities _knownIdentities;
+        private readonly KnownIdentities _knownIdentities;
 
-        private UserSettings _userSettings;
+        private readonly UserSettings _userSettings;
 
-        private SessionNotify _sessionNotify;
+        private readonly SessionNotify _sessionNotify;
 
         public IdentityViewModel(FileSystemState fileSystemState, KnownIdentities knownIdentities, UserSettings userSettings, SessionNotify sessionNotify)
         {
@@ -91,7 +91,7 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction AskForLogOnPassphrase { get; private set; }
 
-        public Func<LogOnEventArgs, Task> LoggingOnAsync { get; set; }
+        public Func<LogOnEventArgs, Task>? LoggingOnAsync { get; set; }
 
         protected virtual async Task OnLoggingOnAsync(LogOnEventArgs e)
         {
@@ -124,10 +124,8 @@ namespace AxCrypt.Core.UI.ViewModel
             }
             foreach (UserPublicKey userPublicKey in logOnIdentity.PublicKeys)
             {
-                using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
-                {
-                    knownPublicKeys.AddOrReplace(userPublicKey);
-                }
+                using var knownPublicKeys = New<KnownPublicKeys>();
+                knownPublicKeys.AddOrReplace(userPublicKey);
             }
             return logOnIdentity;
         }
@@ -161,7 +159,7 @@ namespace AxCrypt.Core.UI.ViewModel
             return LogOnIdentityFromPassphrase(passphrase);
         }
 
-        private async static Task<LogOnIdentity> LogOnIdentityFromUserAsync(EmailAddress emailAddress, Passphrase passphrase)
+        private static async Task<LogOnIdentity> LogOnIdentityFromUserAsync(EmailAddress emailAddress, Passphrase passphrase)
         {
             IAccountService accountService = New<LogOnIdentity, IAccountService>(new LogOnIdentity(emailAddress, passphrase));
             AccountStorage store = new AccountStorage(accountService);
@@ -177,20 +175,20 @@ namespace AxCrypt.Core.UI.ViewModel
             return LogOnIdentity.Empty;
         }
 
-        private static async Task<LogOnIdentity> AddMasterKeyInfo(LogOnIdentity logOnIdentity, UserAccount userAccount)
+        private static Task<LogOnIdentity> AddMasterKeyInfo(LogOnIdentity logOnIdentity, UserAccount userAccount)
         {
             if (userAccount.SubscriptionLevel != SubscriptionLevel.Business)
             {
-                return logOnIdentity;
+                return Task.FromResult(logOnIdentity);
             }
 
             if (!userAccount.IsMasterKeyEnabled)
             {
-                return logOnIdentity;
+                return Task.FromResult(logOnIdentity);
             }
 
-            logOnIdentity.MasterKeyPair = userAccount.MasterKeyPair;
-            return logOnIdentity;
+            logOnIdentity.MasterKeyPair = userAccount.MasterKeyPair!;
+            return Task.FromResult(logOnIdentity);
         }
 
         private LogOnIdentity LogOnIdentityFromPassphrase(Passphrase passphrase)

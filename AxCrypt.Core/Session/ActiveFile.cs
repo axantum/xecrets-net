@@ -29,11 +29,11 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -44,11 +44,9 @@ namespace AxCrypt.Core.Session
     /// immutable.
     /// </summary>
     ///
-    [JsonObject(MemberSerialization.OptIn)]
-    public sealed class ActiveFile
+    public sealed class ActiveFile : IJsonOnDeserialized
     {
-        [JsonConstructor]
-        private ActiveFile()
+        public ActiveFile()
         {
         }
 
@@ -56,7 +54,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
             Initialize(activeFile);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, Properties.LastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
@@ -67,11 +65,11 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
             if (decryptIdentity == null)
             {
-                throw new ArgumentNullException("decryptIdentity");
+                throw new ArgumentNullException(nameof(decryptIdentity));
             }
 
             Initialize(activeFile, decryptIdentity);
@@ -82,22 +80,18 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
-            }
-            if (encryptedFileInfo == null)
-            {
-                throw new ArgumentNullException("encryptedFileInfo");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             Initialize(activeFile);
-            EncryptedFileInfo = encryptedFileInfo;
+            EncryptedFileInfo = encryptedFileInfo ?? throw new ArgumentNullException(nameof(encryptedFileInfo));
         }
 
         public ActiveFile(ActiveFile activeFile, ActiveFileStatus status)
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             Initialize(activeFile);
@@ -108,7 +102,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             Initialize(activeFile);
@@ -119,7 +113,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             Initialize(activeFile, identity);
@@ -130,7 +124,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
             Initialize(activeFile);
             Properties = new ActiveFileProperties(activeFile.Properties.LastActivityTimeUtc, lastEncryptionWriteTimeUtc, activeFile.Properties.CryptoId);
@@ -141,15 +135,15 @@ namespace AxCrypt.Core.Session
         {
             if (encryptedFileInfo == null)
             {
-                throw new ArgumentNullException("encryptedFileInfo");
+                throw new ArgumentNullException(nameof(encryptedFileInfo));
             }
             if (decryptedFileInfo == null)
             {
-                throw new ArgumentNullException("decryptedFileInfo");
+                throw new ArgumentNullException(nameof(decryptedFileInfo));
             }
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             Initialize(encryptedFileInfo, decryptedFileInfo, key, null, status, new ActiveFileProperties(New<INow>().Utc, encryptedFileInfo.LastWriteTimeUtc, cryptoId));
         }
@@ -164,7 +158,7 @@ namespace AxCrypt.Core.Session
             Initialize(other.EncryptedFileInfo, other.DecryptedFileInfo, other.Identity, other.Thumbprint, other.Status, other.Properties);
         }
 
-        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity identity, SymmetricKeyThumbprint thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
+        private void Initialize(IDataStore encryptedFileInfo, IDataStore decryptedFileInfo, LogOnIdentity identity, SymmetricKeyThumbprint? thumbprint, ActiveFileStatus status, ActiveFileProperties properties)
         {
             EncryptedFileInfo = New<IDataStore>(encryptedFileInfo.FullName);
             DecryptedFileInfo = New<IDataStore>(decryptedFileInfo.FullName);
@@ -178,22 +172,26 @@ namespace AxCrypt.Core.Session
             IsMasterKeyShared = document.IsMasterKeyShared();
         }
 
+        [AllowNull]
+        [JsonIgnore]
         public IDataStore DecryptedFileInfo
         {
             get;
             private set;
         }
 
+        [AllowNull]
+        [JsonIgnore]
         public IDataStore EncryptedFileInfo
         {
             get;
             private set;
         }
 
-        private SymmetricKeyThumbprint _thumbprint;
+        private SymmetricKeyThumbprint? _thumbprint;
 
-        [JsonProperty("thumbprint")]
-        public SymmetricKeyThumbprint Thumbprint
+        [JsonPropertyName("thumbprint")]
+        public SymmetricKeyThumbprint? Thumbprint
         {
             get
             {
@@ -203,17 +201,17 @@ namespace AxCrypt.Core.Session
                 }
                 return _thumbprint;
             }
-            private set
+            set
             {
                 _thumbprint = value;
             }
         }
 
+        [AllowNull]
         private string _decryptedFolder;
 
-        [JsonProperty("decryptedFolder")]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
-        private string DecryptedFolder
+        [JsonPropertyName("decryptedFolder")]
+        public string DecryptedFolder
         {
             get
             {
@@ -225,33 +223,30 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [AllowNull]
         private string _decryptedName;
 
+        [AllowNull]
         private byte[] _protectedName;
 
-        [JsonProperty("protectedDecryptedName")]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
-        private byte[] ProtectedDecryptedName
+        [JsonPropertyName("protectedDecryptedName")]
+        public byte[] ProtectedDecryptedName
         {
             get
             {
-                if (_protectedName == null)
-                {
-                    _protectedName = New<IProtectedData>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)), null);
-                }
+                _protectedName ??= New<IProtectedData>().Protect(Encoding.UTF8.GetBytes(Resolve.Portable.Path().GetFileName(DecryptedFileInfo.FullName)), null);
                 return _protectedName;
             }
             set
             {
-                byte[] bytes = New<IProtectedData>().Unprotect(value, null);
-                _decryptedName = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                byte[]? bytes = New<IProtectedData>().Unprotect(value, null);
+                _decryptedName = Encoding.UTF8.GetString(bytes!, 0, bytes!.Length);
                 _protectedName = (byte[])value.Clone();
             }
         }
 
-        [JsonProperty("encryptedPath")]
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "This is a private property used for serialization.")]
-        private string EncryptedPath
+        [JsonPropertyName("encryptedPath")]
+        public string EncryptedPath
         {
             get
             {
@@ -263,20 +258,26 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        [JsonProperty("status")]
-        public ActiveFileStatus Status { get; private set; }
+        [JsonPropertyName("status")]
+        public ActiveFileStatus Status { get; set; }
 
-        [JsonProperty("properties")]
-        public ActiveFileProperties Properties { get; private set; }
+        [JsonPropertyName("properties")]
+        [AllowNull]
+        public ActiveFileProperties Properties { get; set; }
 
+        [JsonIgnore]
         public bool IsShared { get; private set; }
 
+        [JsonIgnore]
         public bool IsMasterKeyShared { get; private set; }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
+        {
+            OnDeserialized();
+        }
+
+        public void OnDeserialized()
         {
             DecryptedFileInfo = New<IDataStore>(Resolve.Portable.Path().Combine(_decryptedFolder, _decryptedName));
             if (Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
@@ -287,6 +288,7 @@ namespace AxCrypt.Core.Session
 
         private LogOnIdentity _identity = LogOnIdentity.Empty;
 
+        [JsonIgnore]
         public LogOnIdentity Identity
         {
             get
@@ -295,12 +297,7 @@ namespace AxCrypt.Core.Session
             }
             private set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-
-                _identity = value;
+                _identity = value ?? throw new ArgumentNullException(nameof(value));
             }
         }
 
@@ -313,12 +310,13 @@ namespace AxCrypt.Core.Session
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
 
             return key.Thumbprint == Thumbprint;
         }
 
+        [JsonIgnore]
         public bool IsModified
         {
             get
@@ -336,6 +334,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public ActiveFileVisualStates VisualState
         {
             get
@@ -349,6 +348,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public bool IsDecrypted
         {
             get

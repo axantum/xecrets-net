@@ -26,11 +26,10 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Extensions;
-using Newtonsoft.Json;
-using System;
+
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Crypto
 {
@@ -41,16 +40,20 @@ namespace AxCrypt.Core.Crypto
     /// passphrase will have the same thumbprint regardless of which crypto is actually used when encrypting data
     /// with the corresponding passphrase.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class SymmetricKeyThumbprint : IEquatable<SymmetricKeyThumbprint>
     {
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This class is immutable.")]
         public static readonly SymmetricKeyThumbprint Zero = new SymmetricKeyThumbprint(new byte[8]);
 
-        [JsonProperty("thumbprint")]
+        [JsonPropertyName("thumbprint")]
+        public byte[] BytesForJson { get { return _bytes; } set { _bytes = value; } }
+
+        [AllowNull]
         private byte[] _bytes;
 
-        [JsonConstructor]
+        public SymmetricKeyThumbprint()
+        {
+        }
+
         private SymmetricKeyThumbprint(byte[] bytes)
         {
             _bytes = bytes;
@@ -65,11 +68,11 @@ namespace AxCrypt.Core.Crypto
         {
             if (passphrase == null)
             {
-                throw new ArgumentNullException("passphrase");
+                throw new ArgumentNullException(nameof(passphrase));
             }
             if (salt == null)
             {
-                throw new ArgumentNullException("salt");
+                throw new ArgumentNullException(nameof(salt));
             }
 
             ICryptoFactory factory = Resolve.CryptoFactory.Minimum;
@@ -82,9 +85,9 @@ namespace AxCrypt.Core.Crypto
 
         #region IEquatable<AesKeyThumbprint> Members
 
-        public bool Equals(SymmetricKeyThumbprint other)
+        public bool Equals(SymmetricKeyThumbprint? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -94,7 +97,7 @@ namespace AxCrypt.Core.Crypto
 
         #endregion IEquatable<AesKeyThumbprint> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(SymmetricKeyThumbprint) != obj.GetType())
             {
@@ -115,20 +118,20 @@ namespace AxCrypt.Core.Crypto
             return hashcode;
         }
 
-        public static bool operator ==(SymmetricKeyThumbprint left, SymmetricKeyThumbprint right)
+        public static bool operator ==(SymmetricKeyThumbprint? left, SymmetricKeyThumbprint? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if (left is null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(SymmetricKeyThumbprint left, SymmetricKeyThumbprint right)
+        public static bool operator !=(SymmetricKeyThumbprint? left, SymmetricKeyThumbprint? right)
         {
             return !(left == right);
         }

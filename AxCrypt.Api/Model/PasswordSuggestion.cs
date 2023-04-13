@@ -1,16 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class PasswordSuggestion
     {
-        [JsonConstructor]
         public PasswordSuggestion()
         {
         }
@@ -21,10 +14,10 @@ namespace AxCrypt.Api.Model
             EstimatedBits = bits;
         }
 
-        [JsonProperty("suggestion")]
-        public string Suggestion { get; private set; }
+        [JsonPropertyName("suggestion")]
+        public string? Suggestion { get; set; }
 
-        [JsonProperty("bits")]
-        public int EstimatedBits { get; private set; }
+        [JsonPropertyName("bits")]
+        public int EstimatedBits { get; set; }
     }
 }

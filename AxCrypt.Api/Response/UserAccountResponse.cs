@@ -1,13 +1,12 @@
 ﻿using AxCrypt.Api.Model;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Response
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class UserAccountResponse : ResponseBase
     {
         public UserAccountResponse(UserAccount summary)
@@ -15,7 +14,7 @@ namespace AxCrypt.Api.Response
             UserAccount = summary;
         }
 
-        [JsonProperty("S")]
-        public UserAccount UserAccount { get; private set; }
+        [JsonPropertyName("S")]
+        public UserAccount UserAccount { get; set; }
     }
 }

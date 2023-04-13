@@ -8,36 +8,51 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Header;
 using static AxCrypt.Abstractions.TypeResolve;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace AxCrypt.Mono
 {
     public class ProtectedDataImplementation : IProtectedData
     {
-        private static byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
+        private static readonly byte[] _axCryptGuid = AxCrypt1Guid.GetBytes();
 
-        private DataProtectionScope _scope;
+        private readonly IDataProtector _protector;
 
-        public ProtectedDataImplementation(DataProtectionScope scope)
+        public ProtectedDataImplementation(string application)
         {
-            _scope = scope;
+            IDataProtectionProvider provider = DataProtectionProvider.Create(application);
+
+            _protector = provider.CreateProtector("Xecrets.File.ProtectedData.v2");
         }
 
         #region IProtectedData Members
 
-        public byte[] Protect(byte[] userData, byte[] optionalEntropy)
+        public byte[] Protect(byte[] userData, byte[]? optionalEntropy)
         {
-            return ProtectedData.Protect(userData, optionalEntropy, _scope);
+            ArgumentNullException.ThrowIfNull(userData, nameof(userData));
+            if (optionalEntropy != null && optionalEntropy.Length > 0)
+            {
+                throw new NotImplementedException("Use of optional entropy is not yet implemented.");
+            }
+
+            return _protector.Protect(userData);
         }
 
-        public byte[] Unprotect(byte[] encryptedData, byte[] optionalEntropy)
+        public byte[]? Unprotect(byte[] encryptedData, byte[]? optionalEntropy)
         {
+            ArgumentNullException.ThrowIfNull(encryptedData, nameof(encryptedData));
+            if (optionalEntropy != null && optionalEntropy.Length > 0)
+            {
+                throw new NotImplementedException("Use of optional entropy is not yet implemented.");
+            }
+
             if (encryptedData.Locate(_axCryptGuid, 0, _axCryptGuid.Length) == 0)
             {
                 return null;
             }
             try
             {
-                byte[] bytes = ProtectedData.Unprotect(encryptedData, optionalEntropy, _scope);
+                byte[] bytes = _protector.Unprotect(encryptedData);
                 return bytes;
             }
             catch (CryptographicException cex)

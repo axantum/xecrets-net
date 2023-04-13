@@ -88,14 +88,11 @@ namespace AxCrypt.Mono.Test
         [Test]
         public static void TestLoggingListenerAndLevels()
         {
-            string listenerMessage = null;
+            string? listenerMessage = null;
 
-            DelegateTraceListener traceListener = new DelegateTraceListener("AxCryptTestListener", (string message) =>
-            {
-                listenerMessage = (listenerMessage ?? String.Empty) + message;
-            });
+            DelegateTraceListener traceListener = new DelegateTraceListener("AxCryptTestListener", (string message) => listenerMessage = (listenerMessage ?? String.Empty) + message);
 
-            Trace.Listeners.Add(traceListener);
+            _ = Trace.Listeners.Add(traceListener);
             try
             {
                 Resolve.Log.SetLevel(LogLevel.Fatal);
@@ -132,11 +129,11 @@ namespace AxCrypt.Mono.Test
 
                 listenerMessage = null;
                 Resolve.Log.LogFatal("Fatal" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Fatal"), "When logging is Error, Fatal logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Fatal"), "When logging is Error, Fatal logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogError("Error" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Error"), "When logging is Error, Error logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Error"), "When logging is Error, Error logging should generate a message.");
 
                 Resolve.Log.SetLevel(LogLevel.Warning);
 
@@ -150,11 +147,11 @@ namespace AxCrypt.Mono.Test
 
                 listenerMessage = null;
                 Resolve.Log.LogWarning("Warning" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Warning"), "When logging is Warning, Warning logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Warning"), "When logging is Warning, Warning logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogError("Error" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Error"), "When logging is Warning, Error logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Error"), "When logging is Warning, Error logging should generate a message.");
 
                 Resolve.Log.SetLevel(LogLevel.Info);
 
@@ -164,33 +161,33 @@ namespace AxCrypt.Mono.Test
 
                 listenerMessage = null;
                 Resolve.Log.LogInfo("Info" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Info"), "When logging is Info, Info logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Info"), "When logging is Info, Info logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogWarning("Warning" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Warning"), "When logging is Info, Warning logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Warning"), "When logging is Info, Warning logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogError("Error" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Error"), "When logging is Info, Error logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Error"), "When logging is Info, Error logging should generate a message.");
 
                 Resolve.Log.SetLevel(LogLevel.Debug);
 
                 listenerMessage = null;
                 Resolve.Log.LogDebug("Verbose" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Verbose"), "When logging is Verbose, Verbose logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Verbose"), "When logging is Verbose, Verbose logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogInfo("Info" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Info"), "When logging is Verbose, Info logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Info"), "When logging is Verbose, Info logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogWarning("Warning" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Warning"), "When logging is Verbose, Warning logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Warning"), "When logging is Verbose, Warning logging should generate a message.");
 
                 listenerMessage = null;
                 Resolve.Log.LogError("Error" + Environment.NewLine);
-                Assert.That(listenerMessage.Contains("Error"), "When logging is Verbose, Error logging should generate a message.");
+                Assert.That(listenerMessage!.Contains("Error"), "When logging is Verbose, Error logging should generate a message.");
             }
             finally
             {

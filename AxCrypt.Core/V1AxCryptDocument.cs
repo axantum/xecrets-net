@@ -51,8 +51,10 @@ namespace AxCrypt.Core
     /// </summary>
     public class V1AxCryptDocument : IAxCryptDocument
     {
+        [AllowNull]
         private AxCryptReader _reader;
 
+        [AllowNull]
         private V1HmacStream _hmacStream;
 
         private long _expectedTotalHmacLength = 0;
@@ -62,7 +64,7 @@ namespace AxCrypt.Core
         public V1AxCryptDocument()
         {
             CryptoFactory = new V1Aes128CryptoFactory();
-            AsymmetricRecipients = new UserPublicKey[0];
+            AsymmetricRecipients = Array.Empty<UserPublicKey>();
         }
 
         public V1AxCryptDocument(AxCryptReader reader)
@@ -77,19 +79,20 @@ namespace AxCrypt.Core
             DocumentHeaders = new V1DocumentHeaders(passphrase, keyWrapIterations);
         }
 
+        [AllowNull]
         public V1DocumentHeaders DocumentHeaders { get; private set; }
 
         public bool PassphraseIsValid { get; set; }
 
         public IEnumerable<UserPublicKey> AsymmetricRecipients { get; private set; }
 
-        public IAsymmetricPublicKey AsymmetricMasterKey { get; private set; }
+        public IAsymmetricPublicKey? AsymmetricMasterKey { get; private set; }
 
-        public DecryptionParameter DecryptionParameter { get; set; }
+        public DecryptionParameter? DecryptionParameter { get; set; }
 
-        public EncryptedProperties Properties { get; private set; }
+        public EncryptedProperties? Properties { get; private set; }
 
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "cryptoId", Justification = "Part of contract, and is used for other implementations.")]
+        [SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Part of contract, and is used for other implementations.")]
         public bool Load(Passphrase passphrase, Guid cryptoId, Stream inputStream)
         {
             Headers headers = new Headers();
@@ -142,7 +145,7 @@ namespace AxCrypt.Core
                 return false;
             }
 
-            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key);
+            _hmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey!.Key);
             foreach (HeaderBlock header in DocumentHeaders.Headers.HeaderBlocks)
             {
                 if (header.HeaderBlockType != HeaderBlockType.Preamble)
@@ -161,16 +164,15 @@ namespace AxCrypt.Core
         /// </summary>
         /// <param name="inputStream"></param>
         /// <param name="outputStream"></param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public void EncryptTo(Stream inputStream, Stream outputStream, AxCryptOptions options)
         {
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
             if (outputStream == null)
             {
-                throw new ArgumentNullException("outputStream");
+                throw new ArgumentNullException(nameof(outputStream));
             }
             if (!outputStream.CanSeek)
             {
@@ -187,47 +189,45 @@ namespace AxCrypt.Core
             bool isCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             DocumentHeaders.IsCompressed = isCompressed;
             DocumentHeaders.WriteWithoutHmac(outputStream);
-            using (ICryptoTransform encryptor = DataCrypto.EncryptingTransform())
-            {
-                long outputStartPosition = outputStream.Position;
-                using (Stream encryptingStream = New<CryptoStreamBase>().Initialize(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
-                {
-                    if (isCompressed)
-                    {
-                        EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream);
-                    }
-                    else
-                    {
-                        DocumentHeaders.PlaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
-                    }
-                }
-                outputStream.Flush();
-                DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
-                using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey.Key, outputStream))
-                {
-                    DocumentHeaders.WriteWithHmac(outputHmacStream);
-                    outputHmacStream.ReadFrom(outputStream);
-                    DocumentHeaders.Headers.Hmac = outputHmacStream.HmacResult;
-                }
 
-                // Rewind and rewrite the headers, now with the updated HMAC
-                DocumentHeaders.WriteWithoutHmac(outputStream);
-                outputStream.Position = outputStream.Length;
+            using ICryptoTransform encryptor = DataCrypto.EncryptingTransform();
+            long outputStartPosition = outputStream.Position;
+            using (Stream encryptingStream = New<CryptoStreamBase>().Initialize(new NonClosingStream(outputStream), encryptor, CryptoStreamMode.Write))
+            {
+                if (isCompressed)
+                {
+                    EncryptWithCompressionInternal(DocumentHeaders, inputStream, encryptingStream);
+                }
+                else
+                {
+                    DocumentHeaders.PlaintextLength = StreamExtensions.CopyTo(inputStream, encryptingStream);
+                }
             }
+            outputStream.Flush();
+            DocumentHeaders.CipherTextLength = outputStream.Position - outputStartPosition;
+            using (V1HmacStream outputHmacStream = new V1HmacStream(DocumentHeaders.HmacSubkey!.Key, outputStream))
+            {
+                DocumentHeaders.WriteWithHmac(outputHmacStream);
+                outputHmacStream.ReadFrom(outputStream);
+                DocumentHeaders.Headers.Hmac = outputHmacStream.HmacResult;
+            }
+
+            // Rewind and rewrite the headers, now with the updated HMAC
+            DocumentHeaders.WriteWithoutHmac(outputStream);
+            outputStream.Position = outputStream.Length;
         }
 
         private static void EncryptWithCompressionInternal(V1DocumentHeaders outputDocumentHeaders, Stream inputStream, Stream encryptingStream)
         {
-            using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
-            {
-                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                inputStream.CopyTo(deflatingStream);
-                deflatingStream.FlushMode = JZlib.Z_FINISH;
-                deflatingStream.Finish();
+            using ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1);
 
-                outputDocumentHeaders.UncompressedLength = deflatingStream.TotalIn;
-                outputDocumentHeaders.PlaintextLength = deflatingStream.TotalOut;
-            }
+            deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+            inputStream.CopyTo(deflatingStream);
+            deflatingStream.FlushMode = JZlib.Z_FINISH;
+            deflatingStream.Finish();
+
+            outputDocumentHeaders.UncompressedLength = deflatingStream.TotalIn;
+            outputDocumentHeaders.PlaintextLength = deflatingStream.TotalOut;
         }
 
         /// <summary>
@@ -239,11 +239,11 @@ namespace AxCrypt.Core
         {
             if (outputDocumentHeaders == null)
             {
-                throw new ArgumentNullException("outputDocumentHeaders");
+                throw new ArgumentNullException(nameof(outputDocumentHeaders));
             }
             if (cipherStream == null)
             {
-                throw new ArgumentNullException("cipherStream");
+                throw new ArgumentNullException(nameof(cipherStream));
             }
             if (!cipherStream.CanSeek)
             {
@@ -254,34 +254,34 @@ namespace AxCrypt.Core
                 throw new InternalErrorException("Passphrase is not valid.");
             }
 
-            using (V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey.Key, cipherStream))
+            using V1HmacStream hmacStreamOutput = new V1HmacStream(outputDocumentHeaders.HmacSubkey!.Key, cipherStream);
+            outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
+
+            using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
             {
-                outputDocumentHeaders.WriteWithHmac(hmacStreamOutput);
-                using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
+                encryptedDataStream.CopyTo(hmacStreamOutput);
+
+                if (Hmac != DocumentHeaders.Headers.Hmac)
                 {
-                    encryptedDataStream.CopyTo(hmacStreamOutput);
-
-                    if (Hmac != DocumentHeaders.Headers.Hmac)
-                    {
-                        throw new AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
-                    }
+                    throw new AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error in the input stream.", ErrorStatus.HmacValidationError);
                 }
-
-                outputDocumentHeaders.Headers.Hmac = hmacStreamOutput.HmacResult;
-
-                // Rewind and rewrite the headers, now with the updated HMAC
-                outputDocumentHeaders.WriteWithoutHmac(cipherStream);
-                cipherStream.Position = cipherStream.Length;
             }
+
+            outputDocumentHeaders.Headers.Hmac = hmacStreamOutput.HmacResult;
+
+            // Rewind and rewrite the headers, now with the updated HMAC
+            outputDocumentHeaders.WriteWithoutHmac(cipherStream);
+            cipherStream.Position = cipherStream.Length;
         }
 
+        [AllowNull]
         private ICrypto _dataCrypto;
 
         private ICrypto DataCrypto
         {
             get
             {
-                _dataCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey.Key, DocumentHeaders.IV, 0);
+                _dataCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(DocumentHeaders.DataSubkey!.Key, DocumentHeaders.IV, 0);
 
                 return _dataCrypto;
             }
@@ -300,10 +300,8 @@ namespace AxCrypt.Core
 
             using (ICryptoTransform decryptor = DataCrypto.DecryptingTransform())
             {
-                using (V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength))
-                {
-                    encryptedDataStream.DecryptTo(outputPlaintextStream, decryptor, DocumentHeaders.IsCompressed);
-                }
+                using V1AxCryptDataStream encryptedDataStream = CreateEncryptedDataStream(_reader.InputStream, DocumentHeaders.CipherTextLength);
+                encryptedDataStream.DecryptTo(outputPlaintextStream, decryptor, DocumentHeaders.IsCompressed);
             }
 
             if (Hmac != DocumentHeaders.Headers.Hmac)

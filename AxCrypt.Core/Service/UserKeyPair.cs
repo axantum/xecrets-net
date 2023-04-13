@@ -32,14 +32,13 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -50,10 +49,8 @@ namespace AxCrypt.Core.Service
     /// key for encryption and the matching private key for decryption.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
-    [JsonObject(MemberSerialization.OptIn)]
     public class UserKeyPair : IEquatable<UserKeyPair>
     {
-        [JsonConstructor]
         private UserKeyPair(EmailAddress emailAddress)
         {
             UserEmail = emailAddress;
@@ -76,15 +73,13 @@ namespace AxCrypt.Core.Service
             KeyPair = keyPair;
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; private set; }
 
-        [JsonProperty("useremail")]
-        [JsonConverter(typeof(EmailAddressJsonConverter))]
+        [JsonPropertyName("useremail")]
         public EmailAddress UserEmail { get; private set; }
 
-        [JsonProperty("keypair")]
+        [JsonPropertyName("keypair"), AllowNull]
         public IAsymmetricKeyPair KeyPair { get; private set; }
 
         /// <summary>
@@ -104,12 +99,11 @@ namespace AxCrypt.Core.Service
             List<UserKeyPair> userKeyPairs = new List<UserKeyPair>();
             foreach (IDataStore store in stores)
             {
-                UserKeyPair userKeyPair;
-                if (!TryLoad(store.ToArray(), passphrase, out userKeyPair))
+                if (!TryLoad(store.ToArray(), passphrase, out UserKeyPair? userKeyPair))
                 {
                     continue;
                 }
-                if (userEmail != userKeyPair.UserEmail)
+                if (userEmail != userKeyPair!.UserEmail)
                 {
                     continue;
                 }
@@ -118,11 +112,11 @@ namespace AxCrypt.Core.Service
             return userKeyPairs;
         }
 
-        private const string _fileFormat = "Keys-{0}.txt";
+        private const string FileFormat = "Keys-{0}.txt";
 
         public byte[] ToArray(Passphrase passphrase)
         {
-            return GetSaveDataForKeys(this, _fileFormat.InvariantFormat(KeyPair.PublicKey.Tag), passphrase);
+            return GetSaveDataForKeys(this, FileFormat.InvariantFormat(KeyPair.PublicKey.Tag), passphrase);
         }
 
         /// <summary>
@@ -132,42 +126,35 @@ namespace AxCrypt.Core.Service
         /// <param name="passphrase">The passphrase.</param>
         /// <param name="keyPair">The key pair.</param>
         /// <returns>True if the pair was successfully loaded, and set in the keyPair parameter.</returns>
-        public static bool TryLoad(byte[] value, Passphrase passphrase, out UserKeyPair keyPair)
+        public static bool TryLoad(byte[] value, Passphrase passphrase, out UserKeyPair? keyPair)
         {
-            using (MemoryStream encryptedStream = new MemoryStream(value))
-            {
-                using (MemoryStream decryptedStream = new MemoryStream())
-                {
-                    EncryptedProperties properties = New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId) });
-                    if (!properties.IsValid)
-                    {
-                        keyPair = null;
-                        return false;
-                    }
+            using var encryptedStream = new MemoryStream(value);
+            using var decryptedStream = new MemoryStream();
 
-                    string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
-                    keyPair = Resolve.Serializer.Deserialize<UserKeyPair>(json);
-                    return true;
-                }
+            EncryptedProperties? properties = New<AxCryptFile>().Decrypt(encryptedStream, decryptedStream, new DecryptionParameter[] { new DecryptionParameter(passphrase, Resolve.CryptoFactory.Preferred.CryptoId) });
+            if (!properties!.IsValid)
+            {
+                keyPair = null;
+                return false;
             }
+
+            string json = Encoding.UTF8.GetString(decryptedStream.ToArray(), 0, (int)decryptedStream.Length);
+            keyPair = Resolve.Serializer.Deserialize<UserKeyPair>(json);
+            return true;
         }
 
         private static byte[] GetSaveDataForKeys(UserKeyPair keys, string originalFileName, Passphrase passphrase)
         {
             string json = Resolve.Serializer.Serialize(keys);
-            using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(json)))
-            {
-                EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
-                EncryptedProperties properties = new EncryptedProperties(originalFileName);
-                using (MemoryStream exportStream = new MemoryStream())
-                {
-                    AxCryptFile.Encrypt(stream, exportStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
-                    return exportStream.ToArray();
-                }
-            }
+            using var stream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            EncryptionParameters encryptionParameters = new EncryptionParameters(Resolve.CryptoFactory.Preferred.CryptoId, passphrase);
+            EncryptedProperties properties = new EncryptedProperties(originalFileName);
+            using var exportStream = new MemoryStream();
+            AxCryptFile.Encrypt(stream, exportStream, properties, encryptionParameters, AxCryptOptions.EncryptWithCompression, new ProgressContext());
+            return exportStream.ToArray();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as UserKeyPair);
         }
@@ -177,7 +164,7 @@ namespace AxCrypt.Core.Service
             return Timestamp.GetHashCode() ^ UserEmail.GetHashCode() ^ (KeyPair == null ? 0 : KeyPair.GetHashCode());
         }
 
-        public static bool operator ==(UserKeyPair left, UserKeyPair right)
+        public static bool operator ==(UserKeyPair? left, UserKeyPair? right)
         {
             if (Object.ReferenceEquals(left, null))
             {
@@ -187,18 +174,18 @@ namespace AxCrypt.Core.Service
             return left.Equals(right);
         }
 
-        public static bool operator !=(UserKeyPair left, UserKeyPair right)
+        public static bool operator !=(UserKeyPair? left, UserKeyPair? right)
         {
             return !(left == right);
         }
 
-        public bool Equals(UserKeyPair other)
+        public bool Equals(UserKeyPair? other)
         {
-            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            if (other is null || GetType() != other.GetType())
             {
                 return false;
             }
-            if (Object.ReferenceEquals(other, this))
+            if (ReferenceEquals(other, this))
             {
                 return true;
             }

@@ -185,8 +185,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private bool IsKnownIdentity()
         {
-            SymmetricKeyThumbprint thumbprint = Passphrase.Thumbprint;
-            Passphrase passphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            SymmetricKeyThumbprint thumbprint = Passphrase.Thumbprint!;
+            Passphrase? passphrase = Resolve.FileSystemState.KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (passphrase != null)
             {
                 return true;

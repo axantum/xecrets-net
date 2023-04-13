@@ -1,9 +1,4 @@
-﻿using AxCrypt.Abstractions;
-using AxCrypt.Core.IO;
-using AxCrypt.Core.Portable;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AxCrypt.Core.IO;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -11,7 +6,7 @@ namespace AxCrypt.Core.Session
 {
     public class ActiveFileWatcher : IDisposable
     {
-        private Dictionary<string, IFileWatcher> _activeFileFolderWatchers = new Dictionary<string, IFileWatcher>();
+        private readonly Dictionary<string, IFileWatcher> _activeFileFolderWatchers = new Dictionary<string, IFileWatcher>();
 
         public ActiveFileWatcher()
         {
@@ -21,7 +16,7 @@ namespace AxCrypt.Core.Session
         {
             if (file == null)
             {
-                throw new ArgumentNullException("file");
+                throw new ArgumentNullException(nameof(file));
             }
 
             string folder = Resolve.Portable.Path().GetDirectoryName(file.FullName);
@@ -60,14 +55,14 @@ namespace AxCrypt.Core.Session
 
         private void CheckIfHasWatchedSubfolders(IFileWatcher fileWatcher, string folder)
         {
-            folder = folder + Resolve.Portable.Path().DirectorySeparatorChar.ToString();
+            folder += Resolve.Portable.Path().DirectorySeparatorChar.ToString();
             bool hasWatchedSubFolders = false;
             foreach (string key in _activeFileFolderWatchers.Keys.ToList())
             {
                 if (key.StartsWith(folder))
                 {
                     IFileWatcher subWatcher = _activeFileFolderWatchers[key];
-                    _activeFileFolderWatchers.Remove(key);
+                    _ = _activeFileFolderWatchers.Remove(key);
                     subWatcher.Dispose();
                     hasWatchedSubFolders = true;
                 }
@@ -78,7 +73,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        private async void HandleActiveFileFolderChangedEvent(object sender, FileWatcherEventArgs e)
+        private async void HandleActiveFileFolderChangedEvent(object? sender, FileWatcherEventArgs e)
         {
             await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.UpdateActiveFiles, e.FullNames));
         }

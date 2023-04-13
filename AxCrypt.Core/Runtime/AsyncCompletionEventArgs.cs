@@ -8,11 +8,11 @@ namespace AxCrypt.Core.Runtime
 {
     public class AsyncCompletionEventArgs : EventArgs
     {
-        private TaskCompletionSource<object> _completion = new TaskCompletionSource<object>();
+        private readonly TaskCompletionSource<object?> _completion = new TaskCompletionSource<object?>();
 
         public void Complete()
         {
-            _completion.SetResult(default(object));
+            _completion.SetResult(default);
         }
 
         public Task Task

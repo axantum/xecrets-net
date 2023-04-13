@@ -9,7 +9,7 @@ namespace AxCrypt.Core.UI.ViewModel
     {
         private static Api.Model.UserAccount _userAccount = new Api.Model.UserAccount();
 
-        public void Initilaize(Api.Model.UserAccount userAccount)
+        public void Initilaize(Api.Model.UserAccount? userAccount)
         {
             if (userAccount != null)
             {

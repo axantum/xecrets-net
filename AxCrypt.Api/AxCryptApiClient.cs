@@ -62,7 +62,7 @@ namespace AxCrypt.Api
             }
             ApiCaller.EnsureStatusOk(restResponse);
 
-            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
+            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content) ?? throw new InvalidOperationException("Could not deserialize UserAccount.");
             return userAccount;
         }
 
@@ -83,11 +83,11 @@ namespace AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content);
+            UserAccount userAccount = Serializer.Deserialize<UserAccount>(restResponse.Content) ?? throw new InvalidOperationException("Could not deserialize UserAccount.");
             return userAccount;
         }
 
-        public async Task<AccountKey> MyAccountKeysCurrentAsync()
+        public async Task<AccountKey?> MyAccountKeysCurrentAsync()
         {
             Uri resource = BaseUrl.PathCombine("users/my/account/keys/current");
 
@@ -98,7 +98,7 @@ namespace AxCrypt.Api
             }
             ApiCaller.EnsureStatusOk(restResponse);
 
-            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            AccountKey? accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
         }
 
@@ -156,7 +156,7 @@ namespace AxCrypt.Api
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <returns></returns>
-        public async Task<AccountKey> GetAllAccountsOtherUserPublicKeyAsync(string userName)
+        public async Task<AccountKey?> GetAllAccountsOtherUserPublicKeyAsync(string userName)
         {
             if (userName == null)
             {
@@ -168,7 +168,7 @@ namespace AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            AccountKey? accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
         }
 
@@ -179,12 +179,13 @@ namespace AxCrypt.Api
         /// <param name="userName">Name of the user.</param>
         /// <param name="customParameters">The message custom parameters.</param>
         /// <returns></returns>
-        public async Task<AccountKey> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, CustomMessageParameters customParameters)
+        public async Task<AccountKey?> PostAllAccountsOtherUserInvitePublicKeyAsync(string userName, CustomMessageParameters? customParameters)
         {
             if (userName == null)
             {
                 throw new ArgumentNullException(nameof(userName));
             }
+            ArgumentNullException.ThrowIfNull(customParameters);
 
             Uri resource = BaseUrl.PathCombine("users/all/accounts/invite/{0}/key".With(ApiCaller.PathSegmentEncode(userName)));
 
@@ -193,7 +194,7 @@ namespace AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            AccountKey? accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
         }
 
@@ -202,7 +203,7 @@ namespace AxCrypt.Api
         /// </summary>
         /// <param name="userName">Name of the user.</param>
         /// <returns></returns>
-        public async Task<AccountKey> GetPublicApiKeyAllAccountsOtherUserPublicKeyAsync(string userName)
+        public async Task<AccountKey?> GetPublicApiKeyAllAccountsOtherUserPublicKeyAsync(string userName)
         {
             if (userName == null)
             {
@@ -214,7 +215,7 @@ namespace AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            AccountKey accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
+            AccountKey? accountKey = Serializer.Deserialize<AccountKey>(restResponse.Content);
             return accountKey;
         }
 
@@ -291,7 +292,7 @@ namespace AxCrypt.Api
             ApiCaller.EnsureStatusOk(restResponse);
         }
 
-        public async Task<AccountTip> GetAccountTipAsync(AppTypes appType)
+        public async Task<AccountTip?> GetAccountTipAsync(AppTypes appType)
         {
             if (New<AxCryptOnlineState>().IsOffline)
             {
@@ -307,27 +308,18 @@ namespace AxCrypt.Api
             RestResponse response = await Caller.RestAsync(Identity, new RestRequest("GET", resource, Timeout));
             ApiCaller.EnsureStatusOk(response);
 
-            AccountTip tip = Serializer.Deserialize<AccountTip>(response.Content);
+            AccountTip? tip = Serializer.Deserialize<AccountTip>(response.Content);
             return tip;
         }
 
         public async Task<AxCryptVersion> AxCryptUpdateAsync(Version currentVersion, string cultureName, ClientPlatformKind platform)
         {
-            string platformParameter = string.Empty;
-            switch (platform)
+            var platformParameter = platform switch
             {
-                case ClientPlatformKind.WindowsDesktop:
-                    platformParameter = "windowsdesktop";
-                    break;
-
-                case ClientPlatformKind.Mac:
-                    platformParameter = "mac";
-                    break;
-
-                default:
-                    throw new NotSupportedException($"App doesn't support updating on {platform} platform");
-            }
-
+                ClientPlatformKind.WindowsDesktop => "windowsdesktop",
+                ClientPlatformKind.Mac => "mac",
+                _ => throw new NotSupportedException($"App doesn't support updating on {platform} platform"),
+            };
             Uri resource;
             if (Identity.IsEmpty)
             {
@@ -345,7 +337,7 @@ namespace AxCrypt.Api
 
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
-            AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content);
+            AxCryptVersion axCryptVersion = Serializer.Deserialize<AxCryptVersion>(restResponse.Content) ?? AxCryptVersion.Empty;
             return axCryptVersion;
         }
 
@@ -365,7 +357,7 @@ namespace AxCrypt.Api
             return subscriptionCreatedSuccessfully;
         }
 
-        public async Task<PurchaseSettings> GetInAppPurchaSettingsAsync()
+        public async Task<PurchaseSettings?> GetInAppPurchaSettingsAsync()
         {
             if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
             {
@@ -377,7 +369,7 @@ namespace AxCrypt.Api
             RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
             ApiCaller.EnsureStatusOk(restResponse);
 
-            PurchaseSettings inAppPurchaseMember = Serializer.Deserialize<PurchaseSettings>(restResponse.Content);
+            PurchaseSettings? inAppPurchaseMember = Serializer.Deserialize<PurchaseSettings>(restResponse.Content);
             return inAppPurchaseMember;
         }
 

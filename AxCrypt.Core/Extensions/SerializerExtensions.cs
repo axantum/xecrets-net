@@ -10,22 +10,20 @@ namespace AxCrypt.Core.Extensions
 {
     public static class SerializerExtensions
     {
-        public static T Deserialize<T>(this IStringSerializer serializer, IDataStore serializedStore)
+        public static T? Deserialize<T>(this IStringSerializer serializer, IDataStore serializedStore) where T : class
         {
             if (serializer == null)
             {
-                throw new ArgumentNullException("serializer");
+                throw new ArgumentNullException(nameof(serializer));
             }
             if (serializedStore == null)
             {
-                throw new ArgumentNullException("serializedStore");
+                throw new ArgumentNullException(nameof(serializedStore));
             }
 
-            using (StreamReader reader = new StreamReader(serializedStore.OpenRead(), Encoding.UTF8))
-            {
-                string serialized = reader.ReadToEnd();
-                return serializer.Deserialize<T>(serialized);
-            }
+            using StreamReader reader = new StreamReader(serializedStore.OpenRead(), Encoding.UTF8);
+            string serialized = reader.ReadToEnd();
+            return serializer.Deserialize<T>(serialized);
         }
     }
 }

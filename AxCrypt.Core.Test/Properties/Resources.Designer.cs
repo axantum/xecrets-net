@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AxCrypt.Core.Test.Properties {
+namespace Xecrets.File.Core.Test.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AxCrypt.Core.Test.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AxCrypt.Core.Test.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Xecrets.File.Core.Test.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace AxCrypt.Core.Test.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] _2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf {
+        internal static byte[] _2003_05_28_pcworld_axcrypt__b____my_keyfile_pdf {
             get {
-                object obj = ResourceManager.GetObject("_2003_05_28_PcWorld_AxCrypt__b____My_Keyfile_pdf", resourceCulture);
+                object obj = ResourceManager.GetObject("_2003_05_28_pcworld_axcrypt__b____my_keyfile_pdf", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -110,9 +110,9 @@ namespace AxCrypt.Core.Test.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg {
+        internal static byte[] foto_2015_05_19_23_19_08__a____my_keyfile_jpg {
             get {
-                object obj = ResourceManager.GetObject("Foto_2015_05_19_23_19_08__a____My_Keyfile_jpg", resourceCulture);
+                object obj = ResourceManager.GetObject("foto_2015_05_19_23_19_08__a____my_keyfile_jpg", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -130,9 +130,9 @@ namespace AxCrypt.Core.Test.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] My_Key_File {
+        internal static byte[] my_key_file {
             get {
-                object obj = ResourceManager.GetObject("My_Key_File", resourceCulture);
+                object obj = ResourceManager.GetObject("my_key_file", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -140,9 +140,9 @@ namespace AxCrypt.Core.Test.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Passphrase__p____My_Keyfile_txt {
+        internal static byte[] passphrase__p____my_keyfile_txt {
             get {
-                object obj = ResourceManager.GetObject("Passphrase__p____My_Keyfile_txt", resourceCulture);
+                object obj = ResourceManager.GetObject("passphrase__p____my_keyfile_txt", resourceCulture);
                 return ((byte[])(obj));
             }
         }

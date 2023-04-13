@@ -41,22 +41,22 @@ namespace AxCrypt.Core.Crypto
     {
         internal const string InternalName = "AES-128-V1";
 
-        private SymmetricIV _iv;
+        private readonly SymmetricIV _iv;
 
         /// <summary>
         /// Instantiate a transformation
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="iv">Initial Vector, or null for a zero vector.</param>
-        public V1AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV iv)
+        public V1AesCrypto(ICryptoFactory factory, SymmetricKey key, SymmetricIV? iv)
         {
             if (factory == null)
             {
-                throw new ArgumentNullException("factory");
+                throw new ArgumentNullException(nameof(factory));
             }
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             if (key.Size != 128)
             {
@@ -64,7 +64,7 @@ namespace AxCrypt.Core.Crypto
             }
             using (SymmetricAlgorithm algorithm = CreateRawAlgorithm())
             {
-                iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
+                iv ??= new SymmetricIV(new byte[algorithm.BlockSize / 8]);
                 if (iv.Length != algorithm.BlockSize / 8)
                 {
                     throw new ArgumentException("The IV length must be the same as the algorithm block length.");
@@ -115,19 +115,15 @@ namespace AxCrypt.Core.Crypto
         {
             if (cipherText == null)
             {
-                throw new ArgumentNullException("cipherText");
+                throw new ArgumentNullException(nameof(cipherText));
             }
 
-            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
-            {
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.None;
-                using (ICryptoTransform decryptor = aes.CreateDecryptingTransform())
-                {
-                    byte[] plaintext = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
-                    return plaintext;
-                }
-            }
+            using SymmetricAlgorithm aes = CreateAlgorithmInternal();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.None;
+            using ICryptoTransform decryptor = aes.CreateDecryptingTransform();
+            byte[] plaintext = decryptor.TransformFinalBlock(cipherText, 0, cipherText.Length);
+            return plaintext;
         }
 
         /// <summary>
@@ -139,19 +135,15 @@ namespace AxCrypt.Core.Crypto
         {
             if (plaintext == null)
             {
-                throw new ArgumentNullException("plaintext");
+                throw new ArgumentNullException(nameof(plaintext));
             }
 
-            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
-            {
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.None;
-                using (ICryptoTransform encryptor = aes.CreateEncryptingTransform())
-                {
-                    byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
-                    return cipherText;
-                }
-            }
+            using SymmetricAlgorithm aes = CreateAlgorithmInternal();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.None;
+            using ICryptoTransform encryptor = aes.CreateEncryptingTransform();
+            byte[] cipherText = encryptor.TransformFinalBlock(plaintext, 0, plaintext.Length);
+            return cipherText;
         }
 
         /// <summary>
@@ -160,12 +152,10 @@ namespace AxCrypt.Core.Crypto
         /// <returns>A new decrypting transformation instance</returns>
         public override ICryptoTransform DecryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
-            {
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
-                return aes.CreateDecryptingTransform();
-            }
+            using SymmetricAlgorithm aes = CreateAlgorithmInternal();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
+            return aes.CreateDecryptingTransform();
         }
 
         /// <summary>
@@ -174,12 +164,10 @@ namespace AxCrypt.Core.Crypto
         /// <returns>A new encrypting transformation instance</returns>
         public override ICryptoTransform EncryptingTransform()
         {
-            using (SymmetricAlgorithm aes = CreateAlgorithmInternal())
-            {
-                aes.Mode = CipherMode.CBC;
-                aes.Padding = PaddingMode.PKCS7;
-                return aes.CreateEncryptingTransform();
-            }
+            using SymmetricAlgorithm aes = CreateAlgorithmInternal();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
+            return aes.CreateEncryptingTransform();
         }
     }
 }

@@ -26,18 +26,15 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Extensions;
-using Newtonsoft.Json;
-using System;
+
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Crypto
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class Passphrase : IEquatable<Passphrase>
     {
-        [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes", Justification = "This type is in fact immutable.")]
-        public static readonly Passphrase Empty = new Passphrase(String.Empty);
+        public static readonly Passphrase Empty = new Passphrase(string.Empty);
 
         public Passphrase(string text)
         {
@@ -50,8 +47,6 @@ namespace AxCrypt.Core.Crypto
             _extra = (byte[])extra.Clone();
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        [JsonConstructor]
         private Passphrase(SymmetricKeyThumbprint thumbprint)
         {
             Thumbprint = thumbprint;
@@ -59,9 +54,9 @@ namespace AxCrypt.Core.Crypto
 
         public static Passphrase Create(string text)
         {
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
             {
-                return Passphrase.Empty;
+                return Empty;
             }
 
             return new Passphrase(text);
@@ -75,26 +70,27 @@ namespace AxCrypt.Core.Crypto
             }
             if (string.IsNullOrEmpty(text) && extra.Length == 0)
             {
-                return Passphrase.Empty;
+                return Empty;
             }
 
             return new Passphrase(text, extra);
         }
 
-        public string Text { get; private set; }
+        [NotNull]
+        [JsonIgnore]
+        public string? Text { get; private set; }
 
-        private byte[] _extra = new byte[0];
+        private readonly byte[] _extra = Array.Empty<byte>();
 
         public byte[] Extra()
         {
             return (byte[])_extra.Clone();
         }
 
-        private SymmetricKeyThumbprint _thumbprint;
+        private SymmetricKeyThumbprint? _thumbprint;
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        [JsonProperty("thumbprint")]
-        public SymmetricKeyThumbprint Thumbprint
+        [JsonPropertyName("thumbprint")]
+        public SymmetricKeyThumbprint? Thumbprint
         {
             get
             {
@@ -110,7 +106,7 @@ namespace AxCrypt.Core.Crypto
                 return _thumbprint;
             }
 
-            private set
+            set
             {
                 _thumbprint = value;
             }
@@ -118,9 +114,9 @@ namespace AxCrypt.Core.Crypto
 
         #region IEquatable<Passphrase> Members
 
-        public bool Equals(Passphrase other)
+        public bool Equals(Passphrase? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -133,9 +129,9 @@ namespace AxCrypt.Core.Crypto
 
         #endregion IEquatable<Passphrase> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            Passphrase other = obj as Passphrase;
+            Passphrase? other = obj as Passphrase;
             if (other == null)
             {
                 return false;
@@ -149,20 +145,20 @@ namespace AxCrypt.Core.Crypto
             return Text.GetHashCode();
         }
 
-        public static bool operator ==(Passphrase left, Passphrase right)
+        public static bool operator ==(Passphrase? left, Passphrase? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(Passphrase left, Passphrase right)
+        public static bool operator !=(Passphrase? left, Passphrase? right)
         {
             return !(left == right);
         }

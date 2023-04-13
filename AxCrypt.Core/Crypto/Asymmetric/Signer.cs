@@ -60,9 +60,9 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             }
 
             byte[] hash = new SignatureHasher().Hash(toSign);
-            byte[] signature = _privateKey.TransformRaw(hash);
+            byte[]? signature = _privateKey.TransformRaw(hash);
 
-            return signature;
+            return signature ?? throw new InvalidOperationException("Internal program error, TransformRaw() returned null.");
         }
     }
 }

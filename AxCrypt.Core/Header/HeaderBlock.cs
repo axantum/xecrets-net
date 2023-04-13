@@ -28,20 +28,19 @@
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Portable;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace AxCrypt.Core.Header
 {
-    public abstract class HeaderBlock : ICloneable, IEquatable<HeaderBlock>
+    public abstract class HeaderBlock : Portable.ICloneable, IEquatable<HeaderBlock>
     {
+        [AllowNull]
         private byte[] _dataBlock;
 
         protected HeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
         {
-            if (dataBlock == null)
-            {
-                throw new ArgumentNullException("dataBlock");
-            }
+            ArgumentNullException.ThrowIfNull(dataBlock);
 
             HeaderBlockType = headerBlockType;
             _dataBlock = (byte[])dataBlock.Clone();
@@ -92,11 +91,6 @@ namespace AxCrypt.Core.Header
 
         protected void WritePrefix(Stream stream)
         {
-            if (stream == null)
-            {
-                throw new ArgumentNullException("stream");
-            }
-
             byte[] headerPrefixBytes = GetPrefixBytes();
             stream.Write(headerPrefixBytes, 0, headerPrefixBytes.Length);
         }
@@ -109,7 +103,7 @@ namespace AxCrypt.Core.Header
 
         public abstract object Clone();
 
-        public bool Equals(HeaderBlock other)
+        public bool Equals(HeaderBlock? other)
         {
             if (other == null)
             {
@@ -118,9 +112,9 @@ namespace AxCrypt.Core.Header
             return HeaderBlockType == other.HeaderBlockType && GetDataBlockBytesReference().IsEquivalentTo(other.GetDataBlockBytesReference());
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            HeaderBlock other = obj as HeaderBlock;
+            var other = obj as HeaderBlock;
             if (other == null)
             {
                 return false;
@@ -139,20 +133,20 @@ namespace AxCrypt.Core.Header
             return hashcode;
         }
 
-        public static bool operator ==(HeaderBlock left, HeaderBlock right)
+        public static bool operator ==(HeaderBlock? left, HeaderBlock? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(HeaderBlock left, HeaderBlock right)
+        public static bool operator !=(HeaderBlock? left, HeaderBlock? right)
         {
             return !(left == right);
         }

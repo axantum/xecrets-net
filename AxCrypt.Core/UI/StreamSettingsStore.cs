@@ -1,4 +1,6 @@
 ﻿using AxCrypt.Abstractions;
+using AxCrypt.Core.Runtime;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +13,7 @@ namespace AxCrypt.Core.UI
     {
         protected void Initialize(Stream readStream)
         {
-            Settings = New<IStringSerializer>().Deserialize<Dictionary<string, string>>(readStream);
+            Settings = New<IStringSerializer>().Deserialize<Dictionary<string, string>>(readStream) ?? throw new InternalErrorException("Could not deserialize the SettingsStore.");
         }
 
         protected void Save(Stream saveStream)

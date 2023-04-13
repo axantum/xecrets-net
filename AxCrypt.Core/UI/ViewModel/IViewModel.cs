@@ -32,7 +32,7 @@ using System.Linq;
 
 namespace AxCrypt.Core.UI.ViewModel
 {
-    public interface IViewModel : INotifyPropertyChanged, IDataErrorInfo
+    public interface IViewModel : INotifyPropertyChanged, Portable.IDataErrorInfo
     {
         T GetProperty<T>(string name);
     }

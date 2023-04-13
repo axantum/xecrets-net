@@ -28,12 +28,14 @@
 using AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Session
 {
     public class ProcessState : IDisposable
     {
+        [AllowNull]
         private Dictionary<string, List<ILauncher>> _processState = new Dictionary<string, List<ILauncher>>();
 
         private readonly object _lock = new object();
@@ -42,13 +44,13 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             PurgeInactive();
             lock (_lock)
             {
-                List<ILauncher> processes = ActiveProcesses(activeFile);
+                List<ILauncher>? processes = ActiveProcesses(activeFile);
                 if (processes == null)
                 {
                     processes = new List<ILauncher>();
@@ -70,7 +72,7 @@ namespace AxCrypt.Core.Session
         {
             lock (_lock)
             {
-                List<ILauncher> processes = ActiveProcesses(activeFile);
+                List<ILauncher>? processes = ActiveProcesses(activeFile);
                 if (processes == null)
                 {
                     return false;
@@ -86,12 +88,11 @@ namespace AxCrypt.Core.Session
             return false;
         }
 
-        private List<ILauncher> ActiveProcesses(ActiveFile activeFile)
+        private List<ILauncher>? ActiveProcesses(ActiveFile activeFile)
         {
             lock (_lock)
             {
-                List<ILauncher> processes;
-                if (!_processState.TryGetValue(activeFile.EncryptedFileInfo.FullName, out processes))
+                if (!_processState.TryGetValue(activeFile.EncryptedFileInfo.FullName, out List<ILauncher>? processes))
                 {
                     return null;
                 }

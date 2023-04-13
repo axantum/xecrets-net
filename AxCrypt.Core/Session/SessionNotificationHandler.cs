@@ -41,15 +41,15 @@ namespace AxCrypt.Core.Session
 {
     public class SessionNotificationHandler
     {
-        private FileSystemState _fileSystemState;
+        private readonly FileSystemState _fileSystemState;
 
-        private KnownIdentities _knownIdentities;
+        private readonly KnownIdentities _knownIdentities;
 
-        private ActiveFileAction _activeFileAction;
+        private readonly ActiveFileAction _activeFileAction;
 
-        private AxCryptFile _axCryptFile;
+        private readonly AxCryptFile _axCryptFile;
 
-        private IStatusChecker _statusChecker;
+        private readonly IStatusChecker _statusChecker;
 
         public SessionNotificationHandler(FileSystemState fileSystemState, KnownIdentities knownIdentities, ActiveFileAction activeFileAction, AxCryptFile axCryptFile, IStatusChecker statusChecker)
         {
@@ -84,13 +84,14 @@ namespace AxCrypt.Core.Session
                     }
                     return new FileOperationContext(String.Empty, ErrorStatus.Success);
                 },
-                async (FileOperationContext status) =>
+                (FileOperationContext status) =>
                 {
                     if (status.ErrorStatus == ErrorStatus.Success)
                     {
-                        return;
+                        return Task.CompletedTask;
                     }
-                    _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, $"{status.InternalMessage} ({notification.NotificationType})");
+                    _ = _statusChecker.CheckStatusAndShowMessage(status.ErrorStatus, status.FullName, $"{status.InternalMessage} ({notification.NotificationType})");
+                    return Task.CompletedTask;
                 },
                 new ProgressContext()).Free();
         }
@@ -150,7 +151,7 @@ namespace AxCrypt.Core.Session
                     break;
 
                 case SessionNotificationType.SignOut:
-                    New<IInternetState>().Clear();
+                    _ = New<IInternetState>().Clear();
                     New<ICache>().RemoveItem(CacheKey.RootKey);
                     New<UserPublicKeyUpdateStatus>().Clear();
                     break;

@@ -47,7 +47,7 @@ namespace AxCrypt.Core.Runtime
                         return titleAttribute.Title;
                     }
                 }
-                return _assembly.GetName().Name;
+                return _assembly.GetName().Name ?? throw new InvalidOperationException("Assembly.Name returned null.");
             }
         }
 

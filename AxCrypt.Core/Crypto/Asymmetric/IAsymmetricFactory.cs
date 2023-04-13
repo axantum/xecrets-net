@@ -25,18 +25,14 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Api.Implementation;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
     public interface IAsymmetricFactory
     {
-        CustomSerializer[] GetSerializers();
+        IEnumerable<JsonConverter> GetConverters();
 
         IAsymmetricPrivateKey CreatePrivateKey(string privateKeyPem);
 

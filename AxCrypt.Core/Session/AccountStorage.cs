@@ -43,7 +43,7 @@ namespace AxCrypt.Core.Session
     /// </summary>
     public class AccountStorage
     {
-        private IAccountService _service;
+        private readonly IAccountService _service;
 
         public AccountStorage(IAccountService service)
         {
@@ -57,7 +57,7 @@ namespace AxCrypt.Core.Session
 
         public AccountStorage Refresh()
         {
-            _service.Refresh();
+            _ = _service.Refresh();
             return this;
         }
 
@@ -83,7 +83,6 @@ namespace AxCrypt.Core.Session
             await _service.SaveAsync(keyPairs).Free();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public virtual async Task<IEnumerable<UserKeyPair>> AllKeyPairsAsync()
         {
             return (await _service.ListAsync().Free()).OrderByDescending(uk => uk.Timestamp);
@@ -112,17 +111,17 @@ namespace AxCrypt.Core.Session
             return await _service.ChangePassphraseAsync(passphrase).Free();
         }
 
-        public async Task<UserPublicKey> GetOtherUserPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey?> GetOtherUserPublicKeyAsync(EmailAddress email)
         {
             return await _service.OtherPublicKeyAsync(email).Free();
         }
 
-        public async Task<UserPublicKey> GetOtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public async Task<UserPublicKey?> GetOtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
         {
             return await _service.OtherUserInvitePublicKeyAsync(email, customParameters).Free();
         }
 
-        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
             return await _service.GetInAppPurchaseSettingsAsync().Free();
         }

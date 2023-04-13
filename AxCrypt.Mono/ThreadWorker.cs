@@ -30,6 +30,7 @@ using AxCrypt.Core.Runtime;
 using AxCrypt.Core.UI;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,11 +45,12 @@ namespace AxCrypt.Mono
     {
         private readonly string _name = string.Empty;
 
+        [AllowNull]
         private ManualResetEvent _joined = new ManualResetEvent(false);
 
-        private ThreadWorkerEventArgs _e;
+        private readonly ThreadWorkerEventArgs _e;
 
-        private bool _startOnUIThread;
+        private readonly bool _startOnUIThread;
 
         public ThreadWorker(IProgressContext progress)
             : this(progress, false)
@@ -82,17 +84,17 @@ namespace AxCrypt.Mono
             }
             if (_startOnUIThread)
             {
-                _e.Progress.EnterSingleThread();
+                _ = _e.Progress.EnterSingleThread();
             }
             OnPrepare(_e);
 
-            SynchronizationContext current = SynchronizationContext.Current;
+            SynchronizationContext? current = SynchronizationContext.Current;
             if (current == null)
             {
                 current = new SynchronizationContext();
                 SynchronizationContext.SetSynchronizationContext(current);
             }
-            Task.Run(async () =>
+            _ = Task.Run(async () =>
             {
                 await DoWorkAsync(_e);
                 current.Send((state) => DoWorkerCompleted(_e), null);
@@ -154,7 +156,7 @@ namespace AxCrypt.Mono
             catch (AxCryptException ace)
             {
                 New<IReport>().Exception(ace);
-                e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message, ace.ErrorStatus);
+                e.Result = new FileOperationContext(ace.DisplayContext, ace.InnerException?.Message ?? string.Empty, ace.ErrorStatus);
             }
             catch (Exception ex)
             {
@@ -179,26 +181,22 @@ namespace AxCrypt.Mono
         /// Raised just before asynchronous execution starts. Runs on the
         /// original thread, typically the GUI thread.
         /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Prepare;
+        public event EventHandler<ThreadWorkerEventArgs>? Prepare;
 
         protected virtual void OnPrepare(ThreadWorkerEventArgs e)
         {
-            EventHandler<ThreadWorkerEventArgs> handler = Prepare;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Prepare?.Invoke(this, e);
         }
 
         /// <summary>
         /// Raised when asynchronous execution starts. Runs on a different
         /// thread than the caller thread. Do not interact with the GUI here.
         /// </summary>
-        public Func<ThreadWorkerEventArgs, Task> WorkAsync { get; set; }
+        public Func<ThreadWorkerEventArgs, Task>? WorkAsync { get; set; }
 
         protected virtual async Task OnWorkAsync(ThreadWorkerEventArgs e)
         {
-            Func<ThreadWorkerEventArgs, Task> commandAsync = WorkAsync;
+            Func<ThreadWorkerEventArgs, Task>? commandAsync = WorkAsync;
             if (commandAsync != null)
             {
                 await commandAsync.Invoke(e);
@@ -209,30 +207,22 @@ namespace AxCrypt.Mono
         /// Raised when all is done. Runs on the original thread, typically
         /// the GUI thread.
         /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Completing;
+        public event EventHandler<ThreadWorkerEventArgs>? Completing;
 
         protected virtual void OnCompleting(ThreadWorkerEventArgs e)
         {
-            EventHandler<ThreadWorkerEventArgs> handler = Completing;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Completing?.Invoke(this, e);
         }
 
         /// <summary>
         /// Raised when the underlying worker thread has ended. There is no guarantee on what
         /// thread this will run.
         /// </summary>
-        public event EventHandler<ThreadWorkerEventArgs> Completed;
+        public event EventHandler<ThreadWorkerEventArgs>? Completed;
 
         protected virtual void OnCompleted(ThreadWorkerEventArgs e)
         {
-            EventHandler<ThreadWorkerEventArgs> handler = Completed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Completed?.Invoke(this, e);
         }
 
         #region IDisposable Members
@@ -269,7 +259,7 @@ namespace AxCrypt.Mono
             }
             if (_joined != null)
             {
-                _joined.Set();
+                _ = _joined.Set();
                 _joined.Close();
                 _joined = null;
             }

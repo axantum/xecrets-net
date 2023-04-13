@@ -25,14 +25,9 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Linq;
 
 namespace AxCrypt.Core.Ipc
 {
-    [JsonConverter(typeof(StringEnumConverter))]
     public enum CommandVerb
     {
         Unknown,

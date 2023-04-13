@@ -38,6 +38,7 @@ using AxCrypt.Core.Session;
 using Org.BouncyCastle.Utilities.Zlib;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -72,34 +73,35 @@ namespace AxCrypt.Core
             DocumentHeaders = new V2DocumentHeaders(encryptionParameters, keyWrapIterations);
         }
 
-        public V2DocumentHeaders DocumentHeaders { get; private set; }
+        public V2DocumentHeaders? DocumentHeaders { get; private set; }
 
+        [AllowNull]
         public ICryptoFactory CryptoFactory { get; private set; }
 
-        private AxCryptReader _reader;
+        private AxCryptReader? _reader;
 
         public bool PassphraseIsValid { get; set; }
 
-        public DecryptionParameter DecryptionParameter { get; set; }
+        public DecryptionParameter? DecryptionParameter { get; set; }
 
         public IEnumerable<UserPublicKey> AsymmetricRecipients
         {
             get
             {
-                V2AsymmetricRecipientsEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
+                V2AsymmetricRecipientsEncryptedHeaderBlock? headerBlock = DocumentHeaders!.Headers.FindHeaderBlock<V2AsymmetricRecipientsEncryptedHeaderBlock>();
                 if (headerBlock == null)
                 {
-                    return new UserPublicKey[0];
+                    return Array.Empty<UserPublicKey>();
                 }
                 return headerBlock.Recipients.PublicKeys;
             }
         }
 
-        public IAsymmetricPublicKey AsymmetricMasterKey
+        public IAsymmetricPublicKey? AsymmetricMasterKey
         {
             get
             {
-                V2AsymmetricMasterKeyEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricMasterKeyEncryptedHeaderBlock>();
+                V2AsymmetricMasterKeyEncryptedHeaderBlock? headerBlock = DocumentHeaders!.Headers.FindHeaderBlock<V2AsymmetricMasterKeyEncryptedHeaderBlock>();
                 if (headerBlock == null)
                 {
                     return null;
@@ -108,7 +110,7 @@ namespace AxCrypt.Core
             }
         }
 
-        public EncryptedProperties Properties { get; private set; }
+        public EncryptedProperties? Properties { get; private set; }
 
         public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)
         {
@@ -120,6 +122,10 @@ namespace AxCrypt.Core
 
         public bool Load(Passphrase passphrase, Guid cryptoId, Headers headers)
         {
+            if (_reader is null)
+            {
+                throw new InvalidOperationException("_reader was null.");
+            }
             return Load(passphrase, cryptoId, _reader, headers);
         }
 
@@ -151,7 +157,7 @@ namespace AxCrypt.Core
 
             _reader = reader;
             CryptoFactory = Resolve.CryptoFactory.Create(cryptoId);
-            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>();
+            V2KeyWrapHeaderBlock? keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>() ?? throw new FileFormatException("Missing V2KeyWrapHeaderBlock");
             IDerivedKey key = CryptoFactory.RestoreDerivedKey(passphrase, keyWrap.DerivationSalt, keyWrap.DerivationIterations);
             keyWrap.SetDerivedKey(CryptoFactory, key);
             DocumentHeaders = new V2DocumentHeaders(keyWrap);
@@ -165,7 +171,7 @@ namespace AxCrypt.Core
         {
             if (headers == null)
             {
-                throw new ArgumentNullException("headers");
+                throw new ArgumentNullException(nameof(headers));
             }
 
             ResetState();
@@ -187,7 +193,7 @@ namespace AxCrypt.Core
                     throw new InvalidOperationException("If the master key was decrypted with the private key, the load should not be able to fail.");
                 }
 
-                V2AlgorithmVerifierEncryptedHeaderBlock algorithmVerifier = DocumentHeaders.Headers.FindHeaderBlock<V2AlgorithmVerifierEncryptedHeaderBlock>();
+                V2AlgorithmVerifierEncryptedHeaderBlock? algorithmVerifier = DocumentHeaders.Headers.FindHeaderBlock<V2AlgorithmVerifierEncryptedHeaderBlock>();
                 PassphraseIsValid = algorithmVerifier != null && algorithmVerifier.IsVerified;
                 if (PassphraseIsValid)
                 {
@@ -209,11 +215,11 @@ namespace AxCrypt.Core
         {
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
             if (outputStream == null)
             {
-                throw new ArgumentNullException("outputStream");
+                throw new ArgumentNullException(nameof(outputStream));
             }
             if (options.HasMask(AxCryptOptions.EncryptWithCompression) && options.HasMask(AxCryptOptions.EncryptWithoutCompression))
             {
@@ -224,6 +230,10 @@ namespace AxCrypt.Core
                 throw new ArgumentException("Invalid options, must specify either with or without compression.");
             }
 
+            if (DocumentHeaders == null)
+            {
+                throw new InvalidOperationException("Internal Program Error, DocumentHeaders are null where they should not be.");
+            }
             DocumentHeaders.IsCompressed = options.HasMask(AxCryptOptions.EncryptWithCompression);
             V2HmacCalculator hmacCalculator = new V2HmacCalculator(new SymmetricKey(DocumentHeaders.GetHmacKey()));
             V2HmacStream<Stream> outputHmacStream = V2HmacStream.Create(hmacCalculator, outputStream);
@@ -232,18 +242,16 @@ namespace AxCrypt.Core
             DocumentHeaders.WriteStartWithHmac(outputHmacStream);
             if (DocumentHeaders.IsCompressed)
             {
-                using (ZOutputStream deflatingStream = new ZOutputStream(encryptingStream, -1))
-                {
-                    deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
-                    inputStream.CopyTo(deflatingStream);
-                    deflatingStream.FlushMode = JZlib.Z_FINISH;
-                    deflatingStream.Finish();
+                using var deflatingStream = new ZOutputStream(encryptingStream, -1);
+                deflatingStream.FlushMode = JZlib.Z_SYNC_FLUSH;
+                inputStream.CopyTo(deflatingStream);
+                deflatingStream.FlushMode = JZlib.Z_FINISH;
+                deflatingStream.Finish();
 
-                    _plaintextLength = deflatingStream.TotalIn;
-                    _compressedPlaintextLength = deflatingStream.TotalOut;
-                    encryptingStream.FinalFlush();
-                    DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
-                }
+                _plaintextLength = deflatingStream.TotalIn;
+                _compressedPlaintextLength = deflatingStream.TotalOut;
+                encryptingStream.FinalFlush();
+                DocumentHeaders.WriteEndWithHmac(hmacCalculator, outputHmacStream, _plaintextLength, _compressedPlaintextLength);
             }
             else
             {
@@ -268,7 +276,7 @@ namespace AxCrypt.Core
         {
             if (outputPlaintextStream == null)
             {
-                throw new ArgumentNullException("outputPlaintextStream");
+                throw new ArgumentNullException(nameof(outputPlaintextStream));
             }
 
             if (!PassphraseIsValid)
@@ -276,13 +284,17 @@ namespace AxCrypt.Core
                 throw new InternalErrorException("Passphrase is not valid!");
             }
 
+            if (DocumentHeaders is null)
+            {
+                throw new InternalErrorException("DocumentHeaders are null when they shouldn't be.");
+            }
             using (Stream encryptedDataStream = CreateEncryptedDataStream())
             {
                 encryptedDataStream.DecryptTo(outputPlaintextStream, DocumentHeaders.DataCrypto().DecryptingTransform(), DocumentHeaders.IsCompressed);
             }
 
-            DocumentHeaders.Trailers(_reader);
-            if (DocumentHeaders.HmacCalculator.Hmac != DocumentHeaders.Hmac)
+            DocumentHeaders.Trailers(_reader ?? throw new InternalErrorException("_reader is null when it shouldn't be."));
+            if (DocumentHeaders.HmacCalculator!.Hmac != DocumentHeaders.Hmac)
             {
                 throw new AxCrypt.Core.Runtime.IncorrectDataException("HMAC validation error.", ErrorStatus.HmacValidationError);
             }
@@ -290,48 +302,58 @@ namespace AxCrypt.Core
 
         public bool VerifyHmac()
         {
+            if (DocumentHeaders is null)
+            {
+                throw new InternalErrorException("DocumentHeaders are null when they shouldn't be.");
+            }
+
             using (Stream encryptedDataStream = CreateEncryptedDataStream())
             {
                 encryptedDataStream.CopyTo(Stream.Null);
             }
 
-            DocumentHeaders.Trailers(_reader);
-            return DocumentHeaders.HmacCalculator.Hmac == DocumentHeaders.Hmac;
+            DocumentHeaders.Trailers(_reader ?? throw new InternalErrorException("_reader is null when it shouldn't be."));
+            return DocumentHeaders.HmacCalculator!.Hmac == DocumentHeaders.Hmac;
         }
 
         private Stream CreateEncryptedDataStream()
         {
+            if (_reader is null)
+            {
+                throw new InternalErrorException("_reader is null when it shouldn't be.");
+            }
+
             if (_reader.CurrentItemType != AxCryptItemType.Data)
             {
                 throw new InvalidOperationException("An attempt was made to create an encrypted data stream when the reader is not positioned at the data.");
             }
 
             _reader.SetStartOfData();
-            return V2AxCryptDataStream.Create(_reader, V2HmacStream.Create(DocumentHeaders.HmacCalculator));
+            return V2AxCryptDataStream.Create(_reader, V2HmacStream.Create(DocumentHeaders!.HmacCalculator!));
         }
 
         public string FileName
         {
-            get { return DocumentHeaders.FileName; }
-            set { DocumentHeaders.FileName = value; }
+            get { return DocumentHeaders?.FileName ?? throw new InternalErrorException("DocumentHeaders is null."); }
+            set { (DocumentHeaders ?? throw new InternalErrorException("DocumentHeaders is null.")).FileName = value; }
         }
 
         public DateTime CreationTimeUtc
         {
-            get { return DocumentHeaders.CreationTimeUtc; }
-            set { DocumentHeaders.CreationTimeUtc = value; }
+            get { return DocumentHeaders?.CreationTimeUtc ?? throw new InternalErrorException("DocumentHeaders is null."); }
+            set { (DocumentHeaders ?? throw new InternalErrorException("DocumentHeaders is null.")).CreationTimeUtc = value; }
         }
 
         public DateTime LastAccessTimeUtc
         {
-            get { return DocumentHeaders.LastAccessTimeUtc; }
-            set { DocumentHeaders.LastAccessTimeUtc = value; }
+            get { return DocumentHeaders?.LastAccessTimeUtc ?? throw new InternalErrorException("DocumentHeaders is null."); }
+            set { (DocumentHeaders ?? throw new InternalErrorException("DocumentHeaders is null.")).LastAccessTimeUtc = value; }
         }
 
         public DateTime LastWriteTimeUtc
         {
-            get { return DocumentHeaders.LastWriteTimeUtc; }
-            set { DocumentHeaders.LastWriteTimeUtc = value; }
+            get { return DocumentHeaders?.LastWriteTimeUtc ?? throw new InternalErrorException("DocumentHeaders is null."); }
+            set { (DocumentHeaders ?? throw new InternalErrorException("DocumentHeaders is null.")).LastWriteTimeUtc = value; }
         }
 
         public void Dispose()

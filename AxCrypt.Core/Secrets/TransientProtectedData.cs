@@ -33,6 +33,7 @@
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -51,6 +52,7 @@ namespace AxCrypt.Core.Secrets
         ///
         private readonly object _entropyLock = new object();
 
+        [AllowNull]
         private byte[] _entropy;
 
         private byte[] Entropy()
@@ -71,7 +73,7 @@ namespace AxCrypt.Core.Secrets
             {
                 if (value != null)
                 {
-                    throw new ArgumentException("Only resetting is supported, this will invalidate all previous encryptions.", "value");
+                    throw new ArgumentException("Only resetting is supported, this will invalidate all previous encryptions.", nameof(value));
                 }
                 _entropy = value;
             }
@@ -91,18 +93,16 @@ namespace AxCrypt.Core.Secrets
             return protectedBytes;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public bool TryUnprotect(byte[] protectedValue, out string value)
+        public bool TryUnprotect(byte[] protectedValue, out string? value)
         {
             value = null;
-            byte[] bytes;
-            if (!TryUnprotect(protectedValue, out bytes))
+            if (!TryUnprotect(protectedValue, out byte[]? bytes))
             {
                 return false;
             }
             try
             {
-                value = Encoding.Unicode.GetString(bytes, 0, bytes.Length);
+                value = Encoding.Unicode.GetString(bytes!, 0, bytes!.Length);
             }
             catch
             {
@@ -118,7 +118,7 @@ namespace AxCrypt.Core.Secrets
             return true;
         }
 
-        public bool TryUnprotect(byte[] protectedValue, out byte[] bytes)
+        public bool TryUnprotect(byte[] protectedValue, out byte[]? bytes)
         {
             bytes = null;
             try

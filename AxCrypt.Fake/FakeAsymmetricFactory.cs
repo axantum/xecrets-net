@@ -25,31 +25,29 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Api.Implementation;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Fake
 {
     public class FakeAsymmetricFactory : IAsymmetricFactory
     {
-        private IAsymmetricFactory _factory = new BouncyCastleAsymmetricFactory();
+        private readonly IAsymmetricFactory _factory = new BouncyCastleAsymmetricFactory();
 
-        private string _paddingHashAlgorithm;
+        private readonly string _paddingHashAlgorithm;
 
         public FakeAsymmetricFactory(string paddingHashAlgorithm)
         {
             _paddingHashAlgorithm = paddingHashAlgorithm;
         }
 
-        public CustomSerializer[] GetSerializers()
+        public IEnumerable<JsonConverter> GetConverters()
         {
-            return _factory.GetSerializers();
+            return _factory.GetConverters();
         }
 
         public IAsymmetricPrivateKey CreatePrivateKey(string privateKeyPem)
@@ -84,9 +82,10 @@ namespace AxCrypt.Fake
 
         private class FakePaddingHash : ICryptoHash
         {
+            [AllowNull]
             private HashAlgorithm _hash;
 
-            private string _paddingHashAlgorithm;
+            private readonly string _paddingHashAlgorithm;
 
             public FakePaddingHash(string paddingHashAlgorithm)
             {
@@ -112,25 +111,30 @@ namespace AxCrypt.Fake
             public void Update(byte input)
             {
                 byte[] buffer = new byte[] { input };
-                _hash.TransformBlock(buffer, 0, 1, buffer, 0);
+                _ = _hash.TransformBlock(buffer, 0, 1, buffer, 0);
             }
 
             public void BlockUpdate(byte[] input, int offset, int length)
             {
-                _hash.TransformBlock(input, offset, length, input, offset);
+                _ = _hash.TransformBlock(input, offset, length, input, offset);
             }
 
             public int DoFinal(byte[] output, int offset)
             {
-                _hash.TransformFinalBlock(new byte[0], 0, 0);
-                _hash.Hash.CopyTo(output, offset);
+                _ = _hash.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
+                _hash.Hash!.CopyTo(array: output, offset);
                 Reset();
                 return _hash.HashSize / 8;
             }
 
             public void Reset()
             {
-                _hash = HashAlgorithm.Create(_paddingHashAlgorithm);
+                _hash = _paddingHashAlgorithm switch
+                {
+                    "SHA1" => SHA1.Create(),
+                    "MD5" => MD5.Create(),
+                    _ => throw new ArgumentException("Unsupported hash algorithm.", nameof(_paddingHashAlgorithm)),
+                };
             }
         }
     }

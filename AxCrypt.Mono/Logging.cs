@@ -29,6 +29,7 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
@@ -36,11 +37,12 @@ namespace AxCrypt.Mono
 {
     public class Logging : ILogging
     {
+        [AllowNull]
         private TraceSwitch _switch = InitializeTraceSwitch();
 
         public Logging()
         {
-            Trace.Listeners.Add(new DelegateTraceListener("ILoggingListener", TraceMessage));
+            _ = Trace.Listeners.Add(new DelegateTraceListener("ILoggingListener", TraceMessage));
         }
 
         private void TraceMessage(string message)
@@ -50,44 +52,24 @@ namespace AxCrypt.Mono
 
         #region ILogging Members
 
-        public event EventHandler<LoggingEventArgs> Logged;
+        public event EventHandler<LoggingEventArgs>? Logged;
 
         protected virtual void OnLogging(LoggingEventArgs e)
         {
-            EventHandler<LoggingEventArgs> handler = Logged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Logged?.Invoke(this, e);
         }
 
         public void SetLevel(LogLevel level)
         {
-            switch (level)
+            _switch.Level = level switch
             {
-                case LogLevel.Fatal:
-                    _switch.Level = TraceLevel.Off;
-                    break;
-
-                case LogLevel.Error:
-                    _switch.Level = TraceLevel.Error;
-                    break;
-
-                case LogLevel.Warning:
-                    _switch.Level = TraceLevel.Warning;
-                    break;
-
-                case LogLevel.Info:
-                    _switch.Level = TraceLevel.Info;
-                    break;
-
-                case LogLevel.Debug:
-                    _switch.Level = TraceLevel.Verbose;
-                    break;
-
-                default:
-                    throw new ArgumentException("level must be a value form the LogLevel enumeration.");
-            }
+                LogLevel.Fatal => TraceLevel.Off,
+                LogLevel.Error => TraceLevel.Error,
+                LogLevel.Warning => TraceLevel.Warning,
+                LogLevel.Info => TraceLevel.Info,
+                LogLevel.Debug => TraceLevel.Verbose,
+                _ => throw new ArgumentException("level must be a value form the LogLevel enumeration."),
+            };
         }
 
         public bool IsFatalEnabled
@@ -159,21 +141,21 @@ namespace AxCrypt.Mono
 
         private static TraceSwitch InitializeTraceSwitch()
         {
-            TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt");
-            traceSwitch.Level = TraceLevel.Error;
+            TraceSwitch traceSwitch = new TraceSwitch("axCryptSwitch", "Logging levels for AxCrypt")
+            {
+                Level = TraceLevel.Error
+            };
             return traceSwitch;
         }
 
+        [AllowNull]
         private static string _appName;
 
         private static string AppName
         {
             get
             {
-                if (_appName == null)
-                {
-                    _appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-                }
+                _appName ??= Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                 return _appName;
             }
         }

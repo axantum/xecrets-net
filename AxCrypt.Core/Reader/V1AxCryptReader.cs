@@ -48,7 +48,7 @@ namespace AxCrypt.Core.Reader
 
         protected override IAxCryptDocument Document()
         {
-            base.Document();
+            _ = base.Document();
             return new V1AxCryptDocument(this);
         }
 

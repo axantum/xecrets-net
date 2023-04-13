@@ -71,7 +71,10 @@ namespace AxCrypt.Core.Test
             license = PublicResources.JsonNetLicense;
             Assert.That(license, Is.Not.Null, "Just checking that there is a Json.NET License Text.");
 
-            Icon icon = new Icon(PublicResources.AxCryptIcon);
+            using MemoryStream ms = new MemoryStream();
+            PublicResources.AxCryptIcon.CopyTo(ms);
+            var icon = ms.ToArray();
+
             Assert.That(icon, Is.Not.Null, "Just checking that there is an icon.");
         }
     }

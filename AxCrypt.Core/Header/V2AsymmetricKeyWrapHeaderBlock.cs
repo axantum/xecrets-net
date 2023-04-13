@@ -39,7 +39,7 @@ namespace AxCrypt.Core.Header
     {
         private const int DATABLOCK_LENGTH = 4096 / 8;
 
-        private ICryptoFactory _cryptoFactory;
+        private ICryptoFactory? _cryptoFactory;
 
         public V2AsymmetricKeyWrapHeaderBlock(byte[] dataBlock)
             : base(HeaderBlockType.V2AsymmetricKeyWrap, dataBlock)
@@ -51,11 +51,11 @@ namespace AxCrypt.Core.Header
         {
             if (publicKey == null)
             {
-                throw new ArgumentNullException("publicKey");
+                throw new ArgumentNullException(nameof(publicKey));
             }
 
             byte[] encrypted = publicKey.PublicKey.Transform(masterKey + masterIV);
-            GetDataBlockBytesReference().SetFrom(encrypted);
+            _ = GetDataBlockBytesReference().SetFrom(encrypted);
         }
 
         public override object Clone()
@@ -64,7 +64,7 @@ namespace AxCrypt.Core.Header
             return block;
         }
 
-        private IAsymmetricPrivateKey _privateKey;
+        private IAsymmetricPrivateKey? _privateKey;
 
         /// <summary>
         /// Sets the private key.
@@ -77,7 +77,7 @@ namespace AxCrypt.Core.Header
             _decryptedDataBlock = null;
         }
 
-        private byte[] _decryptedDataBlock = null;
+        private byte[]? _decryptedDataBlock = null;
 
         private byte[] DecryptedDataBlock
         {
@@ -85,7 +85,7 @@ namespace AxCrypt.Core.Header
             {
                 if (_decryptedDataBlock == null)
                 {
-                    _decryptedDataBlock = _privateKey.Transform(GetDataBlockBytesReference()) ?? new byte[0];
+                    _decryptedDataBlock = _privateKey!.Transform(GetDataBlockBytesReference()) ?? Array.Empty<byte>();
                 }
                 return _decryptedDataBlock;
             }
@@ -96,9 +96,9 @@ namespace AxCrypt.Core.Header
         /// </summary>
         /// <param name="keyStreamOffset"></param>
         /// <returns>An ICrypto instance, initialized with key and iv, or null if no valid key is set.</returns>
-        public ICrypto Crypto(long keyStreamOffset)
+        public ICrypto? Crypto(long keyStreamOffset)
         {
-            byte[] iv = new byte[_cryptoFactory.BlockSize / 8];
+            byte[] iv = new byte[_cryptoFactory!.BlockSize / 8];
             byte[] masterKey = new byte[_cryptoFactory.KeySize / 8];
 
             if (DecryptedDataBlock.Length == 0)

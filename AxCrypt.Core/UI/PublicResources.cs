@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Core.Properties;
+using Xecrets.File.Core.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -41,10 +41,9 @@ namespace AxCrypt.Core.UI
     {
 #if DEBUG
 #pragma warning disable 414
-
-        [SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields", Justification = "This is just a dummy here to ensure 100% code coverage in Unit Tests.")]
-        private static AxCrypt.Core.Properties.Resources _codeCoverageForInternalDesignerGeneratedConstructorDummy = new AxCrypt.Core.Properties.Resources();
-
+#pragma warning disable IDE0052 // Remove unread private members
+        private static readonly Resources _codeCoverageForInternalDesignerGeneratedConstructorDummy = new Xecrets.File.Core.Properties.Resources();
+#pragma warning restore IDE0052 // Remove unread private members
 #pragma warning restore 414
 #endif
 
@@ -64,11 +63,10 @@ namespace AxCrypt.Core.UI
         {
             get
             {
-                return typeof(Resources).GetTypeInfo().Assembly.GetManifestResourceStream("AxCrypt.Core.resources.axcrypticon.ico");
+                return typeof(Resources).GetTypeInfo().Assembly.GetManifestResourceStream("Xecrets.File.Core.resources.axcrypticon.ico")!;
             }
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "Bouncycastle")]
         public static string BouncycastleLicense
         {
             get

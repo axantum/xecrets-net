@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class StoreKitTransaction
     {
         public StoreKitTransaction(string productId, string receiptData, string paidBy, string paidFor, string transactionId, string currencyPaid, decimal amountPaid, DateTime dateTimeUtc, string paymentStatus)
@@ -21,46 +20,46 @@ namespace AxCrypt.Api.Model
             PaymentStatus = paymentStatus;
         }
 
-        [JsonProperty("receipt-data")]
-        public string ReceiptData { get; }
+        [JsonPropertyName("receipt-data")]
+        public string ReceiptData { get; set; }
 
-        [JsonProperty("product_id")]
-        public string ProductId { get; }
+        [JsonPropertyName("product_id")]
+        public string ProductId { get; set; }
 
-        [JsonProperty("paid_by")]
-        public string PaidBy { get; }
+        [JsonPropertyName("paid_by")]
+        public string PaidBy { get; set; }
 
-        [JsonProperty("paid_for")]
-        public string PaidFor { get; }
+        [JsonPropertyName("paid_for")]
+        public string PaidFor { get; set; }
 
-        [JsonProperty("txn_id")]
-        public string TransactionId { get; }
+        [JsonPropertyName("txn_id")]
+        public string TransactionId { get; set; }
 
-        [JsonProperty("currency_paid")]
-        public string CurrencyPaid { get; }
+        [JsonPropertyName("currency_paid")]
+        public string CurrencyPaid { get; set; }
 
-        [JsonProperty("amount_paid")]
-        public decimal AmountPaid { get; }
+        [JsonPropertyName("amount_paid")]
+        public decimal AmountPaid { get; set; }
 
-        [JsonProperty("datetime")]
-        public DateTime DateTimeUtc { get; }
+        [JsonPropertyName("datetime")]
+        public DateTime DateTimeUtc { get; set; }
 
-        [JsonProperty("payment_status")]
-        public string PaymentStatus { get; }
+        [JsonPropertyName("payment_status")]
+        public string PaymentStatus { get; set; }
 
-        [JsonProperty("item_name")]
-        public string ItemName { get; set; }
+        [JsonPropertyName("item_name")]
+        public string? ItemName { get; set; }
 
-        [JsonProperty("country_code")]
-        public string CountryCode { get; set; }
+        [JsonPropertyName("country_code")]
+        public string? CountryCode { get; set; }
 
-        [JsonProperty("amount_fee")]
+        [JsonPropertyName("amount_fee")]
         public decimal AmountFee { get; set; }
 
-        [JsonProperty("amount_vat")]
+        [JsonPropertyName("amount_vat")]
         public decimal AmountVat { get; set; }
 
-        [JsonProperty("discount_code")]
+        [JsonPropertyName("discount_code")]
         public string AppliedDiscountCode { get; set; } = string.Empty;
     }
 }

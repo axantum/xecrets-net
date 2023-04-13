@@ -13,7 +13,7 @@ namespace AxCrypt.Common
 
         public static CacheKey RootKey { get; } = new CacheKey();
 
-        private string _key;
+        private readonly string _key;
 
         private CacheKey()
             : this("RootKey", null)
@@ -25,7 +25,7 @@ namespace AxCrypt.Common
         {
         }
 
-        public CacheKey(string key, ICacheKey parentCacheKey)
+        public CacheKey(string key, ICacheKey? parentCacheKey)
         {
             _key = key;
             ParentCacheKey = parentCacheKey;
@@ -37,7 +37,7 @@ namespace AxCrypt.Common
             return subkey;
         }
 
-        public ICacheKey ParentCacheKey { get; }
+        public ICacheKey? ParentCacheKey { get; }
 
         public string Key
         {

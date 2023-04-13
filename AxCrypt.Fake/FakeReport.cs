@@ -36,8 +36,11 @@ namespace AxCrypt.Fake
 {
     public class FakeReport : IReport
     {
+        public string LastReport { get; set; } = string.Empty;
+
         public void Exception(Exception ex)
         {
+            LastReport = ex.Message;
         }
 
         public string Snapshot

@@ -43,15 +43,17 @@ using AxCrypt.Core.Session;
 using AxCrypt.Content;
 
 using static AxCrypt.Abstractions.TypeResolve;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Core.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDisposable
     {
-        private FileSystemState _fileSystemState;
+        private readonly FileSystemState _fileSystemState;
 
-        private UserSettings _userSettings;
+        private readonly UserSettings _userSettings;
 
+        [AllowNull]
         private AxCryptUpdateCheck _axCryptUpdateCheck;
 
         public bool LoggedOn { get { return GetProperty<bool>(nameof(LoggedOn)); } set { SetProperty(nameof(LoggedOn), value); } }
@@ -130,20 +132,13 @@ namespace AxCrypt.Core.UI.ViewModel
             _axCryptUpdateCheck = New<AxCryptUpdateCheck>();
             _axCryptUpdateCheck.AxCryptUpdate += Handle_VersionUpdate;
 
-            InitializePropertyValues();
-            BindPropertyChangedEvents();
-            SubscribeToModelEvents();
-        }
-
-        private void InitializePropertyValues()
-        {
             WatchedFoldersEnabled = false;
-            WatchedFolders = new string[0];
-            DragAndDropFiles = new string[0];
-            RecentFiles = new ActiveFile[0];
-            SelectedRecentFiles = new string[0];
-            SelectedWatchedFolders = new string[0];
-            DecryptedFiles = new ActiveFile[0];
+            WatchedFolders = Array.Empty<string>();
+            DragAndDropFiles = Array.Empty<string>();
+            RecentFiles = Array.Empty<ActiveFile>();
+            SelectedRecentFiles = Array.Empty<string>();
+            SelectedWatchedFolders = Array.Empty<string>();
+            DecryptedFiles = Array.Empty<ActiveFile>();
             DebugMode = _userSettings.DebugMode;
             FolderOperationMode = _userSettings.FolderOperationMode;
             DownloadVersion = DownloadVersion.Empty;
@@ -164,18 +159,21 @@ namespace AxCrypt.Core.UI.ViewModel
             DecryptFileEnabled = true;
             OpenEncryptedEnabled = true;
             RandomRenameEnabled = true;
+
+            BindPropertyChangedEvents();
+            SubscribeToModelEvents();
         }
 
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
-            BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => { SetRecentFilesComparer(); });
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => DragAndDropFilesTypes = DetermineFileTypes(files.Select(f => New<IDataItem>(f))));
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => DroppableAsRecent = DetermineDroppableAsRecent(files.Select(f => New<IDataItem>(f))));
+            BindPropertyChangedInternal(nameof(DragAndDropFiles), (IEnumerable<string> files) => DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))));
+            BindPropertyChangedInternal(nameof(RecentFilesComparer), (ActiveFileComparer comparer) => SetRecentFilesComparer());
             BindPropertyChangedInternal(nameof(LoggedOn), (bool loggedOn) => LicenseUpdate.Execute(null));
             BindPropertyChangedInternal(nameof(LoggedOn), async (bool loggedOn) => { if (loggedOn) await AxCryptUpdateCheck.ExecuteAsync(_userSettings.LastUpdateCheckUtc); });
 
-            BindPropertyChanged(nameof(DebugMode), (bool enabled) => { UpdateDebugMode(enabled); });
+            BindPropertyChanged(nameof(DebugMode), (bool enabled) => UpdateDebugMode(enabled));
             BindPropertyChanged(nameof(LoggedOn), (bool loggedOn) => EncryptFileEnabled = loggedOn || !License.Has(LicenseCapability.EncryptNewFiles));
             BindPropertyChanged(nameof(License), async (LicenseCapabilities policy) => await SetWatchedFoldersAsync());
             BindPropertyChanged(nameof(EncryptionUpgradeMode), (EncryptionUpgradeMode mode) => Resolve.UserSettings.EncryptionUpgradeMode = mode);
@@ -187,24 +185,24 @@ namespace AxCrypt.Core.UI.ViewModel
             Resolve.SessionNotify.AddCommand(HandleSessionChangedAsync);
         }
 
-        public async Task<bool> CanShareAsync(IEnumerable<IDataStore> items)
+        public Task<bool> CanShareAsync(IEnumerable<IDataStore> items)
         {
             if (!items.Any())
             {
-                return false;
+                return Task.FromResult(false);
             }
 
             if (!LoggedOn)
             {
-                return false;
+                return Task.FromResult(false);
             }
 
-            return true;
+            return Task.FromResult(true);
         }
 
         public IEnumerable<ActiveFile> SelectedActiveFiles()
         {
-            return SelectedRecentFiles.Select(f => _fileSystemState.FindActiveFileFromEncryptedPath(f)).Where(af => af != null);
+            return SelectedRecentFiles.Select(f => _fileSystemState.FindActiveFileFromEncryptedPath(f)).Where(af => af != null).Cast<ActiveFile>();
         }
 
         private void UpdateDebugMode(bool enabled)
@@ -214,11 +212,14 @@ namespace AxCrypt.Core.UI.ViewModel
             _userSettings.DebugMode = enabled;
         }
 
-        private void Handle_VersionUpdate(object sender, VersionEventArgs e)
+        private void Handle_VersionUpdate(object? sender, VersionEventArgs e)
         {
             _userSettings.LastUpdateCheckUtc = New<INow>().Utc;
             _userSettings.NewestKnownVersion = e.DownloadVersion.Version.ToString();
-            _userSettings.UpdateUrl = e.DownloadVersion.Url;
+            if (e.DownloadVersion.Url is not null)
+            {
+                _userSettings.UpdateUrl = e.DownloadVersion.Url;
+            }
             _userSettings.UpdateLevel = e.DownloadVersion.Level;
 
             VersionUpdateStatus = e.DownloadVersion.CalculateStatus(New<IVersion>().Current, New<INow>().Utc, e.LastUpdateCheck);
@@ -334,15 +335,16 @@ namespace AxCrypt.Core.UI.ViewModel
             }
         }
 
-        private async Task SetWatchedFoldersAsync()
+        private Task SetWatchedFoldersAsync()
         {
             WatchedFoldersEnabled = License.Has(LicenseCapability.SecureFolders);
             if (!WatchedFoldersEnabled)
             {
-                WatchedFolders = new string[0];
-                return;
+                WatchedFolders = Array.Empty<string>();
+                return Task.CompletedTask;
             }
             WatchedFolders = Resolve.KnownIdentities.LoggedOnWatchedFolders.Select(wf => wf.Path).ToList();
+            return Task.CompletedTask;
         }
 
         private void SetRecentFiles()
@@ -417,7 +419,7 @@ namespace AxCrypt.Core.UI.ViewModel
         {
             foreach (string file in files)
             {
-                ActiveFile activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(file);
+                ActiveFile? activeFile = _fileSystemState.FindActiveFileFromEncryptedPath(file);
                 if (activeFile != null)
                 {
                     _fileSystemState.RemoveActiveFile(activeFile);
@@ -436,7 +438,7 @@ namespace AxCrypt.Core.UI.ViewModel
             {
                 if (New<FileFilter>().IsForbiddenFolder(folder))
                 {
-                    await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.SystemFolderForbiddenText.InvariantFormat(folder));
+                    _ = await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.SystemFolderForbiddenText.InvariantFormat(folder));
                     continue;
                 }
                 await _fileSystemState.AddWatchedFolderAsync(new WatchedFolder(folder, Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
@@ -473,10 +475,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            using (ILauncher launcher = New<ILauncher>())
-            {
-                launcher.Launch(folder);
-            }
+            using var launcher = New<ILauncher>();
+            launcher.Launch(folder);
         }
 
         private Task AxCryptUpdateCheckAction(DateTime lastUpdateCheckUtc)
@@ -492,15 +492,15 @@ namespace AxCrypt.Core.UI.ViewModel
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
+            _ = sb.AppendLine(Texts.DecryptedFilesWarning).AppendLine();
             foreach (ActiveFile decryptedFile in DecryptedFiles)
             {
-                sb.AppendLine(New<IPath>().GetFileName(decryptedFile.DecryptedFileInfo.FullName));
+                _ = sb.AppendLine(New<IPath>().GetFileName(decryptedFile.DecryptedFileInfo.FullName));
             }
 
-            sb.AppendLine().Append(Texts.DecryptedFilesWarningWhenExitOrReset);
+            _ = sb.AppendLine().Append(Texts.DecryptedFilesWarningWhenExitOrReset);
 
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
+            _ = await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, sb.ToString());
             return true;
         }
 

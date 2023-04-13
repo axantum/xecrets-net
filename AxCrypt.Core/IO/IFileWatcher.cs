@@ -32,7 +32,7 @@ namespace AxCrypt.Core.IO
 {
     public interface IFileWatcher : IDisposable
     {
-        event EventHandler<FileWatcherEventArgs> FileChanged;
+        event EventHandler<FileWatcherEventArgs>? FileChanged;
 
         bool IncludeSubdirectories { get; set; }
     }

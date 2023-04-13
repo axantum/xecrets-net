@@ -26,35 +26,29 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Runtime;
-using System;
-using System.Collections.Generic;
+
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace AxCrypt.Mono
 {
     public class MonoPlatform : IPlatform
     {
-        private Lazy<bool> isMac = new Lazy<bool>(IsMac);
+        private readonly Lazy<bool> isMac = new Lazy<bool>(IsMac);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         private static bool IsMac()
         {
             try
-            {
-                using (Process p = Process.Start(
+            {   
+                using Process? p = Process.Start(
                     new ProcessStartInfo
                     {
                         FileName = "uname",
                         RedirectStandardOutput = true,
                         UseShellExecute = false,
                     }
-                ))
-                {
-                    string output = p.StandardOutput.ReadToEnd().Trim();
-                    return output == "Darwin";
-                }
+                );
+                string? output = p?.StandardOutput.ReadToEnd().Trim();
+                return output == "Darwin";
             }
             catch
             {
@@ -66,30 +60,17 @@ namespace AxCrypt.Mono
         {
             get
             {
-                OperatingSystem os = global::System.Environment.OSVersion;
+                OperatingSystem os = Environment.OSVersion;
                 PlatformID pid = os.Platform;
-                switch (pid)
+                return pid switch
                 {
-                    case PlatformID.Win32NT:
-                    case PlatformID.Win32S:
-                    case PlatformID.Win32Windows:
-                        return Platform.WindowsDesktop;
-
-                    case PlatformID.MacOSX:
-                        return Platform.MacOsx;
-
-                    case PlatformID.Unix:
-                        return isMac.Value ? Platform.MacOsx : Platform.Linux;
-
-                    case PlatformID.WinCE:
-                        return Platform.WindowsMobile;
-
-                    case PlatformID.Xbox:
-                        return Platform.Xbox;
-
-                    default:
-                        return Platform.Unknown;
-                }
+                    PlatformID.Win32NT or PlatformID.Win32S or PlatformID.Win32Windows => Platform.WindowsDesktop,
+                    PlatformID.MacOSX => Platform.MacOsx,
+                    PlatformID.Unix => isMac.Value ? Platform.MacOsx : Platform.Linux,
+                    PlatformID.WinCE => Platform.WindowsMobile,
+                    PlatformID.Xbox => Platform.Xbox,
+                    _ => Platform.Unknown,
+                };
             }
         }
     }

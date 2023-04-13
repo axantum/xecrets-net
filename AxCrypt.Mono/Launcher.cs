@@ -29,6 +29,7 @@ using AxCrypt.Core;
 using AxCrypt.Core.Runtime;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Mono
@@ -37,15 +38,18 @@ namespace AxCrypt.Mono
     {
         private readonly object _disposeLock = new object();
 
+        [AllowNull]
         private Process _process;
 
         public void Launch(string path)
         {
-            _process = Process.Start(path);
-            if (_process == null)
+            var process = Process.Start(path);
+            if (process == null)
             {
                 return;
             }
+
+            _process = process;
             WasStarted = true;
             Path = _process.StartInfo.FileName;
             Name = _process.ProcessName;
@@ -62,7 +66,7 @@ namespace AxCrypt.Mono
             }
         }
 
-        private void Process_Exited(object sender, EventArgs e)
+        private void Process_Exited(object? sender, EventArgs e)
         {
             if (!HasRelatedProcess)
             {
@@ -90,7 +94,7 @@ namespace AxCrypt.Mono
 
         #region ILauncher Members
 
-        public event EventHandler Exited;
+        public event EventHandler? Exited;
 
         public bool HasExited
         {
@@ -113,17 +117,13 @@ namespace AxCrypt.Mono
         {
             get;
             private set;
-        }
+        } = string.Empty;
 
         #endregion ILauncher Members
 
         protected virtual void OnExited(EventArgs e)
         {
-            EventHandler handler = Exited;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Exited?.Invoke(this, e);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -151,7 +151,7 @@ namespace AxCrypt.Mono
         public string Path
         {
             get; private set;
-        }
+        } = string.Empty;
 
         #region IDisposable Members
 

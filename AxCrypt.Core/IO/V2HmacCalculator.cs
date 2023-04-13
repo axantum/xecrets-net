@@ -40,7 +40,7 @@ namespace AxCrypt.Core.IO
 {
     public class V2HmacCalculator
     {
-        private HashAlgorithm _hmac;
+        private readonly HashAlgorithm _hmac;
 
         private long _count = 0;
 
@@ -49,7 +49,7 @@ namespace AxCrypt.Core.IO
             _hmac = New<HMACSHA512>().Initialize(key);
         }
 
-        private byte[] _hmacResult = null;
+        private byte[]? _hmacResult = null;
 
         /// <summary>
         /// Get the calculated HMAC
@@ -61,7 +61,7 @@ namespace AxCrypt.Core.IO
             {
                 if (_hmacResult == null)
                 {
-                    _hmac.TransformFinalBlock(new byte[] { }, 0, 0);
+                    _ = _hmac.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
                     byte[] result = new byte[_hmac.HashSize / 8];
                     Array.Copy(_hmac.Hash(), 0, result, 0, result.Length);
                     _hmacResult = result;
@@ -76,7 +76,7 @@ namespace AxCrypt.Core.IO
             {
                 return;
             }
-            _hmac.TransformBlock(buffer, offset, count, null, 0);
+            _ = _hmac.TransformBlock(buffer, offset, count, null, 0);
             _count += count;
         }
 

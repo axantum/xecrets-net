@@ -29,7 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Common;
 using AxCrypt.Content;
 using AxCrypt.Core.IO;
-using AxCrypt.Core.Properties;
+using Xecrets.File.Core.Properties;
 using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -81,7 +81,7 @@ namespace AxCrypt.Core.Extensions
             encoded[0] = baseUrl.ToString();
             for (int i = 0; i < parameters.Length; ++i)
             {
-                encoded[i + 1] = Uri.EscapeDataString(parameters[i].ToString());
+                encoded[i + 1] = Uri.EscapeDataString(parameters[i].ToString()!);
             }
 
             return format.InvariantFormat(encoded);
@@ -129,7 +129,7 @@ namespace AxCrypt.Core.Extensions
 
             if (string.IsNullOrEmpty(value))
             {
-                return defaultValue.ToString();
+                return defaultValue.ToString()!;
             }
             return value;
         }
@@ -220,7 +220,7 @@ namespace AxCrypt.Core.Extensions
         /// <param name="name">The environment name.</param>
         /// <returns>A container, or null if the name was not found or was empty.</returns>
         /// <exception cref="System.ArgumentNullException">name</exception>
-        public static IDataContainer FolderFromEnvironment(this string name)
+        public static IDataContainer? FolderFromEnvironment(this string name)
         {
             if (name == null)
             {
@@ -298,7 +298,7 @@ namespace AxCrypt.Core.Extensions
 
         public static bool IsValidEmail(this string email)
         {
-            string address;
+            string? address;
             return New<IEmailParser>().TryParse(email, out address);
         }
 
@@ -313,7 +313,7 @@ namespace AxCrypt.Core.Extensions
             List<string> topLevelDomains = new List<string>();
             using (StringReader sr = new StringReader(Resources.tlds_alpha_by_domain))
             {
-                string line;
+                string? line;
                 while ((line = sr.ReadLine()) != null)
                 {
                     if (line.StartsWith("#"))

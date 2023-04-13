@@ -41,7 +41,7 @@ namespace AxCrypt.Common
 
         public static readonly DownloadVersion Empty = new DownloadVersion(null, VersionZero);
 
-        public DownloadVersion(string link, string version, bool isReliability, bool isSecurity)
+        public DownloadVersion(string? link, string? version, bool isReliability, bool isSecurity)
         {
             if (link == null)
             {
@@ -59,7 +59,7 @@ namespace AxCrypt.Common
             Level |= isReliability ? UpdateLevels.Reliability : UpdateLevels.None;
         }
 
-        public DownloadVersion(Uri url, Version version)
+        public DownloadVersion(Uri? url, Version version)
         {
             Url = url;
             Version = version;
@@ -84,7 +84,7 @@ namespace AxCrypt.Common
 
         public UpdateLevels Level { get; }
 
-        public Uri Url { get; }
+        public Uri? Url { get; }
 
         public Version Version { get; }
     }

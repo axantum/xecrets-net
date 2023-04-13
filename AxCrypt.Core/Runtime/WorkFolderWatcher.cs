@@ -29,6 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Session;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using static AxCrypt.Abstractions.TypeResolve;
@@ -37,6 +38,7 @@ namespace AxCrypt.Core.Runtime
 {
     public class WorkFolderWatcher : IDisposable
     {
+        [AllowNull]
         private IFileWatcher _workFolderWatcher;
 
         public WorkFolderWatcher()
@@ -46,7 +48,7 @@ namespace AxCrypt.Core.Runtime
             _workFolderWatcher.FileChanged += HandleWorkFolderFileChangedEvent;
         }
 
-        private async void HandleWorkFolderFileChangedEvent(object sender, FileWatcherEventArgs e)
+        private async void HandleWorkFolderFileChangedEvent(object? sender, FileWatcherEventArgs e)
         {
             foreach (string fullName in e.FullNames)
             {

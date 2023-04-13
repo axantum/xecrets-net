@@ -27,13 +27,17 @@
 
 using AxCrypt.Core.Runtime;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Timers;
+
+using Timer = System.Timers.Timer;
 
 namespace AxCrypt.Mono
 {
     public class DelayTimer : IDelayTimer
     {
+        [AllowNull]
         private Timer _timer = new Timer();
 
         public DelayTimer()
@@ -42,18 +46,14 @@ namespace AxCrypt.Mono
             _timer.Elapsed += HandleTimerElapsedEvent;
         }
 
-        private void HandleTimerElapsedEvent(object sender, ElapsedEventArgs e)
+        private void HandleTimerElapsedEvent(object? sender, ElapsedEventArgs e)
         {
             OnElapsed(new EventArgs());
         }
 
         protected virtual void OnElapsed(EventArgs e)
         {
-            EventHandler<EventArgs> handler = Elapsed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Elapsed?.Invoke(this, e);
         }
 
         public void SetInterval(TimeSpan interval)
@@ -62,7 +62,7 @@ namespace AxCrypt.Mono
             _timer.Interval = interval.TotalMilliseconds;
         }
 
-        public event EventHandler<EventArgs> Elapsed;
+        public event EventHandler<EventArgs>? Elapsed;
 
         public void Start()
         {

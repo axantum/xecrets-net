@@ -26,12 +26,10 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Runtime;
 using AxCrypt.Core.UI;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Session
 {
@@ -41,18 +39,24 @@ namespace AxCrypt.Core.Session
     /// contain any secret information, but can be used to recognize an identity. Instances
     /// of this class are immutable.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class IdentityPublicTag
     {
         public static readonly IdentityPublicTag Empty = new IdentityPublicTag(SymmetricKeyThumbprint.Zero, EmailAddress.Empty);
 
-        [JsonProperty("thumbprint")]
-        private SymmetricKeyThumbprint _thumbprint;
+        [JsonPropertyName("thumbprint")]
+        public SymmetricKeyThumbprint ThumbprintForSerialization { get { return _thumbprint; } set { _thumbprint = value; } }
 
-        [JsonProperty("email")]
-        private EmailAddress _email;
+        private SymmetricKeyThumbprint _thumbprint = SymmetricKeyThumbprint.Zero;
 
-        [JsonConstructor]
+        [JsonPropertyName("email")]
+        public EmailAddress EmailAddressForSerialization { get { return _email; } set { _email = value; } }
+
+        private EmailAddress _email = EmailAddress.Empty;
+
+        public IdentityPublicTag()
+        {
+        }
+
         private IdentityPublicTag(SymmetricKeyThumbprint thumbprint, EmailAddress emailAddress)
         {
             _thumbprint = thumbprint;
@@ -63,10 +67,10 @@ namespace AxCrypt.Core.Session
         {
             if (identity == null)
             {
-                throw new ArgumentNullException("identity");
+                throw new ArgumentNullException(nameof(identity));
             }
 
-            _thumbprint = identity.Passphrase.Thumbprint;
+            _thumbprint = identity.Passphrase.Thumbprint ?? throw new InternalErrorException("Thumbprint was null.");
             _email = identity.ActiveEncryptionKeyPair.UserEmail;
         }
 
@@ -79,7 +83,7 @@ namespace AxCrypt.Core.Session
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException(nameof(other));
             }
 
             if (_email != EmailAddress.Empty || other._email != EmailAddress.Empty)

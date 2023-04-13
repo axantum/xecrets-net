@@ -13,7 +13,7 @@ namespace AxCrypt.Fake
     [SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Fake test code and MemoryStream does not need disposal.")]
     public class FakeInMemoryDataStoreItem : IDataStore
     {
-        private MemoryStream _dataStream;
+        private readonly MemoryStream _dataStream;
 
         private string _fileName;
 
@@ -81,7 +81,7 @@ namespace AxCrypt.Fake
 
         public IDataContainer Container
         {
-            get { return null; }
+            get { return null!; }
         }
 
         public bool IsAvailable

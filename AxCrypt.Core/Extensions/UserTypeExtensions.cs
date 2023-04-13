@@ -1,4 +1,4 @@
-using AxCrypt.Abstractions;
+﻿using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Rest;
 using AxCrypt.Api.Model;
 using AxCrypt.Api.Model.Masterkey;
@@ -75,7 +75,7 @@ namespace AxCrypt.Core.Extensions
 
             string encryptedPrivateKey = EncryptPrivateKey(keys, passphrase);
 
-            KeyPair keyPair = new KeyPair(keys.KeyPair.PublicKey.ToString(), encryptedPrivateKey);
+            KeyPair keyPair = new KeyPair(keys.KeyPair.PublicKey.ToString()!, encryptedPrivateKey);
             AccountKey accountKey = new AccountKey(keys.UserEmail.Address, keys.KeyPair.PublicKey.Thumbprint.ToString(), keyPair, keys.Timestamp, PrivateKeyStatus.PassphraseKnown);
 
             return accountKey;
@@ -88,7 +88,7 @@ namespace AxCrypt.Core.Extensions
                 return String.Empty;
             }
 
-            return EncryptPrivateKey(passphrase, keys.KeyPair.PrivateKey.ToString(), null);
+            return EncryptPrivateKey(passphrase, keys.KeyPair.PrivateKey.ToString()!, null!);
         }
 
         public static string EncryptPrivateKey(this Passphrase passphrase, string privateKey, IAsymmetricPublicKey publicKey)
@@ -154,14 +154,14 @@ namespace AxCrypt.Core.Extensions
         /// <param name="accountKey">The account key.</param>
         /// <param name="passphrase">The passphrase to decrypt the private key, if any, with.</param>
         /// <returns>A UserKeyPair or null if it was not possible to decrypt it.</returns>
-        public static UserKeyPair ToUserKeyPair(this Api.Model.AccountKey accountKey, Passphrase passphrase)
+        public static UserKeyPair? ToUserKeyPair(this Api.Model.AccountKey accountKey, Passphrase passphrase)
         {
             if (accountKey == null)
             {
                 throw new ArgumentNullException(nameof(accountKey));
             }
 
-            string privateKeyPem = DecryptPrivateKeyPem(accountKey.KeyPair.PrivateEncryptedPem, passphrase);
+            string? privateKeyPem = DecryptPrivateKeyPem(accountKey.KeyPair.PrivateEncryptedPem, passphrase);
             if (privateKeyPem == null)
             {
                 return null;
@@ -203,16 +203,16 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(userPublicKey));
             }
 
-            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString(), String.Empty), New<INow>().Utc, PrivateKeyStatus.Empty);
+            AccountKey accountKey = new AccountKey(userPublicKey.Email.Address, userPublicKey.PublicKey.Thumbprint.ToString(), new KeyPair(userPublicKey.PublicKey.ToString()!, String.Empty), New<INow>().Utc, PrivateKeyStatus.Empty);
             return accountKey;
         }
 
-        public static string DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase)
+        public static string? DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase)
         {
             return DecryptPrivateKeyPem(privateEncryptedPem, passphrase, null);
         }
 
-        public static string DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase, IAsymmetricPrivateKey privateKey)
+        public static string? DecryptPrivateKeyPem(this string privateEncryptedPem, Passphrase passphrase, IAsymmetricPrivateKey? privateKey)
         {
             if (privateEncryptedPem.Length == 0)
             {
@@ -221,7 +221,7 @@ namespace AxCrypt.Core.Extensions
 
             byte[] privateKeyEncryptedPem = Convert.FromBase64String(privateEncryptedPem);
 
-            byte[] decryptedPrivateKeyBytes = New<IProtectedData>().Unprotect(privateKeyEncryptedPem, null);
+            byte[]? decryptedPrivateKeyBytes = New<IProtectedData>().Unprotect(privateKeyEncryptedPem, null);
             if (decryptedPrivateKeyBytes != null)
             {
                 return Encoding.UTF8.GetString(decryptedPrivateKeyBytes, 0, decryptedPrivateKeyBytes.Length);
@@ -242,7 +242,7 @@ namespace AxCrypt.Core.Extensions
                     }
                     try
                     {
-                        if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter }).IsValid)
+                        if (!New<AxCryptFile>().Decrypt(encryptedPrivateKeyStream, decryptedPrivateKeyStream, new DecryptionParameter[] { decryptionParameter })!.IsValid)
                         {
                             return null;
                         }
@@ -274,10 +274,10 @@ namespace AxCrypt.Core.Extensions
             return decryptionParameters;
         }
 
-        public static IList<IAsymmetricPrivateKey> GetPrivateKeys(this LogOnIdentity identity)
+        public static IList<IAsymmetricPrivateKey?> GetPrivateKeys(this LogOnIdentity identity)
         {
-            IList<IAsymmetricPrivateKey> privateKeys = identity.PrivateKeys.ToList();
-            IAsymmetricPrivateKey masterPrivateKey = identity.GetPrivateMasterKey();
+            IList<IAsymmetricPrivateKey?> privateKeys = identity.PrivateKeys.ToList();
+            IAsymmetricPrivateKey? masterPrivateKey = identity.GetPrivateMasterKey();
             if (masterPrivateKey != null)
             {
                 privateKeys.Add(masterPrivateKey);
@@ -286,20 +286,20 @@ namespace AxCrypt.Core.Extensions
             return privateKeys;
         }
 
-        public static IAsymmetricPrivateKey GetPrivateMasterKey(this LogOnIdentity identity)
+        public static IAsymmetricPrivateKey? GetPrivateMasterKey(this LogOnIdentity identity)
         {
             if (identity.MasterKeyPair == null || identity.MasterKeyPair.PrivateKeys == null)
             {
                 return null;
             }
 
-            PrivateMasterKeyInfo privateKeyInfo = identity.MasterKeyPair.PrivateKeys.FirstOrDefault(pk => pk.UserEmail == identity.UserEmail.Address);
+            PrivateMasterKeyInfo? privateKeyInfo = identity.MasterKeyPair.PrivateKeys.FirstOrDefault(pk => pk.UserEmail == identity.UserEmail.Address);
             if (string.IsNullOrEmpty(privateKeyInfo?.PrivateKey))
             {
                 return null;
             }
 
-            IAsymmetricPrivateKey privateKey = GetDecryptedMasterPrivateKey(privateKeyInfo, identity);
+            IAsymmetricPrivateKey? privateKey = GetDecryptedMasterPrivateKey(privateKeyInfo, identity);
             if (privateKey != null)
             {
                 return privateKey;
@@ -308,9 +308,9 @@ namespace AxCrypt.Core.Extensions
             return null;
         }
 
-        private static IAsymmetricPrivateKey GetDecryptedMasterPrivateKey(PrivateMasterKeyInfo privateKeyInfo, LogOnIdentity identity)
+        private static IAsymmetricPrivateKey? GetDecryptedMasterPrivateKey(PrivateMasterKeyInfo privateKeyInfo, LogOnIdentity identity)
         {
-            string masterKeyPrivateKeyPem = privateKeyInfo.PrivateKey.DecryptPrivateKeyPem(Passphrase.Empty, identity.ActiveEncryptionKeyPair.KeyPair.PrivateKey);
+            string? masterKeyPrivateKeyPem = privateKeyInfo.PrivateKey!.DecryptPrivateKeyPem(Passphrase.Empty, identity.ActiveEncryptionKeyPair.KeyPair.PrivateKey!);
             if (string.IsNullOrEmpty(masterKeyPrivateKeyPem))
             {
                 return null;
@@ -335,7 +335,7 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(lowPriorityAccount));
             }
 
-            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair!);
         }
 
         public static UserAccount MergeWith(this UserAccount highPriorityAccount, IEnumerable<AccountKey> lowPriorityAccountKeys, MasterKeyPairInfo lowPriorityMasterKeyPair)
@@ -353,7 +353,7 @@ namespace AxCrypt.Core.Extensions
             IEnumerable<AccountKey> newKeys = lowPriorityAccountKeys.Where(lak => !allKeys.Any(ak => ak.KeyPair.PublicPem == lak.KeyPair.PublicPem));
             IEnumerable<AccountKey> unionOfKeys = allKeys.Union(newKeys);
 
-            MasterKeyPairInfo mergedMasterKeyPair = highPriorityAccount.MasterKeyPair;
+            MasterKeyPairInfo? mergedMasterKeyPair = highPriorityAccount.MasterKeyPair;
             if (highPriorityAccount.MasterKeyPair != null)
             {
                 mergedMasterKeyPair = MergeMasterKey(highPriorityAccount, lowPriorityMasterKeyPair);
@@ -374,7 +374,7 @@ namespace AxCrypt.Core.Extensions
             return merged;
         }
 
-        private static MasterKeyPairInfo MergeMasterKey(UserAccount highPriorityAccount, MasterKeyPairInfo lowPriorityMasterKeyPair)
+        private static MasterKeyPairInfo? MergeMasterKey(UserAccount highPriorityAccount, MasterKeyPairInfo lowPriorityMasterKeyPair)
         {
             if (!highPriorityAccount.IsMasterKeyEnabled)
             {
@@ -383,10 +383,10 @@ namespace AxCrypt.Core.Extensions
 
             MasterKeyPairInfo mergedMasterKeyPairInfo = new MasterKeyPairInfo()
             {
-                Timestamp = highPriorityAccount.MasterKeyPair.Timestamp,
-                PublicKey = highPriorityAccount.MasterKeyPair.PublicKey,
-                Thumbprint = highPriorityAccount.MasterKeyPair.Thumbprint,
-                PrivateKeys = highPriorityAccount.MasterKeyPair.PrivateKeys,
+                Timestamp = highPriorityAccount.MasterKeyPair!.Timestamp,
+                PublicKey = highPriorityAccount.MasterKeyPair!.PublicKey,
+                Thumbprint = highPriorityAccount.MasterKeyPair!.Thumbprint,
+                PrivateKeys = highPriorityAccount.MasterKeyPair!.PrivateKeys,
             };
 
             return mergedMasterKeyPairInfo;
@@ -405,7 +405,7 @@ namespace AxCrypt.Core.Extensions
                 Signature = lowPriorityAccount.Signature,
                 MasterKeyPair = lowPriorityAccount.MasterKeyPair,
             };
-            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair);
+            return highPriorityAccount.MergeWith(lowPriorityAccount.AccountKeys, lowPriorityAccount.MasterKeyPair!);
         }
 
         public static IEnumerable<WatchedFolder> ToWatchedFolders(this IEnumerable<string> folderPaths)
@@ -422,7 +422,7 @@ namespace AxCrypt.Core.Extensions
             return sharedWithEmailAddresses;
         }
 
-        public static WatchedFolder FindOrDefault(this IEnumerable<WatchedFolder> watchedFolders, IDataStore fileMaybeWatched)
+        public static WatchedFolder? FindOrDefault(this IEnumerable<WatchedFolder> watchedFolders, IDataStore fileMaybeWatched)
         {
             string fileFolderPath = fileMaybeWatched.Container.FullName;
             IEnumerable<WatchedFolder> candidates = watchedFolders.Where(watchedFolder => fileFolderPath.StartsWith(watchedFolder.Path)).OrderBy(watchedFolder => watchedFolder.Path.Length);
@@ -495,9 +495,9 @@ namespace AxCrypt.Core.Extensions
 
         private static readonly EmailAddress _licenseAuthorityEmail = EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail);
 
-        public static async Task<UserPublicKey> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email, LogOnIdentity identity)
+        public static async Task<UserPublicKey?> GetAsync(this KnownPublicKeys knownPublicKeys, EmailAddress email, LogOnIdentity identity)
         {
-            UserPublicKey key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
+            UserPublicKey? key = knownPublicKeys.PublicKeys.FirstOrDefault(upk => upk.Email == email);
             if (key != null && New<UserPublicKeyUpdateStatus>().Status(key) == PublicKeyUpdateStatus.RecentlyUpdated)
             {
                 return key;
@@ -526,7 +526,7 @@ namespace AxCrypt.Core.Extensions
 
             AccountStorage accountStorage = new AccountStorage(New<LogOnIdentity, IAccountService>(identity));
             CustomMessageParameters invitationMessageParameters = new CustomMessageParameters(new CultureInfo(New<UserSettings>().MessageCulture), New<UserSettings>().CustomInvitationMessage);
-            UserPublicKey userPublicKey = await accountStorage.GetOtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
+            UserPublicKey? userPublicKey = await accountStorage.GetOtherUserInvitePublicKeyAsync(email, invitationMessageParameters).Free();
 
             if (userPublicKey != null)
             {
@@ -543,7 +543,7 @@ namespace AxCrypt.Core.Extensions
             {
                 foreach (UserPublicKey publicKey in publicKeys)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(publicKey.Email, identity);
+                    UserPublicKey? key = await knownPublicKeys.GetAsync(publicKey.Email, identity);
                     if (key == null)
                     {
                         knownKeys.Add(publicKey);
@@ -563,7 +563,7 @@ namespace AxCrypt.Core.Extensions
             {
                 foreach (EmailAddress email in emails)
                 {
-                    UserPublicKey key = await knownPublicKeys.GetAsync(email, identity);
+                    UserPublicKey? key = await knownPublicKeys.GetAsync(email, identity);
                     if (key != null)
                     {
                         availablePublicKeys.Add(key);
@@ -599,7 +599,7 @@ namespace AxCrypt.Core.Extensions
 
             if (logOnIdentity.MasterKeyPair != null)
             {
-                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair.PublicKey);
+                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair!.PublicKey!);
                 encryptionParameters.PublicMasterKey = new UserPublicKey(logOnIdentity.UserEmail, publicKey);
             }
 
@@ -611,7 +611,7 @@ namespace AxCrypt.Core.Extensions
             return Resolve.ParallelFileOperation.DoFilesAsync(files.Select(f => New<IDataStore>(f)),
                 async (IDataStore file, IProgressContext progress) =>
                 {
-                    ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
+                    ActiveFile? activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(file.FullName);
                     LogOnIdentity decryptIdentity = activeFile?.Identity ?? New<KnownIdentities>().DefaultEncryptionIdentity;
 
                     EncryptedProperties encryptedProperties = EncryptedProperties.Create(file, decryptIdentity);

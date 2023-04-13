@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,7 @@ namespace AxCrypt.Core.IO
 {
     public class LockedStream : WrappedBaseStream
     {
+        [AllowNull]
         private FileLock _fileLock;
 
         public static LockedStream OpenWrite(IDataStore dataStore)
@@ -46,9 +48,11 @@ namespace AxCrypt.Core.IO
                 throw new ArgumentNullException(nameof(dataStore));
             }
 
-            LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
-            lockedStream.WrappedStream = dataStore.OpenWrite();
+            LockedStream lockedStream = new LockedStream
+            {
+                _fileLock = New<FileLocker>().Acquire(dataStore),
+                WrappedStream = dataStore.OpenWrite()
+            };
 
             return lockedStream;
         }
@@ -60,9 +64,11 @@ namespace AxCrypt.Core.IO
                 throw new ArgumentNullException(nameof(dataStore));
             }
 
-            LockedStream lockedStream = new LockedStream();
-            lockedStream._fileLock = New<FileLocker>().Acquire(dataStore);
-            lockedStream.WrappedStream = dataStore.OpenRead();
+            LockedStream lockedStream = new LockedStream
+            {
+                _fileLock = New<FileLocker>().Acquire(dataStore),
+                WrappedStream = dataStore.OpenRead()
+            };
 
             return lockedStream;
         }
@@ -86,6 +92,7 @@ namespace AxCrypt.Core.IO
                 if (_fileLock != null)
                 {
                     _fileLock.Dispose();
+                    _fileLock = null;
                 }
             }
         }

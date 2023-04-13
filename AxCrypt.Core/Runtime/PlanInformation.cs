@@ -107,9 +107,9 @@ namespace AxCrypt.Core.Runtime
             return new PlanInformation(PlanState.NoPremium, 0, userAccount.CanTryAppStorePremiumTrial, false, userAccount.BusinessAdmin);
         }
 
-        public bool Equals(PlanInformation other)
+        public bool Equals(PlanInformation? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
@@ -117,7 +117,7 @@ namespace AxCrypt.Core.Runtime
             return PlanState == other.PlanState && DaysLeft == other.DaysLeft;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(PlanInformation) != obj.GetType())
             {
@@ -133,20 +133,20 @@ namespace AxCrypt.Core.Runtime
             return PlanState.GetHashCode() ^ DaysLeft.GetHashCode();
         }
 
-        public static bool operator ==(PlanInformation left, PlanInformation right)
+        public static bool operator ==(PlanInformation? left, PlanInformation? right)
         {
             if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(PlanInformation left, PlanInformation right)
+        public static bool operator !=(PlanInformation? left, PlanInformation? right)
         {
             return !(left == right);
         }

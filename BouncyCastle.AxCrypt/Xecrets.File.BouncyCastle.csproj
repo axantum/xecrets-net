@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsTrimmable>true</IsTrimmable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="test\**" />
+    <EmbeddedResource Remove="test\**" />
+    <None Remove="test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="src\crypto\tls\LegacyTlsAuthentication.cs" />
+    <Compile Remove="src\crypto\tls\LegacyTlsClient.cs" />
+    <Compile Remove="src\math\ec\multiplier\FpNafMultiplier.cs" />
+    <Compile Remove="src\math\ec\multiplier\WNafMultiplier.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Svante\Documents\Visual Studio 2022\Projects\xecrets-file-core\BouncyCastle.AxCrypt\.editorconfig" />
+  </ItemGroup>
+
+</Project>

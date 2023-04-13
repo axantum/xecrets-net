@@ -1,13 +1,14 @@
 ﻿using AxCrypt.Abstractions.Algorithm;
 using AxCrypt.Core.Algorithm;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Crypto
 {
     public abstract class V2CryptoBase : CryptoBase
     {
-        private SymmetricIV _iv;
+        private SymmetricIV? _iv;
 
         private long _blockCounter;
 
@@ -27,22 +28,22 @@ namespace AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentException">Key length is invalid.
         /// or
         /// The IV length must be the same as the algorithm block length.</exception>
-        protected void Initialize(SymmetricKey key, SymmetricIV iv, long keyStreamOffset, SymmetricAlgorithm algorithm)
+        protected void Initialize(SymmetricKey key, SymmetricIV? iv, long keyStreamOffset, SymmetricAlgorithm algorithm)
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
             if (algorithm == null)
             {
-                throw new ArgumentNullException("algorithm");
+                throw new ArgumentNullException(nameof(algorithm));
             }
 
             if (!algorithm.ValidKeySize(key.Size))
             {
                 throw new ArgumentException("Key length is invalid.");
             }
-            iv = iv ?? new SymmetricIV(new byte[algorithm.BlockSize / 8]);
+            iv ??= new SymmetricIV(new byte[algorithm.BlockSize / 8]);
             if (iv.Length != algorithm.BlockSize / 8)
             {
                 throw new ArgumentException("The IV length must be the same as the algorithm block length.");
@@ -58,7 +59,7 @@ namespace AxCrypt.Core.Crypto
         {
             get
             {
-                return _iv.Length;
+                return _iv?.Length ?? throw new InvalidOperationException("Internal Program Error, _iv was null.");
             }
         }
 
@@ -78,7 +79,7 @@ namespace AxCrypt.Core.Crypto
         {
             SymmetricAlgorithm algorithm = CreateAlgorithm();
             algorithm.SetKey(Key.GetBytes());
-            algorithm.SetIV(_iv.GetBytes());
+            algorithm.SetIV(_iv?.GetBytes() ?? throw new InvalidOperationException("Internal Program Error, _iv was null."));
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
 
@@ -113,13 +114,9 @@ namespace AxCrypt.Core.Crypto
 
         private byte[] Transform(byte[] plaintext)
         {
-            using (SymmetricAlgorithm algorithm = CreateAlgorithmInternal())
-            {
-                using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset))
-                {
-                    return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
-                }
-            }
+            using SymmetricAlgorithm algorithm = CreateAlgorithmInternal();
+            using ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
+            return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
         }
 
         /// <summary>

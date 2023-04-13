@@ -36,13 +36,13 @@ namespace AxCrypt.Core.Crypto
     /// </summary>
     public abstract class Hmac
     {
-        private byte[] _hmac;
+        private byte[]? _hmac;
 
         protected void Initialize(byte[] hmac, int requiredLength)
         {
             if (hmac == null)
             {
-                throw new ArgumentNullException("hmac");
+                throw new ArgumentNullException(nameof(hmac));
             }
             if (hmac.Length != requiredLength)
             {
@@ -58,7 +58,7 @@ namespace AxCrypt.Core.Crypto
         {
             get
             {
-                return _hmac.Length;
+                return _hmac?.Length ?? throw new InvalidOperationException("Internal Program Error, _hmac is null where it shouldn't be.");
             }
         }
 
@@ -68,7 +68,7 @@ namespace AxCrypt.Core.Crypto
         /// <returns>The hash bytes</returns>
         public byte[] GetBytes()
         {
-            return (byte[])_hmac.Clone();
+            return (byte[])(_hmac?.Clone() ?? throw new InvalidOperationException("Internal Program Error, _hmac is null where it shouldn't be."));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace AxCrypt.Core.Crypto
         /// <returns>
         ///   <c>true</c> if the specified <see cref="Runtime.Object"/> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || !GetType().Equals(obj.GetType()))
             {
@@ -96,6 +96,10 @@ namespace AxCrypt.Core.Crypto
         /// </returns>
         public override int GetHashCode()
         {
+            if (_hmac is null)
+            {
+                 throw new InvalidOperationException("Internal Program Error, _hmac is null where it shouldn't be.");
+            }
             int hashCode = 0;
             foreach (byte b in _hmac)
             {
@@ -112,15 +116,19 @@ namespace AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator ==(Hmac left, Hmac right)
+        public static bool operator ==(Hmac? left, Hmac? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if (Object.ReferenceEquals(left, null) || Object.ReferenceEquals(right, null))
+            if (left is null || right is null)
             {
                 return false;
+            }
+            if (left._hmac is null || right._hmac is null)
+            {
+                throw new InvalidOperationException("Internal Program Error, _hmac is null where it shouldn't be.");
             }
             return left._hmac.IsEquivalentTo(right._hmac);
         }
@@ -133,7 +141,7 @@ namespace AxCrypt.Core.Crypto
         /// <returns>
         /// True if the two instances do not compare as equivalent, false otherwise.
         /// </returns>
-        public static bool operator !=(Hmac left, Hmac right)
+        public static bool operator !=(Hmac? left, Hmac? right)
         {
             return !(left == right);
         }
