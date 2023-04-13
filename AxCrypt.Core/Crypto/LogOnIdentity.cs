@@ -102,6 +102,14 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
+        public IEnumerable<UserKeyPair> KeyPairs
+        {
+            get
+            {
+                return _keyPairs;
+            }
+        }
+
         public IEnumerable<IAsymmetricPrivateKey?> PrivateKeys
         {
             get
