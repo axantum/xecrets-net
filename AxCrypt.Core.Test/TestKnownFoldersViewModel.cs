@@ -51,7 +51,7 @@ namespace AxCrypt.Core.Test
     {
         private class TestKnownImageProvider : IKnownFolderImageProvider
         {
-            public static Bitmap Image { get; } = new Bitmap(32, 32);
+            public static object Image { get; } = new byte[137];
 
             public object GetImage(KnownFolderKind folderKind)
             {

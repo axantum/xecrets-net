@@ -11,7 +11,7 @@ namespace AxCrypt.Fake
     {
         public IEnumerable<KnownFolder> Discover()
         {
-            return new KnownFolder[] { new KnownFolder(new FakeDataContainer(@"C:\Users\AxCrypt\My Documents"), "My FakeAxCrypt", KnownFolderKind.WindowsMyDocuments, null), };
+            return new KnownFolder[] { new KnownFolder(new FakeDataContainer(@"C:\Users\AxCrypt\My Documents"), "My FakeAxCrypt", KnownFolderKind.WindowsMyDocuments, new Uri("http://localhost")), };
         }
     }
 }

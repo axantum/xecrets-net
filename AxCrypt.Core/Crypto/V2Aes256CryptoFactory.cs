@@ -44,7 +44,7 @@ namespace AxCrypt.Core.Crypto
             return new V2DerivedKey(passphrase, salt, derivationIterations, 256);
         }
 
-        public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset)
+        public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV? iv, long keyStreamOffset)
         {
             return new V2AesCrypto(key, iv, keyStreamOffset);
         }

@@ -1,6 +1,8 @@
 ﻿using AxCrypt.Abstractions.Algorithm;
 using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Runtime;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace AxCrypt.Mono.Cryptography
 {
     public class HMACSHA512Wrapper : HMACSHA512
     {
-        private System.Security.Cryptography.KeyedHashAlgorithm _hmac;
+        private readonly System.Security.Cryptography.KeyedHashAlgorithm _hmac;
 
         public HMACSHA512Wrapper(System.Security.Cryptography.KeyedHashAlgorithm hmac)
         {
@@ -38,7 +40,7 @@ namespace AxCrypt.Mono.Cryptography
             {
                 return key;
             }
-            return new System.Security.Cryptography.SHA512Managed().ComputeHash(key);
+            return System.Security.Cryptography.SHA512.Create().ComputeHash(key);
         }
 
         public override byte[] ComputeHash(byte[] buffer)
@@ -58,7 +60,7 @@ namespace AxCrypt.Mono.Cryptography
 
         public override byte[] Hash()
         {
-            return _hmac.Hash;
+            return _hmac.Hash ?? throw new InternalErrorException("The Hash was null.");
         }
 
         public override int HashSize
@@ -75,7 +77,7 @@ namespace AxCrypt.Mono.Cryptography
         {
             if (key == null)
             {
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             }
 
             Initialize();
@@ -103,7 +105,7 @@ namespace AxCrypt.Mono.Cryptography
             get { return _hmac.OutputBlockSize; }
         }
 
-        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset)
         {
             return _hmac.TransformBlock(inputBuffer, inputOffset, inputCount, outputBuffer, outputOffset);
         }

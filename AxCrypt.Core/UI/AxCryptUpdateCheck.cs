@@ -34,20 +34,22 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading.Tasks;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI
 {
     public class AxCryptUpdateCheck
     {
-        private Version _currentVersion;
+        private readonly Version _currentVersion;
 
         public AxCryptUpdateCheck(Version currentVersion)
         {
             _currentVersion = currentVersion;
         }
 
-        public virtual event EventHandler<VersionEventArgs> AxCryptUpdate;
+        [SuppressMessage("Design", "CA1070:Do not declare event fields as virtual", Justification = "Is only for Moq framework. Don't override this!")]
+        public virtual event EventHandler<VersionEventArgs>? AxCryptUpdate;
 
         private bool _inProgress;
 
@@ -102,27 +104,18 @@ namespace AxCrypt.Core.UI
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "This is one case where anything could go wrong and it is still required to continue.")]
         private async Task<DownloadVersion> CheckWebForNewVersionAsync(Uri updateWebpageUrl, string cultureName)
         {
             Version newVersion = DownloadVersion.VersionUnknown;
             try
             {
                 ClientPlatformKind platform = ClientPlatformKind.WindowsDesktop;
-                switch (OS.Current.Platform)
+                platform = OS.Current.Platform switch
                 {
-                    case Runtime.Platform.WindowsDesktop:
-                        platform = ClientPlatformKind.WindowsDesktop;
-                        break;
-
-                    case Runtime.Platform.MacOsx:
-                        platform = ClientPlatformKind.Mac;
-                        break;
-
-                    default:
-                        throw new NotSupportedException($"App doesn't support updating on {OS.Current.Platform} platform");
-                }
-
+                    Runtime.Platform.WindowsDesktop => ClientPlatformKind.WindowsDesktop,
+                    Runtime.Platform.MacOsx => ClientPlatformKind.Mac,
+                    _ => throw new NotSupportedException($"App doesn't support updating on {OS.Current.Platform} platform"),
+                };
                 AxCryptVersion axCryptVersion = await New<AxCryptApiClient>().AxCryptUpdateAsync(_currentVersion, cultureName, platform).Free();
 
                 if (!axCryptVersion.IsEmpty)
@@ -165,8 +158,7 @@ namespace AxCrypt.Core.UI
             int[] numbers = new int[4];
             for (int i = 0; i < parts.Length; ++i)
             {
-                int number;
-                if (!Int32.TryParse(parts[i], NumberStyles.None, CultureInfo.InvariantCulture, out number))
+                if (!Int32.TryParse(parts[i], NumberStyles.None, CultureInfo.InvariantCulture, out int number))
                 {
                     return false;
                 }
@@ -178,8 +170,7 @@ namespace AxCrypt.Core.UI
 
         private static Version ParseVersion(string versionString)
         {
-            Version version;
-            if (!TryParseVersion(versionString, out version))
+            if (!TryParseVersion(versionString, out Version version))
             {
                 return DownloadVersion.VersionUnknown;
             }

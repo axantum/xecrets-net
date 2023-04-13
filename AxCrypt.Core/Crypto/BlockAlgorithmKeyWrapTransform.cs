@@ -80,7 +80,7 @@ namespace AxCrypt.Core.Crypto
                 throw new ArgumentException("Argument 'block' must be a single block for the algorithm.");
             }
             byte[] transformed = new byte[block.Length];
-            _transform.TransformBlock(block, 0, block.Length, transformed, 0);
+            _ = _transform.TransformBlock(block, 0, block.Length, transformed, 0);
             return transformed;
         }
 
@@ -118,13 +118,13 @@ namespace AxCrypt.Core.Crypto
             if (_transform != null)
             {
                 _transform.Dispose();
-                _transform = null;
+                _transform = null!;
             }
             if (_algorithm != null)
             {
                 // Clear() is implemented as a call to Dispose(), but Mono does not implement Dispose(), so this avoids a MoMA warning.
                 _algorithm.Clear();
-                _algorithm = null;
+                _algorithm = null!;
             }
         }
     }

@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class AccountKey : IEquatable<AccountKey>
     {
         public static readonly AccountKey Empty = new AccountKey(String.Empty, String.Empty, KeyPair.Empty, DateTime.MinValue, PrivateKeyStatus.PassphraseUnknown);
@@ -39,8 +35,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The timestamp.
         /// </value>
-        [JsonProperty("timestamp")]
-        public DateTime Timestamp { get; }
+        [JsonPropertyName("timestamp")]
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
         /// Gets the thumbprint.
@@ -48,8 +44,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The thumbprint of the public key in the key pair for identification purposes.
         /// </value>
-        [JsonProperty("thumbprint")]
-        public string Thumbprint { get; }
+        [JsonPropertyName("thumbprint")]
+        public string Thumbprint { get; set; }
 
         /// <summary>
         /// Gets the key pair. If the KeyPair is Empty, it has been permanently deleted including the private key.
@@ -57,8 +53,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The key pair.
         /// </value>
-        [JsonProperty("keypair")]
-        public KeyPair KeyPair { get; }
+        [JsonPropertyName("keypair")]
+        public KeyPair KeyPair { get; set; }
 
         /// <summary>
         /// Gets the status of this key pair
@@ -66,8 +62,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The status.
         /// </value>
-        [JsonProperty("keypair_status")]
-        public PrivateKeyStatus Status { get; } 
+        [JsonPropertyName("keypair_status")]
+        public PrivateKeyStatus Status { get; set; } 
 
         /// <summary>
         /// Gets the user name, typically the email address.
@@ -75,8 +71,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The user name (email address).
         /// </value>
-        [JsonProperty("user")]
-        public string User { get; }
+        [JsonPropertyName("user")]
+        public string User { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is empty.
@@ -92,9 +88,9 @@ namespace AxCrypt.Api.Model
             }
         }
 
-        public bool Equals(AccountKey other)
+        public bool Equals(AccountKey? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
@@ -102,7 +98,7 @@ namespace AxCrypt.Api.Model
             return Timestamp == other.Timestamp && User == other.User && Status == other.Status && Thumbprint == other.Thumbprint && KeyPair == other.KeyPair;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(AccountKey) != obj.GetType())
             {
@@ -118,20 +114,20 @@ namespace AxCrypt.Api.Model
             return Timestamp.GetHashCode() ^ User.GetHashCode() ^ Status.GetHashCode() ^ Thumbprint.GetHashCode() ^ KeyPair.GetHashCode();
         }
 
-        public static bool operator ==(AccountKey left, AccountKey right)
+        public static bool operator ==(AccountKey? left, AccountKey? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(AccountKey left, AccountKey right)
+        public static bool operator !=(AccountKey? left, AccountKey? right)
         {
             return !(left == right);
         }

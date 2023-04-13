@@ -1,6 +1,7 @@
 ﻿using AxCrypt.Core.Portable;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ namespace AxCrypt.Core.IO
 {
     public class PipelineStream : Stream
     {
-        private CancellationToken _cancellationToken;
+        private readonly CancellationToken _cancellationToken;
 
+        [AllowNull]
         private IBlockingBuffer _blockingBuffer;
 
-        private ByteBuffer _overflowBuffer = new ByteBuffer(new byte[0]);
+        private ByteBuffer _overflowBuffer = new ByteBuffer(Array.Empty<byte>());
 
         public PipelineStream(CancellationToken cancellationToken)
         {

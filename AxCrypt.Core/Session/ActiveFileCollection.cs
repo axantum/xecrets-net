@@ -25,13 +25,8 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-
 namespace AxCrypt.Core.Session
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class ActiveFileCollection : List<ActiveFile>
     {
         public ActiveFileCollection(IEnumerable<ActiveFile> collection)

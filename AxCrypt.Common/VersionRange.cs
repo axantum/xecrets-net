@@ -46,8 +46,7 @@ namespace AxCrypt.Common
             List<Version> range = new List<Version>();
             foreach (string fromorto in fromandto)
             {
-                Version v;
-                if (!Version.TryParse(string.IsNullOrEmpty(fromorto) ? DownloadVersion.VersionZero.ToString() : fromorto, out v))
+                if (!Version.TryParse(string.IsNullOrEmpty(fromorto) ? DownloadVersion.VersionZero.ToString() : fromorto, out var v))
                 {
                     throw new ArgumentException($"Invalid version format '{fromorto}'.", nameof(version));
                 }

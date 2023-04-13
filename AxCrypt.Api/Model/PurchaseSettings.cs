@@ -1,11 +1,10 @@
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class PurchaseSettings
     {
         public PurchaseSettings(string provider)
@@ -13,31 +12,31 @@ namespace AxCrypt.Api.Model
             Provider = provider;
         }
 
-        [JsonConstructor]
         private PurchaseSettings()
         {
         }
 
         public static PurchaseSettings Empty { get; } = new PurchaseSettings();
 
-        [JsonProperty("provider")]
-        public string Provider { get; private set; }
+        [JsonPropertyName("provider")]
+        public string? Provider { get; set; }
 
-        [JsonProperty("premium_product_ids")]
-        public string PremiumProductIdsWithAmount { get; set; }
+        [JsonPropertyName("premium_product_ids")]
+        public string? PremiumProductIdsWithAmount { get; set; }
 
-        [JsonProperty("business_product_ids")]
-        public string BusinessProductIdsWithAmount { get; set; }
+        [JsonPropertyName("business_product_ids")]
+        public string? BusinessProductIdsWithAmount { get; set; }
 
-        [JsonProperty("yearly_discount_percent")]
+        [JsonPropertyName("yearly_discount_percent")]
         public int YearlyDiscountPercentage { get; set; }
 
-        [JsonProperty("tax_rates")]
-        public string TaxRates { get; set; }
+        [JsonPropertyName("tax_rates")]
+        public string? TaxRates { get; set; }
 
-        [JsonProperty("micro_payment_product_id")]
-        public string MicroPaymentProductId { get; set; }
+        [JsonPropertyName("micro_payment_product_id")]
+        public string? MicroPaymentProductId { get; set; }
 
+        [JsonIgnore]
         public IEnumerable<string> PremiumProductIdList
         {
             get
@@ -52,6 +51,7 @@ namespace AxCrypt.Api.Model
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<SubscriptionProduct> PremiumProducts
         {
             get
@@ -66,6 +66,7 @@ namespace AxCrypt.Api.Model
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<string> BusinessProductIdList
         {
             get
@@ -127,7 +128,7 @@ namespace AxCrypt.Api.Model
             return string.Empty;
         }
 
-        [JsonProperty("appstore_sandbox_url")]
-        public string AppStoreSandboxUrl { get; set; }
+        [JsonPropertyName("appstore_sandbox_url")]
+        public string? AppStoreSandboxUrl { get; set; }
     }
 }

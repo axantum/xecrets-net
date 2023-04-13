@@ -38,13 +38,14 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class ImportPublicKeysViewModel : ViewModelBase
     {
-        private Func<KnownPublicKeys> _createKnownPublicKeys;
+        private readonly Func<KnownPublicKeys> _createKnownPublicKeys;
 
         public ImportPublicKeysViewModel(Func<KnownPublicKeys> createKnownPublicKeys)
         {
             _createKnownPublicKeys = createKnownPublicKeys;
 
-            InitializePropertyValues();
+            ImportFiles = new DelegateAction<IEnumerable<string>>((files) => ImportFilesAction(files));
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
         }
@@ -52,11 +53,6 @@ namespace AxCrypt.Core.UI.ViewModel
         public IAction ImportFiles { get; private set; }
 
         public IEnumerable<string> FailedFiles { get { return GetProperty<IEnumerable<string>>(nameof(FailedFiles)); } set { SetProperty(nameof(FailedFiles), value); } }
-
-        private void InitializePropertyValues()
-        {
-            ImportFiles = new DelegateAction<IEnumerable<string>>((files) => ImportFilesAction(files));
-        }
 
         private static void BindPropertyChangedEvents()
         {

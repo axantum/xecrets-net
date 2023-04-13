@@ -42,9 +42,9 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class ViewModelBase : IViewModel
     {
-        private Dictionary<string, List<Action<object>>> _actions = new Dictionary<string, List<Action<object>>>();
+        private readonly Dictionary<string, List<Action<object>>> _actions = new Dictionary<string, List<Action<object>>>();
 
-        private Dictionary<string, object> _items = new Dictionary<string, object>();
+        private readonly Dictionary<string, object?> _items = new Dictionary<string, object?>();
 
         public ViewModelBase()
         {
@@ -53,11 +53,10 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public int ValidationError { get { return GetProperty<int>(nameof(ValidationError)); } set { SetProperty(nameof(ValidationError), value); } }
 
-        private void HandlePropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void HandlePropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            object value = GetProperty(sender, e.PropertyName);
-            List<Action<object>> actions;
-            if (!_actions.TryGetValue(e.PropertyName, out actions))
+            object value = GetProperty(sender!, e.PropertyName!);
+            if (!_actions.TryGetValue(e.PropertyName!, out List<Action<object>>? actions))
             {
                 return;
             }
@@ -77,7 +76,7 @@ namespace AxCrypt.Core.UI.ViewModel
             OnPropertyChanged(new PropertyChangedEventArgs(name));
         }
 
-        private static bool HasValueChanged<T>(object o, T value)
+        private static bool HasValueChanged<T>(object? o, T value)
         {
             if (o == null)
             {
@@ -89,53 +88,48 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public T GetProperty<T>(string name)
         {
-            object value;
-            _items.TryGetValue(name, out value);
+            _ = _items.TryGetValue(name, out object? value);
             if (value == null)
             {
-                return default(T);
+                return default!;
             }
             return (T)value;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            PropertyChanged?.Invoke(this, e);
         }
 
         public void BindPropertyChanged<T>(string name, Action<T> action)
         {
-            Action<T> actionUi = (T arg) => Resolve.UIThread.SendTo(() => action((T)arg));
+            void actionUi(T arg) => Resolve.UIThread.SendTo(() => action(arg));
             BindPropertyChangedInternal<T>(name, actionUi);
             actionUi(GetProperty<T>(name));
         }
 
         public void BindPropertyAsyncChanged<T>(string name, Func<T, Task> action)
         {
-            Action<T> actionUi = (T arg) => Resolve.UIThread.SendToAsync(async () =>
-            {
-                await action((T)arg);
-            });
+            void actionUi(T arg) => Resolve.UIThread.SendToAsync(async () => await action(arg));
             BindPropertyChangedInternal<T>(name, actionUi);
             actionUi(GetProperty<T>(name));
         }
 
         protected void BindPropertyChangedInternal<T>(string name, Action<T> action)
         {
-            PropertyInfo pi = GetType().GetRuntimeProperty(name);
+            PropertyInfo? pi = GetType().GetRuntimeProperty(name);
+            if (pi == null)
+            {
+                throw new InvalidOperationException($"Binding to unknown property {name} as type {typeof(T)} is not possible.");
+            }
             if (pi.PropertyType != typeof(T))
             {
                 throw new InvalidOperationException($"Binding to property {name} with type {pi.PropertyType} using mismatching type {typeof(T)} is not allowed.");
             }
 
-            List<Action<object>> actions;
-            if (!_actions.TryGetValue(name, out actions))
+            if (!_actions.TryGetValue(name, out List<Action<object>>? actions))
             {
                 actions = new List<Action<object>>();
                 _actions.Add(name, actions);
@@ -145,19 +139,23 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private static object GetProperty(object me, string name)
         {
-            PropertyInfo pi = me.GetType().GetRuntimeProperty(name);
+            PropertyInfo? pi = me.GetType().GetRuntimeProperty(name);
+            if (pi == null)
+            {
+                throw new InvalidOperationException($"Binding to unknown property {name} is not possible.");
+            }
             if (pi == null)
             {
                 throw new InvalidOperationException("No property named '{0}' was found. Probably an error in the name argument to GetProperty() or SetProperty().".InvariantFormat(name));
             }
-            return pi.GetValue(me, null);
+            return pi.GetValue(me, null)!;
         }
 
         public string Error
         {
             get
             {
-                IEnumerable<string> propertyNames = GetType().GetRuntimeProperties().Select(pi => pi.Name).Where(s => s != "Item" && s != "ValidationError" && s != "Error");
+                IEnumerable<string> propertyNames = GetType().GetRuntimeProperties().Select(pi => pi.Name).Where(s => s is not "Item" and not "ValidationError" and not "Error");
                 List<string> errors = new List<string>();
                 foreach (string propertyName in propertyNames)
                 {
@@ -188,15 +186,15 @@ namespace AxCrypt.Core.UI.ViewModel
                 }
                 catch (Exception ex)
                 {
-                    if (ex is AggregateException)
+                    if (ex is AggregateException exception)
                     {
-                        ex = ((AggregateException)ex).InnerExceptions.First();
+                        ex = exception.InnerExceptions.First();
                     }
                     New<IReport>().Exception(ex);
                     throw ex;
                 }
 
-                return isValid ? String.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
+                return isValid ? string.Empty : ValidationError.ToString(CultureInfo.InvariantCulture);
             }
         }
 

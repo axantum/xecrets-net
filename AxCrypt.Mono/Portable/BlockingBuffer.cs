@@ -29,6 +29,7 @@ using AxCrypt.Core.Portable;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -37,6 +38,7 @@ namespace AxCrypt.Mono.Portable
 {
     public class BlockingBuffer : IBlockingBuffer
     {
+        [AllowNull]
         private BlockingCollection<byte[]> _blockingCollection = new BlockingCollection<byte[]>(10);
 
         public BlockingBuffer()
@@ -47,7 +49,7 @@ namespace AxCrypt.Mono.Portable
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             if (buffer.Length == 0)
@@ -60,13 +62,12 @@ namespace AxCrypt.Mono.Portable
 
         public byte[] Take()
         {
-            byte[] item;
-            if (_blockingCollection.TryTake(out item, Timeout.Infinite))
+            if (_blockingCollection.TryTake(out byte[]? item, Timeout.Infinite))
             {
                 return item;
             }
 
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         public void Complete()

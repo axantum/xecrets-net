@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 #region Coypright and License
 
 /*
@@ -109,25 +106,25 @@ namespace AxCrypt.Core.Service
         /// Ensures there is at least one key pair, and returns the currently active decrypted key pair of the user.
         /// </summary>
         /// <returns>
-        /// Will always return a current key pair.
+        /// Will return a current key pair, unless if the user is not found then it returns null.
         /// </returns>
         /// <remarks>
         /// This cannot be used to determine if a user has a key pair, as one will be created if there is none, or if
         /// none can be decrypted with the given Identity.
         /// </remarks>
-        Task<UserKeyPair> CurrentKeyPairAsync();
+        Task<UserKeyPair?> CurrentKeyPairAsync();
 
         /// <summary>
         /// Ensures there is at least one key pair if possible, and returns the active public key of the user.
         /// </summary>
         /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
-        Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email);
+        Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email);
 
         /// <summary>
         /// Ensures there is at least one key pair if possible, and returns the active public key of the user.
         /// </summary>
         /// <returns>The public key of the current key pair, or null if the service can't create other users.</returns>
-        Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters);
+        Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters);
 
         /// <summary>
         /// Saves the account, merging keys with existing keys if necessary.
@@ -177,7 +174,7 @@ namespace AxCrypt.Core.Service
         /// Get the in app purchase settings.
         /// </summary>
         /// <returns>The InAppPurchase product ids and discount information, or null if the service can't connect.</returns>
-        Task<PurchaseSettings> GetInAppPurchaseSettingsAsync();
+        Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync();
 
         /// <summary>
         /// Get a user auto renewal subscription status.

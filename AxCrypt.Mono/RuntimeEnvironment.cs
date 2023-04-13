@@ -34,6 +34,7 @@ using AxCrypt.Core.Runtime;
 using AxCrypt.Mono.Portable;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
@@ -134,7 +135,7 @@ namespace AxCrypt.Mono
 
         public string EnvironmentVariable(string name)
         {
-            string variable = Environment.GetEnvironmentVariable(name);
+            string variable = Environment.GetEnvironmentVariable(name) ?? string.Empty;
 
             return variable;
         }
@@ -147,16 +148,14 @@ namespace AxCrypt.Mono
             }
         }
 
+        [AllowNull]
         private EventWaitHandle _firstInstanceReady;
 
         private EventWaitHandle FirstInstanceEvent
         {
             get
             {
-                if (_firstInstanceReady == null)
-                {
-                    _firstInstanceReady = new EventWaitHandle(false, EventResetMode.ManualReset, @"Local\AxCrypt.NET-FirstInstanceReady");
-                }
+                _firstInstanceReady ??= new EventWaitHandle(false, EventResetMode.ManualReset, @"Local\AxCrypt.NET-FirstInstanceReady");
                 return _firstInstanceReady;
             }
         }
@@ -168,9 +167,10 @@ namespace AxCrypt.Mono
 
         public void FirstInstanceIsReady()
         {
-            FirstInstanceEvent.Set();
+            _ = FirstInstanceEvent.Set();
         }
 
+        [AllowNull]
         private Mutex _firstInstanceMutex;
 
         private bool _isFirstInstance;
@@ -179,10 +179,7 @@ namespace AxCrypt.Mono
         {
             get
             {
-                if (_firstInstanceMutex == null)
-                {
-                    _firstInstanceMutex = new Mutex(true, @"Local\AxCrypt.NET-FirstInstance", out _isFirstInstance);
-                }
+                _firstInstanceMutex ??= new Mutex(true, @"Local\AxCrypt.NET-FirstInstance", out _isFirstInstance);
                 return _isFirstInstance;
             }
             set
@@ -209,7 +206,7 @@ namespace AxCrypt.Mono
         {
             if (enable)
             {
-                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) =>
+                ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate? certificate, X509Chain? chain, SslPolicyErrors sslPolicyErrors) =>
                 {
                     return true;
                 };
@@ -228,11 +225,12 @@ namespace AxCrypt.Mono
             }
         }
 
+        [AllowNull]
         public virtual string AppPath { get; set; }
 
         public virtual void RunApp(string arguments)
         {
-            Process.Start(AppPath, arguments);
+            _ = Process.Start(AppPath, arguments);
         }
     }
 }

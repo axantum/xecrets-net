@@ -74,9 +74,9 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             Sha256 hash = New<Sha256>();
             foreach (byte[] part in encoded)
             {
-                hash.TransformBlock(part, 0, part.Length, null, 0);
+                _ = hash.TransformBlock(part, 0, part.Length, null, 0);
             }
-            hash.TransformFinalBlock(new byte[0], 0, 0);
+            _ = hash.TransformFinalBlock(new byte[0], 0, 0);
             return hash.Hash();
         }
     }

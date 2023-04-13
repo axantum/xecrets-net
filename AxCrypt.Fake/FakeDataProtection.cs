@@ -39,13 +39,13 @@ namespace AxCrypt.Fake
     {
         #region IDataProtection Members
 
-        public byte[] Protect(byte[] unprotectedData, byte[] optionalEntropy)
+        public byte[] Protect(byte[] unprotectedData, byte[]? optionalEntropy)
         {
             unprotectedData = unprotectedData.Append(new byte[] { 1, 2, 3, 4 });
-            return (byte[])unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
+            return unprotectedData.Xor(new byte[unprotectedData.Length].Fill(0xff));
         }
 
-        public byte[] Unprotect(byte[] protectedData, byte[] optionalEntropy)
+        public byte[]? Unprotect(byte[] protectedData, byte[]? optionalEntropy)
         {
             protectedData = (byte[])protectedData.Clone();
             byte[] unprotected = (byte[])protectedData.Xor(new byte[protectedData.Length].Fill(0xff));

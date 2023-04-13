@@ -36,7 +36,7 @@ namespace AxCrypt.Core.Runtime
 {
     public class LicenseCapabilities : IEquatable<LicenseCapabilities>
     {
-        private ISet<LicenseCapability> _capabilities;
+        private readonly ISet<LicenseCapability> _capabilities;
 
         public LicenseCapabilities(ISet<LicenseCapability> capabilities)
         {
@@ -52,15 +52,15 @@ namespace AxCrypt.Core.Runtime
         {
             get
             {
-                return Has(LicenseCapability.StrongerEncryption) ? new ProCryptoPolicy() as ICryptoPolicy : new FreeCryptoPolicy() as ICryptoPolicy;
+                return Has(LicenseCapability.StrongerEncryption) ? new ProCryptoPolicy() : new FreeCryptoPolicy();
             }
         }
 
         #region IEquatable<LicenseCapabilities> Members
 
-        public bool Equals(LicenseCapabilities other)
+        public bool Equals(LicenseCapabilities? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -73,9 +73,9 @@ namespace AxCrypt.Core.Runtime
 
         #endregion IEquatable<LicenseCapabilities> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            LicenseCapabilities other = obj as LicenseCapabilities;
+            LicenseCapabilities? other = obj as LicenseCapabilities;
             if (other == null)
             {
                 return false;
@@ -89,20 +89,20 @@ namespace AxCrypt.Core.Runtime
             return _capabilities.GetHashCode();
         }
 
-        public static bool operator ==(LicenseCapabilities left, LicenseCapabilities right)
+        public static bool operator ==(LicenseCapabilities? left, LicenseCapabilities? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if (left is null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(LicenseCapabilities left, LicenseCapabilities right)
+        public static bool operator !=(LicenseCapabilities? left, LicenseCapabilities? right)
         {
             return !(left == right);
         }

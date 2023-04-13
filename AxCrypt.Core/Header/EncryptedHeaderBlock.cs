@@ -27,11 +27,13 @@
 
 using AxCrypt.Core.Crypto;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Core.Header
 {
     public abstract class EncryptedHeaderBlock : HeaderBlock
     {
+        [AllowNull]
         public ICrypto HeaderCrypto { get; set; }
 
         protected EncryptedHeaderBlock(HeaderBlockType headerBlockType, byte[] dataBlock)
@@ -41,11 +43,6 @@ namespace AxCrypt.Core.Header
 
         protected object CopyTo(EncryptedHeaderBlock headerBlock)
         {
-            if (headerBlock == null)
-            {
-                throw new ArgumentNullException("headerBlock");
-            }
-
             headerBlock.HeaderCrypto = HeaderCrypto;
             return headerBlock;
         }

@@ -29,6 +29,7 @@ using AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -40,6 +41,7 @@ namespace AxCrypt.Core.IO
 {
     internal sealed class FileLockManager : IDisposable
     {
+        [AllowNull]
         private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
 
         private readonly TimeSpan _timeout;
@@ -48,7 +50,7 @@ namespace AxCrypt.Core.IO
 
         private int _referenceCount = 0;
 
-        private string _originalLockedFileName;
+        private readonly string _originalLockedFileName;
 
         public FileLockManager(string fullName, TimeSpan timeout, FileLocker fileLocker)
         {
@@ -62,11 +64,11 @@ namespace AxCrypt.Core.IO
         public Task<FileLock> GetFileLockAsync()
         {
             FileLock fileLock = new FileLock(this);
-            IncrementReferenceCount();
+            _ = IncrementReferenceCount();
             Task wait = _semaphore.WaitAsync();
             return wait.IsCompleted ?
                         Task.FromResult(fileLock) :
-                        wait.ContinueWith((_, state) => (FileLock)state, fileLock, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
+                        wait.ContinueWith((_, state) => (FileLock)state!, fileLock, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, TaskScheduler.Default);
         }
 
         public FileLock GetFileLock()
@@ -110,7 +112,7 @@ namespace AxCrypt.Core.IO
                 return;
             }
 
-            _semaphore.Release();
+            _ = _semaphore.Release();
         }
 
         public void Dispose()

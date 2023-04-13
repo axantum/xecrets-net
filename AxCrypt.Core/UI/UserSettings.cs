@@ -29,9 +29,11 @@ using AxCrypt.Abstractions;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
-using Newtonsoft.Json;
-using System;
+using AxCrypt.Core.Runtime;
+
 using System.Globalization;
+using System.Text.Json;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI
@@ -44,18 +46,13 @@ namespace AxCrypt.Core.UI
         private const int ASYMMETRIC_KEY_BITS = 4096;
 #endif
 
-        private ISettingsStore _settingsStore;
+        private readonly ISettingsStore _settingsStore;
 
-        private IterationCalculator _keyWrapIterationCalculator;
+        private readonly IterationCalculator _keyWrapIterationCalculator;
 
         public UserSettings(ISettingsStore settingsStore, IterationCalculator keyWrapIterationCalculator)
         {
-            if (settingsStore == null)
-            {
-                throw new ArgumentNullException(nameof(settingsStore));
-            }
-
-            _settingsStore = settingsStore;
+            _settingsStore = settingsStore ?? throw new ArgumentNullException(nameof(settingsStore));
 
             _keyWrapIterationCalculator = keyWrapIterationCalculator;
 
@@ -89,7 +86,7 @@ namespace AxCrypt.Core.UI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 Store(nameof(RestApiBaseUrl), value.ToString());
@@ -103,7 +100,7 @@ namespace AxCrypt.Core.UI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 Store(nameof(UpdateUrl), value.ToString());
@@ -117,7 +114,7 @@ namespace AxCrypt.Core.UI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 Store(nameof(AccountWebUrl), value.ToString());
@@ -206,7 +203,7 @@ namespace AxCrypt.Core.UI
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 Store(nameof(AxCrypt2HelpUrl), value.ToString());
@@ -343,16 +340,21 @@ namespace AxCrypt.Core.UI
             set { Store(nameof(LastInAppReviewInitiated), value); }
         }
 
-        public T Load<T>(string key)
+        public T Load<T>(string key) where T : struct
         {
-            return Load(key, default(T));
+            string value = _settingsStore[key];
+            if (value.Length == 0)
+            {
+                return default;
+            }
+            return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
         }
 
         public T Load<T>(string key, Func<T> fallbackAction)
         {
             if (fallbackAction == null)
             {
-                throw new ArgumentNullException("fallbackAction");
+                throw new ArgumentNullException(nameof(fallbackAction));
             }
 
             string value = _settingsStore[key];
@@ -369,7 +371,7 @@ namespace AxCrypt.Core.UI
             }
 
             T fallback = fallbackAction();
-            _settingsStore[key] = Convert.ToString(fallback, CultureInfo.InvariantCulture);
+            _settingsStore[key] = Convert.ToString(fallback, CultureInfo.InvariantCulture)!;
             return fallback;
         }
 
@@ -377,7 +379,7 @@ namespace AxCrypt.Core.UI
         {
             if (fallbackAction == null)
             {
-                throw new ArgumentNullException("fallbackAction");
+                throw new ArgumentNullException(nameof(fallbackAction));
             }
 
             string value = _settingsStore[key];
@@ -385,7 +387,7 @@ namespace AxCrypt.Core.UI
             {
                 try
                 {
-                    return Resolve.Serializer.Deserialize<Salt>(value);
+                    return Resolve.Serializer.Deserialize<Salt>(value) ?? throw new InternalErrorException("Could not deserialize Salt.");
                 }
                 catch (JsonException jex)
                 {
@@ -430,7 +432,7 @@ namespace AxCrypt.Core.UI
 
         public void Store<T>(string key, T value)
         {
-            _settingsStore[key] = Convert.ToString(value, CultureInfo.InvariantCulture);
+            _settingsStore[key] = Convert.ToString(value, CultureInfo.InvariantCulture)!;
         }
     }
 }

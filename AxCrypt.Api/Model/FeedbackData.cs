@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class FeedbackData
     {
         public FeedbackData(string subject, string message)
@@ -16,10 +10,10 @@ namespace AxCrypt.Api.Model
             Message = message ?? string.Empty;
         }
 
-        [JsonProperty("subject")]
-        public string Subject { get; private set; }
+        [JsonPropertyName("subject")]
+        public string Subject { get; set; }
 
-        [JsonProperty("message")]
-        public string Message { get; private set; }
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
     }
 }

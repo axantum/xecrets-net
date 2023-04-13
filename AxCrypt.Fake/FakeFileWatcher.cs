@@ -36,7 +36,7 @@ namespace AxCrypt.Fake
     {
         private bool disposed = false;
 
-        private static List<KeyValuePair<string, FakeFileWatcher>> _fileWatchers = new List<KeyValuePair<string, FakeFileWatcher>>();
+        private static readonly List<KeyValuePair<string, FakeFileWatcher>> _fileWatchers = new List<KeyValuePair<string, FakeFileWatcher>>();
 
         internal string Path { get; set; }
 
@@ -56,16 +56,12 @@ namespace AxCrypt.Fake
 
         public virtual void OnChanged(FileWatcherEventArgs eventArgs)
         {
-            EventHandler<FileWatcherEventArgs> fileChanged = FileChanged;
-            if (fileChanged != null)
-            {
-                fileChanged(null, eventArgs);
-            }
+            FileChanged?.Invoke(null, eventArgs);
         }
 
         #region IFileWatcher Members
 
-        public event EventHandler<FileWatcherEventArgs> FileChanged;
+        public event EventHandler<FileWatcherEventArgs>? FileChanged;
 
         #endregion IFileWatcher Members
 
@@ -73,7 +69,7 @@ namespace AxCrypt.Fake
         {
             if (path == null)
             {
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             }
             lock (_fileWatchers)
             {

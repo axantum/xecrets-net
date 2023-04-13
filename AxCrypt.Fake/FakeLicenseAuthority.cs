@@ -12,7 +12,7 @@ namespace AxCrypt.Fake
 {
     public class FakeLicenseAuthority : ILicenseAuthority
     {
-        private IAsymmetricKeyPair _keyPair;
+        private readonly IAsymmetricKeyPair _keyPair;
 
         public FakeLicenseAuthority()
         {
@@ -21,7 +21,7 @@ namespace AxCrypt.Fake
 
         public Task<IAsymmetricPrivateKey> PrivateKeyAsync()
         {
-            return Task.FromResult(_keyPair.PrivateKey);
+            return Task.FromResult(_keyPair.PrivateKey!);
         }
 
         public Task<IAsymmetricPublicKey> PublicKeyAsync()

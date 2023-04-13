@@ -35,6 +35,7 @@ using AxCrypt.Core.Session;
 using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using static AxCrypt.Abstractions.TypeResolve;
@@ -89,6 +90,7 @@ namespace AxCrypt.Core.Runtime
             {
                 New<SessionNotify>().AddPriorityCommand(LicensePolicy_CommandAsync);
             }
+            _currentLicenseCapabilities = FreeCapabilities;
         }
 
         private async Task LicensePolicy_CommandAsync(SessionNotification notification)
@@ -110,7 +112,8 @@ namespace AxCrypt.Core.Runtime
             }
         }
 
-        private LicenseCapabilities _mostRecentCapabilities = null;
+        [AllowNull]
+        private LicenseCapabilities _mostRecentCapabilities;
 
         public async Task RefreshAsync(LogOnIdentity identity)
         {
@@ -124,7 +127,7 @@ namespace AxCrypt.Core.Runtime
             }
         }
 
-        private async Task<UserAccount> UserAccountAsync(LogOnIdentity identity)
+        private static async Task<UserAccount> UserAccountAsync(LogOnIdentity identity)
         {
             return await New<LogOnIdentity, IAccountService>(identity).AccountAsync().Free();
         }
@@ -135,7 +138,7 @@ namespace AxCrypt.Core.Runtime
         /// <value>
         /// The time left offline.
         /// </value>
-        private async Task<TimeSpan> TimeUntilSubscriptionExpiration(LogOnIdentity identity)
+        private static async Task<TimeSpan> TimeUntilSubscriptionExpiration(LogOnIdentity identity)
         {
             DateTime utcNow = New<INow>().Utc;
             if (utcNow >= await SubscriptionExpirationAsync(identity).Free())
@@ -173,7 +176,7 @@ namespace AxCrypt.Core.Runtime
             return FreeCapabilities;
         }
 
-        private async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
+        private static async Task<SubscriptionLevel> SubscriptionLevelAsync(LogOnIdentity identity)
         {
             if (identity.UserEmail == EmailAddress.Empty)
             {
@@ -182,7 +185,7 @@ namespace AxCrypt.Core.Runtime
             return (await (await UserAccountAsync(identity).Free()).ValidatedLevelAsync().Free());
         }
 
-        private async Task<DateTime> SubscriptionExpirationAsync(LogOnIdentity identity)
+        private static async Task<DateTime> SubscriptionExpirationAsync(LogOnIdentity identity)
         {
             if (identity.UserEmail == EmailAddress.Empty)
             {
@@ -197,7 +200,7 @@ namespace AxCrypt.Core.Runtime
 
         protected virtual LicenseCapabilities BusinessCapabilities { get { return new LicenseCapabilities(BusinessCapabilitySet); } }
 
-        private LicenseCapabilities _currentLicenseCapabilities = null;
+        private LicenseCapabilities _currentLicenseCapabilities;
 
         public virtual LicenseCapabilities Capabilities
         {
@@ -242,9 +245,9 @@ namespace AxCrypt.Core.Runtime
 
         #region IEquatable<LicensePolicy> Members
 
-        public bool Equals(LicensePolicy other)
+        public bool Equals(LicensePolicy? other)
         {
-            if ((object)other == null)
+            if (other is null)
             {
                 return false;
             }
@@ -257,10 +260,9 @@ namespace AxCrypt.Core.Runtime
 
         #endregion IEquatable<LicensePolicy> Members
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            LicensePolicy other = obj as LicensePolicy;
-            if (other == null)
+            if (obj is not LicensePolicy other)
             {
                 return false;
             }
@@ -273,20 +275,20 @@ namespace AxCrypt.Core.Runtime
             return Capabilities.GetHashCode();
         }
 
-        public static bool operator ==(LicensePolicy left, LicensePolicy right)
+        public static bool operator ==(LicensePolicy? left, LicensePolicy? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if (left is null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(LicensePolicy left, LicensePolicy right)
+        public static bool operator !=(LicensePolicy? left, LicensePolicy? right)
         {
             return !(left == right);
         }

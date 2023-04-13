@@ -44,11 +44,11 @@ namespace AxCrypt.Fake
         private class FakeFileInfo
         {
             public bool IsFolder;
-            public string FullName;
+            public string FullName = string.Empty;
             public DateTime CreationTimeUtc;
             public DateTime LastAccessTimeUtc;
             public DateTime LastWriteTimeUtc;
-            public Stream Stream;
+            public Stream Stream = Stream.Null;
         }
 
         public static readonly DateTime TestDate1Utc = DateTime.Parse("2012-01-02 03:04:05", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
@@ -58,25 +58,26 @@ namespace AxCrypt.Fake
         public static readonly DateTime TestDate5Utc = DateTime.Parse("2009-03-31 06:07:08", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
         public static readonly DateTime TestDate6Utc = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
 
-        private static Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, FakeFileInfo> _fakeFileSystem = new Dictionary<string, FakeFileInfo>(StringComparer.OrdinalIgnoreCase);
 
-        private FakeFileInfo _file;
+        private FakeFileInfo? _file;
 
-        public static event EventHandler Moving;
+        public static event EventHandler? Moving;
 
-        public static event EventHandler Moved;
+        public static event EventHandler? Moved;
 
-        public static event EventHandler OpeningForRead;
+        public static event EventHandler? OpeningForRead;
 
-        public static event EventHandler OpeningForWrite;
+        public static event EventHandler? OpeningForWrite;
 
-        public static event EventHandler Deleting;
+        public static event EventHandler? Deleting;
 
-        public static event EventHandler ExceptionHook;
+        public static event EventHandler? ExceptionHook;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2211:Non-constant fields should not be visible", Justification = "Used for tests.")]
         public static Func<FakeDataStore, bool> IsLockedFunc = (fds) => false;
 
-        public string TestTag { get; private set; }
+        public string TestTag { get; private set; } = string.Empty;
 
         public static void AddFile(string path, bool isFolder, DateTime creationTimeUtc, DateTime lastAccessTimeUtc, DateTime lastWriteTimeUtc, Stream stream)
         {
@@ -88,7 +89,7 @@ namespace AxCrypt.Fake
             if (!String.IsNullOrEmpty(folder))
             {
                 folder = folder.NormalizeFolderPath();
-                fileInfo = new FakeFileInfo { FullName = folder, IsFolder = true, CreationTimeUtc = DateTime.MinValue, LastAccessTimeUtc = DateTime.MinValue, LastWriteTimeUtc = DateTime.MinValue, Stream = null };
+                fileInfo = new FakeFileInfo { FullName = folder, IsFolder = true, CreationTimeUtc = DateTime.MinValue, LastAccessTimeUtc = DateTime.MinValue, LastWriteTimeUtc = DateTime.MinValue, Stream = Stream.Null };
                 _fakeFileSystem[folder] = fileInfo;
             }
 
@@ -107,13 +108,13 @@ namespace AxCrypt.Fake
 
         public static void AddFolder(string path)
         {
-            AddFile(path.NormalizeFolderPath(), true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, null);
+            AddFile(path.NormalizeFolderPath(), true, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue, Stream.Null);
         }
 
         public static void RemoveFileOrFolder(string path)
         {
             path = path.NormalizeFilePath();
-            _fakeFileSystem.Remove(path);
+            _ = _fakeFileSystem.Remove(path);
             FakeFileWatcher.HandleFileChanged(path);
         }
 
@@ -138,61 +139,40 @@ namespace AxCrypt.Fake
         {
             get
             {
-                return FindFileInfo().Stream;
+                return FindFileInfo()!.Stream;
             }
         }
 
         protected virtual void OnOpeningForRead()
         {
-            EventHandler handler = OpeningForRead;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            OpeningForRead?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnOpeningForWrite()
         {
-            EventHandler handler = OpeningForWrite;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            OpeningForWrite?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnDeleting()
         {
-            EventHandler handler = Deleting;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Deleting?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnMoving()
         {
-            EventHandler handler = Moving;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Moving?.Invoke(this, new EventArgs());
         }
 
         protected virtual void OnExceptionHook(string testTag)
         {
             TestTag = testTag;
-            EventHandler handler = ExceptionHook;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
-            TestTag = String.Empty;
+            ExceptionHook?.Invoke(this, new EventArgs());
+            TestTag = string.Empty;
         }
 
-        private FakeFileInfo FindFileInfo()
+        private FakeFileInfo? FindFileInfo()
         {
-            FakeFileInfo fakeFileInfo;
-            if (!_fakeFileSystem.TryGetValue(_file.FullName, out fakeFileInfo))
+            if (!_fakeFileSystem.TryGetValue(_file!.FullName, out var fakeFileInfo))
             {
                 return null;
             }
@@ -218,10 +198,10 @@ namespace AxCrypt.Fake
 
         public Stream OpenRead()
         {
-            FakeFileInfo fakeFileInfo = FindFileInfo();
+            FakeFileInfo? fakeFileInfo = FindFileInfo();
             if (fakeFileInfo == null)
             {
-                throw new FileNotFoundException("Can't find '{0}'.".InvariantFormat(_file.FullName));
+                throw new FileNotFoundException("Can't find '{0}'.".InvariantFormat(_file!.FullName));
             }
             OnOpeningForRead();
             fakeFileInfo.Stream.Position = 0;
@@ -238,15 +218,15 @@ namespace AxCrypt.Fake
 
         public Stream OpenUpdate()
         {
-            FakeFileInfo fakeFileInfo = FindFileInfo();
+            FakeFileInfo? fakeFileInfo = FindFileInfo();
             if (fakeFileInfo == null)
             {
-                AddFile(_file.FullName, new MemoryStream());
+                AddFile(_file!.FullName, new MemoryStream());
                 _file = fakeFileInfo = FindFileInfo();
             }
             OnOpeningForWrite();
-            EnsureDateTimes(fakeFileInfo);
-            return new NonClosingStream(fakeFileInfo.Stream);
+            EnsureDateTimes(fakeFileInfo!);
+            return new NonClosingStream(fakeFileInfo!.Stream);
         }
 
         public bool IsWriteProtected { get; set; }
@@ -260,7 +240,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                return Path.GetFileName(_file.FullName);
+                return Path.GetFileName(_file!.FullName);
             }
         }
 
@@ -268,7 +248,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
                 if (fakeFileInfo == null)
                 {
                     return DateTime.MinValue;
@@ -277,8 +257,8 @@ namespace AxCrypt.Fake
             }
             set
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
-                fakeFileInfo.CreationTimeUtc = value;
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
+                fakeFileInfo!.CreationTimeUtc = value;
             }
         }
 
@@ -286,7 +266,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
                 if (fakeFileInfo == null)
                 {
                     return DateTime.MinValue;
@@ -295,8 +275,8 @@ namespace AxCrypt.Fake
             }
             set
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
-                fakeFileInfo.LastAccessTimeUtc = value;
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
+                fakeFileInfo!.LastAccessTimeUtc = value;
             }
         }
 
@@ -304,7 +284,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
                 if (fakeFileInfo == null)
                 {
                     return DateTime.MinValue;
@@ -313,8 +293,8 @@ namespace AxCrypt.Fake
             }
             set
             {
-                FakeFileInfo fakeFileInfo = FindFileInfo();
-                fakeFileInfo.LastWriteTimeUtc = value;
+                FakeFileInfo? fakeFileInfo = FindFileInfo();
+                fakeFileInfo!.LastWriteTimeUtc = value;
             }
         }
 
@@ -327,15 +307,14 @@ namespace AxCrypt.Fake
 
         public string FullName
         {
-            get { return _file.FullName; }
+            get { return _file!.FullName; }
         }
 
         public bool IsAvailable
         {
             get
             {
-                FakeFileInfo fileInfo;
-                if (_fakeFileSystem.TryGetValue(_file.FullName, out fileInfo))
+                if (_fakeFileSystem.TryGetValue(_file!.FullName, out _))
                 {
                     return true;
                 }
@@ -347,11 +326,11 @@ namespace AxCrypt.Fake
         {
             destinationFileName = destinationFileName.NormalizeFilePath();
             OnMoving();
-            FakeFileInfo source = _fakeFileSystem[_file.FullName];
-            _fakeFileSystem.Remove(_file.FullName);
+            FakeFileInfo source = _fakeFileSystem[_file!.FullName];
+            _ = _fakeFileSystem.Remove(_file!.FullName);
 
             _file = new FakeFileInfo { FullName = destinationFileName, CreationTimeUtc = source.CreationTimeUtc, LastAccessTimeUtc = source.LastAccessTimeUtc, LastWriteTimeUtc = source.LastWriteTimeUtc, Stream = source.Stream };
-            _fakeFileSystem.Remove(destinationFileName);
+            _ = _fakeFileSystem.Remove(destinationFileName);
             _fakeFileSystem.Add(destinationFileName, _file);
 
             FakeFileWatcher.HandleFileChanged(destinationFileName);
@@ -361,7 +340,7 @@ namespace AxCrypt.Fake
         public void Delete()
         {
             OnDeleting();
-            _fakeFileSystem.Remove(_file.FullName);
+            _ = _fakeFileSystem.Remove(_file!.FullName);
             FakeFileWatcher.HandleFileChanged(_file.FullName);
         }
 
@@ -376,7 +355,7 @@ namespace AxCrypt.Fake
 
         public void CreateFolder()
         {
-            string directory = Path.GetDirectoryName(_file.FullName);
+            string directory = Path.GetDirectoryName(_file!.FullName)!;
             DateTime utcNow = New<INow>().Utc;
 
             if (_fakeFileSystem.ContainsKey(directory))
@@ -390,7 +369,7 @@ namespace AxCrypt.Fake
         {
             OnExceptionHook("CreateNewFile");
 
-            FakeFileInfo fileInfo = FindFileInfo();
+            FakeFileInfo? fileInfo = FindFileInfo();
             if (fileInfo != null)
             {
                 throw new InternalErrorException("File exists.", ErrorStatus.FileExists);
@@ -404,7 +383,7 @@ namespace AxCrypt.Fake
             {
                 if (!IsAvailable)
                 {
-                    return new IDataStore[0];
+                    return Array.Empty<IDataStore>();
                 }
 
                 List<FakeFileInfo> files = new List<FakeFileInfo>();
@@ -420,7 +399,7 @@ namespace AxCrypt.Fake
                     }
                     files.Add(kvp.Value);
                 }
-                return files.Select((FakeFileInfo fileInfo) => { return New<IDataStore>(fileInfo.FullName); });
+                return files.Select((FakeFileInfo fileInfo) => New<IDataStore>(fileInfo.FullName));
             }
         }
 
@@ -440,13 +419,13 @@ namespace AxCrypt.Fake
 
         public long Length()
         {
-            FakeFileInfo fakeFileInfo = FindFileInfo();
-            return fakeFileInfo.Stream.Length;
+            FakeFileInfo? fakeFileInfo = FindFileInfo();
+            return fakeFileInfo!.Stream.Length;
         }
 
         public IDataContainer Container
         {
-            get { return new FakeDataContainer(Resolve.Portable.Path().GetDirectoryName(_file.FullName)); }
+            get { return new FakeDataContainer(Resolve.Portable.Path().GetDirectoryName(_file!.FullName)); }
         }
 
         public virtual bool IsFile
@@ -458,7 +437,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                FakeFileInfo ffi = FindFileInfo();
+                FakeFileInfo? ffi = FindFileInfo();
                 if (ffi == null)
                 {
                     return true;
@@ -473,8 +452,7 @@ namespace AxCrypt.Fake
         {
             get
             {
-                FakeFileInfo fileInfo;
-                if (_fakeFileSystem.TryGetValue(_file.FullName, out fileInfo))
+                if (_fakeFileSystem.TryGetValue(_file!.FullName, out _))
                 {
                     return true;
                 }

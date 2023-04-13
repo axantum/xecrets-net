@@ -1,10 +1,4 @@
 ﻿using AxCrypt.Core.Crypto;
-using AxCrypt.Core.IO;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AxCrypt.Core.Header
 {
@@ -30,11 +24,11 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                if (String.IsNullOrEmpty(StringValue))
+                if (string.IsNullOrEmpty(StringValue))
                 {
                     return Recipients.Empty;
                 }
-                return Resolve.Serializer.Deserialize<Recipients>(StringValue);
+                return Resolve.Serializer.Deserialize<Recipients>(StringValue) ?? throw new InvalidOperationException("Deserialize returned null for Recipients.");
             }
             set
             {

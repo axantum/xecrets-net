@@ -42,15 +42,15 @@ namespace AxCrypt.Core.Extensions
         {
             if (source == null)
             {
-                throw new ArgumentNullException("destination");
+                throw new ArgumentNullException(nameof(destination));
             }
             if (destination == null)
             {
-                throw new ArgumentNullException("destination");
+                throw new ArgumentNullException(nameof(destination));
             }
             if (bufferSize <= 0)
             {
-                throw new ArgumentOutOfRangeException("bufferSize", "Buffer size must be greater than zero.");
+                throw new ArgumentOutOfRangeException(nameof(bufferSize), "Buffer size must be greater than zero.");
             }
 
             byte[] buffer = new byte[bufferSize];
@@ -65,11 +65,11 @@ namespace AxCrypt.Core.Extensions
         {
             if (inputStream == null)
             {
-                throw new ArgumentNullException("inputStream");
+                throw new ArgumentNullException(nameof(inputStream));
             }
             if (outputStream == null)
             {
-                throw new ArgumentNullException("outputStream");
+                throw new ArgumentNullException(nameof(outputStream));
             }
 
             long totalDone = 0;
@@ -98,56 +98,49 @@ namespace AxCrypt.Core.Extensions
             return totalDone;
         }
 
-        [SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         public static void DecryptTo(this Stream encryptedInputStream, Stream plaintextOutputStream, ICryptoTransform transform, bool isCompressed)
         {
-            Exception savedExceptionIfCloseCausesException = null;
+            Exception? savedExceptionIfCloseCausesException = null;
             try
             {
                 if (encryptedInputStream == null)
                 {
-                    throw new ArgumentNullException("encryptedInputStream");
+                    throw new ArgumentNullException(nameof(encryptedInputStream));
                 }
                 if (plaintextOutputStream == null)
                 {
-                    throw new ArgumentNullException("plaintextOutputStream");
+                    throw new ArgumentNullException(nameof(plaintextOutputStream));
                 }
                 if (transform == null)
                 {
-                    throw new ArgumentNullException("transform");
+                    throw new ArgumentNullException(nameof(transform));
                 }
 
                 if (isCompressed)
                 {
-                    using (Stream deflatedPlaintextStream = New<CryptoStreamBase>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using Stream deflatedPlaintextStream = New<CryptoStreamBase>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read);
+                    using Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream);
+                    try
                     {
-                        using (Stream inflatedPlaintextStream = new ZInputStream(deflatedPlaintextStream))
-                        {
-                            try
-                            {
-                                inflatedPlaintextStream.CopyTo(plaintextOutputStream);
-                            }
-                            catch (Exception ex)
-                            {
-                                savedExceptionIfCloseCausesException = ex;
-                                throw;
-                            }
-                        }
+                        inflatedPlaintextStream.CopyTo(plaintextOutputStream);
+                    }
+                    catch (Exception ex)
+                    {
+                        savedExceptionIfCloseCausesException = ex;
+                        throw;
                     }
                 }
                 else
                 {
-                    using (Stream plainStream = New<CryptoStreamBase>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read))
+                    using Stream plainStream = New<CryptoStreamBase>().Initialize(encryptedInputStream, transform, CryptoStreamMode.Read);
+                    try
                     {
-                        try
-                        {
-                            plainStream.CopyTo(plaintextOutputStream);
-                        }
-                        catch (Exception ex)
-                        {
-                            savedExceptionIfCloseCausesException = ex;
-                            throw;
-                        }
+                        plainStream.CopyTo(plaintextOutputStream);
+                    }
+                    catch (Exception ex)
+                    {
+                        savedExceptionIfCloseCausesException = ex;
+                        throw;
                     }
                 }
             }
@@ -168,11 +161,9 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(stream));
             }
 
-            using (MemoryStream memStream = new MemoryStream())
-            {
-                stream.CopyTo(memStream);
-                return memStream.ToArray();
-            }
+            using MemoryStream memStream = new MemoryStream();
+            stream.CopyTo(memStream);
+            return memStream.ToArray();
         }
 
         public static bool Skip(this Stream stream, long bytesToSkip)

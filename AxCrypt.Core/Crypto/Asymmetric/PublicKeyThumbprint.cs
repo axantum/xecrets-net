@@ -13,17 +13,17 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 {
     public class PublicKeyThumbprint : IEquatable<PublicKeyThumbprint>
     {
-        private byte[] _thumbprint;
+        private readonly byte[] _thumbprint;
 
         public PublicKeyThumbprint(byte[] modulus, byte[] exponent)
         {
             if (modulus == null)
             {
-                throw new ArgumentNullException("modulus");
+                throw new ArgumentNullException(nameof(modulus));
             }
             if (exponent == null)
             {
-                throw new ArgumentNullException("exponent");
+                throw new ArgumentNullException(nameof(exponent));
             }
 
             Sha256 sha256 = New<Sha256>();
@@ -37,11 +37,11 @@ namespace AxCrypt.Core.Crypto.Asymmetric
         {
             if (thumbprint == null)
             {
-                throw new ArgumentNullException("thumbprint");
+                throw new ArgumentNullException(nameof(thumbprint));
             }
             if (thumbprint.Length != 16)
             {
-                throw new ArgumentException("The length must be 128 bits.", "thumbprint");
+                throw new ArgumentException("The length must be 128 bits.", nameof(thumbprint));
             }
 
             _thumbprint = (byte[])thumbprint.Clone();
@@ -62,9 +62,9 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return Convert.ToBase64String(_thumbprint);
         }
 
-        public bool Equals(PublicKeyThumbprint other)
+        public bool Equals(PublicKeyThumbprint? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
@@ -72,7 +72,7 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return _thumbprint.IsEquivalentTo(other._thumbprint);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj == null || typeof(PublicKeyThumbprint) != obj.GetType())
             {
@@ -89,13 +89,13 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return hashCode;
         }
 
-        public static bool operator ==(PublicKeyThumbprint left, PublicKeyThumbprint right)
+        public static bool operator ==(PublicKeyThumbprint? left, PublicKeyThumbprint? right)
         {
-            if (Object.ReferenceEquals(left, right))
+            if (ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }

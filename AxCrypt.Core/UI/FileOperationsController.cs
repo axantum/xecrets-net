@@ -53,9 +53,9 @@ namespace AxCrypt.Core.UI
     /// </summary>
     public class FileOperationsController
     {
-        private FileOperationEventArgs _eventArgs;
+        private readonly FileOperationEventArgs _eventArgs;
 
-        private IProgressContext _progress;
+        private readonly IProgressContext _progress;
 
         #region Constructors
 
@@ -85,73 +85,57 @@ namespace AxCrypt.Core.UI
         /// Raised whenever there is a need to specify a file to save to because the expected target
         /// name already exists.
         /// </summary>
-        public event EventHandler<FileOperationEventArgs> QuerySaveFileAs;
+        public event EventHandler<FileOperationEventArgs>? QuerySaveFileAs;
 
         protected virtual void OnQuerySaveFileAs(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = QuerySaveFileAs;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            QuerySaveFileAs?.Invoke(this, e);
         }
 
         /// <summary>
         /// Raised when a valid decryption passphrase was not found.
         /// </summary>
-        public Func<FileOperationEventArgs, Task> QueryDecryptionPassphrase { get; set; }
+        public Func<FileOperationEventArgs, Task>? QueryDecryptionPassphrase { get; set; }
 
         protected virtual Task OnQueryDecryptionPassphrase(FileOperationEventArgs e)
         {
-            return QueryDecryptionPassphrase?.Invoke(e);
+            return QueryDecryptionPassphrase?.Invoke(e) ?? Task.CompletedTask;
         }
 
         /// <summary>
         /// Occurs when no default encryption identity is known.
         /// </summary>
-        public event EventHandler<FileOperationEventArgs> QueryEncryptionPassphrase;
+        public event EventHandler<FileOperationEventArgs>? QueryEncryptionPassphrase;
 
         protected virtual void OnQueryEncryptionPassphrase(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = QueryEncryptionPassphrase;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            QueryEncryptionPassphrase?.Invoke(this, e);
         }
 
         /// <summary>
         /// Occurs when sharing keys may be added for an encryption.
         /// </summary>
-        public event EventHandler<FileOperationEventArgs> QuerySharedPublicKeys;
+        public event EventHandler<FileOperationEventArgs>? QuerySharedPublicKeys;
 
         protected virtual void OnQuerySharedPublicKeys(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = QuerySharedPublicKeys;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            QuerySharedPublicKeys?.Invoke(this, e);
         }
 
         /// <summary>
         /// Raised to confirm that a file really should be wiped.
         /// </summary>
-        public event EventHandler<FileOperationEventArgs> WipeQueryConfirmation;
+        public event EventHandler<FileOperationEventArgs>? WipeQueryConfirmation;
 
         protected virtual void OnWipeQueryConfirmation(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = WipeQueryConfirmation;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            WipeQueryConfirmation?.Invoke(this, e);
         }
 
         /// <summary>
         /// Raised when a new KnowKey is added.
         /// </summary>
-        public AsyncDelegateAction<FileOperationEventArgs> KnownKeyAdded { get; set; }
+        public AsyncDelegateAction<FileOperationEventArgs>? KnownKeyAdded { get; set; }
 
         protected virtual async Task OnKnownKeyAdded(FileOperationEventArgs e)
         {
@@ -162,15 +146,11 @@ namespace AxCrypt.Core.UI
         /// Always raised at the end of an operation, regardless of errors or cancellation.
         /// </summary>
         /// <param name="e"></param>
-        public event EventHandler<FileOperationEventArgs> Completed;
+        public event EventHandler<FileOperationEventArgs>? Completed;
 
         protected virtual void OnCompleted(FileOperationEventArgs e)
         {
-            EventHandler<FileOperationEventArgs> handler = Completed;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            Completed?.Invoke(this, e);
         }
 
         public Func<Task> SetConvertLegacyOptionCommandAsync { get; set; } = () => Constant.CompletedTask;
@@ -228,10 +208,8 @@ namespace AxCrypt.Core.UI
             try
             {
                 Stream stream = _eventArgs.AxCryptFile.OpenRead();
-                using (FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, _eventArgs.OpenFileFullName))
-                {
-                    integrityChecker.Verify();
-                }
+                using FormatIntegrityChecker integrityChecker = new FormatIntegrityChecker(stream, _eventArgs.OpenFileFullName);
+                _ = integrityChecker.Verify();
             }
             catch (AxCryptException ace)
             {
@@ -397,17 +375,17 @@ namespace AxCrypt.Core.UI
             return true;
         }
 
-        private static async Task<IEnumerable<EmailAddress>> GetWatchedFolderKeyShares(string sourceFileName)
+        private static Task<IEnumerable<EmailAddress>> GetWatchedFolderKeyShares(string sourceFileName)
         {
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.SecureFolders))
             {
-                return new EmailAddress[0];
+                return Task.FromResult((IEnumerable<EmailAddress>)Array.Empty<EmailAddress>());
             }
 
             IDataStore sourceFileInfo = New<IDataStore>(sourceFileName);
-            WatchedFolder sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.FindOrDefault(sourceFileInfo);
+            WatchedFolder? sourceFileWatchedFolder = Resolve.FileSystemState.WatchedFolders.FindOrDefault(sourceFileInfo);
 
-            return sourceFileWatchedFolder?.KeyShares ?? new EmailAddress[0];
+            return Task.FromResult(sourceFileWatchedFolder?.KeyShares ?? Array.Empty<EmailAddress>());
         }
 
         private Task<bool> VerifyFileIntegrityPreparationAsync(IDataStore dataStore)
@@ -489,22 +467,20 @@ namespace AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
+                using FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile);
+                using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
                 {
-                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
-                    {
-                        New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
-                        if (_eventArgs.AxCryptFile.IsWriteProtected)
-                        {
-                            New<IDataStore>(_eventArgs.SaveFileFullName).IsWriteProtected = true;
-                        }
-                    }
+                    New<AxCryptFile>().DecryptFile(document, _eventArgs.SaveFileFullName, _progress);
                     if (_eventArgs.AxCryptFile.IsWriteProtected)
                     {
-                        _eventArgs.AxCryptFile.IsWriteProtected = false;
+                        New<IDataStore>(_eventArgs.SaveFileFullName).IsWriteProtected = true;
                     }
-                    New<AxCryptFile>().Wipe(encryptedFileLock, _progress);
                 }
+                if (_eventArgs.AxCryptFile.IsWriteProtected)
+                {
+                    _eventArgs.AxCryptFile.IsWriteProtected = false;
+                }
+                New<AxCryptFile>().Wipe(encryptedFileLock, _progress);
             }
             catch (AxCryptException ace)
             {
@@ -525,16 +501,12 @@ namespace AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile))
+                using FileLock encryptedFileLock = New<FileLocker>().Acquire(_eventArgs.AxCryptFile);
+                using IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress);
+                if (!New<AxCryptFile>().VerifyFileHmac(document, _progress))
                 {
-                    using (IAxCryptDocument document = New<AxCryptFile>().Document(_eventArgs.AxCryptFile, _eventArgs.LogOnIdentity, _progress))
-                    {
-                        if (!New<AxCryptFile>().VerifyFileHmac(document, _progress))
-                        {
-                            _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.HmacValidationError);
-                            return Task.FromResult(false);
-                        }
-                    }
+                    _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.HmacValidationError);
+                    return Task.FromResult(false);
                 }
             }
             catch (AxCryptException ace)
@@ -560,7 +532,7 @@ namespace AxCrypt.Core.UI
 
             if (!New<CanOpenEncryptedFile>().IsOpenable(_eventArgs.SaveFileFullName))
             {
-                await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.UnopenableFileWarning);
+                _ = await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.IgnoreFileOpenWarningText.InvariantFormat(_eventArgs.SaveFileFullName), DoNotShowAgainOptions.UnopenableFileWarning);
                 _eventArgs.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 return false;
             }
@@ -642,7 +614,7 @@ namespace AxCrypt.Core.UI
                 return Constant.TrueTask;
             }
 
-            ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_eventArgs.SaveFileFullName);
+            ActiveFile? activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(_eventArgs.SaveFileFullName);
             if (activeFile != null && activeFile.Status.HasFlag(ActiveFileStatus.AssumedOpenAndDecrypted))
             {
                 _eventArgs.Status = new FileOperationContext(_eventArgs.OpenFileFullName, ErrorStatus.FileLocked);
@@ -652,10 +624,8 @@ namespace AxCrypt.Core.UI
             _progress.NotifyLevelStart();
             try
             {
-                using (FileLock wipeFileLock = New<FileLocker>().Acquire(New<IDataStore>(_eventArgs.SaveFileFullName)))
-                {
-                    New<AxCryptFile>().Wipe(wipeFileLock, _progress);
-                }
+                using FileLock wipeFileLock = New<FileLocker>().Acquire(New<IDataStore>(_eventArgs.SaveFileFullName));
+                New<AxCryptFile>().Wipe(wipeFileLock, _progress);
             }
             finally
             {
@@ -745,7 +715,7 @@ namespace AxCrypt.Core.UI
                 return false;
             }
 
-            e.CryptoId = properties.DecryptionParameter.CryptoId;
+            e.CryptoId = properties.DecryptionParameter!.CryptoId;
             IDataStore destination = New<IDataStore>(Resolve.Portable.Path().Combine(Resolve.Portable.Path().GetDirectoryName(sourceFileInfo.FullName), properties.FileMetaData.FileName));
             e.SaveFileFullName = destination.FullName;
             e.AxCryptFile = sourceFileInfo;
@@ -754,8 +724,7 @@ namespace AxCrypt.Core.UI
 
         private static bool TryFindDecryptionKey(IDataStore fileInfo, FileOperationEventArgs e)
         {
-            Guid cryptoId;
-            LogOnIdentity logOnIdentity = fileInfo.TryFindPassphrase(out cryptoId);
+            LogOnIdentity? logOnIdentity = fileInfo.TryFindPassphrase(out Guid cryptoId);
             if (logOnIdentity == null)
             {
                 return false;
@@ -783,7 +752,7 @@ namespace AxCrypt.Core.UI
                 }
                 if (ok)
                 {
-                    await operation();
+                    _ = await operation();
                 }
             }
             catch (OperationCanceledException ocex)

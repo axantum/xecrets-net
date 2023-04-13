@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
     /// <summary>
     /// Information for a password reset request.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class PasswordResetParameters
     {
         public PasswordResetParameters(string password, string verification)
@@ -26,8 +20,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The password.
         /// </value>
-        [JsonProperty("password")]
-        public string Password { get; }
+        [JsonPropertyName("password")]
+        public string Password { get; set; }
 
         /// <summary>
         /// Gets the verification code sent to the user via a side-channel, most likely e-mail. This
@@ -36,7 +30,7 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The verification code.
         /// </value>
-        [JsonProperty("verification")]
-        public string Verification { get; }
+        [JsonPropertyName("verification")]
+        public string Verification { get; set; }
     }
 }

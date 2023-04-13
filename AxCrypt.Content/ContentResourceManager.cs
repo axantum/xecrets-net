@@ -1,4 +1,4 @@
-﻿using AxCrypt.Content.Properties;
+﻿using Xecrets.File.Content.Properties;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,7 +17,7 @@ namespace AxCrypt.Content
         {
         }
 
-        public override string GetString(string name, CultureInfo culture)
+        public override string? GetString(string name, CultureInfo? culture)
         {
             return Resources.ResourceManager.GetString(name, culture);
         }

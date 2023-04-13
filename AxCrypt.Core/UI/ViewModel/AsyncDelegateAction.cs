@@ -9,24 +9,14 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class AsyncDelegateAction<T> : IAsyncAction
     {
-        private Func<T, Task> _executeMethodAsync;
+        private readonly Func<T, Task> _executeMethodAsync;
 
-        private Func<T, Task<bool>> _canExecuteMethodAsync;
+        private readonly Func<T?, Task<bool>> _canExecuteMethodAsync;
 
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public AsyncDelegateAction(Func<T, Task> executeMethodAsync, Func<T, Task<bool>> canExecuteMethodAsync)
+        public AsyncDelegateAction(Func<T, Task> executeMethodAsync, Func<T?, Task<bool>> canExecuteMethodAsync)
         {
-            if (executeMethodAsync == null)
-            {
-                throw new ArgumentNullException(nameof(executeMethodAsync));
-            }
-            if (canExecuteMethodAsync == null)
-            {
-                throw new ArgumentNullException(nameof(canExecuteMethodAsync));
-            }
-
-            _executeMethodAsync = executeMethodAsync;
-            _canExecuteMethodAsync = canExecuteMethodAsync;
+            _executeMethodAsync = executeMethodAsync ?? throw new ArgumentNullException(nameof(executeMethodAsync));
+            _canExecuteMethodAsync = canExecuteMethodAsync ?? throw new ArgumentNullException(nameof(canExecuteMethodAsync));
         }
 
         public AsyncDelegateAction(Func<T, Task> executeMethodAsync)
@@ -36,7 +26,7 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public Task<bool> CanExecuteAsync(object parameter)
         {
-            return _canExecuteMethodAsync(parameter != null ? (T)parameter : default(T));
+            return _canExecuteMethodAsync(parameter != null ? (T)parameter : default);
         }
 
         public async Task ExecuteAsync(object parameter)
@@ -48,18 +38,17 @@ namespace AxCrypt.Core.UI.ViewModel
             await _executeMethodAsync((T)parameter);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         protected virtual void OnCanExecuteChanged()
         {
-            EventHandler handler = CanExecuteChanged;
+            EventHandler? handler = CanExecuteChanged;
             if (handler != null)
             {
                 Resolve.UIThread.SendTo(() => handler(this, new EventArgs()));
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method name taken from DelegateCommand implementation by Microsoft Patterns & Practices.")]
         public void RaiseCanExecuteChanged()
         {
             OnCanExecuteChanged();

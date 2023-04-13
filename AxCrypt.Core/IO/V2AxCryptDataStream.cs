@@ -46,7 +46,7 @@ namespace AxCrypt.Core.IO
         /// </summary>
         public static readonly int WriteChunkSize = 65536;
 
-        private V2AxCryptDataStream(AxCryptReaderBase reader, Stream chainedStream)
+        private V2AxCryptDataStream(AxCryptReaderBase? reader, Stream chainedStream)
             : base(reader, chainedStream)
         {
         }
@@ -57,9 +57,9 @@ namespace AxCrypt.Core.IO
         /// <param name="reader">The reader.</param>
         /// <param name="chainedStream">The chained stream.</param>
         /// <returns></returns>
-        public static V2AxCryptDataStream Create(AxCryptReaderBase reader, Stream chainedStream)
+        public static V2AxCryptDataStream Create(AxCryptReaderBase? reader, Stream chainedStream)
         {
-            return V2AxCryptDataStream<Stream>.Create((chained) => new V2AxCryptDataStream(reader, chainedStream), chainedStream);
+            return Create((chained) => new V2AxCryptDataStream(reader, chainedStream), chainedStream);
         }
 
         /// <summary>
@@ -80,9 +80,9 @@ namespace AxCrypt.Core.IO
     /// </summary>
     public abstract class V2AxCryptDataStream<T> : ChainedStream<T> where T : Stream
     {
-        private AxCryptReaderBase _reader;
+        private readonly AxCryptReaderBase? _reader;
 
-        private byte[] _buffer;
+        private byte[]? _buffer;
 
         private int _offset;
 
@@ -91,7 +91,7 @@ namespace AxCrypt.Core.IO
         /// </summary>
         /// <param name="reader">An AxCrypt reader where EnryptedDataPartBlock parts are read from. If null, the stream is intended for writing.</param>
         /// <param name="chained">A stream to read blocked data from or write blocks to. It will be disposed of.</param>
-        protected V2AxCryptDataStream(AxCryptReaderBase reader, T chained)
+        protected V2AxCryptDataStream(AxCryptReaderBase? reader, T chained)
             : base(chained)
         {
             _reader = reader;
@@ -173,7 +173,7 @@ namespace AxCrypt.Core.IO
                     _eof = true;
                     return read;
                 }
-                int available = _buffer.Length - _offset;
+                int available = _buffer!.Length - _offset;
                 int thisread = (count - read) > available ? available : count - read;
 
                 Array.Copy(_buffer, _offset, buffer, offset, thisread);
@@ -191,6 +191,10 @@ namespace AxCrypt.Core.IO
                 return true;
             }
 
+            if (_reader == null)
+            {
+                throw new InternalErrorException("_reader was null!");
+            }
             if (!ReadFromReader())
             {
                 return false;
@@ -204,7 +208,7 @@ namespace AxCrypt.Core.IO
 
         private bool ReadFromReader()
         {
-            if (!_reader.Read())
+            if (!_reader!.Read())
             {
                 throw new FileFormatException("Unexpected end of file during read of encrypted data stream.", ErrorStatus.UnexpectedEndOfFile);
             }

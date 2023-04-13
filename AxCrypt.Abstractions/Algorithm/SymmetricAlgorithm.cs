@@ -25,12 +25,6 @@
 
 #endregion Coypright and License
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-
 namespace AxCrypt.Abstractions.Algorithm
 {
     public abstract class SymmetricAlgorithm : IDisposable
@@ -39,11 +33,11 @@ namespace AxCrypt.Abstractions.Algorithm
         {
         }
 
-        private KeySizes[] _blockSizes;
+        private KeySizes[]? _blockSizes;
 
         protected KeySizes[] BlockSizes()
         {
-            return _blockSizes;
+            return _blockSizes ?? throw new InvalidOperationException("BlockSizes was not set.");
         }
 
         protected void SetBlockSizes(KeySizes[] blockSizes)
@@ -51,11 +45,11 @@ namespace AxCrypt.Abstractions.Algorithm
             _blockSizes = blockSizes;
         }
 
-        private KeySizes[] _keySizes;
+        private KeySizes[]? _keySizes;
 
         protected KeySizes[] KeySizes()
         {
-            return _keySizes;
+            return _keySizes ?? throw new InvalidOperationException("KeySizes was not set.");
         }
 
         protected void SetKeySizes(KeySizes[] keySizes)
@@ -82,7 +76,7 @@ namespace AxCrypt.Abstractions.Algorithm
             _feedbackSize = feedbackSize;
         }
 
-        private byte[] _iv;
+        private byte[]? _iv;
 
         public virtual byte[] IV()
         {
@@ -90,20 +84,22 @@ namespace AxCrypt.Abstractions.Algorithm
             {
                 GenerateIV();
             }
-            return (byte[])_iv.Clone();
+            return _iv != null
+                ? (byte[])_iv.Clone()
+                : throw new InvalidOperationException("Internal error, GenerateIV() didn't generate an IV.");
         }
 
         public virtual void SetIV(byte[] value)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             _iv = (byte[])value.Clone();
         }
 
-        private byte[] _key;
+        private byte[]? _key;
 
         public virtual byte[] Key()
         {
@@ -112,14 +108,16 @@ namespace AxCrypt.Abstractions.Algorithm
                 GenerateKey();
             }
 
-            return (byte[])_key.Clone();
+            return _key != null
+                ? (byte[])_key.Clone()
+                : throw new InvalidOperationException("GenerateKey did not generate a key.");
         }
 
         public virtual void SetKey(byte[] value)
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             _key = (byte[])value.Clone();
@@ -209,7 +207,6 @@ namespace AxCrypt.Abstractions.Algorithm
             return CreateDecryptingTransform(Key(), IV());
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]
         public abstract ICryptoTransform CreateDecryptingTransform(byte[] rgbKey, byte[] rgbIV);
 
         public virtual ICryptoTransform CreateEncryptingTransform()
@@ -217,7 +214,6 @@ namespace AxCrypt.Abstractions.Algorithm
             return CreateEncryptingTransform(Key(), IV());
         }
 
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "rgb")]
         public abstract ICryptoTransform CreateEncryptingTransform(byte[] rgbKey, byte[] rgbIV);
 
         public abstract void GenerateIV();

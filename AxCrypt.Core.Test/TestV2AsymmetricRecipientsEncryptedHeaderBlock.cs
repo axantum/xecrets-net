@@ -1,7 +1,5 @@
 ﻿using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Api.Implementation;
-using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Header;
@@ -11,9 +9,11 @@ using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using AxCrypt.Mono;
 using AxCrypt.Mono.Portable;
+
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
+
+using Xecrets.File.Api.Implementation;
+using Xecrets.File.Core;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -27,7 +27,7 @@ namespace AxCrypt.Core.Test
         {
             TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
             TypeMap.Register.Singleton<IPortableFactory>(() => new PortableFactory());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<IRuntimeEnvironment>(() => new FakeRuntimeEnvironment());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());

@@ -63,7 +63,7 @@ namespace AxCrypt.Core.Crypto
             UserEmail = ActiveEncryptionKeyPair.UserEmail;
         }
 
-        private Passphrase _passphrase;
+        private Passphrase? _passphrase;
 
         /// <summary>
         /// Gets the passphrase.
@@ -102,7 +102,7 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
-        public IEnumerable<IAsymmetricPrivateKey> PrivateKeys
+        public IEnumerable<IAsymmetricPrivateKey?> PrivateKeys
         {
             get
             {
@@ -134,20 +134,20 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
-        public MasterKeyPairInfo MasterKeyPair { get; set; }
+        public MasterKeyPairInfo? MasterKeyPair { get; set; }
 
-        public bool Equals(LogOnIdentity other)
+        public bool Equals(LogOnIdentity? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
             return UserEmail == other.UserEmail && Passphrase == other.Passphrase && _keyPairs.SequenceEqual(other._keyPairs);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            LogOnIdentity other = obj as LogOnIdentity;
+            LogOnIdentity? other = obj as LogOnIdentity;
             if (other == null)
             {
                 return false;
@@ -161,20 +161,20 @@ namespace AxCrypt.Core.Crypto
             return Passphrase.GetHashCode() ^ _keyPairs.GetHashCode();
         }
 
-        public static bool operator ==(LogOnIdentity left, LogOnIdentity right)
+        public static bool operator ==(LogOnIdentity? left, LogOnIdentity? right)
         {
             if (Object.ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(LogOnIdentity left, LogOnIdentity right)
+        public static bool operator !=(LogOnIdentity? left, LogOnIdentity? right)
         {
             return !(left == right);
         }

@@ -12,7 +12,7 @@ namespace AxCrypt.Core.UI.ViewModel
 {
     public class WatchedFoldersViewModel : ViewModelBase
     {
-        private FileSystemState _fileSystemState;
+        private readonly FileSystemState _fileSystemState;
 
         public bool LoggedOn { get { return GetProperty<bool>(nameof(LoggedOn)); } set { SetProperty(nameof(LoggedOn), value); } }
 
@@ -38,28 +38,24 @@ namespace AxCrypt.Core.UI.ViewModel
         {
             _fileSystemState = fileSystemState;
 
-            InitializePropertyValues();
+            WatchedFoldersEnabled = false;
+            WatchedFolders = Array.Empty<string>();
+            DragAndDropFiles = Array.Empty<string>();
+            SelectedWatchedFolders = Array.Empty<string>();
+
+            AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await AddWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
+            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
+            OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
+
             BindPropertyChangedEvents();
             SubscribeToModelEvents();
             SetWatchedFolders();
             SetLogOnState(Resolve.KnownIdentities.IsLoggedOn);
         }
 
-        private void InitializePropertyValues()
-        {
-            WatchedFoldersEnabled = false;
-            WatchedFolders = new string[0];
-            DragAndDropFiles = new string[0];
-            SelectedWatchedFolders = new string[0];
-
-            AddWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await AddWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
-            RemoveWatchedFolders = new AsyncDelegateAction<IEnumerable<string>>(async (folders) => await RemoveWatchedFoldersAction(folders), (folders) => Task.FromResult(LoggedOn));
-            OpenSelectedFolder = new DelegateAction<string>((folder) => OpenSelectedFolderAction(folder));
-        }
-
         private void BindPropertyChangedEvents()
         {
-            BindPropertyChanged(nameof(DragAndDropFiles), (IEnumerable<string> files) => { DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))); });
+            BindPropertyChanged(nameof(DragAndDropFiles), (IEnumerable<string> files) => DroppableAsWatchedFolder = DetermineDroppableAsWatchedFolder(files.Select(f => New<IDataItem>(f))));
         }
 
         private void SubscribeToModelEvents()
@@ -145,10 +141,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private static void OpenSelectedFolderAction(string folder)
         {
-            using (ILauncher launcher = New<ILauncher>())
-            {
-                launcher.Launch(folder);
-            }
+            using ILauncher launcher = New<ILauncher>();
+            launcher.Launch(folder);
         }
     }
 }

@@ -59,24 +59,24 @@ namespace AxCrypt.Core.Runtime
         /// Raised just before asynchronous execution starts. Runs on the
         /// original thread, typically the GUI thread.
         /// </summary>
-        event EventHandler<ThreadWorkerEventArgs> Prepare;
+        event EventHandler<ThreadWorkerEventArgs>? Prepare;
 
         /// <summary>
         /// Raised when asynchronous execution starts. Runs on a different
         /// thread than the caller thread. Do not interact with the GUI here.
         /// </summary>
-        Func<ThreadWorkerEventArgs, Task> WorkAsync { get; set; }
+        Func<ThreadWorkerEventArgs, Task>? WorkAsync { get; set; }
 
         /// <summary>
         /// Raised when all is about to be done. Runs on the original thread, typically
         /// the GUI thread.
         /// </summary>
-        event EventHandler<ThreadWorkerEventArgs> Completing;
+        event EventHandler<ThreadWorkerEventArgs>? Completing;
 
         /// <summary>
         /// Raised when all is done. Runs on the original thread, typically
         /// the GUI thread.
         /// </summary>
-        event EventHandler<ThreadWorkerEventArgs> Completed;
+        event EventHandler<ThreadWorkerEventArgs>? Completed;
     }
 }

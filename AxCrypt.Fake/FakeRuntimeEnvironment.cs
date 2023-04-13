@@ -37,7 +37,7 @@ namespace AxCrypt.Fake
 {
     public class FakeRuntimeEnvironment : IRuntimeEnvironment, IDisposable
     {
-        private bool _isLittleEndian = BitConverter.IsLittleEndian;
+        private readonly bool _isLittleEndian = BitConverter.IsLittleEndian;
 
         public FakeRuntimeEnvironment()
         {
@@ -83,7 +83,7 @@ namespace AxCrypt.Fake
             get { return 512; }
         }
 
-        public Func<string, ILauncher> Launcher { get; set; }
+        public Func<string, ILauncher> Launcher { get; set; } = (path) => null!;
 
         public ITiming StartTiming()
         {
@@ -111,10 +111,9 @@ namespace AxCrypt.Fake
 
         public string EnvironmentVariable(string name)
         {
-            string variable;
-            if (!EnvironmentVariables.TryGetValue(name, out variable))
+            if (!EnvironmentVariables.TryGetValue(name, out string? variable))
             {
-                return String.Empty;
+                return string.Empty;
             }
             return variable;
         }
@@ -159,7 +158,7 @@ namespace AxCrypt.Fake
 
         private class FakeSynchronizationContext : SynchronizationContext
         {
-            public override void Post(SendOrPostCallback callback, object state)
+            public override void Post(SendOrPostCallback callback, object? state)
             {
                 callback(state);
             }
@@ -170,6 +169,6 @@ namespace AxCrypt.Fake
             get { return new FakeSynchronizationContext(); }
         }
 
-        public string AppPath { get; set; }
+        public string AppPath { get; set; } = string.Empty;
     }
 }

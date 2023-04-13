@@ -7,16 +7,16 @@ namespace AxCrypt.Core.Extensions
 {
     public static class OtherExtensions
     {
-        public static string Messages(this Exception exception)
+        public static string Messages(this Exception? exception)
         {
             StringBuilder msg = new StringBuilder();
             while (exception != null)
             {
                 if (msg.Length > 0)
                 {
-                    msg.Append(" -> ");
+                    _ = msg.Append(" -> ");
                 }
-                msg.Append(exception.Message);
+                _ = msg.Append(exception.Message);
                 exception = exception.InnerException;
             }
             return msg.ToString();

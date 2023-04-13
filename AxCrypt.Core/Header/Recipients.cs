@@ -26,25 +26,25 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Crypto.Asymmetric;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Header
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class Recipients
     {
         public static readonly Recipients Empty = new Recipients(new UserPublicKey[0]);
+
+        public Recipients()
+        {
+        }
 
         public Recipients(IEnumerable<UserPublicKey> publicKeys)
         {
             PublicKeys = publicKeys.ToArray();
         }
 
-        [JsonProperty("recipients")]
-        public IEnumerable<UserPublicKey> PublicKeys { get; private set; }
+        [JsonPropertyName("recipients")]
+        public IEnumerable<UserPublicKey> PublicKeys { get; set; } = Array.Empty<UserPublicKey>();
     }
 }

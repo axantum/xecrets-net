@@ -51,7 +51,7 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private readonly int MAX_TRIES = 3;
 
-        public event EventHandler TooManyTries;
+        public event EventHandler? TooManyTries;
 
         public LogOnAccountViewModel(UserSettings userSettings, string encryptedFileFullName)
         {
@@ -184,8 +184,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private bool IsKnownPassphrase()
         {
-            SymmetricKeyThumbprint thumbprint = new Passphrase(PasswordText).Thumbprint;
-            Passphrase knownPassphrase = New<FileSystemState>().KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
+            SymmetricKeyThumbprint thumbprint = new Passphrase(PasswordText).Thumbprint!;
+            Passphrase? knownPassphrase = New<FileSystemState>().KnownPassphrases.FirstOrDefault(id => id.Thumbprint == thumbprint);
             if (knownPassphrase != null)
             {
                 return true;

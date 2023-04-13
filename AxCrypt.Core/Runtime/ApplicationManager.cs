@@ -21,7 +21,7 @@ namespace AxCrypt.Core.Runtime
                 return true;
             }
 
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.UserSettingsFormatChangeNeedsReset);
+            _ = await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.UserSettingsFormatChangeNeedsReset);
             await ClearAllSettings();
             await StopAndExit();
             return false;
@@ -51,8 +51,7 @@ namespace AxCrypt.Core.Runtime
             New<IProgressBackground>().WaitForIdle();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        public async Task ShutdownBackgroundSafe()
+        public virtual Task ShutdownBackgroundSafe()
         {
             try
             {
@@ -76,6 +75,8 @@ namespace AxCrypt.Core.Runtime
             catch
             {
             }
+
+            return Task.CompletedTask;
         }
     }
 }

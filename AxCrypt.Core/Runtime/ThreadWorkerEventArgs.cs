@@ -47,7 +47,5 @@ namespace AxCrypt.Core.Runtime
         public IProgressContext Progress { get; private set; }
 
         public FileOperationContext Result { get; set; }
-
-        public Exception Exception { get; set; }
     }
 }

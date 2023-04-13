@@ -2,44 +2,40 @@
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Session
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class KnownPublicKeys : IDisposable
     {
+        [AllowNull]
         private IDataStore _store;
 
+        [AllowNull]
         private IStringSerializer _serializer;
 
         private bool _dirty;
 
         private List<UserPublicKey> _publicKeys;
 
-        protected KnownPublicKeys()
+        public KnownPublicKeys()
         {
             _publicKeys = new List<UserPublicKey>();
         }
 
         public void Delete()
         {
-            using (FileLock fileLock = New<FileLocker>().Acquire(_store))
-            {
-                _store.Delete();
-            }
+            using FileLock fileLock = New<FileLocker>().Acquire(_store);
+            _store.Delete();
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Used by Json.NET serializer.")]
-        [JsonProperty("publickeys")]
+        [JsonPropertyName("publickeys")]
         public IEnumerable<UserPublicKey> PublicKeys
         {
             get
@@ -47,7 +43,7 @@ namespace AxCrypt.Core.Session
                 return _publicKeys;
             }
 
-            private set
+            set
             {
                 _publicKeys = new List<UserPublicKey>(value);
             }
@@ -57,11 +53,11 @@ namespace AxCrypt.Core.Session
         {
             if (store == null)
             {
-                throw new ArgumentNullException("store");
+                throw new ArgumentNullException(nameof(store));
             }
             if (serializer == null)
             {
-                throw new ArgumentNullException("serializer");
+                throw new ArgumentNullException(nameof(serializer));
             }
 
             string json = String.Empty;
@@ -69,17 +65,12 @@ namespace AxCrypt.Core.Session
             {
                 if (store.IsAvailable)
                 {
-                    using (StreamReader reader = new StreamReader(store.OpenRead(), Encoding.UTF8))
-                    {
-                        json = reader.ReadToEnd();
-                    }
+                    using var reader = new StreamReader(store.OpenRead(), Encoding.UTF8);
+                    json = reader.ReadToEnd();
                 }
             }
-            KnownPublicKeys knownPublicKeys = serializer.Deserialize<KnownPublicKeys>(json);
-            if (knownPublicKeys == null)
-            {
-                knownPublicKeys = new KnownPublicKeys();
-            }
+            var knownPublicKeys = serializer.Deserialize<KnownPublicKeys>(json);
+            knownPublicKeys ??= new KnownPublicKeys();
             knownPublicKeys._store = store;
             knownPublicKeys._serializer = serializer;
             return knownPublicKeys;
@@ -92,7 +83,7 @@ namespace AxCrypt.Core.Session
         /// <returns>true if the import was successful</returns>
         public bool UserImport(IDataStore publicKeyStore)
         {
-            UserPublicKey publicKey = null;
+            UserPublicKey? publicKey = null;
             try
             {
                 publicKey = _serializer.Deserialize<UserPublicKey>(publicKeyStore);
@@ -112,11 +103,11 @@ namespace AxCrypt.Core.Session
             return true;
         }
 
-        public void AddOrReplace(UserPublicKey publicKey)
+        public void AddOrReplace(UserPublicKey? publicKey)
         {
             if (publicKey == null)
             {
-                throw new ArgumentNullException("publicKey");
+                throw new ArgumentNullException(nameof(publicKey));
             }
 
             for (int i = 0; i < _publicKeys.Count; ++i)
@@ -140,7 +131,7 @@ namespace AxCrypt.Core.Session
         {
             if (knownContactsToRemove == null)
             {
-                throw new ArgumentNullException("knownContactsToRemove");
+                throw new ArgumentNullException(nameof(knownContactsToRemove));
             }
 
             _publicKeys = _publicKeys.Where(pk => !knownContactsToRemove.Contains(pk)).ToList();
@@ -167,13 +158,9 @@ namespace AxCrypt.Core.Session
             if (_dirty)
             {
                 string json = _serializer.Serialize(this);
-                using (FileLock fileLock = New<FileLocker>().Acquire(_store))
-                {
-                    using (StreamWriter writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8))
-                    {
-                        writer.Write(json);
-                    }
-                }
+                using FileLock fileLock = New<FileLocker>().Acquire(_store);
+                using var writer = new StreamWriter(_store.OpenWrite(), Encoding.UTF8);
+                writer.Write(json);
             }
             _dirty = false;
             _store = null;

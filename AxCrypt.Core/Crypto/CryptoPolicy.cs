@@ -28,6 +28,8 @@
 using AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -35,16 +37,26 @@ namespace AxCrypt.Core.Crypto
 {
     public class CryptoPolicy
     {
-        private Dictionary<string, ICryptoPolicy> _policies = new Dictionary<string, ICryptoPolicy>();
+        private readonly Dictionary<string, ICryptoPolicy> _policies = new Dictionary<string, ICryptoPolicy>();
 
+        [UnconditionalSuppressMessage("TrimAnalysis", "IL2072", Justification = "Silence the warnings, but be aware that dynamic plugin loading is broken when trimming is enabled.")]
         public CryptoPolicy(IEnumerable<Assembly> extraAssemblies)
         {
+            Add(new FreeCryptoPolicy());
+            Add(new LegacyCryptoPolicy());
+            Add(new ProCryptoPolicy());
+
             IEnumerable<Type> policyTypes = TypeDiscovery.Interface(typeof(ICryptoPolicy), extraAssemblies);
             foreach (Type policyType in policyTypes)
             {
-                ICryptoPolicy instance = Activator.CreateInstance(policyType) as ICryptoPolicy;
+                var instance = Activator.CreateInstance(policyType) as ICryptoPolicy ?? throw new InvalidOperationException("Internal Program Error, CreateInstance() returned null.");
                 _policies.Add(instance.Name, instance);
             }
+        }
+
+        private void Add(ICryptoPolicy cryptoPolicy)
+        {
+            _policies.Add(cryptoPolicy.Name, cryptoPolicy);
         }
 
         public ICryptoPolicy Create(string name)

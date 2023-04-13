@@ -46,31 +46,28 @@ namespace AxCrypt.Core
         public virtual bool IsPassphraseValid(Passphrase passphrase, string encryptedFileFullName)
         {
             IDataStore encryptedStore = New<IDataStore>(encryptedFileFullName);
-            IEnumerable<DecryptionParameter> parameters = encryptedStore.DecryptionParameters(passphrase, new IAsymmetricPrivateKey[0]);
+            IEnumerable<DecryptionParameter> parameters = encryptedStore.DecryptionParameters(passphrase, Array.Empty<IAsymmetricPrivateKey>());
             return New<AxCryptFactory>().FindDecryptionParameter(parameters, encryptedStore) != null;
         }
 
-        public virtual DecryptionParameter FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
+        public virtual DecryptionParameter? FindDecryptionParameter(IEnumerable<DecryptionParameter> decryptionParameters, IDataStore encryptedFileInfo)
         {
             if (encryptedFileInfo == null)
             {
-                throw new ArgumentNullException("encryptedFileInfo");
+                throw new ArgumentNullException(nameof(encryptedFileInfo));
             }
 
-            using (Stream fileStream = encryptedFileInfo.OpenRead())
-            {
-                using (IAxCryptDocument document = CreateDocument(decryptionParameters, fileStream))
-                {
-                    return document.DecryptionParameter;
-                }
-            }
+            using Stream fileStream = encryptedFileInfo.OpenRead();
+            using IAxCryptDocument document = CreateDocument(decryptionParameters, fileStream);
+
+            return document.DecryptionParameter;
         }
 
         public virtual IAxCryptDocument CreateDocument(EncryptionParameters encryptionParameters)
         {
             if (encryptionParameters == null)
             {
-                throw new ArgumentNullException("encryptionParameters");
+                throw new ArgumentNullException(nameof(encryptionParameters));
             }
             if (encryptionParameters.Passphrase == Passphrase.Empty)
             {
@@ -88,7 +85,7 @@ namespace AxCrypt.Core
         public virtual Headers Headers(Stream inputStream)
         {
             Headers headers = new Headers();
-            headers.CreateReader(new LookAheadStream(inputStream));
+            _ = headers.CreateReader(new LookAheadStream(inputStream));
             return headers;
         }
 
@@ -113,7 +110,7 @@ namespace AxCrypt.Core
             {
                 if (decryptionParameter.Passphrase != null)
                 {
-                    document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
+                    _ = document.Load(decryptionParameter.Passphrase, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
                         document.DecryptionParameter = decryptionParameter;
@@ -122,7 +119,7 @@ namespace AxCrypt.Core
                 }
                 if (decryptionParameter.PrivateKey != null)
                 {
-                    document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
+                    _ = document.Load(decryptionParameter.PrivateKey, decryptionParameter.CryptoId, headers);
                     if (document.PassphraseIsValid)
                     {
                         document.DecryptionParameter = decryptionParameter;

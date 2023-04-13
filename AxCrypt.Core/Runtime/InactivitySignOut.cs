@@ -7,7 +7,7 @@ namespace AxCrypt.Core.Runtime
 {
     public class InactivitySignOut : IDisposable
     {
-        private DelayedAction _signOutDelayedAction;
+        private DelayedAction? _signOutDelayedAction;
 
         public InactivitySignOut(TimeSpan timeout)
         {
@@ -26,7 +26,7 @@ namespace AxCrypt.Core.Runtime
             _signOutDelayedAction?.StartIdleTimer();
         }
 
-        private async void SignOutAction(object sender, EventArgs e)
+        private async void SignOutAction(object? sender, EventArgs e)
         {
             if (!New<LicensePolicy>().Capabilities.Has(LicenseCapability.InactivitySignOut))
             {

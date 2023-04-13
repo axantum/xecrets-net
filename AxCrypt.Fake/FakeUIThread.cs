@@ -35,7 +35,7 @@ namespace AxCrypt.Fake
 {
     public class FakeUIThread : IUIThread
     {
-        private SynchronizationContext _context;
+        private readonly SynchronizationContext _context;
 
         public FakeUIThread()
         {
@@ -54,7 +54,7 @@ namespace AxCrypt.Fake
         public Task SendToAsync(Func<Task> action)
         {
             _context.Send(async (state) => await action(), null);
-            return Task.FromResult<object>(null);
+            return Task.CompletedTask;
         }
 
         public void PostTo(Action action)

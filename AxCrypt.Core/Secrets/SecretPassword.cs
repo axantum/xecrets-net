@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace AxCrypt.Core.Secrets
             TheSecret = theSecret;
         }
 
+        [AllowNull]
         private string _title;
 
         public string Title
@@ -24,6 +26,7 @@ namespace AxCrypt.Core.Secrets
             set { _title = value; }
         }
 
+        [AllowNull]
         private string _url;
 
         public string Url
@@ -32,6 +35,7 @@ namespace AxCrypt.Core.Secrets
             set { _url = value; }
         }
 
+        [AllowNull]
         private string _description;
 
         /// <summary>
@@ -43,6 +47,7 @@ namespace AxCrypt.Core.Secrets
             set { _description = value; }
         }
 
+        [AllowNull]
         private string _username;
 
         public string Username
@@ -51,6 +56,7 @@ namespace AxCrypt.Core.Secrets
             set { _username = value; }
         }
 
+        [AllowNull]
         private string _theSecret;
 
         /// <summary>

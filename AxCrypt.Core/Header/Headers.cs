@@ -71,7 +71,7 @@ namespace AxCrypt.Core.Header
         private static IList<HeaderBlock> LoadFromReader(AxCryptReaderBase vxReader)
         {
             List<HeaderBlock> headers = new List<HeaderBlock>();
-            vxReader.Read();
+            _ = vxReader.Read();
             if (vxReader.CurrentItemType != AxCryptItemType.MagicGuid)
             {
                 throw new FileFormatException("No magic Guid was found.", ErrorStatus.MagicGuidMissing);
@@ -83,32 +83,19 @@ namespace AxCrypt.Core.Header
 
         private static AxCryptReader CreateVersionedReader(LookAheadStream inputStream, IList<HeaderBlock> headers)
         {
-            AxCryptReader reader;
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>(headers);
-            switch (versionHeaderBlock.FileVersionMajor)
+            VersionHeaderBlock? versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>(headers) ?? throw new FileFormatException("Missing VersionHeaderBlock.");
+            AxCryptReader reader = versionHeaderBlock.FileVersionMajor switch
             {
-                case 1:
-                case 2:
-                case 3:
-                    reader = new V1AxCryptReader(inputStream);
-                    break;
-
-                case 4:
-                    reader = new V2AxCryptReader(inputStream);
-                    break;
-
-                default:
-                    throw new FileFormatException("Too new file format. You need a more recent version.");
-            }
+                1 or 2 or 3 => new V1AxCryptReader(inputStream),
+                4 => new V2AxCryptReader(inputStream),
+                _ => throw new FileFormatException("Too new file format. You need a more recent version."),
+            };
             return reader;
         }
 
         public void Trailers(AxCryptReaderBase reader)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException("reader");
-            }
+            ArgumentNullException.ThrowIfNull(reader);
 
             TrailerBlocks.Add(reader.CurrentHeaderBlock);
             ReadHeadersToLast(TrailerBlocks, reader, HeaderBlockType.V2Hmac);
@@ -138,33 +125,32 @@ namespace AxCrypt.Core.Header
             throw new FileFormatException("Premature end of stream.", ErrorStatus.EndOfStream);
         }
 
-        public VersionHeaderBlock VersionHeaderBlock
+        public VersionHeaderBlock? VersionHeaderBlock
         {
             get
             {
-                VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+                VersionHeaderBlock? versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
                 return versionHeaderBlock;
             }
         }
 
-        public T FindHeaderBlock<T>() where T : HeaderBlock
+        public T? FindHeaderBlock<T>() where T : HeaderBlock
         {
             return FindHeaderBlock<T>(HeaderBlocks);
         }
 
-        public T FindTrailerBlock<T>() where T : HeaderBlock
+        public T? FindTrailerBlock<T>() where T : HeaderBlock
         {
             return FindHeaderBlock<T>(TrailerBlocks);
         }
 
-        private static T FindHeaderBlock<T>(IEnumerable<HeaderBlock> headerBlocks) where T : HeaderBlock
+        private static T? FindHeaderBlock<T>(IEnumerable<HeaderBlock> headerBlocks) where T : HeaderBlock
         {
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
-                T typedHeaderHeaderBlock = headerBlock as T;
-                if (typedHeaderHeaderBlock != null)
+                if (headerBlock is T t)
                 {
-                    return typedHeaderHeaderBlock;
+                    return t;
                 }
             }
             return null;
@@ -172,7 +158,7 @@ namespace AxCrypt.Core.Header
 
         public void EnsureFileFormatVersion(int lowestMajorVersion, int highestMajorVersion)
         {
-            VersionHeaderBlock versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>();
+            VersionHeaderBlock? versionHeaderBlock = FindHeaderBlock<VersionHeaderBlock>() ?? throw new FileFormatException("VersionHeaderBlock missing.");
             if (versionHeaderBlock.FileVersionMajor > highestMajorVersion)
             {
                 throw new FileFormatException("Too new file format.", ErrorStatus.TooNewFileFormatVersion);
@@ -187,17 +173,15 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                PreambleHeaderBlock? headerBlock = FindHeaderBlock<PreambleHeaderBlock>() ?? throw new FileFormatException("PreambleHeaderBlock missing.");
 
                 return headerBlock.Hmac;
             }
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                PreambleHeaderBlock headerBlock = FindHeaderBlock<PreambleHeaderBlock>();
+                ArgumentNullException.ThrowIfNull(value);
+
+                PreambleHeaderBlock? headerBlock = FindHeaderBlock<PreambleHeaderBlock>() ?? throw new FileFormatException("PreambleHeaderBlock missing.");
                 headerBlock.Hmac = value;
             }
         }

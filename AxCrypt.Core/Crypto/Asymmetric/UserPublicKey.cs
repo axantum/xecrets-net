@@ -25,62 +25,64 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Core.IO;
 using AxCrypt.Core.UI;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
     /// <summary>
     /// Holder of the public key for a user, associated with an email address.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class UserPublicKey : IEquatable<UserPublicKey>
     {
         private class EmailAddressComparer : IEqualityComparer<UserPublicKey>
         {
-            public bool Equals(UserPublicKey x, UserPublicKey y)
+            public bool Equals(UserPublicKey? x, UserPublicKey? y)
             {
-                if (Object.ReferenceEquals(x, null))
+                if (x is null)
                 {
-                    return Object.ReferenceEquals(y, null);
+                    return ReferenceEquals(y, null);
                 }
-                return !Object.ReferenceEquals(y, null) && x.Email == y.Email;
+                return !ReferenceEquals(y, null) && x.Email == y.Email;
             }
 
             public int GetHashCode(UserPublicKey upk)
             {
-                if (upk == null)
+                if (upk == null!)
                 {
-                    throw new ArgumentNullException("upk");
+                    throw new ArgumentNullException(nameof(upk));
                 }
 
                 return upk.Email.GetHashCode();
             }
         }
 
-        [JsonConstructor]
         public UserPublicKey(EmailAddress email, IAsymmetricPublicKey publicKey)
         {
             Email = email;
             PublicKey = publicKey;
         }
 
+        public UserPublicKey()
+        {
+            Email = EmailAddress.Empty;
+        }
+
         public static readonly IEqualityComparer<UserPublicKey> EmailComparer = new EmailAddressComparer();
 
-        [JsonProperty("email"), JsonConverter(typeof(EmailAddressJsonConverter))]
-        public EmailAddress Email { get; private set; }
+        [JsonPropertyName("email")]
+        public EmailAddress Email { get; set; }
 
-        [JsonProperty("publickey")]
-        public IAsymmetricPublicKey PublicKey { get; private set; }
+        [JsonPropertyName("publickey")]
+        [AllowNull]
+        public IAsymmetricPublicKey PublicKey { get; set; }
 
         /// <summary>
         /// Indicates if this public key was imported by the user, not from the servers
         /// </summary>
-        [JsonProperty("user_imported")]
+        [JsonPropertyName("user_imported")]
         public bool IsUserImported { get; set; }
 
         public override string ToString()
@@ -88,9 +90,10 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return Email.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            return Equals(obj as UserPublicKey);
+            var other = obj as UserPublicKey;
+            return Equals(other);
         }
 
         public override int GetHashCode()
@@ -98,23 +101,23 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return Email.GetHashCode() ^ PublicKey.GetHashCode();
         }
 
-        public static bool operator ==(UserPublicKey left, UserPublicKey right)
+        public static bool operator ==(UserPublicKey? left, UserPublicKey? right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (ReferenceEquals(left, null))
             {
-                return Object.ReferenceEquals(right, null);
+                return ReferenceEquals(right, null);
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(UserPublicKey left, UserPublicKey right)
+        public static bool operator !=(UserPublicKey? left, UserPublicKey? right)
         {
             return !(left == right);
         }
 
-        public bool Equals(UserPublicKey other)
+        public bool Equals(UserPublicKey? other)
         {
-            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            if (other is null || GetType() != other.GetType())
             {
                 return false;
             }

@@ -44,7 +44,7 @@ namespace AxCrypt.Abstractions
         /// <exception cref="System.NotSupportedException">The operating system does not support this method</exception>
         /// <exception cref="AxCryptException">The cryptographic protection failed</exception>
         /// <exception cref="System.OutOfMemoryException">Out of memory</exception>
-        byte[] Protect(byte[] userData, byte[] optionalEntropy);
+        byte[] Protect(byte[] userData, byte[]? optionalEntropy);
 
         /// <summary>
         /// Unprotects the encryptedData parameter and returns a byte array
@@ -56,6 +56,6 @@ namespace AxCrypt.Abstractions
         /// <exception cref="System.NotSupportedException">The operating system does not support this method</exception>
         /// <exception cref="AxCryptException">The cryptographic protection failed</exception>
         /// <exception cref="System.OutOfMemoryException">Out of memory</exception>
-        byte[] Unprotect(byte[] encryptedData, byte[] optionalEntropy);
+        byte[]? Unprotect(byte[] encryptedData, byte[]? optionalEntropy);
     }
 }

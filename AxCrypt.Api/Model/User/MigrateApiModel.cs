@@ -1,12 +1,11 @@
-using AxCrypt.Api.Model.Secret;
-using Newtonsoft.Json;
+﻿using AxCrypt.Api.Model.Secret;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AxCrypt.Api.Model.User
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class MigrateApiModel
     {
         public static MigrateApiModel Empty = new MigrateApiModel(UserApiModel.Empty, new List<SecretApiModel> { SecretApiModel.Empty });
@@ -17,10 +16,10 @@ namespace AxCrypt.Api.Model.User
             Secrets = secrets;
         }
 
-        [JsonProperty("user")]
-        public UserApiModel User { get; }
+        [JsonPropertyName("user")]
+        public UserApiModel User { get; set; }
 
-        [JsonProperty("secrets")]
-        public IList<SecretApiModel> Secrets { get; }
+        [JsonPropertyName("secrets")]
+        public IList<SecretApiModel> Secrets { get; set; }
     }
 }

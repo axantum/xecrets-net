@@ -15,9 +15,9 @@ namespace AxCrypt.Common
 
         public StartupTipButtonStyle ButtonStyle { get; private set; }
 
-        public Uri Url { get; private set; }
+        public Uri? Url { get; private set; }
 
-        public StartupTipProperties(StartupTipLevel level, StartupTipButtonStyle buttonStyle, Uri url)
+        public StartupTipProperties(StartupTipLevel level, StartupTipButtonStyle buttonStyle, Uri? url)
         {
             Level = level;
             ButtonStyle = buttonStyle;

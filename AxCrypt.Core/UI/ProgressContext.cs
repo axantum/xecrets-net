@@ -55,7 +55,7 @@ namespace AxCrypt.Core.UI
 
         private int _progressLevel = 0;
 
-        private string _name;
+        private string _name = string.Empty;
 
         public ProgressContext()
             : this(TimeToFirstProgress)
@@ -110,11 +110,11 @@ namespace AxCrypt.Core.UI
         /// of progress will result in an event being raised. Only if NotifyLevelStart() / NotifyLevelFinished()
         /// are used, will a percentage of 100 be reported, and then only exactly once.
         /// </summary>
-        public event EventHandler<ProgressEventArgs> Progressing;
+        public event EventHandler<ProgressEventArgs>? Progressing;
 
         protected virtual void OnProgressing(ProgressEventArgs e)
         {
-            EventHandler<ProgressEventArgs> handler = Progressing;
+            EventHandler<ProgressEventArgs>? handler = Progressing;
             if (handler != null)
             {
                 New<IUIThread>().PostTo(() => handler(this, e));

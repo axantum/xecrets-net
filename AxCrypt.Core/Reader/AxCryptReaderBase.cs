@@ -34,18 +34,20 @@ using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Core.Reader
 {
     public abstract class AxCryptReaderBase
     {
+        [AllowNull]
         public LookAheadStream InputStream { get; set; }
 
         public static IAxCryptDocument Document(AxCryptReaderBase reader)
         {
             if (reader == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException(nameof(reader));
             }
 
             return reader.Document();
@@ -58,11 +60,7 @@ namespace AxCrypt.Core.Reader
         protected AxCryptReaderBase(LookAheadStream inputStream)
             : this()
         {
-            if (inputStream == null)
-            {
-                throw new ArgumentNullException("inputStream");
-            }
-            InputStream = inputStream;
+            InputStream = inputStream ?? throw new ArgumentNullException(nameof(inputStream));
         }
 
         private bool _referencedByDocumentInstance;
@@ -76,11 +74,11 @@ namespace AxCrypt.Core.Reader
         {
             if (inputHeaders == null)
             {
-                throw new ArgumentNullException("inputHeaders");
+                throw new ArgumentNullException(nameof(inputHeaders));
             }
             if (outputHeaders == null)
             {
-                throw new ArgumentNullException("outputHeaders");
+                throw new ArgumentNullException(nameof(outputHeaders));
             }
 
             outputHeaders.Clear();
@@ -116,7 +114,7 @@ namespace AxCrypt.Core.Reader
                 throw new InvalidOperationException("A single reader instance can only be referenced by a single document instance.");
             }
             _referencedByDocumentInstance = true;
-            return null;
+            return null!;
         }
 
         /// <summary>
@@ -124,6 +122,7 @@ namespace AxCrypt.Core.Reader
         /// </summary>
         public virtual AxCryptItemType CurrentItemType { get; protected set; }
 
+        [AllowNull]
         public HeaderBlock CurrentHeaderBlock { get; private set; }
 
         protected abstract HeaderBlock HeaderBlockFactory(HeaderBlockType headerBlockType, byte[] dataBlock);
@@ -198,8 +197,8 @@ namespace AxCrypt.Core.Reader
                 CurrentItemType = AxCryptItemType.EndOfStream;
                 return;
             }
-            Int32 headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
-            if (headerBlockLength < 0 || headerBlockLength > 0xfffff)
+            var headerBlockLength = BitConverter.ToInt32(lengthBytes, 0) - 5;
+            if (headerBlockLength is < 0 or > 0xfffff)
             {
                 throw new FileFormatException("Invalid headerBlockLength {0}".InvariantFormat(headerBlockLength), ErrorStatus.InvalidBlockLength);
             }
@@ -220,7 +219,7 @@ namespace AxCrypt.Core.Reader
 
             ParseHeaderBlock(headerBlockType, dataBlock);
 
-            DataHeaderBlock dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
+            DataHeaderBlock? dataHeaderBlock = CurrentHeaderBlock as DataHeaderBlock;
             if (dataHeaderBlock != null)
             {
                 CurrentItemType = AxCryptItemType.Data;

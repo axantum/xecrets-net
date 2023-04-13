@@ -31,27 +31,25 @@ using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+
 using static AxCrypt.Abstractions.TypeResolve;
+
+using JsonIgnoreAttribute = System.Text.Json.Serialization.JsonIgnoreAttribute;
 
 namespace AxCrypt.Core.Session
 {
-    [JsonObject(MemberSerialization.OptIn)]
-    public class FileSystemState : IDisposable
+    public class FileSystemState : IDisposable, IJsonOnDeserialized
     {
-        [JsonConstructor]
         public FileSystemState()
         {
         }
 
+        [JsonIgnore]
         public IDataStore PathInfo
         {
             get
@@ -60,10 +58,13 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "context")]
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
+        {
+            OnDeserialized();
+        }
+
+        public void OnDeserialized()
         {
             foreach (WatchedFolder watchedFolder in _watchedFolders)
             {
@@ -71,18 +72,22 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        private Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
+        private readonly Dictionary<string, ActiveFile> _activeFilesByEncryptedPath = new Dictionary<string, ActiveFile>();
 
-        [JsonProperty("knownPassphrases")]
+        [JsonPropertyName("knownPassphrases")]
         public virtual IList<Passphrase> KnownPassphrases
         {
             get;
-            private set;
+            set;
         } = new List<Passphrase>();
 
-        [JsonProperty("watchedFolders")]
+        [JsonPropertyName("watchedFolders")]
+        public List<WatchedFolder> WatchedFoldersForSerialization { get { return _watchedFolders; } set { _watchedFolders = value; } }
+
+        [AllowNull]
         private List<WatchedFolder> _watchedFolders = new List<WatchedFolder>();
 
+        [JsonIgnore]
         public IEnumerable<WatchedFolder> AllWatchedFolders
         {
             get
@@ -91,6 +96,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<WatchedFolder> WatchedFolders
         {
             get
@@ -106,7 +112,7 @@ namespace AxCrypt.Core.Session
         {
             if (watchedFolder == null)
             {
-                throw new ArgumentNullException("watchedFolder");
+                throw new ArgumentNullException(nameof(watchedFolder));
             }
 
             AddWatchedFolderInternal(watchedFolder);
@@ -131,8 +137,10 @@ namespace AxCrypt.Core.Session
             }
         }
 
-        private async void watchedFolder_Changed(object sender, FileWatcherEventArgs e)
+        private async void watchedFolder_Changed(object? sender, FileWatcherEventArgs e)
         {
+            ArgumentNullException.ThrowIfNull(sender);
+
             WatchedFolder watchedFolder = (WatchedFolder)sender;
             foreach (string fullName in e.FullNames)
             {
@@ -168,7 +176,7 @@ namespace AxCrypt.Core.Session
 
         private async Task RemoveDeletedActiveFile(IDataItem dataItem)
         {
-            ActiveFile removedActiveFile = FindActiveFileFromEncryptedPath(dataItem.FullName);
+            ActiveFile? removedActiveFile = FindActiveFileFromEncryptedPath(dataItem.FullName);
             if (removedActiveFile != null)
             {
                 RemoveActiveFile(removedActiveFile);
@@ -180,7 +188,7 @@ namespace AxCrypt.Core.Session
         {
             if (dataItem == null)
             {
-                throw new ArgumentNullException("folderInfo");
+                throw new ArgumentNullException(nameof(dataItem));
             }
 
             RemoveWatchedFolderInternal(dataItem);
@@ -191,7 +199,7 @@ namespace AxCrypt.Core.Session
         {
             if (dataItem == null)
             {
-                throw new ArgumentNullException("folderInfo");
+                throw new ArgumentNullException(nameof(dataItem));
             }
             RemoveWatchedFolderInternal(dataItem);
             await Resolve.SessionNotify.NotifyAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, Resolve.KnownIdentities.DefaultEncryptionIdentity));
@@ -218,6 +226,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public IEnumerable<ActiveFile> ActiveFiles
         {
             get
@@ -229,6 +238,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public int ActiveFileCount
         {
             get
@@ -237,6 +247,7 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [JsonIgnore]
         public IList<ActiveFile> DecryptedActiveFiles
         {
             get
@@ -258,17 +269,16 @@ namespace AxCrypt.Core.Session
         /// </summary>
         /// <param name="decryptedPath">Full path to an encrypted file.</param>
         /// <returns>An ActiveFile instance, or null if not found in file system state.</returns>
-        public virtual ActiveFile FindActiveFileFromEncryptedPath(string encryptedPath)
+        public virtual ActiveFile? FindActiveFileFromEncryptedPath(string encryptedPath)
         {
             if (encryptedPath == null)
             {
-                throw new ArgumentNullException("encryptedPath");
+                throw new ArgumentNullException(nameof(encryptedPath));
             }
             encryptedPath = encryptedPath.NormalizeFilePath();
-            ActiveFile activeFile;
             lock (_activeFilesByEncryptedPath)
             {
-                if (_activeFilesByEncryptedPath.TryGetValue(encryptedPath, out activeFile))
+                if (_activeFilesByEncryptedPath.TryGetValue(encryptedPath, out ActiveFile? activeFile))
                 {
                     return activeFile;
                 }
@@ -284,7 +294,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
             AddInternal(activeFile);
         }
@@ -299,7 +309,7 @@ namespace AxCrypt.Core.Session
         {
             if (fullNames == null)
             {
-                throw new ArgumentNullException("fullNames");
+                throw new ArgumentNullException(nameof(fullNames));
             }
 
             bool dirty = false;
@@ -309,13 +319,11 @@ namespace AxCrypt.Core.Session
                 {
                     continue;
                 }
-                using (FileLock fileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
+                using FileLock fileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo);
+                if (!activeFile.EncryptedFileInfo.IsAvailable)
                 {
-                    if (!activeFile.EncryptedFileInfo.IsAvailable)
-                    {
-                        RemoveActiveFile(activeFile);
-                        dirty = true;
-                    }
+                    RemoveActiveFile(activeFile);
+                    dirty = true;
                 }
             }
             if (dirty)
@@ -332,7 +340,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
             if (!activeFile.Status.HasFlag(ActiveFileStatus.NotDecrypted))
             {
@@ -341,7 +349,7 @@ namespace AxCrypt.Core.Session
 
             lock (_activeFilesByEncryptedPath)
             {
-                _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
+                _ = _activeFilesByEncryptedPath.Remove(activeFile.EncryptedFileInfo.FullName);
             }
         }
 
@@ -354,9 +362,8 @@ namespace AxCrypt.Core.Session
             New<ActiveFileWatcher>().Add(activeFile.EncryptedFileInfo);
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET")]
-        [JsonProperty("activeFiles")]
-        private IList<ActiveFile> ActiveFilesForSerialization
+        [JsonPropertyName("activeFiles")]
+        public IList<ActiveFile> ActiveFilesForSerialization
         {
             get
             {
@@ -399,19 +406,18 @@ namespace AxCrypt.Core.Session
         /// A delegate with an action to take for each active file, returning the same or updated active file as need be. If null is returned,
         /// the active file is removed from the list of active files.
         /// </param>
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        public async Task ForEach(Func<ActiveFile, Task<ActiveFile>> action)
+        public async Task ForEach(Func<ActiveFile, Task<ActiveFile?>> action)
         {
             if (action == null)
             {
-                throw new ArgumentNullException("action");
+                throw new ArgumentNullException(nameof(action));
             }
 
             bool isAnyModified = false;
             List<ActiveFile> activeFiles = new List<ActiveFile>();
             foreach (ActiveFile activeFile in ActiveFiles)
             {
-                ActiveFile updatedActiveFile;
+                ActiveFile? updatedActiveFile;
                 try
                 {
                     updatedActiveFile = await action(activeFile);
@@ -439,13 +445,14 @@ namespace AxCrypt.Core.Session
             }
         }
 
+        [AllowNull]
         private IDataStore _dataStore;
 
         public static FileSystemState Create(IDataStore path)
         {
             if (path == null)
             {
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             }
 
             if (path.IsAvailable)
@@ -464,10 +471,9 @@ namespace AxCrypt.Core.Session
             return fileSystemState;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "If the state can't be read, the software is rendered useless, so it's better to revert to empty here.")]
         private static FileSystemState CreateFileSystemState(IDataStore path)
         {
-            FileSystemState fileSystemState = null;
+            FileSystemState? fileSystemState = null;
             try
             {
                 fileSystemState = Resolve.Serializer.Deserialize<FileSystemState>(path);
@@ -494,10 +500,7 @@ namespace AxCrypt.Core.Session
                     Resolve.Log.LogError("Exception {1} reading {0}. Ignoring and re-initializing state.".InvariantFormat(path.FullName, ex.Message));
                 }
             }
-            if (fileSystemState == null)
-            {
-                fileSystemState = new FileSystemState();
-            }
+            fileSystemState ??= new FileSystemState();
             fileSystemState._dataStore = path;
             return fileSystemState;
         }
@@ -509,10 +512,8 @@ namespace AxCrypt.Core.Session
                 string currentJson = string.Empty;
                 if (_dataStore.IsAvailable)
                 {
-                    using (StreamReader reader = new StreamReader(_dataStore.OpenRead(), Encoding.UTF8))
-                    {
-                        currentJson = reader.ReadToEnd();
-                    }
+                    using StreamReader reader = new StreamReader(_dataStore.OpenRead(), Encoding.UTF8);
+                    currentJson = reader.ReadToEnd();
                 }
 
                 string updatedJson = Resolve.Serializer.Serialize(this);
@@ -521,10 +522,8 @@ namespace AxCrypt.Core.Session
                     return;
                 }
 
-                using (StreamWriter writer = new StreamWriter(_dataStore.OpenWrite(), Encoding.UTF8))
-                {
-                    writer.Write(updatedJson);
-                }
+                using StreamWriter writer = new StreamWriter(_dataStore.OpenWrite(), Encoding.UTF8);
+                writer.Write(updatedJson);
             }
             if (Resolve.Log.IsInfoEnabled)
             {

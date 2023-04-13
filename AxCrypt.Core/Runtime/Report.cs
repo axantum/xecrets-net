@@ -41,11 +41,11 @@ namespace AxCrypt.Core.Runtime
 {
     public class Report : IReport
     {
-        private string _currentFilePath;
+        private readonly string _currentFilePath;
 
-        private string _previousFilePath;
+        private readonly string _previousFilePath;
 
-        private long _maxSizeInBytes;
+        private readonly long _maxSizeInBytes;
 
         public Report(string folderPath, long maxSizeInBytes)
         {
@@ -57,24 +57,23 @@ namespace AxCrypt.Core.Runtime
         public void Exception(Exception ex)
         {
             MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize();
-            using (FileLock fileLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
+            using var fileLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath));
+
+            StringBuilder sb = new StringBuilder();
+            if (!fileLock.DataStore.IsAvailable)
             {
-                StringBuilder sb = new StringBuilder();
-                if (!fileLock.DataStore.IsAvailable)
-                {
-                    sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
-                }
+                _ = sb.AppendLine(Texts.ReportSnapshotIntro).AppendLine();
+            }
 
-                AxCryptException ace = ex as AxCryptException;
-                string displayContext = ace?.DisplayContext ?? string.Empty;
-                sb.AppendFormat("----------- Exception at {0} -----------", New<INow>().Utc.ToString("u")).AppendLine();
-                sb.AppendLine(displayContext);
-                sb.AppendLine(ex?.ToString() ?? "(null)");
+            AxCryptException? ace = ex as AxCryptException;
+            string displayContext = ace?.DisplayContext ?? string.Empty;
+            _ = sb.AppendFormat("----------- Exception at {0} -----------", New<INow>().Utc.ToString("u")).AppendLine();
+            _ = sb.AppendLine(displayContext);
+            _ = sb.AppendLine(ex?.ToString() ?? "(null)");
 
-                using (StreamWriter writer = new StreamWriter(fileLock.DataStore.OpenUpdate(), Encoding.UTF8))
-                {
-                    writer.Write(sb.ToString());
-                }
+            using (StreamWriter writer = new StreamWriter(fileLock.DataStore.OpenUpdate(), Encoding.UTF8))
+            {
+                writer.Write(sb.ToString());
             }
         }
 
@@ -85,17 +84,13 @@ namespace AxCrypt.Core.Runtime
 
         private void MoveCurrentLogFileContentToPreviousLogFileIfSizeIncreaseMoreThanMaxSize()
         {
-            using (FileLock currentLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath)))
+            using var currentLock = New<FileLocker>().Acquire(New<IDataStore>(_currentFilePath));
+            if (!currentLock.DataStore.IsAvailable || currentLock.DataStore.Length() <= _maxSizeInBytes)
             {
-                if (!currentLock.DataStore.IsAvailable || currentLock.DataStore.Length() <= _maxSizeInBytes)
-                {
-                    return;
-                }
-                using (FileLock previousLock = New<FileLocker>().Acquire(New<IDataStore>(_previousFilePath)))
-                {
-                    currentLock.DataStore.MoveTo(previousLock.DataStore.FullName);
-                }
+                return;
             }
+            using var previousLock = New<FileLocker>().Acquire(New<IDataStore>(_previousFilePath));
+            currentLock.DataStore.MoveTo(previousLock.DataStore.FullName);
         }
     }
 }

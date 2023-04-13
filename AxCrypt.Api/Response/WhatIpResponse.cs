@@ -1,13 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AxCrypt.Api.Response
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class WhatIPResponse : ResponseBase
     {
         public WhatIPResponse()
@@ -21,7 +20,7 @@ namespace AxCrypt.Api.Response
             IPAddress = address;
         }
 
-        [JsonProperty("Ip")]
-        public string IPAddress { get; }
+        [JsonPropertyName("Ip")]
+        public string IPAddress { get; set; }
     }
 }

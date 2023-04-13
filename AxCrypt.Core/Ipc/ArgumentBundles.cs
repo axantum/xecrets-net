@@ -33,18 +33,18 @@ namespace AxCrypt.Core.Ipc
 {
     public class ArgumentBundles
     {
-        private Dictionary<int, List<string>> _bundles = new Dictionary<int, List<string>>();
+        private readonly Dictionary<int, List<string>> _bundles = new Dictionary<int, List<string>>();
 
         public IEnumerable<string> Arguments(int bundleId)
         {
-            List<string> arguments;
+            List<string>? arguments;
             lock (_bundles)
             {
                 if (!_bundles.TryGetValue(bundleId, out arguments))
                 {
-                    return new string[0];
+                    return Array.Empty<string>();
                 }
-                _bundles.Remove(bundleId);
+                _ = _bundles.Remove(bundleId);
             }
             return arguments;
         }
@@ -53,13 +53,12 @@ namespace AxCrypt.Core.Ipc
         {
             if (argumentsToAdd == null)
             {
-                throw new ArgumentNullException("argumentsToAdd");
+                throw new ArgumentNullException(nameof(argumentsToAdd));
             }
 
-            List<string> arguments;
             lock (_bundles)
             {
-                if (!_bundles.TryGetValue(bundleId, out arguments))
+                if (!_bundles.TryGetValue(bundleId, out List<string>? arguments))
                 {
                     arguments = new List<string>();
                     _bundles.Add(bundleId, arguments);

@@ -25,25 +25,23 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Api.Implementation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Text.Json.Serialization;
+
+using Xecrets.File.Core.Crypto.Asymmetric;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
     public class BouncyCastleAsymmetricFactory : IAsymmetricFactory
     {
-        public CustomSerializer[] GetSerializers()
+        public IEnumerable<JsonConverter> GetConverters()
         {
-            CustomSerializer[] jsonConverters = new CustomSerializer[]
+            var converters = new JsonConverter[]
             {
-                new AbstractTypeSerializer<IAsymmetricPublicKey, BouncyCastlePublicKey>(),
-                new AbstractTypeSerializer<IAsymmetricPrivateKey, BouncyCastlePrivateKey>(),
-                new AbstractTypeSerializer<IAsymmetricKeyPair, BouncyCastleKeyPair>(),
-            };
-            return jsonConverters;
+                new BouncyCastleKeyPairJsonConverter(),
+                new BouncyCastlePublicKeyJsonConverter(),
+                new BouncyCastlePrivateKeyJsonConverter(),
+             };
+            return converters;
         }
 
         public IAsymmetricPrivateKey CreatePrivateKey(string privateKeyPem)

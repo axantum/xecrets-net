@@ -34,7 +34,7 @@ namespace AxCrypt.Core.Runtime
     {
         void SetInterval(TimeSpan interval);
 
-        event EventHandler<EventArgs> Elapsed;
+        event EventHandler<EventArgs>? Elapsed;
 
         void Start();
     }

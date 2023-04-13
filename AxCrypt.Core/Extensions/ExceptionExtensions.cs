@@ -24,7 +24,7 @@ namespace AxCrypt.Core.Extensions
 
         private static bool IsDirectoryNotFound(this Exception ex)
         {
-            string typeName = ex.GetType().FullName;
+            string? typeName = ex.GetType().FullName;
             if (typeName == "System.IO.DirectoryNotFoundException")
             {
                 return true;
@@ -36,13 +36,12 @@ namespace AxCrypt.Core.Extensions
         public static void ReportAndDisplay(this Exception ex)
         {
             New<IReport>().Exception(ex);
-            AxCryptException aex = ex as AxCryptException;
-            if (aex != null)
+            if (ex is AxCryptException aex)
             {
-                New<IStatusChecker>().CheckStatusAndShowMessage(aex.ErrorStatus, aex.DisplayContext, aex.Message);
+                _ = New<IStatusChecker>().CheckStatusAndShowMessage(aex.ErrorStatus, aex.DisplayContext, aex.Message);
                 return;
             }
-            New<IStatusChecker>().CheckStatusAndShowMessage(ErrorStatus.Exception, ex?.Message ?? "(null)", Texts.Exception.InvariantFormat("unknown"));
+            _ = New<IStatusChecker>().CheckStatusAndShowMessage(ErrorStatus.Exception, ex?.Message ?? "(null)", Texts.Exception.InvariantFormat("unknown"));
         }
 
         public static void RethrowFileOperation(this Exception ex, string displayContext)
@@ -52,8 +51,7 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException(nameof(ex));
             }
 
-            AxCryptException aex = ex as AxCryptException;
-            if (aex != null)
+            if (ex is AxCryptException aex)
             {
                 throw new FileOperationException(aex.Message, displayContext, aex.ErrorStatus, ex);
             }
@@ -69,7 +67,7 @@ namespace AxCrypt.Core.Extensions
             }
 
             New<AxCryptOnlineState>().IsOffline = true;
-            await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText);
+            _ = await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.WarningTitle, Texts.OfflineApiExceptionDialogText);
         }
     }
 }

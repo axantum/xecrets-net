@@ -30,11 +30,7 @@ using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI.ViewModel
@@ -108,9 +104,9 @@ namespace AxCrypt.Core.UI.ViewModel
             return New<PasswordStrengthEvaluator>().Evaluate(passphrase).Strength > PasswordStrength.Unacceptable;
         }
 
-        private async Task<object> CreateAccountAction()
+        private async Task<object?> CreateAccountAction()
         {
-            if (String.IsNullOrEmpty(UserEmail))
+            if (string.IsNullOrEmpty(UserEmail))
             {
                 return null;
             }

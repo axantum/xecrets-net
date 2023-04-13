@@ -41,6 +41,8 @@ namespace AxCrypt.Mono
 {
     public class HttpRequestClient : IRequestClient
     {
+        private static readonly HttpClient _client = new HttpClient();
+
         public CommandStatus Dispatch(CommandServiceEventArgs command)
         {
             string json = Resolve.Serializer.Serialize(command);
@@ -49,10 +51,9 @@ namespace AxCrypt.Mono
             {
             }
 
-            WebRequest request = HttpWebRequest.Create(HttpRequestServer.Url);
             try
             {
-                return DoRequestInternal("POST", json, request);
+                return DoRequestInternal("POST", json);
             }
             catch (WebException wex)
             {
@@ -65,24 +66,29 @@ namespace AxCrypt.Mono
             }
         }
 
-        private static CommandStatus DoRequestInternal(string method, string content, WebRequest request)
+        private static CommandStatus DoRequestInternal(string method, string content)
         {
-            request.Method = method;
-            if (method == "POST" || method == "PUT")
+            HttpMethod httpMethod = method switch 
             {
-                using (StreamWriter writer = new StreamWriter(request.GetRequestStream(), Encoding.UTF8))
-                {
-                    writer.Write(content);
-                }
-            }
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                "POST" => HttpMethod.Post,
+                "PUT" => HttpMethod.Put,
+                "GET" => HttpMethod.Get,
+                _ => throw new ArgumentException("Method not suppported.", nameof(method))
+            };
+
+            HttpContent httpContent = new StringContent(content);
+            var message = new HttpRequestMessage(httpMethod, HttpRequestServer.Url)
             {
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return CommandStatus.Success;
-                }
-                return CommandStatus.Error;
+                 Content = httpContent,
+            };
+
+            HttpResponseMessage response = _client.Send(message);
+            if (response.IsSuccessStatusCode)
+            {
+                return CommandStatus.Success;
             }
+
+            return CommandStatus.Error;
         }
     }
 }

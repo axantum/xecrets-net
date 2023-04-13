@@ -26,7 +26,7 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.Crypto;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Fake;
 using NUnit.Framework;
 using System;

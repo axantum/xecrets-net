@@ -4,6 +4,7 @@ using AxCrypt.Core.Portable;
 using AxCrypt.Mono.Portable;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,30 +13,21 @@ namespace AxCrypt.Mono.Cryptography
 {
     internal class CryptoStreamWrapper : CryptoStreamBase
     {
+        [AllowNull]
         private System.Security.Cryptography.CryptoStream _cryptoStream;
 
+        [AllowNull]
         private System.Security.Cryptography.ICryptoTransform _cryptoTransform;
 
         public override CryptoStreamBase Initialize(Stream stream, ICryptoTransform transform, CryptoStreamMode mode)
         {
             _cryptoTransform = new CryptoTransformUnwrapper(transform);
-
-            System.Security.Cryptography.CryptoStreamMode streamMode;
-            switch (mode)
+            var streamMode = mode switch
             {
-                case CryptoStreamMode.Read:
-                    streamMode = System.Security.Cryptography.CryptoStreamMode.Read;
-                    break;
-
-                case CryptoStreamMode.Write:
-                    streamMode = System.Security.Cryptography.CryptoStreamMode.Write;
-                    break;
-
-                default:
-                    streamMode = (System.Security.Cryptography.CryptoStreamMode)mode;
-                    break;
-            }
-
+                CryptoStreamMode.Read => System.Security.Cryptography.CryptoStreamMode.Read,
+                CryptoStreamMode.Write => System.Security.Cryptography.CryptoStreamMode.Write,
+                _ => (System.Security.Cryptography.CryptoStreamMode)mode,
+            };
             _cryptoStream = new System.Security.Cryptography.CryptoStream(stream, _cryptoTransform, streamMode);
             return this;
         }
@@ -119,7 +111,7 @@ namespace AxCrypt.Mono.Cryptography
             _cryptoStream.Close();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return _cryptoStream.Equals(obj);
         }

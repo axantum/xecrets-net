@@ -194,7 +194,7 @@ namespace AxCrypt.Core
                 if (_inputStream != null)
                 {
                     _inputStream.Dispose();
-                    _inputStream = null;
+                    _inputStream = null!;
                 }
             }
 

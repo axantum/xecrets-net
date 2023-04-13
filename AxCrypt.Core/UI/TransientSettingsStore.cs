@@ -14,10 +14,9 @@ namespace AxCrypt.Core.UI
         {
             get
             {
-                string value;
-                if (!Settings.TryGetValue(key, out value))
+                if (!Settings.TryGetValue(key, out string? value))
                 {
-                    return String.Empty;
+                    return string.Empty;
                 }
                 return value;
             }

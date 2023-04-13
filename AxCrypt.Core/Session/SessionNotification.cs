@@ -75,32 +75,32 @@ namespace AxCrypt.Core.Session
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity)
-            : this(notificationType, identity, new string[0], New<LicensePolicy>().Capabilities)
+            : this(notificationType, identity, Array.Empty<string>(), New<LicensePolicy>().Capabilities)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType, LogOnIdentity identity, LicenseCapabilities capabilities)
-            : this(notificationType, identity, new string[0], capabilities)
+            : this(notificationType, identity, Array.Empty<string>(), capabilities)
         {
         }
 
         public SessionNotification(SessionNotificationType notificationType)
-            : this(notificationType, LogOnIdentity.Empty, new string[0], New<LicensePolicy>().Capabilities)
+            : this(notificationType, LogOnIdentity.Empty, Array.Empty<string>(), New<LicensePolicy>().Capabilities)
         {
         }
 
-        public bool Equals(SessionNotification other)
+        public bool Equals(SessionNotification? other)
         {
-            if ((object)other == null)
+            if ((object?)other == null)
             {
                 return false;
             }
             return NotificationType == other.NotificationType && Identity == other.Identity && Capabilities == other.Capabilities && FullNames.SequenceEqual(other.FullNames);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            SessionNotification other = obj as SessionNotification;
+            SessionNotification? other = obj as SessionNotification;
             if (other == null)
             {
                 return false;
@@ -114,20 +114,20 @@ namespace AxCrypt.Core.Session
             return NotificationType.GetHashCode() ^ Identity.GetHashCode() ^ Capabilities.GetHashCode() ^ FullNames.Aggregate(0, (v, s) => v ^ s.GetHashCode());
         }
 
-        public static bool operator ==(SessionNotification left, SessionNotification right)
+        public static bool operator ==(SessionNotification? left, SessionNotification? right)
         {
             if (Object.ReferenceEquals(left, right))
             {
                 return true;
             }
-            if ((object)left == null)
+            if ((object?)left == null)
             {
                 return false;
             }
             return left.Equals(right);
         }
 
-        public static bool operator !=(SessionNotification left, SessionNotification right)
+        public static bool operator !=(SessionNotification? left, SessionNotification? right)
         {
             return !(left == right);
         }

@@ -25,24 +25,20 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Core.Ipc
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class CommandServiceEventArgs : EventArgs
     {
-        [JsonProperty("verb")]
-        public CommandVerb Verb { get; private set; }
+        [JsonPropertyName("verb")]
+        public CommandVerb Verb { get; set; }
 
-        [JsonProperty("arguments")]
-        public IList<string> Arguments { get; private set; }
+        [JsonPropertyName("arguments")]
+        public IList<string> Arguments { get; set; }
 
-        [JsonProperty("bundleid")]
-        public int BundleId { get; private set; }
+        [JsonPropertyName("bundleid")]
+        public int BundleId { get; set; }
 
         public CommandServiceEventArgs()
         {

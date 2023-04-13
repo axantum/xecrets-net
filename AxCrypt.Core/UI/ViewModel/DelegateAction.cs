@@ -37,23 +37,14 @@ namespace AxCrypt.Core.UI.ViewModel
     /// </summary>
     public class DelegateAction<T> : IAction
     {
-        private Action<T> _executeMethod;
+        private readonly Action<T> _executeMethod;
 
-        private Func<T, bool> _canExecuteMethod;
+        private readonly Func<T?, bool> _canExecuteMethod;
 
-        public DelegateAction(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
+        public DelegateAction(Action<T> executeMethod, Func<T?, bool> canExecuteMethod)
         {
-            if (executeMethod == null)
-            {
-                throw new ArgumentNullException(nameof(executeMethod));
-            }
-            if (canExecuteMethod == null)
-            {
-                throw new ArgumentNullException(nameof(canExecuteMethod));
-            }
-
-            _executeMethod = executeMethod;
-            _canExecuteMethod = canExecuteMethod;
+            _executeMethod = executeMethod ?? throw new ArgumentNullException(nameof(executeMethod));
+            _canExecuteMethod = canExecuteMethod ?? throw new ArgumentNullException(nameof(canExecuteMethod));
         }
 
         public DelegateAction(Action<T> executeMethod)
@@ -63,30 +54,29 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            return _canExecuteMethod(parameter != null ? (T)parameter : default(T));
+            return _canExecuteMethod(parameter != null ? (T)parameter : default);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
-            if (!CanExecute(parameter))
+            if (!CanExecute(parameter!))
             {
                 throw new InvalidOperationException("Execute() invoked when it cannot execute.");
             }
-            _executeMethod((T)parameter);
+            _executeMethod((T)parameter!);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         protected virtual void OnCanExecuteChanged()
         {
-            EventHandler handler = CanExecuteChanged;
+            EventHandler? handler = CanExecuteChanged;
             if (handler != null)
             {
                 Resolve.UIThread.SendTo(() => handler(this, new EventArgs()));
             }
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method name taken from DelegateCommand implementation by Microsoft Patterns & Practices.")]
         public void RaiseCanExecuteChanged()
         {
             OnCanExecuteChanged();

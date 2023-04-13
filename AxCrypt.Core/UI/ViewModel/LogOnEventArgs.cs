@@ -27,6 +27,7 @@
 
 using AxCrypt.Core.Crypto;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.UI.ViewModel
@@ -55,10 +56,12 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public Passphrase Passphrase { get; set; }
 
+        [AllowNull]
         public string Name { get; set; }
 
         public string UserEmail { get; set; }
 
+        [AllowNull]
         public string EncryptedFileFullName { get; set; }
 
         public LogOnIdentity Identity { get; set; }

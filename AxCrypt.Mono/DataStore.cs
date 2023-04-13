@@ -45,7 +45,7 @@ namespace AxCrypt.Mono
     /// </summary>
     public class DataStore : DataItem, IDataStore
     {
-        private FileInfo _file;
+        private readonly FileInfo _file;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataStore"/> class.
@@ -56,7 +56,7 @@ namespace AxCrypt.Mono
         {
             if (path == null)
             {
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
             }
 
             string normalized = path.NormalizeFilePath();
@@ -118,7 +118,7 @@ namespace AxCrypt.Mono
         public Stream OpenUpdate()
         {
             _file.Refresh();
-            Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName));
+            _ = Directory.CreateDirectory(Path.GetDirectoryName(_file.FullName) ?? throw new InternalErrorException("Could not get a  directory name from FullName."));
             _file.Refresh();
             FileStream stream = new FileStream(_file.FullName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None, OS.Current.StreamBufferSize);
             return stream;
@@ -151,10 +151,8 @@ namespace AxCrypt.Mono
             try
             {
                 _file.Refresh();
-                using (Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None))
-                {
-                    return false;
-                }
+                using Stream stream = _file.Open(FileMode.Open, IsWriteProtected ? FileAccess.Read : FileAccess.ReadWrite, IsWriteProtected ? FileShare.Read : FileShare.None);
+                return false;
             }
             catch (IOException ioex)
             {

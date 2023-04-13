@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,10 +26,10 @@ namespace AxCrypt.Core.IO
         {
             if (creator == null)
             {
-                throw new ArgumentNullException("creator");
+                throw new ArgumentNullException(nameof(creator));
             }
 
-            T stream = chained;
+            T? stream = chained;
             try
             {
                 TResult created = creator(chained);
@@ -46,11 +47,7 @@ namespace AxCrypt.Core.IO
 
         protected ChainedStream(T chained)
         {
-            if (chained == null)
-            {
-                throw new ArgumentNullException("chained");
-            }
-            Chained = chained;
+            Chained = chained ?? throw new ArgumentNullException(nameof(chained));
         }
 
         /// <summary>
@@ -60,6 +57,7 @@ namespace AxCrypt.Core.IO
         /// <value>
         /// The chained stream.
         /// </value>
+        [AllowNull]
         public T Chained { get; private set; }
 
         protected override void Dispose(bool disposing)

@@ -54,15 +54,14 @@ namespace AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="work">The work to do for each file.</param>
         /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         public virtual Task DoFilesAsync<TDataItem>(IEnumerable<TDataItem> files, Func<TDataItem, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
             where TDataItem : IDataItem
         {
-            Func<TDataItem, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
+            Task<FileOperationContext> singleFileOperation(TDataItem file, IProgressContext progress)
             {
                 progress.Display = file.Name;
                 return work((TDataItem)file, progress);
-            };
+            }
 
             return InvokeAsync(files, singleFileOperation, (status) =>
             {
@@ -80,8 +79,7 @@ namespace AxCrypt.Core.UI
         /// <param name="files">The files to operation on.</param>
         /// <param name="workAsync">The work to do for each file.</param>
         /// <param name="allCompleteAsync">The completion callback after *all* files have been processed.</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        private async Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> allCompleteAsync)
+        private async Task InvokeAsync<T>(IEnumerable<T> files, Func<T, IProgressContext, Task<FileOperationContext>> workAsync, Func<FileOperationContext, Task> allCompleteAsync) where T : notnull
         {
             WorkerGroupProgressContext groupProgress = new WorkerGroupProgressContext(new CancelProgressContext(new ProgressContext()), New<ISingleThread>());
             await New<IProgressBackground>().WorkAsync(nameof(DoFilesAsync),
@@ -91,7 +89,7 @@ namespace AxCrypt.Core.UI
 
                     FileOperationContext result = await Task.Run(async () =>
                     {
-                        FileOperationContext context = null;
+                        FileOperationContext context;
 
                         foreach (T file in files)
                         {
@@ -101,18 +99,18 @@ namespace AxCrypt.Core.UI
                             }
                             catch (Exception ex) when (ex is OperationCanceledException)
                             {
-                                return new FileOperationContext(file.ToString(), ErrorStatus.Canceled);
+                                return new FileOperationContext(file.ToString()!, ErrorStatus.Canceled);
                             }
-                            catch (Exception ex) when (ex is AxCryptException)
+                            catch (Exception ex) when (ex is AxCryptException exception)
                             {
-                                AxCryptException ace = ex as AxCryptException;
+                                AxCryptException ace = exception;
                                 New<IReport>().Exception(ace);
                                 return new FileOperationContext(ace.DisplayContext.Default(file), ace.InnerException?.Message ?? ace.Message, ace.ErrorStatus);
                             }
                             catch (Exception ex)
                             {
                                 New<IReport>().Exception(ex);
-                                return new FileOperationContext(file.ToString(), ex.Message, ErrorStatus.Exception);
+                                return new FileOperationContext(file.ToString()!, ex.Message, ErrorStatus.Exception);
                             }
                             if (context.ErrorStatus != ErrorStatus.Success)
                             {

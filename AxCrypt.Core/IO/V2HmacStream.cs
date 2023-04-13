@@ -28,6 +28,7 @@
 using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Crypto;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace AxCrypt.Core.IO
@@ -65,15 +66,16 @@ namespace AxCrypt.Core.IO
     /// <typeparam name="T">The type of the stream to actually write to</typeparam>
     public class V2HmacStream<T> : ChainedStream<T> where T : Stream
     {
-        private V2HmacCalculator _calculator;
+        [AllowNull]
+        private readonly V2HmacCalculator _calculator;
 
         protected V2HmacStream()
-            : base(Stream.Null as T)
+            : base((T)Null)
         {
         }
 
         protected V2HmacStream(V2HmacCalculator calculator)
-            : this(calculator, Stream.Null as T)
+            : this(calculator, (T)Null)
         {
         }
 
@@ -85,12 +87,7 @@ namespace AxCrypt.Core.IO
         internal V2HmacStream(V2HmacCalculator calculator, T chainedStream)
             : base(chainedStream)
         {
-            if (calculator == null)
-            {
-                throw new ArgumentNullException("calculator");
-            }
-
-            _calculator = calculator;
+            _calculator = calculator ?? throw new ArgumentNullException(nameof(calculator));
         }
 
         public override bool CanRead

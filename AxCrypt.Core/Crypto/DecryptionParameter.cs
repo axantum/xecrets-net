@@ -43,12 +43,7 @@ namespace AxCrypt.Core.Crypto
         /// <exception cref="System.ArgumentNullException">passphrase</exception>
         public DecryptionParameter(Passphrase passphrase, Guid cryptoId)
         {
-            if (passphrase == null)
-            {
-                throw new ArgumentNullException("passphrase");
-            }
-
-            Passphrase = passphrase;
+            Passphrase = passphrase ?? throw new ArgumentNullException(nameof(passphrase));
             CryptoId = cryptoId;
         }
 
@@ -58,14 +53,9 @@ namespace AxCrypt.Core.Crypto
         /// <param name="privateKey">The private key.</param>
         /// <param name="cryptoId">The crypto identifier.</param>
         /// <exception cref="System.ArgumentNullException">privateKey</exception>
-        public DecryptionParameter(IAsymmetricPrivateKey privateKey, Guid cryptoId)
+        public DecryptionParameter(IAsymmetricPrivateKey? privateKey, Guid cryptoId)
         {
-            if (privateKey == null)
-            {
-                throw new ArgumentNullException("privateKey");
-            }
-
-            PrivateKey = privateKey;
+            PrivateKey = privateKey ?? throw new ArgumentNullException(nameof(privateKey));
             CryptoId = cryptoId;
         }
 
@@ -76,16 +66,16 @@ namespace AxCrypt.Core.Crypto
         /// <param name="privateKeys">The private keys or null.</param>
         /// <param name="cryptoIds">The crypto ids.</param>
         /// <returns></returns>
-        public static IEnumerable<DecryptionParameter> CreateAll(IEnumerable<Passphrase> passphrases, IEnumerable<IAsymmetricPrivateKey> privateKeys, IEnumerable<Guid> cryptoIds)
+        public static IEnumerable<DecryptionParameter> CreateAll(IEnumerable<Passphrase> passphrases, IEnumerable<IAsymmetricPrivateKey?> privateKeys, IEnumerable<Guid> cryptoIds)
         {
             if (cryptoIds == null)
             {
-                throw new ArgumentNullException("cryptoIds");
+                throw new ArgumentNullException(nameof(cryptoIds));
             }
 
             List<DecryptionParameter> all = new List<DecryptionParameter>();
 
-            foreach (Passphrase passphrase in passphrases ?? new Passphrase[0])
+            foreach (Passphrase passphrase in passphrases ?? Array.Empty<Passphrase>())
             {
                 foreach (Guid cryptoId in cryptoIds)
                 {
@@ -103,7 +93,7 @@ namespace AxCrypt.Core.Crypto
                 }
             }
 
-            foreach (IAsymmetricPrivateKey privateKey in privateKeys ?? new IAsymmetricPrivateKey[0])
+            foreach (IAsymmetricPrivateKey? privateKey in privateKeys ?? Array.Empty<IAsymmetricPrivateKey>())
             {
                 foreach (Guid cryptoId in cryptoIds)
                 {
@@ -118,16 +108,16 @@ namespace AxCrypt.Core.Crypto
             return all;
         }
 
-        private static string _legacyV1AllowedCharacters = @" !""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz{|}€ŠŒŽšœžŸ¡¢£¤¥§±¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ";
+        private static readonly string _legacyV1AllowedCharacters = @" !""#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz{|}€ŠŒŽšœžŸ¡¢£¤¥§±¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ";
 
         private static string FilterV1Disallowed(string password)
         {
             StringBuilder filtered = new StringBuilder();
             foreach (char c in password)
             {
-                if (_legacyV1AllowedCharacters.IndexOf(c) >= 0)
+                if (_legacyV1AllowedCharacters.Contains(c))
                 {
-                    filtered.Append(c);
+                    _ = filtered.Append(c);
                 }
             }
 
@@ -140,7 +130,7 @@ namespace AxCrypt.Core.Crypto
         /// <value>
         /// The passphrase.
         /// </value>
-        public Passphrase Passphrase { get; private set; }
+        public Passphrase? Passphrase { get; private set; }
 
         /// <summary>
         /// Gets the private key.
@@ -148,7 +138,7 @@ namespace AxCrypt.Core.Crypto
         /// <value>
         /// The private key.
         /// </value>
-        public IAsymmetricPrivateKey PrivateKey { get; private set; }
+        public IAsymmetricPrivateKey? PrivateKey { get; private set; }
 
         /// <summary>
         /// Gets the crypto identifier.

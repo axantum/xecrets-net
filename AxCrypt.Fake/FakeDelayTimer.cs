@@ -33,7 +33,7 @@ namespace AxCrypt.Fake
 {
     public class FakeDelayTimer : IDelayTimer
     {
-        private ISleep _sleep;
+        private readonly ISleep _sleep;
 
         public FakeDelayTimer(ISleep sleep)
         {
@@ -41,7 +41,7 @@ namespace AxCrypt.Fake
             _sleep.Elapsed += Sleep_Elapsed;
         }
 
-        private void Sleep_Elapsed(object sender, SleepEventArgs e)
+        private void Sleep_Elapsed(object? sender, SleepEventArgs e)
         {
             if (_elapsed >= _interval)
             {
@@ -65,7 +65,7 @@ namespace AxCrypt.Fake
             _interval = interval;
         }
 
-        public event EventHandler<EventArgs> Elapsed;
+        public event EventHandler<EventArgs>? Elapsed;
 
         public void Start()
         {
@@ -78,11 +78,7 @@ namespace AxCrypt.Fake
 
         protected virtual void OnElapsed()
         {
-            EventHandler<EventArgs> handler = Elapsed;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Elapsed?.Invoke(this, new EventArgs());
         }
 
         protected virtual void Dispose(bool disposing)

@@ -35,15 +35,11 @@ namespace AxCrypt.Fake
     {
         #region ILogging Members
 
-        public event EventHandler<LoggingEventArgs> Logged;
+        public event EventHandler<LoggingEventArgs>? Logged;
 
         protected virtual void OnLogged(string message)
         {
-            EventHandler<LoggingEventArgs> handler = Logged;
-            if (handler != null)
-            {
-                handler(this, new LoggingEventArgs(message));
-            }
+            Logged?.Invoke(this, new LoggingEventArgs(message));
         }
 
         public void SetLevel(LogLevel level)

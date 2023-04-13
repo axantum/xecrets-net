@@ -15,18 +15,13 @@ namespace AxCrypt.Core.Service
 {
     public class CachingAccountService : IAccountService
     {
-        private IAccountService _service;
+        private readonly IAccountService _service;
 
-        private CacheKey _key;
+        private readonly CacheKey _key;
 
         public CachingAccountService(IAccountService service)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException(nameof(service));
-            }
-
-            _service = service;
+            _service = service ?? throw new ArgumentNullException(nameof(service));
             _key = CacheKey.RootKey.Subkey(nameof(CachingAccountService)).Subkey(service.Identity.UserEmail.Address).Subkey(service.Identity.Tag.ToString());
         }
 
@@ -70,7 +65,7 @@ namespace AxCrypt.Core.Service
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(ListAsync)), async () => await _service.ListAsync()).Free();
         }
 
-        public async Task<UserKeyPair> CurrentKeyPairAsync()
+        public async Task<UserKeyPair?> CurrentKeyPairAsync()
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(CurrentKeyPairAsync)), async () => await _service.CurrentKeyPairAsync()).Free();
         }
@@ -98,7 +93,7 @@ namespace AxCrypt.Core.Service
         public async Task<AccountStatus> StatusAsync(EmailAddress email)
         {
             AccountStatus status = await New<ICache>().UpdateItemAsync(() => _service.StatusAsync(email)).Free();
-            if (status == AccountStatus.Offline || status == AccountStatus.Unknown)
+            if (status is AccountStatus.Offline or AccountStatus.Unknown)
             {
                 New<ICache>().RemoveItem(_key);
             }
@@ -116,12 +111,12 @@ namespace AxCrypt.Core.Service
             await New<ICache>().UpdateItemAsync(async () => await _service.StartPremiumTrialAsync(), _key).Free();
         }
 
-        public async Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public async Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email)
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherPublicKeyAsync)), async () => await _service.OtherPublicKeyAsync(email)).Free();
         }
 
-        public async Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public async Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters)
         {
             return await New<ICache>().GetItemAsync(_key.Subkey(email.Address).Subkey(nameof(OtherUserInvitePublicKeyAsync)), async () => await _service.OtherUserInvitePublicKeyAsync(email, customParameters)).Free();
         }
@@ -136,7 +131,7 @@ namespace AxCrypt.Core.Service
             return await New<ICache>().UpdateItemAsync(() => _service.CreateSubscriptionAsync(skTransactions), _key).Free();
         }
 
-        public async Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public async Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
             return await New<ICache>().UpdateItemAsync(() => _service.GetInAppPurchaseSettingsAsync(), _key).Free();
         }

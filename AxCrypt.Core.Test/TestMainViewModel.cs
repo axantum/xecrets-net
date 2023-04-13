@@ -32,10 +32,12 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Fake;
+using Castle.DynamicProxy;
+
 using Moq;
 using NUnit.Framework;
 using System;
@@ -133,7 +135,8 @@ namespace AxCrypt.Core.Test
             {
                 mvm.LoggedOn = true;
 
-                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, new VersionEventArgs(new DownloadVersion(new Uri("http://localhost/"), new Version(2, 0, 9999, 0)), DateTime.MinValue));
+                var eventArgs = new VersionEventArgs(new DownloadVersion(new Uri("http://localhost/"), new Version(2, 0, 9999, 0)), DateTime.MinValue);
+                mockUpdateCheck.Raise(m => m.AxCryptUpdate += null, eventArgs);
                 Assert.That(mvm.VersionUpdateStatus, Is.EqualTo(VersionUpdateStatus.NewerVersionIsAvailable));
             }
         }
@@ -359,7 +362,7 @@ namespace AxCrypt.Core.Test
                 await mvm.RemoveRecentFiles.ExecuteAsync(new string[] { file2 });
                 mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Once, "Exactly one recent file should be removed.");
 
-                mockFileSystemState.ResetCalls();
+                mockFileSystemState.Invocations.Clear();
                 await mvm.RemoveRecentFiles.ExecuteAsync(new string[] { file2 });
             }
             mockFileSystemState.Verify(x => x.RemoveActiveFile(It.IsAny<ActiveFile>()), Times.Never, "There is no longer any matching file, so no call to remove should happen.");
@@ -437,7 +440,7 @@ namespace AxCrypt.Core.Test
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 mockFileSystemState.Object.KnownPassphrases.Add(id.Passphrase);
                 await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
-                mockFileSystemState.ResetCalls();
+                mockFileSystemState.Invocations.Clear();
 
                 await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { "File1.txt", "file2.txt" });
             }
@@ -460,14 +463,14 @@ namespace AxCrypt.Core.Test
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 fileSystemStateMock.Object.KnownPassphrases.Add(id.Passphrase);
                 await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
-                fileSystemStateMock.ResetCalls();
+                fileSystemStateMock.Invocations.Clear();
 
                 await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { });
 
                 fileSystemStateMock.Verify(x => x.RemoveAndDecryptWatchedFolder(It.IsAny<IDataContainer>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
 
-                fileSystemStateMock.ResetCalls();
+                fileSystemStateMock.Invocations.Clear();
                 await mvm.AddWatchedFolders.ExecuteAsync(new string[] { });
                 fileSystemStateMock.Verify(x => x.AddWatchedFolderAsync(It.IsAny<WatchedFolder>()), Times.Never);
                 fileSystemStateMock.Verify(x => x.Save(), Times.Never);
@@ -477,7 +480,7 @@ namespace AxCrypt.Core.Test
                 fileSystemStateMock.Verify(x => x.AddWatchedFolderAsync(It.IsAny<WatchedFolder>()), Times.Exactly(2));
                 fileSystemStateMock.Verify(x => x.Save(), Times.Once);
 
-                fileSystemStateMock.ResetCalls();
+                fileSystemStateMock.Invocations.Clear();
                 await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { @"C:\Folder1\" });
             }
 
@@ -512,13 +515,13 @@ namespace AxCrypt.Core.Test
 
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                logMock.ResetCalls();
+                logMock.Invocations.Clear();
 
                 mvm.DebugMode = true;
                 logMock.Verify(x => x.SetLevel(It.Is<LogLevel>(ll => ll == LogLevel.Debug)));
                 Assert.That(FakeRuntimeEnvironment.Instance.IsDebugModeEnabled, Is.True);
 
-                logMock.ResetCalls();
+                logMock.Invocations.Clear();
 
                 mvm.DebugMode = false;
             }

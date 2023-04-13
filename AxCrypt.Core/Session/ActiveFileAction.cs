@@ -58,7 +58,7 @@ namespace AxCrypt.Core.Session
         {
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
             progress.NotifyLevelStart();
@@ -84,13 +84,11 @@ namespace AxCrypt.Core.Session
                     }
                     using (FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
                     {
-                        using (FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
+                        using FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo);
+                        activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress).Free();
+                        if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
                         {
-                            activeFile = await CheckIfTimeToUpdate(activeFile, encryptedFileLock, decryptedFileLock, progress).Free();
-                            if (activeFile.Status.HasMask(ActiveFileStatus.AssumedOpenAndDecrypted))
-                            {
-                                activeFile = await TryDelete(activeFile, decryptedFileLock, progress).Free();
-                            }
+                            activeFile = await TryDelete(activeFile, decryptedFileLock, progress).Free();
                         }
                     }
                     return activeFile;
@@ -113,7 +111,7 @@ namespace AxCrypt.Core.Session
         {
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
             progress.NotifyLevelStart();
@@ -127,7 +125,7 @@ namespace AxCrypt.Core.Session
                         activeFile = await CheckActiveFile(activeFile, progress).Free();
                         if (activeFile.Status == ActiveFileStatus.NotDecrypted && !activeFile.EncryptedFileInfo.IsAvailable && !activeFile.EncryptedFileInfo.IsNetworkPath)
                         {
-                            activeFile = null;
+                            return null;
                         }
                         return activeFile;
                     }
@@ -145,13 +143,13 @@ namespace AxCrypt.Core.Session
 
         public virtual async Task ClearExceptionState()
         {
-            await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Status.HasFlag(ActiveFileStatus.Exception))
                 {
                     activeFile = new ActiveFile(activeFile, activeFile.Status & ~ActiveFileStatus.Exception);
                 }
-                return activeFile;
+                return Task.FromResult((ActiveFile?)activeFile);
             }).Free();
         }
 
@@ -159,7 +157,7 @@ namespace AxCrypt.Core.Session
         {
             if (activeFile == null)
             {
-                throw new ArgumentNullException("activeFile");
+                throw new ArgumentNullException(nameof(activeFile));
             }
 
             try
@@ -173,16 +171,12 @@ namespace AxCrypt.Core.Session
                 {
                     return activeFile;
                 }
-                using (FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo))
-                {
-                    using (FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo))
-                    {
-                        activeFile = await CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress).Free();
-                        return activeFile;
-                    }
-                }
+                using FileLock decryptedFileLock = New<FileLocker>().Acquire(activeFile.DecryptedFileInfo);
+                using FileLock encryptedFileLock = New<FileLocker>().Acquire(activeFile.EncryptedFileInfo);
+                activeFile = await CheckActiveFileActions(activeFile, encryptedFileLock, decryptedFileLock, progress).Free();
+                return activeFile;
             }
-            catch (Exception ex) when (!(ex is AxCryptException))
+            catch (Exception ex) when (ex is not AxCryptException)
             {
                 throw new FileOperationException("Unexpected exception checking active files.", $"{activeFile.EncryptedFileInfo.FullName} : {activeFile.DecryptedFileInfo.FullName}", ErrorStatus.Exception, ex);
             }
@@ -198,20 +192,20 @@ namespace AxCrypt.Core.Session
         public virtual async Task<bool> UpdateActiveFileWithKeyIfKeyMatchesThumbprint(LogOnIdentity key)
         {
             bool keyMatch = false;
-            await Resolve.FileSystemState.ForEach(async (ActiveFile activeFile) =>
+            await Resolve.FileSystemState.ForEach((ActiveFile activeFile) =>
             {
                 if (activeFile.Identity != LogOnIdentity.Empty)
                 {
-                    return activeFile;
+                    return Task.FromResult<ActiveFile?>(activeFile);
                 }
                 if (!activeFile.ThumbprintMatch(key.Passphrase))
                 {
-                    return activeFile;
+                    return Task.FromResult<ActiveFile?>(activeFile);
                 }
                 keyMatch = true;
 
                 activeFile = new ActiveFile(activeFile, key);
-                return activeFile;
+                return Task.FromResult<ActiveFile?>(activeFile);
             }).Free();
             return keyMatch;
         }
@@ -220,11 +214,11 @@ namespace AxCrypt.Core.Session
         {
             if (encryptedPaths == null)
             {
-                throw new ArgumentNullException("encryptedPaths");
+                throw new ArgumentNullException(nameof(encryptedPaths));
             }
             if (progress == null)
             {
-                throw new ArgumentNullException("progress");
+                throw new ArgumentNullException(nameof(progress));
             }
 
             progress.NotifyLevelStart();
@@ -233,7 +227,7 @@ namespace AxCrypt.Core.Session
                 progress.AddTotal(encryptedPaths.Count());
                 foreach (IDataStore encryptedPath in encryptedPaths)
                 {
-                    ActiveFile activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
+                    ActiveFile? activeFile = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedPath.FullName);
                     if (activeFile != null)
                     {
                         Resolve.FileSystemState.RemoveActiveFile(activeFile);
@@ -436,12 +430,10 @@ namespace AxCrypt.Core.Session
                     continue;
                 }
 
-                string destinationFilePath = New<IPath>().Combine(activeFile.EncryptedFileInfo.Container.ToString(), file.Name.CreateEncryptedName());
-                using (FileLock lockedDestination = destinationFilePath.CreateUniqueFile())
-                {
-                    EncryptionParameters encryptionParameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
-                    await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(file, lockedDestination, encryptionParameters, progress).Free();
-                }
+                string destinationFilePath = New<IPath>().Combine(activeFile.EncryptedFileInfo.Container.ToString()!, file.Name.CreateEncryptedName());
+                using FileLock lockedDestination = destinationFilePath.CreateUniqueFile();
+                EncryptionParameters encryptionParameters = new EncryptionParameters(activeFile.Properties.CryptoId, activeFile.Identity);
+                await New<AxCryptFile>().EncryptFileWithBackupAndWipeAsync(file, lockedDestination, encryptionParameters, progress).Free();
             }
         }
 

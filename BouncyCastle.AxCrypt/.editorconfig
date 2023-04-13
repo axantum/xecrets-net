@@ -1,0 +1,25 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+# BouncyCastle supressions
+[*.cs]
+dotnet_diagnostic.CA2200.severity = none
+dotnet_diagnostic.CS8618.severity = none
+dotnet_diagnostic.CS8625.severity = none
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8603.severity = none
+dotnet_diagnostic.CS8765.severity = none
+dotnet_diagnostic.CS3021.severity = none
+dotnet_diagnostic.CS8597.severity = none
+dotnet_diagnostic.CS8602.severity = none
+dotnet_diagnostic.CS8604.severity = none
+dotnet_diagnostic.CS8601.severity = none
+dotnet_diagnostic.CS0618.severity = none
+dotnet_diagnostic.CS8605.severity = none
+dotnet_diagnostic.CS8767.severity = none
+dotnet_diagnostic.IDE0059.severity = none
+dotnet_diagnostic.IDE0078.severity = none
+dotnet_diagnostic.IDE0054.severity = none
+dotnet_diagnostic.SYSLIB0023.severity = none
+dotnet_diagnostic.IDE0180.severity = none
+dotnet_diagnostic.IDE0052.severity = none
+dotnet_diagnostic.IDE0044.severity = none
+dotnet_diagnostic.CA1822.severity = none

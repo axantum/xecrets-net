@@ -13,7 +13,7 @@ namespace AxCrypt.Abstractions
     {
         private bool _isDisposed;
 
-        public Action<Releaser> OnDisposeAction { get; set; }
+        public Action<Releaser>? OnDisposeAction { get; set; }
 
         public void Dispose()
         {

@@ -26,6 +26,8 @@
 #endregion Coypright and License
 
 using AxCrypt.Core.IO;
+using AxCrypt.Core.Runtime;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,7 +51,7 @@ namespace AxCrypt.Mono
             return New<IDataStore>(location);
         }
 
-        protected virtual string Location { get; set; }
+        protected virtual string Location { get; set; } = string.Empty;
 
         public abstract bool IsAvailable
         {
@@ -82,7 +84,7 @@ namespace AxCrypt.Mono
         {
             get
             {
-                return new DataContainer(Path.GetDirectoryName(Location));
+                return new DataContainer(Path.GetDirectoryName(Location) ?? throw new InternalErrorException("Directory name was null or a root folder."));
             }
         }
 

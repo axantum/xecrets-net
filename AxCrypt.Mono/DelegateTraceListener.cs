@@ -43,21 +43,24 @@ namespace AxCrypt.Mono
             _trace = trace;
         }
 
-        public override void Write(string message)
+        public override void Write(string? message)
         {
+            ArgumentNullException.ThrowIfNull(message, nameof(message));
             int i;
             while ((i = message.IndexOf(Environment.NewLine, StringComparison.Ordinal)) >= 0)
             {
-                _buffer.Append(message.Substring(0, i + Environment.NewLine.Length));
+                _ = _buffer.Append(message.AsSpan(0, i + Environment.NewLine.Length));
                 _trace(_buffer.ToString());
                 _buffer.Length = 0;
                 message = message.Substring(i + Environment.NewLine.Length);
             }
-            _buffer.Append(message);
+            _ = _buffer.Append(message);
         }
 
-        public override void WriteLine(string message)
+        public override void WriteLine(string? message)
         {
+            ArgumentNullException.ThrowIfNull(message, nameof(message));
+
             Write(message + Environment.NewLine);
         }
     }

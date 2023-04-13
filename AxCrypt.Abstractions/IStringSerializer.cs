@@ -35,9 +35,9 @@ namespace AxCrypt.Abstractions
 {
     public interface IStringSerializer
     {
-        T Deserialize<T>(string serialized);
+        T? Deserialize<T>(string serialized);
 
-        T Deserialize<T>(Stream stream) where T : class, new();
+        T? Deserialize<T>(Stream stream) where T : class, new();
 
         string Serialize<T>(T value);
 

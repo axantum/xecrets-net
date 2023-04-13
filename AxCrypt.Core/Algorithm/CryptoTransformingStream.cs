@@ -33,6 +33,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -41,12 +42,16 @@ namespace AxCrypt.Core.Algorithm
 {
     public class CryptoTransformingStream : CryptoStreamBase
     {
+        [AllowNull]
         private Stream _outStream;
 
+        [AllowNull]
         private LookAheadStream _inStream;
 
+        [AllowNull]
         private ICryptoTransform _transform;
 
+        [AllowNull]
         private ByteBuffer _blockBuffer;
 
         public CryptoTransformingStream()
@@ -212,7 +217,7 @@ namespace AxCrypt.Core.Algorithm
             }
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Stream.Equals(obj);
         }

@@ -30,6 +30,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -79,6 +80,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             return Hash();
         }
 
+        [AllowNull]
         private byte[] _hash;
 
         public override byte[] Hash()
@@ -121,7 +123,7 @@ namespace AxCrypt.Core.Algorithm.Implementation
             get { return _hashAlgorithm.GetDigestSize(); }
         }
 
-        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset)
         {
             _hashAlgorithm.BlockUpdate(inputBuffer, inputOffset, inputCount);
             return inputCount;

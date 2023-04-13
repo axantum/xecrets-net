@@ -1,12 +1,7 @@
 ﻿using AxCrypt.Abstractions.Algorithm;
-using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Extensions;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -16,35 +11,31 @@ namespace AxCrypt.Core.UI
     /// A strongly typed representation of an email address.
     /// </summary>
     /// <remarks>Instances of this type are immutable.</remarks>
-    [JsonObject(MemberSerialization.OptIn)]
     public class EmailAddress : IEquatable<EmailAddress>, IComparable<EmailAddress>
     {
-        public static EmailAddress Empty { get { return new EmailAddress(String.Empty); } }
+        public static EmailAddress Empty { get { return new EmailAddress(string.Empty); } }
 
-        [JsonProperty("address")]
-        public string Address { get; private set; }
+        public string Address { get; private set; } = string.Empty;
 
-        [JsonConstructor]
         private EmailAddress(string address)
         {
             if (address == null)
             {
-                throw new ArgumentNullException("address");
+                throw new ArgumentNullException(nameof(address));
             }
 
             if (address.Length == 0)
             {
-                Address = String.Empty;
+                Address = string.Empty;
                 return;
             }
 
-            string parsed;
-            if (!New<IEmailParser>().TryParse(address, out parsed))
+            if (!New<IEmailParser>().TryParse(address, out string? parsed))
             {
                 throw new FormatException("Not recognized as a valid email address.");
             }
 
-            Address = parsed;
+            Address = parsed ?? string.Empty;
         }
 
         public static bool TryParse(string address, out EmailAddress email)
@@ -53,7 +44,7 @@ namespace AxCrypt.Core.UI
 
             if (address == null)
             {
-                throw new ArgumentNullException("address");
+                throw new ArgumentNullException(nameof(address));
             }
 
             if (address.Length == 0)
@@ -61,20 +52,18 @@ namespace AxCrypt.Core.UI
                 return true;
             }
 
-            string parsed;
-            if (!New<IEmailParser>().TryParse(address, out parsed))
+            if (!New<IEmailParser>().TryParse(address, out string? parsed))
             {
                 return false;
             }
 
-            email = new EmailAddress(parsed);
+            email = new EmailAddress(parsed ?? string.Empty);
             return true;
         }
 
         public static EmailAddress Parse(string address)
         {
-            EmailAddress email;
-            if (TryParse(address, out email))
+            if (TryParse(address, out EmailAddress email))
             {
                 return email;
             }
@@ -92,7 +81,7 @@ namespace AxCrypt.Core.UI
             return Address;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as EmailAddress);
         }
@@ -112,50 +101,50 @@ namespace AxCrypt.Core.UI
             return Address.GetHashCode();
         }
 
-        public static bool operator ==(EmailAddress left, EmailAddress right)
+        public static bool operator ==(EmailAddress? left, EmailAddress? right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (ReferenceEquals(left, null))
             {
-                return Object.ReferenceEquals(right, null);
+                return ReferenceEquals(right, null);
             }
 
             return left.Equals(right);
         }
 
-        public static bool operator !=(EmailAddress left, EmailAddress right)
+        public static bool operator !=(EmailAddress? left, EmailAddress? right)
         {
             return !(left == right);
         }
 
-        public static bool operator <(EmailAddress left, EmailAddress right)
+        public static bool operator <(EmailAddress? left, EmailAddress? right)
         {
             if (left == null || right == null)
             {
                 return false;
             }
-            return String.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) < 0;
+            return string.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) < 0;
         }
 
-        public static bool operator >(EmailAddress left, EmailAddress right)
+        public static bool operator >(EmailAddress? left, EmailAddress? right)
         {
             if (left == null || right == null)
             {
                 return false;
             }
-            return String.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) > 0;
+            return string.Compare(left.Address, right.Address, StringComparison.OrdinalIgnoreCase) > 0;
         }
 
-        public bool Equals(EmailAddress other)
+        public bool Equals(EmailAddress? other)
         {
-            if (Object.ReferenceEquals(other, null) || GetType() != other.GetType())
+            if (other is null || GetType() != other.GetType())
             {
                 return false;
             }
 
-            return String.Compare(Address, other.Address, StringComparison.OrdinalIgnoreCase) == 0;
+            return string.Compare(Address, other.Address, StringComparison.OrdinalIgnoreCase) == 0;
         }
 
-        public int CompareTo(EmailAddress other)
+        public int CompareTo(EmailAddress? other)
         {
             if (other == null)
             {

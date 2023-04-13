@@ -26,10 +26,13 @@
 #endregion Coypright and License
 
 using AxCrypt.Abstractions.Algorithm;
+using AxCrypt.Core.Algorithm.Implementation;
 using AxCrypt.Core.Portable;
 using AxCrypt.Mono.Cryptography;
 using System;
 using System.Linq;
+
+using AxCryptHMACSHA1 = AxCrypt.Abstractions.Algorithm.AxCryptHMACSHA1;
 
 namespace AxCrypt.Mono.Portable
 {
@@ -37,7 +40,8 @@ namespace AxCrypt.Mono.Portable
     {
         public static Abstractions.Algorithm.AxCryptHMACSHA1 AxCryptHMACSHA1()
         {
-            return new AxCryptHMACSHA1Wrapper();
+            AxCryptHMACSHA1 hmac = new BouncyCastleAxCryptHmacSha1Wrapper();
+            return hmac;
         }
 
         public static HMACSHA512 HMACSHA512()
@@ -47,7 +51,7 @@ namespace AxCrypt.Mono.Portable
 
         public static Aes AesManaged()
         {
-            return new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesManaged());
+            return new Mono.Cryptography.AesWrapper(System.Security.Cryptography.Aes.Create());
         }
 
         public static CryptoStreamBase CryptoStream()
@@ -57,12 +61,12 @@ namespace AxCrypt.Mono.Portable
 
         public static Sha1 SHA1Managed()
         {
-            return new Mono.Cryptography.Sha1Wrapper(new System.Security.Cryptography.SHA1Managed());
+            return new Mono.Cryptography.Sha1Wrapper(System.Security.Cryptography.SHA1.Create());
         }
 
         public static Sha256 SHA256Managed()
         {
-            return new Mono.Cryptography.Sha256Wrapper(new System.Security.Cryptography.SHA256Managed());
+            return new Mono.Cryptography.Sha256Wrapper(System.Security.Cryptography.SHA256.Create());
         }
 
         public static RandomNumberGenerator RandomNumberGenerator()

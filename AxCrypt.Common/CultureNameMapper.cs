@@ -8,9 +8,9 @@ namespace AxCrypt.Common
 {
     public class CultureNameMapper
     {
-        private IDictionary<string, string> _cultureMap { get; set; }
+        private IDictionary<string, string>? _cultureMap { get; set; }
 
-        private Func<Task<IList<CultureInfo>>> _getCultureInfos;
+        private readonly Func<Task<IList<CultureInfo>>> _getCultureInfos;
 
         public CultureNameMapper(Func<Task<IList<CultureInfo>>> getCultureInfos)
         {

@@ -1,12 +1,11 @@
 ﻿using System.Globalization;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
     /// <summary>
     /// Information for custom messages.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
     public class CustomMessageParameters
     {
         public CustomMessageParameters(CultureInfo messageCulture, string customMessage)
@@ -27,10 +26,12 @@ namespace AxCrypt.Api.Model
         /// pretty extensive testing and verification to ensure that all builds work as expected on all platforms, and it's likely to give
         /// less problems by waiting for the dust to settle around PCL, .NET Core, .NET Standard etc.
         /// </summary>
-        [JsonProperty("messageCulture")]
-        private readonly string _messageCultureStringWorkAroundMsCorlibVsSystemGlobalizationPCLSerializationProblem;
+        [JsonPropertyName("messageCulture")]
+        public string? MessageCultureForSerialization {  get { return _messageCultureStringWorkAroundMsCorlibVsSystemGlobalizationPCLSerializationProblem; } }
 
-        private CultureInfo _cultureInfo;
+        private readonly string? _messageCultureStringWorkAroundMsCorlibVsSystemGlobalizationPCLSerializationProblem;
+
+        private CultureInfo? _cultureInfo;
 
         /// <summary>
         /// Gets the language culture to send the message in the recipient's preferred language/culture.
@@ -38,7 +39,8 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The language culture or null if none was provided
         /// </value>
-        public CultureInfo MessageCulture
+        [JsonIgnore]
+        public CultureInfo? MessageCulture
         {
             get
             {
@@ -62,7 +64,7 @@ namespace AxCrypt.Api.Model
         /// <value>
         /// The custom message.
         /// </value>
-        [JsonProperty("customMessage")]
-        public string CustomMessage { get; }
+        [JsonPropertyName("customMessage")]
+        public string CustomMessage { get; set; }
     }
 }

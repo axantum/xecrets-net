@@ -29,7 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Session;
-using AxCrypt.Core.Test.Properties;
+using Xecrets.File.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using Moq;

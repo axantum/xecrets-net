@@ -48,13 +48,13 @@ namespace AxCrypt.Mono.Test
     [TestFixture]
     public static class TestRuntimeEnvironment
     {
-        private static string _workFolderPath;
+        private static string _workFolderPath = null!;
 
         [SetUp]
         public static void Setup()
         {
             _workFolderPath = Path.Combine(Path.GetTempPath(), @"AxCrypt.Mono.Test.TestRuntimeEnvironment\");
-            Directory.CreateDirectory(_workFolderPath);
+            _ = Directory.CreateDirectory(_workFolderPath);
 
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<IReport>(() => new FakeReport());
@@ -96,7 +96,7 @@ namespace AxCrypt.Mono.Test
 
             randomBytes = Resolve.RandomGenerator.Generate(1000);
             double average = randomBytes.Average(b => b);
-            Assert.That(average >= 115 && average <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
+            Assert.That(average is >= 115 and <= 140, "Unscientific, but the sample sequence should not vary much from a mean of 127.5, but was {0}".InvariantFormat(average));
         }
 
         [Test]
@@ -119,9 +119,7 @@ namespace AxCrypt.Mono.Test
             {
                 try
                 {
-                    using (Stream stream = tempFileInfo.OpenWrite())
-                    {
-                    }
+                    using Stream stream = tempFileInfo.OpenWrite();
                 }
                 finally
                 {

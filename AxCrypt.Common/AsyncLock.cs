@@ -6,18 +6,18 @@ namespace AxCrypt.Common
 {
     public sealed class AsyncLock : IDisposable
     {
-        private SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        private SemaphoreSlim? _semaphore = new SemaphoreSlim(1, 1);
 
-        private readonly Task<IDisposable> _releaser;
+        private readonly Task<IDisposable?> _releaser;
 
         public AsyncLock()
         {
-            _releaser = Task.FromResult((IDisposable)new Releaser(this));
+            _releaser = Task.FromResult((IDisposable?)new Releaser(this));
         }
 
-        public Task<IDisposable> LockAsync()
+        public Task<IDisposable?> LockAsync()
         {
-            Task wait = _semaphore.WaitAsync();
+            Task wait = _semaphore?.WaitAsync() ?? throw new InvalidOperationException("Internal program error, calling LockAsync on a disposed instance.");
             if (wait.IsCompleted)
             {
                 return _releaser;
@@ -25,7 +25,7 @@ namespace AxCrypt.Common
             return wait.ContinueWith(
                 (task, state) =>
                 {
-                    return (IDisposable)state;
+                    return (IDisposable?)state;
                 },
                 _releaser.Result, CancellationToken.None,
                 TaskContinuationOptions.ExecuteSynchronously,
@@ -52,7 +52,7 @@ namespace AxCrypt.Common
 
             public void Dispose()
             {
-                m_toRelease._semaphore.Release();
+                _ = m_toRelease._semaphore?.Release();
             }
         }
     }

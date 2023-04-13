@@ -28,6 +28,7 @@
 using AxCrypt.Abstractions.Algorithm;
 using AxCrypt.Core.Algorithm;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Crypto
@@ -40,6 +41,7 @@ namespace AxCrypt.Core.Crypto
         /// <value>
         /// The key.
         /// </value>
+        [AllowNull]
         SymmetricKey Key { get; }
 
         /// <summary>

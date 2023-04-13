@@ -1,13 +1,9 @@
-﻿using AxCrypt.Api.Model;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text.Json.Serialization;
+
+using AxCrypt.Api.Model;
 
 namespace AxCrypt.Api.Response
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class AccountIdResponse : ResponseBase
     {
         public AccountIdResponse()
@@ -15,7 +11,7 @@ namespace AxCrypt.Api.Response
             AccountId = AccountKey.Empty;
         }
 
-        [JsonProperty("id")]
-        public AccountKey AccountId { get; private set; }
+        [JsonPropertyName("id")]
+        public AccountKey AccountId { get; set; }
     }
 }

@@ -96,7 +96,7 @@ namespace AxCrypt.Core.Service
 
         public Task<IList<UserKeyPair>> ListAsync()
         {
-            return Task.FromResult((IList<UserKeyPair>)new UserKeyPair[0]);
+            return Task.FromResult((IList<UserKeyPair>)Array.Empty<UserKeyPair>());
         }
 
         public Task SaveAsync(UserAccount account)
@@ -119,19 +119,19 @@ namespace AxCrypt.Core.Service
             return _completedTask;
         }
 
-        public Task<UserPublicKey> OtherPublicKeyAsync(EmailAddress email)
+        public Task<UserPublicKey?> OtherPublicKeyAsync(EmailAddress email)
         {
-            return Task.FromResult((UserPublicKey)null);
+            return Task.FromResult<UserPublicKey?>(null);
         }
 
-        public Task<UserPublicKey> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters customParameters)
+        public Task<UserPublicKey?> OtherUserInvitePublicKeyAsync(EmailAddress email, CustomMessageParameters? customParameters)
         {
-            return Task.FromResult((UserPublicKey)null);
+            return Task.FromResult<UserPublicKey?>(null);
         }
 
-        public Task<UserKeyPair> CurrentKeyPairAsync()
+        public Task<UserKeyPair?> CurrentKeyPairAsync()
         {
-            return Task.FromResult((UserKeyPair)null);
+            return Task.FromResult<UserKeyPair?>(null);
         }
 
         public Task SendFeedbackAsync(string subject, string message)
@@ -144,9 +144,9 @@ namespace AxCrypt.Core.Service
             return Task.FromResult(false);
         }
 
-        public Task<PurchaseSettings> GetInAppPurchaseSettingsAsync()
+        public Task<PurchaseSettings?> GetInAppPurchaseSettingsAsync()
         {
-            return Task.FromResult((PurchaseSettings)null);
+            return Task.FromResult<PurchaseSettings?>(null);
         }
 
         public Task<bool> AutoRenewalStatusAsync()

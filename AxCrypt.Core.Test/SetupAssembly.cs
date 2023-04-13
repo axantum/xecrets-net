@@ -23,13 +23,10 @@
  * http://www.axcrypt.net for more information about the author.
 */
 
-using System.IO;
 
 #endregion Coypright and License
 
-using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
@@ -42,7 +39,6 @@ using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Algorithm.Implementation;
 using AxCrypt.Mono;
 using AxCrypt.Abstractions;
-using AxCrypt.Api.Implementation;
 using AxCrypt.Core.Service;
 
 using static AxCrypt.Abstractions.TypeResolve;
@@ -52,6 +48,9 @@ using AxCrypt.Api;
 using System.Reflection;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Abstractions.Algorithm;
+using Xecrets.File.Implementation.NET.Cryptography;
+using Xecrets.File.Api.Implementation;
+using Xecrets.File.Core;
 
 namespace AxCrypt.Core.Test
 {
@@ -63,6 +62,8 @@ namespace AxCrypt.Core.Test
     {
         public static void AssemblySetup()
         {
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
             IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("knownpublickeys.txt");
 
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
@@ -116,7 +117,7 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IProtectedData>(() => new FakeDataProtection());
-            TypeMap.Register.New<IStringSerializer>(() => new StringSerializer(New<IAsymmetricFactory>().GetSerializers()));
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
@@ -143,9 +144,9 @@ namespace AxCrypt.Core.Test
                     break;
 
                 case CryptoImplementation.WindowsDesktop:
-                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => new AxCrypt1HmacSha1Wrapper(new AxCrypt1HmacSha1CryptoServiceProvider()));
                     TypeMap.Register.New<HMACSHA512>(() => new Mono.Cryptography.HMACSHA512Wrapper(new AxCrypt.Desktop.Cryptography.HMACSHA512CryptoServiceProvider()));
-                    TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(new System.Security.Cryptography.AesCryptoServiceProvider()));
+                    TypeMap.Register.New<Aes>(() => new Mono.Cryptography.AesWrapper(System.Security.Cryptography.Aes.Create()));
                     TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());

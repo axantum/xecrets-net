@@ -13,7 +13,7 @@ namespace AxCrypt.Core.Runtime
 {
     public class LicenseValidation
     {
-        public async Task<string> SignAsync(UserAccount userAccount)
+        public virtual async Task<string> SignAsync(UserAccount userAccount)
         {
             if (userAccount == null)
             {
@@ -31,7 +31,7 @@ namespace AxCrypt.Core.Runtime
             return Convert.ToBase64String(signature);
         }
 
-        public async Task<SubscriptionLevel> ValidateLevelAsync(UserAccount userAccount)
+        public virtual async Task<SubscriptionLevel> ValidateLevelAsync(UserAccount userAccount)
         {
             if (userAccount == null)
             {
@@ -55,8 +55,8 @@ namespace AxCrypt.Core.Runtime
 
             using (KnownPublicKeys knownKeys = New<KnownPublicKeys>())
             {
-                publicKey = (await knownKeys.GetAsync(EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail), New<KnownIdentities>().DefaultEncryptionIdentity))?.PublicKey;
-                if (publicKey != null && new Verifier(publicKey).Verify(Convert.FromBase64String(userAccount.Signature), SignedFields(userAccount)))
+                IAsymmetricPublicKey? maybeUpdatedpublicKey = (await knownKeys.GetAsync(EmailAddress.Parse(New<UserSettings>().LicenseAuthorityEmail), New<KnownIdentities>().DefaultEncryptionIdentity))?.PublicKey;
+                if (maybeUpdatedpublicKey != null && new Verifier(maybeUpdatedpublicKey).Verify(Convert.FromBase64String(userAccount.Signature), SignedFields(userAccount)))
                 {
                     return userAccount.SubscriptionLevel;
                 }

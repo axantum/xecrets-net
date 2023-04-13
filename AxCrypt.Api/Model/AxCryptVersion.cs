@@ -1,14 +1,9 @@
 ﻿using AxCrypt.Common;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using System.Text.Json.Serialization;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class AxCryptVersion
     {
         public AxCryptVersion(string downloadLink, VersionUpdateKind kind)
@@ -30,27 +25,28 @@ namespace AxCrypt.Api.Model
         }
 
         [JsonConstructor]
-        private AxCryptVersion()
+        public AxCryptVersion()
         {
         }
 
         public static AxCryptVersion Empty { get; } = new AxCryptVersion(String.Empty, VersionUpdateKind.Empty);
 
-        [JsonProperty("url")]
-        public string DownloadLink { get; private set; }
+        [JsonPropertyName("url")]
+        public string? DownloadLink { get; set; }
 
-        [JsonProperty("version")]
-        public string FullVersion { get; private set; }
+        [JsonPropertyName("version")]
+        public string? FullVersion { get; set; }
 
-        [JsonProperty("revision")]
-        public int Revision { get; private set; }
+        [JsonPropertyName("revision")]
+        public int Revision { get; set; }
 
-        [JsonProperty("is_critical_reliability_update")]
-        public bool IsCriticalReliabilityUpdate { get; private set; }
+        [JsonPropertyName("is_critical_reliability_update")]
+        public bool IsCriticalReliabilityUpdate { get; set; }
 
-        [JsonProperty("is_critical_security_update")]
-        public bool IsCriticalSecurityUpdate { get; private set; }
+        [JsonPropertyName("is_critical_security_update")]
+        public bool IsCriticalSecurityUpdate { get; set; }
 
+        [JsonIgnore]
         public bool IsEmpty
         {
             get
@@ -59,6 +55,7 @@ namespace AxCrypt.Api.Model
             }
         }
 
+        [JsonIgnore]
         public DownloadVersion DownloadVersion
         {
             get

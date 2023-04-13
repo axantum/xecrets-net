@@ -53,7 +53,7 @@ namespace AxCrypt.Core.Crypto
         {
             if (algorithm == null)
             {
-                throw new ArgumentNullException("algorithm");
+                throw new ArgumentNullException(nameof(algorithm));
             }
 
             if (algorithm.Mode != CipherMode.ECB)
@@ -126,7 +126,7 @@ namespace AxCrypt.Core.Crypto
             }
 
             byte[] keyStreamBlocks = new byte[counterBlocks.Length];
-            _cryptoTransform.TransformBlock(counterBlocks, 0, counterBlocks.Length, keyStreamBlocks, 0);
+            _ = _cryptoTransform.TransformBlock(counterBlocks, 0, counterBlocks.Length, keyStreamBlocks, 0);
             int remainingCount = inputCount;
             long startBlockCounter = _currentBlockCounter;
             byte[] workBlock = new byte[_blockLength];
@@ -138,7 +138,7 @@ namespace AxCrypt.Core.Crypto
                     blockBytes = remainingCount;
                 }
                 Array.Copy(keyStreamBlocks, (int)(_currentBlockCounter - startBlockCounter) * _blockLength, workBlock, 0, _blockLength);
-                workBlock.Xor(_currentBlockOffset, inputBuffer, inputOffset, blockBytes);
+                _ = workBlock.Xor(_currentBlockOffset, inputBuffer, inputOffset, blockBytes);
                 Array.Copy(workBlock, _currentBlockOffset, outputBuffer, outputOffset, blockBytes);
 
                 inputOffset += blockBytes;
@@ -161,7 +161,7 @@ namespace AxCrypt.Core.Crypto
             return outputBuffer;
         }
 
-        private byte[] _cachedIv;
+        private byte[]? _cachedIv;
 
         private byte[] GetCounterBlock(long blockCounter)
         {
@@ -194,12 +194,12 @@ namespace AxCrypt.Core.Crypto
             if (_cryptoTransform != null)
             {
                 _cryptoTransform.Dispose();
-                _cryptoTransform = null;
+                _cryptoTransform = null!;
             }
             if (_algorithm != null)
             {
                 _algorithm.Clear();
-                _algorithm = null;
+                _algorithm = null!;
             }
         }
     }

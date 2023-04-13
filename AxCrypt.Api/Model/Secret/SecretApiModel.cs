@@ -1,11 +1,10 @@
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AxCrypt.Api.Model.Secret
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class SecretApiModel
     {
         public static SecretApiModel Empty = new SecretApiModel(0, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
@@ -21,25 +20,25 @@ namespace AxCrypt.Api.Model.Secret
             DeletedUtc = deletedUtc;
         }
 
-        [JsonProperty("id")]
-        public int Id { get; }
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
 
-        [JsonProperty("type")]
-        public string Type { get; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
 
-        [JsonProperty("user_email")]
-        public string UserEmail { get; } = string.Empty;
+        [JsonPropertyName("user_email")]
+        public string UserEmail { get; set; } = string.Empty;
 
-        [JsonProperty("secret")]
-        public string TheSecret { get; } = string.Empty;
+        [JsonPropertyName("secret")]
+        public string TheSecret { get; set; } = string.Empty;
 
-        [JsonProperty("created_utc")]
-        public DateTime CreatedUtc { get; }
+        [JsonPropertyName("created_utc")]
+        public DateTime CreatedUtc { get; set; }
 
-        [JsonProperty("updated_utc")]
-        public DateTime UpdatedUtc { get; }
+        [JsonPropertyName("updated_utc")]
+        public DateTime UpdatedUtc { get; set; }
 
-        [JsonProperty("deleted_utc")]
-        public DateTime? DeletedUtc { get; }
+        [JsonPropertyName("deleted_utc")]
+        public DateTime? DeletedUtc { get; set; }
     }
 }

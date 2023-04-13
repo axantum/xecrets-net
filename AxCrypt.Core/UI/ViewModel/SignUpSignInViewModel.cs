@@ -8,6 +8,7 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.Service;
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -27,14 +28,19 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public IAsyncAction DoAll { get { return new AsyncDelegateAction<object>((o) => DoAllAsync()); } }
 
+        [AllowNull]
         public Func<CancelEventArgs, Task> CreateAccount { get; set; }
 
+        [AllowNull]
         public Func<CancelEventArgs, Task> VerifyAccount { get; set; }
 
+        [AllowNull]
         public Func<CancelEventArgs, Task> RequestEmail { get; set; }
 
+        [AllowNull]
         public Func<Task> SignInCommandAsync { get; set; }
 
+        [AllowNull]
         public Func<Task> RestoreWindow { get; set; }
 
         private ISignIn _signinState;
@@ -112,7 +118,7 @@ namespace AxCrypt.Core.UI.ViewModel
                 return;
             }
 
-            AccountTip tip = new AccountTip();
+            AccountTip? tip = new AccountTip();
             try
             {
                 tip = await New<AxCryptApiClient>().GetAccountTipAsync(AppTypes.AxCryptWindows2);
@@ -126,7 +132,7 @@ namespace AxCrypt.Core.UI.ViewModel
                 tip = new AccountTip();
             }
 
-            if (!string.IsNullOrEmpty(tip.Message))
+            if (!string.IsNullOrEmpty(tip!.Message))
             {
                 await tip.ShowPopup();
             }
@@ -309,7 +315,7 @@ namespace AxCrypt.Core.UI.ViewModel
                 await New<IPopup>().ShowAsync(PopupButtons.Ok, Texts.InformationTitle, Texts.AlreadyVerifiedInfo);
             }
 
-            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.ResourceManager.GetString(_welcomeMessage.Name));
+            PopupButtons result = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.WelcomeToAxCryptTitle, Texts.ResourceManager.GetString(_welcomeMessage.Name)!);
             if (result == PopupButtons.Ok)
             {
                 BrowseUtility.RedirectTo(Texts.LinkToGettingStarted);

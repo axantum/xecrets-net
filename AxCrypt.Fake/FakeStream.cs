@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,7 +36,9 @@ namespace AxCrypt.Fake
 {
     public class FakeStream : Stream
     {
-        private Action<string> _visitorAction;
+        private readonly Action<string> _visitorAction;
+
+        [AllowNull]
         private Stream _stream;
 
         public FakeStream(Stream stream, Action<string> visitorAction)

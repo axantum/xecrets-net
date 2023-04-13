@@ -82,6 +82,6 @@ namespace AxCrypt.Core.Crypto
         /// <param name="iv">The Initial Vector to use, if relevant or null otherwise.</param>
         /// <param name="keyStreamOffset">The offset in the keystream to start it, if relevant.</param>
         /// <returns>An instance of an appropriate ICrypto implementation.</returns>
-        ICrypto CreateCrypto(SymmetricKey key, SymmetricIV iv, long keyStreamOffset);
+        ICrypto CreateCrypto(SymmetricKey key, SymmetricIV? iv, long keyStreamOffset);
     }
 }

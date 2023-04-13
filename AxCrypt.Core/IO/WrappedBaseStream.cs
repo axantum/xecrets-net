@@ -27,6 +27,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,7 @@ namespace AxCrypt.Core.IO
 {
     public abstract class WrappedBaseStream : Stream
     {
+        [AllowNull]
         private Stream _wrappedStream;
 
         /// <summary>

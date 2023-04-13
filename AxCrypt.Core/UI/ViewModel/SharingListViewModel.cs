@@ -34,6 +34,7 @@ using AxCrypt.Core.IO;
 using AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using static AxCrypt.Abstractions.TypeResolve;
@@ -64,20 +65,28 @@ namespace AxCrypt.Core.UI.ViewModel
         public bool IsOnline
         { get { return GetProperty<bool>(nameof(IsOnline)); } set { SetProperty(nameof(IsOnline), value); } }
 
+        [AllowNull]
         public IAsyncAction AddKeyShares { get; private set; }
 
+        [AllowNull]
         public IAsyncAction RemoveKnownContact { get; private set; }
 
+        [AllowNull]
         public IAsyncAction RemoveKeyShares { get; private set; }
 
+        [AllowNull]
         public IAsyncAction AddNewKeyShare { get; private set; }
 
+        [AllowNull]
         public IAsyncAction ShareFolders { get; private set; }
 
+        [AllowNull]
         public IAsyncAction ShareFiles { get; private set; }
 
+        [AllowNull]
         public IAsyncAction UpdateNewKeyShareStatus { get; private set; }
 
+        [AllowNull]
         public IAsyncAction RefreshKnownContact { get; private set; }
 
         private SharingListViewModel(IEnumerable<string> filesOrfolderPaths, IEnumerable<UserPublicKey> sharedWith, LogOnIdentity identity)
@@ -99,13 +108,13 @@ namespace AxCrypt.Core.UI.ViewModel
             return new SharingListViewModel(files, sharedWith, identity);
         }
 
-        public static async Task<SharingListViewModel> CreateForFoldersAsync(IEnumerable<string> folders, LogOnIdentity identity)
+        public static Task<SharingListViewModel> CreateForFoldersAsync(IEnumerable<string> folders, LogOnIdentity identity)
         {
             if (folders == null) throw new ArgumentNullException(nameof(folders));
             if (identity == null) throw new ArgumentNullException(nameof(identity));
 
             IEnumerable<UserPublicKey> sharedWith = GetAllPublicKeyRecipientsFromWatchedFolders(folders);
-            return new SharingListViewModel(folders, sharedWith, identity);
+            return Task.FromResult(new SharingListViewModel(folders, sharedWith, identity));
         }
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
@@ -161,7 +170,7 @@ namespace AxCrypt.Core.UI.ViewModel
         {
         }
 
-        private async Task RemoveKeySharesActionAsync(IEnumerable<UserPublicKey> keySharesToRemove)
+        private Task RemoveKeySharesActionAsync(IEnumerable<UserPublicKey> keySharesToRemove)
         {
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
             HashSet<UserPublicKey> toSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
@@ -170,13 +179,14 @@ namespace AxCrypt.Core.UI.ViewModel
 
             SharedWith = fromSet.OrderBy(a => a.Email.Address);
             NotSharedWith = toSet.OrderBy(a => a.Email.Address);
+            return Task.CompletedTask;
         }
 
-        private async Task RemoveKnownContactsActionAsync(IEnumerable<UserPublicKey> knownContactsToRemove)
+        private Task RemoveKnownContactsActionAsync(IEnumerable<UserPublicKey> knownContactsToRemove)
         {
             if (!knownContactsToRemove.Any())
             {
-                return;
+                return Task.CompletedTask;
             }
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(NotSharedWith, UserPublicKey.EmailComparer);
@@ -190,6 +200,7 @@ namespace AxCrypt.Core.UI.ViewModel
             {
                 knownPublicKeys.Remove(knownContactsToRemove);
             }
+            return Task.CompletedTask;
         }
 
         private async Task AddKeySharesActionAsync(IEnumerable<EmailAddress> keySharesToAdd)
@@ -305,7 +316,7 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private static LogOnIdentity FindDecryptionIdentity(string filepath, LogOnIdentity defaultIdentity)
         {
-            ActiveFile activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(filepath);
+            ActiveFile? activeFile = New<FileSystemState>().FindActiveFileFromEncryptedPath(filepath);
             if (activeFile == null || activeFile.Identity == LogOnIdentity.Empty)
             {
                 return defaultIdentity;
@@ -326,12 +337,12 @@ namespace AxCrypt.Core.UI.ViewModel
             await AddKeySharesActionAsync(knownContactsToRefresh).Free();
         }
 
-        private async Task RemoveSharedWithContactsActionAsync(IEnumerable<EmailAddress> knownContactsToRefresh)
+        private Task RemoveSharedWithContactsActionAsync(IEnumerable<EmailAddress> knownContactsToRefresh)
         {
             IEnumerable<UserPublicKey> knownContactsToRemove = SharedWith.Where(nsw => knownContactsToRefresh.Contains(nsw.Email));
             if (!knownContactsToRemove.Any())
             {
-                return;
+                return Task.CompletedTask;
             }
 
             HashSet<UserPublicKey> fromSet = new HashSet<UserPublicKey>(SharedWith, UserPublicKey.EmailComparer);
@@ -343,13 +354,14 @@ namespace AxCrypt.Core.UI.ViewModel
 
             if (New<AxCryptOnlineState>().IsOffline)
             {
-                return;
+                return Task.CompletedTask;
             }
 
             using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
             {
                 knownPublicKeys.Remove(knownContactsToRemove);
             }
+            return Task.CompletedTask;
         }
     }
 }

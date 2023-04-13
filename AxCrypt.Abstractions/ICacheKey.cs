@@ -8,7 +8,7 @@ namespace AxCrypt.Abstractions
 {
     public interface ICacheKey
     {
-        ICacheKey ParentCacheKey { get; }
+        ICacheKey? ParentCacheKey { get; }
 
         string Key { get; }
 

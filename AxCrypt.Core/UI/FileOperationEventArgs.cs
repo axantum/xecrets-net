@@ -31,6 +31,7 @@ using AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.UI
@@ -39,14 +40,14 @@ namespace AxCrypt.Core.UI
     {
         public FileOperationEventArgs()
         {
-            Status = new FileOperationContext(String.Empty, ErrorStatus.Unknown);
+            Status = new FileOperationContext(string.Empty, ErrorStatus.Unknown);
         }
 
-        public string SaveFileFullName { get; set; }
+        public string SaveFileFullName { get; set; } = string.Empty;
 
-        public string OpenFileFullName { get; set; }
+        public string OpenFileFullName { get; set; } = string.Empty;
 
-        public LogOnIdentity LogOnIdentity { get; set; }
+        public LogOnIdentity LogOnIdentity { get; set; } = LogOnIdentity.Empty;
 
         public Guid CryptoId { get; set; }
 
@@ -54,6 +55,7 @@ namespace AxCrypt.Core.UI
 
         public bool Skip { get; set; }
 
+        [AllowNull]
         public IDataStore AxCryptFile { get; set; }
 
         public FileOperationContext Status { get; set; }

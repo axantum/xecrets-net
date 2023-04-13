@@ -49,7 +49,7 @@ namespace AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new VersionHeaderBlock(_version));
             _headers.HeaderBlocks.Add(new V1KeyWrap1HeaderBlock(_keyEncryptingKey.DerivedKey, keyWrapIterations));
 
-            ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key, null, 0);
+            ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey?.Key ?? throw new Runtime.FileFormatException("Missing Master Key."), null, 0);
             _headers.HeaderBlocks.Add(new V1EncryptionInfoEncryptedHeaderBlock(headerCrypto));
             _headers.HeaderBlocks.Add(new V1CompressionEncryptedHeaderBlock(headerCrypto));
             _headers.HeaderBlocks.Add(new FileInfoEncryptedHeaderBlock(headerCrypto));
@@ -59,11 +59,11 @@ namespace AxCrypt.Core.Header
 
             SetMasterKeyForEncryptedHeaderBlocks(_headers.HeaderBlocks);
 
-            V1EncryptionInfoEncryptedHeaderBlock encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>();
+            V1EncryptionInfoEncryptedHeaderBlock? encryptionInfoHeaderBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>() ?? throw new Runtime.FileFormatException("Missing V1EncryptionInfoEncryptedHeaderBlock.");
             encryptionInfoHeaderBlock.IV = new SymmetricIV(128);
             encryptionInfoHeaderBlock.PlaintextLength = 0;
 
-            FileName = String.Empty;
+            FileName = string.Empty;
         }
 
         public V1DocumentHeaders(Passphrase passphrase)
@@ -73,10 +73,7 @@ namespace AxCrypt.Core.Header
 
         public V1DocumentHeaders(V1DocumentHeaders documentHeaders)
         {
-            if (documentHeaders == null)
-            {
-                throw new ArgumentNullException("documentHeaders");
-            }
+            ArgumentNullException.ThrowIfNull(documentHeaders);
 
             _keyEncryptingKey = documentHeaders._keyEncryptingKey;
             foreach (HeaderBlock headerBlock in documentHeaders._headers.HeaderBlocks)
@@ -95,10 +92,7 @@ namespace AxCrypt.Core.Header
 
         public bool Load(Headers headers)
         {
-            if (headers == null)
-            {
-                throw new ArgumentNullException("headers");
-            }
+            ArgumentNullException.ThrowIfNull(headers);
 
             _headers = headers;
             _headers.EnsureFileFormatVersion(1, 3);
@@ -120,18 +114,17 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                return _headers.VersionHeaderBlock;
+                return _headers.VersionHeaderBlock ?? throw new Runtime.FileFormatException("Missing VersionHeaderBlock.");
             }
         }
 
         private void SetMasterKeyForEncryptedHeaderBlocks(IList<HeaderBlock> headerBlocks)
         {
-            ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key, null, 0);
+            ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey?.Key ?? throw new Runtime.FileFormatException("Missing Master Key."), null, 0);
 
             foreach (HeaderBlock headerBlock in headerBlocks)
             {
-                EncryptedHeaderBlock encryptedHeaderBlock = headerBlock as EncryptedHeaderBlock;
-                if (encryptedHeaderBlock != null)
+                if (headerBlock is EncryptedHeaderBlock encryptedHeaderBlock)
                 {
                     encryptedHeaderBlock.HeaderCrypto = headerCrypto;
                 }
@@ -142,7 +135,7 @@ namespace AxCrypt.Core.Header
         {
             if (cipherStream == null)
             {
-                throw new ArgumentNullException("cipherStream");
+                throw new ArgumentNullException(nameof(cipherStream));
             }
 
             WriteInternal(cipherStream, cipherStream);
@@ -152,7 +145,7 @@ namespace AxCrypt.Core.Header
         {
             if (hmacStream == null)
             {
-                throw new ArgumentNullException("hmacStream");
+                throw new ArgumentNullException(nameof(hmacStream));
             }
 
             WriteInternal(hmacStream.ChainedStream, hmacStream);
@@ -162,8 +155,8 @@ namespace AxCrypt.Core.Header
         {
             cipherStream.Position = 0;
             AxCrypt1Guid.Write(cipherStream);
-            PreambleHeaderBlock preambleHaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>();
-            preambleHaderBlock.Write(cipherStream);
+            PreambleHeaderBlock preambleHeaderBlock = _headers.FindHeaderBlock<PreambleHeaderBlock>() ?? throw new Runtime.FileFormatException("Missing PreambleHeaderBlock.");
+            preambleHeaderBlock.Write(cipherStream);
             foreach (HeaderBlock headerBlock in _headers.HeaderBlocks)
             {
                 if (headerBlock is DataHeaderBlock)
@@ -176,14 +169,14 @@ namespace AxCrypt.Core.Header
                 }
                 headerBlock.Write(hmacStream);
             }
-            DataHeaderBlock dataHeaderBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
+            DataHeaderBlock dataHeaderBlock = _headers.FindHeaderBlock<DataHeaderBlock>() ?? throw new Runtime.FileFormatException("Missing DataHeaderBlock.");
             dataHeaderBlock.Write(hmacStream);
         }
 
-        private SymmetricKey GetMasterKey()
+        private SymmetricKey? GetMasterKey()
         {
-            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            VersionHeaderBlock versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>();
+            V1KeyWrap1HeaderBlock? keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>() ?? throw new Runtime.FileFormatException("Missing V1KeyWrap1HeaderBlock.");
+            VersionHeaderBlock? versionHeaderBlock = _headers.FindHeaderBlock<VersionHeaderBlock>() ?? throw new Runtime.FileFormatException("Missing VersionHeaderBlock.");
             byte[] unwrappedKeyData = keyHeaderBlock.UnwrapMasterKey(_keyEncryptingKey.DerivedKey, versionHeaderBlock.FileVersionMajor);
             if (unwrappedKeyData.Length == 0)
             {
@@ -196,19 +189,19 @@ namespace AxCrypt.Core.Header
         {
             if (keyEncryptingKey == null)
             {
-                throw new ArgumentNullException("keyEncryptingKey");
+                throw new ArgumentNullException(nameof(keyEncryptingKey));
             }
 
-            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>();
-            keyHeaderBlock.RewrapMasterKey(GetMasterKey(), keyEncryptingKey.DerivedKey, keyWrapIterations);
+            V1KeyWrap1HeaderBlock keyHeaderBlock = _headers.FindHeaderBlock<V1KeyWrap1HeaderBlock>() ?? throw new Runtime.FileFormatException("Missing V1KeyWrap1HeaderBlock.");
+            keyHeaderBlock.RewrapMasterKey(GetMasterKey() ?? throw new Runtime.FileFormatException("Missing Master Key."), keyEncryptingKey.DerivedKey, keyWrapIterations);
             _keyEncryptingKey = keyEncryptingKey;
         }
 
-        public Subkey HmacSubkey
+        public Subkey? HmacSubkey
         {
             get
             {
-                SymmetricKey masterKey = GetMasterKey();
+                SymmetricKey? masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -217,11 +210,11 @@ namespace AxCrypt.Core.Header
             }
         }
 
-        public Subkey DataSubkey
+        public Subkey? DataSubkey
         {
             get
             {
-                SymmetricKey masterKey = GetMasterKey();
+                SymmetricKey? masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -230,11 +223,11 @@ namespace AxCrypt.Core.Header
             }
         }
 
-        public Subkey HeadersSubkey
+        public Subkey? HeadersSubkey
         {
             get
             {
-                SymmetricKey masterKey = GetMasterKey();
+                SymmetricKey? masterKey = GetMasterKey();
                 if (masterKey == null)
                 {
                     return null;
@@ -247,7 +240,7 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                V1CompressionInfoEncryptedHeaderBlock compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoEncryptedHeaderBlock>();
+                V1CompressionInfoEncryptedHeaderBlock? compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoEncryptedHeaderBlock>();
                 if (compressionInfo == null)
                 {
                     return -1;
@@ -257,10 +250,10 @@ namespace AxCrypt.Core.Header
 
             set
             {
-                V1CompressionInfoEncryptedHeaderBlock compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoEncryptedHeaderBlock>();
+                V1CompressionInfoEncryptedHeaderBlock? compressionInfo = _headers.FindHeaderBlock<V1CompressionInfoEncryptedHeaderBlock>();
                 if (compressionInfo == null)
                 {
-                    ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey.Key, null, 0);
+                    ICrypto headerCrypto = Resolve.CryptoFactory.Legacy.CreateCrypto(HeadersSubkey?.Key ?? throw new Runtime.FileFormatException("Missing Master Key."), null, 0);
                     compressionInfo = new V1CompressionInfoEncryptedHeaderBlock(headerCrypto);
                     _headers.HeaderBlocks.Add(compressionInfo);
                 }
@@ -272,22 +265,23 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                V1FileNameInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1FileNameInfoEncryptedHeaderBlock>();
-                return headerBlock.FileName;
+                V1FileNameInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1FileNameInfoEncryptedHeaderBlock>();
+                return headerBlock?.FileName ?? throw new Runtime.FileFormatException("Missing V1FileNameInfoEncryptedHeaderBlock.");
             }
 
             set
             {
-                V1FileNameInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1FileNameInfoEncryptedHeaderBlock>();
+                V1FileNameInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1FileNameInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1FileNameInfoEncryptedHeaderBlock.");
                 headerBlock.FileName = value;
             }
         }
 
-        private string UnicodeFileName
+        private string? UnicodeFileName
         {
             get
             {
-                V1UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoEncryptedHeaderBlock>();
+                V1UnicodeFileNameInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoEncryptedHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Unicode file name was added in 1.6.3.3 - if we can't find it signal it's absence with null.
@@ -299,7 +293,9 @@ namespace AxCrypt.Core.Header
 
             set
             {
-                V1UnicodeFileNameInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoEncryptedHeaderBlock>();
+                ArgumentNullException.ThrowIfNull(value);
+                V1UnicodeFileNameInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1UnicodeFileNameInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1UnicodeFileNameInfoEncryptedHeaderBlock.");
                 headerBlock.FileName = value;
             }
         }
@@ -322,7 +318,7 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                V1CompressionEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>();
+                V1CompressionEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>();
                 if (headerBlock == null)
                 {
                     // Conditional compression was added in 1.2.2, before then it was always compressed.
@@ -332,7 +328,8 @@ namespace AxCrypt.Core.Header
             }
             set
             {
-                V1CompressionEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>();
+                V1CompressionEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1CompressionEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1CompressionEncryptedHeaderBlock.");
                 headerBlock.IsCompressed = value;
                 if (value)
                 {
@@ -346,12 +343,14 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 return headerBlock.CreationTimeUtc;
             }
             set
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 headerBlock.CreationTimeUtc = value;
             }
         }
@@ -360,12 +359,14 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 return headerBlock.LastAccessTimeUtc;
             }
             set
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 headerBlock.LastAccessTimeUtc = value;
             }
         }
@@ -374,12 +375,14 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 return headerBlock.LastWriteTimeUtc;
             }
             set
             {
-                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>();
+                FileInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<FileInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing FileInfoEncryptedHeaderBlock.");
                 headerBlock.LastWriteTimeUtc = value;
             }
         }
@@ -392,7 +395,8 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                V1EncryptionInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>();
+                V1EncryptionInfoEncryptedHeaderBlock? headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1EncryptionInfoEncryptedHeaderBlock.");
                 return headerBlock.IV;
             }
         }
@@ -404,13 +408,15 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                V1EncryptionInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>();
+                V1EncryptionInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1EncryptionInfoEncryptedHeaderBlock.");
                 return headerBlock.PlaintextLength;
             }
 
             set
             {
-                V1EncryptionInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>();
+                V1EncryptionInfoEncryptedHeaderBlock headerBlock = _headers.FindHeaderBlock<V1EncryptionInfoEncryptedHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing V1EncryptionInfoEncryptedHeaderBlock.");
                 headerBlock.PlaintextLength = value;
             }
         }
@@ -419,12 +425,14 @@ namespace AxCrypt.Core.Header
         {
             get
             {
-                DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
+                DataHeaderBlock? headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing DataHeaderBlock.");
                 return headerBlock.CipherTextLength;
             }
             set
             {
-                DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>();
+                DataHeaderBlock headerBlock = _headers.FindHeaderBlock<DataHeaderBlock>()
+                    ?? throw new Runtime.FileFormatException("Missing DataHeaderBlock.");
                 headerBlock.CipherTextLength = value;
             }
         }

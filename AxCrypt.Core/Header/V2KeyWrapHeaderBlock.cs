@@ -28,6 +28,7 @@
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Extensions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace AxCrypt.Core.Header
@@ -53,7 +54,7 @@ namespace AxCrypt.Core.Header
         {
             if (dataBlock == null)
             {
-                throw new ArgumentNullException("dataBlock");
+                throw new ArgumentNullException(nameof(dataBlock));
             }
             if (dataBlock.Length != DATABLOCK_LENGTH)
             {
@@ -61,23 +62,23 @@ namespace AxCrypt.Core.Header
             }
         }
 
-        private IDerivedKey _keyEncryptingKey;
+        private IDerivedKey? _keyEncryptingKey;
 
-        private ICryptoFactory _cryptoFactory;
+        private ICryptoFactory? _cryptoFactory;
 
         public V2KeyWrapHeaderBlock(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey, long keyWrapIterations)
             : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
-            _cryptoFactory = cryptoFactory;
-            _keyEncryptingKey = keyEncryptingKey;
+            _cryptoFactory = cryptoFactory ?? throw new ArgumentNullException(nameof(cryptoFactory));
+            _keyEncryptingKey = keyEncryptingKey ?? throw new ArgumentNullException(nameof(keyEncryptingKey));
 
             Initialize(keyWrapIterations);
         }
 
         public void SetDerivedKey(ICryptoFactory cryptoFactory, IDerivedKey keyEncryptingKey)
         {
-            _cryptoFactory = cryptoFactory;
-            _keyEncryptingKey = keyEncryptingKey;
+            _cryptoFactory = cryptoFactory ?? throw new ArgumentNullException(nameof(cryptoFactory));
+            _keyEncryptingKey = keyEncryptingKey ?? throw new ArgumentNullException(nameof(keyEncryptingKey));
             _unwrappedKeyData = null;
         }
 
@@ -134,7 +135,7 @@ namespace AxCrypt.Core.Header
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 Array.Copy(value.GetBytes(), 0, GetDataBlockBytesReference(), PASSPHRASE_DERIVATION_SALT_OFFSET, value.Length);
@@ -143,12 +144,12 @@ namespace AxCrypt.Core.Header
 
         private void Initialize(long keyWrapIterations)
         {
-            DerivationSalt = _keyEncryptingKey.DerivationSalt;
+            DerivationSalt = _keyEncryptingKey!.DerivationSalt;
             DerivationIterations = _keyEncryptingKey.DerivationIterations;
 
             Salt salt = new Salt(_keyEncryptingKey.DerivedKey.Size);
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
+            ICrypto crypto = _cryptoFactory!.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
             _unwrappedKeyData = Resolve.RandomGenerator.Generate(_keyEncryptingKey.DerivedKey.Size / 8 + crypto.BlockLength);
             byte[] wrappedKeyData = keyWrap.Wrap(crypto, _unwrappedKeyData);
             Set(wrappedKeyData, salt, keyWrapIterations);
@@ -162,7 +163,7 @@ namespace AxCrypt.Core.Header
             Array.Copy(keyWrapIterationsBytes, 0, GetDataBlockBytesReference(), WRAP_ITERATIONS_OFFSET, WRAP_ITERATIONS_LENGTH);
         }
 
-        private byte[] _unwrappedKeyData;
+        private byte[]? _unwrappedKeyData;
 
         private byte[] UnwrappedMasterKeyData
         {
@@ -180,7 +181,7 @@ namespace AxCrypt.Core.Header
         {
             if (_keyEncryptingKey == null)
             {
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             byte[] saltBytes = new byte[_keyEncryptingKey.DerivedKey.Size / 8];
@@ -188,12 +189,12 @@ namespace AxCrypt.Core.Header
             Salt salt = new Salt(saltBytes);
 
             KeyWrap keyWrap = new KeyWrap(salt, KeyWrapIterations, KeyWrapMode.Specification);
-            ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
+            ICrypto crypto = _cryptoFactory!.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
             byte[] wrappedKeyData = GetKeyData(crypto.BlockLength, _keyEncryptingKey.DerivedKey.Size / 8);
             return keyWrap.Unwrap(crypto, wrappedKeyData);
         }
 
-        public SymmetricKey MasterKey
+        public SymmetricKey? MasterKey
         {
             get
             {
@@ -201,13 +202,13 @@ namespace AxCrypt.Core.Header
                 {
                     return null;
                 }
-                byte[] masterKeyBytes = new byte[_keyEncryptingKey.DerivedKey.Size / 8];
+                byte[] masterKeyBytes = new byte[_keyEncryptingKey!.DerivedKey.Size / 8];
                 Array.Copy(UnwrappedMasterKeyData, 0, masterKeyBytes, 0, masterKeyBytes.Length);
                 return new SymmetricKey(masterKeyBytes);
             }
         }
 
-        public SymmetricIV MasterIV
+        public SymmetricIV? MasterIV
         {
             get
             {
@@ -215,7 +216,7 @@ namespace AxCrypt.Core.Header
                 {
                     return null;
                 }
-                ICrypto crypto = _cryptoFactory.CreateCrypto(_keyEncryptingKey.DerivedKey, null, 0);
+                ICrypto crypto = _cryptoFactory!.CreateCrypto(_keyEncryptingKey!.DerivedKey, null, 0);
                 byte[] masterIVBytes = new byte[crypto.BlockLength];
                 Array.Copy(UnwrappedMasterKeyData, _keyEncryptingKey.DerivedKey.Size / 8, masterIVBytes, 0, masterIVBytes.Length);
                 return new SymmetricIV(masterIVBytes);
@@ -229,13 +230,13 @@ namespace AxCrypt.Core.Header
         /// <returns>
         /// An ICrypto instance, initialized with key and iv.
         /// </returns>
-        public ICrypto Crypto(long keyStreamOffset)
+        public ICrypto? Crypto(long keyStreamOffset)
         {
             if (MasterKey == null)
             {
                 return null;
             }
-            return _cryptoFactory.CreateCrypto(MasterKey, MasterIV, keyStreamOffset);
+            return _cryptoFactory!.CreateCrypto(MasterKey, MasterIV, keyStreamOffset);
         }
     }
 }

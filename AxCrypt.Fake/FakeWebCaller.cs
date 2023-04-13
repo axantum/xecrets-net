@@ -37,9 +37,9 @@ namespace AxCrypt.Fake
 {
     public class FakeRestCaller : IRestCaller
     {
-        private RestResponse _result;
+        private readonly RestResponse _result;
 
-        public event EventHandler<EventArgs> Calling;
+        public event EventHandler<EventArgs>? Calling;
 
         public FakeRestCaller(string result)
         {
@@ -58,11 +58,7 @@ namespace AxCrypt.Fake
 
         private void OnCalling()
         {
-            EventHandler<EventArgs> handler = Calling;
-            if (handler != null)
-            {
-                handler(this, new EventArgs());
-            }
+            Calling?.Invoke(this, new EventArgs());
         }
 
         public string HtmlEncode(string value)

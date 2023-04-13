@@ -36,15 +36,15 @@ namespace AxCrypt.Core.Session
     {
         private class EncryptedNameComparerImpl : ActiveFileComparer
         {
-            public override int Compare(ActiveFile x, ActiveFile y)
+            public override int Compare(ActiveFile? x, ActiveFile? y)
             {
                 if (x == null)
                 {
-                    throw new ArgumentNullException("x");
+                    throw new ArgumentNullException(nameof(x));
                 }
                 if (y == null)
                 {
-                    throw new ArgumentNullException("y");
+                    throw new ArgumentNullException(nameof(y));
                 }
 
                 return (ReverseSort ? -1 : 1) * String.Compare(x.EncryptedFileInfo.FullName, y.EncryptedFileInfo.FullName, StringComparison.OrdinalIgnoreCase);
@@ -53,15 +53,15 @@ namespace AxCrypt.Core.Session
 
         private class DecryptedNameComparerImpl : ActiveFileComparer
         {
-            public override int Compare(ActiveFile x, ActiveFile y)
+            public override int Compare(ActiveFile? x, ActiveFile? y)
             {
                 if (x == null)
                 {
-                    throw new ArgumentNullException("x");
+                    throw new ArgumentNullException(nameof(x));
                 }
                 if (y == null)
                 {
-                    throw new ArgumentNullException("y");
+                    throw new ArgumentNullException(nameof(y));
                 }
 
                 return (ReverseSort ? -1 : 1) * String.Compare(Resolve.Portable.Path().GetFileName(x.DecryptedFileInfo.FullName), Resolve.Portable.Path().GetFileName(y.DecryptedFileInfo.FullName), StringComparison.OrdinalIgnoreCase);
@@ -70,7 +70,7 @@ namespace AxCrypt.Core.Session
 
         private class SizeComparerImpl : ActiveFileComparer
         {
-            public override int Compare(ActiveFile x, ActiveFile y)
+            public override int Compare(ActiveFile? x, ActiveFile? y)
             {
                 if (x == null)
                 {
@@ -87,15 +87,15 @@ namespace AxCrypt.Core.Session
 
         private class DateComparerImpl : ActiveFileComparer
         {
-            public override int Compare(ActiveFile x, ActiveFile y)
+            public override int Compare(ActiveFile? x, ActiveFile? y)
             {
                 if (x == null)
                 {
-                    throw new ArgumentNullException("x");
+                    throw new ArgumentNullException(nameof(x));
                 }
                 if (y == null)
                 {
-                    throw new ArgumentNullException("y");
+                    throw new ArgumentNullException(nameof(y));
                 }
 
                 return (ReverseSort ? -1 : 1) * x.Properties.LastActivityTimeUtc.CompareTo(y.Properties.LastActivityTimeUtc);
@@ -104,15 +104,15 @@ namespace AxCrypt.Core.Session
 
         private class CryptoNameComparerImpl : ActiveFileComparer
         {
-            public override int Compare(ActiveFile x, ActiveFile y)
+            public override int Compare(ActiveFile? x, ActiveFile? y)
             {
                 if (x == null)
                 {
-                    throw new ArgumentNullException("x");
+                    throw new ArgumentNullException(nameof(x));
                 }
                 if (y == null)
                 {
-                    throw new ArgumentNullException("y");
+                    throw new ArgumentNullException(nameof(y));
                 }
 
                 return (ReverseSort ? -1 : 1) * String.Compare(Resolve.CryptoFactory.Create(x.Properties.CryptoId).Name, Resolve.CryptoFactory.Create(y.Properties.CryptoId).Name, StringComparison.OrdinalIgnoreCase);
@@ -134,7 +134,7 @@ namespace AxCrypt.Core.Session
         public static ActiveFileComparer CryptoNameComparer
         { get { return new CryptoNameComparerImpl(); } }
 
-        public abstract int Compare(ActiveFile x, ActiveFile y);
+        public abstract int Compare(ActiveFile? x, ActiveFile? y);
 
         public bool ReverseSort { get; set; }
     }

@@ -11,9 +11,9 @@ namespace AxCrypt.Core.Session
 {
     public sealed class DeviceLocking : IDisposable
     {
-        private Func<Task> _temporaryLocking;
+        private readonly Func<Task> _temporaryLocking;
 
-        private Func<Task> _permanentLocking;
+        private readonly Func<Task> _permanentLocking;
 
         public DeviceLocking(Func<Task> temporaryLocking, Func<Task> permanentLocking)
         {
@@ -26,7 +26,7 @@ namespace AxCrypt.Core.Session
 
         private DeviceLockReason _currentLock = DeviceLockReason.None;
 
-        private async void DeviceWasLocked(object sender, DeviceLockedEventArgs e)
+        private async void DeviceWasLocked(object? sender, DeviceLockedEventArgs e)
         {
             if (!New<IUIThread>().IsOn)
             {
@@ -36,7 +36,7 @@ namespace AxCrypt.Core.Session
             switch (e.Reason)
             {
                 case DeviceLockReason.Permanent:
-                    if (_currentLock != DeviceLockReason.None && _currentLock != DeviceLockReason.Temporary)
+                    if (_currentLock is not DeviceLockReason.None and not DeviceLockReason.Temporary)
                     {
                         break;
                     }

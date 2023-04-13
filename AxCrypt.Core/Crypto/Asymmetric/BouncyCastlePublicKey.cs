@@ -25,7 +25,6 @@
 
 #endregion Coypright and License
 
-using Newtonsoft.Json;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
@@ -43,11 +42,8 @@ using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {
-    [JsonObject(MemberSerialization.OptIn)]
     internal class BouncyCastlePublicKey : IAsymmetricPublicKey
     {
-        [SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Json.NET serializer uses it.")]
-        [JsonProperty("pem")]
         private string _serializedKey
         {
             get
@@ -67,7 +63,6 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             Key = publicKeyParameter;
         }
 
-        [JsonConstructor]
         public BouncyCastlePublicKey(string pem)
         {
             Key = FromPem(pem);
@@ -75,29 +70,25 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         private static AsymmetricKeyParameter FromPem(string pem)
         {
-            using (TextReader reader = new StringReader(pem))
-            {
-                PemReader pemReader = new PemReader(reader);
+            using TextReader reader = new StringReader(pem);
+            PemReader pemReader = new PemReader(reader);
 
-                return (AsymmetricKeyParameter)pemReader.ReadObject();
-            }
+            return (AsymmetricKeyParameter)pemReader.ReadObject();
         }
 
         private string ToPem()
         {
-            using (TextWriter writer = new StringWriter(CultureInfo.InvariantCulture))
-            {
-                PemWriter pem = new PemWriter(writer);
-                pem.WriteObject(Key);
-                return writer.ToString();
-            }
+            using TextWriter writer = new StringWriter(CultureInfo.InvariantCulture);
+            PemWriter pem = new PemWriter(writer);
+            pem.WriteObject(Key);
+            return writer.ToString() ?? throw new InvalidOperationException("Internal program error, TextWriter.ToString() returned null!");
         }
 
         public byte[] TransformRaw(byte[] buffer, int outputLength)
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             IAsymmetricBlockCipher cipher = new RsaEngine();
@@ -122,7 +113,7 @@ namespace AxCrypt.Core.Crypto.Asymmetric
         {
             if (buffer == null)
             {
-                throw new ArgumentNullException("buffer");
+                throw new ArgumentNullException(nameof(buffer));
             }
 
             int rsaKeyBitSize = ((RsaKeyParameters)Key).Modulus.BitLength;
@@ -168,7 +159,7 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
-        private PublicKeyThumbprint _thumbprint = null;
+        private PublicKeyThumbprint? _thumbprint = null;
 
         /// <summary>
         /// Gets the thumbprint of the public key.
@@ -201,16 +192,16 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             return ToPem();
         }
 
-        public bool Equals(IAsymmetricPublicKey other)
+        public bool Equals(IAsymmetricPublicKey? other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (other is null)
             {
                 return false;
             }
             return ToString() == other.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return Equals(obj as IAsymmetricPublicKey);
         }
@@ -222,9 +213,9 @@ namespace AxCrypt.Core.Crypto.Asymmetric
 
         public static bool operator ==(BouncyCastlePublicKey left, BouncyCastlePublicKey right)
         {
-            if (Object.ReferenceEquals(left, null))
+            if (left is null)
             {
-                return Object.ReferenceEquals(right, null);
+                return ReferenceEquals(right, null);
             }
 
             return left.Equals(right);

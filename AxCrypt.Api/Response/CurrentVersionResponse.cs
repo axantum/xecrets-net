@@ -25,34 +25,30 @@
 
 #endregion Coypright and License
 
+using System.Text.Json.Serialization;
+
 using AxCrypt.Api.Response;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AxCrypt.Api.Model
 {
-    [JsonObject(MemberSerialization.OptIn)]
     public class CurrentVersionResponse : ResponseBase
     {
         /// <summary>
         /// Url where new version may be found
         /// </summary>
-        [JsonProperty("U")]
-        public string WebReference { get; set; }
+        [JsonPropertyName("U")]
+        public string? WebReference { get; set; }
 
         /// <summary>
         /// String serialization of the full version
         /// </summary>
-        [JsonProperty("V")]
-        public string Version { get; set; }
+        [JsonPropertyName("V")]
+        public string? Version { get; set; }
 
         /// <summary>
         /// The revision only
         /// </summary>
-        [JsonProperty("R")]
+        [JsonPropertyName("R")]
         public int Revision { get; set; }
     }
 }

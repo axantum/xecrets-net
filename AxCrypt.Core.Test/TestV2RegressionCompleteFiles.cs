@@ -84,7 +84,7 @@ namespace AxCrypt.Core.Test
         {
             string source = Path.Combine(_rootPath, "source.axx");
             string destination = Path.Combine(_rootPath, "destination.file");
-            Stream stream = Assembly.GetAssembly(typeof(TestV2RegressionCompleteFiles)).GetManifestResourceStream("AxCrypt.Core.Test.resources." + resourceName);
+            Stream stream = Assembly.GetAssembly(typeof(TestV2RegressionCompleteFiles)).GetManifestResourceStream("Xecrets.File.Core.Test.resources." + resourceName);
             FakeDataStore.AddFile(source, FakeDataStore.TestDate1Utc, FakeDataStore.TestDate2Utc, FakeDataStore.TestDate3Utc, stream);
 
             LogOnIdentity passphrase = new LogOnIdentity(password);
