@@ -71,10 +71,10 @@ namespace AxCrypt.Core.Runtime
             _ = sb.AppendLine(displayContext);
             _ = sb.AppendLine(ex?.ToString() ?? "(null)");
 
-            using (StreamWriter writer = new StreamWriter(fileLock.DataStore.OpenUpdate(), Encoding.UTF8))
-            {
-                writer.Write(sb.ToString());
-            }
+            using var stream = fileLock.DataStore.OpenUpdate();
+            stream.Position = stream.Length;
+            using var writer = new StreamWriter(stream, Encoding.UTF8);
+            writer.Write(sb.ToString());
         }
 
         public void Open()
