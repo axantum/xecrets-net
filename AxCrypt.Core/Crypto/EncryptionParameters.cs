@@ -75,6 +75,13 @@ namespace AxCrypt.Core.Crypto
 
         public Task AddAsync(IEnumerable<UserPublicKey> publicKeys)
         {
+            AddOrReplace(publicKeys);
+
+            return Constant.CompletedTask;
+        }
+
+        public void AddOrReplace(IEnumerable<UserPublicKey> publicKeys)
+        {
             foreach (UserPublicKey userPublicKey in publicKeys)
             {
                 UserPublicKey? existingKey = _publicKeys.FirstOrDefault(pk => pk.Email == userPublicKey.Email);
@@ -84,8 +91,6 @@ namespace AxCrypt.Core.Crypto
                 }
                 _publicKeys.Add(userPublicKey);
             }
-
-            return Constant.CompletedTask;
         }
 
         /// <summary>
