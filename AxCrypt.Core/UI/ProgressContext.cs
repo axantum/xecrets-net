@@ -45,6 +45,8 @@ namespace AxCrypt.Core.UI
 
         private TimeSpan _nextProgressTime;
 
+        private readonly TimeSpan _progressTimeInterval = ProgressTimeInterval;
+
         private static readonly object _progressLock = new object();
 
         private long _current = 0;
@@ -65,6 +67,12 @@ namespace AxCrypt.Core.UI
         public ProgressContext(TimeSpan timeToFirstProgress)
         {
             _nextProgressTime = timeToFirstProgress;
+        }
+
+        public ProgressContext(TimeSpan timeToFirstProgress, TimeSpan progressTimeInterval)
+            : this(timeToFirstProgress)
+        {
+            _progressTimeInterval = progressTimeInterval;
         }
 
         /// <summary>
@@ -163,7 +171,7 @@ namespace AxCrypt.Core.UI
                 {
                     return;
                 }
-                _nextProgressTime = Totals.Elapsed.Add(ProgressTimeInterval);
+                _nextProgressTime = Totals.Elapsed.Add(_progressTimeInterval);
             }
             ProgressEventArgs e = new ProgressEventArgs(Percent, Display);
             OnProgressing(e);
@@ -234,7 +242,7 @@ namespace AxCrypt.Core.UI
                 }
                 --_progressLevel;
             }
-            ProgressEventArgs e = new ProgressEventArgs(100, string.Empty);
+            ProgressEventArgs e = new ProgressEventArgs(100, Display);
             OnProgressing(e);
         }
 
