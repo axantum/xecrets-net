@@ -225,6 +225,7 @@ namespace AxCrypt.Fake
                 _file = fakeFileInfo = FindFileInfo();
             }
             OnOpeningForWrite();
+            fakeFileInfo!.Stream.Position = 0;
             EnsureDateTimes(fakeFileInfo!);
             return new NonClosingStream(fakeFileInfo!.Stream);
         }
