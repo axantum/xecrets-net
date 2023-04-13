@@ -1138,11 +1138,11 @@ namespace AxCrypt.Core
                 moveToFileInfo.IsWriteProtected = false;
                 using (Stream stream = moveToFileInfo.OpenUpdate())
                 {
-                    long length = stream.Length + OS.Current.StreamBufferSize - stream.Length % OS.Current.StreamBufferSize;
-                    progress.AddTotal(length);
-                    for (long position = 0; position < length; position += OS.Current.StreamBufferSize)
+                    progress.AddTotal(stream.Length);
+                    for (long position = 0; position < stream.Length; position += OS.Current.StreamBufferSize)
                     {
-                        byte[] random = Resolve.RandomGenerator.Generate(OS.Current.StreamBufferSize);
+                        int length = (int)(position + OS.Current.StreamBufferSize > stream.Length ? stream.Length - position : OS.Current.StreamBufferSize);
+                        byte[] random = Resolve.RandomGenerator.Generate(length);
                         stream.Write(random, 0, random.Length);
                         stream.Flush();
                         try
@@ -1152,7 +1152,6 @@ namespace AxCrypt.Core
                         catch (OperationCanceledException)
                         {
                             cancelPending = true;
-                            progress.AddCount(random.Length);
                         }
                     }
                 }
