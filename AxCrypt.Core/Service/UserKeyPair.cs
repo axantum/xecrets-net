@@ -58,6 +58,11 @@ namespace AxCrypt.Core.Service
 
         public static readonly UserKeyPair Empty = new UserKeyPair(EmailAddress.Empty);
 
+        public UserKeyPair()
+            :this(EmailAddress.Empty)
+        {
+        }
+
         public UserKeyPair(EmailAddress userEmail, int bits)
             : this(userEmail)
         {
@@ -74,13 +79,13 @@ namespace AxCrypt.Core.Service
         }
 
         [JsonPropertyName("timestamp")]
-        public DateTime Timestamp { get; private set; }
+        public DateTime Timestamp { get; set; }
 
         [JsonPropertyName("useremail")]
-        public EmailAddress UserEmail { get; private set; }
+        public EmailAddress UserEmail { get; set; }
 
         [JsonPropertyName("keypair"), AllowNull]
-        public IAsymmetricKeyPair KeyPair { get; private set; }
+        public IAsymmetricKeyPair KeyPair { get; set; }
 
         /// <summary>
         /// Loads the specified key pairs for the given user from the provided set of candiates in the form of IDataStore instances.
