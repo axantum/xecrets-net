@@ -68,6 +68,7 @@
     <Compile Include="Model\FeedbackData.cs" />
     <Compile Include="Model\CustomMessageParameters.cs" />
     <Compile Include="Model\Masterkey\MasterKeyStatus.cs" />
+    <Compile Include="Model\Notification\NotificationApiModel.cs" />
     <Compile Include="Model\PurchaseSettings.cs" />
     <Compile Include="Model\Masterkey\PrivateMasterKeyInfo.cs" />
     <Compile Include="Model\Masterkey\MasterKeyPairInfo.cs" />

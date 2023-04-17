@@ -11,7 +11,7 @@
     <AssemblyName>AxCrypt.Mono</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AssemblyOriginatorKeyFile>AxCryptStrongName.pfx</AssemblyOriginatorKeyFile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>

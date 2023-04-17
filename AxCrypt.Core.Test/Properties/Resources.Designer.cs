@@ -89,7 +89,7 @@ namespace Xecrets.File.Core.Test.Properties {
         ///Language: English
         ///
         ///
-        ///*** START OF THIS PROJECT G [rest of string was truncated]&quot;;.
+        ///*** START OF THIS PROJECT  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string david_copperfield {
             get {

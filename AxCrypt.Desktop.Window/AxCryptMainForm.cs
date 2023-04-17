@@ -311,6 +311,7 @@ namespace AxCrypt.Desktop.Window
             _swedishLanguageToolStripMenuItem.Text = "&" + Texts.SwedishLanguageToolStripMenuItemText;
             _turkishLanguageToolStripMenuItem.Text = "&" + Texts.TurkishLanguageToolStripMenuItemText;
             _chineseLanguageToolStripMenuItem.Text = "&" + Texts.ChineseLanguageSelectionText;
+            _arabicLanguageToolStripMenuItem.Text = "&" + Texts.ArabicLanguageSelectionText;
             _tryBrokenFileToolStripMenuItem.Text = "&" + Texts.TryBrokenFileToolStripMenuItemText;
             _encryptionUpgradeMenuItem.Text = "&" + Texts.UpgradeLegacyFilesMenuItemText;
             _encryptionUpgradeMenuItem.ToolTipText = Texts.UpgradeLegacyFilesMenuToolTip;
@@ -394,6 +395,7 @@ namespace AxCrypt.Desktop.Window
             {
                 Styling.RestoreWindowWithFocus(this);
             }
+            UpdateArabicStyle();
             await SignInAsync();
         }
 
@@ -511,7 +513,7 @@ namespace AxCrypt.Desktop.Window
             TypeMap.Register.New<KnownFoldersViewModel>(() => new KnownFoldersViewModel(Resolve.FileSystemState, Resolve.SessionNotify, Resolve.KnownIdentities));
             TypeMap.Register.New<WatchedFoldersViewModel>(() => new WatchedFoldersViewModel(Resolve.FileSystemState));
 
-            TypeMap.Register.Singleton<AboutBox>(() => new AboutBox());
+            TypeMap.Register.New<AboutBox>(() => new AboutBox());
 
             FormsTypes.Register(this);
         }
@@ -1864,10 +1866,22 @@ namespace AxCrypt.Desktop.Window
                 Resolve.Log.LogInfo("Set new UI language culture to '{0}'.".InvariantFormat(Resolve.UserSettings.CultureName));
             }
 
+            UpdateArabicStyle();
             InitializeContentResources();
             await SetWindowTitleTextAsync(_mainViewModel.LoggedOn);
             _daysLeftPremiumLabel.UpdateText();
             await SetSoftwareStatus();
+        }
+
+        private void UpdateArabicStyle()
+        {
+            if (Resolve.UserSettings.CultureName == "ar-AR")
+            {
+                this.RightToLeft = RightToLeft.Yes;
+                return;
+            }
+
+            this.RightToLeft = RightToLeft.No;
         }
 
         private void OptionsLanguageToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
