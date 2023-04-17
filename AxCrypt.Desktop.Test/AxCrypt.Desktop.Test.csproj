@@ -13,11 +13,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AxCrypt.Desktop.Test</RootNamespace>
     <AssemblyName>AxCrypt.Desktop.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AssemblyOriginatorKeyFile>AxantumStrongName.pfx</AssemblyOriginatorKeyFile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AxCrypt.Desktop.Window</RootNamespace>
     <AssemblyName>AxCrypt.Desktop.Window</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -341,6 +341,7 @@
     <None Include="resources\TextDocumentIcon.png" />
     <None Include="resources\add_more_users_white.png" />
     <Content Include="resources\axcrypticon.ico" />
+    <Content Include="resources\axcrypticon128.png" />
     <Content Include="resources\AxCryptLogo.png" />
     <Content Include="resources\broom_40px.png" />
     <Content Include="resources\broom_red_40px.png" />
@@ -424,7 +425,6 @@
     <Content Include="resources\refresh_grey_40px.png" />
     <Content Include="resources\removeanddecryptgreen32.png" />
     <Content Include="resources\refreshred.png" />
-    <Content Include="resources\axcrypticon128.png" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

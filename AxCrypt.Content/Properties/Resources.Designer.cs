@@ -116,7 +116,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Since then we have been awarded “The World’s Best Encryption Software” by the prestigious PC Magazine in 2016, 2017, 2018, 2019 and 2020 as well as many other review sites in the world. We have a global reach with users from all countries. Our biggest markets are Europe with 45% and America with 30% of the users..
+        ///   Looks up a localized string similar to Since then we have been awarded “The World’s Best Encryption Software” by the prestigious PC Magazine 2016-2023 as well as many other review sites in the world. We have a global reach with users from all countries. Our biggest markets are Europe with 45% and America with 30% of the users..
         /// </summary>
         public static string AboutAxcryptHistoryText4 {
             get {
@@ -1044,6 +1044,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to عربي(Arabic).
+        /// </summary>
+        public static string ArabicLanguageSelectionText {
+            get {
+                return ResourceManager.GetString("ArabicLanguageSelectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The page you tried to visit requires authentication. Please sign in to proceed..
         /// </summary>
         public static string AuthenticationError {
@@ -1559,6 +1568,15 @@ namespace AxCrypt.Content.Properties {
         public static string AxCryptSupportIntro {
             get {
                 return ResourceManager.GetString("AxCryptSupportIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to &lt;span&gt;AxCrypt ID&lt;/span&gt;.
+        /// </summary>
+        public static string BacktoAxCryptIDText {
+            get {
+                return ResourceManager.GetString("BacktoAxCryptIDText", resourceCulture);
             }
         }
         
@@ -2436,6 +2454,123 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to As a result, while both AES and DES are symmetric key block ciphers, AES is the de facto industry standard and is hence more secure. When it comes to encryption, security is crucial, and the only alternative is AxCrypt, which offers 256-bit encryption in addition to security. All concerns with encryption are resolved by AxCrypt..
+        /// </summary>
+        public static string Blog_AESDES_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Encryption Standard is what it stands for. The DES algorithm can be cracked using specific devices. A key with a 56-bit size is used by the DES algorithm. The DES creates a block of 64-bit cipher text using the 56-bit key after receiving a block of 64-bit plain text as an input..
+        /// </summary>
+        public static string Blog_AESDES_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Although both AES and DES being the encryption algorithm to encrypt data, there are significant differences between the both, in terms of their working principles, their core functions, their key sizes and their speed and security performances..
+        /// </summary>
+        public static string Blog_AESDES_H1_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H1_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is DES encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_AESDES_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES or the Advanced Encryption Standard is a cipher, which is a way to both encrypt and decrypt data. There&apos;s a significant probability that your data will be encrypted by some type of AES cipher, such as the AES 256, 192, or 128 -- whenever you transmit files through secure file transfer protocols like HTTPS, FTPS, SFTP, WebDAV, OFTP, or AS2..
+        /// </summary>
+        public static string Blog_AESDES_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For any cipher, the most basic technique of attack is brute force, which includes attempting each key until you locate the appropriate one. Finding the right key would take a maximum of 256, or around 72 quadrillion, attempts due to the effective DES key length of 56 bits. This is insufficient for the DES data protection against computerized brute-force attacks. Before AES was used to replace DES, there were probably not many messages that were susceptible to this kind of code-breaking attempt. However, eve [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_AESDES_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Although the AES data encryption technique is more theoretically sophisticated and attractive, its main advantage is the availability of different key lengths. AES is exponentially more secure than DES&apos;s 56-bit key since it lets you select a 128-bit, 192-bit, or 256-bit key. Because key size affects encryption strength, DES became obsolete due to continual advancements in computing technology..
+        /// </summary>
+        public static string Blog_AESDES_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Why DES is no longer effective? &lt;/strong&gt;..
+        /// </summary>
+        public static string Blog_AESDES_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Why AES replaces DES? &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_AESDES_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is an AES encryption?&lt;strong&gt;.
+        /// </summary>
+        public static string Blog_AESDES_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difference between AES encryption Vs DES encryption..
+        /// </summary>
+        public static string Blog_AESDES_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES or the Advanced Encryption Standard is a cipher, which is a way to both encrypt and decrypt data..
+        /// </summary>
+        public static string Blog_AESDES_Summary {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Encryption Standard Vs Data Encryption Standard..
+        /// </summary>
+        public static string Blog_AESDES_Title {
+            get {
+                return ResourceManager.GetString("Blog_AESDES_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt in short.
         /// </summary>
         public static string Blog_AIS_Conclusion_Heading {
@@ -2868,7 +3003,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt will automatically switch to ‘offine’ mode if it’s not possible to connect to the server. It can also be started with the –offine command line switch, or set permanently offine by using the “File | Options | Always Offine” option..
+        ///   Looks up a localized string similar to AxCrypt will automatically switch to ‘offline’ mode if it’s not possible to connect to the server. It can also be started with the –offline command line switch, or set permanently offline by using the “File | Options | Always Offline” option..
         /// </summary>
         public static string Blog_AOVO_Text6 {
             get {
@@ -2882,6 +3017,474 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_AOVO_Title {
             get {
                 return ResourceManager.GetString("Blog_AOVO_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The holiday season is a time for celebration and spending time with loved ones, but it&apos;s also important to make sure that your data is safe and secure. By following these tips and using a reputable security solution like AxCrypt, you can help protect your data from unauthorized access and give yourself peace of mind. Happy holidays!.
+        /// </summary>
+        public static string Blog_ASTSHSA_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choosing strong, unique passwords is one of the easiest ways to protect your accounts and data. Make sure to use a combination of letters, numbers, and special characters, and avoid using personal information or dictionary words. Still the most common password is still “123456”, so it&apos;s important to be creative and not use easily guessable passwords. It&apos;s also a good idea to use different passwords for different accounts to reduce the risk of all of your accounts being compromised if one password is exposed [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_ASTSHSA_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A password manager is a tool that generates and stores strong, unique passwords, helps you avoid using weak passwords, and makes it easier to use different passwords for different accounts. It also securely stores and organizes your passwords and may offer additional features such as two-factor authentication and alerts for exposed passwords. A password manager is a convenient and secure way to manage passwords. One option is AxCrypt which offers a password manager as part of its security solution..
+        /// </summary>
+        public static string Blog_ASTSHSA_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s important to keep your software and operating system up to date to ensure that you have the latest security fixes. Hackers often target outdated systems, so make sure to regularly check for updates and install them when they are available. This includes your operating system, as well as any software that you use, such as your web browser, antivirus program, and office suite..
+        /// </summary>
+        public static string Blog_ASTSHSA_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consider using a security solution like AxCrypt to encrypt your files and protect them with a password. This can help prevent unauthorized access to your data and give you peace of mind. Encrypting your files ensures that even if someone gains access to them, they will not be able to read or use the data without the password..
+        /// </summary>
+        public static string Blog_ASTSHSA_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidents happen, and it&apos;s always a good idea to have a backup of your important files. Make sure to regularly back up your data to a secure location, such as an external hard drive or a cloud storage service. This can help protect against data loss in the event of a system failure or other unforeseen event. It&apos;s also a good idea to test your backups regularly to ensure that they are working properly..
+        /// </summary>
+        public static string Blog_ASTSHSA_H5_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H5_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public Wi-Fi networks can be vulnerable to hackers, so it&apos;s best to avoid accessing sensitive information or logging into important accounts while using them. If you need to use public Wi-Fi, make sure to use a reputable VPN service to secure your connection. A VPN, or virtual private network, encrypts your internet connection and helps protect your data from being accessed by others on the same network..
+        /// </summary>
+        public static string Blog_ASTSHSA_H6_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H6_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During the holiday season, scammers often try to take advantage of people&apos;s generosity and good cheer. Be cautious when opening emails or clicking on links from unfamiliar sources, as these can be used to trick you into revealing sensitive information or downloading..
+        /// </summary>
+        public static string Blog_ASTSHSA_H7_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_H7_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;1. Use strong, unique passwords&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;2. Use a password manager&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;3. Keep your software and operating system up to date&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;4. Use a reputable security solution&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;5. Back up your data&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;6. Be cautious when using public Wi-Fi&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;7. Be mindful of phishing scams&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ASTSHSA_Heading7 {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Heading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It&apos;s important to make sure that your data is safe and secure. With the increase in online shopping and the exchange of sensitive information, it&apos;s more important than ever to take steps to protect your data..
+        /// </summary>
+        public static string Blog_ASTSHSA_Summary {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A few secret tips to keep your data safe during the holiday season with AxCrypt.
+        /// </summary>
+        public static string Blog_ASTSHSA_Title {
+            get {
+                return ResourceManager.GetString("Blog_ASTSHSA_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The issue of women in tech and gender diversity at workplace requires a progressive approach, with an effort and inclusion of everyone. AxCrypt strives for a strong gender diverse workplace and welcomes and appreciates different women who bring their own unique contribution and working styles for the womanhood. Let’s celebrate this woman’s day as a thank you to all the women working in tech, who are putting their efforts to bring gender diversity at workplace, one step at a time..
+        /// </summary>
+        public static string Blog_BAWIT_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “Being a women in tech gives me a sense of freedom and confidence. I feel proud to be breaking the gender stereotypes about the traditional roles of women and instead becoming more educated and familiar with technology. This has enabled me to become self-sufficient, reliable, and adaptive – when facing different life challenges and situations..
+        /// </summary>
+        public static string Blog_BAWIT_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One of the best things about working in the technology sector is the slew of opportunities and possibilities that are presented to you. It allows you to become more flexible and open-minded, while still having an innate curiosity, and the ability to change, adapt, and educate yourself. It makes you grow both professionally and personally, and helps you live a content and purposeful life.”.
+        /// </summary>
+        public static string Blog_BAWIT_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “Working in the constantly evolving tech industry has made me feel young and full of energy. At AxCrypt, not only do I find fulfilment in my career, but I’m also able to financially support my partner and appreciate the challenges that come with his own job. We mutually complement each other, both in our professional and personal lives, and my parents couldn’t be happier seeing their daughter pursue a career in tech after starting a family.”.
+        /// </summary>
+        public static string Blog_BAWIT_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overall, inspiring more women to pursue careers in technology requires a concerted effort from individuals, companies, and society as a whole. By breaking down barriers and promoting inclusivity, we can create a more diverse and innovative tech industry that thrives on the collective efforts of everyone.”.
+        /// </summary>
+        public static string Blog_BAWIT_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “I have been working in the tech industry for the past 20 years – specifically, in the administrative and human resources side of the industry. This is not a job I could have dreamed of as a child, and the tech world didn’t even exist back then.  Bangalore used to be a beautiful tourist destination, until the early 2000s when almost overnight it became the IT hub of India.
+        /// </summary>
+        public static string Blog_BAWIT_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This was also around the time I was starting out in life in Bangalore was very privileged to be able to grow in the industry while it was still in its early stages. I have had the opportunity to see, learn, and participate on what it takes to build multiple international tech companies from the ground up. Throughout my career, I&apos;ve made life-long friends from various parts of the world, acquainted myself with diverse cultures, and was even fortunate enough to travel abroad for work..
+        /// </summary>
+        public static string Blog_BAWIT_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the tech industry, there is always something new to learn and ample room for personal and professional growth. Moreover, there is enormous potential to be creative and make a positive impact. For me, working at AxCrypt is the best job ever, and I especially cherish the opportunity it provides..
+        /// </summary>
+        public static string Blog_BAWIT_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At AxCrypt, I have the freedom to grow in my role without any limits, and the upper management has fostered a work environment that is friendly yet competitive. What I value most about this workplace is the sense of equality and respect that is deeply ingrained in its culture.”.
+        /// </summary>
+        public static string Blog_BAWIT_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “Technology is linked with progress, and a community that embraces technology is considered to be progressive. Technology simplifies our lives and improves our standard of living..
+        /// </summary>
+        public static string Blog_BAWIT_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As someone who works in the technology industry, I feel that I’m playing a key role in the progress of my community and making people&apos;s lives better. While I may not be directly involved in the development of the technology itself; my efforts, experience, and knowledge has helped make it more accessible to the people and processes of it simplified..
+        /// </summary>
+        public static string Blog_BAWIT_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working at AxCrypt has given me the opportunity to contribute to the betterment of people using technology, and as a women in tech, I’m committed to ensuring that technology reaches everyone and helps enhance individuals&apos; lives, ultimately contributing to the development of society.”.
+        /// </summary>
+        public static string Blog_BAWIT_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “The technology field demands more dedication and hard work, as we work to bring the abstract and creative ideas to life on screens. It allows us to express ourselves and find solutions to every problem. Technology is like an endless sea of possibilities, where there is always something new to learn, and it empowers us to see beyond the horizon. Whether we are men or women, it is our choice to ride the beautiful waves of technology and explore the depths of knowledge..
+        /// </summary>
+        public static string Blog_BAWIT_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The tech field provides a higher level of understanding and practical knowledge, helping us to organize our lives and approach them with optimism and wisdom. We deserve access to knowledge and awareness of the protection technology can offer us. As women, we understand that opportunities may not always come our way, but we have the power to create them ourselves.”.
+        /// </summary>
+        public static string Blog_BAWIT_H5_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H5_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “The field of information technology has traditionally been a male dominated one, but I see every day that more and more women are breaking into the industry and making a name for themselves. Balancing my work and personal life may be a challenge, but with every challenge comes the opportunity to grow and become stronger. In this ever-evolving industry, it is vital to stay up-to-date with the latest trends and skills. Falling behind the curve can mean losing out in the highly competitive world of tech..
+        /// </summary>
+        public static string Blog_BAWIT_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a women in tech, I am constantly learning and expanding my skills to stay ahead of the curve. The tech industry offers endless possibilities for innovation and making a positive impact on the world. It&apos;s a challenging yet dynamic career path that is worth every bit of effort. .
+        /// </summary>
+        public static string Blog_BAWIT_H6_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H6_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I am proud to be a part of an industry that is shaping the future and changing the world for the better. Thank you for giving me the opportunity to share my experience in the tech industry.”.
+        /// </summary>
+        public static string Blog_BAWIT_H6_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H6_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “The myth that women&apos;s empowerment can only happen slowly has debilitated their power. We need to realize that, when it comes to eradicating this deep-rooted problem of traditional gender stereotyping, everyone&apos;s contribution counts..
+        /// </summary>
+        public static string Blog_BAWIT_H7_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H7_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faced with several hurdles such as gender preferences, low representation and a virtual glass ceiling, women are constantly trying to uplift themselves and bring a change in the industry, and are excelling in higher positions. Despite the challenges, it is a fulfilling experience to work in a company that doesn&apos;t discriminate. I am glad to work as a women in the IT industry and have high hopes for breaking gender inequality. Happy International Women&apos;s Day.”.
+        /// </summary>
+        public static string Blog_BAWIT_H7_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H7_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “I am a software engineer with over 10 years of experience in .NET development, and I’m proud to be part of the tech industry. I entered the corporate world through campus recruitment, and was offered a position at one of the big IT companies, and it was a dream come true..
+        /// </summary>
+        public static string Blog_BAWIT_H8_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H8_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Despite challenges and stereotypes about women&apos;s capabilities in coding and analytical thinking, I have persevered and have seen the importance of diversity in this field. Balancing work and family responsibilities can be difficult, especially for working mothers, but we are capable of multitasking, time management, and keeping up with family values while pursuing our careers..
+        /// </summary>
+        public static string Blog_BAWIT_H8_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H8_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As Women&apos;s Day approaches, I would like to extend my congratulations to all the women in tech and thank them for their remarkable achievements and contribution to the industry..
+        /// </summary>
+        public static string Blog_BAWIT_H8_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_H8_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Daria – Graphic Designer, The Design Dynamo of AxCrypt &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Pavitra - Human Resource Manager, The HR Hero of AxCrypt &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Jency - Operational Director, The Operational Oracle of AxCrypt&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Vandana – Business Manager, The Marketing Marvel of AxCrypt &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Venkatalakshmi – Jr. Software Engineer, The Coding Ninja of AxCrypt &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Swapna – Jr. Software Developer, The Binary Defender of AxCrypt &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Shalini – Jr. Software Engineer, The Captain Compiler AxCrypt&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading7 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Manjula – Sr. Software Engineer, The Tech Titan of AxCrypt  &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BAWIT_Heading8 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Heading8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As we all celebrate International Women&apos;s Day, it is important to recognize the invaluable contributions of women in the tech industry..
+        /// </summary>
+        public static string Blog_BAWIT_Summary {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As we all celebrate International Women&apos;s Day, it is important to recognize the invaluable contributions of women in the tech industry. Traditionally, technology is seen as a male dominated industry. However, in recent years, this industry has welcomed more women breaking barriers and making their mark in the tech world..
+        /// </summary>
+        public static string Blog_BAWIT_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Despite facing obstacles such as gender biases and lack of representation, women have persevered and are now making significant strides in the field. In this article, let’s explore the experiences of women in tech, their contributions to the industry, and the challenges they have overcome to get where they are today – all from the perspective of women working at AxCrypt Software. With that, let’s see what each women at AxCrypt has to say about her experience: .
+        /// </summary>
+        public static string Blog_BAWIT_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Being a Women in Tech.
+        /// </summary>
+        public static string Blog_BAWIT_Title {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;From the Perspective of Women at AxCrypt&lt;/strong&gt;  .
+        /// </summary>
+        public static string Blog_BAWIT_Title_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_BAWIT_Title_Heading1", resourceCulture);
             }
         }
         
@@ -3026,6 +3629,213 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_BMYP_Title {
             get {
                 return ResourceManager.GetString("Blog_BMYP_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is a technique that transforms plain text into an unreadable form called &lt;strong&gt;ciphertext. &lt;/strong&gt;This is achieved by running the text through an encryption algorithm, like &lt;strong&gt;AES,&lt;/strong&gt; which randomly rearranges and jumbles up the content, rendering it incomprehensible during transmission. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process of rearranging the text is supported by complex mathematical calculations referred to as a &lt;strong&gt;‘key.’&lt;/strong&gt; These same mathematical calculations are also used for decryption, which reverses the encryption process and permits only authorized individuals to access the original plain text. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption utilizes intricate mathematical procedures called &lt;strong&gt; &apos;encryption algorithms&apos;&lt;/strong&gt; along with digital keys to scramble data. These encryption keys can be produced either manually or by software that applies an algorithm to scramble data and create a unique encryption key. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scrambling of the text occurs by encryption algorithm &lt;strong&gt;(cipher),&lt;/strong&gt; when it uses the encryption key to apply the conversion of data based on the mathematical equations of key, to turn it into ciphertext. This ciphertext can then be transmitted to a recipient and decoded back into the original value using the same or different cipher and key. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a very important element in terms of data security, as it guarantees that no one else would be able to read or decipher your data during its transmission – ensuring privacy and security of the sensitive information. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A rudimentary encryption technique involves swapping each letter with its opposite position in the alphabet, such as &lt;strong&gt;“a”&lt;/strong&gt; is replaced with &lt;strong&gt;“z”,&lt;/strong&gt; and &lt;strong&gt;“b”&lt;/strong&gt; with &lt;strong&gt;“y”&lt;/strong&gt; and so on. An example of this is the phrase &lt;strong&gt;“AxCrypt Software”&lt;/strong&gt; resulting in an encrypted string using the letter-swapping technique as &lt;strong&gt;“ZwBqxos Rnesvzqd”.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_BSOHDGE_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption has emerged as one of the most powerful tools to safeguard important and sensitive information from malicious actors. As the number and sophistication of cyberattacks continue to rise every day along with the enormous amount of data being generated globally, the role of data encryption becomes more critical than ever before.  .
+        /// </summary>
+        public static string Blog_BSOHDGE_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Businesses and individuals can use encryption and prioritize encryption to keep their systems and data secure. Even if attackers manage to gain access to sensitive information, encryption renders it useless to them without the corresponding decryption key. This makes it nearly impossible for them to read or use the data, ensuring that it remains confidential and protected. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overall, AxCrypt provides a secure solution for encrypting files on local and cloud storage using AES &lt;strong&gt;256-Bit encryption.&lt;/strong&gt; It is super easy to use on desktops, laptops, and mobile devices, making it convenient to safeguard sensitive data from anywhere. AxCrypt also allows users to take advantage of the convenience of cloud storage while ensuring that their data remains confidential and secure anywhere around the world. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H4_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H4_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try it out today with a free trial and take your data security to the next level. Sign up now at &lt;a href=&apos;https://account.axcrypt.net/en/Home/Login?Signup=True&apos;&gt;[SIGNUP LINK]&lt;/a&gt; , &lt;a href=&apos;https://axcrypt.net/&apos;&gt; [LANDING PAGE LINK] &lt;/a&gt;.
+        /// </summary>
+        public static string Blog_BSOHDGE_H4_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H4_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt allows users to easily encrypt their data across multiple devices. The software provides strong encryption using the &lt;strong&gt;AES 256-Bit,&lt;/strong&gt; ensuring that data remains protected from unauthorized access. Users can simply select the files they wish to encrypt and AxCrypt will automatically apply the encryption process, making it easy to use for those who may not be familiar with encryption. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt also offers secure file sharing, allowing users to send encrypted files to others via email or cloud storage services such as Dropbox or Google Drive. Recipients can then easily decrypt the files using their own AxCrypt software, making it a convenient and secure way to share sensitive information.  .
+        /// </summary>
+        public static string Blog_BSOHDGE_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt also includes a password management feature, which enables users to securely store their passwords in an encrypted file, adding an extra layer of protection to their sensitive information. Overall, AxCrypt is a user-friendly and reliable option for encrypting data across multiple devices. .
+        /// </summary>
+        public static string Blog_BSOHDGE_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What does encryption mean? .
+        /// </summary>
+        public static string Blog_BSOHDGE_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does encryption work?  .
+        /// </summary>
+        public static string Blog_BSOHDGE_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why encryption is important for your data? .
+        /// </summary>
+        public static string Blog_BSOHDGE_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to easily encrypt data across devices using AxCrypt .
+        /// </summary>
+        public static string Blog_BSOHDGE_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the advent of Industry 4.0 and technologies like AI and ML, it has become even more important to safeguard your sensitive data..
+        /// </summary>
+        public static string Blog_BSOHDGE_Summary {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the advent of &lt;strong&gt;Industry 4.0&lt;/strong&gt; and technologies like AI and ML, it has become even more important to safeguard your sensitive data. According to a &lt;a href=&apos;https://www.weforum.org/agenda/2019/04/how-much-data-is-generated-each-day-cf4bddf29f&apos;&gt;World Economic Forum (WRF) report,&lt;/a&gt;  by &lt;strong&gt;2025,&lt;/strong&gt; the amount of data generated in the cloud servers &lt;strong&gt;each day&lt;/strong&gt;  will reach around &lt;strong&gt;463 exabytes&lt;/strong&gt; globally. This is an astonishingly enormous amount data gene [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_BSOHDGE_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In light of these figures, it&apos;s essential for businesses to prioritize the safety of their data, particularly from breaches and cyberattacks. One popular and effective method to ensure data safety is encryption, which is widely used across various online activities like online banking, email, and online shopping, and is even being used as we read this article. .
+        /// </summary>
+        public static string Blog_BSOHDGE_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let’s dive deeper with the following topics and understand the &lt;strong&gt; ‘behind-the-scenes’ &lt;/strong&gt;of encryption, what is it, how it works, and why it should be an essential element of your business – all in a simpler, easy-to-grasp language:.
+        /// </summary>
+        public static string Blog_BSOHDGE_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behind the Scenes of How Data Gets Encrypted .
+        /// </summary>
+        public static string Blog_BSOHDGE_Tittle {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Tittle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;What does encryption mean? &lt;/li&gt;&lt;br/&gt;&lt;li&gt;How does encryption work? &lt;/li&gt;&lt;br/&gt; &lt;li&gt;Why encryption is important for your data? &lt;/li&gt;&lt;br/&gt; &lt;li&gt;How to easily encrypt data across devices using AxCrypt?&lt;/li&gt;&lt;br/&gt;.
+        /// </summary>
+        public static string Blog_BSOHDGE_Topic_Points {
+            get {
+                return ResourceManager.GetString("Blog_BSOHDGE_Topic_Points", resourceCulture);
             }
         }
         
@@ -3660,7 +4470,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Have a Look at the &lt;a href=&apos;https://axcrypt.net/information/features&apos;&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure yor files ans data and the &lt;a href=&apos;https://www.axcrypt.net/pricing&apos;&gt;Pricing Page&lt;/a&gt; shows which type of encryption subscriptions AxCrypt offers..
+        ///   Looks up a localized string similar to Have a Look at the &lt;a href=&apos;https://axcrypt.net/information/features&apos;&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data, the &lt;a href=&apos;https://www.axcrypt.net/pricing&apos;&gt;Pricing Page&lt;/a&gt; shows which type of encryption subscriptions AxCrypt offers..
         /// </summary>
         public static string Blog_Conclusion_Feature_Text1 {
             get {
@@ -3912,7 +4722,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;Benefits of having Cyber Resilience&lt;strong&gt;:.
+        ///   Looks up a localized string similar to &lt;strong&gt;Benefits of having Cyber Resilience&lt;/strong&gt;:.
         /// </summary>
         public static string Blog_CRI_H2_SubHeading1 {
             get {
@@ -4623,6 +5433,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contact AxCrypt today and download our latest version to experience the best from &lt;a href=&apos;https://www.axcrypt.net/download/&apos;&gt;Download | AxCrypt - File Security Made Easy.&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_Download_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_Download_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In short, here at AxCrypt.
         /// </summary>
         public static string Blog_DRATIUIN_Conclusion_Heading {
@@ -5303,6 +6122,411 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_EFPECT_Title {
             get {
                 return ResourceManager.GetString("Blog_EFPECT_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signup for a free trial today and take your data security to the next level: &lt;br/&gt;&lt;a href=&apos;https://account.axcrypt.net/en/Home/Login?Signup=True&apos;&gt;SIGNUP LINK&lt;/a&gt;&lt;a href=&apos;https://axcrypt.net/&apos;&gt;LANDING PAGE LINK&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In conclusion, AxCrypt software provides a comprehensive and secure solution for encrypting files stored on the OneDrive cloud storage, regardless of the device being used. With &lt;b&gt; AES 256-bit &lt;/b&gt; encryption, users can be rest assured that their sensitive data is well-protected from unauthorized access. The process of encrypting files with AxCrypt is simple and can be done on desktops, laptops, and mobile devices, making it convenient for users to safeguard their files no matter where they are..
+        /// </summary>
+        public static string Blog_EGEODUNA_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users can take advantage of the cloud&apos;s convenience while ensuring that their data remains confidential and secure, an excellent way to safeguard sensitive data while still taking advantage of the convenience of cloud storage. .
+        /// </summary>
+        public static string Blog_EGEODUNA_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before you start encrypting your files on OneDrive, you need to set up AxCrypt with OneDrive. To do this, follow the steps below:.
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 1:&lt;/strong&gt; Launch AxCrypt on your computer, smartphone, or tablet..
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 2:&lt;/strong&gt; On PC, click on the “OneDrive” icon and sign in with your Microsoft account..
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 3:&lt;/strong&gt; On mobile, tap on the “Secure” icon and select “OneDrive”, then authenticate your account with credentials..
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 4:&lt;/strong&gt; Your account is now ready to encrypt files on OneDrive..
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; Setting up AxCrypt with OneDrive &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The first step to encrypting files on OneDrive using AxCrypt is to download and install AxCrypt on your device. AxCrypt runs on Windows, Mac, iOS, and Android, and you can download and install it from the download page:&lt;a href=&apos;https://axcrypt.net/download&apos;&gt;https://axcrypt.net/download&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once installed, simply sign in with your existing account, or signup with your email for a free &lt;b&gt; 30-day trial &lt;/b&gt;..
+        /// </summary>
+        public static string Blog_EGEODUNA_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once you have set up and integrated your OneDrive account with AxCrypt, encrypt files on OneDrive using AxCrypt, follow the steps below:.
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 2:&lt;/strong&gt; Tap “Secure” icon from the top menu strip and select “OneDrive” Icon. .
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 3:&lt;/strong&gt; In the file explorer, select the files that you’d like to encrypt from the files on your OneDrive..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 4:&lt;/strong&gt; Click on the selected file and select the “Info” icon from the menu strip on the top right to check the status of the encrypted file. Encrypted files will have an extension of ‘.axx’..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; On PC:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 1:&lt;/strong&gt; Launch AxCrypt and login with your password..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 2:&lt;/strong&gt; Select the “Secure” icon from the top menu strip on..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 3:&lt;/strong&gt; Select the files and folders that you’d like to encrypt from the OneDrive’s sync directory. .
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 4:&lt;/strong&gt; Click ‘Open’ from the explorer menu on the down right and your files will be encrypted. Encrypted files will have an extension of ‘.axx’..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 5:&lt;/strong&gt; You can also encrypt files by dragging them onto the AxCrypt and using the ‘right-click’ context menu and choosing AxCrypt &gt; Encrypt..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;On Desktops and Laptops: &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Step 1:&lt;/strong&gt; Launch the AxCrypt app and login with your password..
+        /// </summary>
+        public static string Blog_EGEODUNA_H2_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H2_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt can automatically encrypt and sync new files and folders on your specified OneDrive directory on your PC. Just add new files and folders and before you exit the AxCrypt application, it will encrypt all the changed files before closing. You can also permanently decrypt files by right-clicking on the file and selecting.
+        /// </summary>
+        public static string Blog_EGEODUNA_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also encrypt any new files and folders directly within the applications by clicking on the &lt;b&gt; “Clean Up” &lt;/b&gt; icon on the top right. This will let you encrypt the newer files and folders without having to exit the application..
+        /// </summary>
+        public static string Blog_EGEODUNA_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; On Desktops and Laptops:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once you have encrypted the files on your device, you can view them on your PC my simply double click on any of the files and it will be decrypted to view. To decrypt multiple files, select the “Stop Securing” button from the top menu strip on the PC and select all the files that you’d like to decrypt..
+        /// </summary>
+        public static string Blog_EGEODUNA_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; On Mobile:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To decrypt a OneDrive file on your smartphone, go to Secure &gt; OneDrive and select the file that you’d like to decrypt. Once done, it will decrypt the file on the cloud and can be viewed normally without the AxCrypt application..
+        /// </summary>
+        public static string Blog_EGEODUNA_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installing AxCrypt.
+        /// </summary>
+        public static string Blog_EGEODUNA_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypting files on OneDrive with AxCrypt.
+        /// </summary>
+        public static string Blog_EGEODUNA_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically encrypting new OneDrive files on PC.
+        /// </summary>
+        public static string Blog_EGEODUNA_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; Decrypting files on OneDrive with AxCrypt &lt;strong&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Installing AxCrypt&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_M1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_M1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Setting up AxCrypt with OneDrive&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_M1_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_M1_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Encrypting files on OneDrive with AxCrypt&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_M1_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_M1_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Automatically encrypting new OneDrive files on PC&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_M1_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_M1_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Decrypting files on OneDrive with AxCrypt &lt;/li&gt;.
+        /// </summary>
+        public static string Blog_EGEODUNA_M1_SH5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_M1_SH5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Encryption is Essential for Your Data on the Cloud?.
+        /// </summary>
+        public static string Blog_EGEODUNA_Main_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Main_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today, data privacy and security have become a significant concern, and people are continuously searching for ways to keep their sensitive files secure. Securing and encrypting your data on the cloud is equally important as securing your data on your local storage..
+        /// </summary>
+        public static string Blog_EGEODUNA_Main_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Main_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft OneDrive is one of the most popular cloud storage services used globally. However, storing sensitive information in the cloud may cause security risks. That&apos;s where AxCrypt comes into play. AxCrypt is a powerful encryption tool that allows you to encrypt your files securely, ensuring that your data is protected in the cloud, including on OneDrive..
+        /// </summary>
+        public static string Blog_EGEODUNA_Main_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Main_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, you can encrypt your personal and business data seamlessly using the powerful &lt;b&gt; AES 256-bit algorithm&lt;/b&gt;, and manage the processes within your team with a master access using the &lt;b&gt; master key &lt;/b&gt;..
+        /// </summary>
+        public static string Blog_EGEODUNA_Main_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Main_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this post, we will guide you through the process of encrypting files on OneDrive using AxCrypt. We&apos;ll cover the following topics:.
+        /// </summary>
+        public static string Blog_EGEODUNA_Main_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Main_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today, data privacy and security have become a significant concern, and people are continuously searching for ways to keep their sensitive files secure..
+        /// </summary>
+        public static string Blog_EGEODUNA_Summary {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easy Guide to Encrypting OneDrive Files Using the Unbreakable AES-256 Algorithm.
+        /// </summary>
+        public static string Blog_EGEODUNA_Title {
+            get {
+                return ResourceManager.GetString("Blog_EGEODUNA_Title", resourceCulture);
             }
         }
         
@@ -6554,6 +7778,240 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_EITPS_Title {
             get {
                 return ResourceManager.GetString("Blog_EITPS_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital data is protected by encryption using one or more mathematical approaches, So AxCrypt encryption software makes it easy to secure important files and sensitive data. Although it is far from flawless, it is a strong tool for securing files. Only when everyone chooses AxCrypt will it be ideal, which is a crucial component of security, but it is not the only one to take into account. Axcrypt is the solution to encryption issues..
+        /// </summary>
+        public static string Blog_ES_conclusion {
+            get {
+                return ResourceManager.GetString("Blog_ES_conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type of keys used, the size of the encrypted data blocks, and the encryption key length all affects the encryption process..
+        /// </summary>
+        public static string Blog_ES_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The symmetric encryption algorithm known as Advanced Encryption Standard encodes data blocks of 128 bits at a time. The keys used to encrypt these data blocks have lengths of 128, 192, and 256 bits. A 256-bit key requires 14 rounds of data encryption, a 192-bit key requires 12 rounds, and a 128-bit key requires 10 rounds.Each cycle includes a number of stages for substitution, transposition, plaintext mixing, and other operations..
+        /// </summary>
+        public static string Blog_ES_H1_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Data Encryption Standard (DES) approach encrypts data blocks with a 56-bit Key using a symmetric encryption technique called triple DES. Each data block is encrypted using the DES cipher method three times in Triple DES..
+        /// </summary>
+        public static string Blog_ES_H1_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format-Preserving, A symmetric process known as encryption preserves the format and length of your data while encoding it. FPE can be used to secure cloud management tools and software..
+        /// </summary>
+        public static string Blog_ES_H1_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stronger than RSA encryption is a more recent form of public-key cryptography called elliptic curve cryptography. It is quicker since the keys are shorter. Because it is asymmetric, you can use it with SSL/TLS protocols to increase the security of your web communications..
+        /// </summary>
+        public static string Blog_ES_H1_SH5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SH5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Famous encryption method to protect files or data.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;1. Advanced Encryption Standard (AES)&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H1_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;2. Triple Data Encryption Standard (DES)&lt;/strong&gt; .
+        /// </summary>
+        public static string Blog_ES_H1_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;3. Format- preserving Encryption (FPE)&lt;/strong&gt; .
+        /// </summary>
+        public static string Blog_ES_H1_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;4. Elliptic Curve Cryptography (ECC)&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H1_SubHeading5 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_SubHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data is converted into ciphertext through encryption using a cipher (an encryption technique) and an encryption key. Once the ciphertext has been transmitted to the receiving party, a key (the same key for symmetric encryption; a different, related value for asymmetric encryption) is used to decode it back into the original value. Due to the similarity between encryption keys and physical keys, only users who possess the right key can “unlock” or decrypt the encrypted data..
+        /// </summary>
+        public static string Blog_ES_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numerous encryption capabilities are integrated into Android and iPhone smartphones as well, and many encryption tools may be downloaded for free. Passwords are encrypted and stored online by LastPass, a freemium password manager. A browser add-on that increases the security of web browsing is HTTPS Everywhere..
+        /// </summary>
+        public static string Blog_ES_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To stop hackers from intercepting unsecured public Wi-Fi connections and disseminating malware, all confidential data should be encrypted, and remote workers should use virtual private networks (VPN)..
+        /// </summary>
+        public static string Blog_ES_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Since data is always changing, utilizing encryption seldom ensures the integrity of our data while it is at rest. However, it can be used to confirm the integrity of our backups. We may protect the integrity of our data while it is in transit by utilizing digital signatures. This will stop hackers from eavesdropping on conversations and altering data because the recipient will be able to readily check for it..
+        /// </summary>
+        public static string Blog_ES_H2_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compliance is crucial, and many IT departments must go by rules governing the storage,handling, and transmission of data set forth by the law, insurance companies,and businesses.One of the safest ways for a business to send and keep data while adhering to the constraints that our organization must abide by is through encryption..
+        /// </summary>
+        public static string Blog_ES_H2_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Implementing encryption is inexpensive.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Remote Workers can be Protected using Encryption.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Enhancing Data Integrity with Encryption.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H2_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Ensuring adherence.&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_ES_H2_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The technology makes it considerably more difficult for hackers to steal data, here are some benefits of encryption technology..
+        /// </summary>
+        public static string Blog_ES_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does encryption software work?.
+        /// </summary>
+        public static string Blog_ES_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advantages of encryption software..
+        /// </summary>
+        public static string Blog_ES_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_ES_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Software for encryption changes plain-text files and text into text that cannot be read by known human languages..
+        /// </summary>
+        public static string Blog_ES_Summary {
+            get {
+                return ResourceManager.GetString("Blog_ES_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software for encryption changes plain-text files and text into text that cannot be read by known human languages. Software is used to transform legible text into an unintelligible format, which is known as encryption or cipher text. The file will need to be decrypted in order to be read once it has been encrypted.
+        /// </summary>
+        public static string Blog_ES_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ES_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is encryption software?.
+        /// </summary>
+        public static string Blog_ES_Title {
+            get {
+                return ResourceManager.GetString("Blog_ES_Title", resourceCulture);
             }
         }
         
@@ -8408,6 +9866,276 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_HPYBFC_Title {
             get {
                 return ResourceManager.GetString("Blog_HPYBFC_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signup for a free trial today and take your data security to the next level: &lt;br/&gt;&lt;a href=&apos;https://account.axcrypt.net/en/Home/Login?Signup=True&apos;&gt;SIGNUP LINK&lt;/a&gt;&lt;a href=&apos;https://axcrypt.net/&apos;&gt;LANDING PAGE LINK&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_HREAYSD_Conclusion {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption methods essentially can be divided into two categories: symmetric and asymmetric. Symmetric encryption uses the same secret key for both encryption and decryption of the data. The same key is shared between the sender and receiver of the encrypted data..
+        /// </summary>
+        public static string Blog_HREAYSD_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asymmetric encryption, on the other hand, involves two keys: a public key and a private key. The public key is used to encrypt the data, while the private key is used to decrypt it. This approach ensures that only the intended recipient, who has the private key, can decrypt the data.  .
+        /// </summary>
+        public static string Blog_HREAYSD_H1_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Although asymmetric encryption is often deemed more secure than symmetric encryption, it can be slower and more resource-intensive..
+        /// </summary>
+        public static string Blog_HREAYSD_H1_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different encryption algorithms have been devised based on the symmetric and asymmetric methods, and in this blog, we will discuss the three most popular ones: &lt;strong&gt;AES, 3DES, and RSA.&lt;/strong&gt; .
+        /// </summary>
+        public static string Blog_HREAYSD_H1_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Types of Encryption Methods:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_HREAYSD_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is a process of converting the plain text into an illegible text known as ciphertext. A computing device does this by running the text through one of the encryption algorithms, such as AES, to randomly rearrange and scramble the given text – making it impossible to read during the transmission. .
+        /// </summary>
+        public static string Blog_HREAYSD_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rearrangement of text is backed by very intricate mathematical calculations known as a &lt;strong&gt;‘key’&lt;/strong&gt;, and the same mathematical calculations used for encryption are reversed to decrypt the text, allowing only the authorized individuals to access the original plain text. .
+        /// </summary>
+        public static string Blog_HREAYSD_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The AES encryption algorithm, also known as Rijndael, is a popular symmetric encryption algorithm used to protect data. AES algorithm has key lengths of 128, 192, or 256 bits, which means it can convert a 128, 192, or 256 bits of text blocks at once.  .
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES operates on the Substitution–Permutation Network &lt;strong&gt;(SPN)&lt;/strong&gt;, using a combination of substitution and permutation rounds to cipher the text. Which means, the plaintext data is first broken into blocks or chunks, then substituted &lt;strong&gt;(replaced)&lt;/strong&gt; and permutated &lt;strong&gt;(scrambled)&lt;/strong&gt; over the course of several rounds using complex calculation, making the resulted ciphertext practically impossible to decipher. .
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The encryption process involves several sub-processes, including sub bytes, shift rows, mix columns, and add round keys. During the process, the text is scrabbled in multiple rounds. The number of rounds performed depends on the size of the key, which for AES is 10, 12, or 14 rounds..
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The 3DES encryption algorithm is an upgrade to the DES or Data Encryption Standard algorithm, that applies the DES algorithm thrice to each data block. This process made 3DES much harder to crack than its predecessor, and it became widely used in payment systems, standards, and technology in the finance industry. .
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to However, the &lt;strong&gt;Sweet32&lt;/strong&gt; vulnerability exposed the security holes within 3DES. In response, the National Institute of Standards and Technology (NIST) announced the deprecation of 3DES in a draft guidance published in 2019. The use of 3DES is set to be scrapped and discontinued in all new applications after 2023..
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSA is an asymmetric encryption algorithm developed by Ron Rivest, Adi Shamir, and Leonard Adleman in 1977. It is widely used in many applications, including SSL/TLS certificates, crypto-currencies, and email encryption. .
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSA&apos;s potency lies in the “prime factorization” method that it relies upon, where two huge random prime numbers are multiplied to create another giant number. The puzzle is to determine the original prime numbers from this giant-sized multiplied number. The difficulty of brute-forcing the key increases with each expanding key length, and RSA offers various encryption key lengths such as 768-bit, 1024-bit, 2048-bit, 4096-bit, etc.
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SH3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SH3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;AES or Advanced Encryption Standard&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;3DES or Triple DES or Triple Data Encryption  &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;RSA &lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_HREAYSD_H2_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H2_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overall, AES is considered safe, fast, and flexible, making it the most widely used encryption algorithm today. AES is used in many applications, including wireless security, processor security and file encryption, SSL/TLS protocol &lt;strong&gt;(website security), Wi-Fi&lt;/strong&gt; security, mobile app encryption, and most VPNs.  .
+        /// </summary>
+        public static string Blog_HREAYSD_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Many government agencies, including the National Security Agency &lt;strong&gt;(NSA)&lt;/strong&gt;, rely on the AES encryption algorithm to protect their sensitive information. On the other hand, 3DES has been deprecated due to security vulnerabilities, while RSA&apos;s scalability and security make it the most widely used asymmetric encryption algorithm. .
+        /// </summary>
+        public static string Blog_HREAYSD_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt utilizes the strong AES-256-bit algorithm to encrypt and decrypt data. Our intuitive and powerful standalone encryption software can encrypt data on desktops, smartphones and tablets. It can also automatically integrate and encrypt data on several cloud services such as Google Drive, Dropbox, and iCloud.  .
+        /// </summary>
+        public static string Blog_HREAYSD_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can easily share files with others using our unique key sharing feature, which can be used to precisely share and control who sees and uses the file. AxCrypt also comes with a built-in secure password manager and password generator, which can be used to encrypt your sensitive credentials. .
+        /// </summary>
+        public static string Blog_HREAYSD_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Exactly is Encryption? .
+        /// </summary>
+        public static string Blog_HREAYSD_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different Encryption Algorithms .
+        /// </summary>
+        public static string Blog_HREAYSD_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Way Forward .
+        /// </summary>
+        public static string Blog_HREAYSD_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Encryption is Essential for Your Data? .
+        /// </summary>
+        public static string Blog_HREAYSD_Main_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Main_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it comes to cyber security, encryption is one of the most critical components of a strong data protection strategy; yet many businesses and individuals tend to overlook the significance that a robust encryption method renders. With data breaches on the rise, safeguarding your sensitive data should not only be a priority, but a systematic practice that ensures that data is protected on every step of the way. .
+        /// </summary>
+        public static string Blog_HREAYSD_Main_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Main_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to According to the IBM’s &lt;strong&gt;‘Cost of a data breach 2022’&lt;/strong&gt; report, an average data breach costs organizations a whopping &lt;strong&gt;$4.35M with 83% &lt;/strong&gt;of studied organizations experiencing more than one data breach in their lifetime. Prioritising encryption for your data can not only benefit you in the long run, but it can also instil a sense of security and confidence. .
+        /// </summary>
+        public static string Blog_HREAYSD_Main_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Main_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is a process of converting the plain text into an illegible text known as ciphertext..
+        /// </summary>
+        public static string Blog_HREAYSD_Summary {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  How to Choose the Right Encryption Algorithm for Your Sensitive Data  .
+        /// </summary>
+        public static string Blog_HREAYSD_Title {
+            get {
+                return ResourceManager.GetString("Blog_HREAYSD_Title", resourceCulture);
             }
         }
         
@@ -10689,6 +12417,393 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Symmetric:&lt;/strong&gt; Blowfish, AES, RC4, DES, RC5, RC6, A5/1, A5/2, FISH, Helix, ISAAC etc.
+        /// </summary>
+        public static string Blog_SVAE_EX1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_EX1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Asymmetric:&lt;/strong&gt; EIGamal, RSA, DSA, Elliptic curve techniques, PKCS, PGP etc.
+        /// </summary>
+        public static string Blog_SVAE_EX1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_EX1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Examples of Symmetric and Asymmetric Encryption:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_Example1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Example1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Final Words:.
+        /// </summary>
+        public static string Blog_SVAE_FinalWord {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_FinalWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In reference to encryption, it is always best to use the most recent systems. It is recommended to always use the most appropriate encryption algorithm in accordance with the task you handle. As cryptography takes a new turn, new algorithms are also developed to reach intruders and protect data, in turn improving confidentiality. Hackers are sure to make it difficult for the experts in the coming years too..
+        /// </summary>
+        public static string Blog_SVAE_FinalWord_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_FinalWord_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What are you waiting for?&lt;/strong&gt; Don’t wait till your data is exposed.AxCrypt app uses both Symmetric and Asymmetric Encryption providing you the best protection for your data..
+        /// </summary>
+        public static string Blog_SVAE_FinalWord_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_FinalWord_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual encryption are computer programs that digitally encrypt multiple pieces of data. Manual encryption involves extensive user involvement. The files which have to be encrypted are selected and the encryption type is to be selected from the list supported by the security system.
+        /// </summary>
+        public static string Blog_SVAE_H1_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transparent encryption provides permanent file-level encryption, protecting against unauthorized access by users and processes in physical, virtual and cloud environments. The application is seamless and transparent to applications/databases and storage. It can run across an enterprise environment and keep both business and operational processes unchanged. It is one of the most secure encryption types available because it misses nothing when using manual encryption. Every executable application and file cre [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_SVAE_H1_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetric encryption is a simple, easy-to-use method of encryption. This encryption is also called secret key encryption. It uses only one key called shared key, for both encryption and decryption of electronic data. With symmetric encryption, communicating units must exchange a key to use it in the decryption process. In symmetric encryption, data is “encrypted” so that it cannot be understood by anyone who does not have the secret key to decrypt it..
+        /// </summary>
+        public static string Blog_SVAE_H1_SH3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The secret key is generated by a secure random number generator (RNG). The main issue that can be found while using symmetric encryption is that the key is shared between the sender and the recipient of the data. So it is important to be cautious about maintaining a secure method of key exchange, else there are possibilities a third party intercepts the key during the exchange and an unauthorized person can easily decrypt the data..
+        /// </summary>
+        public static string Blog_SVAE_H1_SH3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asymmetric encryption, also called public key encryption, relies on a key pair. In this method, two mathematically related keys are created; one called the public key and the other called the private key. The private key is never shared; it is kept secret and used only by the owner. Public key is shared with anyone who wants it..
+        /// </summary>
+        public static string Blog_SVAE_H1_SH4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The advantage of asymmetric encryption is that a secret key is not transmitted. Instead, the public key is published openly..
+        /// </summary>
+        public static string Blog_SVAE_H1_SH4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SH4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is Manual Encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H1_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is Transparent Encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H1_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is Symmetric Encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H1_SubHeading3 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;What is Asymmetric Encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H1_SubHeading4 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_SubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is the process of converting plain readable form text to an unreadable form text so as to protect data or a conversation between two parties or from an unauthorized person. Data encryption ensures the confidentiality of data by converting it into coded information known as ciphertext, which further, can only be decrypted with a unique decryption key generated either during or before encryption. Data encryption can be used during data storage or transmission, and is usually used in conjunction wit [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_SVAE_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Various types of encryptions are Manual Encryption, Transparent Encryption, Symmetric Encryption and Asymmetric Encryption..
+        /// </summary>
+        public static string Blog_SVAE_H1_Types {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H1_Types", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;For both encryption and decryption one single key is used.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The Ciphertext size is either the same or smaller than the original text.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The process of encryption is fast.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Confidentiality is provided.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Normally used while transferring large amounts of data&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Key length: 128 or 256 bits&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;More efficient as a large amount of data is used&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Comparatively less secured, as one key is used&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Algorithms: RC4, AES, DES, 3DES, and QUAD.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Two keys: the public key and private key are used, one to encrypt and the other one to decrypt.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The Cipher text size is either the same or larger to the original text.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The process of encryption is slow.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;confidentiality, authenticity, and non-repudiation are provided.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Normally used while transferring small amounts of data&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Key length: 2048 bits or above&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Comparatively less efficient as a large amount of data is used.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;More secure, as two keys are used: one for encryption and the other for decryption.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Algorithm: RSA, Diffie-Hellman, ECC.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SH2_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SH2_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Symmetric Encryption&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_H2_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_H2_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is encryption?.
+        /// </summary>
+        public static string Blog_SVAE_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difference between symmetric and asymmetric:.
+        /// </summary>
+        public static string Blog_SVAE_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Asymmetric Encryption&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_SVAE_SubHeading2 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_SubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowadays we know data is the most important aspect of our life, being it personal, economic or commercial. As we increasingly use online, data is always at risk. In spite of all the best efforts made, there are possibilities that your computer is infected with malware..
+        /// </summary>
+        public static string Blog_SVAE_Summary {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nowadays we know data is the most important aspect of our life, being it personal, economic or commercial. As we increasingly use online, data is always at risk. In spite of all the best efforts made, there are possibilities that your computer is infected with malware, ransomware or any cyber criminals that your antivirus cannot detect. Malware sends sensitive data on your computer and sends it to the cybercriminal running the malware. It is supreme to keep data secure. This is where technology comes into p [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_SVAE_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Symmetric Vs Asymmetric encryption.
+        /// </summary>
+        public static string Blog_SVAE_Title {
+            get {
+                return ResourceManager.GetString("Blog_SVAE_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some users instinctively react negatively to the AxCrypt Premium subscription model. Not against the general principle of paying for Premium, but the yearly recurring fee as opposed to a ‘perpetual’ license..
         /// </summary>
         public static string Blog_SVL_Summary {
@@ -12858,7 +14973,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;li&gt;&lt;em&gt;The session key is encrypted with your AxCrypt ID public key, using RSA-4096. This encrypted session key is addded to the encrypted file.&lt;/em&gt;&lt;/li&gt;.
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;em&gt;The session key is encrypted with your AxCrypt ID public key, using RSA-4096. This encrypted session key is added to the encrypted file.&lt;/em&gt;&lt;/li&gt;.
         /// </summary>
         public static string Blog_WIAAI_Text12 {
             get {
@@ -13664,6 +15779,159 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_WICS_Title {
             get {
                 return ResourceManager.GetString("Blog_WICS_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The above mentioned examples are just some major examples wherein the governments of the countries have openly endorsed the idea of using 256-bit encryption for safeguarding sensitive and personal information. This makes a very strong case for the usage of this encryption. This proves that this encryption will be useful in the future as well and looking at how the big private players are after the data of the people, is a technology that is here to stay!.
+        /// </summary>
+        public static string Blog_WIFBE_conclusion {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_conclusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In technical terms, 256-bit encryption refers to the length of the key used to encrypt (lock) and decrypt (unlock) your data. In the process of encryption, the data you chose to encrypt is firstly converted into a ciphertext from its initial stage of plaintext. Furthermore, when the data is attempted to be converted into a human-readable form..
+        /// </summary>
+        public static string Blog_WIFBE_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for more info please refer: &lt;a href=&apos; https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt; &lt;strong&gt;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&lt;/strong&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Why it  is considered as one of the most effective form of encryption?&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The 256-bit encryption tool is the most popular data security encryption tool in today’s time.One of the biggest reasons why most organizations and people prefer to protect their data using 256-bit encryption is the massive number of combinations that this encryption uses to lock your data safe and away from the hacking forces. In fact, even numerous highest-level government organizations all around the world place their faith in 256-bit encryption for securing their data against hackers because it is belie [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WIFBE_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for more info please refer: &lt;strong&gt; &lt;a href =&apos;https://axcrypt.net/blog/&apos;&gt;&lt;strong&gt; https://axcrypt.net/blog/ &lt;/strong&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To further tilt the case in favor of 256-bit encryption and establish its supremacy over its counterparts, let us have a look at the list of some of the highest-ranking people and the organizations that have put their faith in 256-bit encryption for safeguarding their data against hacking forces..
+        /// </summary>
+        public static string Blog_WIFBE_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The United States government was the first government to use 256-bit encryption for protecting and safeguarding their data. They approved its usage on November 26, 2001. They lead the way for others to show their faith in encryption and its capability in safeguarding precious and highly-secretive and sensitive information. Astonishingly, the government there has continued to show its faith in this encryption and the government officials still use the 256-bit encryption for safely storing their data away [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WIFBE_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Canada is another country that has regularly encouraged the usage of 256-bit encryption in securing the personal data of the government and the people of the country. The government of Canada has extensively promoted the usage of 256-bit encryption to safeguard the private information of the people. This has brought the country into the limelight as one of the pioneering nations in the fight against the breach of privacy by openly endorsing the idea of encryption of data using 256-bit encryption.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The Information and Broadcasting Ministry of the Indian Government, in its order dated February 18, 2022, has restricted its officials from exchanging top-secret documents and information over the Internet without the usage of encryption with the fear of a breach and possible leakage of sensitive information, thus jeopardizing national security. The officials have been guided to use only 256-bit encryption for the exchange of highly-sensitive and confidential information&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is 256-bit encryption?.
+        /// </summary>
+        public static string Blog_WIFBE_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who uses 256-bit encryption for safeguarding their data?.
+        /// </summary>
+        public static string Blog_WIFBE_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In modern times, with the advancement in technology, there is a danger of illegal acquisition and dangerous usage of people’s personal data..
+        /// </summary>
+        public static string Blog_WIFBE_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In modern times, with the advancement in technology, there is a danger of illegal acquisition and dangerous usage of people’s personal data. Someone has said it right, “Data is the new oil”. And a plenty of recent cases of gigantic organizations spying on people&apos;s personal data, has brought this issue to the notice of the public..
+        /// </summary>
+        public static string Blog_WIFBE_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;Some of the most popular cases includes:&lt;/strong&gt;.
+        /// </summary>
+        public static string Blog_WIFBE_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;For more info refer:&lt;/strong&gt;&lt;a href =&apos;https://www.statista.com/statistics/290525/cyber-crime-biggest-online-data-breaches-worldwide/&apos;&gt;&lt;strong&gt; Largest online data breaches worldwide 2022 | Statista &lt;/strong&gt;&lt;/a&gt; and the list goes on.These famous cases caught the eyes of the public..
+        /// </summary>
+        public static string Blog_WIFBE_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Industries put their faith in 256-bit encryption?.
+        /// </summary>
+        public static string Blog_WIFBE_Title {
+            get {
+                return ResourceManager.GetString("Blog_WIFBE_Title", resourceCulture);
             }
         }
         
@@ -15091,7 +17359,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021.
+        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023.
         /// </summary>
         public static string BusinessFeatureListBestEncryption {
             get {
@@ -15775,11 +18043,65 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string BusinessSubscriptionUserLabel {
+            get {
+                return ResourceManager.GetString("BusinessSubscriptionUserLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string BusinessSubscrnsLicenses {
+            get {
+                return ResourceManager.GetString("BusinessSubscrnsLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string BusinessSubscrnsRole {
+            get {
+                return ResourceManager.GetString("BusinessSubscrnsRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Less....
+        /// </summary>
+        public static string BusinessSubsrcnShowLess {
+            get {
+                return ResourceManager.GetString("BusinessSubsrcnShowLess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show More....
+        /// </summary>
+        public static string BusinessSubsrcnShowMore {
+            get {
+                return ResourceManager.GetString("BusinessSubsrcnShowMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to x users.
         /// </summary>
         public static string BusinessSummaryUserCountLabel {
             get {
                 return ResourceManager.GetString("BusinessSummaryUserCountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt Support. We give our Business customers prioritized and personal direct support via e-mail..
+        /// </summary>
+        public static string BusinessSupportInfo {
+            get {
+                return ResourceManager.GetString("BusinessSupportInfo", resourceCulture);
             }
         }
         
@@ -16598,6 +18920,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm new email.
+        /// </summary>
+        public static string ConfirmNewEmailText {
+            get {
+                return ResourceManager.GetString("ConfirmNewEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm new password.
+        /// </summary>
+        public static string ConfirmNewPasswordText {
+            get {
+                return ResourceManager.GetString("ConfirmNewPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you have any questions, please first contact {addedby_user_email}..
         /// </summary>
         public static string ContactBusinessInviterMailBodyText {
@@ -16832,6 +19172,15 @@ namespace AxCrypt.Content.Properties {
         public static string CryptoNameText {
             get {
                 return ResourceManager.GetString("CryptoNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current email.
+        /// </summary>
+        public static string CurrentEmailText {
+            get {
+                return ResourceManager.GetString("CurrentEmailText", resourceCulture);
             }
         }
         
@@ -17423,6 +19772,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download AxCrypt for and start your incredible journey to the encryption world..
+        /// </summary>
+        public static string DownloadAxcryptDescription {
+            get {
+                return ResourceManager.GetString("DownloadAxcryptDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not..
         /// </summary>
         public static string DownloadAxcryptLatestFeatures1 {
@@ -17594,7 +19952,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href=&apos;#&apos;&gt;here&lt;/a&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive, Dropbox and OneDrive (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href=&apos;#&apos;&gt;here&lt;/a&gt;&lt;/p&gt;.
         /// </summary>
         public static string DownloadMobileBodyText {
             get {
@@ -17603,7 +19961,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come)..
+        ///   Looks up a localized string similar to Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive, Dropbox and OneDrive, (with many more to come)..
         /// </summary>
         public static string DownloadMobileBodyText1 {
             get {
@@ -17648,11 +20006,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  File&lt;span&gt; security&lt;/span&gt;&lt;br /&gt;&lt;label&gt;should be &lt;span&gt;easy.&lt;/span&gt;&lt;/label&gt;.
+        /// </summary>
+        public static string DownloadpageDesktopTitle {
+            get {
+                return ResourceManager.GetString("DownloadpageDesktopTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Put AxCrypt on &lt;span&gt; all &lt;br /&gt;your devices.&lt;/span&gt;.
+        /// </summary>
+        public static string DownloadpageMobileTitle {
+            get {
+                return ResourceManager.GetString("DownloadpageMobileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PREMIUM PLUS:.
         /// </summary>
         public static string DownloadPrimiumPlusHeading {
             get {
                 return ResourceManager.GetString("DownloadPrimiumPlusHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See Release Notes.
+        /// </summary>
+        public static string DownloadReleaseNotes {
+            get {
+                return ResourceManager.GetString("DownloadReleaseNotes", resourceCulture);
             }
         }
         
@@ -17666,7 +20051,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud, DropBox, OneDrive, and others, will be supported in the upcoming releases.
+        ///   Looks up a localized string similar to You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive, DropBox and OneDrive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud and others, will be supported in the upcoming releases.
         /// </summary>
         public static string DownloadTryMobileSubscription {
             get {
@@ -19034,7 +21419,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021.
+        ///   Looks up a localized string similar to PCMag&apos;s Best Encryption Software 2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023.
         /// </summary>
         public static string FeaturesBestEncryption {
             get {
@@ -19088,7 +21473,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure an AxCrypt folder in Dropbox, Google Drive etc.
+        ///   Looks up a localized string similar to Automatically secure an AxCrypt folder in Dropbox, Google Drive and OneDrive etc.
         /// </summary>
         public static string FeaturesCloudStorageDescription {
             get {
@@ -19664,6 +22049,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We offer direct support to Premium and Business customers.
+        ///Please visit our &lt;a href=&quot;{0}&quot;&gt;community support&lt;/a&gt;..
+        /// </summary>
+        public static string FreeSupportInfo {
+            get {
+                return ResourceManager.GetString("FreeSupportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Free trial.
         /// </summary>
         public static string FreeTrial {
@@ -20024,7 +22419,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A simple interface gives you access to your encrypted files stored on Google Drive, Dropbox, received via email etc. The app cannot (yet) encrypt files on your phone, it will let you open files encrypted by you or shared with you by someone else..
+        ///   Looks up a localized string similar to A simple interface gives you access to your encrypted files stored on Google Drive, Dropbox, and OneDrive received via email etc. The app cannot (yet) encrypt files on your phone, it will let you open files encrypted by you or shared with you by someone else..
         /// </summary>
         public static string GetStartedAccessSecuredText {
             get {
@@ -20060,7 +22455,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Google Drive and DropBox file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud, OneDrive, and others, will be supported soon in the upcoming releases..
+        ///   Looks up a localized string similar to The Google Drive, DropBox and OneDrive file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud and others, will be supported soon in the upcoming releases..
         /// </summary>
         public static string GetStartedCloudStorageText {
             get {
@@ -21142,7 +23537,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PCMag Editors&apos; Choice 2022.
+        ///   Looks up a localized string similar to PCMag Editors&apos; Choice 2023.
         /// </summary>
         public static string HomeHeroSubheading {
             get {
@@ -21187,7 +23582,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure your files in Dropbox, Google Drive etc..
+        ///   Looks up a localized string similar to Automatically secure your files in Dropbox, Google Drive and OneDrive etc..
         /// </summary>
         public static string HomeSellingPointCloudStorageAwarenessBody {
             get {
@@ -21634,7 +24029,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the administrational system..
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the administrational system..
         /// </summary>
         public static string IndustriesGovernmentCloud {
             get {
@@ -21742,7 +24137,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
         /// </summary>
         public static string IndustriesHealthcareCloud {
             get {
@@ -21841,7 +24236,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts..
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts..
         /// </summary>
         public static string IndustriesLegalCloud {
             get {
@@ -21958,7 +24353,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
+        ///   Looks up a localized string similar to Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients..
         /// </summary>
         public static string IndustriesTechCloud {
             get {
@@ -22385,7 +24780,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt&apos;s mobile encryption supports Google Drive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, DropBox, OneDrive, etc. will be supported soon in the upcoming releases.
+        ///   Looks up a localized string similar to AxCrypt&apos;s mobile encryption supports Google Drive, DropBox, and OneDrive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, etc. will be supported soon in the upcoming releases.
         /// </summary>
         public static string Introduction2MailText13 {
             get {
@@ -23430,7 +25825,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}Settings/Password?email={1}.
+        ///   Looks up a localized string similar to {0}Security/Password?email={1}.
         /// </summary>
         public static string LinktoChangePassword {
             get {
@@ -26496,7 +28891,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
+        ///   Looks up a localized string similar to  If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive and OneDrive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
         /// </summary>
         public static string PremiumFirstBodyText3 {
             get {
@@ -26627,6 +29022,15 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumSecondBodyText2 {
             get {
                 return ResourceManager.GetString("PremiumSecondBodyText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt Support. We give our Premium customers prioritized and personal direct support via e-mail..
+        /// </summary>
+        public static string PremiumSupportInfo {
+            get {
+                return ResourceManager.GetString("PremiumSupportInfo", resourceCulture);
             }
         }
         
@@ -27650,6 +30054,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simple, reliable and strong encryption for companies and organisation..
+        /// </summary>
+        public static string ProductPageBusinessDescription {
+            get {
+                return ResourceManager.GetString("ProductPageBusinessDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BUSINESS &lt;span&gt; SUBSCRIPTION&lt;span&gt;.
+        /// </summary>
+        public static string ProductPageBusinessTitle {
+            get {
+                return ResourceManager.GetString("ProductPageBusinessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Latest&lt;/span&gt; AxCrypt Features..
+        /// </summary>
+        public static string ProductPageLatestFeatures {
+            get {
+                return ResourceManager.GetString("ProductPageLatestFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple, reliable and strong encryption for individuals..
+        /// </summary>
+        public static string ProductPagePremiumDescription {
+            get {
+                return ResourceManager.GetString("ProductPagePremiumDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   PREMIUM &lt;span&gt;SUBSCRIPTION &lt;/span&gt;.
+        /// </summary>
+        public static string ProductPagePremiumTitle {
+            get {
+                return ResourceManager.GetString("ProductPagePremiumTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files..
         /// </summary>
         public static string ProductPremiumHightlights1 {
@@ -27659,7 +30108,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
+        ///   Looks up a localized string similar to If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive and OneDrive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time..
         /// </summary>
         public static string ProductPremiumHightlights2 {
             get {
@@ -30184,6 +32633,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to !!Another Email.
+        /// </summary>
+        public static string SecAnotherEmailText {
+            get {
+                return ResourceManager.GetString("SecAnotherEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!AxCrypt Application.
+        /// </summary>
+        public static string SecAxcryptApplicationText {
+            get {
+                return ResourceManager.GetString("SecAxcryptApplicationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All items.
         /// </summary>
         public static string SecretsAllItems {
@@ -30261,6 +32728,42 @@ namespace AxCrypt.Content.Properties {
         public static string SecretsWarningIsSoonExpired {
             get {
                 return ResourceManager.GetString("SecretsWarningIsSoonExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!SMS recovery.
+        /// </summary>
+        public static string SecSmsRecoveryText {
+            get {
+                return ResourceManager.GetString("SecSmsRecoveryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Use AxCrypt mobile app to generate a push notification on your device.
+        /// </summary>
+        public static string SecTwoFacAuthenConText1 {
+            get {
+                return ResourceManager.GetString("SecTwoFacAuthenConText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Use your another email address  to recieve verification link.
+        /// </summary>
+        public static string SecTwoFacAuthenConText2 {
+            get {
+                return ResourceManager.GetString("SecTwoFacAuthenConText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!Use your mobile phone to recieve security code.
+        /// </summary>
+        public static string SecTwoFacAuthenConText3 {
+            get {
+                return ResourceManager.GetString("SecTwoFacAuthenConText3", resourceCulture);
             }
         }
         
@@ -30715,6 +33218,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string SecurityPasswordText {
+            get {
+                return ResourceManager.GetString("SecurityPasswordText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We make sure that no one ever gets access to your encrypted files, as long as you have control of your own password..
         /// </summary>
         public static string SecuritySectionText {
@@ -30888,6 +33400,15 @@ namespace AxCrypt.Content.Properties {
         public static string ShareAccessTitle {
             get {
                 return ResourceManager.GetString("ShareAccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share this article.
+        /// </summary>
+        public static string ShareArticalText {
+            get {
+                return ResourceManager.GetString("ShareArticalText", resourceCulture);
             }
         }
         
@@ -31490,11 +34011,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subscription valid until.
+        /// </summary>
+        public static string SubscriptionValidUntilText {
+            get {
+                return ResourceManager.GetString("SubscriptionValidUntilText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Summary.
         /// </summary>
         public static string SummaryTitle {
             get {
                 return ResourceManager.GetString("SummaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please let us know if you have any difficulties or problems with usage of our services..
+        /// </summary>
+        public static string SupportBodyPlaceholderText {
+            get {
+                return ResourceManager.GetString("SupportBodyPlaceholderText", resourceCulture);
             }
         }
         
@@ -31549,6 +34088,16 @@ namespace AxCrypt.Content.Properties {
         public static string SupportWarningOnlyPremium {
             get {
                 return ResourceManager.GetString("SupportWarningOnlyPremium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to !!We offer direct support to Premium and Business customers.
+        ///Please visit our &lt;a href=&quot;{0}&quot;&gt;community support&lt;/a&gt;..
+        /// </summary>
+        public static string SupWarningFreeUserText {
+            get {
+                return ResourceManager.GetString("SupWarningFreeUserText", resourceCulture);
             }
         }
         
@@ -32120,7 +34669,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2022 AxCrypt AB, All rights reserved..
+        ///   Looks up a localized string similar to Copyright © 2023 AxCrypt AB, All rights reserved..
         /// </summary>
         public static string TermsOfUseBlock18Text4 {
             get {
@@ -32702,6 +35251,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try AxCrypt for free.
+        /// </summary>
+        public static string TryAxcryptfree {
+            get {
+                return ResourceManager.GetString("TryAxcryptfree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try Broken File.
         /// </summary>
         public static string TryBrokenFileToolStripMenuItemText {
@@ -33058,6 +35616,15 @@ namespace AxCrypt.Content.Properties {
         public static string TwentyPercentOff {
             get {
                 return ResourceManager.GetString("TwentyPercentOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two-factor authentification.
+        /// </summary>
+        public static string TwoFactorAuthentificationText {
+            get {
+                return ResourceManager.GetString("TwoFactorAuthentificationText", resourceCulture);
             }
         }
         

@@ -137,7 +137,7 @@
     <value>Após 2 anos de trabalho árduo, a AxCrypt 2 é lançada em 2016.</value>
   </data>
   <data name="AboutAxcryptHistoryText4">
-    <value>Desde então, temos sido premiados com o “Melhor Software de Cifragem do Mundo” pela prestigiada PC Magazine em 2016, 2017, 2018, 2019 e 2020, assim como por muitos outros sites de crítica no mundo. Temos alcance global com utilizadores de todos os países. Os nossos maiores mercados são a Europa com 45% e a América com 30% dos nossos utilizadores.</value>
+    <value>Desde então, temos sido premiados com o “Melhor Software de Cifragem do Mundo” pela prestigiada PC Magazine em 2016-2023 assim como por muitos outros sites de crítica no mundo. Temos alcance global com utilizadores de todos os países. Os nossos maiores mercados são a Europa com 45% e a América com 30% dos nossos utilizadores.</value>
   </data>
   <data name="AboutAxcryptHistoryText5">
     <value>A nossa missão é fornecer indivíduos e pequenas equipas com soluções de cifragem mais fáceis de usar que quaisquer outras. Removemos a complexidade da utilização de tecnologia criptográfica forte e comprovada.</value>
@@ -467,6 +467,9 @@ Actualizações à subscrição serão reflectidas aqui dentro de alguns minutos
   <data name="AppVersionLabel" xml:space="preserve">
     <value>Versão {0}</value>
     <comment>Text containing information about current application version.</comment>
+  </data>
+  <data name="ArabicLanguageSelectionText" xml:space="preserve">
+    <value>عربي(Árabe)</value>
   </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>A página que você tentou visitar necessita autentificação. Por favor, faça login para continuar.</value>
@@ -942,6 +945,45 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_ADSDE_Title">
     <value>A arte da segurança de dados na era digital</value>
   </data>
+  <data name="Blog_AESDES_Conclusion">
+    <value>Como resultado, ao passo que o AES e o DES são cifras de bloco de chave simétrica, o AES é a norma de facto da indústria e é portanto mais seguro. Quando se trata de cifragem, a segurança é crucial e a única alternativa é a AxCrypt que oferece cifragem de 256 bits além de segurança. Todas as preocupações com cifragem são resolvidas pela AxCrypt.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SH1_Text1">
+    <value>Data Encryption Standard é o que quer dizer. O algoritmo DES pode ser quebrado através de dispositivos específicos. Usa uma chave de 56 bits e cria um bloco de cifra de texto de 64 bits usando a chave após receber um bloco de 64 bits de texto claro.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SH1_Text2">
+    <value>Apesar do AES e do DES serem algoritmos de cifragem de dados, há diferenças significativas entre ambos em termos de princípios de funcionamento, funções-base, tamanho de chaves, performance e segurança.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SubHeading1">
+    <value>&lt;strong&gt;O que é a cifragem DES?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_H1_Text1">
+    <value>O AES ou Advanced Encryption Standard é uma cifra, isto é, uma forma de cifrar e decifrar dados. Há uma probabilidade significativa dos seus dados serem cifrados por algum tipo de cifra AES - como AES 256, 192 ou 128 - sempre que transmite ficheiros através de protocolos seguros de transferência, tais como o HTTPS, o FTPS, o SFTP, o WebDAV, o OFTP ou o AS2.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SH1_Text1">
+    <value>Para qualquer cifra, a técnica mais básica de ataque é a força bruta que consiste em tentar múltiplas chaves até se encontrar a certa. Encontrar a chave certa levaria um máximo de 2^56, ou cerca de 72 milhares de biliões, tentativas devido ao comprimento efectivo da chave DES de 56 bits. Tal é insuficiente para a protecção de dados DES contra ataques de força bruta computacionais. Antes do AES substituir o DES, provavelmente não havia muitas mensagens susceptíveis a este tipo de tentativa de quebra de código. No entanto, mesmo antes do DES se tornar uma norma, muitos especialistas em segurança acreditavam que o comprimento da chave de 56 bits era insuficiente. Assim, não é mais considerado eficaz.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SH2_Text1">
+    <value>Apesar da técnica de cifragem de dados AES seja teoricamente mais sofisticada e atractiva, a sua principal vantagem é a disponibilidade de diferentes comprimentos de chave. O AES é exponencialmente mais seguro do que a chave de 56 bits do DES, pois permite selecionar uma chave de 128, 192 ou 256 bits. Como o tamanho da chave afecta a força da cifragem, o DES tornou-se obsoleto devido aos avanços contínuos da tecnologia computacional.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SubHeading1">
+    <value>&lt;strong&gt;Porquê que o DES já não é eficaz? &lt;/strong&gt;.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SubHeading2">
+    <value>&lt;strong&gt;Porquê que o AES substituiu o DES? &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_Heading1">
+    <value>&lt;strong&gt;O que é a cifragem AES?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_Heading2">
+    <value>Diferença entre cifragem AES e DES.</value>
+  </data>
+  <data name="Blog_AESDES_Summary">
+    <value>O AES ou Advanced Encryption Standard é uma cifra, isto é, uma forma de cifrar e decifrar dados.</value>
+  </data>
+  <data name="Blog_AESDES_Title">
+    <value>Advanced Encryption Standard Vs Data Encryption Standard.</value>
+  </data>
   <data name="Blog_AIS_Conclusion_Heading">
     <value>AxCrypt em resumo</value>
   </data>
@@ -1092,6 +1134,162 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_AOVO_Title">
     <value>AxCrypt Online vs. Offline</value>
+  </data>
+  <data name="Blog_ASTSHSA_Conclusion">
+    <value>A época de férias é altura de celebrar e passar tempo com as pessoas de quem gostamos, mas é também importante certificar-se de que os seus dados estão seguros e protegidos. Ao seguir estas dicas e ao usar uma solução de segurança reputada como a AxCrypt, pode ajudar a proteger os seus dados de acesso não autorizado e oferecer-se paz de espírito. Felizes férias!</value>
+  </data>
+  <data name="Blog_ASTSHSA_H1_Text1">
+    <value>Escolher palavras-passe únicas e fortes é uma das formas mais fáceis de proteger as suas contas e dados. Assegure-se de que usa uma combinação de letras, números e caracteres especiais, e evite usar informação pessoal ou palavras do dicionário. Ainda assim, a palavra-passe mais comum é "123456", pelo que é importante ser criativa(o) e não usar palavras-passe adivinháveis. É também boa ideia usar palavras-passe diferentes em contas diferentes para reduzir o risco de todas as suas contas ficarem comprometidas se uma palavra-passe for exposta.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H2_Text2">
+    <value>Um gestor de palavras-passe é uma ferramenta que gera e armazena palavras-passe únicas e fortes, ajuda a evitar o uso de palavras-passe fracas e torna mais fácil a utilização de diferentes palavras-passe em diferentes contas. Também armazena e organiza de forma segura as suas palavras-passe e pode oferecer funcionalidades adicionais como autenticação de dois factores e alertas de palavras-passe expostas. Um gestor de palavras-passe é uma forma segura e conveniente de gerir palavras-passe. Uma opção é a AxCrypt que oferece um gestor de palavras-passe como parte da sua solução de segurança.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H3_Text3">
+    <value>É importante manter o seu software e sistema operativo actualizados para garantir que dispõe das últimas correcções de segurança. Os hackers costumam atacar sistemas desactualizados, pelo que assegure-se de que instala actualizações quando estão disponíveis. Tal inclui o seu sistema operativo assim como qualquer software que use, seja um navegador web, um programa anti-vírus ou um pacote de aplicações office.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H4_Text4">
+    <value>Considere usar uma solução de segurança como a AxCrypt para cifrar ficheiros e protegê-los com uma palavra-passe. Tal pode ajudar a prevenir acesso não autorizado e a dar-lhe paz de espírito. Cifrar os seus dados garante que, mesmo que alguém os aceda, não poderá lê-los ou usá-los sem a palavra-passe.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H5_Text5">
+    <value>Os acidentes acontecem e é sempre boa ideia ter uma cópia de segurança dos seus ficheiros importantes. Certifique-se de que faz cópias de segurança regulares para um local seguro, como um disco rígido externo ou um serviço de armazenamento na nuvem. Tal pode ajudar a proteger de perda de dados na eventualidade de uma falha de sistema ou outro evento inesperado. É também boa ideia testar as suas cópias de segurança regularmente para garantir que estão a funcionar correctamente.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H6_Text6">
+    <value>As redes Wi-Fi públicas podem ser vulneráveis a hackers, pelo que o melhor é evitar aceder a informação sensível ou iniciar sessão em contas importantes através delas. Se precisar de usar Wi-Fi público, certifique-se de que usa um um serviço de VPN reputado para proteger a sua ligação. Uma VPN, ou rede privada virtual, cifra a sua ligação à internet e ajuda a proteger os seus dados de acesso por terceiros na mesma rede.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H7_Text7">
+    <value>Durante a época festiva, os scammers tentam normalmente tirar partido da generosidade das pessoas e do seu bom ânimo. Tenha cuidado ao abrir emails ou ao clicar em ligações de fontes desconhecidas, pois podem ser usadas para levá-la(o) a revelar informação sensível ou a fazer downloads.</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading1">
+    <value>&lt;strong&gt;1. Use palavras-passe únicas e fortes&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading2">
+    <value>&lt;strong&gt;2. Use um gestor de palavras-passe&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading3">
+    <value>&lt;strong&gt;3. Mantenha o seu software e sistema operativo actualizados&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading4">
+    <value>&lt;strong&gt;4. Use uma solução de segurança reputada&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading5">
+    <value>&lt;strong&gt;5. Faça cópias de segurança dos seus dados&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading6">
+    <value>&lt;strong&gt;6. Seja cautelosa(o) ao usar Wi-Fi público&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading7">
+    <value>&lt;strong&gt;7. Esteja atento a esquemas de phishing&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Summary">
+    <value>É importante assegurar-se de que os seus dados estão seguros e protegidos. Com o aumento das compras online e a troca de informação sensível, é mais importante que nunca tomar passos para proteger os seus dados.</value>
+  </data>
+  <data name="Blog_ASTSHSA_Title">
+    <value>Algumas dicas secretas para manter os seus dados seguros com a AxCrypt durante a época de férias</value>
+  </data>
+  <data name="Blog_BAWIT_Conclusion">
+    <value>A questão das mulheres na tecnologia e da diversidade de género no local de trabalho requerem uma abordagem progressista, com esforço e inclusão de todos. A AxCrypt esforça-se por ser um local de trabalho fortemente diverso em termos de género, acolhendo e apreciando as diferentes mulheres que trazem as suas contribuições e estilos de trabalho únicos para a condição feminina. Vamos celebrar este Dia da Mulher como um agradecimento a todas as mulheres que trabalham em tecnologia e que se esforçam para trazer a diversidade de género ao local de trabalho, um passo de cada vez.</value>
+  </data>
+  <data name="Blog_BAWIT_H1_Text1">
+    <value>"Ser uma mulher na tecnologia dá-me uma sensação de liberdade e confiança. Sinto-me orgulhosa por quebrar estereótipos de género sobre os papéis tradicionais das mulheres e por me educar e familiarizar com a tecnologia. Tal permite-me ser auto-suficiente, fiável e adaptável ao enfrentar variados desafios e situações de vida.</value>
+  </data>
+  <data name="Blog_BAWIT_H1_Text2">
+    <value>Uma das melhores coisas de se trabalhar no sector da tecnologia é a grande quantidade de oportunidades e possibilidades que nos são apresentadas. É um sector que nos permite ser mais flexíveis e de mente aberta, enquanto se mantém a curiosidade inata e a capacidade de mudança, adaptação e educação. Tal faz com que se cresça profissional e pessoalmente, vivendo-se com contentamento e propósito."</value>
+  </data>
+  <data name="Blog_BAWIT_H2_Text1">
+    <value>"Trabalhar na indústria da tecnologia em constante evolução fez-me sentir jovem e cheia de energia. Na AxCrypt, não só encontro satisfação na minha carreira mas também sou capaz de apoiar financeiramente o meu parceiro e de valorizar os desafios do seu próprio trabalho. Nós complementamo-nos mutuamente, tanto nas nossas vidas profissionais como pessoais e os meus pais não poderiam estar mais felizes ao verem-me seguir a carreira tecnológica depois de ter constituído família."</value>
+  </data>
+  <data name="Blog_BAWIT_H2_Text2">
+    <value>De uma maneira geral, inspirar mais mulheres a seguir carreiras na área tecnológica requer um esforço conjunto de indivíduos, empresas e da sociedade como um todo. Ao quebrarem-se barreiras e promover-se a inclusão, podemos criar uma indústria de tecnologia mais diversificada e inovadora que prospere com os esforços colectivos de todos".</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text1">
+    <value>"Trabalho na indústria tecnológica há 20 anos, especificamente no lado administrativo e de recursos humanos. Este não é um trabalho com que eu poderia ter sonhado enquanto criança e o mundo da tecnologia nem sequer existia naquela época. Bangalore era um belo destino turístico até o início dos anos 2000, tornando-se então da noite para o dia no centro de TI da Índia.</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text2">
+    <value>Isto foi na altura em que eu estava a iniciar a minha vida em Bangalore e fui muito privilegiada por ser capaz de crescer na indústria que ainda estava nos seus estágios iniciais. Ao longo da minha carreira, fiz amigos de várias partes do mundo, conheci culturas diferentes e tive a sorte de viajar.</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text3">
+    <value>Na indústria da tecnologia, há sempre algo novo para aprender e espaço para crescer pessoal e profissionalmente. Além disso, há um enorme potencial para se ser criativo e se ter um impacto positivo. Para mim, trabalhar na AxCrypt é o melhor trabalho de sempre e eu aprecio, de forma especial, a oportunidade que ela me dá.</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text4">
+    <value>Na AxCrypt, tenho a liberdade de crescer no meu cargo sem limites e a gestão superior promove um ambiente de trabalho amigável mas competitivo. O que eu mais valorizo neste local de trabalho é a sensação de igualdade e respeito que está profundamente enraizada na sua cultura."</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text1">
+    <value>"A tecnologia está ligada ao progresso e uma comunidade que abraça a tecnologia é considerada progressista. A tecnologia simplifica as nossas vidas e melhora nosso padrão de vida.</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text2">
+    <value>Como alguém que trabalha na indústria de tecnologia, sinto que estou a desempenhar um papel fundamental no progresso da minha comunidade e a melhorar a vida das pessoas. Apesar de não estar envolvida directamente no desenvolvimento da tecnologia propriamente dita, os meus esforços, experiência e conhecimento ajudaram a torná-la mais acessível às pessoas e a simplicar processos.</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text3">
+    <value>Trabalhar na AxCrypt deu-me a oportunidade de contribuir para a melhoria das pessoas que usam a tecnologia e, como mulher na tecnologia, estou comprometida em garantir que a tecnologia chega a todos e ajuda a melhorar a vida das pessoas, contribuindo para o desenvolvimento da sociedade".</value>
+  </data>
+  <data name="Blog_BAWIT_H5_Text1">
+    <value>"O campo da tecnologia exige mais dedicação e trabalho duro, à medida que trabalhamos para dar vida às ideias abstractas e criativas nos ecrãs. Permite-nos expressar e encontrar soluções para todos os problemas. A tecnologia é como um mar infinito de possibilidades onde há sempre algo de novo para aprender, capacitando-nos a ver além do horizonte. Quer sejamos homens ou mulheres, é nossa a escolha de surfar nas ondas belas da tecnologia e de explorar as profundezas do conhecimento.</value>
+  </data>
+  <data name="Blog_BAWIT_H5_Text2">
+    <value>O campo da tecnologia fornece um nível mais elevado de compreensão e de conhecimento prático, ajudando-nos a organizar as nossas vidas e a abordá-las com optimismo e sabedoria. Merecemos aceder ao conhecimento e à consciencialização da protecção que a tecnologia nos pode oferecer. Como mulheres, entendemos que as oportunidades nem sempre surgem no nosso caminho, mas temos o poder de as criar nós mesmas."</value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text1">
+    <value>"O campo das tecnologias da informação tem sido tradicionalmente dominado por homens, mas vejo todos os dias que cada vez mais mulheres estão a entrar na indústria e a destacarem-se. Equilibrar o meu trabalho e a minha vida pessoal pode ser um desafio, mas em cada desafio vem a oportunidade de crescer e de me tornar mais forte. Nesta indústria em constante evolução, é vital manter-me actualizada com as últimas tendências e competências. Ficar atrás da vanguarda pode significar perder no mundo altamente competitivo da tecnologia.</value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text2">
+    <value>Como mulher na área da tecnologia, aprendo e expando constantemente as minhas competências para estar sempre na vanguarda. A indústria da tecnologia oferece possibilidades infinitas de inovação e de impacto positivo no mundo. É uma carreira desafiante, mas dinâmica, e que vale todo o esforço.</value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text3">
+    <value>Tenho orgulho em fazer parte duma indústria que está a moldar o futuro e a melhorar o mundo. Obrigado por me darem a oportunidade de partilhar a minha experiência na indústria tecnológica."</value>
+  </data>
+  <data name="Blog_BAWIT_H7_Text1">
+    <value>"O mito de que o alargamento dos poderes das mulheres só pode acontecer lentamente enfraqueceu o seu próprio poder. Precisamos de perceber que, quando se trata de erradicar este problema profundamente enraizado nos estereótipos tradicionais de género, a contribuição de todos conta.</value>
+  </data>
+  <data name="Blog_BAWIT_H7_Text2">
+    <value>Diante de vários obstáculos, como preferências de género, baixa representatividade e um tecto de vidro virtual, as mulheres estão constantemente a tentar elevar-se e a trazer uma mudança na indústria, estando a destacar-se em posições mais altas. Apesar dos desafios, é uma experiência gratificante trabalhar numa empresa que não discrimina. Estou feliz por trabalhar como mulher na indústria das TI e tenho grandes esperanças em quebrar a desigualdade de género. Feliz Dia Internacional da Mulher."</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text1">
+    <value>"Sou um engenheiro de software com mais de 10 anos de experiência em desenvolvimento .NET e tenho orgulho de fazer parte da indústria tecnológica. Entrei no mundo empresarial através de recrutamento no campus e ofereceram-me uma posição numa das grandes empresas de TI, tendo sido um sonho tornado realidade.</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text2">
+    <value>Apesar dos desafios e estereótipos sobre as capacidades das mulheres de programação e pensamento analítico, tenho perseverado e visto a importância da diversidade neste campo. Equilibrar o trabalho e as responsabilidades familiares pode ser difícil, especialmente para as mães que trabalham, mas nós somos capazes de executar múltiplas tarefas, gerir tempo e acompanhar os valores da família enquanto nos dedicamos às nossas carreiras.</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text3">
+    <value>À medida que o Dia da Mulher se aproxima, gostaria de estender os meus parabéns a todas as mulheres na área da tecnologia e agradecê-las pelas suas notáveis conquistas e contribuição para a indústria.</value>
+  </data>
+  <data name="Blog_BAWIT_Heading1">
+    <value>&lt;strong&gt;Daria – Designer Gráfica, O Dínamo de Design de AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading2">
+    <value>&lt;strong&gt;Pavitra - Gestora de Recursos Humanos, A Heroína dos RH da AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading3">
+    <value>&lt;strong&gt;Jency - Directora Operacional, O Oráculo Operacional da AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading4">
+    <value>&lt;strong&gt;Vandana – Gestora de Negócios, A Maravilha do Marketing da AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading5">
+    <value>&lt;strong&gt;Venkatalakshmi – Engenheira Júnior de Software, O Programador-Ninja da AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading6">
+    <value>&lt;strong&gt;Swapna – Programadora Júnior de Software, O Defensor Binário da AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading7">
+    <value>&lt;strong&gt;Shalini – Engenheira de Software Júnior, A Capitã Compilador AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading8">
+    <value>&lt;strong&gt;Manjula – Engenheira de Software Sénior, O Titã Tecnológico da AxCrypt  &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Summary">
+    <value>Ao celebrarmos todos nós o Dia Internacional da Mulher, é importante reconhecer as contribuições inestimáveis das mulheres na indústria tecnológica.</value>
+  </data>
+  <data name="Blog_BAWIT_Text1">
+    <value>Ao celebrarmos todos nós o Dia Internacional da Mulher, é importante reconhecer as contribuições inestimáveis das mulheres na indústria tecnológica. Tradicionalmente, a tecnologia é vista como uma indústria dominada por homens. No entanto, nos últimos anos, esta indústria recebeu mais mulheres que quebram barreiras e deixam a sua marca no mundo da tecnologia.</value>
+  </data>
+  <data name="Blog_BAWIT_Text2">
+    <value>Apesar de enfrentar obstáculos como preconceitos de género e falta de representatividade, as mulheres perseveraram e agora estão a fazer avanços significativos no campo. Neste artigo, vamos explorar as experiências das mulheres na tecnologia, as suas contribuições para a indústria e os desafios que elas superaram para chegar onde estão hoje - tudo a partir da perspectiva das mulheres que trabalham na AxCrypt Software. Vejamos o que cada mulher da AxCrypt tem a dizer sobre sua experiência:</value>
+  </data>
+  <data name="Blog_BAWIT_Title">
+    <value>Ser Mulher Na Tecnologia</value>
+  </data>
+  <data name="Blog_BAWIT_Title_Heading1">
+    <value>&lt;strong&gt;Da perspectiva das mulheres na AxCrypt&lt;/strong&gt;</value>
   </data>
   <data name="Blog_BMYP_Conclusion_Text1">
     <value>No mundo moderno, prevenir criminosos reais de aceder às suas contas e sistemas é um grande desafio. Na AxCrypt, lembramo-nos das suas palavras-passe por si, ajudámo-la(o) a criar palavras-passe seguras e iniciamos automaticamente sessões na web.</value>
@@ -1671,6 +1869,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_Download_IOS_Window">
     <value>A AxCrypt fornece tudo isto, pode descarregar o software para Windows, macOS e Android seguindo a hiperligação &lt;a href='https://www.axcrypt.net/download'&gt;https://www.axcrypt.net/download&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_Download_Text1">
+    <value>Contacte a AxCrypt hoje e descarregue a nossa última versão para experimentar o melhor da &lt;a href='https://www.axcrypt.net/download/'&gt;Descarregar | AxCrypt - Segurança de Ficheiros Fácil.&lt;/a&gt;</value>
   </data>
   <data name="Blog_DRATIUIN_Conclusion_Heading">
     <value>Em suma, aqui na AxCrypt</value>
@@ -2317,6 +2518,84 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_EITPS_Title">
     <value>A cifragem não é o problema, é a solução</value>
   </data>
+  <data name="Blog_ES_conclusion">
+    <value>Os dados digitais são protegidos por cifragem através de uma ou mais abordagens matemáticas. Portanto, o software de cifragem AxCrypt torna a protecção de ficheiros importantes e de dados sensíveis fácil. Apesar de estar longe de não ter falhas, é uma ferramenta forte de protecção de ficheiros. Apenas quando todos optam pela AxCrypt é que ela será ideal, um componente crucial de segurança, mas não é a única a ter em conta. A AxCrypt é a solução para problemas de cifragem.</value>
+  </data>
+  <data name="Blog_ES_H1_SH1_Text1">
+    <value>O tipo de chaves usadas, o tamanho dos blocos de dados cifrados e o comprimento da chave de cifragem afectam o processo de cifragem.</value>
+  </data>
+  <data name="Blog_ES_H1_SH2_Text1">
+    <value>O algoritmo de cifragem simétrica conhecido como Advanced Encryption Standard codifica blocos de dados de 128 bits de cada vez. As chaves usadas para cifrar estes blocos de dados têm comprimentos de 128, 192 e 256 bits. Uma chave de 256 bits requer 14 rounds de cifragem de dados, uma de 192 bits requer 12 e uma de 128 bits requer 10. Cada ciclo inclui vários estágios de substituição, transposição, mistura de texto não cifrado e outras operações.</value>
+  </data>
+  <data name="Blog_ES_H1_SH3_Text1">
+    <value>A abordagem Data Encryption Standard (DES) cifra blocos de dados com uma chave de 56 bits, usando a técnica de cifragem assimétrica Triple DES. Nesta técnica, cada bloco de dados é cifrado três vezes através do método de cifra DES.</value>
+  </data>
+  <data name="Blog_ES_H1_SH4_Text1">
+    <value>Preservação de Formato. Um processo simétrico conhecido como cifragem preserva o formato e o comprimento dos seus dados enquanto os descodifica. A FPE pode ser usada para proteger ferramentas e software de gestão da nuvem.</value>
+  </data>
+  <data name="Blog_ES_H1_SH5_Text1">
+    <value>Mais forte do que a cifragem RSA é uma forma mais recente de cifragem de chave pública chamada criptografia de curva elíptica. É mais rápida, uma vez que as chaves são mais curtas. Por ser assimétrica, pode usá-la com protocolos SSL/TLS para aumentar a segurança das suas comunicações web.</value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading1">
+    <value>&lt;strong&gt;Método de cifragem famoso para proteger ficheiros ou dados.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading2">
+    <value>&lt;strong&gt;1. Advanced Encryption standard (AES)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading3">
+    <value>&lt;strong&gt;2. Triple Data Encryption Standard (DES)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading4">
+    <value>&lt;strong&gt;3. Cifragem de Preservação de Formato (FPE)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading5">
+    <value>&lt;strong&gt;4. Cryptografia de Curva Eclíptica (ECC)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_Text1">
+    <value>Os dados são convertidos em texto cifrado através de cifragem usando uma cifra (uma técnica de cifragem) e uma chave de cifragem. Uma vez transmitido o texto cifrado ao destinatário, a chave (a mesma se a cifragem for simétrica; uma chave relacionada mas diferente se a cifragem for assimétrica) é usada para descodificá-lo de volta ao texto original. Dada a semelhança entre chaves de cifragem e chaves físicas, apenas os utilizadores que possuem a chave certa podem "desbloquear" ou decifrar dados cifrados.</value>
+  </data>
+  <data name="Blog_ES_H2_SH1_Text1">
+    <value>Há também inúmeras funcionalidades de cifragem integradas nos smartphones Android e iPhone, além de muitas ferramentas de cifragem que podem ser descarregadas gratuitamente. As palavras-passe são cifradas e armazenadas online pelo LastPass, um gestor de palavras-passe fremium. Uma extensão de navegador que aumenta a segurança da navegação web é o HTTPS Everywhere.</value>
+  </data>
+  <data name="Blog_ES_H2_SH2_Text1">
+    <value>Para impedir hackers de interceptarem ligações Wi-Fi públicas e inseguras e de disseminar malware, todos os dados confidenciais devem ser cifrados e os trabalhadores remotos devem usar redes virtuais privadas (VPN).</value>
+  </data>
+  <data name="Blog_ES_H2_SH3_Text1">
+    <value>Uma vez que os dados estão sempre a mudar, usar cifragem raramente garante a integridade dos nossos dados em repouso. Contudo, pode ser usada para confirmar a integridade das nossas cópias de segurança. Podemos proteger a integridade dos nossos dados em trânsito utilizando assinaturas digitais. Isto impedirá hackers de escutarem conversações e de alterar dados, porque o destinatário poderá prontamente verificá-los.</value>
+  </data>
+  <data name="Blog_ES_H2_SH4_Text1">
+    <value>A conformidade é crucial e muitos departamentos de TI devem seguir as regras que governam o armazenamento, manuseamento e transmissão de dados estabelecidos pela lei, por seguradoras e por negócios. Uma das formas mais seguras de enviar e manter dados em conformidade com as restrições que a nossa organização deve cumprir é através da cifragem.</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading1">
+    <value>&lt;strong&gt;Implementar a cifragem é barato.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading2">
+    <value>&lt;strong&gt;Os Trabalhadores Remotos podem estar Protegidos usando Cifragem.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading3">
+    <value>&lt;strong&gt;Melhorando a Integridade de Dados com Cifragem.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading4">
+    <value>&lt;strong&gt;Garantindo a conformidade.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_Text1">
+    <value>Esta tecnologia torna o furto de dados por hackers consideravelmente mais difícil. Estes são alguns dos benefícios da tecnologia de cifragem.</value>
+  </data>
+  <data name="Blog_ES_Heading1">
+    <value>Como funciona o software de cifragem?</value>
+  </data>
+  <data name="Blog_ES_Heading2">
+    <value>Vantagens de software de cifragem.</value>
+  </data>
+  <data name="Blog_ES_Summary">
+    <value>O software de cifragem altera ficheiros e texto não cifrado em texto que não pode ser lido por línguas humanas conhecidas.</value>
+  </data>
+  <data name="Blog_ES_Text1">
+    <value>O software de cifragem altera ficheiros e texto não cifrado em texto que não pode ser lido por línguas humanas conhecidas. O software é usado para transformar texto legível num formato ininteligível, conhecido como cifragem ou texto cifrado. Uma vez cifrado, o ficheiro precisará de ser decifrado para poder ser lido.</value>
+  </data>
+  <data name="Blog_ES_Title">
+    <value>O que é software de cifragem?</value>
+  </data>
   <data name="Blog_EVA_H1_Text1">
     <value>O controlo de acesso ocorre quando são dada permissões a uma determinada identidade por outra que lhe é superior (que está autorizada) para executar acções como ler um ficheiro.</value>
   </data>
@@ -2934,6 +3213,96 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_HPYBFC_Title">
     <value>Como proteger o seu negócio de ciberameaças</value>
+  </data>
+  <data name="Blog_HREAYSD_Conclusion">
+    <value>Adira hoje a uma avaliação gratuita e eleve a segurança dos seus dados a um patamar superior: &lt;br/&gt;&lt;a href='https://account.axcrypt.net/en/Home/Login?Signup=True'&gt;SIGNUP LINK&lt;/a&gt;&lt;a href='https://axcrypt.net/'&gt;LANDING PAGE LINK&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text1">
+    <value>Os métodos de cifragem podem essencialmente ser divididos em duas categorias: simétricos e assimétricos. A cifragem simétrica usa a mesma chave secreta para cifragem e decifragem de dados, sendo partilhada entre o remetente e o destinatário dos dados cifrados.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text2">
+    <value>Por outro lado, a cifragem assimétrica, envolve duas chaves: uma pública e uma privada. A chave pública é usada para cifrar os dados, enquanto que a privada é usada para os decifrar. Esta abordagem garante que apenas o destinatário que detém a chave privada pode decifrar os dados.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text3">
+    <value>Embora a cifragem assimétrica seja frequentemente considerada mais segura do que a simétrica, ela pode ser mais lenta e consumir mais recursos.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text4">
+    <value>Foram desenvolvidos diferentes algoritmos de cifragem com base em métodos simétricos e assimétricos. Neste blog, discutiremos os três mais populares: &lt;strong&gt;AES, 3DES e RSA.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SubHeading1">
+    <value>&lt;strong&gt;Tipos de Métodos de Cifragem:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_Text1">
+    <value>A cifragem é um processo de conversão de texto claro em texto ilegível conhecido como texto cifrado. Um dispositivo computacional faz esta conversão executando algoritmos de cifragem como o AES para reorganizar aleatoriamente e baralhar o texto, tornando impossível a sua leitura durante a transmissão.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_Text2">
+    <value>O rearranjo do texto é apoiado por cálculos matemáticos muito intrincados conhecidos como &lt;strong&gt;'chave'&lt;/strong&gt;. Os cálculos que são usados na cifragem são invertidos para decifrar texto, permitindo que apenas indivíduos autorizados acedam ao texto original.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text1">
+    <value>O algoritmo de cifragem AES, também conhecido como Rijndael, é um algoritmo de cifragem simétrica popular usado para proteger dados. O algoritmo AES tem comprimentos de chave de 128, 192 ou 256 bits, o que quer dizer que pode converter blocos de 128, 192 ou 256 bits de texto de uma só vez.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text2">
+    <value>O AES opera na Rede de Substituição-Permutação &lt;strong&gt;(SPN)&lt;/strong&gt;, usando uma combinação de rounds de substituição e permutação para cifrar o texto. Os dados de texto claro são primeiro divididos em blocos ou pedaços, depois substituídos &lt;strong&gt;(mudados)&lt;/strong&gt; e permutados &lt;strong&gt;(baralhados)&lt;/strong&gt; ao longo de vários rounds usando cálculos complexos, tornando o texto cifrado resultante praticamente impossível de decifrar.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text3">
+    <value>O processo de cifragem envolve vários subprocessos, incluindo subbytes, shift rows, mix columns e adição de chaves de round. Durante o processo, o texto é baralhado em vários rounds. O número de rounds depende do tamanho da chave, sendo 10, 12 ou 14 para o AES.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH2_Text1">
+    <value>O algoritmo de cifragem 3DES é uma actualização do algoritmo DES ou Data Encryption Standard, aplica este três vezes a cada bloco de dados. Este processo tornou o 3DES muito mais difícil de decifrar do que o seu antecessor e é amplamente utilizado em sistemas de pagamento, normas e tecnologia no sector financeiro.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH2_Text2">
+    <value>No entanto, a vulnerabilidade &lt;strong&gt;Sweet32&lt;/strong&gt; expôs as falhas de segurança do 3DES. Em resposta, o National Institute of Standards and Technology (NIST) anunciou a descontinuação do 3DES num projecto de orientação publicado em 2019. O uso do 3DES deve ser descartado e descontinuado em todas as novas aplicações após 2023.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH3_Text1">
+    <value>O RSA é um algoritmo de cifragem assimétrica desenvolvido por Ron Rivest, Adi Shamir e Leonard Adleman em 1977. É amplamente utilizado em muitas aplicações, incluindo certificados SSL/TLS, criptomoedas e cifragem de e-mail.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH3_Text2">
+    <value>A potência da RSA reside no método de "factorização prima" em que se baseia, em que dois enormes números primos aleatórios são multiplicados para criar outro número gigante. O quebra-cabeça é determinar os números primos originais a partir deste número de tamanho gigante. A dificuldade em atacar a chave com força bruta aumenta a cada comprimento de chave em expansão e a RSA oferece vários comprimentos de chave de cifragem, como 768 bits, 1024 bits, 2048 bits, 4096 bits, etc.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading1">
+    <value>&lt;strong&gt;AES ou Advanced Encryption Standard&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading2">
+    <value>&lt;strong&gt;3DES ou Triple DES ou Triple Data Encryption  &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading3">
+    <value>&lt;strong&gt;RSA &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text1">
+    <value>Em geral, o AES é considerado seguro, rápido e flexível, sendo o algoritmo de cifragem actualmente mais utilizado. O AES é usado em muitas aplicações, incluindo segurança sem fios, segurança de processadores e cifragem de ficheiros, protocolo SSL/TLS &lt;strong&gt;(segurança de sítios web), segurança Wi-Fi&lt;/strong&gt;, criptografia de aplicações móveis e a maioria das VPNs.</value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text2">
+    <value>Muitas agências governamentais, incluindo a National Security Agency &lt;strong&gt;(NSA),&lt;/strong&gt; confiam no algoritmo de cifragem AES para proteger as suas informações confidenciais. Por outro lado, o 3DES foi preterido devido a vulnerabilidades de segurança, enquanto a escalabilidade e a segurança do RSA fazem dele o algoritmo de cifragem assimétrica mais utilizado.</value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text3">
+    <value>A AxCrypt utiliza o algoritmo forte AES de 256 bits para cifrar e decifrar dados. O nosso software de cifragem intuitivo e poderoso pode cifrar dados em computadores, smartphones e tablets. Pode também integrar e cifrar dados automaticamente em vários serviços na Nuvem, como o Google Drive, o Dropbox e o iCloud.</value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text4">
+    <value>Pode partilhar ficheiros facilmente com outras pessoas usando a nossa funcionalidade exclusiva de partilha de chaves que pode ser usada para partilhar e controlar com precisão quem vê e usa os ficheiros. A AxCrypt inclui também um gestor de palavras-passe seguro e um gestor de palavras-passe que podem ser usados para cifrar as suas credenciais confidenciais.</value>
+  </data>
+  <data name="Blog_HREAYSD_Heading1">
+    <value>O que é Exactamente a Cifragem?</value>
+  </data>
+  <data name="Blog_HREAYSD_Heading2">
+    <value>Os Diferentes Algoritmos de Cifragem </value>
+  </data>
+  <data name="Blog_HREAYSD_Heading3">
+    <value>O Caminho a Seguir</value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Heading1">
+    <value>Porquê que a Cifragem é Essencial para os Seus Dados?</value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Text1">
+    <value>Quando se trata de cibersegurança, a cifragem é um dos componentes mais críticos de uma estratégia forte de protecção de dados; no entanto, muitas empresas e indivíduos tendem a ignorar a importância de um método de cifragem robusto. Com as violações de dados em ascensão, proteger os seus dados confidenciais não deve ser apenas uma prioridade, mas uma prática sistemática.</value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Text2">
+    <value>De acordo com o relatório &lt;strong&gt;'Custo de uma violação de dados 2022'&lt;strong&gt; da IBM, uma violação típica de dados custa às organizações &lt;strong&gt;$4,35M, tendo 83%&lt;/strong&gt; das organizações analisadas sofrido mais do que uma violação de dados. Dar prioridade à criptografia pode não só beneficiá-la(o) a longo prazo mas também transmitir uma sensação de segurança e confiança.</value>
+  </data>
+  <data name="Blog_HREAYSD_Summary">
+    <value>A cifragem é um processo de conversão de texto claro em texto ilegível conhecido como texto cifrado.</value>
+  </data>
+  <data name="Blog_HREAYSD_Title">
+    <value>Como Escolher o Algoritmo de Cifragem Certo para os Seus Dados Sensíveis</value>
   </data>
   <data name="Blog_HTSCER_H1_Text1">
     <value>Estas são instruções passo a passo sobre como enviar-nos um relatório de erros completo. Poderemos pedir-lhe para fazer isto quando tiver problemas com a AxCrypt. A informação que obtivermos ajudar-nos-á a ajudá-la(o)!</value>
@@ -3694,6 +4063,135 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="Blog_Support_ContactUs">
     <value>&lt;i&gt;Quer aprender mais?&lt;/i&gt;  Nós publicamos informação interessante todas as semanas. Seja curioso e dê uma olhadela nos nossos blog posts &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt; e não se esqueça de nos contactar via &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; ou &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; se tiver alguma questão!</value>
+  </data>
+  <data name="Blog_SVAE_EX1_Text1">
+    <value>&lt;strong&gt;Simétrica:&lt;/strong&gt; Blowfish, AES, RC4, DES, RC5, RC6, A5/1, A5/2, FISH, Helix, ISAAC etc</value>
+  </data>
+  <data name="Blog_SVAE_EX1_Text2">
+    <value>&lt;strong&gt;Assimétrica:&lt;/strong&gt; EIGamal, RSA, DSA, Elliptic curve techniques, PKCS, PGP etc</value>
+  </data>
+  <data name="Blog_SVAE_Example1">
+    <value>&lt;strong&gt;Exemplos de Cifragem Simétrica e Assimétrica:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord">
+    <value>Palavras Finais:</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord_Text1">
+    <value>Em relação a cifragem, o melhor é usar sempre os sistemas mais recentes e o algoritmo de cifragem mais adequado à tarefa que se tem em mãos. À medida que a criptografia se desenvolve, são também desenvolvidos novos algoritmos para alcançar intrusos e proteger dados, o que, por sua vez, melhora a confidencialidade. Por outro lado, os hackers continuarão a tornar a vida dos especialistas difícil.</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord_Text2">
+    <value>&lt;strong&gt;Do que está à espera?&lt;/strong&gt; Não espere até os seus dados serem expostos. A app AxCrypt usa tanto Cifragem Simétrica como Assimétrica, fornecendo-lhe a melhor protecção para os seus dados.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH1_Text1">
+    <value>A cifragem manual são programas de computador que cifram digitalmente múltiplos elementos de informação. A cifragem manual requer grande envolvimento do utilizador. Os ficheiros a cifrar são seleccionados e o tipo de cifragem é seleccionado de entre a lista de tipos suportados pelo sistema de segurança.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH2_Text1">
+    <value>A cifragem transparente fornece cifragem permanente ao nível de ficheiros, protegendo de acesso não autorizado por utilizadores e processos em ambientes físicos, virtuais e na nuvem. A aplicação é fácil e transparente em relação a aplicações/bases de dados e armazenamento. Pode ser executada num ambiente empresarial e manter processos tanto de negócio como operacionais inalterados. É um dos tipos de cifragem mais seguros, porque, em comparação com a cifragem manual, nada lhe escapa. Todos os executáveis e ficheiros criados no computador têm uma cópia cifrada que pode aguentar com falhas de energia e que protege os dados mesmo em caso de roubo.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH3_Text1">
+    <value>A cifragem simétrica é um método de cifragem simples e fácil de usar. Esta cifragem é também chamada cifragem de chave secreta. Usa uma chave apenas chamada chave partilhada tanto para cifragem como decifragem de dados electrónicos. Com a cifragem simétrica, as unidades comunicantes devem trocar uma chave para usá-la no processo de decifragem. Na cifragem simétrica, os dados são "cifrados" de forma a que não possam ser entendidos por quem não tiver a chave secreta para os decifrar.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH3_Text2">
+    <value>A chave secreta é gerada por um gerador seguro de números aleatórios (GNA). O principal problema da cifragem simétrica é que partilha da chave entre o remetente e o destinatário dos dados. Portanto, é importante manter seguro o método de troca de chaves, caso contrário é possível que um terceiro intercepte a chave durante a sua transmissão e que uma pessoa não autorizada facilmente decifre os dados.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH4_Text1">
+    <value>A cifragem assimétrica, também chamada cifragem de chave pública, baseia-se num par de chaves. Neste método, duas chaves matematicamente relacionadas são criadas: a chave pública e a chave privada. A chave privada nunca é partilhada, sendo mantida secreta e usada apenas pelo seu dono. A chave pública é partilhada com qualquer pessoa que a queira.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH4_Text2">
+    <value>A vantagem da cifragem assimétrica é que a chave secreta não é transmitida. Em vez disso, a chave pública é publicada abertamente.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading1">
+    <value>&lt;strong&gt;O que é a Cifragem Manual?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading2">
+    <value>&lt;strong&gt;O que é a Cifragem Transparente?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading3">
+    <value>&lt;strong&gt;O que é a Cifragem Simétrica?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading4">
+    <value>&lt;strong&gt;O que é a Cifragem Assimétrica?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_Text1">
+    <value>A cifragem é o processo de conversão de texto legível em texto ilegível como forma de protecção de dados, de uma conversa entre duas pessoas ou de uma pessoa não autorizada. A cifragem de dados garante a confidencialidade de dados ao convertê-los em informação codificada conhecida como texto cifrado que pode apenas ser decifrado com uma chave de decifragem gerada durante ou antes da cifragem. A cifragem de dados pode ser usada durante o armazenamento ou transmissão de dados e é normalmente usada em conjunto com serviços de autenticação para suportar chaves.</value>
+  </data>
+  <data name="Blog_SVAE_H1_Types">
+    <value>Os vários tipos de cifragem são Cifragem Manual, Cifragem Transparente, Cifragem Simétrica e Cifragem Assimétrica.</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text1">
+    <value>&lt;li&gt;É usada uma única chave tanto para cifragem como decifragem.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text2">
+    <value>&lt;li&gt;O tamanho do texto cifrado é o igual ou menor do que o do texto original.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text3">
+    <value>&lt;li&gt;O processo de cifragem é rápido.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text4">
+    <value>&lt;li&gt;É fornecidade confidencialidade.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text5">
+    <value>&lt;li&gt;Usada normalmente durante a transferência de grandes quantidades de dados&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text6">
+    <value>&lt;li&gt;Comprimento da chave: 128 ou 256 bits&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text7">
+    <value>&lt;li&gt;Mais eficiente quando são usadas grandes quantidades de dados&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text8">
+    <value>&lt;li&gt;Comparativamente menos segura, pois é usada uma chave&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text9">
+    <value>&lt;li&gt;Algoritmos: RC4, AES, DES, 3DES, and QUAD.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text1">
+    <value>&lt;li&gt;Duas chaves: as chaves pública e privada são usadas, uma para cifrar e outra para decifrar.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text2">
+    <value>&lt;li&gt;O tamanho do texto cifrado é o igual ou maior do que o do texto original.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text3">
+    <value>&lt;li&gt;O processo de cifragem é lento.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text4">
+    <value>&lt;li&gt;são fornecidos confidencialidade, autenticidade e não repúdio.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text5">
+    <value>&lt;li&gt;Usada normalmente durante a transferência de pequenas quantidades de dados&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text6">
+    <value>&lt;li&gt;Key length: 2048 bits ou mais&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text7">
+    <value>&lt;li&gt;Comparativamente menos eficiente quando são usadas grandes quantidades de dados.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text8">
+    <value>&lt;li&gt;Mais segura, pois são usadas duas chaves: uma para cifragem e outra para decifragem.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text9">
+    <value>&lt;li&gt;Algoritmo: RSA, Diffie-Hellman, ECC.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SubHeading1">
+    <value>&lt;strong&gt;Cifragem Simétrica&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_Heading1">
+    <value>O que é a cifragem?</value>
+  </data>
+  <data name="Blog_SVAE_Heading2">
+    <value>Diferença entre simétrica e assimétrica:</value>
+  </data>
+  <data name="Blog_SVAE_SubHeading2">
+    <value>&lt;strong&gt;Cifragem Assimétrica&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_Summary">
+    <value>Hoje em dia, sabemos que os dados são o aspecto mais importante da nossa vida, sejam eles pessoais, económicos ou comerciais. À medida que usamos cada vez mais serviços online, os dados estão sempre em risco. Apesar dos melhores esforços, é possível que o seu computador seja infectado com malware.</value>
+  </data>
+  <data name="Blog_SVAE_Text1">
+    <value>Hoje em dia, sabemos que os dados são o aspecto mais importante da nossa vida, sejam eles pessoais, económicos ou comerciais. À medida que usamos cada vez mais serviços online, os dados estão sempre em risco. Apesar dos melhores esforços, é possível que o seu computador seja infectado com malware, ransomware ou cibercriminosos que o seu antivírus não consegue detectar. O malware envia dados sensíveis armazenados no seu computador para o cibercriminoso que o está a executar. É fundamental manter os dados seguros. É aqui que a tecnologia entra. A tecnologia torna difícil a violação de dados por parte de hackers. Temos de confiar em software de cifragem para impedir que os cibercriminosos alcancem os nossos dados. A cifragem ajuda a manter os nossos dados privados e protegidos. Actua como um cadeado em relação ao cibercrime, fornecendo uma camada extra de protecção das suas credenciais. A cifragem protege os nossos dados da sua leitura por hackers.</value>
+  </data>
+  <data name="Blog_SVAE_Title">
+    <value>Cifragem Simétrica vs Assimétrica</value>
   </data>
   <data name="Blog_SVL_Summary">
     <value>Alguns utilizadores reagem instintivamente de forma negativa ao modelo de subscrição AxCrypt Premium. Não causa do princípio genérico de se pagar por Premium, mas pela taxa anualmente recorrente em vez de uma 'perpétua'.</value>
@@ -4688,6 +5186,54 @@ Está avisada(o), agora desfrute!</value>
   <data name="Blog_WICS_Title">
     <value>O que é a Cibersegurança?</value>
   </data>
+  <data name="Blog_WIFBE_conclusion">
+    <value>Os exemplos supra-mencionados são apenas alguns dos principais exemplos de governos que aprovaram abertamente a utilização de cifragem de 256 bits para a salvaguarda de informação sensível e pessoal. Estes são argumentos fortes em prol da utilização desta cifragem e provam que a mesma será útil no futuro. Vendo como os grandes operadores privados andam atrás dos dados das pessoas, esta é uma tecnologia que está para ficar!</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text2">
+    <value>para mais informação, por favor consulte &lt;a href=' https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/'&gt; &lt;strong&gt;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text3">
+    <value>&lt;strong&gt;Porque é considerada uma das formas mais eficazes de cifragem?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text4">
+    <value>A ferramenta de cifragem de 256 bits é actualmente a mais popular. Uma das principais razões pela qual a maioria das organizações e pessoas preferem proteger os seus dados com cifragem de 256 bits é o grande número de combinações que esta cifragem usa para guardar os dados a sete chaves e protegê-los de hackers. De facto, em todo o mundo, inúmeras organizações governamentais do mais alto nível depositam a sua fé na cifragem de 256 bits para proteger os seus dados de hackers, porque acredita-se que o comprimento da chave deste tipo de cifragem é tão longo que mesmo os hackers mais sofisticados e de mais alto nível demorariam biliões de anos apenas para a descodificar! Isto faz com que a cifragem de 256 bits como mecanismo de protecção de dados de oficiais do mais alto nível assim como de pessoas comuns seja considerada muito forte, ganhando mesmo o título de 'cifragem de grau militar'.</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text5">
+    <value>para mais informações, por favor consulte &lt;strong&gt; &lt;a href ='https://axcrypt.net/blog/'&gt;&lt;strong&gt; https://axcrypt.net/blog/ &lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text1">
+    <value>Para fazer pender ainda mais o caso a favor da cifragem de 256 bits e estabelecer a sua supremacia em relação às homólogas, olhemos para a lista de algumas das pessoas e organizações de alto nível que depositaram a sua fé na cifragem de 256 bits para salvaguardar os seus dados de hackers.</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text2">
+    <value>&lt;li&gt;O governo dos Estados Unidos foi o primeiro a adoptar cifragem de 256 bits para proteger e salvaguardar os seus dados, tendo a sua utilização sido aprovada em 26 de Novembro de 2001. Lideram o caminho, mostrando a sua fé na cifragem e na sua capacidade de salvaguarda de informação preciosa, ultra-secreta e sensível. Surpreendentemente, o governo continua a mostrar a sua fé nesta cifragem e os seus oficiais ainda usam cifragem de 256 bits para armazenar os seus dados de forma segura e para mantê-los longe dos olhares curiosos de hackers.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text3">
+    <value>&lt;li&gt;O Canadá é outro país que encoraja regularmente a utilização de cifragem de 256 bits para protecção de dados pessoais do governo e dos cidadãos. O governo do Canadá tem promovido amplamente a utilização de cifragem de 256 bits para salvaguarda de informação privada. Tal trouxe o país à ribalta como uma das nações pioneiras na luta contra a violação da privacidade ao aprovar abertamente a ideia de cifragem de dados com cifragem de 256 bits.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text4">
+    <value>&lt;li&gt;O Ministério da Informação e Difusão do Governo Indiano, na sua lei de 18 de Fevereiro de 2022, restringiu os seus funcionários de trocarem documentos e informação ultra-secreta através da internet sem o uso de cifragem, com receio de violação e possível fuga de informação sensível, o que poderia comprometer a segurança nacional. Os funcionários foram instruídos a usar apenas cifragem de 256 bits para a troca de informação altamente sensível e confidencial&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_Heading1">
+    <value>O que é a cifragem de 256 bits?</value>
+  </data>
+  <data name="Blog_WIFBE_Heading2">
+    <value>Quem usa cifragem de 256 bits para proteger os seus dados?</value>
+  </data>
+  <data name="Blog_WIFBE_Summary">
+    <value>Nos tempos modernos, com o avanço da tecnologia, há o perigo de aquisição ilegal e utilização perigosa de dados pessoais.</value>
+  </data>
+  <data name="Blog_WIFBE_Text1">
+    <value>Nos tempos modernos, com o avanço da tecnologia, há o perigo de aquisição ilegal e utilização perigosa de dados pessoais. Como alguém disse, "Os dados são o novo petróleo", e os muitos casos recentes de organizações gigantes que espiavam dados pessoais chamou a atenção do público em relação a este problema.</value>
+  </data>
+  <data name="Blog_WIFBE_Text2">
+    <value>&lt;strong&gt;Alguns dos casos mais populares incluem:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_Text3">
+    <value>&lt;strong&gt;Para mais informações, consulte&lt;/strong&gt; &lt;a href ='https://www.statista.com/statistics/290525/cyber-crime-biggest-online-data-breaches-worldwide/'&gt;&lt;strong&gt;As maiores violações mundiais de dados em 2022 | Statista&lt;/strong&gt;&lt;/a&gt;. E a lista continua. Estes casos famosos chamaram a atenção do público.</value>
+  </data>
+  <data name="Blog_WIFBE_Title">
+    <value>Porque é que as Indústria deposita a sua fé na cifragem de 256 bits?</value>
+  </data>
   <data name="Blog_WIPM_H1_Text1">
     <value>Quando se cria uma nova conta, é obrigatório usar palavras-passe longas e fortes. Por acedermos a muitos sítios web e usarmos muitas aplicações, há 90% de probabilidade de não nos lembrarmos de todas as palavras-passe. Felizmente, a tecnologia mudou e não tem de se lembrar de todas as palavras-passe.</value>
   </data>
@@ -5169,7 +5715,7 @@ Está avisada(o), agora desfrute!</value>
     <value>Disponível para as principais plataformas</value>
   </data>
   <data name="BusinessFeatureListBestEncryption">
-    <value>Melhor Software de Cifragem pela PCMag em 2016, 2017, 2018, 2019 &amp; 2020</value>
+    <value>Melhor Software de Cifragem pela PCMag em 2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023</value>
   </data>
   <data name="BusinessFeatureListDataProtection">
     <value>Em conformidade com o Regulamento de Protecção de Dados</value>
@@ -5215,6 +5761,9 @@ Está avisada(o), agora desfrute!</value>
   </data>
   <data name="BusinessHeroSubheading">
     <value>Feito para empresas</value>
+  </data>
+  <data name="BusinessInformationUpdate" xml:space="preserve">
+    <value>ACTUALIZAÇÃO</value>
   </data>
   <data name="BusinessInvitationMailBodyIntro" xml:space="preserve">
     <value>&lt;p&gt;Você foi adicionado como utilizador do AxCrypt File Security por &lt;b&gt;{addedby_user_email}&lt;/b&gt;. Para começar a proteger os seus ficheiros &lt;a href="{download_url}" style="color: #86b96e; text-decoration: none;"&gt;baixe&lt;/a&gt; simplesmente e instale o AxCrypt. Registre-se ao AxCrypt com &lt;b&gt;{account_web_url}&lt;/b&gt;, introduza o código de verificação em baixo e configure a sua palavra-passe pessoal.&lt;/p&gt; 
@@ -5439,8 +5988,28 @@ Está avisada(o), agora desfrute!</value>
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
+  <data name="BusinessSubscriptionUserLabel" xml:space="preserve">
+    <value>Utilizador</value>
+  </data>
+  <data name="BusinessSubscrnsLicenses" xml:space="preserve">
+    <value>Licenças</value>
+    <comment>Licenses text displayed on License status.</comment>
+  </data>
+  <data name="BusinessSubscrnsRole" xml:space="preserve">
+    <value>Perfil</value>
+    <comment>Column header text</comment>
+  </data>
+  <data name="BusinessSubsrcnShowLess" xml:space="preserve">
+    <value>Mostrar Menos...</value>
+  </data>
+  <data name="BusinessSubsrcnShowMore" xml:space="preserve">
+    <value>Mostrar Mais...</value>
+  </data>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x utilizadores</value>
+  </data>
+  <data name="BusinessSupportInfo" xml:space="preserve">
+    <value>Bem-vinda(o) ao Suporte AxCrypt. Fornecemos suporte directo, pessoal e prioritário aos nossos clientes Business via email.</value>
   </data>
   <data name="BusinessSupportTitle" xml:space="preserve">
     <value>Suporte Empresarial</value>
@@ -5725,6 +6294,12 @@ Depois disso, poderá acessar usando &lt;b&gt;{0}&lt;/b&gt; e sua palavra-passe 
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Fazer isso para todos os arquivos restantes?</value>
   </data>
+  <data name="ConfirmNewEmailText" xml:space="preserve">
+    <value>Confirme o novo email:</value>
+  </data>
+  <data name="ConfirmNewPasswordText" xml:space="preserve">
+    <value>Confirme a nova palavra-passe:</value>
+  </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
     <value>Se tiver alguma questão, por favor, contacte primeiro {addedby_user_email}.</value>
   </data>
@@ -5807,6 +6382,9 @@ Se você não aceitar nossa sessão temporária de cookies, você não poderá f
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algoritmo</value>
+  </data>
+  <data name="CurrentEmailText" xml:space="preserve">
+    <value>Email actual:</value>
   </data>
   <data name="DataIntegrityLabel">
     <value>Verificação de integridade de dados</value>
@@ -6009,6 +6587,9 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Descarregue a App da AxCrypt</value>
   </data>
+  <data name="DownloadAxcryptDescription">
+    <value>Descarregue a AxCrypt e inicie a sua incrível viagem pelo mundo da cifragem.</value>
+  </data>
   <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
     <value>A AxCrypt representa cifragem sem portas de serviço. Sem a palavra-passe, os seus ficheiros são perdidos. Não se esqueça da sua palavra-passe! Mantenha sempre cópias de segurança apropriadas de ficheiros importantes, cifrados ou não.</value>
   </data>
@@ -6084,8 +6665,17 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   <data name="DownloadNavHeading">
     <value>Outras plataformas</value>
   </data>
+  <data name="DownloadpageDesktopTitle">
+    <value>A segurança&lt;span&gt; de ficheiros&lt;/span&gt;&lt;br /&gt;&lt;label&gt;deve ser &lt;span&gt;fácil.&lt;/span&gt;&lt;/label&gt;</value>
+  </data>
+  <data name="DownloadpageMobileTitle">
+    <value>Coloque a AxCrypt em &lt;span&gt; todos &lt;br /&gt;seus dispositivos.&lt;/span&gt;</value>
+  </data>
   <data name="DownloadPrimiumPlusHeading">
     <value>PREMIUM PLUS:</value>
+  </data>
+  <data name="DownloadReleaseNotes">
+    <value>Consulte as Notas de Versão</value>
   </data>
   <data name="DownloadTryCtaHeading">
     <value>Experimente as nossas subscrições durante um mês &lt;span&gt;grátis...&lt;/span&gt;</value>
@@ -6554,7 +7144,7 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
     <value>Ocultação dos nomes dos seus ficheiros seguros</value>
   </data>
   <data name="FeaturesBestEncryption">
-    <value>Melhor Software de Cifragem pela PCMag em 2016, 2017, 2018, 2019 &amp; 2020</value>
+    <value>Melhor Software de Cifragem pela PCMag em2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023</value>
   </data>
   <data name="FeaturesBusinessAdminDescription">
     <value>Gestão da sua conta AxCrypt Business, criação de subscrições, alteração de informação da sua empresa, etc.</value>
@@ -6779,6 +7369,10 @@ Estamos tristes de que você já esteja indo embora. Esperamos que tenha gostado
   </data>
   <data name="FreeLabel">
     <value>Free</value>
+  </data>
+  <data name="FreeSupportInfo" xml:space="preserve">
+    <value>Oferecemos suporte directo aos nossos clientes Premium e Business.
+Por favor, visite a nossa &lt;a href="{0}"&gt;comunidade de suporte&lt;/a&gt;.</value>
   </data>
   <data name="FreeTrial">
     <value>Avaliação grátis</value>
@@ -7276,7 +7870,7 @@ Se você, por alguma razão não souber ou não lembrar sua palavra-passe, dever
     <value>recomendações</value>
   </data>
   <data name="HomeHeroSubheading">
-    <value>Escolha 2022 da PCMag Editors</value>
+    <value>Escolha 2023 da PCMag Editors</value>
   </data>
   <data name="HomeHeroUnderSubheading">
     <value>mais de 20 milhões de descarregamentos em todo o mundo</value>
@@ -9222,6 +9816,9 @@ Os espaços em branco e as partes que são iguais às palavras-passe comuns são
   <data name="PremiumSecondBodyText2">
     <value>Pode cancelar a sua subscrição a qualquer momento. Se o fizer antes do período experimental terminar, não lhe será cobrado nada. Depois disso, a sua conta reverterá à versão Free.</value>
   </data>
+  <data name="PremiumSupportInfo" xml:space="preserve">
+    <value>Bem-vinda(o) ao Suporte AxCrypt. Fornecemos suporte directo, pessoal e prioritário aos nossos clientes Premium via email.</value>
+  </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
     <value>Pedido de Suporte Prioritário</value>
     <comment>The subject used when sending support requests from the account web.</comment>
@@ -9272,10 +9869,6 @@ Os espaços em branco e as partes que são iguais às palavras-passe comuns são
   <data name="PriceExcludingVat" xml:space="preserve">
     <value>{0} sem IVA.</value>
     <comment>Brief text used to display the price exclusive of VAT, as additional information. The price is typically shown inclusive. This text is only displayed if any VAT is added.</comment>
-  </data>
-  <data name="PricePerMonth" xml:space="preserve">
-    <value>{0}/mês</value>
-    <comment>Brief text used to display the cost / month for a subscription.</comment>
   </data>
   <data name="PricePerMonthIndicatorText" xml:space="preserve">
     <value>por mês</value>
@@ -9566,6 +10159,21 @@ O HubSpot é uma solução integrada de software com a qual cobrimos vários asp
   </data>
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>O produto e as funcionalidades são demasiado complicadas para mim</value>
+  </data>
+  <data name="ProductPageBusinessDescription">
+    <value>Cifragem simples, fiável e forte para empresas e organizações.</value>
+  </data>
+  <data name="ProductPageBusinessTitle">
+    <value>SUBSCRIÇÃO&lt;span&gt; BUSINESS&lt;/span&gt;</value>
+  </data>
+  <data name="ProductPageLatestFeatures">
+    <value>As &lt;span&gt;Últimas&lt;/span&gt; Funcionalidades AxCrypt.</value>
+  </data>
+  <data name="ProductPagePremiumDescription">
+    <value>Cifragem simples, fiável e forte para indivíduos.</value>
+  </data>
+  <data name="ProductPagePremiumTitle">
+    <value>  &lt;span&gt;SUBSCRIÇÃO &lt;/span&gt;PREMIUM </value>
   </data>
   <data name="ProductPremiumHightlights1" xml:space="preserve">
     <value>Cifre os seus ficheiros com AES-256 – o mais forte algoritmo AES. É usado globalmente para proteger informação sensível e classificada de todos os níveis. Proteger pastas nunca foi tão fácil, bastando um só clique para proteger novos ficheiros automaticamente.</value>
@@ -10443,11 +11051,23 @@ Assunto: Relatório de Erros AxCrypt</value>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Procure palavras-passe aqui...</value>
   </data>
+  <data name="SecAnotherEmailText" xml:space="preserve">
+    <value>Outro Email</value>
+  </data>
+  <data name="SecAxcryptApplicationText" xml:space="preserve">
+    <value>A Aplicação AxCrypt</value>
+  </data>
+  <data name="SecretsAllItems" xml:space="preserve">
+    <value>Todos os itens</value>
+  </data>
   <data name="SecretsButtonToolTipText" xml:space="preserve">
     <value>Ir ao Gerenciador de Senhas.</value>
   </data>
   <data name="SecretsCopytoClipboard" xml:space="preserve">
     <value>Copiar para área de transferência</value>
+  </data>
+  <data name="SecretsRecentlyAdded" xml:space="preserve">
+    <value>Adicionado recentemente</value>
   </data>
   <data name="SecretsSortOrderLabel" xml:space="preserve">
     <value>Selecionar por</value>
@@ -10463,6 +11083,18 @@ Assunto: Relatório de Erros AxCrypt</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Sua assinatura Premium terminará em breve, em {0}. Assim sendo, você deverá prolongar sua assinatura Premium para que possa continuar editando e criando novas palavras-passe. Você terá acesso de leitura indefinidamente.</value>
+  </data>
+  <data name="SecSmsRecoveryText" xml:space="preserve">
+    <value>Recuperação SMS</value>
+  </data>
+  <data name="SecTwoFacAuthenConText1" xml:space="preserve">
+    <value>Use a app móvel AxCrypt para gerar uma notificação no seu dispositivo</value>
+  </data>
+  <data name="SecTwoFacAuthenConText2" xml:space="preserve">
+    <value>Use o seu outro endereço de email para receber a ligação de verificação</value>
+  </data>
+  <data name="SecTwoFacAuthenConText3" xml:space="preserve">
+    <value>Use o seu telemóvel para receber o código de segurança</value>
   </data>
   <data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>Segurança AxCrypt deletada</value>
@@ -10615,6 +11247,9 @@ Assunto: Relatório de Erros AxCrypt</value>
   <data name="SecurityLinkLabel">
     <value>Segurança</value>
   </data>
+  <data name="SecurityPasswordText" xml:space="preserve">
+    <value>Palavra-passe</value>
+  </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>A segurança é crucial para nós. Tudo o que fazemos com o AxCrypt é feito com segurança como a mais alta prioridade. Asseguramos que ninguém nunca tenha acesso aos seus arquivos criptografados, contanto que você tenha o controle da sua palavra-passe.</value>
     <comment>Description of "Security" section of About Us page in mobile application.</comment>
@@ -10678,6 +11313,9 @@ Escolha algo difícil de adivinhar, uma vez que protegerá palavras-passe no Ges
   </data>
   <data name="ShareAccessTitle" xml:space="preserve">
     <value>Partilhar acesso</value>
+  </data>
+  <data name="ShareArticalText">
+    <value>Partilhe este artigo</value>
   </data>
   <data name="SharedKeyUserListTitle" xml:space="preserve">
     <value>Todos os utilizadores com acesso aos ficheiros seleccionados ({0})</value>
@@ -10903,6 +11541,9 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="SummaryTitle" xml:space="preserve">
     <value>Sumário</value>
   </data>
+  <data name="SupportBodyPlaceholderText" xml:space="preserve">
+    <value>Caso tenha dificuldades ou problemas em usar os nossos serviços, informe-nos, por favor.</value>
+  </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>Como podemos te ajudar?</value>
   </data>
@@ -11115,7 +11756,7 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
     <value>Se qualquer parte deste acordo for considerada inválida, tal não invalida qualquer outra e a nova interpretação deve ser tão próxima da original quanto permitido.</value>
   </data>
   <data name="TermsOfUseBlock18Text4">
-    <value>Copyright © 2022 AxCrypt AB, Todos os direitos reservados.</value>
+    <value>Copyright © 2023 AxCrypt AB, Todos os direitos reservados.</value>
   </data>
   <data name="TermsOfUseBlock18Text5">
     <value>O suporte técnico de prioridade mais alta é fornecido por email. Não garantimos a resolução de todos os problemas.</value>
@@ -11267,9 +11908,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TitleCreateAxCryptIdTitle" xml:space="preserve">
     <value>Criar ID AxCrypt</value>
   </data>
-  <data name="TitleMainWindow" xml:space="preserve">
-    <value>{0} {1}{2}</value>
-  </data>
   <data name="TitleSignInToAxCrypt" xml:space="preserve">
     <value>Entrar em AxCrypt</value>
     <comment>Title on the web page for signin for example.</comment>
@@ -11277,9 +11915,6 @@ Para ir à página de início, clique &lt;a href="{1}"&gt;aqui&lt;/a&gt;.</value
   <data name="TitleUnsubscribeConfirmation" xml:space="preserve">
     <value>Descadastrado</value>
     <comment>The title of the web page shown when a user has unsubscribed from news and information emails.</comment>
-  </data>
-  <data name="TitleWindowSignInStatus" xml:space="preserve">
-    <value>{0} {1} - {2}</value>
   </data>
   <data name="TooExpensiveText" xml:space="preserve">
     <value>É demasiado caro</value>
@@ -11316,6 +11951,9 @@ A equipe AxCrypt</value>
   </data>
   <data name="TroubleShootingLabel">
     <value>Resolução de problemas</value>
+  </data>
+  <data name="TryAxcryptfree">
+    <value>Experimente a AxCrypt grátis</value>
   </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>Experimentar Ficheiro Corrompido</value>
@@ -11438,6 +12076,9 @@ A equipe AxCrypt</value>
   </data>
   <data name="TwentyPercentOff">
     <value>Desconto de 20%</value>
+  </data>
+  <data name="TwoFactorAuthentificationText" xml:space="preserve">
+    <value>Autenticação de dois factores</value>
   </data>
   <data name="TypographyLabel">
     <value>Tipografia</value>

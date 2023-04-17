@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AxCrypt.Forms
@@ -15,6 +13,14 @@ namespace AxCrypt.Forms
         public StyledMessageBase()
         {
             Load += (sender, e) => InitializeContentResources();
+            if (Core.Resolve.UserSettings.CultureName == "ar-AR")
+            {
+                this.RightToLeft = RightToLeft.Yes;
+            }
+            else
+            {
+                this.RightToLeft = RightToLeft.No;
+            }
             Shown += (sender, e) => Style.Styling.RestoreWindowWithFocus(sender as Form);
         }
 

@@ -137,7 +137,7 @@
     <value>After 2 years of hard work AxCrypt 2 was released in 2016.</value>
   </data>
   <data name="AboutAxcryptHistoryText4" xml:space="preserve">
-    <value>Since then we have been awarded “The World’s Best Encryption Software” by the prestigious PC Magazine in 2016, 2017, 2018, 2019 and 2020 as well as many other review sites in the world. We have a global reach with users from all countries. Our biggest markets are Europe with 45% and America with 30% of the users.</value>
+    <value>Since then we have been awarded “The World’s Best Encryption Software” by the prestigious PC Magazine 2016-2023 as well as many other review sites in the world. We have a global reach with users from all countries. Our biggest markets are Europe with 45% and America with 30% of the users.</value>
   </data>
   <data name="AboutAxcryptHistoryText5" xml:space="preserve">
     <value>Our mission is to provide individuals and small teams with encryption solutions that are easier to use than ever before. We’re removing the complexity from the use of strong and proven cryptographic technology.</value>
@@ -468,6 +468,9 @@ Updates to the subscription will be reflected here within a few minutes.</value>
     <value>Version {0}</value>
     <comment>Text containing information about current application version.</comment>
   </data>
+  <data name="ArabicLanguageSelectionText" xml:space="preserve">
+    <value>عربي(Arabic)</value>
+  </data>
   <data name="AuthenticationError" xml:space="preserve">
     <value>The page you tried to visit requires authentication. Please sign in to proceed.</value>
   </data>
@@ -647,6 +650,9 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="AxCryptSupportIntro" xml:space="preserve">
     <value>Welcome to AxCrypt Support.</value>
+  </data>
+  <data name="BacktoAxCryptIDText" xml:space="preserve">
+    <value>Back to &lt;span&gt;AxCrypt ID&lt;/span&gt;</value>
   </data>
   <data name="BackToHomeButtonLabel" xml:space="preserve">
     <value>Back to home</value>
@@ -942,6 +948,45 @@ You have been warned, now enjoy!</value>
   <data name="Blog_ADSDE_Title" xml:space="preserve">
     <value>The art of data security in the digital era</value>
   </data>
+  <data name="Blog_AESDES_Conclusion" xml:space="preserve">
+    <value>As a result, while both AES and DES are symmetric key block ciphers, AES is the de facto industry standard and is hence more secure. When it comes to encryption, security is crucial, and the only alternative is AxCrypt, which offers 256-bit encryption in addition to security. All concerns with encryption are resolved by AxCrypt.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SH1_Text1" xml:space="preserve">
+    <value>Data Encryption Standard is what it stands for. The DES algorithm can be cracked using specific devices. A key with a 56-bit size is used by the DES algorithm. The DES creates a block of 64-bit cipher text using the 56-bit key after receiving a block of 64-bit plain text as an input.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SH1_Text2" xml:space="preserve">
+    <value>Although both AES and DES being the encryption algorithm to encrypt data, there are significant differences between the both, in terms of their working principles, their core functions, their key sizes and their speed and security performances.</value>
+  </data>
+  <data name="Blog_AESDES_H1_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;What is DES encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_H1_Text1" xml:space="preserve">
+    <value>AES or the Advanced Encryption Standard is a cipher, which is a way to both encrypt and decrypt data. There's a significant probability that your data will be encrypted by some type of AES cipher, such as the AES 256, 192, or 128 -- whenever you transmit files through secure file transfer protocols like HTTPS, FTPS, SFTP, WebDAV, OFTP, or AS2.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SH1_Text1" xml:space="preserve">
+    <value>For any cipher, the most basic technique of attack is brute force, which includes attempting each key until you locate the appropriate one. Finding the right key would take a maximum of 256, or around 72 quadrillion, attempts due to the effective DES key length of 56 bits. This is insufficient for the DES data protection against computerized brute-force attacks. Before AES was used to replace DES, there were probably not many messages that were susceptible to this kind of code-breaking attempt. However, even before DES became a standard, many security experts believed the 56-bit key length was insufficient. So, it’s no longer effective.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SH2_Text1" xml:space="preserve">
+    <value>Although the AES data encryption technique is more theoretically sophisticated and attractive, its main advantage is the availability of different key lengths. AES is exponentially more secure than DES's 56-bit key since it lets you select a 128-bit, 192-bit, or 256-bit key. Because key size affects encryption strength, DES became obsolete due to continual advancements in computing technology.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;Why DES is no longer effective? &lt;/strong&gt;.</value>
+  </data>
+  <data name="Blog_AESDES_H2_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;Why AES replaces DES? &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_Heading1" xml:space="preserve">
+    <value>&lt;strong&gt;What is an AES encryption?&lt;strong&gt;</value>
+  </data>
+  <data name="Blog_AESDES_Heading2" xml:space="preserve">
+    <value>Difference between AES encryption Vs DES encryption.</value>
+  </data>
+  <data name="Blog_AESDES_Summary" xml:space="preserve">
+    <value>AES or the Advanced Encryption Standard is a cipher, which is a way to both encrypt and decrypt data.</value>
+  </data>
+  <data name="Blog_AESDES_Title" xml:space="preserve">
+    <value>Advanced Encryption Standard Vs Data Encryption Standard.</value>
+  </data>
   <data name="Blog_AIS_Conclusion_Heading" xml:space="preserve">
     <value>AxCrypt in short</value>
   </data>
@@ -1087,10 +1132,166 @@ You have been warned, now enjoy!</value>
     <value>&lt;li&gt;No, your data never leaves your computer – unless it resides there in the first place of course.&lt;/li&gt;</value>
   </data>
   <data name="Blog_AOVO_Text6" xml:space="preserve">
-    <value>AxCrypt will automatically switch to ‘offine’ mode if it’s not possible to connect to the server. It can also be started with the –offine command line switch, or set permanently offine by using the “File | Options | Always Offine” option.</value>
+    <value>AxCrypt will automatically switch to ‘offline’ mode if it’s not possible to connect to the server. It can also be started with the –offline command line switch, or set permanently offline by using the “File | Options | Always Offline” option.</value>
   </data>
   <data name="Blog_AOVO_Title" xml:space="preserve">
     <value>AxCrypt Online vs. Offline</value>
+  </data>
+  <data name="Blog_ASTSHSA_Conclusion" xml:space="preserve">
+    <value>The holiday season is a time for celebration and spending time with loved ones, but it's also important to make sure that your data is safe and secure. By following these tips and using a reputable security solution like AxCrypt, you can help protect your data from unauthorized access and give yourself peace of mind. Happy holidays!</value>
+  </data>
+  <data name="Blog_ASTSHSA_H1_Text1" xml:space="preserve">
+    <value>Choosing strong, unique passwords is one of the easiest ways to protect your accounts and data. Make sure to use a combination of letters, numbers, and special characters, and avoid using personal information or dictionary words. Still the most common password is still “123456”, so it's important to be creative and not use easily guessable passwords. It's also a good idea to use different passwords for different accounts to reduce the risk of all of your accounts being compromised if one password is exposed.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H2_Text2" xml:space="preserve">
+    <value>A password manager is a tool that generates and stores strong, unique passwords, helps you avoid using weak passwords, and makes it easier to use different passwords for different accounts. It also securely stores and organizes your passwords and may offer additional features such as two-factor authentication and alerts for exposed passwords. A password manager is a convenient and secure way to manage passwords. One option is AxCrypt which offers a password manager as part of its security solution.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H3_Text3" xml:space="preserve">
+    <value>It's important to keep your software and operating system up to date to ensure that you have the latest security fixes. Hackers often target outdated systems, so make sure to regularly check for updates and install them when they are available. This includes your operating system, as well as any software that you use, such as your web browser, antivirus program, and office suite.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H4_Text4" xml:space="preserve">
+    <value>Consider using a security solution like AxCrypt to encrypt your files and protect them with a password. This can help prevent unauthorized access to your data and give you peace of mind. Encrypting your files ensures that even if someone gains access to them, they will not be able to read or use the data without the password.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H5_Text5" xml:space="preserve">
+    <value>Accidents happen, and it's always a good idea to have a backup of your important files. Make sure to regularly back up your data to a secure location, such as an external hard drive or a cloud storage service. This can help protect against data loss in the event of a system failure or other unforeseen event. It's also a good idea to test your backups regularly to ensure that they are working properly.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H6_Text6" xml:space="preserve">
+    <value>Public Wi-Fi networks can be vulnerable to hackers, so it's best to avoid accessing sensitive information or logging into important accounts while using them. If you need to use public Wi-Fi, make sure to use a reputable VPN service to secure your connection. A VPN, or virtual private network, encrypts your internet connection and helps protect your data from being accessed by others on the same network.</value>
+  </data>
+  <data name="Blog_ASTSHSA_H7_Text7" xml:space="preserve">
+    <value>During the holiday season, scammers often try to take advantage of people's generosity and good cheer. Be cautious when opening emails or clicking on links from unfamiliar sources, as these can be used to trick you into revealing sensitive information or downloading.</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading1" xml:space="preserve">
+    <value>&lt;strong&gt;1. Use strong, unique passwords&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading2" xml:space="preserve">
+    <value>&lt;strong&gt;2. Use a password manager&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading3" xml:space="preserve">
+    <value>&lt;strong&gt;3. Keep your software and operating system up to date&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading4" xml:space="preserve">
+    <value>&lt;strong&gt;4. Use a reputable security solution&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading5" xml:space="preserve">
+    <value>&lt;strong&gt;5. Back up your data&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading6" xml:space="preserve">
+    <value>&lt;strong&gt;6. Be cautious when using public Wi-Fi&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Heading7" xml:space="preserve">
+    <value>&lt;strong&gt;7. Be mindful of phishing scams&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ASTSHSA_Summary" xml:space="preserve">
+    <value>It's important to make sure that your data is safe and secure. With the increase in online shopping and the exchange of sensitive information, it's more important than ever to take steps to protect your data.</value>
+  </data>
+  <data name="Blog_ASTSHSA_Title" xml:space="preserve">
+    <value>A few secret tips to keep your data safe during the holiday season with AxCrypt</value>
+  </data>
+  <data name="Blog_BAWIT_Conclusion" xml:space="preserve">
+    <value>The issue of women in tech and gender diversity at workplace requires a progressive approach, with an effort and inclusion of everyone. AxCrypt strives for a strong gender diverse workplace and welcomes and appreciates different women who bring their own unique contribution and working styles for the womanhood. Let’s celebrate this woman’s day as a thank you to all the women working in tech, who are putting their efforts to bring gender diversity at workplace, one step at a time.</value>
+  </data>
+  <data name="Blog_BAWIT_H1_Text1" xml:space="preserve">
+    <value>“Being a women in tech gives me a sense of freedom and confidence. I feel proud to be breaking the gender stereotypes about the traditional roles of women and instead becoming more educated and familiar with technology. This has enabled me to become self-sufficient, reliable, and adaptive – when facing different life challenges and situations.</value>
+  </data>
+  <data name="Blog_BAWIT_H1_Text2" xml:space="preserve">
+    <value>One of the best things about working in the technology sector is the slew of opportunities and possibilities that are presented to you. It allows you to become more flexible and open-minded, while still having an innate curiosity, and the ability to change, adapt, and educate yourself. It makes you grow both professionally and personally, and helps you live a content and purposeful life.”</value>
+  </data>
+  <data name="Blog_BAWIT_H2_Text1" xml:space="preserve">
+    <value>“Working in the constantly evolving tech industry has made me feel young and full of energy. At AxCrypt, not only do I find fulfilment in my career, but I’m also able to financially support my partner and appreciate the challenges that come with his own job. We mutually complement each other, both in our professional and personal lives, and my parents couldn’t be happier seeing their daughter pursue a career in tech after starting a family.”</value>
+  </data>
+  <data name="Blog_BAWIT_H2_Text2" xml:space="preserve">
+    <value>Overall, inspiring more women to pursue careers in technology requires a concerted effort from individuals, companies, and society as a whole. By breaking down barriers and promoting inclusivity, we can create a more diverse and innovative tech industry that thrives on the collective efforts of everyone.”</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text1" xml:space="preserve">
+    <value>“I have been working in the tech industry for the past 20 years – specifically, in the administrative and human resources side of the industry. This is not a job I could have dreamed of as a child, and the tech world didn’t even exist back then.  Bangalore used to be a beautiful tourist destination, until the early 2000s when almost overnight it became the IT hub of India</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text2" xml:space="preserve">
+    <value>This was also around the time I was starting out in life in Bangalore was very privileged to be able to grow in the industry while it was still in its early stages. I have had the opportunity to see, learn, and participate on what it takes to build multiple international tech companies from the ground up. Throughout my career, I've made life-long friends from various parts of the world, acquainted myself with diverse cultures, and was even fortunate enough to travel abroad for work.</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text3" xml:space="preserve">
+    <value>In the tech industry, there is always something new to learn and ample room for personal and professional growth. Moreover, there is enormous potential to be creative and make a positive impact. For me, working at AxCrypt is the best job ever, and I especially cherish the opportunity it provides.</value>
+  </data>
+  <data name="Blog_BAWIT_H3_Text4" xml:space="preserve">
+    <value>At AxCrypt, I have the freedom to grow in my role without any limits, and the upper management has fostered a work environment that is friendly yet competitive. What I value most about this workplace is the sense of equality and respect that is deeply ingrained in its culture.”</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text1" xml:space="preserve">
+    <value>“Technology is linked with progress, and a community that embraces technology is considered to be progressive. Technology simplifies our lives and improves our standard of living.</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text2" xml:space="preserve">
+    <value>As someone who works in the technology industry, I feel that I’m playing a key role in the progress of my community and making people's lives better. While I may not be directly involved in the development of the technology itself; my efforts, experience, and knowledge has helped make it more accessible to the people and processes of it simplified.</value>
+  </data>
+  <data name="Blog_BAWIT_H4_Text3" xml:space="preserve">
+    <value>Working at AxCrypt has given me the opportunity to contribute to the betterment of people using technology, and as a women in tech, I’m committed to ensuring that technology reaches everyone and helps enhance individuals' lives, ultimately contributing to the development of society.”</value>
+  </data>
+  <data name="Blog_BAWIT_H5_Text1" xml:space="preserve">
+    <value>“The technology field demands more dedication and hard work, as we work to bring the abstract and creative ideas to life on screens. It allows us to express ourselves and find solutions to every problem. Technology is like an endless sea of possibilities, where there is always something new to learn, and it empowers us to see beyond the horizon. Whether we are men or women, it is our choice to ride the beautiful waves of technology and explore the depths of knowledge.</value>
+  </data>
+  <data name="Blog_BAWIT_H5_Text2" xml:space="preserve">
+    <value>The tech field provides a higher level of understanding and practical knowledge, helping us to organize our lives and approach them with optimism and wisdom. We deserve access to knowledge and awareness of the protection technology can offer us. As women, we understand that opportunities may not always come our way, but we have the power to create them ourselves.”</value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text1" xml:space="preserve">
+    <value>“The field of information technology has traditionally been a male dominated one, but I see every day that more and more women are breaking into the industry and making a name for themselves. Balancing my work and personal life may be a challenge, but with every challenge comes the opportunity to grow and become stronger. In this ever-evolving industry, it is vital to stay up-to-date with the latest trends and skills. Falling behind the curve can mean losing out in the highly competitive world of tech.</value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text2" xml:space="preserve">
+    <value>As a women in tech, I am constantly learning and expanding my skills to stay ahead of the curve. The tech industry offers endless possibilities for innovation and making a positive impact on the world. It's a challenging yet dynamic career path that is worth every bit of effort. </value>
+  </data>
+  <data name="Blog_BAWIT_H6_Text3" xml:space="preserve">
+    <value>I am proud to be a part of an industry that is shaping the future and changing the world for the better. Thank you for giving me the opportunity to share my experience in the tech industry.”</value>
+  </data>
+  <data name="Blog_BAWIT_H7_Text1" xml:space="preserve">
+    <value>“The myth that women's empowerment can only happen slowly has debilitated their power. We need to realize that, when it comes to eradicating this deep-rooted problem of traditional gender stereotyping, everyone's contribution counts.</value>
+  </data>
+  <data name="Blog_BAWIT_H7_Text2" xml:space="preserve">
+    <value>Faced with several hurdles such as gender preferences, low representation and a virtual glass ceiling, women are constantly trying to uplift themselves and bring a change in the industry, and are excelling in higher positions. Despite the challenges, it is a fulfilling experience to work in a company that doesn't discriminate. I am glad to work as a women in the IT industry and have high hopes for breaking gender inequality. Happy International Women's Day.”</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text1" xml:space="preserve">
+    <value>“I am a software engineer with over 10 years of experience in .NET development, and I’m proud to be part of the tech industry. I entered the corporate world through campus recruitment, and was offered a position at one of the big IT companies, and it was a dream come true.</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text2" xml:space="preserve">
+    <value>Despite challenges and stereotypes about women's capabilities in coding and analytical thinking, I have persevered and have seen the importance of diversity in this field. Balancing work and family responsibilities can be difficult, especially for working mothers, but we are capable of multitasking, time management, and keeping up with family values while pursuing our careers.</value>
+  </data>
+  <data name="Blog_BAWIT_H8_Text3" xml:space="preserve">
+    <value>As Women's Day approaches, I would like to extend my congratulations to all the women in tech and thank them for their remarkable achievements and contribution to the industry.</value>
+  </data>
+  <data name="Blog_BAWIT_Heading1" xml:space="preserve">
+    <value>&lt;strong&gt;Daria – Graphic Designer, The Design Dynamo of AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading2" xml:space="preserve">
+    <value>&lt;strong&gt;Pavitra - Human Resource Manager, The HR Hero of AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading3" xml:space="preserve">
+    <value>&lt;strong&gt;Jency - Operational Director, The Operational Oracle of AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading4" xml:space="preserve">
+    <value>&lt;strong&gt;Vandana – Business Manager, The Marketing Marvel of AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading5" xml:space="preserve">
+    <value>&lt;strong&gt;Venkatalakshmi – Jr. Software Engineer, The Coding Ninja of AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading6" xml:space="preserve">
+    <value>&lt;strong&gt;Swapna – Jr. Software Developer, The Binary Defender of AxCrypt &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading7" xml:space="preserve">
+    <value>&lt;strong&gt;Shalini – Jr. Software Engineer, The Captain Compiler AxCrypt&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Heading8" xml:space="preserve">
+    <value>&lt;strong&gt;Manjula – Sr. Software Engineer, The Tech Titan of AxCrypt  &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BAWIT_Summary" xml:space="preserve">
+    <value>As we all celebrate International Women's Day, it is important to recognize the invaluable contributions of women in the tech industry.</value>
+  </data>
+  <data name="Blog_BAWIT_Text1" xml:space="preserve">
+    <value>As we all celebrate International Women's Day, it is important to recognize the invaluable contributions of women in the tech industry. Traditionally, technology is seen as a male dominated industry. However, in recent years, this industry has welcomed more women breaking barriers and making their mark in the tech world.</value>
+  </data>
+  <data name="Blog_BAWIT_Text2" xml:space="preserve">
+    <value>Despite facing obstacles such as gender biases and lack of representation, women have persevered and are now making significant strides in the field. In this article, let’s explore the experiences of women in tech, their contributions to the industry, and the challenges they have overcome to get where they are today – all from the perspective of women working at AxCrypt Software. With that, let’s see what each women at AxCrypt has to say about her experience: </value>
+  </data>
+  <data name="Blog_BAWIT_Title" xml:space="preserve">
+    <value>Being a Women in Tech</value>
+  </data>
+  <data name="Blog_BAWIT_Title_Heading1" xml:space="preserve">
+    <value>&lt;strong&gt;From the Perspective of Women at AxCrypt&lt;/strong&gt;  </value>
   </data>
   <data name="Blog_BMYP_Conclusion_Text1" xml:space="preserve">
     <value>In the modern world, preventing the real criminals from accessing your accounts and systems is a major challenge. At Axcrypt, we remember your passwords for you, assist you in creating secure passwords, and log you in automatically throughout the web.</value>
@@ -1139,6 +1340,75 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="Blog_BMYP_Title" xml:space="preserve">
     <value>Benefits Of Managing Your Passwords</value>
+  </data>
+  <data name="Blog_BSOHDGE_H1_Text1" xml:space="preserve">
+    <value>Encryption is a technique that transforms plain text into an unreadable form called &lt;strong&gt;ciphertext. &lt;/strong&gt;This is achieved by running the text through an encryption algorithm, like &lt;strong&gt;AES,&lt;/strong&gt; which randomly rearranges and jumbles up the content, rendering it incomprehensible during transmission. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H1_Text2" xml:space="preserve">
+    <value>The process of rearranging the text is supported by complex mathematical calculations referred to as a &lt;strong&gt;‘key.’&lt;/strong&gt; These same mathematical calculations are also used for decryption, which reverses the encryption process and permits only authorized individuals to access the original plain text. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H2_Text1" xml:space="preserve">
+    <value>Encryption utilizes intricate mathematical procedures called &lt;strong&gt; 'encryption algorithms'&lt;/strong&gt; along with digital keys to scramble data. These encryption keys can be produced either manually or by software that applies an algorithm to scramble data and create a unique encryption key. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H2_Text2" xml:space="preserve">
+    <value>Scrambling of the text occurs by encryption algorithm &lt;strong&gt;(cipher),&lt;/strong&gt; when it uses the encryption key to apply the conversion of data based on the mathematical equations of key, to turn it into ciphertext. This ciphertext can then be transmitted to a recipient and decoded back into the original value using the same or different cipher and key. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H2_Text3" xml:space="preserve">
+    <value>This is a very important element in terms of data security, as it guarantees that no one else would be able to read or decipher your data during its transmission – ensuring privacy and security of the sensitive information. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H2_Text4" xml:space="preserve">
+    <value>A rudimentary encryption technique involves swapping each letter with its opposite position in the alphabet, such as &lt;strong&gt;“a”&lt;/strong&gt; is replaced with &lt;strong&gt;“z”,&lt;/strong&gt; and &lt;strong&gt;“b”&lt;/strong&gt; with &lt;strong&gt;“y”&lt;/strong&gt; and so on. An example of this is the phrase &lt;strong&gt;“AxCrypt Software”&lt;/strong&gt; resulting in an encrypted string using the letter-swapping technique as &lt;strong&gt;“ZwBqxos Rnesvzqd”.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_BSOHDGE_H3_Text1" xml:space="preserve">
+    <value>Encryption has emerged as one of the most powerful tools to safeguard important and sensitive information from malicious actors. As the number and sophistication of cyberattacks continue to rise every day along with the enormous amount of data being generated globally, the role of data encryption becomes more critical than ever before.  </value>
+  </data>
+  <data name="Blog_BSOHDGE_H3_Text2" xml:space="preserve">
+    <value>Businesses and individuals can use encryption and prioritize encryption to keep their systems and data secure. Even if attackers manage to gain access to sensitive information, encryption renders it useless to them without the corresponding decryption key. This makes it nearly impossible for them to read or use the data, ensuring that it remains confidential and protected. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H4_Conclusion" xml:space="preserve">
+    <value>Overall, AxCrypt provides a secure solution for encrypting files on local and cloud storage using AES &lt;strong&gt;256-Bit encryption.&lt;/strong&gt; It is super easy to use on desktops, laptops, and mobile devices, making it convenient to safeguard sensitive data from anywhere. AxCrypt also allows users to take advantage of the convenience of cloud storage while ensuring that their data remains confidential and secure anywhere around the world. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H4_Conclusion_Text1" xml:space="preserve">
+    <value>Try it out today with a free trial and take your data security to the next level. Sign up now at &lt;a href='https://account.axcrypt.net/en/Home/Login?Signup=True'&gt;[SIGNUP LINK]&lt;/a&gt; , &lt;a href='https://axcrypt.net/'&gt; [LANDING PAGE LINK] &lt;/a&gt;</value>
+  </data>
+  <data name="Blog_BSOHDGE_H4_Text1" xml:space="preserve">
+    <value>AxCrypt allows users to easily encrypt their data across multiple devices. The software provides strong encryption using the &lt;strong&gt;AES 256-Bit,&lt;/strong&gt; ensuring that data remains protected from unauthorized access. Users can simply select the files they wish to encrypt and AxCrypt will automatically apply the encryption process, making it easy to use for those who may not be familiar with encryption. </value>
+  </data>
+  <data name="Blog_BSOHDGE_H4_Text2" xml:space="preserve">
+    <value>AxCrypt also offers secure file sharing, allowing users to send encrypted files to others via email or cloud storage services such as Dropbox or Google Drive. Recipients can then easily decrypt the files using their own AxCrypt software, making it a convenient and secure way to share sensitive information.  </value>
+  </data>
+  <data name="Blog_BSOHDGE_H4_Text3" xml:space="preserve">
+    <value>AxCrypt also includes a password management feature, which enables users to securely store their passwords in an encrypted file, adding an extra layer of protection to their sensitive information. Overall, AxCrypt is a user-friendly and reliable option for encrypting data across multiple devices. </value>
+  </data>
+  <data name="Blog_BSOHDGE_Heading1" xml:space="preserve">
+    <value>What does encryption mean? </value>
+  </data>
+  <data name="Blog_BSOHDGE_Heading2" xml:space="preserve">
+    <value>How does encryption work?  </value>
+  </data>
+  <data name="Blog_BSOHDGE_Heading3" xml:space="preserve">
+    <value>Why encryption is important for your data? </value>
+  </data>
+  <data name="Blog_BSOHDGE_Heading4" xml:space="preserve">
+    <value>How to easily encrypt data across devices using AxCrypt </value>
+  </data>
+  <data name="Blog_BSOHDGE_Summary" xml:space="preserve">
+    <value>With the advent of Industry 4.0 and technologies like AI and ML, it has become even more important to safeguard your sensitive data.</value>
+  </data>
+  <data name="Blog_BSOHDGE_Text1" xml:space="preserve">
+    <value>With the advent of &lt;strong&gt;Industry 4.0&lt;/strong&gt; and technologies like AI and ML, it has become even more important to safeguard your sensitive data. According to a &lt;a href='https://www.weforum.org/agenda/2019/04/how-much-data-is-generated-each-day-cf4bddf29f'&gt;World Economic Forum (WRF) report,&lt;/a&gt;  by &lt;strong&gt;2025,&lt;/strong&gt; the amount of data generated in the cloud servers &lt;strong&gt;each day&lt;/strong&gt;  will reach around &lt;strong&gt;463 exabytes&lt;/strong&gt; globally. This is an astonishingly enormous amount data generated within just a day, which also increases the chances of data attacks and data breaches. </value>
+  </data>
+  <data name="Blog_BSOHDGE_Text2" xml:space="preserve">
+    <value>In light of these figures, it's essential for businesses to prioritize the safety of their data, particularly from breaches and cyberattacks. One popular and effective method to ensure data safety is encryption, which is widely used across various online activities like online banking, email, and online shopping, and is even being used as we read this article. </value>
+  </data>
+  <data name="Blog_BSOHDGE_Text3" xml:space="preserve">
+    <value>Let’s dive deeper with the following topics and understand the &lt;strong&gt; ‘behind-the-scenes’ &lt;/strong&gt;of encryption, what is it, how it works, and why it should be an essential element of your business – all in a simpler, easy-to-grasp language:</value>
+  </data>
+  <data name="Blog_BSOHDGE_Tittle" xml:space="preserve">
+    <value>Behind the Scenes of How Data Gets Encrypted </value>
+  </data>
+  <data name="Blog_BSOHDGE_Topic_Points" xml:space="preserve">
+    <value>&lt;li&gt;What does encryption mean? &lt;/li&gt;&lt;br/&gt;&lt;li&gt;How does encryption work? &lt;/li&gt;&lt;br/&gt; &lt;li&gt;Why encryption is important for your data? &lt;/li&gt;&lt;br/&gt; &lt;li&gt;How to easily encrypt data across devices using AxCrypt?&lt;/li&gt;&lt;br/&gt;</value>
   </data>
   <data name="Blog_BSTSSCE_H1_SH1_Text1" xml:space="preserve">
     <value>Use a virtual private network (VPN). VPNs are used to protect private web traffic from snooping, interference, and censorship. PNs encrypt all the data you send over the internet. Your VPN also masks your IP address and finally some VPNs block malicious websites, ads, and trackers.&lt;br/&gt;&lt;br/&gt;&lt;/li&gt;</value>
@@ -1351,7 +1621,7 @@ You have been warned, now enjoy!</value>
     <value>Have a Look at the &lt;a href='/information/features'&gt;feature page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data.</value>
   </data>
   <data name="Blog_Conclusion_Feature_Text1" xml:space="preserve">
-    <value>Have a Look at the &lt;a href='https://axcrypt.net/information/features'&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure yor files ans data and the &lt;a href='https://www.axcrypt.net/pricing'&gt;Pricing Page&lt;/a&gt; shows which type of encryption subscriptions AxCrypt offers.</value>
+    <value>Have a Look at the &lt;a href='https://axcrypt.net/information/features'&gt;AxCrypt Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data, the &lt;a href='https://www.axcrypt.net/pricing'&gt;Pricing Page&lt;/a&gt; shows which type of encryption subscriptions AxCrypt offers.</value>
   </data>
   <data name="Blog_Conclusion_Feature2_Text1" xml:space="preserve">
     <value>&lt;a href='https://axcrypt.net/information/features '&gt;Have a look at AxCrypt’s Feature Page&lt;/a&gt; to find out more about how AxCrypt can secure your files and data &lt;a href='https://www.axcrypt.net/pricing'&gt;Pricing Page&lt;/a&gt; that shows which type of encryption subscriptions AxCrypt offers. To get a 10% discount on AxCrypt premium and business subscriptions,&lt;a href='https://www.wethrift.com/axcrypt'&gt; go to&lt;/a&gt;.</value>
@@ -1435,7 +1705,7 @@ You have been warned, now enjoy!</value>
     <value>&lt;strong&gt;Improved Customer Confidence:&lt;/strong&gt;Cyber incidents damage a company’s reputation. Cyber resilience can reassure customer confidence by providing the assurance of keeping their data secured. This increases customer confidence and in turn increases the sales of the organization.</value>
   </data>
   <data name="Blog_CRI_H2_SubHeading1" xml:space="preserve">
-    <value>&lt;strong&gt;Benefits of having Cyber Resilience&lt;strong&gt;:</value>
+    <value>&lt;strong&gt;Benefits of having Cyber Resilience&lt;/strong&gt;:</value>
   </data>
   <data name="Blog_CRI_H2_Text1" xml:space="preserve">
     <value>Nowadays the security environment is changing persistently. Organizations and individuals are targeted by hackers and disasters and hence it is a major aspect to keep the data and credentials cyber-safe. Cyber security is the best way to achieve business continuity. Implementing resilience of the information architecture of an organization reduces the likelihood of an attack, in turn minimizing and reducing the damage. Cyber resilience not only reduces existing threats but also lowers long-term threats from various hi-tech technologies like artificial intelligence, quantum computing, memcomputing or IoT.</value>
@@ -1671,6 +1941,9 @@ You have been warned, now enjoy!</value>
   <data name="Blog_Download_IOS_Window" xml:space="preserve">
     <value>AxCrypt provides all of this, you can download the software on Windows, macOS as also on androids under that link: &lt;a href='https://www.axcrypt.net/download'&gt;https://www.axcrypt.net/download&lt;/a&gt;</value>
   </data>
+  <data name="Blog_Download_Text1" xml:space="preserve">
+    <value>Contact AxCrypt today and download our latest version to experience the best from &lt;a href='https://www.axcrypt.net/download/'&gt;Download | AxCrypt - File Security Made Easy.&lt;/a&gt;</value>
+  </data>
   <data name="Blog_DRATIUIN_Conclusion_Heading" xml:space="preserve">
     <value>In short, here at AxCrypt</value>
   </data>
@@ -1898,6 +2171,141 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="Blog_EFPECT_Title" xml:space="preserve">
     <value>Encryption from the Future Perspective and Emerging Cyber Threats</value>
+  </data>
+  <data name="Blog_EGEODUNA_Conclusion" xml:space="preserve">
+    <value>Signup for a free trial today and take your data security to the next level: &lt;br/&gt;&lt;a href='https://account.axcrypt.net/en/Home/Login?Signup=True'&gt;SIGNUP LINK&lt;/a&gt;&lt;a href='https://axcrypt.net/'&gt;LANDING PAGE LINK&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_Conclusion_Text1" xml:space="preserve">
+    <value>In conclusion, AxCrypt software provides a comprehensive and secure solution for encrypting files stored on the OneDrive cloud storage, regardless of the device being used. With &lt;b&gt; AES 256-bit &lt;/b&gt; encryption, users can be rest assured that their sensitive data is well-protected from unauthorized access. The process of encrypting files with AxCrypt is simple and can be done on desktops, laptops, and mobile devices, making it convenient for users to safeguard their files no matter where they are.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Conclusion_Text2" xml:space="preserve">
+    <value>Users can take advantage of the cloud's convenience while ensuring that their data remains confidential and secure, an excellent way to safeguard sensitive data while still taking advantage of the convenience of cloud storage. </value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SH1_Text1" xml:space="preserve">
+    <value>Before you start encrypting your files on OneDrive, you need to set up AxCrypt with OneDrive. To do this, follow the steps below:</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SH1_Text2" xml:space="preserve">
+    <value>&lt;strong&gt;Step 1:&lt;/strong&gt; Launch AxCrypt on your computer, smartphone, or tablet.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SH1_Text3" xml:space="preserve">
+    <value>&lt;strong&gt;Step 2:&lt;/strong&gt; On PC, click on the “OneDrive” icon and sign in with your Microsoft account.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SH1_Text4" xml:space="preserve">
+    <value>&lt;strong&gt;Step 3:&lt;/strong&gt; On mobile, tap on the “Secure” icon and select “OneDrive”, then authenticate your account with credentials.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SH1_Text5" xml:space="preserve">
+    <value>&lt;strong&gt;Step 4:&lt;/strong&gt; Your account is now ready to encrypt files on OneDrive.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt; Setting up AxCrypt with OneDrive &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_Text1" xml:space="preserve">
+    <value>The first step to encrypting files on OneDrive using AxCrypt is to download and install AxCrypt on your device. AxCrypt runs on Windows, Mac, iOS, and Android, and you can download and install it from the download page:&lt;a href='https://axcrypt.net/download'&gt;https://axcrypt.net/download&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H1_Text2" xml:space="preserve">
+    <value>Once installed, simply sign in with your existing account, or signup with your email for a free &lt;b&gt; 30-day trial &lt;/b&gt;.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text1" xml:space="preserve">
+    <value>Once you have set up and integrated your OneDrive account with AxCrypt, encrypt files on OneDrive using AxCrypt, follow the steps below:</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text10" xml:space="preserve">
+    <value>&lt;strong&gt;Step 2:&lt;/strong&gt; Tap “Secure” icon from the top menu strip and select “OneDrive” Icon. </value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text11" xml:space="preserve">
+    <value>&lt;strong&gt;Step 3:&lt;/strong&gt; In the file explorer, select the files that you’d like to encrypt from the files on your OneDrive.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text12" xml:space="preserve">
+    <value>&lt;strong&gt;Step 4:&lt;/strong&gt; Click on the selected file and select the “Info” icon from the menu strip on the top right to check the status of the encrypted file. Encrypted files will have an extension of ‘.axx’.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text2" xml:space="preserve">
+    <value>&lt;strong&gt; On PC:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text3" xml:space="preserve">
+    <value>&lt;strong&gt;Step 1:&lt;/strong&gt; Launch AxCrypt and login with your password.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text4" xml:space="preserve">
+    <value>&lt;strong&gt;Step 2:&lt;/strong&gt; Select the “Secure” icon from the top menu strip on.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text5" xml:space="preserve">
+    <value>&lt;strong&gt;Step 3:&lt;/strong&gt; Select the files and folders that you’d like to encrypt from the OneDrive’s sync directory. </value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text6" xml:space="preserve">
+    <value>&lt;strong&gt;Step 4:&lt;/strong&gt; Click ‘Open’ from the explorer menu on the down right and your files will be encrypted. Encrypted files will have an extension of ‘.axx’.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text7" xml:space="preserve">
+    <value>&lt;strong&gt;Step 5:&lt;/strong&gt; You can also encrypt files by dragging them onto the AxCrypt and using the ‘right-click’ context menu and choosing AxCrypt &gt; Encrypt.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text8" xml:space="preserve">
+    <value>&lt;strong&gt;On Desktops and Laptops: &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H2_Text9" xml:space="preserve">
+    <value>&lt;strong&gt;Step 1:&lt;/strong&gt; Launch the AxCrypt app and login with your password.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H3_Text1" xml:space="preserve">
+    <value>AxCrypt can automatically encrypt and sync new files and folders on your specified OneDrive directory on your PC. Just add new files and folders and before you exit the AxCrypt application, it will encrypt all the changed files before closing. You can also permanently decrypt files by right-clicking on the file and selecting</value>
+  </data>
+  <data name="Blog_EGEODUNA_H3_Text2" xml:space="preserve">
+    <value>You can also encrypt any new files and folders directly within the applications by clicking on the &lt;b&gt; “Clean Up” &lt;/b&gt; icon on the top right. This will let you encrypt the newer files and folders without having to exit the application.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H4_Text1" xml:space="preserve">
+    <value>&lt;strong&gt; On Desktops and Laptops:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H4_Text2" xml:space="preserve">
+    <value>Once you have encrypted the files on your device, you can view them on your PC my simply double click on any of the files and it will be decrypted to view. To decrypt multiple files, select the “Stop Securing” button from the top menu strip on the PC and select all the files that you’d like to decrypt.</value>
+  </data>
+  <data name="Blog_EGEODUNA_H4_Text3" xml:space="preserve">
+    <value>&lt;strong&gt; On Mobile:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_H4_Text4" xml:space="preserve">
+    <value>To decrypt a OneDrive file on your smartphone, go to Secure &gt; OneDrive and select the file that you’d like to decrypt. Once done, it will decrypt the file on the cloud and can be viewed normally without the AxCrypt application.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Heading1" xml:space="preserve">
+    <value>Installing AxCrypt</value>
+  </data>
+  <data name="Blog_EGEODUNA_Heading2" xml:space="preserve">
+    <value>Encrypting files on OneDrive with AxCrypt</value>
+  </data>
+  <data name="Blog_EGEODUNA_Heading3" xml:space="preserve">
+    <value>Automatically encrypting new OneDrive files on PC</value>
+  </data>
+  <data name="Blog_EGEODUNA_Heading4" xml:space="preserve">
+    <value>&lt;strong&gt; Decrypting files on OneDrive with AxCrypt &lt;strong&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_M1_SH1_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Installing AxCrypt&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_M1_SH2_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Setting up AxCrypt with OneDrive&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_M1_SH3_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Encrypting files on OneDrive with AxCrypt&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_M1_SH4_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Automatically encrypting new OneDrive files on PC&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_M1_SH5_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Decrypting files on OneDrive with AxCrypt &lt;/li&gt;</value>
+  </data>
+  <data name="Blog_EGEODUNA_Main_Heading1" xml:space="preserve">
+    <value>Why Encryption is Essential for Your Data on the Cloud?</value>
+  </data>
+  <data name="Blog_EGEODUNA_Main_Text1" xml:space="preserve">
+    <value>Today, data privacy and security have become a significant concern, and people are continuously searching for ways to keep their sensitive files secure. Securing and encrypting your data on the cloud is equally important as securing your data on your local storage.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Main_Text2" xml:space="preserve">
+    <value>Microsoft OneDrive is one of the most popular cloud storage services used globally. However, storing sensitive information in the cloud may cause security risks. That's where AxCrypt comes into play. AxCrypt is a powerful encryption tool that allows you to encrypt your files securely, ensuring that your data is protected in the cloud, including on OneDrive.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Main_Text3" xml:space="preserve">
+    <value>With AxCrypt, you can encrypt your personal and business data seamlessly using the powerful &lt;b&gt; AES 256-bit algorithm&lt;/b&gt;, and manage the processes within your team with a master access using the &lt;b&gt; master key &lt;/b&gt;.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Main_Text4" xml:space="preserve">
+    <value>In this post, we will guide you through the process of encrypting files on OneDrive using AxCrypt. We'll cover the following topics:</value>
+  </data>
+  <data name="Blog_EGEODUNA_Summary" xml:space="preserve">
+    <value>Today, data privacy and security have become a significant concern, and people are continuously searching for ways to keep their sensitive files secure.</value>
+  </data>
+  <data name="Blog_EGEODUNA_Title" xml:space="preserve">
+    <value>Easy Guide to Encrypting OneDrive Files Using the Unbreakable AES-256 Algorithm</value>
   </data>
   <data name="Blog_EHI_Conclusion_Text1" xml:space="preserve">
     <value>Due to a lack of encrypted medical data, health insurance information, and social security numbers are all exposed to third parties. Protect your company's and patients' information with AxCrypt.</value>
@@ -2315,6 +2723,84 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="Blog_EITPS_Title" xml:space="preserve">
     <value>Encryption isn’t the problem, it’s the solution</value>
+  </data>
+  <data name="Blog_ES_conclusion" xml:space="preserve">
+    <value>Digital data is protected by encryption using one or more mathematical approaches, So AxCrypt encryption software makes it easy to secure important files and sensitive data. Although it is far from flawless, it is a strong tool for securing files. Only when everyone chooses AxCrypt will it be ideal, which is a crucial component of security, but it is not the only one to take into account. Axcrypt is the solution to encryption issues.</value>
+  </data>
+  <data name="Blog_ES_H1_SH1_Text1" xml:space="preserve">
+    <value>The type of keys used, the size of the encrypted data blocks, and the encryption key length all affects the encryption process.</value>
+  </data>
+  <data name="Blog_ES_H1_SH2_Text1" xml:space="preserve">
+    <value>The symmetric encryption algorithm known as Advanced Encryption Standard encodes data blocks of 128 bits at a time. The keys used to encrypt these data blocks have lengths of 128, 192, and 256 bits. A 256-bit key requires 14 rounds of data encryption, a 192-bit key requires 12 rounds, and a 128-bit key requires 10 rounds.Each cycle includes a number of stages for substitution, transposition, plaintext mixing, and other operations.</value>
+  </data>
+  <data name="Blog_ES_H1_SH3_Text1" xml:space="preserve">
+    <value>The Data Encryption Standard (DES) approach encrypts data blocks with a 56-bit Key using a symmetric encryption technique called triple DES. Each data block is encrypted using the DES cipher method three times in Triple DES.</value>
+  </data>
+  <data name="Blog_ES_H1_SH4_Text1" xml:space="preserve">
+    <value>Format-Preserving, A symmetric process known as encryption preserves the format and length of your data while encoding it. FPE can be used to secure cloud management tools and software.</value>
+  </data>
+  <data name="Blog_ES_H1_SH5_Text1" xml:space="preserve">
+    <value>Stronger than RSA encryption is a more recent form of public-key cryptography called elliptic curve cryptography. It is quicker since the keys are shorter. Because it is asymmetric, you can use it with SSL/TLS protocols to increase the security of your web communications.</value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;Famous encryption method to protect files or data.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;1. Advanced Encryption Standard (AES)&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading3" xml:space="preserve">
+    <value>&lt;strong&gt;2. Triple Data Encryption Standard (DES)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading4" xml:space="preserve">
+    <value>&lt;strong&gt;3. Format- preserving Encryption (FPE)&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_ES_H1_SubHeading5" xml:space="preserve">
+    <value>&lt;strong&gt;4. Elliptic Curve Cryptography (ECC)&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H1_Text1" xml:space="preserve">
+    <value>Data is converted into ciphertext through encryption using a cipher (an encryption technique) and an encryption key. Once the ciphertext has been transmitted to the receiving party, a key (the same key for symmetric encryption; a different, related value for asymmetric encryption) is used to decode it back into the original value. Due to the similarity between encryption keys and physical keys, only users who possess the right key can “unlock” or decrypt the encrypted data.</value>
+  </data>
+  <data name="Blog_ES_H2_SH1_Text1" xml:space="preserve">
+    <value>Numerous encryption capabilities are integrated into Android and iPhone smartphones as well, and many encryption tools may be downloaded for free. Passwords are encrypted and stored online by LastPass, a freemium password manager. A browser add-on that increases the security of web browsing is HTTPS Everywhere.</value>
+  </data>
+  <data name="Blog_ES_H2_SH2_Text1" xml:space="preserve">
+    <value>To stop hackers from intercepting unsecured public Wi-Fi connections and disseminating malware, all confidential data should be encrypted, and remote workers should use virtual private networks (VPN).</value>
+  </data>
+  <data name="Blog_ES_H2_SH3_Text1" xml:space="preserve">
+    <value>Since data is always changing, utilizing encryption seldom ensures the integrity of our data while it is at rest. However, it can be used to confirm the integrity of our backups. We may protect the integrity of our data while it is in transit by utilizing digital signatures. This will stop hackers from eavesdropping on conversations and altering data because the recipient will be able to readily check for it.</value>
+  </data>
+  <data name="Blog_ES_H2_SH4_Text1" xml:space="preserve">
+    <value>Compliance is crucial, and many IT departments must go by rules governing the storage,handling, and transmission of data set forth by the law, insurance companies,and businesses.One of the safest ways for a business to send and keep data while adhering to the constraints that our organization must abide by is through encryption.</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;Implementing encryption is inexpensive.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;Remote Workers can be Protected using Encryption.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading3" xml:space="preserve">
+    <value>&lt;strong&gt;Enhancing Data Integrity with Encryption.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_SubHeading4" xml:space="preserve">
+    <value>&lt;strong&gt;Ensuring adherence.&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_ES_H2_Text1" xml:space="preserve">
+    <value>The technology makes it considerably more difficult for hackers to steal data, here are some benefits of encryption technology.</value>
+  </data>
+  <data name="Blog_ES_Heading1" xml:space="preserve">
+    <value>How does encryption software work?</value>
+  </data>
+  <data name="Blog_ES_Heading2" xml:space="preserve">
+    <value>Advantages of encryption software.</value>
+  </data>
+  <data name="Blog_ES_Summary" xml:space="preserve">
+    <value> Software for encryption changes plain-text files and text into text that cannot be read by known human languages.</value>
+  </data>
+  <data name="Blog_ES_Text1" xml:space="preserve">
+    <value>Software for encryption changes plain-text files and text into text that cannot be read by known human languages. Software is used to transform legible text into an unintelligible format, which is known as encryption or cipher text. The file will need to be decrypted in order to be read once it has been encrypted</value>
+  </data>
+  <data name="Blog_ES_Title" xml:space="preserve">
+    <value>What is encryption software?</value>
   </data>
   <data name="Blog_EVA_H1_Text1" xml:space="preserve">
     <value>Access control is when a given identity is given permissions by a higher authority (is authorized) to perform actions such as reading a file.</value>
@@ -2933,6 +3419,96 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="Blog_HPYBFC_Title" xml:space="preserve">
     <value>How to protect your business from cyberthreats</value>
+  </data>
+  <data name="Blog_HREAYSD_Conclusion" xml:space="preserve">
+    <value>Signup for a free trial today and take your data security to the next level: &lt;br/&gt;&lt;a href='https://account.axcrypt.net/en/Home/Login?Signup=True'&gt;SIGNUP LINK&lt;/a&gt;&lt;a href='https://axcrypt.net/'&gt;LANDING PAGE LINK&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text1" xml:space="preserve">
+    <value>Encryption methods essentially can be divided into two categories: symmetric and asymmetric. Symmetric encryption uses the same secret key for both encryption and decryption of the data. The same key is shared between the sender and receiver of the encrypted data.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text2" xml:space="preserve">
+    <value>Asymmetric encryption, on the other hand, involves two keys: a public key and a private key. The public key is used to encrypt the data, while the private key is used to decrypt it. This approach ensures that only the intended recipient, who has the private key, can decrypt the data.  </value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text3" xml:space="preserve">
+    <value>Although asymmetric encryption is often deemed more secure than symmetric encryption, it can be slower and more resource-intensive.</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SH1_Text4" xml:space="preserve">
+    <value>Different encryption algorithms have been devised based on the symmetric and asymmetric methods, and in this blog, we will discuss the three most popular ones: &lt;strong&gt;AES, 3DES, and RSA.&lt;/strong&gt; </value>
+  </data>
+  <data name="Blog_HREAYSD_H1_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;Types of Encryption Methods:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H1_Text1" xml:space="preserve">
+    <value>Encryption is a process of converting the plain text into an illegible text known as ciphertext. A computing device does this by running the text through one of the encryption algorithms, such as AES, to randomly rearrange and scramble the given text – making it impossible to read during the transmission. </value>
+  </data>
+  <data name="Blog_HREAYSD_H1_Text2" xml:space="preserve">
+    <value>The rearrangement of text is backed by very intricate mathematical calculations known as a &lt;strong&gt;‘key’&lt;/strong&gt;, and the same mathematical calculations used for encryption are reversed to decrypt the text, allowing only the authorized individuals to access the original plain text. </value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text1" xml:space="preserve">
+    <value>The AES encryption algorithm, also known as Rijndael, is a popular symmetric encryption algorithm used to protect data. AES algorithm has key lengths of 128, 192, or 256 bits, which means it can convert a 128, 192, or 256 bits of text blocks at once.  </value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text2" xml:space="preserve">
+    <value>AES operates on the Substitution–Permutation Network &lt;strong&gt;(SPN)&lt;/strong&gt;, using a combination of substitution and permutation rounds to cipher the text. Which means, the plaintext data is first broken into blocks or chunks, then substituted &lt;strong&gt;(replaced)&lt;/strong&gt; and permutated &lt;strong&gt;(scrambled)&lt;/strong&gt; over the course of several rounds using complex calculation, making the resulted ciphertext practically impossible to decipher. </value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH1_Text3" xml:space="preserve">
+    <value>The encryption process involves several sub-processes, including sub bytes, shift rows, mix columns, and add round keys. During the process, the text is scrabbled in multiple rounds. The number of rounds performed depends on the size of the key, which for AES is 10, 12, or 14 rounds.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH2_Text1" xml:space="preserve">
+    <value>The 3DES encryption algorithm is an upgrade to the DES or Data Encryption Standard algorithm, that applies the DES algorithm thrice to each data block. This process made 3DES much harder to crack than its predecessor, and it became widely used in payment systems, standards, and technology in the finance industry. </value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH2_Text2" xml:space="preserve">
+    <value>However, the &lt;strong&gt;Sweet32&lt;/strong&gt; vulnerability exposed the security holes within 3DES. In response, the National Institute of Standards and Technology (NIST) announced the deprecation of 3DES in a draft guidance published in 2019. The use of 3DES is set to be scrapped and discontinued in all new applications after 2023.</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH3_Text1" xml:space="preserve">
+    <value>RSA is an asymmetric encryption algorithm developed by Ron Rivest, Adi Shamir, and Leonard Adleman in 1977. It is widely used in many applications, including SSL/TLS certificates, crypto-currencies, and email encryption. </value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SH3_Text2" xml:space="preserve">
+    <value>RSA's potency lies in the “prime factorization” method that it relies upon, where two huge random prime numbers are multiplied to create another giant number. The puzzle is to determine the original prime numbers from this giant-sized multiplied number. The difficulty of brute-forcing the key increases with each expanding key length, and RSA offers various encryption key lengths such as 768-bit, 1024-bit, 2048-bit, 4096-bit, etc</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;AES or Advanced Encryption Standard&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;3DES or Triple DES or Triple Data Encryption  &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H2_SubHeading3" xml:space="preserve">
+    <value>&lt;strong&gt;RSA &lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text1" xml:space="preserve">
+    <value>Overall, AES is considered safe, fast, and flexible, making it the most widely used encryption algorithm today. AES is used in many applications, including wireless security, processor security and file encryption, SSL/TLS protocol &lt;strong&gt;(website security), Wi-Fi&lt;/strong&gt; security, mobile app encryption, and most VPNs.  </value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text2" xml:space="preserve">
+    <value>Many government agencies, including the National Security Agency &lt;strong&gt;(NSA)&lt;/strong&gt;, rely on the AES encryption algorithm to protect their sensitive information. On the other hand, 3DES has been deprecated due to security vulnerabilities, while RSA's scalability and security make it the most widely used asymmetric encryption algorithm. </value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text3" xml:space="preserve">
+    <value>AxCrypt utilizes the strong AES-256-bit algorithm to encrypt and decrypt data. Our intuitive and powerful standalone encryption software can encrypt data on desktops, smartphones and tablets. It can also automatically integrate and encrypt data on several cloud services such as Google Drive, Dropbox, and iCloud.  </value>
+  </data>
+  <data name="Blog_HREAYSD_H3_Text4" xml:space="preserve">
+    <value>You can easily share files with others using our unique key sharing feature, which can be used to precisely share and control who sees and uses the file. AxCrypt also comes with a built-in secure password manager and password generator, which can be used to encrypt your sensitive credentials. </value>
+  </data>
+  <data name="Blog_HREAYSD_Heading1" xml:space="preserve">
+    <value>What Exactly is Encryption? </value>
+  </data>
+  <data name="Blog_HREAYSD_Heading2" xml:space="preserve">
+    <value>Different Encryption Algorithms </value>
+  </data>
+  <data name="Blog_HREAYSD_Heading3" xml:space="preserve">
+    <value>Way Forward </value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Heading1" xml:space="preserve">
+    <value>Why Encryption is Essential for Your Data? </value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Text1" xml:space="preserve">
+    <value>When it comes to cyber security, encryption is one of the most critical components of a strong data protection strategy; yet many businesses and individuals tend to overlook the significance that a robust encryption method renders. With data breaches on the rise, safeguarding your sensitive data should not only be a priority, but a systematic practice that ensures that data is protected on every step of the way. </value>
+  </data>
+  <data name="Blog_HREAYSD_Main_Text2" xml:space="preserve">
+    <value>According to the IBM’s &lt;strong&gt;‘Cost of a data breach 2022’&lt;/strong&gt; report, an average data breach costs organizations a whopping &lt;strong&gt;$4.35M with 83% &lt;/strong&gt;of studied organizations experiencing more than one data breach in their lifetime. Prioritising encryption for your data can not only benefit you in the long run, but it can also instil a sense of security and confidence. </value>
+  </data>
+  <data name="Blog_HREAYSD_Summary" xml:space="preserve">
+    <value>Encryption is a process of converting the plain text into an illegible text known as ciphertext.</value>
+  </data>
+  <data name="Blog_HREAYSD_Title" xml:space="preserve">
+    <value> How to Choose the Right Encryption Algorithm for Your Sensitive Data  </value>
   </data>
   <data name="Blog_HTSCER_H1_Text1" xml:space="preserve">
     <value>This is a step-by-step instruction on how to provide us with a full error report. We might ask you to do this when you are having problems with AxCrypt. The information we get by this will help us help you!</value>
@@ -3693,6 +4269,135 @@ You have been warned, now enjoy!</value>
   <data name="Blog_Support_ContactUs" xml:space="preserve">
     <value>&lt;i&gt;You want to learn more?&lt;/i&gt;  We release interesting information every week. Be curious and have a look at our blog posts &lt;a href='https://www.axcrypt.net/support/blog&gt;https://www.axcrypt.net/support/blog&lt;/a&gt;  don’t forget to contact us at &lt;a href='mailto:support@axcrypt.net&gt;support@axcrypt.net&lt;/a&gt; or &lt;a href='mailto:business@axcrypt.net'&gt;business@axcrypt.net&lt;/a&gt; if you have any questions! </value>
   </data>
+  <data name="Blog_SVAE_EX1_Text1" xml:space="preserve">
+    <value>&lt;strong&gt;Symmetric:&lt;/strong&gt; Blowfish, AES, RC4, DES, RC5, RC6, A5/1, A5/2, FISH, Helix, ISAAC etc</value>
+  </data>
+  <data name="Blog_SVAE_EX1_Text2" xml:space="preserve">
+    <value>&lt;strong&gt;Asymmetric:&lt;/strong&gt; EIGamal, RSA, DSA, Elliptic curve techniques, PKCS, PGP etc</value>
+  </data>
+  <data name="Blog_SVAE_Example1" xml:space="preserve">
+    <value>&lt;strong&gt;Examples of Symmetric and Asymmetric Encryption:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord" xml:space="preserve">
+    <value>Final Words:</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord_Text1" xml:space="preserve">
+    <value>In reference to encryption, it is always best to use the most recent systems. It is recommended to always use the most appropriate encryption algorithm in accordance with the task you handle. As cryptography takes a new turn, new algorithms are also developed to reach intruders and protect data, in turn improving confidentiality. Hackers are sure to make it difficult for the experts in the coming years too.</value>
+  </data>
+  <data name="Blog_SVAE_FinalWord_Text2" xml:space="preserve">
+    <value>&lt;strong&gt;What are you waiting for?&lt;/strong&gt; Don’t wait till your data is exposed.AxCrypt app uses both Symmetric and Asymmetric Encryption providing you the best protection for your data.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH1_Text1" xml:space="preserve">
+    <value>Manual encryption are computer programs that digitally encrypt multiple pieces of data. Manual encryption involves extensive user involvement. The files which have to be encrypted are selected and the encryption type is to be selected from the list supported by the security system</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH2_Text1" xml:space="preserve">
+    <value>Transparent encryption provides permanent file-level encryption, protecting against unauthorized access by users and processes in physical, virtual and cloud environments. The application is seamless and transparent to applications/databases and storage. It can run across an enterprise environment and keep both business and operational processes unchanged. It is one of the most secure encryption types available because it misses nothing when using manual encryption. Every executable application and file created on the computer has an encrypted copy that can withstand power surges and protects data even if the computer is stolen.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH3_Text1" xml:space="preserve">
+    <value>Symmetric encryption is a simple, easy-to-use method of encryption. This encryption is also called secret key encryption. It uses only one key called shared key, for both encryption and decryption of electronic data. With symmetric encryption, communicating units must exchange a key to use it in the decryption process. In symmetric encryption, data is “encrypted” so that it cannot be understood by anyone who does not have the secret key to decrypt it.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH3_Text2" xml:space="preserve">
+    <value>The secret key is generated by a secure random number generator (RNG). The main issue that can be found while using symmetric encryption is that the key is shared between the sender and the recipient of the data. So it is important to be cautious about maintaining a secure method of key exchange, else there are possibilities a third party intercepts the key during the exchange and an unauthorized person can easily decrypt the data.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH4_Text1" xml:space="preserve">
+    <value>Asymmetric encryption, also called public key encryption, relies on a key pair. In this method, two mathematically related keys are created; one called the public key and the other called the private key. The private key is never shared; it is kept secret and used only by the owner. Public key is shared with anyone who wants it.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SH4_Text2" xml:space="preserve">
+    <value>The advantage of asymmetric encryption is that a secret key is not transmitted. Instead, the public key is published openly.</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;What is Manual Encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;What is Transparent Encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading3" xml:space="preserve">
+    <value>&lt;strong&gt;What is Symmetric Encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_SubHeading4" xml:space="preserve">
+    <value>&lt;strong&gt;What is Asymmetric Encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H1_Text1" xml:space="preserve">
+    <value>Encryption is the process of converting plain readable form text to an unreadable form text so as to protect data or a conversation between two parties or from an unauthorized person. Data encryption ensures the confidentiality of data by converting it into coded information known as ciphertext, which further, can only be decrypted with a unique decryption key generated either during or before encryption. Data encryption can be used during data storage or transmission, and is usually used in conjunction with authentication services to support keys.</value>
+  </data>
+  <data name="Blog_SVAE_H1_Types" xml:space="preserve">
+    <value>Various types of encryptions are Manual Encryption, Transparent Encryption, Symmetric Encryption and Asymmetric Encryption.</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text1" xml:space="preserve">
+    <value>&lt;li&gt;For both encryption and decryption one single key is used.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text2" xml:space="preserve">
+    <value>&lt;li&gt;The Ciphertext size is either the same or smaller than the original text.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text3" xml:space="preserve">
+    <value>&lt;li&gt;The process of encryption is fast.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text4" xml:space="preserve">
+    <value>&lt;li&gt;Confidentiality is provided.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text5" xml:space="preserve">
+    <value>&lt;li&gt;Normally used while transferring large amounts of data&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text6" xml:space="preserve">
+    <value>&lt;li&gt;Key length: 128 or 256 bits&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text7" xml:space="preserve">
+    <value>&lt;li&gt;More efficient as a large amount of data is used&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text8" xml:space="preserve">
+    <value>&lt;li&gt;Comparatively less secured, as one key is used&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH1_Text9" xml:space="preserve">
+    <value>&lt;li&gt;Algorithms: RC4, AES, DES, 3DES, and QUAD.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text1" xml:space="preserve">
+    <value>&lt;li&gt;Two keys: the public key and private key are used, one to encrypt and the other one to decrypt.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text2" xml:space="preserve">
+    <value>&lt;li&gt;The Cipher text size is either the same or larger to the original text.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text3" xml:space="preserve">
+    <value>&lt;li&gt;The process of encryption is slow.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text4" xml:space="preserve">
+    <value>&lt;li&gt;confidentiality, authenticity, and non-repudiation are provided.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text5" xml:space="preserve">
+    <value>&lt;li&gt;Normally used while transferring small amounts of data&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text6" xml:space="preserve">
+    <value>&lt;li&gt;Key length: 2048 bits or above&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text7" xml:space="preserve">
+    <value>&lt;li&gt;Comparatively less efficient as a large amount of data is used.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text8" xml:space="preserve">
+    <value>&lt;li&gt;More secure, as two keys are used: one for encryption and the other for decryption.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SH2_Text9" xml:space="preserve">
+    <value>&lt;li&gt;Algorithm: RSA, Diffie-Hellman, ECC.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_SVAE_H2_SubHeading1" xml:space="preserve">
+    <value>&lt;strong&gt;Symmetric Encryption&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_Heading1" xml:space="preserve">
+    <value>What is encryption?</value>
+  </data>
+  <data name="Blog_SVAE_Heading2" xml:space="preserve">
+    <value>Difference between symmetric and asymmetric:</value>
+  </data>
+  <data name="Blog_SVAE_SubHeading2" xml:space="preserve">
+    <value>&lt;strong&gt;Asymmetric Encryption&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_SVAE_Summary" xml:space="preserve">
+    <value>Nowadays we know data is the most important aspect of our life, being it personal, economic or commercial. As we increasingly use online, data is always at risk. In spite of all the best efforts made, there are possibilities that your computer is infected with malware.</value>
+  </data>
+  <data name="Blog_SVAE_Text1" xml:space="preserve">
+    <value>Nowadays we know data is the most important aspect of our life, being it personal, economic or commercial. As we increasingly use online, data is always at risk. In spite of all the best efforts made, there are possibilities that your computer is infected with malware, ransomware or any cyber criminals that your antivirus cannot detect. Malware sends sensitive data on your computer and sends it to the cybercriminal running the malware. It is supreme to keep data secure. This is where technology comes into place.  Technology makes it difficult task for hackers to data breaches. We have to rely on encryption software keeping cyber criminals from reaching our data. Encryption helps in keeping our data private and protected. It acts as a lock from cybercrime, providing an extra layer of protection in safeguarding our critical credentials. Encryption secures our data from hackers reading our information.</value>
+  </data>
+  <data name="Blog_SVAE_Title" xml:space="preserve">
+    <value>Symmetric Vs Asymmetric encryption</value>
+  </data>
   <data name="Blog_SVL_Summary" xml:space="preserve">
     <value>Some users instinctively react negatively to the AxCrypt Premium subscription model. Not against the general principle of paying for Premium, but the yearly recurring fee as opposed to a ‘perpetual’ license.</value>
   </data>
@@ -4417,7 +5122,7 @@ You have been warned, now enjoy!</value>
     <value>&lt;li&gt;&lt;em&gt;The session key is encrypted with your password, using a special key wrap algorithm, with AES at the core. This encrypted session key is added to the encrypted file.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
   <data name="Blog_WIAAI_Text12" xml:space="preserve">
-    <value>&lt;li&gt;&lt;em&gt;The session key is encrypted with your AxCrypt ID public key, using RSA-4096. This encrypted session key is addded to the encrypted file.&lt;/em&gt;&lt;/li&gt;</value>
+    <value>&lt;li&gt;&lt;em&gt;The session key is encrypted with your AxCrypt ID public key, using RSA-4096. This encrypted session key is added to the encrypted file.&lt;/em&gt;&lt;/li&gt;</value>
   </data>
   <data name="Blog_WIAAI_Text13" xml:space="preserve">
     <value>&lt;li&gt;&lt;em&gt;The session key is encrypted with the AxCrypt ID public key of any other AxCrypt users you’ve chosen to key share the file with. These encrypted session keys are addded to the encrypted file.&lt;/em&gt;&lt;/li&gt;</value>
@@ -4685,6 +5390,57 @@ You have been warned, now enjoy!</value>
   </data>
   <data name="Blog_WICS_Title" xml:space="preserve">
     <value>What is Cyber Security?</value>
+  </data>
+  <data name="Blog_WIFBE_conclusion" xml:space="preserve">
+    <value>The above mentioned examples are just some major examples wherein the governments of the countries have openly endorsed the idea of using 256-bit encryption for safeguarding sensitive and personal information. This makes a very strong case for the usage of this encryption. This proves that this encryption will be useful in the future as well and looking at how the big private players are after the data of the people, is a technology that is here to stay!</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text1" xml:space="preserve">
+    <value>In technical terms, 256-bit encryption refers to the length of the key used to encrypt (lock) and decrypt (unlock) your data. In the process of encryption, the data you chose to encrypt is firstly converted into a ciphertext from its initial stage of plaintext. Furthermore, when the data is attempted to be converted into a human-readable form.</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text2" xml:space="preserve">
+    <value>for more info please refer: &lt;a href=' https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/'&gt; &lt;strong&gt;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text3" xml:space="preserve">
+    <value>&lt;strong&gt;Why it  is considered as one of the most effective form of encryption?&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text4" xml:space="preserve">
+    <value>The 256-bit encryption tool is the most popular data security encryption tool in today’s time.One of the biggest reasons why most organizations and people prefer to protect their data using 256-bit encryption is the massive number of combinations that this encryption uses to lock your data safe and away from the hacking forces. In fact, even numerous highest-level government organizations all around the world place their faith in 256-bit encryption for securing their data against hackers because it is believed that the key length size of this type of encryption is so long that even the most sophisticated and highest-level hackers will take trillions of years just to decode the key! This makes the case of the usage of 256-bit encryption for the protection of data of the highest-level officials as well as the common people a very strong one, thus earning the title of ‘military grade encryption</value>
+  </data>
+  <data name="Blog_WIFBE_H1_Text5" xml:space="preserve">
+    <value>for more info please refer: &lt;strong&gt; &lt;a href ='https://axcrypt.net/blog/'&gt;&lt;strong&gt; https://axcrypt.net/blog/ &lt;/strong&gt;&lt;/a&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text1" xml:space="preserve">
+    <value>To further tilt the case in favor of 256-bit encryption and establish its supremacy over its counterparts, let us have a look at the list of some of the highest-ranking people and the organizations that have put their faith in 256-bit encryption for safeguarding their data against hacking forces.</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text2" xml:space="preserve">
+    <value>&lt;li&gt;The United States government was the first government to use 256-bit encryption for protecting and safeguarding their data. They approved its usage on November 26, 2001. They lead the way for others to show their faith in encryption and its capability in safeguarding precious and highly-secretive and sensitive information. Astonishingly, the government there has continued to show its faith in this encryption and the government officials still use the 256-bit encryption for safely storing their data away from the prying eyes of hackers.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text3" xml:space="preserve">
+    <value>&lt;li&gt;Canada is another country that has regularly encouraged the usage of 256-bit encryption in securing the personal data of the government and the people of the country. The government of Canada has extensively promoted the usage of 256-bit encryption to safeguard the private information of the people. This has brought the country into the limelight as one of the pioneering nations in the fight against the breach of privacy by openly endorsing the idea of encryption of data using 256-bit encryption.&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_H2_Text4" xml:space="preserve">
+    <value>&lt;li&gt;The Information and Broadcasting Ministry of the Indian Government, in its order dated February 18, 2022, has restricted its officials from exchanging top-secret documents and information over the Internet without the usage of encryption with the fear of a breach and possible leakage of sensitive information, thus jeopardizing national security. The officials have been guided to use only 256-bit encryption for the exchange of highly-sensitive and confidential information&lt;/li&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_Heading1" xml:space="preserve">
+    <value>What is 256-bit encryption?</value>
+  </data>
+  <data name="Blog_WIFBE_Heading2" xml:space="preserve">
+    <value>Who uses 256-bit encryption for safeguarding their data?</value>
+  </data>
+  <data name="Blog_WIFBE_Summary" xml:space="preserve">
+    <value>In modern times, with the advancement in technology, there is a danger of illegal acquisition and dangerous usage of people’s personal data.</value>
+  </data>
+  <data name="Blog_WIFBE_Text1" xml:space="preserve">
+    <value>In modern times, with the advancement in technology, there is a danger of illegal acquisition and dangerous usage of people’s personal data. Someone has said it right, “Data is the new oil”. And a plenty of recent cases of gigantic organizations spying on people's personal data, has brought this issue to the notice of the public.</value>
+  </data>
+  <data name="Blog_WIFBE_Text2" xml:space="preserve">
+    <value>&lt;strong&gt;Some of the most popular cases includes:&lt;/strong&gt;</value>
+  </data>
+  <data name="Blog_WIFBE_Text3" xml:space="preserve">
+    <value>&lt;strong&gt;For more info refer:&lt;/strong&gt;&lt;a href ='https://www.statista.com/statistics/290525/cyber-crime-biggest-online-data-breaches-worldwide/'&gt;&lt;strong&gt; Largest online data breaches worldwide 2022 | Statista &lt;/strong&gt;&lt;/a&gt; and the list goes on.These famous cases caught the eyes of the public.</value>
+  </data>
+  <data name="Blog_WIFBE_Title" xml:space="preserve">
+    <value>Why Industries put their faith in 256-bit encryption?</value>
   </data>
   <data name="Blog_WIPM_H1_Text1" xml:space="preserve">
     <value>When a new account is created, it is mandatory for us to create long and strong passwords. As we use lots of websites and applications nowadays, 90% chances are that we don’t remember all of the passwords we have created. Fortunately, technology has changed and you don't have to remember all the passwords.</value>
@@ -5166,7 +5922,7 @@ You have been warned, now enjoy!</value>
     <value>Available for all major platforms</value>
   </data>
   <data name="BusinessFeatureListBestEncryption" xml:space="preserve">
-    <value>PCMag's Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021</value>
+    <value>PCMag's Best Encryption Software 2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023</value>
   </data>
   <data name="BusinessFeatureListDataProtection" xml:space="preserve">
     <value>Data Protection Regulation compliant</value>
@@ -5438,8 +6194,28 @@ You have been warned, now enjoy!</value>
     <value>Total</value>
     <comment>A short label, preferrably one word, used to label the total number of member licenses purchased for the subscription.</comment>
   </data>
+  <data name="BusinessSubscriptionUserLabel" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="BusinessSubscrnsLicenses" xml:space="preserve">
+    <value>Licenses</value>
+    <comment>Licenses text displayed on License status.</comment>
+  </data>
+  <data name="BusinessSubscrnsRole" xml:space="preserve">
+    <value>Role</value>
+    <comment>Column header text</comment>
+  </data>
+  <data name="BusinessSubsrcnShowLess" xml:space="preserve">
+    <value>Show Less...</value>
+  </data>
+  <data name="BusinessSubsrcnShowMore" xml:space="preserve">
+    <value>Show More...</value>
+  </data>
   <data name="BusinessSummaryUserCountLabel" xml:space="preserve">
     <value>x users</value>
+  </data>
+  <data name="BusinessSupportInfo" xml:space="preserve">
+    <value>Welcome to AxCrypt Support. We give our Business customers prioritized and personal direct support via e-mail.</value>
   </data>
   <data name="BusinessSupportTitle" xml:space="preserve">
     <value>Business Support</value>
@@ -5727,6 +6503,12 @@ You must complete these steps to complete the process.</value>
   <data name="ConfirmAllCheckBoxText" xml:space="preserve">
     <value>Do this for all remaining files?</value>
   </data>
+  <data name="ConfirmNewEmailText" xml:space="preserve">
+    <value>Confirm new email</value>
+  </data>
+  <data name="ConfirmNewPasswordText" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
   <data name="ContactBusinessInviterMailBodyText" xml:space="preserve">
     <value>If you have any questions, please first contact {addedby_user_email}.</value>
   </data>
@@ -5809,6 +6591,9 @@ If you do not accept our temporary session cookies you cannot sign in and the si
   </data>
   <data name="CryptoNameText" xml:space="preserve">
     <value>Algorithm</value>
+  </data>
+  <data name="CurrentEmailText" xml:space="preserve">
+    <value>Current email</value>
   </data>
   <data name="DataIntegrityLabel" xml:space="preserve">
     <value>Data integrity verification</value>
@@ -6011,6 +6796,9 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DownloadAxCryptAppPrompt" xml:space="preserve">
     <value>Download AxCrypt App</value>
   </data>
+  <data name="DownloadAxcryptDescription" xml:space="preserve">
+    <value>Download AxCrypt for and start your incredible journey to the encryption world.</value>
+  </data>
   <data name="DownloadAxcryptLatestFeatures1" xml:space="preserve">
     <value>AxCrypt is encryption with no backdoors. Without the password your files are lost. Do not forget your password! Always keep proper backups of important files, encrypted or not.</value>
   </data>
@@ -6069,10 +6857,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Download</value>
   </data>
   <data name="DownloadMobileBodyText" xml:space="preserve">
-    <value>&lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href='#'&gt;here&lt;/a&gt;&lt;/p&gt;</value>
+    <value>&lt;p&gt;Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive, Dropbox and OneDrive (with many more to come).&lt;/p&gt;&lt;p&gt;Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!&lt;/p&gt;&lt;p&gt;Read more &lt;a href='#'&gt;here&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="DownloadMobileBodyText1" xml:space="preserve">
-    <value>Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive and Dropbox (with many more to come).</value>
+    <value>Encrypt and decrypt files, anywhere at any time. The mobile apps support the most common cloud storages like Google Drive, Dropbox and OneDrive, (with many more to come).</value>
   </data>
   <data name="DownloadMobileBodyText2" xml:space="preserve">
     <value> Your existing secured files, and files shared with you, are always possible to view, without a subscription, on any platform. Now including mobile!</value>
@@ -6086,14 +6874,23 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="DownloadNavHeading" xml:space="preserve">
     <value>Other platforms</value>
   </data>
+  <data name="DownloadpageDesktopTitle" xml:space="preserve">
+    <value> File&lt;span&gt; security&lt;/span&gt;&lt;br /&gt;&lt;label&gt;should be &lt;span&gt;easy.&lt;/span&gt;&lt;/label&gt;</value>
+  </data>
+  <data name="DownloadpageMobileTitle" xml:space="preserve">
+    <value>Put AxCrypt on &lt;span&gt; all &lt;br /&gt;your devices.&lt;/span&gt;</value>
+  </data>
   <data name="DownloadPrimiumPlusHeading" xml:space="preserve">
     <value>PREMIUM PLUS:</value>
+  </data>
+  <data name="DownloadReleaseNotes" xml:space="preserve">
+    <value>See Release Notes</value>
   </data>
   <data name="DownloadTryCtaHeading" xml:space="preserve">
     <value>Try our subscriptions for one month &lt;span&gt;for free...&lt;/span&gt;</value>
   </data>
   <data name="DownloadTryMobileSubscription" xml:space="preserve">
-    <value>You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud, DropBox, OneDrive, and others, will be supported in the upcoming releases</value>
+    <value>You can encrypt and decrypt files on your Android phone, iPhone or tablet from anywhere and at any time. AxCrypt mobile encryption supports both Android and iOS. AxCrypt supports Google Drive, DropBox and OneDrive File encryption on iOS and Android . Local Storage encryption is available only on Android for now. Other cloud drives, such as iCloud and others, will be supported in the upcoming releases</value>
   </data>
   <data name="DownloadViewerPlusHeading" xml:space="preserve">
     <value>VIEWER PLUS:</value>
@@ -6556,7 +7353,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Hide the names of your secured files</value>
   </data>
   <data name="FeaturesBestEncryption" xml:space="preserve">
-    <value>PCMag's Best Encryption Software 2016, 2017, 2018, 2019, 2020 &amp; 2021</value>
+    <value>PCMag's Best Encryption Software 2016, 2017, 2018, 2019, 2020, 2021, 2022 &amp; 2023</value>
   </data>
   <data name="FeaturesBusinessAdminDescription" xml:space="preserve">
     <value>Manage your AxCrypt Business account, create subscriptions, change your company info, etc</value>
@@ -6574,7 +7371,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Click on a feature to read more...</value>
   </data>
   <data name="FeaturesCloudStorageDescription" xml:space="preserve">
-    <value>Automatically secure an AxCrypt folder in Dropbox, Google Drive etc</value>
+    <value>Automatically secure an AxCrypt folder in Dropbox, Google Drive and OneDrive etc</value>
   </data>
   <data name="FeaturesCommunitySupportDescription" xml:space="preserve">
     <value>Support via user community forums</value>
@@ -6782,6 +7579,10 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
   <data name="FreeLabel" xml:space="preserve">
     <value>Free</value>
   </data>
+  <data name="FreeSupportInfo" xml:space="preserve">
+    <value>We offer direct support to Premium and Business customers.
+Please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
+  </data>
   <data name="FreeTrial" xml:space="preserve">
     <value>Free trial</value>
   </data>
@@ -6903,7 +7704,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Open files secured for you by friends and colleagues</value>
   </data>
   <data name="GetStartedAccessSecuredText" xml:space="preserve">
-    <value>A simple interface gives you access to your encrypted files stored on Google Drive, Dropbox, received via email etc. The app cannot (yet) encrypt files on your phone, it will let you open files encrypted by you or shared with you by someone else.</value>
+    <value>A simple interface gives you access to your encrypted files stored on Google Drive, Dropbox, and OneDrive received via email etc. The app cannot (yet) encrypt files on your phone, it will let you open files encrypted by you or shared with you by someone else.</value>
   </data>
   <data name="GetStartedAxcryptMobileImageText" xml:space="preserve">
     <value>Open AxCrypt files on your phone</value>
@@ -6915,7 +7716,7 @@ We're sad to see you go and hope you enjoyed your time with AxCrypt!</value>
     <value>Upload from &lt;span&gt;Cloud storages&lt;/span&gt;.</value>
   </data>
   <data name="GetStartedCloudStorageText" xml:space="preserve">
-    <value>The Google Drive and DropBox file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud, OneDrive, and others, will be supported soon in the upcoming releases.</value>
+    <value>The Google Drive, DropBox and OneDrive file encryption are supported on both iOS and Android. Local storage file encryption added in android and other cloud drives, such as iCloud and others, will be supported soon in the upcoming releases.</value>
   </data>
   <data name="GetStartedDesktopHowToUseHeading" xml:space="preserve">
     <value>How to &lt;span&gt;Use&lt;/span&gt;</value>
@@ -7278,7 +8079,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>recommendations</value>
   </data>
   <data name="HomeHeroSubheading" xml:space="preserve">
-    <value>PCMag Editors' Choice 2022</value>
+    <value>PCMag Editors' Choice 2023</value>
   </data>
   <data name="HomeHeroUnderSubheading" xml:space="preserve">
     <value>over 20 million downloads worldwide</value>
@@ -7293,7 +8094,7 @@ If you for any reason do not know or remember the password, you must perform a p
     <value>AxCrypt Mobile Encryption</value>
   </data>
   <data name="HomeSellingPointCloudStorageAwarenessBody" xml:space="preserve">
-    <value>Automatically secure your files in Dropbox, Google Drive etc.</value>
+    <value>Automatically secure your files in Dropbox, Google Drive and OneDrive etc.</value>
   </data>
   <data name="HomeSellingPointCloudStorageAwarenessHeading" xml:space="preserve">
     <value>Cloud storage awareness</value>
@@ -7449,7 +8250,7 @@ This may cause some operations to take very long time. Please be careful not to 
     <value>The exchange of a large amount of data is simple and easy. It assures the security of electronic commerce transactions over the Internet for example making it possible to transmit credit card numbers. Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords.</value>
   </data>
   <data name="IndustriesGovernmentCloud" xml:space="preserve">
-    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the administrational system.</value>
+    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the administrational system.</value>
   </data>
   <data name="IndustriesGovernmentDescription" xml:space="preserve">
     <value>Law enforcement officials point to the widespread and increasing use of encryption. One of its roles is to protect privacy and civil liberties. Encryption prevents the theft of information, thus helping make society more secure and safe. As a government you can rely on AxCrypt to counter threats from a wide range of actors, including unsophisticated and sophisticated criminals, foreign intelligence agencies, and repressive governments. The NSA uses AES to encrypt data, which ought to be proof enough of its security.</value>
@@ -7485,7 +8286,7 @@ This may cause some operations to take very long time. Please be careful not to 
     <value>Teamwork, collaboration</value>
   </data>
   <data name="IndustriesHealthcareCloud" xml:space="preserve">
-    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients.</value>
+    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients.</value>
   </data>
   <data name="IndustriesHealthcareDescription" xml:space="preserve">
     <value>The need of encryption has become more prevalent in hospitals, nursing homes and rehabilitation facilities. With the rapid increase in the number of practices using electronic health records such as EMRs, transmitting patient healthcare information by email including insurance information, proper dosage amounts for medicine, and other personal information, this is the digital age of healthcare and sensitive information needs a high level of security. AxCrypt offers an easy and frictionless user experience for employees, patients and business associates.</value>
@@ -7518,7 +8319,7 @@ This may cause some operations to take very long time. Please be careful not to 
     <value>Feel free to contact us at &lt;a href="mailto:support@axcrypt.net"&gt;support@axcrypt.net&lt;/a&gt; and don’t forget to follow us on social media.</value>
   </data>
   <data name="IndustriesLegalCloud" xml:space="preserve">
-    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts.</value>
+    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in the agreements and contracts.</value>
   </data>
   <data name="IndustriesLegalConfidentiality" xml:space="preserve">
     <value>Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords.</value>
@@ -7557,7 +8358,7 @@ This may cause some operations to take very long time. Please be careful not to 
     <value>languages available</value>
   </data>
   <data name="IndustriesTechCloud" xml:space="preserve">
-    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive and Dropbox and manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients.</value>
+    <value>Automatically secure your files/documents on multiple cloud storage services such as Google Drive, Dropbox and OneDrive manage the access to your passwords seamlessly wherever you are. All information is available to all members involved in treating the patients.</value>
   </data>
   <data name="IndustriesTechConfidentiality" xml:space="preserve">
     <value>Use master key, a feature which enables business administrators to recover files of the business members, eliminating the risk of losing access to critical files due to employees leaving or forgetting their passwords.</value>
@@ -7703,7 +8504,7 @@ Your password is not stored on our servers, and the connection is always encrypt
     <value>Mobile encryption</value>
   </data>
   <data name="Introduction2MailText13" xml:space="preserve">
-    <value>AxCrypt's mobile encryption supports Google Drive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, DropBox, OneDrive, etc. will be supported soon in the upcoming releases</value>
+    <value>AxCrypt's mobile encryption supports Google Drive, DropBox, and OneDrive file encryption on iOS and Android. Local Storage encryption and other cloud drives, such as iCloud, etc. will be supported soon in the upcoming releases</value>
   </data>
   <data name="Introduction2MailText14" xml:space="preserve">
     <value>Key sharing</value>
@@ -8084,7 +8885,7 @@ Enable automatic conversion of AxCrypt 1.x files (recommended)?</value>
     <value>{0}Business/TopupSubscription</value>
   </data>
   <data name="LinktoChangePassword" xml:space="preserve">
-    <value>{0}Settings/Password?email={1}</value>
+    <value>{0}Security/Password?email={1}</value>
   </data>
   <data name="LinkToFeedbackWebPage" xml:space="preserve">
     <value>https://www.axcrypt.net/forums/</value>
@@ -9203,7 +10004,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>AxCrypt Premium</value>
   </data>
   <data name="PremiumFirstBodyText" xml:space="preserve">
-    <value> &lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.&lt;/p&gt;&lt;p&gt;If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.&lt;/p&gt;&lt;p&gt;Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.&lt;/p&gt;&lt;p&gt;Try it out to discover all the features and benefits it offers!&lt;/p&gt;</value>
+    <value> &lt;p&gt;Interested in getting a subscription, but not sure if it fits your needs? &lt;a href='https://account.axcrypt.net/en/Home/Purchase'&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.&lt;/p&gt;&lt;p&gt;If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive and OneDrive etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.&lt;/p&gt;&lt;p&gt;Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.&lt;/p&gt;&lt;p&gt;Try it out to discover all the features and benefits it offers!&lt;/p&gt;</value>
   </data>
   <data name="PremiumFirstBodyText1" xml:space="preserve">
     <value>Interested in getting a subscription, but not sure if it fits your needs? &lt;a href={url}&gt;You can enjoy 30 days of AxCrypt Premium for free.&lt;/a&gt;</value>
@@ -9212,7 +10013,7 @@ White space, and parts that are equal to common passwords are ignored and do not
     <value>With AxCrypt Premium, you have access to extended functionality and exciting features! Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.</value>
   </data>
   <data name="PremiumFirstBodyText3" xml:space="preserve">
-    <value> If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
+    <value> If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive and OneDrive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
   </data>
   <data name="PremiumFirstBodyText4" xml:space="preserve">
     <value>Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.</value>
@@ -9257,6 +10058,9 @@ White space, and parts that are equal to common passwords are ignored and do not
   </data>
   <data name="PremiumSecondBodyText2" xml:space="preserve">
     <value>You can cancel your subscription at any time. If you do this before the trial ends, you won’t be charged anything. After that, your account will fall back to the Free version.</value>
+  </data>
+  <data name="PremiumSupportInfo" xml:space="preserve">
+    <value>Welcome to AxCrypt Support. We give our Premium customers prioritized and personal direct support via e-mail.</value>
   </data>
   <data name="PremiumSupportRequestMailSubect" xml:space="preserve">
     <value>Premium Support Request</value>
@@ -9603,11 +10407,26 @@ HubSpot is an integrated software solution with which we cover various aspects o
   <data name="ProductFeatureComplicatedText" xml:space="preserve">
     <value>Product and features are too complicated for me</value>
   </data>
+  <data name="ProductPageBusinessDescription" xml:space="preserve">
+    <value>Simple, reliable and strong encryption for companies and organisation.</value>
+  </data>
+  <data name="ProductPageBusinessTitle" xml:space="preserve">
+    <value>BUSINESS &lt;span&gt; SUBSCRIPTION&lt;span&gt;</value>
+  </data>
+  <data name="ProductPageLatestFeatures" xml:space="preserve">
+    <value>&lt;span&gt;Latest&lt;/span&gt; AxCrypt Features.</value>
+  </data>
+  <data name="ProductPagePremiumDescription" xml:space="preserve">
+    <value>Simple, reliable and strong encryption for individuals.</value>
+  </data>
+  <data name="ProductPagePremiumTitle" xml:space="preserve">
+    <value>  PREMIUM &lt;span&gt;SUBSCRIPTION &lt;/span&gt;</value>
+  </data>
   <data name="ProductPremiumHightlights1" xml:space="preserve">
     <value>Encrypt your files with AES-256 – the strongest of the AES algorithm. It is used globally to protect sensitive and classified information of all levels. Securing folders has never been easier, only taking a single click to automatically secure new files.</value>
   </data>
   <data name="ProductPremiumHightlights2" xml:space="preserve">
-    <value>If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
+    <value>If you also need to share secured files with others, you will have key sharing to take care of that for you, even with access to cloud storage awareness in Dropbox, Google Drive and OneDrive, etc. With the AxCrypt mobile app, you can encrypt and decrypt files on your phone, from anywhere and at any time.</value>
   </data>
   <data name="ProductPremiumHightlights3" xml:space="preserve">
     <value>Want to save password in a safe and easy way? Use our password management and generator to keep all your passwords safe in the cloud.</value>
@@ -10485,6 +11304,12 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SearchPasswordPlaceHolder" xml:space="preserve">
     <value>Search passwords here...</value>
   </data>
+  <data name="SecAnotherEmailText" xml:space="preserve">
+    <value>!!Another Email</value>
+  </data>
+  <data name="SecAxcryptApplicationText" xml:space="preserve">
+    <value>!!AxCrypt Application</value>
+  </data>
   <data name="SecretsAllItems" xml:space="preserve">
     <value>All items</value>
   </data>
@@ -10511,6 +11336,18 @@ Subject: AxCrypt Report Snapshot</value>
   </data>
   <data name="SecretsWarningIsSoonExpired" xml:space="preserve">
     <value>Your subscription expires soon, on {0}. Thereafter you'll have to extend your subscription to be able to edit or create new password entries. You'll retain read-only access indefinitely.</value>
+  </data>
+  <data name="SecSmsRecoveryText" xml:space="preserve">
+    <value>!!SMS recovery</value>
+  </data>
+  <data name="SecTwoFacAuthenConText1" xml:space="preserve">
+    <value>!!Use AxCrypt mobile app to generate a push notification on your device</value>
+  </data>
+  <data name="SecTwoFacAuthenConText2" xml:space="preserve">
+    <value>!!Use your another email address  to recieve verification link</value>
+  </data>
+  <data name="SecTwoFacAuthenConText3" xml:space="preserve">
+    <value>!!Use your mobile phone to recieve security code</value>
   </data>
   <data name="SecureDeleteDialogTitle" xml:space="preserve">
     <value>AxCrypt Secure Delete</value>
@@ -10663,6 +11500,9 @@ Subject: AxCrypt Report Snapshot</value>
   <data name="SecurityLinkLabel" xml:space="preserve">
     <value>Security</value>
   </data>
+  <data name="SecurityPasswordText" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="SecuritySectionText" xml:space="preserve">
     <value>Security is crucial to us. Everything we do with AxCrypt is done with security as the highest priority. We make sure that no one ever gets access to your encrypted files, as long as you have control of your own password.</value>
     <comment>Description of "Security" section of About Us page in mobile application.</comment>
@@ -10728,6 +11568,9 @@ Choose something difficult to guess, since it will protect passwords in the onli
   </data>
   <data name="ShareAccessTitle" xml:space="preserve">
     <value>Share access</value>
+  </data>
+  <data name="ShareArticalText" xml:space="preserve">
+    <value>Share this article</value>
   </data>
   <data name="SharedKeyUserListTitle" xml:space="preserve">
     <value>All users with access in selected files ({0})</value>
@@ -10950,8 +11793,14 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   <data name="SubscriptionTrialPrompt" xml:space="preserve">
     <value>Get 30 days subscription free!</value>
   </data>
+  <data name="SubscriptionValidUntilText" xml:space="preserve">
+    <value>Subscription valid until</value>
+  </data>
   <data name="SummaryTitle" xml:space="preserve">
     <value>Summary</value>
+  </data>
+  <data name="SupportBodyPlaceholderText" xml:space="preserve">
+    <value>Please let us know if you have any difficulties or problems with usage of our services.</value>
   </data>
   <data name="SupportBodyPrompt" xml:space="preserve">
     <value>How can we help you?</value>
@@ -10970,6 +11819,10 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="SupportWarningOnlyPremium" xml:space="preserve">
     <value>Sorry, direct support is only available to paying subscribers, please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
+  </data>
+  <data name="SupWarningFreeUserText" xml:space="preserve">
+    <value>!!We offer direct support to Premium and Business customers.
+Please visit our &lt;a href="{0}"&gt;community support&lt;/a&gt;.</value>
   </data>
   <data name="SwedishLanguageToolStripMenuItemText" xml:space="preserve">
     <value>Svenska (Swedish)</value>
@@ -11165,7 +12018,7 @@ To go to the start page, click &lt;a href="{1}"&gt;here&lt;/a&gt;.</value>
     <value>If any part of this agreement is found to be invalid, it does not invalidate any other part of the agreement, and the new interpretation must be as close to the original as allowed.</value>
   </data>
   <data name="TermsOfUseBlock18Text4" xml:space="preserve">
-    <value>Copyright © 2022 AxCrypt AB, All rights reserved.</value>
+    <value>Copyright © 2023 AxCrypt AB, All rights reserved.</value>
   </data>
   <data name="TermsOfUseBlock18Text5" xml:space="preserve">
     <value>Technical highest priority and priority email support are provided. We do not guarantee to solve all problems.</value>
@@ -11367,6 +12220,9 @@ The AxCrypt Team</value>
   <data name="TroubleShootingLabel" xml:space="preserve">
     <value>Troubleshooting</value>
   </data>
+  <data name="TryAxcryptfree" xml:space="preserve">
+    <value>Try AxCrypt for free</value>
+  </data>
   <data name="TryBrokenFileToolStripMenuItemText" xml:space="preserve">
     <value>Try Broken File</value>
   </data>
@@ -11491,6 +12347,9 @@ The AxCrypt Team</value>
   </data>
   <data name="TwentyPercentOff" xml:space="preserve">
     <value>20% off</value>
+  </data>
+  <data name="TwoFactorAuthentificationText" xml:space="preserve">
+    <value>Two-factor authentification</value>
   </data>
   <data name="TypographyLabel" xml:space="preserve">
     <value>Typography</value>

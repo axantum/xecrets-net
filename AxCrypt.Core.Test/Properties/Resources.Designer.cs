@@ -19,7 +19,7 @@ namespace AxCrypt.Core.Test.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -89,7 +89,7 @@ namespace AxCrypt.Core.Test.Properties {
         ///Language: English
         ///
         ///
-        ///*** START OF THIS PROJECT G [rest of string was truncated]&quot;;.
+        ///*** START OF THIS PROJECT  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string david_copperfield {
             get {
