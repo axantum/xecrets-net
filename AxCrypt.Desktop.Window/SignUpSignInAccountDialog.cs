@@ -95,6 +95,7 @@ namespace AxCrypt.Desktop.Window
                 new KeyValuePair<string, string>(Texts.TurkishLanguageToolStripMenuItemText, "tr-TR"),
                 new KeyValuePair<string, string>(Texts.RussianLanguageSelection, "ru-RU"),
                 new KeyValuePair<string, string>(Texts.ChineseLanguageSelectionText, "zh-CN"),
+                new KeyValuePair<string, string>(Texts.ArabicLanguageSelectionText, "ar-AR"),
             };
 
             return supportedLanguages;

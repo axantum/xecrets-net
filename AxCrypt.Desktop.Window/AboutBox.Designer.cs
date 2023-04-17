@@ -44,7 +44,7 @@
             this.logoPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(123, 134);
+            this.logoPictureBox.Size = new System.Drawing.Size(128, 128);
             this.logoPictureBox.TabIndex = 26;
             this.logoPictureBox.TabStop = false;
             // 
