@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="resources\Frankenstein-txt-AES256.axx" />
     <None Remove="resources\Frankenstein-txt-V2AES128.axx" />
@@ -14,7 +12,6 @@
     <None Remove="resources\snow-jpg-AES256.axx" />
     <None Remove="resources\snow-jpg-V2AES128.axx" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
@@ -23,22 +20,19 @@
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
     <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.69" />
-    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
     <ProjectReference Include="..\AxCrypt.Fake\Xecrets.Net.Fake.csproj" />
     <ProjectReference Include="..\AxCrypt.Mono\Xecrets.Net.Implementation.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -51,7 +45,6 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -62,5 +55,4 @@
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>
