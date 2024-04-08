@@ -180,7 +180,7 @@ namespace AxCrypt.Core.Test
 
             byte[] noAppend = one.Append();
             Assert.That(noAppend, Is.EqualTo(one), "Append with zero arrays should yield the same.");
-            Assert.IsFalse(Object.ReferenceEquals(noAppend, one), "Append with zero arrays should yield a copy, not the same instance.");
+            Assert.That(!Object.ReferenceEquals(noAppend, one), "Append with zero arrays should yield a copy, not the same instance.");
 
             byte[] oneTwoAppend = one.Append(two);
             Assert.That(oneTwoAppend, Is.EqualTo(new byte[] { 0x01, 0x02, 0x02 }), "Append of one with two should yield the appended result.");
@@ -211,26 +211,26 @@ namespace AxCrypt.Core.Test
             Assert.Throws<ArgumentOutOfRangeException>(() => { isEquivalent = one.IsEquivalentTo(0, one, 0, -1); });
 
             isEquivalent = one.IsEquivalentTo(0, one, 0, 1);
-            Assert.IsTrue(isEquivalent, "An array should be equivalent to itself.");
+            Assert.That(isEquivalent, "An array should be equivalent to itself.");
 
             isEquivalent = one.IsEquivalentTo(0, two, 1, 1);
-            Assert.IsTrue(isEquivalent, "'one' should be equivalent to second byte of 'two'.");
+            Assert.That(isEquivalent, "'one' should be equivalent to second byte of 'two'.");
 
             isEquivalent = three.IsEquivalentTo(1, one, 0, 1);
-            Assert.IsTrue(isEquivalent, "the second byte of 'three' should be equivalent to 'one'");
+            Assert.That(isEquivalent, "the second byte of 'three' should be equivalent to 'one'");
 
             isEquivalent = two.IsEquivalentTo(0, three, 1, two.Length);
-            Assert.IsFalse(isEquivalent, "'two' should not be equivalent to 'three' with offset one.");
+            Assert.That(!isEquivalent, "'two' should not be equivalent to 'three' with offset one.");
 
             Assert.Throws<ArgumentNullException>(() => { isEquivalent = nullArray.IsEquivalentTo(one); });
             Assert.Throws<ArgumentNullException>(() => { isEquivalent = one.IsEquivalentTo(nullArray); });
 
             byte[] threeAgain = new byte[] { 0x02, 0x01, 0x03 };
             isEquivalent = threeAgain.IsEquivalentTo(three);
-            Assert.IsTrue(isEquivalent, "'threeAgain' should be equivalent to 'three'.");
+            Assert.That(isEquivalent, "'threeAgain' should be equivalent to 'three'.");
 
             isEquivalent = threeAgain.IsEquivalentTo(two);
-            Assert.IsFalse(isEquivalent, "'threeAgain' should be not be equivalent to 'two'.");
+            Assert.That(!isEquivalent, "'threeAgain' should be not be equivalent to 'two'.");
         }
 
         [Test]
