@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.File.Abstractions.csproj" />
-    <ProjectReference Include="..\AxCrypt.Core\Xecrets.File.Core.csproj" />
+    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.Net.Abstractions.csproj" />
+    <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
   </ItemGroup>
 
 </Project>

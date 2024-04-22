@@ -34,7 +34,7 @@ using AxCrypt.Core.IO;
 using AxCrypt.Core.Portable;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Fake;
@@ -43,8 +43,8 @@ using AxCrypt.Mono.Portable;
 
 using NUnit.Framework;
 
-using Xecrets.File.Api.Implementation;
-using Xecrets.File.Core;
+using Xecrets.Net.Api.Implementation;
+using Xecrets.Net.Core;
 
 using static AxCrypt.Abstractions.TypeResolve;
 

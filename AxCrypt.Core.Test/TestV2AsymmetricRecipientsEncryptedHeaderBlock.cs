@@ -12,8 +12,8 @@ using AxCrypt.Mono.Portable;
 
 using NUnit.Framework;
 
-using Xecrets.File.Api.Implementation;
-using Xecrets.File.Core;
+using Xecrets.Net.Api.Implementation;
+using Xecrets.Net.Core;
 
 using static AxCrypt.Abstractions.TypeResolve;
 

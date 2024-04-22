@@ -39,8 +39,8 @@ using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Rest;
 using AxCrypt.Core.IO;
 using static AxCrypt.Abstractions.TypeResolve;
-using Xecrets.File.Api.Implementation;
-using Xecrets.File.Core;
+using Xecrets.Net.Api.Implementation;
+using Xecrets.Net.Core;
 
 namespace AxCrypt.Core
 {

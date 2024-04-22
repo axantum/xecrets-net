@@ -25,7 +25,7 @@
 
 #endregion Coypright and License
 
-using Xecrets.File.Core.Properties;
+using Xecrets.Net.Core.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -42,7 +42,7 @@ namespace AxCrypt.Core.UI
 #if DEBUG
 #pragma warning disable 414
 #pragma warning disable IDE0052 // Remove unread private members
-        private static readonly Resources _codeCoverageForInternalDesignerGeneratedConstructorDummy = new Xecrets.File.Core.Properties.Resources();
+        private static readonly Resources _codeCoverageForInternalDesignerGeneratedConstructorDummy = new Xecrets.Net.Core.Properties.Resources();
 #pragma warning restore IDE0052 // Remove unread private members
 #pragma warning restore 414
 #endif
@@ -63,7 +63,7 @@ namespace AxCrypt.Core.UI
         {
             get
             {
-                return typeof(Resources).GetTypeInfo().Assembly.GetManifestResourceStream("Xecrets.File.Core.resources.axcrypticon.ico")!;
+                return typeof(Resources).GetTypeInfo().Assembly.GetManifestResourceStream("Xecrets.Net.Core.resources.axcrypticon.ico")!;
             }
         }
 
