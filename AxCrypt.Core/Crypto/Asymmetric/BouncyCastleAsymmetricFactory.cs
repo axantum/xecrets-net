@@ -27,7 +27,7 @@
 
 using System.Text.Json.Serialization;
 
-using Xecrets.File.Core.Crypto.Asymmetric;
+using Xecrets.Net.Core.Crypto.Asymmetric;
 
 namespace AxCrypt.Core.Crypto.Asymmetric
 {

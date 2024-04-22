@@ -31,7 +31,7 @@ using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using Moq;

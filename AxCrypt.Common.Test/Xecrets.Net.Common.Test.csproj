@@ -10,6 +10,6 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Common\Xecrets.File.Common.csproj" />
+    <ProjectReference Include="..\AxCrypt.Common\Xecrets.Net.Common.csproj" />
   </ItemGroup>
 </Project>

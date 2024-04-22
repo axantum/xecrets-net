@@ -29,7 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Common;
 using AxCrypt.Content;
 using AxCrypt.Core.IO;
-using Xecrets.File.Core.Properties;
+using Xecrets.Net.Core.Properties;
 using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;

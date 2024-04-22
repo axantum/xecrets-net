@@ -13,6 +13,6 @@
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.File.Abstractions.csproj" />
+    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.Net.Abstractions.csproj" />
   </ItemGroup>
 </Project>

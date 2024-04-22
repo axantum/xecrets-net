@@ -29,7 +29,7 @@ using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Session;
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using NUnit.Framework;

@@ -10,8 +10,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.File.Abstractions.csproj" />
-    <ProjectReference Include="..\AxCrypt.Fake\Xecrets.File.Fake.csproj" />
-    <ProjectReference Include="..\AxCrypt.Mono\Xecrets.File.Implementation.NET.csproj" />
+    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.Net.Abstractions.csproj" />
+    <ProjectReference Include="..\AxCrypt.Fake\Xecrets.Net.Fake.csproj" />
+    <ProjectReference Include="..\AxCrypt.Mono\Xecrets.Net.Implementation.csproj" />
   </ItemGroup>
 </Project>

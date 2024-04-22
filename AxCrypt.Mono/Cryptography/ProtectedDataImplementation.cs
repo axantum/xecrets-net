@@ -22,7 +22,7 @@ namespace AxCrypt.Mono
         {
             IDataProtectionProvider provider = DataProtectionProvider.Create(application);
 
-            _protector = provider.CreateProtector("Xecrets.File.ProtectedData.v2");
+            _protector = provider.CreateProtector("Xecrets.Net.ProtectedData.v2");
         }
 
         #region IProtectedData Members

@@ -35,7 +35,7 @@ using NUnit.Framework;
 
 using System.Text;
 
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 
 using static AxCrypt.Abstractions.TypeResolve;
 
