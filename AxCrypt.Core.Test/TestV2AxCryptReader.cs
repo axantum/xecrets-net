@@ -30,7 +30,7 @@ using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Header;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Reader;
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Fake;
 using NUnit.Framework;

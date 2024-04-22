@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Abstractions", "AxCrypt.Abstractions\Xecrets.File.Abstractions.csproj", "{B51F9DE0-2410-40E3-A1B4-9033C69F17D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Abstractions", "AxCrypt.Abstractions\Xecrets.Net.Abstractions.csproj", "{B51F9DE0-2410-40E3-A1B4-9033C69F17D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Content", "AxCrypt.Content\Xecrets.File.Content.csproj", "{9419D324-9879-4B63-A88E-54AF8728E482}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Content", "AxCrypt.Content\Xecrets.Net.Content.csproj", "{9419D324-9879-4B63-A88E-54AF8728E482}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.BouncyCastle", "BouncyCastle.AxCrypt\Xecrets.File.BouncyCastle.csproj", "{59DC673B-21AB-4E43-85A4-98813CE63B87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.BouncyCastle", "BouncyCastle.AxCrypt\Xecrets.Net.BouncyCastle.csproj", "{59DC673B-21AB-4E43-85A4-98813CE63B87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF5FD404-AA94-44FD-88EC-F96FE14084BF}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,23 +20,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		SECURITY.md = SECURITY.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Common", "AxCrypt.Common\Xecrets.File.Common.csproj", "{4C18EBBA-EF5F-4CAE-9101-368129372E17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Common", "AxCrypt.Common\Xecrets.Net.Common.csproj", "{4C18EBBA-EF5F-4CAE-9101-368129372E17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Api", "AxCrypt.Api\Xecrets.File.Api.csproj", "{46D7CB79-EA6E-4E08-A80B-73680FE51F99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Api", "AxCrypt.Api\Xecrets.Net.Api.csproj", "{46D7CB79-EA6E-4E08-A80B-73680FE51F99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Core", "AxCrypt.Core\Xecrets.File.Core.csproj", "{BDA067E1-FD0B-4240-9672-6AFE97E32BB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Core", "AxCrypt.Core\Xecrets.Net.Core.csproj", "{BDA067E1-FD0B-4240-9672-6AFE97E32BB6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{24208F1B-710B-40E3-ADDF-496E722F41B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Fake", "AxCrypt.Fake\Xecrets.File.Fake.csproj", "{BAB90579-E738-418C-A684-C034ACC5882A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Fake", "AxCrypt.Fake\Xecrets.Net.Fake.csproj", "{BAB90579-E738-418C-A684-C034ACC5882A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Common.Test", "AxCrypt.Common.Test\Xecrets.File.Common.Test.csproj", "{FDF0A277-0450-4C81-8D29-7C169A1995D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Common.Test", "AxCrypt.Common.Test\Xecrets.Net.Common.Test.csproj", "{FDF0A277-0450-4C81-8D29-7C169A1995D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Core.Test", "AxCrypt.Core.Test\Xecrets.File.Core.Test.csproj", "{4258D937-3E01-4D86-A02F-84B62145FF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Core.Test", "AxCrypt.Core.Test\Xecrets.Net.Core.Test.csproj", "{4258D937-3E01-4D86-A02F-84B62145FF50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Implementation.NET", "AxCrypt.Mono\Xecrets.File.Implementation.NET.csproj", "{C65C409C-3919-4B80-A664-4D36D1E9B9C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Implementation", "AxCrypt.Mono\Xecrets.Net.Implementation.csproj", "{C65C409C-3919-4B80-A664-4D36D1E9B9C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.File.Implementation.NET.Test", "AxCrypt.Mono.Test\Xecrets.File.Implementation.NET.Test.csproj", "{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Implementation.Test", "AxCrypt.Mono.Test\Xecrets.Net.Implementation.Test.csproj", "{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

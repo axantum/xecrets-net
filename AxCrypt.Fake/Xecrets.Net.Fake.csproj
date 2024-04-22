@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Api\Xecrets.File.Api.csproj" />
-    <ProjectReference Include="..\AxCrypt.Core\Xecrets.File.Core.csproj" />
+    <ProjectReference Include="..\AxCrypt.Api\Xecrets.Net.Api.csproj" />
+    <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -34,9 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Core\Xecrets.File.Core.csproj" />
-    <ProjectReference Include="..\AxCrypt.Fake\Xecrets.File.Fake.csproj" />
-    <ProjectReference Include="..\AxCrypt.Mono\Xecrets.File.Implementation.NET.csproj" />
+    <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
+    <ProjectReference Include="..\AxCrypt.Fake\Xecrets.Net.Fake.csproj" />
+    <ProjectReference Include="..\AxCrypt.Mono\Xecrets.Net.Implementation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

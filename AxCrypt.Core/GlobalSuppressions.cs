@@ -46,4 +46,4 @@ using System.Runtime.CompilerServices;
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix", Scope = "type", Target = "AxCrypt.Core.IO.WrappedBaseStream", Justification = "False positive.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxCrypt.Core.Algorithm")]
 
-[assembly: InternalsVisibleTo("Xecrets.File.Core.Test")]
+[assembly: InternalsVisibleTo("Xecrets.Net.Core.Test")]

@@ -32,8 +32,8 @@ using NUnit.Framework;
 
 using System.Text.Json;
 
-using Xecrets.File.Api.Implementation;
-using Xecrets.File.Core;
+using Xecrets.Net.Api.Implementation;
+using Xecrets.Net.Core;
 
 namespace AxCrypt.Core.Test
 {

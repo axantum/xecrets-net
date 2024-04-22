@@ -28,7 +28,7 @@
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Session;
-using Xecrets.File.Core.Test.Properties;
+using Xecrets.Net.Core.Test.Properties;
 using AxCrypt.Core.UI;
 using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Fake;

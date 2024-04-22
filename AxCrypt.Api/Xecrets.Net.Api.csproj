@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.File.Abstractions.csproj" />
-    <ProjectReference Include="..\AxCrypt.Common\Xecrets.File.Common.csproj" />
+    <ProjectReference Include="..\AxCrypt.Abstractions\Xecrets.Net.Abstractions.csproj" />
+    <ProjectReference Include="..\AxCrypt.Common\Xecrets.Net.Common.csproj" />
   </ItemGroup>
 
 </Project>

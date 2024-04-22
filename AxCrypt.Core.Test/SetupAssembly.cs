@@ -48,9 +48,9 @@ using AxCrypt.Api;
 using System.Reflection;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Abstractions.Algorithm;
-using Xecrets.File.Implementation.NET.Cryptography;
-using Xecrets.File.Api.Implementation;
-using Xecrets.File.Core;
+using Xecrets.Net.Implementation.Cryptography;
+using Xecrets.Net.Api.Implementation;
+using Xecrets.Net.Core;
 
 namespace AxCrypt.Core.Test
 {
