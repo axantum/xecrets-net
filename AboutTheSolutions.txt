@@ -3,7 +3,7 @@ About the Solutions
 
 There is one solution (.sln) that is used.
 
-Xecrets.Net.Core.sln    - The cross platform core libraries and command line client. Develop with Visual Studio or VS Code on Windows, Mac or Linux.
+Xecrets.Net.sln - The cross platform core libraries and command line client. Develop with Visual Studio or VS Code on Windows, Mac or Linux.
 
 About the Projects
 ==================
@@ -20,11 +20,11 @@ dissociate the code from the AxCrypt path, in which case a large part of the cod
 in the AxCrypt code to handle parallel processing and to keep a UI updated with notifications. We believe in a straighter simpler path,
 and may also in the future clean out all such code as well thus reducing complexity and facilitating development and maintenance.
 
-Xecrets.Net.Abstractions              - Core interfaces and some implementations. Has no dependencies to other projects.
-Xecrets.Net.Common                    - Low-level implementations.
-Xecrets.Net.Api                       - Mostly code for calling the AxCrypt server and other AxCrypt integrations, used sparingly by Xecrets.Net.
-Xecrets.Net.BouncyCastle              - Custom implementation of BouncyCastle, used for public key cryptography. May be replaced in the future.
-Xecrets.Cli                           - The Xecrets Command Line tool.
-Xecrets.Net.Content                   - All strings originally translated by AxCrypt. Not really used, may be removed in the future.
-Xecrets.Net.Core.csproj               - All core AxCrypt functionality.
-Xecrets.Net.Implementation.csproj     - Implementations for .NET 8, common to all targets (Windows, Linux, Mac)
+Xecrets.Net.Abstractions          - Core interfaces and some implementations. Has no dependencies to other projects.
+Xecrets.Net.Common                - Low-level implementations.
+Xecrets.Net.Api                   - Mostly code for calling the AxCrypt server and other AxCrypt integrations, used sparingly by Xecrets.Net.
+Xecrets.Net.BouncyCastle          - Custom implementation of BouncyCastle, used for public key cryptography. May be replaced in the future.
+Xecrets.Cli                       - The Xecrets Command Line tool.
+Xecrets.Net.Content               - All strings originally translated by AxCrypt. Not really used, may be removed in the future.
+Xecrets.Net.Core.csproj           - All core AxCrypt functionality.
+Xecrets.Net.Implementation.csproj - Implementations for .NET 8, common to all targets (Windows, Linux, Mac)
