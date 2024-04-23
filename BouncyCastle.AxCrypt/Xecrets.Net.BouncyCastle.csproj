@@ -24,6 +24,6 @@
     <Compile Remove="src\math\ec\multiplier\WNafMultiplier.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\Svante\Documents\Visual Studio 2022\Projects\xecrets-file-core\BouncyCastle.AxCrypt\.editorconfig" />
+    <None Include="C:\Users\Svante\Documents\Visual Studio 2022\Projects\xecrets\xecrets-net\BouncyCastle.AxCrypt\.editorconfig" />
   </ItemGroup>
 </Project>
