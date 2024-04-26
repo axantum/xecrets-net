@@ -71,7 +71,8 @@ namespace AxCrypt.Core.Crypto
 
             lock (_factories)
             {
-                _factories.Add(factory().CryptoId, factory);
+                Guid id = factory().CryptoId;
+                _factories[id] = factory;
             }
         }
 
