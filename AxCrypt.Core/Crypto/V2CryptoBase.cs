@@ -4,6 +4,8 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
+using Xecrets.Net.Cryptography;
+
 namespace AxCrypt.Core.Crypto
 {
     public abstract class V2CryptoBase : CryptoBase
@@ -115,7 +117,7 @@ namespace AxCrypt.Core.Crypto
         private byte[] Transform(byte[] plaintext)
         {
             using SymmetricAlgorithm algorithm = CreateAlgorithmInternal();
-            using ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, _blockCounter, _blockOffset);
+            using ICryptoTransform transform = new CtrXecretsCryptoTransform(algorithm, _blockCounter, _blockOffset);
             return transform.TransformFinalBlock(plaintext, 0, plaintext.Length);
         }
 
@@ -127,7 +129,7 @@ namespace AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform DecryptingTransform()
         {
-            return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
+            return new CtrXecretsCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }
 
         /// <summary>
@@ -138,7 +140,7 @@ namespace AxCrypt.Core.Crypto
         /// </returns>
         public override ICryptoTransform EncryptingTransform()
         {
-            return new CounterModeCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
+            return new CtrXecretsCryptoTransform(CreateAlgorithmInternal(), _blockCounter, _blockOffset);
         }
     }
 }

@@ -33,6 +33,7 @@ using System.Linq;
 
 namespace AxCrypt.Core.Crypto
 {
+    // This is obsolete and has been replaced by Xecrets.Net.Cyptography.CtrXecretsCryptoTransform
     public class CounterModeCryptoTransform : ICryptoTransform
     {
         private SymmetricAlgorithm _algorithm;

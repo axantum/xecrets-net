@@ -34,6 +34,8 @@ using NUnit.Framework;
 using System;
 using System.Linq;
 
+using Xecrets.Net.Cryptography;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -75,17 +77,17 @@ namespace AxCrypt.Core.Test
             {
                 algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.CBC;
-                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(New<Aes>(), 0, 0));
+                Assert.Throws<ArgumentException>(() => transform = new CtrXecretsCryptoTransform(New<Aes>(), 0, 0));
 
                 algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.PKCS7;
-                Assert.Throws<ArgumentException>(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+                Assert.Throws<ArgumentException>(() => transform = new CtrXecretsCryptoTransform(algorithm, 0, 0));
 
                 algorithm = New<Aes>();
                 algorithm.Mode = CipherMode.ECB;
                 algorithm.Padding = PaddingMode.None;
-                Assert.DoesNotThrow(() => transform = new CounterModeCryptoTransform(algorithm, 0, 0));
+                Assert.DoesNotThrow(() => transform = new CtrXecretsCryptoTransform(algorithm, 0, 0));
             }
             finally
             {
@@ -102,7 +104,7 @@ namespace AxCrypt.Core.Test
             SymmetricAlgorithm algorithm = New<Aes>();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
-            using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
+            using (ICryptoTransform transform = new CtrXecretsCryptoTransform(algorithm, 0, 0))
             {
                 Assert.That(transform.CanReuseTransform);
             }
@@ -114,7 +116,7 @@ namespace AxCrypt.Core.Test
             SymmetricAlgorithm algorithm = New<Aes>();
             algorithm.Mode = CipherMode.ECB;
             algorithm.Padding = PaddingMode.None;
-            using (ICryptoTransform transform = new CounterModeCryptoTransform(algorithm, 0, 0))
+            using (ICryptoTransform transform = new CtrXecretsCryptoTransform(algorithm, 0, 0))
             {
                 Assert.Throws<ArgumentException>(() => transform.TransformBlock(new byte[transform.InputBlockSize + 1], 0, transform.InputBlockSize + 1, new byte[transform.InputBlockSize + 1], 0));
                 Assert.DoesNotThrow(() => transform.TransformBlock(new byte[transform.InputBlockSize], 0, transform.InputBlockSize, new byte[transform.InputBlockSize], 0));
