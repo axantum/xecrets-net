@@ -32,11 +32,38 @@ namespace Xecrets.Net.Core.IO
 {
     internal class EmailAddressSystemTextJsonConverter : JsonConverter<EmailAddress>
     {
+        /// <summary>
+        /// Read a parsed email value.
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
+        /// <returns>The parsed email value.</returns>
+        /// <exception cref="JsonException"></exception>
+        /// <remarks>
+        /// This got a bit complicated due to bug
+        /// https://github.com/axantum/xecrets-net/issues/16 . Email addresses
+        /// were initially incorrectly serialized as { email: { address: "value"
+        /// }} but the correct form for interop with AxCrypt is { email: "value"
+        /// }. Therefore we support both forms in deserialization, while now
+        /// writing the correct form.
+        /// </remarks>
         public override EmailAddress? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             EmailAddress? emailAddress = null;
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                string? value = reader.GetString() ?? throw new JsonException("Expected an email string but got null.");
+                emailAddress = EmailAddress.Parse(value);
+                return emailAddress;
+            }
+            if (reader.TokenType != JsonTokenType.StartObject)
+            {
+                throw new JsonException($"Expected JsonTokenType.StartObject or an email JsonTokenType.String value but got {reader.TokenType}.");
+            }
             while (reader.Read())
             {
+
                 if (reader.TokenType == JsonTokenType.EndObject)
                 {
                     return emailAddress;
@@ -61,9 +88,7 @@ namespace Xecrets.Net.Core.IO
 
         public override void Write(Utf8JsonWriter writer, EmailAddress value, JsonSerializerOptions options)
         {
-            writer.WriteStartObject();
-            writer.WriteString("address", value.Address);
-            writer.WriteEndObject();
+            writer.WriteStringValue(value.Address);
         }
     }
 }
