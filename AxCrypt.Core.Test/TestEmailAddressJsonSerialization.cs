@@ -54,9 +54,7 @@ namespace Xecrets.Net.Core.Test
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
         }
 
-        private const string _addressJson = @"{
-  ""address"": ""svante@axantum.com""
-}";
+        private const string _addressJson = @"""svante@axantum.com""";
 
         [Test]
         public void TestSerialization()
