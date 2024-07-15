@@ -27,6 +27,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Notification;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Header;
@@ -65,6 +66,7 @@ namespace Xecrets.Net.Core
     [JsonSerializable(typeof(IdentityPublicTag))]
     [JsonSerializable(typeof(AxCryptVersion))]
     [JsonSerializable(typeof(Dictionary<string, string>))]
+    [JsonSerializable(typeof(NotificationApiModel))]
     internal partial class JsonSourceGenerationContext : JsonSerializerContext
     {
         private static JsonSerializerOptions CreateJsonSerializerOptions()
