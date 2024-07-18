@@ -123,7 +123,7 @@
   </Target>
 
   <UsingTask TaskName="TemplateFileTask"
-             AssemblyFile="..\SolutionItems\MSBuild.Axantum.Tasks.dll" />
+             AssemblyFile="MSBuild.Axantum.Tasks.dll" />
 
   <Target Name="_AxMergeExe"
           Condition="'$(OutputType)' == 'Winexe' And '$(_AxIlMergePath)' != '' ">

@@ -357,6 +357,10 @@ namespace AxCrypt.Desktop.Window
             _googleDriveToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
             _dropBoxToolStripButton.Text = Texts.KnownFolderNameDropbox;
             _dropBoxToolStripButton.ToolTipText = Texts.DefaultSecureFolderToolTip;
+
+            _filePropertiesToolStripMenuItem.Text = Texts.FilePropertiesToolStripMenuItemText;
+            _filePropertiesDateModifiedToolStripMenuItem.Text = Texts.LastModifiedTimeColumnHeaderText;
+            _filePropertiesFileNameToolStripMenuItem.Text = Texts.FilePropertiesFileNameToolStripMenuItem;
         }
 
         private static void SetCulture()
@@ -707,10 +711,32 @@ namespace AxCrypt.Desktop.Window
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
 
             item = new ToolStripMenuItem();
-            item.Text = Texts.LicenseFreeNameText;
-            item.Checked = !license.Has(LicenseCapability.Premium);
+            item.Text = Texts.PromptPasswordManager;
+            item.Checked = license.Has(LicenseCapability.PasswordManager);
             item.Click += PolicyMenuItem_Click;
             _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
+
+            item = new ToolStripMenuItem();
+            item.Text = Texts.LicenseFreeNameText;
+            item.Checked = (!license.Has(LicenseCapability.Premium) && !license.Has(LicenseCapability.PasswordManager));
+            item.Click += PolicyMenuItem_Click;
+            _debugCryptoPolicyToolStripMenuItem.DropDownItems.Add(item);
+        }
+
+        private void FilePropertiesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            _filePropertiesDateModifiedToolStripMenuItem.Checked = Resolve.UserSettings.EncryptFilePropertiesDateModified;
+            _filePropertiesFileNameToolStripMenuItem.Checked = Resolve.UserSettings.EncryptFilePropertiesFileName;
+        }
+
+        private void FilePropertiesDateModifiedToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        {
+            New<UserSettings>().EncryptFilePropertiesDateModified = !New<UserSettings>().EncryptFilePropertiesDateModified;
+        }
+
+        private void FilePropertiesFileNameToolStripMenuItem_ClickAsync(object sender, EventArgs e)
+        {
+            New<UserSettings>().EncryptFilePropertiesFileName = !New<UserSettings>().EncryptFilePropertiesFileName;
         }
 
         private async Task ConfigureIncludeSubfoldersMenuAsync(LicenseCapabilities license)
@@ -2000,6 +2026,11 @@ namespace AxCrypt.Desktop.Window
                 TypeMap.Register.Singleton<LicensePolicy>(() => new FreeForcedLicensePolicy());
                 return;
             }
+            if (item.Text == Texts.PromptPasswordManager)
+            {
+                TypeMap.Register.Singleton<LicensePolicy>(() => new PasswordManagerForcedLicensePolicy());
+                return;
+            }
             if (item.Text == Texts.LicensePremiumNameText)
             {
                 TypeMap.Register.Singleton<LicensePolicy>(() => new PremiumForcedLicensePolicy());
@@ -2136,7 +2167,7 @@ namespace AxCrypt.Desktop.Window
         {
             FileSelectionEventArgs fileSelectionArgs = new FileSelectionEventArgs(selectedRecentFileNames)
             {
-                FileSelectionType = FileSelectionType.KeySharing,
+                FileSelectionType = FileSelectionType.KeySharingEncrypt,
             };
 
             if (!fileSelectionArgs.SelectedFiles.Any())
@@ -2154,13 +2185,31 @@ namespace AxCrypt.Desktop.Window
 
         private async Task ShareKeysAsync(IEnumerable<string> fileNames)
         {
-            SharingListViewModel viewModel = await SharingListViewModel.CreateForFilesAsync(fileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
+            IEnumerable<string> encryptableFileNames = fileNames.Where(f => New<IDataStore>(f).IsEncryptable());
+            if (encryptableFileNames != null && encryptableFileNames.Any())
+            {
+                PopupButtons click = await New<IPopup>().ShowAsync(PopupButtons.OkCancel, Texts.InformationTitle, "There are some unencrypted files also selected for key sharing. AxCrypt will encrypt and then key share the selected files. Would you like to continue to proceed?");
+                if (click != PopupButtons.Ok)
+                {
+                    return;
+                }
+            }
+
+            IEnumerable<string> encryptedFileNames = fileNames.Where(f => New<IDataStore>(f).IsEncrypted());
+            SharingListViewModel viewModel = await SharingListViewModel.CreateForFilesAsync(encryptedFileNames, Resolve.KnownIdentities.DefaultEncryptionIdentity);
             using (KeyShareDialog dialog = new KeyShareDialog(this, viewModel, fileNames))
             {
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
+            }
+
+            if (encryptableFileNames != null && encryptableFileNames.Any())
+            {
+                _fileOperationViewModel.Recipients = viewModel.SharedWith;
+                await _fileOperationViewModel.EncryptFiles.ExecuteAsync(encryptableFileNames);
+                _fileOperationViewModel.Recipients = null;
             }
 
             await viewModel.ShareFiles.ExecuteAsync(null);

@@ -333,9 +333,9 @@ namespace AxCrypt.Desktop
          *  Convert DB XML Secret strings to Secrets and Secrets Collection to XML Secret strings
          */
 
-        public IEnumerable<Tuple<Secret, string>> SecretsXMLDocList(IEnumerable<Secret> secrets)
+        public System.Text.StringBuilder SecretsXMLDoc(IEnumerable<Secret> secrets)
         {
-            IList<Tuple<Secret, string>> migratedSecrets = new List<Tuple<Secret, string>>();
+            XmlDocument document = CreateDocumentFromSecrets(secrets);
 
             // Explicitly set the way the XML is written.
             XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -343,28 +343,21 @@ namespace AxCrypt.Desktop
             xmlWriterSettings.Indent = true;
             xmlWriterSettings.IndentChars = "  ";
             xmlWriterSettings.CloseOutput = false;
+            System.Text.StringBuilder xmlDocumentStr = new StringBuilder();
 
-            foreach (Secret secret in secrets)
+            using (StringWriter stringWriter = new StringWriter())
             {
-                XmlDocument document = CreateDocumentFromSecrets(new List<Secret>() { secret });
-                string xmlDocumentStr = "";
-
-                using (StringWriter stringWriter = new StringWriter())
+                using (XmlWriter xmlTextWriter = XmlWriter.Create(stringWriter, xmlWriterSettings))
                 {
-                    using (XmlWriter xmlTextWriter = XmlWriter.Create(stringWriter, xmlWriterSettings))
-                    {
-                        document.WriteTo(xmlTextWriter);
-                        xmlTextWriter.Flush();
-                        xmlDocumentStr = stringWriter.GetStringBuilder().ToString();
-                    }
-
-                    stringWriter.Flush();
+                    document.WriteTo(xmlTextWriter);
+                    xmlTextWriter.Flush();
+                    xmlDocumentStr.Append(stringWriter.GetStringBuilder().ToString());
                 }
 
-                migratedSecrets.Add(Tuple.Create(secret, xmlDocumentStr));
+                stringWriter.Flush();
             }
 
-            return migratedSecrets;
+            return xmlDocumentStr;
         }
 
         public SecretCollection SecretsFromXMLDocList(IEnumerable<Api.Model.Secret.SecretApiModel> secretsList, IEnumerable<EncryptionKey> keys)
@@ -383,7 +376,7 @@ namespace AxCrypt.Desktop
                 EncryptionKeyCollection unusedKeys = new EncryptionKeyCollection("");
                 unusedKeys.AddRange(keys);
 
-                XmlDocument SecretXMLDocument = GetDocumentFromString(secret.TheSecret);
+                XmlDocument SecretXMLDocument = GetDocumentFromString(secret.SecretBody);
 
                 XmlNodeList nodeList = GetXecretsSession(SecretXMLDocument).SelectNodes("XecretsSession");
                 foreach (XmlNode node in nodeList)
@@ -431,25 +424,43 @@ namespace AxCrypt.Desktop
             return document;
         }
 
-        public byte[] GetRawXMLDoc(IEnumerable<Secret> secrets)
+        public SecretCollection SecretsFromXMLDoc(Api.Model.Secret.SecretsApiModel secretModel, IEnumerable<EncryptionKey> keys)
         {
-            XmlDocument xmlDocument = CreateDocumentFromSecrets(secrets);
-
-            using (MemoryStream stream = new MemoryStream())
+            if (keys == null)
             {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.OmitXmlDeclaration = false;
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.IndentChars = "  ";
-                xmlWriterSettings.CloseOutput = false;
-
-                using (XmlWriter writer = XmlWriter.Create(stream, xmlWriterSettings))
-                {
-                    xmlDocument.Save(writer);
-                }
-
-                return stream.ToArray();
+                throw new ArgumentNullException(nameof(keys));
             }
+
+            if(secretModel.SecretBody == null) 
+            { 
+                return new SecretCollection();
+            }
+
+            // Accumulate decrypted secrets here.
+            SecretCollection secrets = new SecretCollection();
+
+            // Get a copy of the collection so we can remove keys as we use them.
+            EncryptionKeyCollection unusedKeys = new EncryptionKeyCollection("");
+            unusedKeys.AddRange(keys);
+
+            XmlDocument SecretXMLDocument = GetDocumentFromString(secretModel.SecretBody);
+
+            XmlNodeList nodeList = GetXecretsSession(SecretXMLDocument).SelectNodes("XecretsSession");
+            foreach (XmlNode node in nodeList)
+            {
+                SecretCollection decryptedSessionSecrets = AttemptDecryptXecretsSessionElement(unusedKeys, (XmlElement)node);
+                if (decryptedSessionSecrets.Count > 0)
+                {
+                    decryptedSessionSecrets[0].DBId = secretModel.Id;
+                    decryptedSessionSecrets[0].CreatedUtc = secretModel.CreatedUtc;
+                    decryptedSessionSecrets[0].UpdatedUtc = secretModel.UpdatedUtc;
+                    decryptedSessionSecrets[0].DeletedUtc = secretModel.DeletedUtc ?? DateTime.MinValue;
+                }
+                secrets.AddRange(decryptedSessionSecrets);
+            }
+
+            secrets.OriginalCount = secrets.Count;
+            return secrets;
         }
 
         #endregion ISecretsDBConverter Members

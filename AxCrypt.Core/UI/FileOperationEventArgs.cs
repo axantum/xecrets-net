@@ -27,6 +27,7 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.IO;
 using System;
 using System.Collections.Generic;
@@ -57,5 +58,7 @@ namespace AxCrypt.Core.UI
         public IDataStore AxCryptFile { get; set; }
 
         public FileOperationContext Status { get; set; }
+
+        public IEnumerable<UserPublicKey> Recipients { get; set; } = null;
     }
 }

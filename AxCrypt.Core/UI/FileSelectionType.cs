@@ -45,5 +45,6 @@ namespace AxCrypt.Core.UI
         ImportPublicKeys,
         ImportPrivateKeys,
         KeySharing,
+        KeySharingEncrypt,
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Mono", "AxCrypt.Mono\AxCrypt.Mono.csproj", "{CE9E8614-8DC5-4757-9384-3C416AB61A47}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{5F7EF80E-DFBE-4CD4-853F-5AACE94DDA21}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AxCrypt.Sdk", "AxCrypt.Sdk\AxCrypt.Sdk.csproj", "{18269DE2-2BD0-441B-B540-596E87B6E869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxCrypt.Cryptor", "AxCrypt.Cryptor\AxCrypt.Cryptor.csproj", "{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -267,6 +269,18 @@ Global
 		{18269DE2-2BD0-441B-B540-596E87B6E869}.Release|x64.Build.0 = Release|Any CPU
 		{18269DE2-2BD0-441B-B540-596E87B6E869}.Release|x86.ActiveCfg = Release|Any CPU
 		{18269DE2-2BD0-441B-B540-596E87B6E869}.Release|x86.Build.0 = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|x64.Build.0 = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Debug|x86.Build.0 = Debug|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|x64.ActiveCfg = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|x64.Build.0 = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|x86.ActiveCfg = Release|Any CPU
+		{F21311FB-CC3E-4A08-82E6-C9AC2C30FDF4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

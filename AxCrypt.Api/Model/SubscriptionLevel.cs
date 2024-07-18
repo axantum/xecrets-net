@@ -12,5 +12,6 @@ namespace AxCrypt.Api.Model
         Free,
         Premium,
         Business,
+        PasswordManager
     }
 }

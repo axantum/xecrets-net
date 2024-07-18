@@ -27,6 +27,7 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Header;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Reader;
@@ -37,6 +38,7 @@ using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Fake;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -800,6 +802,63 @@ namespace AxCrypt.Core.Test
             status = await controller.VerifyEncryptedAsync(New<IDataStore>(_helloWorldAxxPath));
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success));
             Assert.That(knownKeyWasAdded, Is.True, "A known key should have been added.");
+        }
+
+        [Test]
+        public async Task TestEncryptFileWithRecipients()
+        {
+            FileOperationsController controller = new FileOperationsController();
+            string destinationPath = String.Empty;
+            controller.QueryEncryptionPassphrase += (sender, e) =>
+            {
+                e.LogOnIdentity = new LogOnIdentity("allan");
+            };
+            controller.Completed += (sender, e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+            };
+
+            List<UserPublicKey> userPublicKeys = new List<UserPublicKey>();
+
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey1);
+            UserPublicKey recipient1 = new UserPublicKey(EmailAddress.Parse("test1@test.com"), key1);
+            userPublicKeys.Add(recipient1);
+
+            IAsymmetricPublicKey key2 = New<IAsymmetricFactory>().CreatePublicKey(Resources.PublicKey2);
+            UserPublicKey recipient2 = new UserPublicKey(EmailAddress.Parse("test2@test.com"), key2);
+            userPublicKeys.Add(recipient2);
+
+            FileOperationContext status = await controller.EncryptFileAsync(new FakeDataStore(_davidCopperfieldTxtPath), userPublicKeys);
+            Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The status should indicate success.");
+
+            IDataStore destinationInfo = new FakeDataStore(destinationPath);
+            Assert.That(destinationInfo.IsAvailable, "After encryption the destination file should be created.");
+        }
+
+        [Test]
+        public async Task TestEncryptFileWithInvalidRecipientPublicKey()
+        {
+            FileOperationsController controller = new FileOperationsController();
+            string destinationPath = String.Empty;
+            controller.QueryEncryptionPassphrase += (sender, e) =>
+            {
+                e.LogOnIdentity = new LogOnIdentity("allan");
+            };
+            controller.Completed += (sender, e) =>
+            {
+                destinationPath = e.SaveFileFullName;
+            };
+
+            IAsymmetricPublicKey key1 = New<IAsymmetricFactory>().CreatePublicKey("InvalidPublicKeyString");
+            UserPublicKey recipient = new UserPublicKey(EmailAddress.Parse("test@test.com"), key1);
+            IEnumerable<UserPublicKey> userPublicKeys = new List<UserPublicKey> { recipient };
+
+            FileOperationContext status = await controller.EncryptFileAsync(new FakeDataStore(_davidCopperfieldTxtPath), userPublicKeys);
+
+            Assert.That(status.ErrorStatus, Is.Not.EqualTo(ErrorStatus.Success), "The status should indicate failure due to an invalid public key.");
+
+            IDataStore destinationInfo = new FakeDataStore(destinationPath);
+            Assert.IsFalse(destinationInfo.IsAvailable, "After a failed encryption attempt, the destination file should not be created.");
         }
     }
 }

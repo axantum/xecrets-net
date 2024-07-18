@@ -29,6 +29,9 @@ namespace AxCrypt.Api.Model
         [JsonProperty("business_product_ids")]
         public string BusinessProductIdsWithAmount { get; set; }
 
+        [JsonProperty("passwordmanager_product_id")]
+        public string PasswordManagerProductId { get; set; }
+
         [JsonProperty("yearly_discount_percent")]
         public int YearlyDiscountPercentage { get; set; }
 

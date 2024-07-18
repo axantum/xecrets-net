@@ -41,6 +41,8 @@ namespace AxCrypt.Desktop
 {
     public class KnownFoldersDiscovery : IKnownFoldersDiscovery
     {
+        private static readonly string MyAxCryptFolderName = "My AxCrypt";
+
         public IEnumerable<KnownFolder> Discover()
         {
             List<KnownFolder> knownFolders = new List<KnownFolder>();
@@ -60,7 +62,7 @@ namespace AxCrypt.Desktop
         private static void CheckDocumentsLibrary(IList<KnownFolder> knownFolders)
         {
             IDataContainer myDocumentsInfo = New<IDataContainer>(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, Texts.MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null, Texts.KnownFolderNameWindowsMyDocuments);
+            KnownFolder windowsDesktopFolder = new KnownFolder(myDocumentsInfo, MyAxCryptFolderName, KnownFolderKind.WindowsMyDocuments, null, Texts.KnownFolderNameWindowsMyDocuments);
             knownFolders.Add(windowsDesktopFolder);
         }
 
@@ -73,7 +75,7 @@ namespace AxCrypt.Desktop
             }
 
             IDataContainer dropBoxFolderInfo = New<IDataContainer>(dropBoxFolder);
-            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.Dropbox, null, Texts.KnownFolderNameDropbox);
+            KnownFolder knownFolder = new KnownFolder(dropBoxFolderInfo, MyAxCryptFolderName, KnownFolderKind.Dropbox, null, Texts.KnownFolderNameDropbox);
 
             knownFolders.Add(knownFolder);
         }
@@ -88,7 +90,7 @@ namespace AxCrypt.Desktop
 
             Uri url = new Uri("https://onedrive.live.com/");
             IDataContainer oneDriveFolderInfo = New<IDataContainer>(oneDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(oneDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.OneDrive, url, Texts.KnownFolderNameOneDrive);
+            KnownFolder knownFolder = new KnownFolder(oneDriveFolderInfo, MyAxCryptFolderName, KnownFolderKind.OneDrive, url, Texts.KnownFolderNameOneDrive);
 
             knownFolders.Add(knownFolder);
         }
@@ -141,7 +143,7 @@ namespace AxCrypt.Desktop
             Uri url = new Uri("https://drive.google.com/");
 
             IDataContainer googleDriveFolderInfo = New<IDataContainer>(googleDriveFolder);
-            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, Texts.MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url, Texts.KnownFolderNameGoogleDrive);
+            KnownFolder knownFolder = new KnownFolder(googleDriveFolderInfo, MyAxCryptFolderName, KnownFolderKind.GoogleDrive, url, Texts.KnownFolderNameGoogleDrive);
             knownFolders.Add(knownFolder);
         }
     }

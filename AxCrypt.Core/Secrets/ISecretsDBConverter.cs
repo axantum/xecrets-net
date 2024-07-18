@@ -1,5 +1,5 @@
-using System.Text;
 using System;
+using System.Text;
 
 #region License
 
@@ -39,7 +39,7 @@ namespace AxCrypt.Core.Secrets
         /// Generates an encrypted XMLDocument string for each secrets for database migration.
         /// </summary>
         /// <param name="secrets">The secrets.</param>
-        IEnumerable<Tuple<Secret, string>> SecretsXMLDocList(IEnumerable<Secret> secrets);
+        StringBuilder SecretsXMLDoc(IEnumerable<Secret> secrets);
 
         /// <summary>
         /// Generates an encrypted XMLDocument string for each secrets for database migration.
@@ -47,6 +47,6 @@ namespace AxCrypt.Core.Secrets
         /// <param name="secrets">The secrets.</param>
         SecretCollection SecretsFromXMLDocList(IEnumerable<Api.Model.Secret.SecretApiModel> secrets, IEnumerable<EncryptionKey> keys);
 
-        byte[] GetRawXMLDoc(IEnumerable<Secret> secrets);
+        SecretCollection SecretsFromXMLDoc(Api.Model.Secret.SecretsApiModel secrets, IEnumerable<EncryptionKey> keys);
     }
 }

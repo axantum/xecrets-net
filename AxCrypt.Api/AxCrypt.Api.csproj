@@ -57,6 +57,15 @@
     <Compile Include="AxCryptApi.cs" />
     <Compile Include="AxCryptApiClient.cs" />
     <Compile Include="BadRequestApiException.cs" />
+    <Compile Include="Extension\CipherTypeExtension.cs" />
+    <Compile Include="Model\ListFilterOptions.cs" />
+    <Compile Include="Model\Notification\UserNotificationApiModel.cs" />
+    <Compile Include="Model\PushNotification\PushNotificationDispatchApiModel.cs" />
+    <Compile Include="Model\PushNotification\PushNotificationApiModel.cs" />
+    <Compile Include="Model\PushNotification\PushNotifierApiModel.cs" />
+    <Compile Include="Model\RequestOptions.cs" />
+    <Compile Include="Model\SecretsListRequestOptions.cs" />
+    <Compile Include="Model\Secret\EncryptedSecretApiModel.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GlobalApiClient.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -64,9 +73,13 @@
     <Compile Include="Model\AccountTip.cs" />
     <Compile Include="Model\ApiVersion.cs" />
     <Compile Include="Model\AxCryptVersion.cs" />
+    <Compile Include="Model\Base\BaseApiModel.cs" />
     <Compile Include="Model\DesktopPlatformKind.cs" />
     <Compile Include="Model\FeedbackData.cs" />
     <Compile Include="Model\CustomMessageParameters.cs" />
+    <Compile Include="Model\Groups\GroupMemberApiModel.cs" />
+    <Compile Include="Model\Groups\GroupApiModel.cs" />
+    <Compile Include="Model\Groups\BusinessGroupListApiModel.cs" />
     <Compile Include="Model\Masterkey\MasterKeyStatus.cs" />
     <Compile Include="Model\Notification\NotificationApiModel.cs" />
     <Compile Include="Model\PurchaseSettings.cs" />
@@ -75,6 +88,9 @@
     <Compile Include="Model\PrivateKeyStatus.cs" />
     <Compile Include="Model\Offers.cs" />
     <Compile Include="Model\PasswordSuggestion.cs" />
+    <Compile Include="Model\Secret\SharedUserApiModel.cs" />
+    <Compile Include="Model\Secret\ShareSecretApiModel.cs" />
+    <Compile Include="Model\Secret\SecretsApiModel.cs" />
     <Compile Include="Model\Secret\SecretApiModel.cs" />
     <Compile Include="Model\Secret\SecretType.cs" />
     <Compile Include="Model\SlackPayload.cs" />
@@ -84,11 +100,19 @@
     <Compile Include="Model\KeyPair.cs" />
     <Compile Include="Model\PasswordResetParameters.cs" />
     <Compile Include="Model\StoreKitTransaction.cs" />
+    <Compile Include="Model\SubsCancellationApiModel.cs" />
+    <Compile Include="Model\Stripe\StrpFailedTransApiModel.cs" />
+    <Compile Include="Model\SubsCancelnRsnOptn.cs" />
     <Compile Include="Model\SubscriptionLevel.cs" />
     <Compile Include="Model\SubscriptionProduct.cs" />
     <Compile Include="Model\UserAccounts.cs" />
     <Compile Include="Model\User\MigrateApiModel.cs" />
     <Compile Include="Model\User\UserApiModel.cs" />
+    <Compile Include="Model\UTM\UTMTagActivityApiModel.cs" />
+    <Compile Include="Model\UTM\UTMTagActivityExportApiModel.cs" />
+    <Compile Include="Model\UTM\UTMTagApiModel.cs" />
+    <Compile Include="Model\UTM\UTMTagPurchaseActivityApiModel.cs" />
+    <Compile Include="Model\UTM\UTMTagUserActivityApiModel.cs" />
     <Compile Include="Response\ErrorResponse.cs" />
     <Compile Include="Response\ResponseBase.cs" />
     <Compile Include="Model\ApiStatus.cs" />
@@ -101,11 +125,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implementation\StringSerializer.cs" />
     <Compile Include="Response\WhatIpResponse.cs" />
+    <Compile Include="UserNotification\AxNotificationApiClient.cs" />
+    <Compile Include="Secrets\AxSecretsApiClient.cs" />
     <Compile Include="SlackApiClient.cs" />
     <Compile Include="UnauthorizedException.cs" />
     <Compile Include="Model\SKVerifyReceiptStatus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="AxantumStrongName.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.template" />
@@ -116,8 +143,17 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\axcrypt-web\packages\System.ComponentModel.Primitives.4.3.0\lib\netstandard1.0\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\axcrypt-web\packages\System.ComponentModel.TypeConverter.4.3.0\lib\netstandard1.0\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\axcrypt-web\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\netstandard1.1\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

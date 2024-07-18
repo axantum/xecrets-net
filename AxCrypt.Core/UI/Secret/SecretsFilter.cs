@@ -11,4 +11,11 @@ namespace AxCrypt.Core.UI
         Card,
         Note
     }
+
+    public enum SecretsFilterTab
+    {
+        All,
+        Recent,
+        SharedWithMe
+    }
 }

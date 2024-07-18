@@ -87,6 +87,9 @@ namespace AxCrypt.Desktop.Window
             this._optionsEncryptionUpgradeModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._alwaysOfflineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._optionsIncludeSubfoldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._filePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._filePropertiesDateModifiedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._filePropertiesFileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._inactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._disableInactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._fiveMinuteInactivitySignOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -323,6 +326,7 @@ namespace AxCrypt.Desktop.Window
             this._passwordResetToolStripMenuItem,
             this._optionsEncryptionUpgradeModeToolStripMenuItem,
             this._alwaysOfflineToolStripMenuItem,
+            this._filePropertiesToolStripMenuItem,
             this._optionsIncludeSubfoldersToolStripMenuItem,
             this._optionsHideRecentFilesToolStripMenuItem,
             this._inactivitySignOutToolStripMenuItem,
@@ -498,6 +502,32 @@ namespace AxCrypt.Desktop.Window
             this._optionsIncludeSubfoldersToolStripMenuItem.Name = "_optionsIncludeSubfoldersToolStripMenuItem";
             this._optionsIncludeSubfoldersToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this._optionsIncludeSubfoldersToolStripMenuItem.Text = "[Include Subfolders]";
+            // 
+            // _filePropertiesDateModifiedToolStripMenuItem
+            // 
+            this._filePropertiesDateModifiedToolStripMenuItem.Name = "_filePropertiesDateModifiedToolStripMenuItem";
+            this._filePropertiesDateModifiedToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this._filePropertiesDateModifiedToolStripMenuItem.Tag = 0;
+            this._filePropertiesDateModifiedToolStripMenuItem.Text = "[Date Modified]";
+            this._filePropertiesDateModifiedToolStripMenuItem.Click += new System.EventHandler(this.FilePropertiesDateModifiedToolStripMenuItem_ClickAsync);
+            // 
+            // _filePropertiesFileNameToolStripMenuItem
+            // 
+            this._filePropertiesFileNameToolStripMenuItem.Name = "_filePropertiesFileNameToolStripMenuItem";
+            this._filePropertiesFileNameToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this._filePropertiesFileNameToolStripMenuItem.Tag = 0;
+            this._filePropertiesFileNameToolStripMenuItem.Text = "[File Name]";
+            this._filePropertiesFileNameToolStripMenuItem.Click += new System.EventHandler(this.FilePropertiesFileNameToolStripMenuItem_ClickAsync);
+            //
+            // _filePropertiesToolStripMenuItem
+            //
+            this._filePropertiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._filePropertiesDateModifiedToolStripMenuItem,
+            this._filePropertiesFileNameToolStripMenuItem});
+            this._filePropertiesToolStripMenuItem.Name = "_filePropertiesToolStripMenuItem";
+            this._filePropertiesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this._filePropertiesToolStripMenuItem.Text = "[&File Properties]";
+            this._filePropertiesToolStripMenuItem.DropDownOpening += new System.EventHandler(this.FilePropertiesToolStripMenuItem_DropDownOpening);
             // 
             // _inactivitySignOutToolStripMenuItem
             // 
@@ -1561,6 +1591,9 @@ namespace AxCrypt.Desktop.Window
         private System.Windows.Forms.ToolStripMenuItem _turkishLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _chineseLanguageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _optionsIncludeSubfoldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _filePropertiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _filePropertiesDateModifiedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _filePropertiesFileNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _inactivitySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _disableInactivitySignOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _fiveMinuteInactivitySignOutToolStripMenuItem;

@@ -1,19 +1,19 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AxCrypt.Api.Model.Notification
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class NotificationApiModel
+    public class NotificationApiModel : BaseApiModel
     {
-        public static NotificationApiModel Empty = new NotificationApiModel(0, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
+        public static NotificationApiModel Empty = new NotificationApiModel(0, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
 
-        public NotificationApiModel(long id, string userEmail, string content, string eventType, DateTime createdUtc, DateTime updatedUtc, DateTime deletedUtc)
+        public NotificationApiModel(long id, string receiver, string actor, string content, string eventType, DateTime createdUtc, DateTime updatedUtc, DateTime? deletedUtc)
         {
             Id = id;
-            UserEmail = userEmail;
+            Receiver = receiver;
+            Actor = actor;
             Content = content;
             EventType = eventType;
             CreatedUtc = createdUtc;
@@ -24,8 +24,8 @@ namespace AxCrypt.Api.Model.Notification
         [JsonProperty("id")]
         public long Id { get; set; }
 
-        [JsonProperty("user_email")]
-        public string UserEmail { get; set; }
+        [JsonProperty("receiver")]
+        public string Receiver { get; set; }
 
         [JsonProperty("content")]
         public string Content { get; } = string.Empty;
@@ -33,13 +33,16 @@ namespace AxCrypt.Api.Model.Notification
         [JsonProperty("eventType")]
         public string EventType { get; } = string.Empty;
 
-        [JsonProperty("created_utc")]
-        public DateTime CreatedUtc { get; set; }
+        [JsonProperty("actor")]
+        public string Actor { get; } = string.Empty;
 
-        [JsonProperty("updated_utc")]
-        public DateTime UpdatedUtc { get; set; }
+        [JsonProperty("actionData")]
+        public string ActionData { get; set; } = string.Empty;
 
-        [JsonProperty("deleted_utc")]
-        public DateTime? DeletedUtc { get; set; }
+        [JsonProperty("pushNotify")]
+        public bool PushNotify { get; set; }
+
+        [JsonProperty("pushNotified")]
+        public DateTime? PushNotified { get; set; }
     }
 }

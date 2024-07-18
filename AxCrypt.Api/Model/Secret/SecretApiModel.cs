@@ -6,40 +6,31 @@ using System.Linq;
 namespace AxCrypt.Api.Model.Secret
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class SecretApiModel
+    public class SecretApiModel : BaseApiModel
     {
         public static SecretApiModel Empty = new SecretApiModel(0, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue, DateTime.MinValue);
 
-        public SecretApiModel(int id, string type, string userEmail, string secret, DateTime createdUtc, DateTime updatedUtc, DateTime deletedUtc)
+        public SecretApiModel(long id, string type, string userEmail, string secretBody, DateTime createdUtc, DateTime updatedUtc, DateTime? deletedUtc)
         {
             Id = id;
             Type = type;
             UserEmail = userEmail;
-            TheSecret = secret;
+            SecretBody = secretBody;
             CreatedUtc = createdUtc;
             UpdatedUtc = updatedUtc;
             DeletedUtc = deletedUtc;
         }
 
         [JsonProperty("id")]
-        public int Id { get; }
+        public long Id { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; }
+        public string Type { get; set; }
 
-        [JsonProperty("user_email")]
-        public string UserEmail { get; } = string.Empty;
+        [JsonProperty("userEmail")]
+        public string UserEmail { get; set; } = string.Empty;
 
-        [JsonProperty("secret")]
-        public string TheSecret { get; } = string.Empty;
-
-        [JsonProperty("created_utc")]
-        public DateTime CreatedUtc { get; }
-
-        [JsonProperty("updated_utc")]
-        public DateTime UpdatedUtc { get; }
-
-        [JsonProperty("deleted_utc")]
-        public DateTime? DeletedUtc { get; }
+        [JsonProperty("secretBody")]
+        public string SecretBody { get; set; } = string.Empty;
     }
 }

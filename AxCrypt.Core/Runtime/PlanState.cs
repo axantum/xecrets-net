@@ -12,5 +12,6 @@ namespace AxCrypt.Core.Runtime
         CanTryPremium,
         OfflineNoPremium,
         HasBusiness,
+        HasPasswordManager,
     }
 }

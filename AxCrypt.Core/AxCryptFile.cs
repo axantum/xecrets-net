@@ -306,12 +306,25 @@ namespace AxCrypt.Core
                     {
                         sourceStore.IsWriteProtected = false;
                     }
+
+                    UpdateFileProperties(sourceStore, destinationStore);
                     Wipe(sourceFileLock, progress);
                 }
             }
             finally
             {
                 progress.NotifyLevelFinished();
+            }
+        }
+
+        /// <summary>
+        /// Updates file properties while encryption E.g. date modified using user settings
+        /// </summary>
+        private static void UpdateFileProperties(IDataStore sourceStore, FileLock destinationStore)
+        {
+            if (!New<UserSettings>().EncryptFilePropertiesDateModified)
+            {
+                destinationStore.DataStore.LastWriteTimeUtc = sourceStore.LastWriteTimeUtc;
             }
         }
 
