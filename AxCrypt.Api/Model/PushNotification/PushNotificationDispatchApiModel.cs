@@ -15,6 +15,6 @@ namespace AxCrypt.Api.Model.PushNotification
         public long PushNotificationId { get; set; }
 
         [JsonPropertyName("dispatchedBy")]
-        public string DispatchedBy { get; set; }
+        public string? DispatchedBy { get; set; }
     }
 }

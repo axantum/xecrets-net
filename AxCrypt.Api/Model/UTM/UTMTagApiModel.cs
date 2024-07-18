@@ -34,25 +34,25 @@ namespace AxCrypt.Api.Model.UTM
         public Guid Id { get; set; }
 
         [JsonPropertyName("subslevel")]
-        public string SubsLevel { get; set; }
+        public string? SubsLevel { get; set; }
 
         [JsonPropertyName("source")]
-        public string Source { get; set; }
+        public string? Source { get; set; }
 
         [JsonPropertyName("medium")]
-        public string Medium { get; set; }
+        public string? Medium { get; set; }
 
         [JsonPropertyName("campaign")]
-        public string Campaign { get; set; }
+        public string? Campaign { get; set; }
 
         [JsonPropertyName("content")]
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
         [JsonPropertyName("discount")]
-        public string Discount { get; set; }
+        public string? Discount { get; set; }
 
         [JsonPropertyName("comment")]
-        public string Comment { get; set; }
+        public string? Comment { get; set; }
     }
 
 }

@@ -20,10 +20,10 @@ namespace AxCrypt.Api.Model.Notification
         public string PushNotif_Title { get; set; } = string.Empty;
 
         [JsonPropertyName("pushnotif_subsLevel")]
-        public string PushNotif_SubsLevel { get; set; }
+        public string? PushNotif_SubsLevel { get; set; }
 
         [JsonPropertyName("pushnotif_category")]
-        public string PushNotif_Category { get; set; }
+        public string? PushNotif_Category { get; set; }
 
         [JsonPropertyName("pushnotif_imageUrl")]
         public string PushNotif_ImageUrl { get; set; } = string.Empty;

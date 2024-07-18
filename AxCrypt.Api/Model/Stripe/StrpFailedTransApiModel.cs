@@ -33,34 +33,34 @@ namespace AxCrypt.Api.Model.Stripe
         }
 
         [JsonPropertyName("chargeid")]
-        public string ChargeId { get; set; }
+        public string? ChargeId { get; set; }
 
         [JsonPropertyName("failurecode")]
-        public string FailureCode { get; set; }
+        public string? FailureCode { get; set; }
 
         [JsonPropertyName("failuremessage")]
-        public string FailureMessage { get; set; }
+        public string? FailureMessage { get; set; }
 
         [JsonPropertyName("reason")]
-        public string Reason { get; set; }
+        public string? Reason { get; set; }
 
         [JsonPropertyName("sellermessage")]
-        public string SellerMessage { get; set; }
+        public string? SellerMessage { get; set; }
 
         [JsonPropertyName("customeremail")]
-        public string CustomerEmail { get; set; }
+        public string? CustomerEmail { get; set; }
 
         [JsonPropertyName("hostedinvoiceurl")]
-        public string HostedInvoiceUrl { get; set; }
+        public string? HostedInvoiceUrl { get; set; }
 
         [JsonPropertyName("attemptcount")]
         public long AttemptCount { get; set; }
 
         [JsonPropertyName("subsmetadata")]
-        public string SubsMetadata { get; set; }
+        public string? SubsMetadata { get; set; }
 
         [JsonPropertyName("subslevel")]
-        public string SubsLevel { get; set; }
+        public string? SubsLevel { get; set; }
 
         [JsonPropertyName("paidonutc")]
         public DateTime? PaidOnUtc { get; set; }

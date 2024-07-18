@@ -25,6 +25,6 @@ namespace AxCrypt.Api.Model.PushNotification
         public string ImageUrl { get; set; } = string.Empty;
 
         [JsonPropertyName("useremailList")]
-        public IList<string> UserEmailList { get; set; }
+        public IList<string>? UserEmailList { get; set; }
     }
 }

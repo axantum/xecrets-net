@@ -21,10 +21,10 @@ namespace AxCrypt.Api.Model.PushNotification
         public string Body { get; set; } = string.Empty;
 
         [JsonPropertyName("subsLevel")]
-        public string SubsLevel { get; set; }
+        public string? SubsLevel { get; set; }
 
         [JsonPropertyName("category")]
-        public string Category { get; set; }
+        public string? Category { get; set; }
 
         [JsonPropertyName("action")]
         public string Action { get; set; } = string.Empty;
@@ -39,6 +39,6 @@ namespace AxCrypt.Api.Model.PushNotification
         public PushNotificationDispatchApiModel DispatchInfo { get; set; } = new PushNotificationDispatchApiModel();
 
         [JsonPropertyName("languages")]
-        public string Languages { get; set; }
+        public string? Languages { get; set; }
     }
 }
