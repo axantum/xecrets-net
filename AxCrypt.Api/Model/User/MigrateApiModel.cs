@@ -1,4 +1,4 @@
-﻿using AxCrypt.Api.Model.Secret;
+using AxCrypt.Api.Model.Secret;
 using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,9 @@ namespace AxCrypt.Api.Model.User
 {
     public class MigrateApiModel
     {
-        public static MigrateApiModel Empty = new MigrateApiModel(UserApiModel.Empty, new List<SecretApiModel> { SecretApiModel.Empty });
+        public static MigrateApiModel Empty = new MigrateApiModel(UserApiModel.Empty, SecretsApiModel.Empty);
 
-        public MigrateApiModel(UserApiModel user, IList<SecretApiModel> secrets)
+        public MigrateApiModel(UserApiModel user, SecretsApiModel secrets)
         {
             User = user;
             Secrets = secrets;
@@ -20,6 +20,6 @@ namespace AxCrypt.Api.Model.User
         public UserApiModel User { get; set; }
 
         [JsonPropertyName("secrets")]
-        public IList<SecretApiModel> Secrets { get; set; }
+        public SecretsApiModel Secrets { get; }
     }
 }

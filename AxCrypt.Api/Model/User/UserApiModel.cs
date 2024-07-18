@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Api.Model.User
 {
-    public class UserApiModel
+    public class UserApiModel : BaseApiModel
     {
         public static UserApiModel Empty = new UserApiModel(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue);
 
@@ -18,32 +18,32 @@ namespace AxCrypt.Api.Model.User
             PasswordSalt = passwordSalt;
             PasswordHash = passwordHash;
             ActivationCode = activationCode;
-            Created = createdUtc;
-            Updated = updatedUtc;
+            CreatedUtc = createdUtc;
+            UpdatedUtc = updatedUtc;
         }
 
         [JsonPropertyName("id")]
         public long Id { get; set; }
 
-        [JsonPropertyName("user_email")]
+        [JsonPropertyName("userEmail")]
         public string UserEmail { get; set; }
 
         [JsonPropertyName("role")]
         public string Role { get; set; }
 
-        [JsonPropertyName("password_salt")]
+        [JsonPropertyName("passwordSalt")]
         public string PasswordSalt { get; set; }
 
-        [JsonPropertyName("password_hash")]
+        [JsonPropertyName("passwordHash")]
         public string PasswordHash { get; set; }
 
-        [JsonPropertyName("provider_userkey")]
+        [JsonPropertyName("providerUserKey")]
         public string? ProviderUserKey { get; set; }
 
-        [JsonPropertyName("activation_code")]
+        [JsonPropertyName("activationCode")]
         public string ActivationCode { get; set; }
 
-        [JsonPropertyName("approved_time")]
+        [JsonPropertyName("approvedTime")]
         public DateTime ApprovedTime { get; set; }
 
         [JsonPropertyName("locale")]
@@ -55,31 +55,22 @@ namespace AxCrypt.Api.Model.User
         [JsonPropertyName("origin")]
         public int Origin { get; set; }
 
-        [JsonPropertyName("last_pwdreset_time")]
+        [JsonPropertyName("lastPwdResetTime")]
         public DateTime LastPwdResetTime { get; set; }
 
-        [JsonPropertyName("last_pwdchanged_time")]
+        [JsonPropertyName("lastPwdChangedTime")]
         public DateTime LastPwdChangedTime { get; set; }
 
-        [JsonPropertyName("last_logon_time")]
+        [JsonPropertyName("lastLogonTime")]
         public DateTime LastLogOnTime { get; set; }
 
-        [JsonPropertyName("last_lockedout_time")]
+        [JsonPropertyName("lastLockedOutTime")]
         public DateTime LastLockedOutTime { get; set; }
 
-        [JsonPropertyName("failed_pwdatmpt_count")]
+        [JsonPropertyName("failedPwdAtmptCount")]
         public int FailedPwdAtmptCount { get; set; }
 
-        [JsonPropertyName("failed_pwdatmpt_wind_start")]
+        [JsonPropertyName("failedPwdAtmptWindStart")]
         public int FailedPwdAtmptWindStart { get; set; }
-
-        [JsonPropertyName("created_utc")]
-        public DateTime Created { get; set; }
-
-        [JsonPropertyName("updated_utc")]
-        public DateTime Updated { get; set; }
-
-        [JsonPropertyName("deleted_utc")]
-        public DateTime? Deleted { get; set; }
     }
 }

@@ -55,10 +55,12 @@ namespace AxCrypt.Core.Secrets
             }
 
             Id = secret.Id;
+            DBId = secret.DBId;
             Type = secret.Type;
             Password = secret.Password;
             Card = secret.Card;
             Note = secret.Note;
+            Share = secret.Share;
             EncryptionKey = secret.EncryptionKey;
             CreatedUtc = secret.CreatedUtc;
             UpdatedUtc = secret.UpdatedUtc;
@@ -139,12 +141,12 @@ namespace AxCrypt.Core.Secrets
             set { _id = value; }
         }
 
-        private int _dbid;
+        private long _dbid;
 
         /// <summary>
         /// The unique id used for this secret
         /// </summary>
-        public int DBId
+        public long DBId
         {
             get { return _dbid; }
             set { _dbid = value; }
@@ -199,6 +201,15 @@ namespace AxCrypt.Core.Secrets
         {
             get { return _note; }
             set { _note = value; }
+        }
+
+        [AllowNull]
+        private ShareSecret _share;
+
+        public ShareSecret Share
+        {
+            get { return _share; }
+            set { _share = value; }
         }
 
         private DateTime _createdUtc = DateTime.MinValue;

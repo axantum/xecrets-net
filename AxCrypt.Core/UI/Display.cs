@@ -120,6 +120,11 @@ namespace AxCrypt.Core.UI
                 return Texts.LicensePremiumNameText;
             }
 
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.PasswordManager))
+            {
+                return Texts.PromptPasswordManager;
+            }
+
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))
             {
                 return Texts.LicenseViewerNameText;
@@ -143,6 +148,11 @@ namespace AxCrypt.Core.UI
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Premium))
             {
                 return string.Format(Texts.SubscriptionPlanValidUntilFormat, Texts.LicensePremiumNameText, New<LicensePolicy>().Expiration.ToString("d", CultureInfo.CurrentCulture));
+            }
+
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.PasswordManager))
+            {
+                return string.Format(Texts.SubscriptionPlanValidUntilFormat, Texts.PromptPasswordManager, New<LicensePolicy>().Expiration.ToString("d", CultureInfo.CurrentCulture));
             }
 
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Viewer))

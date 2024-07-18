@@ -8,7 +8,6 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Api
@@ -87,6 +86,11 @@ namespace AxCrypt.Api
         public static string PathSegmentEncode(string value)
         {
             return UrlEncode(value).Replace("%2B", "+").Replace("%40", "@");
+        }
+
+        public static string EncodePathParams(string pathParams)
+        {
+            return pathParams.Replace("+", "%2B");
         }
     }
 }

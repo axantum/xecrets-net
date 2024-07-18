@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +26,9 @@ namespace AxCrypt.Api.Model
 
         [JsonPropertyName("business_product_ids")]
         public string? BusinessProductIdsWithAmount { get; set; }
+
+        [JsonPropertyName("passwordmanager_product_id")]
+        public string PasswordManagerProductId { get; set; }
 
         [JsonPropertyName("yearly_discount_percent")]
         public int YearlyDiscountPercentage { get; set; }

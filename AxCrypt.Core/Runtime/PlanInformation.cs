@@ -54,6 +54,9 @@ namespace AxCrypt.Core.Runtime
                 case SubscriptionLevel.Premium:
                     return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
+                case SubscriptionLevel.PasswordManager:
+                    return new PlanInformation(PlanState.HasPasswordManager, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
+
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
                 default:

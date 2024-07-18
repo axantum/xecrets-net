@@ -21,5 +21,10 @@
         InactivitySignOut,
         Viewer,
         Business,
+        PasswordManager,
+        ShareSecretFree,
+        ShareSecretPasswordManager,
+        ShareSecretPremium,
+        ShareSecretBusiness,
     }
 }

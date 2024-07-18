@@ -1,4 +1,7 @@
-﻿#region Coypright and License
+﻿using System.Collections.Generic;
+using System.Linq;
+
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -30,13 +33,10 @@ using AxCrypt.Abstractions.Rest;
 using AxCrypt.Common;
 using AxCrypt.Core.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -202,6 +202,9 @@ namespace AxCrypt.Mono
                 Proxy = WebRequest.DefaultWebProxy ?? throw new InvalidOperationException("DefaultWebProxy was null.")
             };
             clientHandler.Proxy.Credentials = CredentialCache.DefaultNetworkCredentials;
+#if DEBUG
+            clientHandler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+#endif
             return new HttpClient(clientHandler);
         }
     }

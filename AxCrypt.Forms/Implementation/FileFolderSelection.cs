@@ -182,6 +182,14 @@ namespace AxCrypt.Forms.Implementation
                         ofd.Filter = Texts.FileFilterDialogFilterPatternWin.InvariantFormat("." + ofd.DefaultExt, Texts.FileFilterFileTypeAxCryptFiles, Texts.FileFilterFileTypeAllFiles);
                         break;
 
+                    case FileSelectionType.KeySharingEncrypt:
+                        ofd.Title = Texts.ShareKeysFileOpenDialogTitle;
+                        ofd.Multiselect = true;
+                        ofd.CheckFileExists = true;
+                        ofd.CheckPathExists = true;
+                        ofd.DefaultExt = New<IRuntimeEnvironment>().AxCryptExtension;
+                        break;
+
                     default:
                         break;
                 }

@@ -340,6 +340,18 @@ namespace AxCrypt.Core.UI
             set { Store(nameof(LastInAppReviewInitiated), value); }
         }
 
+        public bool EncryptFilePropertiesDateModified
+        {
+            get { return Load(nameof(EncryptFilePropertiesDateModified), true); }
+            set { Store(nameof(EncryptFilePropertiesDateModified), value); }
+        }
+
+        public bool EncryptFilePropertiesFileName
+        {
+            get { return Load(nameof(EncryptFilePropertiesFileName), false); }
+            set { Store(nameof(EncryptFilePropertiesFileName), value); }
+        }
+
         public T Load<T>(string key) where T : struct
         {
             string value = _settingsStore[key];

@@ -54,7 +54,16 @@ namespace AxCrypt.Core.Runtime
             LicenseCapability.CommunitySupport,
             LicenseCapability.EncryptNewFiles,
             LicenseCapability.EditExistingFiles,
+            LicenseCapability.ShareSecretFree,
         });
+
+        protected static readonly HashSet<LicenseCapability> PasswordManagerCapabilitySet = new HashSet<LicenseCapability>(FreeCapabilitySet.Concat(new LicenseCapability[]
+        {
+            LicenseCapability.PasswordManagement,
+            LicenseCapability.PasswordGeneration,
+            LicenseCapability.PasswordManager,
+            LicenseCapability.ShareSecretPasswordManager,
+        }));
 
         protected static readonly HashSet<LicenseCapability> PremiumCapabilitySet = new HashSet<LicenseCapability>(FreeCapabilitySet.Concat(new LicenseCapability[]
         {
@@ -70,6 +79,7 @@ namespace AxCrypt.Core.Runtime
             LicenseCapability.IncludeSubfolders,
             LicenseCapability.Premium,
             LicenseCapability.InactivitySignOut,
+            LicenseCapability.ShareSecretPremium,
         }));
 
         protected static readonly HashSet<LicenseCapability> BusinessCapabilitySet = new HashSet<LicenseCapability>(PremiumCapabilitySet.Concat(new LicenseCapability[]
@@ -169,6 +179,13 @@ namespace AxCrypt.Core.Runtime
                     }
                     break;
 
+                case SubscriptionLevel.PasswordManager:
+                    if (await TimeUntilSubscriptionExpiration(identity).Free() > TimeSpan.Zero)
+                    {
+                        return PasswordManagerCapabilities;
+                    }
+                    break;
+
                 default:
                     break;
             }
@@ -195,6 +212,8 @@ namespace AxCrypt.Core.Runtime
         }
 
         protected virtual LicenseCapabilities FreeCapabilities { get { return new LicenseCapabilities(FreeCapabilitySet); } }
+
+        protected virtual LicenseCapabilities PasswordManagerCapabilities { get { return new LicenseCapabilities(PasswordManagerCapabilitySet); } }
 
         protected virtual LicenseCapabilities PremiumCapabilities { get { return new LicenseCapabilities(PremiumCapabilitySet); } }
 

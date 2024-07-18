@@ -41,6 +41,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using static AxCrypt.Abstractions.TypeResolve;
+using AxCrypt.Core.Crypto.Asymmetric;
 
 namespace AxCrypt.Core.UI
 {
@@ -174,6 +175,12 @@ namespace AxCrypt.Core.UI
             return DoFileAsync(fileInfo, EncryptFilePreparationAsync, EncryptFileOperationAsync);
         }
 
+        public Task<FileOperationContext> EncryptFileAsync(IDataStore fileInfo, IEnumerable<UserPublicKey> userPublicKeys)
+        {
+            _eventArgs.Recipients = userPublicKeys;
+            return EncryptFileAsync(fileInfo);
+        }
+
         /// <summary>
         /// Decrypt a file, raising events as required by the situation.
         /// </summary>
@@ -302,7 +309,7 @@ namespace AxCrypt.Core.UI
                     return Task.FromResult(false);
                 }
 
-                IDataStore destinationFileInfo = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+                IDataStore destinationFileInfo = MakeEncryptableFileName(sourceFileInfo);
                 _eventArgs.SaveFileFullName = destinationFileInfo.FullName;
                 _eventArgs.OpenFileFullName = sourceFileInfo.FullName;
                 if (destinationFileInfo.IsAvailable)
@@ -335,6 +342,17 @@ namespace AxCrypt.Core.UI
             return Task.FromResult(true);
         }
 
+        private static IDataStore MakeEncryptableFileName(IDataStore sourceFileInfo)
+        {
+            IDataStore destinationStore = New<IDataStore>(AxCryptFile.MakeAxCryptFileName(sourceFileInfo));
+            if (New<UserSettings>().EncryptFilePropertiesFileName)
+            {
+                return destinationStore.CreateRandomUniqueName();
+            }
+
+            return destinationStore;
+        }
+
         private bool IsLocked(FileLock fileLock)
         {
             IDataStore dataStore = fileLock.DataStore;
@@ -363,6 +381,11 @@ namespace AxCrypt.Core.UI
             _eventArgs.CryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
             EncryptionParameters encryptionParameters = new EncryptionParameters(_eventArgs.CryptoId, _eventArgs.LogOnIdentity);
             await encryptionParameters.AddAsync(await (await GetWatchedFolderKeyShares(_eventArgs.OpenFileFullName)).ToAvailableKnownPublicKeysAsync(_eventArgs.LogOnIdentity));
+
+            if (_eventArgs.Recipients != null && _eventArgs.Recipients.Any())
+            {
+                await encryptionParameters.AddAsync(_eventArgs.Recipients);
+            }
 
             if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
             {

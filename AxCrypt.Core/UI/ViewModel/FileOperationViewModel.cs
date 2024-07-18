@@ -27,7 +27,9 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
+using AxCrypt.Core.Header;
 using AxCrypt.Core.IO;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Session;
@@ -52,6 +54,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         public IdentityViewModel IdentityViewModel { get; private set; }
 
+        public IEnumerable<UserPublicKey> Recipients { get; set; } = null!;
+
         public FileOperationViewModel(FileSystemState fileSystemState, SessionNotify sessionNotify, KnownIdentities knownIdentities, ParallelFileOperation fileOperation, IStatusChecker statusChecker, IdentityViewModel identityViewModel)
         {
             _fileSystemState = fileSystemState;
@@ -61,6 +65,7 @@ namespace AxCrypt.Core.UI.ViewModel
             _statusChecker = statusChecker;
 
             IdentityViewModel = identityViewModel;
+            Recipients = null!;
 
             DecryptFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => DecryptFilesActionAsync(files));
             EncryptFiles = new AsyncDelegateAction<IEnumerable<string>>((files) => EncryptFilesActionAsync(files));
@@ -480,13 +485,13 @@ namespace AxCrypt.Core.UI.ViewModel
                     e.Status = new FileOperationContext(string.Empty, ErrorStatus.Success);
                 }
             };
-            return controller.EncryptFileAsync(file);
+            return controller.EncryptFileAsync(file, Recipients);
         }
 
         private Task<FileOperationContext> EncryptFileWorkManyAsync(IDataStore file, IProgressContext progress)
         {
             FileOperationsController controller = EncryptFileWorkController(progress);
-            return controller.EncryptFileAsync(file);
+            return controller.EncryptFileAsync(file, Recipients);
         }
 
         private Task<FileOperationContext> VerifyAndAddActiveWorkAsync(IDataStore fullName, IProgressContext progress)

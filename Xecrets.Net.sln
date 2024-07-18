@@ -38,6 +38,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Implementation"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Implementation.Test", "AxCrypt.Mono.Test\Xecrets.Net.Implementation.Test.csproj", "{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xecrets.Net.Cryptography", "Xecrets.Net.Cryptography\Xecrets.Net.Cryptography.csproj", "{EB06D6D5-0284-4CE7-994E-806E792CEA58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24FF1F8F-29EC-4967-B0ED-7276ED9CF0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB06D6D5-0284-4CE7-994E-806E792CEA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB06D6D5-0284-4CE7-994E-806E792CEA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB06D6D5-0284-4CE7-994E-806E792CEA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB06D6D5-0284-4CE7-994E-806E792CEA58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
