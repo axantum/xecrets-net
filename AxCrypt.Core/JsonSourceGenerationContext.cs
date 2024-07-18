@@ -67,7 +67,7 @@ namespace Xecrets.Net.Core
     [JsonSerializable(typeof(AxCryptVersion))]
     [JsonSerializable(typeof(Dictionary<string, string>))]
     [JsonSerializable(typeof(NotificationApiModel))]
-    internal partial class JsonSourceGenerationContext : JsonSerializerContext
+    public partial class JsonSourceGenerationContext : JsonSerializerContext
     {
         private static JsonSerializerOptions CreateJsonSerializerOptions()
         {
