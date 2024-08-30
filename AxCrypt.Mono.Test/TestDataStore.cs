@@ -1,4 +1,34 @@
-﻿#region Coypright and License
+﻿#region Xecrets Cli Copyright and GPL License notice
+
+/*
+ * Xecrets Cli - Changes and additions copyright © 2022-2024, Svante Seleborg, All Rights Reserved.
+ *
+ * This code file is part of Xecrets Cli, but is derived from AxCrypt as licensed under GPL v3 or later.
+ * 
+ * The changes and additions are separately copyrighted and only licensed under GPL v3 or later as detailed below,
+ * unless explicitly licensed otherwise. If you use any part of these changes and additions in your software,
+ * please see https://www.gnu.org/licenses/ for details of what this means for you.
+ * 
+ * Warning: If you are using the original AxCrypt code under a non-GPL v3 or later license, these changes and additions
+ * are not included in that license. If you use these changes under those circumstances, all your code becomes subject to
+ * the GPL v3 or later license, according to the principle of strong copyleft as applied to GPL v3 or later.
+ *
+ * Xecrets Cli is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * Xecrets Cli is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Xecrets Cli. If not, see
+ * https://www.gnu.org/licenses/.
+ *
+ * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
+ * suggestions and contributions, as well for commit history detailing changes and additions that fall under the strong
+ * copyleft provisions mentioned above. You may also visit https://www.axantum.com for more information about the author.
+*/
+
+#endregion Xecrets Cli Copyright and GPL License notice
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -82,9 +112,9 @@ namespace AxCrypt.Mono.Test
         [Test]
         public static void TestDataStoreInvalidPath()
         {
-            if (New<IPlatform>().Platform == Platform.MacOsx)
+            if (New<IPlatform>().Platform is Platform.MacOsx or Platform.Linux)
             {
-                Assert.That(true, Is.True, "Mac OS X File System allows all characters, so this test makes no sense there.");
+                Assert.That(true, Is.True, "Mac OS X and Linux File System allows all characters, so this test makes no sense there.");
                 return;
             }
 
@@ -162,14 +192,14 @@ namespace AxCrypt.Mono.Test
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
                 ds.SetFileTimes(dateTime, dateTime + new TimeSpan(3, 0, 0), dateTime + new TimeSpan(5, 0, 0));
-                // if (OS.Current.Platform == Platform.WindowsDesktop)
-                // {
-                     Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
-                // }
-                // else
-                // {
-                //     Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
-                // }
+                if (OS.Current.Platform is Platform.WindowsDesktop or Platform.MacOsx)
+                {
+                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
+                }
+                else
+                {
+                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
+                }
                 Assert.That(ds.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(3, 0, 0)), "The last access time should be as set.");
                 Assert.That(ds.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The last write time should be as set.");
 

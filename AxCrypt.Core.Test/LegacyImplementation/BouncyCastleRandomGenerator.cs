@@ -25,6 +25,8 @@
 
 #endregion Coypright and License
 
+using AxCrypt.Core;
+
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
@@ -33,7 +35,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AxCrypt.Core.Crypto.Asymmetric
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     internal class BouncyCastleRandomGenerator : Org.BouncyCastle.Crypto.Prng.IRandomGenerator
     {

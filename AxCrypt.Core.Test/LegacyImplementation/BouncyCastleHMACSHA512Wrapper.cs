@@ -26,8 +26,10 @@
 #endregion Coypright and License
 
 using AxCrypt.Abstractions.Algorithm;
-using Org.BouncyCastle.Crypto;
+using AxCrypt.Core.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Macs;
+using Org.BouncyCastle.Crypto.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -35,15 +37,57 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AxCrypt.Core.Algorithm.Implementation
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
-    internal class BouncyCastleSha256Wrapper : Sha256
+    internal class BouncyCastleHmacSha512Wrapper : HMACSHA512
     {
-        private IDigest _hashAlgorithm;
+        private HMac _hmac;
 
-        public BouncyCastleSha256Wrapper()
+        public BouncyCastleHmacSha512Wrapper()
         {
-            _hashAlgorithm = new Sha256Digest();
+            _hmac = new HMac(new Sha512Digest());
+        }
+
+        public override HMAC Initialize(ISymmetricKey key)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            SetKey(key.GetBytes());
+            return this;
+        }
+
+        public override string HashName
+        {
+            get
+            {
+                return _hmac.AlgorithmName;
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        [AllowNull]
+        private byte[] _key;
+
+        public override byte[] Key()
+        {
+            return (byte[])_key.Clone();
+        }
+
+        public override void SetKey(byte[] value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            _key = (byte[])value.Clone();
+            _hmac.Init(new KeyParameter(_key));
         }
 
         public override byte[] ComputeHash(byte[] buffer)
@@ -53,31 +97,20 @@ namespace AxCrypt.Core.Algorithm.Implementation
                 throw new ArgumentNullException("buffer");
             }
 
-            return ComputeHash(buffer, 0, buffer.Length);
+            _hmac.Init(new KeyParameter(_key));
+            _hmac.BlockUpdate(buffer, 0, buffer.Length);
+            return Hash();
         }
 
         public override byte[] ComputeHash(byte[] buffer, int offset, int count)
         {
-            _hashAlgorithm.Reset();
-            _hashAlgorithm.BlockUpdate(buffer, offset, count);
-            return Hash();
+            _hmac.BlockUpdate(buffer, offset, count);
+            return buffer;
         }
 
         public override byte[] ComputeHash(Stream inputStream)
         {
-            if (inputStream == null)
-            {
-                throw new ArgumentNullException("inputStream");
-            }
-
-            _hashAlgorithm.Reset();
-            byte[] block = new byte[_hashAlgorithm.GetByteLength()];
-            int count;
-            while ((count = inputStream.Read(block, 0, block.Length)) > 0)
-            {
-                _hashAlgorithm.BlockUpdate(block, 0, count);
-            }
-            return Hash();
+            throw new NotImplementedException();
         }
 
         [AllowNull]
@@ -87,20 +120,24 @@ namespace AxCrypt.Core.Algorithm.Implementation
         {
             if (_hash == null)
             {
-                _hash = new byte[_hashAlgorithm.GetDigestSize()];
-                _hashAlgorithm.DoFinal(_hash, 0);
+                _hash = new byte[OutputBlockSize];
+                _ = _hmac.DoFinal(_hash, 0);
             }
-            return _hash;
+            return (byte[])_hash.Clone();
         }
 
         public override int HashSize
         {
-            get { return _hashAlgorithm.GetDigestSize(); }
+            get
+            {
+                return _hmac.GetMacSize() * 8;
+            }
         }
 
         public override void Initialize()
         {
-            _hashAlgorithm.Reset();
+            _hmac.Init(new KeyParameter(_key));
+            _hash = null;
         }
 
         public override bool CanReuseTransform
@@ -115,23 +152,23 @@ namespace AxCrypt.Core.Algorithm.Implementation
 
         public override int InputBlockSize
         {
-            get { return _hashAlgorithm.GetByteLength(); }
+            get { return _hmac.GetUnderlyingDigest().GetByteLength(); }
         }
 
         public override int OutputBlockSize
         {
-            get { return _hashAlgorithm.GetDigestSize(); }
+            get { return _hmac.GetUnderlyingDigest().GetDigestSize(); }
         }
 
         public override int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[]? outputBuffer, int outputOffset)
         {
-            _hashAlgorithm.BlockUpdate(inputBuffer, inputOffset, inputCount);
+            _hmac.BlockUpdate(inputBuffer, inputOffset, inputCount);
             return inputCount;
         }
 
         public override byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
         {
-            _hashAlgorithm.BlockUpdate(inputBuffer, inputOffset, inputCount);
+            _hmac.BlockUpdate(inputBuffer, inputOffset, inputCount);
             return Hash();
         }
     }

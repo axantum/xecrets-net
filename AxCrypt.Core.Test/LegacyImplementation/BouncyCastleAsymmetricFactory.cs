@@ -27,9 +27,9 @@
 
 using System.Text.Json.Serialization;
 
-using Xecrets.Net.Core.Crypto.Asymmetric;
+using AxCrypt.Core.Crypto.Asymmetric;
 
-namespace AxCrypt.Core.Crypto.Asymmetric
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     public class BouncyCastleAsymmetricFactory : IAsymmetricFactory
     {
@@ -72,11 +72,6 @@ namespace AxCrypt.Core.Crypto.Asymmetric
         public IAsymmetricKeyPair CreateKeyPair(byte[] n, byte[] e, byte[] d, byte[] p, byte[] q, byte[] dp, byte[] dq, byte[] qinv)
         {
             return new BouncyCastleKeyPair(n, e, d, p, q, dp, dq, qinv);
-        }
-
-        public ICryptoHash CreatePaddingHash(int keyBits)
-        {
-            return new BouncyCastlePaddingHash(keyBits);
         }
     }
 }

@@ -25,32 +25,57 @@
 
 #endregion Coypright and License
 
-using AxCrypt.Abstractions.Algorithm;
-using Org.BouncyCastle.Crypto.Digests;
-using Org.BouncyCastle.Crypto.Prng;
-using Org.BouncyCastle.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace AxCrypt.Core.Algorithm.Implementation
+using AxCrypt.Core.Crypto;
+
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
-    internal class BouncyCastleRandomNumberGenerator : RandomNumberGenerator
+    internal class BouncyCastleDigest : Org.BouncyCastle.Crypto.IDigest
     {
-        private SecureRandom _rng;
+        private ICryptoHash _cryptoHash;
 
-        public BouncyCastleRandomNumberGenerator()
+        public BouncyCastleDigest(ICryptoHash cryptoHash)
         {
-            _rng = new SecureRandom(new DigestRandomGenerator(new Sha512Digest()));
-            _rng.SetSeed(SecureRandom.GetSeed(32));
+            _cryptoHash = cryptoHash;
         }
 
-        public override void GetBytes(byte[] data)
+        public string AlgorithmName
         {
-            _rng.NextBytes(data);
-            _rng.SetSeed(SecureRandom.GetSeed(16));
+            get { return _cryptoHash.AlgorithmName; }
+        }
+
+        public int GetDigestSize()
+        {
+            return _cryptoHash.HashSize;
+        }
+
+        public int GetByteLength()
+        {
+            return _cryptoHash.BufferLength;
+        }
+
+        public void Update(byte input)
+        {
+            _cryptoHash.Update(input);
+        }
+
+        public void BlockUpdate(byte[] input, int inOff, int length)
+        {
+            _cryptoHash.BlockUpdate(input, inOff, length);
+        }
+
+        public int DoFinal(byte[] output, int outOff)
+        {
+            return _cryptoHash.DoFinal(output, outOff);
+        }
+
+        public void Reset()
+        {
+            _cryptoHash.Reset();
         }
     }
 }

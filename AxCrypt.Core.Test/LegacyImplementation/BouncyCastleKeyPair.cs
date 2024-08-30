@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using AxCrypt.Api.Model;
+using AxCrypt.Core.Crypto.Asymmetric;
 
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
@@ -36,7 +37,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AxCrypt.Core.Crypto.Asymmetric
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     internal class BouncyCastleKeyPair : IAsymmetricKeyPair
     {

@@ -36,7 +36,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AxCrypt.Core.Algorithm.Implementation
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     internal class BouncyCastleAesTransform : ICryptoTransform
     {
@@ -162,9 +162,9 @@ namespace AxCrypt.Core.Algorithm.Implementation
                 _cipher.Reset();
                 return final;
             }
-            catch (CryptoException ce)
+            catch (Org.BouncyCastle.Crypto.CryptoException ce)
             {
-                throw new Core.Runtime.CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicError, ce);
+                throw new AxCrypt.Core.Runtime.CryptoException("Error in cryptographic transformation.", ErrorStatus.CryptographicError, ce);
             }
         }
 

@@ -1,4 +1,34 @@
-﻿#region Coypright and License
+﻿#region Xecrets Cli Copyright and GPL License notice
+
+/*
+ * Xecrets Cli - Changes and additions copyright © 2022-2024, Svante Seleborg, All Rights Reserved.
+ *
+ * This code file is part of Xecrets Cli, but is derived from AxCrypt as licensed under GPL v3 or later.
+ * 
+ * The changes and additions are separately copyrighted and only licensed under GPL v3 or later as detailed below,
+ * unless explicitly licensed otherwise. If you use any part of these changes and additions in your software,
+ * please see https://www.gnu.org/licenses/ for details of what this means for you.
+ * 
+ * Warning: If you are using the original AxCrypt code under a non-GPL v3 or later license, these changes and additions
+ * are not included in that license. If you use these changes under those circumstances, all your code becomes subject to
+ * the GPL v3 or later license, according to the principle of strong copyleft as applied to GPL v3 or later.
+ *
+ * Xecrets Cli is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * Xecrets Cli is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Xecrets Cli. If not, see
+ * https://www.gnu.org/licenses/.
+ *
+ * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
+ * suggestions and contributions, as well for commit history detailing changes and additions that fall under the strong
+ * copyleft provisions mentioned above. You may also visit https://www.axantum.com for more information about the author.
+*/
+
+#endregion Xecrets Cli Copyright and GPL License notice
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2017, Svante Seleborg, All Rights Reserved
@@ -36,6 +66,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Xecrets.Net.Core.Test.LegacyImplementation;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
@@ -57,11 +89,9 @@ namespace AxCrypt.Core.Test
         [SetUp]
         public void Setup()
         {
-            SetupAssembly.AssemblySetup();
-            SetupAssembly.AssemblySetupCrypto(_cryptoImplementation);
+            SetupAssembly.AssemblySetup(_cryptoImplementation);
 
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakePseudoRandomGenerator());
-            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("MD5"));
         }
 
         [TearDown]
@@ -73,7 +103,7 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestSignVerify()
         {
-            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(1024);
 
             Signer signer = new Signer(keyPair.PrivateKey);
             Verifier verifier = new Verifier(keyPair.PublicKey);
@@ -87,7 +117,7 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestSignVerifyNormalization()
         {
-            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair = New<IAsymmetricFactory>().CreateKeyPair(1024);
 
             Signer signer = new Signer(keyPair.PrivateKey);
             Verifier verifier = new Verifier(keyPair.PublicKey);
@@ -107,8 +137,8 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestSignVerifyFailWrongKey()
         {
-            IAsymmetricKeyPair keyPair1 = New<IAsymmetricFactory>().CreateKeyPair(512);
-            IAsymmetricKeyPair keyPair2 = New<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair1 = New<IAsymmetricFactory>().CreateKeyPair(1024);
+            IAsymmetricKeyPair keyPair2 = New<IAsymmetricFactory>().CreateKeyPair(1024);
 
             Signer signer = new Signer(keyPair1.PrivateKey);
             Verifier verifier = new Verifier(keyPair2.PublicKey);
@@ -122,7 +152,7 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestSignVerifyFailWrongData()
         {
-            IAsymmetricKeyPair keyPair1 = New<IAsymmetricFactory>().CreateKeyPair(512);
+            IAsymmetricKeyPair keyPair1 = New<IAsymmetricFactory>().CreateKeyPair(1024);
 
             Signer signer = new Signer(keyPair1.PrivateKey);
             Verifier verifier = new Verifier(keyPair1.PublicKey);

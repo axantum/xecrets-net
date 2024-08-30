@@ -26,6 +26,7 @@
 #endregion Coypright and License
 
 using AxCrypt.Abstractions.Algorithm;
+using AxCrypt.Core;
 using AxCrypt.Core.Algorithm;
 using AxCrypt.Core.Portable;
 using System;
@@ -33,7 +34,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace AxCrypt.Core.Algorithm.Implementation
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     internal class BouncyCastleAesWrapper : Aes
     {

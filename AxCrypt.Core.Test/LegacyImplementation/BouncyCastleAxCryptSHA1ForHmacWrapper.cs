@@ -25,31 +25,32 @@
 
 #endregion Coypright and License
 
+using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Portable;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Macs;
+using Org.BouncyCastle.Crypto.Parameters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics.CodeAnalysis;
 
-namespace AxCrypt.Core.Crypto.Asymmetric
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
-    internal class BouncyCastlePaddingHash : ICryptoHash
+    /// <summary>
+    /// Used to calculate HMACSHA1 the AxCrypt way.
+    /// </summary>
+    /// <remarks>
+    /// The standard implementation uses a block size of 64, which is really only relevant
+    /// as to how to treat the key. AxCrypt uses a block size of 20. This class is required because
+    /// the standard implementation does not have the GetByteLength function virtual.
+    /// </remarks>
+    internal sealed class BouncyCastleAxCryptSha1ForHmacWrapper : IDigest
     {
-        private Org.BouncyCastle.Crypto.IDigest _digest;
+        private IDigest _digest;
 
-        public BouncyCastlePaddingHash(int keyBits)
+        public BouncyCastleAxCryptSha1ForHmacWrapper(IDigest digest)
         {
-            if (keyBits < 1024)
-            {
-                _digest = new Org.BouncyCastle.Crypto.Digests.MD5Digest();
-                return;
-            }
-            if (keyBits < 2048)
-            {
-                _digest = new Org.BouncyCastle.Crypto.Digests.Sha256Digest();
-                return;
-            }
-
-            _digest = new Org.BouncyCastle.Crypto.Digests.Sha512Digest();
+            _digest = digest;
         }
 
         public string AlgorithmName
@@ -57,14 +58,14 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             get { return _digest.AlgorithmName; }
         }
 
-        public int HashSize
+        public int GetDigestSize()
         {
-            get { return _digest.GetDigestSize(); }
+            return _digest.GetDigestSize();
         }
 
-        public int BufferLength
+        public int GetByteLength()
         {
-            get { return _digest.GetByteLength(); }
+            return _digest.GetDigestSize();
         }
 
         public void Update(byte input)

@@ -2,23 +2,33 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;8625;8618;8601;8604;8600;8602;8622;8603;8619;8620;8631</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;8625;8618;8601;8604;8600;8602;8622;8603;8619;8620;8631</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="resources\david-copperfield-txt.axx" />
     <None Remove="resources\Frankenstein-txt-AES256.axx" />
     <None Remove="resources\Frankenstein-txt-V2AES128.axx" />
     <None Remove="resources\short-txt-AES256.axx" />
     <None Remove="resources\short-txt-V2AES128.axx" />
     <None Remove="resources\snow-jpg-AES256.axx" />
     <None Remove="resources\snow-jpg-V2AES128.axx" />
+    <None Remove="resources\UserAccounts.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="resources\david-copperfield-txt.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-AES256.axx" />
     <EmbeddedResource Include="resources\Frankenstein-txt-V2AES128.axx" />
     <EmbeddedResource Include="resources\short-txt-AES256.axx" />
     <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
     <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
+    <EmbeddedResource Include="resources\UserAccounts.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
@@ -32,6 +42,7 @@
     <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
     <ProjectReference Include="..\AxCrypt.Fake\Xecrets.Net.Fake.csproj" />
     <ProjectReference Include="..\AxCrypt.Mono\Xecrets.Net.Implementation.csproj" />
+    <ProjectReference Include="..\BouncyCastle.AxCrypt\Xecrets.Net.BouncyCastle.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">

@@ -1,4 +1,34 @@
-﻿#region Coypright and License
+﻿#region Xecrets Cli Copyright and GPL License notice
+
+/*
+ * Xecrets Cli - Changes and additions copyright © 2022-2024, Svante Seleborg, All Rights Reserved.
+ *
+ * This code file is part of Xecrets Cli, but is derived from AxCrypt as licensed under GPL v3 or later.
+ * 
+ * The changes and additions are separately copyrighted and only licensed under GPL v3 or later as detailed below,
+ * unless explicitly licensed otherwise. If you use any part of these changes and additions in your software,
+ * please see https://www.gnu.org/licenses/ for details of what this means for you.
+ * 
+ * Warning: If you are using the original AxCrypt code under a non-GPL v3 or later license, these changes and additions
+ * are not included in that license. If you use these changes under those circumstances, all your code becomes subject to
+ * the GPL v3 or later license, according to the principle of strong copyleft as applied to GPL v3 or later.
+ *
+ * Xecrets Cli is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+ *
+ * Xecrets Cli is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with Xecrets Cli. If not, see
+ * https://www.gnu.org/licenses/.
+ *
+ * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
+ * suggestions and contributions, as well for commit history detailing changes and additions that fall under the strong
+ * copyleft provisions mentioned above. You may also visit https://www.axantum.com for more information about the author.
+*/
+
+#endregion Xecrets Cli Copyright and GPL License notice
+#region Coypright and License
 
 /*
  * AxCrypt - Copyright 2016, Svante Seleborg, All Rights Reserved
@@ -36,7 +66,6 @@ using AxCrypt.Core.UI.ViewModel;
 using AxCrypt.Core.Portable;
 using AxCrypt.Mono.Portable;
 using AxCrypt.Core.Crypto.Asymmetric;
-using AxCrypt.Core.Algorithm.Implementation;
 using AxCrypt.Mono;
 using AxCrypt.Abstractions;
 using AxCrypt.Core.Service;
@@ -51,6 +80,8 @@ using AxCrypt.Abstractions.Algorithm;
 using Xecrets.Net.Implementation.Cryptography;
 using Xecrets.Net.Api.Implementation;
 using Xecrets.Net.Core;
+using Xecrets.Net.Core.Crypto.Asymmetric;
+using Xecrets.Net.Core.Test.LegacyImplementation;
 
 namespace AxCrypt.Core.Test
 {
@@ -60,11 +91,13 @@ namespace AxCrypt.Core.Test
     [SuppressMessage("Microsoft.Design", "CA1053:StaticHolderTypesShouldNotHaveConstructors", Justification = "NUnit requires there to be a parameterless constructor.")]
     internal static class SetupAssembly
     {
-        public static void AssemblySetup()
+        public static void AssemblySetup(CryptoImplementation cryptoImplementation)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
             IDataStore knownPublicKeysStore = new FakeInMemoryDataStoreItem("knownpublickeys.txt");
+
+            TypeMap.Register.Clear();
 
             TypeMap.Register.Singleton<INow>(() => new FakeNow());
             TypeMap.Register.Singleton<IReport>(() => new FakeReport());
@@ -85,7 +118,6 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
             TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
-            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<ICache>(() => new FakeCache());
             TypeMap.Register.Singleton<AxCryptOnlineState>(() => new AxCryptOnlineState());
@@ -117,20 +149,21 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.New<string, IFileWatcher>((path) => new FakeFileWatcher(path));
             TypeMap.Register.New<IterationCalculator>(() => new FakeIterationCalculator());
             TypeMap.Register.New<IProtectedData>(() => new FakeDataProtection());
-            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
+            TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext(New<IAsymmetricFactory>().GetConverters())));
             TypeMap.Register.New<LogOnIdentity, IAccountService>((LogOnIdentity identity) => new DeviceAccountService(new LocalAccountService(identity, Resolve.WorkFolder.FileInfo), new NullAccountService(identity)));
             TypeMap.Register.New<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
             TypeMap.Register.New<GlobalApiClient>(() => new GlobalApiClient(Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptApiClient>(() => new AxCryptApiClient(Resolve.KnownIdentities.DefaultEncryptionIdentity.ToRestIdentity(), Resolve.UserSettings.RestApiBaseUrl, Resolve.UserSettings.ApiTimeout));
             TypeMap.Register.New<AxCryptUpdateCheck>(() => new AxCryptUpdateCheck(New<IVersion>().Current));
             TypeMap.Register.New<ISingleThread>(() => new SingleThread());
+            AssemblySetupCrypto(cryptoImplementation);
 
             Resolve.UserSettings.SetKeyWrapIterations(new V1Aes128CryptoFactory().CryptoId, 1234);
             Resolve.UserSettings.ThumbprintSalt = Salt.Zero;
             Resolve.Log.SetLevel(LogLevel.Debug);
         }
 
-        public static void AssemblySetupCrypto(CryptoImplementation cryptoImplementation)
+        private static void AssemblySetupCrypto(CryptoImplementation cryptoImplementation)
         {
             switch (cryptoImplementation)
             {
@@ -141,6 +174,7 @@ namespace AxCrypt.Core.Test
                     TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    TypeMap.Register.Singleton<IAsymmetricFactory>(() => new NetAsymmetricFactory());
                     break;
 
                 case CryptoImplementation.WindowsDesktop:
@@ -150,6 +184,7 @@ namespace AxCrypt.Core.Test
                     TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
                     TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    TypeMap.Register.Singleton<IAsymmetricFactory>(() => new NetAsymmetricFactory());
                     break;
 
                 case CryptoImplementation.BouncyCastle:
@@ -159,6 +194,8 @@ namespace AxCrypt.Core.Test
                     TypeMap.Register.New<CryptoStreamBase>(() => BouncyCastleCryptoFactory.CryptoStream());
                     TypeMap.Register.New<Sha1>(() => BouncyCastleCryptoFactory.Sha1());
                     TypeMap.Register.New<Sha256>(() => BouncyCastleCryptoFactory.Sha256());
+                    TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
+                    TypeMap.Register.Singleton<IPaddingHashFactory>(() => new BouncyCastlePaddingHashFactory());
                     break;
             }
         }

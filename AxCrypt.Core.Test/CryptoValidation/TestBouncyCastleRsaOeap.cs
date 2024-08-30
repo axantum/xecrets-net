@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using Xecrets.Net.Core.Test.LegacyImplementation;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.Test.CryptoValidation
@@ -75,7 +77,7 @@ namespace AxCrypt.Core.Test.CryptoValidation
     /// # =============================================
     /// </summary>
     [TestFixture]
-    public static class TestRsaOeap
+    public static class TestBouncyCastleRsaOeap
     {
         internal class InjectedBytesRandomGenerator : IRandomGenerator
         {
@@ -104,7 +106,8 @@ namespace AxCrypt.Core.Test.CryptoValidation
         [SetUp]
         public static void Setup()
         {
-            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new FakeAsymmetricFactory("SHA1"));
+            TypeMap.Register.Singleton<IPaddingHashFactory>(() => new FakePaddingHashFactory("SHA1"));
+            TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
         }
 
         [TearDown]

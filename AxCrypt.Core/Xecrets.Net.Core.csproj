@@ -18,7 +18,6 @@
     <ProjectReference Include="..\AxCrypt.Api\Xecrets.Net.Api.csproj" />
     <ProjectReference Include="..\AxCrypt.Common\Xecrets.Net.Common.csproj" />
     <ProjectReference Include="..\AxCrypt.Content\Xecrets.Net.Content.csproj" />
-    <ProjectReference Include="..\BouncyCastle.AxCrypt\Xecrets.Net.BouncyCastle.csproj" />
     <ProjectReference Include="..\Xecrets.Net.Cryptography\Xecrets.Net.Cryptography.csproj" />
   </ItemGroup>
   <ItemGroup>

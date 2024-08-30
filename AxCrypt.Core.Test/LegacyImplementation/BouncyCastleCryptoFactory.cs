@@ -35,7 +35,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 
-namespace AxCrypt.Core.Algorithm.Implementation
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     public sealed class BouncyCastleCryptoFactory
     {

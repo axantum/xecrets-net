@@ -28,13 +28,13 @@ using System.Text.Json.Serialization;
 
 using AxCrypt.Core.Crypto.Asymmetric;
 
-namespace Xecrets.Net.Core.Crypto.Asymmetric
+namespace Xecrets.Net.Core.Test.LegacyImplementation
 {
     internal class BouncyCastleKeyPairJsonConverter : JsonConverter<IAsymmetricKeyPair>
     {
         public override IAsymmetricKeyPair? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            var context = JsonSourceGenerationContext.CreateJsonSerializerContext();
+            var context = JsonSourceGenerationContext.CreateJsonSerializerContext([new BouncyCastlePublicKeyJsonConverter(), new BouncyCastlePrivateKeyJsonConverter()]);
 
             BouncyCastlePublicKey? publicKey = null;
             BouncyCastlePrivateKey? privateKey = null;
@@ -67,7 +67,7 @@ namespace Xecrets.Net.Core.Crypto.Asymmetric
 
         public override void Write(Utf8JsonWriter writer, IAsymmetricKeyPair value, JsonSerializerOptions options)
         {
-            var context = JsonSourceGenerationContext.CreateJsonSerializerContext();
+            var context = JsonSourceGenerationContext.CreateJsonSerializerContext([new BouncyCastlePublicKeyJsonConverter(), new BouncyCastlePrivateKeyJsonConverter()]);
 
             writer.WriteStartObject();
             writer.WritePropertyName("publickey");
