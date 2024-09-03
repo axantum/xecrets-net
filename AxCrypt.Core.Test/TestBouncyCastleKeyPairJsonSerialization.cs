@@ -48,14 +48,14 @@ namespace Xecrets.Net.Core.Test
             TypeMap.Register.Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext()));
         }
 
-        private const string _keyPairTest = @"{
+        private readonly string _keyPairTest = @"{
   ""publickey"": {
-    ""pem"": ""-----BEGIN PUBLIC KEY-----\r\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJFfzw3x4wXq8nUwMqGvurbB\u002B9SqWOlD\r\nD7d0r\u002BViluKok9\u002BcSttlQWTxU0pPaylkYrf5OMr2WexQQRMYoJJ/pOkCAwEAAQ==\r\n-----END PUBLIC KEY-----\r\n""
+    ""pem"": ""-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJFfzw3x4wXq8nUwMqGvurbB\u002B9SqWOlD\nD7d0r\u002BViluKok9\u002BcSttlQWTxU0pPaylkYrf5OMr2WexQQRMYoJJ/pOkCAwEAAQ==\n-----END PUBLIC KEY-----\n""
   },
   ""privatekey"": {
-    ""pem"": ""-----BEGIN RSA PRIVATE KEY-----\r\nMIIBOQIBAAJBAJFfzw3x4wXq8nUwMqGvurbB\u002B9SqWOlDD7d0r\u002BViluKok9\u002BcSttl\r\nQWTxU0pPaylkYrf5OMr2WexQQRMYoJJ/pOkCAwEAAQJAL6Ywrshu\u002BhyVVhXzMo3v\r\n7EFO8tjXBbYGa8JieRREkovgKhlWLR\u002BKQCcdfmEXM4zi7j13WVFG9C/Tzb5P7caS\r\ndQIhAOhpKmpsbW5/cHFzc3Rxdmd4OXt7eH1uf8CBgocdHgnnAiEAoCEiIiQhJjco\r\naSsrLCkuPzBxMjM0NTY3eDg6OzU2IK8CIBvgiXLsgI/Rf3ZMR9v\u002BxBoTJKn4HHLH\r\nL1Gy9yonxvOfAiAgA9/eMZkLGfYTaNUd5DHh4l6PadtjVC6s85j443\u002Bp8wIgeq/6\r\nsDt16\u002B14ryh2Ahbn9Cj\u002BO63kkrIIdHG20AsNYPM=\r\n-----END RSA PRIVATE KEY-----\r\n""
+    ""pem"": ""-----BEGIN RSA PRIVATE KEY-----\nMIIBOQIBAAJBAJFfzw3x4wXq8nUwMqGvurbB\u002B9SqWOlDD7d0r\u002BViluKok9\u002BcSttl\nQWTxU0pPaylkYrf5OMr2WexQQRMYoJJ/pOkCAwEAAQJAL6Ywrshu\u002BhyVVhXzMo3v\n7EFO8tjXBbYGa8JieRREkovgKhlWLR\u002BKQCcdfmEXM4zi7j13WVFG9C/Tzb5P7caS\ndQIhAOhpKmpsbW5/cHFzc3Rxdmd4OXt7eH1uf8CBgocdHgnnAiEAoCEiIiQhJjco\naSsrLCkuPzBxMjM0NTY3eDg6OzU2IK8CIBvgiXLsgI/Rf3ZMR9v\u002BxBoTJKn4HHLH\nL1Gy9yonxvOfAiAgA9/eMZkLGfYTaNUd5DHh4l6PadtjVC6s85j443\u002Bp8wIgeq/6\nsDt16\u002B14ryh2Ahbn9Cj\u002BO63kkrIIdHG20AsNYPM=\n-----END RSA PRIVATE KEY-----\n""
   }
-}";
+}".Replace("\n", Environment.NewLine);
 
         [Test]
         public void TestSerialize()

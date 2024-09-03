@@ -162,14 +162,14 @@ namespace AxCrypt.Mono.Test
 
                 DateTime dateTime = DateTime.Parse("2012-02-29 12:00:00", CultureInfo.GetCultureInfo("sv-SE"), DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
                 ds.SetFileTimes(dateTime, dateTime + new TimeSpan(3, 0, 0), dateTime + new TimeSpan(5, 0, 0));
-                if (OS.Current.Platform == Platform.WindowsDesktop)
-                {
-                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
-                }
-                else
-                {
-                    Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
-                }
+                // if (OS.Current.Platform == Platform.WindowsDesktop)
+                // {
+                     Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime), "The creation time should be as set.");
+                // }
+                // else
+                // {
+                //     Assert.That(ds.CreationTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The creation time should be as last write time due to bug in Mono.");
+                // }
                 Assert.That(ds.LastAccessTimeUtc, Is.EqualTo(dateTime + new TimeSpan(3, 0, 0)), "The last access time should be as set.");
                 Assert.That(ds.LastWriteTimeUtc, Is.EqualTo(dateTime + new TimeSpan(5, 0, 0)), "The last write time should be as set.");
 
