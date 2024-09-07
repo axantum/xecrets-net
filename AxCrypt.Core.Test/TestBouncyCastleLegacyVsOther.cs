@@ -355,7 +355,7 @@ internal class TestBouncyCastleLegacyVsOther(CryptoImplementation cryptoImplemen
 
         AxCryptFile.Decrypt(encryptedStream, decryptedStream, logOnIdentity, "Testing...", new ProgressContext());
 
-        string decryptedPlaintext = Encoding.UTF8.GetString(decryptedStream.ToArray());
+        string decryptedPlaintext = Encoding.UTF8.GetString(decryptedStream.ToArray()).ReplaceLineEndings();
 
         Assert.That(decryptedPlaintext, Is.EqualTo(Resources.david_copperfield));
 
@@ -367,7 +367,7 @@ internal class TestBouncyCastleLegacyVsOther(CryptoImplementation cryptoImplemen
 
         AxCryptFile.Decrypt(encryptedStream, decryptedStream, logOnIdentity, "Testing...", new ProgressContext());
 
-        decryptedPlaintext = Encoding.UTF8.GetString(decryptedStream.ToArray());
+        decryptedPlaintext = Encoding.UTF8.GetString(decryptedStream.ToArray()).ReplaceLineEndings();
 
         Assert.That(decryptedPlaintext, Is.EqualTo(Resources.david_copperfield));
     }
