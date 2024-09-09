@@ -67,7 +67,13 @@ namespace AxCrypt.Core.IO
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            int bytes = base.Read(buffer, offset, count);
+            ArgumentNullException.ThrowIfNull(buffer);
+
+            int bytes = 0;
+            if (count > 0)
+            {
+                bytes = base.Read(buffer, offset, count);
+            }
 
             _progress.AddCount(bytes);
             return bytes;
