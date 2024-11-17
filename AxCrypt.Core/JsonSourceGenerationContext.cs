@@ -68,8 +68,6 @@ using AxCrypt.Core.UI;
 
 using Xecrets.Net.Core.IO;
 
-using static AxCrypt.Abstractions.TypeResolve;
-
 namespace Xecrets.Net.Core
 {
     [JsonSerializable(typeof(IAsymmetricKeyPair))]
@@ -101,16 +99,19 @@ namespace Xecrets.Net.Core
     {
         private static JsonSerializerOptions CreateJsonSerializerOptions(IEnumerable<JsonConverter> converters)
         {
-            var options = new JsonSerializerOptions
+            JsonSerializerOptions options = new()
             {
                 WriteIndented = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             };
-            foreach (JsonConverter converter in converters) {
+            foreach (JsonConverter converter in converters)
+            {
                 options.Converters.Add(converter);
             }
             options.Converters.Add(new EmailAddressSystemTextJsonConverter());
-            options.Converters.Add(new JsonStringEnumConverter());
-
+            options.Converters.Add(new JsonStringEnumConverter<AccountStatus>());
+            options.Converters.Add(new JsonStringEnumConverter<SubscriptionLevel>());
             return options;
         }
 

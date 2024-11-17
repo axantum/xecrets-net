@@ -77,10 +77,10 @@ namespace AxCrypt.Core.Test
         private const string KeyPairPem = """
             {
               "publickey": {
-                "pem": "-----BEGIN PUBLIC KEY-----\r\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKbdJI2IXKsZiiuiD9F\u002BxR/Bp5tcwd7k\r\nAIcLP0eOo3louRnr377FKv2QpzuxP3HE5kF9wf7C1PDykhbAbop7DJECAwEAAQ==\r\n-----END PUBLIC KEY-----\r\n"
+                "pem": "-----BEGIN PUBLIC KEY-----\r\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKbdJI2IXKsZiiuiD9F+xR/Bp5tcwd7k\r\nAIcLP0eOo3louRnr377FKv2QpzuxP3HE5kF9wf7C1PDykhbAbop7DJECAwEAAQ==\r\n-----END PUBLIC KEY-----\r\n"
               },
               "privatekey": {
-                "pem": "-----BEGIN RSA PRIVATE KEY-----\r\nMIIBOwIBAAJBAKbdJI2IXKsZiiuiD9F\u002BxR/Bp5tcwd7kAIcLP0eOo3louRnr377F\r\nKv2QpzuxP3HE5kF9wf7C1PDykhbAbop7DJECAwEAAQJBAKUsWKeFKP3xbRVd\u002BbyN\r\neUHDJ08iFYK2PVNwLbZ\u002BmpFtHwovjXMGpoqP8k/OaKJ\u002BrNxBRbBYdJCML5uhtQFG\r\nwcUCIQDfZb2/n7cv99ZU5Ea7yq0RZ4Vr1W\u002Bw8F84mmwGsdH/nwIhAL83Rgtu5akI\r\nLCpN\u002BVcb09hsSiYZO1FlIgbXeiX1CMXPAiBBMtlhLsTxC/0Sw5jdP/aoyLTI1v8E\r\n/fJce70haw5l8wIgA3gYQDrZ1dA9JONXQ7pQhJuqWLiad\u002BaS0Hb2U1v3tccCIQCT\r\nWH6lMUf5Jtu6IAXIOUnN/XtNXkOlSCdFdkUJDTDp6A==\r\n-----END RSA PRIVATE KEY-----\r\n"
+                "pem": "-----BEGIN RSA PRIVATE KEY-----\r\nMIIBOwIBAAJBAKbdJI2IXKsZiiuiD9F+xR/Bp5tcwd7kAIcLP0eOo3louRnr377F\r\nKv2QpzuxP3HE5kF9wf7C1PDykhbAbop7DJECAwEAAQJBAKUsWKeFKP3xbRVd+byN\r\neUHDJ08iFYK2PVNwLbZ+mpFtHwovjXMGpoqP8k/OaKJ+rNxBRbBYdJCML5uhtQFG\r\nwcUCIQDfZb2/n7cv99ZU5Ea7yq0RZ4Vr1W+w8F84mmwGsdH/nwIhAL83Rgtu5akI\r\nLCpN+Vcb09hsSiYZO1FlIgbXeiX1CMXPAiBBMtlhLsTxC/0Sw5jdP/aoyLTI1v8E\r\n/fJce70haw5l8wIgA3gYQDrZ1dA9JONXQ7pQhJuqWLiad+aS0Hb2U1v3tccCIQCT\r\nWH6lMUf5Jtu6IAXIOUnN/XtNXkOlSCdFdkUJDTDp6A==\r\n-----END RSA PRIVATE KEY-----\r\n"
               }
             }
             """;

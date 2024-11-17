@@ -47,3 +47,4 @@ AxCrypt.VisualState.xml
 /Xecrets.Cli/TestCli/win-x64/private.pem
 /Xecrets.Cli/TestCli/win-x64/public.pem
 /Xecrets.Cli/TestCli/win-x64/xflicense.txt
+packages
