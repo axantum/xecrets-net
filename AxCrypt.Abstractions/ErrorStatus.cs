@@ -68,5 +68,6 @@ namespace AxCrypt.Abstractions
         InvalidBlockLength,
         UnexpectedEndOfFile,
         UnexpectedHeaderBlockType,
+        ZeroLengthFile,
     }
 }
