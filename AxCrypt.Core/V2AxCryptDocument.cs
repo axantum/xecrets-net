@@ -108,6 +108,19 @@ namespace AxCrypt.Core
             }
         }
 
+        public IEnumerable<IAsymmetricPublicKey> AsymmetricMasterKeys
+        {
+            get
+            {
+                V2AsymmetricMasterKeysEncryptedHeaderBlock headerBlock = DocumentHeaders.Headers.FindHeaderBlock<V2AsymmetricMasterKeysEncryptedHeaderBlock>();
+                if (headerBlock == null)
+                {
+                    return new List<IAsymmetricPublicKey> { };
+                }
+                return headerBlock.MasterKeys.MasterPublicKeys;
+            }
+        }
+
         public EncryptedProperties Properties { get; private set; }
 
         public bool Load(Passphrase key, Guid cryptoId, Stream inputStream)

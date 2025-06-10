@@ -34,6 +34,11 @@ namespace AxCrypt.Core.Service.UserNotification
             return await New<ICache>().GetItemAsync(_key.Subkey(nameof(GetAllUserNotificationAsync)), async () => await _service.GetAllUserNotificationAsync(useremail, subslevel)).Free();
         }
 
+        public async Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            return await New<ICache>().UpdateItemAsync(async () => await _service.InsertUserNotificationAsync(notificationModel), _key).Free();
+        }
+
         public INotificationService Refresh()
         {
             New<ICache>().RemoveItem(_key);

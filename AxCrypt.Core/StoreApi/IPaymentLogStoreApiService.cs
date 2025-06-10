@@ -25,5 +25,7 @@ namespace AxCrypt.Core.StoreApi
         Task<bool> MovePaymentLogAsync(string fromEmail, string toEmail);
 
         Task<bool> DeletePaymentLogAsync(AxCrypt.Abstractions.Rest.RestContent restContent);
+
+        Task<bool> IsPaymentTransactionExistsAsync(string transactionId, string buyerEmail);
     }
 }

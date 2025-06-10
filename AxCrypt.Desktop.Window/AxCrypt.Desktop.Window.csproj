@@ -374,6 +374,7 @@
     <None Include="resources\google-drive_40px.png" />
     <None Include="resources\google-drive_grey_40px.png" />
     <Content Include="resources\helpquestion_40px.png" />
+    <Content Include="resources\IcoGrp.png" />
     <Content Include="resources\key_management.png" />
     <Content Include="resources\logo-text-retina.png" />
     <Content Include="resources\masterkey_32px.png" />

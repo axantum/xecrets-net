@@ -9,6 +9,9 @@ namespace AxCrypt.Api.Model.Masterkey
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class MasterKeyPairInfo : IEquatable<MasterKeyPairInfo>
     {
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; }
 

@@ -47,6 +47,7 @@ namespace AxCrypt.Core.Header
         private const int ASYMMETRICRECIPIENTS_KEYSTREAM_INDEX = 3072;
         private const int ALGORITHMVERIFIER_KEYSTREAM_INDEX = 4096;
         private const int ASYMMETRICMASTERKEY_KEYSTREAM_INDEX = 5120;
+        private const int ASYMMETRICMASTERKEYS_KEYSTREAM_INDEX = 6144;
         private const int DATA_KEYSTREAM_INDEX = 1048576;
 
         private static readonly byte[] _version = new byte[] { 4, 0, 2, 0, 0 };
@@ -78,9 +79,17 @@ namespace AxCrypt.Core.Header
                 _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicKey, keyWrap.MasterKey, keyWrap.MasterIV));
             }
 
-            if (encryptionParameters.PublicMasterKey != null)
+            if (encryptionParameters.MasterPublicKey != null)
             {
-                _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(encryptionParameters.PublicMasterKey, keyWrap.MasterKey, keyWrap.MasterIV));
+                _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(encryptionParameters.MasterPublicKey, keyWrap.MasterKey, keyWrap.MasterIV));
+            }
+
+            if (encryptionParameters.MasterPublicKeys != null && encryptionParameters.MasterPublicKeys.Any())
+            {
+                foreach (IAsymmetricPublicKey publicMasterKey in encryptionParameters.MasterPublicKeys)
+                {
+                    _headers.HeaderBlocks.Add(new V2AsymmetricKeyWrapHeaderBlock(publicMasterKey, keyWrap.MasterKey, keyWrap.MasterIV));
+                }
             }
 
             _headers.HeaderBlocks.Add(new V2AsymmetricRecipientsEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricRecipients)) { Recipients = new Recipients(encryptionParameters.PublicKeys) });
@@ -89,9 +98,14 @@ namespace AxCrypt.Core.Header
             _headers.HeaderBlocks.Add(new V2UnicodeFileNameInfoEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.UnicodeFileNameInfo)));
             _headers.HeaderBlocks.Add(new V2AlgorithmVerifierEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AlgorithmVerifier)));
 
-            if (encryptionParameters.PublicMasterKey != null)
+            if (encryptionParameters.MasterPublicKey != null)
             {
-                _headers.HeaderBlocks.Add(new V2AsymmetricMasterKeyEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricMasterKey)) { MasterPublicKey = encryptionParameters.PublicMasterKey.PublicKey });
+                _headers.HeaderBlocks.Add(new V2AsymmetricMasterKeyEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricMasterKey)) { MasterPublicKey = encryptionParameters.MasterPublicKey });
+            }
+            if (encryptionParameters.MasterPublicKeys != null && encryptionParameters.MasterPublicKeys.Any())
+            {
+                _headers.HeaderBlocks.Add(new V2AsymmetricMasterKeyEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricMasterKey)) { MasterPublicKey = encryptionParameters.MasterPublicKeys.FirstOrDefault() });
+                _headers.HeaderBlocks.Add(new V2AsymmetricMasterKeysEncryptedHeaderBlock(GetHeaderCrypto(HeaderBlockType.AsymmetricMasterKeys)) { MasterKeys = new MasterKeys(encryptionParameters.MasterPublicKeys) });
             }
 
             _headers.HeaderBlocks.Add(new DataHeaderBlock());
@@ -192,6 +206,9 @@ namespace AxCrypt.Core.Header
 
                 case HeaderBlockType.AsymmetricMasterKey:
                     return CreateKeyStreamCrypto(ASYMMETRICMASTERKEY_KEYSTREAM_INDEX);
+
+                case HeaderBlockType.AsymmetricMasterKeys:
+                    return CreateKeyStreamCrypto(ASYMMETRICMASTERKEYS_KEYSTREAM_INDEX);
             }
             throw new InternalErrorException("Unexpected header block type. Can't determine Header Crypto.");
         }

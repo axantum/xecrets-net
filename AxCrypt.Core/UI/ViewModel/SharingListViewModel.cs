@@ -26,11 +26,13 @@
 #endregion Coypright and License
 
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
 using AxCrypt.Core.IO;
+using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using System;
 using System.Collections.Generic;
@@ -110,6 +112,8 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private void InitializePropertyValues(IEnumerable<UserPublicKey> sharedWith)
         {
+            LoadAvailableGroupPublicKeysAsync(_identity);
+
             SetSharedAndNotSharedWith(sharedWith);
             NewKeyShare = string.Empty;
             IsOnline = New<AxCryptOnlineState>().IsOnline;
@@ -321,8 +325,12 @@ namespace AxCrypt.Core.UI.ViewModel
 
         private async Task RefreshKnownContactsActionAsync(IEnumerable<EmailAddress> knownContactsToRefresh)
         {
+            bool isGroup = GetValidGroupPublicKey("", knownContactsToRefresh) != null;
             await RemoveSharedWithContactsActionAsync(knownContactsToRefresh);
-
+            if (isGroup)
+            {
+                LoadAvailableGroupPublicKeysAsync(_identity);
+            }
             await AddKeySharesActionAsync(knownContactsToRefresh).Free();
         }
 
@@ -350,6 +358,48 @@ namespace AxCrypt.Core.UI.ViewModel
             {
                 knownPublicKeys.Remove(knownContactsToRemove);
             }
+        }
+
+        private static void LoadAvailableGroupPublicKeysAsync(LogOnIdentity identity)
+        {
+            try
+            {
+                IEnumerable<GroupKeyPairApiModel> groups = identity.UserGroupKeyPairs;
+                foreach (GroupKeyPairApiModel group in groups)
+                {
+                    if (string.IsNullOrEmpty(group.Public))
+                    {
+                        continue;
+                    }
+                    IAsymmetricPublicKey groupPublicKey = New<IAsymmetricFactory>().CreatePublicKey(group.Public);
+                    using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+                    {
+                        knownPublicKeys.AddOrReplace(new UserPublicKey(EmailAddress.Parse(group.User), groupPublicKey, group.GroupName));
+                    }
+                }
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        public UserPublicKey GetValidGroupPublicKey(string groupName, IEnumerable<EmailAddress> groupEmails = null)
+        {
+            UserPublicKey groupPublicKey = null;
+            using (KnownPublicKeys knownPublicKeys = New<KnownPublicKeys>())
+            {
+                if (!string.IsNullOrEmpty(groupName))
+                {
+                    groupPublicKey = knownPublicKeys.PublicKeys.FirstOrDefault(a => a.GroupName == groupName);
+                }
+                if (groupEmails != null && groupEmails.Any())
+                {
+                    groupPublicKey = knownPublicKeys.PublicKeys.FirstOrDefault(a => groupEmails.Contains(a.Email));
+                }
+            }
+
+            return groupPublicKey;
         }
     }
 }

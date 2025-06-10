@@ -603,6 +603,16 @@ namespace AxCrypt.Desktop.Window.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IcoGrp {
+            get {
+                object obj = ResourceManager.GetObject("IcoGrp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap inactivefilegreen16 {
             get {
                 object obj = ResourceManager.GetObject("inactivefilegreen16", resourceCulture);

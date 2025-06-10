@@ -31,7 +31,12 @@ namespace AxCrypt.Core.Service.Secrets
 
         public Task<IEnumerable<UserNotificationApiModel>> GetAllUserNotificationAsync(string useremail, string subslevel)
         {
-            throw new InvalidOperationException("User notification can't be loaded locally.");
+            return Task.FromResult((IEnumerable<UserNotificationApiModel>)new List<UserNotificationApiModel>());
+        }
+
+        public Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            return Task.FromResult(false);
         }
     }
 }

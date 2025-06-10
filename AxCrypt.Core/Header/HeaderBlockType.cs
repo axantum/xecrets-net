@@ -154,8 +154,13 @@ namespace AxCrypt.Core.Header
         AlgorithmVerifier = 103,
 
         /// <summary>
-        /// 2.x - Json-encoded business subscription public key representing master key.
+        /// [2.x - Json-encoded business subscription public key representing master key.
         /// </summary>
         AsymmetricMasterKey = 104,
+        
+        /// <summary>
+        /// 2.x - Json-encoded business subscription group public keys representing master key.
+        /// </summary>
+        AsymmetricMasterKeys = 105,
     }
 }

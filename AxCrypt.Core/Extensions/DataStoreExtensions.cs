@@ -142,7 +142,7 @@ namespace AxCrypt.Core.Extensions
                 return false;
             }
 
-            return document.AsymmetricMasterKey != null;
+            return document.AsymmetricMasterKey != null || (document.AsymmetricMasterKeys != null && document.AsymmetricMasterKeys.Any());
         }
 
         public static IEnumerable<DecryptionParameter> DecryptionParameters(this IDataStore dataStore, Passphrase password, IEnumerable<IAsymmetricPrivateKey> privateKeys)

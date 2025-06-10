@@ -40,5 +40,8 @@ namespace AxCrypt.Api.Model
 
         [JsonProperty("paymentprovider")]
         public string PaymentProvider { get; set; }
+
+        [JsonProperty("cancelnoptoutrsn")]
+        public string CancelnOptOutRsn { get; set; }
     }
 }

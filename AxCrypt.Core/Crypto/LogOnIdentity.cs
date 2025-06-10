@@ -1,4 +1,5 @@
-﻿using AxCrypt.Api.Model.Masterkey;
+﻿using AxCrypt.Api.Model.Groups;
+using AxCrypt.Api.Model.Masterkey;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
@@ -134,7 +135,9 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
-        public MasterKeyPairInfo MasterKeyPair { get; set; }
+        public IEnumerable<MasterKeyPairInfo> GroupMasterKeyPairs { get; set; }
+
+        public IEnumerable<GroupKeyPairApiModel> UserGroupKeyPairs { get; set; }
 
         public bool Equals(LogOnIdentity other)
         {

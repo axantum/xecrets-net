@@ -1,12 +1,11 @@
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AxCrypt.Api.Model
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class PurchaseSettings
+    public class PurchaseSettings : BaseApiModel
     {
         public PurchaseSettings(string provider)
         {
@@ -23,22 +22,22 @@ namespace AxCrypt.Api.Model
         [JsonProperty("provider")]
         public string Provider { get; private set; }
 
-        [JsonProperty("premium_product_ids")]
+        [JsonProperty("premiumproductids")]
         public string PremiumProductIdsWithAmount { get; set; }
 
-        [JsonProperty("business_product_ids")]
+        [JsonProperty("businessproductids")]
         public string BusinessProductIdsWithAmount { get; set; }
 
-        [JsonProperty("passwordmanager_product_id")]
+        [JsonProperty("passwordmanagerproductid")]
         public string PasswordManagerProductId { get; set; }
 
-        [JsonProperty("yearly_discount_percent")]
+        [JsonProperty("yearlydiscountpercentage")]
         public int YearlyDiscountPercentage { get; set; }
 
-        [JsonProperty("tax_rates")]
+        [JsonProperty("taxrates")]
         public string TaxRates { get; set; }
 
-        [JsonProperty("micro_payment_product_id")]
+        [JsonProperty("micropaymentproductid")]
         public string MicroPaymentProductId { get; set; }
 
         public IEnumerable<string> PremiumProductIdList
@@ -130,7 +129,7 @@ namespace AxCrypt.Api.Model
             return string.Empty;
         }
 
-        [JsonProperty("appstore_sandbox_url")]
+        [JsonProperty("appstoresandboxurl")]
         public string AppStoreSandboxUrl { get; set; }
     }
 }

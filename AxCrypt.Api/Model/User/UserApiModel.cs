@@ -1,7 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace AxCrypt.Api.Model.User
 {
@@ -9,6 +7,10 @@ namespace AxCrypt.Api.Model.User
     public class UserApiModel : BaseApiModel
     {
         public static UserApiModel Empty = new UserApiModel(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue);
+
+        public UserApiModel()
+        {
+        }
 
         public UserApiModel(long id, string userEmail, string role, string passwordSalt, string passwordHash, string activationCode, DateTime createdUtc, DateTime updatedUtc)
         {
@@ -72,5 +74,8 @@ namespace AxCrypt.Api.Model.User
 
         [JsonProperty("failedPwdAtmptWindStart")]
         public int FailedPwdAtmptWindStart { get; set; }
+
+        [JsonProperty("is2FAEnabled")]
+        public bool Is2FAEnabled { get; set; }
     }
 }

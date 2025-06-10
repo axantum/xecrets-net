@@ -12,6 +12,10 @@ namespace AxCrypt.Core.StoreApi
     {
         Task<bool> SaveAsync(SubsCancellationApiModel subsCancelnRsn);
 
-        Task<IList<SubsCancellationApiModel>> GetListAsync(DateTime startdate, DateTime endDate);
+        Task<IEnumerable<SubsCancellationApiModel>> GetListAsync(DateTime startdate, DateTime endDate);
+
+        Task<bool> SaveOptOutReasonAsync(SubsCancellationApiModel subsCancelnRsn);
+
+        Task<IEnumerable<SubsCancellationApiModel>> GetOptOutListAsync(DateTime startdate, DateTime endDate);
     }
 }

@@ -2,13 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AxCrypt.Api.Model.Masterkey
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     public class PrivateMasterKeyInfo : IEquatable<PrivateMasterKeyInfo>
     {
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; }
 
@@ -20,6 +22,12 @@ namespace AxCrypt.Api.Model.Masterkey
 
         [JsonProperty("status")]
         public string Status { get; set; }
+
+        [JsonProperty("disableAccess")]
+        public bool DisableAccess { get; set; }
+
+        [JsonProperty("masterPublicKeyId")]
+        public long MasterPublicKeyId { get; set; }
 
         public bool Equals(PrivateMasterKeyInfo other)
         {

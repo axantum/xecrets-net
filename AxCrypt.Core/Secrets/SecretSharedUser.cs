@@ -12,11 +12,12 @@ namespace AxCrypt.Core.Secrets
 {
     public class SecretSharedUser
     {
-        public SecretSharedUser(EmailAddress userEmail, SecretShareVisibility visibilityType)
+        public SecretSharedUser(EmailAddress userEmail, SecretShareVisibility visibilityType, string groupName = "")
         {
             UserEmail = userEmail;
             VisibilityType = visibilityType;
             Visibility = ShareExpiration(visibilityType);
+            Group = groupName;
         }
 
         private EmailAddress _userEmail;
@@ -41,6 +42,14 @@ namespace AxCrypt.Core.Secrets
         {
             get { return _visibilityType; }
             set { _visibilityType = value; }
+        }
+
+        private string _group;
+
+        public string Group
+        {
+            get { return _group; }
+            set { _group = value; }
         }
 
         private DateTime ShareExpiration(SecretShareVisibility visibility)

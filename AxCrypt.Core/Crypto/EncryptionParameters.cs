@@ -49,6 +49,7 @@ namespace AxCrypt.Core.Crypto
         {
             CryptoId = cryptoId;
             _publicKeys = new List<UserPublicKey>();
+            _masterPublicKeys = new List<IAsymmetricPublicKey>();
         }
 
         /// <summary>
@@ -125,12 +126,38 @@ namespace AxCrypt.Core.Crypto
         /// </value>
         public Guid CryptoId { get; set; }
 
+        public IAsymmetricPublicKey MasterPublicKey { get; set; }
+
+
+        private List<IAsymmetricPublicKey> _masterPublicKeys;
+
         /// <summary>
-        /// Gets or sets the business subscription master public key to use for the encryption.
+        /// Gets or sets the business group master public key to use for the encryption.
         /// </summary>
         /// <value>
         /// The master key.
         /// </value>
-        public UserPublicKey PublicMasterKey { get; set; }
+        public IEnumerable<IAsymmetricPublicKey> MasterPublicKeys
+        {
+            get
+            {
+                return _masterPublicKeys;
+            }
+        }
+
+        public Task AddMasterPublicKeyAsync(IEnumerable<IAsymmetricPublicKey> masterPublicKeys)
+        {
+            foreach (IAsymmetricPublicKey userPublicKey in masterPublicKeys)
+            {
+                IAsymmetricPublicKey existingKey = _masterPublicKeys.FirstOrDefault(pk => pk.Thumbprint == userPublicKey.Thumbprint);
+                if (existingKey != null)
+                {
+                    _masterPublicKeys.Remove(existingKey);
+                }
+                _masterPublicKeys.Add(userPublicKey);
+            }
+
+            return Constant.CompletedTask;
+        }
     }
 }

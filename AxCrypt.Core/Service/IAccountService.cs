@@ -35,6 +35,7 @@ using AxCrypt.Core.UI;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using AxCrypt.Api.Model.Groups;
 
 namespace AxCrypt.Core.Service
 {
@@ -194,5 +195,13 @@ namespace AxCrypt.Core.Service
         ///  /// <c>true</c> if user account deleted; otherwise, <c>false</c>.
         /// </returns>
         Task<bool> DeleteUserAsync();
+
+        /// <summary>
+        /// List all the user membered groups public/private keys.
+        /// </summary>
+        /// <returns>
+        ///  /// List of groups public & private keys.
+        /// </returns>
+        Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync();
     }
 }

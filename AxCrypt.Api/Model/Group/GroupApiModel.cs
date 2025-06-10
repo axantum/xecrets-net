@@ -25,6 +25,9 @@ namespace AxCrypt.Api.Model.Groups
         [JsonProperty("masterKeyEnabled")]
         public bool MasterKeyEnabled { get; set; }
 
+        [JsonProperty("groupKey")]
+        public GroupKeyApiModel GroupKey { get; set; }
+
         [JsonProperty("members")]
         public IEnumerable<GroupMemberApiModel> Members { get; set; }
     }

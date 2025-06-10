@@ -30,5 +30,10 @@ namespace AxCrypt.Core.Service.UserNotification
         {
             return null;
         }
+
+        public Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            return null;
+        }
     }
 }

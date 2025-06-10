@@ -74,6 +74,31 @@ namespace AxCrypt.Core.UI
             });
         }
 
+        // <summary>
+        /// Does an operation on a list of files, with parallelism.
+        /// </summary>
+        /// <param name="files">The files to operation on.</param>
+        /// <param name="work">The work to do for each file.</param>
+        /// <param name="allComplete">The completion callback after *all* files have been processed.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
+        public virtual Task DoCloudFilesAsync<TFilePickerItemModel>(IEnumerable<TFilePickerItemModel> files, Func<TFilePickerItemModel, IProgressContext, Task<FileOperationContext>> work, Func<FileOperationContext, Task> allComplete)
+            where TFilePickerItemModel : FilePickerItemModel
+        {
+            Func<TFilePickerItemModel, IProgressContext, Task<FileOperationContext>> singleFileOperation = (file, progress) =>
+            {
+                progress.Display = file.FileName;
+                return work((TFilePickerItemModel)file, progress);
+            };
+
+            return InvokeAsync(files, singleFileOperation, (status) =>
+            {
+                if (status.ErrorStatus == ErrorStatus.Success)
+                {
+                    status.Totals.ShowNotification();
+                }
+                return allComplete(status);
+            });
+        }
         /// <summary>
         /// Does an operation on a list of files, with parallelism.
         /// </summary>

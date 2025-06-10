@@ -89,6 +89,213 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our story.
+        /// </summary>
+        public static string AboutAxcryptHeading1 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Founded in 2001, AxCrypt set out to make encryption simple for everyone. Frustrated by the lack of easy-to-use security tools, we developed AxCrypt, which quickly became a global favorite with over 20 million downloads..
+        /// </summary>
+        public static string AboutAxcryptHeading1Text1 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In 2014, we took AxCrypt to the next level by forming AxCrypt AB. Today, AxCrypt is recognized as one of the world’s leading encryption solutions, serving users across Europe, America, and beyond..
+        /// </summary>
+        public static string AboutAxcryptHeading1Text2 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our mission is to provide individuals and small teams with secure, user-friendly encryption. We’re excited to continue making data protection accessible and reliable for everyone..
+        /// </summary>
+        public static string AboutAxcryptHeading1Text3 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 300+.
+        /// </summary>
+        public static string AboutAxcryptHeading1Text4 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sites recommendations.
+        /// </summary>
+        public static string AboutAxcryptHeading1Text5 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security.
+        /// </summary>
+        public static string AboutAxcryptHeading2Text1 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reliability.
+        /// </summary>
+        public static string AboutAxcryptHeading2Text2 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simplicity.
+        /// </summary>
+        public static string AboutAxcryptHeading2Text3 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security drives everything we do at AxCrypt. Your encrypted files are accessible only to you, provided you maintain control of your password. Beyond delivering top-tier encryption, we are dedicated to raising awareness about the critical need for encryption  and advocating for best practices in safeguarding data..
+        /// </summary>
+        public static string AboutAxcryptHeading2Text4 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has been a trusted encryption solution for over two decades. Our use of advanced AES-256 encryption ensures that your files are protected with one of the most secure technologies available. Millions of users trust us to deliver consistent, dependable protection for their most sensitive data..
+        /// </summary>
+        public static string AboutAxcryptHeading2Text5 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Security should be simple, and with AxCrypt, it is. We believe encryption should be easy for everyone, which is why we&apos;ve designed intuitive features like one-password encryption and automated file protection. Our solution provides the security you need, without the complexity you don’t..
+        /// </summary>
+        public static string AboutAxcryptHeading2Text6 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading2Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our history.
+        /// </summary>
+        public static string AboutAxcryptHeading3 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our culture.
+        /// </summary>
+        public static string AboutAxcryptHeading4 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At AxCrypt, our culture is rooted in collaboration, innovation, and a shared commitment to excellence. We believe that a thriving work environment encourages creativity and professional development. Ease of working is fundamental to our organization, allowing us to focus on what matters most. We celebrate small wins and recognize the hard work of our team members as we strive toward our goals. Our team members are empowered to explore new ideas, take initiative, and work together to bring out exceptional en [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AboutAxcryptHeading4Text1 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you&apos;re a passionate cybersecurity professional seeking a fulfilling and challenging career, come join us at AxCrypt and be a part of the change.
+        /// </summary>
+        public static string AboutAxcryptHeading4Text2 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading4Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explore careers .
+        /// </summary>
+        public static string AboutAxcryptHeading4Text3 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading4Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Represented countries.
+        /// </summary>
+        public static string AboutAxcryptHeading5 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Awards and rankings.
+        /// </summary>
+        public static string AboutAxcryptHeading6 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our management team .
+        /// </summary>
+        public static string AboutAxcryptHeading7 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our office locations .
+        /// </summary>
+        public static string AboutAxcryptHeading8 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press centre.
+        /// </summary>
+        public static string AboutAxcryptHeading9 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is focused on providing simple, secure encryption to protect your files. We strive to keep you informed on best practices for file protection and ensure that managing your files is safe and hassle-free. We continuously adapt to emerging technologies to provide you with top-tier protection. Find more updates in our &lt;a href=&quot;https://axcrypt.net/information/press/&quot; style=&quot;color: #86B96E; text-decoration: underline;&quot;&gt;&lt;b&gt;Press Centre&lt;/b&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string AboutAxcryptHeading9Text1 {
+            get {
+                return ResourceManager.GetString("AboutAxcryptHeading9Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The history of AxCrypt started in 2001 when initial author Svante needed to share confidential data over the Internet and failed to find existing data security solutions for Internet services that were both simple and easy to use for everyone. It was then that he developed and released the first version of AxCrypt..
         /// </summary>
         public static string AboutAxcryptHistoryText1 {
@@ -152,6 +359,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Globally Rewarded &amp; Easy-to-Use File Encryption - Trusted by Millions Worldwide.
+        /// </summary>
+        public static string AboutAxcryptMainHeading {
+            get {
+                return ResourceManager.GetString("AboutAxcryptMainHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt has been on the market for 15 years, and has grown to become one of the world’s most popular encryption applications with more than 20 million downloads. Over the years we have also been mentioned and rated by many as one of the world’s best encryption applications..
         /// </summary>
         public static string AboutAxcryptVisionReliabilityText {
@@ -188,6 +404,105 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is developed and released, offering a simple and user-friendly solution for sharing confidential data online..
+        /// </summary>
+        public static string AboutUsHistoryText1 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduced Password Manager Mobile Version and Share Passwords feature, allowing secure password sharing through encryption..
+        /// </summary>
+        public static string AboutUsHistoryText10 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the launch of Group Sharing and Management for secure file sharing, AxCrypt strengthens access control and solidifies its position as the world’s top encryption software, winning the PCMag Editors&apos; Choice award..
+        /// </summary>
+        public static string AboutUsHistoryText11 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With over 20 million downloads, AxCrypt is commercialized, leading to the formation of AxCrypt AB..
+        /// </summary>
+        public static string AboutUsHistoryText2 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The release of AxCrypt 2 marked a major milestone, delivering a modernized UI and advanced features like the Key Sharing capability. We also released AxCrypt for Windows, earning the PCMag Editors&apos; Choice award and gaining widespread recognition from top review sites..
+        /// </summary>
+        public static string AboutUsHistoryText3 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Established a global presence in Europe and America with multi-language support, AxCrypt enhanced its capabilities by launching a mobile app and setting up an Offshore Development Center..
+        /// </summary>
+        public static string AboutUsHistoryText4 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt improved offline data access and enhanced local file monitoring, enabling users to access encrypted files without an internet connection and safeguard files on their devices. Additionally, AxCrypt expanded its platform support by launching dedicated apps for Mac and mobile users..
+        /// </summary>
+        public static string AboutUsHistoryText5 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt introduced the Business tier package, offering solutions designed to meet the specific needs of organizations..
+        /// </summary>
+        public static string AboutUsHistoryText6 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt introduced the Master Key feature for Business subscriptions and launched its Reseller and Affiliate Program to broaden its reach..
+        /// </summary>
+        public static string AboutUsHistoryText7 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt upgraded the mobile app to support file encryption and decryption, along with encryption for major cloud drives on Android and iOS, further enhancing mobile security..
+        /// </summary>
+        public static string AboutUsHistoryText8 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt added cloud service support for seamless encryption across major platforms, trusted by over 1000+ organizations and cloud service providers..
+        /// </summary>
+        public static string AboutUsHistoryText9 {
+            get {
+                return ResourceManager.GetString("AboutUsHistoryText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About us.
         /// </summary>
         public static string AboutUsLinkLabel {
@@ -202,6 +517,15 @@ namespace AxCrypt.Content.Properties {
         public static string AcceptTermsAndConditionsPrompt {
             get {
                 return ResourceManager.GetString("AcceptTermsAndConditionsPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I accept AxCrypt’s &lt;a href=&apos;{0}&apos;&gt;Privacy Policy&lt;/a&gt; &amp; &lt;a href=&apos;{1}&apos;&gt;Terms of Services&lt;/a&gt;.
+        /// </summary>
+        public static string AcceptTermsOfServicesText {
+            get {
+                return ResourceManager.GetString("AcceptTermsOfServicesText", resourceCulture);
             }
         }
         
@@ -635,6 +959,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add &amp; Manage Users.
+        /// </summary>
+        public static string AddManageUsersHeading {
+            get {
+                return ResourceManager.GetString("AddManageUsersHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add more members.
         /// </summary>
         public static string AddMoreMembersLabel {
@@ -707,6 +1040,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add to Group.
+        /// </summary>
+        public static string AddToGroupText {
+            get {
+                return ResourceManager.GetString("AddToGroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add up to @MaxMemberCapacity users, if you want to add more&lt;br /&gt; please&lt;a href=&quot;mailto:business@axcrypt.net&quot;&gt; contact us&lt;/a&gt;..
         /// </summary>
         public static string AddUpUsersText {
@@ -716,11 +1058,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose or type the group:.
+        /// </summary>
+        public static string AddUserGroupManageBoxText {
+            get {
+                return ResourceManager.GetString("AddUserGroupManageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add user.
         /// </summary>
         public static string AddUserPromptText {
             get {
                 return ResourceManager.GetString("AddUserPromptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add users.
+        /// </summary>
+        public static string AddUsersText {
+            get {
+                return ResourceManager.GetString("AddUsersText", resourceCulture);
             }
         }
         
@@ -784,6 +1144,105 @@ namespace AxCrypt.Content.Properties {
         public static string AffiliateAdvantagesText4 {
             get {
                 return ResourceManager.GetString("AffiliateAdvantagesText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Market to individuals and businesses.
+        /// </summary>
+        public static string AffiliateBenefitsHeading1 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sell through a unique link.
+        /// </summary>
+        public static string AffiliateBenefitsHeading2 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Earn fixed commission on sales.
+        /// </summary>
+        public static string AffiliateBenefitsHeading3 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a dedicated dashboard.
+        /// </summary>
+        public static string AffiliateBenefitsHeading4 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to an Account Manager and support.
+        /// </summary>
+        public static string AffiliateBenefitsHeading5 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promote AxCrypt&apos;s encryption solutions to a diverse audience, including both individual users and corporate clients..
+        /// </summary>
+        public static string AffiliateBenefitsText1 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilize your personalized affiliate link to track and drive sales, ensuring you get credit for every referral..
+        /// </summary>
+        public static string AffiliateBenefitsText2 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receive a guaranteed commission for each sale made through your affiliate link, providing a steady income stream..
+        /// </summary>
+        public static string AffiliateBenefitsText3 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access a user-friendly dashboard to monitor your performance, track sales, and manage your affiliate activities efficiently..
+        /// </summary>
+        public static string AffiliateBenefitsText4 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Benefit from personalized assistance and support from a dedicated Account Manager, helping you maximize your affiliate success..
+        /// </summary>
+        public static string AffiliateBenefitsText5 {
+            get {
+                return ResourceManager.GetString("AffiliateBenefitsText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Sign Up&lt;/span&gt; and start generating &lt;span class=&quot;font-style&quot;&gt;revenue&lt;/span&gt; today!.
+        /// </summary>
+        public static string AffiliateGeneratingRevenueHeading {
+            get {
+                return ResourceManager.GetString("AffiliateGeneratingRevenueHeading", resourceCulture);
             }
         }
         
@@ -865,6 +1324,60 @@ namespace AxCrypt.Content.Properties {
         public static string AffiliateLinkLabel {
             get {
                 return ResourceManager.GetString("AffiliateLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlimited top commissions.
+        /// </summary>
+        public static string AffiliateRevenueText1 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Higher conversions.
+        /// </summary>
+        public static string AffiliateRevenueText2 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rich marketing kit.
+        /// </summary>
+        public static string AffiliateRevenueText3 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global Traffic Sources.
+        /// </summary>
+        public static string AffiliateRevenueText4 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free product demos &amp; support.
+        /// </summary>
+        public static string AffiliateRevenueText5 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to a dedicated account manager.
+        /// </summary>
+        public static string AffiliateRevenueText6 {
+            get {
+                return ResourceManager.GetString("AffiliateRevenueText6", resourceCulture);
             }
         }
         
@@ -1060,11 +1573,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The apps or services didn&apos;t work as expected.
+        ///   Looks up a localized string similar to Didn&apos;t work as expected.
         /// </summary>
         public static string AppNotWorkExpectedText {
             get {
                 return ResourceManager.GetString("AppNotWorkExpectedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string ApprovedMasterKeyStatus {
+            get {
+                return ResourceManager.GetString("ApprovedMasterKeyStatus", resourceCulture);
             }
         }
         
@@ -1083,6 +1605,15 @@ namespace AxCrypt.Content.Properties {
         public static string ApproveMasterKeyPrompt {
             get {
                 return ResourceManager.GetString("ApproveMasterKeyPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to approve master key?.
+        /// </summary>
+        public static string ApproveMasterkeyText {
+            get {
+                return ResourceManager.GetString("ApproveMasterkeyText", resourceCulture);
             }
         }
         
@@ -1121,6 +1652,51 @@ namespace AxCrypt.Content.Properties {
         public static string ArabicLanguageSelectionText {
             get {
                 return ResourceManager.GetString("ArabicLanguageSelectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;As a&lt;/span&gt; Affiliate.
+        /// </summary>
+        public static string AsAffiliateHeading {
+            get {
+                return ResourceManager.GetString("AsAffiliateHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;You&apos;d be a&lt;/span&gt; great Affiliate &lt;span&gt;if you:&lt;/span&gt;.
+        /// </summary>
+        public static string AsGreatAffiliateHeading {
+            get {
+                return ResourceManager.GetString("AsGreatAffiliateHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;d be a &lt;span&gt;great Reseller&lt;/span&gt; if you:.
+        /// </summary>
+        public static string AsGreatResellerHeading {
+            get {
+                return ResourceManager.GetString("AsGreatResellerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;As a&lt;/span&gt; Reseller.
+        /// </summary>
+        public static string AsResellerHeading {
+            get {
+                return ResourceManager.GetString("AsResellerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select at least one message to.
+        /// </summary>
+        public static string AtleastOneMessageText {
+            get {
+                return ResourceManager.GetString("AtleastOneMessageText", resourceCulture);
             }
         }
         
@@ -1278,7 +1854,34 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What is Key Sharing?.
+        ///   Looks up a localized string similar to AxCrypt now offers a modern interface and improved performance across platforms. The new design offers a more intuitive experience and a simplified encryption workflow, making it easier than ever to secure your files. This guide walks you through how to use AxCrypt efficiently and take full advantage of its interface and features..
+        /// </summary>
+        public static string AxCBTGDBlock1Text1 {
+            get {
+                return ResourceManager.GetString("AxCBTGDBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can begin with a &lt;a href=&apos;https://account.axcrypt.net/en/Home/Login?Signup=True&apos;&gt;&lt;b&gt;30-day free trial&lt;/b&gt;&lt;/a&gt; by selecting either the Premium or Business plan. During the trial period, you&apos;ll have full access to all features included in the plan you choose..
+        /// </summary>
+        public static string AxCBTGDBlock1Text2 {
+            get {
+                return ResourceManager.GetString("AxCBTGDBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt&apos;s new MAUI design.
+        /// </summary>
+        public static string AxCBTGDHeroText {
+            get {
+                return ResourceManager.GetString("AxCBTGDHeroText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is &lt;span&gt;Key Sharing?&lt;/span&gt;.
         /// </summary>
         public static string AxCKSGDBlock1Heading {
             get {
@@ -1314,7 +1917,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why AxCrypt’s Key Sharing?.
+        ///   Looks up a localized string similar to Why AxCrypt &lt;span&gt;Key Sharing &lt;/span&gt;?.
         /// </summary>
         public static string AxCKSGDBlock2Heading {
             get {
@@ -1368,7 +1971,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Does Key Sharing Work?.
+        ///   Looks up a localized string similar to How Does &lt;span&gt; Key Sharing Work?&lt;/span&gt;.
         /// </summary>
         public static string AxCKSGDBlock3Heading {
             get {
@@ -1449,7 +2052,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Key Share Files with Your Colleagues and Friends?.
+        ///   Looks up a localized string similar to &lt;span&gt;How to Key Share &lt;/span&gt;Files with Your Colleagues and Friends?.
         /// </summary>
         public static string AxCKSGDBlock4Heading {
             get {
@@ -1458,7 +2061,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click on the &lt;b&gt;Share Keys&lt;/b&gt;&lt;img class=&apos;sk-acn-ico&apos; alt=&apos;share key action button icon&apos; /&gt; action button on the home screen.
+        ///   Looks up a localized string similar to Click on the &lt;b&gt;Share Keys&lt;/b&gt; &lt;img class=&apos;share-icon&apos;/&gt; action button on the home screen.
         /// </summary>
         public static string AxCKSGDBlock4SH1P1 {
             get {
@@ -1512,7 +2115,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tap on the &lt;b&gt;Share Keys&lt;/b&gt;&lt;img class=&apos;sk-acn-mob-ico&apos; alt=&apos;share key action button icon&apos; /&gt; icon from the home screen .
+        ///   Looks up a localized string similar to Tap on the &lt;b&gt;Share Keys&lt;/b&gt; &lt;img class=&apos;share-mobile-icon&apos;/&gt; icon from the home screen.
         /// </summary>
         public static string AxCKSGDBlock4SH2P1 {
             get {
@@ -1548,7 +2151,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the Key Share page, provide the recipient’s email address you want to share the file with and click the &lt;b&gt;plus&lt;/b&gt; &lt;img class=&apos;sk-plus-ico&apos; alt=&apos;plus icon&apos; /&gt; button..
+        ///   Looks up a localized string similar to In the Key Share page, provide the recipient’s email address you want to share the file with and click the &lt;b&gt;plus&lt;/b&gt; &lt;img class=&apos;plus-icon&apos;/&gt; button..
         /// </summary>
         public static string AxCKSGDBlock4SH2P5 {
             get {
@@ -1638,7 +2241,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why AxCrypt’s Password Manager?.
+        ///   Looks up a localized string similar to &lt;span&gt;Why AxCrypt’s&lt;/span&gt; Password Manager?.
         /// </summary>
         public static string AxCPMGDBlock1Heading {
             get {
@@ -1692,6 +2295,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate and save &lt;span&gt;unlimited&lt;/span&gt; number of &lt;span&gt;passwords&lt;/span&gt;, &lt;span&gt;cards&lt;/span&gt;, and &lt;span&gt;notes&lt;/span&gt; effortlessly, ensuring all your sensitive information is securely organized..
+        /// </summary>
+        public static string AxCPMGDBlock2_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("AxCPMGDBlock2_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt uses the &lt;span&gt;Advanced Encryption Standard&lt;/span&gt; with &lt;span&gt;256-bit keys&lt;/span&gt; for the data encryption..
         /// </summary>
         public static string AxCPMGDBlock2_SH2_Text2 {
@@ -1719,7 +2331,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt’s Top Notch Security in a View .
+        ///   Looks up a localized string similar to &lt;span&gt;AxCrypt’s&lt;/span&gt; Top Notch Security &lt;span&gt; in a View &lt;/span&gt;.
         /// </summary>
         public static string AxCPMGDBlock2Heading {
             get {
@@ -1791,7 +2403,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Do We Secure Your Data?.
+        ///   Looks up a localized string similar to &lt;span&gt;How Do We&lt;/span&gt; Secure Your Data?.
         /// </summary>
         public static string AxCPMGDBlock3Heading {
             get {
@@ -1854,7 +2466,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What Happens When You Securely Share Details?.
+        ///   Looks up a localized string similar to &lt;span&gt;What Happens When You&lt;/span&gt; Securely Share Details?.
         /// </summary>
         public static string AxCPMGDBlock4Heading {
             get {
@@ -1917,7 +2529,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Use AxCrypt’s Password Manager?.
+        ///   Looks up a localized string similar to &lt;span&gt;How to Use AxCrypt’s&lt;/span&gt; Password Manager?.
         /// </summary>
         public static string AxCPMGDBlock5Heading {
             get {
@@ -2133,7 +2745,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Share passwords, cards, and notes.
+        ///   Looks up a localized string similar to &lt;span&gt;Share&lt;/span&gt; passwords, cards, and notes.
         /// </summary>
         public static string AxCPMGDBlock5Text5 {
             get {
@@ -2286,7 +2898,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What’s Next?.
+        ///   Looks up a localized string similar to What’s &lt;span&gt;Next&lt;/span&gt;?.
         /// </summary>
         public static string AxCPMGDBlock8Heading {
             get {
@@ -2295,7 +2907,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check out our plans and pricing to compare and choose the best plan for you: &lt;a href=&apos;/pricing/&apos;&gt;https://axcrypt.net/pricing/&lt;/a&gt;.
+        ///   Looks up a localized string similar to Check out our plans and pricing to compare and choose the best plan for you: &lt;a href=&apos;/pricing/&apos;&gt;&lt;b&gt;https://axcrypt.net/pricing/&lt;/b&gt;&lt;/a&gt;..
         /// </summary>
         public static string AxCPMGDBlock8Text1 {
             get {
@@ -2304,7 +2916,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Want to dive deeper into encryption best practices? Check out our blog: &lt;a href=&apos;/blog/&apos;&gt;https://axcrypt.net/blog/&lt;/a&gt;.
+        ///   Looks up a localized string similar to Want to dive deeper into encryption best practices? Check out our blog: &lt;a href=&apos;/blog/&apos;&gt;&lt;b&gt;https://axcrypt.net/blog/&lt;/b&gt;&lt;/a&gt;..
         /// </summary>
         public static string AxCPMGDBlock8Text2 {
             get {
@@ -2313,7 +2925,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check out AxCrypt security page:  &lt;a href=&apos;/information/security/&apos;&gt;https://axcrypt.net/information/security/&lt;/a&gt;.
+        ///   Looks up a localized string similar to Check out AxCrypt security page:  &lt;a href=&apos;/information/security/&apos;&gt;&lt;b&gt;https://axcrypt.net/information/security/&lt;/b&gt;&lt;/a&gt;.
         /// </summary>
         public static string AxCPMGDBlock8Text3 {
             get {
@@ -2329,6 +2941,24 @@ namespace AxCrypt.Content.Properties {
         public static string AxCryptAboutDescription {
             get {
                 return ResourceManager.GetString("AxCryptAboutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become an AxCrypt’s &lt;span&gt;Affiliate&lt;/span&gt;!.
+        /// </summary>
+        public static string AxCryptAffiliateHeading {
+            get {
+                return ResourceManager.GetString("AxCryptAffiliateHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join as an AxCrypt Affiliate and earn top commissions on every sale..
+        /// </summary>
+        public static string AxCryptAffiliateInfoText {
+            get {
+                return ResourceManager.GetString("AxCryptAffiliateInfoText", resourceCulture);
             }
         }
         
@@ -2436,7 +3066,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href=&apos;https://account.axcrypt.net/HomeBusiness/CreateSubscription&apos;&gt;Business Subscription menu&lt;/a&gt; to create a subscription..
+        ///   Looks up a localized string similar to You need to be signed in with an AxCrypt ID at our web site. Use the &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreateBusiness&apos;&gt;Business Subscription menu&lt;/a&gt; to create a subscription..
         /// </summary>
         public static string AxcryptBusinessBlock2Text1 {
             get {
@@ -2670,6 +3300,411 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt offers a free plan that anyone can use. For extended functionality, we provide two paid plans: &lt;b&gt;Premium&lt;/b&gt; and &lt;b&gt;Business&lt;/b&gt;..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock1Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;&lt;b&gt;Premium Plan:&lt;/b&gt;&lt;/span&gt; Intended for private individuals, not for organizations..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock1Text2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;&lt;b&gt;Business Plan:&lt;/b&gt;&lt;/span&gt; Designed for organizations, allowing you to purchase and manage licenses for multiple users..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock1Text3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For detailed terms, please refer to our &lt;a href=&apos;/information/terms-of-use/&apos;&gt;&lt;b&gt;Terms of Use&lt;/b&gt;&lt;/a&gt;. You can also check out our &lt;a href=&apos;/pricing/&apos;&gt;&lt;b&gt;Pricing page&lt;/b&gt;&lt;/a&gt; for more information..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock1Text4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A &lt;b&gt;Business subscription&lt;/b&gt; enables organizations to purchase and manage licenses for multiple users. For EU-based companies with a valid VAT number, we offer VAT-free purchases on the Business plan. Please note that VAT-free sales are not available for the Premium plan..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock1Text5 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreateBusiness&apos;&gt;&lt;b&gt;Sign-up&lt;/b&gt;&lt;/a&gt; for AxCrypt Business and login using your account credentials..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock2Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your business details, including your company name, address, and EU VAT number..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock2Text2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the number of member licenses you need, with the first assigned to you as the administrator. You can always add more later. Enter your business details and payment information to complete the setup..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock2Text3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will be presented with a total amount, and a calculation showing your discount (if provided) and VAT being applied. Click the button with the credit card logo, and complete the purchase..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock2Text4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock2Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; Upon completing the purchase, you are automatically designated as the administrator..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock2Text5 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock2Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Your Business Subscription.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Heading {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or Remove Members:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3SubHeading3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3SubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://account.axcrypt.net/en/Home/Login&apos;&gt;&lt;b&gt;Sign in&lt;/b&gt;&lt;/a&gt; with an AxCrypt ID on our website and ensure that you are designated as the administrator..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can update your business name, address, and EU VAT number (if applicable) in the &lt;b&gt;AxCrypt ID&lt;/b&gt; section. Please note that the information we store is limited to these details..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As the administrator, you can add or remove members as necessary:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If there is a new member who doesn’t have an AxCrypt ID, they will receive an invitation email to create one..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Existing AxCrypt users will receive a welcome email upon being added..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text5 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt;You cannot remove yourself as the administrator or from the subscription..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock3Text6 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock3Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Users to Groups:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Heading2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Existing Users:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Heading3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Existing User Role:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Heading4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Efficiently manage your AxCrypt Business subscription by adding, removing, or updating user roles..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigate to &lt;b&gt;Add Users&lt;/b&gt; and either manually enter the email addresses or import a list in the form of .txt or .csv files. Users will be added according to your available license capacity..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to Groups section, where you can select an existing Group or create a new one to add existing/new users based on available licenses. Users can directly be added to business and group together..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text3P1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text3P1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For detailed instructions on managing groups, refer to the &lt;a href=&apos;https://axcrypt.net/information/group/&apos;&gt;&lt;b&gt;Group Management Guide&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text3P2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text3P2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure that no group is selected during the process. Select the user by checking the box next to their name..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text4P1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text4P1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the action menu, choose Delete to remove the user from your subscription..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text4P2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text4P2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigate to the &lt;b&gt;Users&lt;/b&gt; section in your account..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text5P1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text5P1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update the user’s role from a standard user to user admin, or vice versa..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text5P2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text5P2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; There must always be at least one active admin in your subscription..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock4Text6 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock4Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase Additional Licenses.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Heading {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Understand the Billing Period:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Heading1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic Renewal:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Heading2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can purchase additional member licenses for your Business by following either of the following two ways:.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Subscription Details:&lt;/b&gt; You can purchase more licenses and add members directly through the subscription Details..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;User Section:&lt;/b&gt; You can also add more users through the user section in the business subscription, but only when all existing licenses are used. The option to add more users will appear only in this case..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This ensures a smooth process for managing user access and expanding your team..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text5 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you purchase additional member licenses, it is always for your current subscription period. So, if you have 5 months left until the whole subscription is up for renewal, additional member licenses will only require payment for the remaining 5 months. Time left is always calculated as whole months, so 50 days will count as two full months..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text6 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription will automatically renew at the end of the current period using the original payment method. To cancel, you must do so before the end of the subscription period..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock5Text7 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock5Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing Details.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock6Heading {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock6Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For current pricing and relevant currencies, visit our &lt;a href=&apos;/pricing/&apos;&gt;&lt;b&gt;Pricing page&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock6Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock6Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription periods are defined as 30 days for a month and 360 days for a year..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock6Text2 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock6Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When a subscription is created or renewed, the period is a month or a year, depending on the plan you chose..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock6Text3 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock6Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start securing your organization with &lt;span&gt; AxCrypt &lt;/span&gt; Business!.
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock6Text4 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock6Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are  looking to efficiently manage users and file access within your organization, explore our &lt;a href=&apos;https://axcrypt.net/information/group/&apos;&gt;&lt;b&gt;Group Management Guide&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxcryptBusinessGuideBlock7Text1 {
+            get {
+                return ResourceManager.GetString("AxcryptBusinessGuideBlock7Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt Business.
         /// </summary>
         public static string AxcryptBusinessLinkLabel {
@@ -2697,11 +3732,83 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your AxCrypt ID is almost ready!.
+        /// </summary>
+        public static string AxCryptIDReadyText {
+            get {
+                return ResourceManager.GetString("AxCryptIDReadyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Industries.
+        /// </summary>
+        public static string AxcryptIndustriesLabel {
+            get {
+                return ResourceManager.GetString("AxcryptIndustriesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become an AxCrypt’s &lt;span&gt;Reseller&lt;/span&gt;!.
+        /// </summary>
+        public static string AxCryptResellerHeading {
+            get {
+                return ResourceManager.GetString("AxCryptResellerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join AxCrypt’s Reseller program and start earning top commissions on every sale – with no fixed rates..
+        /// </summary>
+        public static string AxCryptResellerInfoText {
+            get {
+                return ResourceManager.GetString("AxCryptResellerInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to AxCrypt Support..
         /// </summary>
         public static string AxCryptSupportIntro {
             get {
                 return ResourceManager.GetString("AxCryptSupportIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Want to dive deeper into encryption best practices? Check out our blog: &lt;a href=&apos;/blog/&apos;&gt;&lt;b&gt;Blogs on easy-to-use 128-bit and 256-bit encryption tool (axcrypt.net)&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxCWhatsNextBlogText1 {
+            get {
+                return ResourceManager.GetString("AxCWhatsNextBlogText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out other AxCrypt guides: &lt;a href=&apos;https://axcrypt.net/information/guides/get-started/&apos;&gt;&lt;b&gt;AxCrypt Guides | Your guide to cybersecurity solutions&lt;/a&gt;&lt;/b&gt;.
+        /// </summary>
+        public static string AxCWhatsNextGuideText1 {
+            get {
+                return ResourceManager.GetString("AxCWhatsNextGuideText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out our plans and pricing to compare and choose the best plan for you: &lt;a href=&apos;/pricing/&apos;&gt;&lt;b&gt;AxCrypt Price Plan | Easy to use affordable encryption software&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxCWhatsNextPricingText1 {
+            get {
+                return ResourceManager.GetString("AxCWhatsNextPricingText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check out AxCrypt security page:  &lt;a href=&apos;/information/security/&apos;&gt;&lt;b&gt;Why is AxCrypt secure? | Algorithms&lt;/b&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string AxCWhatsNextSecurityText3 {
+            get {
+                return ResourceManager.GetString("AxCWhatsNextSecurityText3", resourceCulture);
             }
         }
         
@@ -2724,11 +3831,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to.
+        /// </summary>
+        public static string BacktoText {
+            get {
+                return ResourceManager.GetString("BacktoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect email address.
         /// </summary>
         public static string BadEmail {
             get {
                 return ResourceManager.GetString("BadEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Become an Affiliate.
+        /// </summary>
+        public static string BecomeanAffiliateText {
+            get {
+                return ResourceManager.GetString("BecomeanAffiliateText", resourceCulture);
             }
         }
         
@@ -2769,11 +3894,776 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quick &lt;label&gt;Guides&lt;/label&gt;.
+        /// </summary>
+        public static string BetaGuidesHeading {
+            get {
+                return ResourceManager.GetString("BetaGuidesHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beta Quick Guides.
+        /// </summary>
+        public static string BetaGuidesLabel {
+            get {
+                return ResourceManager.GetString("BetaGuidesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to encrypt files?.
+        /// </summary>
+        public static string BetaQuickGuidesHead1 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to decrypt files?.
+        /// </summary>
+        public static string BetaQuickGuidesHead2 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to stop securing files?.
+        /// </summary>
+        public static string BetaQuickGuidesHead3 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to key-share files?.
+        /// </summary>
+        public static string BetaQuickGuidesHead4 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to secure folders?.
+        /// </summary>
+        public static string BetaQuickGuidesHead5 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to manage passwords?.
+        /// </summary>
+        public static string BetaQuickGuidesHead6 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesHead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login to application..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep1 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select &lt;strong&gt;“Stop securing and remove from list”&lt;/strong&gt;..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep10 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click  &lt;img class=&apos;stop-icon&apos;/&gt;  button and select your files to stop securing..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep11 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the checkbox &lt;img class=&apos;right-click-icon&apos;/&gt; of file(s) in the recent files list you want to share..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep12 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or select contact..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep13 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select &lt;strong&gt;“Apply”&lt;/&lt;strong&gt;..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep14 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send the actual file to the recipient..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep15 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternatively, you can click &lt;img class=&apos;share-beta-icon&apos;/&gt; button and select your files to share. .
+        /// </summary>
+        public static string BetaQuickGuidesParaStep16 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to the &lt;strong&gt;“Secured Folders”&lt;/strong&gt; menu..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep17 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on &lt;strong&gt;“Add or Drag Folder”&lt;/strong&gt; &lt;img class=&apos;drag-icon&apos;/&gt; .
+        /// </summary>
+        public static string BetaQuickGuidesParaStep18 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the folder(s) you want to secure..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep19 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;“Secure”&lt;/strong&gt; button &lt;img class=&apos;secure-icon&apos; /&gt;.
+        /// </summary>
+        public static string BetaQuickGuidesParaStep2 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In case, you want to secure subfolders also, enable it from &lt;strong&gt;Settings&lt;/strong&gt; -&gt; &lt;strong&gt;Include Sub-Folders&lt;/strong&gt; &lt;img class=&apos;include-sub-icon&apos;/&gt;.
+        /// </summary>
+        public static string BetaQuickGuidesParaStep20 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to the &lt;strong&gt;“Password Manager”&lt;/strong&gt;  menu..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep21 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on &lt;strong&gt;“All items”&lt;/strong&gt; to view all your passwords..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep22 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on &lt;strong&gt;“Recently Added”&lt;/strong&gt; to view all your recently added passwords..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep23 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on &lt;strong&gt;“Shared With”&lt;/strong&gt; to view all passwords shared with you..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep24 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to &lt;img class=&apos;add-icon&apos;/&gt; add a new Password, Card or Note..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep25 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to &lt;img class=&apos;upload-icon&apos;/&gt; export your passwords..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep26 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can sort &lt;img class=&apos;content-icon&apos;/&gt; your passwords based on Date/ Content..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep27 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can filter &lt;img class=&apos;filter-icon&apos;/&gt; your passwords based on password type..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep28 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Or, select the file from &lt;strong&gt;“Recent Files“&lt;/strong&gt; list, right-click and select &lt;strong&gt;Open&lt;/strong&gt;..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep29 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select file(s) you want to encrypt and secure..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep3 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your selected files will be secured and visible in the Recent Files section..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep4 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;strong&gt;“Open Secured”&lt;/strong&gt; &lt;img class=&apos;open-secured-icon&apos;/&gt; button..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep5 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the encrypted &lt;strong&gt;“.axx”&lt;/strong&gt; extension file(s) you want to open..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep6 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow either of the below steps:.
+        /// </summary>
+        public static string BetaQuickGuidesParaStep7 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the  checkbox &lt;img class=&apos;right-click-icon&apos;/&gt; of file(s) in the recent files list you want to stop securing..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep8 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right-click on the selected file..
+        /// </summary>
+        public static string BetaQuickGuidesParaStep9 {
+            get {
+                return ResourceManager.GetString("BetaQuickGuidesParaStep9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;New user interface&lt;/span&gt; for a more modern, intuitive, and streamlined experience..
+        /// </summary>
+        public static string BetaTrialBannerContent1 {
+            get {
+                return ResourceManager.GetString("BetaTrialBannerContent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Enhanced performance&lt;/span&gt; for stability, security and compatibility for the major operating systems..
+        /// </summary>
+        public static string BetaTrialBannerContent2 {
+            get {
+                return ResourceManager.GetString("BetaTrialBannerContent2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;More Features&lt;/span&gt; as integrated Secured Messenger and Password Manager for instant access..
+        /// </summary>
+        public static string BetaTrialBannerContent3 {
+            get {
+                return ResourceManager.GetString("BetaTrialBannerContent3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience the &lt;span&gt;next level&lt;/span&gt; of &lt;span&gt;AxCrypt&lt;/span&gt;!.
+        /// </summary>
+        public static string BetaTrialBannerHeading {
+            get {
+                return ResourceManager.GetString("BetaTrialBannerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What are the main goals of the beta trial?.
+        /// </summary>
+        public static string BetaTrialFaq1 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The beta trial aims to gather user feedback on new features and ensure the software&apos;s stability before the official release..
+        /// </summary>
+        public static string BetaTrialFaq1Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq1Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What can I expect during the beta testing phase?.
+        /// </summary>
+        public static string BetaTrialFaq2 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During the beta testing phase, you can explore new features, provide feedback, and help us identify any issues to enhance the final product..
+        /// </summary>
+        public static string BetaTrialFaq2Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq2Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is this version available on other platforms?.
+        /// </summary>
+        public static string BetaTrialFaq3 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently, the beta is exclusively for Windows users..
+        /// </summary>
+        public static string BetaTrialFaq3Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq3Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What kind of feedback are you looking for?.
+        /// </summary>
+        public static string BetaTrialFaq4 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We welcome all feedback, especially regarding performance, usability, features, and any issues you encounter..
+        /// </summary>
+        public static string BetaTrialFaq4Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq4Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What if I encounter bugs or issues during the beta?.
+        /// </summary>
+        public static string BetaTrialFaq5 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you encounter any bugs or issues, please report them through our feedback form. Your input helps us resolve issues before the official release..
+        /// </summary>
+        public static string BetaTrialFaq5Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq5Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will my data be safe while using the beta version?.
+        /// </summary>
+        public static string BetaTrialFaq6 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, your data security is our top priority. The beta version maintains the same high standards of encryption as the current version of AxCrypt..
+        /// </summary>
+        public static string BetaTrialFaq6Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq6Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can I revert to the previous version after trying the beta?.
+        /// </summary>
+        public static string BetaTrialFaq7 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, you can revert to the previous version if needed. When you decide to leave the beta, simply download the current AxCrypt application, log in, and start using that version. All your encrypted data will remain intact during the process..
+        /// </summary>
+        public static string BetaTrialFaq7Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq7Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will there be updates during the beta testing phase?.
+        /// </summary>
+        public static string BetaTrialFaq8 {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, we plan to release updates based on user feedback and any issues that arise during the trial..
+        /// </summary>
+        public static string BetaTrialFaq8Ans {
+            get {
+                return ResourceManager.GetString("BetaTrialFaq8Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What’s new in &lt;span&gt;AxCrypt?&lt;/span&gt;.
+        /// </summary>
+        public static string BetaTrialHeading1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for easy access and smoother functionality..
+        /// </summary>
+        public static string BetaTrialHeading1Paragraph1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to with the latest encryption protocols to protect your data..
+        /// </summary>
+        public static string BetaTrialHeading1Paragraph2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1Paragraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to for an intuitive and efficient user experience..
+        /// </summary>
+        public static string BetaTrialHeading1Paragraph3 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1Paragraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Improved performance.
+        /// </summary>
+        public static string BetaTrialHeading1SubHead1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced security.
+        /// </summary>
+        public static string BetaTrialHeading1SubHead2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1SubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modern interface.
+        /// </summary>
+        public static string BetaTrialHeading1SubHead3 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading1SubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to install AxCrypt &lt;span&gt;Beta?&lt;/span&gt;.
+        /// </summary>
+        public static string BetaTrialHeading3 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the Installer.
+        /// </summary>
+        public static string BetaTrialHeading3SubHead1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;#beta-appdownload-section&apos;&gt;Click the link to download&lt;/a&gt; the AxCrypt app beta installer..
+        /// </summary>
+        public static string BetaTrialHeading3SubHead1Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run the Installer.
+        /// </summary>
+        public static string BetaTrialHeading3SubHead2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locate the downloaded file and double-click to run the installer..
+        /// </summary>
+        public static string BetaTrialHeading3SubHead2Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow the on-screen instructions to complete the installation..
+        /// </summary>
+        public static string BetaTrialHeading3SubHead2Text2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch the Application.
+        /// </summary>
+        public static string BetaTrialHeading3SubHead3 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After installation, you can find AxCrypt in the Start Menu..
+        /// </summary>
+        public static string BetaTrialHeading3SubHead3Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open the application and log in with your existing credentials or create a new account..
+        /// </summary>
+        public static string BetaTrialHeading3SubHead3Text2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading3SubHead3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Feedback&lt;/span&gt; submission.
+        /// </summary>
+        public static string BetaTrialHeading4 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your feedback is crucial for improving AxCrypt. Share your thoughts, report bugs, or suggest features by completing the feedback form..
+        /// </summary>
+        public static string BetaTrialHeading4Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also reach out to our &lt;a href=&quot;mailto:support@axcrypt.net&quot;&gt;support team&lt;/a&gt; for any additional suggestions or assistance..
+        /// </summary>
+        public static string BetaTrialHeading4Text2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading4Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Known &lt;span&gt;issues&lt;/span&gt;.
+        /// </summary>
+        public static string BetaTrialHeading5 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some users may experience minor UI glitches on specific devices. We are actively working to resolve these issues in future updates..
+        /// </summary>
+        public static string BetaTrialHeading5Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Certain features from the previous version may not be fully implemented yet. Please check the release notes for updates..
+        /// </summary>
+        public static string BetaTrialHeading5Text2 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading5Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access the Beta Version &lt;span&gt;Guides&lt;span&gt;.
+        /// </summary>
+        public static string BetaTrialHeading6 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Guides.
+        /// </summary>
+        public static string BetaTrialHeading6Button1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading6Button1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be among the first to explore new features. &lt;br /&gt;&lt;br /&gt;Check out the Beta guide and start your journey today!.
+        /// </summary>
+        public static string BetaTrialHeading6Text1 {
+            get {
+                return ResourceManager.GetString("BetaTrialHeading6Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help us make &lt;span&gt;encryption&lt;/span&gt; &lt;b&gt;easier&lt;/b&gt; than ever..
+        /// </summary>
+        public static string BetaTrialTitle {
+            get {
+                return ResourceManager.GetString("BetaTrialTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} billed yearly.
         /// </summary>
         public static string BilledYearlyText {
             get {
                 return ResourceManager.GetString("BilledYearlyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Billing Adress.
+        /// </summary>
+        public static string BillingAddressIdText {
+            get {
+                return ResourceManager.GetString("BillingAddressIdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your university Address.
+        /// </summary>
+        public static string BillingAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("BillingAddressPlaceholder", resourceCulture);
             }
         }
         
@@ -3134,6 +5024,141 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_5KFESSAO_Title {
             get {
                 return ResourceManager.GetString("Blog_5KFESSAO_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks are increasing in frequency and sophistication, with SMBs being particularly vulnerable. In 2020, over 700,000 attacks against small businesses caused $2.8 billion in damages. Hackers often see SMBs as easy targets due to their limited security infrastructure. Malware is the most common type of cyberattack aimed at small businesses, accounting for 18% of attacks. SMB cybersecurity is more critical than ever, making small business encryption a necessary defense. Implementing strong file security [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Governments worldwide are enforcing stricter data protection laws, requiring businesses to secure customer and employee data. Regulations such as the &lt;a href=&apos;https://axcrypt.net/information/regulatory-compliance/gdpr/&apos;&gt;General Data Protection Regulation (GDPR)&lt;/a&gt; and the &lt;a href=&apos;https://oag.ca.gov/privacy/ccpa&apos;&gt;California Consumer Privacy Act (CCPA)&lt;/a&gt; mandate robust security measures, including encryption. Failing to comply can lead to hefty fines and legal trouble. By encrypting sensitive files, SMBs  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not all data breaches occur due to external attacks; insider threats, whether intentional or accidental, can be just as damaging. Employees may mishandle data, fall victim to phishing scams, or misuse access privileges. Alarmingly, 95% of cybersecurity breaches are attributed to human error. Approximately 1 in 323 emails sent to small businesses are malicious, further increasing the risk. Encryption helps mitigate the impact of such threats by restricting access to only authorized individuals and ensuring t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The shift toward remote work and cloud-based operations has increased the need for strong security measures. Employees frequently access company data from various locations and devices, making it important to protect information at rest and in transit. Small Business encryption ensures that sensitive files stored in the cloud or shared online remain protected from unauthorized access. With 51% of small businesses lacking any IT security measures and 43% lacking a recovery plan, encryption becomes even more  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data breach can severely damage an SMB’s reputation, leading to loss of customer trust and financial setbacks. Studies show that on average, SMBs lose $25,000 due to cyberattacks, and 78% of SMBs worry that a serious cyberattack could put them out of business. Implementing encryption demonstrates a commitment to protecting sensitive information, fostering trust, and enhancing brand credibility. Businesses that &lt;a href=&apos;https://brilliancesecuritymagazine.com/cybersecurity/enhancing-customer-trust-through-s [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt provides the best encryption solutions with advanced features for SMBs. With &lt;a href=&apos;https://axcrypt.net/information/group/?srsltid=AfmBOoonTi4lF-Y9LdRPIHlj7oxrZC-Qpvcds_oPzb-Jp4i11BNhmMfh&apos;&gt;Group Management&lt;/a&gt;, businesses can efficiently manage user access. &lt;a href=&apos;https://www.youtube.com/watch?v=hO3XmPw3omU&amp;pp=ygUaI2Vhcm5mcmVlY3J5cHRvdXNpbmdtb2JpbGU%3D&apos;&gt;Key Sharing&lt;/a&gt; ensures secure collaboration without exposing passwords. Centralized Key Management simplifies encryption for teams, reducing co [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_5RWEISB_H5_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_H5_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Rising Cybersecurity Threats.
+        /// </summary>
+        public static string Blog_5RWEISB_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Compliance with Data Protection Regulations.
+        /// </summary>
+        public static string Blog_5RWEISB_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Protection Against Insider Threats.
+        /// </summary>
+        public static string Blog_5RWEISB_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. Secure Remote Work and Cloud Storage.
+        /// </summary>
+        public static string Blog_5RWEISB_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. Maintaining Customer Trust and Business Reputation.
+        /// </summary>
+        public static string Blog_5RWEISB_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  In 2025, encrypting sensitive business data isn’t optional—it’s essential for SMBs to stay protected. Here are five key reasons why encryption should be a fundamental part of every SMB’s data protection strategy..
+        /// </summary>
+        public static string Blog_5RWEISB_Summary {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small and medium-sized businesses (SMBs) are becoming prime targets for cyber threats, making data security a top priority. In 2025, encrypting sensitive business data isn’t optional—it’s essential for SMBs to stay protected. Here are five key reasons why encryption should be a fundamental part of every SMB’s data protection strategy..
+        /// </summary>
+        public static string Blog_5RWEISB_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt.net/blog/how-small-businesses-can-protect-themselves-from-growing-cyber-threats/&apos;&gt;&lt;b&gt;Read more about the key aspects of SMB cybersecurity from this blog&lt;/b&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_5RWEISB_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 Reasons Why Encryption is Important for Small Businesses.
+        /// </summary>
+        public static string Blog_5RWEISB_Title {
+            get {
+                return ResourceManager.GetString("Blog_5RWEISB_Title", resourceCulture);
             }
         }
         
@@ -3633,7 +5658,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AES or the Advanced Encryption Standard is a cipher, which is a way to both encrypt and decrypt data. There&apos;s a significant probability that your data will be encrypted by some type of AES cipher, such as the AES 256, 192, or 128 -- whenever you transmit files through secure file transfer protocols like HTTPS, FTPS, SFTP, WebDAV, OFTP, or AS2..
+        ///   Looks up a localized string similar to AES or the &lt;a href=&apos;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt;Advanced Encryption Standard&lt;/a&gt; is a cipher, which is a way to both encrypt and decrypt data. There&apos;s a significant probability that your data will be encrypted by some type of AES cipher, such as the AES 256, 192, or 128 -- whenever you transmit files through secure file transfer protocols like HTTPS, FTPS, SFTP, WebDAV, OFTP, or AS2..
         /// </summary>
         public static string Blog_AESDES_H1_Text1 {
             get {
@@ -3921,6 +5946,285 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last year, we achieved significant milestones that not only marked our success but also strengthened your cybersecurity. As we step into 2025, we&apos;re excited to share how we’ve made AxCrypt even stronger to face future challenges..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Supporting Academia with the Student Plan&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recognizing the unique needs of students, we introduced the &lt;b&gt;AxCrypt Student Plan&lt;/b&gt; last year. Designed specifically for academic life, this plan offers an ideal blend of affordability and premium features to protect your research, assignments, and personal projects..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Enhanced Business Security with Group Feature&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Group Feature is a breakthrough in simplifying secure collaboration for businesses. It empowers organizations to set up departmental groups for managing users, restricting file access, and controlling encryption keys at a granular level. This innovation has streamlined workflows, strengthened team efficiency, and elevated data security standards..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Centralized Security with the Group Masterkey&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the Group Masterkey, we’ve made security simpler and stronger. By reducing the need for individual passwords, we ensure that only authorized people can access your encrypted data. It works seamlessly with role-based access, so Group Admins can easily manage access. This streamlined key management system helps improve efficiency, security, and compliance for your organization..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Breaking Language Barriers with Multilingual Support&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt continued its mission to make security accessible to everyone. In 2024, we expanded our support to over 14 languages, ensuring that users from all corners of the world can manage their files in the language they know best. Whether you’re working in Mandarin, French, or Spanish, AxCrypt is here to make your experience smoother..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Encryption on the Go: Mobile Made Easy&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securing your files shouldn’t mean staying tied to your desk. In 2024, mobile encryption grew even more popular, letting users encrypt and decrypt files with just a few taps. Whether you’re travelling or working remotely, AxCrypt brought security right to your fingertips..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt continues to set the standard in encryption. For the 9th consecutive year, we proudly earned the title of &lt;a href=&apos;https://www.pcmag.com/reviews/axcrypt-premium&apos;&gt;&lt;b&gt;Best Encryption Software by PCMag.&lt;/b&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “𝘼𝙭𝘾𝙧𝙮𝙥𝙩 𝙋𝙧𝙚𝙢𝙞𝙪𝙢 𝙢𝙖𝙠𝙚𝙨 𝙚𝙣𝙘𝙧𝙮𝙥𝙩𝙞𝙤𝙣 𝙨𝙞𝙢𝙥𝙡𝙚 𝙚𝙣𝙤𝙪𝙜𝙝 𝙛𝙤𝙧 𝙖𝙣𝙮𝙤𝙣𝙚, 𝙖𝙣𝙙 𝙞𝙩 𝙚𝙫𝙚𝙣 𝙤𝙛𝙛𝙚𝙧𝙨 𝙥𝙪𝙗𝙡𝙞𝙘 𝙠𝙚𝙮 𝙘𝙧𝙮𝙥𝙩𝙤𝙜𝙧𝙖𝙥𝙝𝙮 𝙛𝙤𝙧 𝙨𝙚𝙘𝙪𝙧𝙚 𝙨𝙝𝙖𝙧𝙞𝙣𝙜 𝙤𝙛 𝙚𝙣𝙘𝙧𝙮𝙥𝙩𝙚𝙙 𝙛𝙞𝙡𝙚𝙨.” – PCMag.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our commitment to user-friendliness and security has also earned us additional accolades:.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt.net/blog/axcrypt-recognized-best-of-badges-gartner-2024/&apos;&gt;&lt;b&gt;Find Out Why Customers Trust AxCrypt&lt;/b&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We’ve got exciting plans lined up for this year! Every improvement we make is shaped by your feedback and the challenges you’ve shared with us. We’re constantly evolving to bring you the best experience possible, and this year is no exception. Get ready for features and updates that will make AxCrypt even better than you imagined..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here’s a sneak peek at what’s coming:.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔰&lt;b&gt;Enhanced Performance&lt;/b&gt;: We’re fine-tuning AxCrypt’s functionality to deliver a faster, smoother experience. Soon, you’ll enjoy reduced load times and improved responsiveness, whether you’re encrypting files, sharing access, or managing data. Get ready to work without interruptions like never before..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔰&lt;b&gt;Advanced Security&lt;/b&gt;: Keeping your data safe will always be our priority. This year, we’re upgrading our encryption protocols to stay ahead of evolving cyber threats. With these enhancements, AxCrypt will ensure your files are protected by cutting-edge security measures, giving you complete peace of mind..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🔰&lt;b&gt;Modern Interface&lt;/b&gt;: Security will become simpler than ever. Our redesigned interface will be clean, intuitive, and easy to navigate, making it effortless to stay protected. From streamlined workflows to clear instructions, we’re preparing to give you the best user experience yet..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H3_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H3_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stats from 2024 are sobering: an average of &lt;a href=&apos;https://www.checkpoint.com/&apos;&gt;&lt;b&gt;1,673 cyberattacks&lt;/b&gt;&lt;/a&gt; per organization each week, marking a &lt;b&gt;44% increase&lt;/b&gt; from the previous year. It’s a stark reminder of the evolving threats we all face in the digital world..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to But 2025 offers a chance to rewrite the narrative. By adopting proactive measures like encryption, you can protect your data and ensure you’re not caught off guard. AxCrypt is here to empower you with the tools and confidence you need to stay secure. Don’t let the mistakes of the past define your future; take charge of your digital safety with AxCrypt..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2024 - A Year of Major Milestones.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recognized for Excellence Once Again.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking ahead to 2025.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prioritize Data Privacy.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to 2025. This year marks a critical turning point in the world of cybersecurity as we prepare for emerging threats and groundbreaking trends. From the latest malware to potential cyber wars, the next 12 months could bring significant challenges to the global cyber community..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Summary {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Welcome to 2025&lt;/b&gt;. This year marks a critical turning point in the world of cybersecurity as we prepare for emerging threats and groundbreaking trends. From the latest malware to potential cyber wars, the next 12 months could bring significant challenges to the global cyber community..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to However, every problem has a solution. &lt;b&gt;AxCrypt&lt;/b&gt; stands as your best defense against these evolving threats. If you believe you&apos;re safe because you&apos;re not running a large business or have minimal online connections, think again. Cyberattacks can target anyone, anywhere, at any time..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption scrambles your data into unreadable codes, making it nearly impossible for unauthorized entities to access your information. AxCrypt has been at the forefront of promoting encryption and raising awareness because your privacy matters..
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A New Year, a New Era of File Security with AxCrypt.
+        /// </summary>
+        public static string Blog_ANYANEFSWA_Title {
+            get {
+                return ResourceManager.GetString("Blog_ANYANEFSWA_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We store what we call an AxCrypt ID which is associated with your account on our servers. (Technically this is an RSA-4096 encryption key pair.) This key pair consists of a public sharing and private secret part. When we encrypt a file we don’t really encrypt it with your password as the encryption key. We encrypt your file with a random and unique key every time a file is encrypted. We call this the master file key. It’s this master file key that we actually encrypt with your password and add to the encryp [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_AOVO_H2_Text1 {
@@ -4164,6 +6468,366 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to “𝘛𝘩𝘦𝘳𝘦 𝘪𝘴 𝘯𝘰 𝘴𝘪𝘯𝘨𝘭𝘦 𝘧𝘪𝘦𝘭𝘥 𝘵𝘩𝘢𝘵 𝘵𝘩𝘪𝘴 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘤𝘢𝘯𝘯𝘰𝘵 𝘧𝘪𝘵. 𝘞𝘦 𝘩𝘢𝘷𝘦 𝘶𝘴𝘦𝘥 𝘪𝘵 𝘢𝘤𝘳𝘰𝘴𝘴 𝘢𝘭𝘭 𝘥𝘦𝘱𝘢𝘳𝘵𝘮𝘦𝘯𝘵𝘴, 𝘢𝘯𝘥 𝘪𝘵 𝘸𝘰𝘳𝘬𝘴 𝘱𝘦𝘳𝘧𝘦𝘤𝘵𝘭𝘺 𝘸𝘦𝘭𝘭.”.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 𝘣𝘺 𝘔𝘪𝘭𝘭𝘪𝘤𝘦𝘯𝘵 𝘚. &lt;a href=&apos;https://www.capterra.com/p/212854/AxCrypt/reviews/Capterra___6207059/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;[Capterra]&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “𝘏𝘢𝘴 𝘩𝘦𝘭𝘱𝘦𝘥 𝘮𝘦 𝘴𝘦𝘤𝘶𝘳𝘦 𝘤𝘰𝘮𝘱𝘢𝘯𝘺 𝘧𝘪𝘭𝘦𝘴 𝘢𝘶𝘵𝘰𝘮𝘢𝘵𝘪𝘤𝘢𝘭𝘭𝘺 𝘪𝘯 𝘨𝘰𝘰𝘨𝘭𝘦 𝘥𝘳𝘪𝘷𝘦 𝘴𝘰 𝘵𝘩𝘢𝘵 𝘰𝘶𝘳 𝘧𝘪𝘭𝘦𝘴 𝘢𝘳𝘦 𝘴𝘵𝘰𝘳𝘦𝘥 𝘰𝘯 𝘤𝘭𝘰𝘶𝘥, 𝘰𝘱𝘦𝘯𝘪𝘯𝘨 𝘧𝘪𝘭𝘦𝘴 𝘣𝘺 𝘰𝘵𝘩𝘦𝘳 𝘈𝘹𝘤𝘳𝘺𝘱𝘵 𝘶𝘴𝘦𝘳𝘴 𝘪𝘴 𝘱𝘰𝘴𝘴𝘪𝘣𝘭𝘦 𝘢𝘴 𝘭𝘰𝘯𝘨 𝘢𝘴 𝘵𝘩𝘦𝘺 𝘩𝘢𝘷𝘦 𝘰𝘶𝘳 𝘱𝘢𝘴𝘴𝘸𝘰𝘳𝘥 𝘸𝘩𝘪𝘤𝘩 𝘮𝘢𝘬𝘦𝘴 𝘪𝘵 𝘦𝘢𝘴𝘺 𝘵𝘰 𝘴𝘩𝘢𝘳𝘦 𝘴𝘵𝘰𝘳𝘦𝘥 𝘥𝘢𝘵𝘢 𝘸𝘪𝘵𝘩𝘪𝘯 𝘵𝘩𝘦 𝘰𝘳𝘨𝘢𝘯𝘪𝘻𝘢𝘵𝘪𝘰𝘯 𝘸𝘩𝘦𝘯 𝘯𝘦𝘤𝘦𝘴𝘴𝘢𝘳𝘺.”.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 𝘣𝘺 𝘉𝘶𝘴𝘰𝘯𝘺𝘢 &lt;a href=&apos;https://www.softwareadvice.com/cloud-security/axcrypt-profile/reviews/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;[Software Advice]&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “𝘛𝘩𝘪𝘴 𝘴𝘰𝘧𝘵𝘸𝘢𝘳𝘦 𝘰𝘧𝘧𝘦𝘳𝘴 𝘵𝘩𝘦 𝘤𝘰𝘯𝘧𝘪𝘥𝘦𝘯𝘵𝘪𝘢𝘭𝘪𝘵𝘺 𝘐 𝘯𝘦𝘦𝘥𝘦𝘥 𝘧𝘰𝘳 𝘴𝘦𝘯𝘴𝘪𝘵𝘪𝘷𝘦 𝘧𝘪𝘭𝘦𝘴 𝘤𝘰𝘯𝘵𝘢𝘪𝘯𝘪𝘯𝘨 𝘮𝘺 𝘤𝘰𝘥𝘦𝘴 𝘢𝘯𝘥 𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘴. 𝘌𝘯𝘤𝘳𝘺𝘱𝘵𝘪𝘰𝘯 𝘪𝘴 𝘢𝘥𝘷𝘢𝘯𝘤𝘦𝘥 𝘵𝘰 𝘱𝘳𝘰𝘧𝘦𝘴𝘴𝘪𝘰𝘯𝘢𝘭 𝘭𝘦𝘷𝘦𝘭𝘴 𝘸𝘩𝘪𝘤𝘩 𝘪𝘴 𝘢 𝘨𝘳𝘦𝘢𝘵 𝘪𝘥𝘦𝘢 𝘧𝘰𝘳 𝘢 𝘴𝘦𝘤𝘶𝘳𝘦 𝘢𝘯𝘥 𝘸𝘰𝘳𝘬 𝘦𝘯𝘷𝘪𝘳𝘰𝘯𝘮𝘦𝘯𝘵.”.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 𝘣𝘺 𝘠𝘶𝘴𝘮𝘦𝘪𝘥𝘺 &lt;a href=&apos;https://www.softwareadvice.com/cloud-security/axcrypt-profile/reviews/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;[Software Advice]&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “𝘐 𝘭𝘪𝘬𝘦 𝘪𝘵𝘴 𝘴𝘵𝘳𝘰𝘯𝘨 𝘧𝘰𝘤𝘶𝘴 𝘰𝘯 𝘦𝘯𝘤𝘳𝘺𝘱𝘵𝘪𝘰𝘯, 𝘪𝘵 𝘨𝘪𝘷𝘦𝘴 𝘶𝘴 𝘱𝘦𝘢𝘤𝘦 𝘰𝘧 𝘮𝘪𝘯𝘥 𝘵𝘩𝘢𝘵 𝘰𝘶𝘳 𝘥𝘢𝘵𝘢 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘴𝘦𝘤𝘶𝘳𝘦 𝘦𝘷𝘦𝘯 𝘪𝘯 𝘵𝘩𝘦 𝘦𝘷𝘦𝘯𝘵 𝘰𝘧 𝘶𝘯𝘢𝘶𝘵𝘩𝘰𝘳𝘪𝘻𝘦𝘥 𝘢𝘤𝘤𝘦𝘴𝘴. 𝘐𝘯 𝘢𝘥𝘥𝘪𝘵𝘪𝘰𝘯, 𝘈𝘹𝘊𝘳𝘺𝘱𝘵&apos;𝘴 𝘦𝘢𝘴𝘦 𝘰𝘧 𝘶𝘴𝘦 𝘪𝘴 𝘰𝘯𝘦 𝘰𝘧 𝘪𝘵𝘴 𝘨𝘳𝘦𝘢𝘵𝘦𝘴𝘵 𝘴𝘵𝘳𝘦𝘯𝘨𝘵𝘩𝘴.”.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 𝘣𝘺 𝘈𝘯𝘵𝘩𝘰𝘯𝘺 𝘓. &lt;a href=&apos;https://www.getapp.com/security-software/a/axcrypt/reviews/?rating_rounded%5B%5D=5&amp;sort_by=most_recent?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;[GetApp]&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Want to share a review? &lt;a href=&apos;https://reviews.getapp.com/products/new/e61d057b-bdaa-4404-b93e-555b984f38e9/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;Click here&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With an &lt;b&gt;overall rating of 4.9/5&lt;/b&gt; and 20+ reviews across Gartner Digital Markets brands, AxCrypt continues to be a reliable choice for those seeking:.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Simplified encryption&lt;/b&gt; to protect sensitive files.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cloud integration&lt;/b&gt; for seamless file sharing and security.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;User-friendly features&lt;/b&gt; for both individuals and businesses.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Mobile Application&lt;/b&gt; to encrypt and decrypt files on the go.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Group-level key management&lt;/b&gt; for admins and user groups within businesses.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Secure password management&lt;/b&gt; for safely sharing and storing passwords.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our solutions are designed to make encryption accessible without compromising security, ensuring peace of mind for all users..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While 2024 has been a year of remarkable milestones, we are excited to embark on the journey ahead. AxCrypt remains committed to enhancing our software and introducing innovative features that address evolving security needs..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In 2025, you can expect:.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Improved performance&lt;/b&gt; for easy access and smoother functionality.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Enhanced security&lt;/b&gt; with the latest encryption protocols to protect your data.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Modern interface&lt;/b&gt; for an intuitive and efficient user experience.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We’re grateful for the trust and support of our customers, which fuels our growth and innovation..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H3_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H3_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We value your feedback! If AxCrypt has made a difference for you or your organization, share your review with us &lt;a href=&apos;https://reviews.getapp.com/products/new/e61d057b-bdaa-4404-b93e-555b984f38e9/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;here&lt;/a&gt;..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is an award-winning encryption software company specializing in secure file encryption, password management, and cloud security solutions. Our mission is to simplify security for individuals and businesses, empowering them to protect their sensitive data effortlessly..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Gartner Digital Markets&lt;/b&gt; is the world’s largest platform for discovering software and services, with more than 100 million visitors annually. Through localized sites like &lt;b&gt;Capterra, GetApp, and Software Advice&lt;/b&gt;, it connects users to verified reviews and objective research, enabling confident decision-making..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more information, visit &lt;a href=&apos;https://www.gartner.com/en/digital-markets&apos;&gt;Gartner Digital Markets&lt;/a&gt;..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_H6_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_H6_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Customers Love AxCrypt.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Choose AxCrypt?.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking Ahead to 2025.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share Your Experience.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About AxCrypt.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Gartner Digital Markets.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have been honored with multiple “Best of” badges by Gartner Digital Markets through its renowned platforms—Capterra, Software Advice, and GetApp. This recognition highlights AxCrypt’s exceptional standing in encryption, cloud security, and password management solutions..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Summary {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As the year comes to a close, we at &lt;a href=&apos;https://www.getapp.com/security-software/a/axcrypt/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;&lt;b&gt;AxCrypt&lt;/b&gt;&lt;/a&gt; are excited to share some incredible news with you..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have been honored with multiple “Best Of” Badges by &lt;b&gt;Gartner Digital Markets&lt;/b&gt; through its renowned platforms &lt;a href=&apos;https://www.capterra.com/p/212854/AxCrypt/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;&lt;b&gt;Capterra&lt;/b&gt;&lt;/a&gt;, &lt;a href=&apos;https://softwareadvice.com/cloud-security/axcrypt-profile/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-2024&apos;&gt;&lt;b&gt;Software Advice&lt;/b&gt;&lt;/a&gt;, and &lt;a href=&apos;https://www.getapp.com/security-software/a/axcrypt/?utm_source=vp&amp;utm_medium=blog&amp;utm_campaign=ts-q4-20 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &lt;b&gt;“Best of” badges program&lt;/b&gt; is an independent evaluation that recognizes the highest-rated software based on user reviews. By analyzing real feedback from verified users, Gartner Digital Markets ensures that these badges reflect genuine satisfaction and trust in the solutions offered..
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “𝘈𝘹𝘊𝘳𝘺𝘱𝘵 𝘩𝘢𝘴 𝘢𝘭𝘸𝘢𝘺𝘴 𝘣𝘦𝘦𝘯 𝘥𝘳𝘪𝘷𝘦𝘯 𝘣𝘺 𝘢 𝘱𝘢𝘴𝘴𝘪𝘰𝘯 𝘧𝘰𝘳 𝘮𝘢𝘬𝘪𝘯𝘨 𝘥𝘢𝘵𝘢 𝘴𝘦𝘤𝘶𝘳𝘪𝘵𝘺 𝘦𝘢𝘴𝘺, 𝘢𝘤𝘤𝘦𝘴𝘴𝘪𝘣𝘭𝘦, 𝘢𝘯𝘥 𝘦𝘧𝘧𝘦𝘤𝘵𝘪𝘷𝘦. 𝘖𝘶𝘳 𝘮𝘪𝘴𝘴𝘪𝘰𝘯 𝘩𝘢𝘴 𝘢𝘭𝘸𝘢𝘺𝘴 𝘣𝘦𝘦𝘯 𝘵𝘰 𝘴𝘪𝘮𝘱𝘭𝘪𝘧𝘺 𝘥𝘢𝘵𝘢 𝘴𝘦𝘤𝘶𝘳𝘪𝘵𝘺 𝘧𝘰𝘳 𝘪𝘯𝘥𝘪𝘷𝘪𝘥𝘶𝘢𝘭𝘴 𝘢𝘯𝘥 𝘣𝘶𝘴𝘪𝘯𝘦𝘴𝘴𝘦𝘴 𝘢𝘭𝘪𝘬𝘦, 𝘢𝘯𝘥 𝘵𝘩𝘪𝘴 𝘺𝘦𝘢𝘳 𝘩𝘢𝘴 𝘣𝘦𝘦𝘯 𝘢 𝘵𝘦𝘴𝘵𝘢𝘮𝘦𝘯𝘵 𝘵𝘰 𝘰𝘶𝘳 𝘰𝘯𝘨𝘰𝘪𝘯𝘨 𝘪𝘯𝘯𝘰𝘷𝘢𝘵𝘪𝘰𝘯 𝘢𝘯𝘥 𝘨𝘳𝘰𝘸𝘵𝘩. 𝘈𝘴 𝘸𝘦 𝘤𝘰𝘯𝘵𝘪𝘯𝘶� [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — 𝘡𝘦𝘣𝘢𝘴𝘵𝘪𝘢𝘯 𝘝𝘪𝘤𝘵𝘰𝘳𝘪𝘯, 𝘊𝘌𝘖, 𝘈𝘹𝘊𝘳𝘺𝘱𝘵.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Recognized with Multiple “Best Of” Badges by Gartner Digital Markets in 2024.
+        /// </summary>
+        public static string Blog_ARWMBBGDM_Title {
+            get {
+                return ResourceManager.GetString("Blog_ARWMBBGDM_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The holiday season is a time for celebration and spending time with loved ones, but it&apos;s also important to make sure that your data is safe and secure. By following these tips and using a reputable security solution like AxCrypt, you can help protect your data from unauthorized access and give yourself peace of mind. Happy holidays!.
         /// </summary>
         public static string Blog_ASTSHSA_Conclusion {
@@ -4173,7 +6837,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choosing strong, unique passwords is one of the easiest ways to protect your accounts and data. Make sure to use a combination of letters, numbers, and special characters, and avoid using personal information or dictionary words. Still the most common password is still “123456”, so it&apos;s important to be creative and not use easily guessable passwords. It&apos;s also a good idea to use different passwords for different accounts to reduce the risk of all of your accounts being compromised if one password is exposed [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Choosing &lt;a href=&apos;https://axcrypt.net/information/password-generator/&apos;&gt;strong, unique passwords&lt;/a&gt; is one of the easiest ways to protect your accounts and data. Make sure to use a combination of letters, numbers, and special characters, and avoid using personal information or dictionary words. Still the most common password is still â€œ123456â€, so it&apos;s important to be creative and not use easily guessable passwords. It&apos;s also a good idea to use different passwords for different accounts to reduce the ris [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_ASTSHSA_H1_Text1 {
             get {
@@ -4182,7 +6846,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A password manager is a tool that generates and stores strong, unique passwords, helps you avoid using weak passwords, and makes it easier to use different passwords for different accounts. It also securely stores and organizes your passwords and may offer additional features such as two-factor authentication and alerts for exposed passwords. A password manager is a convenient and secure way to manage passwords. One option is AxCrypt which offers a password manager as part of its security solution..
+        ///   Looks up a localized string similar to A &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;password manager&lt;/a&gt; is a tool that generates and stores strong, unique passwords, helps you avoid using weak passwords, and makes it easier to use different passwords for different accounts. It also securely stores and organizes your passwords and may offer additional features such as two-factor authentication and alerts for exposed passwords. A password manager is a convenient and secure way to manage passwords. One option is AxCrypt which offers a password [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_ASTSHSA_H2_Text2 {
             get {
@@ -4344,7 +7008,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt utilizes the superior &lt;b&gt;AES 256-bit&lt;/b&gt; algorithm to protect your sensitive files, your personal photos and videos, and your business documents. It also comes with several unique features such as &lt;b&gt;automatic cloud encryption, secure file sharing, password management&lt;/b&gt; and generation, and a &lt;b&gt;master key&lt;/b&gt; feature to manage administrative encryption and decrypt subordinate accounts..
+        ///   Looks up a localized string similar to AxCrypt utilizes the superior &lt;b&gt;AES 256-bit&lt;/b&gt; algorithm to protect your sensitive files, your personal photos and videos, and your business documents. It also comes with several unique features such as automatic cloud encryption, secure file sharing, &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;password management&lt;/b&gt;&lt;/a&gt; and generation, and a &lt;a href=&apos;https://axcrypt.net/information/master-key/&apos;&gt;&lt;b&gt;master key&lt;/b&gt;&lt;/a&gt; feature to manage administrative encryption and decrypt subordinate accounts..
         /// </summary>
         public static string Blog_BAFESFW_Conclusion_Text3 {
             get {
@@ -4569,7 +7233,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Now that you know how to automatically encrypt files on your with AxCrypt’s Encryption Software, let’s look at some of the key benefits of automatically encrypting files on your Windows PC with the strong &lt;b&gt;AES 256-Bit&lt;/b&gt; algorithm..
+        ///   Looks up a localized string similar to Now that you know how to automatically encrypt files on your with AxCryptâ€™s &lt;a href=&apos;https://axcrypt.net/&apos;&gt;&lt;b&gt;Encryption Software&lt;/b&gt;&lt;/a&gt;, letâ€™s look at some of the key benefits of automatically encrypting files on your Windows PC with the strong &lt;b&gt;AES 256-Bit&lt;/b&gt; algorithm..
         /// </summary>
         public static string Blog_BAFESFW_H2_Text1 {
             get {
@@ -4623,7 +7287,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the era of Industry 4.0, where data is the new oil and everything is driven by analytics, data security and encryption become the indispensable needs to protect your data from breaches, malware threats, privacy attacks, and human errors..
+        ///   Looks up a localized string similar to In the era of &lt;b&gt;Industry 4.0,&lt;/b&gt;, where data is the new oil and everything is driven by analytics, data security and encryption become the indispensable needs to protect your data from breaches, malware threats, privacy attacks, and human errors..
         /// </summary>
         public static string Blog_BAFESFW_Summary {
             get {
@@ -4632,7 +7296,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In the era of &lt;b&gt;Industry 4.0,&lt;/b&gt; where data is the new oil and everything is driven by analytics, data security and encryption become the indispensable needs to protect your data from breaches, malware threats, privacy attacks, and human errors. Encrypting your data on your Windows PC ensures that it remains protected and inaccessible to unauthorized individuals, providing an extra layer of security and a peace of mind..
+        ///   Looks up a localized string similar to In the era of &lt;a href=&apos;https://axcrypt.net/industries/&apos;&gt;&lt;b&gt;Industry 4.0&lt;/b&gt;&lt;/a&gt; where data is the new oil and everything is driven by analytics, data security and encryption become the indispensable needs to protect your data from breaches, malware threats, privacy attacks, and human errors. Encrypting your data on your Windows PC ensures that it remains protected and inaccessible to unauthorized individuals, providing an extra layer of security and a peace of mind..
         /// </summary>
         public static string Blog_BAFESFW_Text1 {
             get {
@@ -5010,7 +7674,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is an excellent choice for business and organizations looking for a comprehensive and robust encryption software. It utilizes the superior &lt;b&gt;AES 256&lt;/b&gt; algorithm to secure business data, and comes with several unique features such as &lt;b&gt;automatic cloud encryption, secure file sharing, password management&lt;/b&gt; and generation, and a &lt;b&gt;master key&lt;/b&gt; to manage administrative encryption and decrypt subordinate accounts..
+        ///   Looks up a localized string similar to AxCrypt is an excellent choice for business and organizations looking for a comprehensive and robust encryption software. It utilizes the superior &lt;b&gt;AES 256&lt;/b&gt; algorithm to secure business data, and comes with several unique features such as &lt;b&gt;automatic cloud encryption, secure file sharing, password management and generation&lt;/b&gt;, and a &lt;b&gt;master key&lt;/b&gt; to manage administrative encryption and decrypt subordinate accounts..
         /// </summary>
         public static string Blog_BESFBDTUG_Conclusion_Text2 {
             get {
@@ -5019,7 +7683,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take your business’s data security to the next level! Try AxCrypt for free today with a &lt;b&gt;30-day free trial&lt;/b&gt;! Sign up now &lt;a href=&apos;https://account.axcrypt.net/en/HomeBusiness/CreateSubscription&apos;&gt;&lt;b&gt;https://account.axcrypt.net/en/HomeBusiness/CreateSubscription.&lt;/b&gt;&lt;/a&gt; .
+        ///   Looks up a localized string similar to Take your business’s data security to the next level! Try AxCrypt for free today with a &lt;b&gt;30-day free trial&lt;/b&gt;! Sign up now &lt;a href=&apos;https://account.axcrypt.net/en/HomeUser/CreateBusiness&apos;&gt;&lt;b&gt;https://account.axcrypt.net/en/HomeUser/CreateBusiness.&lt;/b&gt;&lt;/a&gt; .
         /// </summary>
         public static string Blog_BESFBDTUG_Conclusion_Text3 {
             get {
@@ -5163,7 +7827,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With &lt;b&gt;AxCrypt&apos;s Master Key&lt;/b&gt; feature, employers and managers can easily manage individual licenses and access encrypted accounts with a single click. The Master Key can decrypt any encrypted file within subordinate accounts and provides the ability to limit or revoke access to those accounts. This ensures that files can be decrypted in cases of key loss, employee departure, or credential loss..
+        ///   Looks up a localized string similar to With &lt;a href=&apos;https://axcrypt.net/information/master-key/&apos;&gt;&lt;b&gt;AxCrypt&apos;s Master Key&lt;/b&gt;&lt;/a&gt; feature, employers and managers can easily manage individual licenses and access encrypted accounts with a single click. The Master Key can decrypt any encrypted file within subordinate accounts and provides the ability to limit or revoke access to those accounts. This ensures that files can be decrypted in cases of key loss, employee departure, or credential loss..
         /// </summary>
         public static string Blog_BESFBDTUG_H2_Text13 {
             get {
@@ -5379,7 +8043,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt’s encryption software is the perfect solution for businesses seeking robust encryption for their &lt;b&gt;sensitive business data.&lt;/b&gt; With features like cloud encryption, automatic encryption, key sharing, and master key functionality, AxCrypt offers comprehensive protection..
+        ///   Looks up a localized string similar to AxCryptâ€™s encryption software is the &lt;a href=&apos;https://axcrypt.net/blog/how-axcrypt-adds-value-to-your-business/&apos;&gt;&lt;b&gt;perfect solution for businesses&lt;/b&gt;&lt;/a&gt; seeking robust encryption for their &lt;b&gt;sensitive business data.&lt;/b&gt; With features like cloud encryption, automatic encryption, key sharing, and master key functionality, AxCrypt offers comprehensive protection..
         /// </summary>
         public static string Blog_BESFBDTUG_Text5 {
             get {
@@ -5415,7 +8079,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With a password manager, you may simply and safely share passwords and notes with anyone especially when some sensitive information shouldn&apos;t be sent by SMS. Managing who has access to which accounts can be difficult for many firms, especially when numerous personnel require access to a single account. You may effectively manage and modify the password with the aid of a password manager..
+        ///   Looks up a localized string similar to With a password manager, you may simply and &lt;a href=&apos;https://axcrypt.net/blog/how-to-securely-share-passwords-with-your-friends-and-colleagues/&apos;&gt;&lt;b&gt;safely share passwords&lt;/b&gt;&lt;/a&gt; and notes with anyone especially when some sensitive information shouldn&apos;t be sent by SMS. Managing who has access to which accounts can be difficult for many firms, especially when numerous personnel require access to a single account. You may effectively manage and modify the password with the aid of a password manager..
         /// </summary>
         public static string Blog_BMYP_H1_SH1_Text1 {
             get {
@@ -5568,7 +8232,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption utilizes intricate mathematical procedures called &lt;strong&gt; &apos;encryption algorithms&apos;&lt;/strong&gt; along with digital keys to scramble data. These encryption keys can be produced either manually or by software that applies an algorithm to scramble data and create a unique encryption key. .
+        ///   Looks up a localized string similar to Encryption utilizes intricate mathematical procedures called &lt;a href=&apos;https://axcrypt.net/blog/how-to-choose-the-right-encryption-algorithm-for-your-sensitive-data/&apos;&gt;&lt;strong&gt; &apos;encryption algorithms&apos;&lt;/strong&gt;&lt;/a&gt; along with digital keys to scramble data. These encryption keys can be produced either manually or by software that applies an algorithm to scramble data and create a unique encryption key. .
         /// </summary>
         public static string Blog_BSOHDGE_H2_Text1 {
             get {
@@ -5640,7 +8304,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt allows users to easily encrypt their data across multiple devices. The software provides strong encryption using the &lt;strong&gt;AES 256-Bit,&lt;/strong&gt; ensuring that data remains protected from unauthorized access. Users can simply select the files they wish to encrypt and AxCrypt will automatically apply the encryption process, making it easy to use for those who may not be familiar with encryption. .
+        ///   Looks up a localized string similar to AxCrypt allows users to easily encrypt their data across &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;multiple devices&lt;/b&gt;&lt;/a&gt;. The software provides strong encryption using the &lt;strong&gt;AES 256-Bit,&lt;/strong&gt; ensuring that data remains protected from unauthorized access. Users can simply select the files they wish to encrypt and AxCrypt will automatically apply the encryption process, making it easy to use for those who may not be familiar with encryption. .
         /// </summary>
         public static string Blog_BSOHDGE_H4_Text1 {
             get {
@@ -5721,7 +8385,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In light of these figures, it&apos;s essential for businesses to prioritize the safety of their data, particularly from breaches and cyberattacks. One popular and effective method to ensure data safety is encryption, which is widely used across various online activities like online banking, email, and online shopping, and is even being used as we read this article. .
+        ///   Looks up a localized string similar to In light of these figures, it&apos;s essential for businesses to prioritize the safety of their data, particularly from breaches and cyberattacks. One popular and effective method to ensure data safety is encryption, which is widely used across various online activities like &lt;a href=&apos;https://axcrypt.net/blog/encryption-in-the-banking-market/&apos;&gt;online banking&lt;/a&gt;, email, and online shopping, and is even being used as we read this article. .
         /// </summary>
         public static string Blog_BSOHDGE_Text2 {
             get {
@@ -6117,6 +8781,393 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Believing in cybersecurity myths can lead to significant risks, leaving your data and personal information vulnerable to attacks. By understanding and debunking these common myths, you can take the necessary steps to protect your sensitive information..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exploring reliable encryption solutions like AxCrypt can be a powerful step toward safeguarding your data. AxCrypt’s user-friendly yet robust encryption software ensures that even non-technical users can effectively secure their information without sacrificing convenience..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don’t let misinformation put your data at risk. By sharing this post, we hope to spread awareness and help others debunk these myths, fostering a more secure and informed digital community. Remember, knowledge is the biggest threat to cybercriminals—so stay informed, stay secure, and take proactive steps to protect your data today..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 1: Only large companies are targeted in cyberattacks&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 4: Deleting files is enough to secure your data&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting a file from your computer doesn’t completely erase it. Residual data often remains, and skilled individuals can recover these “deleted” files. Simply hitting “delete” isn’t enough to ensure your sensitive information is gone forever..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt possesses a permanent deletion with wipe file feature, ensuring no trace is left when you delete a file, keeping your sensitive data out of reach..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 5: Encryption solutions aren’t worth it&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text13 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some organizations and individuals underestimate the value of encryption software, assuming they can manage without it. However, given the increasing prevalence of cyber threats, the cost of encryption software is minimal compared to the potential losses from data breaches, ransomware, or other cyber incidents..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text14 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has consistently aimed to offer an affordable security solution without sacrificing protection. With AxCrypt, you get all these powerful features at a budget-friendly price, making it a wise investment in your digital security..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text15 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 6: Encryption is Only for Tech Experts&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text16 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There’s a misconception that encryption is too complex for the average person. However, many modern tools and applications offer easy-to-use encryption features, often running in the background without requiring technical expertise..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text17 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is one of the most popular encryption software on the market, with over 20 million downloads worldwide. For AxCrypt, it was important to appeal to the average person to reach a wide, universal audience. That’s why the software has consistently been developed to be user-friendly while possessing the most robust encryption available. This is why AxCrypt is often described as a seamless encryption option..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text18 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 7: All Encryption is the Same&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text19 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A common misconception is that small and medium-sized businesses (SMBs) aren’t frequent targets of cyberattacks. Media coverage tends to focus on data breaches at large corporations, leading many to believe that smaller businesses are safe. However, the reality is quite different—many SMBs report being attacked, and some studies suggest that small businesses are three times more likely to be targeted than large ones..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to People often believe that all forms of encryption provide the same level of security. In reality, different encryption methods offer varying levels of security..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text20 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;AxCrypt provides several types of Encryptions:&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text21 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;AES-256 Encryption&lt;/b&gt; - AES-256 encryption is a form of the Advanced Encryption Standard (AES) that uses a 256-bit key to encrypt and decrypt data. This is the most robust encryption service on the market..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text22 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Symmetric Key Encryption&lt;/b&gt; - AxCrypt utilizes symmetric key encryption, meaning that the same password (key) is required to both encrypt and decrypt files..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text23 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Password management&lt;/b&gt; - AxCrypt’s Password Management service significantly reduces the risk of unauthorized access to your online accounts..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text24 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Integrated Key Management&lt;/b&gt; - AxCrypt also offers a key management feature, where users can securely share encrypted files with others by managing keys within the software..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text25 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 8: Encryption Slows Down Systems Significantly&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text26 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While encryption does add some processing overhead, modern encryption services like AxCrypt are designed to handle it efficiently. The impact of AxCrypt on performance is minimal and often unnoticeable..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text27 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 9: Encryption is Only Necessary for Sensitive Information&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text28 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This myth leads to the assumption that only things like financial data or personal identity information need to be encrypted..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text29 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text29", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has a comprehensive protection for businesses. AxCrypt’s business plan is tailored for companies of all sizes, ensuring that even SMBs can prevent data breaches..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The fact is that by keeping all data encrypted, sensitive information will be kept even safer. Seemingly non-sensitive information can be valuable to attackers, and data breaches of non-sensitive information can be used to commit an attack on sensitive data..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text30 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text30", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 10: You Don’t Need to Encrypt Data Stored in the Cloud&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text31 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some believe that cloud service providers will handle all aspects of security, including encryption. While some providers do offer encryption most of them don’t have complete protection..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text32 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt has been vocal in debunking this myth. This misconception may be dangerous since cloud software services often give the impression of being a completely secure option. That’s why AxCrypt has been outspoken about this issue and has ensured synchronization with all major cloud software services (OneDrive, Google Drive, Dropbox, etc.)..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text33 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 2: A good password is enough&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While strong passwords are important, relying solely on a password, even a complex one, leaves your data vulnerable. Hackers continuously develop new methods to crack passwords, making it crucial to implement a multi-layered defence strategy. Two-factor authentication, encryption, and regular updates are essential to safeguarding your information..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beyond just managing passwords, AxCrypt encrypts all your files, securing your information in the cloud and on your devices—even if your passwords are compromised..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Myth 3: You’ll know immediately if your computer is compromised&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Many people believe that they will recognize the signs of a cyberattack as soon as it occurs. However, modern malware is often designed to be stealthy, operating undetected for extended periods. This delay increases the potential damage as sensitive data can be compromised without your knowledge..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is what we call peace of mind with file encryption. Cyberattacks may be hard to stop, but with AxCrypt, your data remains safe regardless of what happens to your devices..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_H1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_H1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Myths.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With an increasing reliance on technology and the cloud to store our information, data encryption has become a critical concern nowadays. Despite our knowledge on the topic and the importance it has for our safety, many people and businesses still fall prey to common encryption myths. These misconceptions, which contrast sharply with reality, can give a false sense of security, leading to inadequate protection and increasing vulnerability..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Summary {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With an increasing reliance on technology and the cloud to store our information, data encryption has become a critical concern nowadays. Despite our knowledge on the topic and the importance it has for our safety, many people and businesses still fall prey to common encryption myths. These misconceptions, which contrast sharply with reality, can give a false sense of security, leading to inadequate protection and increasing vulnerability..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Myths can, in some cases, be a good thing for people, providing a sense of belief in something important. However, many myths about encryption are not beneficial; in fact, they can be rather dangerous and devastating. Today, we put our most important data and personal information into our tiny devices, assuming it will stay safe there. We use these same devices to keep in contact with people in every aspect of our lives, often connecting them to WiFi networks without knowing whether they are safe or not..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Given our dependence on these devices, it’s even more important for people to navigate this digital age with caution. Unfortunately, many of the myths circulating about encryption result in less precaution being taken. Some may avoid using encryption, thinking it’s too complex, or believe that storing everything in the cloud will keep it safe. Not true!.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this post, we aim to debunk some of the most common myths regarding encryption to increase readers’ security and provide practical advice. To help take our online security seriously, we will offer concrete solutions that can tackle cybersecurity problems. Even in difficult times, with increasing threats, encryption tools like AxCrypt can assist in keeping us safe online..
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Common Encryption Myths Debunked: What You Really Need to Know.
+        /// </summary>
+        public static string Blog_CEMDWYRNTK_Title {
+            get {
+                return ResourceManager.GetString("Blog_CEMDWYRNTK_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Developing a cyber hygiene practice will prevent hackers from causing security breaches or obtaining personal information. It will also assist you in staying up to date with software and operating systems..
         /// </summary>
         public static string Blog_CHHSSO_Conclusion_Text1 {
@@ -6207,7 +9258,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption transforms plain text into ciphertext or converts readable text into unreadable text to protect data so that only certain people can access it. Encryption scrambles or encrypts data and then utilizes a key to unscramble or decrypt the information for the receiving party. It proves to be a successful method of safeguarding sensitive data. Data on computers and storage devices and data in transit through networks are all protected with encryption..
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt.net/blog/encryption-software/&apos;&gt;&lt;b&gt;Encryption&lt;/b&gt;&lt;/a&gt; transforms plain text into ciphertext or converts readable text into unreadable text to protect data so that only certain people can access it. Encryption scrambles or encrypts data and then utilizes a key to unscramble or decrypt the information for the receiving party. It proves to be a successful method of safeguarding sensitive data. Data on computers and storage devices and data in transit through networks are all protected w [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_CHHSSO_H3_SH2_Text1 {
             get {
@@ -7359,7 +10410,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This Thanksgiving, elevate your data&apos;s protection. Experience AxCrypt&apos;s comprehensive security offerings with &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;strong&gt;30-day free trial&lt;/strong&gt;&lt;/a&gt; and celebrate worry-free data management!.
+        ///   Looks up a localized string similar to This Thanksgiving, elevate your data&apos;s protection. Experience AxCrypt&apos;s comprehensive security offerings with &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;strong&gt;30-day free trial&lt;/strong&gt;&lt;/a&gt; and celebrate worry-free data management!.
         /// </summary>
         public static string Blog_DLHRYSDTT_Conclusion_Text3 {
             get {
@@ -7377,7 +10428,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weak passwords act as an open invitation for cyber intruders, much like a poorly secured entry point in your home. These passwords are easily cracked, allowing unauthorized access to your sensitive data. AxCrypt promotes strong password practices, safeguarding your files with an additional layer of security. With robust password protection, your data remains safeguarded from unauthorized entry attempts..
+        ///   Looks up a localized string similar to Weak passwords act as an open invitation for cyber intruders, much like a poorly secured entry point in your home. These passwords are easily cracked, allowing unauthorized access to your sensitive data. AxCrypt promotes &lt;a href=&apos;https://axcrypt.net/information/password-generator/&apos;&gt;&lt;b&gt;strong password practices&lt;/b&gt;&lt;/a&gt;, safeguarding your files with an additional layer of security. With &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;robust password protection&lt;/b&gt;&lt;/a&gt;, your data remains safeguarded from una [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_DLHRYSDTT_H1_SH2_Text1 {
             get {
@@ -7449,7 +10500,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Just as you ensure the safety of your home during the holidays, protecting your digital files is essential. AxCrypt acts as a vigilant guardian for your data, employing robust encryption solutions to protect sensitive documents from unauthorized access or cyber threats. The AES-256 encryption algorithm secures your files seamlessly, ensuring their safety without compromising accessibility..
+        ///   Looks up a localized string similar to Just as you ensure the safety of your home during the holidays, protecting your digital files is essential. AxCrypt acts as a vigilant guardian for your data, employing robust encryption solutions to protect sensitive documents from unauthorized access or cyber threats. The &lt;a href=&apos;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt;&lt;b&gt;AES-256 encryption algorithm&lt;/b&gt;&lt;/a&gt; secures your files seamlessly, ensuring their safety without compromising accessibility..
         /// </summary>
         public static string Blog_DLHRYSDTT_H2_SH1_Text1 {
             get {
@@ -7616,15 +10667,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_DLHRYSDTT_Heading2 {
             get {
                 return ResourceManager.GetString("Blog_DLHRYSDTT_Heading2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_DLHRYSDTT_Heading3 {
-            get {
-                return ResourceManager.GetString("Blog_DLHRYSDTT_Heading3", resourceCulture);
             }
         }
         
@@ -8466,7 +11508,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The first step to encrypting files on OneDrive using AxCrypt is to download and install AxCrypt on your device. AxCrypt runs on Windows, Mac, iOS, and Android, and you can download and install it from the download page:&lt;a href=&apos;https://axcrypt.net/download&apos;&gt;https://axcrypt.net/download&lt;/a&gt;.
+        ///   Looks up a localized string similar to The first step to encrypting files on OneDrive using AxCrypt is to download and install AxCrypt on your device. AxCrypt runs on Windows, Mac, iOS, and Android, and you can download and install it from the download page: &lt;a href=&apos;https://axcrypt.net/download&apos;&gt;&lt;b&gt;https://axcrypt.net/download&lt;/b&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_EGEODUNA_H1_Text1 {
             get {
@@ -8754,7 +11796,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With AxCrypt, you can encrypt your personal and business data seamlessly using the powerful &lt;b&gt; AES 256-bit algorithm&lt;/b&gt;, and manage the processes within your team with a master access using the &lt;b&gt; master key &lt;/b&gt;..
+        ///   Looks up a localized string similar to With AxCrypt, you can encrypt your personal and business data seamlessly using the powerful &lt;b&gt; AES 256-bit algorithm&lt;/b&gt;, and manage the processes within your team with a master access using the &lt;a href=&apos;https://axcrypt.net/information/master-key/&apos;&gt;&lt;b&gt; master key &lt;/b&gt;&lt;/a&gt;..
         /// </summary>
         public static string Blog_EGEODUNA_Main_Text3 {
             get {
@@ -9573,7 +12615,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption solutions for law firms deal with legislation to ensure the security and confidential transmission of information and policies to keep secure cryptographic systems out of the hands of unauthorized individuals and hackers..
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt.net/industries/legal/&apos;&gt;&lt;b&gt;Encryption solutions for law firms&lt;/b&gt;&lt;/a&gt; deal with legislation to ensure the security and confidential transmission of information and policies to keep secure cryptographic systems out of the hands of unauthorized individuals and hackers..
         /// </summary>
         public static string Blog_EILI_H1_Text2 {
             get {
@@ -9609,7 +12651,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Law firms who experienced a data breach were mainly due to weak, reused or stolen passwords. Legal work requires a high level of confidentiality and security. It is necessary for law firm&apos;s software to be protected with secure password and authentication protocol, especially while working remotely. Reduce this risk and associated costs by remembering one password – AxCrypt takes care of password management for law firm security and makes your law life easier and meets regulations..
+        ///   Looks up a localized string similar to Law firms who experienced a data breach were mainly due to weak, reused or stolen passwords. Legal work requires a high level of confidentiality and security. It is necessary for law firm&apos;s software to be protected with secure password and authentication protocol, especially while working remotely. Reduce this risk and associated costs by remembering one password â€“ AxCrypt takes care of &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;password management&lt;/b&gt;&lt;/a&gt; for law firm security and makes your law l [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_EILI_H2_Text3 {
             get {
@@ -10698,7 +13740,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The symmetric encryption algorithm known as Advanced Encryption Standard encodes data blocks of 128 bits at a time. The keys used to encrypt these data blocks have lengths of 128, 192, and 256 bits. A 256-bit key requires 14 rounds of data encryption, a 192-bit key requires 12 rounds, and a 128-bit key requires 10 rounds.Each cycle includes a number of stages for substitution, transposition, plaintext mixing, and other operations..
+        ///   Looks up a localized string similar to The  &lt;a href=&apos;https://axcrypt.net/blog/symmetric-vs-asymmetric-encryption/&apos;&gt;symmetric encryption algorithm&lt;/a&gt; known as Advanced Encryption Standard encodes data blocks of 128 bits at a time. The keys used to encrypt these data blocks have lengths of 128, 192, and 256 bits. A 256-bit key requires 14 rounds of data encryption, a 192-bit key requires 12 rounds, and a 128-bit key requires 10 rounds.Each cycle includes a number of stages for substitution, transposition, plaintext mixing, and other operations..
         /// </summary>
         public static string Blog_ES_H1_SH2_Text1 {
             get {
@@ -10707,7 +13749,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Data Encryption Standard (DES) approach encrypts data blocks with a 56-bit Key using a symmetric encryption technique called triple DES. Each data block is encrypted using the DES cipher method three times in Triple DES..
+        ///   Looks up a localized string similar to The &lt;a href=&apos;https://axcrypt.net/blog/advanced-encryption-standard-vs-data-encryption-standard/&apos;&gt;Data Encryption Standard (DES)&lt;/a&gt; approach encrypts data blocks with a 56-bit Key using a symmetric encryption technique called triple DES. Each data block is encrypted using the DES cipher method three times in Triple DES..
         /// </summary>
         public static string Blog_ES_H1_SH3_Text1 {
             get {
@@ -11130,7 +14172,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start  protecting and securely sharing your passwords, card details, and notes today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start  protecting and securely sharing your passwords, card details, and notes today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
         /// </summary>
         public static string Blog_FEFBI_Conclusion_Text2 {
             get {
@@ -11387,15 +14429,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_FEFBI_Heading4 {
             get {
                 return ResourceManager.GetString("Blog_FEFBI_Heading4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_FEFBI_Heading5 {
-            get {
-                return ResourceManager.GetString("Blog_FEFBI_Heading5", resourceCulture);
             }
         }
         
@@ -11729,6 +14762,465 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_GAES256BEWA_Title {
             get {
                 return ResourceManager.GetString("Blog_GAES256BEWA_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With increasing data breaches and privacy concerns, encrypting cloud-stored files is essential. AxCrypt cloud encryption provides a simple, automatic, and effective way to protect files in the cloud before they reach cloud storage. Whether on desktop or mobile, AxCrypt ensures your files remain private, giving you complete control over your data security..
+        /// </summary>
+        public static string Blog_HACEESCSDP_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect your files with AxCrypt cloud encryption. Download the app and secure your cloud data today!.
+        /// </summary>
+        public static string Blog_HACEESCSDP_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt integrates local file encryption with secure cloud storage, ensuring that your files are protected before they even reach the cloud. Here’s how it works:.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Real-Time Protection&lt;/b&gt;: Files modified in the secured folder are automatically re-encrypted when you sign out or use the Cleanup feature.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Temporary Decryption&lt;/b&gt;: Files can be opened in their native applications (e.g., Word, Excel), and AxCrypt will re-encrypt them upon saving.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Visibility&lt;/b&gt;: Encrypted files display the AxCrypt padlock icon instead of the standard file icon, making it easy to identify protected files.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Encryption Process&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;AxCrypt uses &lt;a href=&apos;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt;&lt;b&gt;AES-256 encryption&lt;/b&gt;&lt;/a&gt;, one of the strongest encryption standards, to secure files locally before syncing them to cloud services like Google Drive, OneDrive, or Dropbox.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;When you designate a folder as ❝secured❞, any file added to this folder is automatically encrypted and assigned a .axx extension.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The file retains its original name but becomes inaccessible without the correct AxCrypt credentials.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Cloud Integration&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Dedicated Folders&lt;/b&gt;: AxCrypt creates an ❝AxCrypt❞ folder within your &lt;b&gt;file encryption for cloud services&lt;/b&gt;. Any file placed inside is encrypted before syncing to the cloud.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cross-Platform Access&lt;/b&gt;: Encrypted files remain secure and can be accessed on any device running AxCrypt using your master password.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Automatic Security Features&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;On Desktop (Windows/Mac)&lt;/b&gt;:.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;On Mobile (Android/iOS):&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt extends encryption capabilities to &lt;a href=&apos;https://axcrypt.net/blog/AxCrypt-Mobile-Encryption-is-finally-here!/&apos;&gt;mobile devices&lt;/a&gt;, ensuring &lt;b&gt;data protection in the cloud&lt;/b&gt; when accessed on the go..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Encryption Process on Mobile&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Files are encrypted locally using AES-256 before syncing with &lt;b&gt;secure cloud storage&lt;/b&gt;.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text13 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;AxCrypt encrypts files into a .axx format, ensuring only authorized users can access them.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text14 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;How to Encrypt Cloud Files on Mobile&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text15 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Install AxCrypt Mobile&lt;/b&gt;: Download AxCrypt from the Google Play Store or Apple App Store and sign in..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text16 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Link Your Cloud Storage&lt;/b&gt;:.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text17 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Tap the Secure button.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text18 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Select a cloud storage provider (Google Drive, OneDrive, or Dropbox).&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text19 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Install AxCrypt&lt;/b&gt;: Download and install AxCrypt, then create an account and set a strong master password..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Authenticate with your cloud account credentials.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text20 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Encrypt Files&lt;/b&gt;:.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text21 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Navigate to the linked cloud storage folder within AxCrypt.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text22 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Select files and tap Secure to encrypt them.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text23 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Access &amp; Decrypt Files&lt;/b&gt;:.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text24 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Tap on an encrypted file to open it.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text25 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Enter your AxCrypt password for temporary decryption.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text26 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text26", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. &lt;b&gt;Stop Securing Files&lt;/b&gt;: Use the ❝Stop Securing❞ option to permanently decrypt files if needed..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text27 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text27", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Additional Mobile Features&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text28 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Set Up Cloud Storage&lt;/b&gt;: Ensure you have a cloud storage service (e.g., Google Drive, OneDrive) installed..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Secure Your Cloud Folder&lt;/b&gt;: Add a dedicated cloud folder to AxCrypt&apos;s ❝secured folder❞ list..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Encrypt Files&lt;/b&gt;: Drag files into the secured folder, or right-click files and select Encrypt..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. &lt;b&gt;Sync with Cloud&lt;/b&gt;: Once encrypted, your files sync to the cloud while remaining inaccessible to unauthorized users..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6. &lt;b&gt;Access &amp; Modify Files&lt;/b&gt;: Open encrypted files by double-clicking them. AxCrypt will prompt for your password..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7. &lt;b&gt;Stop Securing Files&lt;/b&gt;: To remove encryption, right-click and select Stop Securing..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8. &lt;b&gt;Backup Your Master Password&lt;/b&gt;: Since AxCrypt does not store your password, losing it means losing access to your files..
+        /// </summary>
+        public static string Blog_HACEESCSDP_H2_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H2_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Pre-Upload Encryption&lt;/b&gt;: Files are encrypted before leaving your device, ensuring &lt;b&gt;data protection in the cloud&lt;/b&gt;.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cross-Platform Access&lt;/b&gt;: Securely access encrypted files from any AxCrypt-supported device.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Seamless Cloud Integration&lt;/b&gt;: Works natively with major cloud storage providers without disrupting workflows.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HACEESCSDP_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How AxCrypt&apos;s Cloud Encryption Works.
+        /// </summary>
+        public static string Blog_HACEESCSDP_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using AxCrypt Cloud Encryption: Step-by-Step Guide.
+        /// </summary>
+        public static string Blog_HACEESCSDP_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Choose AxCrypt for Cloud Security?.
+        /// </summary>
+        public static string Blog_HACEESCSDP_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud storage has transformed the way we store and access data, offering convenience and flexibility. However, with these advantages come security risks, including data breaches, unauthorized access, and credential leakage..
+        /// </summary>
+        public static string Blog_HACEESCSDP_Summary {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud storage has transformed the way we store and access data, offering convenience and flexibility. However, with these advantages come security risks, including data breaches, unauthorized access, and credential leakage. To ensure your sensitive information remains protected, AxCrypt cloud encryption provides a robust encryption solution designed for seamless integration with cloud storage platforms..
+        /// </summary>
+        public static string Blog_HACEESCSDP_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How AxCrypt Cloud Encryption Ensures Secure Cloud Storage and Data Protection.
+        /// </summary>
+        public static string Blog_HACEESCSDP_Title {
+            get {
+                return ResourceManager.GetString("Blog_HACEESCSDP_Title", resourceCulture);
             }
         }
         
@@ -12138,7 +15630,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
         /// </summary>
         public static string Blog_HDSHTPMDWE_Conclusion_Text2 {
             get {
@@ -12431,15 +15923,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_HDSHTPMDWE_Heading4 {
             get {
                 return ResourceManager.GetString("Blog_HDSHTPMDWE_Heading4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_HDSHTPMDWE_Heading5 {
-            get {
-                return ResourceManager.GetString("Blog_HDSHTPMDWE_Heading5", resourceCulture);
             }
         }
         
@@ -12939,7 +16422,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How File Management Is Changing Thanks to Encryption Software-An Overview of Latest Trends and Predictions.
+        ///   Looks up a localized string similar to How Encryption is Changing File Management: Trends and Predictions.
         /// </summary>
         public static string Blog_HFMICTETP_Title {
             get {
@@ -14001,7 +17484,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption methods essentially can be divided into two categories: symmetric and asymmetric. Symmetric encryption uses the same secret key for both encryption and decryption of the data. The same key is shared between the sender and receiver of the encrypted data..
+        ///   Looks up a localized string similar to Encryption methods essentially can be divided into two categories: &lt;a href=&apos;https://axcrypt.net/blog/symmetric-vs-asymmetric-encryption/&apos;&gt;&lt;b&gt;symmetric and asymmetric&lt;/b&gt;&lt;/a&gt;. Symmetric encryption uses the same secret key for both encryption and decryption of the data. The same key is shared between the sender and receiver of the encrypted data..
         /// </summary>
         public static string Blog_HREAYSD_H1_SH1_Text1 {
             get {
@@ -14172,7 +17655,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt utilizes the strong AES-256-bit algorithm to encrypt and decrypt data. Our intuitive and powerful standalone encryption software can encrypt data on desktops, smartphones and tablets. It can also automatically integrate and encrypt data on several cloud services such as Google Drive, Dropbox, and iCloud.  .
+        ///   Looks up a localized string similar to AxCrypt utilizes the strong AES-256-bit algorithm to encrypt and decrypt data. Our intuitive and powerful standalone encryption software can encrypt data on &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;desktops, smartphones and tablets&lt;/b&gt;&lt;/a&gt;. It can also automatically integrate and encrypt data on several cloud services such as &lt;a href=&apos;https://axcrypt.net/blog/encrypt-onedrive-and-googledrive-files-using-worlds-best-encryption/&apos;&gt;&lt;b&gt;Google Drive, Dropbox, and iCloud&lt;/b&gt;&lt;/a&gt;. .
         /// </summary>
         public static string Blog_HREAYSD_H3_Text3 {
             get {
@@ -14181,7 +17664,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can easily share files with others using our unique key sharing feature, which can be used to precisely share and control who sees and uses the file. AxCrypt also comes with a built-in secure password manager and password generator, which can be used to encrypt your sensitive credentials. .
+        ///   Looks up a localized string similar to You can easily share files with others using our unique key sharing feature, which can be used to precisely share and control who sees and uses the file. AxCrypt also comes with a built-in &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;secure password manager&lt;/a&gt; and &lt;a href=&apos;https://axcrypt.net/information/password-generator/&apos;&gt;password generator&lt;/a&gt;, which can be used to encrypt your sensitive credentials. .
         /// </summary>
         public static string Blog_HREAYSD_H3_Text4 {
             get {
@@ -14262,6 +17745,771 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cybersecurity is now more important than ever. As small to medium-sized businesses increasingly rely on the internet for everything from services to customer feedback, they become prime targets for cyberattacks. It&apos;s essential for these businesses to recognize the risks and take proactive steps to protect themselves. By raising awareness among employees and implementing strong security measures, companies can create a solid defense against cyber threats..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Think of AxCrypt not just as encryption software, but as your first line of defense. Start your free trial today and explore its powerful features..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It may seem like large corporations with vast amounts of data would be the main targets of cybercriminals, but small businesses are often seen as low-hanging fruit. Why? Here are a few reasons:.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Limited Resources:&lt;/b&gt; SMBs typically don’t have the same budget or dedicated cybersecurity teams as larger corporations, making it harder for them to invest in comprehensive security measures..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Lack of Cyber Expertise:&lt;/b&gt; Many small businesses don’t have in-house experts who can identify, investigate, or respond to cyber threats effectively..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Valuable Data:&lt;/b&gt; Despite their size, SMBs store sensitive information—like customer data, intellectual property, and financial records—which is valuable to hackers..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Supply Chain Vulnerabilities:&lt;/b&gt; Small businesses are often part of larger supply chains. A breach in one SMB can compromise an entire network, making them an appealing entry point for cybercriminals..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cybercriminals use a variety of tactics to breach small businesses. Here are a few of the most common methods:.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Phishing Attacks:&lt;/b&gt; These involve emails that look legitimate but are designed to trick employees into clicking on malicious links or providing sensitive information.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Trojans:&lt;/b&gt; Malware that disguises itself as a legitimate program, giving hackers access to your systems and data once it’s downloaded.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Ransomware:&lt;/b&gt; Hackers use ransomware to lock down your data and demand payment in exchange for its release.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Credential Theft:&lt;/b&gt; Cybercriminals steal usernames and passwords to gain access to accounts, often through weak password policies or data leaks.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Wi-Fi Vulnerabilities:&lt;/b&gt; If employees connect to insecure public Wi-Fi, hackers can easily intercept their data and gain access to business networks.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With attacks happening so frequently, the question isn’t if your business will be targeted, but when..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While having cybersecurity insurance can provide some peace of mind, it’s not a catch-all solution. Cyber insurance can help cover the costs associated with a breach, such as legal fees, fines, and recovery expenses, but it won’t prevent an attack from happening in the first place. In fact, if your business doesn’t have adequate security measures in place, you may face higher premiums or even be denied coverage..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is why it’s essential to pair insurance with proactive cybersecurity practices. Prevention is always better than trying to recover from a devastating attack..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees are often the first line of defense in preventing cyberattacks. They should be educated about safe online practices, but it’s a team effort. Here’s how employees and businesses can work together:.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Employee Education:&lt;/b&gt; Regular training on identifying phishing attempts, creating strong passwords, and using secure communication channels is crucial. Encourage employees to report suspicious activity without fear of repercussions.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Simulated Phishing Tests:&lt;/b&gt; Test your employees by sending fake phishing emails to see how they respond. This can help identify gaps in awareness and provide an opportunity for additional training.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Secure Devices:&lt;/b&gt; Make sure employees use company-approved devices for work, and implement strong security policies like multi-factor authentication and VPNs for remote access.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cybersecurity Newsletters:&lt;/b&gt; Regular updates through emails or internal newsletters keep cybersecurity top of mind for employees, helping to reinforce good practices.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H4_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H4_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From a business owner or IT manager&apos;s perspective, having a robust cybersecurity plan is key. Here are a few steps you can take to ensure your business is protected:.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Develop an Incident Response Plan:&lt;/b&gt; In the event of an attack, having a clear incident response plan will help minimize damage and get your systems back online faster. Include procedures for communication if traditional channels are compromised.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Invest in Security Software:&lt;/b&gt; Use reputable security software to protect your systems from malware and unauthorized access. Update it regularly to stay ahead of emerging threats.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Regular Backups:&lt;/b&gt; Back up your data regularly and store it securely. This will help you recover your data without paying a ransom if you fall victim to ransomware.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Use Strong Password Policies:&lt;/b&gt; Implement company-wide password policies that encourage the use of complex passwords and frequent updates. Consider using a password manager to store passwords securely.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Monitor for Suspicious Activity:&lt;/b&gt; Regularly monitor your network for unusual behavior that could indicate a cyberattack. Having real-time alerts in place can help you respond quickly.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H5_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H5_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now that you understand the risks and how to prepare for them, let’s talk about how &lt;b&gt;AxCrypt&lt;/b&gt;, an encryption software, can enhance your cybersecurity strategy..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8. &lt;b&gt;Priority Support:&lt;/b&gt; As a business user, you’ll receive &lt;b&gt;priority support&lt;/b&gt; from AxCrypt, ensuring that any issues are resolved quickly to minimize downtime..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is one of the best ways to protect sensitive business data, and AxCrypt offers a range of features to help small and medium businesses stay secure..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Strong Encryption:&lt;/b&gt; AxCrypt uses &lt;b&gt;AES-256 encryption&lt;/b&gt;, one of the most secure encryption standards available today. This ensures that even if your data falls into the wrong hands, it’s unreadable without the encryption key..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Centralized Key Management:&lt;/b&gt; Managing encryption keys across your organization is simplified with AxCrypt’s &lt;b&gt;centralized key management&lt;/b&gt;. You can easily manage permissions, ensuring that only authorized employees have access to certain data..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Group Key Sharing:&lt;/b&gt; Need to share encrypted files with your team? AxCrypt’s &lt;b&gt;group key sharing&lt;/b&gt; feature makes this easy and secure, ensuring only the right people have access to sensitive information..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Master Key Access:&lt;/b&gt; Worried about losing access to important files if an employee leaves or forgets their password? With AxCrypt’s &lt;b&gt;Master Key&lt;/b&gt; feature, administrators can still access encrypted files, ensuring critical data isn’t lost..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. &lt;b&gt;Cloud Storage Integration:&lt;/b&gt; If you use cloud storage services like &lt;b&gt;Dropbox&lt;/b&gt;, &lt;b&gt;Google Drive&lt;/b&gt;, or &lt;b&gt;OneDrive&lt;/b&gt;, AxCrypt integrates seamlessly to automatically encrypt your files, giving you peace of mind that your cloud data is also secure..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6. &lt;b&gt;User-Friendly Interface:&lt;/b&gt; You don’t need to be a tech expert to use AxCrypt. Its &lt;b&gt;intuitive interface&lt;/b&gt; makes encryption as simple as a few clicks, making it accessible to all employees, no matter their tech skills..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7. &lt;b&gt;Mobile Encryption:&lt;/b&gt; Work on the go? AxCrypt offers &lt;b&gt;mobile encryption&lt;/b&gt; for &lt;b&gt;iOS&lt;/b&gt; and &lt;b&gt;Android devices&lt;/b&gt;, so your data is protected even when you’re not in the office..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_H6_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_H6_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Are Small Businesses Targeted?.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ways Small Businesses Get Targeted.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insurance – Is It Enough?.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Can Employees and Companies Work Together to Stay Safe?.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Should Be Done from the Company’s Perspective?.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Can AxCrypt Help Protect Your Business?.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is high time to bring attention to one of the most pressing issues businesses face today- cyber threats. Small and medium-sized businesses (SMBs) are increasingly targeted by cybercriminals, and the statistics are alarming. Here are a few.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Summary {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is high time to bring attention to one of the most pressing issues businesses face today- cyber threats. Small and medium-sized businesses (SMBs) are increasingly targeted by cybercriminals, and the statistics are alarming. Here are a few:.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Almost &lt;a href=&apos;https://www.getastra.com/blog/security-audit/small-business-cyber-attack-statistics/#:~:text=face%20cyber%20attacks.-,Accenture&apos;s%20Cybercrime%20Study%20reveals%20that%20nearly%2043%25%20of%20cyber%2Dattacks,and%20regular%20review%20of%20code&apos;&gt;&lt;b&gt;43% of cyberattacks&lt;/b&gt;&lt;/a&gt; target small and medium businesses—a reminder of just how important tools like endpoint protection and network monitoring are to detect threats early.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;A surprising &lt;a href=&apos;https://www.techradar.com/pro/smbs-are-being-hit-hardest-by-cybersecurity-skills-gap&apos;&gt;&lt;b&gt;96% of SMBs&lt;/b&gt;&lt;/a&gt; struggle to investigate suspicious alerts, which makes them even more vulnerable. Streamlined alerts and automated responses can make a real difference here.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Nearly &lt;a href=&apos;https://www.verizon.com/business/resources/articles/small-business-cyber-security-and-data-breaches/#:~:text=Here&apos;s%20an%20unnerving%20statistic.,was%20able%20to%20break%20in?&apos;&gt;&lt;b&gt;60% of small businesses&lt;/b&gt;&lt;/a&gt; close within 6 months of an attack. Having a solid recovery and backup plan is key to staying resilient against both financial and reputational damage.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Cyberattacks happen over &lt;a href=&apos;https://www.watchguard.com/wgrd-news/blog/there-was-cyberattack-every-39-seconds-2023#:~:text=Cyberattacks%20continue%20to%20be%20a,with%20these%20threats%20more%20effectively.&apos;&gt;&lt;b&gt;2,200&lt;/b&gt;&lt;/a&gt; times a day—every &lt;b&gt;39 seconds&lt;/b&gt;. This pace highlights why continuous monitoring is essential to staying ahead of potential risks.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With these facts in mind, let’s understand why SMBs are prime targets for cyberattacks and, more importantly, how they can protect themselves..
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Small Businesses Can Protect Themselves from Growing Cyber Threats.
+        /// </summary>
+        public static string Blog_HSBCPTFGCT_Title {
+            get {
+                return ResourceManager.GetString("Blog_HSBCPTFGCT_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Way Forward: Why AxCrypt Stands Out.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Conclusion_Heading {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Conclusion_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it comes to securing sensitive data, AES-256 is considered the gold standard—and AxCrypt leverages this powerful encryption to its full potential. Unlike outdated methods like 3DES, which have been deprecated due to vulnerabilities, AxCrypt’s focus on AES-256 ensures future-proof security..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Many government agencies, including the National Security Agency (NSA), rely on AES encryption to protect their data. By using AxCrypt, you gain access to the same level of security used by some of the world’s most secure organizations..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, encryption is not only robust but also user-friendly. Whether you need to protect sensitive files or securely share information with others, AxCrypt provides the tools you need to keep your data safe in a constantly evolving digital world..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it comes to cyber security, encryption is one of the most critical components of a strong data protection strategy; yet many businesses and individuals tend to overlook the significance that a robust encryption method renders. With data breaches on the rise, safeguarding your sensitive data should not only be a priority, but a systematic practice that ensures that data is protected on every step of the way..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to According to IBM&apos;s ‘Cost of a data breach 2022’ report, an average data breach costs organizations a whopping $4.35M with 83% of studied organizations experiencing more than one data breach in their lifetime. Prioritizing encryption for your data can not only benefit you in the long run, but it can also instill a sense of security and confidence..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is the process of converting readable information (plain text) into an unreadable format (ciphertext), ensuring it remains secure during transmission or storage. This is achieved through complex algorithms that scramble the data, making it impossible to interpret without the correct decryption key..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt employs the AES-256 encryption algorithm, a trusted method used by governments and organizations worldwide. With AxCrypt, your files remain secure, whether they’re stored on your device or shared with others, preventing unauthorized access at every level..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption methods generally fall into two categories: &lt;b&gt;symmetric&lt;/b&gt; and &lt;b&gt;asymmetric encryption&lt;/b&gt;. Each serves different purposes, and understanding their distinctions is key to choosing the right solution..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Symmetric encryption&lt;/b&gt; uses a single key for both encryption and decryption. While fast and efficient, the challenge lies in securely sharing the key between parties.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Asymmetric encryption&lt;/b&gt; involves two keys: a public key to encrypt the data and a private key to decrypt it. This adds an extra layer of security, as only the intended recipient can decrypt the information. Although more secure, this method is slower and more resource-intensive.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Advanced Encryption Standard (AES)&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES, widely known as Rijndael, is the go-to symmetric encryption algorithm used across multiple industries. Its key lengths—128, 192, or 256 bits—provide strong security for any data type. AES operates on a sophisticated Substitution-Permutation Network, which makes breaking it computationally infeasible..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Triple DES (3DES)&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3DES is an enhancement of the original DES (Data Encryption Standard) algorithm, applying it three times to each data block. While 3DES improved upon its predecessor, it was eventually found vulnerable to modern attacks. The National Institute of Standards and Technology (NIST) has deprecated 3DES, and its use in new systems is being phased out..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;RSA&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RSA is an asymmetric encryption algorithm, named after its inventors (Rivest, Shamir, and Adleman). It’s widely used in securing communications, such as SSL/TLS for web security, email encryption, and even cryptocurrencies. RSA works by generating large prime numbers to create a cryptographic key, offering multiple levels of encryption strength..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H4_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H4_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt employs symmetric encryption for simple, efficient protection. This method uses a single key for both encryption and decryption, providing strong security while allowing easy access to your files..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For secure file sharing, AxCrypt integrates asymmetric encryption, which utilizes two keys: a public key for encrypting files and a private key for decryption. This ensures that only the intended recipient can access the data, adding an extra layer of security when sharing sensitive information..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H5_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H5_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Key Management for Advanced Protection&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H5_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H5_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt incorporates a sophisticated key management system to streamline the encryption process and improve security. Each encrypted file gets a unique encryption key, also known as a session key. This session key is securely stored and only accessible to authorized users. When files are shared, the session key is encrypted and distributed to selected recipients, ensuring that unauthorized individuals cannot gain access to the file, even if they obtain a copy..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H5_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H5_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt sets itself apart by offering a comprehensive, user-friendly encryption platform designed for modern-day file security needs. Here’s why AxCrypt is the best choice for encrypting your sensitive data:.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;AES-256 Encryption:&lt;/b&gt; AxCrypt uses the highest level of encryption available, ensuring that your data is protected with military-grade security.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H6_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H6_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cross-Device Compatibility:&lt;/b&gt; Our software seamlessly encrypts files on desktops, smartphones, and tablets, ensuring your data stays protected no matter which device you use.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H6_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H6_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cloud Integration:&lt;/b&gt; AxCrypt integrates effortlessly with cloud services like Google Drive, Dropbox, and iCloud, providing encryption without disrupting your workflow.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H6_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H6_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Key Sharing:&lt;/b&gt; AxCrypt allows you to securely share encrypted files with specific individuals using our intuitive key-sharing feature. This way, you control exactly who can access your files.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_H6_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_H6_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Encryption is Essential for Your Data?.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Exactly is Encryption?.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types of Encryption Methods.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Most Popular Encryption Algorithms.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Does AxCrypt Encryption Work?.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why AxCrypt is Your Best Encryption Solution.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to According to IBM&apos;s ‘Cost of a data breach 2022’ report, an average data breach costs organizations a whopping $4.35M with 83% of studied organizations experiencing more than one data breach in their lifetime..
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Summary {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to choose the right encryption for your sensitive data?.
+        /// </summary>
+        public static string Blog_HTCTREFYSD_Title {
+            get {
+                return ResourceManager.GetString("Blog_HTCTREFYSD_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt is an award-winning Zero-Knowledge file encryption software available for Windows, Mac, iOS, and Android devices. It has been the PC Mag&apos;s top choice for &lt;a href=&apos;https://www.pcmag.com/picks/the-best-encryption-software&apos;&gt;&lt;b&gt;“World&apos;s Best Encryption Software”&lt;/b&gt;&lt;/a&gt; for nine consecutive years, since 2016!.
         /// </summary>
         public static string Blog_HTCWHER_Conclusion_H1_Text1 {
@@ -14280,7 +18528,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start automatically encrypting your files today! Try AxCrypt free with a 30-day trial and ensure your HIPAA-protected data remains secure. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;here&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start automatically encrypting your files today! Try AxCrypt free with a 30-day trial and ensure your HIPAA-protected data remains secure. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;here&lt;/a&gt; to download..
         /// </summary>
         public static string Blog_HTCWHER_Conclusion_H1_Text3 {
             get {
@@ -14883,7 +19131,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt is a top choice for encrypting and securing your smartphone files. It utilizes the superior &lt;strong&gt;AES-256&lt;/strong&gt; algorithm to secure your data, offers unique features like a password manager, automatic cloud encryption, secure file sharing, and a master key for administrative control..
+        ///   Looks up a localized string similar to AxCrypt is a top choice for encrypting and securing your smartphone files. It utilizes the superior &lt;strong&gt;AES-256&lt;/strong&gt; algorithm to secure your data, offers unique features like a &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;strong&gt;password manager&lt;/strong&gt;&lt;/a&gt;, automatic cloud encryption, secure file sharing, and a &lt;a href=&apos;https://axcrypt.net/information/master-key/&apos;&gt;&lt;strong&gt;master key&lt;/strong&gt;&lt;/a&gt; for administrative control..
         /// </summary>
         public static string Blog_HTEDOYAAIPI2_Conclusion_Text2 {
             get {
@@ -15171,7 +19419,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take your Google Drive file security to the next level! Try AxCrypt for free today with a &lt;a href= &apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PSBQUkVNSVVNMTA=&apos;&gt;&lt;strong&gt;30-day free trial&lt;/strong&gt;&lt;/a&gt;.
+        ///   Looks up a localized string similar to Take your Google Drive file security to the next level! Try AxCrypt for free today with a &lt;a href= &apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PSBQUkVNSVVNMTA=&apos;&gt;&lt;strong&gt;30-day free trial&lt;/strong&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_Conclusion_Text3 {
             get {
@@ -15180,7 +19428,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption secures your sensitive files in Google Drive by transforming the contents of a file to an unreadable format. It does it by utilizing encryption algorithms and cryptographic keys to rearrange, shift, replace, and divide the contents within the file – kind of like a key and padlock combination, where you would use a unique padlock and keys to secure your house..
+        ///   Looks up a localized string similar to A strategic approach to cybersecurity that integrates encryption methodologies is essential for securing data in Google Drive. Encryption ensures that even if attackers gain access to stored files, they remain unreadable without the decryption key..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H1_Text1 {
             get {
@@ -15189,7 +19437,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Just as the unique key that unlocks the specified padlock, only the unique cryptographic keys used to encrypt the files can decrypt them. This ensures that only the authorized users who have access to those keys can read and decipher the contents of the files..
+        ///   Looks up a localized string similar to A study published in the &lt;a href=&apos;https://www.researchgate.net/figure/Files-in-Google-Drive-as-Encrypted_fig12_384286132&apos;&gt;&lt;b&gt;International Journal for Scientific Research&lt;/b&gt;&lt;/a&gt; analyzed encryption technology for small and medium-sized businesses (SMBs). The research found that encrypting files before uploading them to Google Drive significantly enhances security. Businesses handling confidential documents, financial records, or personal data should implement encryption tools like &lt;a href=&apos;https://account. [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H1_Text2 {
             get {
@@ -15198,7 +19446,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To better understand the encryption process, let&apos;s consider a simple example. Suppose you have a text file with &lt;strong&gt;“I Love Encryption”&lt;/strong&gt; written in it. After encrypting the file, the sentence would appear as &lt;strong&gt;“U2FsdGVkX1+Ww/kwN8Bn”&lt;/strong&gt;..
+        ///   Looks up a localized string similar to &lt;a href= &apos;https://www.pcmag.com/reviews/axcrypt-premium&apos;&gt;&lt;b&gt;Get AxCrypt Reviews&lt;/b&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H1_Text3 {
             get {
@@ -15207,16 +19455,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The encrypted contents of the file transform into random strings of characters, which cannot be deciphered to make sense of it. This makes encryption a top-notch security method when it comes to data protection..
-        /// </summary>
-        public static string Blog_HTEFIGDSBSI2_H1_Text4 {
-            get {
-                return ResourceManager.GetString("Blog_HTEFIGDSBSI2_H1_Text4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 1:&lt;/strong&gt; Install and sign in to Google Drive desktop: &lt;a href=&apos;https://google.com/intl/en_in/drive/download&apos;&gt;&lt;strong&gt;https://google.com/intl/en_in/drive/download&lt;/strong&gt;&lt;/a&gt;.
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 1:&lt;/strong&gt; Install and sign in to Google Drive desktop: &lt;a href=&apos;https://google.com/intl/en_in/drive/download&apos;&gt;&lt;strong&gt;Download Google Drive&lt;/strong&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text1 {
             get {
@@ -15225,7 +19464,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 2:&lt;/strong&gt; Install AxCrypt and sign in or sign up: &lt;a href= &apos;https://axcrypt.net/download&apos;&gt;&lt;strong&gt;https://axcrypt.net/download&lt;/strong&gt;&lt;/a&gt;.
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 2:&lt;/strong&gt; Install AxCrypt and sign in or sign up: &lt;a href= &apos;https://axcrypt.net/download&apos;&gt;&lt;strong&gt;Download AxCrypt&lt;/strong&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text2 {
             get {
@@ -15234,7 +19473,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 3:&lt;/strong&gt; Click the &lt;strong&gt;‘Google Drive’&lt;/strong&gt; icon on the top-right in the main menu, and select the folder that you want to encrypt the files within. This adds the folder to the &lt;strong&gt;‘Secured Folders’&lt;/strong&gt; list. You can choose the entire main Drive or specific folders..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 3:&lt;/strong&gt; Click the ‘Secure’ option from the home screen to link Google Drive encryption to AxCrypt.&quot;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text3 {
             get {
@@ -15243,7 +19482,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 4:&lt;/strong&gt; Create or add new files to the folder to encrypt and sync them. All existing files will be automatically encrypted and synced..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 4:&lt;/strong&gt;Choose Google Drive from the list of available cloud storage options and sign in..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text4 {
             get {
@@ -15252,7 +19491,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This set-up creates an automatic file security workflow, allowing you to seamlessly work on the files and re-encrypt them automatically..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 5:&lt;/strong&gt;Once linked, any file you encrypt using AxCrypt will be stored securely within your Google Drive..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text5 {
             get {
@@ -15261,7 +19500,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Double-clicking or using the &lt;strong&gt;‘Open Secured’&lt;/strong&gt; button will open an encrypted file with temporary decryption, allowing you to securely work on them. Modified and new files in specified folders will automatically be encrypted after signing out from the AxCrypt or clicking the &lt;strong&gt;‘Cleanup’&lt;/strong&gt; button on the top right..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 6:&lt;/strong&gt;To secure a file from the selected drive, click on the desired file, and it will be encrypted..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text6 {
             get {
@@ -15270,11 +19509,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To permanently decrypt a file, click the &lt;strong&gt;‘Stop Securing’&lt;/strong&gt; icon on top-left in the main menu strip and select the files that you’d like to decrypt..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 7:&lt;/strong&gt;To open an encrypted file, select it using the ‘Open Secured’ option, allowing you to view or edit the file temporarily..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH1_Text7 {
             get {
                 return ResourceManager.GetString("Blog_HTEFIGDSBSI2_H2_SH1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 8:&lt;/strong&gt;To permanently decrypt a file, click the ‘Stop Secure’ option and select the file you wish to stop securing..
+        /// </summary>
+        public static string Blog_HTEFIGDSBSI2_H2_SH1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HTEFIGDSBSI2_H2_SH1_Text8", resourceCulture);
             }
         }
         
@@ -15306,7 +19554,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 3:&lt;/strong&gt; Browse and select the files that you’d like to encrypt, tap and hold to select multiple files. Once done, your files will be encrypted and secured with their icons changing to AxCrypt’s logo and file extension to &lt;strong&gt;.axx&lt;/strong&gt;..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 3:&lt;/strong&gt; Browse and select the files you’d like to encrypt. Tap and hold to select multiple files. Once encrypted, the file icons will change to AxCrypt’s logo, and their file extension will become &lt;strong&gt;.axx&lt;/strong&gt;..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH2_Text4 {
             get {
@@ -15315,7 +19563,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;STEP 4:&lt;/strong&gt; To view or edit a file, tap on any of the files from the main screen to open, or tap the &lt;strong&gt;‘Open Secured’&lt;/strong&gt; button and select the files..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 4:&lt;/strong&gt; To view or edit a file, select it using the ‘Open Secured’ option..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH2_Text5 {
             get {
@@ -15324,7 +19572,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Viewing or editing a file only initiates a temporary decryption process, and any changes made to the files will automatically be re-encrypted and synced..
+        ///   Looks up a localized string similar to &lt;strong&gt;STEP 5:&lt;/strong&gt; To permanently decrypt a file, tap ‘Stop Secure’ and select the encrypted file you wish to decrypt..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH2_Text6 {
             get {
@@ -15333,20 +19581,11 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To permanently decrypt a file, tap on the &lt;strong&gt;‘Stop Securing’&lt;/strong&gt; icon and select the file with the &lt;strong&gt;.axx&lt;/strong&gt; file extension that you’d like to decrypt. Files encrypted and synced from your desktops and laptops can be easily viewed on the mobile app..
+        ///   Looks up a localized string similar to AxCrypt seamlessly integrates with major cloud storage platforms, including Google Drive Encryption, OneDrive, and Dropbox, ensuring a secure cloud storage experience..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_SH2_Text7 {
             get {
                 return ResourceManager.GetString("Blog_HTEFIGDSBSI2_H2_SH2_Text7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Automatic encryption and syncing from your &lt;strong&gt;Windows and Mac&lt;/strong&gt; to your &lt;strong&gt;Google Drive&lt;/strong&gt; account, along with on-the-go access to those files from your &lt;strong&gt;Android or iOS&lt;/strong&gt;, create a secured and protected environment for your files with greater access control and data breach protection..
-        /// </summary>
-        public static string Blog_HTEFIGDSBSI2_H2_SH2_Text8 {
-            get {
-                return ResourceManager.GetString("Blog_HTEFIGDSBSI2_H2_SH2_Text8", resourceCulture);
             }
         }
         
@@ -15369,7 +19608,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt automatically encrypts files within folders on your local computer and then synchronizes them with your Google Drive account. This ensures that only you have the absolute access to encrypt and decrypt the files before they’re uploaded..
+        ///   Looks up a localized string similar to AxCrypt automatically encrypts files within folders on your local computer and then synchronizes them with your Google Drive account. This ensures that only you have the absolute access to encrypt and decrypt the files before they’re uploaded. AxCrypt for cloud storage provides an additional layer of security beyond Google’s built-in encryption..
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_Text1 {
             get {
@@ -15387,7 +19626,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;When a File is Encrypted:&lt;/strong&gt; Folder with Files &gt; AxCrypt &gt; Encryption &gt; Uploading Encrypted File (Sync) &gt; Secured File in Google Drive.
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;When a File is Encrypted:&lt;/strong&gt; Folder with Files &gt; AxCrypt &gt; Encryption &gt; Uploading Encrypted File (Sync) &gt; Secured File in Google Drive&lt;/li&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_Text3 {
             get {
@@ -15396,7 +19635,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;When a File is Decrypted:&lt;/strong&gt; AxCrypt &gt; File in Google Drive &gt; File Downloaded to Your Computer &gt; Decryption &gt; View/Edit the File.
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;strong&gt;When a File is Decrypted:&lt;/strong&gt; AxCrypt &gt; File in Google Drive &gt; File Downloaded to Your Computer &gt; Decryption &gt; View/Edit the File&lt;/li&gt;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H2_Text4 {
             get {
@@ -15450,7 +19689,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption acts as a first line of defense against your sensitive files in your Google Drive storage. It’s the recommended method of data security by renowned institutions like &lt;a href=&apos;https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-111.pdf&apos;&gt;&lt;strong&gt;NIST&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&apos;https://www.ibm.com/cloud/architecture/architecture/practices/data-security/&apos;&gt;&lt;strong&gt;IBM&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&apos;https://learn.microsoft.com/en-us/archive/msdn-magazine/2003/november/aes-keeping-your-data-secure [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Encryption is the first line of defense for securing sensitive files in Google Drive. Institutions like &lt;a href=&apos;https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-111.pdf&apos;&gt;&lt;strong&gt;NIST&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&apos;https://www.ibm.com/cloud/architecture/architecture/practices/data-security/&apos;&gt;&lt;strong&gt;IBM&lt;/strong&gt;&lt;/a&gt;, &lt;a href=&apos;https://learn.microsoft.com/en-us/archive/msdn-magazine/2003/november/aes-keeping-your-data-secure-with-advance-encryption-standard&apos;&gt;&lt;strong&gt;Microsoft&lt;/strong&gt;&lt;/a&gt; recomme [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_H4_Text1 {
             get {
@@ -15468,7 +19707,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Does Encryption Actually Protect Your Google Drive Files?.
+        ///   Looks up a localized string similar to The Role of Encryption in Google Drive Security.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_Heading1 {
             get {
@@ -15540,7 +19779,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Encrypt Files in Google Drive Step by Step in 2024.
+        ///   Looks up a localized string similar to How to Encrypt Files in Google Drive Step by Step in 2025.
         /// </summary>
         public static string Blog_HTEFIGDSBSI2_Title {
             get {
@@ -15576,7 +19815,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start automatically encrypting your files today! Try AxCrypt free with a &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;30-day free trial.&lt;/b&gt;&lt;/a&gt;.
+        ///   Looks up a localized string similar to Start automatically encrypting your files today! Try AxCrypt free with a &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;30-day free trial.&lt;/b&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_HTEFOWAWA_Conclusion_Text3 {
             get {
@@ -15842,15 +20081,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_HTEFOWAWA_Heading4 {
             get {
                 return ResourceManager.GetString("Blog_HTEFOWAWA_Heading4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_HTEFOWAWA_Heading5 {
-            get {
-                return ResourceManager.GetString("Blog_HTEFOWAWA_Heading5", resourceCulture);
             }
         }
         
@@ -16170,7 +20400,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Take your file security to the next level! Try AxCrypt for free today with a &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;30-day free trial&lt;/b&gt;&lt;/a&gt;. Click below to download..
+        ///   Looks up a localized string similar to Take your file security to the next level! Try AxCrypt for free today with a &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;30-day free trial&lt;/b&gt;&lt;/a&gt;. Click below to download..
         /// </summary>
         public static string Blog_HTSPWESBSI2_Conclusion_Text3 {
             get {
@@ -16494,15 +20724,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_HTSPWESBSI2_Heading4 {
-            get {
-                return ResourceManager.GetString("Blog_HTSPWESBSI2_Heading4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PDFs are a great way to share documents. They are perfect to read and share information from anywhere, are compatible with almost all devices and operating systems, and can be an excellent way to organize sensitive and large chunks of information..
         /// </summary>
         public static string Blog_HTSPWESBSI2_Summary {
@@ -16575,7 +20796,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;here&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;here&lt;/a&gt; to download..
         /// </summary>
         public static string Blog_HTSRWWE_Conclusion_Text2 {
             get {
@@ -16827,15 +21048,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_HTSRWWE_Heading5 {
-            get {
-                return ResourceManager.GetString("Blog_HTSRWWE_Heading5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Covid-19 pandemic has changed remote work forever. While remote work existed before, the pandemic accelerated it, making work-from-home a new norm. This shift has brought undeniable benefits, including flexibility, increased productivity, and improved work-life balance..
         /// </summary>
         public static string Blog_HTSRWWE_Summary {
@@ -16890,6 +21102,537 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I can’t overstate the importance of secure file sharing for modern enterprises. As businesses continue to operate in an increasingly digital and interconnected world, the protection of sensitive information has become a foundational part of operational integrity and strategic success..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ultimately, secure file sharing is not just a technical requirement but a strategic imperative that underpins the sustainability and success of any business. By prioritizing the security of data, companies can protect their most valuable assets, build lasting partnerships, and achieve their long-term objectives in a secure manner..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make the vital changes that will secure your company’s future: &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;https://axcrypt.net/download/&lt;/b&gt;&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First month is free of charge!.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Conclusion_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Conclusion_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Data Breaches&lt;/b&gt;: This is usually the main reason why companies think they should apply encryption as part of their security strategy. Data breaches seem destructive to newly started companies, and they are, but it’s just one of many areas where encryption helps a business to secure and expand. Actually, there are many areas, and I will list them below..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Malware Infections&lt;/b&gt;: Talk about ruining one’s reputation. The fact is, shared files without proper security measures are not only damaging to your company but also to anyone who is a recipient of the file. Encryption erases all possibilities of infected malware and ensures that both your company and your fellow companies stay clean..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Loss of Confidentiality&lt;/b&gt;: Unauthorized access to files can result in the exposure of confidential business information, personal data, and intellectual property. This is another area that would be devastating for the company. Loss of confidentiality will also result in a decreased reputation and neglected connections..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Financial Loss&lt;/b&gt;: There is a lot of information that is valuable to cybercriminals. It’s not just the direct attack that is the devastating aspect. The initial data breach is usually only the beginning. With the information they gather from the company, they can expand their attack, increasing the financial loss. They may use the information to commit fraud. Additionally, the company may experience even more financial loss due to the cost of remediation efforts..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Reputation Damage&lt;/b&gt;: Reputation is key to a successful company. No customers initiate contact with a known unsafe company. Encryption is not only for the customers but also for potential partners and stakeholders, who are just as important to keep the company running. Encryption will encourage customers and partners to get involved with your company..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Loss of Competitive Advantage&lt;/b&gt;: Exposure of strategic business information can undermine an organization’s competitive advantage..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensuring secure file-sharing practices is crucial to mitigate these risks and protect sensitive information from unauthorized access and exploitation..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is a critically acclaimed encryption software designed to protect sensitive files and data. Its core functionalities include:.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Language Support&lt;/b&gt;: AxCrypt supports multiple languages, making it accessible to a wider range of users globally.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These functionalities make AxCrypt a comprehensive solution for file encryption and secure file management, suitable for both individual users and companies..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;File Encryption&lt;/b&gt;: AxCrypt provides strong AES-256 bit encryption to secure files and ensure that only authorized users can access them.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Zero-Knowledge Encryption&lt;/b&gt;: Leverage AxCrypt&apos;s zero-knowledge encryption architecture, where data is encrypted and decrypted locally on users&apos; devices without the encryption keys being stored on AxCrypt servers or accessible to AxCrypt. This ensures that only authorized users have access to their encrypted data, enhancing confidentiality and trust.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Key Sharing&lt;/b&gt;: Users can securely share encrypted files with others by sharing encryption keys, allowing multiple authorized users to access the same files.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Password Management&lt;/b&gt;: AxCrypt includes a password management feature to securely store and manage passwords used for encryption.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cloud Storage Integration&lt;/b&gt;: AxCrypt integrates with cloud storage services like Google Drive, Dropbox, and OneDrive, allowing users to encrypt files stored in the cloud.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Secure File Deletion&lt;/b&gt;: The software provides secure file deletion to ensure that deleted files cannot be recovered by unauthorized users.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Automatic Re-Encryption&lt;/b&gt;: When an encrypted file is edited and saved, AxCrypt automatically re-encrypts the file to maintain its security.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Mobile App Support&lt;/b&gt;: AxCrypt provides mobile apps for Android and iOS, enabling users to encrypt and decrypt files on their mobile devices.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H2_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H2_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;1. Download AxCrypt&lt;/b&gt;: Use &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;this link&lt;/b&gt;&lt;/a&gt; to download AxCrypt. Choose between the Mac or Microsoft download options..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now, in order to share the secured file you can right click on your file and select Share Keys..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also Key Share an unsecured file directly without encrypting it first. Just use the same right-click and select the file. AxCrypt will prompt you that it will encrypt the file first and then share it with the intended recipient(s)..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can Key Share multiple files by bulk selecting them..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add the user you want as your trusted recipient by entering their email..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text13 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After you have clicked on “Add,” you can see all the recipients listed below..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text14 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Then click “OK”..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text15 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now your file is secure to share with your trusted recipient. IMPORTANT! You still have to send the actual file to them. You can do this via email, Google Drive, WhatsApp, etc..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text16 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The great thing about Key Sharing is that you don’t have to share your password with the recipient for them to access it. All they need is AxCrypt themselves..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text17 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;9. Decrypt&lt;/b&gt;: Once they log in to their own account, they will be able to access the file using their own password..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text18 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lastly, for the recipient to decrypt the file, they can either double-click on it or use the “Open Secure” option..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text19 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;2. Setup an Account&lt;/b&gt;: After downloading the software, you need to set up an account. For this tutorial, I set up a new account to ensure everything works as expected. The information required for the initial setup is your email..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;3. Verify AxCrypt ID&lt;/b&gt;: After providing your email, you will receive an AxCrypt ID Verification email. Follow the instructions to verify your AxCrypt ID..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;4. Choose a Password&lt;/b&gt;: After verification, you will be directed to the AxCrypt user website to decide on your preferred password. At this step, you can use AxCrypt’s password manager to generate a unique, secure password..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;5. Log In to the Application&lt;/b&gt;: Once your account is set up, you can log in to the application. However, you need to select a plan to fully use the product. You can choose between Premium, Business, and Password Manager. As an individual, choose Premium, and as a business, choose Business..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;6. Select a Payment Plan&lt;/b&gt;: To use the application, you need to select a payment plan. AxCrypt offers a one-month free trial. I chose the one-month trial and could easily cancel the plan without having to pay for the month..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;7. Enter the Application&lt;/b&gt;: After selecting your payment plan, you can enter the application by entering your email ID and password..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;8. Secure Your Files&lt;/b&gt;: Once logged in, click on the “Secure” option, second to the left, to start securing your files..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select which file you want to encrypt..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H3_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H3_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine a leading software development company in the process of merging with a prominent tech hardware manufacturer. This merger is expected to create a tech giant capable of offering comprehensive hardware and software solutions. Given the complexity and sensitivity of the merger, secure file sharing is crucial..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consider all the parties involved: CEOs, CFOs, and COOs from both companies. It doesn’t stop there—attorneys handling contractual agreements, HR departments responsible for managing employee data, finance departments handling asset evaluations and financial audits, and IT departments ensuring cybersecurity and data migration..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With all this data being shared among the departments, there is a significant risk of data breaches. These breaches can lead to financial loss, reputational damage, and legal repercussions..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Another challenge is ensuring compliance with data protection laws such as GDPR, CCPA, and HIPAA. They also have a responsibility to maintain data integrity and completeness during the transfer process..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is why encryption and data security are so important for a leading business. By implementing AxCrypt’s AES-256 encryption system, the two merging companies will have these challenges under control..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_H4_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_H4_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Secure File Sharing is Crucial:.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overview of AxCrypt and Core Functionalities:.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step-by-Step Guide to Securely Share Files with AxCrypt:.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Real life applications.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You could say that secure file sharing is foundational to a modern enterprise&apos;s ability to thrive in a competitive and interconnected digital landscape. At least, that’s what I am convinced of..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Summary {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You could say that secure file sharing is foundational to a modern enterprise&apos;s ability to thrive in a competitive and interconnected digital landscape. At least, that’s what I am convinced of..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Any company that wants to expand in this digital landscape, which revolves around uninterrupted communications, needs to take proper security measures into consideration. An idea is one thing, and a great crew and leadership is another. But if the company is not built on a secure foundation, the success that the company greatly expected will not happen..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It’s actually very easy for a company to break down completely if this is not taken into consideration from the start. And it goes quickly too. Just one single data breach, or documents ending up in unauthorized hands, may result in an escalating downhill breakdown of the entire company..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “Ensuring the integrity of backup data is critical when faced with a cyberattack. Backup needs to evolve to support comprehensive scanning of files and databases to ensure it is clean from corruption and reliable when a restoration is required. Adding this layer of resiliency, organizations can detect corruption sooner and, in the event of an attack, these verified backups serve as your first point of recovery,” said Jim McGann, VP of Strategic Partnerships at Index Engines..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I agree..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are several encryption software solutions for this out there. AxCrypt is a universally used encryption service with over two decades of experience. By continually adding new layers of protection to stay one step ahead of cybercriminals, they have won several awards and have remained one of the most popular encryption solutions in the world..
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this blog, I will talk about why secure file sharing is so important:.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to Securely Share Files with Anyone Using AxCrypt.
+        /// </summary>
+        public static string Blog_HTSSFWAUA_Title {
+            get {
+                return ResourceManager.GetString("Blog_HTSSFWAUA_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download AxCrypt Free for 30 Days.
         /// </summary>
         public static string BLOG_HTSSPWYFC_Conclusion_Heading {
@@ -16908,7 +21651,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start  protecting and securely sharing your passwords, card details, and notes today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start  protecting and securely sharing your passwords, card details, and notes today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
         /// </summary>
         public static string BLOG_HTSSPWYFC_Conclusion_Text2 {
             get {
@@ -16989,7 +21732,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Follow the easy-to-follow steps on the guide page to start generating, securing, and passwords, card details, and notes with ease. You can create and share unlimited passwords and items on AxCrypt’s &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;Password Manager&lt;/b&gt;&lt;/a&gt;, &lt;a href=&apos;https://axcrypt.net/premium/&apos;&gt;&lt;b&gt;Premium&lt;/b&gt;&lt;/a&gt;, and &lt;a href=&apos;https://axcrypt.net/business/&apos;&gt;&lt;b&gt;Business&lt;/b&gt;&lt;/a&gt; plan. Free users on the AxCrypt viewer plan can only view and share the items with just 1 email. Check out the com [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Follow the easy-to-follow steps on the guide page to start generating, securing, and passwords, card details, and notes with ease. You can create and share unlimited passwords and items on AxCryptâ€™s &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;Password Manager&lt;/b&gt;&lt;/a&gt;, &lt;a href=&apos;https://axcrypt.net/premium/&apos;&gt;&lt;b&gt;Premium&lt;/b&gt;&lt;/a&gt;, and &lt;a href=&apos;https://axcrypt.net/business/&apos;&gt;&lt;b&gt;Business&lt;/b&gt;&lt;/a&gt; plan. Free users on the AxCrypt viewer plan can only view and share the items with just 1 email. Check out the c [rest of string was truncated]&quot;;.
         /// </summary>
         public static string BLOG_HTSSPWYFC_H2_Text3 {
             get {
@@ -17030,15 +21773,6 @@ namespace AxCrypt.Content.Properties {
         public static string BLOG_HTSSPWYFC_Heading2 {
             get {
                 return ResourceManager.GetString("BLOG_HTSSPWYFC_Heading2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string BLOG_HTSSPWYFC_Heading3 {
-            get {
-                return ResourceManager.GetString("BLOG_HTSSPWYFC_Heading3", resourceCulture);
             }
         }
         
@@ -17421,7 +22155,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt;Password Manager:&lt;/strong&gt; Password management is another essential step in safeguarding your personal photos and videos from being leaked. It is important to use strong, unique passwords for each of your online accounts, including your cloud storage and social media accounts. You can use a password manager tool such as &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;AxCrypt’s Password Manger&lt;/b&gt;&lt;/a&gt; to create and store complex passwords securely..
+        ///   Looks up a localized string similar to &lt;strong&gt;Password Manager:&lt;/strong&gt; Password management is another essential step in safeguarding your personal photos and videos from being leaked. It is important to use strong, unique passwords for each of your online accounts, including your cloud storage and social media accounts. You can use a password manager tool such as &lt;a href=&apos;https://axcrypt.net/download/&apos;&gt;&lt;b&gt;AxCryptâ€™s Password Manger&lt;/b&gt;&lt;/a&gt; to &lt;a href=&apos;https://axcrypt.net/information/password-generator/&apos;&gt;&lt;b&gt;create and store complex passwords&lt; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_IDTRLPVU_H3_Text3 {
             get {
@@ -18006,7 +22740,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Several businesses have been found to have violated regulations such as the CCPA, PCI, HIPAA, and GDPR. In addition to increasing your vulnerability to attacks, having additional copies of your data can make it more difficult to perform analytics and make business decisions. If outdated information is used, it could lead to monetary loss, security breaches, or other problems. AxCrypt ensures your organization stays compliant with regulations like the GDPR and HIPAA, which concerns the protection of personal [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Several businesses have been found to have violated regulations such as the CCPA, PCI, &lt;a href=&apos;https://axcrypt.net/blog/how-to-comply-with-hipaa-encryption-requirements/&apos;&gt;&lt;b&gt;HIPAA&lt;/b&gt;&lt;/a&gt;, and &lt;a href=&apos;https://axcrypt.net/information/gdpr/&apos;&gt;&lt;b&gt;GDPR&lt;/b&gt;&lt;/a&gt;. In addition to increasing your vulnerability to attacks, having additional copies of your data can make it more difficult to perform analytics and make business decisions. If outdated information is used, it could lead to monetary loss, security breache [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_MDSCBF_H1_SH2_Text1 {
             get {
@@ -18492,7 +23226,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master key.
+        ///   Looks up a localized string similar to Master Key: Keeping Business Data Safe and Accessible During Changes.
         /// </summary>
         public static string Blog_MK_Title {
             get {
@@ -19023,7 +23757,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Every business owner needs a password manager like AxCrypt since maintaining passwords is one of the essential aspects of operating a successful business. This article will explain why and how a business should organise its passwords..
+        ///   Looks up a localized string similar to Every business owner needs a &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;password manager&lt;/a&gt; like AxCrypt since maintaining passwords is one of the essential aspects of operating a successful business. This article will explain why and how a business should organise its passwords..
         /// </summary>
         public static string Blog_ROCP_Text2 {
             get {
@@ -19437,7 +24171,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Check out our guide on &lt;a href=&apos;https://www.youtube.com/watch?v=n4PZgArzhlg&apos;&gt;&lt;b&gt;how to easily make AxCrypt a part of your security strategy&lt;/b&gt;&lt;a&gt;..
+        ///   Looks up a localized string similar to Check out our guide on &lt;a href=&apos;https://www.youtube.com/watch?v=n4PZgArzhlg&apos;&gt;&lt;b&gt;how to easily make AxCrypt a part of your security strategy&lt;/b&gt;&lt;/a&gt;..
         /// </summary>
         public static string Blog_STUCTREDSA_Conclusion_Text1 {
             get {
@@ -19721,15 +24455,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_STUCTREDSA_Heading3 {
             get {
                 return ResourceManager.GetString("Blog_STUCTREDSA_Heading3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_STUCTREDSA_Heading4 {
-            get {
-                return ResourceManager.GetString("Blog_STUCTREDSA_Heading4", resourceCulture);
             }
         }
         
@@ -20311,7 +25036,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I understand that, but I’d like to discuss why we’re doing it this way. In the end we’re of course always open to change, so comments are welcome. Do use our &lt;a href=&apos;http://www.axcrypt.net/forums/forum/community/&apos;&gt;forums&lt;/a&gt; for that, and refer to this blog post so we know your starting point..
+        ///   Looks up a localized string similar to I understand that, but I’d like to discuss why we’re doing it this way. In the end we’re of course always open to change, so comments are welcome. Do use our &lt;a href=&apos;https://www.axcrypt.net/forums/forum/community/&apos;&gt;forums&lt;/a&gt; for that, and refer to this blog post so we know your starting point..
         /// </summary>
         public static string Blog_SVL_Text3 {
             get {
@@ -20622,6 +25347,294 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_TAYBS_Title {
             get {
                 return ResourceManager.GetString("Blog_TAYBS_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strengthen Business Security with AxCrypt.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Conclusion_Heading {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Conclusion_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is no longer optional; it’s a necessity. Secure your business data security with AxCrypt’s industry-leading AES-256 encryption, seamless file sharing, and secure key management. Protect your sensitive files today with AxCrypt..
+        /// </summary>
+        public static string Blog_TBFEBSBF_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Businesses handle confidential information daily, including financial records, customer data, and intellectual property. Data protection through file encryption ensures that even if business data is intercepted, it remains unreadable without the correct decryption key. This protects both company and customer data from unauthorized access and misuse..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confidential business communications are frequently targeted by cybercriminals. Encrypting emails, messages, and file attachments ensures that sensitive business discussions remain private and protected from interception. This form of encrypted communication is vital for protecting both internal and external business correspondence..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H10_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H10_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To maximize security, businesses should consider:.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H11_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H11_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✅ &lt;a href= &apos;https://axcrypt.net/blog/advanced-encryption-standard-vs-data-encryption-standard/&apos;&gt;&lt;b&gt;AES-256&lt;/b&gt;&lt;/a&gt; encryption for robust protection.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H11_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H11_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✅ &lt;a href= &apos;https://axcrypt.net/blog/what-is-nis2-and-its-minimal-compliance-requirements/&apos;&gt;&lt;b&gt;Compliance&lt;/b&gt;&lt;/a&gt; with industry regulations.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H11_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H11_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✅ Secure  &lt;a href= &apos;https://axcrypt.net/blog/fundamentals-of-key-management/&apos;&gt;&lt;b&gt;key management&lt;/b&gt;&lt;/a&gt; to prevent unauthorized access.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H11_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H11_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✅ Seamless integration with existing IT infrastructure.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H11_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H11_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A data breach can be financially and reputationally devastating for a business. Legal fines, customer distrust, and operational disruptions follow a security failure. File encryption benefits significantly reduce the risk by ensuring that even if hackers gain access to business data, they cannot use it without the encryption keys. For example, companies like Equifax, which experienced a high-profile data breach, could have prevented significant losses had they implemented better encryption practices. With t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Many industries are governed by strict data protection regulations, such as &lt;a href= &apos;https://gdpr-info.eu/&apos;&gt;GDPR&lt;/a&gt;, &lt;a href= &apos;https://www.cdc.gov/phlp/php/resources/health-insurance-portability-and-accountability-act-of-1996-hipaa.html#:~:text=The%20Health%20Insurance%20Portability%20and,Rule%20to%20implement%20HIPAA%20requirements.&apos;&gt;HIPAA&lt;/a&gt;, and &lt;a href= &apos;https://www.pcisecuritystandards.org/&apos;&gt;PCI DSS&lt;/a&gt;. These laws mandate encryption as a necessary security measure. Failing to comply can result in s [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_TBFEBSBF_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With businesses increasingly relying on remote work and cloud storage, the risk of unauthorized access grows. Encrypting files before uploading them to the cloud ensures that they remain protected, even if the storage provider is compromised. This is crucial for businesses with employees accessing data from different locations. Secure file storage ensures that your data is protected across all platforms, whether on-site or in the cloud..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not all employees need access to all data. Encryption helps control access by restricting sensitive files to authorized personnel only. With strong encryption measures in place, businesses can ensure that only those with the correct decryption key can open and modify files. This added layer of protection minimizes the risk of internal data leaks..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Businesses frequently share confidential files internally and externally. Whether through email, cloud storage, or collaboration platforms, encryption ensures that only the intended recipients can access the data. This prevents leaks and unauthorized access during transmission. For sensitive communications, encrypted emails, file attachments, and messages guarantee the security of business communications..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data breaches aren’t always caused by external hackers; they can also come from within. Disgruntled employees, accidental leaks, or unauthorized access to sensitive data pose significant risks. Encryption minimizes insider threats by restricting access and ensuring that sensitive files remain protected. Employee data security is just as crucial as protecting data from external threats..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H7_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H7_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Laptops, USB drives, and smartphones containing business data can be lost or stolen. Without encryption, anyone who finds these devices can access sensitive business files. Encrypting data ensures that even if a device is lost, the information remains inaccessible without the proper credentials. With secure business data encryption, you can prevent data loss from device theft or accidental misplacement..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H8_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H8_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cybercriminals not only steal data but also alter or corrupt it for malicious purposes. Encryption ensures data integrity by making unauthorized modifications detectable. If encrypted data is tampered with, the decryption process will fail, alerting businesses to potential security threats. This helps preserve the accuracy and trustworthiness of business data, ensuring that it remains intact and unaltered..
+        /// </summary>
+        public static string Blog_TBFEBSBF_H9_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_H9_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Protects Sensitive Data.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10. Enables Secure Communication.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading10 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choosing the Right Encryption for Your Business.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading11 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Minimizes Data Breach Risks.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Ensures Regulatory Compliance.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. Secures Remote Work and Cloud Storage.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. Prevents Unauthorized Access.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6. Enhances File Sharing Security.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7. Reduces Insider Threats.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading7 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8. Safeguards Lost or Stolen Devices.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading8 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9. Maintains Data Integrity.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Heading9 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Heading9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks have crippled businesses, exposing sensitive data and halting operations. Yet, companies with encryption in place have managed to recover swiftly and minimize damage..
+        /// </summary>
+        public static string Blog_TBFEBSBF_Summary {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks have crippled businesses, exposing sensitive data and halting operations. Yet, companies with encryption in place have managed to recover swiftly and minimize damage..
+        /// </summary>
+        public static string Blog_TBFEBSBF_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File encryption is an essential defense against evolving cyber threats, ensuring secure business files, preventing unauthorized access, and maintaining regulatory compliance. Here are the top 10 reasons why businesses must invest in encryption..
+        /// </summary>
+        public static string Blog_TBFEBSBF_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top 10 Benefits of File Encryption for Businesses | Secure Business Files.
+        /// </summary>
+        public static string Blog_TBFEBSBF_Title {
+            get {
+                return ResourceManager.GetString("Blog_TBFEBSBF_Title", resourceCulture);
             }
         }
         
@@ -21076,7 +26089,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By fostering a culture of security and privacy, encryption has established itself in the modern digital sphere. The amount of data that different encryption techniques can process simultaneously and the type of key required to decrypt data vary. DES, AES, and RSA are the three main forms of encryption, but some are preferable to others. In 2001, the Advanced Encryption Standard (AES) encryption algorithm replaced the Data Encryption Standard (DES) as the accepted global standard for encryption algorithms. T [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to By fostering a culture of security and privacy, encryption has established itself in the modern digital sphere. The amount of data that different encryption techniques can process simultaneously and the type of key required to decrypt data vary. DES, AES, and RSA are the three main forms of encryption, but some are preferable to others. In 2001, the &lt;a href=&apos;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt;&lt;b&gt;Advanced Encryption Standard (AES)&lt;/b&gt;&lt;/a&gt; encryption algorithm replaced the &lt;a h [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_TSTE_Text1 {
             get {
@@ -21139,7 +26152,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File encryption or file-based encryption &lt;b&gt;(FBE)&lt;/b&gt;, as the name suggests, is a method of encrypting files individually in a file system. It gives granular control over security measures as it allows for the encryption of individual files using a &lt;b&gt;different key&lt;/b&gt; for each file. File-based encryption uses a robust encryption algorithm, such as the symmetric Advanced Encryption Standard &lt;b&gt;(AES)&lt;/b&gt;, to encrypt files and data..
+        ///   Looks up a localized string similar to File encryption or file-based encryption &lt;b&gt;(FBE)&lt;/b&gt;, as the name suggests, is a method of encrypting files individually in a file system. It gives granular control over security measures as it allows for the encryption of individual files using a &lt;b&gt;different key&lt;/b&gt; for each file. File-based encryption uses a robust encryption algorithm, such as the &lt;a href=&apos;https://axcrypt.net/blog/symmetric-vs-asymmetric-encryption/&apos;&gt;&lt;b&gt;symmetric Advanced Encryption Standard&lt;/b&gt;&lt;/a&gt; &lt;b&gt;(AES)&lt;/b&gt;, to encrypt files and d [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Blog_TUGFEDE_H2_Text1 {
             get {
@@ -21877,6 +26890,663 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Did you know that cybercrime is projected to cost the global economy a staggering &lt;a href=&apos;https://www.jerichosecurity.com/blog/cost-of-cybercrime-to-reach-10.5-trillion-by-2025&apos;&gt;&lt;b&gt;$10.5 trillion annually by 2025&lt;/b&gt;&lt;/a&gt;? That’s more than some countries&apos; entire GDP!.
+        /// </summary>
+        public static string Blog_WAYAFC_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to So, why are cyberattacks becoming so rampant?.
+        /// </summary>
+        public static string Blog_WAYAFC_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;The Remote Work cybersecurity&lt;/b&gt;: Thanks to remote work, companies now rely more on cloud systems, which, while convenient, have expanded cloud security threats for cybercriminals.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Advanced Tactics&lt;/b&gt;: Hackers aren’t just amateurs anymore. They’re organized, funded, and equipped with the technology required.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Geopolitical cyber warfare&lt;/b&gt;: As the recent &lt;b&gt;U.S.-China trade war&lt;/b&gt; and &lt;b&gt;China cyberattacks&lt;/b&gt; highlight, some cyberattacks have political motives, targeting businesses to steal secrets or disrupt economies.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jericho Security. (n.d.). &lt;a href=&apos;https://www.jerichosecurity.com/blog/cost-of-cybercrime-to-reach-10.5-trillion-by-2025&apos;&gt;Cost of cybercrime to reach $10.5 trillion by 2025&lt;/a&gt;. Jericho Security Blog..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CoverLink. (n.d.). &lt;a href=&apos;https://coverlink.com/cyber-liability-insurance/target-data-breach/&apos;&gt;Target data breach: Lessons for businesses&lt;/a&gt;. CoverLink Cyber Liability Insurance..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TechTarget. (n.d.). &lt;a href=&apos;https://www.techtarget.com/whatis/feature/Colonial-Pipeline-hack-explained-Everything-you-need-to-know&apos;&gt;Colonial Pipeline hack explained: Everything you need to know&lt;/a&gt;. TechTarget..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S&amp;P Global. (n.d.). &lt;a href=&apos;https://www.spglobal.com/mobility/en/research-analysis/semiconductor-supply-chain-disruption-us-china-trade-conflict.html&apos;&gt;Semiconductor supply chain disruption: U.S.-China trade conflict&lt;/a&gt;. S&amp;P Global Mobility..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green, J. J. (2024, December). &lt;a href=&apos;https://wtop.com/j-j-green-national/2024/12/the-worst-telecommunications-hack-in-us-history-chinese-cyber-group-salt-typhoon-intrusions-likely-started-years-ago/&apos;&gt;The worst telecommunications hack in U.S. history: Chinese cyber group Salt Typhoon intrusions likely started years ago&lt;/a&gt;. WTOP News..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Guardian. (2024, December 9). &lt;a href=&apos;https://www.theguardian.com/technology/2024/dec/09/why-did-china-hack-the-worlds-phone-networks&apos;&gt;Why did China hack the world’s phone networks?&lt;/a&gt;. The Guardian..
+        /// </summary>
+        public static string Blog_WAYAFC_H10_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H10_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://www.theguardian.com/technology/2024/dec/09/why-did-china-hack-the-worlds-phone-networks&apos;&gt;&lt;b&gt;A series of cyberattacks linked to China&lt;/b&gt;&lt;/a&gt; targeted U.S. companies and government systems. These attacks, attributed to hacking groups like &lt;a href=&apos;https://wtop.com/j-j-green-national/2024/12/the-worst-telecommunications-hack-in-us-history-chinese-cyber-group-salt-typhoon-intrusions-likely-started-years-ago/&apos;&gt;&lt;b&gt;FamousSparrow&lt;/b&gt;&lt;/a&gt;, were operations aimed at stealing data and intelligence. Si [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WAYAFC_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While FamousSparrow has previously targeted government entities and hotels across multiple countries, the Salt Typhoon campaign has been specifically linked to the United States. These incidents coincide with the &lt;b&gt;U.S. semiconductor trade war&lt;/b&gt;, with some attacks seemingly aimed at disrupting critical sectors..
+        /// </summary>
+        public static string Blog_WAYAFC_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Telecommunication Networks&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Salt Typhoon campaign aimed at compromising the digital backbone of U.S. companies by infiltrating telecommunications networks, a critical infrastructure for communication and data transmission..
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Hotels&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FamousSparrow focused on hotels in countries like the UK, France, and Taiwan. Their aim was to steal sensitive guest data, which could include information on diplomats, corporate executives, or high-profile travelers..
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Government and Corporate Systems&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Government organizations in countries like Israel, Saudi Arabia, and Brazil were also frequent targets. Such attacks often focus on gathering intelligence to fuel state-sponsored agendas..
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;The Semiconductor Industry&lt;/b&gt;&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While the direct link between the attacks and the U.S.-China trade war is speculative, the timing suggests a strategic intent. U.S. restrictions on advanced chip sales to China and China’s countermeasures banning mineral exports have heightened tensions..
+        /// </summary>
+        public static string Blog_WAYAFC_H3_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H3_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;1. Advanced Cyber Attack Strategies&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Security experts speculate that these attacks are intended to send a subtle but powerful message in this tech-driven cold war.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Exploitation of Vulnerabilities&lt;/b&gt;: Hackers exploited vulnerabilities in networks to gain unauthorized access. For instance, hotel systems were breached through weak security protocols, enabling access to sensitive information.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Telecom Infiltration&lt;/b&gt;: In the Salt Typhoon campaign, hackers targeted telecommunications infrastructure to intercept data and disrupt communication channels.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;2. State-Sponsored Support&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FamousSparrow and Salt Typhoon appear to display characteristics typically associated with state-aligned groups, including access to substantial resources and long-term planning. Their techniques indicate the use of advanced tools and insider expertise..
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;3. Intelligence Gathering&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attacks are not random; they are part of broader espionage campaigns. Hotels, for instance, are targeted for their potential to house &lt;b&gt;valuable&lt;/b&gt; individuals, while telecommunication networks provide access to large volumes of data at scale..
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;4. Geopolitical Context&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;The attacks align with the ongoing &lt;a href=&apos;https://www.spglobal.com/mobility/en/research-analysis/semiconductor-supply-chain-disruption-us-china-trade-conflict.html&apos;&gt;&lt;b&gt;U.S- China.semiconductor trade war&lt;/b&gt;&lt;/a&gt;. While there’s no direct evidence linking the hacks to retaliation, the timing raises questions about coordinated cyber warfare.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H4_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H4_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you think only large corporations are targeted, think again. Small and medium-sized businesses (SMBs) are often seen as easier prey. Here’s what could happen if you’re hit:.
+        /// </summary>
+        public static string Blog_WAYAFC_H5_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H5_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Financial Devastation&lt;/b&gt;: After the &lt;a href=&apos;https://www.techtarget.com/whatis/feature/Colonial-Pipeline-hack-explained-Everything-you-need-to-know&apos;&gt;&lt;b&gt;Colonial Pipeline ransomware attack&lt;/b&gt;&lt;/a&gt;, the company had to pay $4.4 million just to regain access to their systems..
+        /// </summary>
+        public static string Blog_WAYAFC_H5_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H5_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Reputation Loss&lt;/b&gt;: Customers lose trust quickly. When &lt;a href=&apos;https://coverlink.com/cyber-liability-insurance/target-data-breach/&apos;&gt;&lt;b&gt;Target’s data breach&lt;/b&gt;&lt;/a&gt; exposed 40 million credit card details, it took years for them to regain customer confidence..
+        /// </summary>
+        public static string Blog_WAYAFC_H5_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H5_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Operational Disruption&lt;/b&gt;: Imagine losing access to all your files overnight. That’s what happens when ransomware strikes..
+        /// </summary>
+        public static string Blog_WAYAFC_H5_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H5_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Every cyberattack leaves behind lessons. From the China attack and others like it, here’s what we can take away:.
+        /// </summary>
+        public static string Blog_WAYAFC_H6_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H6_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Patch Your Systems Regularly&lt;/b&gt;: Vulnerabilities are like open windows for hackers. Regular updates act as the locks.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H6_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H6_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Train Your Team&lt;/b&gt;: Social engineering and phishing attacks trick even the smartest employees. Regular cybersecurity training can prevent costly mistakes.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H6_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H6_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Adopt a Zero-Trust Model&lt;/b&gt;: Don’t assume any user or device is safe. Verify everything, all the time.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H6_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H6_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For example, in 2017, the WannaCry ransomware encrypted files on thousands of computers across 150 countries, making them inaccessible. Organizations with proper backups and updated systems recovered quickly, while others faced weeks of disruption..
+        /// </summary>
+        public static string Blog_WAYAFC_H6_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H6_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Governments are no longer sitting on the sidelines. They’re stepping up with regulations, sanctions, and collaborations to fight cybercrime..
+        /// </summary>
+        public static string Blog_WAYAFC_H7_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H7_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Sanctions Against Hackers&lt;/b&gt;: After the &lt;b&gt;China attack&lt;/b&gt;, discussions about penalizing entities involved in the recent China cyberattacks are intensifying.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H7_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H7_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Cross-Border Cooperation&lt;/b&gt;: Countries are now working together to share intelligence and track down cybercriminals.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H7_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H7_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Stronger Laws&lt;/b&gt;: Regulations like GDPR and CCPA are holding businesses accountable for safeguarding customer data.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H7_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H7_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to So, what can your business do to avoid becoming the next headline?.
+        /// </summary>
+        public static string Blog_WAYAFC_H8_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H8_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Invest in Encryption Tool for SMBs&lt;/b&gt;: Tools like AxCrypt and its secure .axx file format ensure your files are encrypted, making them useless even if hackers get their hands on them..
+        /// </summary>
+        public static string Blog_WAYAFC_H8_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H8_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Backup, Backup, Backup&lt;/b&gt;: Always keep secure backups of critical data. If ransomware locks you out, you’ll still have access..
+        /// </summary>
+        public static string Blog_WAYAFC_H8_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H8_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Conduct Regular Audits&lt;/b&gt;: Hire experts to identify weak points in your system..
+        /// </summary>
+        public static string Blog_WAYAFC_H8_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H8_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take &lt;a href=&apos;https://www.csoonline.com/article/567795/marriott-data-breach-faq-how-did-it-happen-and-what-was-the-impact.html&apos;&gt;&lt;b&gt;Marriott International&lt;/b&gt;&lt;/a&gt; as an example. After their 2018 breach that exposed 500 million guest records, the company revamped its cybersecurity protocols..
+        /// </summary>
+        public static string Blog_WAYAFC_H8_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H8_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When it comes to protecting your files, encryption is non-negotiable. AxCrypt, a trusted name in file encryption, offers:.
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, you’re not just reacting to threats—you’re proactively safeguarding your data in a world of evolving &lt;b&gt;cybersecurity solutions&lt;/b&gt;..
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Strongest Security with AES-256 Encryption&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt uses AES-256 encryption, the gold standard in data security. Whether you&apos;re securing financial records, client information, or sensitive intellectual property, AxCrypt provides robust protection for &lt;b&gt;corporate data protection&lt;/b&gt; in an era of advanced cyber threats..
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Collaborate Without Sacrificing Security&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, you can securely share encrypted .axx files with trusted partners. The platform ensures sensitive information remains protected, even during critical situations like ransomware attacks..
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;User-Friendly Design for Rapid Implementation&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s intuitive interface enables businesses to adopt cybersecurity practices quickly, minimizing downtime and vulnerabilities during a cyber crisis..
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Prepare for the Worst with AxCrypt&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt equips your business with the tools to defend against &lt;b&gt;ransomware protection&lt;/b&gt;, ensuring your data remains secure in the face of advanced threats..
+        /// </summary>
+        public static string Blog_WAYAFC_H9_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_H9_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattack is a  Growing Epidemic.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to References:.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading10 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Really Happened?.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Was Targeted?.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Did It Happen?.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Cyberattacks Impact Businesses.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading5 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Can We Learn From These Incidents?.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading6 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Governments Step In.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading7 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steps Businesses Should Take Right Now.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading8 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why AxCrypt Is Your Cybersecurity Ally.
+        /// </summary>
+        public static string Blog_WAYAFC_Heading9 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Heading9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this blog, we’ll break down what happened, how cyberattacks occur, and most importantly, how cybersecurity solutions like AxCrypt and its .axx file format can help protect your files and data from falling into the wrong hands..
+        /// </summary>
+        public static string Blog_WAYAFC_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You might have heard about the recent cyberattack on US companies that disrupted various industries. This attack, linked to China cyberattacks, sent shockwaves through the business world, underscoring the growing sophistication of modern hackers. From stealing sensitive data to crippling operations, the implications of such attacks are dire, especially as businesses and individuals alike increasingly rely on digital systems..
+        /// </summary>
+        public static string Blog_WAYAFC_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this blog, we’ll break down what happened, how cyberattacks occur, and most importantly, how &lt;b&gt;cybersecurity solutions&lt;/b&gt; like &lt;b&gt;AxCrypt&lt;/b&gt; and its .axx file format can help protect your files and data from falling into the wrong hands..
+        /// </summary>
+        public static string Blog_WAYAFC_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why AxCrypt Is Your Ally in the Face of Cyberattacks.
+        /// </summary>
+        public static string Blog_WAYAFC_Title {
+            get {
+                return ResourceManager.GetString("Blog_WAYAFC_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organizations cannot prevent &lt;a href=&apos;&apos;&gt;&lt;strong&gt;password attacks,&lt;/strong&gt;&lt;/a&gt; but it is possible to avoid them. By staying vigilant, practicing good password hygiene, and protecting your network, you can stop brute force attacks, no matter how many threat attempts are tried. Most importantly, strong passwords and regular password changes are also an effective countermeasure against these types of brute force attack in cyber security..
         /// </summary>
         public static string Blog_WBFAHPI_Conclusion_Text1 {
@@ -22012,7 +27682,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A very common threat in this web era is brute force attack. A brute force attack in cyber security is an attempt to find a password by systematically trying all possible combinations of letters, numbers and symbols until you find the right working combination. Passwords aren&apos;t the only resource that can be brute-forced: links and directories, usernames and emails are other common targets too..
+        ///   Looks up a localized string similar to A very common threat in this web era is brute force attack. A &lt;a href=&apos;https://axcrypt.net/axcrypt-brute-force/&apos;&gt;&lt;b&gt;brute force&lt;/b&gt;&lt;/a&gt; attack in cyber security is an attempt to find a password by systematically trying all possible combinations of letters, numbers and symbols until you find the right working combination. Passwords aren&apos;t the only resource that can be brute-forced: links and directories, usernames and emails are other common targets too..
         /// </summary>
         public static string Blog_WBFAHPI_H1_Type_Text1 {
             get {
@@ -22449,6 +28119,897 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_WCACT_Title {
             get {
                 return ResourceManager.GetString("Blog_WCACT_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect Your Data with AxCrypt – Special Offer!.
+        /// </summary>
+        public static string Blog_WCSBYTP_Conclusion_Heading {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Conclusion_Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Holiday Season, take a proactive step in safeguarding your business with AxCrypt. Enjoy 30% off on AxCrypt Premium and Business plans..
+        /// </summary>
+        public static string Blog_WCSBYTP_Conclusion_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Conclusion_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Code &lt;b&gt;XMAS30P&lt;/b&gt; to save on Premium and &lt;b&gt;XMAS30B&lt;/b&gt; Business subscriptions..
+        /// </summary>
+        public static string Blog_WCSBYTP_Conclusion_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Conclusion_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strengthen your cybersecurity defenses and ensure your data remains secure during this busy season. This exclusive offer is available for a limited time only. Don’t miss the chance to secure your business and protect what matters most..
+        /// </summary>
+        public static string Blog_WCSBYTP_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks are becoming increasingly frequent and advanced, causing disruptions, reputational harm, and financial losses for businesses across all industries. Regardless of the business size, protecting data and maintaining business continuity is paramount. Without a proactive approach to data security for business, organizations risk not only financial losses but the very trust and loyalty of their customers. By prioritizing cybersecurity in 2025, businesses can encrypt business files, safeguard sensitiv [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WCSBYTP_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here are the reasons why investing in cybersecurity is important:.
+        /// </summary>
+        public static string Blog_WCSBYTP_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Protecting Sensitive Data.
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Businesses increasingly depend on cloud providers for data storage and system operations, a trend accelerated by remote work and the need for flexible infrastructure. While cloud providers offer basic security, additional safeguards tailored to your organization’s needs are essential. Investments in custom cybersecurity measures ensure that your business remains secure across cloud environments, protecting data stored on third-party platforms..
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safeguarding confidential data — from customer information to financial records, is crucial today. Breaches can result in the unauthorized exposure of sensitive information, leading to reputational damage and regulatory penalties. Business data protection tools like encryption, intrusion detection, and robust firewall systems are essential to secure data, ensuring your business is shielded from unauthorized access and preventing the risks of a breach..
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Safeguarding Brand Reputation.
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A security breach does more than harm your bottom line; it directly impacts your brand&apos;s reputation. Customers value data privacy, and many will avoid brands that have been compromised. By investing in cybersecurity solutions 2025, you demonstrate a commitment to protecting your clients’ information, reinforcing trust in your business and its practices. Data security for businesses isn’t just about compliance — it’s about maintaining trust and safeguarding your most valuable asset: your reputation..
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Ensuring Compliance with Regulations.
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regulatory bodies, including GDPR, &lt;a href=&apos;https://axcrypt.net/industries/healthcare/&apos;&gt;&lt;b&gt;HIPAA&lt;/b&gt;&lt;/a&gt;, and PCI-DSS, have strict guidelines for handling sensitive data. Cybersecurity measures are not only beneficial but often required by law. Investing in comprehensive data protection ensures your business meets these standards, avoiding costly fines and legal consequences..
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. Minimizing Operational Downtime.
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks can bring operations to a halt, affecting business productivity and incurring recovery costs. Investing in cybersecurity solutions like disaster recovery, regular backups, and staff training can mitigate these impacts, helping maintain business continuity even in the face of a cyber incident..
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. Addressing Cloud Vulnerabilities.
+        /// </summary>
+        public static string Blog_WCSBYTP_H2_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H2_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Businesses, especially small businesses are particularly vulnerable to cyberattacks, as they often lack dedicated cybersecurity teams and resources. According to recent studies, nearly half of cyberattacks target small businesses due to this very vulnerability. Data breaches or ransomware attacks can be devastating for small businesses, with the potential to disrupt operations and drain resources..
+        /// </summary>
+        public static string Blog_WCSBYTP_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you’re a small business owner, investing in cybersecurity solutions can help prevent cyber threats and protect your organization from catastrophic losses. Business data protection measures such as encrypting business files and implementing comprehensive data security for business practices can provide crucial resilience in today’s risk-filled digital landscape..
+        /// </summary>
+        public static string Blog_WCSBYTP_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By using tools like AxCrypt encryption software, you can secure sensitive data, ensuring that even in the event of an attack, your critical information remains protected..
+        /// </summary>
+        public static string Blog_WCSBYTP_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more insights on cybersecurity for small businesses, &lt;a href=&apos;https://axcrypt.net/blog/how-small-businesses-can-protect-themselves-from-growing-cyber-threats/&apos;&gt;&lt;b&gt;see our related blog post here&lt;/b&gt;.&lt;/a&gt;.
+        /// </summary>
+        public static string Blog_WCSBYTP_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption is not a standalone solution for cybersecurity, it is a foundational layer of defense..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine a scenario where sensitive customer details, financial records, or proprietary designs fall into the wrong hands. The damage is not just financial—it’s reputational. Encryption is the hero of this story, acting as a powerful shield in the fight against cyberattacks. By transforming data into unreadable code, encryption ensures that even in the face of a breach, your information remains secure..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is where AxCrypt encryption software steps in, redefining what encryption can do. Think of it as more than just a security tool—it’s your partner in safeguarding your business. With the advanced AES 256-bit encryption, AxCrypt protects files, whether stored locally or on platforms like Dropbox, Google Drive, or OneDrive. Picture teams seamlessly collaborate without fear, thanks to AxCrypt’s feature that allows secure file sharing through individual passwords..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With data security for businesses becoming more essential in 2025, AxCrypt helps encrypt business files, ensuring that sensitive data remains secure from cyber threats and breaches. Cybersecurity solutions 2025 require more than just basic protection—AxCrypt offers the peace of mind that comes with robust encryption..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For businesses, managing who gets access is often a puzzle. AxCrypt simplifies this with &lt;a href=&apos;https://axcrypt.net/information/group/&apos;&gt;&lt;b&gt;group-level key management&lt;/b&gt;&lt;/a&gt;, ensuring only authorized users can view sensitive files. Add to that the convenience of mobile encryption for securing files on the go and an integrated password manager to keep credentials safe and strong..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt doesn’t just provide encryption—it offers peace of mind, enabling businesses to focus on growth while staying ahead of cybersecurity threats..
+        /// </summary>
+        public static string Blog_WCSBYTP_H4_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_H4_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Growing Need for Cybersecurity in 2025.
+        /// </summary>
+        public static string Blog_WCSBYTP_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top 5 Reasons to Invest in Cybersecurity.
+        /// </summary>
+        public static string Blog_WCSBYTP_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cybersecurity for Businesses.
+        /// </summary>
+        public static string Blog_WCSBYTP_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The AxCrypt Advantage.
+        /// </summary>
+        public static string Blog_WCSBYTP_Heading4 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Heading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As businesses become more interconnected and rely on cloud systems, the risks grow, making cybersecurity indispensable. Here’s why now is the time to invest in cybersecurity and how AxCrypt, a trusted name in data security, can help with encryption..
+        /// </summary>
+        public static string Blog_WCSBYTP_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cyber threats are no longer rare—they’ve become a constant challenge for data security for businesses across every industry..
+        /// </summary>
+        public static string Blog_WCSBYTP_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A few recent incidents underscore the risks: a February &lt;a href=&apos;https://therecord.media/ransomware-healthcare-microsoft-last-year&apos;&gt;&lt;b&gt;ransomware attack&lt;/b&gt;&lt;/a&gt; disrupted U.S. healthcare operations for weeks, halting claims processing across numerous hospitals and pharmacies. Later, &lt;a href=&apos;https://www.hipaajournal.com/ascension-cyberattack-2024/&apos;&gt;&lt;b&gt;Ascension Health&lt;/b&gt;&lt;/a&gt; faced similar challenges, diverting emergency care due to a cyber intrusion. More recently, software provider &lt;a href=&apos;https://www.te [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WCSBYTP_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As businesses become more interconnected and rely on cloud systems, the risks grow, making cybersecurity indispensable. Here’s why now is the time to invest in cybersecurity and how AxCrypt, a trusted name in data security, can help with encryption..
+        /// </summary>
+        public static string Blog_WCSBYTP_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Cybersecurity in 2025 Should Be Your Top Priority.
+        /// </summary>
+        public static string Blog_WCSBYTP_Title {
+            get {
+                return ResourceManager.GetString("Blog_WCSBYTP_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decryption, while often overlooked compared to encryption, is essential for maintaining both data security and accessibility. AxCrypt, the most trusted encryption software, offers a reliable and easy-to-use solution for handling both encryption and decryption.Its simple interface and compatibility with multiple operating systems make it a practical tool for both individuals and businesses. By choosing AxCrypt, you’re investing in both security and productivity, ensuring your data is safe, accessible, and co [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Blog_WDMME_Conclusion_Text {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Conclusion_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The decryption process involves several steps to convert ciphertext back into readable plaintext. Here’s a simplified overview:.
+        /// </summary>
+        public static string Blog_WDMME_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Input:&lt;/b&gt; The process begins with encrypted data (ciphertext) and a decryption key. The key must match the encryption key used initially to ensure successful decryption..
+        /// </summary>
+        public static string Blog_WDMME_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Algorithm:&lt;/b&gt; A decryption algorithm is applied to the ciphertext using the decryption key. This algorithm reverses the encryption process, transforming the scrambled data back into its original form..
+        /// </summary>
+        public static string Blog_WDMME_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Output:&lt;/b&gt; The result is plaintext data that can be read and understood by authorized users. This restored data is now accessible and usable..
+        /// </summary>
+        public static string Blog_WDMME_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decryption algorithms vary depending on whether symmetric or asymmetric encryption was used. The key is crucial for this process, as it ensures that the data can be correctly decoded..
+        /// </summary>
+        public static string Blog_WDMME_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;Data Accessibility:&lt;/b&gt; Decryption ensures that authorized users can access the data they need when they need it. Whether it&apos;s a critical business document, a personal file, or sensitive customer information, decryption is the only way to make it usable..
+        /// </summary>
+        public static string Blog_WDMME_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Data Recovery:&lt;/b&gt; In the event of data loss or corruption, decryption is often the only way to recover lost information. Encrypted backups can be decrypted and restored to their original state, minimizing the impact of data disasters..
+        /// </summary>
+        public static string Blog_WDMME_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Compliance with Regulations:&lt;/b&gt; Many industries have strict data privacy and security regulations, such as GDPR, HIPAA, and CCPA. These regulations often require organizations to encrypt sensitive data and ensure that only authorized individuals can access it. Decryption plays a crucial role in meeting these compliance requirements..
+        /// </summary>
+        public static string Blog_WDMME_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Secure Communication:&lt;/b&gt; Decryption is essential for secure communication. When encrypted data is transmitted over a network, it&apos;s rendered unintelligible to eavesdroppers. However, decryption ensures that the intended recipient can access the message and understand its contents..
+        /// </summary>
+        public static string Blog_WDMME_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Decrypt a Folder&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Select the file you want to decrypt from your phone’s storage or a cloud drive link..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. The file will be decrypted and restored to its original format..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text12 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;You need an AxCrypt account and the AxCrypt app to open or decrypt encrypted files.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text13 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Even after you delete or uninstall the AxCrypt app, AxCrypt encrypted files will still have the .axx extension.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text14 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;You can decrypt encrypted files on any system using the file password that was used to encrypt them.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text15 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;If you&apos;re having trouble decrypting files, you can email AxCrypt support at support@axcrypt.net.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text16 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Open the AxCrypt app and go to the &lt;b&gt;Secured Folders&lt;/b&gt; tab..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Right-click on the folder you wish to decrypt..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Select &lt;b&gt;Decrypt Permanently&lt;/b&gt; to remove encryption from the folder and its contents..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Decrypt an AXX File&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Right-click the .axx file you want to decrypt..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Choose &lt;b&gt;AxCrypt &gt; Decrypt&lt;/b&gt; from the context menu..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Alternatively, to view the file without decrypting, go to &lt;b&gt;File &gt; Open Secured&lt;/b&gt; in the AxCrypt app..
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Decrypt a File on a Mobile Device&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SH1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SH1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Here are some simple methods to decrypt files using AxCrypt, whether you&apos;re working with individual files, folders, or even mobile devices:&lt;/b&gt;.
+        /// </summary>
+        public static string Blog_WDMME_H3_SubHeading1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_SubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures secure decryption by implementing several layers of protection to safeguard your data and prevent unauthorized access during the decryption process. Here’s how it helps:.
+        /// </summary>
+        public static string Blog_WDMME_H3_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. &lt;b&gt;AES-256 Encryption Standard:&lt;/b&gt; AxCrypt uses &lt;a href=&apos;https://axcrypt.net/blog/get-AES-256-bit-encryption-with-axCrypt/&apos;&gt;&lt;b&gt;AES-256 encryption&lt;/b&gt;&lt;/a&gt; to ensure strong protection of files. The same encryption key that encrypted the data is used for decryption, ensuring only authorized users can access the decrypted file..
+        /// </summary>
+        public static string Blog_WDMME_H3_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. &lt;b&gt;Key Sharing:&lt;/b&gt; When sharing encrypted files, AxCrypt allows you to securely share access via encryption keys, not passwords. Only the recipient with the correct decryption key can access the file, ensuring that only authorized users can decrypt it. No need to share passwords separately..
+        /// </summary>
+        public static string Blog_WDMME_H3_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. &lt;b&gt;Access Control:&lt;/b&gt; With key sharing, the sender controls who can decrypt the file. The shared encryption key is sent securely, and only the person granted access can decrypt the file, ensuring that unauthorized individuals cannot view it..
+        /// </summary>
+        public static string Blog_WDMME_H3_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4. &lt;b&gt;Encrypted Local Storage:&lt;/b&gt; AxCrypt also ensures secure decryption by storing the encryption keys and other sensitive information in encrypted form on the device, preventing unauthorized access..
+        /// </summary>
+        public static string Blog_WDMME_H3_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_H3_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Decryption Works.
+        /// </summary>
+        public static string Blog_WDMME_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Importance of Decryption.
+        /// </summary>
+        public static string Blog_WDMME_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How AxCrypt Help in Secure Decryption.
+        /// </summary>
+        public static string Blog_WDMME_Heading3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine a busy office where confidential documents—like financial reports and client information—are constantly shared. Encryption keeps this data secure by scrambling it to prevent cybersecurity threats. But when the right person needs to access the information, decryption steps in to unlock and restore it to its original form..
+        /// </summary>
+        public static string Blog_WDMME_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine a busy office where confidential documents—like financial reports and client information—are constantly shared. Encryption keeps this data secure by scrambling it to prevent cybersecurity threats. But when the right person needs to access the information, decryption steps in to unlock and restore it to its original form..
+        /// </summary>
+        public static string Blog_WDMME_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While encryption often takes the spotlight, decryption is equally vital. It’s the process that ensures you can access your data when you need it, recover lost files, and stay compliant with regulations like GDPR rights, HIPAA, and CCPA. In short, a solid data security plan needs both encryption and decryption working together..
+        /// </summary>
+        public static string Blog_WDMME_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decryption is what keeps your sensitive data safe, protects your privacy, and helps you meet all regulations. AxCrypt is ahead of the curve, offering secure file transfers and reliable decryption. Want to learn more? Read on to see how AxCrypt makes decryption easier and keeps your data both safe and accessible..
+        /// </summary>
+        public static string Blog_WDMME_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Decryption Matters as Much as Encryption.
+        /// </summary>
+        public static string Blog_WDMME_Title {
+            get {
+                return ResourceManager.GetString("Blog_WDMME_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying encryption at the Olympic Games 2024 ensures peace of mind, allowing you to be fully present without the worry of data breaches. Such breaches can significantly impact both spectators and athletes. With AxCrypt, you can capture and securely store your Olympic Games experience. Secure your participation by signing up for AxCrypt today and enjoy a 30-day free trial along with a 20% discount for the Olympics. Start protecting your Olympic experience now!.
+        /// </summary>
+        public static string Blog_WDSPOG_Conclusion_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Conclusion_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Secure Sensitive Data:&lt;/b&gt; Traveling to the Olympic Games 2024 requires sharing sensitive information at various points, such as airports, hotels, and event venues. Encryption protects against data breaches and ensures your data remains secure. If a device is lost, encryption keeps your tickets, reservations, and personal information protected. With AxCrypt, these documents will be accessible on any linked device..
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Enhanced Security: Generates strong, unique passwords for each account.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text10 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Multi-device Access: Syncs across devices, allowing access from your smartphone, tablet, and laptop.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text11 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Protection Against Unsecured Public Wi-Fi:&lt;/b&gt; When traveling, we constantly need our devices. Encryption protects data when connecting to public Wi-Fi. It ensures all data transmitted over Wi-Fi remains unreadable to cybercriminals. Without encryption, data interception on unsecured Wi-Fi could result in personal data being compromised, such as:.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Login credentials: Usernames and passwords for email, banking, social media, and other accounts.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Personal information: Names, addresses, phone numbers, and other identifying details.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Sensitive communications: Emails, messages, and other data.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text5 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Easy Access and Sharing:&lt;/b&gt; Sharing documents and confidential information securely is crucial for both spectators and athletes. Whether attending as a family, group of friends, or team of athletes, secure communication is essential. Encryption ensures that sensitive information like tickets, reservations, and locations can be shared only with trusted recipients..
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text6 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It also protects memories captured through pictures and videos, ensuring they remain private. Athletes are significant targets for data breaches, making secure communications within teams vital to avoid compromising performance..
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text7 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Password Management:&lt;/b&gt; Password management is essential during the Olympic Games 2024. Nearly 81% of data breaches occur due to weak passwords. Attending the Olympics involves accessing multiple accounts, each requiring a password. Encryption protects flight tickets, Olympic Games tickets, and reservations. Password management provides:.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text8 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;Centralized Password Storage: Securely stores all passwords in one place.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H1_Text9 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H1_Text9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Encryption at Rest:&lt;/b&gt; AxCrypt&apos;s 256-bit AES keeps stored data secure, protecting all private documents needed for the Games.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H2_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H2_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Secured Folders:&lt;/b&gt; Important documents, such as tickets and reservations, can be stored in secured folders accessible only to authorized individuals.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H2_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H2_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;End-to-End Encryption for Data in Transit:&lt;/b&gt; Ensures secure communications for both athletes and spectators.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H2_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H2_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;li&gt;&lt;b&gt;Password Manager:&lt;/b&gt; AxCrypt offers a secure password manager feature, helping travelers keep track of their passwords securely.&lt;/li&gt;.
+        /// </summary>
+        public static string Blog_WDSPOG_H2_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_H2_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here’s how encryption can enhance your Olympic Games 2024 experience:.
+        /// </summary>
+        public static string Blog_WDSPOG_Heading1 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply AxCrypt’s Security Measures at the Olympic Games 2024:.
+        /// </summary>
+        public static string Blog_WDSPOG_Heading2 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine capturing Olympic memories without worrying about data breaches! The Olympic Games of 2024, the most prestigious sporting event of the year, will see 12 million spectators, 10,000 athletes, and 30,000 volunteers converging in Paris. However, with such a massive gathering, the event becomes an attractive target for cybercriminals..
+        /// </summary>
+        public static string Blog_WDSPOG_Summary {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine capturing Olympic memories without worrying about data breaches! &lt;a href=&apos;https://olympics.com/en/paris-2024&apos;&gt;&lt;b&gt;The Olympic Games of 2024&lt;/b&gt;&lt;/a&gt;,The Olympic Games of 2024, the most prestigious sporting event of the year, will see 12 million spectators, 10,000 athletes, and 30,000 volunteers converging in Paris. However, with such a massive gathering, the event becomes an attractive target for cybercriminals..
+        /// </summary>
+        public static string Blog_WDSPOG_Text1 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sheer volume of personal and sensitive information exchanged during the Olympics creates numerous opportunities for malicious actors to exploit vulnerabilities. Ensuring robust data security is essential to protect against potential threats and allow everyone involved to focus on the excitement and spirit of the Games..
+        /// </summary>
+        public static string Blog_WDSPOG_Text2 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Christophe Thivet, director at Atos of the technological integration of the 2024 Games, commented on the cyber threats faced during previous Olympic Games: “In Tokyo, there were 450 million attacks, eight times more than in Rio in 2016. And 4.4 billion threats, or 800 threats per second.”.
+        /// </summary>
+        public static string Blog_WDSPOG_Text3 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attending the Olympic Games 2024 in Paris will require carrying sensitive information, such as travel documents, financial information, and personal data. Whether you are attending as a spectator or an athlete, the use of encryption will enhance your experience by alleviating concerns about data breaches, allowing you to focus completely on the games..
+        /// </summary>
+        public static string Blog_WDSPOG_Text4 {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Data Security at the 2024 Paris Olympic Games.
+        /// </summary>
+        public static string Blog_WDSPOG_Title {
+            get {
+                return ResourceManager.GetString("Blog_WDSPOG_Title", resourceCulture);
             }
         }
         
@@ -23749,7 +30310,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/Premium/CreateSubscription/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
+        ///   Looks up a localized string similar to Start automatically encrypting your sensitive files today! Try AxCrypt free with a 30-day trial. Click &lt;a href=&apos;https://account.axcrypt.net/HomeUser/CreatePremium/?utm=aWQ9Y2JjNTFkMjgtZmY4Zi00YjZjLWFiZDAtZjhmYTlkNTI5MGYxJmRpc2NvdW50PQ==&apos;&gt;&lt;b&gt;here&lt;/b&gt;&lt;/a&gt; to download..
         /// </summary>
         public static string Blog_WINAIMCR_Conclusion_H1_Text2 {
             get {
@@ -23839,7 +30400,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For a more detailed overview, download our free step-by-step PDF guide on how to assess your organization&apos;s NIS2 compliance requirements: &lt;a href=&apos;https://axcrypt.net/information/nis2/&apos;&gt;&lt;b&gt;https://axcrypt.net/information/nis2/&lt;/b&gt;&lt;/a&gt;.
+        ///   Looks up a localized string similar to For a more detailed overview, download our free step-by-step PDF guide on how to assess your organization&apos;s NIS2 compliance requirements: &lt;a href=&apos;https://axcrypt.net/information/regulatory-compliance/nis2/&apos;&gt;&lt;b&gt;https://axcrypt.net/information/regulatory-compliance/nis2/&lt;/b&gt;&lt;/a&gt;.
         /// </summary>
         public static string Blog_WINAIMCR_H2_Text15 {
             get {
@@ -24190,7 +30751,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t wait until the deadline looms! Take a proactive approach to NIS2 compliance today. &lt;a href=&apos;https://axcrypt.net/information/nis2/&apos;&gt;&lt;b&gt;Download&lt;/b&gt;&lt;/a&gt; our free NIS2 Compliance Guide and explore how AxCrypt&apos;s award-winning encryption software can contribute to your organization&apos;s cybersecurity posture. Remember, a secure digital future starts with prioritizing strong cybersecurity practices today..
+        ///   Looks up a localized string similar to Don&apos;t wait until the deadline looms! Take a proactive approach to NIS2 compliance today. &lt;a href=&apos;https://axcrypt.net/information/regulatory-compliance/nis2/&apos;&gt;&lt;b&gt;Download&lt;/b&gt;&lt;/a&gt; our free NIS2 Compliance Guide and explore how AxCrypt&apos;s award-winning encryption software can contribute to your organization&apos;s cybersecurity posture. Remember, a secure digital future starts with prioritizing strong cybersecurity practices today..
         /// </summary>
         public static string Blog_WINAIMCR_H6_Text2 {
             get {
@@ -24240,15 +30801,6 @@ namespace AxCrypt.Content.Properties {
         public static string Blog_WINAIMCR_Heading5 {
             get {
                 return ResourceManager.GetString("Blog_WINAIMCR_Heading5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_WINAIMCR_Heading6 {
-            get {
-                return ResourceManager.GetString("Blog_WINAIMCR_Heading6", resourceCulture);
             }
         }
         
@@ -24343,7 +30895,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;li style=&quot;list-style-type: &apos;\2714&apos;;&quot;&gt; AxCrypt generates the strongest 256bit Master Key..
+        ///   Looks up a localized string similar to &lt;li style=\&quot;list-style-type: &apos;\\2714&apos;;\&quot;&gt; AxCrypt generates the strongest 256bit &lt;a href=&apos;https://axcrypt.net/information/master-key/&apos;&gt;&lt;b&gt;Master Key&lt;/b&gt;&lt;/a&gt;..
         /// </summary>
         public static string Blog_WIPM_H2_SH7_Text4 {
             get {
@@ -24469,7 +31021,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password management allows individuals and businesses to store and manage all their passwords in one secure place. Individuals no longer have to remember multiple passwords. The only password a user has to remember is the one master password which is used to open the password manager. A password manager can remember all the infinite passwords for you..
+        ///   Looks up a localized string similar to &lt;a href=&apos;https://axcrypt.net/passwordmanager/&apos;&gt;&lt;b&gt;Password management&lt;/b&gt;&lt;/a&gt; allows individuals and businesses to store and manage all their passwords in one secure place. Individuals no longer have to remember multiple passwords. The only password a user has to remember is the one master password which is used to open the password manager. A password manager can remember all the infinite passwords for you..
         /// </summary>
         public static string Blog_WIPM_H2_Text2 {
             get {
@@ -25900,15 +32452,6 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion.
-        /// </summary>
-        public static string Blog_ZKEEIST_Heading4 {
-            get {
-                return ResourceManager.GetString("Blog_ZKEEIST_Heading4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 2023 was a pivotal year for the advancements in the technology and IT sector. With expeditious developments in Artificial Intelligence and Machine Learning, launching a cyber attack has become easier than ever..
         /// </summary>
         public static string Blog_ZKEEIST_Summary {
@@ -26179,11 +32722,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;AxCrypt&lt;/span&gt; Blog.
+        /// </summary>
+        public static string BlogHeading {
+            get {
+                return ResourceManager.GetString("BlogHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Industry.
+        /// </summary>
+        public static string BlogIndustryCategory {
+            get {
+                return ResourceManager.GetString("BlogIndustryCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informative.
+        /// </summary>
+        public static string BlogInformativeCategory {
+            get {
+                return ResourceManager.GetString("BlogInformativeCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blog.
         /// </summary>
         public static string BlogLinkLabel {
             get {
                 return ResourceManager.GetString("BlogLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News and trends.
+        /// </summary>
+        public static string BlogNewsandtrendsCategory {
+            get {
+                return ResourceManager.GetString("BlogNewsandtrendsCategory", resourceCulture);
             }
         }
         
@@ -26441,6 +33020,150 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What is the AxCrypt Business plan, and how does it differ from the premuim plan?.
+        /// </summary>
+        public static string BusinessFaq1 {
+            get {
+                return ResourceManager.GetString("BusinessFaq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The AxCrypt Business plan is specifically crafted to solve the challenges faced by organizations in managing security. It offers essential features like user group management, centralized key control, and secure file sharing.  Unlike the Premium plan, AxCrypt Business also offers the Masterkey feature, which provides administrators with the ability to manage and recover encrypted files across multiple users and departments. This suite of tools ensures your business can protect sensitive data while upholding [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string BusinessFaq1Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq1Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is AxCrypt Business the right solution for my company?.
+        /// </summary>
+        public static string BusinessFaq2 {
+            get {
+                return ResourceManager.GetString("BusinessFaq2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your company values data security and needs to meet regulatory requirements, AxCrypt Business is designed for you. Whether you&apos;re a small business, a healthcare provider, or a governmental agency, our encryption tools are tailored to solve your specific security challenges. Still unsure? Contact us for a personalized consultation to find out if AxCrypt is the best fit for your organization..
+        /// </summary>
+        public static string BusinessFaq2Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq2Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can AxCrypt integrate with our existing cloud services like Google Drive or OneDrive?.
+        /// </summary>
+        public static string BusinessFaq3 {
+            get {
+                return ResourceManager.GetString("BusinessFaq3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, AxCrypt easily integrates with popular cloud storage services like Google Drive, OneDrive, and Dropbox. Our solution ensures your files are automatically encrypted both on your desktop and in the cloud, solving the problem of data vulnerability and always keeping your information secure..
+        /// </summary>
+        public static string BusinessFaq3Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq3Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt ensure compliance with industry regulations?.
+        /// </summary>
+        public static string BusinessFaq4 {
+            get {
+                return ResourceManager.GetString("BusinessFaq4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is designed to help your business stay compliant with crucial industry standards like GDPR, HIPAA, and NIS2. Our encryption solutions automate the protection of sensitive data, addressing your compliance needs without sacrificing security..
+        /// </summary>
+        public static string BusinessFaq4Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq4Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does the Masterkey feature work?.
+        /// </summary>
+        public static string BusinessFaq5 {
+            get {
+                return ResourceManager.GetString("BusinessFaq5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Masterkey feature empowers administrators to recover encrypted files across all user groups, solving issues like password loss or employee transitions. This feature ensures that your data remains accessible and secure, even during changes within your team..
+        /// </summary>
+        public static string BusinessFaq5Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq5Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What kind of support does AxCrypt offer to business customers?.
+        /// </summary>
+        public static string BusinessFaq6 {
+            get {
+                return ResourceManager.GetString("BusinessFaq6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt provides support that aligns with your business needs. From the moment you start using Axcrypt, you’ll have access to a dedicated account manager who offers personalized assistance to help you utilize our encryption tools. This ensures your data security is always optimized and that you receive expert guidance throughout your journey..
+        /// </summary>
+        public static string BusinessFaq6Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq6Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How can AxCrypt help protect my small or medium-sized business from data breaches?.
+        /// </summary>
+        public static string BusinessFaq7 {
+            get {
+                return ResourceManager.GetString("BusinessFaq7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt offers robust encryption solutions specifically designed to shield small and medium-sized businesses (SMBs) from the risk of data breaches. By securing your sensitive data with AES-256 encryption, AxCrypt helps you avoid the severe consequences of a breach, ensuring your business’s continuity..
+        /// </summary>
+        public static string BusinessFaq7Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq7Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How is the AxCrypt Business plan priced, and where can I find more details?.
+        /// </summary>
+        public static string BusinessFaq8 {
+            get {
+                return ResourceManager.GetString("BusinessFaq8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Business is priced flexibly to meet the needs of organizations of all sizes. For detailed information on our pricing and offers, please refer to the Pricing section on this page..
+        /// </summary>
+        public static string BusinessFaq8Ans {
+            get {
+                return ResourceManager.GetString("BusinessFaq8Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access to exclusive features coming up.
         /// </summary>
         public static string BusinessFeatureListAccessTo {
@@ -26671,6 +33394,186 @@ namespace AxCrypt.Content.Properties {
         public static string BusinessProductContent {
             get {
                 return ResourceManager.GetString("BusinessProductContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Master Key eliminates the risk of losing access to critical files.
+        /// </summary>
+        public static string BusinessProductKeyHead1 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure files online in mobile and desktop with cloud security.
+        /// </summary>
+        public static string BusinessProductKeyHead10 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create and manage user groups with centralized key management.
+        /// </summary>
+        public static string BusinessProductKeyHead2 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage file and folder permissions with user access control.
+        /// </summary>
+        public static string BusinessProductKeyHead3 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share files to members using group key sharing.
+        /// </summary>
+        public static string BusinessProductKeyHead4 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get priority business support from a dedicated account manager.
+        /// </summary>
+        public static string BusinessProductKeyHead6 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Security Solutions for Both Professionals and Businesses.
+        /// </summary>
+        public static string BusinessProductKeyHead7 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate, save, and share passwords, cards, &amp; notes with Password Manager.
+        /// </summary>
+        public static string BusinessProductKeyHead8 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover Your Encrypted Files Safely with AxCrypt&apos;s Secure Key Backup.
+        /// </summary>
+        public static string BusinessProductKeyHead9 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyHead9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Master Key allows administrators to decrypt files encrypted by any user within your organization. This centralized tool ensures that critical files remain accessible during user password loss or employee departures..
+        /// </summary>
+        public static string BusinessProductKeyParagraph1 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt and decrypt your files directly on Android and iOS, keeping your data safe on the go. On desktop, sync files with cloud folders like Google Drive, OneDrive, iCloud, and Dropbox, with AxCrypt automatically encrypting them before upload. This ensures your data remains secure whether accessed from mobile, desktop, or the cloud..
+        /// </summary>
+        public static string BusinessProductKeyParagraph10 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhance business communication security with AES-256 encryption, ensuring confidential messages stay protected across web, desktop, and mobile. With Secured Messenger for Business, only authorized team members can access messages, safeguarding sensitive corporate data from unauthorized access..
+        /// </summary>
+        public static string BusinessProductKeyParagraph11 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Efficiently organize users into groups and manage their access with centralized key management. This ensures consistent permissions across the organization, allowing administrators to manage and secure group access to critical data..
+        /// </summary>
+        public static string BusinessProductKeyParagraph2 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our business subscription enables administrators to easily control access to company files and folders. This feature ensures that only authorized users can access sensitive data, enhancing both security and file management..
+        /// </summary>
+        public static string BusinessProductKeyParagraph3 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely share encrypted files within groups using AxCrypt Business’s group key sharing feature, ensuring smooth and effective collaboration..
+        /// </summary>
+        public static string BusinessProductKeyParagraph4 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safeguard your business with AxCrypt Business, using advanced AES-256 encryption for unmatched data security. Our globally recognized framework ensures your sensitive information remains confidential and protected from cyber threats..
+        /// </summary>
+        public static string BusinessProductKeyParagraph5 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefit from personalized assistance with direct access to an Account Manager. Receive priority support and expert guidance tailored to your organization’s specific needs, ensuring rapid resolution of any issues..
+        /// </summary>
+        public static string BusinessProductKeyParagraph6 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt supports secure collaboration, whether you’re sharing files within specialized teams or managing critical data across various business departments and projects..
+        /// </summary>
+        public static string BusinessProductKeyParagraph7 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage and share passwords securely with AxCrypt’s password manager, which supports sharing with up to 20 users. Streamline administrative tasks, enhance protection against cyber attacks, and ensure compliance..
+        /// </summary>
+        public static string BusinessProductKeyParagraph8 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures top-level security by storing only an encrypted version of your private key on our servers. This guarantees that, even if our servers are compromised, your data remains safe since only your master password can unlock the key..
+        /// </summary>
+        public static string BusinessProductKeyParagraph9 {
+            get {
+                return ResourceManager.GetString("BusinessProductKeyParagraph9", resourceCulture);
             }
         }
         
@@ -27557,6 +34460,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you are buying AxCrypt for the company then check our  .
+        /// </summary>
+        public static string BuyingAxCryptForCompany {
+            get {
+                return ResourceManager.GetString("BuyingAxCryptForCompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is an active subscription on this account. Password Manager subscriptions can&apos;t be purchased twice with the same AxCrypt account..
         /// </summary>
         public static string BuyMorePasswordManagerSubscriptionWarning {
@@ -27571,6 +34483,24 @@ namespace AxCrypt.Content.Properties {
         public static string BuyMorePremiumSubscriptionWarning {
             get {
                 return ResourceManager.GetString("BuyMorePremiumSubscriptionWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter user email for whom you buy a Password Manager license:.
+        /// </summary>
+        public static string BuyPasswordManagerText {
+            get {
+                return ResourceManager.GetString("BuyPasswordManagerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter user email for whom you buy a Premium license:.
+        /// </summary>
+        public static string BuyPremiumText {
+            get {
+                return ResourceManager.GetString("BuyPremiumText", resourceCulture);
             }
         }
         
@@ -27593,11 +34523,317 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue with AxCrypt.
+        /// </summary>
+        public static string CancelSubscriptionContinueAxCryptText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionContinueAxCryptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish Cancelation.
+        /// </summary>
+        public static string CancelSubscriptionFinishCancelationText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionFinishCancelationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;re Just a Call Away!.
+        /// </summary>
+        public static string CancelSubscriptionJustCallAwayText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionJustCallAwayText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep Subscription.
+        /// </summary>
+        public static string CancelSubscriptionKeepSubscriptionText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionKeepSubscriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please let us know your thoughts.
+        /// </summary>
+        public static string CancelSubscriptionPlaceholder {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We Will Miss You....
+        /// </summary>
+        public static string CancelSubscriptionPopupText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPopupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your subscription is active till {0}. If you&apos;d like to cancel it, please click the &apos;Cancel subscription&apos; button below..
+        /// </summary>
+        public static string CancelSubscriptionPopupText1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPopupText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to cancel your subscription? You won&apos;t be able to securely share your files after {0}. &lt;b&gt;You will also lose access to the Password Manager.&lt;/b&gt; If you wish to keep your subscription, click &lt;b&gt;&quot;Keep subscription&quot;.&lt;/b&gt;.
+        /// </summary>
+        public static string CancelSubscriptionPopupText2 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPopupText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, give me a call back!.
+        /// </summary>
+        public static string CancelSubscriptionPricingGiveCallBackText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPricingGiveCallBackText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pricing.
+        /// </summary>
+        public static string CancelSubscriptionPricingOption {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPricingOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;re one of our favorites and we&apos;re always here for you to help you with your queries. We&apos;d love to give you a call to resolve any particular issues that you&apos;re facing in terms of pricing or technicality. Click below to schedule..
+        /// </summary>
+        public static string CancelSubscriptionPricingSubHeading1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionPricingSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel Subscription.
         /// </summary>
         public static string CancelSubscriptionPrompt {
             get {
                 return ResourceManager.GetString("CancelSubscriptionPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a specific reason.
+        /// </summary>
+        public static string CancelSubscriptionSpecificReasonText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSpecificReasonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 1.
+        /// </summary>
+        public static string CancelSubscriptionStep1Text {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionStep1Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 2.
+        /// </summary>
+        public static string CancelSubscriptionStep2Text {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionStep2Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 3.
+        /// </summary>
+        public static string CancelSubscriptionStep3Text {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionStep3Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step 4.
+        /// </summary>
+        public static string CancelSubscriptionStep4Text {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionStep4Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We’re Sad to See You Go. What Made You Cancel?.
+        /// </summary>
+        public static string CancelSubscriptionSubHeading {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose the reason for cancellation*:.
+        /// </summary>
+        public static string CancelSubscriptionSubHeading1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your feedback will help improve the product!.
+        /// </summary>
+        public static string CancelSubscriptionSubHeading2 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify the reason of your cancellation*:.
+        /// </summary>
+        public static string CancelSubscriptionSubHeading3 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you didn&apos;t find your reason in the list or want to share more, feel free to write it below:.
+        /// </summary>
+        public static string CancelSubscriptionSubHeading4 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionSubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical.
+        /// </summary>
+        public static string CancelSubscriptionTechnicalOption {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionTechnicalOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule a call.
+        /// </summary>
+        public static string CancelSubscriptionTechnicalScheduleCall {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionTechnicalScheduleCall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here Are Some Tutorials and Guides for You.
+        /// </summary>
+        public static string CancelSubscriptionTechnicalSubHeading {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionTechnicalSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have step-by-step tutorials and guides on our products to help you become an encryption pro! Visit our &lt;b&gt;&lt;a href=&quot;https://axcrypt.net/helpcenter/&quot; class=&quot;help-center-link&quot;&gt;Help Center&lt;/a&gt;&lt;/b&gt; for more options..
+        /// </summary>
+        public static string CancelSubscriptionTechnicalSubHeading1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionTechnicalSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Watch Tutorials!.
+        /// </summary>
+        public static string CancelSubscriptionTechnicalWatchTutorials {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionTechnicalWatchTutorials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undo.
+        /// </summary>
+        public static string CancelSubscriptionUndoText {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUndoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt&apos;s Powerful Feature You&apos;d Be Missing Out!.
+        /// </summary>
+        public static string CancelSubscriptionUsageHeading {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here&apos;s how you can use AxCrypt:.
+        /// </summary>
+        public static string CancelSubscriptionUsageHeading1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usage.
+        /// </summary>
+        public static string CancelSubscriptionUsageOption {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure PDFs, images, videos and other sensitive files..
+        /// </summary>
+        public static string CancelSubscriptionUsageSubHeading {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageSubHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely share any encrypted file with anyone..
+        /// </summary>
+        public static string CancelSubscriptionUsageSubHeading1 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically encrypt and sync files to Google Drive, OneDrive, and Dropbox from your PC..
+        /// </summary>
+        public static string CancelSubscriptionUsageSubHeading2 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageSubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure and share passwords, credit card details and notes..
+        /// </summary>
+        public static string CancelSubscriptionUsageSubHeading3 {
+            get {
+                return ResourceManager.GetString("CancelSubscriptionUsageSubHeading3", resourceCulture);
             }
         }
         
@@ -27822,7 +35058,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m looking to change my plan.
+        ///   Looks up a localized string similar to I&apos;m changing my plan.
         /// </summary>
         public static string ChangePlanText {
             get {
@@ -27854,6 +35090,15 @@ namespace AxCrypt.Content.Properties {
         public static string ChineseLanguageSelectionText {
             get {
                 return ResourceManager.GetString("ChineseLanguageSelectionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Masterkey Owner.
+        /// </summary>
+        public static string ChooseMasterkeyOwnerHeading {
+            get {
+                return ResourceManager.GetString("ChooseMasterkeyOwnerHeading", resourceCulture);
             }
         }
         
@@ -28074,11 +35319,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type your company name.
+        /// </summary>
+        public static string CompanyNamePlaceholder {
+            get {
+                return ResourceManager.GetString("CompanyNamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company size.
         /// </summary>
         public static string CompanysizeLabel {
             get {
                 return ResourceManager.GetString("CompanysizeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your company size.
+        /// </summary>
+        public static string CompanysizePlaceholder {
+            get {
+                return ResourceManager.GetString("CompanysizePlaceholder", resourceCulture);
             }
         }
         
@@ -28294,6 +35557,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Business!.
+        /// </summary>
+        public static string CreateBusinessText {
+            get {
+                return ResourceManager.GetString("CreateBusinessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If you require alternative payment methods, choose this option and have a business support person contact you as soon as possible..
         /// </summary>
         public static string CreateBusinessWithOtherPaymentMethodsHelpText {
@@ -28308,6 +35580,33 @@ namespace AxCrypt.Content.Properties {
         public static string CreateBusinessWithOtherPaymentMethodsSuccess {
             get {
                 return ResourceManager.GetString("CreateBusinessWithOtherPaymentMethodsSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Group !.
+        /// </summary>
+        public static string CreateGroupInfoTexts {
+            get {
+                return ResourceManager.GetString("CreateGroupInfoTexts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create group.
+        /// </summary>
+        public static string CreateGroupText {
+            get {
+                return ResourceManager.GetString("CreateGroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create &amp; Manage Groups.
+        /// </summary>
+        public static string CreateManageGroupsHeading {
+            get {
+                return ResourceManager.GetString("CreateManageGroupsHeading", resourceCulture);
             }
         }
         
@@ -28330,11 +35629,56 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create your password.
+        /// </summary>
+        public static string CreatePasswordPrompt {
+            get {
+                return ResourceManager.GetString("CreatePasswordPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Congratulations and welcome to AxCrypt Premium!.
         /// </summary>
         public static string CreatePremiumSuccess {
             get {
                 return ResourceManager.GetString("CreatePremiumSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create User Groups.
+        /// </summary>
+        public static string CreateUserGroupsHeading {
+            get {
+                return ResourceManager.GetString("CreateUserGroupsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create and manage user groups within your business for efficient departmentalization..
+        /// </summary>
+        public static string CreateUserGroupsParagraph {
+            get {
+                return ResourceManager.GetString("CreateUserGroupsParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} creation failed..
+        /// </summary>
+        public static string CreationFailed {
+            get {
+                return ResourceManager.GetString("CreationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} created successfully..
+        /// </summary>
+        public static string CreationSuccess {
+            get {
+                return ResourceManager.GetString("CreationSuccess", resourceCulture);
             }
         }
         
@@ -28380,6 +35724,699 @@ namespace AxCrypt.Content.Properties {
         public static string CurrentEmailText {
             get {
                 return ResourceManager.GetString("CurrentEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read AxCrypt &lt;label&gt;Customers Stories&lt;/label&gt;.
+        /// </summary>
+        public static string CustomerReadHeading {
+            get {
+                return ResourceManager.GetString("CustomerReadHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IPTWINS S.A.S. Secures Sensitive Documents with Ease.
+        /// </summary>
+        public static string CustomerStoriesHead1 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emerald Coast Neuropsychology Safeguards Sensitive Healthcare Data.
+        /// </summary>
+        public static string CustomerStoriesHead10 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Studio CENNI Streamlines Data Security for Clients and Team.
+        /// </summary>
+        public static string CustomerStoriesHead11 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected Technology Safeguards Sensitive Information.
+        /// </summary>
+        public static string CustomerStoriesHead12 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BMS Safeguards Organization Data with Easy Encryption.
+        /// </summary>
+        public static string CustomerStoriesHead13 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to die:haptiiker GmbH Simplifies Secure Information Exchange.
+        /// </summary>
+        public static string CustomerStoriesHead14 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frostburg State University Enhances File Security Management.
+        /// </summary>
+        public static string CustomerStoriesHead15 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lanzuisi SRL Enhances Cloud Sharing Security.
+        /// </summary>
+        public static string CustomerStoriesHead16 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contec Strengthens Data Protection with AxCrypt.
+        /// </summary>
+        public static string CustomerStoriesHead2 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ElectroCraft Simplifies Encryption for Users Industry.
+        /// </summary>
+        public static string CustomerStoriesHead3 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bechtle Schweiz AG Delivers Secure IT Solutions to Clients.
+        /// </summary>
+        public static string CustomerStoriesHead4 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haitong International Securities Meets Compliance with AxCrypt.
+        /// </summary>
+        public static string CustomerStoriesHead5 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CARPE DIEM Protects Client Data with AxCrypt.
+        /// </summary>
+        public static string CustomerStoriesHead6 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imalize Enhances Customer Relationships with Secure File Sharing.
+        /// </summary>
+        public static string CustomerStoriesHead7 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to James Taylor Ensures Confidentiality in Translation Agencies.
+        /// </summary>
+        public static string CustomerStoriesHead8 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maine MEP Protects Financial Data with Cloud Encryption.
+        /// </summary>
+        public static string CustomerStoriesHead9 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesHead9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your &lt;label&gt;security&lt;/label&gt;, our &lt;b&gt;priority &lt;/b&gt;  !.
+        /// </summary>
+        public static string CustomerStoriesInfoText {
+            get {
+                return ResourceManager.GetString("CustomerStoriesInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Eric Dewitte, IPTWINS S.A.S..
+        /// </summary>
+        public static string CustomerStoriesName1 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Daniel Proto, Ph.D., Emerald Coast Neuropsychology, PLLC.
+        /// </summary>
+        public static string CustomerStoriesName10 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Ing. Andrea Cenni, Studio CENNI di Cenni Andrea.
+        /// </summary>
+        public static string CustomerStoriesName11 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Dave Grix, Managing Director, Connected Technology Limited.
+        /// </summary>
+        public static string CustomerStoriesName12 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Antoine Bidet, CEO, BMS.
+        /// </summary>
+        public static string CustomerStoriesName13 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Patrick Scholl, die:haptiiker GmbH.
+        /// </summary>
+        public static string CustomerStoriesName14 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Lori Bennett, Director of IT Security, Frostburg State University.
+        /// </summary>
+        public static string CustomerStoriesName15 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Centola Claudio, Tecnico Informatico, Lanzuisi SRL.
+        /// </summary>
+        public static string CustomerStoriesName16 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — De Pryck, CEO, Contec.
+        /// </summary>
+        public static string CustomerStoriesName2 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Wayne Randall, Global Network and Systems Admin, ElectroCraft.
+        /// </summary>
+        public static string CustomerStoriesName3 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Bernhard Geiser, Leiter Innovation &amp; Processes, Bechtle Schweiz AG.
+        /// </summary>
+        public static string CustomerStoriesName4 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Dickson Lee, SVP, Haitong International Securities Group (Singapore) Pte. Ltd..
+        /// </summary>
+        public static string CustomerStoriesName5 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Didier Cunillera, CARPE DIEM.
+        /// </summary>
+        public static string CustomerStoriesName6 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — Mismisis, CEO, Imalize.
+        /// </summary>
+        public static string CustomerStoriesName7 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — James Taylor, Translation Agency Owner.
+        /// </summary>
+        public static string CustomerStoriesName8 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to — John Stuart, IT Manager, Maine MEP.
+        /// </summary>
+        public static string CustomerStoriesName9 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesName9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At IPTWINS S.A.S., ease of use was a major factor in selecting AxCrypt. The company relies on the software to securely encrypt important documents and use the simple key-sharing functionality to ensure only authorized personnel have access. With the premium version, they benefit from practical account and license management, making AxCrypt the go-to solution for their security needs..
+        /// </summary>
+        public static string CustomerStoriesParagraph1 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emerald Coast Neuropsychology, a mental healthcare provider, relies on AxCrypt to protect sensitive patient and business data. AxCrypt&apos;s powerful encryption solution is easy to use, making it an ideal choice for a small business like theirs. The software ensures their data remains secure, giving them peace of mind in a highly regulated industry..
+        /// </summary>
+        public static string CustomerStoriesParagraph10 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Studio CENNI uses AxCrypt to protect all types of files, including passwords and sensitive data. The software’s ability to store encrypted files securely across devices is crucial for their operations. AxCrypt also allows the firm to share data access keys selectively, ensuring that only the right team members can access certain files..
+        /// </summary>
+        public static string CustomerStoriesParagraph11 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected Technology has trusted AxCrypt for many years to secure sensitive information. The software’s seamless integration with their systems ensures that data is protected, while its secure file deletion feature gives them confidence that any obsolete information is erased safely. AxCrypt continues to be an indispensable tool for their ongoing data protection needs..
+        /// </summary>
+        public static string CustomerStoriesParagraph12 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At BMS, AxCrypt has become the go-to solution for securing all organizational data. The easy-to-use system has been readily adopted by employees, and the company has confidently embraced AxCrypt’s capabilities for protecting sensitive information. The CEO highly recommends the tool for its simplicity and effectiveness..
+        /// </summary>
+        public static string CustomerStoriesParagraph13 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to die:haptiiker GmbH uses AxCrypt to ensure the secure exchange of information within their organization. The ease of use combined with strong encryption makes it a perfect fit for their needs, allowing them to share sensitive information safely and efficiently..
+        /// </summary>
+        public static string CustomerStoriesParagraph14 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frostburg State University leverages AxCrypt to streamline file encryption and secure sharing across its campus. The intuitive interface combined with the Master Key feature ensures both ease of use for staff and robust control for IT, providing a seamless and secure solution for protecting sensitive academic and administrative data..
+        /// </summary>
+        public static string CustomerStoriesParagraph15 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lanzuisi SRL utilizes AxCrypt to secure important files containing passwords and sensitive data. The software provides robust encryption and seamless integration with cloud storage, making it easier and safer to share critical information with their technicians. Its intuitive interface ensures that security is maintained without adding complexity, making it a vital part of their workflow..
+        /// </summary>
+        public static string CustomerStoriesParagraph16 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contec, guided by their data security manager, implemented AxCrypt to protect their most sensitive information, including personnel files and board data. The software allows secure transfers via email and storage on company drives, while ensuring that IT personnel cannot access sensitive content. AxCrypt&apos;s ability to create different security groups, such as HR or Board, has proven essential for Contec’s organizational security needs..
+        /// </summary>
+        public static string CustomerStoriesParagraph2 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ElectroCraft needed a straightforward encryption tool to roll out to their team with minimal training. AxCrypt provided a simple, effective solution, allowing the company to encrypt files without extensive setup. An easy-to-follow &apos;how-to&apos; guide was enough to get employees up and running, ensuring a seamless user experience and minimal support requirements..
+        /// </summary>
+        public static string CustomerStoriesParagraph3 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bechtle Schweiz AG offers outsourced IT management to clients, and maintaining a high level of data protection is crucial. AxCrypt provides the security they need while remaining user-friendly and efficient. The software enables the company to protect client data using modern encryption methods, supporting their commitment to delivering secure IT environments..
+        /// </summary>
+        public static string CustomerStoriesParagraph4 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Haitong International Securities Group uses AxCrypt to ensure their sensitive files are encrypted, meeting regulatory compliance standards. The intuitive interface makes it simple for employees to secure critical data without complicated procedures. AxCrypt&apos;s ease of use has made it an invaluable tool for achieving seamless compliance..
+        /// </summary>
+        public static string CustomerStoriesParagraph5 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CARPE DIEM sought a reliable solution to protect both internal and client data. With AxCrypt, they were able to encrypt sensitive information, ensuring its security even in the event of theft. The transition to the paid version allowed the company to take advantage of the networked version, enabling multiple users to access encrypted data while keeping it secure. AxCrypt&apos;s competitive pricing further solidified it as the ideal solution..
+        /// </summary>
+        public static string CustomerStoriesParagraph6 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imalize uses AxCrypt to securely encrypt files and protect relationships with customers. The software’s speed, simplicity, and effectiveness make it an essential tool for safeguarding sensitive data and ensuring seamless communication with clients..
+        /// </summary>
+        public static string CustomerStoriesParagraph7 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For James Taylor, AxCrypt provides a user-friendly encryption solution that ensures both source and translated documents remain secure. With AxCrypt, the encryption process is straightforward, enabling him to comply with the confidentiality requirements of his translation agency clients..
+        /// </summary>
+        public static string CustomerStoriesParagraph8 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maine MEP needed a way to securely store sensitive financial backups on the cloud without risking exposure to unauthorized personnel. AxCrypt provided an easy-to-use encryption solution that allowed the company to protect their financial data, while also offering a safety net with a master key for decryption in case of personnel changes. This solution has empowered their team to confidently manage financial security..
+        /// </summary>
+        public static string CustomerStoriesParagraph9 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesParagraph9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technology.
+        /// </summary>
+        public static string CustomerStoriesProffesion1 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturing.
+        /// </summary>
+        public static string CustomerStoriesProffesion2 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finance.
+        /// </summary>
+        public static string CustomerStoriesProffesion3 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professional Services.
+        /// </summary>
+        public static string CustomerStoriesProffesion4 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consulting Services industry.
+        /// </summary>
+        public static string CustomerStoriesProffesion5 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professional Services.
+        /// </summary>
+        public static string CustomerStoriesProffesion6 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesProffesion6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt is an excellent encryption solution that is easy to use and very effective. We recommend it for anyone needing simple, secure document protection.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText1 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt has been invaluable in helping us keep our patient and business data secure. It&apos;s powerful and easy to use.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText10 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt allows us to securely protect and share our files. It’s a must-have for our team.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText11 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt gives us the confidence that our sensitive data is always protected and securely deleted when no longer needed.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText12 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt has made data security easy for us. It’s simple to use and has been adopted seamlessly by all our employees.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText13 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt has made exchanging sensitive information simple and secure for our team.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText14 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt makes it simple to encrypt and share files, while still having the option for IT to use a Master Key if someone forgets their password.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText15 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;Through the use of AxCrypt, we have secured important files containing passwords and sensitive data, making cloud sharing with our technicians much safer.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText16 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt allows us to protect highly sensitive information and transfer it securely. It’s a top solution that integrates perfectly into our existing security structure.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText2 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt made it easy for us to roll out encryption across our team. It’s simple to use and has saved us time and effort.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText3 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;With AxCrypt, we ensure that our clients’ data is protected with the highest security standards while maintaining ease of use.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText4 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt is a user-friendly solution that helps us meet compliance requirements by keeping our sensitive data secure.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText5 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt has provided a simple yet powerful solution to protect our data, both internally and for our clients. It&apos;s exactly what we were looking for.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText6 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt is fast, simple, and very effective. It has greatly improved our ability to securely exchange data with customers.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText7 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt provides an easy way to secure documents, making it perfect for my translation business.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText8 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;&apos;AxCrypt offers a simple and reliable way to encrypt sensitive financial data before storing it in the cloud. It gives us peace of mind.&apos;&apos;.
+        /// </summary>
+        public static string CustomerStoriesText9 {
+            get {
+                return ResourceManager.GetString("CustomerStoriesText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trust &lt;span&gt;AxCrypt&lt;/span&gt; for your security &lt;b&gt; needs! &lt;/b&gt;.
+        /// </summary>
+        public static string CustomerStoryFreeTrialHead {
+            get {
+                return ResourceManager.GetString("CustomerStoryFreeTrialHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you an AxCrypt user? How has AxCrypt helped you with file security? &lt;strong&gt;Feel free to share your story.&lt;/strong&gt; Together, we grow..
+        /// </summary>
+        public static string CustomerStoryFreeTrialText {
+            get {
+                return ResourceManager.GetString("CustomerStoryFreeTrialText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Experience encryption made simple! We&apos;re here to ensure your data is always protected, delivering excellence every step of the way. Hear from those who trust us with their security..
+        /// </summary>
+        public static string CustomerStoryPageDescription {
+            get {
+                return ResourceManager.GetString("CustomerStoryPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try AxCrypt.
+        /// </summary>
+        public static string CustomerTryAxcryptText {
+            get {
+                return ResourceManager.GetString("CustomerTryAxcryptText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share your story.
+        /// </summary>
+        public static string CustomerYourStoryText {
+            get {
+                return ResourceManager.GetString("CustomerYourStoryText", resourceCulture);
             }
         }
         
@@ -28638,6 +36675,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you wish to delete the Group?.
+        /// </summary>
+        public static string DeleteGroupWarningText {
+            get {
+                return ResourceManager.GetString("DeleteGroupWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to delete notification(s)!.
         /// </summary>
         public static string DeleteNotificationFailure {
@@ -28661,6 +36707,24 @@ namespace AxCrypt.Content.Properties {
         public static string DeleteSecretSuccess {
             get {
                 return ResourceManager.GetString("DeleteSecretSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} deletion failed..
+        /// </summary>
+        public static string DeletionFailed {
+            get {
+                return ResourceManager.GetString("DeletionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} deleted successfully..
+        /// </summary>
+        public static string DeletionSuccess {
+            get {
+                return ResourceManager.GetString("DeletionSuccess", resourceCulture);
             }
         }
         
@@ -28962,11 +37026,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable Access.
+        /// </summary>
+        public static string DisableAccessText {
+            get {
+                return ResourceManager.GetString("DisableAccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string DisabledStatusText {
+            get {
+                return ResourceManager.GetString("DisabledStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable.
         /// </summary>
         public static string DisableIdleSignOutToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("DisableIdleSignOutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable MasterKey Access.
+        /// </summary>
+        public static string DisableMasterKeyAccessText {
+            get {
+                return ResourceManager.GetString("DisableMasterKeyAccessText", resourceCulture);
             }
         }
         
@@ -29286,7 +37377,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I don&apos;t like recurring subscriptions.
+        ///   Looks up a localized string similar to Don&apos;t like recurring subscriptions.
         /// </summary>
         public static string DontLikeRecurringFlowText {
             get {
@@ -29592,7 +37683,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PREMIUM PLUS:.
+        ///   Looks up a localized string similar to &lt;span&gt;Premium&lt;/span&gt; plus:.
         /// </summary>
         public static string DownloadPrimiumPlusHeading {
             get {
@@ -29637,7 +37728,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to VIEWER PLUS:.
+        ///   Looks up a localized string similar to &lt;span&gt;Password Manager&lt;/span&gt; plus:.
         /// </summary>
         public static string DownloadViewerPlusHeading {
             get {
@@ -29696,6 +37787,15 @@ namespace AxCrypt.Content.Properties {
         public static string EditCardTitle {
             get {
                 return ResourceManager.GetString("EditCardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit group.
+        /// </summary>
+        public static string EditGroupButtonText {
+            get {
+                return ResourceManager.GetString("EditGroupButtonText", resourceCulture);
             }
         }
         
@@ -29772,6 +37872,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN EDUCATION.
+        /// </summary>
+        public static string EducationIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("EducationIndusLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to College students and educators - look for education savings on our products..
+        /// </summary>
+        public static string EducationIndustryBannerText {
+            get {
+                return ResourceManager.GetString("EducationIndustryBannerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Education.
         /// </summary>
         public static string EducationLinkLabel {
@@ -29786,6 +37904,15 @@ namespace AxCrypt.Content.Properties {
         public static string EducationTitleText {
             get {
                 return ResourceManager.GetString("EducationTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email already exist(s).
+        /// </summary>
+        public static string EmailAlreadyExistTexts {
+            get {
+                return ResourceManager.GetString("EmailAlreadyExistTexts", resourceCulture);
             }
         }
         
@@ -29889,6 +38016,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Access.
+        /// </summary>
+        public static string EnableAccessText {
+            get {
+                return ResourceManager.GetString("EnableAccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable/Disable Master Key.
+        /// </summary>
+        public static string EnableDisableMasterKeyHeading {
+            get {
+                return ResourceManager.GetString("EnableDisableMasterKeyHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable/Disable User File Access.
+        /// </summary>
+        public static string EnableDisableUserFileAccessHeading {
+            get {
+                return ResourceManager.GetString("EnableDisableUserFileAccessHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string EnabledStatusText {
+            get {
+                return ResourceManager.GetString("EnabledStatusText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable MasterKey Access.
+        /// </summary>
+        public static string EnableMasterKeyAccessText {
+            get {
+                return ResourceManager.GetString("EnableMasterKeyAccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Master Key.
         /// </summary>
         public static string EnableMasterKeyPrompt {
@@ -29966,6 +38138,24 @@ namespace AxCrypt.Content.Properties {
         public static string EnglishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("EnglishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Group Description.
+        /// </summary>
+        public static string EnterGroupDescriptionPlaceHolder {
+            get {
+                return ResourceManager.GetString("EnterGroupDescriptionPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Group Name.
+        /// </summary>
+        public static string EnterGroupNamePlaceHolder {
+            get {
+                return ResourceManager.GetString("EnterGroupNamePlaceHolder", resourceCulture);
             }
         }
         
@@ -31707,11 +39897,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN FINANCE.
+        /// </summary>
+        public static string FinanceIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("FinanceIndusLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Financial.
         /// </summary>
         public static string FinancialLinkLabel {
             get {
                 return ResourceManager.GetString("FinancialLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name.
+        /// </summary>
+        public static string FirstNameLabel {
+            get {
+                return ResourceManager.GetString("FirstNameLabel", resourceCulture);
             }
         }
         
@@ -31766,6 +39974,15 @@ namespace AxCrypt.Content.Properties {
         public static string FooterCompanyPressText {
             get {
                 return ResourceManager.GetString("FooterCompanyPressText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Stories.
+        /// </summary>
+        public static string FooterCompanysucesstoryText {
+            get {
+                return ResourceManager.GetString("FooterCompanysucesstoryText", resourceCulture);
             }
         }
         
@@ -31896,6 +40113,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forever.
+        /// </summary>
+        public static string ForeverText {
+            get {
+                return ResourceManager.GetString("ForeverText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For everyone.
         /// </summary>
         public static string ForEveryoneLabel {
@@ -31923,6 +40149,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For ORGANISATION.
+        /// </summary>
+        public static string ForOrganisationsText {
+            get {
+                return ResourceManager.GetString("ForOrganisationsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forums.
         /// </summary>
         public static string ForumsLinkLabel {
@@ -31937,6 +40172,24 @@ namespace AxCrypt.Content.Properties {
         public static string ForWhomHeadline {
             get {
                 return ResourceManager.GetString("ForWhomHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found a better alternative.
+        /// </summary>
+        public static string FoundBetterAlternativeText {
+            get {
+                return ResourceManager.GetString("FoundBetterAlternativeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found a better deal elsewhere.
+        /// </summary>
+        public static string FoundBetterDealText {
+            get {
+                return ResourceManager.GetString("FoundBetterDealText", resourceCulture);
             }
         }
         
@@ -31996,11 +40249,92 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From:.
+        /// </summary>
+        public static string FromText {
+            get {
+                return ResourceManager.GetString("FromText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full name.
         /// </summary>
         public static string FullNameLabel {
             get {
                 return ResourceManager.GetString("FullNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your full name.
+        /// </summary>
+        public static string FullnamePlaceholder {
+            get {
+                return ResourceManager.GetString("FullnamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key Benefits of Using AxCrypt for GDPR Compliance.
+        /// </summary>
+        public static string GdprBenefitsHeading1 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced Security.
+        /// </summary>
+        public static string GdprBenefitsSubHeading4 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure your data at rest and in transit with AES-256 encryption..
+        /// </summary>
+        public static string GdprBenefitsSubParagraph1 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely share encrypted files with anyone using just an email address..
+        /// </summary>
+        public static string GdprBenefitsSubParagraph2 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only you have access to your encryption keys; even AxCrypt cannot access your data..
+        /// </summary>
+        public static string GdprBenefitsSubParagraph3 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect your data against unauthorized access, breaches, and data leaks..
+        /// </summary>
+        public static string GdprBenefitsSubParagraph4 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easy to use, ensuring compliance without compromising productivity..
+        /// </summary>
+        public static string GdprBenefitsSubParagraph5 {
+            get {
+                return ResourceManager.GetString("GdprBenefitsSubParagraph5", resourceCulture);
             }
         }
         
@@ -32230,6 +40564,123 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Art. 32 of GDPR: Security of processing.
+        /// </summary>
+        public static string GdprClauseRowText1 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDPR&apos;s requirement for appropriate technical measures to protect data at rest..
+        /// </summary>
+        public static string GdprClauseRowText2 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES-256 military-grade encryption ensures your files remain unreadable even in the event of unauthorized access or data breaches..
+        /// </summary>
+        public static string GdprClauseRowText3 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Art. 15-21 of GDPR: Data Subject Rights.
+        /// </summary>
+        public static string GdprClauseRowText4 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facilitate secure access for data subject requests while minimizing risk..
+        /// </summary>
+        public static string GdprClauseRowText5 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, collaborate securely with colleagues or clients by sharing encrypted files with temporary decryption keys, minimizing data exposure during collaboration..
+        /// </summary>
+        public static string GdprClauseRowText6 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Art. 32 of GDPR: Storage Security.
+        /// </summary>
+        public static string GdprClauseRowText7 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhance security of personal data stored in the cloud..
+        /// </summary>
+        public static string GdprClauseRowText8 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt encrypts files stored on popular cloud storage providers like Google Drive and Dropbox, adding an extra layer of security to your cloud-based data..
+        /// </summary>
+        public static string GdprClauseRowText9 {
+            get {
+                return ResourceManager.GetString("GdprClauseRowText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt Help with GDPR Compliance?.
+        /// </summary>
+        public static string GdprComplyHeading1 {
+            get {
+                return ResourceManager.GetString("GdprComplyHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here’s how AxCrypt simplifies your GDPR compliance journey:.
+        /// </summary>
+        public static string GdprComplyParagraph {
+            get {
+                return ResourceManager.GetString("GdprComplyParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt makes complying with the General Data Protection Regulation (GDPR) straightforward and effective. Our true Zero-Knowledge architecture empowers your organization to take complete control of its data privacy, ensuring that only authorized users have access to the data – not even AxCrypt can view it..
+        /// </summary>
+        public static string GdprDescriptionParagraph1 {
+            get {
+                return ResourceManager.GetString("GdprDescriptionParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDPR Compliance with AxCrypt.
+        /// </summary>
+        public static string GdprDescrptnHeading1 {
+            get {
+                return ResourceManager.GetString("GdprDescrptnHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EU General Data Protection Regulation.
         /// </summary>
         public static string GdprHeading {
@@ -32239,11 +40690,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take Control of Your Data Security with AxCrypt.
+        /// </summary>
+        public static string GdprInfoHeading1 {
+            get {
+                return ResourceManager.GetString("GdprInfoHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensuring GDPR compliance is crucial for protecting personal data and maintaining the trust of your customers and stakeholders. AxCrypt simplifies this process by providing robust encryption solutions designed to meet GDPR requirements effectively. With AxCrypt, you can focus on your core business activities, confident that your data is secure..
+        /// </summary>
+        public static string GdprInfoParagraph1 {
+            get {
+                return ResourceManager.GetString("GdprInfoParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GDPR.
         /// </summary>
         public static string GdprLinkLabel {
             get {
                 return ResourceManager.GetString("GdprLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDPR Section.
+        /// </summary>
+        public static string GdprTableHeading1 {
+            get {
+                return ResourceManager.GetString("GdprTableHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDPR Requirements.
+        /// </summary>
+        public static string GdprTableHeading2 {
+            get {
+                return ResourceManager.GetString("GdprTableHeading2", resourceCulture);
             }
         }
         
@@ -32500,7 +40987,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/features&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
+        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/guides/keyshare/&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
         /// </summary>
         public static string GetStartedDesktopKeySharingIngress {
             get {
@@ -32554,7 +41041,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/features&apos;&gt;Password Management&lt;/a&gt; feature. Learn more from video..
+        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/guides/passwordmanager/&apos;&gt;Password Management&lt;/a&gt; feature. Learn more from video..
         /// </summary>
         public static string GetStartedDesktopPasswordManagementIngress {
             get {
@@ -32779,7 +41266,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please report bugs and comments to us. You’re welcome to request support as well. For other issues, please send us an email..
+        ///   Looks up a localized string similar to Please report bugs and comments to us. You’re welcome to request support as well. For other issues, please &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;send us an email&lt;/a&gt;..
         /// </summary>
         public static string GetStartedInfoNote2Text2 {
             get {
@@ -32887,7 +41374,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/features&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
+        ///   Looks up a localized string similar to By using the &lt;a href=&apos;/information/guides/keyshare/&apos;&gt;Key Sharing&lt;/a&gt; feature you can share your secured files with others. Here is a tutorial on how to use Key Sharing..
         /// </summary>
         public static string GetStartedKeySharingIngress {
             get {
@@ -33022,7 +41509,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/features&apos;&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords..
+        ///   Looks up a localized string similar to You can store all your passwords and codes online in a secure manner using the &lt;a href=&apos;/information/guides/passwordmanager/&apos;&gt;Password Management&lt;/a&gt; feature. See the video below for instructions on how to manage your passwords..
         /// </summary>
         public static string GetStartedPasswordManagementIngress {
             get {
@@ -33220,11 +41707,866 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN GOVERNANCE.
+        /// </summary>
+        public static string GovernIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("GovernIndusLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Government.
         /// </summary>
         public static string GovernmentLinkLabel {
             get {
                 return ResourceManager.GetString("GovernmentLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Group_Title {
+            get {
+                return ResourceManager.GetString("Group Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For any additional support and help, please feel free to reach out to us via &lt;span&gt;email.&lt;/span&gt; &lt;strong&gt;Contact Support:&lt;/strong&gt; &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;support@axcrypt.net&lt;/a&gt;..
+        /// </summary>
+        public static string GroupBlockSupportText1 {
+            get {
+                return ResourceManager.GetString("GroupBlockSupportText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also request &lt;span&gt;a business demo&lt;/span&gt; to get a live overview and learn more about our services and solutions..
+        /// </summary>
+        public static string GroupBlockSupportText2 {
+            get {
+                return ResourceManager.GetString("GroupBlockSupportText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more information about group....
+        /// </summary>
+        public static string GroupFeatureDescriptionForMoreText1 {
+            get {
+                return ResourceManager.GetString("GroupFeatureDescriptionForMoreText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature enables admins to add users to specific groups, with the flexibility for users to belong to multiple groups simultaneously. There are no restrictions on users being part of only one group, providing greater versatility and management efficiency..
+        /// </summary>
+        public static string GroupFeatureDescriptionText {
+            get {
+                return ResourceManager.GetString("GroupFeatureDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Furthermore, business admins can designate any member within a group as a group admin and assign specific roles to them. Group admins have the authority to add or remove users from the group, facilitating more streamlined and decentralized group management. This hierarchical approach ensures that key sharing is managed effectively while maintaining the desired level of privacy and control for the business admin..
+        /// </summary>
+        public static string GroupFeatureDescriptionText1 {
+            get {
+                return ResourceManager.GetString("GroupFeatureDescriptionText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add users or Groups with whom you want to share this secret. If you don`t know about our &lt;strong&gt;Group Feature&lt;/strong&gt; yet, learn more and create your first one by the link.
+        /// </summary>
+        public static string GroupFeatureInfoText {
+            get {
+                return ResourceManager.GetString("GroupFeatureInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group File Sharing.
+        /// </summary>
+        public static string GroupFileSharingHeading {
+            get {
+                return ResourceManager.GetString("GroupFileSharingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easily share files with entire groups at once with utmost security..
+        /// </summary>
+        public static string GroupFileSharingParagraph {
+            get {
+                return ResourceManager.GetString("GroupFileSharingParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt&apos;s Group Feature guide. Learn how to create and manage user groups, assign key group roles within your teams and effectively manage file access within the groups using the Group Masterkey..
+        /// </summary>
+        public static string GroupGuidesDescription {
+            get {
+                return ResourceManager.GetString("GroupGuidesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is &lt;span&gt;AxCrypt`s Group Feature&lt;/span&gt;?.
+        /// </summary>
+        public static string GroupGuidesHeading1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt&apos;s Group Feature is designed to enhance organizational efficiency by facilitating businesses to manage users via structured departmental groups hence streamlining file access restrictions, and implementing granular key management..
+        /// </summary>
+        public static string GroupGuidesHeading1Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading1Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why use &lt;span&gt;AxCrypt`s Group Feature&lt;/span&gt;?.
+        /// </summary>
+        public static string GroupGuidesHeading2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imagine a company with several departments like Finance, HR, and IT. AxCrypt&apos;s Group Feature allows you to create distinct groups for each department, ensuring that only the relevant team members have access to the necessary documents..
+        /// </summary>
+        public static string GroupGuidesHeading2Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading2Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For example, Finance team members would access only financial documents, HR personnel would manage employee records, and IT staff would handle technical data. This structure maintains data confidentiality and significantly reduces the risk of unauthorized access..
+        /// </summary>
+        public static string GroupGuidesHeading2Paragraph2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading2Paragraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Group Feature allows you to assign specific roles within each group, such as Admins or regular members, which helps in managing access and responsibilities effectively. For added security and convenience, the Group Masterkey feature enables Admins to recover encrypted files across all groups without needing individual passwords. This is particularly useful during team transitions, employee departures, or when dealing with password issues, as it simplifies access management without compromising sec [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string GroupGuidesHeading2Paragraph3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading2Paragraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does &lt;span&gt;AxCrypt`s Group Feature&lt;/span&gt; work?.
+        /// </summary>
+        public static string GroupGuidesHeading3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Group Feature includes the following key aspects:.
+        /// </summary>
+        public static string GroupGuidesHeading3Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Creation.
+        /// </summary>
+        public static string GroupGuidesHeading3SubHead1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Masterkey.
+        /// </summary>
+        public static string GroupGuidesHeading3SubHead3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3SubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Assigning.
+        /// </summary>
+        public static string GroupGuidesHeading3SubHead4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3SubHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Group Sharing.
+        /// </summary>
+        public static string GroupGuidesHeading3SubHead5 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3SubHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easily create user groups within the organization to manage different departmental access and streamline data security..
+        /// </summary>
+        public static string GroupGuidesHeading3Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Efficiently handle group memberships and permissions, allowing you to restrict file access to specific groups and users..
+        /// </summary>
+        public static string GroupGuidesHeading3Text2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enables Masterkey Owners and Group Admins to recover group-specific encrypted files without needing individual passwords, ensuring secure and convenient file access..
+        /// </summary>
+        public static string GroupGuidesHeading3Text3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign different roles to group members for clear hierarchy and responsibility distribution, enhancing team management..
+        /// </summary>
+        public static string GroupGuidesHeading3Text4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simplify the process of sharing encrypted files and passwords with entire teams, promoting holistic collaboration while maintaining data confidentiality..
+        /// </summary>
+        public static string GroupGuidesHeading3Text5 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading3Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to use &lt;span&gt;Group Feature&lt;/span&gt;?.
+        /// </summary>
+        public static string GroupGuidesHeading4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Navigate to Your AxCrypt ID:&lt;/span&gt; Login as a Business Admin to your AxCrypt ID &lt;a href=&apos;https://account.axcrypt.net&apos;&gt;here&lt;/a&gt;. Click on “Groups” in the left side-menu and click on the large “+” icon..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Create Group:&lt;/span&gt; On the “Create group” page, enter the group name and description, and Click the “+” icon to add each member to the list by their email addresses. If you’d like to remove a user, click the “X” button next to the respective email. A user can be a part of multiple groups..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Alternatively:&lt;/span&gt; Groups can also be created by going to the “Users” page on the left-side menu. Make sure that no group is selected in the dropdown. Now select one or more users then click on “Actions” and select “Add to group”..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Save Group:&lt;/span&gt; Ensure the number of added members does not exceed the available licenses. Click the “SAVE” button to create the group..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;View Groups:&lt;/span&gt; Click the “Groups” option in the side menu to see all created groups displayed as cards..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph5 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Manage Groups:&lt;/span&gt; Use the three-dot menu on the group card to modify the group name and description, add users, and delete the group..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph6 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Add Members:&lt;/span&gt; Click on the group to go to the group’s page, and under the “Manager users” section, click on the “Add Users” button on the right to add more members by their email. You can add users in bulk by importing a spreadsheet with a list of emails on the add users’ dialogue box..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph7 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Remove Members:&lt;/span&gt; Click on the group to go to the group’s page, and under the “Manager users” section. Under the group name, select the users that you’d like to remove by clicking on the checkbox next to a user’s email, then click on the “Actions” button above to select the “Delete” option and confirm the removal..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph8 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Check Licenses:&lt;/span&gt; Under the “Users” page in the left-side menu, use the “Manage Users” section to view and manage all licenses..
+        /// </summary>
+        public static string GroupGuidesHeading4Paragraph9 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4Paragraph9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creating a Group.
+        /// </summary>
+        public static string GroupGuidesHeading4SubHead1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Managing Groups.
+        /// </summary>
+        public static string GroupGuidesHeading4SubHead2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading4SubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group &lt;span&gt;Roles&lt;/span&gt; and Group &lt;span&gt;Masterkey&lt;/span&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading5 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt&apos;s Group Feature includes a robust role management system designed to increase efficiency by distributing tasks and privileges in a systematic hierarchy. The roles, in order of authority are:.
+        /// </summary>
+        public static string GroupGuidesHeading5Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This structure allows for clear delegation and management of responsibilities, ensuring that sensitive information is accessed and managed appropriately, facilitating secure collaboration and streamlined operations..
+        /// </summary>
+        public static string GroupGuidesHeading5Paragraph2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5Paragraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string GroupGuidesHeading5SubHead1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Owns complete control of AxCrypt Business subscription like managing groups, users and more..
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle1Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Admin /&lt;br/&gt; Masterkey Owner.
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Admin.
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigned by the Business Admins, Group Admins manage group-specific tasks within the assigned groups. Group Admins can be members or admins of multiple groups..
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle3Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Member.
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Members also known as the Standard Users, can access and collaborate on files within their assigned groups..
+        /// </summary>
+        public static string GroupGuidesHeading5SubTitle4Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading5SubTitle4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group &lt;span&gt;Masterkey&lt;/span&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading6 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Group Masterkey is a pivotal feature of AxCrypt&apos;s Group functionality, designed to enhance security and streamline key management within an organization..
+        /// </summary>
+        public static string GroupGuidesHeading6Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Recovery.
+        /// </summary>
+        public static string GroupGuidesHeading6SubHead1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Efficient Key Management.
+        /// </summary>
+        public static string GroupGuidesHeading6SubHead2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6SubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role-Based Access.
+        /// </summary>
+        public static string GroupGuidesHeading6SubHead3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6SubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhanced Security.
+        /// </summary>
+        public static string GroupGuidesHeading6SubHead4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6SubHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Group Masterkey allows Group Admins and Masterkey Owner to recover encrypted files specific to their group without needing the individual passwords of group members. This ensures that important data remains accessible even if a member leaves or forgets their password..
+        /// </summary>
+        public static string GroupGuidesHeading6Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the Group Masterkey, Business Admins can maintain control over encrypted files while delegating access to Group Admins. This hierarchical key management system increases efficiency and ensures that key sharing is both secure and manageable..
+        /// </summary>
+        public static string GroupGuidesHeading6Text2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Group Masterkey functionality integrates seamlessly with AxCrypt&apos;s role-based access control. While Group Admins can enable or disable the Group Masterkey, and responsible for managing it within their respective groups. Group Members are required to approve the Masterkey access..
+        /// </summary>
+        public static string GroupGuidesHeading6Text3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The use of the Group Masterkey minimizes the risk of data breaches by reducing the dependency on individual passwords. This centralized key management approach ensures that all encrypted data can be accessed only by authorized personnel, enhancing overall security and compliance..
+        /// </summary>
+        public static string GroupGuidesHeading6Text4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading6Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steps to &lt;span&gt;Manage&lt;/span&gt; Group &lt;span&gt;Roles&lt;/span&gt; and Group &lt;span&gt;Masterkey&lt;/span&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading7 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign Business Admins.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On your AxCrypt ID page, click on the “Users” page in the left-side menu and scroll down to see the list of all the active users of the subscription. Ensure no group is selected..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead1Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on the “Standard User” dropdown under the “Roles” column next to the user’s email and select “Administrator.” This will update the user’s role as Business Admin..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead1Text3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To remove a user as a Business Admin, click on the “Administrator” dropdown again and select “Standard User.”.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead1Text4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign Group Admins.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On your AxCrypt ID page, click on the “Users” page in the left-side menu and scroll down to see the list of all users of the subscription..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead2Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the desired group from the group selection dropdown..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead2Text2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on the “Standard User” dropdown under the “Roles” column next to the user’s email and select “Administrator.” This will update the user’s role as Group Admin..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead2Text3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To remove a user as a Group Admin, click on the “Administrator” dropdown again and select “Standard User.”.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead2Text4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead2Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Group Users.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On your AxCrypt ID page, click on the “Users” page in the left-side menu and scroll down to see the list of all the active users of the subscription..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the desired group user(s) and click on the “Action” button on top to:.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Delete:&lt;/span&gt; Removes the selected user(s) from the group, revoking their access to any shared group files and settings..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text3 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Restore Masterkey:&lt;/span&gt; Recovers access to encrypted files without needing individual passwords or keys, allowing Admins to decrypt files as necessary..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Disable Masterkey Access:&lt;/span&gt; Prevents selected user(s) from the group to decrypt files shared within the group.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text5 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Enable Masterkey Access:&lt;/span&gt; Allows selected user(s) from the group to decrypt files shared within the Group. Files encrypted before enabling will not be accessible with the Masterkey and require re-encryption during the enablement..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text6 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Disable Access:&lt;/span&gt; Restricts the selected user(s) from accessing the group, effectively removing their permissions to view or edit group files and also not be part of any file sharing..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text7 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span class=&quot;italic-text&quot;&gt;Enable Access:&lt;/span&gt; Restores the selected user(s) permissions to access and interact with files shared within the group, reinstating their previous access levels..
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead3Text8 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead3Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check Masterkey Status.
+        /// </summary>
+        public static string GroupGuidesHeading7SubHead4 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading7SubHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What’s &lt;span&gt;Next?&lt;/span&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading8 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you’d like to manage your billing, invoices, and licenses, then check out our &lt;a href=&apos;/information/axcrypt-business/&apos;&gt;Business Setup Guide&lt;/a&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading8Paragraph1 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading8Paragraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To learn about other AxCrypt products, check out other AxCrypt guides: &lt;a href=&apos;/information/guides/get-started/&apos;&gt;AxCrypt Guides&lt;/a&gt;.
+        /// </summary>
+        public static string GroupGuidesHeading8Paragraph2 {
+            get {
+                return ResourceManager.GetString("GroupGuidesHeading8Paragraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;label&gt;Maximize&lt;/label&gt; Business Security and Team Efficiency with &lt;span&gt;AxCrypt&apos;s&lt;/span&gt; &lt;strong&gt;Group Feature&lt;/strong&gt;!.
+        /// </summary>
+        public static string GroupGuidesTitle {
+            get {
+                return ResourceManager.GetString("GroupGuidesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Management.
+        /// </summary>
+        public static string GroupManagementHeading {
+            get {
+                return ResourceManager.GetString("GroupManagementHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Management.
+        /// </summary>
+        public static string GroupManagementLinkLabel {
+            get {
+                return ResourceManager.GetString("GroupManagementLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add or remove group members, assign group admins, and administer file access control with ease..
+        /// </summary>
+        public static string GroupManagementParagraph {
+            get {
+                return ResourceManager.GetString("GroupManagementParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Master Key.
+        /// </summary>
+        public static string GroupMasterKeyHeading {
+            get {
+                return ResourceManager.GetString("GroupMasterKeyHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable distinct Masterkey for each user group with granular access control..
+        /// </summary>
+        public static string GroupMasterKeyParagraph {
+            get {
+                return ResourceManager.GetString("GroupMasterKeyParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Member/ Standard User.
+        /// </summary>
+        public static string GroupMemberorStandardUserHeading {
+            get {
+                return ResourceManager.GetString("GroupMemberorStandardUserHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Name.
+        /// </summary>
+        public static string GroupNameText {
+            get {
+                return ResourceManager.GetString("GroupNameText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No group(s) found!.
+        /// </summary>
+        public static string GroupNoGroupFoundText {
+            get {
+                return ResourceManager.GetString("GroupNoGroupFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Password Sharing.
+        /// </summary>
+        public static string GroupPasswordSharingHeading {
+            get {
+                return ResourceManager.GetString("GroupPasswordSharingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seamlessly share important credentials with all the members in a group, at once..
+        /// </summary>
+        public static string GroupPasswordSharingParagraph {
+            get {
+                return ResourceManager.GetString("GroupPasswordSharingParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission.
+        /// </summary>
+        public static string GroupPermissionHeading {
+            get {
+                return ResourceManager.GetString("GroupPermissionHeading", resourceCulture);
             }
         }
         
@@ -33256,6 +42598,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encrypt on Desktop.
+        /// </summary>
+        public static string GuidesLinkQuoteLabel1 {
+            get {
+                return ResourceManager.GetString("GuidesLinkQuoteLabel1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt on Mobile.
+        /// </summary>
+        public static string GuidesLinkQuoteLabel2 {
+            get {
+                return ResourceManager.GetString("GuidesLinkQuoteLabel2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely Share Files.
+        /// </summary>
+        public static string GuidesLinkQuoteLabel3 {
+            get {
+                return ResourceManager.GetString("GuidesLinkQuoteLabel3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live Chat.
+        /// </summary>
+        public static string GuidesLinkQuoteLabel4 {
+            get {
+                return ResourceManager.GetString("GuidesLinkQuoteLabel4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live Chat.
+        /// </summary>
+        public static string GuidesLinkQuoteLabel5 {
+            get {
+                return ResourceManager.GetString("GuidesLinkQuoteLabel5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Great! You already have an AxCrypt ID account for &apos;{0}&apos;.
         ///
         ///If you for any reason do not know or remember the password, you must perform a password reset..
@@ -33276,11 +42663,236 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN HEALTHCARE.
+        /// </summary>
+        public static string HealthIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("HealthIndusLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string HelpAboutToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("HelpAboutToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find what you are &lt;br/&gt; looking for? Just &lt;span&gt; contact &lt;br/&gt; support or visit our &lt;br/&gt; community forum!&lt;/span&gt; .
+        /// </summary>
+        public static string helpcentercommunityText {
+            get {
+                return ResourceManager.GetString("helpcentercommunityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to download?.
+        /// </summary>
+        public static string helpcenterGuideContent1 {
+            get {
+                return ResourceManager.GetString("helpcenterGuideContent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video tutorials.
+        /// </summary>
+        public static string helpcenterGuideContent2 {
+            get {
+                return ResourceManager.GetString("helpcenterGuideContent2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt Help Center!.
+        /// </summary>
+        public static string HelpcenterInfoHeading1 {
+            get {
+                return ResourceManager.GetString("HelpcenterInfoHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help Center.
+        /// </summary>
+        public static string HelpCenterLabel {
+            get {
+                return ResourceManager.GetString("HelpCenterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How can we help you? .
+        /// </summary>
+        public static string helpcentersubText {
+            get {
+                return ResourceManager.GetString("helpcentersubText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic Encryption.
+        /// </summary>
+        public static string helpcenterTechRaderText10 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Account Setup.
+        /// </summary>
+        public static string helpcenterTechRaderText11 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA.
+        /// </summary>
+        public static string helpcenterTechRaderText12 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption with AxCrypt.
+        /// </summary>
+        public static string helpcenterTechRaderText5 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decryption  with AxCrypt.
+        /// </summary>
+        public static string helpcenterTechRaderText6 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share  Keys.
+        /// </summary>
+        public static string helpcenterTechRaderText7 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password user manual.
+        /// </summary>
+        public static string helpcenterTechRaderText8 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt  Business.
+        /// </summary>
+        public static string helpcenterTechRaderText9 {
+            get {
+                return ResourceManager.GetString("helpcenterTechRaderText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt &lt;span style=\&quot;color:#FFC50D;\&quot;&gt;Help Center&lt;/span&gt;!.
+        /// </summary>
+        public static string helpcenterText {
+            get {
+                return ResourceManager.GetString("helpcenterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get started.
+        /// </summary>
+        public static string helpcenterTitle1 {
+            get {
+                return ResourceManager.GetString("helpcenterTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption Guides.
+        /// </summary>
+        public static string helpcenterTitle2 {
+            get {
+                return ResourceManager.GetString("helpcenterTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Guide.
+        /// </summary>
+        public static string helpcenterTitle3 {
+            get {
+                return ResourceManager.GetString("helpcenterTitle3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Popular questions and topics.
+        /// </summary>
+        public static string helpcenterTitle4 {
+            get {
+                return ResourceManager.GetString("helpcenterTitle4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try &lt;span&gt;AxCrypt for free &lt;br/&gt; for 30 Days!&lt;/span&gt; .
+        /// </summary>
+        public static string helpcenterwinningText {
+            get {
+                return ResourceManager.GetString("helpcenterwinningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact support.
+        /// </summary>
+        public static string HelpContactsprtText1 {
+            get {
+                return ResourceManager.GetString("HelpContactsprtText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Community forum.
+        /// </summary>
+        public static string HelpContactsprtText2 {
+            get {
+                return ResourceManager.GetString("HelpContactsprtText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business sales.
+        /// </summary>
+        public static string HelpContactsprtText3 {
+            get {
+                return ResourceManager.GetString("HelpContactsprtText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request a feature.
+        /// </summary>
+        public static string HelpContactsprtText4 {
+            get {
+                return ResourceManager.GetString("HelpContactsprtText4", resourceCulture);
             }
         }
         
@@ -33317,6 +42929,339 @@ namespace AxCrypt.Content.Properties {
         public static string HideRecentFilesListTabToolTipText {
             get {
                 return ResourceManager.GetString("HideRecentFilesListTabToolTipText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA.
+        /// </summary>
+        public static string HipaaActionLabel {
+            get {
+                return ResourceManager.GetString("HipaaActionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key Benefits of Using AxCrypt for HIPAA Compliance?.
+        /// </summary>
+        public static string HipaaBenefitsHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Military-Grade Encryption.
+        /// </summary>
+        public static string HipaaBenefitsSubHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure File Sharing.
+        /// </summary>
+        public static string HipaaBenefitsSubHeading2 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zero-Knowledge Architecture.
+        /// </summary>
+        public static string HipaaBenefitsSubHeading3 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User-Friendly Interface.
+        /// </summary>
+        public static string HipaaBenefitsSubHeading4 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic Encryption.
+        /// </summary>
+        public static string HipaaBenefitsSubHeading5 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt uses AES-256 encryption to protect your data, ensuring it is unreadable to unauthorized users..
+        /// </summary>
+        public static string HipaaBenefitsSubParagraph1 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our Secure Sharing feature allows you to share encrypted files with temporary keys, maintaining data security even in transit..
+        /// </summary>
+        public static string HipaaBenefitsSubParagraph2 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s architecture ensures that encryption keys never leave your device, eliminating the risk of unauthorized access..
+        /// </summary>
+        public static string HipaaBenefitsSubParagraph3 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our intuitive interface makes it easy for healthcare professionals to encrypt and decrypt files without extensive training..
+        /// </summary>
+        public static string HipaaBenefitsSubParagraph4 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt automatically encrypts files, ensuring that PHI is always protected without manual intervention..
+        /// </summary>
+        public static string HipaaBenefitsSubParagraph5 {
+            get {
+                return ResourceManager.GetString("HipaaBenefitsSubParagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Privacy Rule (45 CFR Part 164 Subparts A and C).
+        /// </summary>
+        public static string HipaaClauseRowText1 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Security Rule ( 45 CFR § 164.312(a)(1) &amp; (c)(1) ).
+        /// </summary>
+        public static string HipaaClauseRowText10 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Implement technical safeguards to protect ePHI, including access controls and encryption at rest..
+        /// </summary>
+        public static string HipaaClauseRowText11 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Implement technical safeguards to protect ePHI, including access controls and encryption at rest..
+        /// </summary>
+        public static string HipaaClauseRowText12 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requires covered entities to implement safeguards to protect PHI privacy and prevent unauthorized access..
+        /// </summary>
+        public static string HipaaClauseRowText2 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt encrypts and secures PHI at rest and in transit with military-grade AES-256 encryption, rendering it inaccessible to unauthorized users even if intercepted. Encrypted files can be securely shared with teams and external stakeholders..
+        /// </summary>
+        public static string HipaaClauseRowText3 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Security Rule ( 45 CFR §164.306 (a) &amp; (b) (1) ).
+        /// </summary>
+        public static string HipaaClauseRowText4 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requires entities to implement measures to ensure confidentiality, integrity, and availability of all electronic protected health information (ePHIs) that entities create, receive, maintain, or transmit, while also protecting the ePHIs from anticipated threats..
+        /// </summary>
+        public static string HipaaClauseRowText5 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt, encrypted files can be securely shared with military-grade AES-256 encryption. This ensures the confidentiality and integrity of ePHI while securing the files. Even if unauthorized individuals gain access to encrypted files, the data will be indecipherable..
+        /// </summary>
+        public static string HipaaClauseRowText6 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Security Rule ( 45 CFR § 164.308(a)(1) ).
+        /// </summary>
+        public static string HipaaClauseRowText7 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Implement administrative, physical, and technical safeguards for ePHI..
+        /// </summary>
+        public static string HipaaClauseRowText8 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Zero-knowledge architecture and automatic encryption ensures encryption keys never leave the user&apos;s device, eliminating unauthorized access risks even during incidents..
+        /// </summary>
+        public static string HipaaClauseRowText9 {
+            get {
+                return ResourceManager.GetString("HipaaClauseRowText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt Helps Your Organization Comply with HIPAA?.
+        /// </summary>
+        public static string HipaaComplyHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaComplyHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here’s how AxCrypt addresses some of the key HIPAA requirements to secure your healthcare data and help you in your organization in its HIPAA compliance journey:.
+        /// </summary>
+        public static string HipaaComplyParagraph {
+            get {
+                return ResourceManager.GetString("HipaaComplyParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensuring the privacy and security of Protected Health  Information (PHI) is a fundamental requirement under the Health Insurance Portability and Accountability Act (HIPAA). AxCrypt simplifies your compliance journey with advanced encryption solutions, designed to meet and easily comply with HIPAA stringent requirements..
+        /// </summary>
+        public static string HipaaDescriptionParagraph1 {
+            get {
+                return ResourceManager.GetString("HipaaDescriptionParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s solutions are designed to seamlessly integrate into your existing workflows, providing robust encryption and data security without compromising usability. Our commitment to data privacy and security aligns with HIPAA’s stringent requirements, ensuring your healthcare organization can confidently manage and protect PHI. &lt;br/&gt; &lt;br/&gt;Our true Zero-Knowledge architecture ensures that only authorized users have access to the data, and not even AxCrypt can access it..
+        /// </summary>
+        public static string HipaaDescriptionSubParagraph1 {
+            get {
+                return ResourceManager.GetString("HipaaDescriptionSubParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Compliance with AxCrypt.
+        /// </summary>
+        public static string HipaaDescrptnHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaDescrptnHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Choose AxCrypt for  HIPAA Compliance?.
+        /// </summary>
+        public static string HipaaDescrptnSubHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaDescrptnSubHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Resources.
+        /// </summary>
+        public static string HipaaResouceTitle1 {
+            get {
+                return ResourceManager.GetString("HipaaResouceTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is dedicated to helping healthcare organizations protect their sensitive data with cutting-edge encryption technologies. Our solutions provide the highest level of security, ensuring your data remains safe and compliant with all relevant regulations..
+        /// </summary>
+        public static string HipaaResourceParagraph1 {
+            get {
+                return ResourceManager.GetString("HipaaResourceParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more information on how AxCrypt can help your organization achieve HIPAA compliance, please contact  us at &lt;a class=&quot;axcrypt-highlights&quot; href=&quot;mailto:support@axcrypt.net&quot;&gt;&lt;span&gt; support@axcrypt.net.&lt;/span&gt;&lt;/a&gt; .
+        /// </summary>
+        public static string HipaaSupportText {
+            get {
+                return ResourceManager.GetString("HipaaSupportText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Clause.
+        /// </summary>
+        public static string HipaaTableHeading1 {
+            get {
+                return ResourceManager.GetString("HipaaTableHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA Requirements.
+        /// </summary>
+        public static string HipaaTableHeading2 {
+            get {
+                return ResourceManager.GetString("HipaaTableHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Solution.
+        /// </summary>
+        public static string HipaaTableHeading3 {
+            get {
+                return ResourceManager.GetString("HipaaTableHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Get started&lt;/span&gt; with Beta.AxCrypt.
+        /// </summary>
+        public static string HomeGetStartedBetaHeading {
+            get {
+                return ResourceManager.GetString("HomeGetStartedBetaHeading", resourceCulture);
             }
         }
         
@@ -33393,7 +43338,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ~55.
+        ///   Looks up a localized string similar to ~160.
         /// </summary>
         public static string HomeHeroCountries1 {
             get {
@@ -33411,7 +43356,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 20&lt;span&gt;years&lt;/span&gt;.
+        ///   Looks up a localized string similar to 20 &lt;span&gt;years&lt;/span&gt;.
         /// </summary>
         public static string HomeHeroDeliveries1 {
             get {
@@ -33452,6 +43397,15 @@ namespace AxCrypt.Content.Properties {
         public static string HomeHeroHeading {
             get {
                 return ResourceManager.GetString("HomeHeroHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easy to use, Strong, and Secure &lt;span&gt;Encryption&lt;/span&gt;.
+        /// </summary>
+        public static string HomeHeroHeading1 {
+            get {
+                return ResourceManager.GetString("HomeHeroHeading1", resourceCulture);
             }
         }
         
@@ -33510,7 +43464,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypt and decrypt files on your Android phone, iPhone, or tablet from anywhere at any time..
+        ///   Looks up a localized string similar to Encrypt &amp; decrypt files effortlessly on all major devices, with support for widely used languages.
         /// </summary>
         public static string HomeSellingPointAxcryptMobileBody {
             get {
@@ -33519,7 +43473,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Mobile Encryption.
+        ///   Looks up a localized string similar to Multi-Device &amp; Multilingual.
         /// </summary>
         public static string HomeSellingPointAxcryptMobileHeading {
             get {
@@ -33555,7 +43509,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collaboration.
+        ///   Looks up a localized string similar to Trusted Collaboration.
         /// </summary>
         public static string HomeSellingPointCollaborationHeading {
             get {
@@ -33564,25 +43518,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt speaks Arabic, English, Dutch, French, German, Italian, Korean, Mandarin, Polish, Portuguese, Russian, Spanish, Swedish, Turkish and more to come..
+        ///   Looks up a localized string similar to Manage users &amp; groups within your business &amp; control access with group key management for enhanced security..
         /// </summary>
-        public static string HomeSellingPointMultilingualBody {
+        public static string HomeSellingPointGroupsManagementBody {
             get {
-                return ResourceManager.GetString("HomeSellingPointMultilingualBody", resourceCulture);
+                return ResourceManager.GetString("HomeSellingPointGroupsManagementBody", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multilingual.
+        ///   Looks up a localized string similar to Groups &amp; Key Management.
         /// </summary>
-        public static string HomeSellingPointMultilingualHeading {
+        public static string HomeSellingPointGroupsManagementHeading {
             get {
-                return ResourceManager.GetString("HomeSellingPointMultilingualHeading", resourceCulture);
+                return ResourceManager.GetString("HomeSellingPointGroupsManagementHeading", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage and share your passwords, notes and cards securely wherever you are. And Generate strong passwords..
+        ///   Looks up a localized string similar to Manage and share your passwords, notes and cards securely wherever you are, and generate strong passwords..
         /// </summary>
         public static string HomeSellingPointPasswordManagementBody {
             get {
@@ -33600,7 +43554,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File security with 128-bit or 256-bit encryption..
+        ///   Looks up a localized string similar to File security with AES-256 algorithm &amp; enhance security with Multi- Factor Authentication..
         /// </summary>
         public static string HomeSellingPointStrongEncryptionBody {
             get {
@@ -33609,7 +43563,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strong encryption.
+        ///   Looks up a localized string similar to Strong Encryption &amp; Secure Access.
         /// </summary>
         public static string HomeSellingPointStrongEncryptionHeading {
             get {
@@ -33775,6 +43729,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inbox.
+        /// </summary>
+        public static string InboxText {
+            get {
+                return ResourceManager.GetString("InboxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are about to enable a dangerous option. If you are not careful, you may affect more data than you intend causing operations to take very long time, or breaking other softwares including the operating system. Are you sure?.
         /// </summary>
         public static string IncludeSubfoldersConfirmationBody {
@@ -33831,6 +43794,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AxCrypt utilizes the strongest encryption standard – the AES 256-Bit algorithm – to encrypt and protect data across devices. With its user-friendly and efficient encryption tools including the password manager, cloud storage integration, and master key; AxCrypt has become a trusted solution for companies across industries including finance, healthcare, legal, and government.&lt;br /&gt; &lt;br /&gt;AxCrypt&apos;s encryption technology ensures that only authorized individuals can access confidential files, protecting sensiti [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string IndustriesBenefitsText0 {
+            get {
+                return ResourceManager.GetString("IndustriesBenefitsText0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Benefits of using Axcrypt.
         /// </summary>
         public static string IndustriesBenefitsTitle {
@@ -33845,6 +43817,15 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesBlogLabel {
             get {
                 return ResourceManager.GetString("IndustriesBlogLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;AxCrypt&lt;/span&gt; Is Trusted Across Industries and Domains.
+        /// </summary>
+        public static string IndustriesDomainHeading {
+            get {
+                return ResourceManager.GetString("IndustriesDomainHeading", resourceCulture);
             }
         }
         
@@ -33867,7 +43848,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypt proprietary essays, papers, reports, theses and research.
+        ///   Looks up a localized string similar to Secure proprietary essays, papers, reports, theses and research..
         /// </summary>
         public static string IndustriesEducationHeading {
             get {
@@ -33930,7 +43911,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Safeguard highly sensitive financial information.
+        ///   Looks up a localized string similar to Protect Sensitive Financial Data with Each Transaction.
         /// </summary>
         public static string IndustriesFinancialHeading {
             get {
@@ -33957,7 +43938,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With AxCrypt encryption, client’s information and company deals are stored safe and secure from prying eyes..
+        ///   Looks up a localized string similar to Secure highly sensitive financial documents and statements. Control access and choose who gets to see what..
         /// </summary>
         public static string IndustriesFinancialParagraph {
             get {
@@ -34043,6 +44024,15 @@ namespace AxCrypt.Content.Properties {
         public static string IndustriesFinancialTrialInfo {
             get {
                 return ResourceManager.GetString("IndustriesFinancialTrialInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See how AxCrypt can secure your institution’s data today. &lt;span&gt; Try it for free for 30 Days! &lt;/span&gt;.
+        /// </summary>
+        public static string IndustriesFreeTrialText0 {
+            get {
+                return ResourceManager.GetString("IndustriesFreeTrialText0", resourceCulture);
             }
         }
         
@@ -34137,7 +44127,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preserve electronically archived confidential documents.
+        ///   Looks up a localized string similar to Comply with Compliance and Make Your Files On Par with Regulations.
         /// </summary>
         public static string IndustriesGovernmentHeading {
             get {
@@ -34164,7 +44154,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption prevents the theft of information, thus helping make society more secure and safe. Law enforcement officials point to the widespread and increasing use of encryption..
+        ///   Looks up a localized string similar to AxCrypt helps government agencies and businesses meet compliance regulations and protect sensitive data with its powerful encryption tool. Stay secure and compliant across all devices with ease..
         /// </summary>
         public static string IndustriesGovernmentParagraph {
             get {
@@ -34263,7 +44253,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Secure personal identifiable information and health records.
+        ///   Looks up a localized string similar to Secure Sensitive Health Records, Crucial Medical Documents..
         /// </summary>
         public static string IndustriesHealthcareHeading {
             get {
@@ -34290,7 +44280,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remain compliant with local and federal data protection regulations while building trust between your institution and potential patients..
+        ///   Looks up a localized string similar to AxCrypt helps healthcare professionals secure sensitive patient data, ensuring privacy and compliance with HIPAA regulations. Protect patient information with ease across all devices..
         /// </summary>
         public static string IndustriesHealthcareParagraph {
             get {
@@ -34380,7 +44370,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We change the way people communicate and work..
+        ///   Looks up a localized string similar to Redefining the &lt;span&gt;encryption&lt;/span&gt; landscape for a &lt;span style=\&quot;font-family: auto; font-style:italic; color:#494949;\&quot;&gt;superior&lt;/span&gt; &lt;span&gt;cyber security&lt;/span&gt; experience.
         /// </summary>
         public static string IndustriesHeroText0 {
             get {
@@ -34461,7 +44451,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Protect classified contracts, wills and records.
+        ///   Looks up a localized string similar to Protect Legal Data with the Unbreakable AES-256.
         /// </summary>
         public static string IndustriesLegalHeading {
             get {
@@ -34488,7 +44478,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption is absolutely necessary when storing and sharing sensitive information in order to evade unauthorised and illegal processing of personal data. Reduce the risks of breaches by implementing a user-friendly and easy to use encryption software..
+        ///   Looks up a localized string similar to AxCrypt offers tailored data protection solutions for the legal sector, ensuring the security of sensitive documents, contracts, and client communications with AES 256-bit encryption. Our intuitive interface simplifies encryption, enhancing protection against data breaches and leaks..
         /// </summary>
         public static string IndustriesLegalParagraph {
             get {
@@ -34551,7 +44541,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to languages available.
+        ///   Looks up a localized string similar to languages.
         /// </summary>
         public static string IndustriesStatistic4 {
             get {
@@ -34596,7 +44586,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase data security with 128-bit or 256-bit encryption.
+        ///   Looks up a localized string similar to Superior Data Protection With AES 256-Bit Encryption.
         /// </summary>
         public static string IndustriesTechHeading {
             get {
@@ -34623,7 +44613,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With our 128-bit or 256-bit encryption, AxCrypt increases data security and reduces risks of breaches by implementing a user-friendly and easy to use encryption software..
+        ///   Looks up a localized string similar to With an easy-to-use and intuitive interface, encrypt your sensitive data and prevent it from harmful data breaches and data leaks. AxCrypt is secure, simple, reliable and collaborative..
         /// </summary>
         public static string IndustriesTechParagraph {
             get {
@@ -35320,6 +45310,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select at least one message..
+        /// </summary>
+        public static string InvalidSelectionErrorMessage {
+            get {
+                return ResourceManager.GetString("InvalidSelectionErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have been invited to AxCrypt File Security by &lt;b&gt;{0}&lt;/b&gt;. To start securing your files just &lt;a href=&quot;{1}&quot; style=&quot;color: #86b96e; text-decoration: none;&quot;&gt;download&lt;/a&gt; and install AxCrypt. Sign in to AxCrypt with &lt;b&gt;{2}&lt;/b&gt;, enter the verification code and set your secret password..
         /// </summary>
         public static string InvitationMailBodyIntro {
@@ -35455,6 +45454,15 @@ namespace AxCrypt.Content.Properties {
         public static string InvoiceDescriptionHeadline {
             get {
                 return ResourceManager.GetString("InvoiceDescriptionHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice Email.
+        /// </summary>
+        public static string InvoiceEmailLabel {
+            get {
+                return ResourceManager.GetString("InvoiceEmailLabel", resourceCulture);
             }
         }
         
@@ -35599,6 +45607,123 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our benefits.
+        /// </summary>
+        public static string Job_benefits {
+            get {
+                return ResourceManager.GetString("Job-benefits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Health Insurance.
+        /// </summary>
+        public static string Job_benefits_heading1 {
+            get {
+                return ResourceManager.GetString("Job-benefits-heading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annual Holidays.
+        /// </summary>
+        public static string Job_benefits_heading2 {
+            get {
+                return ResourceManager.GetString("Job-benefits-heading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provident Fund.
+        /// </summary>
+        public static string Job_benefits_heading3 {
+            get {
+                return ResourceManager.GetString("Job-benefits-heading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comprehensive health coverage to keep you and your family protected..
+        /// </summary>
+        public static string Job_benefits_para1 {
+            get {
+                return ResourceManager.GetString("Job-benefits-para1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enjoy a balanced life with paid time off..
+        /// </summary>
+        public static string Job_benefits_para2 {
+            get {
+                return ResourceManager.GetString("Job-benefits-para2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure your future with contributions to your provident fund for long-term savings..
+        /// </summary>
+        public static string Job_benefits_para3 {
+            get {
+                return ResourceManager.GetString("Job-benefits-para3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can’t find the right role? Email your resume to &lt;a href=&quot;mailto:apply@axcrypt.net&quot; style=&quot;color: #87CA4E; font-weight: 600&quot;&gt;apply@axcrypt.net&lt;/a&gt; to be considered for new positions in the future..
+        /// </summary>
+        public static string Job_cant_find {
+            get {
+                return ResourceManager.GetString("Job-cant-find", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Culture at AxCrypt.
+        /// </summary>
+        public static string Job_culture_Axcrypt {
+            get {
+                return ResourceManager.GetString("Job-culture-Axcrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At AxCrypt, our culture is defined by a friendly and proactive team that thrives on collaboration and innovation. Ease of working is fundamental to our organization, allowing us to focus on what matters most. We celebrate small wins and recognize the hard work of our team members as we strive toward our goals. By fostering an inclusive environment where diverse ideas are valued, we continuously seek ways to improve our product, creating a positive atmosphere that empowers everyone to contribute their best..
+        /// </summary>
+        public static string Job_culture_description {
+            get {
+                return ResourceManager.GetString("Job-culture-description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join our team and play a key role in safeguarding the digital world!.
+        /// </summary>
+        public static string Job_Heading {
+            get {
+                return ResourceManager.GetString("Job-Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View all jobs.
+        /// </summary>
+        public static string Job_Heading_Btn {
+            get {
+                return ResourceManager.GetString("Job-Heading-Btn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open positions.
+        /// </summary>
+        public static string Job_openings {
+            get {
+                return ResourceManager.GetString("Job-openings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Application.
         /// </summary>
         public static string JobApplicationLinkLabel {
@@ -35631,6 +45756,15 @@ namespace AxCrypt.Content.Properties {
         public static string JobTitleLabel {
             get {
                 return ResourceManager.GetString("JobTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your job title.
+        /// </summary>
+        public static string JobTitlePlaceholder {
+            get {
+                return ResourceManager.GetString("JobTitlePlaceholder", resourceCulture);
             }
         }
         
@@ -35671,6 +45805,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can download the AxCrypt app from &lt;span&gt;&lt;a href=&apos;/download/&apos;&gt;our website.&lt;/span&gt;.
+        /// </summary>
+        public static string KeyShareDesktopCarouselParagraph {
+            get {
+                return ResourceManager.GetString("KeyShareDesktopCarouselParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add recipients to the list of people who you want to share this file with.
         ///
         ///A recipient is identified by the AxCrypt ID sign in email, but we do not send the file! Here you add the recipients&apos; key to the file. You still have to share the actual file with the recipient afterwards..
@@ -35678,6 +45821,15 @@ namespace AxCrypt.Content.Properties {
         public static string KeyShareDialogHeader {
             get {
                 return ResourceManager.GetString("KeyShareDialogHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share file access with &lt;label style=&quot;font-style: italic; &quot;&gt;colleagues and friends &lt;/label&gt; &lt;strong style=&quot;color: black; &quot;&gt;with &lt;/strong&gt;&lt;span&gt; Key Sharing!&lt;/span&gt;.
+        /// </summary>
+        public static string KeyShareGuidesTitle {
+            get {
+                return ResourceManager.GetString("KeyShareGuidesTitle", resourceCulture);
             }
         }
         
@@ -35734,6 +45886,15 @@ namespace AxCrypt.Content.Properties {
         public static string KeySharingToolTip {
             get {
                 return ResourceManager.GetString("KeySharingToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Know More.
+        /// </summary>
+        public static string knowmorelinkLabel {
+            get {
+                return ResourceManager.GetString("knowmorelinkLabel", resourceCulture);
             }
         }
         
@@ -35855,6 +46016,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string LastNameLabel {
+            get {
+                return ResourceManager.GetString("LastNameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You already have the latest version!.
         /// </summary>
         public static string LatestVersionAlreadyPresentText {
@@ -35878,6 +46048,42 @@ namespace AxCrypt.Content.Properties {
         public static string LavasoftWebCompanionExistenceWarning {
             get {
                 return ResourceManager.GetString("LavasoftWebCompanionExistenceWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about AxCrypt in Finance.
+        /// </summary>
+        public static string LearnMoreaboutFinanceLabel {
+            get {
+                return ResourceManager.GetString("LearnMoreaboutFinanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about AxCrypt in Healthcare.
+        /// </summary>
+        public static string LearnMoreaboutHealthLabel {
+            get {
+                return ResourceManager.GetString("LearnMoreaboutHealthLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more about AxCrypt in IT.
+        /// </summary>
+        public static string LearnMoreaboutITLabel {
+            get {
+                return ResourceManager.GetString("LearnMoreaboutITLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string LearnMoreButtonLabel {
+            get {
+                return ResourceManager.GetString("LearnMoreButtonLabel", resourceCulture);
             }
         }
         
@@ -35945,6 +46151,60 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Most installers and executables are digitally signed with Authenticode by ‘Axantum Software AB’ or ‘AxCrypt AB’. Verify the signature after downloading by right-clicking the file and select ‘Properties | Digital Signatures’. Then double-click on the signature and confirm that ‘This digital signature is OK’ is shown..
+        /// </summary>
+        public static string Legacy_verify_Download_Answer {
+            get {
+                return ResourceManager.GetString("Legacy-verify-Download-Answer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to Verify a &lt;span&gt;Download?&lt;/span&gt;.
+        /// </summary>
+        public static string Legacy_verify_Download_Question {
+            get {
+                return ResourceManager.GetString("Legacy-verify-Download-Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;AxCrypt&lt;/span&gt; Legacy Version.
+        /// </summary>
+        public static string Legacy_Version_Heading {
+            get {
+                return ResourceManager.GetString("Legacy-Version-Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Legacy was designed to provide secure file encryption for users, offering reliable and effective protection through a simple passphrase system. It played a major role in making file encryption accessible to both personal and professional users, ensuring that only authorized individuals could access encrypted data. Its user-friendly interface allowed many to easily protect sensitive files, even if they were unfamiliar with encryption technologies..
+        /// </summary>
+        public static string Legacy_Version_Point1 {
+            get {
+                return ResourceManager.GetString("Legacy-Version-Point1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Legacy version introduced essential AES encryption capabilities that met the needs of its time, allowing users to perform multiple encryption operations efficiently. By setting the stage for future advancements, Axcrypt Legacy showcased our commitment to advanced encryption. Although AxCrypt Legacy is no longer actively supported, files encrypted with it remain secure and can still be decrypted using AxCrypt 2, ensuring continued access to important data. We appreciate the vital role AxCrypt Legacy play [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Legacy_Version_Point2 {
+            get {
+                return ResourceManager.GetString("Legacy-Version-Point2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTE:  These are AxCrypt Legacy downloads. We do not endorse them and urge you not to download and use these, unless you have a specific need for it. New files encrypted with AxCrypt 2  are not compatible with AxCrypt Legacy ! Files encrypted with AxCrypt Legacy are decryptable by AxCrypt 2..
+        /// </summary>
+        public static string Legacy_Version_Point3 {
+            get {
+                return ResourceManager.GetString("Legacy-Version-Point3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to After files are converted they will only open with the current AxCrypt password. Please verify your password.
         ///
         ///Do not forget this password!.
@@ -36001,6 +46261,168 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What’s new in AxCrypt 2 compared to the legacy version?.
+        /// </summary>
+        public static string LegacyFaq1 {
+            get {
+                return ResourceManager.GetString("LegacyFaq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 introduces a modern interface, a unified password system, and enhanced encryption features. Unlike the legacy version, it includes a streamlined sign-in process and advanced functionalities for easier file management and sharing..
+        /// </summary>
+        public static string LegacyFaq1Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq1Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt 2 handle file decryption?.
+        /// </summary>
+        public static string LegacyFaq2 {
+            get {
+                return ResourceManager.GetString("LegacyFaq2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt 2, you use a single password to decrypt all your files. This simplifies file management compared to the legacy version, where different passwords were needed for each file..
+        /// </summary>
+        public static string LegacyFaq2Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq2Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can I still use the old AxCrypt 1.x?.
+        /// </summary>
+        public static string LegacyFaq3 {
+            get {
+                return ResourceManager.GetString("LegacyFaq3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to While AxCrypt Legacy is still available, we strongly recommend upgrading to AxCrypt 2 for enhanced security and user experience. The new version offers advanced AES- 256 encryption unlike the AES- 128 encryption that Axcrypt Legacy provides..
+        /// </summary>
+        public static string LegacyFaq3Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq3Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In which operating systems is AxCrypt 2 available?.
+        /// </summary>
+        public static string LegacyFaq4 {
+            get {
+                return ResourceManager.GetString("LegacyFaq4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 is available on multiple platforms, including Windows, macOS, iOS, and Android..
+        /// </summary>
+        public static string LegacyFaq4Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq4Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt 2 improve password management?.
+        /// </summary>
+        public static string LegacyFaq5 {
+            get {
+                return ResourceManager.GetString("LegacyFaq5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 eliminates the need for multiple passwords by allowing you to use a single, strong password for all your encrypted files. This not only makes it easier to manage your files but also enhances overall security by reducing the risk of weak passwords..
+        /// </summary>
+        public static string LegacyFaq5Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq5Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is self-decryption supported in AxCrypt 2?.
+        /// </summary>
+        public static string LegacyFaq6 {
+            get {
+                return ResourceManager.GetString("LegacyFaq6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No, AxCrypt 2 does not support self-decryption of files. This feature was removed due to significant security risks, such as the potential for self-decrypting files to contain strongly encrypted information, including malicious software, which is impossible for antivirus programs to screen..
+        /// </summary>
+        public static string LegacyFaq6Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq6Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt 2 enhance security over AxCrypt 1.x?.
+        /// </summary>
+        public static string LegacyFaq7 {
+            get {
+                return ResourceManager.GetString("LegacyFaq7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 offers several security enhancements, including stronger AES- 256 encryption algorithms, a unified password system, and improved file sharing features. Additionally, the new version provides better protection against common security risks through its streamlined sign-in process and the latest interface..
+        /// </summary>
+        public static string LegacyFaq7Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq7Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will upgrading to AxCrypt 2 affect my existing encrypted files?.
+        /// </summary>
+        public static string LegacyFaq8 {
+            get {
+                return ResourceManager.GetString("LegacyFaq8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrading to AxCrypt 2 will not affect your existing encrypted files. The new version is fully compatible with files encrypted using AxCrypt 1.x, and it also offers an auto-conversion feature to quickly adapt your files to the new system..
+        /// </summary>
+        public static string LegacyFaq8Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq8Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How do I upgrade from AxCrypt Legacy to AxCrypt 2?.
+        /// </summary>
+        public static string LegacyFaq9 {
+            get {
+                return ResourceManager.GetString("LegacyFaq9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To upgrade from AxCrypt Legacy to AxCrypt 2, simply install AxCrypt 2 over your existing AxCrypt 1 installation. No need to uninstall first. No harm done either..
+        /// </summary>
+        public static string LegacyFaq9Ans {
+            get {
+                return ResourceManager.GetString("LegacyFaq9Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt 2 uses a new file format.
         ///
         ///You can open legacy AxCrypt 1.x files but unless they are converted you have to provide the original password even when signed in.
@@ -36010,6 +46432,51 @@ namespace AxCrypt.Content.Properties {
         public static string LegacyOpenMessage {
             get {
                 return ResourceManager.GetString("LegacyOpenMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Legacy Vs &lt;span&gt; AxCrypt 2 &lt;/span&gt;.
+        /// </summary>
+        public static string LegacyType {
+            get {
+                return ResourceManager.GetString("LegacyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2 redefines file encryption with advanced security features and an intuitive interface. It not only enhances your data protection but also simplifies the encryption process, making it the top choice for efficient and reliable security..
+        /// </summary>
+        public static string LegacyTypeSummary {
+            get {
+                return ResourceManager.GetString("LegacyTypeSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Latest version.
+        /// </summary>
+        public static string LegacyVersionBtn {
+            get {
+                return ResourceManager.GetString("LegacyVersionBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This version is obsolete and we do not offer support for it. AxCrypt Legacy is not maintained and you should not download it, unless specifically needed. Using it is at your own risk..
+        /// </summary>
+        public static string LegacyWarning {
+            get {
+                return ResourceManager.GetString("LegacyWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN LEGAL.
+        /// </summary>
+        public static string LegalIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("LegalIndusLinkLabel", resourceCulture);
             }
         }
         
@@ -36217,6 +46684,24 @@ namespace AxCrypt.Content.Properties {
         public static string LoadingText {
             get {
                 return ResourceManager.GetString("LoadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load more stories.
+        /// </summary>
+        public static string LoadMoreStoriesText {
+            get {
+                return ResourceManager.GetString("LoadMoreStoriesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load More.
+        /// </summary>
+        public static string LoadMoreText {
+            get {
+                return ResourceManager.GetString("LoadMoreText", resourceCulture);
             }
         }
         
@@ -36536,6 +47021,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage Group Access.
+        /// </summary>
+        public static string ManageGroupAccessHeading {
+            get {
+                return ResourceManager.GetString("ManageGroupAccessHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Masterkey Access.
+        /// </summary>
+        public static string ManageMasterkeyAccessHeading {
+            get {
+                return ResourceManager.GetString("ManageMasterkeyAccessHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A parsing error occured when updating the site management property. Please check that you&apos;re using the correct format..
         /// </summary>
         public static string ManagementErrorParsing {
@@ -36559,6 +47062,24 @@ namespace AxCrypt.Content.Properties {
         public static string ManageSubscriptionResellerInfo {
             get {
                 return ResourceManager.GetString("ManageSubscriptionResellerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage users.
+        /// </summary>
+        public static string ManageUsersText {
+            get {
+                return ResourceManager.GetString("ManageUsersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in all the mandatory fields..
+        /// </summary>
+        public static string MandatoryFieldsRequiredWarning {
+            get {
+                return ResourceManager.GetString("MandatoryFieldsRequiredWarning", resourceCulture);
             }
         }
         
@@ -36761,6 +47282,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files encrypted before enabling Master key will of course not be possible to recover. Old files must be re-encrypted after the user having accepted master key. .
+        /// </summary>
+        public static string MasterKeyBlock4Text5 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After Master Key enabled, sign out If already signed in and sign in back to the AxCrypt Application. An information message popup will appear to inform about the master key enabled..
+        /// </summary>
+        public static string MasterKeyBlock4Text6 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can see if Master key has been applied by the &lt;b&gt;Master key icon&lt;/b&gt; shown in the application. If a file has this icon, then any group administrator can recover the file..
+        /// </summary>
+        public static string MasterKeyBlock4Text7 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to That&apos;s it! As you can see, Master key is very easy to use and nothing your business member ever must consider or spend time on..
+        /// </summary>
+        public static string MasterKeyBlock4Text8 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock4Text8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need more help?.
         /// </summary>
         public static string MasterKeyBlock5Heading {
@@ -36775,6 +47332,177 @@ namespace AxCrypt.Content.Properties {
         public static string MasterKeyBlock5Text1 {
             get {
                 return ResourceManager.GetString("MasterKeyBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please note that while Group Administrators or Master Key Owners can recover files using the Master Key, this functionality should not be relied upon for regular usage. If a file is intended to be opened by a group administrator, it should be key shared with that user, just like with any non-admin user. .
+        /// </summary>
+        public static string MasterKeyBlock5Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlock5Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable / Disable &lt;span&gt;Master Key&lt;/span&gt;.
+        /// </summary>
+        public static string MasterKeyBlocksl1Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; Master Key Owner must be selected before enabling the Master Key. Only Master Key Owner and Group Administrator can enable the master key..
+        /// </summary>
+        public static string MasterKeyBlocksl1Note {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle the action button to enable Master Key for the corresponding group..
+        /// </summary>
+        public static string MasterKeyBlocksl1subText3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1subText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle the action button to disable Master Key for the master key enabled group. .
+        /// </summary>
+        public static string MasterKeyBlocksl1subText4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1subText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login to your AxCrypt Business account .
+        /// </summary>
+        public static string MasterKeyBlocksl1Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to &lt;span&gt;&lt;b&gt; Master Key side-menu &lt;/b&gt;&lt;/span&gt;.
+        /// </summary>
+        public static string MasterKeyBlocksl1Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Enable Master Key .
+        /// </summary>
+        public static string MasterKeyBlocksl1Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable Master Key .
+        /// </summary>
+        public static string MasterKeyBlocksl1Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide your consent by selecting the checkbox “I Understand” and then click the “Understand” button below..
+        /// </summary>
+        public static string MasterKeyBlocksl1Text5 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl1Text5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approve &lt;span&gt;Master Key&lt;/span&gt;.
+        /// </summary>
+        public static string MasterKeyBlocksl2Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once master key enabled, all the existing group members needs to approve. This is an important security consideration, and an existing user should never feel like this feature was hidden from them. .
+        /// </summary>
+        public static string MasterKeyBlocksl2Note {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note: A Group Administrator who enabled the Master Key will be auto approved..
+        /// </summary>
+        public static string MasterKeyBlocksl2Note2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Note2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Note:&lt;/b&gt; A Group Administrator who enabled the Master Key will be auto approved..
+        /// </summary>
+        public static string MasterKeyBlocksl2Note3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Note3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login to your AxCrypt Business account .
+        /// </summary>
+        public static string MasterKeyBlocksl2Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to &lt;span&gt;&lt;strong&gt; AxCrypt ID side-menu &lt;/strong&gt;&lt;/span&gt; .
+        /// </summary>
+        public static string MasterKeyBlocksl2Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigate to groups section .
+        /// </summary>
+        public static string MasterKeyBlocksl2Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click &lt;span&gt;&lt;strong&gt; Approve Master Key &lt;/strong&gt;&lt;/span&gt; for the corresponding group action menu. .
+        /// </summary>
+        public static string MasterKeyBlocksl2Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provide consent to &lt;span&gt;&lt;strong&gt; Approve Master Key &lt;/strong&gt;&lt;/span&gt;. .
+        /// </summary>
+        public static string MasterKeyBlocksl2Text5 {
+            get {
+                return ResourceManager.GetString("MasterKeyBlocksl2Text5", resourceCulture);
             }
         }
         
@@ -36824,6 +47552,168 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What is &lt;span&gt;Master Key&lt;/span&gt;?.
+        /// </summary>
+        public static string MasterKeyGuideBlock1Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock1Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master key is a feature which enables &lt;b&gt;Master Key Owner&lt;/b&gt; and &lt;b&gt;Group Administrators&lt;/b&gt; to &lt;b&gt;recover files&lt;/b&gt; of the group members..
+        /// </summary>
+        public static string MasterKeyGuideBlock1Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock1Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter &lt;b&gt;Master key&lt;/b&gt;! With Master key enabled, the administrators of the group can always recover any file encrypted by the group members. In the above case the new financial team just has to ask their group administrator, and the financial document can easily be recovered, even if the original user left the company..
+        /// </summary>
+        public static string MasterKeyGuideBlock1Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock1Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As long as the Master Key Owner or group administrators who make sure to keep track of their credentials, no files will ever be lost due to employees leaving or forgetting their passwords. .
+        /// </summary>
+        public static string MasterKeyGuideBlock1Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock1Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who is &lt;span&gt;Master Key Owner&lt;/span&gt;?.
+        /// </summary>
+        public static string MasterKeyGuideBlock2Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock2Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Master Key Owner holds special rights to recover any file encrypted by all Group’s members when Master Key is enabled, even not being a member of the group..
+        /// </summary>
+        public static string MasterKeyGuideBlock2Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock2Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one Business Administrator can be a Master Key Owner. A new Master Key Owner can be assigned only by the current Master Key Owner, by selecting from the Business Administrators list..
+        /// </summary>
+        public static string MasterKeyGuideBlock2Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock2Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also, Master Key Owner can enable/disable the group’s master key. A Master Key Owner can recover any files encrypted by the group members when group administrator lost master key access. .
+        /// </summary>
+        public static string MasterKeyGuideBlock2Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock2Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is the purpose of &lt;span&gt;Master Key&lt;/span&gt;?.
+        /// </summary>
+        public static string MasterKeyGuideBlock3Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock3Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When Master Key &lt;b&gt;enabled&lt;/b&gt; for a Group, a &lt;b&gt;Master Key Owner&lt;/b&gt; or &lt;b&gt;Group Administrators&lt;/b&gt; can recover any file encrypted by that Group members. This, as mentioned, eliminates the risk of losing access to critical files. But is it secure?.
+        /// </summary>
+        public static string MasterKeyGuideBlock3Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock3Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In terms of security, you can view Master key as an automatic sharing of files with &lt;b&gt;Administrators&lt;/b&gt; of the group. Group Administrators will automatically be able to recover files which has their Master key applied. This is no less secure than simply using AxCrypt&apos;s tried and tested Key Sharing feature. .
+        /// </summary>
+        public static string MasterKeyGuideBlock3Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock3Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Of course, Group Administrators need to be extra careful to choose strong passwords and always keep their account safe..
+        /// </summary>
+        public static string MasterKeyGuideBlock3Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock3Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does &lt;span&gt;Master Key&lt;/span&gt; work? .
+        /// </summary>
+        public static string MasterKeyGuideBlock4Heading {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock4Heading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If a user has not accepted Master key, it will not be applied to files they encrypt, so make sure everyone in your group accepts the feature. .
+        /// </summary>
+        public static string MasterKeyGuideBlock4Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock4Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Administrator can view, who has accepted the Master key feature in the user&apos;s page. .
+        /// </summary>
+        public static string MasterKeyGuideBlock4Text2 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock4Text2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For new members of existing businesses, Master key will be automatically approved when members join the business.  .
+        /// </summary>
+        public static string MasterKeyGuideBlock4Text3 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock4Text3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once Master key has been enabled, it will be automatically applied to all files encrypted by members of the group. .
+        /// </summary>
+        public static string MasterKeyGuideBlock4Text4 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock4Text4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business created before the group feature, Default group was created with all the business members and master key data securely moved from business to default group..
+        /// </summary>
+        public static string MasterKeyGuideBlock5Text1 {
+            get {
+                return ResourceManager.GetString("MasterKeyGuideBlock5Text1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Master key enables business administrators to open files encrypted by the members of the business. Note, the member first has to approve master key before it being applied to their files. You can see who has approved master key in the user table. &lt;a href=&quot;https://axcrypt.net/information/master-key&quot; target=&quot;_blank&quot;&gt;For more information, click here&lt;/a&gt;..
         /// </summary>
         public static string MasterKeyHelpText1 {
@@ -36860,11 +47750,56 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select one of the business administrators as the master key owner. The master key owner has access to all the files secured by the group(s)..
+        /// </summary>
+        public static string MasterKeyOwnerDescriptionText {
+            get {
+                return ResourceManager.GetString("MasterKeyOwnerDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Key Owner.
+        /// </summary>
+        public static string MasterKeyOwnerHeadingText {
+            get {
+                return ResourceManager.GetString("MasterKeyOwnerHeadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Master Key Owner holds special rights to recover any file encrypted by all Group’s members when Master Key is enabled, even not being a member of the group..
+        /// </summary>
+        public static string MasterKeyOwnerInfoText1 {
+            get {
+                return ResourceManager.GetString("MasterKeyOwnerInfoText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also, Master Key Owner can enable/disable the group’s master key and recover files when group administrator lost master key access..
+        /// </summary>
+        public static string MasterKeyOwnerInfoText2 {
+            get {
+                return ResourceManager.GetString("MasterKeyOwnerInfoText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This file had a master key applied to it. Since you&apos;re not part of the same business, master key will be cleared from this file..
         /// </summary>
         public static string MasterKeyRemovedWarningText {
             get {
                 return ResourceManager.GetString("MasterKeyRemovedWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reseller(s) are not allowed to manage master key(s) due to security reasons..
+        /// </summary>
+        public static string MasterKeyResellerInfo {
+            get {
+                return ResourceManager.GetString("MasterKeyResellerInfo", resourceCulture);
             }
         }
         
@@ -37485,6 +48420,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cyber threats are skyrocketing! Protect your small business with strong encryption. Learn the top 5 reasons why data security is a must in 2025..
+        /// </summary>
+        public static string Meta_Description_Blog_5RWEISB {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-5RWEISB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn about AxCrypt&apos;s affiliate program and the benefits of joining to promote encryption software and earn commissions..
         /// </summary>
         public static string Meta_Description_Blog_AAP {
@@ -37521,11 +48465,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embrace 2025 with AxCrypt. Stay secure with advanced file encryption, protecting your privacy against evolving cybersecurity threats..
+        /// </summary>
+        public static string Meta_Description_Blog_ANYANEFSWA {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-ANYANEFSWA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compare the advantages of using AxCrypt online and offline for securing your sensitive information..
         /// </summary>
         public static string Meta_Description_Blog_AOVO {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-AOVO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt wins Gartner Digital Markets&apos; 2024 Best Of badges for top-rated encryption, cloud security, and password management solutions..
+        /// </summary>
+        public static string Meta_Description_Blog_ARWMBBGDM {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-ARWMBBGDM", resourceCulture);
             }
         }
         
@@ -37589,6 +48551,15 @@ namespace AxCrypt.Content.Properties {
         public static string Meta_Description_Blog_CEAYNTK {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-CEAYNTK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this post, we aim to debunk some of the most common myths regarding encryption to increase readers’ security and provide practical advice..
+        /// </summary>
+        public static string Meta_Description_Blog_CEMDWYRNTK {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-CEMDWYRNTK", resourceCulture);
             }
         }
         
@@ -37800,6 +48771,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discover how AxCrypt cloud encryption protects your sensitive data with strong encryption before it reaches the cloud. Ensure secure cloud storage and prevent unauthorized access.
+        /// </summary>
+        public static string Meta_Description_Blog_HACEESCSDP {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HACEESCSDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn how AxCrypt&apos;s encryption software effectively protects your data from unauthorized access and potential cyber threats..
         /// </summary>
         public static string Meta_Description_Blog_HAPYD {
@@ -37854,11 +48834,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Learn essential strategies for small businesses to defend against increasing cyber threats. Protect sensitive data and strengthen your security with these practical tips..
+        /// </summary>
+        public static string Meta_Description_Blog_HSBCPTFGCT {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HSBCPTFGCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn how to choose the right encryption algorithm to protect your sensitive data effectively..
         /// </summary>
         public static string Meta_Description_Blog_HTCTREAFYSD {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-HTCTREAFYSD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn how to choose the most effective encryption methods to protect your sensitive data and ensure robust security for your business..
+        /// </summary>
+        public static string Meta_Description_Blog_HTCTREFYSD {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HTCTREFYSD", resourceCulture);
             }
         }
         
@@ -37877,6 +48875,24 @@ namespace AxCrypt.Content.Properties {
         public static string Meta_Description_Blog_HTEDOYAAIPI2 {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-HTEDOYAAIPI2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn how to encrypt files on Google Drive using AxCrypt in 2025 with this step-by-step guide. Secure your data with strong encryption for maximum protection..
+        /// </summary>
+        public static string Meta_Description_Blog_HTEFIGDSBSI2 {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HTEFIGDSBSI2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt your Windows files effortlessly using AxCrypt. Discover how to automate encryption with our step-by-step guide..
+        /// </summary>
+        public static string Meta_Description_Blog_HTEFOWAWA {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HTEFOWAWA", resourceCulture);
             }
         }
         
@@ -37908,11 +48924,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Protect your PDFs in 2024 with encryption and passwords. Follow our step-by-step guide to secure your sensitive documents effectively..
+        /// </summary>
+        public static string Meta_Description_Blog_HTSPWESBSI2 {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HTSPWESBSI2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This blog post will explore the importance of encryption for remote work, how it can be implemented, and security measures that businesses can adopt.
         /// </summary>
         public static string Meta_Description_Blog_HTSRWWE {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-HTSRWWE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is a critically acclaimed encryption software designed to protect sensitive files and data. Its core functionalities include.
+        /// </summary>
+        public static string Meta_Description_Blog_HTSSFWAUA {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-HTSSFWAUA", resourceCulture);
             }
         }
         
@@ -38106,6 +49140,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cyberattacks threaten businesses, but file encryption ensures data security, prevents breaches, and ensures compliance. Discover its top 10 benefits..
+        /// </summary>
+        public static string Meta_Description_Blog_TBFEBSBF {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-TBFEBSBF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Understand the importance of encrypting all data within a company to protect against data breaches and cyber threats..
         /// </summary>
         public static string Meta_Description_Blog_TIOEADITC {
@@ -38156,6 +49199,42 @@ namespace AxCrypt.Content.Properties {
         public static string Meta_Description_Blog_WATPOI {
             get {
                 return ResourceManager.GetString("Meta-Description-Blog-WATPOI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover how AxCrypt protects your sensitive data with strong encryption, keeping you safe from cyber threats and unauthorized access..
+        /// </summary>
+        public static string Meta_Description_Blog_WAYAFC {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-WAYAFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn why cybersecurity is crucial in 2025. Protect your data with AxCrypt, the leading encryption tool for secure file sharing and protection..
+        /// </summary>
+        public static string Meta_Description_Blog_WCSBYTP {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-WCSBYTP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt ensures secure decryption by implementing several layers of protection to safeguard your data and prevent unauthorized access during the decryption process..
+        /// </summary>
+        public static string Meta_Description_Blog_WDMME {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-WDMME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply AxCrypt’s Security Measures at the Olympic Games 2024:Encryption at Rest,Secured Folders,End-to-End Encryption for Data in Transit,Password Manager.
+        /// </summary>
+        public static string Meta_Description_Blog_WDSPOG {
+            get {
+                return ResourceManager.GetString("Meta-Description-Blog-WDSPOG", resourceCulture);
             }
         }
         
@@ -38439,6 +49518,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enhance security and manage access with AxCrypt&apos;s Group Feature. Learn to create groups, assign roles, and control file access efficiently..
+        /// </summary>
+        public static string Meta_Description_group {
+            get {
+                return ResourceManager.GetString("Meta-Description-group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to With AxCrypt’s Password Manager, generate and save complex passwords, secure card details and encrypted notes with AES-256. Try free for 30 days..
         /// </summary>
         public static string Meta_Description_guides_passwordmanager {
@@ -38453,6 +49541,24 @@ namespace AxCrypt.Content.Properties {
         public static string Meta_Description_Healthcare {
             get {
                 return ResourceManager.GetString("Meta-Description-Healthcare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find detailed guides, video tutorials, and FAQs in the AxCrypt Help Center. Get support on file encryption and password management..
+        /// </summary>
+        public static string Meta_Description_HelpCenter {
+            get {
+                return ResourceManager.GetString("Meta-Description-HelpCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Achieve HIPAA compliance with AxCrypt&apos;s robust file encryption. Protect sensitive healthcare data with our secure, easy-to-use encryption solutions..
+        /// </summary>
+        public static string Meta_Description_hipaa {
+            get {
+                return ResourceManager.GetString("Meta-Description-hipaa", resourceCulture);
             }
         }
         
@@ -38605,7 +49711,16 @@ namespace AxCrypt.Content.Properties {
         /// </summary>
         public static string Meta_Description_Share_Key {
             get {
-                return ResourceManager.GetString("Meta-Description-Share Key", resourceCulture);
+                return ResourceManager.GetString("Meta-Description-Share-Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt Student Plan you can secure your educational files online, automatically encrypt them with advanced encryption standard..
+        /// </summary>
+        public static string Meta_Description_Student {
+            get {
+                return ResourceManager.GetString("Meta-Description-Student", resourceCulture);
             }
         }
         
@@ -38808,11 +49923,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5 Key Features Of Encryption Software You Should Be Aware Of .
+        ///   Looks up a localized string similar to 5 Essential Features of Encryption Software You Need to Know.
         /// </summary>
         public static string Meta_Title_Blog_5KFOESYSBAO {
             get {
                 return ResourceManager.GetString("Meta-Title-Blog-5KFOESYSBAO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 Reasons Why Encryption is Essential for Small Businesses in 2025.
+        /// </summary>
+        public static string Meta_Title_Blog_5RWEISB {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-5RWEISB", resourceCulture);
             }
         }
         
@@ -38822,6 +49946,15 @@ namespace AxCrypt.Content.Properties {
         public static string Meta_Title_Blog_AAP {
             get {
                 return ResourceManager.GetString("Meta-Title-Blog-AAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Encryption Standard Vs Data Encryption Standard | AES Vs. DES.
+        /// </summary>
+        public static string Meta_Title_Blog_AESDES {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-AESDES", resourceCulture);
             }
         }
         
@@ -38844,11 +49977,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Axcrypt Mobile Encryption Is Finally Here! .
+        ///   Looks up a localized string similar to AxCrypt Mobile Encryption is Now Available!.
         /// </summary>
         public static string Meta_Title_Blog_AMEIFH {
             get {
                 return ResourceManager.GetString("Meta-Title-Blog-AMEIFH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A New Era of File Security with AxCrypt in 2025.
+        /// </summary>
+        public static string Meta_Title_Blog_ANYANEFSWA {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-ANYANEFSWA", resourceCulture);
             }
         }
         
@@ -38862,7 +50004,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Automatic File Encryption Software for Windows in 2024.
+        ///   Looks up a localized string similar to AxCrypt Recognized as Best Encryption Software by Gartner in 2024.
+        /// </summary>
+        public static string Meta_Title_Blog_ARWMBBGDM {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-ARWMBBGDM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top Automatic File Encryption Software for Windows in 2024.
         /// </summary>
         public static string Meta_Title_Blog_BAFESFW {
             get {
@@ -38871,7 +50022,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Being a Women in Tech.
+        ///   Looks up a localized string similar to A Womanâ€™s Journey in Tech.
         /// </summary>
         public static string Meta_Title_Blog_BAWIT {
             get {
@@ -38880,7 +50031,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best Encryption Software for Business Data: The Ultimate Guide.
+        ///   Looks up a localized string similar to The Ultimate Guide to Business Data Encryption Solutions.
         /// </summary>
         public static string Meta_Title_Blog_BESFBDTUG {
             get {
@@ -38889,7 +50040,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Benefits Of Managing Your Passwords.
+        ///   Looks up a localized string similar to The Benefits of Password Management.
         /// </summary>
         public static string Meta_Title_Blog_BOMYP {
             get {
@@ -38907,7 +50058,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behind The Scenes of How Data Gets Encrypted.
+        ///   Looks up a localized string similar to How Data Encryption Works: A Behind-the-Scenes Look.
         /// </summary>
         public static string Meta_Title_Blog_BTSOHDGE {
             get {
@@ -38925,7 +50076,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cybersecurity For Employees .
+        ///   Looks up a localized string similar to Debunking Common Encryption Myths: What You Need to Know.
+        /// </summary>
+        public static string Meta_Title_Blog_CEMDWYRNTK {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-CEMDWYRNTK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cybersecurity Best Practices for Employees.
         /// </summary>
         public static string Meta_Title_Blog_CFE {
             get {
@@ -38934,7 +50094,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cyber Hygiene Habits To Stay Safe Online.
+        ///   Looks up a localized string similar to Cyber Hygiene: Essential Habits for Staying Safe Online.
         /// </summary>
         public static string Meta_Title_Blog_CHHTSSO {
             get {
@@ -38970,7 +50130,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disk Encryption Vs File Encryption.
+        ///   Looks up a localized string similar to Disk vs File Encryption: Which is Right for You?.
         /// </summary>
         public static string Meta_Title_Blog_DEVFE {
             get {
@@ -38988,7 +50148,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don’t Let Hackers Roast Your Sensitive Data This Thanksgiving.
+        ///   Looks up a localized string similar to Don&apos;t Let Hackers Feast on Your Data This Thanksgiving.
         /// </summary>
         public static string Meta_Title_Blog_DLHRYSDTT {
             get {
@@ -38997,7 +50157,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption And Biometrics.
+        ///   Looks up a localized string similar to Encryption and Biometrics: Strengthening Security for the Future.
         /// </summary>
         public static string Meta_Title_Blog_EAB {
             get {
@@ -39006,7 +50166,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encrypting Data Is The Key For A Peaceful New Year.
+        ///   Looks up a localized string similar to Encrypting Your Data: The Key to a Secure and Peaceful New Year.
         /// </summary>
         public static string Meta_Title_Blog_EDITKFAPNY {
             get {
@@ -39015,7 +50175,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption From The Future Perspective And Emerging Cyber Threats.
+        ///   Looks up a localized string similar to The Future of Encryption and Emerging Cyber Threats.
         /// </summary>
         public static string Meta_Title_Blog_EFTFPAECT {
             get {
@@ -39051,7 +50211,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption In The Healthcare Industry.
+        ///   Looks up a localized string similar to Healthcare Data Encryption: Protecting Sensitive Information.
         /// </summary>
         public static string Meta_Title_Blog_EITHI {
             get {
@@ -39060,7 +50220,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encryption in Legal Industry.
+        ///   Looks up a localized string similar to Encryption in the Legal Industry: Safeguarding Confidentiality.
         /// </summary>
         public static string Meta_Title_Blog_EITLI {
             get {
@@ -39087,7 +50247,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What is Encryption Software?.
+        ///   Looks up a localized string similar to What is Encryption Software and Why You Need It?.
         /// </summary>
         public static string Meta_Title_Blog_ES {
             get {
@@ -39105,7 +50265,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Encryption in the Finance and Banking Industry.
+        ///   Looks up a localized string similar to File Encryption in the Finance and Banking Sectors.
         /// </summary>
         public static string Meta_Title_Blog_FEFBI {
             get {
@@ -39114,7 +50274,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fundamentals Of Key Management.
+        ///   Looks up a localized string similar to Key Management Fundamentals: What You Should Know.
         /// </summary>
         public static string Meta_Title_Blog_FOKM {
             get {
@@ -39132,7 +50292,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Axcrypt Adds Value To Your Business.
+        ///   Looks up a localized string similar to Axcrypt: How It Can Elevate Your Business Security.
         /// </summary>
         public static string Meta_Title_Blog_HAAVTYB {
             get {
@@ -39141,7 +50301,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Axcrypt Protects Your Data.
+        ///   Looks up a localized string similar to How AxCrypt Cloud Encryption Secures Your Cloud Storage &amp; Data.
+        /// </summary>
+        public static string Meta_Title_Blog_HACEESCSDP {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-HACEESCSDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How Axcrypt Safeguards Your Data.
         /// </summary>
         public static string Meta_Title_Blog_HAPYD {
             get {
@@ -39150,7 +50319,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Healthcare Data Security 101: How to Protect Medical Data with Encryption.
+        ///   Looks up a localized string similar to Medical Data Protection: A Guide to Healthcare Data Security.
         /// </summary>
         public static string Meta_Title_Blog_HDSHTPMDWE {
             get {
@@ -39159,7 +50328,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Human Errors That Impact Data Security.
+        ///   Looks up a localized string similar to Human Errors That Compromise Data Security: Key Insights.
         /// </summary>
         public static string Meta_Title_Blog_HETIDS {
             get {
@@ -39168,7 +50337,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How File Management Is Changing Thanks To Encryption Software An Overview Of Latest Trends And Predictions.
+        ///   Looks up a localized string similar to Encryption&apos;s Impact on File Management: Key Trends and Future Outlook.
         /// </summary>
         public static string Meta_Title_Blog_HFMICTTESAOOLTAP {
             get {
@@ -39177,7 +50346,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to History Of Axcrypt.
+        ///   Looks up a localized string similar to Exploring the History of AxCrypt: A Journey Through Encryption.
         /// </summary>
         public static string Meta_Title_Blog_HOA {
             get {
@@ -39186,7 +50355,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How Quickly Can a Hacker Crack Your Password?.
+        ///   Looks up a localized string similar to How Quickly Can Hackers Crack Your Password.
         /// </summary>
         public static string Meta_Title_Blog_HQCAHCYP {
             get {
@@ -39195,11 +50364,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Choose the Right Encryption Algorithm for Your Sensitive Data.
+        ///   Looks up a localized string similar to How Small Businesses Can Safeguard Against Rising Cyber Threats.
+        /// </summary>
+        public static string Meta_Title_Blog_HSBCPTFGCT {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-HSBCPTFGCT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choosing the Best Encryption Algorithm for Your Sensitive Data.
         /// </summary>
         public static string Meta_Title_Blog_HTCTREAFYSD {
             get {
                 return ResourceManager.GetString("Meta-Title-Blog-HTCTREAFYSD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to Select the Right Encryption for Your Sensitive Data.
+        /// </summary>
+        public static string Meta_Title_Blog_HTCTREFYSD {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-HTCTREFYSD", resourceCulture);
             }
         }
         
@@ -39213,7 +50400,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Encrypt Data on Your Android and iOS Phones in 2024.
+        ///   Looks up a localized string similar to A Guide to Encrypting Data on Android and iOS in 2024.
         /// </summary>
         public static string Meta_Title_Blog_HTEDOYAAIPI2 {
             get {
@@ -39222,7 +50409,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Encrypt Files in Google Drive Step by Step in 2024.
+        ///   Looks up a localized string similar to Step-by-Step Guide to Encrypting Files on Google Drive in 2025.
         /// </summary>
         public static string Meta_Title_Blog_HTEFIGDSBSI2 {
             get {
@@ -39231,7 +50418,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  How To Protect Data On Your Mobile Phones In 2022.
+        ///   Looks up a localized string similar to Automatic File Encryption on Windows with AxCrypt.
+        /// </summary>
+        public static string Meta_Title_Blog_HTEFOWAWA {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-HTEFOWAWA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Data Protection Tips for 2022.
         /// </summary>
         public static string Meta_Title_Blog_HTPDOYMPI2 {
             get {
@@ -39240,7 +50436,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  How To Protect Your Business From Cyberthreats.
+        ///   Looks up a localized string similar to Protect Your Business from Cyber Threats: A How-To Guide.
         /// </summary>
         public static string Meta_Title_Blog_HTPYBFC {
             get {
@@ -39249,7 +50445,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How To Send A Complete Error Report.
+        ///   Looks up a localized string similar to Creating Comprehensive Error Reports: A Guide.
         /// </summary>
         public static string Meta_Title_Blog_HTSACER {
             get {
@@ -39258,7 +50454,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Secure Remote Work with Encryption.
+        ///   Looks up a localized string similar to How to Secure Remote Work with Encryption: Best Practices.
         /// </summary>
         public static string Meta_Title_Blog_HTSRWWE {
             get {
@@ -39267,7 +50463,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How to Securely Share Passwords with Your Friends and Colleagues.
+        ///   Looks up a localized string similar to Secure File Sharing with AxCrypt: A Step-by-Step Guide.
+        /// </summary>
+        public static string Meta_Title_Blog_HTSSFWAUA {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-HTSSFWAUA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to Safely Share Passwords with Friends and Colleagues.
         /// </summary>
         public static string Meta_Title_Blog_HTSSPWYFC {
             get {
@@ -39276,7 +50481,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Importance Of Cyber Security In The Human Resources Sector.
+        ///   Looks up a localized string similar to Cybersecurity in HR: Why Itâ€™s Crucial to Protect Data.
         /// </summary>
         public static string Meta_Title_Blog_IOCITHRS {
             get {
@@ -39303,7 +50508,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leaving Your Computer With Axcrypt Running.
+        ///   Looks up a localized string similar to Risks of Leaving Your Computer with AxCrypt Running: What to Know.
         /// </summary>
         public static string Meta_Title_Blog_LYCWAR {
             get {
@@ -39312,7 +50517,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Devices Pose New Security Threats.
+        ///   Looks up a localized string similar to The Growing Security Threats of Mobile Devices.
         /// </summary>
         public static string Meta_Title_Blog_MDPNST {
             get {
@@ -39321,7 +50526,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Major Data Security Challenges Businesses Are Facing In 2022.
+        ///   Looks up a localized string similar to Top Data Security Challenges for Businesses in 2022.
         /// </summary>
         public static string Meta_Title_Blog_MDSCBAFI2 {
             get {
@@ -39330,7 +50535,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mobile Encryption To Witness Robust Expansion In Coming Years.
+        ///   Looks up a localized string similar to The Future of Mobile Encryption: Rapid Expansion Predicted.
         /// </summary>
         public static string Meta_Title_Blog_METWREICY {
             get {
@@ -39339,7 +50544,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master Key.
+        ///   Looks up a localized string similar to Master Key: Simple Way to Keep Business Data Safe and Accessible.
         /// </summary>
         public static string Meta_Title_Blog_MK {
             get {
@@ -39357,7 +50562,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password Reset And Axcrypt.
+        ///   Looks up a localized string similar to Password Reset with AxCrypt: A Step-by-Step Guide.
         /// </summary>
         public static string Meta_Title_Blog_PRAA {
             get {
@@ -39366,7 +50571,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Protect Your Data From The Christmas Grinch.
+        ///   Looks up a localized string similar to Holiday Data Protection: Donâ€™t Let the Grinch Steal Your Info.
         /// </summary>
         public static string Meta_Title_Blog_PYDFTCG {
             get {
@@ -39384,7 +50589,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some Common Myths About Encryption.
+        ///   Looks up a localized string similar to Myths About Encryption: Separating Fact from Fiction.
         /// </summary>
         public static string Meta_Title_Blog_SCMAE {
             get {
@@ -39393,7 +50598,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Social Dilemma.
+        ///   Looks up a localized string similar to The Social Dilemma: Navigating the Impact of Social Media.
         /// </summary>
         public static string Meta_Title_Blog_SD {
             get {
@@ -39411,7 +50616,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Securing the UEFA Championship: The Role of Encryption and Data Security with AxCrypt.
+        ///   Looks up a localized string similar to Securing Major Events: How Encryption Protected the UEFA Championship.
         /// </summary>
         public static string Meta_Title_Blog_STUCTREDSA {
             get {
@@ -39420,7 +50625,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Symmetric vs Asymmetric Encryption.
+        ///   Looks up a localized string similar to Symmetric vs Asymmetric Encryption: Whatâ€™s the Difference?.
         /// </summary>
         public static string Meta_Title_Blog_SVAE {
             get {
@@ -39447,7 +50652,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Art Of Data Security In The Digital Era.
+        ///   Looks up a localized string similar to Mastering Data Security in the Digital Age.
         /// </summary>
         public static string Meta_Title_Blog_TAODSITDE {
             get {
@@ -39456,7 +50661,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Importance Of Encrypting All Data In The Company.
+        ///   Looks up a localized string similar to Top 10 Benefits of File Encryption for Businesses | Secure Your Data.
+        /// </summary>
+        public static string Meta_Title_Blog_TBFEBSBF {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-TBFEBSBF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Encrypting All Company Data Is Critical.
         /// </summary>
         public static string Meta_Title_Blog_TIOEADITC {
             get {
@@ -39465,7 +50679,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Safest Type Of Encryption.
+        ///   Looks up a localized string similar to Whatâ€™s the Safest Type of Encryption? A Deep Dive.
         /// </summary>
         public static string Meta_Title_Blog_TSTOE {
             get {
@@ -39492,7 +50706,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use Of Different Passwords Considered Harmful.
+        ///   Looks up a localized string similar to The Dangers of Using Different Passwords: What You Should Know.
         /// </summary>
         public static string Meta_Title_Blog_UODPCH {
             get {
@@ -39501,7 +50715,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wikileaks And The Power Of Information.
+        ///   Looks up a localized string similar to Wikileaks and the Power of Information Disclosure.
         /// </summary>
         public static string Meta_Title_Blog_WATPOI {
             get {
@@ -39510,7 +50724,43 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What Encryption Really Is About.
+        ///   Looks up a localized string similar to AxCrypt: The Ultimate Encryption Tool to Defend Against Cyberattacks.
+        /// </summary>
+        public static string Meta_Title_Blog_WAYAFC {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-WAYAFC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Cybersecurity Should Be Your Top Priority in 2025.
+        /// </summary>
+        public static string Meta_Title_Blog_WCSBYTP {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-WCSBYTP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why Decryption Is Just as Important as Encryption.
+        /// </summary>
+        public static string Meta_Title_Blog_WDMME {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-WDMME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Security at the 2024 Paris Olympic Games.
+        /// </summary>
+        public static string Meta_Title_Blog_WDSPOG {
+            get {
+                return ResourceManager.GetString("Meta-Title-Blog-WDSPOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What Encryption Really Is: Understanding the Basics and Benefits.
         /// </summary>
         public static string Meta_Title_Blog_WERIA {
             get {
@@ -39555,7 +50805,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What Is Cloud Computing And Its Common Threats.
+        ///   Looks up a localized string similar to Understanding Cloud Computing Threats and Solutions.
         /// </summary>
         public static string Meta_Title_Blog_WICCAICT {
             get {
@@ -39573,7 +50823,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What is NIS2 and Its Minimal Compliance Requirements?.
+        ///   Looks up a localized string similar to What You Should Know About NIS2 Compliance Requirements.
         /// </summary>
         public static string Meta_Title_Blog_WINAIMCR {
             get {
@@ -39591,7 +50841,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What Recent Data Breaches Tell Us About Encryption?.
+        ///   Looks up a localized string similar to Lessons from Recent Data Breaches: The Importance of Encryption.
         /// </summary>
         public static string Meta_Title_Blog_WRDBTUAE {
             get {
@@ -39627,7 +50877,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zero-Knowledge Encryption Explained in Simple Terms.
+        ///   Looks up a localized string similar to Zero-Knowledge Encryption: Explained in Simple Terms.
         /// </summary>
         public static string Meta_Title_Blog_ZKEEIST {
             get {
@@ -39636,7 +50886,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zero Trust Cyber Security .
+        ///   Looks up a localized string similar to Zero Trust Cybersecurity: A Modern Approach to Protection.
         /// </summary>
         public static string Meta_Title_Blog_ZTCS {
             get {
@@ -39789,6 +51039,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enhance Business Security with AxCrypt&apos;s Group Feature..
+        /// </summary>
+        public static string Meta_Title_group {
+            get {
+                return ResourceManager.GetString("Meta-Title-group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  Password Manager | Generate, Save &amp; Share Passwords, Cards &amp; Notes.
         /// </summary>
         public static string Meta_Title_guides_passwordmanager {
@@ -39798,11 +51057,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Healthcare | Protect patients health information | Electronic health records.
+        ///   Looks up a localized string similar to Protect patients health information | Electronic health records.
         /// </summary>
         public static string Meta_Title_Healthcare {
             get {
                 return ResourceManager.GetString("Meta-Title-Healthcare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Support | Welcome to AxCrypt Helpcenter.
+        /// </summary>
+        public static string Meta_Title_HelpCenter {
+            get {
+                return ResourceManager.GetString("Meta-Title-HelpCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA | AxCrypt HIPAA Compliance: Protect &amp; Encrypt Healthcare Data.
+        /// </summary>
+        public static string Meta_Title_Hipaa {
+            get {
+                return ResourceManager.GetString("Meta-Title-Hipaa", resourceCulture);
             }
         }
         
@@ -39816,11 +51093,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Industrial File Encryption | Helps industries to safeguard important files.
+        ///   Looks up a localized string similar to AxCrypt Encryption for Industries | Protect Critical Files Easily.
         /// </summary>
         public static string Meta_Title_Industries {
             get {
                 return ResourceManager.GetString("Meta-Title-Industries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Content Writer Intern Opportunities | Careers at AxCrypt.
+        /// </summary>
+        public static string Meta_Title_Job_ConIntern {
+            get {
+                return ResourceManager.GetString("Meta-Title-Job-ConIntern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Junior Developers Opportunities | Careers at AxCrypt.
+        /// </summary>
+        public static string Meta_Title_Job_JuniorDevelop {
+            get {
+                return ResourceManager.GetString("Meta-Title-Job-JuniorDevelop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Senior Developers Opportunities | Careers at AxCrypt.
+        /// </summary>
+        public static string Meta_Title_Job_SeniorDevelop {
+            get {
+                return ResourceManager.GetString("Meta-Title-Job-SeniorDevelop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xamarin Developers Opportunities | Careers at AxCrypt.
+        /// </summary>
+        public static string Meta_Title_Job_XamarinDevops {
+            get {
+                return ResourceManager.GetString("Meta-Title-Job-XamarinDevops", resourceCulture);
             }
         }
         
@@ -39843,7 +51156,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Legal | Preserve and Protect your legal and business critical information.
+        ///   Looks up a localized string similar to Preserve and Protect your legal and business critical information.
         /// </summary>
         public static string Meta_Title_Legal {
             get {
@@ -39960,7 +51273,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt Tech | End to End 256-bit encryption ensures safety to technical space.
+        ///   Looks up a localized string similar to AxCrypt Student Plan | Secure educational files on Windows, Mac, Android and iPhone.
+        /// </summary>
+        public static string Meta_Title_Student {
+            get {
+                return ResourceManager.GetString("Meta-Title-Student", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End to End 256-bit encryption ensures safety to technical space.
         /// </summary>
         public static string Meta_Title_Tech {
             get {
@@ -40010,6 +51332,15 @@ namespace AxCrypt.Content.Properties {
         public static string MetadataRetentionText {
             get {
                 return ResourceManager.GetString("MetadataRetentionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing features.
+        /// </summary>
+        public static string MissingFeaturesText {
+            get {
+                return ResourceManager.GetString("MissingFeaturesText", resourceCulture);
             }
         }
         
@@ -40077,6 +51408,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify.
+        /// </summary>
+        public static string ModifyText {
+            get {
+                return ResourceManager.GetString("ModifyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlySubscriptionTitle {
@@ -40095,7 +51435,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More features.
+        ///   Looks up a localized string similar to More Features....
         /// </summary>
         public static string MoreFeaturesLabel {
             get {
@@ -40131,7 +51471,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I&apos;m having too many technical issues.
+        ///   Looks up a localized string similar to I&apos;m facing technical issues.
         /// </summary>
         public static string MoreTechnicalIssueText {
             get {
@@ -40194,11 +51534,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I needed the product for a project I&apos;ve since completed.
+        ///   Looks up a localized string similar to I was using it temporarily for a project.
         /// </summary>
         public static string NeedProductForProjectText {
             get {
                 return ResourceManager.GetString("NeedProductForProjectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Message.
+        /// </summary>
+        public static string NewMessageText {
+            get {
+                return ResourceManager.GetString("NewMessageText", resourceCulture);
             }
         }
         
@@ -40217,6 +51566,15 @@ namespace AxCrypt.Content.Properties {
         public static string NewSecretSuccess {
             get {
                 return ResourceManager.GetString("NewSecretSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save, manage, and securely share them with &lt;span&gt;AxCrypt&apos;s Password Manager.&lt;/span&gt; You can also protect &lt;span&gt; credit card details and notes.&lt;/span&gt; Try it free for 30 days..
+        /// </summary>
+        public static string NewTrialButton {
+            get {
+                return ResourceManager.GetString("NewTrialButton", resourceCulture);
             }
         }
         
@@ -40244,6 +51602,267 @@ namespace AxCrypt.Content.Properties {
         public static string NextStepLabel {
             get {
                 return ResourceManager.GetString("NextStepLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benefits of Using AxCrypt for NIS2 Compliance.
+        /// </summary>
+        public static string Nis2BenefitsHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Award-Winning Encryption.
+        /// </summary>
+        public static string Nis2BenefitsSubheading1 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubheading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incident Response Support.
+        /// </summary>
+        public static string Nis2BenefitsSubheading4 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubheading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operational Continuity.
+        /// </summary>
+        public static string Nis2BenefitsSubheading5 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubheading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Training Resources.
+        /// </summary>
+        public static string Nis2BenefitsSubheading6 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubheading6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protects data at rest and in transit with AES-256 encryption..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph1 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensures only authorized users have access to encryption keys..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph2 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure File Sharing Facilitates secure collaboration with temporary access controls..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph3 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helps quickly secure data during cybersecurity incidents..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph4 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provides encrypted backups for quick recovery and business continuity..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph5 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotes cybersecurity best practices through an intuitive interface and educational content..
+        /// </summary>
+        public static string Nis2BenefitsSubParagraph6 {
+            get {
+                return ResourceManager.GetString("Nis2BenefitsSubParagraph6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stronger Encryption.
+        /// </summary>
+        public static string Nis2ClauseRowText1 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Controls.
+        /// </summary>
+        public static string Nis2ClauseRowText10 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure only authorized personnel have access to critical systems and data..
+        /// </summary>
+        public static string Nis2ClauseRowText11 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Zero-Knowledge:&lt;/span&gt; AxCrypt&apos;s zero-knowledge architecture means encryption keys never leave the user’s device, eliminating unauthorized access risks even during critical incidents. AxCrpt’s Secure File Sharing feature allows for decryption of files with temporary keys by the recipients, ensuring high security of the data..
+        /// </summary>
+        public static string Nis2ClauseRowText12 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Implement cryptographic measures to protect sensitive data..
+        /// </summary>
+        public static string Nis2ClauseRowText2 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt; Award-Winning Encryption: &lt;/span&gt; AxCrypt’s Military-grade AES-256 encryption protects data at rest and in transit.&lt;br/&gt; &lt;br/&gt;&lt;span&gt; Secure File Sharing: &lt;/span&gt; Temporary decryption keys minimize risk during collaboration..
+        /// </summary>
+        public static string Nis2ClauseRowText3 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cybersecurity Training &amp; Hygiene.
+        /// </summary>
+        public static string Nis2ClauseRowText4 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Train employees on cybersecurity best practices..
+        /// </summary>
+        public static string Nis2ClauseRowText5 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt; User-Friendly Interface: &lt;/span&gt; AxCrypt’s user-friendly UI Promotes good security habits through easy encryption and access controls. &lt;br/&gt; &lt;br/&gt; &lt;span&gt; Educational Resources: &lt;/span&gt; AxCrypt’s blogs and user guides offer valuable data security insights..
+        /// </summary>
+        public static string Nis2ClauseRowText6 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Better Business Continuity.
+        /// </summary>
+        public static string Nis2ClauseRowText7 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure operations continue after a cyber incident..
+        /// </summary>
+        public static string Nis2ClauseRowText8 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Encrypted Backups:&lt;/span&gt; Encrypted data backups on popular cloud storage provides for a quick recovery measure through the cloud services – ensuring streamlined business continuity during critical situations..
+        /// </summary>
+        public static string Nis2ClauseRowText9 {
+            get {
+                return ResourceManager.GetString("Nis2ClauseRowText9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How AxCrypt Supports NIS2 Compliance.
+        /// </summary>
+        public static string Nis2ComplyHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2ComplyHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here’s how precisely how AxCrypt can help you in your NIS2 compliance measures: .
+        /// </summary>
+        public static string Nis2ComplyParagraph {
+            get {
+                return ResourceManager.GetString("Nis2ComplyParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt simplifies your compliance journey with the NIS2 Directive. Our advanced encryption and access control solutions ensure your organization meets the stringent cybersecurity requirements mandated by the European Union..
+        /// </summary>
+        public static string Nis2DescriptionParagraph1 {
+            get {
+                return ResourceManager.GetString("Nis2DescriptionParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The NIS2 Directive aims to improve the cybersecurity of networks and information systems across the EU. Organizations must implement robust security measures to protect against cyber threats and ensure the continuity of essential services..
+        /// </summary>
+        public static string Nis2DescriptionSubParagraph1 {
+            get {
+                return ResourceManager.GetString("Nis2DescriptionSubParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simplified NIS2 Compliance with AxCrypt.
+        /// </summary>
+        public static string Nis2DescrptnHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2DescrptnHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NIS2 Overview.
+        /// </summary>
+        public static string Nis2DescrptnSubHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2DescrptnSubHeading1", resourceCulture);
             }
         }
         
@@ -40311,11 +51930,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Your NIS2 Compliance Journey today with AxCrypt.
+        /// </summary>
+        public static string Nis2InfoHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2InfoHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt is committed to helping your organization meet and exceed the cybersecurity standards set by the NIS2 Directive. With our robust encryption and access control solutions, you can protect your data, ensure operational continuity, and maintain regulatory compliance..
+        /// </summary>
+        public static string Nis2InfoParagraph1 {
+            get {
+                return ResourceManager.GetString("Nis2InfoParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NIS2.
         /// </summary>
         public static string NIS2LinkLabel {
             get {
                 return ResourceManager.GetString("NIS2LinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NIS2 Requirement.
+        /// </summary>
+        public static string Nis2TableHeading1 {
+            get {
+                return ResourceManager.GetString("Nis2TableHeading1", resourceCulture);
             }
         }
         
@@ -40365,6 +52011,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No items selected.
+        /// </summary>
+        public static string NoItemsSelectedText {
+            get {
+                return ResourceManager.GetString("NoItemsSelectedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoLabel {
@@ -40374,11 +52029,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (No messages found.).
+        /// </summary>
+        public static string NoMessagesFoundText {
+            get {
+                return ResourceManager.GetString("NoMessagesFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No need to check for updates..
         /// </summary>
         public static string NoNeedToCheckForUpdatesTooltip {
             get {
                 return ResourceManager.GetString("NoNeedToCheckForUpdatesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string NoneStatusText {
+            get {
+                return ResourceManager.GetString("NoneStatusText", resourceCulture);
             }
         }
         
@@ -40437,6 +52110,15 @@ namespace AxCrypt.Content.Properties {
         public static string NoRowFoundText {
             get {
                 return ResourceManager.GetString("NoRowFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        public static string NotAvailableText {
+            get {
+                return ResourceManager.GetString("NotAvailableText", resourceCulture);
             }
         }
         
@@ -40506,7 +52188,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I am not using the product often enough.
+        ///   Looks up a localized string similar to I&apos;m not using the product often.
         /// </summary>
         public static string NotUsingProductText {
             get {
@@ -40574,6 +52256,15 @@ namespace AxCrypt.Content.Properties {
         public static string OldVersionTooltip {
             get {
                 return ResourceManager.GetString("OldVersionTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once.
+        /// </summary>
+        public static string OnceText {
+            get {
+                return ResourceManager.GetString("OnceText", resourceCulture);
             }
         }
         
@@ -40767,6 +52458,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Or .
+        /// </summary>
+        public static string OrText {
+            get {
+                return ResourceManager.GetString("OrText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If other, please give details.
         /// </summary>
         public static string OtherDetailsText {
@@ -40781,6 +52481,15 @@ namespace AxCrypt.Content.Properties {
         public static string OtherPlatformsLabel {
             get {
                 return ResourceManager.GetString("OtherPlatformsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to others.
+        /// </summary>
+        public static string OthersText {
+            get {
+                return ResourceManager.GetString("OthersText", resourceCulture);
             }
         }
         
@@ -40803,11 +52512,254 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our Vision.
+        ///   Looks up a localized string similar to Our vision.
         /// </summary>
         public static string OurVisionLabel {
             get {
                 return ResourceManager.GetString("OurVisionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Legacy.
+        /// </summary>
+        public static string PAGE_LEGACY_TR1_TITLE_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR1_TITLE_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt 2.
+        /// </summary>
+        public static string PAGE_LEGACY_TR1_TITLE_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR1_TITLE_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Support and Maintanence .
+        /// </summary>
+        public static string PAGE_LEGACY_TR10_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR10_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limited support with no updates.
+        /// </summary>
+        public static string PAGE_LEGACY_TR10_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR10_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actively maintained with regular updates.
+        /// </summary>
+        public static string PAGE_LEGACY_TR10_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR10_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release Date.
+        /// </summary>
+        public static string PAGE_LEGACY_TR2_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR2_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2016- Present (continuous updates).
+        /// </summary>
+        public static string PAGE_LEGACY_TR2_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR2_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encryption Standard.
+        /// </summary>
+        public static string PAGE_LEGACY_TR3_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR3_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES-128 (weaker protection).
+        /// </summary>
+        public static string PAGE_LEGACY_TR3_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR3_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AES-256 (stronger protection).
+        /// </summary>
+        public static string PAGE_LEGACY_TR3_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR3_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Platforms.
+        /// </summary>
+        public static string PAGE_LEGACY_TR4_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR4_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows only.
+        /// </summary>
+        public static string PAGE_LEGACY_TR4_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR4_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows, macOS, iOS, Android.
+        /// </summary>
+        public static string PAGE_LEGACY_TR4_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR4_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Interface.
+        /// </summary>
+        public static string PAGE_LEGACY_TR5_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR5_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic, outdated.
+        /// </summary>
+        public static string PAGE_LEGACY_TR5_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR5_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modern, sleek (continuous updates).
+        /// </summary>
+        public static string PAGE_LEGACY_TR5_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR5_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authetication and Authorization.
+        /// </summary>
+        public static string PAGE_LEGACY_TR6_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR6_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No sign-in, higher security risk.
+        /// </summary>
+        public static string PAGE_LEGACY_TR6_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR6_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign-in required for better protection.
+        /// </summary>
+        public static string PAGE_LEGACY_TR6_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR6_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Control .
+        /// </summary>
+        public static string PAGE_LEGACY_TR7_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR7_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limited options.
+        /// </summary>
+        public static string PAGE_LEGACY_TR7_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR7_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced, granular control.
+        /// </summary>
+        public static string PAGE_LEGACY_TR7_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR7_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple passwords for different files.
+        /// </summary>
+        public static string PAGE_LEGACY_TR8_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR8_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single password for all files.
+        /// </summary>
+        public static string PAGE_LEGACY_TR8_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR8_TEXT3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self-Decryption.
+        /// </summary>
+        public static string PAGE_LEGACY_TR9_TEXT1 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR9_TEXT1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported self- decryption .
+        /// </summary>
+        public static string PAGE_LEGACY_TR9_TEXT2 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR9_TEXT2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available to ensure better security and prevent misuse.
+        /// </summary>
+        public static string PAGE_LEGACY_TR9_TEXT3 {
+            get {
+                return ResourceManager.GetString("PAGE_LEGACY_TR9_TEXT3", resourceCulture);
             }
         }
         
@@ -40839,11 +52791,335 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Market to individuals and businesses..
+        /// </summary>
+        public static string PartnerAffiliateText1 {
+            get {
+                return ResourceManager.GetString("PartnerAffiliateText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sell through a unique link..
+        /// </summary>
+        public static string PartnerAffiliateText2 {
+            get {
+                return ResourceManager.GetString("PartnerAffiliateText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Earn fixed commission on sales..
+        /// </summary>
+        public static string PartnerAffiliateText3 {
+            get {
+                return ResourceManager.GetString("PartnerAffiliateText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a dedicated dashboard..
+        /// </summary>
+        public static string PartnerAffiliateText4 {
+            get {
+                return ResourceManager.GetString("PartnerAffiliateText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access to an Account Manager and support..
+        /// </summary>
+        public static string PartnerAffiliateText5 {
+            get {
+                return ResourceManager.GetString("PartnerAffiliateText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you need any help? &lt;span&gt;Contact us!&lt;/span&gt;.
+        /// </summary>
+        public static string PartnerContactUsLinkText {
+            get {
+                return ResourceManager.GetString("PartnerContactUsLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is AxCrypt’s Partner Program?.
+        /// </summary>
+        public static string PartnerFaq1 {
+            get {
+                return ResourceManager.GetString("PartnerFaq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s Partner Program lets you earn money by promoting AxCrypt’s data encryption software. You earn a percentage of each sale amount..
+        /// </summary>
+        public static string PartnerFaq1Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq1Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who can join AxCrypt’s Partner Program?.
+        /// </summary>
+        public static string PartnerFaq2 {
+            get {
+                return ResourceManager.GetString("PartnerFaq2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We&apos;d love to have anyone passionate about data and cybersecurity join our partner program. However, you&apos;ll earn more if you&apos;re an influencer with a substantial following, a blogger, a direct marketer with a substantial client base, run a business, or work in the press..
+        /// </summary>
+        public static string PartnerFaq2Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq2Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is there any cost of joining the program?.
+        /// </summary>
+        public static string PartnerFaq3 {
+            get {
+                return ResourceManager.GetString("PartnerFaq3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Absolutely not. Our partner program is free to join..
+        /// </summary>
+        public static string PartnerFaq3Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq3Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How much can I earn?.
+        /// </summary>
+        public static string PartnerFaq4 {
+            get {
+                return ResourceManager.GetString("PartnerFaq4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sky&apos;s the limit. You&apos;ll receive a percentage of the sale amount — so the more sales, the more money..
+        /// </summary>
+        public static string PartnerFaq4Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq4Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What’s the difference between becoming an Affiliate and a Reseller?.
+        /// </summary>
+        public static string PartnerFaq5 {
+            get {
+                return ResourceManager.GetString("PartnerFaq5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to They differ in how you sell the products and earn a commission. As an Affiliate, you receive a fixed amount of commission when you make a sale, while as a Reseller, you set your own final price for the customer and retain the rest of the amount as your commission..
+        /// </summary>
+        public static string PartnerFaq5Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq5Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How can I promote AxCrypt’s product?.
+        /// </summary>
+        public static string PartnerFaq6 {
+            get {
+                return ResourceManager.GetString("PartnerFaq6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can promote AxCrypt&apos;s product through various channels such as your website, blog, social media platforms, email newsletters, webinars, and online forums. Additionally, you can create compelling content like reviews, tutorials, and case studies to showcase the benefits of AxCrypt&apos;s data encryption software..
+        /// </summary>
+        public static string PartnerFaq6Ans {
+            get {
+                return ResourceManager.GetString("PartnerFaq6Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are an influencer or creator with a medium to large following..
+        /// </summary>
+        public static string PartnerGreatAffiliateText1 {
+            get {
+                return ResourceManager.GetString("PartnerGreatAffiliateText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a blog, YouTube channel, or a microcontent account..
+        /// </summary>
+        public static string PartnerGreatAffiliateText2 {
+            get {
+                return ResourceManager.GetString("PartnerGreatAffiliateText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create and market content on tech and cybersecurity..
+        /// </summary>
+        public static string PartnerGreatAffiliateText3 {
+            get {
+                return ResourceManager.GetString("PartnerGreatAffiliateText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Like to earn consistent and easy commissions..
+        /// </summary>
+        public static string PartnerGreatAffiliateText4 {
+            get {
+                return ResourceManager.GetString("PartnerGreatAffiliateText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have a well-established network and client base..
+        /// </summary>
+        public static string PartnerGreatResellerText1 {
+            get {
+                return ResourceManager.GetString("PartnerGreatResellerText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Have experience in B2B sales..
+        /// </summary>
+        public static string PartnerGreatResellerText2 {
+            get {
+                return ResourceManager.GetString("PartnerGreatResellerText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are experienced in direct marketing and client acquisition..
+        /// </summary>
+        public static string PartnerGreatResellerText3 {
+            get {
+                return ResourceManager.GetString("PartnerGreatResellerText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seek to earn larger margins on sales..
+        /// </summary>
+        public static string PartnerGreatResellerText4 {
+            get {
+                return ResourceManager.GetString("PartnerGreatResellerText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join &lt;span&gt;AxCrypt’s&lt;/span&gt; &lt;strong&gt;Partner Program!&lt;/strong&gt;.
+        /// </summary>
+        public static string PartnerInfoHeading {
+            get {
+                return ResourceManager.GetString("PartnerInfoHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make money by promoting PCMag’s #1 Choice of Best Encryption Software! Awarded consecutively for 9 years since 2016..
+        /// </summary>
+        public static string PartnerInfoText1 {
+            get {
+                return ResourceManager.GetString("PartnerInfoText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Partner.
         /// </summary>
         public static string PartnerLabel {
             get {
                 return ResourceManager.GetString("PartnerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partner with us.
+        /// </summary>
+        public static string PartnerLinkLabel {
+            get {
+                return ResourceManager.GetString("PartnerLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resell to businesses (B2B)..
+        /// </summary>
+        public static string PartnerResellerText1 {
+            get {
+                return ResourceManager.GetString("PartnerResellerText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup &amp; manage client AxCrypt accounts..
+        /// </summary>
+        public static string PartnerResellerText2 {
+            get {
+                return ResourceManager.GetString("PartnerResellerText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set your own margins..
+        /// </summary>
+        public static string PartnerResellerText3 {
+            get {
+                return ResourceManager.GetString("PartnerResellerText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make progressive earnings..
+        /// </summary>
+        public static string PartnerResellerText4 {
+            get {
+                return ResourceManager.GetString("PartnerResellerText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a dedicated Account Manager for Support..
+        /// </summary>
+        public static string PartnerResellerText5 {
+            get {
+                return ResourceManager.GetString("PartnerResellerText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It looks like you&apos;re part of a business..
+        /// </summary>
+        public static string PartOfBusinessText {
+            get {
+                return ResourceManager.GetString("PartOfBusinessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscribe to &lt;b&gt;AxCrypt Business&lt;/b&gt; for advanced team management features..
+        /// </summary>
+        public static string PartOfBusinessText1 {
+            get {
+                return ResourceManager.GetString("PartOfBusinessText1", resourceCulture);
             }
         }
         
@@ -40961,6 +53237,15 @@ namespace AxCrypt.Content.Properties {
         public static string PasswordGeneratorTitle {
             get {
                 return ResourceManager.GetString("PasswordGeneratorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be 8 or more characters.
+        /// </summary>
+        public static string PasswordInformationText {
+            get {
+                return ResourceManager.GetString("PasswordInformationText", resourceCulture);
             }
         }
         
@@ -41393,6 +53678,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Recognized for Excellence by PCMag Editors&apos; Choice 2024.
+        /// </summary>
+        public static string PCMagEditorsChoice2024 {
+            get {
+                return ResourceManager.GetString("PCMagEditorsChoice2024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PendingForApproval.
+        /// </summary>
+        public static string PendingForApprovalMasterKeyStatus {
+            get {
+                return ResourceManager.GetString("PendingForApprovalMasterKeyStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pending.
         /// </summary>
         public static string PendingStatus {
@@ -41438,11 +53741,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type your phone number.
+        /// </summary>
+        public static string PhonePlaceholder {
+            get {
+                return ResourceManager.GetString("PhonePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plan.
         /// </summary>
         public static string PlanText {
             get {
                 return ResourceManager.GetString("PlanText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please note!.
+        /// </summary>
+        public static string PleaseNoteText {
+            get {
+                return ResourceManager.GetString("PleaseNoteText", resourceCulture);
             }
         }
         
@@ -41461,6 +53782,204 @@ namespace AxCrypt.Content.Properties {
         public static string PolishLanguageToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("PolishLanguageToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to encrypt files on Windows?.
+        /// </summary>
+        public static string PopularQuestionText1 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GDPR compliance using AxCrypt.
+        /// </summary>
+        public static string PopularQuestionText10 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical details of AxCrypt’s algorithm.
+        /// </summary>
+        public static string PopularQuestionText11 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Premium AxCrypt support.
+        /// </summary>
+        public static string PopularQuestionText12 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact Business AxCrypt support.
+        /// </summary>
+        public static string PopularQuestionText13 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel my Premium AxCrypt subscription.
+        /// </summary>
+        public static string PopularQuestionText14 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel my Business AxCrypt subscription.
+        /// </summary>
+        public static string PopularQuestionText15 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change my AxCrypt plan.
+        /// </summary>
+        public static string PopularQuestionText16 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Renew my AxCrypt plan.
+        /// </summary>
+        public static string PopularQuestionText17 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat live with AxCrypt chatbot.
+        /// </summary>
+        public static string PopularQuestionText18 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete my AxCrypt account.
+        /// </summary>
+        public static string PopularQuestionText19 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt files on Mac.
+        /// </summary>
+        public static string PopularQuestionText2 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt work?.
+        /// </summary>
+        public static string PopularQuestionText20 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt beta version on Android.
+        /// </summary>
+        public static string PopularQuestionText21 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software release notes.
+        /// </summary>
+        public static string PopularQuestionText22 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt files on Android.
+        /// </summary>
+        public static string PopularQuestionText3 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt files on iPhone.
+        /// </summary>
+        public static string PopularQuestionText4 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt files on Mac.
+        /// </summary>
+        public static string PopularQuestionText5 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate strong passwords.
+        /// </summary>
+        public static string PopularQuestionText6 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to share encrypted file access?.
+        /// </summary>
+        public static string PopularQuestionText7 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HIPAA compliance with AxCrypt.
+        /// </summary>
+        public static string PopularQuestionText8 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NIS2 compliance guide.
+        /// </summary>
+        public static string PopularQuestionText9 {
+            get {
+                return ResourceManager.GetString("PopularQuestionText9", resourceCulture);
             }
         }
         
@@ -41587,6 +54106,96 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumExpiresSoonMailSubject {
             get {
                 return ResourceManager.GetString("PremiumExpiresSoonMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How does AxCrypt Premium protect my files?.
+        /// </summary>
+        public static string PremiumFaq1 {
+            get {
+                return ResourceManager.GetString("PremiumFaq1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium uses AES-256 encryption, a standard trusted by governments and security experts worldwide, ensuring your files are encrypted and protected from unauthorized access..
+        /// </summary>
+        public static string PremiumFaq1Ans {
+            get {
+                return ResourceManager.GetString("PremiumFaq1Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is AxCrypt Premium easy to use?.
+        /// </summary>
+        public static string PremiumFaq2 {
+            get {
+                return ResourceManager.GetString("PremiumFaq2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes! AxCrypt Premium is designed with simplicity in mind, allowing you to encrypt and protect your files with just a few clicks, without requiring any technical expertise..
+        /// </summary>
+        public static string PremiumFaq2Ans {
+            get {
+                return ResourceManager.GetString("PremiumFaq2Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is AxCrypt Premium suitable for my business?.
+        /// </summary>
+        public static string PremiumFaq3 {
+            get {
+                return ResourceManager.GetString("PremiumFaq3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No. AxCrypt Premium is designed specifically for individual users seeking robust encryption for personal use. For business needs, including team management and advanced security features, AxCrypt Business is the appropriate solution..
+        /// </summary>
+        public static string PremiumFaq3Ans {
+            get {
+                return ResourceManager.GetString("PremiumFaq3Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can I try AxCrypt Premium before committing?.
+        /// </summary>
+        public static string PremiumFaq4 {
+            get {
+                return ResourceManager.GetString("PremiumFaq4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, we offer a 30-day free trial for AxCrypt Premium. This allows you to explore all premium features and assess if it meets your needs. Sign up for the trial on our Free Trial Page..
+        /// </summary>
+        public static string PremiumFaq4Ans {
+            get {
+                return ResourceManager.GetString("PremiumFaq4Ans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What if I forget my password?.
+        /// </summary>
+        public static string PremiumFaq5 {
+            get {
+                return ResourceManager.GetString("PremiumFaq5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you forget your AxCrypt password, you can reset it, but you won’t be able to access data encrypted with the old one. So, be sure to keep your password safe and memorable. For added security and convenience, consider using our Password Generator to create strong passwords and our Password Manager to securely store and manage them. The Password Generator ensures your passwords are complex and unique, while the Password Manager helps you organize and retrieve them effortlessly..
+        /// </summary>
+        public static string PremiumFaq5Ans {
+            get {
+                return ResourceManager.GetString("PremiumFaq5Ans", resourceCulture);
             }
         }
         
@@ -41740,6 +54349,159 @@ namespace AxCrypt.Content.Properties {
         public static string PremiumProductContent {
             get {
                 return ResourceManager.GetString("PremiumProductContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stronger encryption with AES-256.
+        /// </summary>
+        public static string premiumproductkeyhead1 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share your secure files with key sharing.
+        /// </summary>
+        public static string premiumproductkeyhead2 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure files online with cloud storage awareness.
+        /// </summary>
+        public static string premiumproductkeyhead3 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On-the-Go Mobile Encryption for Your Files.
+        /// </summary>
+        public static string premiumproductkeyhead4 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strengthen Data Security with File Name Encryption.
+        /// </summary>
+        public static string premiumproductkeyhead5 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely delete files with file wipe.
+        /// </summary>
+        public static string premiumproductkeyhead6 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate, save, and share passwords, cards, &amp; notes with Password Manager.
+        /// </summary>
+        public static string premiumproductkeyhead7 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Priority Support and Assistance for your queries.
+        /// </summary>
+        public static string premiumproductkeyhead8 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyhead8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced AES-256 encryption offers premium protection for your personal files in the three stages of data; data at rest, at transit, and in use. It has a key length of 256 bits and supports the greatest bit size and is practically unbreakable by brute force based on existing computing capability. .
+        /// </summary>
+        public static string premiumproductkeyparagraph1 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Premium&apos;s zero - knowledge encryption allows you to securely share encrypted files, ensuring that only your chosen recipients can access them. This makes collaboration both simple and safe, keeping your information private and protected at all times. Files remain secure, as unauthorized users cannot decrypt them without the necessary credentials..
+        /// </summary>
+        public static string premiumproductkeyparagraph2 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effortlessly sync your files with cloud folders on your desktop, including Google Drive, OneDrive, iCloud, and Dropbox. AxCrypt automatically encrypts your files before they are synced to the cloud, ensuring that your data remains secure whether it&apos;s stored locally or accessed from the cloud..
+        /// </summary>
+        public static string premiumproductkeyparagraph3 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt and decrypt your files directly on your mobile devices, including Android and iOS, to keep your data secure while you&apos;re on the go. Mobile encryption protects your personal photos, videos, and sensitive documents from unauthorized access, shields your data in case of theft or breaches, and ensures only you can share or view your information. Easily integrate with cloud storage services like Google Drive, Dropbox, and OneDrive. .
+        /// </summary>
+        public static string premiumproductkeyparagraph4 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypt both the content of your files and their names, including file extensions, for extra protection. This feature adds an additional layer of security to keep your files and their identities private..
+        /// </summary>
+        public static string premiumproductkeyparagraph5 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permanently delete files to ensure they cannot be recovered by unauthorized parties even with the most sophisticated tools..
+        /// </summary>
+        public static string premiumproductkeyparagraph6 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simplify your digital life with AxCrypt Premium&apos;s built-in password manager. Store, organize, and access all your passwords securely in one place, reducing the risk of weak or reused passwords. (Detail out- Credit Card, notes).
+        /// </summary>
+        public static string premiumproductkeyparagraph7 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our dedicated support team is available to assist with any questions or issues, ensuring that you can always make the most of AxCrypt Premium and keep your files secure.We will also guide you through easy-to-follow guides and tutorials to ensure you can make the most of our features..
+        /// </summary>
+        public static string premiumproductkeyparagraph8 {
+            get {
+                return ResourceManager.GetString("premiumproductkeyparagraph8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhance communication security with AES-256 encryption, ensuring messages remain private across web, desktop, and mobile. With Secured Messenger, only intended recipients can access messages, protecting sensitive information from unauthorized access..
+        /// </summary>
+        public static string PremiumProductKeyParagraph9 {
+            get {
+                return ResourceManager.GetString("PremiumProductKeyParagraph9", resourceCulture);
             }
         }
         
@@ -41992,6 +54754,33 @@ namespace AxCrypt.Content.Properties {
         public static string PricingFeatureEverythingInPremiumPlus {
             get {
                 return ResourceManager.GetString("PricingFeatureEverythingInPremiumPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group Password Sharing.
+        /// </summary>
+        public static string PricingFeatureGroupPasswordSharing {
+            get {
+                return ResourceManager.GetString("PricingFeatureGroupPasswordSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group File Sharing.
+        /// </summary>
+        public static string PricingFeatureGroupSharing {
+            get {
+                return ResourceManager.GetString("PricingFeatureGroupSharing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Groups Management.
+        /// </summary>
+        public static string PricingFeatureGroupsManagement {
+            get {
+                return ResourceManager.GetString("PricingFeatureGroupsManagement", resourceCulture);
             }
         }
         
@@ -42329,7 +55118,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For &lt;span&gt;All users&lt;/span&gt;.
+        ///   Looks up a localized string similar to User Access Control.
+        /// </summary>
+        public static string PricingFeatureUserAccessControl {
+            get {
+                return ResourceManager.GetString("PricingFeatureUserAccessControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All users.
         /// </summary>
         public static string PricingForAllusersText {
             get {
@@ -42388,6 +55186,15 @@ namespace AxCrypt.Content.Properties {
         public static string PricingLinkLabelFeature {
             get {
                 return ResourceManager.GetString("PricingLinkLabelFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string PricingOtherText {
+            get {
+                return ResourceManager.GetString("PricingOtherText", resourceCulture);
             }
         }
         
@@ -42655,7 +55462,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Our privacy policy, of course, complies with the &lt;a href=&apos;https://ec.europa.eu/commission/priorities/justice-and-fundamental-rights/data-protection/2018-reform-eu-data-protection-rules_en&apos;&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href=&apos;/information/gdpr&apos;&gt;GDPR&lt;/a&gt; page, to learn more about the regul [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Our privacy policy, of course, complies with the &lt;a href=&apos;https://commission.europa.eu/law/law-topic/data-protection/reform/rules-business-and-organisations_en&apos;&gt;General Data Protection Regulation&lt;/a&gt; (GDPR). In this privacy policy, we mention what we know about you, what we do with the information and why we need it. You can always withdraw your consent and request us to delete your data. Visit our dedicated &lt;a href=&apos;https://axcrypt.net/information/regulatory-compliance/gdpr/&apos;&gt;GDPR&lt;/a&gt; page, to learn more a [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicyBlock1Text1 {
             get {
@@ -42952,6 +55759,150 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For &lt;span&gt;PRIVATE users&lt;/span&gt;.
+        /// </summary>
+        public static string PrivateUserText {
+            get {
+                return ResourceManager.GetString("PrivateUserText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Ease of Use.
+        /// </summary>
+        public static string ProductBadgesHeading1 {
+            get {
+                return ResourceManager.GetString("ProductBadgesHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Customer Support.
+        /// </summary>
+        public static string ProductBadgesHeading2 {
+            get {
+                return ResourceManager.GetString("ProductBadgesHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Functionality and Features.
+        /// </summary>
+        public static string ProductBadgesHeading3 {
+            get {
+                return ResourceManager.GetString("ProductBadgesHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most Recommended.
+        /// </summary>
+        public static string ProductBadgesHeading4 {
+            get {
+                return ResourceManager.GetString("ProductBadgesHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no single field that this software cannot fit. We have used it across all departments, and it works perfectly well..
+        /// </summary>
+        public static string ProductBadgesParagrapgh1 {
+            get {
+                return ResourceManager.GetString("ProductBadgesParagrapgh1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This software offers the confidentiality I needed for sensitive files containing my codes and programs. Encryption is advanced to professional levels which is a great idea for a secure and work environment..
+        /// </summary>
+        public static string ProductBadgesParagrapgh2 {
+            get {
+                return ResourceManager.GetString("ProductBadgesParagrapgh2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I like its strong focus on encryption, it gives us peace of mind that our data will be secure even in the event of unauthorized access. In addition, AxCrypt&apos;s ease of use is one of its greatest strengths..
+        /// </summary>
+        public static string ProductBadgesParagrapgh3 {
+            get {
+                return ResourceManager.GetString("ProductBadgesParagrapgh3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has helped me secure company files automatically in google drive so that our files are stored on cloud, opening files by other Axcrypt users is possible as long as they have our password which makes it easy to share stored data within the organization when necessary..
+        /// </summary>
+        public static string ProductBadgesParagrapgh4 {
+            get {
+                return ResourceManager.GetString("ProductBadgesParagrapgh4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -Millicent S. [Capterra].
+        /// </summary>
+        public static string ProductBadgesQuote1 {
+            get {
+                return ResourceManager.GetString("ProductBadgesQuote1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -Yusmeidy [Software Advice].
+        /// </summary>
+        public static string ProductBadgesQuote2 {
+            get {
+                return ResourceManager.GetString("ProductBadgesQuote2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -Anthony L. [GetApp].
+        /// </summary>
+        public static string ProductBadgesQuote3 {
+            get {
+                return ResourceManager.GetString("ProductBadgesQuote3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -Busonya [Software Advice].
+        /// </summary>
+        public static string ProductBadgesQuote4 {
+            get {
+                return ResourceManager.GetString("ProductBadgesQuote4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easy to use and Reliable Encryption your Business Can Trust.
+        /// </summary>
+        public static string ProductBusinessHeroText1 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHeroText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Centralized Key Management for Organisational Efficient operations.
+        /// </summary>
+        public static string ProductBusinessHeroText2 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHeroText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure Regulatory Compliance with Smoother Workflows.
+        /// </summary>
+        public static string ProductBusinessHeroText3 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHeroText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sharing files with the rest of the team is award winning easy with our cloud storage awareness and key sharing feature for on-premise files. This allows you to comply with data protection regulations while protecting your files from costly data breaches..
         /// </summary>
         public static string ProductBusinessHighlights1 {
@@ -42975,6 +55926,24 @@ namespace AxCrypt.Content.Properties {
         public static string ProductBusinessHighlights3 {
             get {
                 return ResourceManager.GetString("ProductBusinessHighlights3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AxCrypt’s most-requested Group Feature, revolutionize the way your teams work and collaborate with your business data in a highly secure environment. This powerful feature allows you to create and manage teams within different groups, facilitating departmentalization of teams and establishing a clear hierarchical structure for secure and efficient data security operations. Easily assign different roles, manage group-specific Masterkey access, and ensure that sensitive information is protected and acces [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ProductBusinessHighlightsText1 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHighlightsText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enhance your team&apos;s efficiency with streamlined operations and advanced data protection. The Group Feature simplifies file and password sharing with entire groups at once, providing granular control over access and improving organizational efficiency. Transform your data management with AxCrypt’s innovative solutions designed to meet modern business needs..
+        /// </summary>
+        public static string ProductBusinessHighlightsText2 {
+            get {
+                return ResourceManager.GetString("ProductBusinessHighlightsText2", resourceCulture);
             }
         }
         
@@ -43015,7 +55984,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product and features are too complicated for me.
+        ///   Looks up a localized string similar to Secure your Business Files with AxCrypt.
+        /// </summary>
+        public static string ProductbusinessText1 {
+            get {
+                return ResourceManager.GetString("ProductbusinessText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too complex to use.
         /// </summary>
         public static string ProductFeatureComplicatedText {
             get {
@@ -43024,7 +56002,16 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Simple, reliable and strong encryption for companies and organisation..
+        ///   Looks up a localized string similar to Experience Secure and Privacy-First Encryption for Your Personal Files.
+        /// </summary>
+        public static string ProductInfoText1 {
+            get {
+                return ResourceManager.GetString("ProductInfoText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simple, reliable, and strong file encryption with centralized key management and regulatory compliance, for efficient organizational operations..
         /// </summary>
         public static string ProductPageBusinessDescription {
             get {
@@ -43038,6 +56025,15 @@ namespace AxCrypt.Content.Properties {
         public static string ProductPageBusinessTitle {
             get {
                 return ResourceManager.GetString("ProductPageBusinessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Subscription.
+        /// </summary>
+        public static string ProductPageBusinessTitle2 {
+            get {
+                return ResourceManager.GetString("ProductPageBusinessTitle2", resourceCulture);
             }
         }
         
@@ -43078,11 +56074,29 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Safeguard your sensitive files - locally or in the cloud, from hacks, breaches, malware, and confidently share with family and friends..
+        /// </summary>
+        public static string ProductPagePremiumDescription2 {
+            get {
+                return ResourceManager.GetString("ProductPagePremiumDescription2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to   PREMIUM &lt;span&gt;SUBSCRIPTION &lt;/span&gt;.
         /// </summary>
         public static string ProductPagePremiumTitle {
             get {
                 return ResourceManager.GetString("ProductPagePremiumTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Premium Subscription.
+        /// </summary>
+        public static string ProductPagePremiumTitle2 {
+            get {
+                return ResourceManager.GetString("ProductPagePremiumTitle2", resourceCulture);
             }
         }
         
@@ -43141,11 +56155,47 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Get&lt;/span&gt; Password Manager.
+        /// </summary>
+        public static string ProductPasswordManagerPricingHeading {
+            get {
+                return ResourceManager.GetString("ProductPasswordManagerPricingHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try Password Manager &lt;span&gt; one month for free.&lt;/span&gt;.
         /// </summary>
         public static string ProductPasswordManagerPricingTitle {
             get {
                 return ResourceManager.GetString("ProductPasswordManagerPricingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easy to use, Secure, and Strong File Protection.
+        /// </summary>
+        public static string ProductPremiumHeroText1 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHeroText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confidently Share Files with Family and Friends.
+        /// </summary>
+        public static string ProductPremiumHeroText2 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHeroText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Encrypted Files Anywhere—Mobile, Local, or Cloud.
+        /// </summary>
+        public static string ProductPremiumHeroText3 {
+            get {
+                return ResourceManager.GetString("ProductPremiumHeroText3", resourceCulture);
             }
         }
         
@@ -43200,6 +56250,15 @@ namespace AxCrypt.Content.Properties {
         public static string ProductPremiumSellingPointsStrongerEncrypt {
             get {
                 return ResourceManager.GetString("ProductPremiumSellingPointsStrongerEncrypt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Create &amp; manage user groups.&lt;/span&gt; Administer access control with centralised key management..
+        /// </summary>
+        public static string ProductSellingPointsCreateManageUserGroups {
+            get {
+                return ResourceManager.GetString("ProductSellingPointsCreateManageUserGroups", resourceCulture);
             }
         }
         
@@ -43492,7 +56551,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; BUSINESS?&lt;/span&gt;.
+        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; Business&lt;/span&gt;?.
         /// </summary>
         public static string ProductWhyAxcryptBusiness {
             get {
@@ -43510,7 +56569,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; PREMIUM?&lt;/span&gt;.
+        ///   Looks up a localized string similar to Why AxCrypt&lt;span&gt; Premium?&lt;/span&gt;.
         /// </summary>
         public static string ProductWhyAxcryptPremium {
             get {
@@ -44025,7 +57084,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium is only for private individuals, no VAT deduction for businesses is possible. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/Business/CreateSubscription&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is not final&lt;/b&gt;..
+        ///   Looks up a localized string similar to Premium is only for private individuals, no VAT deduction for businesses is possible. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/HomeUser/CreateBusiness&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is not final&lt;/b&gt;..
         /// </summary>
         public static string PurchaseVatEstimated {
             get {
@@ -44034,7 +57093,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium is only for private individuals. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/Business/CreateSubscription&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is excluded here.&lt;/b&gt;.
+        ///   Looks up a localized string similar to Premium is only for private individuals. Companies and organizations must create an &lt;a href=&quot;https://account.axcrypt.net/HomeUser/CreateBusiness&quot;&gt;AxCrypt Business&lt;/a&gt; subscription. &lt;b&gt;VAT is excluded here.&lt;/b&gt;.
         /// </summary>
         public static string PurchaseVatExcluded {
             get {
@@ -44172,6 +57231,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to read.
+        /// </summary>
+        public static string ReadText {
+            get {
+                return ResourceManager.GetString("ReadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We urge you to re-attempt the payment ASAP to protect your sensitive data and continue enjoying the paid features..
         /// </summary>
         public static string ReAttemptPaymentText {
@@ -44289,13 +57357,20 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have now signed up for an AxCrypt ID!
-        ///
-        ///Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link..
+        ///   Looks up a localized string similar to Check your e-mail &lt;b&gt;{0}&lt;/b&gt; for a verification link..
         /// </summary>
         public static string RegisterSuccess {
             get {
                 return ResourceManager.GetString("RegisterSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration number (optional).
+        /// </summary>
+        public static string RegistrationNumberLabel {
+            get {
+                return ResourceManager.GetString("RegistrationNumberLabel", resourceCulture);
             }
         }
         
@@ -44453,7 +57528,52 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For full details of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://www.axcrypt.net/information/technical-details/&apos;&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;/information/cryptographic-hashes-of-files&apos;&gt;here&lt;/a&gt;..
+        ///   Looks up a localized string similar to AxCrypt Overview.
+        /// </summary>
+        public static string RegulatoryResourceText1 {
+            get {
+                return ResourceManager.GetString("RegulatoryResourceText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt Features.
+        /// </summary>
+        public static string RegulatoryResourceText2 {
+            get {
+                return ResourceManager.GetString("RegulatoryResourceText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Support.
+        /// </summary>
+        public static string RegulatoryResourceText3 {
+            get {
+                return ResourceManager.GetString("RegulatoryResourceText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GET A 30 DAY FREE TRIAL.
+        /// </summary>
+        public static string RegulatoryTrialText1 {
+            get {
+                return ResourceManager.GetString("RegulatoryTrialText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start your healthcare data protection journey today with a 30-day free trial. Get &lt;span&gt;15% OFF AxCrypt BUSINESS&lt;/span&gt; post trial with coupon &lt;span&gt;BUSINESS15&lt;/span&gt;..
+        /// </summary>
+        public static string RegulatoryTrialText2 {
+            get {
+                return ResourceManager.GetString("RegulatoryTrialText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For full details of the Windows Desktop application and the core library, head over to the &lt;a href=&apos;https://www.axcrypt.net/information/technical-details/&apos;&gt;technical details&lt;/a&gt;. The change log for Android, iOS and Mac refer to non-public issue trackers. Cryptograhic SHA-256 checksums are found &lt;a href=&apos;/information/cryptographic-hashes-of-files/&apos;&gt;here&lt;/a&gt;..
         /// </summary>
         public static string ReleaseNotesDescription {
             get {
@@ -44601,6 +57721,42 @@ namespace AxCrypt.Content.Properties {
         public static string ReqruitmentLabel {
             get {
                 return ResourceManager.GetString("ReqruitmentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments.
+        /// </summary>
+        public static string RequestCommentsLabel {
+            get {
+                return ResourceManager.GetString("RequestCommentsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request a Demo.
+        /// </summary>
+        public static string RequestDemoButtonLabel {
+            get {
+                return ResourceManager.GetString("RequestDemoButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your comments.
+        /// </summary>
+        public static string RequestfeatureplaceHoldercomment {
+            get {
+                return ResourceManager.GetString("RequestfeatureplaceHoldercomment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter e-mail address.
+        /// </summary>
+        public static string RequestfeatureplaceHolderemail {
+            get {
+                return ResourceManager.GetString("RequestfeatureplaceHolderemail", resourceCulture);
             }
         }
         
@@ -44767,11 +57923,119 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resell to businesses (B2B).
+        /// </summary>
+        public static string ResellerBenefitsHeading1 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsHeading1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup &amp; manage client AxCrypt accounts.
+        /// </summary>
+        public static string ResellerBenefitsHeading2 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsHeading2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set your own margins.
+        /// </summary>
+        public static string ResellerBenefitsHeading3 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsHeading3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make progressive earnings.
+        /// </summary>
+        public static string ResellerBenefitsHeading4 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsHeading4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get a dedicated Account Manager for support.
+        /// </summary>
+        public static string ResellerBenefitsHeading5 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsHeading5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AxCrypt has customers from all over the world, relying on the simplicity and safety of our encryption tool. Our biggest markets includes US, UK and France. AxCrypt is expanding more and more every day, and we want you to grow along..
         /// </summary>
         public static string ResellerBenefitsText {
             get {
                 return ResourceManager.GetString("ResellerBenefitsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offer AxCrypt&apos;s encryption solutions directly to businesses, expanding your reach in the B2B market..
+        /// </summary>
+        public static string ResellerBenefitsText1 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handle the setup and ongoing management of AxCrypt accounts for your clients, ensuring seamless service..
+        /// </summary>
+        public static string ResellerBenefitsText2 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determine your own profit margins on sales, giving you control over your earnings..
+        /// </summary>
+        public static string ResellerBenefitsText3 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase your revenue with progressive earnings as you grow your client base and sales volume..
+        /// </summary>
+        public static string ResellerBenefitsText4 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enjoy personalized support and guidance from a dedicated Account Manager to help you succeed as a reseller..
+        /// </summary>
+        public static string ResellerBenefitsText5 {
+            get {
+                return ResourceManager.GetString("ResellerBenefitsText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a sustained income stream while promoting &lt;span&gt;Cyber Security Practices&lt;/span&gt; for &lt;span class=&quot;font-style&quot;&gt;yourself&lt;/span&gt; and your &lt;span class=&quot;font-style&quot;&gt;clients&lt;/span&gt;.
+        /// </summary>
+        public static string ResellerCyberSecurityHeading {
+            get {
+                return ResourceManager.GetString("ResellerCyberSecurityHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill out the form and start generating &lt;span class=&quot;font-style&quot;&gt;revenue&lt;/span&gt; today!.
+        /// </summary>
+        public static string ResellerGeneratingRevenueHeading {
+            get {
+                return ResourceManager.GetString("ResellerGeneratingRevenueHeading", resourceCulture);
             }
         }
         
@@ -45352,6 +58616,114 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sales Enablement Tools.
+        /// </summary>
+        public static string ResellerHelpGuideHead1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketing Collateral.
+        /// </summary>
+        public static string ResellerHelpGuideHead2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brand Assets.
+        /// </summary>
+        public static string ResellerHelpGuideHead3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press &amp; Media.
+        /// </summary>
+        public static string ResellerHelpGuideHead4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guides &amp; Checklists.
+        /// </summary>
+        public static string ResellerHelpGuideHead5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visual Assets.
+        /// </summary>
+        public static string ResellerHelpGuideHead6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideHead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A complete set of resources to present AxCrypt confidently; includes sales scripts, pitch ideas, objection handling tips, &amp; ready-to-use templates..
+        /// </summary>
+        public static string ResellerHelpGuideText1 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Includes brochures, use cases, &amp; testimonials, everything you need to communicate AxCrypt’s benefits clearly &amp; effectively to your target audience..
+        /// </summary>
+        public static string ResellerHelpGuideText2 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access official AxCrypt logos, partner-exclusive branding, &amp; visual guidelines to ensure your promotions are professional &amp; aligned with our identity..
+        /// </summary>
+        public static string ResellerHelpGuideText3 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Explore recent, press mentions, interviews &amp; testimonials that reinforce AxCrypt’s credibility &amp; reputation in the encryption space..
+        /// </summary>
+        public static string ResellerHelpGuideText4 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access helpful guides and checklists to simplify your sales process and assist with NIS2-aligned practices..
+        /// </summary>
+        public static string ResellerHelpGuideText5 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready-to-use graphics &amp; templates, including banner ads &amp; demos, to simplify campaign creation &amp; visual communication..
+        /// </summary>
+        public static string ResellerHelpGuideText6 {
+            get {
+                return ResourceManager.GetString("ResellerHelpGuideText6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reseller Help.
         /// </summary>
         public static string ResellerHelpLinkLabel {
@@ -45361,7 +58733,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not edit the images without our permission..
+        ///   Looks up a localized string similar to Do not modify or edit the logos without prior written permission..
         /// </summary>
         public static string ResellerHelpMarketingBlock1ListItem1 {
             get {
@@ -45370,7 +58742,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leave an empty space of 25% of the logotype dimensions from adjacent images or graphical elements..
+        ///   Looks up a localized string similar to Maintain a clear space around the logo equal to &lt;b&gt;25% of its height and width&lt;/b&gt;, free from any text, images, or graphic elements..
         /// </summary>
         public static string ResellerHelpMarketingBlock1ListItem2 {
             get {
@@ -45379,7 +58751,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You may use the reseller’s logo or AxCrypt’s regular logo in your own publications or website. You are free to do so as you comply to the following regulations:.
+        ///   Looks up a localized string similar to You may use either the AxCrypt logo or the Reseller logo in your own publications or on your website, provided the following guidelines are met:.
         /// </summary>
         public static string ResellerHelpMarketingBlock1Text1 {
             get {
@@ -45442,7 +58814,25 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authorized reseller logo.
+        ///   Looks up a localized string similar to Get Reseller Kit.
+        /// </summary>
+        public static string ResellerHelpMarketingKitLable {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingKitLable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download sales scripts, branding assets, and marketing content to support your sales conversations and client outreach..
+        /// </summary>
+        public static string ResellerHelpMarketingParagraph {
+            get {
+                return ResourceManager.GetString("ResellerHelpMarketingParagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sell &lt;label&gt;confidently&lt;/label&gt; &lt;b&gt;with &lt;/b&gt;&lt;span&gt;AxCrypt&lt;/span&gt;!.
         /// </summary>
         public static string ResellerHelpMarketingSubTitle {
             get {
@@ -45622,7 +59012,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, and 2024..
+        ///   Looks up a localized string similar to AxCrypt offers an easy-to-use encryption solution. With over 15 years of experience in the file encryption industry, we have established AxCrypt as one of the strongest brands out there. With over 20 million downloads, we have proven that our service is reliable. AxCrypt has been awarded with PCMag’s Editors’ Choice for Best Encryption Software in 2016, 2017, 2018, 2019, 2020 and 2021..
         /// </summary>
         public static string ResellerInfoText1 {
             get {
@@ -45654,6 +59044,24 @@ namespace AxCrypt.Content.Properties {
         public static string ResellerLinkLabel {
             get {
                 return ResourceManager.GetString("ResellerLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download rich media kit and promotional material.
+        /// </summary>
+        public static string ResellerRevenueText1 {
+            get {
+                return ResourceManager.GetString("ResellerRevenueText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free Product Demos &amp; technical walkthroughs.
+        /// </summary>
+        public static string ResellerRevenueText2 {
+            get {
+                return ResourceManager.GetString("ResellerRevenueText2", resourceCulture);
             }
         }
         
@@ -45703,6 +59111,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;b&gt;Don&apos;t receive an email?&lt;/b&gt; Check your &lt;b&gt;Spam&lt;/b&gt; or click &lt;a id=&quot;send-email-again&quot; href=&quot;javascript:void(0);&quot;&gt;Send again&lt;/a&gt;.
+        /// </summary>
+        public static string ResendEmailText {
+            get {
+                return ResourceManager.GetString("ResendEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resent Failed!.
+        /// </summary>
+        public static string ResentFailed {
+            get {
+                return ResourceManager.GetString("ResentFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resent Successfully!.
+        /// </summary>
+        public static string ResentSuccessfully {
+            get {
+                return ResourceManager.GetString("ResentSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will clear all settings. No data will be lost, but the configuration will be reset to installation defaults..
         /// </summary>
         public static string ResetAllSettingsWarningText {
@@ -45721,6 +59156,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resources.
+        /// </summary>
+        public static string ResourcesHeading {
+            get {
+                return ResourceManager.GetString("ResourcesHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rename to original.
         /// </summary>
         public static string RestoreAnonymousNamesMenuText {
@@ -45735,6 +59179,15 @@ namespace AxCrypt.Content.Properties {
         public static string RestoreAnonymousNamesToolTip {
             get {
                 return ResourceManager.GetString("RestoreAnonymousNamesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore MasterKey.
+        /// </summary>
+        public static string RestoreMasterKeyText {
+            get {
+                return ResourceManager.GetString("RestoreMasterKeyText", resourceCulture);
             }
         }
         
@@ -45816,6 +59269,15 @@ namespace AxCrypt.Content.Properties {
         public static string SearchPasswordPlaceHolder {
             get {
                 return ResourceManager.GetString("SearchPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string SearchText {
+            get {
+                return ResourceManager.GetString("SearchText", resourceCulture);
             }
         }
         
@@ -45969,6 +59431,33 @@ namespace AxCrypt.Content.Properties {
         public static string SecureDeleteToolStripMenuItemText {
             get {
                 return ResourceManager.GetString("SecureDeleteToolStripMenuItemText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This message must have at least one receiver..
+        /// </summary>
+        public static string SecuredMessageInvalidReceiverError {
+            get {
+                return ResourceManager.GetString("SecuredMessageInvalidReceiverError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secured Messenger.
+        /// </summary>
+        public static string SecuredMessengerLinkLabel {
+            get {
+                return ResourceManager.GetString("SecuredMessengerLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure private, secure communication across devices with AES-256 encryption for intended recipients..
+        /// </summary>
+        public static string SecuredMessengerText {
+            get {
+                return ResourceManager.GetString("SecuredMessengerText", resourceCulture);
             }
         }
         
@@ -46441,6 +59930,42 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string SelectAllText {
+            get {
+                return ResourceManager.GetString("SelectAllText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a group.
+        /// </summary>
+        public static string SelectGroupText {
+            get {
+                return ResourceManager.GetString("SelectGroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an item to read.
+        /// </summary>
+        public static string SelectItemReadText {
+            get {
+                return ResourceManager.GetString("SelectItemReadText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multilingual.
+        /// </summary>
+        public static string SellingPointMultilingualHeading {
+            get {
+                return ResourceManager.GetString("SellingPointMultilingualHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Send Feedback.
         /// </summary>
         public static string SendFeedbackTitle {
@@ -46455,6 +59980,33 @@ namespace AxCrypt.Content.Properties {
         public static string SendInvitation {
             get {
                 return ResourceManager.GetString("SendInvitation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to send the secured message..
+        /// </summary>
+        public static string SendSecuredMessageFailure {
+            get {
+                return ResourceManager.GetString("SendSecuredMessageFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secured message sent successfully!.
+        /// </summary>
+        public static string SendSecuredMessageSuccess {
+            get {
+                return ResourceManager.GetString("SendSecuredMessageSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have received a new secured message!.
+        /// </summary>
+        public static string SentSecuredMessageNotificationText {
+            get {
+                return ResourceManager.GetString("SentSecuredMessageNotificationText", resourceCulture);
             }
         }
         
@@ -46491,6 +60043,15 @@ namespace AxCrypt.Content.Properties {
         public static string SetEmailLabel {
             get {
                 return ResourceManager.GetString("SetEmailLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set a strong password for your AxCrypt ID or choose our password suggestion option..
+        /// </summary>
+        public static string SetPasswordText {
+            get {
+                return ResourceManager.GetString("SetPasswordText", resourceCulture);
             }
         }
         
@@ -46791,6 +60352,51 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need to add more than {0} users?.
+        /// </summary>
+        public static string SignupBusinessAddMore {
+            get {
+                return ResourceManager.GetString("SignupBusinessAddMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up with Your Email.
+        /// </summary>
+        public static string SignUpEmail {
+            get {
+                return ResourceManager.GetString("SignUpEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email to create an AxCrypt ID..
+        /// </summary>
+        public static string SignupFlowEmailText {
+            get {
+                return ResourceManager.GetString("SignupFlowEmailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Looking for strong passwords security  check our new &lt;span style=&quot;font-size: 16px; font-weight: 800;&quot;&gt;Password Manager!.
+        /// </summary>
+        public static string SignupFlowPasswordManager {
+            get {
+                return ResourceManager.GetString("SignupFlowPasswordManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT is excluded and may apply at checkout. You can cancel subscription &lt;strong&gt;anytime.&lt;/strong&gt;.
+        /// </summary>
+        public static string SignupFlowVATInformation {
+            get {
+                return ResourceManager.GetString("SignupFlowVATInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign up.
         /// </summary>
         public static string SignUpLinkLabel {
@@ -46919,6 +60525,33 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standard User.
+        /// </summary>
+        public static string StandardUserText {
+            get {
+                return ResourceManager.GetString("StandardUserText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How would you like to &lt;span&gt;start earning?&lt;/span&gt;.
+        /// </summary>
+        public static string StartEarningHeading {
+            get {
+                return ResourceManager.GetString("StartEarningHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up today and start earning lucrative commissions. Create a sustainable revenue stream while promoting data security best practices and protecting yourself and your audience from cyber threats..
+        /// </summary>
+        public static string StartEarningLucrativeCommissionsHeading {
+            get {
+                return ResourceManager.GetString("StartEarningLucrativeCommissionsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Get immediate access! First month is free and you can cancel at anytime..
         /// </summary>
         public static string StartFreeBusinessTrialHelpText {
@@ -46942,6 +60575,69 @@ namespace AxCrypt.Content.Properties {
         public static string StartFreeTrial {
             get {
                 return ResourceManager.GetString("StartFreeTrial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start making money in &lt;span&gt;3 Easy Steps&lt;/span&gt;.
+        /// </summary>
+        public static string StartMakingMoneyHeading {
+            get {
+                return ResourceManager.GetString("StartMakingMoneyHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. SIGNUP.
+        /// </summary>
+        public static string StartMakingMoneySubHead1 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneySubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. LINK, MATERIALS, DEMO.
+        /// </summary>
+        public static string StartMakingMoneySubHead2 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneySubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. START EARNING.
+        /// </summary>
+        public static string StartMakingMoneySubHead3 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneySubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signup with an affiliate or reseller account with your details..
+        /// </summary>
+        public static string StartMakingMoneyText1 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneyText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access your promo link and marketing material or book a reseller demo..
+        /// </summary>
+        public static string StartMakingMoneyText2 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneyText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promote your affiliate link or set up your client accounts as a reseller to start earning..
+        /// </summary>
+        public static string StartMakingMoneyText3 {
+            get {
+                return ResourceManager.GetString("StartMakingMoneyText3", resourceCulture);
             }
         }
         
@@ -47005,6 +60701,267 @@ namespace AxCrypt.Content.Properties {
         public static string StrongPasswordLabel {
             get {
                 return ResourceManager.GetString("StrongPasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect your studies and personal data with &lt;a href=&apos;/premium/&apos;&gt;&lt;label&gt;AxCrypt Premium&lt;/label&gt;&lt;/a&gt;. Don’t miss out on this exclusive offer—sign up now and secure your files! &lt;br/&gt;&lt;br/&gt;If you have any questions or need further assistance, feel free to reach out to our support team at &lt;a href=&apos;mailto:support@axcrypt.net&apos;&gt;&lt;span&gt;support@axcrypt.net&lt;/span&gt;&lt;/a&gt;..
+        /// </summary>
+        public static string StudentCommunityText {
+            get {
+                return ResourceManager.GetString("StudentCommunityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Started with Your &lt;label&gt;50 % Discount&lt;/label&gt;.
+        /// </summary>
+        public static string StudentDiscountHead {
+            get {
+                return ResourceManager.GetString("StudentDiscountHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fill Out the Form.
+        /// </summary>
+        public static string StudentDiscountHead1 {
+            get {
+                return ResourceManager.GetString("StudentDiscountHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification.
+        /// </summary>
+        public static string StudentDiscountHead2 {
+            get {
+                return ResourceManager.GetString("StudentDiscountHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        public static string StudentDiscountHead3 {
+            get {
+                return ResourceManager.GetString("StudentDiscountHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take advantage of our 30-day free trial and enjoy a 50% discount on &lt;span&gt;AxCrypt Premium&lt;/span&gt;. Start protecting your academic work today! To claim your &lt;b&gt;50% discount,&lt;/b&gt; please complete the following steps:.
+        /// </summary>
+        public static string StudentDiscountparagraph {
+            get {
+                return ResourceManager.GetString("StudentDiscountparagraph", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit your details using the form.
+        /// </summary>
+        public static string StudentDiscountParagraph1 {
+            get {
+                return ResourceManager.GetString("StudentDiscountParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After you submit the form, our team will manually verify your student ID and  information..
+        /// </summary>
+        public static string StudentDiscountParagraph2 {
+            get {
+                return ResourceManager.GetString("StudentDiscountParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You will receive a confirmation email once your status is verified and the discount is activated..
+        /// </summary>
+        public static string StudentDiscountParagraph3 {
+            get {
+                return ResourceManager.GetString("StudentDiscountParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course.
+        /// </summary>
+        public static string StudentFormCourseText {
+            get {
+                return ResourceManager.GetString("StudentFormCourseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload University ID.
+        /// </summary>
+        public static string StudentFormIdText {
+            get {
+                return ResourceManager.GetString("StudentFormIdText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to University name.
+        /// </summary>
+        public static string StudentFormUniversityText {
+            get {
+                return ResourceManager.GetString("StudentFormUniversityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Educational Security Made &lt;br/&gt;Easy— &lt;span&gt;Up to 50% OFF&lt;/span&gt; AxCrypt &lt;br/&gt;for &lt;label&gt;Educators and Students!&lt;/label&gt;.
+        /// </summary>
+        public static string StudentFreeTrialBannerText {
+            get {
+                return ResourceManager.GetString("StudentFreeTrialBannerText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to AxCrypt’s &lt;label&gt;Students Plan!&lt;/label&gt;.
+        /// </summary>
+        public static string StudentInfoText {
+            get {
+                return ResourceManager.GetString("StudentInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safeguard your Intellectual Property.
+        /// </summary>
+        public static string StudentKeyPointHead1 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Securely collaborate with Classmates.
+        /// </summary>
+        public static string StudentKeyPointHead2 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Cloud Integration.
+        /// </summary>
+        public static string StudentKeyPointHead3 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On-the-go access.
+        /// </summary>
+        public static string StudentKeyPointHead4 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ensure complete erasure.
+        /// </summary>
+        public static string StudentKeyPointHead5 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With AES-256 encryption, AxCrypt Premium ensures that your research papers, assignments, and personal notes are protected from unauthorized access. Safeguard your intellectual property and sensitive information with the most robust encryption available..
+        /// </summary>
+        public static string StudentKeyPointParagraph1 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Effortless File Sharing with classmates and professors while maintaining confidentiality. Share encrypted files seamlessly, ensuring that only intended recipients can access your documents..
+        /// </summary>
+        public static string StudentKeyPointParagraph2 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointParagraph2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically encrypt your files stored on popular cloud services like Google Drive, OneDrive, and Dropbox. This means you can work on your projects from anywhere, knowing your data is secure..
+        /// </summary>
+        public static string StudentKeyPointParagraph3 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointParagraph3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep your academic materials protected even on the go with our mobile apps for Android and iOS. Whether you&apos;re studying in a café or accessing your files from your dorm room, your data remains safe..
+        /// </summary>
+        public static string StudentKeyPointParagraph4 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointParagraph4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Easily remove files from your devices permanently, ensuring that no sensitive information is left behind or recoverable by unauthorized parties..
+        /// </summary>
+        public static string StudentKeyPointParagraph5 {
+            get {
+                return ResourceManager.GetString("StudentKeyPointParagraph5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Plan.
+        /// </summary>
+        public static string StudentLinkLabel {
+            get {
+                return ResourceManager.GetString("StudentLinkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get up to 50% OFF.
+        /// </summary>
+        public static string StudentOffText {
+            get {
+                return ResourceManager.GetString("StudentOffText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a university student, safeguarding your academic work is crucial. That&apos;s why we&apos;re  excited to offer you AxCrypt Premium at an exclusive 50% discount! Our advanced encryption solutions are now more accessible, allowing you to protect your essential documents and data with ease..
+        /// </summary>
+        public static string StudentPageDescription {
+            get {
+                return ResourceManager.GetString("StudentPageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Verification Form.
+        /// </summary>
+        public static string StudentVerifyheading {
+            get {
+                return ResourceManager.GetString("StudentVerifyheading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why choose &lt;span&gt;AxCrypt Premium&lt;/span&gt; for &lt;label&gt;Students&lt;/label&gt;?.
+        /// </summary>
+        public static string StudentWhyAxcryptPremium {
+            get {
+                return ResourceManager.GetString("StudentWhyAxcryptPremium", resourceCulture);
             }
         }
         
@@ -47396,6 +61353,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer support was not very helpful.
+        /// </summary>
+        public static string SupportNotHelpfulText {
+            get {
+                return ResourceManager.GetString("SupportNotHelpfulText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Premium Support.
         /// </summary>
         public static string SupportPageTitle {
@@ -47446,7 +61412,7 @@ namespace AxCrypt.Content.Properties {
         /// </summary>
         public static string SurnameLabel {
             get {
-                return ResourceManager.GetString("SurnameLabel ", resourceCulture);
+                return ResourceManager.GetString("SurnameLabel", resourceCulture);
             }
         }
         
@@ -47528,6 +61494,15 @@ namespace AxCrypt.Content.Properties {
         public static string TargetApplicationNotFoundMessage {
             get {
                 return ResourceManager.GetString("TargetApplicationNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AXCRYPT IN TECH.
+        /// </summary>
+        public static string TechIndusLinkLabel {
+            get {
+                return ResourceManager.GetString("TechIndusLinkLabel", resourceCulture);
             }
         }
         
@@ -47676,6 +61651,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string TechnicalOtherText {
+            get {
+                return ResourceManager.GetString("TechnicalOtherText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technical support.
         /// </summary>
         public static string TechnicalSupportLabel {
@@ -47775,7 +61759,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Premium, Password Manager &amp; Business Trial.
+        ///   Looks up a localized string similar to Premium &amp; Business Trial.
         /// </summary>
         public static string TermsOfUseBlock11Heading1 {
             get {
@@ -47784,7 +61768,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We offer 30 days free trial for the AxCrypt Premium, Password Manager or Business plan for new users. If you don’t like the product you can cancel the subscription before the trial ends. Cancelling the subscription can be done at any time. Doing this will not affect the trial and you will still be able to use all the features that comes with Business, Premium &amp; Password Manager subscription during your trial period. After the 30 days of free trial, we will charge your credit/debit cards if you haven’t cance [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to We offer 30 days free trial for the AxCrypt Premium or Business plan for new users. If you don’t like the product you can cancel the subscription before the trial ends. Cancelling the subscription can be done at any time. Doing this will not affect the trial and you will still be able to use all the features that comes with Business, Premium subscription during your trial period. After the 30 days of free trial, we will charge your credit/debit cards if you haven’t cancelled your subscription..
         /// </summary>
         public static string TermsOfUseBlock11Text1 {
             get {
@@ -48018,7 +62002,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright © 2024 AxCrypt AB, All rights reserved..
+        ///   Looks up a localized string similar to Copyright © 2025 AxCrypt AB, All rights reserved..
         /// </summary>
         public static string TermsOfUseBlock18Text4 {
             get {
@@ -48540,7 +62524,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s too  expensive.
+        ///   Looks up a localized string similar to It&apos;s too expensive.
         /// </summary>
         public static string TooExpensiveText {
             get {
@@ -48554,6 +62538,24 @@ namespace AxCrypt.Content.Properties {
         public static string ToolTipPremiumNeededForSecrets {
             get {
                 return ResourceManager.GetString("ToolTipPremiumNeededForSecrets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licences (Used/Total).
+        /// </summary>
+        public static string TotalLicencesText {
+            get {
+                return ResourceManager.GetString("TotalLicencesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To:.
+        /// </summary>
+        public static string ToText {
+            get {
+                return ResourceManager.GetString("ToText", resourceCulture);
             }
         }
         
@@ -48576,7 +62578,7 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My free trial ended.
+        ///   Looks up a localized string similar to My free trial has ended.
         /// </summary>
         public static string TrialEndedText {
             get {
@@ -48623,6 +62625,24 @@ namespace AxCrypt.Content.Properties {
         public static string TroubleShootingLabel {
             get {
                 return ResourceManager.GetString("TroubleShootingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trusted by millions across &lt;span&gt;100+ countries&lt;/span&gt;.
+        /// </summary>
+        public static string TrustedByMillionsHeading {
+            get {
+                return ResourceManager.GetString("TrustedByMillionsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try AxCrypt Beta.
+        /// </summary>
+        public static string TryAxCryptBetaText {
+            get {
+                return ResourceManager.GetString("TryAxCryptBetaText", resourceCulture);
             }
         }
         
@@ -48722,6 +62742,15 @@ namespace AxCrypt.Content.Properties {
         public static string TryForFreeButtonLabel {
             get {
                 return ResourceManager.GetString("TryForFreeButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try &lt;span&gt;AxCrypt for free for 30 Days!&lt;/span&gt;.
+        /// </summary>
+        public static string TryFree {
+            get {
+                return ResourceManager.GetString("TryFree", resourceCulture);
             }
         }
         
@@ -49005,6 +63034,24 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2 Mins.
+        /// </summary>
+        public static string TwoMinutesLabel {
+            get {
+                return ResourceManager.GetString("TwoMinutesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type your message here.
+        /// </summary>
+        public static string TypeYourMessageHerePlaceHolderText {
+            get {
+                return ResourceManager.GetString("TypeYourMessageHerePlaceHolderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Typography.
         /// </summary>
         public static string TypographyLabel {
@@ -49050,6 +63097,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unlock our &lt;span&gt;amazing&lt;/span&gt; &lt;span&gt;features!&lt;/span&gt; Upgrade to &lt;span&gt;Premium&lt;/span&gt; or &lt;b&gt;Business&lt;/b&gt;.
+        /// </summary>
+        public static string UnlockFeatures {
+            get {
+                return ResourceManager.GetString("UnlockFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click here to unlock full encryption features!.
         /// </summary>
         public static string UnlockFullEncryptionFeaturesText {
@@ -49073,6 +63129,15 @@ namespace AxCrypt.Content.Properties {
         public static string UnlockMagicalFeaturesTitle {
             get {
                 return ResourceManager.GetString("UnlockMagicalFeaturesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unread.
+        /// </summary>
+        public static string UnReadText {
+            get {
+                return ResourceManager.GetString("UnReadText", resourceCulture);
             }
         }
         
@@ -49140,11 +63205,38 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} update failed..
+        /// </summary>
+        public static string UpdateFailed {
+            get {
+                return ResourceManager.GetString("UpdateFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update payment details.
         /// </summary>
         public static string UpdatePaymentDetailsText {
             get {
                 return ResourceManager.GetString("UpdatePaymentDetailsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} updated successfully..
+        /// </summary>
+        public static string UpdateSuccess {
+            get {
+                return ResourceManager.GetString("UpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update User Roles.
+        /// </summary>
+        public static string UpdateUserRolesHeading {
+            get {
+                return ResourceManager.GetString("UpdateUserRolesHeading", resourceCulture);
             }
         }
         
@@ -49217,6 +63309,15 @@ namespace AxCrypt.Content.Properties {
         public static string UpsellBusinessForNotStandardPremiumUsersText {
             get {
                 return ResourceManager.GetString("UpsellBusinessForNotStandardPremiumUsersText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string UsageOtherText {
+            get {
+                return ResourceManager.GetString("UsageOtherText", resourceCulture);
             }
         }
         
@@ -49653,6 +63754,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to using.
+        /// </summary>
+        public static string usingText {
+            get {
+                return ResourceManager.GetString("usingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verification Link Sent.
         /// </summary>
         public static string VerificationEmailSentTitle {
@@ -49721,6 +63831,24 @@ namespace AxCrypt.Content.Properties {
         public static string ViewPasswordTitle {
             get {
                 return ResourceManager.GetString("ViewPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visibility:.
+        /// </summary>
+        public static string VisibilityText {
+            get {
+                return ResourceManager.GetString("VisibilityText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible until:.
+        /// </summary>
+        public static string VisibleUntilText {
+            get {
+                return ResourceManager.GetString("VisibleUntilText", resourceCulture);
             }
         }
         
@@ -49881,6 +64009,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What &lt;span&gt;People Say&lt;/span&gt; About &lt;span&gt;AxCrypt&lt;/span&gt;.
+        /// </summary>
+        public static string WhatOthersSayAboutUsIndusHeading {
+            get {
+                return ResourceManager.GetString("WhatOthersSayAboutUsIndusHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What&apos;s included?.
         /// </summary>
         public static string WhatsIncludedLabel {
@@ -49890,11 +64027,137 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check out other AxCrypt guides: &lt;a href=&apos;https://axcrypt.net/information/guides/get-started/&apos;&gt;&lt;span&gt;&lt;strong&gt;AxCrypt Guides | Your guide to cybersecurity solutions&lt;/a&gt;&lt;/span&gt;&lt;/strong&gt;.
+        /// </summary>
+        public static string WhatsNextMasterKeyParagraph1 {
+            get {
+                return ResourceManager.GetString("WhatsNextMasterKeyParagraph1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Why AxCrypt Business?.
         /// </summary>
         public static string WhyAxCryptBusiness {
             get {
                 return ResourceManager.GetString("WhyAxCryptBusiness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Why become an &lt;span&gt;AxCrypt&lt;/span&gt; &lt;strong&gt;Partner?&lt;/strong&gt;.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerHeading {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlimited Top commissions.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead1 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Higher Conversions.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead2 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dedicated Account Manager.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead3 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rich Media Kit.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead4 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demos and Support.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead5 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Global Traffic.
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerSubHead6 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerSubHead6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Earn exciting commissions on the total sale value, with no capping on the number of sales..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText1 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AxCrypt’s trusted brand voice and an award winning software brings guaranteed conversions..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText2 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get access to a dedicated Account Manager to support you on every step of your journey, from signups to payouts..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText3 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From high-quality posters and graphics to animated videos - get access to a rich media kit for your promotions..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText4 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receive personalized product demo and sales support to boost your sales and commissions..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText5 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Axcrypt runs campaigns at a global level, allowing you to capitalize on a global customer base with limitless conversions..
+        /// </summary>
+        public static string WhyBecomeAxCryptPartnerText6 {
+            get {
+                return ResourceManager.GetString("WhyBecomeAxCryptPartnerText6", resourceCulture);
             }
         }
         
@@ -50482,6 +64745,15 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type your work mail.
+        /// </summary>
+        public static string WorkemailPlaceholder {
+            get {
+                return ResourceManager.GetString("WorkemailPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status &apos;Working&apos; with &apos;{0}&apos;..
         /// </summary>
         public static string WorkingFileStatus {
@@ -50527,6 +64799,105 @@ namespace AxCrypt.Content.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2001.
+        /// </summary>
+        public static string YEAR_2001 {
+            get {
+                return ResourceManager.GetString("YEAR_2001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2014.
+        /// </summary>
+        public static string YEAR_2014 {
+            get {
+                return ResourceManager.GetString("YEAR_2014", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2016.
+        /// </summary>
+        public static string YEAR_2016 {
+            get {
+                return ResourceManager.GetString("YEAR_2016", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2017.
+        /// </summary>
+        public static string YEAR_2017 {
+            get {
+                return ResourceManager.GetString("YEAR_2017", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2018.
+        /// </summary>
+        public static string YEAR_2018 {
+            get {
+                return ResourceManager.GetString("YEAR_2018", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2019.
+        /// </summary>
+        public static string YEAR_2019 {
+            get {
+                return ResourceManager.GetString("YEAR_2019", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2020.
+        /// </summary>
+        public static string YEAR_2020 {
+            get {
+                return ResourceManager.GetString("YEAR_2020", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2021.
+        /// </summary>
+        public static string YEAR_2021 {
+            get {
+                return ResourceManager.GetString("YEAR_2021", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2022.
+        /// </summary>
+        public static string YEAR_2022 {
+            get {
+                return ResourceManager.GetString("YEAR_2022", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2023.
+        /// </summary>
+        public static string YEAR_2023 {
+            get {
+                return ResourceManager.GetString("YEAR_2023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2024.
+        /// </summary>
+        public static string YEAR_2024 {
+            get {
+                return ResourceManager.GetString("YEAR_2024", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yearly discount.
         /// </summary>
         public static string YearlyDiscountLabel {
@@ -50550,6 +64921,24 @@ namespace AxCrypt.Content.Properties {
         public static string YesLabel {
             get {
                 return ResourceManager.GetString("YesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your &lt;span&gt;Security&lt;/span&gt; Matters.
+        /// </summary>
+        public static string YourSecurityMattersHeading {
+            get {
+                return ResourceManager.GetString("YourSecurityMattersHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We prioritize your privacy. All feedback and data during this beta trial will be handled securely and confidentially..
+        /// </summary>
+        public static string YourSecurityMattersText1 {
+            get {
+                return ResourceManager.GetString("YourSecurityMattersText1", resourceCulture);
             }
         }
     }

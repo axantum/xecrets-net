@@ -20,8 +20,7 @@ namespace AxCrypt.Desktop.Window
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyShareDialog));
-            this._shareKeyAddUserInfo = new System.Windows.Forms.Label();
-            this._addUserLabel = new System.Windows.Forms.Label();
+            this._shareKeyAddUserInfo = new System.Windows.Forms.LinkLabel();
             this._sharedKeyUsersListTitle = new System.Windows.Forms.Label();
             this._addNewUserTextBox = new System.Windows.Forms.TextBox();
             this._addButton = new System.Windows.Forms.Button();
@@ -64,25 +63,16 @@ namespace AxCrypt.Desktop.Window
             // 
             // _shareKeyAddUserInfo
             // 
-            this._shareKeyAddUserInfo.Font = FormStyles.OpenSans10Regular;
-            this._shareKeyAddUserInfo.ForeColor = FormStyles.GreyColor;
+            this._shareKeyAddUserInfo.Font = FormStyles.OpenSans12Regular;
+            this._shareKeyAddUserInfo.ForeColor = FormStyles.ColTxtBusBd;
             this._shareKeyAddUserInfo.AutoSize = true;
             this._shareKeyAddUserInfo.Location = new System.Drawing.Point(55, 40);
             this._shareKeyAddUserInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._shareKeyAddUserInfo.Name = "_shareKeyAddUserInfo";
-            this._shareKeyAddUserInfo.Size = new System.Drawing.Size(447, 17);
-            this._shareKeyAddUserInfo.Text = "Add recipients to the list of people who you want to share this file with.";
-            // 
-            // _addUserLabel
-            // 
-            this._addUserLabel.AutoSize = true;
-            this._addUserLabel.Font = FormStyles.OpenSans12Bold;
-            this._addUserLabel.ForeColor = FormStyles.GreyColor;
-            this._addUserLabel.Location = new System.Drawing.Point(55, 71);
-            this._addUserLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this._addUserLabel.Name = "_addUserLabel";
-            this._addUserLabel.Size = new System.Drawing.Size(96, 20);
-            this._addUserLabel.Text = "[Add user]";
+            this._shareKeyAddUserInfo.MaximumSize = new System.Drawing.Size(550, 50);
+            this._shareKeyAddUserInfo.Text = "Add User(s) or Group(s) with whom you want to share the file(s). If you don`t know about the Groups yet, learn more and create your first one by the link Create a Group!";
+            this._shareKeyAddUserInfo.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this._shareKeyAddUserInfo.LinkColor = FormStyles.ColHglhgt;
             // 
             // _addNewUserTextBox
             // 
@@ -94,14 +84,14 @@ namespace AxCrypt.Desktop.Window
             this._addNewUserTextBox.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this._addNewUserTextBox.Name = "_addNewUserTextBox";
             this._addNewUserTextBox.TabIndex = 1;
-            this._addNewUserTextBox.Text = "Add email";
+            this._addNewUserTextBox.Text = "Type user email,or a group name";
             // 
             // _userEmailAutoSuggestionLayoutPanel
             // 
             this._userEmailAutoSuggestionLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._userEmailAutoSuggestionLayoutPanel.BackColor = FormStyles.LightGreyColor;
             this._userEmailAutoSuggestionLayoutPanel.Location = new System.Drawing.Point(55, 122);
-            this._userEmailAutoSuggestionLayoutPanel.Name = "_userEmailAutoSuggestionLayout";
+            this._userEmailAutoSuggestionLayoutPanel.Name = "_userEmailAutoSuggestionLayoutPanel";
             this._userEmailAutoSuggestionLayoutPanel.Size = new System.Drawing.Size(425, 165);
             this._userEmailAutoSuggestionLayoutPanel.Controls.Add(_userEmailAutoSuggestionLayout);
             this._userEmailAutoSuggestionLayoutPanel.Visible = false;
@@ -227,7 +217,6 @@ namespace AxCrypt.Desktop.Window
             this.MinimumSize = new System.Drawing.Size(670, 480);
             this.Controls.Add(this._shareAccessTitlePanel);
             this.Controls.Add(this._shareKeyAddUserInfo);
-            this.Controls.Add(this._addUserLabel);
             this.Controls.Add(this._selectedFileListLayout);
             this.Controls.Add(this._moreFilesInfo);
             this.Controls.Add(this._selectedSharedKeyUserPopupLayout);
@@ -250,8 +239,7 @@ namespace AxCrypt.Desktop.Window
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label _shareKeyAddUserInfo;
-        private System.Windows.Forms.Label _addUserLabel;
+        private System.Windows.Forms.LinkLabel _shareKeyAddUserInfo;
         private System.Windows.Forms.TextBox _addNewUserTextBox;
         private System.Windows.Forms.Button _addButton;
         private System.Windows.Forms.Button _applyButton;

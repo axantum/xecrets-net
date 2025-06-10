@@ -330,6 +330,11 @@ namespace AxCrypt.Core.UI
             get { return (SecretsFilter)Load(nameof(SecretsFilter), (int)SecretsFilter.All); }
             set { Store(nameof(SecretsFilter), (int)value); }
         }
+        public SecuredMessengerFilterTab SecuredMessengerFilterTab
+        {
+            get { return (SecuredMessengerFilterTab)Load(nameof(SecuredMessengerFilterTab), (int)SecuredMessengerFilterTab.Inbox); }
+            set { Store(nameof(SecuredMessengerFilterTab), (int)value); }
+        }
 
         public TimeSpan LongOperationThreshold
         {

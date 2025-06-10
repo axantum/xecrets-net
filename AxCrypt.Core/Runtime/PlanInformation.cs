@@ -31,31 +31,34 @@ namespace AxCrypt.Core.Runtime
             {
                 return new PlanInformation(PlanState.NoPremium, 0, false, false, false);
             }
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return new PlanInformation(PlanState.OfflineNoPremium, 0, false, false, false);
+            }
 
-            PlanInformation pi = await GetPlanInformationAsync(identity);
-            return pi;
+            await UserAccountInfo.LoadAsync(identity).Free();
+
+            UserAccount userAccount = UserAccountInfo.UserAccount;
+            return await InternalCreatePlanInformationAsync(userAccount);
         }
 
-        private static async Task<PlanInformation> GetPlanInformationAsync(LogOnIdentity identity)
+        public static async Task<PlanInformation> InternalCreatePlanInformationAsync(UserAccount userAccount)
         {
-            IAccountService service = New<LogOnIdentity, IAccountService>(identity);
-
-            UserAccount userAccount = (await service.AccountAsync().Free());
             SubscriptionLevel level = await userAccount.ValidatedLevelAsync();
             switch (level)
             {
                 case SubscriptionLevel.Unknown:
                 case SubscriptionLevel.Free:
-                    return await NoPremiumOrCanTryAsync(service);
+                    return NoPremiumOrCanTryAsync(userAccount);
 
                 case SubscriptionLevel.Business:
-                    return new PlanInformation(PlanState.HasBusiness, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
+                    return new PlanInformation(PlanState.HasBusiness, GetDaysLeft(userAccount.LevelExpiration), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
                 case SubscriptionLevel.Premium:
-                    return new PlanInformation(PlanState.HasPremium, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
+                    return new PlanInformation(PlanState.HasPremium, GetDaysLeft(userAccount.LevelExpiration), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
                 case SubscriptionLevel.PasswordManager:
-                    return new PlanInformation(PlanState.HasPasswordManager, await GetDaysLeft(service), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
+                    return new PlanInformation(PlanState.HasPasswordManager, GetDaysLeft(userAccount.LevelExpiration), false, userAccount.ActiveSubscriptionFromAppStore, userAccount.BusinessAdmin);
 
                 case SubscriptionLevel.DefinedByServer:
                 case SubscriptionLevel.Undisclosed:
@@ -73,9 +76,9 @@ namespace AxCrypt.Core.Runtime
             BusinessAdmin = businessAdmin;
         }
 
-        private static async Task<int> GetDaysLeft(IAccountService service)
+        private static int GetDaysLeft(DateTime levelExpiration)
         {
-            DateTime expiration = (await service.AccountAsync().Free()).LevelExpiration;
+            DateTime expiration = levelExpiration;
             if (expiration == DateTime.MaxValue || expiration == DateTime.MinValue)
             {
                 return int.MaxValue;
@@ -92,14 +95,8 @@ namespace AxCrypt.Core.Runtime
             return totalDays > int.MaxValue ? int.MaxValue : (int)totalDays;
         }
 
-        private static async Task<PlanInformation> NoPremiumOrCanTryAsync(IAccountService service)
+        private static PlanInformation NoPremiumOrCanTryAsync(UserAccount userAccount)
         {
-            if (New<AxCryptOnlineState>().IsOffline)
-            {
-                return new PlanInformation(PlanState.OfflineNoPremium, 0, false, false, false);
-            }
-
-            UserAccount userAccount = (await service.AccountAsync().Free());
             Offers offers = userAccount.Offers;
 
             if (!offers.HasFlag(Offers.AxCryptTrial))

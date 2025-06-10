@@ -11,6 +11,13 @@
         IsProductFeatureComplicated,
         IsChangePlan,
         IsNeedProductForProject,
-        IsDontLikeRecurringFlow
+        IsDontLikeRecurringFlow,
+        MissingFeature,
+        SupportNotHelpful,
+        FoundBetterAlternative,
+        FoundBetterDeal,
+        UsageOther,
+        PricingOther,
+        TechnicalOther
     }
 }

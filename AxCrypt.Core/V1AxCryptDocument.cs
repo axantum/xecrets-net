@@ -85,6 +85,8 @@ namespace AxCrypt.Core
 
         public IAsymmetricPublicKey AsymmetricMasterKey { get; private set; }
 
+        public IEnumerable<IAsymmetricPublicKey> AsymmetricMasterKeys { get; private set; }
+
         public DecryptionParameter DecryptionParameter { get; set; }
 
         public EncryptedProperties Properties { get; private set; }

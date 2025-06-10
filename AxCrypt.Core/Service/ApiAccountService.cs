@@ -27,6 +27,7 @@
 
 using AxCrypt.Api;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
@@ -328,6 +329,24 @@ namespace AxCrypt.Core.Service
             }
 
             return await _apiClient.DeleteUserAsync();
+        }
+
+        public async Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync()
+        {
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                return null;
+            }
+
+            try
+            {
+                IEnumerable<GroupKeyPairApiModel> apiGroupKeys = await _apiClient.ListMembershipGroupKeyAsync();
+                return apiGroupKeys;
+            }
+            catch (UnauthorizedException uaex)
+            {
+                throw new PasswordException("Credentials are not valid for server access.", uaex);
+            }
         }
     }
 }

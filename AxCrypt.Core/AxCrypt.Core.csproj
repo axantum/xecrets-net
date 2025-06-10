@@ -66,6 +66,8 @@
     <Compile Include="Crypto\LogOnIdentity.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="FormatIntegrityChecker.cs" />
+    <Compile Include="Header\MasterKeys.cs" />
+    <Compile Include="Header\V2AsymmetricMasterKeysEncryptedHeaderBlock.cs" />
     <Compile Include="Header\V2AsymmetricMasterKeyEncryptedHeaderBlock.cs" />
     <Compile Include="IO\CanOpenEncryptedFile.cs" />
     <Compile Include="IO\FileFilter.cs" />
@@ -191,6 +193,8 @@
     <Compile Include="Secrets\SecretSharedUser.cs" />
     <Compile Include="Secrets\ShareSecret.cs" />
     <Compile Include="Secrets\TransientProtectedData.cs" />
+    <Compile Include="SecuredMessenger\Messenger.cs" />
+    <Compile Include="SecuredMessenger\SecuredMessenger.cs" />
     <Compile Include="Service\AccountServiceExtensions.cs" />
     <Compile Include="Service\ApiAccountService.cs" />
     <Compile Include="Service\CachingAccountService.cs" />
@@ -224,19 +228,30 @@
     <Compile Include="Session\OpenFileProperties.cs" />
     <Compile Include="Session\PublicKeyUpdateStatus.cs" />
     <Compile Include="Session\UserPublicKeyUpdateStatus.cs" />
+    <Compile Include="StoreApi\IGroupInfoStoreApiService.cs" />
+    <Compile Include="StoreApi\IDiscountCodeStoreApiService.cs" />
+    <Compile Include="StoreApi\ISecMessengerStoreApiService.cs" />
+    <Compile Include="StoreApi\IGroupUserStoreApiService.cs" />
+    <Compile Include="StoreApi\IInAppPurchaseSettingsStoreApi.cs" />
+    <Compile Include="StoreApi\INIS2StatsStoreApiService.cs" />
     <Compile Include="StoreApi\IPaymentLogStoreApiService.cs" />
     <Compile Include="StoreApi\IBusSubsStoreApiService.cs" />
     <Compile Include="StoreApi\IBusSubsIndexStoreApiService.cs" />
+    <Compile Include="StoreApi\IGroupMasterKeyStoreApiService.cs" />
     <Compile Include="StoreApi\INotificationStoreApiService.cs" />
+    <Compile Include="StoreApi\IPurchaseSettingsStoreApiService.cs" />
+    <Compile Include="StoreApi\IPayPalPurchaseStgsStoreApiService.cs" />
     <Compile Include="StoreApi\IPushNotificationStoreApiService.cs" />
     <Compile Include="StoreApi\ISecretsStoreApiService.cs" />
     <Compile Include="StoreApi\ISecretStoreApiService.cs" />
     <Compile Include="StoreApi\IStatsStoreApiService.cs" />
     <Compile Include="StoreApi\ISubsCancelnStoreApiService.cs" />
     <Compile Include="StoreApi\IStrpFailedTransStoreApiService.cs" />
+    <Compile Include="StoreApi\ITwoFactorApiService.cs" />
     <Compile Include="StoreApi\IUserStoreApiService.cs" />
     <Compile Include="StoreApi\IUTMTagActivityStoreApiService.cs" />
     <Compile Include="StoreApi\IUTMTagStoreApiService.cs" />
+    <Compile Include="StoreApi\IPrivateSubscriptionStoreApiService.cs" />
     <Compile Include="UI\AdditionalUserSettings.cs" />
     <Compile Include="StoreApi\IGroupsStoreApiService.cs" />
     <Compile Include="UI\DeviceLockedEventArgs.cs" />
@@ -270,6 +285,9 @@
     <Compile Include="UI\Secret\SecretShareVisibility.cs" />
     <Compile Include="UI\Secret\SecretsFilter.cs" />
     <Compile Include="UI\Secret\SecretsSortOrder.cs" />
+    <Compile Include="UI\SecuredMessenger\SecMsgSearchFilters.cs" />
+    <Compile Include="UI\SecuredMessenger\SecuredMessengerFilterTab.cs" />
+    <Compile Include="UI\SecuredMessenger\SecuredMessengerVisibility.cs" />
     <Compile Include="UI\SettingsStore.cs" />
     <Compile Include="UI\PremiumManager.cs" />
     <Compile Include="UI\StatusChecker.cs" />
@@ -448,6 +466,8 @@
     <None Include="Secrets\AxantumXecrets.xsx">
       <DependentUpon>AxantumXecrets.xsd</DependentUpon>
     </None>
+    <Compile Include="Runtime\UserAccountInfo.cs" />
+    <Compile Include="IO\FilePickerItemModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AxantumStrongName.pfx" />
@@ -513,6 +533,9 @@
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\axcrypt-web\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\netstandard1.1\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\axcrypt-web\packages\Newtonsoft.Json.12.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

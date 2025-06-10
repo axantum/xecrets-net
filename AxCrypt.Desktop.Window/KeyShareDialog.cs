@@ -27,14 +27,20 @@ namespace AxCrypt.Desktop.Window
         {
             public static System.Drawing.Color GreenColor = System.Drawing.Color.FromArgb(237, 241, 234);
 
+            public static System.Drawing.Color ColTxtBusBd = ColorTranslator.FromHtml("#232323");
+
+            public static System.Drawing.Color ColHglhgt = ColorTranslator.FromHtml("#FFC50D");
+
             public static System.Drawing.Color GreyColor = System.Drawing.Color.FromArgb(1, 73, 73, 73);
 
             public static System.Drawing.Color LightGreyColor = System.Drawing.Color.FromArgb(202, 202, 202);
 
+            public static System.Drawing.Font OpenSans12Regular = new System.Drawing.Font("Open Sans", 11F, System.Drawing.FontStyle.Regular);
+
             public static System.Drawing.Font OpenSans12Bold = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Bold);
 
             public static System.Drawing.Font OpenSans10Regular = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Regular);
-
+            
             public static System.Drawing.Font OpenSans9Dot5Regular = new System.Drawing.Font("Open Sans", 9.5F, System.Drawing.FontStyle.Regular);
         }
 
@@ -64,7 +70,18 @@ namespace AxCrypt.Desktop.Window
             InitializeStyle(parent);
 
             _viewModel = viewModel;
-            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) => { _shareKeyUserList = aks.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user => new ShareKeyUser(user.Email, AccountStatus.Verified)).ToList(); });
+            _viewModel.BindPropertyChanged<IEnumerable<UserPublicKey>>(nameof(SharingListViewModel.SharedWith), (aks) =>
+            {
+                _shareKeyUserList = aks.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user =>
+                {
+                    if (user != null && !string.IsNullOrEmpty(user.GroupName))
+                    {
+                        return new ShareKeyUser(user.Email, user.GroupName);
+                    }
+
+                    return new ShareKeyUser(user.Email, AccountStatus.Verified);
+                }).ToList();
+            });
             _viewModel.BindPropertyChanged<bool>(nameof(SharingListViewModel.IsOnline), (bool isOnline) => { SetNewContactState(); });
             _addNewUserTextBox.GotFocus += (sender, e) => { SuggestUnSharedUserEmailList(); };
             _addNewUserTextBox.Click += (sender, e) => { SuggestUnSharedUserEmailList(); };
@@ -89,8 +106,12 @@ namespace AxCrypt.Desktop.Window
         {
             Text = Texts.ShareAccessTitle;
             _shareAccessTitle.Text = "&" + Texts.ShareAccessTitle;
-            _shareKeyAddUserInfo.Text = "&" + Texts.ShareKeyInformationText;
-            _addUserLabel.Text = "&" + Texts.AddUserPromptText;
+
+            _shareKeyAddUserInfo.Text = "Add User(s) or Group(s) with whom you want to share the file(s). If you don`t know about the Groups yet, learn more and create your first one by the link Create a Group!";
+            this._shareKeyAddUserInfo.Links.Add(105, 10, "https://axcrypt.net/information/group/");
+            this._shareKeyAddUserInfo.Links.Add(153, 16, "https://account.axcrypt.net/en/Group");
+            this._shareKeyAddUserInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.shareKeyInfoLinkClicked);
+
             _addButton.Text = "&" + Texts.AddPromptText;
             _applyButton.Text = "&" + Texts.ApplyLabel;
             _cancelButton.Text = "&" + Texts.ButtonCancelText;
@@ -136,9 +157,7 @@ namespace AxCrypt.Desktop.Window
             _viewModel.NewKeyShare = _addNewUserTextBox.Text.Trim();
             this._userEmailAutoSuggestionLayout.Controls.Clear();
 
-            IEnumerable<UserPublicKey> filteredList = _viewModel.NotSharedWith.Where(nsw => nsw.Email.Address.Contains(_addNewUserTextBox.Text));
-            IEnumerable<ShareKeyUser> filteredUnSharedUsersList = filteredList.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user => new ShareKeyUser(user.Email, AccountStatus.Verified)).ToList();
-
+            IEnumerable<ShareKeyUser> filteredUnSharedUsersList = SuggestNotSharedWithByText(_addNewUserTextBox.Text);
             if (!filteredUnSharedUsersList.Any())
             {
                 this._userEmailAutoSuggestionLayoutPanel.Visible = false;
@@ -157,6 +176,18 @@ namespace AxCrypt.Desktop.Window
             ClearErrorProviders();
         }
 
+        private IEnumerable<ShareKeyUser> SuggestNotSharedWithByText(string suggestingText)
+        {
+            IEnumerable<UserPublicKey> filteredUserList = _viewModel.NotSharedWith.Where(nsw => string.IsNullOrEmpty(nsw.GroupName) && nsw.Email.Address.Contains(suggestingText));
+            List<ShareKeyUser> filteredUnSharedUsersList = filteredUserList.Distinct(UserPublicKey.EmailComparer).ToArray().Select(user => new ShareKeyUser(user.Email, AccountStatus.Verified)).ToList();
+
+            IEnumerable<UserPublicKey> filteredGroupList = _viewModel.NotSharedWith.Where(nsw => !string.IsNullOrEmpty(nsw.GroupName) && nsw.GroupName.Contains(suggestingText));
+            IEnumerable<ShareKeyUser> filteredUnSharedGroupsList = filteredGroupList.Distinct().ToArray().Select(user => new ShareKeyUser(user.Email, user.GroupName)).ToList();
+
+            filteredUnSharedUsersList.AddRange(filteredUnSharedGroupsList);
+            return filteredUnSharedUsersList;
+        }
+
         private async Task AddShareKeyUser()
         {
             if (string.IsNullOrWhiteSpace(_addNewUserTextBox.Text) || _addNewUserTextBox.Text == Texts.AddEmailPromptText)
@@ -164,14 +195,20 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
-            EmailAddress addedUserEmailAddress;
-            if (!EmailAddress.TryParse(_addNewUserTextBox.Text.Trim(), out addedUserEmailAddress))
+            EmailAddress addedUserEmailAddress = ShareKeyUserEmailAddress();
+            UserPublicKey groupPublicKey = ValidShareKeyUserGroup();
+            if (addedUserEmailAddress == EmailAddress.Empty && groupPublicKey == null)
             {
                 _errorProvider1.SetError(_addNewUserTextBox, Texts.InvalidEmail);
                 return;
             }
 
-            if (_shareKeyUserList.Any(user => user.UserEmail == addedUserEmailAddress))
+            if (groupPublicKey != null)
+            {
+                addedUserEmailAddress = groupPublicKey.Email;
+            }
+
+            if (_shareKeyUserList.Any(user => user.UserEmail == addedUserEmailAddress.Address))
             {
                 return;
             }
@@ -181,15 +218,32 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
-            AccountStatus accountStatus = AccountStatus.Verified;
-            if (!New<AxCryptOnlineState>().IsOffline)
+            ShareKeyUser shareKeyUser = null;
+            if (groupPublicKey == null)
             {
-                accountStatus = await ShareNewContactAsync();
+                AccountStatus accountStatus = AccountStatus.Verified;
+                if (!New<AxCryptOnlineState>().IsOffline)
+                {
+                    accountStatus = await ShareNewContactAsync();
+                }
+                _addButton.Enabled = false;
+
+                shareKeyUser = new ShareKeyUser(EmailAddress.Parse(_viewModel.NewKeyShare), accountStatus);
             }
-            _addButton.Enabled = false;
+            else
+            {
+                _viewModel.NewKeyShare = groupPublicKey.Email.Address;
+                await _viewModel.AddNewKeyShare.ExecuteAsync(_viewModel.NewKeyShare);
 
-            ShareKeyUser shareKeyUser = new ShareKeyUser(EmailAddress.Parse(_viewModel.NewKeyShare), accountStatus);
+                string shareGroupText = _addNewUserTextBox.Text.Trim();
+                shareKeyUser = new ShareKeyUser(groupPublicKey.Email, shareGroupText);
+            }
 
+            ProcessShareKeyUserViewControls(shareKeyUser);
+        }
+
+        private void ProcessShareKeyUserViewControls(ShareKeyUser shareKeyUser)
+        {
             if (_shareKeyUserList.Count == 6)
             {
                 InitializeSharedKeyUsersListLayout();
@@ -204,6 +258,22 @@ namespace AxCrypt.Desktop.Window
             SetOkButtonState();
             _addNewUserTextBox.Text = string.Empty;
             _addNewUserTextBox.Focus();
+        }
+
+        private EmailAddress ShareKeyUserEmailAddress()
+        {
+            if (EmailAddress.TryParse(_addNewUserTextBox.Text.Trim(), out EmailAddress addedUserEmailAddress))
+            {
+                return addedUserEmailAddress;
+            }
+
+            return EmailAddress.Empty;
+        }
+
+        private UserPublicKey ValidShareKeyUserGroup()
+        {
+            string shareUserText = _addNewUserTextBox.Text.Trim();
+            return _viewModel.GetValidGroupPublicKey(shareUserText);
         }
 
         private async Task<bool> AddShareKeyWhenOffline(EmailAddress userEmail)
@@ -412,6 +482,14 @@ namespace AxCrypt.Desktop.Window
                 return;
             }
 
+            bool isGroup = _viewModel.GetValidGroupPublicKey("", new List<EmailAddress>() { _selectedUserEmailForContextMenuOperation }) != null;
+            if (isGroup && !New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business))
+            {
+                this._selectedSharedKeyUserPopupLayout.Visible = false;
+                SetOkButtonState();
+                return;
+            }
+            
             await _viewModel.RefreshKnownContact.ExecuteAsync(new List<EmailAddress>() { _selectedUserEmailForContextMenuOperation });
             this._selectedSharedKeyUserPopupLayout.Visible = false;
             SetOkButtonState();
@@ -463,7 +541,7 @@ namespace AxCrypt.Desktop.Window
             _selectedFileListLayout.Controls.Add(selectedFileItem);
         }
 
-        private void AddSharedKeyUserToList(ShareKeyUser shareKeyUser)
+        private void AddSharedKeyUserToList(ShareKeyUser user)
         {
             int verticalScrollSize = 18;
             int width = _sharedWithUsersListLayout.Width;
@@ -477,7 +555,7 @@ namespace AxCrypt.Desktop.Window
 
             PictureBox userTypeIcon = new PictureBox
             {
-                Image = shareKeyUser.Image,
+                Image = user.Image,
                 ImeMode = System.Windows.Forms.ImeMode.NoControl,
                 Name = "UserTypeIcon",
                 SizeMode = PictureBoxSizeMode.AutoSize,
@@ -485,10 +563,11 @@ namespace AxCrypt.Desktop.Window
                 Padding = new System.Windows.Forms.Padding(20, 10, 0, 10),
             };
 
+            string userEmailOrGroup = user.GroupName ?? user.UserEmail;
             Label userEmail = new Label
             {
                 Name = "UserEmail",
-                Text = shareKeyUser.UserEmail.Address,
+                Text = userEmailOrGroup,
                 Size = new System.Drawing.Size(textWidth, 32),
                 Padding = new System.Windows.Forms.Padding(12, 3, 0, 0),
                 Font = FormStyles.OpenSans10Regular,
@@ -498,7 +577,7 @@ namespace AxCrypt.Desktop.Window
             };
             Button contextMenuButton = new Button
             {
-                BackgroundImage = shareKeyUser.DotImage,
+                BackgroundImage = user.DotImage,
                 BackgroundImageLayout = ImageLayout.Center,
                 FlatStyle = FlatStyle.Flat,
                 Size = new System.Drawing.Size(imageAndMenuWidth, 32),
@@ -508,7 +587,7 @@ namespace AxCrypt.Desktop.Window
             contextMenuButton.FlatAppearance.BorderColor = FormStyles.GreenColor;
             contextMenuButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
 
-            contextMenuButton.Click += (sender, args) => OnContextMenuClick(sender, args, shareKeyUser.UserEmail.Address);
+            contextMenuButton.Click += (sender, args) => OnContextMenuClick(sender, args, user.UserEmail);
 
             FlowLayoutPanel shareKeyUserEntry = new FlowLayoutPanel
             {
@@ -540,6 +619,11 @@ namespace AxCrypt.Desktop.Window
 
         private void AddUserEmailAutoSuggestionItem(ShareKeyUser shareKeyUser, bool canReduceWidthForScroll)
         {
+            if (shareKeyUser == null)
+            {
+                return;
+            }
+
             int verticalScrollSize = 18;
             int width = _userEmailAutoSuggestionLayout.Width;
             if (canReduceWidthForScroll)
@@ -549,11 +633,12 @@ namespace AxCrypt.Desktop.Window
 
             int imageAndMenuWidth = (int)Math.Round(0.2 * width);
             int textWidth = (int)Math.Round(0.79 * width);
+            string groupOrEmail = string.IsNullOrEmpty(shareKeyUser.GroupName) ? shareKeyUser.UserEmail : shareKeyUser.GroupName;
 
             Label userEmail = new Label
             {
                 Name = "UserEmail",
-                Text = shareKeyUser.UserEmail.Address,
+                Text = groupOrEmail,
                 Size = new System.Drawing.Size(textWidth, 32),
                 Padding = new System.Windows.Forms.Padding(15, 3, 0, 0),
                 Font = FormStyles.OpenSans10Regular,
@@ -561,7 +646,7 @@ namespace AxCrypt.Desktop.Window
                 TextAlign = ContentAlignment.MiddleLeft,
                 AutoEllipsis = true,
             };
-            userEmail.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+            userEmail.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(groupOrEmail);
 
             PictureBox userTypeIcon = new PictureBox
             {
@@ -572,7 +657,7 @@ namespace AxCrypt.Desktop.Window
                 Size = new System.Drawing.Size(imageAndMenuWidth, 32),
                 Padding = new System.Windows.Forms.Padding(30, 10, 0, 10),
             };
-            userTypeIcon.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+            userTypeIcon.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(groupOrEmail);
 
             FlowLayoutPanel userEmailAutoSuggestionItemLayout = new FlowLayoutPanel
             {
@@ -588,7 +673,7 @@ namespace AxCrypt.Desktop.Window
                     userTypeIcon,
                 }
             };
-            userEmailAutoSuggestionItemLayout.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(shareKeyUser.UserEmail.Address);
+            userEmailAutoSuggestionItemLayout.Click += (sender, args) => OnSelectItemFromAutoSuggestionList(groupOrEmail);
 
             Panel bottomLine = new Panel
             {
@@ -671,5 +756,15 @@ namespace AxCrypt.Desktop.Window
         }
 
         #endregion SelectedFileListItemAndSharedKeyUsersListItemTemplate
+
+        private void shareKeyInfoLinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            this._shareKeyAddUserInfo.Links[_shareKeyAddUserInfo.Links.IndexOf(e.Link)].Visited = true;
+            string target = e.Link.LinkData as string;
+            if (null != target && target.StartsWith("https"))
+            {
+                System.Diagnostics.Process.Start(target);
+            }
+        }
     }
 }
