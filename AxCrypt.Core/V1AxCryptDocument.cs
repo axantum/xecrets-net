@@ -97,6 +97,7 @@ namespace AxCrypt.Core
         {
             CryptoFactory = new V1Aes128CryptoFactory();
             AsymmetricRecipients = Array.Empty<UserPublicKey>();
+            AsymmetricMasterKeys = [];
         }
 
         public V1AxCryptDocument(AxCryptReader reader)
@@ -119,6 +120,8 @@ namespace AxCrypt.Core
         public IEnumerable<UserPublicKey> AsymmetricRecipients { get; private set; }
 
         public IAsymmetricPublicKey? AsymmetricMasterKey { get; private set; }
+
+        public IEnumerable<IAsymmetricPublicKey> AsymmetricMasterKeys { get; private set; }
 
         public DecryptionParameter? DecryptionParameter { get; set; }
 

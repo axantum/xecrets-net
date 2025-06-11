@@ -83,5 +83,23 @@ namespace AxCrypt.Core.Service.Secrets
                 throw;
             }
         }
+
+        public async Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            if (string.IsNullOrEmpty(_apiClient.Identity.User))
+            {
+                throw new InvalidOperationException("The account service requires a user.");
+            }
+
+            try
+            {
+                bool isInserted = await _apiClient.InsertUserNotificationAsync(notificationModel).Free();
+                return isInserted;
+            }
+            catch (UnauthorizedException)
+            {
+                throw;
+            }
+        }
     }
 }

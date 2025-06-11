@@ -1,14 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics.CodeAnalysis;
 
 namespace AxCrypt.Api.Model.User
 {
     public class UserApiModel : BaseApiModel
     {
         public static UserApiModel Empty = new UserApiModel(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, DateTime.MinValue, DateTime.MinValue);
+
+        public UserApiModel()
+        {
+        }
 
         public UserApiModel(long id, string userEmail, string role, string passwordSalt, string passwordHash, string activationCode, DateTime createdUtc, DateTime updatedUtc)
         {
@@ -26,22 +27,22 @@ namespace AxCrypt.Api.Model.User
         public long Id { get; set; }
 
         [JsonPropertyName("userEmail")]
-        public string UserEmail { get; set; }
+        public string? UserEmail { get; set; }
 
         [JsonPropertyName("role")]
-        public string Role { get; set; }
+        public string? Role { get; set; }
 
         [JsonPropertyName("passwordSalt")]
-        public string PasswordSalt { get; set; }
+        public string? PasswordSalt { get; set; }
 
         [JsonPropertyName("passwordHash")]
-        public string PasswordHash { get; set; }
+        public string? PasswordHash { get; set; }
 
         [JsonPropertyName("providerUserKey")]
         public string? ProviderUserKey { get; set; }
 
         [JsonPropertyName("activationCode")]
-        public string ActivationCode { get; set; }
+        public string? ActivationCode { get; set; }
 
         [JsonPropertyName("approvedTime")]
         public DateTime ApprovedTime { get; set; }
@@ -72,5 +73,8 @@ namespace AxCrypt.Api.Model.User
 
         [JsonPropertyName("failedPwdAtmptWindStart")]
         public int FailedPwdAtmptWindStart { get; set; }
+
+        [JsonPropertyName("is2FAEnabled")]
+        public bool Is2FAEnabled { get; set; }
     }
 }

@@ -27,6 +27,7 @@
 
 using AxCrypt.Abstractions;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
@@ -359,6 +360,12 @@ namespace AxCrypt.Core.Service
         public Task<bool> DeleteUserAsync()
         {
             throw new InvalidOperationException("Can't perform delete user account locally.");
+        }
+
+        public Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync()
+        {
+            IEnumerable<GroupKeyPairApiModel> result = new List<GroupKeyPairApiModel>();
+            return Task.FromResult(result);
         }
     }
 }

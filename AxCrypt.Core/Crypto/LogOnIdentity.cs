@@ -1,4 +1,5 @@
-﻿using AxCrypt.Api.Model.Masterkey;
+﻿using AxCrypt.Api.Model.Groups;
+using AxCrypt.Api.Model.Masterkey;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
@@ -61,6 +62,8 @@ namespace AxCrypt.Core.Crypto
             _keyPairs = keyPairs.OrderByDescending(uk => uk.Timestamp).ToArray();
             Passphrase = passphrase ?? Passphrase.Empty;
             UserEmail = ActiveEncryptionKeyPair.UserEmail;
+            GroupMasterKeyPairs = [];
+            UserGroupKeyPairs = [];
         }
 
         private Passphrase? _passphrase;
@@ -110,7 +113,7 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
-        public IEnumerable<IAsymmetricPrivateKey?> PrivateKeys
+        public IEnumerable<IAsymmetricPrivateKey> PrivateKeys
         {
             get
             {
@@ -118,7 +121,7 @@ namespace AxCrypt.Core.Crypto
                 {
                     return new IAsymmetricPrivateKey[0];
                 }
-                return _keyPairs.Select(uk => uk.KeyPair.PrivateKey);
+                return _keyPairs.Select(uk => uk.KeyPair.PrivateKey).Where(pk => pk != null).Cast<IAsymmetricPrivateKey>();
             }
         }
 
@@ -142,7 +145,9 @@ namespace AxCrypt.Core.Crypto
             }
         }
 
-        public MasterKeyPairInfo? MasterKeyPair { get; set; }
+        public IEnumerable<MasterKeyPairInfo> GroupMasterKeyPairs { get; set; }
+
+        public IEnumerable<GroupKeyPairApiModel> UserGroupKeyPairs { get; set; }
 
         public bool Equals(LogOnIdentity? other)
         {

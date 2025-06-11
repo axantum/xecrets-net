@@ -499,7 +499,7 @@ namespace AxCrypt.Core
             {
                 throw new ArgumentNullException(nameof(destinationStream));
             }
-            if (passphrase == null!)
+            if (passphrase == null)
             {
                 throw new ArgumentNullException(nameof(passphrase));
             }
@@ -561,7 +561,7 @@ namespace AxCrypt.Core
             {
                 throw new ArgumentNullException(nameof(destinationItem));
             }
-            if (logOnIdentity == null!)
+            if (logOnIdentity == null)
             {
                 throw new ArgumentNullException(nameof(logOnIdentity));
             }
@@ -678,7 +678,7 @@ namespace AxCrypt.Core
             {
                 throw new ArgumentNullException(nameof(destinationContainerName));
             }
-            if (logOnIdentity == null!)
+            if (logOnIdentity == null)
             {
                 throw new ArgumentNullException(nameof(logOnIdentity));
             }
@@ -782,7 +782,7 @@ namespace AxCrypt.Core
             {
                 throw new ArgumentNullException(nameof(dataStore));
             }
-            if (identity == null!)
+            if (identity == null)
             {
                 throw new ArgumentNullException(nameof(identity));
             }
@@ -875,7 +875,7 @@ namespace AxCrypt.Core
             {
                 throw new ArgumentNullException(nameof(sourceStore));
             }
-            if (logOnIdentity == null!)
+            if (logOnIdentity == null)
             {
                 throw new ArgumentNullException(nameof(logOnIdentity));
             }
@@ -913,7 +913,7 @@ namespace AxCrypt.Core
         /// progress</exception>
         private static IAxCryptDocument Document(Stream source, LogOnIdentity identity, string displayContext, IProgressContext progress)
         {
-            if (identity == null!)
+            if (identity == null)
             {
                 throw new ArgumentNullException(nameof(identity));
             }

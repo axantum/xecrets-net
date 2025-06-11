@@ -109,7 +109,7 @@ namespace AxCrypt.Core.Session
                     bool isDecryptedWithMasterKey = false;
                     if (properties.DecryptionParameter != null && properties.DecryptionParameter.PrivateKey != null)
                     {
-                        isDecryptedWithMasterKey = properties.DecryptionParameter.PrivateKey.Equals(activeFile.Identity.GetPrivateMasterKey());
+                        isDecryptedWithMasterKey = activeFile.Identity.GetPrivateMasterKeys().Any(pmk => properties.DecryptionParameter.PrivateKey.Equals(pmk));
                     }
 
                     if (isDecryptedWithMasterKey)
@@ -158,10 +158,10 @@ namespace AxCrypt.Core.Session
         private static async Task AddMasterKeyParameters(EncryptionParameters parameters, ActiveFile activeFile)
         {
             LogOnIdentity logOnIdentity = New<KnownIdentities>().DefaultEncryptionIdentity;
-            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business) && logOnIdentity.MasterKeyPair != null)
+            if (New<LicensePolicy>().Capabilities.Has(LicenseCapability.Business) && logOnIdentity.GroupMasterKeyPairs != null)
             {
-                IAsymmetricPublicKey publicKey = New<IAsymmetricFactory>().CreatePublicKey(logOnIdentity.MasterKeyPair!.PublicKey!);
-                parameters.PublicMasterKey = new UserPublicKey(logOnIdentity.UserEmail, publicKey);
+                IEnumerable<IAsymmetricPublicKey> masterPublicKeys = logOnIdentity.GroupMasterKeyPairs.Select(keypair => New<IAsymmetricFactory>().CreatePublicKey(keypair.PublicKey!));
+                await parameters.AddMasterPublicKeyAsync(masterPublicKeys);
                 return;
             }
 

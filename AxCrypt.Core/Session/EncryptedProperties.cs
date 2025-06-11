@@ -65,6 +65,8 @@ namespace AxCrypt.Core.Session
 
         public IAsymmetricPublicKey? MasterPublicKey { get; set; }
 
+        public IEnumerable<IAsymmetricPublicKey> MasterPublicKeys { get; set; } = [];
+
         /// <summary>
         /// Factory method to instantiate an EncryptedProperties instance. It is required and assumed that the
         /// currently logged on user has the required keys to decrypt the file.
@@ -118,7 +120,8 @@ namespace AxCrypt.Core.Session
                 {
                     SharedKeyHolders = document.AsymmetricRecipients,
                     MasterPublicKey = document.AsymmetricMasterKey,
-                    DecryptionParameter = document.DecryptionParameter
+                    MasterPublicKeys = document.AsymmetricMasterKeys,
+                    DecryptionParameter = document.DecryptionParameter,
                 };
                 properties.FileMetaData.CreationTimeUtc = document.CreationTimeUtc;
                 properties.FileMetaData.LastWriteTimeUtc = document.LastWriteTimeUtc;

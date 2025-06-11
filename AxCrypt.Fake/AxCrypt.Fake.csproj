@@ -88,6 +88,7 @@
     <Compile Include="FakeRequestClient.cs" />
     <Compile Include="FakeRequestServer.cs" />
     <Compile Include="FakeRuntimeEnvironment.cs" />
+    <Compile Include="FakeUserContext.cs" />
     <Compile Include="FakeSleep.cs" />
     <Compile Include="FakeStatusChecker.cs" />
     <Compile Include="FakeStream.cs" />

@@ -1,5 +1,6 @@
 ﻿using AxCrypt.Abstractions;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
@@ -144,6 +145,11 @@ namespace AxCrypt.Core.Service
         public async Task<bool> DeleteUserAsync()
         {
             return await New<ICache>().UpdateItemAsync(() => _service.DeleteUserAsync(), _key).Free();
+        }
+
+        public async Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync()
+        {
+            return await _service.ListMembershipGroupsAsync();
         }
     }
 }

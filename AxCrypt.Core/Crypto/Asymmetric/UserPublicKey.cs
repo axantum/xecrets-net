@@ -59,21 +59,26 @@ namespace AxCrypt.Core.Crypto.Asymmetric
             }
         }
 
-        public UserPublicKey(EmailAddress email, IAsymmetricPublicKey publicKey)
+        public UserPublicKey(EmailAddress email, IAsymmetricPublicKey publicKey, string groupName = "")
         {
             Email = email;
             PublicKey = publicKey;
+            GroupName = groupName;
         }
 
         public UserPublicKey()
         {
             Email = EmailAddress.Empty;
+            GroupName = String.Empty;
         }
 
         public static readonly IEqualityComparer<UserPublicKey> EmailComparer = new EmailAddressComparer();
 
         [JsonPropertyName("email")]
         public EmailAddress Email { get; set; }
+
+        [JsonPropertyName("groupName")]
+        public string GroupName { get; set; }
 
         [JsonPropertyName("publickey")]
         [AllowNull]

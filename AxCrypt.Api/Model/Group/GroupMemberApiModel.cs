@@ -22,6 +22,18 @@ namespace AxCrypt.Api.Model.Groups
         [JsonPropertyName("role")]
         public long Role { get; set; }
 
+        [JsonPropertyName("masterKeyStatus")]
+        public string? MasterKeyStatus { get; set; }
+
+        [JsonPropertyName("disableMasterKeyAccess")]
+        public bool DisableMasterKeyAccess { get; set; }
+
+        [JsonPropertyName("groupPrivateKey")]
+        public string? GroupPrivateKey { get; set; }
+
+        [JsonPropertyName("disableAccess")]
+        public bool DisableAccess { get; set; }
+
         [JsonPropertyName("groups")]
         public IEnumerable<string>? Groups { get; set; }
     }

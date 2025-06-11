@@ -1,11 +1,11 @@
 ﻿using AxCrypt.Abstractions;
+using AxCrypt.Api.Extension;
 using AxCrypt.Api.Model;
 using AxCrypt.Api.Model.Secret;
 using AxCrypt.Core;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
-using AxCrypt.Core.Runtime;
 using AxCrypt.Core.Secrets;
 using AxCrypt.Cryptor.Model;
 using System;
@@ -240,6 +240,91 @@ namespace AxCrypt.Cryptor
             secret.DBId = model.DBId;
 
             return new InternalSecret(secret);
+        }
+
+        public static async Task<string> EncryptTextAsync(LogOnIdentity identity, string messageJson, IEnumerable<UserPublicKey> sharedKeyHolders)
+        {
+            if (identity is null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            if (messageJson is null)
+            {
+                throw new ArgumentNullException(nameof(messageJson));
+            }
+
+            return await InternalEncryptTextAsync(identity, messageJson, sharedKeyHolders);
+        }
+
+        private static async Task<string> InternalEncryptTextAsync(LogOnIdentity identity, string plainText, IEnumerable<UserPublicKey> sharedKeyHolders = null)
+        {
+            Guid cryptoId = Resolve.CryptoFactory.Default(New<ICryptoPolicy>()).CryptoId;
+            EncryptionParameters encryptionParameters = new EncryptionParameters(cryptoId, identity);
+            if (sharedKeyHolders != null)
+            {
+                await AddSharingParameters(encryptionParameters, sharedKeyHolders);
+            }
+
+            string userEmail = identity.UserEmail.Address;
+            byte[] encryptedText;
+            try
+            {
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(plainText);
+
+                using (MemoryStream destinationStream = new MemoryStream())
+                {
+                    using (MemoryStream sourceStream = new MemoryStream(byteArray))
+                    {
+                        using (IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters))
+                        {
+                            document.FileName = $"{userEmail}.secrets";
+                            document.CreationTimeUtc = New<INow>().Utc;
+                            document.LastWriteTimeUtc = New<INow>().Utc;
+                            document.EncryptTo(sourceStream, destinationStream, AxCryptOptions.EncryptWithCompression);
+                        }
+                    }
+                    encryptedText = destinationStream.ToArray();
+                }
+            }
+            finally
+            {
+            }
+
+            return encryptedText.GetCipherString();
+        }
+
+        public static string DecryptTextAsync(LogOnIdentity identity, string encryptedText, AxCrypt.Core.Service.UserKeyPair userKeyPair = null)
+        {
+            if (identity is null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            return InternalDecryptTextAsync(identity, encryptedText, userKeyPair);
+        }
+
+        private static string InternalDecryptTextAsync(LogOnIdentity identity, string encryptedText, AxCrypt.Core.Service.UserKeyPair userKeyPair)
+        {
+            string decryptedText = "";
+            using (MemoryStream sourceStream = new MemoryStream(encryptedText.GetCipherBytes()))
+            {
+                IAxCryptDocument document = Document(sourceStream, identity);
+                if (!document.PassphraseIsValid)
+                {
+                    return null;
+                }
+
+                using (MemoryStream destinationStream = new MemoryStream())
+                {
+                    document.DecryptTo(destinationStream);
+
+                    byte[] destinationBytes = destinationStream.ToArray();
+                    decryptedText = System.Text.Encoding.UTF8.GetString(destinationBytes, 0, destinationBytes.Length);
+                }
+            }
+
+            return decryptedText;
         }
 
         private static IStringSerializer Serializer

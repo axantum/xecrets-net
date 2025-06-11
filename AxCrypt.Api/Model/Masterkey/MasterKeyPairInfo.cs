@@ -8,6 +8,9 @@ namespace AxCrypt.Api.Model.Masterkey
 {
     public class MasterKeyPairInfo : IEquatable<MasterKeyPairInfo>
     {
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
+
         [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
 
@@ -18,7 +21,7 @@ namespace AxCrypt.Api.Model.Masterkey
         public string? PublicKey { get; set; }
 
         [JsonPropertyName("private")]
-        public IList<PrivateMasterKeyInfo>? PrivateKeys { get; set; }
+        public IList<PrivateMasterKeyInfo> PrivateKeys { get; set; } = [];
 
         public bool Equals(MasterKeyPairInfo? other)
         {
@@ -40,7 +43,7 @@ namespace AxCrypt.Api.Model.Masterkey
                 return false;
             }
 
-            return PrivateKeys!.SequenceEqual(other.PrivateKeys!);
+            return PrivateKeys.SequenceEqual(other.PrivateKeys);
         }
 
         public override bool Equals(object? obj)
@@ -56,7 +59,7 @@ namespace AxCrypt.Api.Model.Masterkey
 
         public override int GetHashCode()
         {
-            return Timestamp.GetHashCode() ^ Thumbprint!.GetHashCode() ^ PublicKey!.GetHashCode() ^ PrivateKeys!.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
+            return Timestamp.GetHashCode() ^ Thumbprint!.GetHashCode() ^ PublicKey!.GetHashCode() ^ PrivateKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
         }
 
         public static bool operator ==(MasterKeyPairInfo? left, MasterKeyPairInfo? right)

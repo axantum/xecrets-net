@@ -79,7 +79,8 @@ namespace AxCrypt.Core.UI.ViewModel
             return Constant.CompletedTask;
         }
 
-        public LogOnIdentity LogOnIdentity { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
+        public LogOnIdentity LogOnIdentity
+        { get { return GetProperty<LogOnIdentity>(nameof(LogOnIdentity)); } set { SetProperty(nameof(LogOnIdentity), value); } }
 
         public AsyncDelegateAction<object> LogOnAsync { get; private set; }
 
@@ -169,6 +170,7 @@ namespace AxCrypt.Core.UI.ViewModel
 
                 UserAccount userAccount = await accountService.AccountAsync();
                 new AxCryptUserAccountViewModel().Initilaize(userAccount);
+                await AddUserGroupKeyPairsAsync(logOnIdentity, userAccount).Free();
 
                 return await AddMasterKeyInfo(logOnIdentity, userAccount);
             }
@@ -187,8 +189,18 @@ namespace AxCrypt.Core.UI.ViewModel
                 return Task.FromResult(logOnIdentity);
             }
 
-            logOnIdentity.MasterKeyPair = userAccount.MasterKeyPair!;
+            logOnIdentity.GroupMasterKeyPairs = userAccount.GroupMasterKeyPairs;
             return Task.FromResult(logOnIdentity);
+        }
+
+        private static async Task AddUserGroupKeyPairsAsync(LogOnIdentity logOnIdentity, UserAccount userAccount)
+        {
+            if (userAccount.SubscriptionLevel != SubscriptionLevel.Business)
+            {
+                return;
+            }
+
+            logOnIdentity.UserGroupKeyPairs = await New<LogOnIdentity, IAccountService>(logOnIdentity).ListMembershipGroupsAsync();
         }
 
         private LogOnIdentity LogOnIdentityFromPassphrase(Passphrase passphrase)

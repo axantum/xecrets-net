@@ -13,15 +13,24 @@ namespace AxCrypt.Desktop.Window
     {
         public ShareKeyUser(EmailAddress userEmail, AccountStatus userAccountStatus)
         {
-            UserEmail = userEmail;
+            UserEmail = userEmail.Address;
             Image = Resources.ContactsIcon;
             if (userAccountStatus == AccountStatus.Verified)
             {
                 Image = Resources.AxCryptLogo;
             }
         }
+        
+        public ShareKeyUser(EmailAddress userEmail, string groupName)
+        {
+            UserEmail = userEmail.Address;
+            GroupName = groupName;
+            Image = Resources.IcoGrp;
+        }
 
-        public EmailAddress UserEmail { get; set; }
+        public string UserEmail { get; set; }
+
+        public string GroupName { get; set; }
 
         public Image Image { get; set; }
 

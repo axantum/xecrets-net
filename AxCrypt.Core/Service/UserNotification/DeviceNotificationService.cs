@@ -50,5 +50,22 @@ namespace AxCrypt.Core.Service.UserNotification
 
             return await _localService.GetAllUserNotificationAsync(useremail, subslevel).Free();
         }
+
+        public async Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            if (New<AxCryptOnlineState>().IsOnline && Identity != LogOnIdentity.Empty)
+            {
+                try
+                {
+                    return await _remoteService.InsertUserNotificationAsync(notificationModel).Free();
+                }
+                catch (ApiException aex)
+                {
+                    await aex.HandleApiExceptionAsync();
+                }
+            }
+
+            return await _localService.InsertUserNotificationAsync(notificationModel).Free();
+        }
     }
 }

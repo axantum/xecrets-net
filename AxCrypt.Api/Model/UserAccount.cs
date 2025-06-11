@@ -27,6 +27,8 @@ namespace AxCrypt.Api.Model
             AccountSource = AccountSource.Unknown;
             CanTryAppStorePremiumTrial = false;
             ActiveSubscriptionFromAppStore = false;
+            MasterKeyPair = new MasterKeyPairInfo();
+            GroupMasterKeyPairs = [];
         }
 
         public UserAccount(string userName, SubscriptionLevel level, DateTime expiration, AccountStatus status, Offers offers)
@@ -121,7 +123,10 @@ namespace AxCrypt.Api.Model
         public bool IsMasterKeyEnabled { get; set; }
 
         [JsonPropertyName("masterKey")]
-        public MasterKeyPairInfo? MasterKeyPair { get; set; }
+        public MasterKeyPairInfo MasterKeyPair { get; set; }
+
+        [JsonPropertyName("groupMasterKeys")]
+        public IEnumerable<MasterKeyPairInfo> GroupMasterKeyPairs { get; set; }
 
         [JsonIgnore]
         public AccountSource AccountSource { get; set; }
@@ -159,7 +164,7 @@ namespace AxCrypt.Api.Model
             {
                 return false;
             }
-            if (MasterKeyPair! != other.MasterKeyPair!)
+            if (GroupMasterKeyPairs != other.GroupMasterKeyPairs)
             {
                 return false;
             }
@@ -183,7 +188,7 @@ namespace AxCrypt.Api.Model
 
         public override int GetHashCode()
         {
-            return MasterKeyPair!.GetHashCode() ^ AccountKeys.GetHashCode() ^ UserName.GetHashCode() ^ SubscriptionLevel.GetHashCode() ^ LevelExpiration.GetHashCode() ^ AccountStatus.GetHashCode() ^ AccountKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
+            return GroupMasterKeyPairs.GetHashCode() ^ AccountKeys.GetHashCode() ^ UserName.GetHashCode() ^ SubscriptionLevel.GetHashCode() ^ LevelExpiration.GetHashCode() ^ AccountStatus.GetHashCode() ^ AccountKeys.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode()) ^ GroupMasterKeyPairs.Aggregate(0, (sum, ak) => sum ^ ak.GetHashCode());
         }
 
         public static bool operator ==(UserAccount? left, UserAccount? right)

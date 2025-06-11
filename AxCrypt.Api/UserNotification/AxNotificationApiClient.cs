@@ -5,6 +5,7 @@ using AxCrypt.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using static AxCrypt.Abstractions.TypeResolve;
 
@@ -50,6 +51,22 @@ namespace AxCrypt.Api
             IEnumerable<UserNotificationApiModel> notificationList = Serializer.Deserialize<IEnumerable<UserNotificationApiModel>>(restResponse.Content)!;
 
             return notificationList;
+        }
+
+        public async Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationList)
+        {
+            if (notificationList == null || !notificationList.Any())
+            {
+                throw new ArgumentNullException(nameof(notificationList));
+            }
+
+            Uri resource = BaseUrl.PathCombine("notification/insert".With());
+
+            RestContent content = new RestContent(Serializer.Serialize(notificationList));
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest("POST", resource, Timeout, content)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            return Serializer.Deserialize<bool>(restResponse.Content);
         }
 
         private static IStringSerializer Serializer

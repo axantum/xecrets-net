@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace AxCrypt.Core.Secrets
 {
     public class ShareSecret
     {
-        public ShareSecret(IEnumerable<SecretSharedUser> sharedUsers, string sharedBy, DateTime? shared)
+        public ShareSecret(IEnumerable<SecretSharedUser> sharedUsers, string sharedBy, DateTime? shared, string encryptedSecret = "")
         {
             SharedWith = sharedUsers;
             OwnerEmail = sharedBy;
             Shared = shared;
+            EncryptedSecret = encryptedSecret;
         }
 
-        [AllowNull]
-        private IEnumerable<SecretSharedUser> _sharedWith;
+        private IEnumerable<SecretSharedUser>? _sharedWith;
 
         public IEnumerable<SecretSharedUser> SharedWith
         {
@@ -23,8 +21,7 @@ namespace AxCrypt.Core.Secrets
             set { _sharedWith = value; }
         }
 
-        [AllowNull]
-        private string _ownerEmail;
+        private string? _ownerEmail;
 
         public string OwnerEmail
         {
@@ -38,6 +35,14 @@ namespace AxCrypt.Core.Secrets
         {
             get { return _shared ?? DateTime.MinValue; }
             set { _shared = value; }
+        }
+
+        private string? _encryptedSecret;
+
+        public string EncryptedSecret
+        {
+            get { return _encryptedSecret ?? string.Empty; }
+            set { _encryptedSecret = value; }
         }
     }
 }

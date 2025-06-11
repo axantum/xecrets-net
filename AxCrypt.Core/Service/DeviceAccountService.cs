@@ -1,6 +1,7 @@
 ﻿using AxCrypt.Abstractions;
 using AxCrypt.Api;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
@@ -131,7 +132,7 @@ namespace AxCrypt.Core.Service
             if (New<AxCryptOnlineState>().IsOffline || Identity.Passphrase == Passphrase.Empty)
             {
                 SubscriptionLevel subscriptionLevel = await localAccount.ValidatedLevelAsync();
-                localAccount.MasterKeyPair = subscriptionLevel != SubscriptionLevel.Business ? null : localAccount.MasterKeyPair;
+                localAccount.GroupMasterKeyPairs = subscriptionLevel != SubscriptionLevel.Business ? [] : localAccount.GroupMasterKeyPairs;
                 return localAccount;
             }
 
@@ -408,6 +409,40 @@ namespace AxCrypt.Core.Service
             }
 
             return await _localService.DeleteUserAsync().Free();
+        }
+
+        public async Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync()
+        {
+            IEnumerable<GroupKeyPairApiModel> localKeys = await _localService.ListMembershipGroupsAsync().Free();
+            if (New<AxCryptOnlineState>().IsOffline)
+            {
+                return localKeys;
+            }
+
+            try
+            {
+                IList<GroupKeyPairApiModel> remoteKeys = new List<GroupKeyPairApiModel>();
+                try
+                {
+                    remoteKeys = (await _remoteService.ListMembershipGroupsAsync().Free()).ToList();
+                }
+                catch (PasswordException pex)
+                {
+                    if (localKeys.Count() == 0)
+                    {
+                        throw;
+                    }
+                    New<IReport>().Exception(pex);
+                    return localKeys;
+                }
+
+                return remoteKeys;
+            }
+            catch (ApiException aex)
+            {
+                await aex.HandleApiExceptionAsync();
+            }
+            return localKeys;
         }
     }
 }

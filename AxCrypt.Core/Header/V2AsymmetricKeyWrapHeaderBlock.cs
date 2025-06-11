@@ -47,6 +47,15 @@ namespace AxCrypt.Core.Header
         }
 
         public V2AsymmetricKeyWrapHeaderBlock(UserPublicKey publicKey, SymmetricKey masterKey, SymmetricIV masterIV)
+            : this(publicKey.PublicKey, masterKey, masterIV)
+        {
+            if (publicKey == null)
+            {
+                throw new ArgumentNullException("publicKey");
+            }
+        }
+
+        public V2AsymmetricKeyWrapHeaderBlock(IAsymmetricPublicKey publicKey, SymmetricKey masterKey, SymmetricIV masterIV)
             : this(Resolve.RandomGenerator.Generate(DATABLOCK_LENGTH))
         {
             if (publicKey == null)
@@ -54,7 +63,7 @@ namespace AxCrypt.Core.Header
                 throw new ArgumentNullException(nameof(publicKey));
             }
 
-            byte[] encrypted = publicKey.PublicKey.Transform(masterKey + masterIV);
+            byte[] encrypted = publicKey.Transform(masterKey + masterIV);
             _ = GetDataBlockBytesReference().SetFrom(encrypted);
         }
 

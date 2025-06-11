@@ -14,5 +14,7 @@ namespace AxCrypt.Core.Service.UserNotification
         LogOnIdentity? Identity { get; }
 
         Task<IEnumerable<UserNotificationApiModel>> GetAllUserNotificationAsync(string useremail, string subslevel);
+
+        Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel);
     }
 }

@@ -35,6 +35,7 @@ using AxCrypt.Core.UI;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using AxCrypt.Api.Model.Groups;
 
 namespace AxCrypt.Core.Service
 {
@@ -157,6 +158,11 @@ namespace AxCrypt.Core.Service
         public Task<bool> DeleteUserAsync()
         {
             return Task.FromResult(false);
+        }
+
+        public Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupsAsync()
+        {
+            return Task.FromResult<IEnumerable<GroupKeyPairApiModel>>([]);
         }
     }
 }

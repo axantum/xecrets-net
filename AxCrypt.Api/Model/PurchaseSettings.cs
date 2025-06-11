@@ -1,11 +1,10 @@
-﻿using System.Text.Json.Serialization;
-using System;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AxCrypt.Api.Model
 {
-    public class PurchaseSettings
+    public class PurchaseSettings : BaseApiModel
     {
         public PurchaseSettings(string provider)
         {
@@ -21,22 +20,22 @@ namespace AxCrypt.Api.Model
         [JsonPropertyName("provider")]
         public string? Provider { get; set; }
 
-        [JsonPropertyName("premium_product_ids")]
+        [JsonPropertyName("premiumproductids")]
         public string? PremiumProductIdsWithAmount { get; set; }
 
-        [JsonPropertyName("business_product_ids")]
+        [JsonPropertyName("businessproductids")]
         public string? BusinessProductIdsWithAmount { get; set; }
 
-        [JsonPropertyName("passwordmanager_product_id")]
+        [JsonPropertyName("passwordmanagerproductid")]
         public string? PasswordManagerProductId { get; set; }
 
-        [JsonPropertyName("yearly_discount_percent")]
+        [JsonPropertyName("yearlydiscountpercentage")]
         public int YearlyDiscountPercentage { get; set; }
 
-        [JsonPropertyName("tax_rates")]
+        [JsonPropertyName("taxrates")]
         public string? TaxRates { get; set; }
 
-        [JsonPropertyName("micro_payment_product_id")]
+        [JsonPropertyName("micropaymentproductid")]
         public string? MicroPaymentProductId { get; set; }
 
         [JsonIgnore]
@@ -131,7 +130,7 @@ namespace AxCrypt.Api.Model
             return string.Empty;
         }
 
-        [JsonPropertyName("appstore_sandbox_url")]
+        [JsonPropertyName("appstoresandboxurl")]
         public string? AppStoreSandboxUrl { get; set; }
     }
 }

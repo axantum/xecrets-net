@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,5 +39,8 @@ namespace AxCrypt.Api.Model
 
         [JsonPropertyName("paymentprovider")]
         public string? PaymentProvider { get; set; }
+
+        [JsonPropertyName("cancelnoptoutrsn")]
+        public string? CancelnOptOutRsn { get; set; }
     }
 }

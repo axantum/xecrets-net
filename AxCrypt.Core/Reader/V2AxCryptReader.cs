@@ -94,6 +94,9 @@ namespace AxCrypt.Core.Reader
                 case HeaderBlockType.AsymmetricMasterKey:
                     return new V2AsymmetricMasterKeyEncryptedHeaderBlock(dataBlock);
 
+                case HeaderBlockType.AsymmetricMasterKeys:
+                    return new V2AsymmetricMasterKeysEncryptedHeaderBlock(dataBlock);
+
                 case HeaderBlockType.EncryptedDataPart:
                     return new EncryptedDataPartBlock(dataBlock);
 

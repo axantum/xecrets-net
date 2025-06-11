@@ -28,7 +28,12 @@ namespace AxCrypt.Core.Service.UserNotification
 
         public Task<IEnumerable<UserNotificationApiModel>> GetAllUserNotificationAsync(string useremail, string subslevel)
         {
-            return null!;
+            return Task.FromResult<IEnumerable<UserNotificationApiModel>>([]);
+        }
+
+        public Task<bool> InsertUserNotificationAsync(IEnumerable<NotificationApiModel> notificationModel)
+        {
+            return Task.FromResult(false);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AxCrypt.Abstractions;
 using AxCrypt.Abstractions.Rest;
 using AxCrypt.Api.Model;
+using AxCrypt.Api.Model.Groups;
 using AxCrypt.Common;
 using System;
 using System.Collections.Generic;
@@ -403,6 +404,27 @@ namespace AxCrypt.Api
 
             bool userAccountDeleted = Serializer.Deserialize<bool>(restResponse.Content);
             return userAccountDeleted;
+        }
+
+        /// <summary>
+        /// Gets the user membered group keys.
+        /// </summary>
+        /// <returns>All group keys for the user.</returns>
+        /// <exception cref="System.InvalidOperationException">There must be an identity and password to attempt to get private account information.</exception>
+        public async Task<IEnumerable<GroupKeyPairApiModel>> ListMembershipGroupKeyAsync()
+        {
+            if (string.IsNullOrEmpty(Identity.User) || string.IsNullOrEmpty(Identity.Password))
+            {
+                throw new InvalidOperationException("There must be an identity and password to attempt to get private account information.");
+            }
+
+            Uri resource = BaseUrl.PathCombine("groupinfo/memberships");
+
+            RestResponse restResponse = await Caller.RestAsync(Identity, new RestRequest(resource, Timeout)).Free();
+            ApiCaller.EnsureStatusOk(restResponse);
+
+            IEnumerable<GroupKeyPairApiModel> userGroupKeys = Serializer.Deserialize<IEnumerable<GroupKeyPairApiModel>>(restResponse.Content)!;
+            return userGroupKeys;
         }
 
         private static IStringSerializer Serializer

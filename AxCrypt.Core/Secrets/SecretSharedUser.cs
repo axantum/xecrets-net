@@ -2,7 +2,6 @@
 using AxCrypt.Core.UI;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,15 +12,15 @@ namespace AxCrypt.Core.Secrets
 {
     public class SecretSharedUser
     {
-        public SecretSharedUser(EmailAddress userEmail, SecretShareVisibility visibilityType)
+        public SecretSharedUser(EmailAddress userEmail, SecretShareVisibility visibilityType, string groupName = "")
         {
             UserEmail = userEmail;
             VisibilityType = visibilityType;
             Visibility = ShareExpiration(visibilityType);
+            Group = groupName;
         }
 
-        [AllowNull]
-        private EmailAddress _userEmail;
+        private EmailAddress? _userEmail;
 
         public EmailAddress UserEmail
         {
@@ -43,6 +42,14 @@ namespace AxCrypt.Core.Secrets
         {
             get { return _visibilityType; }
             set { _visibilityType = value; }
+        }
+
+        private string? _group;
+
+        public string Group
+        {
+            get { return _group ?? string.Empty; }
+            set { _group = value; }
         }
 
         private DateTime ShareExpiration(SecretShareVisibility visibility)
