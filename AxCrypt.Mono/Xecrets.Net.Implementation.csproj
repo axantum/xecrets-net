@@ -12,8 +12,8 @@
     <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="9.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="9.0.5" />
-    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="9.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="9.0.8" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="9.0.8" />
   </ItemGroup>
 </Project>
