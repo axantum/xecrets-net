@@ -95,7 +95,7 @@ namespace AxCrypt.Core.Test
             progressStream = new ProgressStream(new MemoryStream(), new ProgressContext());
             byte[] nullBuffer = null;
             Assert.Throws<ArgumentNullException>(() => { progressStream.Write(nullBuffer, 0, 0); });
-            Assert.Throws<ArgumentNullException>(() => { progressStream.Read(nullBuffer, 0, 0); });
+            Assert.Throws<ArgumentNullException>(() => { progressStream.ReadExactly(nullBuffer, 0, 0); });
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times"), Test]
@@ -138,7 +138,7 @@ namespace AxCrypt.Core.Test
                         kilroy = String.Empty;
                         progressStream.Position = 0;
                         byte[] firstByte = new byte[1];
-                        progressStream.Read(firstByte, 0, 1);
+                        progressStream.ReadExactly(firstByte, 0, 1);
                         Assert.That(kilroy.Contains("Read"), Is.True, "ProgressStream should delegate to the underlying stream.");
                         kilroy = String.Empty;
                         Assert.That(firstByte[0], Is.EqualTo(13), "13 was just written to the first position.");

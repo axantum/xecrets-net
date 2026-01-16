@@ -8,6 +8,7 @@
 // "In Suppression File".
 // You do not need to add suppressions to this file manually.
 
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxCrypt.Core.Algorithm.Implementation")]
@@ -47,3 +48,7 @@ using System.Runtime.CompilerServices;
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxCrypt.Core.Algorithm")]
 
 [assembly: InternalsVisibleTo("Xecrets.Net.Core.Test")]
+[assembly: SuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>", Scope = "member", Target = "~M:AxCrypt.Core.UI.ViewModel.ViewModelBase.BindPropertyChangedInternal``1(System.String,System.Action{``0})")]
+[assembly: SuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>", Scope = "member", Target = "~M:AxCrypt.Core.UI.ViewModel.ViewModelBase.GetProperty(System.Object,System.String)~System.Object")]
+[assembly: SuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>", Scope = "member", Target = "~P:AxCrypt.Core.UI.ViewModel.ViewModelBase.Error")]
+[assembly: SuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>", Scope = "member", Target = "~P:AxCrypt.Core.UI.ViewModel.ViewModelBase.Item(System.String)")]

@@ -31,13 +31,13 @@ namespace Org.BouncyCastle.Security
 		public static SystemX509.X509Certificate ToX509Certificate(
 			X509CertificateStructure x509Struct)
 		{
-			return new SystemX509.X509Certificate(x509Struct.GetDerEncoded());
+			return SystemX509.X509CertificateLoader.LoadCertificate(x509Struct.GetDerEncoded());
 		}
 
 		public static SystemX509.X509Certificate ToX509Certificate(
 			X509Certificate x509Cert)
 		{
-			return new SystemX509.X509Certificate(x509Cert.GetEncoded());
+			return SystemX509.X509CertificateLoader.LoadCertificate(x509Cert.GetEncoded());
 		}
 
 		public static X509Certificate FromX509Certificate(

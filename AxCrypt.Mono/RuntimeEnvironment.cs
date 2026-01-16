@@ -204,6 +204,7 @@ namespace AxCrypt.Mono
 
         public void DebugMode(bool enable)
         {
+#pragma warning disable SYSLIB0014 // Type or member is obsolete, no direct replacement on HttpClient.
             if (enable)
             {
                 ServicePointManager.ServerCertificateValidationCallback = (object sender, X509Certificate? certificate, X509Chain? chain, SslPolicyErrors sslPolicyErrors) =>
@@ -215,6 +216,7 @@ namespace AxCrypt.Mono
             {
                 ServicePointManager.ServerCertificateValidationCallback = null;
             }
+#pragma warning restore SYSLIB0014 // Type or member is obsolete
         }
 
         public SynchronizationContext SynchronizationContext

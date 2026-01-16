@@ -763,7 +763,7 @@ namespace AxCrypt.Core.Test
                     bool keyIsOk = document.Load(key, new V1Aes128CryptoFactory().CryptoId, headers);
                     Assert.That(keyIsOk, Is.True);
 
-                    reader.InputStream.Read(new byte[16], 0, 16);
+                    reader.InputStream.ReadExactly(new byte[16], 0, 16);
                     Assert.Throws<InvalidOperationException>(() => document.DecryptTo(Stream.Null));
                 }
             }

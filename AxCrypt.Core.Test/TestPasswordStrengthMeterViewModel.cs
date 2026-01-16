@@ -111,8 +111,8 @@ namespace AxCrypt.Core.Test
             PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = "wrOundst";
-            Assert.That(viewModel.EstimatedBits, Is.EqualTo(31), nameof(viewModel.EstimatedBits));
-            Assert.That(viewModel.PercentStrength, Is.EqualTo(31), nameof(viewModel.PercentStrength));
+            Assert.That(viewModel.EstimatedBits, Is.EqualTo(37), nameof(viewModel.EstimatedBits));
+            Assert.That(viewModel.PercentStrength, Is.EqualTo(37), nameof(viewModel.PercentStrength));
             Assert.That(viewModel.PasswordStrength, Is.EqualTo(PasswordStrength.Bad), nameof(viewModel.PasswordStrength));
         }
 
@@ -133,7 +133,7 @@ namespace AxCrypt.Core.Test
             PasswordStrengthMeterViewModel viewModel = new PasswordStrengthMeterViewModel();
 
             viewModel.PasswordCandidate = @"ciStried""Negaist9 lAtte86Losed";
-            Assert.That(viewModel.EstimatedBits, Is.EqualTo(131), nameof(viewModel.EstimatedBits));
+            Assert.That(viewModel.EstimatedBits, Is.EqualTo(137), nameof(viewModel.EstimatedBits));
             Assert.That(viewModel.PercentStrength, Is.EqualTo(100), nameof(viewModel.PercentStrength));
             Assert.That(viewModel.PasswordStrength, Is.EqualTo(PasswordStrength.Strong), nameof(viewModel.PasswordStrength));
         }

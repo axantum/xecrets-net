@@ -426,7 +426,7 @@ namespace AxCrypt.Core.Test
             using (Stream encrypted = New<IDataStore>(_helloWorldAxxPath).OpenRead())
             {
                 encryptedData = new byte[encrypted.Length];
-                encrypted.Read(encryptedData, 0, encryptedData.Length);
+                encrypted.ReadExactly(encryptedData, 0, encryptedData.Length);
             }
 
             using (FileLock destinationFileLock = New<FileLocker>().Acquire(New<IDataStore>(destinationFilePath)))
@@ -435,7 +435,7 @@ namespace AxCrypt.Core.Test
                 using (Stream read = destinationFileLock.DataStore.OpenRead())
                 {
                     byte[] writtenData = new byte[encryptedData.Length];
-                    read.Read(writtenData, 0, (int)read.Length);
+                    read.ReadExactly(writtenData, 0, (int)read.Length);
                     Assert.That(writtenData.IsEquivalentTo(encryptedData), "We're expecting the same data to be read back.");
                 }
             }
@@ -488,12 +488,12 @@ namespace AxCrypt.Core.Test
                     using (Stream encrypted = New<IDataStore>(_helloWorldAxxPath).OpenRead())
                     {
                         byte[] encryptedData = new byte[encryptedLength];
-                        encrypted.Read(encryptedData, 0, encryptedData.Length);
+                        encrypted.ReadExactly(encryptedData, 0, encryptedData.Length);
                         using (Stream written = destinationFileInfo.OpenRead())
                         {
                             Assert.That(written.Length, Is.EqualTo(encryptedLength));
                             byte[] writtenData = new byte[encryptedLength];
-                            written.Read(writtenData, 0, writtenData.Length);
+                            written.ReadExactly(writtenData, 0, writtenData.Length);
                             Assert.That(writtenData.IsEquivalentTo(encryptedData));
                         }
                     }

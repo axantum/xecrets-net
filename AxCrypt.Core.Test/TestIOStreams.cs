@@ -177,7 +177,7 @@ namespace AxCrypt.Core.Test
                 Assert.Throws<NotSupportedException>(() =>
                 {
                     byte[] buffer = new byte[5];
-                    hmacStream.Read(buffer, 0, buffer.Length);
+                    hmacStream.ReadExactly(buffer, 0, buffer.Length);
                 });
 
                 Assert.Throws<NotSupportedException>(() =>
@@ -333,7 +333,7 @@ namespace AxCrypt.Core.Test
                     Assert.Throws<ObjectDisposedException>(() =>
                     {
                         buffer = new byte[3];
-                        lookAheadStream.Read(buffer, 0, 3);
+                        lookAheadStream.ReadExactly(buffer, 0, 3);
                     });
 
                     Assert.Throws<ObjectDisposedException>(() =>
@@ -378,7 +378,7 @@ namespace AxCrypt.Core.Test
                     nonClosingStream.SetLength(9);
                     Assert.That(backingStream.Length, Is.EqualTo(9), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
                     byte[] buffer = new byte[4];
-                    nonClosingStream.Read(buffer, 0, buffer.Length);
+                    nonClosingStream.ReadExactly(buffer, 0, buffer.Length);
                     Assert.That(backingStream.Position, Is.EqualTo(9), "NonClosingStream is a clean wrapper and should always return the same as the backing stream.");
                 }
                 backingStream.Position = 0;

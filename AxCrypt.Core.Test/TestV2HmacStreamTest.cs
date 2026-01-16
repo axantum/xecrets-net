@@ -195,7 +195,7 @@ namespace AxCrypt.Core.Test
         {
             using (V2HmacStream<Stream> stream = V2HmacStream.Create(new V2HmacCalculator(new SymmetricKey(new byte[512]))))
             {
-                Assert.Throws<NotSupportedException>(() => stream.Read(new byte[1], 0, 1));
+                Assert.Throws<NotSupportedException>(() => stream.ReadExactly(new byte[1], 0, 1));
                 Assert.Throws<NotSupportedException>(() => stream.Seek(0, SeekOrigin.Begin));
                 Assert.Throws<NotSupportedException>(() => stream.SetLength(0));
                 Assert.Throws<NotSupportedException>(() => stream.Position = 0);

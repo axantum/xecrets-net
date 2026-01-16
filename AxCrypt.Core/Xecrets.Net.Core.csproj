@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
     <InvariantGlobalization>true</InvariantGlobalization>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsTrimmable>true</IsTrimmable>
     <IsAotCompatible>true</IsAotCompatible>
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="resources\axcrypticon.ico" />
@@ -35,6 +36,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="9.0.10" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.2" />
   </ItemGroup>
 </Project>

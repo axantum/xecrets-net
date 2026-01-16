@@ -34,6 +34,8 @@ using NUnit.Framework;
 using AxCrypt.Fake;
 using AxCrypt.Core.Header;
 
+using Microsoft.AspNetCore.DataProtection;
+
 namespace Xecrets.Net.Implementation.Test
 {
     [TestFixture]
@@ -52,6 +54,18 @@ namespace Xecrets.Net.Implementation.Test
         public static void Teardown()
         {
             TypeMap.Register.Clear();
+        }
+
+        [Test]
+        public static void TestDataProtectionProvider()
+        {
+            IDataProtectionProvider provider = DataProtectionProvider.Create("The application name");
+            IDataProtector protector = provider.CreateProtector("The purpose");
+
+            string cipherText = protector.Protect("A not so secret");
+            string plainText = protector.Unprotect(cipherText);
+
+            Assert.That(plainText == "A not so secret", "The recovered text should be identical to the original."); 
         }
 
         [Test]
