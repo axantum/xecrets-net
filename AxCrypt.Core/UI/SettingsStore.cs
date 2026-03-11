@@ -1,7 +1,5 @@
 ﻿using AxCrypt.Core.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+
 using static AxCrypt.Abstractions.TypeResolve;
 
 namespace AxCrypt.Core.UI
@@ -21,7 +19,8 @@ namespace AxCrypt.Core.UI
 
             using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
-                Initialize(_persistanceFileInfo.OpenRead());
+                using Stream readStream = _persistanceFileInfo.OpenRead();
+                Initialize(readStream);
             }
         }
 
@@ -29,10 +28,7 @@ namespace AxCrypt.Core.UI
         {
             using (New<FileLocker>().Acquire(_persistanceFileInfo!))
             {
-                if (_persistanceFileInfo != null)
-                {
-                    _persistanceFileInfo.Delete();
-                }
+                _persistanceFileInfo?.Delete();
             }
             base.Clear();
         }
@@ -46,7 +42,8 @@ namespace AxCrypt.Core.UI
 
             using (New<FileLocker>().Acquire(_persistanceFileInfo))
             {
-                Save(_persistanceFileInfo.OpenWrite());
+                using Stream writeStream = _persistanceFileInfo.OpenWrite();
+                Save(writeStream);
             }
         }
     }
