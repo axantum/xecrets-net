@@ -163,10 +163,10 @@ namespace AxCrypt.Core.Test
 
             byte[] nullArray = null;
 
-            TestDelegate bufferArgumentNullException = () => nullArray.Xor(testArray);
+            Action bufferArgumentNullException = () => nullArray.Xor(testArray);
             Assert.Throws<ArgumentNullException>(bufferArgumentNullException, "Calling with a null-reference buffer.");
 
-            TestDelegate otherArgumentNullException = () => testArray.Xor(nullArray);
+            Action otherArgumentNullException = () => testArray.Xor(nullArray);
             Assert.Throws<ArgumentNullException>(otherArgumentNullException, "Calling with a null-reference other argument.");
             Assert.That(testArray, Is.EqualTo(new byte[] { 0x01, 0x02, 0x04, 0x08, 0x00, 0xff }), "Assuring that the array is still unmodified.");
 
@@ -180,18 +180,18 @@ namespace AxCrypt.Core.Test
             xorArray.Xor(new byte[] { 0x00, 0x00, 0x00, 0x08, 0x00, 0xff, 0x12, 0x34, 0x56 });
             Assert.That(xorArray, Is.EqualTo(testArray), "Xor with a longer array should just ignore the extra bytes in other.");
 
-            TestDelegate bufferArgumentWithAllParametersNullException = () => nullArray.Xor(0, testArray, 0, testArray.Length);
+            Action bufferArgumentWithAllParametersNullException = () => nullArray.Xor(0, testArray, 0, testArray.Length);
             Assert.Throws<ArgumentNullException>(bufferArgumentWithAllParametersNullException, "Calling all parameters overload with null-reference buffer.");
 
-            TestDelegate otherArgumentWithAllParametersNullException = () => testArray.Xor(0, nullArray, 0, testArray.Length);
+            Action otherArgumentWithAllParametersNullException = () => testArray.Xor(0, nullArray, 0, testArray.Length);
             Assert.Throws<ArgumentNullException>(otherArgumentWithAllParametersNullException, "Calling all parameters overload with a null-reference other argument.");
             Assert.That(testArray, Is.EqualTo(new byte[] { 0x01, 0x02, 0x04, 0x08, 0x00, 0xff }), "Assuring that the array is still unmodified.");
 
-            TestDelegate bufferLengthArgumentOutOfRangeException = () => testArray.Xor(1, testArray, 0, testArray.Length);
+            Action bufferLengthArgumentOutOfRangeException = () => testArray.Xor(1, testArray, 0, testArray.Length);
             Assert.Throws<ArgumentOutOfRangeException>(bufferLengthArgumentOutOfRangeException, "Calling with an offset into buffer causing length to be too long.");
             Assert.That(testArray, Is.EqualTo(new byte[] { 0x01, 0x02, 0x04, 0x08, 0x00, 0xff }), "Assuring that the array is still unmodified.");
 
-            TestDelegate otherLengthArgumentOutOfRangeException = () => testArray.Xor(0, testArray, 1, testArray.Length);
+            Action otherLengthArgumentOutOfRangeException = () => testArray.Xor(0, testArray, 1, testArray.Length);
             Assert.Throws<ArgumentOutOfRangeException>(otherLengthArgumentOutOfRangeException, "Calling with an offset into other causing length to be too long.");
             Assert.That(testArray, Is.EqualTo(new byte[] { 0x01, 0x02, 0x04, 0x08, 0x00, 0xff }), "Assuring that the array is still unmodified.");
 

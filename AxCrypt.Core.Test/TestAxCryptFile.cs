@@ -142,24 +142,24 @@ namespace AxCrypt.Core.Test
 
             using (FileLock fileInfoLock = New<FileLocker>().Acquire(New<IDataStore>(_testTextPath)))
             {
-                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullDocument, fileInfoLock, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, nullFileLock, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-                Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, fileInfoLock, AxCryptOptions.SetFileTimes, nullProgress); }));
+                Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(nullDocument, fileInfoLock, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+                Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(document, nullFileLock, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+                Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(document, fileInfoLock, AxCryptOptions.SetFileTimes, nullProgress); });
             }
 
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); }));
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(nullFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, nullFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, decryptedFileInfo, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); }));
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(nullFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, nullString, LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), nullKey, AxCryptOptions.SetFileTimes, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Decrypt(sourceFileInfo, Path.Combine(_rootPath, "Directory"), LogOnIdentity.Empty, AxCryptOptions.SetFileTimes, nullProgress); });
 
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(nullFileInfo, LogOnIdentity.Empty, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(sourceFileInfo, nullKey, new ProgressContext()); }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); }));
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Document(nullFileInfo, LogOnIdentity.Empty, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Document(sourceFileInfo, nullKey, new ProgressContext()); });
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Document(sourceFileInfo, LogOnIdentity.Empty, nullProgress); });
 
             Assert.ThrowsAsync<ArgumentNullException>((async () => { await New<AxCryptFile>().EncryptToFileWithBackupAsync(null, async (Stream stream) => { await Task.Delay(0); }, new ProgressContext()); }));
             using (FileLock fileInfoLock = New<FileLocker>().Acquire(New<IDataStore>(_testTextPath)))
@@ -168,7 +168,7 @@ namespace AxCrypt.Core.Test
             }
 
             Assert.Throws<ArgumentNullException>(() => { AxCryptFile.MakeAxCryptFileName(nullFileInfo); });
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(nullFileLock, new ProgressContext()); }));
+            Assert.Throws<ArgumentNullException>(() => { New<AxCryptFile>().Wipe(nullFileLock, new ProgressContext()); });
         }
 
         [Test]
@@ -263,7 +263,7 @@ namespace AxCrypt.Core.Test
                 environment.CurrentTiming.CurrentTiming = new TimeSpan(0, 0, 0, 0, 100);
                 using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationInfo))
                 {
-                    Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Decrypt(document, destinationFileLock, AxCryptOptions.None, progress); }));
+                    Assert.Throws<OperationCanceledException>(() => { New<AxCryptFile>().Decrypt(document, destinationFileLock, AxCryptOptions.None, progress); });
                 }
             }
         }
@@ -784,7 +784,7 @@ namespace AxCrypt.Core.Test
 
             using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
-                Assert.DoesNotThrow((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
+                Assert.DoesNotThrow(() => { New<AxCryptFile>().Wipe(fileLock, progress); });
             }
             Assert.That(!progressed, "There should be no progress-notification since nothing should happen.");
         }
@@ -801,7 +801,7 @@ namespace AxCrypt.Core.Test
             };
             using (FileLock fileLock = New<FileLocker>().Acquire(fileInfo))
             {
-                Assert.Throws<OperationCanceledException>((TestDelegate)(() => { New<AxCryptFile>().Wipe(fileLock, progress); }));
+                Assert.Throws<OperationCanceledException>(() => { New<AxCryptFile>().Wipe(fileLock, progress); });
             }
             Assert.That(!fileInfo.IsAvailable, "The file should be completely wiped, even if canceled at start.");
         }

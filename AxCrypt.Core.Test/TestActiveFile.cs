@@ -130,9 +130,9 @@ namespace AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(originalActiveFile, nullKey) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, ActiveFileStatus.None) == null) { } });
             Assert.Throws<ArgumentNullException>(() => { if (new ActiveFile(nullActiveFile, DateTime.MinValue, ActiveFileStatus.None) == null) { } });
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new LogOnIdentity("a"), ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new LogOnIdentity("b"), ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
+            Assert.Throws<ArgumentNullException>((() => { if (new ActiveFile(nullFileInfo, decryptedFileInfo, new LogOnIdentity("a"), ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
+            Assert.Throws<ArgumentNullException>((() => { if (new ActiveFile(encryptedFileInfo, nullFileInfo, new LogOnIdentity("b"), ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
+            Assert.Throws<ArgumentNullException>((() => { if (new ActiveFile(encryptedFileInfo, decryptedFileInfo, nullKey, ActiveFileStatus.None, (Guid)new V1Aes128CryptoFactory().CryptoId) == null) { } }));
         }
 
         [Test]

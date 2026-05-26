@@ -99,10 +99,10 @@ namespace AxCrypt.Core.Test
         public void TestInvalidArguments()
         {
             HMAC hmac = null;
-            Assert.Throws<ArgumentNullException>((TestDelegate)(() =>
+            Assert.Throws<ArgumentNullException>(() =>
             {
                 hmac = New<AxCryptHMACSHA1>().Initialize(null);
-            }));
+            });
 
             // Use the instance to avoid FxCop errors.
             Object.Equals(hmac, null);
