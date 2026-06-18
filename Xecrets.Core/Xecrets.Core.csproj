@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <Description>Defines and implements a forward-only stream interface to Xecrets core functionality.</Description>
+    <Copyright>Copyright © 2022-2026, Svante Seleborg, All Rights Reserved</Copyright>
+    <PackageProjectUrl>https://www.axantum.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/axantum/xecrets-net</RepositoryUrl>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Title>Xecrets Core library</Title>
+    <Authors>Svante Seleborg</Authors>
+    <Company>Axantum Software AB</Company>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AxCrypt.Core\Xecrets.Net.Core.csproj" />
+    <ProjectReference Include="..\AxCrypt.Mono\Xecrets.Net.Implementation.csproj" />
+  </ItemGroup>
+</Project>
