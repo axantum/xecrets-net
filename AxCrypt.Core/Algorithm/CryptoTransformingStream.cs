@@ -70,6 +70,8 @@ namespace AxCrypt.Core.Algorithm
 {
     public class CryptoTransformingStream : CryptoStreamBase
     {
+        private const int PreferredTransformBufferLength = 64 * 1024;
+
         [AllowNull]
         private Stream _outStream;
 
@@ -112,10 +114,21 @@ namespace AxCrypt.Core.Algorithm
                 _outStream = stream;
             }
 
-            _blockBuffer = new ByteBuffer(new byte[_transform.InputBlockSize]);
+            _blockBuffer = new ByteBuffer(new byte[TransformBufferLength(_transform)]);
             _blockBuffer.AvailableForRead = 0;
 
             return this;
+        }
+
+        private static int TransformBufferLength(ICryptoTransform transform)
+        {
+            if (!transform.CanTransformMultipleBlocks)
+            {
+                return transform.InputBlockSize;
+            }
+
+            int blockCount = Math.Max(1, PreferredTransformBufferLength / transform.InputBlockSize);
+            return blockCount * transform.InputBlockSize;
         }
 
         private Stream Stream

@@ -23,7 +23,9 @@
 
 #endregion Coypright and GPL License
 
-using System.Diagnostics.CodeAnalysis;
+using System.Buffers.Binary;
+using System.Numerics;
+using System.Runtime.InteropServices;
 
 using AxCrypt.Abstractions.Algorithm;
 
@@ -33,26 +35,37 @@ namespace Xecrets.Net.Cryptography
     {
         private SymmetricAlgorithm _algorithm;
 
-        private readonly long _startCounter;
+        private readonly long _blockCounter;
 
-        private readonly int _startCounterBlockOffset;
+        private readonly int _blockOffset;
 
         private readonly int _blockLength;
-
-        private int _counterBlockOffset;
 
         private readonly byte[] _iv;
 
         private ICryptoTransform _cryptoTransform;
 
+        private readonly int _counterOffset;
+
         private readonly byte[] _counterWorkBlock;
+
+        private readonly byte[] _counterWorkBlocks;
+
+        private readonly byte[] _keyStreamBlocks;
+
+        private readonly byte[] _partialOutputBuffer;
 
         private const int CounterLength = sizeof(long);
 
-        [AllowNull]
-        private byte[] _counterBytes;
+        private const int PreferredBatchLength = 64 * 1024;
 
-        public CtrXecretsCryptoTransform(SymmetricAlgorithm algorithm, long startCounter, int startCounterBlockOffset)
+        private readonly ulong _ivCounterSuffix;
+
+        private ulong _currentBlockCounter;
+
+        private int _currentBlockOffset;
+
+        public CtrXecretsCryptoTransform(SymmetricAlgorithm algorithm, long blockCounter, int blockOffset)
         {
             ArgumentNullException.ThrowIfNull(algorithm);
 
@@ -66,23 +79,48 @@ namespace Xecrets.Net.Cryptography
                 algorithm.Clear();
                 throw new ArgumentException("The algorithm must be set to work without padding.");
             }
+            _blockLength = algorithm.BlockSize / 8;
+            if (_blockLength < CounterLength)
+            {
+                algorithm.Clear();
+                throw new ArgumentException($"The algorithm block size must be at least {CounterLength} bytes.");
+            }
+            if (blockOffset < 0 || blockOffset >= _blockLength)
+            {
+                algorithm.Clear();
+                throw new ArgumentOutOfRangeException(nameof(blockOffset), $"The block offset must be in the range 0 to {_blockLength - 1}.");
+            }
+            _iv = algorithm.IV();
+            if (_iv.Length != _blockLength)
+            {
+                algorithm.Clear();
+                throw new ArgumentException("The IV length must be the same as the algorithm block length.");
+            }
 
             _algorithm = algorithm;
-            _startCounter = startCounter;
-            _startCounterBlockOffset = startCounterBlockOffset;
+            _blockCounter = blockCounter;
+            _blockOffset = blockOffset;
 
             _cryptoTransform = _algorithm.CreateEncryptingTransform();
-
-            _blockLength = _cryptoTransform.InputBlockSize;
-            _iv = _algorithm.IV();
+            _counterOffset = _blockLength - CounterLength;
+            _ivCounterSuffix = BinaryPrimitives.ReadUInt64BigEndian(_iv.AsSpan(_counterOffset, CounterLength));
 
             _counterWorkBlock = new byte[_blockLength];
+            _partialOutputBuffer = new byte[_blockLength];
+
+            int batchBlockCount = _cryptoTransform.CanTransformMultipleBlocks
+                ? Math.Max(1, PreferredBatchLength / _blockLength)
+                : 1;
+            int batchLength = batchBlockCount * _blockLength;
+            _counterWorkBlocks = new byte[batchLength];
+            _keyStreamBlocks = new byte[batchLength];
+            InitializeCounterBlockPrefixes();
             Reset();
         }
 
         public bool CanReuseTransform { get; } = true;
 
-        public bool CanTransformMultipleBlocks { get; } = true;
+        public bool CanTransformMultipleBlocks => _cryptoTransform.CanTransformMultipleBlocks;
 
         public int InputBlockSize => _cryptoTransform.InputBlockSize;
 
@@ -101,36 +139,31 @@ namespace Xecrets.Net.Cryptography
 
         private void Reset()
         {
-            _counterBytes = GetBigEndianBytes(_startCounter);
-            _counterBlockOffset = _startCounterBlockOffset;
+            _currentBlockCounter = unchecked((ulong)_blockCounter);
+            _currentBlockOffset = _blockOffset;
         }
 
         // This method is optimized for performance, and some common code are expanded as inline instead of being in a separate method.
         private void TransformBlockInternal(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
         {
-            int counterOffset = _blockLength - CounterLength;
-            Span<byte> counterWorkSpan = ((Span<byte>)_counterWorkBlock).Slice(counterOffset);
-
             // Handle initital partial block
-            if (_counterBlockOffset > 0 && inputCount > 0)
+            if (_currentBlockOffset > 0 && inputCount > 0)
             {
-                Array.Copy(_iv, _counterWorkBlock, _blockLength);
-                for (int i = 0; i < CounterLength; ++i)
-                {
-                    counterWorkSpan[i] ^= _counterBytes[i];
-                }
-                byte[] partialOutputBuffer = new byte[_blockLength];
-                _cryptoTransform.TransformBlock(_counterWorkBlock, 0, _blockLength, partialOutputBuffer, 0);
-                int partialCount = Math.Min(_blockLength - _counterBlockOffset, inputCount);
+                FillCounterBlock(_counterWorkBlock.AsSpan());
+                _cryptoTransform.TransformBlock(_counterWorkBlock, 0, _blockLength, _partialOutputBuffer, 0);
+                int partialCount = Math.Min(_blockLength - _currentBlockOffset, inputCount);
                 for (int i = 0; i < partialCount; ++i)
                 {
-                    outputBuffer[i] = (byte)(partialOutputBuffer[_counterBlockOffset + i] ^ inputBuffer[inputOffset + i]);
+                    outputBuffer[outputOffset + i] = (byte)(_partialOutputBuffer[_currentBlockOffset + i] ^ inputBuffer[inputOffset + i]);
                 }
-                _counterBlockOffset += partialCount;
-                if (_counterBlockOffset == _blockLength)
+                _currentBlockOffset += partialCount;
+                if (_currentBlockOffset == _blockLength)
                 {
-                    _counterBlockOffset = 0;
-                    IncrementCounter();
+                    _currentBlockOffset = 0;
+                    unchecked
+                    {
+                        ++_currentBlockCounter;
+                    }
                 }
                 inputCount -= partialCount;
                 inputOffset += partialCount;
@@ -140,59 +173,110 @@ namespace Xecrets.Net.Cryptography
             // Handle all full blocks
             while (inputCount >= _blockLength)
             {
-                Array.Copy(_iv, _counterWorkBlock, _blockLength);
+                int bytesToTransform = Math.Min(inputCount - inputCount % _blockLength, _counterWorkBlocks.Length);
+                int blocksToTransform = bytesToTransform / _blockLength;
 
-                // For the inner loop, we unroll this loop to avoid the overhead of a loop counter and indexing.
-                // The counter is always a long i.e. 8 bytes.
-                counterWorkSpan[0] ^= _counterBytes[0];
-                counterWorkSpan[1] ^= _counterBytes[1];
-                counterWorkSpan[2] ^= _counterBytes[2];
-                counterWorkSpan[3] ^= _counterBytes[3];
-                counterWorkSpan[4] ^= _counterBytes[4];
-                counterWorkSpan[5] ^= _counterBytes[5];
-                counterWorkSpan[6] ^= _counterBytes[6];
-                counterWorkSpan[7] ^= _counterBytes[7];
+                FillCounterBlocks(blocksToTransform);
+                _cryptoTransform.TransformBlock(_counterWorkBlocks, 0, bytesToTransform, _keyStreamBlocks, 0);
+                Xor(
+                    outputBuffer.AsSpan(outputOffset, bytesToTransform),
+                    _keyStreamBlocks.AsSpan(0, bytesToTransform),
+                    inputBuffer.AsSpan(inputOffset, bytesToTransform));
 
-                IncrementCounter();
-
-                _cryptoTransform.TransformBlock(_counterWorkBlock, 0, _blockLength, outputBuffer, outputOffset);
-                for (int i = 0; i < _blockLength; ++i)
-                {
-                    outputBuffer[outputOffset + i] ^= inputBuffer[inputOffset + i];
-                }
-                inputCount -= _blockLength;
-                outputOffset += _blockLength;
-                inputOffset += _blockLength;
+                inputCount -= bytesToTransform;
+                outputOffset += bytesToTransform;
+                inputOffset += bytesToTransform;
             }
 
             // Handle final partial block
             if (inputCount > 0)
             {
-                Array.Copy(_iv, _counterWorkBlock, _blockLength);
-                for (int i = 0; i < CounterLength; ++i)
-                {
-                    counterWorkSpan[i] ^= _counterBytes[i];
-                }
-                byte[] partialOutputBuffer = new byte[_blockLength];
-                _cryptoTransform.TransformBlock(_counterWorkBlock, 0, _blockLength, partialOutputBuffer, 0);
+                FillCounterBlock(_counterWorkBlock.AsSpan());
+                _cryptoTransform.TransformBlock(_counterWorkBlock, 0, _blockLength, _partialOutputBuffer, 0);
                 for (int i = 0; i < inputCount; ++i)
                 {
-                    outputBuffer[outputOffset + i] = (byte)(partialOutputBuffer[i] ^ inputBuffer[inputOffset + i]);
+                    outputBuffer[outputOffset + i] = (byte)(_partialOutputBuffer[i] ^ inputBuffer[inputOffset + i]);
                 }
-                _counterBlockOffset = inputCount;
+                _currentBlockOffset = inputCount;
+            }
+        }
+
+        private void FillCounterBlocks(int blockCount)
+        {
+            Span<byte> counterWorkBlocks = _counterWorkBlocks;
+            ulong counter = _currentBlockCounter;
+            int counterOffset = _counterOffset;
+
+            for (int i = 0; i < blockCount; ++i)
+            {
+                BinaryPrimitives.WriteUInt64BigEndian(counterWorkBlocks.Slice(counterOffset, CounterLength), _ivCounterSuffix ^ counter);
+                counterOffset += _blockLength;
+                unchecked
+                {
+                    ++counter;
+                }
             }
 
-            void IncrementCounter()
+            _currentBlockCounter = counter;
+        }
+
+        private void InitializeCounterBlockPrefixes()
+        {
+            if (_counterOffset == 0)
             {
-                // Don't loop for performance reasons, the counter is always a long i.e. 8 bytes.
-                if (unchecked(++_counterBytes[7]) != 0) return;
-                if (unchecked(++_counterBytes[6]) != 0) return;
-                if (unchecked(++_counterBytes[5]) != 0) return;
-                if (unchecked(++_counterBytes[4]) != 0) return;
-                if (unchecked(++_counterBytes[3]) != 0) return;
-                if (unchecked(++_counterBytes[2]) != 0) return;
-                if (unchecked(++_counterBytes[1]) != 0) return;
-                if (unchecked(++_counterBytes[0]) != 0) return;
+                return;
+            }
+
+            ReadOnlySpan<byte> ivPrefix = _iv.AsSpan(0, _counterOffset);
+            ivPrefix.CopyTo(_counterWorkBlock);
+
+            for (int offset = 0; offset < _counterWorkBlocks.Length; offset += _blockLength)
+            {
+                ivPrefix.CopyTo(_counterWorkBlocks.AsSpan(offset, _counterOffset));
+            }
+        }
+
+        private void FillCounterBlock(Span<byte> counterBlock)
+        {
+            BinaryPrimitives.WriteUInt64BigEndian(counterBlock.Slice(_counterOffset, CounterLength), _ivCounterSuffix ^ _currentBlockCounter);
+        }
+
+        private static void Xor(Span<byte> destination, ReadOnlySpan<byte> left, ReadOnlySpan<byte> right)
+        {
+            int offset = 0;
+            int vectorLength = Vector<byte>.Count;
+
+            ref byte destinationRef = ref MemoryMarshal.GetReference(destination);
+            ref byte leftRef = ref MemoryMarshal.GetReference(left);
+            ref byte rightRef = ref MemoryMarshal.GetReference(right);
+
+            // This is a micro-optimization, cutting some loop overhead, but more importantly perhaps, making it easier
+            // for look-ahead and branch prediction.
+            int unrolledVectorLength = vectorLength * 4;
+            while (offset <= destination.Length - unrolledVectorLength)
+            {
+                (Vector.LoadUnsafe(ref leftRef, (nuint)offset) ^ Vector.LoadUnsafe(ref rightRef, (nuint)offset))
+                    .StoreUnsafe(ref destinationRef, (nuint)offset);
+                (Vector.LoadUnsafe(ref leftRef, (nuint)(offset + vectorLength)) ^ Vector.LoadUnsafe(ref rightRef, (nuint)(offset + vectorLength)))
+                    .StoreUnsafe(ref destinationRef, (nuint)(offset + vectorLength));
+                (Vector.LoadUnsafe(ref leftRef, (nuint)(offset + vectorLength * 2)) ^ Vector.LoadUnsafe(ref rightRef, (nuint)(offset + vectorLength * 2)))
+                    .StoreUnsafe(ref destinationRef, (nuint)(offset + vectorLength * 2));
+                (Vector.LoadUnsafe(ref leftRef, (nuint)(offset + vectorLength * 3)) ^ Vector.LoadUnsafe(ref rightRef, (nuint)(offset + vectorLength * 3)))
+                    .StoreUnsafe(ref destinationRef, (nuint)(offset + vectorLength * 3));
+                offset += unrolledVectorLength;
+            }
+
+            while (offset <= destination.Length - vectorLength)
+            {
+                (Vector.LoadUnsafe(ref leftRef, (nuint)offset) ^ Vector.LoadUnsafe(ref rightRef, (nuint)offset))
+                    .StoreUnsafe(ref destinationRef, (nuint)offset);
+                offset += vectorLength;
+            }
+
+            while (offset < destination.Length)
+            {
+                destination[offset] = (byte)(left[offset] ^ right[offset]);
+                ++offset;
             }
         }
 
@@ -202,16 +286,6 @@ namespace Xecrets.Net.Cryptography
             TransformBlockInternal(inputBuffer, inputOffset, inputCount, outputBuffer, 0);
             Reset();
             return outputBuffer;
-        }
-
-        private static byte[] GetBigEndianBytes(long value)
-        {
-            byte[] bytes = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-            {
-                Array.Reverse(bytes);
-            }
-            return bytes;
         }
 
         public void Dispose()
@@ -230,12 +304,12 @@ namespace Xecrets.Net.Cryptography
 
         private void DisposeInternal()
         {
-            if (_cryptoTransform != null)
+            if (_cryptoTransform != null!)
             {
                 _cryptoTransform.Dispose();
                 _cryptoTransform = null!;
             }
-            if (_algorithm != null)
+            if (_algorithm != null!)
             {
                 _algorithm.Clear();
                 _algorithm = null!;
