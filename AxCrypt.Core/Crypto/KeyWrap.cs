@@ -72,7 +72,7 @@ public class KeyWrap
 
         if (mode != KeyWrapMode.Specification && mode != KeyWrapMode.AxCrypt)
         {
-            throw new InternalErrorException("mode");
+            throw new InternalErrorException(nameof(mode));
         }
 
         _salt = salt ?? throw new ArgumentNullException(nameof(salt));
@@ -118,24 +118,28 @@ public class KeyWrap
                 return wrapped;
 
             default:
-                throw new InternalErrorException("mode");
+                throw new InternalErrorException(nameof(_mode));
         }
     }
 
     private void WrapBlocksSpecification(IKeyWrapTransform encryptor, byte[] wrapped, byte[] block, int keyBlockCount)
     {
-        for (int j = 0; j < _keyWrapIterations; j++)
+        for (int j = 0; j < _keyWrapIterations; ++j)
         {
             ulong tBase = (ulong)(keyBlockCount * j);
-            for (int i = 1; i <= keyBlockCount; i++)
+            for (int i = 1; i <= keyBlockCount; ++i)
             {
                 // B = AESE(K, A | R[i])
                 Unsafe.WriteUnaligned(ref block[0], Unsafe.ReadUnaligned<ulong>(ref wrapped[0]));
                 Unsafe.WriteUnaligned(ref block[HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref wrapped[i * HalfBlockLength]));
                 byte[] b = encryptor.TransformBlock(block);
+                
                 // A = MSB64(B) XOR t where t = (n * j) + i
-                XorBigEndian(b, 0, tBase + (ulong)i);
+                ref byte b0 = ref b[0];
+                ulong t = BinaryPrimitives.ReverseEndianness(tBase + (ulong)i);
+                Unsafe.WriteUnaligned(ref b0, Unsafe.ReadUnaligned<ulong>(ref b0) ^ t);
                 Unsafe.WriteUnaligned(ref wrapped[0], Unsafe.ReadUnaligned<ulong>(ref b[0]));
+                
                 // R[i] = LSB64(B)
                 Unsafe.WriteUnaligned(ref wrapped[i * HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref b[HalfBlockLength]));
             }
@@ -144,18 +148,21 @@ public class KeyWrap
 
     private void WrapBlocksAxCrypt(IKeyWrapTransform encryptor, byte[] wrapped, byte[] block, int keyBlockCount)
     {
-        for (int j = 0; j < _keyWrapIterations; j++)
+        for (int j = 0; j < _keyWrapIterations; ++j)
         {
             ulong tBase = (ulong)(keyBlockCount * j);
-            for (int i = 1; i <= keyBlockCount; i++)
+            for (int i = 1; i <= keyBlockCount; ++i)
             {
                 // B = AESE(K, A | R[i])
                 Unsafe.WriteUnaligned(ref block[0], Unsafe.ReadUnaligned<ulong>(ref wrapped[0]));
                 Unsafe.WriteUnaligned(ref block[HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref wrapped[i * HalfBlockLength]));
                 byte[] b = encryptor.TransformBlock(block);
+                
                 // A = MSB64(B) XOR t where t = (n * j) + i
-                XorLittleEndian(b, 0, tBase + (ulong)i);
+                ref byte b0 = ref b[0];
+                Unsafe.WriteUnaligned(ref b0, Unsafe.ReadUnaligned<ulong>(ref b0) ^ (tBase + (ulong)i));
                 Unsafe.WriteUnaligned(ref wrapped[0], Unsafe.ReadUnaligned<ulong>(ref b[0]));
+                
                 // R[i] = LSB64(B)
                 Unsafe.WriteUnaligned(ref wrapped[i * HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref b[HalfBlockLength]));
             }
@@ -181,7 +188,7 @@ public class KeyWrap
     /// </summary>
     /// <param name="crypto"></param>
     /// <param name="wrapped">The full wrapped data, the length of a key + 8 bytes</param>
-    /// <returns>The unwrapped key data, or a zero-length array if the unwrap was unsuccessful due to wrong key</returns>
+    /// <returns>The unwrapped key data, or a zero-length array if unwrap was unsuccessful due to wrong key</returns>
     public byte[] Unwrap(ICrypto crypto, byte[] wrapped)
     {
         ArgumentNullException.ThrowIfNull(wrapped);
@@ -226,7 +233,7 @@ public class KeyWrap
                 break;
 
             default:
-                throw new InternalErrorException("mode");
+                throw new InternalErrorException(nameof(_mode));
         }
 
         if (Unsafe.ReadUnaligned<ulong>(ref wrapped[0]) != Unsafe.ReadUnaligned<ulong>(ref a[0]))
@@ -248,13 +255,19 @@ public class KeyWrap
             {
                 // MSB(B) = A XOR t
                 Unsafe.WriteUnaligned(ref block[0], Unsafe.ReadUnaligned<ulong>(ref wrapped[0]));
-                XorBigEndian(block, 0, tBase + (ulong)i);
+                ref byte block0 = ref block[0];
+                ulong t = BinaryPrimitives.ReverseEndianness(tBase + (ulong)i);
+                Unsafe.WriteUnaligned(ref block0, Unsafe.ReadUnaligned<ulong>(ref block0) ^ t);
+                
                 // LSB(B) = R[i]
                 Unsafe.WriteUnaligned(ref block[HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref wrapped[i * HalfBlockLength]));
+                
                 // B = AESD(K, X xor t | R[i]) where t = (n * j) + i
                 byte[] b = decryptor.TransformBlock(block);
+                
                 // A = MSB(B)
                 Unsafe.WriteUnaligned(ref wrapped[0], Unsafe.ReadUnaligned<ulong>(ref b[0]));
+                
                 // R[i] = LSB(B)
                 Unsafe.WriteUnaligned(ref wrapped[i * HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref b[HalfBlockLength]));
             }
@@ -270,25 +283,22 @@ public class KeyWrap
             {
                 // MSB(B) = A XOR t
                 Unsafe.WriteUnaligned(ref block[0], Unsafe.ReadUnaligned<ulong>(ref wrapped[0]));
-                XorLittleEndian(block, 0, tBase + (ulong)i);
+                ref byte block0 = ref block[0];
+                Unsafe.WriteUnaligned(ref block0, Unsafe.ReadUnaligned<ulong>(ref block0) ^ (tBase + (ulong)i));
+                
                 // LSB(B) = R[i]
                 Unsafe.WriteUnaligned(ref block[HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref wrapped[i * HalfBlockLength]));
+                
                 // B = AESD(K, X xor t | R[i]) where t = (n * j) + i
                 byte[] b = decryptor.TransformBlock(block);
+                
                 // A = MSB(B)
                 Unsafe.WriteUnaligned(ref wrapped[0], Unsafe.ReadUnaligned<ulong>(ref b[0]));
+                
                 // R[i] = LSB(B)
                 Unsafe.WriteUnaligned(ref wrapped[i * HalfBlockLength], Unsafe.ReadUnaligned<ulong>(ref b[HalfBlockLength]));
             }
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void XorBigEndian(byte[] buffer, int offset, ulong value) =>
-        Unsafe.WriteUnaligned(ref buffer[offset],
-            Unsafe.ReadUnaligned<ulong>(ref buffer[offset]) ^ BinaryPrimitives.ReverseEndianness(value));
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void XorLittleEndian(byte[] buffer, int offset, ulong value) =>
-        Unsafe.WriteUnaligned(ref buffer[offset], Unsafe.ReadUnaligned<ulong>(ref buffer[offset]) ^ value);
 }

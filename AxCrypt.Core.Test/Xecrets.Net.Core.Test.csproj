@@ -19,6 +19,7 @@
     <None Remove="resources\short-txt-V2AES128.axx" />
     <None Remove="resources\snow-jpg-AES256.axx" />
     <None Remove="resources\snow-jpg-V2AES128.axx" />
+    <None Remove="resources\TestCaseKeyWrap-txt.axx" />
     <None Remove="resources\UserAccounts.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +30,7 @@
     <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
     <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
+    <EmbeddedResource Include="resources\TestCaseKeyWrap-txt.axx" />
     <EmbeddedResource Include="resources\UserAccounts.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -205,6 +205,7 @@
     <EmbeddedResource Include="resources\snow-jpg-AES256.axx" />
     <EmbeddedResource Include="resources\short-txt-V2AES128.axx" />
     <EmbeddedResource Include="resources\snow-jpg-V2AES128.axx" />
+    <EmbeddedResource Include="resources\TestCaseKeyWrap-txt.axx" />
     <None Include="resources\Passphrase %27p%27 + My Keyfile-txt.axx" />
     <None Include="resources\tst-0.0b6-key-%27aaaeoe%27-medium-html.axx" />
     <None Include="resources\uncompressable-zip.axx" />

@@ -4,11 +4,11 @@
  * Xecrets Cli - Changes and additions Copyright © 2022-2025, Svante Seleborg, All Rights Reserved.
  *
  * This code file is part of Xecrets Cli, but is derived from AxCrypt as licensed under GPL v3 or later.
- * 
+ *
  * The changes and additions are separately copyrighted and only licensed under GPL v3 or later as detailed below,
  * unless explicitly licensed otherwise. If you use any part of these changes and additions in your software,
  * please see https://www.gnu.org/licenses/ for details of what this means for you.
- * 
+ *
  * Warning: If you are using the original AxCrypt code under a non-GPL v3 or later license, these changes and additions
  * are not included in that license. If you use these changes under those circumstances, all your code becomes subject to
  * the GPL v3 or later license, according to the principle of strong copyleft as applied to GPL v3 or later.
@@ -25,9 +25,10 @@
  * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
  * suggestions and contributions, as well for commit history detailing changes and additions that fall under the strong
  * copyleft provisions mentioned above. You may also visit https://www.axantum.com for more information about the author.
-*/
+ */
 
 #endregion Xecrets Cli Copyright and GPL License notice
+
 #region Coypright and License
 
 /*
@@ -51,44 +52,85 @@
  * The source is maintained at http://bitbucket.org/AxCrypt.Desktop.Window-net please visit for
  * updates, contributions and contact with the author. You may also visit
  * http://www.axcrypt.net for more information about the author.
-*/
+ */
 
 #endregion Coypright and License
 
 using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Extensions;
+using AxCrypt.Core.Header;
+using AxCrypt.Core.IO;
+using AxCrypt.Core.Reader;
 using AxCrypt.Core.Runtime;
 using AxCrypt.Fake;
+
 using NUnit.Framework;
-using System;
 
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
+// ReSharper disable once CheckNamespace
 namespace AxCrypt.Core.Test
 {
     [TestFixture(CryptoImplementation.Mono)]
     [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
-    public class TestKeyWrap
+    public class TestKeyWrap(CryptoImplementation cryptoImplementation)
     {
         private static SymmetricKey _keyEncryptingKey;
         private static SymmetricKey _keyData;
         private static byte[] _wrapped;
 
-        private CryptoImplementation _cryptoImplementation;
-
-        public TestKeyWrap(CryptoImplementation cryptoImplementation)
+        private static TestCaseData[] RoundtripCryptoFactories
         {
-            _cryptoImplementation = cryptoImplementation;
+            get
+            {
+                return
+                [
+                    new TestCaseData(new V1Aes128CryptoFactory()).SetName("V1 AES-128"),
+                    new TestCaseData(new V2Aes128CryptoFactory()).SetName("V2 AES-128"),
+                    new TestCaseData(new V2Aes256CryptoFactory()).SetName("V2 AES-256"),
+                ];
+            }
+        }
+
+        private static TestCaseData[] SpecificationVectors
+        {
+            get
+            {
+                return
+                [
+                    new TestCaseData(
+                            "000102030405060708090A0B0C0D0E0F".FromHex(),
+                            "00112233445566778899AABBCCDDEEFF".FromHex(),
+                            "1FA68B0A8112B447AEF34BD8FB5A7B829D3E862371D2CFE5".FromHex())
+                        .SetName("RFC 3394 AES-128 KW"),
+                    new TestCaseData(
+                            "000102030405060708090A0B0C0D0E0F101112131415161718191A1B1C1D1E1F".FromHex(),
+                            "00112233445566778899AABBCCDDEEFF000102030405060708090A0B0C0D0E0F".FromHex(),
+                            "28C9F404C4B810F4CBCCB35CFB87F8263F5786E2D80ED326CBC7F0E71A99F43BFB988B9B7A02DD21"
+                                .FromHex())
+                        .SetName("RFC 3394 AES-256 KW"),
+                ];
+            }
         }
 
         [SetUp]
         public void Setup()
         {
-            SetupAssembly.AssemblySetup(_cryptoImplementation);
+            SetupAssembly.AssemblySetup(cryptoImplementation);
 
-            _keyEncryptingKey = new SymmetricKey(new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F });
-            _keyData = new SymmetricKey(new byte[] { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF });
-            _wrapped = new byte[] { 0x1F, 0xA6, 0x8B, 0x0A, 0x81, 0x12, 0xB4, 0x47, 0xAE, 0xF3, 0x4B, 0xD8, 0xFB, 0x5A, 0x7B, 0x82, 0x9D, 0x3E, 0x86, 0x23, 0x71, 0xD2, 0xCF, 0xE5 };
+            _keyEncryptingKey = new SymmetricKey([
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+                0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+            ]);
+            _keyData = new SymmetricKey([
+                0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF,
+            ]);
+            _wrapped =
+            [
+                0x1F, 0xA6, 0x8B, 0x0A, 0x81, 0x12, 0xB4, 0x47, 0xAE, 0xF3, 0x4B, 0xD8, 0xFB, 0x5A, 0x7B, 0x82,
+                0x9D, 0x3E, 0x86, 0x23, 0x71, 0xD2, 0xCF, 0xE5,
+            ];
         }
 
         [TearDown]
@@ -100,9 +142,10 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestUnwrap()
         {
-            byte[] unwrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _wrapped);
+            byte[] unwrapped = keyWrap.Unwrap(
+                new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                _wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(_keyData.GetBytes()), "Unwrapped the wrong data");
         }
@@ -110,56 +153,142 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestWrap()
         {
-            byte[] wrapped;
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _keyData);
+            byte[] wrapped = keyWrap.Wrap(
+                new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                _keyData);
 
-            Assert.That(wrapped, Is.EquivalentTo(_wrapped), "The wrapped data is not correct according to specification.");
+            Assert.That(wrapped, Is.EquivalentTo(_wrapped),
+                "The wrapped data is not correct according to specification.");
 
             keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             Assert.Throws<ArgumentNullException>(() =>
             {
-                wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), (SymmetricKey)null);
+                wrapped = keyWrap.Wrap(
+                    new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                    (SymmetricKey)null);
             });
         }
 
-        [Test]
-        public void TestWrapAndUnwrapAxCryptMode()
+        [TestCaseSource(nameof(RoundtripCryptoFactories))]
+        public void TestWrapAndUnwrapAxCryptMode(ICryptoFactory cryptoFactory)
         {
-            SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
-            long keyWrapIterations = 12345;
-            byte[] wrapped;
+            SymmetricKey keyToWrap =
+                new SymmetricKey([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+            Salt salt = CreateSalt(cryptoFactory);
+            const long keyWrapIterations = 12345;
             KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
-            byte[] unwrapped;
+            byte[] wrapped = keyWrap.Wrap(CreateCrypto(cryptoFactory), keyToWrap);
             keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.AxCrypt);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), wrapped);
+            byte[] unwrapped = keyWrap.Unwrap(CreateCrypto(cryptoFactory), wrapped);
 
-            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
+            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()),
+                "The unwrapped data should be equal to original.");
+        }
+
+        [TestCaseSource(nameof(RoundtripCryptoFactories))]
+        public void TestWrapAndUnwrapSpecificationMode(ICryptoFactory cryptoFactory)
+        {
+            SymmetricKey keyToWrap =
+                new SymmetricKey([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+            Salt salt = CreateSalt(cryptoFactory);
+            const long keyWrapIterations = 23456;
+            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
+            byte[] wrapped = keyWrap.Wrap(CreateCrypto(cryptoFactory), keyToWrap);
+            keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
+            byte[] unwrapped = keyWrap.Unwrap(CreateCrypto(cryptoFactory), wrapped);
+
+            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()),
+                "The unwrapped data should be equal to original.");
         }
 
         [Test]
-        public void TestWrapAndUnwrapSpecificationMode()
+        public void TestUnwrapResourceFileKeyWithV2Aes256Password()
         {
-            SymmetricKey keyToWrap = new SymmetricKey(new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-            Salt salt = new Salt(new byte[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 });
-            long keyWrapIterations = 23456;
-            byte[] wrapped;
-            KeyWrap keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            wrapped = keyWrap.Wrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), keyToWrap);
-            byte[] unwrapped;
-            keyWrap = new KeyWrap(salt, keyWrapIterations, KeyWrapMode.Specification);
-            unwrapped = keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), wrapped);
+            ICryptoFactory cryptoFactory = new V2Aes256CryptoFactory();
+            Headers headers = new Headers();
+            using AxCryptReader reader =
+                headers.CreateReader(new LookAheadStream(OpenResource("TestCaseKeyWrap-txt.axx")));
 
-            Assert.That(unwrapped, Is.EquivalentTo(keyToWrap.GetBytes()), "The unwrapped data should be equal to original.");
+            V2KeyWrapHeaderBlock keyWrap = headers.FindHeaderBlock<V2KeyWrapHeaderBlock>() ??
+                                           throw new InvalidOperationException("Missing V2KeyWrapHeaderBlock.");
+            IDerivedKey keyEncryptingKey = cryptoFactory.RestoreDerivedKey(new Passphrase("Xecrets Ez"),
+                keyWrap.DerivationSalt, keyWrap.DerivationIterations);
+            keyWrap.SetDerivedKey(cryptoFactory, keyEncryptingKey);
+
+            Assert.That(keyWrap.MasterKey, Is.Not.Null, "The master key should unwrap with the expected password.");
+            Assert.That(keyWrap.MasterIV, Is.Not.Null, "The master IV should unwrap with the expected password.");
+            Assert.That(new V2DocumentHeaders(keyWrap).Load(headers), Is.True,
+                "The document headers should validate with the unwrapped key.");
+        }
+
+        [TestCaseSource(nameof(SpecificationVectors))]
+        public void TestSpecificationVectors(byte[] kek, byte[] keyData, byte[] wrappedData)
+        {
+            ICrypto crypto = CreateCrypto(kek);
+            KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
+
+            byte[] wrapped = keyWrap.Wrap(crypto, keyData);
+            Assert.That(wrapped, Is.EquivalentTo(wrappedData), "The wrapped data should match the RFC 3394 vector.");
+
+            byte[] unwrapped = keyWrap.Unwrap(crypto, wrappedData);
+            Assert.That(unwrapped, Is.EquivalentTo(keyData), "The unwrapped data should match the RFC 3394 vector.");
+        }
+
+        private static ICrypto CreateCrypto(ICryptoFactory cryptoFactory)
+        {
+            byte[] keyBytes = _keyEncryptingKey.GetBytes()[..(cryptoFactory.KeySize / 8)];
+            return cryptoFactory.CreateCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0);
+        }
+
+        private static SymmetricKey CreateV1KeyEncryptingKey()
+        {
+            return new SymmetricKey(_keyEncryptingKey.GetBytes()[..16]);
+        }
+
+        private static ICrypto CreateCrypto(byte[] keyBytes)
+        {
+            return keyBytes.Length switch
+            {
+                16 => new V1AesCrypto(new V1Aes128CryptoFactory(), new SymmetricKey(keyBytes), SymmetricIV.Zero128),
+                32 => new V2AesCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0),
+                _ => throw new InvalidOperationException("Unexpected key length.")
+            };
+        }
+
+        private static Salt CreateSalt(ICryptoFactory cryptoFactory)
+        {
+            byte[] saltBytes = new byte[cryptoFactory.KeySize / 8];
+            for (int i = 0; i < saltBytes.Length; ++i)
+            {
+                saltBytes[i] = (byte)(i + 16);
+            }
+
+            return new Salt(saltBytes);
+        }
+
+        private static Stream OpenResource(string resourceName)
+        {
+            if (Xecrets.Net.Core.Test.Properties.Resources.ResourceManager.GetObject("TestCaseKeyWrap_txt") is not byte
+                [] resourceBytes)
+            {
+                throw new InvalidOperationException($"Missing test resource '{resourceName}'.");
+            }
+
+            return new MemoryStream(resourceBytes);
         }
 
         [Test]
         public void TestKeyWrapConstructorWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => { keyWrap.Unwrap(new V1AesCrypto(new V1Aes128CryptoFactory(), _keyEncryptingKey, SymmetricIV.Zero128), _keyData.GetBytes()); }, "Calling with too short wrapped data.");
+            Assert.Throws<InternalErrorException>(
+                () =>
+                {
+                    keyWrap.Unwrap(
+                        new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                        _keyData.GetBytes());
+                }, "Calling with too short wrapped data.");
 
             Assert.Throws<InternalErrorException>(() =>
             {
@@ -191,7 +320,8 @@ namespace AxCrypt.Core.Test
         public void TestUnwrapWithBadArgument()
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
-            Assert.Throws<InternalErrorException>(() => keyWrap.Unwrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
+            Assert.Throws<InternalErrorException>(() =>
+                keyWrap.Unwrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
         }
 
         [Test]
@@ -200,7 +330,8 @@ namespace AxCrypt.Core.Test
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             {
                 byte[] nullKeyMaterial = null;
-                Assert.Throws<ArgumentNullException>(() => keyWrap.Wrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), nullKeyMaterial));
+                Assert.Throws<ArgumentNullException>(() =>
+                    keyWrap.Wrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), nullKeyMaterial));
             }
         }
     }

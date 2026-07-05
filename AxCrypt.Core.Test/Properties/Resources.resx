@@ -124,6 +124,9 @@
   <data name="helloworld_key_a_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\helloworld-key-a-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TestCaseKeyWrap_txt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\TestCaseKeyWrap-txt.axx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="PrivateKey1" xml:space="preserve">
     <value>-----BEGIN RSA PRIVATE KEY-----
 MIIJKAIBAAKCAgEAnJ8Tk4OBEL61g5iicA2F4eEQM2qG+Qoo8BwAVYs8kl6lBNoK
