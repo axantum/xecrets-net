@@ -47,22 +47,21 @@ internal sealed class DecryptionSession(IAxCryptDocument document)
         IsDecryptable ? document.ExtractEncryptionCredentials() : EncryptedWithParameters.Empty;
 
     public Task DecryptAsync(Stream cleartext)
-    {
-        try
+        => Task.Run(() =>
         {
-            if (IsDecryptable)
+            try
             {
-                using Stream forwardOnlyClearText = ForwardOnlyStream.Wrap(cleartext);
-                document.DecryptTo(forwardOnlyClearText);
+                if (IsDecryptable)
+                {
+                    using Stream forwardOnlyClearText = ForwardOnlyStream.Wrap(cleartext);
+                    document.DecryptTo(forwardOnlyClearText);
+                }
             }
-
-            return Task.CompletedTask;
-        }
-        catch (AxCryptException ex)
-        {
-            throw ex.ToXecretsCoreException();
-        }
-    }
+            catch (AxCryptException ex)
+            {
+                throw ex.ToXecretsCoreException();
+            }
+        });
 
     public void Dispose()
     {

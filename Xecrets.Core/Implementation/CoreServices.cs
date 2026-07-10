@@ -47,83 +47,85 @@ namespace Xecrets.Core.Implementation;
 internal sealed class CoreServices : ICoreServices
 {
     public Task EncryptAsync(Stream cleartext, Stream encrypted, EncryptRequest request)
-    {
-        try
+        => Task.Run(async () =>
         {
-            Passphrase passphrase = Passphrase.Create(request.Passphrase);
-            EncryptionParameters encryptionParameters = new(new V2Aes256CryptoFactory().CryptoId, passphrase);
-            encryptionParameters.AddOrReplace(request.Recipients.Select(Extensions.ToUserPublicKey));
-
-            IAsymmetricPublicKey[] masterKeys = [.. request.MasterKeys.Select(Extensions.ToAsymmetricPublicKey)];
-            if (masterKeys.Length > 0)
+            try
             {
-                encryptionParameters.MasterPublicKey = masterKeys[0];
-                encryptionParameters.AddMasterPublicKeyAsync(masterKeys).GetAwaiter().GetResult();
-            }
+                Passphrase passphrase = Passphrase.Create(request.Passphrase);
+                EncryptionParameters encryptionParameters = new(new V2Aes256CryptoFactory().CryptoId, passphrase);
+                encryptionParameters.AddOrReplace(request.Recipients.Select(Extensions.ToUserPublicKey));
 
-            using IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters);
-            document.FileName = request.OriginalFileName;
-            document.CreationTimeUtc = request.CreationTimeUtc;
-            document.LastAccessTimeUtc = request.LastAccessTimeUtc;
-            document.LastWriteTimeUtc = request.LastWriteTimeUtc;
-            using Stream progressCleartext = ProgressStream.Wrap(ForwardOnlyStream.Wrap(cleartext), request.Progress);
-            using Stream encryptedStream = ForwardOnlyStream.Wrap(encrypted);
-            document.EncryptTo(progressCleartext, encryptedStream,
-                request.Compress ? AxCryptOptions.EncryptWithCompression : AxCryptOptions.EncryptWithoutCompression);
-            return Task.CompletedTask;
-        }
-        catch (AxCryptException ex)
-        {
-            throw ex.ToXecretsCoreException();
-        }
-    }
+                IAsymmetricPublicKey[] masterKeys = [.. request.MasterKeys.Select(Extensions.ToAsymmetricPublicKey)];
+                if (masterKeys.Length > 0)
+                {
+                    encryptionParameters.MasterPublicKey = masterKeys[0];
+                    await encryptionParameters.AddMasterPublicKeyAsync(masterKeys);
+                }
+
+                using IAxCryptDocument document = New<AxCryptFactory>().CreateDocument(encryptionParameters);
+                document.FileName = request.OriginalFileName;
+                document.CreationTimeUtc = request.CreationTimeUtc;
+                document.LastAccessTimeUtc = request.LastAccessTimeUtc;
+                document.LastWriteTimeUtc = request.LastWriteTimeUtc;
+                await using Stream progressCleartext = ProgressStream.Wrap(ForwardOnlyStream.Wrap(cleartext), request.Progress);
+                await using Stream encryptedStream = ForwardOnlyStream.Wrap(encrypted);
+                document.EncryptTo(progressCleartext, encryptedStream,
+                    request.Compress ? AxCryptOptions.EncryptWithCompression : AxCryptOptions.EncryptWithoutCompression);
+            }
+            catch (AxCryptException ex)
+            {
+                throw ex.ToXecretsCoreException();
+            }
+        });
 
     public Task<IDecryptionSession> OpenDecryptionAsync(Stream encrypted, DecryptRequest request)
-    {
-        Stream? progressEncrypted = null;
-        try
+        => Task.Run<IDecryptionSession>(() =>
         {
-            progressEncrypted = ProgressStream.Wrap(ForwardOnlyStream.Wrap(encrypted), request.Progress);
-            IAxCryptDocument document = CreateDocument(request.Identities.ToLogOnIdentities(),
-                progressEncrypted);
-            IDecryptionSession session = new DecryptionSession(document);
-            return Task.FromResult(session);
-        }
-        catch (OperationCanceledException)
-        {
-            progressEncrypted?.Dispose();
-            throw;
-        }
-        catch (AxCryptException ex)
-        {
-            progressEncrypted?.Dispose();
-            throw ex.ToXecretsCoreException();
-        }
-        catch
-        {
-            progressEncrypted?.Dispose();
-            throw;
-        }
-    }
+            Stream? progressEncrypted = null;
+            try
+            {
+                progressEncrypted = ProgressStream.Wrap(ForwardOnlyStream.Wrap(encrypted), request.Progress);
+                IAxCryptDocument document = CreateDocument(request.Identities.ToLogOnIdentities(),
+                    progressEncrypted);
+                IDecryptionSession session = new DecryptionSession(document);
+                return session;
+            }
+            catch (OperationCanceledException)
+            {
+                progressEncrypted?.Dispose();
+                throw;
+            }
+            catch (AxCryptException ex)
+            {
+                progressEncrypted?.Dispose();
+                throw ex.ToXecretsCoreException();
+            }
+            catch
+            {
+                progressEncrypted?.Dispose();
+                throw;
+            }
+        });
 
     public Task<KeyPair> CreateKeyPairAsync(string email, string passphrase, DateTimeOffset createdUtc)
-    {
-        try
+        => Task.Run(() =>
         {
-            EmailAddress emailAddress = EmailAddress.Parse(email);
-            IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(4096);
-            UserKeyPair userKeyPair = new(emailAddress, createdUtc.UtcDateTime, keyPair);
-            return Task.FromResult(userKeyPair.ToKeyPair(Passphrase.Create(passphrase)));
-        }
-        catch (FormatException ex)
-        {
-            throw new Public.XecretsCoreException($"The email address '{email}' is not valid.", Public.ErrorCode.Exception, ex);
-        }
-        catch (AxCryptException ex)
-        {
-            throw ex.ToXecretsCoreException();
-        }
-    }
+            try
+            {
+                EmailAddress emailAddress = EmailAddress.Parse(email);
+                IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(4096);
+                UserKeyPair userKeyPair = new(emailAddress, createdUtc.UtcDateTime, keyPair);
+                return userKeyPair.ToKeyPair(Passphrase.Create(passphrase));
+            }
+            catch (FormatException ex)
+            {
+                throw new Public.XecretsCoreException($"The email address '{email}' is not valid.", Public.ErrorCode.Exception, ex);
+            }
+            catch (AxCryptException ex)
+            {
+                throw ex.ToXecretsCoreException();
+            }
+        });
 
     public bool TryLoadKeyPair(ReadOnlyMemory<byte> encryptedKeyPair,
         IReadOnlyList<string> passphrases, [NotNullWhen(true)] out LoadedKeyPair? loadedKeyPair)
