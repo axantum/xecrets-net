@@ -36,7 +36,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="10.0.9" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.10" />
   </ItemGroup>
 </Project>
 
