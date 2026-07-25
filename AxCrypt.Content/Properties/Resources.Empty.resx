@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbortedFileStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AccountLoggedOnStatusText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AccountServiceLocalExceptionDialogText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AlreadyVerifiedInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="AxCryptFileEncryption" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ButtonNotNow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ButtonStartTrial" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CannotStartApplication" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CannotWrite" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DecryptedFilesWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="DecryptedFilesWarningWhenExitOrReset" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileAlreadyEncryptedStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileAlreadyExists" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileDoesNotExist" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileIsLockedWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileIsWriteProtectedWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FileOperationFailed" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="FolderAlreadyWatched" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HaveAccountInfo" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IgnoreFileOpenWarningText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="IgnoreFileWarningText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="InconsistentState" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="InformationTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="InvalidKey" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="KeySharingRemovedInFreeModeWarningText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LatestVersionAlreadyPresentText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LegacyConversionVerificationPrompt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LegacyOpenMessage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LicenseBusinessNameText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LicenseFreeNameText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LicensePremiumNameText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LicenseViewerNameText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LinkToAxCryptPremiumPurchasePage" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LinkToGettingStarted" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LinkToLoginUrl" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LinkToSecretsPageWithUserNameFormat" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LinktoChangePassword" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LocalIndicatorText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LocalSignInWarningPopUpText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LoggedOffStatusText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LoggedOnStatusText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MagicGuidMIssingFileStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MainSiteUrl" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MasterKeyInfoPopupText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MasterKeyRemovedWarningText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageAskAboutStartTrial" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageInvalidSignUpEmailText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageInvalidSignUpEmailTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageServerUpdateText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageServerUpdateTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageUnexpectedErrorText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageUnexpectedErrorTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="NewVersionIsAvailableText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OfflineApiExceptionDialogText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OfflineIndicatorText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="OptionsConvertMenuItemText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PassphraseVerificationMismatch" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PasswordStrengthBadTip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PasswordStrengthStrongTip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PasswordStrengthUnacceptableTip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PasswordStrengthWeakTip" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ProgressTotalsInformationText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PromptPasswordManager" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ReliabilityUpdateAvailableWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ReportSnapshotIntro" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SameFilePasswordAsSignedInError" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SecurityUpdateAvailableWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SubscriptionPlanValidUntilFormat" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="SystemFolderForbiddenText" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TitleMainWindow" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TitleSignInToAxCrypt" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="TitleWindowSignInStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UnknownFileStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UnrecognizedError" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="UserSettingsFormatChangeNeedsReset" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WelcomeMailSubject" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WelcomeToAxCryptTitle" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WorkingFileStatus" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WrongFileExtensionWarning" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="WrongPassphrase" xml:space="preserve">
+    <value></value>
+  </data>
+</root>
