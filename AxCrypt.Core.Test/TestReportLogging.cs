@@ -42,7 +42,7 @@ namespace AxCrypt.Core.Test
             report.Exception(new Exception("This is a test"));
             string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
 
-            Assert.That(logText.Contains(Texts.ReportSnapshotIntro), "Report log header not found.");
+            Assert.That(logText.Contains(@"----------- Exception at"), "Report log header not found.");
             Assert.That(logText.Contains("This is a test"), "Exception detail not found.");
         }
 
@@ -55,7 +55,7 @@ namespace AxCrypt.Core.Test
 
             string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
 
-            Regex searchFor = new Regex(Texts.ReportSnapshotIntro);
+            Regex searchFor = new Regex(@"----------- Exception at");
             int numberOfTimes = searchFor.Matches(logText).Count;
 
             Assert.That(numberOfTimes == 1, "Report log header present multiple time.");
