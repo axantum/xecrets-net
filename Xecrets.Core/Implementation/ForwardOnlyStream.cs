@@ -31,7 +31,7 @@ namespace Xecrets.Core.Implementation;
 /// or Position an exception is thrown.
 /// </summary>
 /// <param name="wrapped">The stream to wrap.</param>
-internal sealed class ForwardOnlyStream(Stream wrapped) : Stream
+internal sealed class ForwardOnlyStream(Stream wrapped, bool leaveOpen) : Stream
 {
     public override bool CanRead => wrapped.CanRead;
 
@@ -47,7 +47,8 @@ internal sealed class ForwardOnlyStream(Stream wrapped) : Stream
         set => throw new NotSupportedException("Position is not supported on forward-only streams.");
     }
 
-    public static Stream Wrap(Stream stream) => stream is ForwardOnlyStream ? stream : new ForwardOnlyStream(stream);
+    public static Stream Wrap(Stream stream, bool leaveOpen = false) =>
+        stream is ForwardOnlyStream && !leaveOpen ? stream : new ForwardOnlyStream(stream, leaveOpen);
 
     public override void Flush() => wrapped.Flush();
 
@@ -69,7 +70,7 @@ internal sealed class ForwardOnlyStream(Stream wrapped) : Stream
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
+        if (disposing && !leaveOpen)
         {
             wrapped.Dispose();
         }
@@ -78,7 +79,10 @@ internal sealed class ForwardOnlyStream(Stream wrapped) : Stream
 
     public override async ValueTask DisposeAsync()
     {
-        await wrapped.DisposeAsync();
+        if (!leaveOpen)
+        {
+            await wrapped.DisposeAsync();
+        }
         await base.DisposeAsync();
     }
 }

@@ -53,7 +53,7 @@ internal sealed class DecryptionSession(IAxCryptDocument document)
             {
                 if (IsDecryptable)
                 {
-                    using Stream forwardOnlyClearText = ForwardOnlyStream.Wrap(cleartext);
+                    using Stream forwardOnlyClearText = ForwardOnlyStream.Wrap(cleartext, leaveOpen: true);
                     document.DecryptTo(forwardOnlyClearText);
                 }
             }

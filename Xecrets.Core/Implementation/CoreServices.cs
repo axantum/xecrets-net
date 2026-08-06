@@ -67,8 +67,9 @@ internal sealed class CoreServices : ICoreServices
                 document.CreationTimeUtc = request.CreationTimeUtc;
                 document.LastAccessTimeUtc = request.LastAccessTimeUtc;
                 document.LastWriteTimeUtc = request.LastWriteTimeUtc;
-                await using Stream progressCleartext = ProgressStream.Wrap(ForwardOnlyStream.Wrap(cleartext), request.Progress);
-                await using Stream encryptedStream = ForwardOnlyStream.Wrap(encrypted);
+                await using Stream progressCleartext = ProgressStream.Wrap(
+                    ForwardOnlyStream.Wrap(cleartext, leaveOpen: true), request.Progress);
+                await using Stream encryptedStream = ForwardOnlyStream.Wrap(encrypted, leaveOpen: true);
                 document.EncryptTo(progressCleartext, encryptedStream,
                     request.Compress ? AxCryptOptions.EncryptWithCompression : AxCryptOptions.EncryptWithoutCompression);
             }
@@ -84,7 +85,8 @@ internal sealed class CoreServices : ICoreServices
             Stream? progressEncrypted = null;
             try
             {
-                progressEncrypted = ProgressStream.Wrap(ForwardOnlyStream.Wrap(encrypted), request.Progress);
+                progressEncrypted = ProgressStream.Wrap(
+                    ForwardOnlyStream.Wrap(encrypted, leaveOpen: true), request.Progress);
                 IAxCryptDocument document = CreateDocument(request.Identities.ToLogOnIdentities(),
                     progressEncrypted);
                 IDecryptionSession session = new DecryptionSession(document);
