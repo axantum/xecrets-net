@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="AboutTheSolutions.txt" />
+    <File Path="AxCrypt.nunit" />
+    <File Path="global.json" />
+    <File Path="README.md" />
+    <File Path="SECURITY.md" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="AxCrypt.Common.Test/Xecrets.Net.Common.Test.csproj" />
+    <Project Path="AxCrypt.Core.Test/Xecrets.Net.Core.Test.csproj" />
+    <Project Path="AxCrypt.Fake/Xecrets.Net.Fake.csproj" />
+    <Project Path="AxCrypt.Mono.Test/Xecrets.Net.Implementation.Test.csproj" />
+  </Folder>
+  <Project Path="AxCrypt.Abstractions/Xecrets.Net.Abstractions.csproj" />
+  <Project Path="AxCrypt.Api/Xecrets.Net.Api.csproj" />
+  <Project Path="AxCrypt.Common/Xecrets.Net.Common.csproj" />
+  <Project Path="AxCrypt.Content/Xecrets.Net.Content.csproj" />
+  <Project Path="AxCrypt.Core/Xecrets.Net.Core.csproj" />
+  <Project Path="AxCrypt.Mono/Xecrets.Net.Implementation.csproj" />
+  <Project Path="BouncyCastle.AxCrypt/Xecrets.Net.BouncyCastle.csproj" />
+  <Project Path="Xecrets.Net.Cryptography/Xecrets.Net.Cryptography.csproj" />
+</Solution>
