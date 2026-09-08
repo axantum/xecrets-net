@@ -36,6 +36,8 @@ namespace Xecrets.Core.Abstractions;
 /// </remarks>
 public interface ICoreServices
 {
+    Task<bool> IsEncryptedAsync(Func<Task<Stream>> openReadAsync);
+
     Task EncryptAsync(Stream cleartext, Stream encrypted, EncryptRequest request);
 
     Task<IDecryptionSession> OpenDecryptionAsync(Stream encrypted, DecryptRequest request);

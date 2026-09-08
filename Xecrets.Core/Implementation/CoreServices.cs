@@ -46,6 +46,17 @@ namespace Xecrets.Core.Implementation;
 
 internal sealed class CoreServices : ICoreServices
 {
+    public async Task<bool> IsEncryptedAsync(Func<Task<Stream>> openReadAsync)
+    {
+        byte[] formatGuid = AxCrypt1Guid.GetBytes();
+        byte[] buffer = new byte[formatGuid.Length];
+        
+        await using Stream stream = await openReadAsync();
+        int bytesRead = await stream.ReadAtLeastAsync(buffer, buffer.Length, throwOnEndOfStream: false);
+        
+        return bytesRead == buffer.Length && buffer.AsSpan().SequenceEqual(formatGuid);
+    }
+
     public Task EncryptAsync(Stream cleartext, Stream encrypted, EncryptRequest request)
         => Task.Run(async () =>
         {
