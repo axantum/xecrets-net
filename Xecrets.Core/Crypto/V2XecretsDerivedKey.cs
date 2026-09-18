@@ -19,12 +19,35 @@
  *
  * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
  * suggestions and contributions. You may also visit https://www.axantum.com for more information about the author.
- */
+*/
 
 #endregion Coypright and GPL License
 
-global using Xecrets.Core.Abstractions;
-global using Xecrets.Core.Models;
+using AxCrypt.Core.Crypto;
+using AxCrypt.Core.Extensions;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Core.Desktop")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Net.Core.Test")]
+using Xecrets.Net.Cryptography;
+
+namespace Xecrets.Core.Crypto;
+
+// Derive a SymmetricKey from a string passphrase for Xecrets.Net V2. This mirrors the obsolete
+// AxCrypt.Core.Crypto.V2DerivedKey, but derives with XecretsPbkdf2 and defaults to a work factor that follows
+// the current recommendation. Instances of this class are immutable.
+internal sealed class V2XecretsDerivedKey : DerivedKeyBase
+{
+    // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#pbkdf2
+    private const int DefaultDerivationIterations = 220_000;
+
+    public V2XecretsDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations, int keySize)
+    {
+        DerivationSalt = salt;
+        DerivationIterations = derivationIterations;
+        DerivedKey = new SymmetricKey(new XecretsPbkdf2(passphrase.Text, salt.GetBytes(), derivationIterations)
+            .GetBytes().Reduce(keySize / 8));
+    }
+
+    public V2XecretsDerivedKey(Passphrase passphrase, int keySize)
+        : this(passphrase, new Salt(256), DefaultDerivationIterations, keySize)
+    {
+    }
+}

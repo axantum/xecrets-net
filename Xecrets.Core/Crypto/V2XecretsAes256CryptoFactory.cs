@@ -19,12 +19,33 @@
  *
  * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
  * suggestions and contributions. You may also visit https://www.axantum.com for more information about the author.
- */
+*/
 
 #endregion Coypright and GPL License
 
-global using Xecrets.Core.Abstractions;
-global using Xecrets.Core.Models;
+using AxCrypt.Core.Crypto;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Core.Desktop")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Net.Core.Test")]
+namespace Xecrets.Core.Crypto;
+
+// The Xecrets.Net implementation of V2 AES-256.
+internal sealed class V2XecretsAes256CryptoFactory : ICryptoFactory
+{
+    public IDerivedKey CreateDerivedKey(Passphrase passphrase) =>
+        new V2XecretsDerivedKey(passphrase, 256);
+
+    public IDerivedKey RestoreDerivedKey(Passphrase passphrase, Salt salt, int derivationIterations) =>
+        new V2XecretsDerivedKey(passphrase, salt, derivationIterations, 256);
+
+    public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV? iv, long keyStreamOffset) =>
+        new V2AesCrypto(key, iv, keyStreamOffset);
+
+    public int Priority => 300_000;
+
+    public Guid CryptoId { get; } = new("E20F33D4-89E2-4D88-A39C-21DD62FB674F");
+
+    public string Name => "AES-256";
+
+    public int KeySize => 256;
+
+    public int BlockSize => 128;
+}

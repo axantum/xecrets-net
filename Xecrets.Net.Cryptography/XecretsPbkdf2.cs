@@ -19,12 +19,41 @@
  *
  * The source repository can be found at https://github.com/axantum/xecrets-net please go there for more information,
  * suggestions and contributions. You may also visit https://www.axantum.com for more information about the author.
- */
+*/
 
 #endregion Coypright and GPL License
 
-global using Xecrets.Core.Abstractions;
-global using Xecrets.Core.Models;
+using System.Security.Cryptography;
+using System.Text;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Core.Desktop")]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Xecrets.Net.Core.Test")]
+namespace Xecrets.Net.Cryptography
+{
+    // This replaces AxCrypt.Core.Crypto.Pbkdf2HmacSha512.
+    public class XecretsPbkdf2
+    {
+        private byte[]? _bytes;
+
+        public XecretsPbkdf2(string password, ReadOnlySpan<byte> salt, int derivationIterations, int outputLength = 64)
+        {
+            ArgumentNullException.ThrowIfNull(password);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(derivationIterations);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(outputLength);
+
+            // The password is the HMAC key, encoded as UTF-8 without a byte order mark.
+            _bytes = Rfc2898DeriveBytes.Pbkdf2(new UTF8Encoding(false).GetBytes(password), salt, derivationIterations,
+                HashAlgorithmName.SHA512, outputLength);
+        }
+
+        public byte[] GetBytes()
+        {
+            if (_bytes == null)
+            {
+                throw new InvalidOperationException("The key bytes can only be read once.");
+            }
+
+            byte[] bytes = _bytes;
+            _bytes = null;
+            return bytes;
+        }
+    }
+}

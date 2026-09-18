@@ -82,6 +82,7 @@ using Xecrets.Net.Api.Implementation;
 using Xecrets.Net.Core;
 using Xecrets.Net.Core.Crypto.Asymmetric;
 using Xecrets.Net.Core.Test.LegacyImplementation;
+using Xecrets.Core.Crypto;
 
 namespace AxCrypt.Core.Test
 {
@@ -116,7 +117,7 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.Singleton<FileSystemState>(() => FileSystemState.Create(Resolve.WorkFolder.FileInfo.FileItemInfo("FileSystemState.txt")));
             TypeMap.Register.Singleton<IStatusChecker>(() => new FakeStatusChecker());
             TypeMap.Register.Singleton<IRandomGenerator>(() => new FakeRandomGenerator());
-            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory());
+            TypeMap.Register.Singleton<CryptoFactory>(() => CreateCryptoFactory(cryptoImplementation));
             TypeMap.Register.Singleton<ActiveFileWatcher>(() => new ActiveFileWatcher());
             TypeMap.Register.Singleton<IEmailParser>(() => new EmailParser());
             TypeMap.Register.Singleton<ICache>(() => new FakeCache());
@@ -197,6 +198,16 @@ namespace AxCrypt.Core.Test
                     TypeMap.Register.Singleton<IAsymmetricFactory>(() => new BouncyCastleAsymmetricFactory());
                     TypeMap.Register.Singleton<IPaddingHashFactory>(() => new BouncyCastlePaddingHashFactory());
                     break;
+
+                case CryptoImplementation.Xecrets:
+                    TypeMap.Register.New<AxCryptHMACSHA1>(() => PortableFactory.AxCryptHMACSHA1());
+                    TypeMap.Register.New<HMACSHA512>(() => PortableFactory.HMACSHA512());
+                    TypeMap.Register.New<Aes>(() => PortableFactory.AesManaged());
+                    TypeMap.Register.New<CryptoStreamBase>(() => PortableFactory.CryptoStream());
+                    TypeMap.Register.New<Sha1>(() => PortableFactory.SHA1Managed());
+                    TypeMap.Register.New<Sha256>(() => PortableFactory.SHA256Managed());
+                    TypeMap.Register.Singleton<IAsymmetricFactory>(() => new NetAsymmetricFactory());
+                    break;
             }
         }
 
@@ -209,11 +220,21 @@ namespace AxCrypt.Core.Test
             return new FakeDataStore(location);
         }
 
-        public static CryptoFactory CreateCryptoFactory()
+        public static CryptoFactory CreateCryptoFactory(CryptoImplementation cryptoImplementation = CryptoImplementation.Unknown)
         {
             CryptoFactory factory = new CryptoFactory();
-            factory.Add(() => new V2Aes256CryptoFactory());
-            factory.Add(() => new V2Aes128CryptoFactory());
+
+            if (cryptoImplementation == CryptoImplementation.Xecrets)
+            {
+                factory.Add(() => new V2XecretsAes256CryptoFactory());
+                factory.Add(() => new V2XecretsAes128CryptoFactory());
+            }
+            else
+            {
+                factory.Add(() => new V2Aes256CryptoFactory());
+                factory.Add(() => new V2Aes128CryptoFactory());
+            }
+
             factory.Add(() => new V1Aes128CryptoFactory());
 
             return factory;

@@ -11,6 +11,7 @@ namespace AxCrypt.Fake
         Unknown,
         Mono,
         WindowsDesktop,
-        BouncyCastle
+        BouncyCastle,
+        Xecrets,
     }
 }

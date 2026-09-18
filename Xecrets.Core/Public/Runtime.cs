@@ -36,6 +36,7 @@ using AxCrypt.Core.UI;
 using AxCrypt.Mono.Cryptography;
 using AxCrypt.Mono.Portable;
 
+using Xecrets.Core.Crypto;
 using Xecrets.Core.Implementation;
 using Xecrets.Net.Api.Implementation;
 using Xecrets.Net.Core;
@@ -84,7 +85,16 @@ public static class Runtime
         Singleton<IRandomGenerator>(() => new RandomGenerator());
         Singleton<IAsymmetricFactory>(() => new NetAsymmetricFactory());
         Singleton<IProtectedData>(() => new NoProtectedData());
-        Singleton(() => new CryptoFactory([]));
+        Singleton(() =>
+        {
+            CryptoFactory cryptoFactory = new CryptoFactory();
+
+            cryptoFactory.Add(() => new V2XecretsAes256CryptoFactory());
+            cryptoFactory.Add(() => new V2XecretsAes128CryptoFactory());
+            cryptoFactory.Add(() => new V1Aes128CryptoFactory());
+
+            return cryptoFactory;
+        });
         Transient(() => new AxCryptFactory());
         Transient(() => new AxCryptFile());
         Transient<int, Salt>(size => new Salt(size));
