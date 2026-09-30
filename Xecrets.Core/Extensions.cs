@@ -38,7 +38,7 @@ namespace Xecrets.Core;
 internal static class Extensions
 {
     internal static XecretsCoreException ToXecretsCoreException(this AxCryptException exception) =>
-        new XecretsCoreException(exception.Message, exception.ErrorStatus.ToErrorCode(), exception);
+        new(exception.Message, exception.ErrorStatus.ToErrorCode(), exception);
 
     private static ErrorCode ToErrorCode(this ErrorStatus errorStatus)
     {
@@ -127,10 +127,10 @@ internal static class Extensions
     }
 
     internal static PublicKey ToPublicKey(this UserPublicKey publicKey) =>
-        new PublicKey(publicKey.Email.Address, New<IStringSerializer>().Serialize(publicKey), publicKey.PublicKey.Tag);
+        new(publicKey.Email.Address, New<IStringSerializer>().Serialize(publicKey), publicKey.PublicKey.Tag);
 
     private static PublicKey ToPublicKey(this IAsymmetricPublicKey publicKey) =>
-        new PublicKey(string.Empty, New<IStringSerializer>().Serialize(publicKey), publicKey.Tag);
+        new(string.Empty, New<IStringSerializer>().Serialize(publicKey), publicKey.Tag);
 
     private static UserKeyPair ToUserKeyPair(this KeyPair keyPair) =>
         New<IStringSerializer>().Deserialize<UserKeyPair>(keyPair.SerializedKeyPair)

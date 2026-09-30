@@ -102,4 +102,10 @@ public static class Runtime
         Transient<ISystemCryptoPolicy>(() => new ProCryptoPolicy());
         Singleton<IStringSerializer>(() => new SystemTextJsonStringSerializer(JsonSourceGenerationContext.CreateJsonSerializerContext(New<IAsymmetricFactory>().GetConverters())));
     }
+
+    /// <summary>
+    /// Persists Core's device settings through the host. Call as early as possible after Register().
+    /// </summary>
+    public static void UseDeviceSettings(IDeviceSettings deviceSettings) =>
+        Singleton<ISettingsStore>(() => new DeviceSettingsStoreAdapter(deviceSettings));
 }
