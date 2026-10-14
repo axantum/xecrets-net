@@ -782,7 +782,7 @@ namespace AxCrypt.Core.Test
             IDataStore fileInfo = New<IDataStore>(_helloWorldAxxPath);
             Assert.That(!fileInfo.IsAvailable, "The file should not exist after wiping.");
 
-            Assert.DoesNotThrowAsync(async () => { status = await controller.WipeFileAsync(New<IDataStore>(_davidCopperfieldTxtPath)); });
+            await Assert.DoesNotThrowAsync(async () => { status = await controller.WipeFileAsync(New<IDataStore>(_davidCopperfieldTxtPath)); });
             Assert.That(status.ErrorStatus, Is.EqualTo(ErrorStatus.Success), "The wipe should indicate success.");
             progress.NotifyLevelFinished();
 

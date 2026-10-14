@@ -487,7 +487,7 @@ namespace AxCrypt.Core.Test
             TypeMap.Register.Singleton<FileSystemState>(() => fileSystemStateMock.Object);
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                Assert.ThrowsAsync<InvalidOperationException>(async () => await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { }));
+                await Assert.ThrowsAsync<InvalidOperationException>(async () => await mvm.DecryptWatchedFolders.ExecuteAsync(new string[] { }));
 
                 LogOnIdentity id = new LogOnIdentity("passphrase");
                 fileSystemStateMock.Object.KnownPassphrases.Add(id.Passphrase);

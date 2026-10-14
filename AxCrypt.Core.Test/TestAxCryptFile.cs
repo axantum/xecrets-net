@@ -449,7 +449,7 @@ namespace AxCrypt.Core.Test
             {
                 using (MemoryStream inputStream = FakeDataStore.ExpandableMemoryStream(Encoding.UTF8.GetBytes("A string with some text")))
                 {
-                    Assert.ThrowsAsync<OperationCanceledException>((async () => { await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
+                    await Assert.ThrowsAsync<OperationCanceledException>((async () => { await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, (Stream stream) => { throw new OperationCanceledException(); }, new ProgressContext()); }));
                     string tempFilePath = _rootPath.PathCombine("Written", "File.bak");
                     IDataStore tempFileInfo = New<IDataStore>(tempFilePath);
                     Assert.That(tempFileInfo.IsAvailable, Is.False, "The .bak file should be removed.");
@@ -530,7 +530,7 @@ namespace AxCrypt.Core.Test
 
             using (FileLock destinationFileLock = New<FileLocker>().Acquire(destinationFileInfo))
             {
-                Assert.ThrowsAsync<FileOperationException>(async () =>
+                await Assert.ThrowsAsync<FileOperationException>(async () =>
                 {
                     await New<AxCryptFile>().EncryptToFileWithBackupAsync(destinationFileLock, async (Stream stream) =>
                     {

@@ -416,7 +416,7 @@ namespace AxCrypt.Core.Test
             FakeDataStore.OpeningForWrite += eventHandler;
             try
             {
-                Assert.ThrowsAsync<FileOperationException>(async () => await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext()));
+                await Assert.ThrowsAsync<FileOperationException>(async () => await New<ActiveFileAction>().CheckActiveFiles(new ProgressContext()));
             }
             finally
             {
@@ -763,7 +763,7 @@ namespace AxCrypt.Core.Test
             ActiveFile beforeRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(beforeRemoval, Is.Not.Null, "Before being removed, the ActiveFile should be possible to find.");
 
-            Assert.DoesNotThrowAsync(async () => { await New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
+            await Assert.DoesNotThrowAsync(async () => { await New<ActiveFileAction>().RemoveRecentFiles(new IDataStore[] { New<IDataStore>(encryptedFileInfo.FullName + ".notfound") }, new ProgressContext()); });
 
             ActiveFile afterFailedRemoval = Resolve.FileSystemState.FindActiveFileFromEncryptedPath(encryptedFileInfo.FullName);
             Assert.That(afterFailedRemoval, Is.Not.Null, "After failed removal, the ActiveFile should still be possible to find.");
