@@ -44,6 +44,8 @@ public interface ICoreServices
 
     Task<KeyPair> CreateKeyPairAsync(string email, string passphrase, DateTimeOffset createdUtc);
 
+    Task<KeyPair> ChangeKeyPairAsync(KeyPair keyPair, string email, string passphrase);
+
     bool TryLoadKeyPair(ReadOnlyMemory<byte> encryptedKeyPair, IReadOnlyList<string> passphrases, [NotNullWhen(true)] out LoadedKeyPair? loadedKeyPair);
 
     string ExportPublicKey(PublicKey publicKey);

@@ -121,14 +121,25 @@ internal sealed class CoreServices : ICoreServices
         });
 
     public Task<KeyPair> CreateKeyPairAsync(string email, string passphrase, DateTimeOffset createdUtc)
+        => ToKeyPairAsync(email, passphrase,
+            emailAddress => new UserKeyPair(emailAddress, createdUtc.UtcDateTime,
+                Resolve.AsymmetricFactory.CreateKeyPair(4096)));
+
+    public Task<KeyPair> ChangeKeyPairAsync(KeyPair keyPair, string email, string passphrase)
+        => ToKeyPairAsync(email, passphrase, emailAddress =>
+        {
+            UserKeyPair userKeyPair = keyPair.ToUserKeyPair();
+            return new UserKeyPair(emailAddress, userKeyPair.Timestamp, userKeyPair.KeyPair);
+        });
+
+    private static Task<KeyPair> ToKeyPairAsync(string email, string passphrase,
+        Func<EmailAddress, UserKeyPair> createUserKeyPair)
         => Task.Run(() =>
         {
             try
             {
                 EmailAddress emailAddress = EmailAddress.Parse(email);
-                IAsymmetricKeyPair keyPair = Resolve.AsymmetricFactory.CreateKeyPair(4096);
-                UserKeyPair userKeyPair = new(emailAddress, createdUtc.UtcDateTime, keyPair);
-                return userKeyPair.ToKeyPair(Passphrase.Create(passphrase));
+                return createUserKeyPair(emailAddress).ToKeyPair(Passphrase.Create(passphrase));
             }
             catch (FormatException ex)
             {

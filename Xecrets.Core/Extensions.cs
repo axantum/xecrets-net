@@ -132,7 +132,7 @@ internal static class Extensions
     private static PublicKey ToPublicKey(this IAsymmetricPublicKey publicKey) =>
         new(string.Empty, New<IStringSerializer>().Serialize(publicKey), publicKey.Tag);
 
-    private static UserKeyPair ToUserKeyPair(this KeyPair keyPair) =>
+    internal static UserKeyPair ToUserKeyPair(this KeyPair keyPair) =>
         New<IStringSerializer>().Deserialize<UserKeyPair>(keyPair.SerializedKeyPair)
                ?? throw new InvalidDataException("The key pair could not be deserialized.");
 

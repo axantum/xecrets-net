@@ -31,6 +31,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 using Xecrets.Core.Abstractions;
+using Xecrets.Core.Models;
 using Xecrets.Core.Public;
 
 // ReSharper disable once CheckNamespace
@@ -86,6 +87,31 @@ public sealed class TestCoreServices
     {
         Assert.ThrowsAsync<IOException>(async () => await CoreServices.IsEncryptedAsync(
             () => Task.FromResult<Stream>(new ThrowingReadStream())));
+    }
+
+    [Test]
+    public async Task ChangeKeyPairAsyncChangesEmailAndPassphraseAndKeepsKeys()
+    {
+        DateTimeOffset createdUtc = new(2026, 1, 2, 3, 4, 5, TimeSpan.Zero);
+        KeyPair original = await CoreServices.CreateKeyPairAsync("old@example.com", "old", createdUtc);
+
+        KeyPair changed = await CoreServices.ChangeKeyPairAsync(original, "new@example.com", "new");
+
+        Assert.That(CoreServices.TryLoadKeyPair(changed.EncryptedBytes, ["old"], out _), Is.False);
+        Assert.That(CoreServices.TryLoadKeyPair(changed.EncryptedBytes, ["new"], out LoadedKeyPair? loaded), Is.True);
+        Assert.That(loaded!.KeyPair.Email, Is.EqualTo("new@example.com"));
+        Assert.That(loaded.KeyPair.PublicKey.Email, Is.EqualTo("new@example.com"));
+        Assert.That(loaded.KeyPair.PublicKey.Tag, Is.EqualTo(original.PublicKey.Tag));
+        Assert.That(loaded.KeyPair.CreatedUtc, Is.EqualTo(original.CreatedUtc));
+    }
+
+    [Test]
+    public async Task ChangeKeyPairAsyncRejectsInvalidEmail()
+    {
+        KeyPair original = await CoreServices.CreateKeyPairAsync("old@example.com", "old", DateTimeOffset.UtcNow);
+
+        Assert.ThrowsAsync<XecretsCoreException>(async () =>
+            await CoreServices.ChangeKeyPairAsync(original, "not an email", "new"));
     }
 
     private static ICoreServices CreateCoreServices()
