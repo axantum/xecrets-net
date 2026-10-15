@@ -1,4 +1,4 @@
-#region Coypright and GPL License
+﻿#region Coypright and GPL License
 
 /*
  * Xecrets.Net - Copyright © 2022-2026, Svante Seleborg, All Rights Reserved.
@@ -110,7 +110,7 @@ public sealed class TestCoreServices
     {
         KeyPair original = await CoreServices.CreateKeyPairAsync("old@example.com", "old", DateTimeOffset.UtcNow);
 
-        Assert.ThrowsAsync<XecretsCoreException>(async () =>
+        await Assert.ThrowsAsync<XecretsCoreException>(async () =>
             await CoreServices.ChangeKeyPairAsync(original, "not an email", "new"));
     }
 
