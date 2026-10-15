@@ -83,6 +83,7 @@ namespace Xecrets.Net.Core
     [JsonSerializable(typeof(ActiveFileStatus))]
     [JsonSerializable(typeof(SymmetricKeyThumbprint))]
     [JsonSerializable(typeof(Recipients))]
+    [JsonSerializable(typeof(MasterKeys))]
     [JsonSerializable(typeof(UserAccounts))]
     [JsonSerializable(typeof(UserAccount))]
     [JsonSerializable(typeof(Offers))]

@@ -49,6 +49,6 @@ namespace AxCrypt.Core.Header
         }
 
         [JsonPropertyName("masterPublicKeys")]
-        public List<IAsymmetricPublicKey> MasterPublicKeys { get; private set; }
+        public List<IAsymmetricPublicKey> MasterPublicKeys { get; set; }
     }
 }

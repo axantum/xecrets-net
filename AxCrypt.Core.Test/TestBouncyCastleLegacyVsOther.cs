@@ -39,6 +39,7 @@ using AxCrypt.Core;
 using AxCrypt.Core.Crypto;
 using AxCrypt.Core.Crypto.Asymmetric;
 using AxCrypt.Core.Extensions;
+using AxCrypt.Core.Header;
 using AxCrypt.Core.Service;
 using AxCrypt.Core.Session;
 using AxCrypt.Core.Test;
@@ -299,6 +300,73 @@ internal class TestBouncyCastleLegacyVsOther(CryptoImplementation cryptoImplemen
         decryptedPlaintext = Encoding.UTF8.GetString(decryptedStream.ToArray());
 
         Assert.That(decryptedPlaintext, Is.EqualTo(Resources.david_copperfield));
+    }
+
+    [Test]
+    public async Task TestBcEncryptMultiMasterFileOtherDecrypt()
+    {
+        await EncryptMultiMasterThenDecrypt(CryptoImplementation.BouncyCastle, cryptoImplementation);
+    }
+
+    [Test]
+    public async Task TestOtherEncryptMultiMasterFileBcDecrypt()
+    {
+        await EncryptMultiMasterThenDecrypt(cryptoImplementation, CryptoImplementation.BouncyCastle);
+    }
+
+    private async Task EncryptMultiMasterThenDecrypt(CryptoImplementation encryptImplementation, CryptoImplementation decryptImplementation)
+    {
+        SetUp(encryptImplementation);
+
+        IAsymmetricKeyPair masterKeyPair1 = New<IAsymmetricFactory>().CreateKeyPair(1024);
+        IAsymmetricKeyPair masterKeyPair2 = New<IAsymmetricFactory>().CreateKeyPair(1024);
+        string[] masterKeyPairsJson = [New<IStringSerializer>().Serialize(masterKeyPair1), New<IStringSerializer>().Serialize(masterKeyPair2)];
+
+        byte[] encrypted = await TestMultipleMasterKeys.EncryptWithMasterKeysAsync([masterKeyPair1.PublicKey, masterKeyPair2.PublicKey]);
+
+        SetUp(decryptImplementation);
+
+        IAsymmetricKeyPair[] masterKeyPairs = [.. masterKeyPairsJson.Select(json => New<IStringSerializer>().Deserialize<IAsymmetricKeyPair>(json)!)];
+        foreach (IAsymmetricKeyPair masterKeyPair in masterKeyPairs)
+        {
+            LogOnIdentity masterIdentity = TestMultipleMasterKeys.MasterIdentity(masterKeyPair);
+
+            using (IAxCryptDocument document = TestMultipleMasterKeys.LoadDocument(encrypted, masterIdentity))
+            {
+                Assert.That(document.PassphraseIsValid, Is.True);
+                Assert.That(document.AsymmetricMasterKeys.Select(key => key.Thumbprint), Is.EqualTo(masterKeyPairs.Select(keyPair => keyPair.PublicKey.Thumbprint)));
+            }
+
+            Assert.That(TestMultipleMasterKeys.Decrypt(encrypted, masterIdentity), Is.EqualTo(Resources.david_copperfield));
+        }
+    }
+
+    [Test]
+    public void TestBcSerializeMasterKeysOtherDeserialize()
+    {
+        MasterKeys bcMasterKeys = new([new BouncyCastleKeyPair(1024).PublicKey, new BouncyCastleKeyPair(1024).PublicKey]);
+        string bcSerialized = _bcSerializer.Serialize(bcMasterKeys);
+
+        MasterKeys otherMasterKeys = _otherSerializer.Deserialize<MasterKeys>(bcSerialized)!;
+        Assert.That(otherMasterKeys.MasterPublicKeys, Has.Count.EqualTo(2));
+
+        string otherSerialized = _otherSerializer.Serialize(otherMasterKeys);
+
+        Assert.That(otherSerialized, Is.EqualTo(bcSerialized));
+    }
+
+    [Test]
+    public void TestOtherSerializeMasterKeysBcDeserialize()
+    {
+        MasterKeys otherMasterKeys = new([New<IAsymmetricFactory>().CreateKeyPair(1024).PublicKey, New<IAsymmetricFactory>().CreateKeyPair(1024).PublicKey]);
+        string otherSerialized = _otherSerializer.Serialize(otherMasterKeys);
+
+        MasterKeys bcMasterKeys = _bcSerializer.Deserialize<MasterKeys>(otherSerialized)!;
+        Assert.That(bcMasterKeys.MasterPublicKeys, Has.Count.EqualTo(2));
+
+        string bcSerialized = _bcSerializer.Serialize(bcMasterKeys);
+
+        Assert.That(bcSerialized, Is.EqualTo(otherSerialized));
     }
 
     [Test]
