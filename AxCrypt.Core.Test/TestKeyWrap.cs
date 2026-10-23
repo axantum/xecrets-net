@@ -66,6 +66,8 @@ using AxCrypt.Fake;
 
 using NUnit.Framework;
 
+using Xecrets.Core.Crypto;
+
 #pragma warning disable 3016 // Attribute-arguments as arrays are not CLS compliant. Ignore this here, it's how NUnit works.
 
 // ReSharper disable once CheckNamespace
@@ -74,6 +76,7 @@ namespace AxCrypt.Core.Test
     [TestFixture(CryptoImplementation.Mono)]
     [TestFixture(CryptoImplementation.WindowsDesktop)]
     [TestFixture(CryptoImplementation.BouncyCastle)]
+    [TestFixture(CryptoImplementation.Xecrets)]
     public class TestKeyWrap(CryptoImplementation cryptoImplementation)
     {
         private static SymmetricKey _keyEncryptingKey;
@@ -144,7 +147,7 @@ namespace AxCrypt.Core.Test
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             byte[] unwrapped = keyWrap.Unwrap(
-                new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                CreateV1Crypto(),
                 _wrapped);
 
             Assert.That(unwrapped, Is.EquivalentTo(_keyData.GetBytes()), "Unwrapped the wrong data");
@@ -155,7 +158,7 @@ namespace AxCrypt.Core.Test
         {
             KeyWrap keyWrap = new KeyWrap(6, KeyWrapMode.Specification);
             byte[] wrapped = keyWrap.Wrap(
-                new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                CreateV1Crypto(),
                 _keyData);
 
             Assert.That(wrapped, Is.EquivalentTo(_wrapped),
@@ -165,7 +168,7 @@ namespace AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() =>
             {
                 wrapped = keyWrap.Wrap(
-                    new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                    CreateV1Crypto(),
                     (SymmetricKey)null);
             });
         }
@@ -205,7 +208,9 @@ namespace AxCrypt.Core.Test
         [Test]
         public void TestUnwrapResourceFileKeyWithV2Aes256Password()
         {
-            ICryptoFactory cryptoFactory = new V2Aes256CryptoFactory();
+            ICryptoFactory cryptoFactory = cryptoImplementation == CryptoImplementation.Xecrets
+                ? new V2XecretsAes256CryptoFactory()
+                : new V2Aes256CryptoFactory();
             Headers headers = new Headers();
             using AxCryptReader reader =
                 headers.CreateReader(new LookAheadStream(OpenResource("TestCaseKeyWrap-txt.axx")));
@@ -235,10 +240,21 @@ namespace AxCrypt.Core.Test
             Assert.That(unwrapped, Is.EquivalentTo(keyData), "The unwrapped data should match the RFC 3394 vector.");
         }
 
-        private static ICrypto CreateCrypto(ICryptoFactory cryptoFactory)
+        // With the Xecrets implementation, KeyWrap delegates to XecretsKeyWrap via V2XecretsAesCrypto, otherwise the
+        // legacy block by block implementation is used.
+        private ICrypto CreateCrypto(ICryptoFactory cryptoFactory)
         {
             byte[] keyBytes = _keyEncryptingKey.GetBytes()[..(cryptoFactory.KeySize / 8)];
-            return cryptoFactory.CreateCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0);
+            return cryptoImplementation == CryptoImplementation.Xecrets
+                ? new V2XecretsAesCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0)
+                : cryptoFactory.CreateCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0);
+        }
+
+        private ICrypto CreateV1Crypto()
+        {
+            return cryptoImplementation == CryptoImplementation.Xecrets
+                ? new V2XecretsAesCrypto(CreateV1KeyEncryptingKey(), SymmetricIV.Zero128, 0)
+                : new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128);
         }
 
         private static SymmetricKey CreateV1KeyEncryptingKey()
@@ -246,8 +262,13 @@ namespace AxCrypt.Core.Test
             return new SymmetricKey(_keyEncryptingKey.GetBytes()[..16]);
         }
 
-        private static ICrypto CreateCrypto(byte[] keyBytes)
+        private ICrypto CreateCrypto(byte[] keyBytes)
         {
+            if (cryptoImplementation == CryptoImplementation.Xecrets)
+            {
+                return new V2XecretsAesCrypto(new SymmetricKey(keyBytes), SymmetricIV.Zero128, 0);
+            }
+
             return keyBytes.Length switch
             {
                 16 => new V1AesCrypto(new V1Aes128CryptoFactory(), new SymmetricKey(keyBytes), SymmetricIV.Zero128),
@@ -286,7 +307,7 @@ namespace AxCrypt.Core.Test
                 () =>
                 {
                     keyWrap.Unwrap(
-                        new V1AesCrypto(new V1Aes128CryptoFactory(), CreateV1KeyEncryptingKey(), SymmetricIV.Zero128),
+                        CreateV1Crypto(),
                         _keyData.GetBytes());
                 }, "Calling with too short wrapped data.");
 
@@ -321,7 +342,7 @@ namespace AxCrypt.Core.Test
         {
             KeyWrap keyWrap = new KeyWrap(100, KeyWrapMode.Specification);
             Assert.Throws<InternalErrorException>(() =>
-                keyWrap.Unwrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), new byte[25]));
+                keyWrap.Unwrap(CreateCrypto(SymmetricKey.Zero256.GetBytes()), new byte[25]));
         }
 
         [Test]
@@ -331,7 +352,7 @@ namespace AxCrypt.Core.Test
             {
                 byte[] nullKeyMaterial = null;
                 Assert.Throws<ArgumentNullException>(() =>
-                    keyWrap.Wrap(new V2AesCrypto(SymmetricKey.Zero256, SymmetricIV.Zero128, 0), nullKeyMaterial));
+                    keyWrap.Wrap(CreateCrypto(SymmetricKey.Zero256.GetBytes()), nullKeyMaterial));
             }
         }
     }

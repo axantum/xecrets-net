@@ -37,7 +37,7 @@ internal sealed class V2XecretsAes128CryptoFactory : ICryptoFactory
         new V2XecretsDerivedKey(passphrase, salt, derivationIterations, 128);
 
     public ICrypto CreateCrypto(SymmetricKey key, SymmetricIV? iv, long keyStreamOffset) =>
-        new V2AesCrypto(key, iv, keyStreamOffset);
+        new V2XecretsAesCrypto(key, iv, keyStreamOffset);
 
     public int Priority => 200_000;
 

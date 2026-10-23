@@ -34,6 +34,7 @@ using AxCrypt.Fake;
 using NUnit.Framework;
 
 using Xecrets.Core.Crypto;
+using Xecrets.Net.Core.Crypto;
 
 namespace Xecrets.Net.Core.Test;
 
@@ -92,6 +93,15 @@ public class TestV2XecretsCryptoFactory(CryptoImplementation cryptoImplementatio
         IDerivedKey key = Resolve.CryptoFactory.Preferred.RestoreDerivedKey(new Passphrase("secret"), salt, 1000);
 
         Assert.That(key.DerivationIterations, Is.EqualTo(1000));
+    }
+
+    [Test]
+    public void TestCreateCryptoUsesXecretsKeyWrap()
+    {
+        Assert.That(Resolve.CryptoFactory.Preferred.CreateCrypto(SymmetricKey.Zero256, null, 0),
+            Is.InstanceOf<IKeyWrapCrypto>());
+        Assert.That(Resolve.CryptoFactory.Minimum.CreateCrypto(SymmetricKey.Zero128, null, 0),
+            Is.InstanceOf<IKeyWrapCrypto>());
     }
 
     [TestCase(128)]

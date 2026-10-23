@@ -30,6 +30,8 @@ using System.Runtime.CompilerServices;
 
 using AxCrypt.Core.Runtime;
 
+using Xecrets.Net.Core.Crypto;
+
 namespace AxCrypt.Core.Crypto;
 
 /// <summary>
@@ -90,6 +92,10 @@ public class KeyWrap
             throw new InternalErrorException("The key wrap algorithm block size must be 128 bits.");
         }
 
+        if (crypto is IKeyWrapCrypto keyWrapCrypto)
+        {
+            return keyWrapCrypto.KeyWrap(_salt, _keyWrapIterations, _mode, keyMaterial);
+        }
 
         using IKeyWrapTransform encryptor = crypto.CreateKeyWrapTransform(_salt, KeyWrapDirection.Encrypt);
         return WrapInternal(keyMaterial, encryptor);
@@ -204,6 +210,11 @@ public class KeyWrap
         {
             throw new InternalErrorException(
                 "The length of the wrapped data must be large enough to accommodate at least a 128-bit key.");
+        }
+
+        if (crypto is IKeyWrapCrypto keyWrapCrypto)
+        {
+            return keyWrapCrypto.KeyUnwrap(_salt, _keyWrapIterations, _mode, wrapped);
         }
 
         using IKeyWrapTransform decryptor = crypto.CreateKeyWrapTransform(_salt, KeyWrapDirection.Decrypt);
