@@ -41,5 +41,7 @@ public interface IDesktopServices
 
     bool CanWriteToFolder(IFolder folder);
 
+    void Replace(IFile sourceFile, IFile targetFile);
+
     Task<bool> WipeAsync(string path, IProgress<Progress> progress);
 }

@@ -44,6 +44,8 @@ internal sealed class FileWrapper(IDataStore wrapped) : IFile
 
     public bool IsAvailable => IsStdIo || Wrapped.IsAvailable;
 
+    public bool IsSymbolicLink => !IsStdIo && new FileInfo(FullName).LinkTarget != null;
+
     public string AliasName => Wrapped is IStandardIoDataStore standardIoFile ? standardIoFile.AliasName : Wrapped.Name;
 
     public string Name => Wrapped.Name;

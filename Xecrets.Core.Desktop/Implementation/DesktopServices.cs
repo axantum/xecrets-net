@@ -33,6 +33,7 @@ using AxCrypt.Core.UI;
 using static AxCrypt.Abstractions.TypeResolve;
 
 using ProgressEventArgs = AxCrypt.Core.UI.ProgressEventArgs;
+using SystemIOFile = System.IO.File;
 
 namespace Xecrets.Core.Desktop.Implementation;
 
@@ -70,6 +71,29 @@ internal sealed partial class DesktopServices : IDesktopServices
     public bool CanWriteToFile(IFile file) => New<IFileVerify>().CanWriteToFile(UnwrapStandardIoFile(file));
 
     public bool CanWriteToFolder(IFolder folder) => New<IFileVerify>().CanWriteToFolder(UnwrapContainer(folder));
+
+    private const FileAttributes CopiedAttributes = FileAttributes.Hidden | FileAttributes.System | FileAttributes.NotContentIndexed;
+
+    public void Replace(IFile sourceFile, IFile targetFile)
+    {
+        // Flushing a reopened handle still forces all cached data for the file to disk.
+        using (FileStream stream = new(sourceFile.FullName, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+        {
+            stream.Flush(flushToDisk: true);
+        }
+
+        if (OperatingSystem.IsWindows() || OperatingSystem.IsMacOS())
+        {
+            // Setting it on Linux would backdate the last modified time to the creation time.
+            SystemIOFile.SetCreationTimeUtc(sourceFile.FullName, SystemIOFile.GetCreationTimeUtc(targetFile.FullName));
+        }
+
+        // Only some attributes are copied; on Unix, Hidden maps to the macOS hidden flag and the rest are ignored.
+        FileAttributes copiedAttributes = SystemIOFile.GetAttributes(targetFile.FullName) & CopiedAttributes;
+        SystemIOFile.SetAttributes(sourceFile.FullName, SystemIOFile.GetAttributes(sourceFile.FullName) | copiedAttributes);
+
+        SystemIOFile.Move(sourceFile.FullName, targetFile.FullName, overwrite: true);
+    }
 
     private static IStandardIoDataStore UnwrapStandardIoFile(IFile file)
     {

@@ -39,6 +39,8 @@ public interface IFile
 
     bool IsAvailable { get; }
 
+    bool IsSymbolicLink { get; }
+
     string AliasName { get; }
 
     string Name { get; }
