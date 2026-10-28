@@ -37,9 +37,9 @@ public interface IDesktopServices
 
     bool CanReadFromFile(IFile file, [NotNullWhen(false)] out string? reason);
 
-    bool CanWriteToFile(IFile file);
+    bool CanWriteToFile(IFile file, [NotNullWhen(false)] out string? reason);
 
-    bool CanWriteToFolder(IFolder folder);
+    bool CanWriteToFolder(IFolder folder, [NotNullWhen(false)] out string? reason);
 
     void Replace(IFile sourceFile, IFile targetFile);
 

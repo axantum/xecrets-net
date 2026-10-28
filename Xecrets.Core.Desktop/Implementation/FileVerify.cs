@@ -40,14 +40,14 @@ internal class FileVerify : IFileVerify
         {
             if (store.IsStdout)
             {
-                reason = "Stdout is write-only";
+                reason = "Stdout is write-only.";
                 return false;
             }
             return true;
         }
         if (!store.IsAvailable)
         {
-            reason = "File does not exist";
+            reason = "File does not exist.";
             return false;
         }
         try
@@ -64,23 +64,30 @@ internal class FileVerify : IFileVerify
         }
     }
 
-    public bool CanWriteToFile(IStandardIoDataStore store)
+    public bool CanWriteToFile(IStandardIoDataStore store, [NotNullWhen(false)] out string? reason)
     {
+        reason = null;
         if (store.IsStdIo)
         {
-            return store.IsStdout;
+            if (!store.IsStdout)
+            {
+                reason = "Stdin is read-only.";
+                return false;
+            }
+            return true;
         }
 
         bool wasExisting = Exists(store.FullName);
 
-        bool canWrite = CanWrite();
+        bool canWrite = CanWrite(out reason);
         if (!wasExisting && canWrite)
         {
             Delete(store.FullName);
         }
         return canWrite;
 
-        bool CanWrite() {
+        bool CanWrite([NotNullWhen(false)] out string? reason) {
+            reason = null;
             try
             {
                 using (OpenWrite(store.FullName))
@@ -88,20 +95,23 @@ internal class FileVerify : IFileVerify
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                reason = ex.Message;
                 return false;
             }
         }
     }
 
-    public bool CanWriteToFolder(IDataContainer container)
+    public bool CanWriteToFolder(IDataContainer container, [NotNullWhen(false)] out string? reason)
     {
+        reason = null;
         try
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(container.FullName);
             if (!directoryInfo.Exists)
             {
+                reason = "Folder does not exist.";
                 return false;
             }
             string randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".tmp";
@@ -114,8 +124,9 @@ internal class FileVerify : IFileVerify
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                reason = ex.Message;
                 return false;
             }
             finally
@@ -123,8 +134,9 @@ internal class FileVerify : IFileVerify
                 fileInfo.Delete();
             }
         }
-        catch
+        catch (Exception ex)
         {
+            reason = ex.Message;
             return false;
         }
     }
