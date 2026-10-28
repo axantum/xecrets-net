@@ -33,7 +33,7 @@ internal interface IFileVerify
 {
     bool CanReadFromFile(IStandardIoDataStore store, [NotNullWhen(false)] out string? reason);
 
-    bool CanWriteToFile(IStandardIoDataStore store);
+    bool CanWriteToFile(IStandardIoDataStore store, [NotNullWhen(false)] out string? reason);
 
     bool CanWriteToFolder(IDataContainer container);
 }

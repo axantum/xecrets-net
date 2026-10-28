@@ -64,23 +64,30 @@ internal class FileVerify : IFileVerify
         }
     }
 
-    public bool CanWriteToFile(IStandardIoDataStore store)
+    public bool CanWriteToFile(IStandardIoDataStore store, [NotNullWhen(false)] out string? reason)
     {
+        reason = null;
         if (store.IsStdIo)
         {
-            return store.IsStdout;
+            if (!store.IsStdout)
+            {
+                reason = "Stdin is read-only";
+                return false;
+            }
+            return true;
         }
 
         bool wasExisting = Exists(store.FullName);
 
-        bool canWrite = CanWrite();
+        bool canWrite = CanWrite(out reason);
         if (!wasExisting && canWrite)
         {
             Delete(store.FullName);
         }
         return canWrite;
 
-        bool CanWrite() {
+        bool CanWrite([NotNullWhen(false)] out string? reason) {
+            reason = null;
             try
             {
                 using (OpenWrite(store.FullName))
@@ -88,8 +95,9 @@ internal class FileVerify : IFileVerify
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                reason = ex.Message;
                 return false;
             }
         }

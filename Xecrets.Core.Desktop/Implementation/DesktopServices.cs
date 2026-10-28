@@ -68,7 +68,8 @@ internal sealed partial class DesktopServices : IDesktopServices
     public bool CanReadFromFile(IFile file, [NotNullWhen(false)] out string? reason) =>
         New<IFileVerify>().CanReadFromFile(UnwrapStandardIoFile(file), out reason);
 
-    public bool CanWriteToFile(IFile file) => New<IFileVerify>().CanWriteToFile(UnwrapStandardIoFile(file));
+    public bool CanWriteToFile(IFile file, [NotNullWhen(false)] out string? reason) =>
+        New<IFileVerify>().CanWriteToFile(UnwrapStandardIoFile(file), out reason);
 
     public bool CanWriteToFolder(IFolder folder) => New<IFileVerify>().CanWriteToFolder(UnwrapContainer(folder));
 

@@ -37,7 +37,7 @@ public interface IDesktopServices
 
     bool CanReadFromFile(IFile file, [NotNullWhen(false)] out string? reason);
 
-    bool CanWriteToFile(IFile file);
+    bool CanWriteToFile(IFile file, [NotNullWhen(false)] out string? reason);
 
     bool CanWriteToFolder(IFolder folder);
 
