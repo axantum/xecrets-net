@@ -28,4 +28,14 @@ namespace Xecrets.Core.Models;
 public sealed record EncryptedWithParameters(string Passphrase, IReadOnlyList<PublicKey> Recipients, IReadOnlyList<PublicKey> MasterKeys)
 {
     public static EncryptedWithParameters Empty { get; } = new(string.Empty, [], []);
+
+
+    /// <summary>
+    /// The parameters to encrypt again with, using the passphrase given, keeping all recipients and master keys, and
+    /// adding each additional recipient not already among them.
+    /// </summary>
+    /// <param name="passphrase">The passphrase to encrypt with instead.</param>
+    /// <param name="additionalRecipients">Recipients to add, unless already among the recipients.</param>
+    public EncryptedWithParameters ReEncryptWith(string passphrase, IEnumerable<PublicKey> additionalRecipients) =>
+        new(passphrase, [.. Recipients.UnionBy(additionalRecipients, recipient => recipient.SerializedKey)], MasterKeys);
 }

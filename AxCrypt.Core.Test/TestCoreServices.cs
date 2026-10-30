@@ -114,6 +114,62 @@ public sealed class TestCoreServices
             await CoreServices.ChangeKeyPairAsync(original, "not an email", "new"));
     }
 
+    [Test]
+    public async Task ReEncryptWithKeepsRecipientsOfAFileAndAddsNewRecipientsOnce()
+    {
+        DateTimeOffset createdUtc = new(2026, 1, 2, 3, 4, 5, TimeSpan.Zero);
+        KeyPair recipient = await CoreServices.CreateKeyPairAsync("recipient@example.com", "recipient", createdUtc);
+        KeyPair added = await CoreServices.CreateKeyPairAsync("added@example.com", "added", createdUtc);
+        EncryptedWithParameters encryptedWith = await EncryptAndReadBackAsync(
+            new EncryptedWithParameters("old", [recipient.PublicKey], []));
+
+        EncryptedWithParameters reEncryptWith = encryptedWith.ReEncryptWith(
+            "new",
+            [recipient.PublicKey, added.PublicKey]);
+
+        Assert.That(reEncryptWith.Passphrase, Is.EqualTo("new"));
+        Assert.That(
+            reEncryptWith.Recipients.Select(publicKey => publicKey.SerializedKey),
+            Is.EqualTo([recipient.PublicKey.SerializedKey, added.PublicKey.SerializedKey]));
+    }
+
+    [Test]
+    public void ReEncryptWithKeepsMasterKeys()
+    {
+        PublicKey masterKey = new("", "master key");
+        EncryptedWithParameters encryptedWith = new("old", [], [masterKey]);
+
+        EncryptedWithParameters reEncryptWith = encryptedWith.ReEncryptWith("new", []);
+
+        Assert.That(reEncryptWith.MasterKeys, Is.EqualTo([masterKey]));
+    }
+
+    private static async Task<EncryptedWithParameters> EncryptAndReadBackAsync(EncryptedWithParameters parameters)
+    {
+        DateTime utcNow = DateTime.UtcNow;
+        using MemoryStream encrypted = new();
+        await CoreServices.EncryptAsync(
+            new MemoryStream([1, 2, 3]),
+            encrypted,
+            new EncryptRequest(
+                parameters.Passphrase,
+                parameters.Recipients,
+                parameters.MasterKeys,
+                "a.txt",
+                utcNow,
+                utcNow,
+                utcNow,
+                true,
+                new Progress<Progress>(_ => { })));
+        encrypted.Position = 0;
+
+        using IDecryptionSession session = await CoreServices.OpenDecryptionAsync(
+            encrypted,
+            new DecryptRequest([new Identity(parameters.Passphrase, [])], new Progress<Progress>(_ => { })));
+        Assert.That(session.IsDecryptable, Is.True);
+        return session.EncryptedWithParameters;
+    }
+
     private static ICoreServices CreateCoreServices()
     {
         ServiceCollection services = new();
