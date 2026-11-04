@@ -51,3 +51,6 @@ packages
 
 # Claude Code personal settings (not shared with the team)
 .claude/settings.local.json
+/.idea/.idea.AxCrypt.NET/.idea/.name
+/.idea/.idea.AxCrypt.NET/.idea/indexLayout.xml
+/.idea/.idea.AxCrypt.NET/.idea/vcs.xml
