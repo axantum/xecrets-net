@@ -86,15 +86,15 @@ namespace AxCrypt.Core.Test
             filter.AddUnencryptable(new Regex(@"\\desktop\.ini$".Replace(@"\\", s)));
             filter.AddUnencryptable(new Regex(@".*\.tmp$"));
 
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"anywhere\.dropbox")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Somewhere\file.dropbox")), Is.True);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@".dropboxx")), Is.True);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@".dropbo")), Is.True);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"folder\desktop.ini")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"file-desktop.ini")), Is.True);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"anything.tmp")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmp")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmpx")), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"anywhere\.dropbox".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Somewhere\file.dropbox".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@".dropboxx".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@".dropbo".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"folder\desktop.ini".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"file-desktop.ini".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"anything.tmp".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmp".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\anywhere\anything.tmp.tmpx".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
         }
 
         [Test]
@@ -105,12 +105,12 @@ namespace AxCrypt.Core.Test
             string s = $"\\{Path.DirectorySeparatorChar}";
             filter.AddUnencryptable(new Regex(@"^.*\\~\$[^\\]*$".Replace(@"\\", s)));
 
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\")), Is.True);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\~$")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx")), Is.False);
-            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx\The-file.txt")), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$\~$".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(filter.IsEncryptable(new FakeDataStore(@"C:\Folder\~$Temp.docx\The-file.txt".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
         }
 
         [Test]
@@ -136,17 +136,17 @@ namespace AxCrypt.Core.Test
             Assert.Throws<ArgumentNullException>(() => filter.AddForbiddenFolderFilters(null));
             Assert.Throws<ArgumentNullException>(() => filter.IsForbiddenFolder(null));
 
-            filter.AddForbiddenFolderFilters(@"c:\programdata\");
-            filter.AddForbiddenFolderFilters(@"c:\program files (x86)\");
-            filter.AddForbiddenFolderFilters(@"c:\program files\");
-            filter.AddForbiddenFolderFilters(@"c:\windows\");
+            filter.AddForbiddenFolderFilters(@"c:\programdata\".Replace('\\', Path.DirectorySeparatorChar));
+            filter.AddForbiddenFolderFilters(@"c:\program files (x86)\".Replace('\\', Path.DirectorySeparatorChar));
+            filter.AddForbiddenFolderFilters(@"c:\program files\".Replace('\\', Path.DirectorySeparatorChar));
+            filter.AddForbiddenFolderFilters(@"c:\windows\".Replace('\\', Path.DirectorySeparatorChar));
 
-            Assert.That(filter.IsForbiddenFolder(@"C:\ProgramData"), Is.True);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files (x86)"), Is.True);
-            Assert.That(filter.IsForbiddenFolder(@"C:\WINDOWS"), Is.True);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files"), Is.True);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Temp"), Is.False);
-            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp"), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\ProgramData".Replace('\\', Path.DirectorySeparatorChar)), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files (x86)".Replace('\\', Path.DirectorySeparatorChar)), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\WINDOWS".Replace('\\', Path.DirectorySeparatorChar)), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Program Files".Replace('\\', Path.DirectorySeparatorChar)), Is.True);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Temp".Replace('\\', Path.DirectorySeparatorChar)), Is.False);
+            Assert.That(filter.IsForbiddenFolder(@"C:\Windows\Temp".Replace('\\', Path.DirectorySeparatorChar)), Is.True);
         }
     }
 }

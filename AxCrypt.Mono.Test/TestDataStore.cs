@@ -153,6 +153,25 @@ namespace AxCrypt.Mono.Test
         }
 
         [Test]
+        public static void TestDataStoreBackslashInFileName()
+        {
+            if (New<IPlatform>().Platform is not (Platform.MacOsx or Platform.Linux))
+            {
+                Assert.That(true, Is.True, "A backslash is a directory separator on Windows, so this test makes no sense there.");
+                return;
+            }
+
+            string fileName = Path.Combine(_tempPath, @"a\b.txt");
+            DataStore ds = new DataStore(fileName);
+            using (ds.OpenWrite())
+            {
+            }
+
+            Assert.That(ds.FullName, Is.EqualTo(fileName));
+            Assert.That(File.Exists(fileName), Is.True);
+        }
+
+        [Test]
         public static void TestDataStoreCreateDirectory()
         {
             string testTempFolder = Path.Combine(Path.GetTempPath(), "AxantumTestCreateDirectory" + Path.DirectorySeparatorChar);

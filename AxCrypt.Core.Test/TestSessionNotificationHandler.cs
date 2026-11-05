@@ -102,16 +102,16 @@ namespace AxCrypt.Core.Test
 
             MockAxCryptFile mock = new MockAxCryptFile();
             bool called = false;
-            mock.EncryptFilesUniqueWithBackupAndWipeMockAsync = async (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { await Task.Delay(0); called = folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath(); };
+            mock.EncryptFilesUniqueWithBackupAndWipeMockAsync = async (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { await Task.Delay(0); called = folderInfos.First().FullName == @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath(); };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
-            FakeDataStore.AddFolder(@"C:\My Documents");
+            FakeDataStore.AddFolder(@"C:\My Documents".Replace('\\', Path.DirectorySeparatorChar));
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents".Replace('\\', Path.DirectorySeparatorChar), key.Tag));
 
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar)));
 
             Assert.That(called, Is.True);
         }
@@ -119,17 +119,17 @@ namespace AxCrypt.Core.Test
         [Test]
         public async Task TestHandleSessionEventWatchedFolderRemoved()
         {
-            FakeDataStore.AddFolder(@"C:\My Documents\");
+            FakeDataStore.AddFolder(@"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar));
             MockAxCryptFile mock = new MockAxCryptFile();
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
             bool called = false;
-            mock.DecryptFilesUniqueWithWipeOfOriginalMockAsync = (IDataContainer fileInfo, LogOnIdentity decryptionKey, IStatusChecker statusChecker, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\".NormalizeFilePath(); };
+            mock.DecryptFilesUniqueWithWipeOfOriginalMockAsync = (IDataContainer fileInfo, LogOnIdentity decryptionKey, IStatusChecker statusChecker, IProgressContext progress) => { called = fileInfo.FullName == @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath(); };
 
             TypeMap.Register.New<AxCryptFile>(() => mock);
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
 
-            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
+            await handler.HandleNotificationAsync(new SessionNotification(SessionNotificationType.WatchedFolderRemoved, new LogOnIdentity("passphrase"), @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar)));
 
             Assert.That(called, Is.True);
         }
@@ -295,18 +295,18 @@ namespace AxCrypt.Core.Test
 
             MockAxCryptFile mock = new MockAxCryptFile();
             int callTimes = 0;
-            mock.EncryptFilesUniqueWithBackupAndWipeMockAsync = async (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { await Task.Delay(0); if (folderInfos.First().FullName == @"C:\My Documents\".NormalizeFilePath()) ++callTimes; };
+            mock.EncryptFilesUniqueWithBackupAndWipeMockAsync = async (IEnumerable<IDataContainer> folderInfos, EncryptionParameters encryptionParameters, IProgressContext progress) => { await Task.Delay(0); if (folderInfos.First().FullName == @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath()) ++callTimes; };
 
             Mock<IStatusChecker> mockStatusChecker = new Mock<IStatusChecker>();
 
             SessionNotificationHandler handler = new SessionNotificationHandler(Resolve.FileSystemState, Resolve.KnownIdentities, New<ActiveFileAction>(), mock, mockStatusChecker.Object);
-            FakeDataStore.AddFolder(@"C:\My Documents");
+            FakeDataStore.AddFolder(@"C:\My Documents".Replace('\\', Path.DirectorySeparatorChar));
             LogOnIdentity key = new LogOnIdentity("passphrase");
-            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents", key.Tag));
+            await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\My Documents".Replace('\\', Path.DirectorySeparatorChar), key.Tag));
 
             List<SessionNotification> sessionEvents = new List<SessionNotification>();
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase1"), @"C:\My Documents\"));
-            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\"));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase1"), @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar)));
+            sessionEvents.Add(new SessionNotification(SessionNotificationType.WatchedFolderAdded, new LogOnIdentity("passphrase"), @"C:\My Documents\".Replace('\\', Path.DirectorySeparatorChar)));
 
             foreach (SessionNotification sessionEvent in sessionEvents)
             {

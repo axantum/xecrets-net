@@ -649,7 +649,7 @@ namespace AxCrypt.Core.Test
             mvm.SelectingFiles += (sender, e) =>
             {
                 e.SelectedFiles.Clear();
-                e.SelectedFiles.Add(@"C:\Folder\Copy of File1.txt".NormalizeFilePath());
+                e.SelectedFiles.Add(@"C:\Folder\Copy of File1.txt".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath());
             };
 
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity(EmailAddress.Parse("testing@axcrypt.net"), Passphrase.Create("a")));
@@ -657,13 +657,13 @@ namespace AxCrypt.Core.Test
             {
                 throw new InvalidOperationException("Log on should not be called in this scenario.");
             };
-            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx", new MemoryStream(Resources.helloworld_key_a_txt));
-            FakeDataStore.AddFile(@"C:\Folder\File1.txt", null);
-            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx".NormalizeFilePath() });
+            FakeDataStore.AddFile(@"C:\Folder\File1-txt.axx".Replace('\\', Path.DirectorySeparatorChar), new MemoryStream(Resources.helloworld_key_a_txt));
+            FakeDataStore.AddFile(@"C:\Folder\File1.txt".Replace('\\', Path.DirectorySeparatorChar), null);
+            await mvm.DecryptFiles.ExecuteAsync(new string[] { @"C:\Folder\File1-txt.axx".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath() });
 
             Mock.Get(Resolve.ParallelFileOperation).Verify(x => x.DoFilesAsync(It.Is<IEnumerable<IDataStore>>(f => f.Count() == 1), It.IsAny<Func<IDataStore, IProgressContext, Task<FileOperationContext>>>(), It.IsAny<Func<FileOperationContext, Task>>()));
-            axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>((i) => i.DataStore.FullName == @"C:\Folder\File1-txt.axx".NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFile(It.Is<IAxCryptDocument>((a) => a.FileName == @"File1.txt"), It.Is<string>((s) => s == @"C:\Folder\Copy of File1.txt".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.Wipe(It.Is<FileLock>((i) => i.DataStore.FullName == @"C:\Folder\File1-txt.axx".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath()), It.IsAny<IProgressContext>()), Times.Once);
             Assert.That(Resolve.KnownIdentities.IsLoggedOn, Is.True);
         }
 
@@ -1093,15 +1093,15 @@ namespace AxCrypt.Core.Test
             Resolve.FileSystemState.KnownPassphrases.Add(id.Passphrase);
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(id);
 
-            FakeDataStore.AddFile(@"C:\Folder1\File1-txt.axx", null);
-            FakeDataStore.AddFile(@"C:\Folder1\File2-txt.axx", null);
-            FakeDataStore.AddFile(@"C:\Folder2\File1-txt.axx", null);
+            FakeDataStore.AddFile(@"C:\Folder1\File1-txt.axx".Replace('\\', Path.DirectorySeparatorChar), null);
+            FakeDataStore.AddFile(@"C:\Folder1\File2-txt.axx".Replace('\\', Path.DirectorySeparatorChar), null);
+            FakeDataStore.AddFile(@"C:\Folder2\File1-txt.axx".Replace('\\', Path.DirectorySeparatorChar), null);
 
             FileOperationViewModel mvm = New<FileOperationViewModel>();
-            await mvm.DecryptFolders.ExecuteAsync(new string[] { @"C:\Folder1\", @"C:\Folder2\" });
+            await mvm.DecryptFolders.ExecuteAsync(new string[] { @"C:\Folder1\".Replace('\\', Path.DirectorySeparatorChar), @"C:\Folder2\".Replace('\\', Path.DirectorySeparatorChar) });
 
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder1\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
-            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder2\".NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder1\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
+            axCryptFileMock.Verify(m => m.DecryptFilesInsideFolderUniqueWithWipeOfOriginalAsync(It.Is<IDataContainer>(r => r.FullName == @"C:\Folder2\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath()), It.IsAny<LogOnIdentity>(), It.IsAny<IStatusChecker>(), It.IsAny<IProgressContext>()), Times.Once);
         }
     }
 }

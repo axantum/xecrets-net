@@ -390,6 +390,15 @@ namespace AxCrypt.Core.Test
         }
 
         [Test]
+        public static void TestExtensions_NormalizeFilePath()
+        {
+            string normalized = @"folder\name/file.txt".NormalizeFilePath();
+
+            string expected = Path.DirectorySeparatorChar == '/' ? @"folder\name/file.txt" : @"folder\name\file.txt";
+            Assert.That(normalized, Is.EqualTo(expected));
+        }
+
+        [Test]
         public static void TestExtensions_CreateUniqueFileFirstIsOk()
         {
             using (FileLock lockedUnique = @"C:\temp\test.txt".CreateUniqueFile())
@@ -453,9 +462,9 @@ namespace AxCrypt.Core.Test
         {
             New<FileFilter>().AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}(?!Temp$)".InvariantFormat(Path.DirectorySeparatorChar)));
 
-            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test.txt")), Is.True);
-            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Windows\test.txt")), Is.False);
-            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test-txt.axx")), Is.False);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test.txt".Replace('\\', Path.DirectorySeparatorChar))), Is.True);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Windows\test.txt".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
+            Assert.That(New<FileFilter>().IsEncryptable(New<IDataStore>(@"C:\Temp\test-txt.axx".Replace('\\', Path.DirectorySeparatorChar))), Is.False);
 
             IDataStore nullFileInfo = null;
             Assert.Throws<ArgumentNullException>(() => New<FileFilter>().IsEncryptable(nullFileInfo));
@@ -465,10 +474,10 @@ namespace AxCrypt.Core.Test
         public static void TestExtensions_NormalizeFolder()
         {
             string expected = @"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar);
-            Assert.That(New<IDataContainer>(@"C:\Documents\").FullName, Is.EqualTo(expected));
-            Assert.That(New<IDataContainer>(@"C:/Documents\").FullName, Is.EqualTo(expected));
-            Assert.That(New<IDataContainer>(@"C:\Documents").FullName, Is.EqualTo(expected));
-            Assert.That(New<IDataContainer>(@"C:\Documents\\//").FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\".Replace('\\', Path.DirectorySeparatorChar)).FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:/Documents\".Replace('\\', Path.DirectorySeparatorChar)).FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents".Replace('\\', Path.DirectorySeparatorChar)).FullName, Is.EqualTo(expected));
+            Assert.That(New<IDataContainer>(@"C:\Documents\\//".Replace('\\', Path.DirectorySeparatorChar)).FullName, Is.EqualTo(expected));
         }
 
         [Test]
@@ -511,8 +520,8 @@ namespace AxCrypt.Core.Test
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.NonExisting));
 
             New<FileFilter>().AddUnencryptable(new Regex(@"^C:\{0}Windows\{0}".InvariantFormat(Path.DirectorySeparatorChar)));
-            FakeDataStore.AddFile(@"C:\Windows\System.drv", null);
-            fileInfo = New<IDataStore>(@"C:\Windows\System.drv");
+            FakeDataStore.AddFile(@"C:\Windows\System.drv".Replace('\\', Path.DirectorySeparatorChar), null);
+            fileInfo = New<IDataStore>(@"C:\Windows\System.drv".Replace('\\', Path.DirectorySeparatorChar));
             Assert.That(fileInfo.Type(), Is.EqualTo(FileInfoTypes.OtherFile));
         }
 

@@ -242,7 +242,7 @@ namespace AxCrypt.Core.Test
         {
             using (MainViewModel mvm = New<MainViewModel>())
             {
-                string folder1Path = @"C:\Folder1\FilesFolder\".NormalizeFilePath();
+                string folder1Path = @"C:\Folder1\FilesFolder\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath();
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that does not exist is not a candidate for watched folders.");
 
@@ -254,7 +254,7 @@ namespace AxCrypt.Core.Test
                 mvm.DragAndDropFiles = new string[] { folder1Path, };
                 Assert.That(mvm.DroppableAsWatchedFolder, Is.False, "A folder that matches a path filter is not a candidate for watched folders.");
 
-                string folder2Path = @"C:\Folder1\FilesFolder2\".NormalizeFilePath();
+                string folder2Path = @"C:\Folder1\FilesFolder2\".Replace('\\', Path.DirectorySeparatorChar).NormalizeFilePath();
                 FakeDataStore.AddFolder(folder2Path);
                 TypeMap.Register.Singleton<FileFilter>(() => new FileFilter());
 
@@ -604,12 +604,12 @@ namespace AxCrypt.Core.Test
         public async Task TestSetFilesArePending()
         {
             await Resolve.KnownIdentities.SetDefaultEncryptionIdentity(new LogOnIdentity("passphrase"));
-            FakeDataStore.AddFolder(@"C:\MyFolders\Folder1");
+            FakeDataStore.AddFolder(@"C:\MyFolders\Folder1".Replace('\\', Path.DirectorySeparatorChar));
             using (MainViewModel mvm = New<MainViewModel>())
             {
                 Assert.That(mvm.FilesArePending, Is.False);
-                await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\MyFolders\Folder1", Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
-                FakeDataStore.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt", Stream.Null);
+                await Resolve.FileSystemState.AddWatchedFolderAsync(new WatchedFolder(@"C:\MyFolders\Folder1".Replace('\\', Path.DirectorySeparatorChar), Resolve.KnownIdentities.DefaultEncryptionIdentity.Tag));
+                FakeDataStore.AddFile(@"C:\MyFolders\Folder1\Encryptable.txt".Replace('\\', Path.DirectorySeparatorChar), Stream.Null);
                 Assert.That(mvm.FilesArePending, Is.True);
             }
         }

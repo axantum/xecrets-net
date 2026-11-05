@@ -243,8 +243,13 @@ namespace AxCrypt.Core.Extensions
                 throw new ArgumentNullException("filePath");
             }
 
-            filePath = filePath.Replace(Resolve.Portable.Path().DirectorySeparatorChar == '/' ? '\\' : '/', Resolve.Portable.Path().DirectorySeparatorChar);
-            return filePath;
+            // A backslash is a valid file name character where '/' is the separator, so it must not be translated there.
+            if (Resolve.Portable.Path().DirectorySeparatorChar == '/')
+            {
+                return filePath;
+            }
+
+            return filePath.Replace('/', Resolve.Portable.Path().DirectorySeparatorChar);
         }
 
         public static string NormalizeFolderPath(this string folder)

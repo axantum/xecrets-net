@@ -38,9 +38,9 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestSimpleExceptionLogging()
         {
-            IReport report = new Report(@"c:\test\", 100);
+            IReport report = new Report(@"c:\test\".Replace('\\', Path.DirectorySeparatorChar), 100);
             report.Exception(new Exception("This is a test"));
-            string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
+            string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt".Replace('\\', Path.DirectorySeparatorChar)).OpenRead(), Encoding.UTF8).ReadToEnd();
 
             Assert.That(logText.Contains(@"----------- Exception at"), "Report log header not found.");
             Assert.That(logText.Contains("This is a test"), "Exception detail not found.");
@@ -49,11 +49,11 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestReportHeaderOccurrence()
         {
-            IReport report = new Report(@"c:\test\", 100);
+            IReport report = new Report(@"c:\test\".Replace('\\', Path.DirectorySeparatorChar), 50);
             report.Exception(new Exception("This is a test"));
             report.Exception(new Exception("This is a test2"));
 
-            string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
+            string logText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.txt".Replace('\\', Path.DirectorySeparatorChar)).OpenRead(), Encoding.UTF8).ReadToEnd();
 
             Regex searchFor = new Regex(@"----------- Exception at");
             int numberOfTimes = searchFor.Matches(logText).Count;
@@ -64,11 +64,11 @@ namespace AxCrypt.Core.Test
         [Test]
         public static void TestMoveCurrentLogFileContentToPreviousLogFile()
         {
-            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.txt", new MemoryStream());
-            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.1.txt", new MemoryStream());
+            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.txt".Replace('\\', Path.DirectorySeparatorChar), new MemoryStream());
+            FakeDataStore.AddFile(@"c:\test\ReportSnapshot.1.txt".Replace('\\', Path.DirectorySeparatorChar), new MemoryStream());
 
-            IReport report = new Report(@"c:\test\", 100);
-            string previousLogText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.1.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
+            IReport report = new Report(@"c:\test\".Replace('\\', Path.DirectorySeparatorChar), 100);
+            string previousLogText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.1.txt".Replace('\\', Path.DirectorySeparatorChar)).OpenRead(), Encoding.UTF8).ReadToEnd();
 
             Assert.That(previousLogText.Length == 0, "Previous log file contain data.");
 
@@ -76,7 +76,7 @@ namespace AxCrypt.Core.Test
             {
                 report.Exception(new Exception("This is a test " + i));
             }
-            previousLogText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.1.txt").OpenRead(), Encoding.UTF8).ReadToEnd();
+            previousLogText = new StreamReader(New<IDataStore>(@"c:\test\ReportSnapshot.1.txt".Replace('\\', Path.DirectorySeparatorChar)).OpenRead(), Encoding.UTF8).ReadToEnd();
             Assert.That(previousLogText.Length > 0, "Data not been coppied to pPrevious log file.");
         }
     }

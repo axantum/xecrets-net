@@ -64,21 +64,10 @@ internal class StandardIoDataStore : IStandardIoDataStore
         IsStdin = path == StdinAlias || path.StartsWith(StdinAlias + StdIoNameSeparator, StringComparison.InvariantCulture);
         IsStdout = path == StdoutAlias || path.StartsWith(StdoutAlias + StdIoNameSeparator, StringComparison.InvariantCulture);
 
-        string[] nameAndAlias = path.Split(StdinAlias + StdIoNameSeparator);
-        if (nameAndAlias.Length != 2)
-        {
-            nameAndAlias = path.Split(StdoutAlias + StdIoNameSeparator);
-        }
-
         string adjustedPath = path;
-        if (nameAndAlias.Length == 2)
-        {
-            adjustedPath = nameAndAlias[0];
-            _aliasName = nameAndAlias[1];
-        }
-
         if (IsStdIo)
         {
+            _aliasName = path.Length > 1 ? path[2..] : string.Empty;
             adjustedPath = path[..1];
         }
 

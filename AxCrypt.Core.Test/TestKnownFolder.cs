@@ -78,11 +78,11 @@ namespace AxCrypt.Core.Test
         public static void TestNormalConstructor()
         {
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents".Replace('\\', Path.DirectorySeparatorChar));
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", KnownFolderKind.GoogleDrive, providerUrl);
-            Assert.That(kf.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
-            Assert.That(kf.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
+            Assert.That(kf.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".Replace('\\', Path.DirectorySeparatorChar).NormalizeFolderPath()));
+            Assert.That(kf.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".Replace('\\', Path.DirectorySeparatorChar).NormalizeFolderPath()));
             Assert.That(kf.Image, Is.EqualTo(TestKnownImageProvider.Image));
             Assert.That(kf.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kf.Enabled, Is.False);
@@ -92,13 +92,13 @@ namespace AxCrypt.Core.Test
         public static void TestCopyConstructor()
         {
             Uri providerUrl = new Uri("http://localhost/AxCrypt/");
-            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents");
+            IDataContainer myInfo = New<IDataContainer>(@"C:\Users\AxCrypt\My Documents".Replace('\\', Path.DirectorySeparatorChar));
 
             KnownFolder kf = new KnownFolder(myInfo, @"AxCrypt", KnownFolderKind.Dropbox, providerUrl);
             KnownFolder kfCopy = new KnownFolder(kf, true);
 
-            Assert.That(kfCopy.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".NormalizeFolderPath()));
-            Assert.That(kfCopy.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".NormalizeFolderPath()));
+            Assert.That(kfCopy.Folder.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents".Replace('\\', Path.DirectorySeparatorChar).NormalizeFolderPath()));
+            Assert.That(kfCopy.My.FullName, Is.EqualTo(@"C:\Users\AxCrypt\My Documents\AxCrypt".Replace('\\', Path.DirectorySeparatorChar).NormalizeFolderPath()));
             Assert.That(kfCopy.Image, Is.EqualTo(TestKnownImageProvider.Image));
             Assert.That(kfCopy.ProviderUrl, Is.EqualTo(providerUrl));
             Assert.That(kfCopy.Enabled, Is.True);
