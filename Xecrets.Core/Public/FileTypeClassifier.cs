@@ -75,8 +75,11 @@ public static class FileTypeClassifier
         { ".diff", "text/x-diff" },
         { ".doc", "application/msword" },
         { ".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document" },
+        { ".drawio", "application/vnd.jgraph.mxfile" },
         { ".editorconfig", "text/plain" },
+        { ".eml", "message/rfc822" },
         { ".env", "text/plain" },
+        { ".eps", "application/postscript" },
         { ".epub", "application/epub+zip" },
         { ".erl", "text/plain" },
         { ".ex", "text/plain" },
@@ -94,6 +97,7 @@ public static class FileTypeClassifier
         { ".fsx", "text/plain" },
         { ".gif", "image/gif" },
         { ".go", "text/x-go" },
+        { ".gpx", "application/gpx+xml" },
         { ".gql", "text/plain" },
         { ".gradle", "text/plain" },
         { ".graphql", "text/plain" },
@@ -108,8 +112,12 @@ public static class FileTypeClassifier
         { ".htm", "text/html" },
         { ".html", "text/html" },
         { ".hxx", "text/x-c++" },
+        { ".ical", "text/calendar" },
         { ".ico", "image/x-icon" },
+        { ".ics", "text/calendar" },
+        { ".ifb", "text/calendar" },
         { ".ini", "text/plain" },
+        { ".ipynb", "application/x-ipynb+json" },
         { ".java", "text/x-java-source" },
         { ".jfif", "image/jpeg" },
         { ".jl", "text/plain" },
@@ -119,6 +127,7 @@ public static class FileTypeClassifier
         { ".json", "application/json" },
         { ".jsonc", "application/json" },
         { ".jsx", "text/javascript" },
+        { ".kml", "application/vnd.google-earth.kml+xml" },
         { ".kt", "text/plain" },
         { ".kts", "text/plain" },
         { ".less", "text/plain" },
@@ -126,10 +135,15 @@ public static class FileTypeClassifier
         { ".log", "text/plain" },
         { ".lua", "text/plain" },
         { ".m", "text/plain" },
+        { ".m3u", "audio/x-mpegurl" },
+        { ".m3u8", "application/vnd.apple.mpegurl" },
         { ".m4a", "audio/mp4" },
         { ".m4v", "video/mp4" },
         { ".markdown", "text/markdown" },
+        { ".mbox", "application/mbox" },
         { ".md", "text/markdown" },
+        { ".mht", "multipart/related" },
+        { ".mhtml", "multipart/related" },
         { ".mid", "audio/midi" },
         { ".midi", "audio/midi" },
         { ".mjs", "text/javascript" },
@@ -155,6 +169,7 @@ public static class FileTypeClassifier
         { ".pdf", "application/pdf" },
         { ".php", "application/x-httpd-php" },
         { ".pl", "text/plain" },
+        { ".pls", "audio/x-scpls" },
         { ".pm", "text/plain" },
         { ".png", "image/png" },
         { ".pp", "text/plain" },
@@ -163,6 +178,7 @@ public static class FileTypeClassifier
         { ".properties", "text/plain" },
         { ".props", "application/xml" },
         { ".proto", "text/plain" },
+        { ".ps", "application/postscript" },
         { ".ps1", "text/plain" },
         { ".psd1", "text/plain" },
         { ".psm1", "text/plain" },
@@ -197,15 +213,20 @@ public static class FileTypeClassifier
         { ".tsv", "text/tab-separated-values" },
         { ".tsx", "text/plain" },
         { ".txt", "text/plain" },
+        { ".url", "application/x-mswinurl" },
         { ".vb", "text/plain" },
         { ".vbproj", "application/xml" },
+        { ".vcf", "text/vcard" },
+        { ".vcs", "text/x-vcalendar" },
         { ".vue", "text/plain" },
         { ".wav", "audio/wav" },
+        { ".webloc", "application/x-webloc" },
         { ".webm", "video/webm" },
         { ".webp", "image/webp" },
         { ".wma", "audio/x-ms-wma" },
         { ".wmv", "video/x-ms-wmv" },
         { ".xaml", "application/xml" },
+        { ".xhtml", "application/xhtml+xml" },
         { ".xls", "application/vnd.ms-excel" },
         { ".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
         { ".xml", "application/xml" },
@@ -229,6 +250,14 @@ public static class FileTypeClassifier
         "application/x-tex",
     };
 
+    // Types that are text, but belong to an application rather than being read or edited as text.
+    private static readonly HashSet<string> _applicationOwnedTextTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "text/calendar",
+        "text/vcard",
+        "text/x-vcalendar",
+    };
+
     /// <summary>
     /// Get the MIME content type for a file name, based on its extension.
     /// </summary>
@@ -241,14 +270,16 @@ public static class FileTypeClassifier
     }
 
     /// <summary>
-    /// Check if a file name has a recognized text extension.
+    /// Check if a file name has a recognized text extension. An extension of text that belongs to an application, such
+    /// as a calendar, is not a text extension.
     /// </summary>
     /// <param name="fileName">The file name.</param>
     /// <returns><see langword="true"/> if the extension is a recognized text extension.</returns>
     public static bool IsTextExtension(string fileName)
     {
         string contentType = DetectContentType(fileName);
-        return contentType.StartsWith("text/", StringComparison.OrdinalIgnoreCase) || _textualApplicationTypes.Contains(contentType);
+        return (contentType.StartsWith("text/", StringComparison.OrdinalIgnoreCase) && !_applicationOwnedTextTypes.Contains(contentType))
+            || _textualApplicationTypes.Contains(contentType);
     }
 
     /// <summary>
@@ -260,7 +291,7 @@ public static class FileTypeClassifier
 
     /// <summary>
     /// Classify a file by its name extension, verified by a sample of the start of its content. A file without an
-    /// extension is classified as text if the sample looks like text.
+    /// extension, or with one that is not recognized, is classified as text if the sample looks like text.
     /// </summary>
     /// <param name="fileName">The file name.</param>
     /// <param name="sample">The start of the content.</param>
@@ -268,7 +299,7 @@ public static class FileTypeClassifier
     public static FileCategory Classify(string fileName, ReadOnlySpan<byte> sample)
     {
         string extension = Path.GetExtension(fileName);
-        if (extension.Length == 0 || IsTextExtension(fileName))
+        if (!_contentTypes.ContainsKey(extension) || IsTextExtension(fileName))
         {
             return LooksLikeText(sample) ? FileCategory.Text : FileCategory.Other;
         }

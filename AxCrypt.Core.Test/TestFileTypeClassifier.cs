@@ -117,7 +117,10 @@ public class TestFileTypeClassifier
 
     [TestCase("notes.txt", "Some text", FileCategory.Text)]
     [TestCase("README", "Some text", FileCategory.Text)]
-    [TestCase("notes.xyz", "Some text", FileCategory.Other)]
+    [TestCase("notes.xyz", "Some text", FileCategory.Text)]
+    [TestCase("meeting.ics", "BEGIN:VCALENDAR", FileCategory.Other)]
+    [TestCase("friend.vcf", "BEGIN:VCARD", FileCategory.Other)]
+    [TestCase("letter.eml", "Subject: Hello", FileCategory.Other)]
     [TestCase("document.pdf", "Some text", FileCategory.Other)]
     [TestCase("document.pdf", "%PDF-1.4", FileCategory.Pdf)]
     [TestCase("drawing.svg", "<svg></svg>", FileCategory.Other)]
@@ -131,6 +134,20 @@ public class TestFileTypeClassifier
     public void ClassifyAcceptsAnyImageSignatureForAnImageExtension()
     {
         Assert.That(FileTypeClassifier.Classify("photo.png", [0xFF, 0xD8, 0xFF, 0xE0]), Is.EqualTo(FileCategory.Image));
+    }
+
+    [Test]
+    public void ClassifyRejectsAnUnrecognizedExtensionWithBinaryContent()
+    {
+        Assert.That(FileTypeClassifier.Classify("data.xyz", [0x41, 0xFF, 0xFE, 0xFD]), Is.EqualTo(FileCategory.Other));
+    }
+
+    [TestCase("meeting.ics")]
+    [TestCase("meeting.vcs")]
+    [TestCase("friend.vcf")]
+    public void TextThatBelongsToAnApplicationIsNotATextExtension(string fileName)
+    {
+        Assert.That(FileTypeClassifier.IsTextExtension(fileName), Is.False);
     }
 
     [Test]
