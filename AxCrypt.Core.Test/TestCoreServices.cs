@@ -144,6 +144,82 @@ public sealed class TestCoreServices
         Assert.That(reEncryptWith.MasterKeys, Is.EqualTo([masterKey]));
     }
 
+    private const string EmptyPrivateKeys = """{"version":1,"accounts":[]}""";
+
+    [Test]
+    public async Task ImportPrivateKeysStoresAdditionalKeyPairsInAnEmptyStore()
+    {
+        KeyPair own = await CoreServices.CreateKeyPairAsync("own@example.com", "own", DateTimeOffset.UtcNow);
+
+        PrivateKeyImportResult stored = CoreServices.ImportPrivateKeys(EmptyPrivateKeys,
+            new PrivateKeyImportRequest(["own"], "own", null, [own]));
+        PrivateKeyImportResult loaded = CoreServices.ImportPrivateKeys(stored.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["own"], "own", null, []));
+
+        Assert.That(stored.LoadedKeyPairs, Is.Empty);
+        Assert.That(loaded.LoadedKeyPairs.Select(keyPair => keyPair.PublicKey.SerializedKey),
+            Is.EqualTo([own.PublicKey.SerializedKey]));
+    }
+
+    [Test]
+    public async Task ImportPrivateKeysStoresAnAdditionalKeyPairOnlyOnce()
+    {
+        KeyPair own = await CoreServices.CreateKeyPairAsync("own@example.com", "own", DateTimeOffset.UtcNow);
+        PrivateKeyImportResult first = CoreServices.ImportPrivateKeys(EmptyPrivateKeys,
+            new PrivateKeyImportRequest(["own"], "own", null, [own]));
+
+        PrivateKeyImportResult second = CoreServices.ImportPrivateKeys(first.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["own"], "own", null, [own]));
+        PrivateKeyImportResult loaded = CoreServices.ImportPrivateKeys(second.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["own"], "own", null, []));
+
+        Assert.That(second.LoadedKeyPairs, Is.Empty);
+        Assert.That(loaded.LoadedKeyPairs, Has.Count.EqualTo(1));
+    }
+
+    [Test]
+    public async Task ImportPrivateKeysKeepsAStoredKeyPairWithAnUnknownPasswordUntilThePasswordIsGiven()
+    {
+        KeyPair old = await CoreServices.CreateKeyPairAsync("own@example.com", "old", DateTimeOffset.UtcNow);
+        KeyPair reset = await CoreServices.CreateKeyPairAsync("own@example.com", "new", DateTimeOffset.UtcNow);
+        PrivateKeyImportResult beforeReset = CoreServices.ImportPrivateKeys(EmptyPrivateKeys,
+            new PrivateKeyImportRequest(["old"], "old", null, [old]));
+
+        PrivateKeyImportResult afterReset = CoreServices.ImportPrivateKeys(beforeReset.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["new"], "new", null, [reset]));
+        PrivateKeyImportResult remembered = CoreServices.ImportPrivateKeys(afterReset.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["new", "old"], "new", null, [reset]));
+        PrivateKeyImportResult reEncrypted = CoreServices.ImportPrivateKeys(remembered.ReEncryptedAccountsJson!,
+            new PrivateKeyImportRequest(["new"], "new", null, [reset]));
+
+        Assert.That(afterReset.LoadedKeyPairs, Is.Empty);
+        Assert.That(remembered.LoadedKeyPairs.Select(keyPair => keyPair.PublicKey.SerializedKey),
+            Is.EqualTo([old.PublicKey.SerializedKey]));
+        Assert.That(reEncrypted.LoadedKeyPairs.Select(keyPair => keyPair.PublicKey.SerializedKey),
+            Is.EqualTo([old.PublicKey.SerializedKey]));
+    }
+
+    [Test]
+    public void ImportPrivateKeysThrowsWithAnEmptyPassphraseToReEncryptWith()
+    {
+        Assert.Throws<ArgumentException>(() => CoreServices.ImportPrivateKeys(EmptyPrivateKeys,
+            new PrivateKeyImportRequest(["own"], string.Empty, null, [])));
+    }
+
+    [Test]
+    public async Task ImportPrivateKeysIgnoresEmptyPassphrases()
+    {
+        KeyPair old = await CoreServices.CreateKeyPairAsync("own@example.com", "old", DateTimeOffset.UtcNow);
+        PrivateKeyImportResult stored = CoreServices.ImportPrivateKeys(EmptyPrivateKeys,
+            new PrivateKeyImportRequest([string.Empty], "old", null, [old]));
+
+        PrivateKeyImportResult loaded = CoreServices.ImportPrivateKeys(stored.ReEncryptedAccountsJson,
+            new PrivateKeyImportRequest([string.Empty, "old"], "new", null, []));
+
+        Assert.That(loaded.LoadedKeyPairs.Select(keyPair => keyPair.PublicKey.SerializedKey),
+            Is.EqualTo([old.PublicKey.SerializedKey]));
+    }
+
     private static async Task<EncryptedWithParameters> EncryptAndReadBackAsync(EncryptedWithParameters parameters)
     {
         DateTime utcNow = DateTime.UtcNow;

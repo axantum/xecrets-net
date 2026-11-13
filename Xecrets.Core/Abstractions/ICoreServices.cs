@@ -52,6 +52,30 @@ public interface ICoreServices
 
     PublicKey? ImportPublicKey(string serializedPublicKey);
 
+    /// <summary>
+    /// Imports the private keys of serialized accounts, decrypting those it can and re-encrypting them all with one
+    /// passphrase.
+    /// </summary>
+    /// <remarks>
+    /// Each private key is decrypted with <see cref="PrivateKeyImportRequest.ReEncryptPassphrase"/> if possible, else
+    /// with the first of <see cref="PrivateKeyImportRequest.Passphrases"/> that decrypts it. Empty passphrases among
+    /// <see cref="PrivateKeyImportRequest.Passphrases"/> are ignored, and there need not be any. In the re-encrypted
+    /// accounts, all keys are in one account, for <see cref="PrivateKeyImportRequest.UserEmail"/> if given, else for
+    /// the user of the first account, or with no accounts that of the first additional key pair. The decrypted keys are
+    /// encrypted with <see cref="PrivateKeyImportRequest.ReEncryptPassphrase"/> and marked as having a known
+    /// passphrase, and the others are kept, marked as having an unknown passphrase.
+    /// <see cref="PrivateKeyImportRequest.AdditionalKeyPairs"/> are added to the keys, also encrypted with
+    /// <see cref="PrivateKeyImportRequest.ReEncryptPassphrase"/>, unless they are already among the decrypted keys. An
+    /// additional key pair replaces a key with the same public key that could not be decrypted.
+    /// </remarks>
+    /// <param name="serializedAccounts">The accounts, serialized in the format of AxCrypt's UserAccounts.</param>
+    /// <param name="request">The passphrases and key pairs to import with.</param>
+    /// <returns>
+    /// The decrypted keys, newest first and without the additional key pairs, and the re-encrypted accounts serialized.
+    /// The serialized accounts are <paramref name="serializedAccounts"/> itself if nothing changed.
+    /// </returns>
+    /// <exception cref="ArgumentException"><see cref="PrivateKeyImportRequest.ReEncryptPassphrase"/> is null or
+    /// empty.</exception>
     PrivateKeyImportResult ImportPrivateKeys(string serializedAccounts, PrivateKeyImportRequest request);
 
     bool TryParseEmail(string email, [NotNullWhen(true)] out string? address);

@@ -25,4 +25,4 @@
 
 namespace Xecrets.Core.Models;
 
-public sealed record PrivateKeyImportResult(IReadOnlyList<KeyPair> LoadedKeyPairs, string? ReEncryptedAccountsJson);
+public sealed record PrivateKeyImportResult(IReadOnlyList<KeyPair> LoadedKeyPairs, string ReEncryptedAccountsJson);

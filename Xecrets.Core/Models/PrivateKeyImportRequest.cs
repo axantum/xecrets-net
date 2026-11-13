@@ -25,4 +25,16 @@
 
 namespace Xecrets.Core.Models;
 
-public sealed record PrivateKeyImportRequest(IReadOnlyList<string> Passphrases, string? ReEncryptPassphrase, string? UserEmail);
+/// <summary>
+/// The passphrases and key pairs for importing the private keys of serialized accounts.
+/// </summary>
+/// <param name="Passphrases">The passphrases to try for decrypting the private keys.</param>
+/// <param name="ReEncryptPassphrase">The passphrase to re-encrypt the imported private keys with.</param>
+/// <param name="UserEmail">The email of the account the keys belong to, or null for that of the first
+/// account.</param>
+/// <param name="AdditionalKeyPairs">Additional decrypted key pairs.</param>
+public sealed record PrivateKeyImportRequest(
+    IReadOnlyList<string> Passphrases,
+    string ReEncryptPassphrase,
+    string? UserEmail,
+    IReadOnlyList<KeyPair> AdditionalKeyPairs);

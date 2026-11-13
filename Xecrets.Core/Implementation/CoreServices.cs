@@ -204,20 +204,18 @@ internal sealed class CoreServices : ICoreServices
     public PrivateKeyImportResult ImportPrivateKeys(string serializedAccounts,
         PrivateKeyImportRequest request)
     {
+        ArgumentException.ThrowIfNullOrEmpty(request.ReEncryptPassphrase);
+
         try
         {
             UserAccounts userAccounts = New<IStringSerializer>().Deserialize<UserAccounts>(serializedAccounts) ??
                 throw new InvalidDataException("The private key account data could not be deserialized.");
 
-            UserAccounts? reEncryptedAccounts =
+            UserAccounts reEncryptedAccounts =
                 ReEncryptAccounts(request, userAccounts, out List<UserKeyPair> loadedKeyPairs);
-            string? reEncryptedJson = null;
-            if (reEncryptedAccounts != null)
-            {
-                reEncryptedJson = ReferenceEquals(userAccounts, reEncryptedAccounts)
-                    ? serializedAccounts
-                    : New<IStringSerializer>().Serialize(reEncryptedAccounts);
-            }
+            string reEncryptedJson = ReferenceEquals(userAccounts, reEncryptedAccounts)
+                ? serializedAccounts
+                : New<IStringSerializer>().Serialize(reEncryptedAccounts);
 
             return new PrivateKeyImportResult(
                 [.. loadedKeyPairs.Select(k => k.ToKeyPair(Passphrase.Empty))], reEncryptedJson);
@@ -288,26 +286,27 @@ internal sealed class CoreServices : ICoreServices
     }
 
 
-    private static UserAccounts? ReEncryptAccounts(PrivateKeyImportRequest request, UserAccounts userAccounts,
+    private static UserAccounts ReEncryptAccounts(PrivateKeyImportRequest request, UserAccounts userAccounts,
         out List<UserKeyPair> decryptedKeyPairs)
     {
         decryptedKeyPairs = [];
-        if (userAccounts.Accounts.Count == 0)
+        if (userAccounts.Accounts.Count == 0 && request.AdditionalKeyPairs.Count == 0)
         {
             return userAccounts;
         }
 
-        if (string.IsNullOrEmpty(request.ReEncryptPassphrase))
-        {
-            return null;
-        }
-
         Passphrase reEncryptionPassphrase = Passphrase.Create(request.ReEncryptPassphrase);
         List<Passphrase> passphrases =
-            [.. request.Passphrases.Where(p => p != request.ReEncryptPassphrase).Select(Passphrase.Create)];
-        string userEmail = string.IsNullOrEmpty(request.UserEmail)
-            ? userAccounts.Accounts.First().UserName
-            : request.UserEmail;
+        [
+            .. request.Passphrases
+                .Where(p => p.Length > 0 && p != request.ReEncryptPassphrase)
+                .Select(Passphrase.Create),
+        ];
+        string userEmail = !string.IsNullOrEmpty(request.UserEmail)
+            ? request.UserEmail
+            : userAccounts.Accounts.Count > 0
+                ? userAccounts.Accounts.First().UserName
+                : request.AdditionalKeyPairs[0].Email;
 
         List<AccountKey> nonDecryptableAccountKeys = [];
         bool statusChanged = userAccounts.Accounts.Any(a => a.UserName != userEmail);
@@ -332,7 +331,29 @@ internal sealed class CoreServices : ICoreServices
             statusChanged |= key.Status != PrivateKeyStatus.PassphraseUnknown;
         }
 
-        decryptedKeyPairs = [.. decryptedKeyPairs.OrderByDescending(k => k.Timestamp)];
+        List<UserKeyPair> storedKeyPairs = [.. decryptedKeyPairs];
+        HashSet<string> additionalThumbprints = [];
+        foreach (KeyPair additionalKeyPair in request.AdditionalKeyPairs)
+        {
+            UserKeyPair userKeyPair = additionalKeyPair.ToUserKeyPair();
+            string thumbprint = Thumbprint(userKeyPair);
+            additionalThumbprints.Add(thumbprint);
+            if (storedKeyPairs.Any(k => Thumbprint(k) == thumbprint))
+            {
+                continue;
+            }
+
+            nonDecryptableAccountKeys.RemoveAll(k => k.Thumbprint == thumbprint);
+            storedKeyPairs.Add(userKeyPair);
+            statusChanged = true;
+        }
+
+        decryptedKeyPairs =
+        [
+            .. decryptedKeyPairs
+                .Where(k => !additionalThumbprints.Contains(Thumbprint(k)))
+                .OrderByDescending(k => k.Timestamp),
+        ];
         if (!statusChanged)
         {
             return userAccounts;
@@ -342,7 +363,7 @@ internal sealed class CoreServices : ICoreServices
         // Modifying the serialization to exclude empty strings was non-trivial, because of constraints
         // when using compile-time source generation for trimmer friendly serialization.
         UserAccount reEncryptedAccount = new(userEmail) { Tag = null!, Signature = null! };
-        foreach (UserKeyPair keyPair in decryptedKeyPairs)
+        foreach (UserKeyPair keyPair in storedKeyPairs.OrderByDescending(k => k.Timestamp))
         {
             reEncryptedAccount.AccountKeys.Add(keyPair.ToAccountKey(reEncryptionPassphrase));
         }
@@ -356,6 +377,8 @@ internal sealed class CoreServices : ICoreServices
 
         return new UserAccounts { Accounts = [reEncryptedAccount] };
     }
+
+    private static string Thumbprint(UserKeyPair keyPair) => keyPair.KeyPair.PublicKey.Thumbprint.ToString();
 
     private static bool TryDecryptKey(AccountKey key, List<Passphrase> passphrases, out UserKeyPair? userKeyPair)
     {
