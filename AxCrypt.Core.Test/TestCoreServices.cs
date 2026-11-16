@@ -106,6 +106,15 @@ public sealed class TestCoreServices
     }
 
     [Test]
+    public async Task PublicKeyToPemPreservesTheKeyAcrossAnEmailChange()
+    {
+        KeyPair original = await CoreServices.CreateKeyPairAsync("old@example.com", "old", DateTimeOffset.UtcNow);
+        KeyPair changed = await CoreServices.ChangeKeyPairAsync(original, "new@example.com", "new");
+
+        Assert.That(changed.PublicKey.ToPem(), Is.EqualTo(original.PublicKey.ToPem()));
+    }
+
+    [Test]
     public async Task ChangeKeyPairAsyncRejectsInvalidEmail()
     {
         KeyPair original = await CoreServices.CreateKeyPairAsync("old@example.com", "old", DateTimeOffset.UtcNow);

@@ -27,11 +27,18 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using Xecrets.Core.Implementation;
+using Xecrets.Core.Models;
 
 namespace Xecrets.Core.Public;
 
 public static class Extensions
 {
+    /// <summary>
+    /// Returns the public key in PEM format.
+    /// </summary>
+    public static string ToPem(this PublicKey publicKey) =>
+        publicKey.ToUserPublicKey().PublicKey.ToString()!;
+
     public static IServiceCollection AddXecretsCore(this IServiceCollection services)
     {
         Runtime.Register();
